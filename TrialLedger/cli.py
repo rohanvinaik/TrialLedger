@@ -91,9 +91,31 @@ def main(
 ) -> int:
     parser = argparse.ArgumentParser(
         prog="trialledger",
-        description="Pull ClinicalTrials.gov studies into a record, a spreadsheet and a certified workbook.",
+        description=(
+            "Resolve ClinicalTrials.gov studies to their symbolic design reading. The main path is "
+            "`resolve`: a live query of the registry's API, read and resolved without saving the records. "
+            "The fallback, when a stored and verifiable record is wanted, is `pull` (save a query's records, "
+            "spreadsheet and certified workbooks), `profile` (resolve a saved folder) and `verify`."
+        ),
     )
     commands = parser.add_subparsers(dest="command", required=True)
+    resolve_parser = commands.add_parser(
+        "resolve",
+        help="resolve a live query's studies to their symbolic reading, without saving the records",
+        description=(
+            "Query ClinicalTrials.gov live (the same parameters as pull, one snapshot, complete or nothing), "
+            "and resolve every matching study to its symbolic reading: typed criteria, design coordinates, "
+            "drug classes, outcomes and expectation observations. Nothing of the registry's record is saved; "
+            "RxClass answers are cached in ~/.cache/trialledger (or $TRIALLEDGER_CACHE). Writes design.xlsx "
+            "with --out, the reading as JSON with --json (a path, or - for standard output; the default). "
+            "Ends with 0, resolved; 1, the query failed; 2, the query was refused."
+        ),
+    )
+    resolve_parser.add_argument("parameters", nargs="*", metavar="NAME=VALUE")
+    resolve_parser.add_argument("--out", type=Path, help="write design.xlsx for the matched studies here")
+    resolve_parser.add_argument(
+        "--json", help="write the symbolic reading as JSON here (- for standard output)"
+    )
     pull_parser = commands.add_parser(
         "pull",
         help="pull every study a query matches",
@@ -125,23 +147,6 @@ def main(
         ),
     )
     profile_parser.add_argument("folder", type=Path)
-    resolve_parser = commands.add_parser(
-        "resolve",
-        help="resolve a live query's studies to their symbolic reading, without saving the records",
-        description=(
-            "Query ClinicalTrials.gov live (the same parameters as pull, one snapshot, complete or nothing), "
-            "and resolve every matching study to its symbolic reading: typed criteria, design coordinates, "
-            "drug classes, outcomes and expectation observations. Nothing of the registry's record is saved; "
-            "RxClass answers are cached in ~/.cache/trialledger (or $TRIALLEDGER_CACHE). Writes design.xlsx "
-            "with --out, the reading as JSON with --json (a path, or - for standard output; the default). "
-            "Ends with 0, resolved; 1, the query failed; 2, the query was refused."
-        ),
-    )
-    resolve_parser.add_argument("parameters", nargs="*", metavar="NAME=VALUE")
-    resolve_parser.add_argument("--out", type=Path, help="write design.xlsx for the matched studies here")
-    resolve_parser.add_argument(
-        "--json", help="write the symbolic reading as JSON here (- for standard output)"
-    )
     args = parser.parse_args(argv)
     if args.command == "resolve":
         return _resolve(args, http=http, sleep=sleep, rxclass_get=rxclass_get)

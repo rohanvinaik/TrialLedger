@@ -375,6 +375,12 @@
     "refusal": "",
     "standing": "complete"
   },
+  "TrialLedger/review.py::flags_for": {
+    "cut_reasons": [],
+    "function_digest": "3ef0fd17d483f12e",
+    "refusal": "",
+    "standing": "complete"
+  },
   "TrialLedger/warrants.py::semantic_source": {
     "cut_reasons": [],
     "function_digest": "c23d206d42cb3529",

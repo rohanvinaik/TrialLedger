@@ -86,7 +86,12 @@ gather facts and write files. `design.md`'s code-shape table gives each module's
   for part against a fresh write).
 - `record.py`: `write_record` (four files or nothing, with the digests and roots, naming a workbook over
   Google Sheets' 10 million cells), `code_commit`, `record_problems`, `verify_folder`.
-- `cli.py`: `trialledger pull NAME=VALUE ...`, `trialledger verify <folder>` and `trialledger profile <folder>`.
+- `cli.py`: `trialledger resolve NAME=VALUE ...` (the main path: a live query resolved without saving the
+  records; the founder's instruction 2026-10-31), and the stored-record fallback `trialledger pull`, `verify`
+  and `profile <folder>`.
+- `review.py`: the review queue, what the rules cannot cleanly resolve, as typed questions with closed answer
+  options for an expert or a model; nothing in it is resolved by TrialLedger (the founder, 2026-10-31).
+- `expectations.py`: declared expectations, observation statuses, conditional rarity, deviation statuses.
 - The coherence engine (`openspec/changes/add-coherence-engine`), outside the review and record workbooks'
   derivation and code root: `criteria.py` (eligibility itemized into headings, criteria and prose, exact
   spans), `banks.py` (deterministic typing banks: spanned atoms or abstention; polarity is the section's),

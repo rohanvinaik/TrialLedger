@@ -38,6 +38,7 @@ from TrialLedger.profile import (
     mechanism_rows,
     occupancy_rows,
 )
+from TrialLedger.review import flags_for
 
 DESIGN_NAME = "design.xlsx"
 VERSION = "design-1"
@@ -157,6 +158,22 @@ def study_view(study: dict[str, Any], answers: dict[str, Any]) -> dict[str, Any]
             expectation.id: _observe(expectation, readable, code, drugs) for expectation in FROZEN
         },
     }
+
+
+def review_flags(view: dict[str, Any], known_classes: list[str]) -> list[tuple]:
+    """The review flags of one study view: what the symbolic reading leaves for an expert or a model."""
+    from TrialLedger.coherence import COORDINATES
+
+    return flags_for(
+        [(drug, state) for drug, state, _, _ in view["drugs"]],
+        {
+            name: (list(row["domain"]), row["state"], [c[2] for c in row["causes"]])
+            for name, row in view["coordinates"].items()
+        },
+        {name: list(values) for name, values in COORDINATES.items()},
+        {eid: (s, r, c) for eid, (s, r, c, _) in view["observations"].items()},
+        known_classes,
+    )
 
 
 def _observe(expectation, readable, code, drugs) -> tuple[str, str, list[str], list[str]]:
@@ -403,6 +420,42 @@ def sheets(views: list[dict[str, Any]], answers: dict[str, Any]) -> dict[str, tu
         ],
         rows_exp,
     )
+    known_classes = sorted({c for v in views for _, s, e, _ in v["drugs"] if s == "classified" for c in e})
+    review_rows = []
+    for v in views:
+        for kind, element, why, priority, evidence, question, options in review_flags(v, known_classes):
+            review_rows.append(
+                [
+                    priority,
+                    kind,
+                    v["nct"],
+                    element,
+                    why,
+                    " ⏐ ".join(evidence),
+                    question,
+                    " | ".join(options),
+                    "",
+                    "",
+                    warrants.computed(_rule("review", flags_for), v["digest"]),
+                ]
+            )
+    review_rows.sort(key=lambda row: (row[0], row[1], row[2]))
+    out["Review Queue"] = (
+        [
+            "Priority",
+            "Kind",
+            "NCT Number",
+            "Element",
+            "Why Unresolved",
+            "Evidence",
+            "Question",
+            "Answer Options",
+            "Answer",
+            "Answered By (expert or model)",
+            "Warrant",
+        ],
+        review_rows,
+    )
     out["Relations"] = (
         ["Relation", "Statement", "Basis", "Approval", "Narrows", "To", "Warrant"],
         [
@@ -497,6 +550,13 @@ def sheets(views: list[dict[str, Any]], answers: dict[str, Any]) -> dict[str, tu
 
 
 ABOUT = [
+    [
+        "Review Queue",
+        "What this symbolic reading could not cleanly resolve, each as a typed question with closed answer "
+        "options and its evidence, for a domain expert or a model to answer: unresolved drug classes, "
+        "coordinate conflicts, unresolved expectation observations and verified deviations. Nothing in it "
+        "is resolved by TrialLedger; an answer is recorded with who gave it.",
+    ],
     [
         "Outcomes / Results",
         "Every registered outcome with its endpoint classes and stated time points. Results: every posted "
@@ -606,9 +666,10 @@ def write_design(folder: Path, *, get=rx.http_get, sleep=None) -> tuple[Path, di
 def symbolic_output(studies: list[dict[str, Any]], answers: dict[str, Any]) -> list[dict[str, Any]]:
     """Each study's symbolic reading as plain data: typed criteria, coordinates, drugs, outcomes and
     expectation observations, each value with the record text it rests on. The JSON form of `resolve`."""
+    views = [study_view(study, answers) for study in studies]
+    known_classes = sorted({c for v in views for _, s, e, _ in v["drugs"] if s == "classified" for c in e})
     output = []
-    for study in studies:
-        view = study_view(study, answers)
+    for view in views:
         output.append(
             {
                 "nct": view["nct"],
@@ -651,6 +712,19 @@ def symbolic_output(studies: list[dict[str, Any]], answers: dict[str, Any]) -> l
                 "outcomes": [
                     {"type": k, "measure": m, "time_frame": f, "endpoint_classes": c, "time_points": p}
                     for k, m, f, c, p in view["outcomes"]
+                ],
+                "review": [
+                    {
+                        "kind": k,
+                        "element": el,
+                        "why": why,
+                        "priority": int(pr),
+                        "evidence": ev,
+                        "question": q,
+                        "options": opts,
+                        "answer": None,
+                    }
+                    for k, el, why, pr, ev, q, opts in review_flags(view, known_classes)
                 ],
                 "expectations": {
                     eid: {

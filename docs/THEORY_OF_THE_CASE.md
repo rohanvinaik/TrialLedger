@@ -178,6 +178,14 @@ Claude's sketch, from the accepted restatement and his decisions; each part name
    endpoint class, setting, unit and measure type; an anticipated efficacy threshold needs a stated decision
    rule on top of them.
 
+**His decisions later that day (paraphrased):** the live query of the registry's API is the expected main path,
+and stored data an intentional fallback when the user wants it; what the symbolic system cannot cleanly resolve
+(an apparent violation, an unresolvable element) is flagged and surfaced for a human domain expert or a model to
+resolve directly, never forced; rules are completed from domain priors without fitting them to the residual of
+the population they are measured on; and structured disagreement that is not pure entropy is information (the
+successor of near-miss learning and surprise; SIGNIFICANCE_WEIGHTING.md), so a valid unexplained deviation is
+kept, never folded into noise (`openspec/changes/add-design-surprise`).
+
 **Corrections he accepted, 2026-10-31** (from a Codex consultation on Claude's reading):
 
 - Computable does not mean forced: constraints define which designs are feasible, frequencies describe which

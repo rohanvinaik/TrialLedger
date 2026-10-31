@@ -243,45 +243,51 @@ TrialLedger needs [uv](https://docs.astral.sh/uv/) (Python is installed through 
 
 ```bash
 uv sync
-uv run trialledger pull filter.ids=NCT04852770
-uv run trialledger pull filter.ids=NCT04852770,NCT01030536 --out my_studies
-uv run trialledger pull query.cond=sarcoidosis filter.overallStatus=RECRUITING
-uv run trialledger pull "filter.advanced=AREA[StartDate]RANGE[2024-01-01,2024-01-31]" query.cond=asthma
-uv run trialledger verify my_studies
-uv run trialledger profile my_studies
-uv run trialledger resolve query.cond="non-small cell lung cancer" filter.overallStatus=RECRUITING --json reading.json
+uv run trialledger resolve filter.ids=NCT03829332 --json -
+uv run trialledger resolve query.cond="non-small cell lung cancer" filter.overallStatus=RECRUITING \
+    --json reading.json --out design.xlsx
 ```
 
-`resolve` answers the same questions without saving the registry's records: it queries ClinicalTrials.gov live
-(one snapshot, complete or nothing), resolves every matching study to its symbolic reading (typed criteria,
-design coordinates, drug classes, outcomes, and each declared expectation's observation and deviation), and
-writes that reading as JSON (`--json`, a path or `-`) and, with `--out`, as `design.xlsx`. Only drug-class
-answers from RxClass are cached, in `~/.cache/trialledger` (or `$TRIALLEDGER_CACHE`).
-
-`profile` reads a folder `pull` wrote and adds `design.xlsx` beside it: every eligibility criterion split out
-and typed by fixed rules (performance status, biomarker status, prior therapy and line, stage and setting,
-laboratory thresholds), the criteria no rule could type, each trial's setting, prior lines and biomarker
-selection as the set of values its own criteria still allow, each experimental drug's pharmacologic class from
-the National Library of Medicine's RxClass, and, across the folder's trials, how often each criterion
-appears, which criteria are standard, which track a drug class (offered only as leads to review), and which
-combinations of setting and drug class no trial occupies. It changes none of the pull's files. It ends with
-`0`, written; `1`, the record no longer matches its own digests and nothing was written; `2`, not a
-TrialLedger folder.
+**The main path is `resolve`.** It queries ClinicalTrials.gov live (one snapshot, complete or nothing) and
+resolves every matching study to its symbolic reading, without saving the registry's records: each eligibility
+criterion split out and typed by fixed rules, each trial's design coordinates (setting, prior lines, biomarker
+selection) as the values its own criteria still allow, each experimental drug's pharmacologic class from the
+National Library of Medicine's RxClass, its registered outcomes, each declared expectation's observation and
+deviation, and a **review queue**: what the rules could not cleanly resolve (an unclassified drug, a coordinate
+the criteria contradict, an unresolved or deviating observation), each as a question with closed answer options
+and its evidence, for a domain expert or a model to answer. TrialLedger never forces those answers. `--json`
+writes the reading as JSON (a path, or `-` for standard output; the default); `--out` writes `design.xlsx`,
+which adds the profile across the matched trials (how often each criterion appears, which criteria are
+standard, which track a drug class, which settings and classes no trial occupies, and results grouped like for
+like). Only the RxClass answers are cached, in `~/.cache/trialledger` (or `$TRIALLEDGER_CACHE`). It ends with
+`0`, resolved; `1`, the query failed; `2`, the query was refused.
 
 Each `NAME=VALUE` is one of the registry's own search parameters (`spec/ctg-oas-v2.yaml`), sent exactly as
 written; the registry rejects names it does not know. `query.*` parameters search the way the registry's
 website does, ranking by relevance and matching related terms, so they can return more than you meant;
-`filter.*` parameters restrict the set exactly. `uv run trialledger pull --help` lists examples.
+`filter.*` parameters restrict the set exactly. Requests are spaced 1.25 seconds apart; the registry publishes
+no rate limit, and if it asks TrialLedger to slow down, it does.
 
-`pull` ends with one of three outcomes: `0`, written; `1`, the pull or the write failed and nothing was
-written; `2`, the query was refused before anything was sent. Requests are spaced 1.25 seconds apart. The
-registry publishes no rate limit; if it asks TrialLedger to slow down, it does. `verify` ends with `0`,
-certified; `1`, not certified, each difference named; `2`, the folder holds no TrialLedger record. It
-rewrites both workbooks to compare the files, so it takes about as long as the original write.
+**The fallback, when a stored, verifiable record is wanted**, is to save a query and resolve the saved folder:
 
-To check the build: `scripts/ci_local.sh` runs the full gate (it requires local checkouts of Detective and
-Wesker), `.venv/bin/python scripts/push_checks.py install` installs the pre-push hook that runs the gate
-before every push, and `uv run pytest -m live` runs pulls against the real registry.
+```bash
+uv run trialledger pull query.cond=sarcoidosis filter.overallStatus=RECRUITING --out my_studies
+uv run trialledger verify my_studies
+uv run trialledger profile my_studies
+```
+
+`pull` writes the records as sent (`studies.json`), the registry's spreadsheet (`studies.csv`) and the two
+certified workbooks; it ends with `0`, written; `1`, the pull or the write failed and nothing was written; `2`,
+the query was refused. `verify` re-derives a saved folder and ends with `0`, certified; `1`, not certified,
+each difference named; `2`, no TrialLedger record; it rewrites both workbooks to compare the files, so it takes
+about as long as the original write. `profile` writes the same `design.xlsx` as `resolve --out` beside a saved
+folder, changes none of its files, and refuses a folder whose record no longer matches its digests (`1`) or
+that holds no record (`2`).
+
+To check the build: `scripts/ci_local.sh` runs the fast gate (`--deep` adds the Detective audit of every
+pinned decision and the vulture scans; it needs local checkouts of Detective and Wesker),
+`.venv/bin/python scripts/push_checks.py install` installs the pre-push hook that runs the gate before every
+push, and `uv run pytest -m live` runs pulls against the real registry.
 
 ## Where the ideas come from
 

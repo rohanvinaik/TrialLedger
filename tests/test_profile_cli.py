@@ -61,6 +61,7 @@ def test_profile_writes_beside_the_pull_and_changes_none_of_it(folder):
         "Outcomes",
         "Results",
         "Expectations",
+        "Review Queue",
         "Relations",
         "Classes",
         "Profile",
