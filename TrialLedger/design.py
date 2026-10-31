@@ -19,7 +19,7 @@ from openpyxl import Workbook
 
 from TrialLedger import classes as rx
 from TrialLedger import warrants
-from TrialLedger.banks import type_criterion
+from TrialLedger.banks import endpoint_classes, stated_targets, time_points, type_criterion
 from TrialLedger.cells import cell_number_state, cell_text_state
 from TrialLedger.coherence import RELATIONS, SETTINGS, resolve
 from TrialLedger.criteria import itemize
@@ -80,11 +80,58 @@ def study_view(study: dict[str, Any], answers: dict[str, Any]) -> dict[str, Any]
             evidence.append((effective, concept, values, dict(params).get("scope", ""), f"criterion {index}"))
             elements.append(element_key(effective, concept, values, params))
     names = rx.drug_names(study)
+    arms_module = protocol.get("armsInterventionsModule", {})
+    descriptions = {
+        item.get("name"): " ".join(str(item.get(k) or "") for k in ("name", "description"))
+        for item in arms_module.get("interventions", []) or []
+        if isinstance(item, dict)
+    }
     drugs = []
     for drug in rx.experimental_drugs(study):
         state, found, resolved_by = rx.drug_class(answers, names[drug])
         epc = sorted({c[1] for c in found if c[2] == "has_epc"})
+        if state != "classified":
+            stated = stated_targets(descriptions.get(drug, ""))
+            if stated:
+                state, epc, resolved_by = "stated_by_record", [f"stated: {s}" for s in stated], "description"
         drugs.append((drug, state, epc, resolved_by))
+    outcomes = []
+    for kind, key in (
+        ("primary", "primaryOutcomes"),
+        ("secondary", "secondaryOutcomes"),
+        ("other", "otherOutcomes"),
+    ):
+        for outcome in protocol.get("outcomesModule", {}).get(key, []) or []:
+            measure, frame = str(outcome.get("measure") or ""), str(outcome.get("timeFrame") or "")
+            classes = endpoint_classes(measure)
+            outcomes.append((kind, measure, frame, classes, time_points(frame)))
+            if kind == "primary":
+                elements.extend(f"primary:endpoint:{c}" for c in classes)
+    results = []
+    for measure in (study.get("resultsSection", {}).get("outcomeMeasuresModule", {}) or {}).get(
+        "outcomeMeasures", []
+    ) or []:
+        groups = {g.get("id"): g.get("title") for g in measure.get("groups", []) or [] if isinstance(g, dict)}
+        title = str(measure.get("title") or "")
+        for klass in measure.get("classes", []) or []:
+            for category in klass.get("categories", []) or []:
+                for m in category.get("measurements", []) or []:
+                    results.append(
+                        (
+                            title,
+                            endpoint_classes(title),
+                            str(measure.get("type") or ""),
+                            str(measure.get("unitOfMeasure") or ""),
+                            str(measure.get("paramType") or ""),
+                            str(measure.get("timeFrame") or ""),
+                            str(groups.get(m.get("groupId"), "")),
+                            str(klass.get("title") or category.get("title") or ""),
+                            str(m.get("value") or ""),
+                            str(m.get("spread") or ""),
+                            str(m.get("lowerLimit") or ""),
+                            str(m.get("upperLimit") or ""),
+                        )
+                    )
     return {
         "nct": nct,
         "digest": warrants.study_digest(study),
@@ -95,6 +142,8 @@ def study_view(study: dict[str, Any], answers: dict[str, Any]) -> dict[str, Any]
         "coordinates": resolve(evidence),
         "elements": elements,
         "drugs": drugs,
+        "outcomes": outcomes,
+        "results": results,
     }
 
 
@@ -223,6 +272,67 @@ def sheets(views: list[dict[str, Any]], answers: dict[str, Any]) -> dict[str, tu
             if row["state"] != "unnarrowed" or row["proposed_state"] != "unnarrowed"
         ],
     )
+    out["Outcomes"] = (
+        ["NCT Number", "Type", "Measure", "Time Frame", "Endpoint Classes", "Time Points", "Warrant"],
+        [
+            [
+                v["nct"],
+                kind,
+                measure,
+                frame,
+                " | ".join(classes),
+                " | ".join(points),
+                warrants.computed(trials_rule, v["digest"]),
+            ]
+            for v in views
+            for kind, measure, frame, classes, points in v["outcomes"]
+        ],
+    )
+    result_rows = []
+    for v in views:
+        stratum = _stratum(v)
+        for title, classes, kind, unit, param, frame, group, klass, value, spread, low, high in v["results"]:
+            for endpoint in classes or ["(no endpoint class)"]:
+                result_rows.append(
+                    [
+                        endpoint,
+                        stratum,
+                        unit,
+                        param,
+                        v["nct"],
+                        kind,
+                        title,
+                        frame,
+                        group,
+                        klass,
+                        value,
+                        spread,
+                        low,
+                        high,
+                        warrants.computed(trials_rule, v["digest"]),
+                    ]
+                )
+    result_rows.sort(key=lambda row: (row[0], row[1], row[2], row[3], row[4]))
+    out["Results"] = (
+        [
+            "Endpoint Class",
+            "Setting (with proposed relations)",
+            "Unit",
+            "Measure Type",
+            "NCT Number",
+            "Outcome Type",
+            "Title",
+            "Time Frame",
+            "Arm/Group",
+            "Class or Category",
+            "Value",
+            "Spread",
+            "Lower Limit",
+            "Upper Limit",
+            "Warrant",
+        ],
+        result_rows,
+    )
     out["Relations"] = (
         ["Relation", "Statement", "Basis", "Approval", "Narrows", "To", "Warrant"],
         [
@@ -317,6 +427,12 @@ def sheets(views: list[dict[str, Any]], answers: dict[str, Any]) -> dict[str, tu
 
 
 ABOUT = [
+    [
+        "Outcomes / Results",
+        "Every registered outcome with its endpoint classes and stated time points. Results: every posted "
+        "measurement, grouped by endpoint class, setting, unit and measure type; only rows that share all "
+        "four are comparable, and nothing is pooled or converted.",
+    ],
     [
         "What this workbook is",
         "The coherence engine over the pull beside it: every criterion itemized and typed by "

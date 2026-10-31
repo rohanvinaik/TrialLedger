@@ -58,6 +58,8 @@ def test_profile_writes_beside_the_pull_and_changes_none_of_it(folder):
         "Residual",
         "Audit",
         "Coordinates",
+        "Outcomes",
+        "Results",
         "Relations",
         "Classes",
         "Profile",

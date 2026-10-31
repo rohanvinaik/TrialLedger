@@ -22,16 +22,16 @@
     (capitalised analyte names were never read), fixed. Population: 10,187 criteria, 2,942 typed by at least
     one bank, residual 7,245; ECOG in 407 of 487 studies, biomarker atoms in 348, prior lines in 307, stage in
     336, lab thresholds in 143.
-- [ ] 2.1b Widen by the residual: CNS metastases, named conditions (autoimmune disease, pneumonitis/ILD,
+- [x] 2.1b Widen by the residual: CNS metastases, named conditions (autoimmune disease, pneumonitis/ILD,
   infection, other malignancy, cardiac, bleeding), age, washout windows, boilerplate (consent, contraception,
   pregnancy, life expectancy, measurable disease, compliance)
-- [ ] 2.2 Write the endpoint-class bank over outcome measure titles with intent tests; converge once
+- [x] 2.2 Write the endpoint-class bank over outcome measure titles with intent tests; converge once
 
 ## 3. Classify interventions
 
 - [x] 3.1 Write the RxClass response decision (classes, or a named failure) with intent tests; converge once
 - [x] 3.2 Write the lookup shell over names and other names through the throttled session, caching `classes.json`; durability test (a failed lookup is named, never "no class"); verify a live lookup of the population
-- [ ] 3.3 Write the record-stated target bank over intervention and arm descriptions; converge once
+- [x] 3.3 Write the record-stated target bank over intervention and arm descriptions; converge once
 
 ## 4. Coherence
 
@@ -54,9 +54,10 @@
 
 - [x] 5.1 Write frequencies with explicit denominators, surprisal, sponsor support and the standard tier, with intent tests; converge once
 - [x] 5.2 Write mechanism signals (2×2 counts, difference, sponsors, unresolved count, proposal thresholds) with intent tests; converge once
-- [ ] 5.3 Write occupancy (occupied / unknown / empty) and comparable-results grouping with intent tests; converge once
+- [x] 5.3 Write occupancy (occupied / unknown / empty) and comparable-results grouping with intent tests; converge once
   - 2026-10-31: occupancy done (`profile.occupancy_rows`, COMPLETE). Comparable-results grouping is open: it
-    needs the endpoint-class bank (2.2).
+    needs the endpoint-class bank (2.2). Done: design.xlsx Results groups posted values by endpoint class,
+    setting, unit and measure type; Outcomes types every registered outcome.
 
 ## 6. Output and command
 

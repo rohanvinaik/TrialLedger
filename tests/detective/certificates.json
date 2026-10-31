@@ -17,6 +17,12 @@
     "refusal": "",
     "standing": "complete"
   },
+  "TrialLedger/banks.py::endpoint_classes": {
+    "cut_reasons": [],
+    "function_digest": "0f79ba87b44d53d8",
+    "refusal": "",
+    "standing": "complete"
+  },
   "TrialLedger/banks.py::histology": {
     "cut_reasons": [],
     "function_digest": "65ebf8cdd249fc1b",
@@ -44,6 +50,18 @@
   "TrialLedger/banks.py::prior_therapy": {
     "cut_reasons": [],
     "function_digest": "36131ee1e79d6555",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/banks.py::stated_targets": {
+    "cut_reasons": [],
+    "function_digest": "400ba26e57cad378",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/banks.py::time_points": {
+    "cut_reasons": [],
+    "function_digest": "3b7ed2dbdd37b797",
     "refusal": "",
     "standing": "complete"
   },

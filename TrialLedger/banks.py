@@ -606,6 +606,82 @@ def histology(text: str) -> list[Atom]:
     return atoms
 
 
+# ── outcomes and record-stated targets ──────────────────────────────────────────────────────────────
+
+ENDPOINTS = {
+    "overall_survival": r"overall survival|(?-i:\bOS\b)",
+    "progression_free_survival": r"progression[- ]free survival|(?-i:\bPFS\d?\b)",
+    "objective_response_rate": r"objective response|overall response rate|best overall response"
+    r"|(?-i:\bORR\b)",
+    "disease_free_survival": r"disease[- ]free survival|(?-i:\bDFS\b)",
+    "event_free_survival": r"event[- ]free survival|(?-i:\bEFS\b)",
+    "duration_of_response": r"duration of (?:\w+ )?response|(?-i:\bDoR\b|\bDOR\b)",
+    "disease_control_rate": r"disease control|clinical benefit rate|(?-i:\bDCR\b)",
+    "pathologic_complete_response": r"pathologic(?:al)? complete response|(?-i:\bpCR\b)",
+    "major_pathologic_response": r"major patholog\w+ response|(?-i:\bMPR\b)",
+    "time_to_progression": r"time to (?:\w+ )?progression|time to treatment failure|(?-i:\bTTP\b)",
+    "intracranial_response": r"intracranial|(?-i:CNS) (?:objective )?response|(?-i:CNS) progression",
+    "safety": r"adverse events?|toxicit\w+|safety|tolerability|dose[- ]limiting"
+    r"|(?-i:\bAEs?\b|\bTEAEs?\b|\bSAEs?\b)",
+    "quality_of_life": r"quality of life|patient[- ]reported|EORTC|QLQ|LCSS|EQ-5D"
+    r"|(?-i:\bQoL\b|\bHRQoL\b|\bPRO\b)",
+    "pharmacokinetics": r"pharmacokinetic|concentration|clearance|half-life|(?-i:\bPK\b|\bCmax\b|\bAUC\b)",
+    "immunogenicity": r"anti-drug antibod\w+|immunogenicity|neutrali[sz]ing antibod|(?-i:\bADA\b)",
+    "biomarker_endpoint": r"ctDNA|circulating tumou?r DNA|biomarker|PD-L1 expression"
+    r"|tumou?r mutational burden",
+}
+# Words in any case ("Overall Survival"); acronyms only as written, so "os" or "pro" in prose is no endpoint.
+_ENDPOINT = re.compile("|".join(f"(?P<e{i}>{p})" for i, p in enumerate(ENDPOINTS.values())), re.IGNORECASE)
+_TIME_POINT = re.compile(
+    r"(?P<n>\d+(?:\.\d+)?)\s*(?P<unit>days?|weeks?|months?|years?|cycles?|hours?)\b", re.IGNORECASE
+)
+
+
+def endpoint_classes(measure: str) -> list[str]:
+    """The endpoint classes an outcome measure's title names, in the order first named (pure — pinned).
+
+    Overall, progression-free, disease-free and event-free survival, objective response, duration of
+    response, disease control, pathologic complete and major pathologic response, time to progression,
+    intracranial response, safety, quality of life, pharmacokinetics, immunogenicity and biomarker endpoints,
+    each by its words or its acronym as written (acronyms only in capitals: "OS", "PFS"). Each class once. A
+    title naming none: an empty list, never a guessed class.
+    """
+    names = list(ENDPOINTS)
+    found: dict[str, None] = {}
+    for match in _ENDPOINT.finditer(measure):
+        name = names[int(next(key for key, value in match.groupdict().items() if value)[1:])]
+        found.setdefault(name, None)
+    return list(found)
+
+
+def time_points(time_frame: str) -> list[str]:
+    """The time points a time frame states, as "N unit" (unit singular, lower case), in order, each once
+    (pure — pinned). "Up to approximately 3 years" gives ["3 year"]; "Week 3 - Week 96" gives none (no
+    number precedes a unit). A time frame with none: an empty list."""
+    found: dict[str, None] = {}
+    for match in _TIME_POINT.finditer(time_frame):
+        unit = match.group("unit").lower().rstrip("s")
+        found.setdefault(f"{match.group('n')} {unit}", None)
+    return list(found)
+
+
+def stated_targets(description: str) -> list[str]:
+    """The drug classes an intervention's or arm's own description states (pure — pinned).
+
+    The agent words of the prior-therapy vocabulary (anti-PD-1, PD-L1 inhibitor, CTLA-4, EGFR or ALK
+    inhibitor, MET inhibitor, VEGF inhibitor, platinum, taxane ...), each once in the order first named; used
+    for an intervention RxClass does not classify, and marked as stated by the record. None named: an empty
+    list.
+    """
+    names = list(AGENT_WORDS)
+    found: dict[str, None] = {}
+    for agent in _AGENT.finditer(description):
+        found.setdefault(names[int(next(key for key, value in agent.groupdict().items() if value)[1:])], None)
+    found.pop("chemotherapy", None)
+    found.pop("radiotherapy", None)
+    return list(found)
+
+
 BANKS = {
     "performance_status": performance_status,
     "biomarker": biomarker_status,

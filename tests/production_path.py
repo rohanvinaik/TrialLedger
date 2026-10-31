@@ -76,8 +76,9 @@ def main() -> None:
     codes["verify"] = cli.main(["verify", str(out)])
 
     def rxclass(url, params):
-        # DailyMed knows every name (one PD-1 class); MED-RT fails: both answers and a failure are reached.
-        if params["relaSource"] == "DAILYMED":
+        # DailyMed knows only "Placebo" (one class), so the experimental drug falls back to what its record
+        # states; MED-RT fails: an answer, an unknown name and a failure are all reached.
+        if params["relaSource"] == "DAILYMED" and params["drugName"] == "Placebo":
             item = {"classId": "N0000191260", "className": "Programmed Death Receptor-1 Blocking Antibody"}
             body = {
                 "rxclassDrugInfoList": {
@@ -87,7 +88,7 @@ def main() -> None:
                 }
             }
             return 200, body
-        return 503, None
+        return (200, {}) if params["relaSource"] == "DAILYMED" else (503, None)
 
     codes["profile"] = cli.main(["profile", str(out)], rxclass_get=rxclass)
     codes["profile_not_a_record"] = cli.main(["profile", str(scratch / "nothing here")], rxclass_get=rxclass)

@@ -17,11 +17,14 @@ from TrialLedger.banks import (
     age_limits,
     biomarker_status,
     disease_setting,
+    endpoint_classes,
     histology,
     named_conditions,
     organ_function,
     performance_status,
     prior_therapy,
+    stated_targets,
+    time_points,
     type_criterion,
 )
 
@@ -402,3 +405,48 @@ def test_a_documented_status_is_known_either_way():
     assert values(biomarker_status("3. Confirmed tumor PD-L1 status prior to randomization.")) == [
         ("biomarker:PD-L1", ("negative", "positive"))
     ]
+
+
+@pytest.mark.parametrize(
+    "measure, classes",
+    [
+        ("Overall Survival (OS)", ["overall_survival"]),
+        (
+            "Primary Efficacy Analysis of Overall Response Rate ( ORR) of MYL-1402O",
+            ["objective_response_rate"],
+        ),
+        ("Disease-free Survival (DFS), as Assessed by the Investigator", ["disease_free_survival"]),
+        ("AEs Grade 3-5 With a Difference in Incidence Rate of at Least 2%", ["safety"]),
+        ("Plasma Concentration of Alectinib", ["pharmacokinetics"]),
+        ("Lung cancer-specific quality of life of the regimens treated subjects", ["quality_of_life"]),
+        ("PFS", ["progression_free_survival"]),
+    ],
+)
+def test_endpoint_classes(measure, classes):
+    assert endpoint_classes(measure) == classes
+
+
+@pytest.mark.parametrize("measure", ["The expression level of the subjects' specimens", "os pro"])
+def test_no_endpoint_is_guessed(measure):
+    assert endpoint_classes(measure) == []
+
+
+@pytest.mark.parametrize(
+    "frame, points",
+    [
+        ("Up to approximately 3 years", ["3 year"]),
+        ("18 weeks after first dosing per patient", ["18 week"]),
+        ("Predose (2 hours) Week 3 - Week 96", ["2 hour"]),
+        ("6 months, 12 months and 18 months", ["6 month", "12 month", "18 month"]),
+        ("Throughout the study", []),
+    ],
+)
+def test_time_points(frame, points):
+    assert time_points(frame) == points
+
+
+def test_stated_targets_read_the_record_and_skip_generic_therapy():
+    text = "SCT-I10A is a recombinant humanized anti-PD-1 monoclonal antibody given with chemotherapy"
+    assert stated_targets(text) == ["PD-1"]
+    assert stated_targets("Standard platinum-based chemotherapy") == ["platinum"]
+    assert stated_targets("Best supportive care") == []
