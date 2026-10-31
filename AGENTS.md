@@ -48,8 +48,10 @@ CSV), `review.xlsx` (the review workbook: the design sheets and the checks) and 
 of every study, in the registry's categories), every cell of both warranted and certified against the
 record.
 `trialledger verify <folder>` re-derives a written folder. The ingestion layer and the first projection
-(`openspec/changes/add-review-workbook`) are built; the cross-trial layer and the publication parser are
-designed in `docs/THEORY_OF_THE_CASE.md` and that change's `design.md`. The README explains the system to
+(`openspec/specs/`, archived change `openspec/changes/archive/2026-10-31-add-review-workbook`) are built; the
+coherence engine (typing, each trial's design coordinates, the cross-trial profile) is under construction in
+`openspec/changes/add-coherence-engine`; the publication parser is designed in `docs/THEORY_OF_THE_CASE.md` and
+the archived change's `design.md`. The README explains the system to
 its clinical readers.
 
 ## The rule this project exists for

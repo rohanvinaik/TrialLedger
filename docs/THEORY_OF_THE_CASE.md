@@ -83,14 +83,21 @@ His decisions for the next layer (2026-10-31, paraphrased):
 - For studies whose results were never posted to the registry, safety and efficacy could be imputed from
   papers and their results, and that might be worth adding.
 
-## Part III — The intelligence layer (steps 1–3 and 5 built in `add-review-workbook`; the rest designed)
+## Part III — The intelligence layer (revised 2026-10-31)
+
+Status: steps 1–3 and 5 are built (`openspec/specs/`, archived change `2026-10-31-add-review-workbook`).
+Steps 6–8 are the coherence engine, under construction in `openspec/changes/add-coherence-engine`. Step 4 is
+designed. His verdict on this revision, paraphrased: coherent and reasonable, with the remaining uncertainty to
+be resolved by building it and looking at the data as a real problem. His judgment of what came before,
+paraphrased: what had been built was in effect a fancy parser; the complex and novel part of the project is the
+coherence layer and the information-theoretic claims.
 
 Claude's sketch, from the accepted restatement and his decisions; each part names its origin.
 
 1. **The ledger** (harmonizing, Pattern 5). Every element of a record becomes a ledger entry: its value as
    written, its place in the record, and its scope (inclusion or exclusion; primary, secondary or other
    outcome; which arm). The ledger is richer than any output and nothing is removed from it.
-2. **Coherence** (harmonizing, Pattern 10; GSE's typed domains). Approved relations among the registry's
+2. **Edit checks** (harmonizing, Pattern 10, within one record). Approved relations among the registry's
    unambiguous fields check each record against itself: a completed study with an estimated completion date,
    an arm naming an intervention the study never declares, more participants affected than at risk, a
    minimum age above the maximum. Each check returns consistent, conflict, not applicable or not checkable
@@ -126,7 +133,7 @@ Claude's sketch, from the accepted restatement and his decisions; each part name
    and time points to the record's or abstain; censors (after its `cannot` rules) forbid figures from vetoed
    sections or with unresolved bindings; what is found enters the ledger as warranted publication evidence,
    compared with the registry and never overriding it. Specified in
-   `openspec/changes/add-review-workbook/design.md`, "Sequence after this change".
+   `openspec/changes/archive/2026-10-31-add-review-workbook/design.md`, "Sequence after this change".
 5. **Regimes** (TriageGeist). Every cell says how it was obtained: stated in the record, computed across
    comparable trials, or needs review. Needs-review cells are shown with their sources, not filled.
    **Warrants** (his principle, law 12): every value also carries a hash committing to that basis, its
@@ -135,26 +142,53 @@ Claude's sketch, from the accepted restatement and his decisions; each part name
    can re-derive it from the record
    (`trialledger verify`, which also compares the workbook file part for part); what does not re-derive is
    refused.
-6. **Across trials** (designed, later changes): comparators' posted results as the efficacy and safety bars;
-   cohorts compared only within matching endpoints and time points; niches as combinations of design
-   choices with no trials; exclusions that recur within a mechanism or class, not everywhere, proposed as
-   mechanism-linked risks. A discovered pattern proposes a rule; a person approves it; it never confirms
-   itself (GSE).
+6. **Typing** (harmonizing's typed evidence and multi-scale banks; TriageGeist's orthogonal clinical banks).
+   A trial's design is a set of choices that are, by his account, overwhelmingly computable objects. Each
+   eligibility text is itemized into criteria with exact spans; deterministic banks type each criterion into
+   atoms (setting and stage, prior therapy, biomarker status with polarity, performance status, organ-function
+   thresholds with units as written, CNS metastases, named conditions, boilerplate); outcomes are typed into
+   endpoint classes; interventions are classed by a cited source (NLM RxClass: FDA pharmacologic class, MED-RT
+   mechanism) or by a target the record itself states, or left unresolved. Every untyped criterion enters a
+   residual with a named reason, and the residual decides which bank to build next (recurse on the hard
+   residual). No model reads a trial: the rules are authored pattern syntax and surface vocabularies; any fact
+   relating one clinical thing to another comes from a cited source or is computed from the population and
+   proposed.
+7. **Coherence** (GSE's lexicon construction; harmonizing's healing; TriageGeist's regimes). Each trial's
+   design coordinates (setting, prior lines for advanced disease, biomarker selection per gene, histology) are
+   domains of still-possible values. Evidence narrows a domain only where it states a value; relations carry
+   inference between coordinates; closure runs to a fixed point independent of order; an emptied domain is a
+   named conflict, never a vote; silence never narrows (a default needs an approved, guarded relation and no
+   relevant evidence, typed or untyped). Every relation ships proposed and is shown as the narrowing it would
+   make, beside the domains under approved relations only (law 13). Every removal records its cause (law 12).
+   A trial's line as its own criteria define it is computed here; its place on today's standard-of-care ladder
+   needs a dated table he approves.
+8. **The information layer** (DATA_GEOMETRY: Informational Zero, Minority Channel Advantage, reference
+   profiles as the zero-state; TriageGeist's deviation from cohort expectation). Over a declared population of
+   comparable trials (first: Phase 3 NSCLC, 2015–2024), four quantities kept apart: logical state (the
+   domains), frequency (an element's share of trials whose text was typed, so untyped is never absent),
+   association (an element's frequency within a mechanism class against the rest of the stratum, with sponsor
+   counts and the count of trials whose class is unresolved), and relevance (relative to the question each view
+   answers). Surprisal against the population measures how unexpected an element is, not how important it is.
+   The standard tier, the elements nearly every trial states, is the empirical source of reusable protocol
+   language (item 10), not a verdict that they are clinically unimportant or valid across mechanisms. An element
+   that tracks a mechanism class beyond the indication is a proposed mechanism-linked exclusion, never an
+   established one. The design space's cells are occupied (a failed or withdrawn trial occupies its cell),
+   unknown (unresolved trials could fall there) or empty; an empty feasible cell is an exploration lead, and
+   calling it underserved needs evidence of patient need. Posted results are compared only within the same
+   endpoint class, setting, unit and measure type; an anticipated efficacy threshold needs a stated decision
+   rule on top of them.
 
-**Information theory and data geometry, Claude's restatement (not yet confirmed by him):**
+**Corrections he accepted, 2026-10-31** (from a Codex consultation on Claude's reading):
 
-- The record is the source and every view is derived from it. No derived view can know more about a trial
-  than its record holds, so the record is kept whole and every derived value names what it came from.
-- Unknown stays unknown. An unresolved value is the set of possibilities still open; only evidence or an
-  approved rule narrows it, never an assumption.
-- Significance is information: what distinguishes trials for the question asked. What every trial shares,
-  such as excluding pregnancy, tells a designer nothing about how to differ and is background (the
-  counterexample Codex raised, 2026-10-31).
-- Each trial is a point in a design space whose axes are the clinical dimensions (population, phase, line of
-  therapy, mechanism, endpoint and time point, safety). Comparisons run along matched axes; cohorts are
-  regions; niches are empty regions; a mechanism-linked exclusion is structure aligned with the mechanism
-  axis rather than the indication axis. The review workbook is the projection of that space onto the axes
-  one reviewer needs.
+- Computable does not mean forced: constraints define which designs are feasible, frequencies describe which
+  were chosen, and neither alone shows what a sponsor inherited.
+- Silence is unresolved; a zero (orthogonal) needs its own warrant.
+- Agreement between banks is not assignment: evidence from one sentence counts once, and a value is assigned
+  only by eliminating the alternatives.
+- Rarity is not relevance; frequency, logical state, association and relevance are separate quantities.
+- A mechanism association proposes a rule; sponsor templates and eras can produce the same signal.
+- Niches have three states (covered and empty, unresolved, infeasible); a failed trial occupies its region.
+- An inferred value is certified by its derivation receipt, not by appearing in the source.
 
 ## Part IV — The Laws
 1. The architecture is classical AI, NOT ML (AI = genus, ML = one avoidable species).
@@ -169,7 +203,11 @@ Claude's sketch, from the accepted restatement and his decisions; each part name
 7. Both signs, specified (paraphrased: Detective and tools like it are to be used thoroughly to specify both
    signs: the positive intent, and the negative specification).
 8. Facts come from the registry's unambiguous fields; publications are linked and surfaced, not parsed (his
-   decisions, Part II).
+   decisions, Part II). Evidence is tiered, strongest first: a structured field (what this record version
+   states); a typed atom from the record's own text, with its span; a class from a cited external source.
+   Typing the record's text deterministically is his requirement of 2026-10-31 (law 11 applied to the record
+   itself) and supersedes the earlier decision that free text is never turned into structured values; the
+   ledger still carries every text verbatim.
 9. The output is for a person (paraphrased: what is wanted is data that is clean and readable, obvious and
    correct).
 10. Read the tools before building on them (paraphrased: a design must actually work, and the tools it is

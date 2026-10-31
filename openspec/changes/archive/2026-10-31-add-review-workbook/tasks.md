@@ -33,5 +33,7 @@
     certified the folder, and 14 Studies columns agree with the registry's own CSV for all 44 studies.
   - Open: the registry's web pages themselves. Their results tables are collapsed sections that the page
     does not expose until clicked, so the page spot check (NCT03875482's serious events) was not made.
-- [ ] 5.4 Update the README status table and the shape section of AGENTS.md; archive the change
-  - The README and AGENTS.md are updated; the change is archived once 5.3 is complete.
+  - Carried forward, not done: the page spot check is task 0.1 of `add-coherence-engine`.
+- [x] 5.4 Update the README status table and the shape section of AGENTS.md; archive the change
+  - The README and AGENTS.md are updated. Archived 2026-10-31 with 5.3's page spot check open and carried
+    forward, so that the built capabilities become the baseline specs the coherence engine extends.

@@ -231,10 +231,10 @@ TrialLedger is built on information theory and data geometry. In practical terms
 | Part | State |
 |---|---|
 | Pulling studies; the record file and the registry's spreadsheet; the completeness guarantees | Built and verified, against the live registry |
-| Ledger, the five approved edit checks, the review workbook, warrants and `trialledger verify` | Built and verified, against the live registry ([`add-review-workbook`](openspec/changes/add-review-workbook/)) |
+| Ledger, the five approved edit checks, the review workbook, warrants and `trialledger verify` | Built and verified, against the live registry ([`add-review-workbook`](openspec/changes/archive/2026-10-31-add-review-workbook/)) |
 | The twelve further edit checks | Built and tested; each waits for the founder's approval |
+| Typed criteria, each trial's design coordinates, and questions across the registry | Under construction ([`add-coherence-engine`](openspec/changes/add-coherence-engine/)) |
 | Publication evidence for studies without posted results | Designed |
-| Questions across the registry | Designed; next |
 | An interface that needs no terminal | Planned |
 
 ## Running it
