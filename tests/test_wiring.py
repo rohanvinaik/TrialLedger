@@ -48,47 +48,10 @@ DECLARED = {
     "record.py: _ignore": "write_record's default progress sink, likewise",
     "workbook.py: WorkbookError.__init__": "raised only when the read-back differs from the derivation, "
     "which tests/test_workbook.py simulates",
+    "classes.py: http_get": "RxClass's network transport; production_path injects a fake, as it does the API",
+    "profile.py: mechanism_rows.<locals>.<lambda>": "sorts mechanism rows, and two studies make none; "
+    "tests/test_profile.py reaches it",
 }
-# Written unwired and converged, awaiting their consumer: `trialledger profile` (add-coherence-engine 6.1)
-# reaches them once it exists, and its entry in tests/production_path.py removes them from this set.
-AWAITING_PROFILE = (
-    {"criteria.py: itemize", "criteria.py: _lines", "criteria.py: _trimmed"}
-    | {
-        f"banks.py: {name}"
-        for name in (
-            "performance_status",
-            "biomarker_status",
-            "prior_therapy",
-            "_stage_groups",
-            "disease_setting",
-            "disease_setting.<locals>.<lambda>",
-            "organ_function",
-            "type_criterion",
-        )
-    }
-    | {
-        f"coherence.py: {name}"
-        for name in ("narrow_by_evidence", "close", "domain_state", "facts_of", "resolve")
-    }
-    | {
-        f"classes.py: {name}"
-        for name in (
-            "rxclass_classes",
-            "drug_names",
-            "experimental_drugs",
-            "lookup",
-            "http_get",
-            "load_or_lookup",
-            "drug_class",
-        )
-    }
-    | {
-        f"profile.py: {name}"
-        for name in ("element_key", "frequency_rows", "mechanism_rows", "occupancy_rows")
-    }
-    | {"profile.py: frequency_rows.<locals>.<lambda>", "profile.py: mechanism_rows.<locals>.<lambda>"}
-)
-DECLARED |= dict.fromkeys(AWAITING_PROFILE, "awaiting `trialledger profile` (add-coherence-engine 6.1)")
 
 
 @pytest.fixture(scope="module")
@@ -105,7 +68,14 @@ def production():
 
 
 def test_the_production_path_ends_as_production_does(production):
-    assert production["codes"] == {"pull": 0, "verify": 0, "verify_unreadable": 1, "failed_pull": 1}
+    assert production["codes"] == {
+        "pull": 0,
+        "verify": 0,
+        "profile": 0,
+        "profile_not_a_record": 2,
+        "verify_unreadable": 1,
+        "failed_pull": 1,
+    }
 
 
 def test_the_check_tables_agree():

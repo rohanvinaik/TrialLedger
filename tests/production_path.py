@@ -4,8 +4,9 @@ them reached; tests/test_wiring.py holds that set to the declared one.
 
 The profiler starts before TrialLedger is imported, so the tables built at import are reached. The path is
 what production does: `trialledger pull` over two pages, with a retry and a value a cell cannot hold;
-`trialledger verify` of the folder written; `verify` of a folder whose workbook is unreadable; and a pull the
-server keeps failing.
+`trialledger verify` of the folder written; `trialledger profile` of it, with RxClass answering for one source
+and failing for the other; `profile` of a folder that is no record; `verify` of a folder whose workbook is
+unreadable; and a pull the server keeps failing.
 """
 
 import ast
@@ -73,6 +74,23 @@ def main() -> None:
     query = f"filter.ids={','.join(ids)}"
     codes = {"pull": cli.main(["pull", query, "--out", str(out)], http=api.client(), sleep=api.sleep)}
     codes["verify"] = cli.main(["verify", str(out)])
+
+    def rxclass(url, params):
+        # DailyMed knows every name (one PD-1 class); MED-RT fails: both answers and a failure are reached.
+        if params["relaSource"] == "DAILYMED":
+            item = {"classId": "N0000191260", "className": "Programmed Death Receptor-1 Blocking Antibody"}
+            body = {
+                "rxclassDrugInfoList": {
+                    "rxclassDrugInfo": [
+                        {"rxclassMinConceptItem": item, "rela": "has_epc", "relaSource": "DAILYMED"}
+                    ]
+                }
+            }
+            return 200, body
+        return 503, None
+
+    codes["profile"] = cli.main(["profile", str(out)], rxclass_get=rxclass)
+    codes["profile_not_a_record"] = cli.main(["profile", str(scratch / "nothing here")], rxclass_get=rxclass)
     broken = scratch / "broken"
     shutil.copytree(out, broken)
     (broken / "review.xlsx").write_bytes(b"not a workbook")

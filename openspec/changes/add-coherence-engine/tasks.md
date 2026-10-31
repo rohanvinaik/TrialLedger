@@ -29,8 +29,8 @@
 
 ## 3. Classify interventions
 
-- [ ] 3.1 Write the RxClass response decision (classes, or a named failure) with intent tests; converge once
-- [ ] 3.2 Write the lookup shell over names and other names through the throttled session, caching `classes.json`; durability test (a failed lookup is named, never "no class"); verify a live lookup of the population
+- [x] 3.1 Write the RxClass response decision (classes, or a named failure) with intent tests; converge once
+- [x] 3.2 Write the lookup shell over names and other names through the throttled session, caching `classes.json`; durability test (a failed lookup is named, never "no class"); verify a live lookup of the population
 - [ ] 3.3 Write the record-stated target bank over intervention and arm descriptions; converge once
 
 ## 4. Coherence
@@ -47,13 +47,15 @@
 
 ## 5. Profile
 
-- [ ] 5.1 Write frequencies with explicit denominators, surprisal, sponsor support and the standard tier, with intent tests; converge once
-- [ ] 5.2 Write mechanism signals (2×2 counts, difference, sponsors, unresolved count, proposal thresholds) with intent tests; converge once
+- [x] 5.1 Write frequencies with explicit denominators, surprisal, sponsor support and the standard tier, with intent tests; converge once
+- [x] 5.2 Write mechanism signals (2×2 counts, difference, sponsors, unresolved count, proposal thresholds) with intent tests; converge once
 - [ ] 5.3 Write occupancy (occupied / unknown / empty) and comparable-results grouping with intent tests; converge once
+  - 2026-10-31: occupancy done (`profile.occupancy_rows`, COMPLETE). Comparable-results grouping is open: it
+    needs the endpoint-class bank (2.2).
 
 ## 6. Output and command
 
-- [ ] 6.1 Write `design.xlsx` (sheets per design Decision 12, every row warranted, `cells.py` exactness) and `trialledger profile <folder>` (refuses a record that does not verify; leaves the pull's files unchanged); end-to-end tests through the CLI, both signs
+- [x] 6.1 Write `design.xlsx` (sheets per design Decision 12, every row warranted, `cells.py` exactness) and `trialledger profile <folder>` (refuses a record that does not verify; leaves the pull's files unchanged); end-to-end tests through the CLI, both signs
 - [ ] 6.2 Run `scripts/ci_local.sh` whole and read its whole output; green
 
 ## 7. Live

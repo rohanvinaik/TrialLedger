@@ -8,9 +8,11 @@ import sys
 import time
 from collections.abc import Callable
 from pathlib import Path
+from typing import Any
 
 import httpx
 
+from TrialLedger.design import DESIGN_NAME, DesignError, write_design
 from TrialLedger.ingest import SPEC_API_VERSION, PullError, check_query, pull
 from TrialLedger.record import CSV_NAME, JSON_NAME, verify_folder, write_record
 from TrialLedger.workbook import RECORD_NAME, WORKBOOK_NAME, WorkbookError
@@ -75,6 +77,7 @@ def main(
     *,
     http: httpx.Client | None = None,
     sleep: Callable[[float], None] = time.sleep,
+    rxclass_get: Callable[[str, dict[str, str]], tuple[int, Any]] | None = None,
 ) -> int:
     parser = argparse.ArgumentParser(
         prog="trialledger",
@@ -98,9 +101,25 @@ def main(
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
     verify_parser.add_argument("folder", type=Path)
+    profile_parser = commands.add_parser(
+        "profile",
+        help="type, resolve and profile a written folder's studies into design.xlsx",
+        description=(
+            "Itemize and type every study's eligibility by deterministic rules, resolve each trial's design "
+            "coordinates, classify experimental drugs by NLM RxClass (cached in classes.json), and measure "
+            "every "
+            "typed element against the folder's population. Writes design.xlsx and classes.json; the pull's "
+            "files are not changed. Ends with 0, written; 1, the record does not verify (nothing written); "
+            "2, "
+            "not a TrialLedger folder."
+        ),
+    )
+    profile_parser.add_argument("folder", type=Path)
     args = parser.parse_args(argv)
     if args.command == "verify":
         return _verify(args.folder)
+    if args.command == "profile":
+        return _profile(args.folder, rxclass_get)
 
     code, params, offending = parse_query_args(args.parameters)
     if code != "ok":
@@ -136,6 +155,17 @@ def main(
         f"{RECORD_NAME}, "
         f"certified) — ClinicalTrials.gov data as of {result.data_timestamp}, API {result.api_version}"
     )
+    return 0
+
+
+def _profile(folder: Path, rxclass_get: Callable[[str, dict[str, str]], tuple[int, Any]] | None) -> int:
+    try:
+        target, sizes = write_design(folder, get=rxclass_get) if rxclass_get else write_design(folder)
+    except DesignError as error:
+        print(f"trialledger: nothing written — {error}", file=sys.stderr)
+        return 2 if error.code == "not_a_record" else 1
+    counts = ", ".join(f"{name} {count}" for name, count in sizes.items())
+    print(f"{target} written ({DESIGN_NAME}: {counts} rows); the pull's own files are unchanged")
     return 0
 
 
