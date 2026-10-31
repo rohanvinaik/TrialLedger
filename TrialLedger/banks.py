@@ -85,7 +85,16 @@ _AS_AGENT = re.compile(
     r"drugs?|therap|blockade|blocking)",
     re.IGNORECASE,
 )
-_ANTI = re.compile(r"anti[\s-]*$", re.IGNORECASE)
+_ANTI = re.compile(
+    r"(?:anti[\s-]*|targeting\s+|targeted (?:to|against)\s+|directed against\s+|inhibitors? of\s+)$",
+    re.IGNORECASE,
+)
+# "any PD-L1 TPS": the trial admits every state, so the text restricts nothing.
+_ANY = re.compile(r"\bany\s+$", re.IGNORECASE)
+# "... are excluded from the study": a sentence of an inclusion criterion that states an exclusion.
+_EXCLUDED = re.compile(
+    r"(?:are|is|will be)\s+(?:excluded|not eligible|ineligible)|not (?:allowed|permitted)", re.IGNORECASE
+)
 _POSITIVE = (
     r"positive|mutations?|mutated|mutant|rearrangements?|rearranged|fusions?|translocations?|amplifi\w*|"
     r"overexpress\w*|alterations?|exon \d+|L858R|del(?:etion)? ?19|G12C|V600E|\bhigh\b|presence"
@@ -110,13 +119,20 @@ def biomarker_status(text: str) -> list[Atom]:
     harbour) stands between it and the name; the states are negative, unknown or both, as the words before the
     name say. Otherwise the nearest state word after the name decides, else the nearest before it: positive
     (positive, mutation, fusion, rearrangement, translocation, amplification, a named variant), negative or
-    unknown. A PD-L1 percentage is kept as written. A gene with no state word and no percentage: no atom.
+    unknown. "positive" within 20 characters after the name ("ALK fusion positive") outranks an earlier
+    negation. A gene named as a drug's target (after "anti", "targeting", "directed against", "inhibitor of",
+    or before "inhibitor", "TKI", "antibody", "therapy") or after "any" gives no atom. A PD-L1 percentage is
+    kept as written. A clause that says the patients so described "are excluded" adds the param
+    text_polarity=excluded, which turns an inclusion criterion's atom into an exclusion. A gene with no state
+    word and no percentage: no atom.
     """
     atoms = []
     for match in _GENE.finditer(text):
         gene = next(name for name in GENES if match.group(name.replace("-", "_")))
-        if _AS_AGENT.match(text[match.end() :]) or _ANTI.search(
-            text[max(0, match.start() - 6) : match.start()]
+        if (
+            _AS_AGENT.match(text[match.end() :])
+            or _ANTI.search(text[max(0, match.start() - 25) : match.start()])
+            or _ANY.search(text[max(0, match.start() - 6) : match.start()])
         ):
             continue
         clause_start = max(text.rfind(mark, 0, match.start()) for mark in (".", ";", "\n")) + 1
@@ -130,14 +146,19 @@ def biomarker_status(text: str) -> list[Atom]:
             if percent:
                 params = (("expression", re.sub(r"\s+", "", percent.group(0)).replace("\\", "")),)
         negations = [s for s in before if not s.group("pos")]
+        stated_positive = re.match(r"[\w\s-]{0,20}?positive", text[match.end() : clause_end], re.IGNORECASE)
         values: set[str] = set()
-        if negations and not _PRESENCE.search(text, negations[-1].end(), match.start()):
+        if stated_positive:
+            values = {"positive"}
+        elif negations and not _PRESENCE.search(text, negations[-1].end(), match.start()):
             values = {"negative" if s.group("neg") else "unknown" for s in negations}
         elif after or before:
             state = after[0] if after else before[-1]
             values = {"negative" if state.group("neg") else "unknown" if state.group("unk") else "positive"}
         if not values and not params:
             continue
+        if _EXCLUDED.search(text, match.end(), clause_end):
+            params = (*params, ("text_polarity", "excluded"))
         atoms.append(("biomarker:" + gene, tuple(sorted(values)), params, match.start(), match.end()))
     return atoms
 
@@ -172,7 +193,9 @@ _PRIOR_COUNT = re.compile(
 )
 _PROGRESSED = re.compile(
     r"(?:progress(?:ed|ion|ive disease)?|relapsed?|recurr\w*|failed|failure|intoleran\w*)\s+"
-    r"(?:\w+\s+){0,3}?(?:on|after|during|following|to|of)\b",
+    r"(?:\w+\s+){0,3}?(?:on|after|during|following|to|of)\b"
+    r"(?=[^.;]{0,40}?(?:therap|treatment|regimen|chemotherapy|platinum|TKI|inhibitor|immunotherapy|agent|"
+    r"\bline|drug|antibod|docetaxel|pemetrexed))",
     re.IGNORECASE,
 )
 AGENT_WORDS = {

@@ -96,6 +96,37 @@ def test_driver_status(text, gene, states):
     assert (f"biomarker:{gene}", states) in values(biomarker_status(text))
 
 
+def test_an_inclusion_sentence_that_excludes_says_so():
+    text = (
+        "* No prior treatment for Stage IV NSCLC. Participant known to have a sensitizing mutation in the "
+        "epidermal growth factor receptor (EGFR) gene or an anaplastic lymphoma kinase (ALK) fusion oncogene "
+        "are excluded from the study"
+    )
+    atoms = [a for a in biomarker_status(text) if a[0] in ("biomarker:EGFR", "biomarker:ALK")]
+    assert atoms and all(("text_polarity", "excluded") in a[2] and a[1] == ("positive",) for a in atoms)
+
+
+def test_a_stated_positive_outranks_an_earlier_absence_of_a_report():
+    text = "b. In the absence of a previous ALK fusion positive test report, a sample must be provided"
+    assert values(biomarker_status(text)) == [("biomarker:ALK", ("positive",))]
+
+
+@pytest.mark.parametrize(
+    "text",
+    [
+        "* Prior systemic treatment including a therapy targeting KRAS G12C mutation (e.g., AMG 510).",
+        "* Histologically confirmed NSCLC with any PD-L1 TPS",
+    ],
+)
+def test_a_targeted_gene_or_any_status_is_no_atom(text):
+    assert [a for a in biomarker_status(text) if a[0] in ("biomarker:KRAS", "biomarker:PD-L1")] == []
+
+
+def test_recurrence_after_surgery_is_not_progression_after_therapy():
+    text = "  * Nodal recurrence after surgery for early stage NSCLC"
+    assert values(prior_therapy(text), "prior_lines") == []
+
+
 def test_a_pd_l1_percentage_is_kept_as_written():
     text = "* Documentation of program death ligand-1 (PD-L1) status of 0 to 49% by IHC performed centrally"
     atoms = [a for a in biomarker_status(text) if a[0] == "biomarker:PD-L1"]
