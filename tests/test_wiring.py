@@ -70,6 +70,23 @@ AWAITING_PROFILE = (
         f"coherence.py: {name}"
         for name in ("narrow_by_evidence", "close", "domain_state", "facts_of", "resolve")
     }
+    | {
+        f"classes.py: {name}"
+        for name in (
+            "rxclass_classes",
+            "drug_names",
+            "experimental_drugs",
+            "lookup",
+            "http_get",
+            "load_or_lookup",
+            "drug_class",
+        )
+    }
+    | {
+        f"profile.py: {name}"
+        for name in ("element_key", "frequency_rows", "mechanism_rows", "occupancy_rows")
+    }
+    | {"profile.py: frequency_rows.<locals>.<lambda>", "profile.py: mechanism_rows.<locals>.<lambda>"}
 )
 DECLARED |= dict.fromkeys(AWAITING_PROFILE, "awaiting `trialledger profile` (add-coherence-engine 6.1)")
 

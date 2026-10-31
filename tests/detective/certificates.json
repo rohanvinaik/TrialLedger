@@ -143,6 +143,12 @@
     "refusal": "",
     "standing": "complete"
   },
+  "TrialLedger/classes.py::rxclass_classes": {
+    "cut_reasons": [],
+    "function_digest": "2762d85958f09361",
+    "refusal": "",
+    "standing": "complete"
+  },
   "TrialLedger/cli.py::parse_query_args": {
     "cut_reasons": [],
     "function_digest": "4371f6511db40603",
@@ -280,6 +286,30 @@
   "TrialLedger/links.py::study_link": {
     "cut_reasons": [],
     "function_digest": "76b6b70aaaf5beae",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/profile.py::element_key": {
+    "cut_reasons": [],
+    "function_digest": "ea8676d2ccc50cff",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/profile.py::frequency_rows": {
+    "cut_reasons": [],
+    "function_digest": "37b8d77de79cfaa0",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/profile.py::mechanism_rows": {
+    "cut_reasons": [],
+    "function_digest": "676a532057bc1285",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/profile.py::occupancy_rows": {
+    "cut_reasons": [],
+    "function_digest": "b50a8a075396bc89",
     "refusal": "",
     "standing": "complete"
   },
