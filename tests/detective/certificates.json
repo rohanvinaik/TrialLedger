@@ -1,4 +1,34 @@
 {
+  "TrialLedger/banks.py::biomarker_status": {
+    "cut_reasons": [],
+    "function_digest": "6fa9f3319ae18ac8",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/banks.py::disease_setting": {
+    "cut_reasons": [],
+    "function_digest": "3eea708ad0bb8ed8",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/banks.py::organ_function": {
+    "cut_reasons": [],
+    "function_digest": "4fbc5dc692894394",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/banks.py::performance_status": {
+    "cut_reasons": [],
+    "function_digest": "1a07a544beb264fa",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/banks.py::prior_therapy": {
+    "cut_reasons": [],
+    "function_digest": "36131ee1e79d6555",
+    "refusal": "",
+    "standing": "complete"
+  },
   "TrialLedger/cells.py::book_size_state": {
     "cut_reasons": [],
     "function_digest": "1102a651e8cfe459",

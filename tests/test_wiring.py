@@ -51,7 +51,19 @@ DECLARED = {
 }
 # Written unwired and converged, awaiting their consumer: `trialledger profile` (add-coherence-engine 6.1)
 # reaches them once it exists, and its entry in tests/production_path.py removes them from this set.
-AWAITING_PROFILE = {"criteria.py: itemize", "criteria.py: _lines", "criteria.py: _trimmed"}
+AWAITING_PROFILE = {"criteria.py: itemize", "criteria.py: _lines", "criteria.py: _trimmed"} | {
+    f"banks.py: {name}"
+    for name in (
+        "performance_status",
+        "biomarker_status",
+        "prior_therapy",
+        "_stage_groups",
+        "disease_setting",
+        "disease_setting.<locals>.<lambda>",
+        "organ_function",
+        "type_criterion",
+    )
+}
 DECLARED |= dict.fromkeys(AWAITING_PROFILE, "awaiting `trialledger profile` (add-coherence-engine 6.1)")
 
 

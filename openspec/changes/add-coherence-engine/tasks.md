@@ -15,7 +15,16 @@
 
 ## 2. Type criteria
 
-- [ ] 2.1 Write the banks (setting and stage, prior therapy, biomarker, performance status, organ function, CNS metastases, named conditions, boilerplate), each a pure decision with authored two-sign intent tests from real criteria; converge each once; verify with the residual count on the population
+- [x] 2.1 Write the first banks (setting and stage, prior therapy, biomarker, performance status, organ function), each a pure decision with authored two-sign intent tests from real criteria; converge each; verify with the residual count on the population
+  - 2026-10-31: `banks.py`, 51 intent tests. All five COMPLETE under `--two-sign` (unproven-equivalent:
+    performance_status 43, biomarker_status 60, prior_therapy 16, disease_setting 32, organ_function 13; the
+    regex-heavy decisions carry most). Detective's WRITE TEST on organ_function exposed a real defect
+    (capitalised analyte names were never read), fixed. Population: 10,187 criteria, 2,942 typed by at least
+    one bank, residual 7,245; ECOG in 407 of 487 studies, biomarker atoms in 348, prior lines in 307, stage in
+    336, lab thresholds in 143.
+- [ ] 2.1b Widen by the residual: CNS metastases, named conditions (autoimmune disease, pneumonitis/ILD,
+  infection, other malignancy, cardiac, bleeding), age, washout windows, boilerplate (consent, contraception,
+  pregnancy, life expectancy, measurable disease, compliance)
 - [ ] 2.2 Write the endpoint-class bank over outcome measure titles with intent tests; converge once
 
 ## 3. Classify interventions
