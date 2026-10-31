@@ -1,7 +1,127 @@
 {
+  "TrialLedger/cells.py::book_size_state": {
+    "cut_reasons": [],
+    "function_digest": "1102a651e8cfe459",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/cells.py::cell_number_state": {
+    "cut_reasons": [],
+    "function_digest": "064deb0028630d63",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/cells.py::cell_text_state": {
+    "cut_reasons": [],
+    "function_digest": "4930835cc1a53fe8",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/cells.py::sheet_fits": {
+    "cut_reasons": [],
+    "function_digest": "abd833b0e3315c30",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/checks.py::age_limits_ordered": {
+    "cut_reasons": [],
+    "function_digest": "8abfcc6585a06a40",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/checks.py::age_magnitude": {
+    "cut_reasons": [],
+    "function_digest": "891b9f110147a6f6",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/checks.py::at_risk": {
+    "cut_reasons": [],
+    "function_digest": "271739cabbf3fbcb",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/checks.py::bounded": {
+    "cut_reasons": [],
+    "function_digest": "dc5a0db90daa4ec9",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/checks.py::closed_date_actual": {
+    "cut_reasons": [],
+    "function_digest": "a87c9e49b8a2cdd3",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/checks.py::combine": {
+    "cut_reasons": [],
+    "function_digest": "ef360153127f8442",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/checks.py::date_interval": {
+    "cut_reasons": [],
+    "function_digest": "006b2fdbe31f9c1c",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/checks.py::dates_ordered": {
+    "cut_reasons": [],
+    "function_digest": "d3986aab68f43d5b",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/checks.py::member": {
+    "cut_reasons": [],
+    "function_digest": "7ad9176779a29436",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/checks.py::phase_interventional_only": {
+    "cut_reasons": [],
+    "function_digest": "ef75542f9395218c",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/checks.py::reasons_account": {
+    "cut_reasons": [],
+    "function_digest": "2921d38c915b6c8d",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/checks.py::recruiting_site_recruiting_study": {
+    "cut_reasons": [],
+    "function_digest": "f2555a7a9806dbcf",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/checks.py::results_flag_first_submit": {
+    "cut_reasons": [],
+    "function_digest": "ed8bbd3e3aa5724e",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/checks.py::whole_count": {
+    "cut_reasons": [],
+    "function_digest": "63a001fe99e0b66a",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/checks.py::withdrawn_enrollment_zero": {
+    "cut_reasons": [],
+    "function_digest": "b9f135151d1b268a",
+    "refusal": "",
+    "standing": "complete"
+  },
   "TrialLedger/cli.py::parse_query_args": {
     "cut_reasons": [],
     "function_digest": "4371f6511db40603",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/eligibility.py::split_eligibility": {
+    "cut_reasons": [],
+    "function_digest": "4acac92198cf2482",
     "refusal": "",
     "standing": "complete"
   },
@@ -62,6 +182,54 @@
   "TrialLedger/ingest.py::retry_delay": {
     "cut_reasons": [],
     "function_digest": "02339b635b0b7036",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/ledger.py::absence_state": {
+    "cut_reasons": [],
+    "function_digest": "3065865055084acd",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/ledger.py::node_role": {
+    "cut_reasons": [],
+    "function_digest": "115c3e466ff572fe",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/ledger.py::results_state": {
+    "cut_reasons": [],
+    "function_digest": "d53111c908372740",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/links.py::document_link": {
+    "cut_reasons": [],
+    "function_digest": "374642231120616a",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/links.py::pubmed_link": {
+    "cut_reasons": [],
+    "function_digest": "bf1aed18ff5d57f2",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/links.py::reference_role": {
+    "cut_reasons": [],
+    "function_digest": "37921386b4f3ee0c",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/links.py::study_link": {
+    "cut_reasons": [],
+    "function_digest": "76b6b70aaaf5beae",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/record.py::record_problems": {
+    "cut_reasons": [],
+    "function_digest": "dedd5381416eaba7",
     "refusal": "",
     "standing": "complete"
   }

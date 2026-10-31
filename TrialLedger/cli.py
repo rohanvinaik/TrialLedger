@@ -1,4 +1,5 @@
-"""The `trialledger` command: API parameters in, a local JSON record and a spreadsheet out."""
+"""The `trialledger` command: API parameters in; the record, the registry's spreadsheet and a certified review
+workbook out. And `trialledger verify`, which re-derives a written folder from its record."""
 
 from __future__ import annotations
 
@@ -11,12 +12,16 @@ from pathlib import Path
 import httpx
 
 from TrialLedger.ingest import SPEC_API_VERSION, PullError, check_query, pull
-from TrialLedger.record import CSV_NAME, JSON_NAME, write_record
+from TrialLedger.record import CSV_NAME, JSON_NAME, verify_folder, write_record
+from TrialLedger.workbook import RECORD_NAME, WORKBOOK_NAME, WorkbookError
 
 PULL_HELP = """\
 Pull every ClinicalTrials.gov study a query matches, through the official API (spec/ctg-oas-v2.yaml),
-into a new directory holding studies.json (the records exactly as the API sent them, plus provenance) and
-studies.csv (the API's own spreadsheet for the same query). If anything fails, nothing is written.
+into a new directory holding studies.json (the records exactly as the API sent them, plus provenance and
+content digests), studies.csv (the API's own spreadsheet for the same query), review.xlsx (the review
+workbook: the design sheets and the approved edit checks) and record.xlsx (every value of every study, in the
+registry's own categories), every cell of both warranted and certified against the record. If anything
+fails, nothing is written; a workbook over Google Sheets' cap of 10,000,000 cells is named.
 
 NAME is any /studies query parameter from the spec, sent exactly as given; the API rejects unknown names.
 query.* parameters search the API's search areas and rank by relevance; filter.* parameters restrict the
@@ -29,6 +34,16 @@ examples:
   trialledger pull "filter.advanced=AREA[StartDate]RANGE[2024-01-01,2024-01-31]" query.cond=asthma
 
 exit status: 0 written · 1 the pull or the write failed, nothing written · 2 the query was refused
+"""
+
+VERIFY_HELP = """\
+Re-derive a folder TrialLedger wrote, from studies.json: every study's digest and NCT number, the Merkle
+root, the spreadsheet's digest and the record root over the provenance; then, under the code that wrote the
+folder (its code root) and the same spreadsheet writer, every cell, kind of value and warrant of
+review.xlsx and record.xlsx, and both files themselves, part for part, against a fresh write. Each value
+that no longer follows is named; a studies.json whose objects repeat a key is refused.
+
+exit status: 0 certified · 1 not certified (the differences are printed) · 2 not a TrialLedger record
 """
 
 
@@ -63,7 +78,7 @@ def main(
 ) -> int:
     parser = argparse.ArgumentParser(
         prog="trialledger",
-        description="Pull ClinicalTrials.gov study records into a local JSON record and a spreadsheet.",
+        description="Pull ClinicalTrials.gov studies into a record, a spreadsheet and a certified workbook.",
     )
     commands = parser.add_subparsers(dest="command", required=True)
     pull_parser = commands.add_parser(
@@ -76,7 +91,16 @@ def main(
     pull_parser.add_argument(
         "--out", type=Path, help="directory to create (default: ./trialledger_<UTC time>)"
     )
+    verify_parser = commands.add_parser(
+        "verify",
+        help="re-derive a written folder from its record",
+        description=VERIFY_HELP,
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+    )
+    verify_parser.add_argument("folder", type=Path)
     args = parser.parse_args(argv)
+    if args.command == "verify":
+        return _verify(args.folder)
 
     code, params, offending = parse_query_args(args.parameters)
     if code != "ok":
@@ -103,12 +127,32 @@ def main(
     stamp = result.retrieved_at.replace("-", "").replace(":", "")
     out_dir: Path = args.out or Path(f"trialledger_{stamp}")
     try:
-        write_record(result, out_dir)
-    except OSError as error:
+        write_record(result, out_dir, progress=lambda message: print(message, file=sys.stderr))
+    except (OSError, WorkbookError) as error:
         print(f"trialledger: nothing written — {error}", file=sys.stderr)
         return 1
     print(
-        f"{result.total_count} studies written to {out_dir}/ ({JSON_NAME}, {CSV_NAME}) — "
-        f"ClinicalTrials.gov data as of {result.data_timestamp}, API {result.api_version}"
+        f"{result.total_count} studies written to {out_dir}/ ({JSON_NAME}, {CSV_NAME}, {WORKBOOK_NAME}, "
+        f"{RECORD_NAME}, "
+        f"certified) — ClinicalTrials.gov data as of {result.data_timestamp}, API {result.api_version}"
+    )
+    return 0
+
+
+def _verify(folder: Path) -> int:
+    code, problems = verify_folder(folder)
+    if code == "not_a_record":
+        print(f"trialledger: not a TrialLedger record — {problems[0]}", file=sys.stderr)
+        return 2
+    if code == "not_certified":
+        for problem in problems:
+            print(f"trialledger: does not follow — {problem}", file=sys.stderr)
+        print(
+            f"trialledger: {folder} is NOT certified ({len(problems)} difference(s) shown)", file=sys.stderr
+        )
+        return 1
+    print(
+        f"{folder}: certified — every digest and root, every cell and warrant of both workbooks, and both "
+        f"workbook files re-derive from {JSON_NAME}"
     )
     return 0

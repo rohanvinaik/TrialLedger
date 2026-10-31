@@ -1,17 +1,78 @@
 #!/usr/bin/env bash
-# The local gate. Run it before every commit; any CI must run exactly this script.
-set -euo pipefail
+# The declared gate. Run it whole and read its whole output before every commit; the pre-push hook
+# (.githooks/pre-push → scripts/push_checks.py) runs it before every push of a tree it has not passed on.
+# Every step runs and its status is kept; an advisory step prints its findings and never fails the gate; a
+# missing tool or checkout fails it. The shape follows the process contract's worked example
+# (PROFESSIONAL_CODING_PERFORMANCE_ENGINEERING.md §9, RSNA_Knee's ci_local.sh and push_checks.py).
+#
+# Detective and Wesker run from the founder's local checkouts, which lead their releases (2026-10-31: «we
+# use detective and wesker at the local checkout»; «I've been improving it»). The gate refuses to audit
+# with any other copy: the one installed in .venv is never used in their place.
+set -u
 cd "$(dirname "$0")/.."
+fail=0
 
-uv sync --locked
-uv run --no-sync ruff check .
-uv run --no-sync ruff format --check .
-uv run --no-sync pytest
+DETECTIVE_ROOT="${DETECTIVE_ROOT:-$HOME/tools/Detective}"
+WESKER_ROOT="${WESKER_ROOT:-$HOME/tools/Wesker}"
+
+# The tree this run checks, read before any step; stamped at the end if the gate passed and the tree did
+# not change meanwhile, so a push of exactly this tree need not run the gate again.
+gate_tree="$(.venv/bin/python scripts/push_checks.py tree 2>/dev/null || true)"
+
+echo "== the locked environment"
+uv sync --locked || fail=1
+for tool in python ruff pytest vulture detective; do
+    if [ ! -x ".venv/bin/$tool" ]; then
+        echo "missing .venv/bin/$tool: run uv sync"
+        fail=1
+    fi
+done
+
+echo "== Detective and Wesker, as this gate imports them"
+for checkout in "$DETECTIVE_ROOT" "$WESKER_ROOT"; do
+    if [ -d "$checkout" ]; then
+        echo "$checkout at $(git -C "$checkout" log -1 --format='%h %cd' --date=short); uncommitted paths:"
+        git -C "$checkout" status --porcelain
+    else
+        echo "missing local checkout $checkout: the Detective step needs it"
+        fail=1
+    fi
+done
+export PYTHONPATH="$DETECTIVE_ROOT:$WESKER_ROOT"
+if ! .venv/bin/python - "$DETECTIVE_ROOT" "$WESKER_ROOT" <<'EOF'
+import sys
+from pathlib import Path
+
+import Detective
+import Wesker
+
+wanted = {"Detective": Path(sys.argv[1]).resolve(), "Wesker": Path(sys.argv[2]).resolve()}
+ok = True
+for name, module in (("Detective", Detective), ("Wesker", Wesker)):
+    where = Path(module.__file__).resolve()
+    inside = wanted[name] in where.parents
+    print(f"{name} imported from {where}" + ("" if inside else f"  NOT the checkout {wanted[name]}"))
+    ok = ok and inside
+sys.exit(0 if ok else 1)
+EOF
+then
+    echo "the gate imports Detective or Wesker from somewhere other than the local checkouts"
+    fail=1
+fi
+
+echo "== ruff check"
+.venv/bin/ruff check . || fail=1
+
+echo "== ruff format --check"
+.venv/bin/ruff format --check . || fail=1
+
+echo "== pytest (live calls deselected; uv run pytest -m live runs them)"
+.venv/bin/pytest || fail=1
 
 # Every decision tagged "(pure — pinned)" must still be complete under the two-sign contract. The list is
-# read from the code, not kept here. Detective resolves through the local checkouts while they lead PyPI.
-export PYTHONPATH="${DETECTIVE_PYTHONPATH:-$HOME/tools/Detective:$HOME/tools/Wesker}"
-targets=$(uv run --no-sync python - <<'EOF'
+# read from the code, not kept here.
+echo "== Detective: audit --two-sign --check on every pinned decision"
+targets=$(.venv/bin/python - <<'EOF'
 import ast
 import pathlib
 
@@ -21,6 +82,30 @@ for path in sorted(pathlib.Path("TrialLedger").glob("*.py")):
             print(f"{path}::{node.name}")
 EOF
 )
+count=0
 for target in $targets; do
-    uv run --no-sync detective audit "$target" --two-sign --check
+    count=$((count + 1))
+    .venv/bin/detective audit "$target" --two-sign --check || { echo "AUDIT FAILED: $target"; fail=1; }
 done
+echo "audited $count pinned decisions"
+if [ "$count" -eq 0 ]; then
+    echo "no pinned decisions found: an audit of nothing is not a pass"
+    fail=1
+fi
+
+echo "== ty (advisory)"
+uvx ty check --python .venv TrialLedger || echo "ty: the findings above are leads, not a gate"
+
+# Islands: code that computes but has no caller. Two scans, because they answer different questions; no
+# confidence floor, since a filter on what the tool may say is how an island survives.
+echo "== vulture (advisory) 1/2: nothing in production calls it (test-only code shows here)"
+.venv/bin/vulture TrialLedger scripts || echo "vulture: a name used only by a test is an island"
+echo "== vulture (advisory) 2/2: nothing anywhere calls it, tests included"
+.venv/bin/vulture TrialLedger scripts tests || echo "vulture: each line above is an island or dead code"
+
+if [ "$fail" -ne 0 ]; then
+    echo "GATE: FAILED"
+    exit 1
+fi
+.venv/bin/python scripts/push_checks.py stamp "$gate_tree" || echo "push gate: this run's tree was not stamped"
+echo "GATE: PASSED"

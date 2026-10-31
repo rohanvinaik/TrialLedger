@@ -5,14 +5,15 @@ before anything else. His instruction for this document: «I don't literally typ
 piggies, this discussion and overall context you've established is sufficient».
 
 ## Supremacy clause
-This document is derived from Rohan's words in `docs/conversations/2026-10-31-the-case.md` (verbatim).
+This document is derived from Rohan's words, kept verbatim in `docs/conversations/2026-10-31-the-case.md` on
+his machine and never pushed («No "message" files should be pushed to git»).
 Quotes are his; anything else is marked as Claude's. Where this document is silent, ambiguous or wrong, his
 words govern; where they are silent too, ask him rather than invent.
 
 ## Canonical references
 | source | path |
 |---|---|
-| The founding conversation, verbatim | `docs/conversations/2026-10-31-the-case.md` |
+| The founding conversation, verbatim | `docs/conversations/2026-10-31-the-case.md` (on his machine, not in the repository) |
 | The API contract (ClinicalTrials.gov API v2, 2.0.5) | `spec/ctg-oas-v2.yaml` |
 | harmonizing: shadow ledger, coherence, projector | `~/Projects/Kaggle_Killer/competitions/harmonizing/src/shadow_ledger.py`, `symbolic_healing.py`, `projector.py`, `dga_pipeline.py`; `pipeline_submission/README.md` |
 | GSE: typed domains, explicit conflict, candidate rules | `~/Projects/gse/docs/program/LEXICON_IMPLEMENTATION_CONTRACT_2026-10-29.md` (read); the current `LEXICON_CONSTRUCTION_DESIGN.md` (not yet read by Claude) |
@@ -70,7 +71,7 @@ His decisions for the next layer (2026-10-31):
 - «yes the spreadsheet should carry eligibility and safety»
 - Of safety and efficacy for studies whose results were never posted to the registry: «We can impute this from papers/results, no? Might be worth adding that in then»
 
-## Part III — The intelligence layer (designed; specified change by change in `openspec/changes/`)
+## Part III — The intelligence layer (steps 1–3 and 5 built in `add-review-workbook`; the rest designed)
 
 Claude's sketch, from the accepted restatement and his decisions; each part names its origin.
 
@@ -80,19 +81,48 @@ Claude's sketch, from the accepted restatement and his decisions; each part name
 2. **Coherence** (harmonizing, Pattern 10; GSE's typed domains). Approved relations among the registry's
    unambiguous fields check each record against itself: a completed study with an estimated completion date,
    an arm naming an intervention the study never declares, more participants affected than at risk, a
-   minimum age above the maximum. Each check returns consistent, conflict or cannot-check; conflicts are
-   shown, never corrected; a field the registry left empty stays empty, distinct from a recorded "none".
+   minimum age above the maximum. Each check returns consistent, conflict, not applicable or not checkable
+   (a missing, malformed or too imprecise input is never a pass); conflicts are shown, never corrected; a
+   field the registry left empty stays empty, distinct from a recorded "none". Seventeen checks are built;
+   the five whose relation the registry states run, and the twelve it only entails wait for his approval
+   (law 13).
 3. **Projection** (harmonizing, Pattern 9). The first projection is the review workbook: the colleague's ten
    items for each study, eligibility and safety included, with links to the study page, its PubMed
    references and its posted documents beside every row.
 4. **Publication evidence** (his addition: «We can impute this from papers/results, no?»). The registry
-   types each linked publication as background, results or derived, so a study's results paper is found by
-   an unambiguous field. For a study without posted results, figures its results paper states explicitly
-   enter the ledger as publication evidence, each with its exact sentence and marked as from the paper;
-   disagreement with the registry is shown; what the paper does not state plainly stays a review item.
-   Measured 2026-10-31: 80,808 of 609,551 registered studies (13.3%) had results posted to the registry.
+   types each linked publication BACKGROUND, RESULT or DERIVED. Only the first two are the responsible
+   party's statement: the protocol data element definitions give it one choice per reference, «Results
+   Reference? Indicate if the reference provided reports on results from this clinical study. Select
+   Yes/No». DERIVED is added by the registry and the definitions never define it, so a derived publication
+   has no stated role. A results paper is therefore found by an unambiguous field only when the responsible
+   party marked it. Measured: on 2026-10-30, 126,368 studies carried DERIVED references, 99,393 BACKGROUND
+   and 43,671 RESULT (`/stats/field/values?fields=ReferenceType`); in a live sample of 2,177 studies without
+   posted results (start dates 2014-01-01 to 2014-01-10), 563 had DERIVED references and 163 RESULT. Which
+   publications to read for a study without posted results is open, for the founder to decide: RESULT alone
+   misses most results papers, and DERIVED alone states nothing about what a paper reports. For a paper that
+   is read, figures it states explicitly enter the ledger as publication evidence, each with its exact
+   sentence and marked as from the paper; disagreement with the registry is shown; what the paper does not
+   state plainly stays a review item. Measured 2026-10-31: 80,808 of 609,551 registered studies (13.3%) had
+   results posted to the registry.
+   **The end-stage parser** (his design, 2026-10-31: «there should be a way to process the raw paper by
+   section, and use that to assign differential parsing systems to hunt for specific context to resolve
+   gaps or inconsistencies in the data encoding about the clinical trial [...] since study data is so
+   rigidly typed and formal we can probably get away with not even using a small local model»). The
+   ledger's open items become typed queries carrying the record's own vocabulary; a paper is read in its
+   published, typed sections, kept or vetoed by heading as the Regenesis puller does; a deterministic parser
+   per fact type hunts the sections where that fact is stated; identity resolvers (after Regenesis's
+   cassettes) bind the paper's arms, outcomes and time points to the record's or abstain; censors (after
+   its `cannot` rules) forbid figures from vetoed sections or with unresolved bindings; what is found
+   enters the ledger as warranted publication evidence, compared with the registry and never overriding
+   it. Specified in `openspec/changes/add-review-workbook/design.md`, "Sequence after this change".
 5. **Regimes** (TriageGeist). Every cell says how it was obtained: stated in the record, computed across
    comparable trials, or needs review. Needs-review cells are shown with their sources, not filled.
+   **Warrants** (his principle, law 12): every value also carries a hash committing to that basis, its
+   record bytes and the code that rendered it (a root over the modules and registry tables that derive the
+   workbook, so a rule's constants and tables are committed too, with the commit of that code), so any reader
+   can re-derive it from the record
+   (`trialledger verify`, which also compares the workbook file part for part); what does not re-derive is
+   refused.
 6. **Across trials** (designed, later changes): comparators' posted results as the efficacy and safety bars;
    cohorts compared only within matching endpoints and time points; niches as combinations of design
    choices with no trials; exclusions that recur within a mechanism or class, not everywhere, proposed as
@@ -125,6 +155,10 @@ Claude's sketch, from the accepted restatement and his decisions; each part name
 8. Facts come from the registry's unambiguous fields; publications are linked and surfaced, not parsed (his decisions, Part II).
 9. The output is for a person: «just get clean, readable data that is obvious and correct».
 10. Read the tools before building on them: «your design should, IDK, actually work and you should actually read the tools you're about to build».
+11. Every scrap of information, typed: «Every scrap of "information" (in the information-theoretic sense of "signal above pure, random entropy) should be extracted, processed, and presented in as a clear semantic category. CLinical trials are EXTREMELY typed and symbolic, and the OVERWHELMING number of degrees of freedom that go into their design are computable objects.»
+12. Every value carries its warrant: «Every piece of information should be able to carry a strict warrant of the basis that rendered it into the data record. [...] the act of reading out data and understanding it as part of the process of clinical trial design should be able to come with its own contract. That was a core part of triagegeist [...] every rule comes with a strict warrant that ensures correctness, a set of rules that are a formal contract of correctness».
+13. Rules first, built exactly: «I very much DO want to build rules. That's inherently a requirement for "complete extraction of all available information" means. But to build in learned coherence/imputed information we have to have the rule-based parts built REALLY clearly and correctly». A rule TrialLedger's reading entails, rather than one the registry states, is proposed for his approval, never self-approved.
+14. The purpose: «this is basically meant to be a clinical trial design project. Able to use clear and well-built symbolic systems to automate the process of designing clinical trials, much as TriageGeist was able to automate triage and Harmonizing was able to auto-populate a data record for proteomics projects».
 
 ## Part V — The Pathology Record
 The first build was thrown away. In his words:

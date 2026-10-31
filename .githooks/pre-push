@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Git runs this before every push from a clone set up with `.venv/bin/python scripts/push_checks.py install`.
+# It hands the refs being pushed on stdin; scripts/push_checks.py runs the gate, the secret scan and the
+# lockfile audit over them and refuses the push when the gate or the scan fails or cannot run.
+exec "$(git rev-parse --show-toplevel)/.venv/bin/python" "$(git rev-parse --show-toplevel)/scripts/push_checks.py" hook "$1"

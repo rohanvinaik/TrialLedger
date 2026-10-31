@@ -1,8 +1,10 @@
-"""The `trialledger pull` entry point, end to end against the scripted API.
+"""The `trialledger` entry point, end to end against the scripted API.
 
-Positive: a complete pull writes studies.json and studies.csv, prints one summary line and exits 0.
+Positive: a complete pull writes studies.json, studies.csv and a certified review.xlsx and record.xlsx, prints
+one summary line and exits 0; `trialledger verify` certifies the folder it wrote (exit 0).
 Negative: when the pull fails nothing is written and nothing reaches stdout (exit 1); a refused or
-malformed query sends no request at all (exit 2); an existing output directory is never overwritten.
+malformed query sends no request at all (exit 2); an existing output directory is never overwritten; a
+changed record is not certified (exit 1); a folder that is not a record is refused (exit 2).
 """
 
 import json
@@ -19,18 +21,49 @@ def one_study_api():
     return FakeAPI(json_pages=[json_page([A], total=1)], csv_pages=[csv_page([A], total=1, header=True)])
 
 
-def test_pull_writes_both_files_and_reports(tmp_path, capsys):
+def test_pull_writes_the_folder_and_reports(tmp_path, capsys):
     out = tmp_path / "run"
     code = main(
         ["pull", f"filter.ids={A}", "--out", str(out)], http=one_study_api().client(), sleep=lambda s: None
     )
     stdout = capsys.readouterr().out
     assert code == 0
-    assert sorted(p.name for p in out.iterdir()) == ["studies.csv", "studies.json"]
+    assert sorted(p.name for p in out.iterdir()) == [
+        "record.xlsx",
+        "review.xlsx",
+        "studies.csv",
+        "studies.json",
+    ]
     record = json.loads((out / "studies.json").read_text(encoding="utf-8"))
     assert [s["protocolSection"]["identificationModule"]["nctId"] for s in record["studies"]] == [A]
     assert stdout.startswith("1 studies written to ")
+    assert "(studies.json, studies.csv, review.xlsx, record.xlsx, certified)" in stdout
     assert "data as of 2026-10-30T09:00:04" in stdout
+
+
+def test_verify_certifies_what_pull_wrote(tmp_path, capsys):
+    out = tmp_path / "run"
+    main(["pull", f"filter.ids={A}", "--out", str(out)], http=one_study_api().client(), sleep=lambda s: None)
+    capsys.readouterr()
+    assert main(["verify", str(out)]) == 0
+    assert "certified" in capsys.readouterr().out
+
+
+def test_verify_refuses_a_changed_record(tmp_path, capsys):
+    out = tmp_path / "run"
+    main(["pull", f"filter.ids={A}", "--out", str(out)], http=one_study_api().client(), sleep=lambda s: None)
+    saved = json.loads((out / "studies.json").read_text(encoding="utf-8"))
+    saved["studies"][0]["protocolSection"]["identificationModule"]["briefTitle"] = "Changed"
+    (out / "studies.json").write_text(json.dumps(saved), encoding="utf-8")
+    capsys.readouterr()
+    assert main(["verify", str(out)]) == 1
+    captured = capsys.readouterr()
+    assert captured.out == "" and "NOT certified" in captured.err and "record.study_digest" in captured.err
+
+
+def test_verify_refuses_a_folder_that_is_not_a_record(tmp_path, capsys):
+    assert main(["verify", str(tmp_path)]) == 2
+    assert "not a TrialLedger record" in capsys.readouterr().err
 
 
 def test_default_directory_is_named_by_retrieval_time(tmp_path, monkeypatch):

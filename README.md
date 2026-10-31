@@ -4,11 +4,11 @@
 inconsistency queried, nothing invented.**
 
 TrialLedger reads ClinicalTrials.gov through the registry's official API and produces files a person can
-open, check and rely on: the complete record of every study a question matches, and, as it is built out, a
-review workbook laid out around what study design needs: population, eligibility, endpoints and time points,
-biomarkers, safety. Every value it shows can be traced to the field of the registry record it came from, to
-a named rule applied to such fields, or to a quoted sentence of a linked publication. What cannot be traced
-is shown as unresolved. Nothing is filled in by guesswork, and no AI system reads or summarizes the trials.
+open, check and rely on: the complete record of every study a question matches, and a review workbook laid
+out around what study design needs: population, eligibility, endpoints and time points, results, safety.
+Every value it shows can be traced to the field of the registry record it came from or to a named rule
+applied to such fields, and carries a warrant that lets anyone re-derive it. What cannot be traced is shown
+as unresolved. Nothing is filled in by guesswork, and no AI system reads or summarizes the trials.
 
 ## Why this exists
 
@@ -26,7 +26,7 @@ other before anyone analyzes them. TrialLedger applies the same discipline to th
 ## What it does today
 
 Ask for one study, a list of studies, or every study matching a condition, an intervention, a sponsor, a
-recruitment status or a date range. TrialLedger asks the registry's API and writes a new folder with two
+recruitment status or a date range. TrialLedger asks the registry's API and writes a new folder with four
 files:
 
 - **`studies.json`**: the complete registry record of every matching study, exactly as the registry sent
@@ -34,7 +34,17 @@ files:
   and when it was retrieved.
 - **`studies.csv`**: the registry's own spreadsheet for the same studies. It opens in Excel, Numbers or
   Google Sheets. (Its columns are the registry's choice; eligibility and safety are not among them, which is
-  why the review workbook below exists.)
+  why the review workbook exists.)
+- **`review.xlsx`**: the review workbook (section 5 below). It answers the design questions study by study:
+  eligibility split into inclusion and exclusion where the record allows it, every registered outcome with
+  its time frame, posted results and statistical analyses per arm, every adverse event per arm with the
+  numbers affected and at risk, participant flow, baseline measures, publications and posted documents, each
+  linked to its source.
+- **`record.xlsx`**: every value of every study, one per row, under the registry's own category and field
+  names, so nothing in the record goes unpresented. It is its own file because it is the largest: Google
+  Sheets opens at most 10 million cells in one spreadsheet, which this file reaches at about 300
+  results-heavy trials and the review workbook at about 500. TrialLedger names any file over that cap when
+  it writes it.
 
 The folder is written only when the pull is complete and consistent:
 
@@ -42,11 +52,15 @@ The folder is written only when the pull is complete and consistent:
 - the number of studies equals the number the registry reported, and no study arrived twice;
 - the record file and the spreadsheet list exactly the same studies;
 - the registry did not refresh its data while the pull was running;
-- temporary server errors and dropped connections were retried and resolved.
+- temporary server errors and dropped connections were retried and resolved;
+- both workbooks, read back cell by cell, hold exactly what the record derives.
 
 If any of these fails, nothing is written and the reason is printed. One kind of query is refused before it
 is sent: when a search term consists only of NCT numbers, the registry silently ignores every filter in the
 same query, so the answer would look filtered and not be.
+
+A folder can be checked at any later time: `trialledger verify <folder>` re-derives everything in it from
+`studies.json` and names anything that no longer follows (section 6).
 
 ## How it reasons
 
@@ -66,10 +80,20 @@ the ledger, and every derived value says what it came from.
 The registry's structured fields constrain one another, as the fields of a case report form do. A study
 marked completed should not carry an estimated completion date. Every intervention an arm names should be
 declared by the study. No adverse event can affect more participants than were at risk. A minimum age
-cannot exceed the maximum. TrialLedger runs checks like these on every record and reports each one as
-consistent, in conflict, or not checkable. A conflict is shown to the reviewer as a query. It is never
-silently corrected, because a contradiction in a record is exactly where an error in the data, or a
-fabricated value in someone's summary, reveals itself.
+cannot exceed the maximum. Each check is reported as consistent, in conflict, not applicable to the record,
+or not checkable: the last whenever a value the check needs is missing, malformed, or too imprecise to
+decide it (two partial dates whose months overlap, say), so a check never passes for lack of evidence. A
+conflict is shown to the reviewer as a query. It is never silently corrected, because a contradiction in a
+record is exactly where an error in the data, or a fabricated value in someone's summary, reveals itself.
+
+Seventeen checks are built, each quoting the registry's own definition it rests on. The five whose relation
+the registry states as a rule, or defines one field as a function of another, run on every record: a
+completed or terminated study's primary completion and study completion dates are typed actual; a
+multi-site study with a recruiting site is itself recruiting; the reasons participants did not complete
+account for all of them; and the results flag agrees with the results submission date. The other twelve,
+including the arm, adverse-event and age checks above, follow from the definitions without being stated as
+rules. They are built and tested, and listed in the workbook, but run only once the project's founder
+approves each one by name.
 
 The same discipline governs what is unknown. A field the registry left empty stays empty, and it is never
 confused with a recorded "none". A study without posted results says so in so many words. That matters
@@ -88,16 +112,26 @@ only where two clinicians would also disagree. TrialLedger labels every value th
 - **Needs review**: not determinable from the sources TrialLedger uses. It is shown with links to what a
   reviewer would read, and it is never filled in.
 
+Each workbook's About sheet gives the kind and the source of every column it holds.
+
 ### 4. Publications: linked, surfaced, and the source for unposted results
 
-The registry links each study to its publications and says which of them report the study's results.
-TrialLedger puts every linked publication beside its study, so a reader can go straight from a value to the
-source text. For studies whose results were never posted to the registry, the results publication is the
-next source: outcome and adverse-event figures the paper states explicitly can enter the ledger as
-publication evidence, each one carrying the exact sentence it came from and marked as coming from the paper
+The registry links each study to its publications, of three types. A study's responsible party enters some
+of them and marks each one as reporting the study's results or not (the registry's types "result" and
+"background"). The registry adds others itself (type "derived"), and for those it states no role at all: a
+derived publication may report the results, describe the protocol, or analyse the data later, and the
+record does not say which. Derived links are the most common kind: on 30 October 2026, 126,368 studies
+carried derived publications, 99,393 background and 43,671 result. TrialLedger puts every linked
+publication beside its study with its type in the registry's own terms, so a reader can go straight from a
+value to the source text, and it never presents a derived publication as a results paper.
+
+For studies whose results were never posted to the registry, publications are the next source (a later stage,
+designed but not yet built): outcome and adverse-event figures a paper states explicitly can enter the ledger
+as publication evidence, each one carrying the exact sentence it came from and marked as coming from the paper
 rather than the registry. Where the paper and the registry disagree, both are shown. What a paper does not
-state plainly stays a review item, with the paper linked. A study that is still running has no results
-anywhere yet, and the workbook says exactly that.
+state plainly stays a review item, with the paper linked. Which publications to read for a study is an open
+design question, because the "result" type alone misses most results papers. A study that is still running has
+no results anywhere yet, and the workbook says exactly that.
 
 ### 5. The review workbook
 
@@ -115,11 +149,39 @@ The first view built on the ledger answers the questions a clinical development 
 | 9 | Exploratory biomarkers, imaging, biopsies | "Other pre-specified" outcomes are a registry category; arm and intervention descriptions add detail. | Stated where registered |
 | 10 | Standard protocol language | Criteria that recur across the trials of an indication. | Computed across trials (later stage) |
 
-Each row carries the study's registry page, every linked publication with the role the registry gives it
-(background, results, or derived), and any protocol, statistical analysis plan or consent form the sponsor
-posted.
+Each row carries the study's registry page, every linked publication with its type in the registry's own
+terms (result or background as the responsible party marked it; derived, added by the registry with no
+stated role), and any protocol, statistical analysis plan or consent form the sponsor posted.
 
-### 6. Questions across the registry (later stages)
+The workbook has a sheet for each part of the record a reviewer reads: Studies (one row per study, the
+design axes), Eligibility, Outcomes, Arms, Interventions, Sites, Outcome Results, Analyses, Adverse Events,
+Event Groups, Participant Flow, Baseline, Publications, Documents, and the edit checks with the registry's
+words for each. Beside it, `record.xlsx` lists every value of every study under the registry's own category
+and field names, so nothing in the record goes unpresented. A value a spreadsheet cell cannot hold exactly
+(text with characters the file format forbids, text longer than a cell holds, a number a cell would round)
+is never cut, cleaned or rounded: its cell says why, and where the value is in `studies.json`.
+
+### 6. Warrants: every value carries its basis
+
+Every value in either workbook carries a warrant, a SHA-256 hash committing to what produced it. A value read
+from the record commits to the study's record, the value's place in it and the value itself. A computed value
+commits to its rule, to the exact code that derived it (a single root over the modules and registry tables
+that derive the workbook), and to the warrants of its inputs. `studies.json` records each study's digest, a
+root over all of them, and a record root over the provenance (the query, the data release, the retrieval time,
+the code), the studies and the spreadsheet.
+
+Before a folder is written, both workbooks are read back and every cell and warrant re-derived from the
+record; if anything differs, nothing is written. Later, `trialledger verify` repeats the derivation and
+compares both workbook files part for part, so any edit is named: a changed value, a count replaced by
+TRUE, a changed link or format. A folder can be certified only by TrialLedger running the derivation code
+that wrote it, and `studies.json` names that code's git commit, so an older folder is verified at its
+commit. A change to the command line, the network layer, or the code that saves and verifies a folder
+leaves every folder verifiable; a different version of the spreadsheet library is named, since it would
+write the files differently. A warrant proves derivation, not authorship: anyone can re-run TrialLedger, so
+to rely on a folder later, keep its record root. Whether a rule is right rests on its tests: every decision
+is pinned by tests that a mutation tester (Detective) confirms are complete.
+
+### 7. Questions across the registry (later stages)
 
 The same ledger supports the questions a sponsor asks when planning a program. Each is a defined
 computation over the registry's fields, and each must show the trials it rests on:
@@ -152,11 +214,14 @@ TrialLedger is built on information theory and data geometry. In practical terms
   therapy, mechanism, endpoint and time point, safety. Comparators are neighbors along matched dimensions;
   a cohort is a region; a niche is an empty region; the review workbook is that space seen along the
   dimensions one reviewer needs.
+- **Every value carries its basis.** A warrant commits each value to the record and the exact rule code
+  that rendered it; re-deriving it either reproduces it or names the value that no longer follows.
 
 ## What it will never do
 
 - Have an AI read, summarize or interpret a trial.
 - Fill in a value it cannot source.
+- Round, truncate or clean a value to make it fit.
 - Hide a gap, a conflict or a failed retrieval.
 - Compare outcomes that are not comparable.
 - Treat a recurring pattern as established fact.
@@ -166,9 +231,10 @@ TrialLedger is built on information theory and data geometry. In practical terms
 | Part | State |
 |---|---|
 | Pulling studies; the record file and the registry's spreadsheet; the completeness guarantees | Built and verified, against the live registry |
-| Ledger, edit checks, the review workbook with eligibility, safety and publication links | Specified: [`openspec/changes/add-review-workbook`](openspec/changes/add-review-workbook/) |
+| Ledger, the five approved edit checks, the review workbook, warrants and `trialledger verify` | Built and verified, against the live registry ([`add-review-workbook`](openspec/changes/add-review-workbook/)) |
+| The twelve further edit checks | Built and tested; each waits for the founder's approval |
 | Publication evidence for studies without posted results | Designed |
-| Questions across the registry | Designed |
+| Questions across the registry | Designed; next |
 | An interface that needs no terminal | Planned |
 
 ## Running it
@@ -181,6 +247,7 @@ uv run trialledger pull filter.ids=NCT04852770
 uv run trialledger pull filter.ids=NCT04852770,NCT01030536 --out my_studies
 uv run trialledger pull query.cond=sarcoidosis filter.overallStatus=RECRUITING
 uv run trialledger pull "filter.advanced=AREA[StartDate]RANGE[2024-01-01,2024-01-31]" query.cond=asthma
+uv run trialledger verify my_studies
 ```
 
 Each `NAME=VALUE` is one of the registry's own search parameters (`spec/ctg-oas-v2.yaml`), sent exactly as
@@ -188,12 +255,15 @@ written; the registry rejects names it does not know. `query.*` parameters searc
 website does, ranking by relevance and matching related terms, so they can return more than you meant;
 `filter.*` parameters restrict the set exactly. `uv run trialledger pull --help` lists examples.
 
-The command ends with one of three outcomes: `0`, written; `1`, the pull or the write failed and nothing
-was written; `2`, the query was refused before anything was sent. Requests are spaced 1.25 seconds apart.
-The registry publishes no rate limit; if it asks TrialLedger to slow down, it does.
+`pull` ends with one of three outcomes: `0`, written; `1`, the pull or the write failed and nothing was
+written; `2`, the query was refused before anything was sent. Requests are spaced 1.25 seconds apart. The
+registry publishes no rate limit; if it asks TrialLedger to slow down, it does. `verify` ends with `0`,
+certified; `1`, not certified, each difference named; `2`, the folder holds no TrialLedger record. It
+rewrites both workbooks to compare the files, so it takes about as long as the original write.
 
-To check the build: `scripts/ci_local.sh` runs the full gate, and `uv run pytest -m live` runs one pull
-against the real registry.
+To check the build: `scripts/ci_local.sh` runs the full gate (it requires local checkouts of Detective and
+Wesker), `.venv/bin/python scripts/push_checks.py install` installs the pre-push hook that runs the gate
+before every push, and `uv run pytest -m live` runs pulls against the real registry.
 
 ## Where the ideas come from
 

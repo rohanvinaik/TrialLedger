@@ -5,12 +5,13 @@ build-backend = "hatchling.build"
 [project]
 name = "TrialLedger"
 dynamic = ["version"]
-description = "Pull ClinicalTrials.gov study records through the official API into a local JSON record and a spreadsheet: complete, or nothing written."
+description = "Pull ClinicalTrials.gov study records through the official API into a record, the registry's spreadsheet and a certified review workbook: complete, or nothing written."
 readme = "README.md"
 requires-python = ">=3.12"
 authors = [{ name = "Rohan Vinaik" }]
 dependencies = [
     "httpx>=0.28",
+    "openpyxl>=3.1",
 ]
 
 [project.scripts]
@@ -22,6 +23,7 @@ dev = [
     "ruff>=0.16",
     "pyyaml>=6.0",
     "detective-spec>=1.2.2",
+    "vulture>=2.14",
 ]
 
 [tool.uv]

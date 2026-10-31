@@ -42,10 +42,15 @@ retired in the 2026-10-20 purge).
 
 # TrialLedger — what an agent working here must keep true
 
-TrialLedger pulls ClinicalTrials.gov records through the API in `spec/ctg-oas-v2.yaml` and writes
-`studies.json` (records as sent, plus provenance) and `studies.csv` (the API's own CSV). That ingestion
-layer is built. The reasoning layers are designed in `docs/THEORY_OF_THE_CASE.md` and specified, one
-change at a time, under `openspec/changes/`. The README explains the system to its clinical readers.
+TrialLedger pulls ClinicalTrials.gov records through the API in `spec/ctg-oas-v2.yaml` and writes a folder:
+`studies.json` (the records as sent, plus provenance and content addresses), `studies.csv` (the API's own
+CSV), `review.xlsx` (the review workbook: the design sheets and the checks) and `record.xlsx` (every value
+of every study, in the registry's categories), every cell of both warranted and certified against the
+record.
+`trialledger verify <folder>` re-derives a written folder. The ingestion layer and the first projection
+(`openspec/changes/add-review-workbook`) are built; the cross-trial layer and the publication parser are
+designed in `docs/THEORY_OF_THE_CASE.md` and that change's `design.md`. The README explains the system to
+its clinical readers.
 
 ## The rule this project exists for
 
@@ -56,18 +61,62 @@ cannot be traced is shown as unresolved, never filled.
 
 ## Shape
 
-- `TrialLedger/ingest.py`: the network shell (`Session`, `fetch_version`, `fetch_json_pages`,
-  `fetch_csv_pages`, `pull`). Every decision it makes is a pure function beside it, tagged
-  `(pure — pinned)`, returning a named code.
-- `TrialLedger/record.py`: writes a complete pull, both files or nothing.
-- `TrialLedger/cli.py`: `trialledger pull NAME=VALUE ...`, the entry point.
-- `spec/ctg-oas-v2.yaml`: the vendored contract; `tests/test_spec_contract.py` holds the code to it.
+Every decision is a pure function tagged `(pure — pinned)`, returning a named code; the shells around them
+gather facts and write files. `design.md`'s code-shape table gives each module's public interface.
+
+- `ingest.py`: the network shell (`Session`, `fetch_version`, `fetch_json_pages`, `fetch_csv_pages`,
+  `pull`) and its decisions.
+- `registry.py`: the registry's own names (field titles, categories, enum labels, the fields redacted for
+  withheld studies), read from the vendored `/studies/metadata` and `/studies/enums` in
+  `TrialLedger/registry/`.
+- `ledger.py`: the record as entries (every leaf with its location and the roles its place states, through
+  `node_role`; the tests hold them to an independent walk that rebuilds every record), absence and results
+  states.
+- `checks.py`: seventeen edit checks, each with the registry's words, its basis and its approval; their
+  decisions; one gatherer per check. Only `APPROVED` (five) run; a present but malformed input raises
+  `Malformed` and its check is `not_checkable`.
+- `eligibility.py`, `links.py`, `cells.py`: the eligibility split; link forms and reference roles; what a
+  cell can hold exactly (`cell_text_state`, `cell_number_state`, `sheet_fits`).
+- `warrants.py`: digests, the Merkle root, the code root (the derivation code and registry tables),
+  warrants.
+- `workbook.py`: the sheets of the two books (`REVIEW`: the design sheets and the checks; `RECORD`: the
+  Record sheets), the writer, `certify` (every cell and its kind of value) and `file_problems` (a file part
+  for part against a fresh write).
+- `record.py`: `write_record` (four files or nothing, with the digests and roots, naming a workbook over
+  Google Sheets' 10 million cells), `code_commit`, `record_problems`, `verify_folder`.
+- `cli.py`: `trialledger pull NAME=VALUE ...` and `trialledger verify <folder>`.
+- `spec/ctg-oas-v2.yaml` and `TrialLedger/registry/*.json`: the vendored contracts;
+  `tests/test_spec_contract.py` holds the code to them.
+
+A rule's warrant commits to the code root: the Merkle root of the derivation code (`workbook.py` and every
+package module it imports, followed through their imports, `__init__.py` and the registry tables;
+`warrants.derivation_files`). Any change to that code, docstrings included, changes every computed warrant,
+so a folder written before it no longer certifies under the new code: `verify` names the code root and the
+commit that wrote the folder (`code_commit` in its provenance), at which it can be verified. A change to
+`cli.py`, `ingest.py`, `record.py` or anything else the derivation does not import leaves the root, and
+every folder, unchanged.
 
 ## Gate
 
-`scripts/ci_local.sh` is the gate: `uv sync --locked`, ruff check, ruff format check, pytest, then
-`detective audit --two-sign --check` on every function tagged `(pure — pinned)` (the list is read from the
-code). `uvx ty check --python .venv TrialLedger` is advisory. Live calls are opt-in: `uv run pytest -m live`.
+`scripts/ci_local.sh` is the gate: `uv sync --locked`; the Detective and Wesker it imports, which must be
+the founder's local checkouts (`~/tools/Detective`, `~/tools/Wesker`, or `DETECTIVE_ROOT`/`WESKER_ROOT`),
+never the copy installed in `.venv`; ruff check; ruff format check; pytest; `detective audit --two-sign
+--check` on every function tagged `(pure — pinned)` (the list is read from the code, and an audit of none
+fails); then ty and two vulture scans, advisory. Run it whole and read its whole output before every commit.
+`.githooks/pre-push` runs `scripts/push_checks.py hook`, which runs the gate before a push of any tree it has
+not passed on, scans the pushed commits' added lines for secrets (detect-secrets) and audits the locked
+dependencies for known flaws (pip-audit, advisory). Install it with
+`.venv/bin/python scripts/push_checks.py install`. Live calls are opt-in: `uv run pytest -m live`.
+
+Vulture counts a function named in a table as used, so it cannot see a table entry nothing calls.
+`tests/test_wiring.py` holds the wiring instead: in its own process, recording every call from before import,
+`tests/production_path.py` drives what production does (a two-page pull with a retry and a value a cell
+cannot hold, `verify` of the folder, `verify` of an unreadable workbook, a pull the server keeps failing), and
+the test fails on any function of the package that path does not reach, except the declared ones: the twelve
+proposed checks' gatherers, their four helpers and the eight decisions only they use (dormant until the
+founder approves them; the gatherers are derived from `APPROVED`), the two default progress sinks the CLI
+overrides, and `WorkbookError`'s constructor. It also holds every sheet to its columns, every rule of `RULE`
+to a lookup, and every code a decision returns to its words.
 
 ## Detective
 
@@ -76,17 +125,50 @@ Run from this repo's `.venv` with the local checkouts first:
 was converged with `--two-sign`, which the printed DO THIS lines omit; keep adding it.
 
 A new decision is written unwired, given direct-call intent tests for both signs, converged with
-`--two-sign` in isolation, and only then wired into the shell. Five `retry_delay` survivors are flagged
-equivalent with proofs in their notes; an edit to `retry_delay` un-flags them. The flags and supplied
-inputs live in the gitignored `.detective/` on the machine that made them.
+`--two-sign` in isolation, and only then wired into the shell. Run `ruff format` before converging, never
+after: the formatter re-indents a docstring whose continuation lines all share extra indentation, which
+changes the function's source and un-keys its flags (it did to `cell_text_state` on 2026-10-31). A
+converge whose routed tests write workbooks (`record_problems`) needs `--deadline` above the default 300 s.
+
+The flags and supplied inputs live in the gitignored `.detective/` on the machine that made them
+(`equivalents.json`, `inputs.json`); each flag is keyed to its function's exact code, so an edit un-flags
+it. The proofs, so that they survive the machine:
+
+- `retry_delay`, five: `abs` of a value already in [0.0, 60.0] is the identity (twice); `round(x, 0)` of
+  an integral float is itself; `min` argument order matters only on equality or NaN, which cannot occur
+  (twice).
+- `date_interval`: catching `BaseException` catches exactly `ValueError` there (only `date()`,
+  `toordinal()` and `calendar.monthrange()` run, on regex-validated digits); a SWAP whose diff is empty
+  exchanges the identical operands of `(exact, exact)`.
+- `split_eligibility`, three: an inclusion and an exclusion heading are never the same line, so `<` and
+  `<=` agree on their positions; the two `[-1]`/`[0]` mutants read a list known to hold one entry.
+- `age_limits_ordered`, two: a None magnitude comes only with the absent or unparseable family, so either
+  dropped disjunct is implied by the others.
+- `cell_text_state`: UTF-16-LE byte lengths are even, so `len / 2` equals `len // 2`.
+- `whole_count`, two: dropping the handler's `return None` falls through to the final `return None`; the
+  `try` holds only `int()` on ASCII digits, which raises only ValueError, so `except BaseException` is the
+  same handler.
+- `record_problems`: reversing, slicing or rotating the one-element `no_digests` list leaves it unchanged.
 
 ## Open items
 
+- Twelve proposed edit checks wait for the founder's approval by name: `withdrawn_actual_enrollment_zero`,
+  `phase_interventional_only`, `arm_interventions_declared`, `intervention_arms_defined`,
+  `ae_counts_name_groups`, `ae_affected_within_at_risk`, `ae_event_within_group_total`,
+  `ae_events_at_least_affected`, `ae_group_totals_within_at_risk`, `age_limits_ordered`,
+  `start_before_primary_completion`, `primary_completion_before_completion`.
+- Which publications the end-stage parser reads for a study without posted results is the founder's
+  decision: RESULT alone misses most results papers, and DERIVED states no role.
 - `detective decompose TrialLedger/cli.py::parse_query_args --apply` stops on five crash-only survivors and
   asks for them to be flagged equivalent or killed by `--input`; converge says the same five are not
   equivalence candidates. Neither repair is truthful, so the split is not applied.
-- `detective audit` reports 3 (`classify_json_page`) and 1 (`classify_csv_page`) survivors as
-  unproven-equivalent that `converge`, using the supplied inputs, certifies as crash-only; and every audit
-  names `converge` as its next action, including right after a COMPLETE converge.
+- `detective audit` reports as unproven-equivalent survivors that `converge`, using the supplied inputs,
+  certifies as crash-only or kills (`classify_json_page`, `classify_csv_page`, `age_magnitude`,
+  `date_interval` and others); and every audit names `converge` as its next action, including right after
+  a COMPLETE converge.
 - `detective survey` still lists `pull` and `write_record` as I/O-bound; `extract` reports an unresolved
   interface for both and proposes nothing. Their decisions are pinned or covered by durability tests.
+- vulture's only remaining findings are not islands: openpyxl attribute writes (`freeze_panes`, `font`,
+  `data_type`, `hyperlink`), which openpyxl reads when it saves, and pytest's `pytestmark`.
+- `trialledger verify` writes the workbook afresh to compare the file, so it takes about as long as the
+  original write.
