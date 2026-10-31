@@ -35,8 +35,15 @@
 
 ## 4. Coherence
 
-- [ ] 4.1 Write coordinates, domains and evidence narrowing with intent tests (silence never narrows; agreement never assigns)
+- [x] 4.1 Write coordinates, domains and evidence narrowing with intent tests (silence never narrows; agreement never assigns)
+  - 2026-10-31: `coherence.narrow_by_evidence` COMPLETE (modulo 7 unproven-equivalent); `domain_state` COMPLETE
+    (47/47).
 - [ ] 4.2 Write the relation table (all proposed) and the closure decision with intent tests (fixed point; order-independence by permutation; conflict names every cause); converge once
+  - 2026-10-31: written, seven proposed relations, 17 intent tests pass. `detective converge
+    coherence.py::close --two-sign` printed UNGATEABLE: "one or more mutants exceeded an explicit deterministic
+    step budget ... inspect the execution and its declared bound before re-measuring"; six mutants "diverged".
+    Open, for the founder: the target was not edited to clear the refusal. (Claude's inference, unconfirmed by
+    the tool: mutants of the `while changed` loop do not terminate; a declared iteration bound would decide it.)
 
 ## 5. Profile
 

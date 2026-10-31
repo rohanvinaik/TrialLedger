@@ -149,6 +149,26 @@
     "refusal": "",
     "standing": "complete"
   },
+  "TrialLedger/coherence.py::close": {
+    "cut_reasons": [
+      "step_budget_exceeded"
+    ],
+    "function_digest": "29f3c3705358ba49",
+    "refusal": "",
+    "standing": "ungateable"
+  },
+  "TrialLedger/coherence.py::domain_state": {
+    "cut_reasons": [],
+    "function_digest": "1ad95f0f5f07c763",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/coherence.py::narrow_by_evidence": {
+    "cut_reasons": [],
+    "function_digest": "cdd7168b4e06b8b8",
+    "refusal": "",
+    "standing": "complete"
+  },
   "TrialLedger/criteria.py::itemize": {
     "cut_reasons": [],
     "function_digest": "69558f38ffa4113a",
