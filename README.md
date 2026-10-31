@@ -274,9 +274,9 @@ before every push, and `uv run pytest -m live` runs pulls against the real regis
 - **GSE** contributed the treatment of uncertainty: absence and silence are different things, an unresolved
   value keeps its possibilities open, conflicts are reported rather than voted away, and a discovered
   pattern only ever proposes a rule.
-- **TriageGeist** encoded emergency triage as an almost entirely symbolic process, legible to the
-  clinicians who would have to trust it. It contributed the three kinds of answer and the principle that
-  any non-auditable step must be small, bounded, and checked.
+- **TriageGeist** encoded emergency triage as a process that is symbolic almost throughout, legible to the
+  clinicians who would have to trust it. It contributed the three kinds of answer and the principle that any
+  non-auditable step must be small, bounded, and checked.
 
 The design in full: [`docs/THEORY_OF_THE_CASE.md`](docs/THEORY_OF_THE_CASE.md). Rules for anyone changing
 the code: [`AGENTS.md`](AGENTS.md).

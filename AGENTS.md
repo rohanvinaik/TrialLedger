@@ -55,7 +55,7 @@ its clinical readers.
 ## The rule this project exists for
 
 No code here interprets, summarises or rewrites study content, and no agent does either. The founder's
-first prompt names the failure this project rejects: handing trial pages to a chatbot to "parse". Every
+first prompt names the failure this project rejects: handing trial pages to a chatbot to parse. Every
 value a person reads traces to a named field of the record, or to a named rule over such fields; what
 cannot be traced is shown as unresolved, never filled.
 

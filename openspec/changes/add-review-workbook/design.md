@@ -4,15 +4,15 @@
 
 The ingestion layer is built (commit `ac9c8b6`): `trialledger pull` writes the complete registry records
 (`studies.json`) and the registry's own spreadsheet (`studies.csv`), all or nothing. The design this change
-begins is `docs/THEORY_OF_THE_CASE.md`. The founder's decisions for it, verbatim (his messages are
-kept on his machine, not in the repository): «Fact sources should be the unambiguous fields from the API we
-just set up»; «Raw publications should be linked and surfaced [...] but we don't need to THOROUGHLY build a
-literal parser just yet»; «"Significant" should be pretty self-evident»; «yes the spreadsheet should carry
-eligibility and safety». The purpose this change serves, in his words: a clinical trial design project,
-«able to use clear and well-built symbolic systems to automate the process of designing clinical trials,
-much as TriageGeist was able to automate triage and Harmonizing was able to auto-populate a data record».
-The ledger and edit checks here are the trusted substrate that design inference will run on; the review
-workbook is the first projection of it.
+begins is `docs/THEORY_OF_THE_CASE.md`. The founder's decisions for it, paraphrased (his messages are kept on
+his machine, not in the repository): facts are to come from the unambiguous fields of the API layer just
+built; raw publications are linked and brought to the surface, so a reader can quickly scan the source text,
+and a thorough parser for them is not needed yet; what counts as significant should be fairly self-evident;
+the spreadsheet is to carry eligibility and safety. The purpose this change serves, also paraphrased: at
+bottom a clinical trial design project, in which clear, well-built symbolic systems automate the design of
+clinical trials, as TriageGeist automated triage and harmonizing auto-populated a data record. The ledger and
+edit checks here are the trusted substrate that design inference will run on; the review workbook is the first
+projection of it.
 
 ## Goals / Non-Goals
 
@@ -26,12 +26,12 @@ needs review, every source linked.
 
 Sources read whole: the vendored API contract `spec/ctg-oas-v2.yaml` (2.0.5); the API's field metadata
 (`/api/v2/studies/metadata`, vendored as `TrialLedger/registry/ctg-metadata.json`) and enum table
-(`/api/v2/studies/enums`, vendored as `TrialLedger/registry/ctg-enums.json`); the Protocol Registration Data Element Definitions
-(<https://clinicaltrials.gov/policy/protocol-definitions>, last updated 2025-04-24) and the Results Data
-Element Definitions (<https://clinicaltrials.gov/policy/results-definitions>, last updated 2024-12-31),
-read as rendered pages because the site serves every URL the same JavaScript shell. Live measurements used
-a 2,529-study pull (`filter.advanced=AREA[StartDate]RANGE[2014-01-01,2014-01-10]`, data timestamp
-2026-10-30T09:00:04).
+(`/api/v2/studies/enums`, vendored as `TrialLedger/registry/ctg-enums.json`); the Protocol Registration Data
+Element Definitions (<https://clinicaltrials.gov/policy/protocol-definitions>, last updated 2025-04-24) and
+the Results Data Element Definitions (<https://clinicaltrials.gov/policy/results-definitions>, last updated
+2024-12-31), read as rendered pages because the site serves every URL the same JavaScript shell. Live
+measurements used a 2,529-study pull (`filter.advanced=AREA[StartDate]RANGE[2014-01-01,2014-01-10]`, data
+timestamp 2026-10-30T09:00:04).
 
 - **Results flag.** The metadata defines `hasResults` as `FUNC Present(ResultsFirstSubmitDate)`, «Flag that
   indicates if a study has posted results on public site». In the sample, the flag, the presence of a
@@ -84,27 +84,26 @@ a 2,529-study pull (`filter.advanced=AREA[StartDate]RANGE[2014-01-01,2014-01-10]
    element»), `redacted` (a withheld study, where the metadata says «Redacted for Withheld studies» or
    «Marked as [Missing] for Withheld studies»), or `not_reported`. No view shows any of them as zero, none
    or no.
-4. **Edit checks are an approved, versioned list** (below), each a pure decision over one record returning
-   one of four outcomes with the fields and values involved: `consistent` (the rule applies and holds),
-   `conflict` (the rule applies and is violated), `not_applicable` (the rule's condition does not arise in
-   this record) or `not_checkable` (a value the rule needs is absent, or its precision cannot decide the
-   rule). A missing input is never `consistent`; a conflict never changes a value. Only exact unit
-   conversions are used (years↔months; weeks↔days↔hours↔minutes); partial dates are intervals and are in
-   conflict only when the intervals cannot be in order. A value present but not of the registry's type is
-   malformed, and its check is `not_checkable` with the value named. A cross-reference that matches nothing
-   is a `conflict` only when every definition it could match is complete; while an intervention lacks a
-   type or name, an arm a label or an event group an id, it is `not_checkable`. A number the record states
-   (a group's number not completed) is never replaced by a derived one (Started minus Completed is used only
-   when none is stated); a count stated for no group makes its milestone malformed, and a reason type that
-   lists no count for a group leaves that group's sum not checkable. A check that is not approved is never gathered, so nothing only it reads can affect
-   the checks that run.
+4. **Edit checks are an approved, versioned list** (below), each a pure decision over one record returning one
+   of four outcomes with the fields and values involved: `consistent` (the rule applies and holds), `conflict`
+   (the rule applies and is violated), `not_applicable` (the rule's condition does not arise in this record)
+   or `not_checkable` (a value the rule needs is absent, or its precision cannot decide the rule). A missing
+   input is never `consistent`; a conflict never changes a value. Only exact unit conversions are used
+   (years↔months; weeks↔days↔hours↔minutes); partial dates are intervals and are in conflict only when the
+   intervals cannot be in order. A value present but not of the registry's type is malformed, and its check is
+   `not_checkable` with the value named. A cross-reference that matches nothing is a `conflict` only when
+   every definition it could match is complete; while an intervention lacks a type or name, an arm a label or
+   an event group an id, it is `not_checkable`. A number the record states (a group's number not completed) is
+   never replaced by a derived one (Started minus Completed is used only when none is stated); a count stated
+   for no group makes its milestone malformed, and a reason type that lists no count for a group leaves that
+   group's sum not checkable. A check that is not approved is never gathered, so nothing only it reads can
+   affect the checks that run.
 5. **Eligibility is split only on the registry's stated headers.** A line consisting of `Inclusion Criteria`
    or `Exclusion Criteria`, optionally followed by a colon, is a heading; the text is split only when it has
-   exactly one of each, inclusion first. The split has three parts, the text before the inclusion heading,
-   the inclusion part and the exclusion part, and the three joined reproduce the original text exactly; an
-   empty part is a blank cell, never a placeholder.
-   Otherwise the whole text is shown and the decision says why: `not_split_missing`,
-   `not_split_repeated` or `not_split_order`. Abstaining is the safe direction.
+   exactly one of each, inclusion first. The split has three parts, the text before the inclusion heading, the
+   inclusion part and the exclusion part, and the three joined reproduce the original text exactly; an empty
+   part is a blank cell, never a placeholder. Otherwise the whole text is shown and the decision says why:
+   `not_split_missing`, `not_split_repeated` or `not_split_order`. Abstaining is the safe direction.
 6. **Every cell has a kind**: stated (a structured field, shown with its record location), computed (a
    named rule, shown with its inputs) or needs review (shown with its sources, never filled). Each sheet's
    About entry gives the kind and source of every column; a column whose kind can vary per row carries a
@@ -141,19 +140,19 @@ a 2,529-study pull (`filter.advanced=AREA[StartDate]RANGE[2014-01-01,2014-01-10]
     the reader this serves.
 11. **Significance, in this change, is the ten questions.** Significance across trials, what distinguishes
     them versus what they all share, belongs to the cross-trial design change.
-12. **Every value carries a warrant, and the workbook is certified** (the founder, 2026-10-31: «Every piece
-    of information should be able to carry a strict warrant of the basis that rendered it into the data
-    record»). A study's digest is SHA-256 over its record in canonical JSON; the pull's root is the Merkle
-    root of its studies' digests, in pull order; both are recorded in `studies.json`'s provenance, each study
+12. **Every value carries a warrant, and the workbook is certified** (the founder, 2026-10-31, paraphrased:
+    each piece of information should be able to carry a strict warrant of the basis on which it entered the
+    record). A study's digest is SHA-256 over its record in canonical JSON; the pull's root is the Merkle root
+    of its studies' digests, in pull order; both are recorded in `studies.json`'s provenance, each study
     digest beside its NCT number, with the spreadsheet's digest. The code root is the Merkle root of the files
     the workbook's derivation reads (`warrants.derivation_files`: `workbook.py`, every package module it
     imports, followed through their own imports, `__init__.py` and the registry tables), recorded with the git
     commit of that code (`record.code_commit`, marked when it has uncommitted changes) and the writer
-    (openpyxl's version). The command line, the network layer and the folder's writer and verifier are not
-    in it, so changing them leaves every folder verifiable (the founder's choice, 2026-10-31). The record
-    root commits to the whole provenance, the study digests with their labels, the studies' root and the
-    spreadsheet's digest among it, so nothing in it can change unseen. A value's warrant is a hash committing to its
-    basis: a stated value to its study digest, location and value; an absent value to its location and
+    (openpyxl's version). The command line, the network layer and the folder's writer and verifier are not in
+    it, so changing them leaves every folder verifiable (the founder's choice, 2026-10-31). The record root
+    commits to the whole provenance, the study digests with their labels, the studies' root and the
+    spreadsheet's digest among it, so nothing in it can change unseen. A value's warrant is a hash committing
+    to its basis: a stated value to its study digest, location and value; an absent value to its location and
     absence state under the absence rule; a computed value to its rule (id, tool version, the code root, the
     digest of the functions that apply it, the digests of the registry data it reads) and its inputs'
     warrants; a review item to its reason and sources. The code root makes a warrant commit to everything a
@@ -161,17 +160,17 @@ a 2,529-study pull (`filter.advanced=AREA[StartDate]RANGE[2014-01-01,2014-01-10]
     warrant of its cells; a Record row's warrant is determined by its study's digest, location and value.
     `write_record` certifies the workbook it wrote before renaming the folder into place. `trialledger verify
     <folder>` refuses a `studies.json` whose objects repeat a key, re-derives every digest, label and root,
-    and, under the same code root, every cell and warrant; then it writes the workbook afresh and compares
-    the file part for part, so a changed link, format or added part is named even when every cell holds its
-    value. A folder written by other derivation code or another writer is not certified by this one; `verify`
-    names the commit that wrote it, at which it can be verified. Correctness of the
-    rules themselves rests on their two-sign tests and Detective certificates; warrants make each derivation
-    reproducible and any alteration visible.
+    and, under the same code root, every cell and warrant; then it writes the workbook afresh and compares the
+    file part for part, so a changed link, format or added part is named even when every cell holds its value.
+    A folder written by other derivation code or another writer is not certified by this one; `verify` names
+    the commit that wrote it, at which it can be verified. Correctness of the rules themselves rests on their
+    two-sign tests and Detective certificates; warrants make each derivation reproducible and any alteration
+    visible.
 13. **Every value of the record is presented in the registry's own categories.** The Record sheets of
-    `record.xlsx` list every ledger entry: the study, its category (the section and module names the API metadata gives, e.g.
-    "Study Protocol › Study Design"), the field (the metadata's title), the location, the value exactly as
-    the record holds it, and its structural role. The typed sheets are projections of it onto the design
-    questions; nothing in the record is left unpresented.
+    `record.xlsx` list every ledger entry: the study, its category (the section and module names the API
+    metadata gives, e.g. "Study Protocol › Study Design"), the field (the metadata's title), the location, the
+    value exactly as the record holds it, and its structural role. The typed sheets are projections of it onto
+    the design questions; nothing in the record is left unpresented.
 14. **Construction follows Detective's own workflow.** Each decision is written unwired as a pure function
     returning named codes; given direct-call intent tests for both signs; converged with
     `detective converge --two-sign` in isolation, with every survivor killed by a test, proven equivalent
@@ -246,13 +245,13 @@ approved. On the 2,529-study sample all seventeen gave no conflict.
    proposed as candidates for review, and recurring protocol language, each computed over comparable trials
    with the trials it rests on shown. The design space's indication and mechanism axes are the registry's
    own MeSH coding (`derivedSection.conditionBrowseModule`, `derivedSection.interventionBrowseModule`).
-2. The end-stage parser (`add-publication-evidence`), from the founder's additions «We can impute this from
-   papers/results, no?» and «there should be a way to process the raw paper by section, and use that to
-   assign differential parsing systems to hunt for specific context to resolve gaps or inconsistencies in
-   the data encoding about the clinical trial [...] since study data is so rigidly typed and formal we can
-   probably get away with not even using a small local model». Designed from the Regenesis puller as read
-   on 2026-10-31 (`regenesis/puller/`, `lift.py`, `gse_emit_narrative.py`, `reason.py`), whose parts it
-   recomposes; gap-driven hunting itself is new:
+2. The end-stage parser (`add-publication-evidence`), from the founder's additions, paraphrased: results the
+   registry lacks could be imputed from papers; and a raw paper can be processed by its sections, the sections
+   deciding which differential parsing systems are assigned, each hunting the specific context that resolves a
+   gap or inconsistency in how the trial's data is encoded, study data being so rigidly typed and formal that
+   probably not even a small local model is needed. Designed from the Regenesis puller as read on 2026-10-31
+   (`regenesis/puller/`, `lift.py`, `gse_emit_narrative.py`, `reason.py`), whose parts it recomposes;
+   gap-driven hunting itself is new:
    - **Gaps drive the hunt.** The ledger's open items (needs-review cells, not-checkable and conflicting
      checks, results not posted) become typed queries: the fact sought, and the record's own vocabulary to
      hunt for (arm labels, intervention names and other names, registered outcome measures and time frames,

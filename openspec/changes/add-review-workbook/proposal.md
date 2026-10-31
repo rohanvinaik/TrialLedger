@@ -22,10 +22,10 @@ the edit checks and the review workbook, over the registry's structured fields o
   Beside it, a record workbook presents every value of every study in the registry's own categories.
 - Link every study to its registry page, every linked publication with the role the registry assigns it,
   and every document the sponsor posted.
-- Give every value a warrant committing to its basis, record the pull's roots in its provenance, certify
-  the workbook against the record before the pull is written, and add `trialledger verify`, which re-derives
-  a written folder (the founder's addition, 2026-10-31: «Every piece of information should be able to carry
-  a strict warrant of the basis that rendered it into the data record»).
+- Give every value a warrant committing to its basis, record the pull's roots in its provenance, certify the
+  workbook against the record before the pull is written, and add `trialledger verify`, which re-derives a
+  written folder (the founder's addition, 2026-10-31, paraphrased: each piece of information should be able to
+  carry a strict warrant of the basis on which it entered the record).
 - Keep the all-or-nothing guarantee: the workbook is written with the other two files or not at all.
 - Out of scope: reading publications (the next change, `add-publication-evidence`), computations across
   trials (`add-cross-trial-views`), and an interface that needs no terminal.

@@ -2,9 +2,9 @@
 `.venv/bin/python scripts/push_checks.py install`), patterned on the process contract's worked example
 (RSNA_Knee's scripts/push_checks.py; PROFESSIONAL_CODING_PERFORMANCE_ENGINEERING.md §9).
 
-The founder, 2026-10-31: «build in a proper CI gate before pushing to GitHub»; «we use detective and wesker at
-the local checkout». So the gate runs here, before anything leaves this machine, with Detective and Wesker
-from their local checkouts (scripts/ci_local.sh). Git hands the hook each ref being pushed, and the hook:
+The founder asked (2026-10-31, paraphrased) for a proper CI gate to run before anything is pushed to GitHub,
+using Detective and Wesker at his local checkouts; so the gate runs here, before anything leaves this machine
+(scripts/ci_local.sh). Git hands the hook each ref being pushed, and the hook:
 
 - runs the declared gate (scripts/ci_local.sh) unless it has already passed on exactly the tree being pushed:
   the gate stamps the tree it ran on when it passes and the tree did not change during the run. A tree the

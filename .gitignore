@@ -20,6 +20,5 @@ coverage.xml
 .serena/
 .claude/
 trialledger_*/
-# The founder's messages stay on his machine and are never pushed (2026-10-31: «No "message" files
-# should be pushed to git»).
+# The founder's messages stay on his machine and are never pushed (his instruction, 2026-10-31).
 docs/conversations/

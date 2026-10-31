@@ -5,8 +5,8 @@
 # missing tool or checkout fails it. The shape follows the process contract's worked example
 # (PROFESSIONAL_CODING_PERFORMANCE_ENGINEERING.md §9, RSNA_Knee's ci_local.sh and push_checks.py).
 #
-# Detective and Wesker run from the founder's local checkouts, which lead their releases (2026-10-31: «we
-# use detective and wesker at the local checkout»; «I've been improving it»). The gate refuses to audit
+# Detective and Wesker run from the founder's local checkouts, which lead their releases (his instruction,
+# 2026-10-31, paraphrased: use the local checkouts, which he keeps improving). The gate refuses to audit
 # with any other copy: the one installed in .venv is never used in their place.
 set -u
 cd "$(dirname "$0")/.."
