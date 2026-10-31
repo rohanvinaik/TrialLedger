@@ -17,6 +17,7 @@ import pytest
 from TrialLedger.coherence import (
     COORDINATES,
     RELATION_IDS,
+    RELATIONS,
     SETTINGS,
     close,
     domain_state,
@@ -75,16 +76,42 @@ def test_contradictory_evidence_is_a_named_conflict():
     assert [ref for _, _, ref in causes] == ["c3", "c4"]
 
 
-def test_first_line_resolves_only_under_the_proposed_relations():
+def test_first_line_resolves_under_the_approved_relation():
     result = resolve(FIRST_LINE)
     assert result["prior_advanced_lines"]["domain"] == ("0",)
-    assert result["setting"]["domain"] == SETTINGS  # no relation is approved
-    assert result["setting"]["state"] == "unnarrowed"
-    assert result["setting"]["with_proposed"] == ("advanced_first_line",)
-    assert result["setting"]["proposed_state"] == "resolved"
-    assert {cause[2] for cause in result["setting"]["proposed_causes"]} >= {
+    assert result["setting"]["domain"] == ("advanced_first_line",)
+    assert result["setting"]["state"] == "resolved"
+    assert {cause[2] for cause in result["setting"]["causes"]} >= {
         "first_line_when_no_prior_advanced_therapy"
     }
+
+
+def setting_after(facts, lines=None):
+    evidence = [("inclusion", "prior_lines", lines, "advanced", "c1")] if lines else []
+    domains, _ = narrow_by_evidence(evidence)
+    approved = [r.id for r in RELATIONS if r.approval == "approved"]
+    return close(domains, facts, approved)[0]["setting"]
+
+
+@pytest.mark.parametrize(
+    "facts, lines",
+    [
+        # neoadjuvant stage III requiring no prior therapy for "locally advanced" disease (Codex, 2026-10-31)
+        (["inclusion:extent:locally advanced", "inclusion:resection:resectable"], ("0",)),
+        # resected oligometastatic disease, adjuvant
+        (["inclusion:extent:metastatic", "inclusion:stage:IV", "inclusion:resection:resected"], None),
+        # consolidation after definitive chemoradiation, one prior platinum regimen given with radiation
+        (["inclusion:prior_agent:radiotherapy", "inclusion:setting_word:consolidation"], ("1",)),
+        # "stage III or IV" admits stage III chemoradiation
+        (["inclusion:stage:III", "inclusion:stage:IV"], None),
+    ],
+)
+def test_approved_relations_never_fire_on_the_counterexamples(facts, lines):
+    assert setting_after(facts, lines) == SETTINGS
+
+
+def test_maintenance_survives_a_prior_line_requirement():
+    assert "maintenance" in setting_after(["inclusion:extent:metastatic"], ("1",))
 
 
 def test_closure_is_order_independent():
@@ -105,11 +132,12 @@ def test_a_relation_without_its_facts_never_applies():
 
 def test_relations_that_disagree_empty_the_domain_with_both_named():
     domains, _ = narrow_by_evidence([("inclusion", "prior_lines", ("0",), "advanced", "c1")])
-    closed, causes = close(domains, ["inclusion:resection:resected"], list(RELATION_IDS))
+    facts = ["inclusion:extent:metastatic", "inclusion:setting_word:consolidation"]
+    closed, causes = close(domains, facts, list(RELATION_IDS))
     assert closed["setting"] == ()
-    assert {relation for _, _, relation in causes} == {
+    assert {relation for _, _, relation in causes} >= {
         "first_line_when_no_prior_advanced_therapy",
-        "adjuvant_or_perioperative_when_resection_required",
+        "consolidation_when_named",
     }
 
 

@@ -7,7 +7,7 @@
   },
   "TrialLedger/banks.py::disease_setting": {
     "cut_reasons": [],
-    "function_digest": "3eea708ad0bb8ed8",
+    "function_digest": "ed13d85754c4b193",
     "refusal": "",
     "standing": "complete"
   },
@@ -157,9 +157,11 @@
   },
   "TrialLedger/coherence.py::close": {
     "cut_reasons": [
-      "step_budget_exceeded"
+      "budget_exhausted",
+      "coverage_truncated",
+      "invalid_verification"
     ],
-    "function_digest": "29f3c3705358ba49",
+    "function_digest": "4fd5cebdb0326da3",
     "refusal": "",
     "standing": "ungateable"
   },

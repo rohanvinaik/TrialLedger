@@ -233,7 +233,7 @@ TrialLedger is built on information theory and data geometry. In practical terms
 | Pulling studies; the record file and the registry's spreadsheet; the completeness guarantees | Built and verified, against the live registry |
 | Ledger, the five approved edit checks, the review workbook, warrants and `trialledger verify` | Built and verified, against the live registry ([`add-review-workbook`](openspec/changes/archive/2026-10-31-add-review-workbook/)) |
 | The twelve further edit checks | Built and tested; each waits for the founder's approval |
-| Typed criteria, each trial's design coordinates, and questions across the registry | Under construction ([`add-coherence-engine`](openspec/changes/add-coherence-engine/)) |
+| Typed criteria, each trial's design coordinates, drug classes and the profile across a pull (`trialledger profile`) | First slice built, on the Phase 3 NSCLC trials of 2015–2024; every relation awaits the founder's approval ([`add-coherence-engine`](openspec/changes/add-coherence-engine/)) |
 | Publication evidence for studies without posted results | Designed |
 | An interface that needs no terminal | Planned |
 
@@ -248,7 +248,18 @@ uv run trialledger pull filter.ids=NCT04852770,NCT01030536 --out my_studies
 uv run trialledger pull query.cond=sarcoidosis filter.overallStatus=RECRUITING
 uv run trialledger pull "filter.advanced=AREA[StartDate]RANGE[2024-01-01,2024-01-31]" query.cond=asthma
 uv run trialledger verify my_studies
+uv run trialledger profile my_studies
 ```
+
+`profile` reads a folder `pull` wrote and adds `design.xlsx` beside it: every eligibility criterion split out
+and typed by fixed rules (performance status, biomarker status, prior therapy and line, stage and setting,
+laboratory thresholds), the criteria no rule could type, each trial's setting, prior lines and biomarker
+selection as the set of values its own criteria still allow, each experimental drug's pharmacologic class from
+the National Library of Medicine's RxClass, and, across the folder's trials, how often each criterion
+appears, which criteria are standard, which track a drug class (offered only as leads to review), and which
+combinations of setting and drug class no trial occupies. It changes none of the pull's files. It ends with
+`0`, written; `1`, the record no longer matches its own digests and nothing was written; `2`, not a
+TrialLedger folder.
 
 Each `NAME=VALUE` is one of the registry's own search parameters (`spec/ctg-oas-v2.yaml`), sent exactly as
 written; the registry rejects names it does not know. `query.*` parameters search the way the registry's

@@ -18,10 +18,12 @@ SETTINGS = (
     "neoadjuvant",
     "adjuvant",
     "perioperative",
-    "consolidation",
+    "definitive_chemoradiation",
+    "consolidation_after_chemoradiation",
     "advanced_first_line",
     "advanced_previously_treated",
     "maintenance",
+    "local_consolidative_therapy",
 )
 PRIOR_LINES = ("0", "1", "2", "3+")
 STATES = ("negative", "positive", "unknown")
@@ -31,8 +33,34 @@ COORDINATES: dict[str, tuple[str, ...]] = {
     "prior_advanced_lines": PRIOR_LINES,
     **{f"selection:{gene}": STATES for gene in SELECTED_GENES},
 }
-EARLY = ("neoadjuvant", "adjuvant", "perioperative", "consolidation")
-ADVANCED = ("advanced_first_line", "advanced_previously_treated", "maintenance")
+EARLY = (
+    "neoadjuvant",
+    "adjuvant",
+    "perioperative",
+    "definitive_chemoradiation",
+    "consolidation_after_chemoradiation",
+)
+ADVANCED = (
+    "advanced_first_line",
+    "advanced_previously_treated",
+    "maintenance",
+    "local_consolidative_therapy",
+)
+# Facts that place a trial's treatment around surgery or radiation, which the advanced relations must not
+# override (Codex's counterexamples, 2026-10-31: neoadjuvant stage III; resected oligometastatic disease).
+PERIOPERATIVE_FACTS = (
+    "inclusion:resection:resected",
+    "inclusion:resection:resectable",
+    "inclusion:setting_word:neoadjuvant",
+    "inclusion:setting_word:adjuvant",
+    "inclusion:setting_word:perioperative",
+)
+ADVANCED_FACTS = (
+    "inclusion:extent:metastatic",
+    "inclusion:stage:IV",
+    "inclusion:extent:recurrent",
+    "inclusion:extent:advanced",
+)
 
 
 @dataclass(frozen=True)
@@ -41,41 +69,50 @@ class Relation:
     statement: str
     basis: str
     approval: str  # "approved" or "proposed"
-    needs: tuple[str, ...]  # facts all required ("inclusion:resection:resected"), or a domain test (below)
+    needs: tuple[str, ...]  # facts all required ("inclusion:resection:resected")
     lines_within: tuple[str, ...]  # when non-empty, prior_advanced_lines must lie within these values
     narrows: str
     allowed: tuple[str, ...]
+    needs_any: tuple[str, ...] = ()  # when non-empty, at least one of these facts is required
+    forbids: tuple[str, ...] = ()  # none of these facts may hold
 
 
-# Every relation is proposed: none is the registry's stated rule; each is the reading of what a trial's own
-# criteria entail, for the founder to approve or reject by id.
+# Relations approved by the founder's instruction of 2026-10-31 (paraphrased: promote the relations that are
+# common-sense domain priors, unambiguous read literally and logically), each after its guards answered the
+# counterexamples of a Codex reading that day; the rest stay proposed, shown and never applied to a reported
+# value. Approval is by id and reversible by changing one word.
 RELATIONS = (
     Relation(
         "first_line_when_no_prior_advanced_therapy",
-        "A trial requiring no prior systemic therapy for advanced disease is a first-line advanced trial.",
+        "A trial of advanced disease (metastatic, stage IV, recurrent or advanced, not locally "
+        "advanced alone) that requires no prior systemic therapy for advanced disease, and plans no "
+        "surgery around its treatment, is a first-line advanced trial.",
         "definition of line of therapy",
-        "proposed",
+        "approved",
         (),
         ("0",),
         "setting",
         ("advanced_first_line",),
+        needs_any=ADVANCED_FACTS,
+        forbids=PERIOPERATIVE_FACTS,
     ),
     Relation(
         "previously_treated_when_prior_advanced_therapy_required",
-        "A trial requiring at least one prior line for advanced disease is a previously treated "
-        "advanced trial.",
-        "definition of line of therapy",
-        "proposed",
+        "A trial requiring at least one prior line for advanced disease, other than chemoradiation, is a "
+        "previously treated or maintenance advanced trial.",
+        "definition of line of therapy; maintenance follows first-line induction",
+        "approved",
         (),
         ("1", "2", "3+"),
         "setting",
-        ("advanced_previously_treated",),
+        ("advanced_previously_treated", "maintenance"),
+        forbids=("inclusion:prior_agent:radiotherapy", "inclusion:setting_word:consolidation"),
     ),
     Relation(
         "adjuvant_or_perioperative_when_resection_required",
         "A trial requiring a completed resection of the lung tumour treats in the adjuvant or "
         "perioperative setting.",
-        "the meaning of adjuvant therapy",
+        "the meaning of adjuvant therapy; ambiguous: advanced trials admit recurrence after resection",
         "proposed",
         ("inclusion:resection:resected",),
         (),
@@ -86,7 +123,7 @@ RELATIONS = (
         "neoadjuvant_or_perioperative_when_resectable_required",
         "A trial requiring resectable disease treats before surgery, in the neoadjuvant or "
         "perioperative setting.",
-        "the meaning of neoadjuvant therapy",
+        "the meaning of neoadjuvant therapy; ambiguous: resectability is feasibility, not planned treatment",
         "proposed",
         ("inclusion:resection:resectable",),
         (),
@@ -95,33 +132,38 @@ RELATIONS = (
     ),
     Relation(
         "advanced_when_metastatic_disease_required",
-        "A trial requiring metastatic or stage IV disease treats in an advanced setting.",
+        "A trial requiring metastatic disease, with no resection or perioperative treatment, treats in an "
+        "advanced setting.",
         "staging (AJCC 8th edition: stage IV is metastatic)",
-        "proposed",
+        "approved",
         ("inclusion:extent:metastatic",),
         (),
         "setting",
         ADVANCED,
+        forbids=PERIOPERATIVE_FACTS,
     ),
     Relation(
         "advanced_when_stage_iv_required",
-        "A trial requiring stage IV disease treats in an advanced setting.",
+        "A trial whose inclusion admits stage IV and no earlier stage, with no resection or perioperative "
+        "treatment, treats in an advanced setting.",
         "staging (AJCC 8th edition)",
-        "proposed",
+        "approved",
         ("inclusion:stage:IV",),
         (),
         "setting",
         ADVANCED,
+        forbids=(*PERIOPERATIVE_FACTS, "inclusion:stage:I", "inclusion:stage:II", "inclusion:stage:III"),
     ),
     Relation(
         "consolidation_when_named",
-        "A trial whose inclusion criteria name consolidation treats in the consolidation setting.",
-        "the trial's own words",
+        "A trial whose inclusion criteria name consolidation gives consolidation, after chemoradiation or "
+        "local consolidative therapy of metastatic disease.",
+        "the trial's own words; ambiguous: a criterion may name earlier consolidation",
         "proposed",
         ("inclusion:setting_word:consolidation",),
         (),
         "setting",
-        ("consolidation",),
+        ("consolidation_after_chemoradiation", "local_consolidative_therapy"),
     ),
 )
 RELATION_IDS = tuple(relation.id for relation in RELATIONS)
@@ -165,22 +207,30 @@ def close(
 ) -> tuple[dict[str, tuple[str, ...]], list[tuple[str, tuple[str, ...], str]]]:
     """Apply the named relations to a fixed point (pure — pinned).
 
-    A relation applies when every fact it needs is among `facts` and, if it names prior lines, the
+    A relation applies when every fact it needs is among `facts`, at least one of its needs_any facts is
+    (when it names any), none of its forbids facts is, and, if it names prior lines, the
     prior_advanced_lines domain is non-empty and lies within them; it then keeps only its allowed values of
     the coordinate it narrows. Intersection is monotone, so the fixed point does not depend on the order of
-    `relation_ids`. Returns the closed domains and the causes, each (coordinate, values removed, relation id).
+    `relation_ids`; and as each changing pass removes a value, closure ends within (number of values + 1)
+    passes, a bound declared in the loop. Returns the closed domains and the causes, each (coordinate,
+    values removed, relation id).
     An unknown relation id raises KeyError: a relation that does not exist cannot be applied.
     """
     table = {relation.id: relation for relation in RELATIONS}
     chosen = [table[relation_id] for relation_id in relation_ids]
     current = dict(domains)
     causes: list[tuple[str, tuple[str, ...], str]] = []
-    changed = True
-    while changed:
+    # Declared bound: every pass that changes anything removes at least one value, so no more passes than
+    # there are values, plus the pass that finds nothing to remove, can occur.
+    for _ in range(sum(len(values) for values in current.values()) + 1):
         changed = False
         for relation in chosen:
             lines = current["prior_advanced_lines"]
             if any(fact not in facts for fact in relation.needs):
+                continue
+            if relation.needs_any and not any(fact in facts for fact in relation.needs_any):
+                continue
+            if any(fact in facts for fact in relation.forbids):
                 continue
             if relation.lines_within and not (lines and set(lines) <= set(relation.lines_within)):
                 continue
@@ -190,6 +240,8 @@ def close(
                 current[relation.narrows] = kept
                 causes.append((relation.narrows, removed, relation.id))
                 changed = True
+        if not changed:
+            break
     return current, causes
 
 

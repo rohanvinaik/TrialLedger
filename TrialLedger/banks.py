@@ -255,6 +255,10 @@ def prior_therapy(text: str) -> list[Atom]:
 # ── stage, extent and setting ───────────────────────────────────────────────────────────────────────
 
 _ROMAN = str.maketrans({"Ⅰ": "I", "Ⅱ": "II", "Ⅲ": "III", "Ⅳ": "IV"})
+# A negation ending just before a stage or extent word: "no", "not", "without", "excluding", "other than".
+_NEGATED = re.compile(
+    r"\b(?:no|not|without|excluding|except|other than|non)\b[\w\s,/-]{0,20}$", re.IGNORECASE
+)
 _STAGE_TOKEN = r"(?:IV|I{1,3}|Ⅰ|Ⅱ|Ⅲ|Ⅳ)[ABCabc]?\d?"
 _STAGE = re.compile(
     rf"\bstages?\s*(?P<expr>{_STAGE_TOKEN}(?:(?:\s*\([^()]{{0,40}}\))?\s*(?:-|–|to|/|,|and|or|through)\s*"
@@ -309,18 +313,22 @@ def disease_setting(text: str) -> list[Atom]:
     surgical or radical resection, R0) or "resectable", only within 60 characters of the lung tumour (NSCLC,
     non-small, lung, primary tumour) and of no other site or malignancy, not negated ("cannot be", "not",
     "incompletely") and not a specimen's source ("resected samples");
-    setting_word: adjuvant, neoadjuvant, perioperative, consolidation, maintenance. Nothing stated: no atom.
+    setting_word: adjuvant, neoadjuvant, perioperative, consolidation, maintenance. A stage or extent negated
+    within the 30 characters before it ("no metastatic disease", "excluding stage IV") is no atom. Nothing
+    stated: no atom.
     """
     atoms: list[Atom] = []
     for stage in _STAGE.finditer(text):
         groups = _stage_groups(stage.group("expr"))
-        if groups:
+        if groups and not _NEGATED.search(text[max(0, stage.start() - 30) : stage.start()]):
             atoms.append(
                 ("stage", groups, (("expression", stage.group("expr")),), stage.start(), stage.end())
             )
     for concept, table in (("extent", EXTENT_WORDS), ("setting_word", SETTING_WORDS)):
         for name, pattern in table.items():
             for found in re.finditer(pattern, text, re.IGNORECASE):
+                if concept == "extent" and _NEGATED.search(text[max(0, found.start() - 30) : found.start()]):
+                    continue
                 atoms.append((concept, (name,), (), found.start(), found.end()))
     for status, pattern in (("resected", _RESECTED), ("resectable", _RESECTABLE)):
         for found in pattern.finditer(text):

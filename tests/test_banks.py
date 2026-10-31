@@ -207,6 +207,25 @@ def test_stage_groups(text, groups):
     assert values(disease_setting(text), "stage")[0] == ("stage", groups)
 
 
+@pytest.mark.parametrize(
+    "text",
+    [
+        "* Patients must not have metastatic disease",
+        "* Stage IB-IIIA NSCLC, excluding stage IV",
+        "* Completely resected NSCLC without metastatic spread",
+    ],
+)
+def test_a_negated_stage_or_extent_is_no_atom(text):
+    found = values(disease_setting(text))
+    assert ("extent", ("metastatic",)) not in found
+    assert ("stage", ("IV",)) not in found
+
+
+def test_an_unnegated_stage_after_a_negation_elsewhere_counts():
+    text = "* No prior systemic therapy for advanced disease; must have stage IV NSCLC"
+    assert ("stage", ("IV",)) in values(disease_setting(text))
+
+
 def test_setting_words_and_resection():
     text = (
         "* Complete resection of histologically confirmed Stage IB to IIIA NSCLC, "

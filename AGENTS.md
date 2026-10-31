@@ -86,7 +86,13 @@ gather facts and write files. `design.md`'s code-shape table gives each module's
   for part against a fresh write).
 - `record.py`: `write_record` (four files or nothing, with the digests and roots, naming a workbook over
   Google Sheets' 10 million cells), `code_commit`, `record_problems`, `verify_folder`.
-- `cli.py`: `trialledger pull NAME=VALUE ...` and `trialledger verify <folder>`.
+- `cli.py`: `trialledger pull NAME=VALUE ...`, `trialledger verify <folder>` and `trialledger profile <folder>`.
+- The coherence engine (`openspec/changes/add-coherence-engine`), outside the review and record workbooks'
+  derivation and code root: `criteria.py` (eligibility itemized into headings, criteria and prose, exact
+  spans), `banks.py` (deterministic typing banks: spanned atoms or abstention; polarity is the section's),
+  `coherence.py` (coordinate domains, evidence narrowing, relations all proposed, closure), `classes.py`
+  (NLM RxClass, every class with its id, failures named), `profile.py` (element keys, frequencies over typed
+  trials, mechanism associations as proposals, occupancy), `design.py` (the shell and `design.xlsx`).
 - `spec/ctg-oas-v2.yaml` and `TrialLedger/registry/*.json`: the vendored contracts;
   `tests/test_spec_contract.py` holds the code to them.
 
@@ -158,6 +164,12 @@ it. The proofs, so that they survive the machine:
 - `record_problems`: reversing, slicing or rotating the one-element `no_digests` list leaves it unchanged.
 
 ## Open items
+
+- `detective converge TrialLedger/coherence.py::close --two-sign` printed UNGATEABLE (mutants exceeded a step
+  budget); the target was not edited to clear it. The founder's decision.
+- Every relation in `coherence.RELATIONS` is proposed; the founder approves or rejects each by id.
+- Comparable posted results (`add-coherence-engine` 5.3) wait on the endpoint-class bank (2.2); the residual
+  (about 70% of criteria in the NSCLC population) decides the next banks (2.1b).
 
 - Twelve proposed edit checks wait for the founder's approval by name: `withdrawn_actual_enrollment_zero`,
   `phase_interventional_only`, `arm_interventions_declared`, `intervention_arms_defined`,

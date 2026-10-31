@@ -42,6 +42,11 @@
   - 2026-10-31: written, seven proposed relations, 17 intent tests pass. `detective converge
     coherence.py::close --two-sign` printed UNGATEABLE: "one or more mutants exceeded an explicit deterministic
     step budget ... inspect the execution and its declared bound before re-measuring"; six mutants "diverged".
+    Then, at the founder's word (a declared iteration bound is basic practice), `close` declares its bound
+    (number of values + 1 passes); the re-converge was CUT by the aggregate deadline (the permutation
+    test runs 5,040 orders per mutant). Left technically not fully pinned at his word, to revisit with
+    `--deadline 900`. Four relations approved at his instruction after Codex's counterexamples were
+    answered by guards (first line, previously treated, metastatic, stage IV); three stay proposed.
     Open, for the founder: the target was not edited to clear the refusal. (Claude's inference, unconfirmed by
     the tool: mutants of the `while changed` loop do not terminate; a declared iteration bound would decide it.)
 
