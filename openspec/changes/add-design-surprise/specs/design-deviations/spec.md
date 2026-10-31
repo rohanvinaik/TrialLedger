@@ -17,6 +17,10 @@ documented as permitted.
 - **WHEN** a trial's criteria never mention autoimmune disease
 - **THEN** the predicate "excludes active autoimmune disease" is not documented, and no view reports the trial as admitting autoimmune disease
 
+#### Scenario: An abbreviated record's silence is unresolved
+- **WHEN** a trial's criteria never mention autoimmune disease and the record says it lists only key criteria
+- **THEN** the predicate is unresolved, with the reason that the record is abbreviated
+
 #### Scenario: A qualified exception is its own observation
 - **WHEN** a trial excludes active autoimmune disease but admits controlled hypothyroidism
 - **THEN** the exclusion is present and the qualifier is recorded with its span, not read as a deviation
@@ -32,8 +36,8 @@ abstain where neither has the declared support.
 - **THEN** no rarity is reported for that trial, and the reason is named
 
 ### Requirement: Deviations keep separate statuses
-The system SHALL classify each deviation as invalid extraction, scope unresolved, verified deviation or
-explanation supported, and SHALL record replication across independent sponsors separately; a verified deviation
+The system SHALL classify each deviation as invalid extraction, scope unresolved, omission (not
+documented), verified deviation (admitted) or explanation supported, and SHALL record replication across independent sponsors separately; a verified deviation
 SHALL remain verified when no explanation is found.
 
 #### Scenario: A first-of-its-kind exception survives

@@ -4,6 +4,8 @@ workbook out. And `trialledger verify`, which re-derives a written folder from i
 from __future__ import annotations
 
 import argparse
+import json
+import os
 import sys
 import time
 from collections.abc import Callable
@@ -12,8 +14,16 @@ from typing import Any
 
 import httpx
 
-from TrialLedger.design import DESIGN_NAME, DesignError, write_design
-from TrialLedger.ingest import SPEC_API_VERSION, PullError, check_query, pull
+from TrialLedger import classes as rx
+from TrialLedger.design import (
+    DESIGN_NAME,
+    DesignError,
+    drug_aliases,
+    symbolic_output,
+    write_book,
+    write_design,
+)
+from TrialLedger.ingest import SPEC_API_VERSION, PullError, check_query, pull, query_studies
 from TrialLedger.record import CSV_NAME, JSON_NAME, verify_folder, write_record
 from TrialLedger.workbook import RECORD_NAME, WORKBOOK_NAME, WorkbookError
 
@@ -115,7 +125,26 @@ def main(
         ),
     )
     profile_parser.add_argument("folder", type=Path)
+    resolve_parser = commands.add_parser(
+        "resolve",
+        help="resolve a live query's studies to their symbolic reading, without saving the records",
+        description=(
+            "Query ClinicalTrials.gov live (the same parameters as pull, one snapshot, complete or nothing), "
+            "and resolve every matching study to its symbolic reading: typed criteria, design coordinates, "
+            "drug classes, outcomes and expectation observations. Nothing of the registry's record is saved; "
+            "RxClass answers are cached in ~/.cache/trialledger (or $TRIALLEDGER_CACHE). Writes design.xlsx "
+            "with --out, the reading as JSON with --json (a path, or - for standard output; the default). "
+            "Ends with 0, resolved; 1, the query failed; 2, the query was refused."
+        ),
+    )
+    resolve_parser.add_argument("parameters", nargs="*", metavar="NAME=VALUE")
+    resolve_parser.add_argument("--out", type=Path, help="write design.xlsx for the matched studies here")
+    resolve_parser.add_argument(
+        "--json", help="write the symbolic reading as JSON here (- for standard output)"
+    )
     args = parser.parse_args(argv)
+    if args.command == "resolve":
+        return _resolve(args, http=http, sleep=sleep, rxclass_get=rxclass_get)
     if args.command == "verify":
         return _verify(args.folder)
     if args.command == "profile":
@@ -155,6 +184,51 @@ def main(
         f"{RECORD_NAME}, "
         f"certified) — ClinicalTrials.gov data as of {result.data_timestamp}, API {result.api_version}"
     )
+    return 0
+
+
+def _resolve(args, *, http, sleep, rxclass_get) -> int:
+    code, params, offending = parse_query_args(args.parameters)
+    if code != "ok":
+        print(f"trialledger: refused ({code}): {' '.join(offending)}", file=sys.stderr)
+        return 2
+    verdict, names = check_query(params)
+    if verdict != "ok":
+        print(
+            f"trialledger: refused (query.{verdict}): {', '.join(names) or 'give at least one NAME=VALUE'}",
+            file=sys.stderr,
+        )
+        return 2
+    try:
+        studies, api_version, data_timestamp = query_studies(
+            params, http=http, sleep=sleep, progress=lambda message: print(message, file=sys.stderr)
+        )
+    except PullError as error:
+        print(f"trialledger: nothing resolved — {error}", file=sys.stderr)
+        return 1
+    lookup = {"get": rxclass_get} if rxclass_get else {}
+    cache = Path(os.environ.get("TRIALLEDGER_CACHE", str(rx.USER_CACHE)))
+    answers = rx.load_or_lookup_at(cache, drug_aliases(studies), sleep=sleep, **lookup)
+    if args.out:
+        sizes = write_book(args.out, studies, answers)
+        print(
+            f"{args.out} written ({len(studies)} studies; "
+            + ", ".join(f"{k} {v}" for k, v in sizes.items())
+            + " rows)",
+            file=sys.stderr,
+        )
+    if args.json or not args.out:
+        document = {
+            "query": params,
+            "api_version": api_version,
+            "data_timestamp": data_timestamp,
+            "studies": symbolic_output(studies, answers),
+        }
+        text = json.dumps(document, indent=1, ensure_ascii=False)
+        if not args.json or args.json == "-":
+            print(text)
+        else:
+            Path(args.json).write_text(text, encoding="utf-8")
     return 0
 
 

@@ -198,3 +198,13 @@ def test_pieces_and_gaps_reproduce_the_text(text):
         assert text[start:end] == text[start:end].strip()
         cursor = end
     assert text[cursor:].strip() == ""
+
+
+def test_a_non_inclusion_heading_opens_the_exclusion_section():
+    text = "INCLUSION CRITERIA:\n1. Adults\nNON-INCLUSION CRITERIA:\n9. Active autoimmune disease"
+    assert [(kind, section) for kind, section, *_ in itemize(text)[1]] == [
+        ("heading", "inclusion"),
+        ("criterion", "inclusion"),
+        ("heading", "exclusion"),
+        ("criterion", "exclusion"),
+    ]

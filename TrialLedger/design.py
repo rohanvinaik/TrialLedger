@@ -23,6 +23,12 @@ from TrialLedger.banks import endpoint_classes, stated_targets, time_points, typ
 from TrialLedger.cells import cell_number_state, cell_text_state
 from TrialLedger.coherence import RELATIONS, SETTINGS, resolve
 from TrialLedger.criteria import itemize
+from TrialLedger.expectations import (
+    FROZEN,
+    autoimmune_exclusion,
+    conditional_rarity,
+    deviation_status,
+)
 from TrialLedger.profile import (
     SIGNAL_MIN_SPONSORS,
     SIGNAL_MIN_TRIALS,
@@ -68,6 +74,7 @@ def study_view(study: dict[str, Any], answers: dict[str, Any]) -> dict[str, Any]
     nct = protocol.get("identificationModule", {}).get("nctId", "")
     text = protocol.get("eligibilityModule", {}).get("eligibilityCriteria") or ""
     code, pieces = itemize(text if isinstance(text, str) else "")
+    readable = [(section, text[start:end]) for _kind, section, start, end in pieces]
     criteria, evidence, elements = [], [], []
     for index, (kind, section, start, end) in enumerate(pieces):
         if kind != "criterion":
@@ -86,6 +93,8 @@ def study_view(study: dict[str, Any], answers: dict[str, Any]) -> dict[str, Any]
         for item in arms_module.get("interventions", []) or []
         if isinstance(item, dict)
     }
+    # An arm's description names its whole combination ("SCT-I10A plus docetaxel"), so an agent word in it
+    # cannot be attributed to one drug: only the intervention's own entry is read.
     drugs = []
     for drug in rx.experimental_drugs(study):
         state, found, resolved_by = rx.drug_class(answers, names[drug])
@@ -144,7 +153,21 @@ def study_view(study: dict[str, Any], answers: dict[str, Any]) -> dict[str, Any]
         "drugs": drugs,
         "outcomes": outcomes,
         "results": results,
+        "observations": {
+            expectation.id: _observe(expectation, readable, code, drugs) for expectation in FROZEN
+        },
     }
+
+
+def _observe(expectation, readable, code, drugs) -> tuple[str, str, list[str], list[str]]:
+    """One trial's observation of a frozen expectation: (status, reason, cited texts, qualifiers)."""
+    classes = {c for _, state, epc, _ in drugs if state in ("classified", "stated_by_record") for c in epc}
+    if not classes & set(expectation.applies_to):
+        return "not_applicable", "no experimental drug of the expectation's classes", [], []
+    if code == "empty":
+        return "unresolved", "no eligibility text", [], []
+    status, reason, indices, qualifiers = autoimmune_exclusion(readable)
+    return status, reason, [readable[i][1] for i in indices], qualifiers
 
 
 def _stratum(view: dict[str, Any]) -> str:
@@ -333,6 +356,53 @@ def sheets(views: list[dict[str, Any]], answers: dict[str, Any]) -> dict[str, tu
         ],
         result_rows,
     )
+    rows_exp = []
+    for expectation in FROZEN:
+        observations = [(_stratum(v), v["observations"][expectation.id][0]) for v in views]
+        for v in views:
+            status, reason, cited, qualifiers = v["observations"][expectation.id]
+            source, share, n, present_bits, absent_bits = conditional_rarity(
+                observations, _stratum(v), expectation.support
+            )
+            bits = present_bits if status == "present" else absent_bits
+            known = status in ("present", "explicitly_negated", "not_documented")
+            rows_exp.append(
+                [
+                    expectation.id,
+                    v["nct"],
+                    status,
+                    reason,
+                    " ⏐ ".join(cited),
+                    " ⏐ ".join(qualifiers),
+                    _stratum(v),
+                    source,
+                    share,
+                    n,
+                    bits if known else None,
+                    deviation_status(status, len(qualifiers), ""),
+                    warrants.computed(
+                        _rule(expectation.id, autoimmune_exclusion, conditional_rarity), v["digest"]
+                    ),
+                ]
+            )
+    out["Expectations"] = (
+        [
+            "Expectation",
+            "NCT Number",
+            "Observation",
+            "Reason",
+            "Criteria Cited",
+            "Qualifiers",
+            "Cell (setting, with proposed relations)",
+            "Rarity Source",
+            "Share Present in Cell",
+            "Known in Cell",
+            "Rarity of This Observation (bits)",
+            "Deviation",
+            "Warrant",
+        ],
+        rows_exp,
+    )
     out["Relations"] = (
         ["Relation", "Statement", "Basis", "Approval", "Narrows", "To", "Warrant"],
         [
@@ -489,6 +559,30 @@ ABOUT = [
 ]
 
 
+def write_book(target: Path, studies: list[dict[str, Any]], answers: dict[str, Any]) -> dict[str, int]:
+    """Analyse `studies` with the RxClass `answers` and write design.xlsx at `target`; the sheets' sizes."""
+    views = [study_view(study, answers) for study in studies]
+    book = Workbook()
+    about = book.active
+    about.title = "About"
+    for row in ABOUT:
+        about.append(row)
+    sizes = {}
+    for name, (header, rows) in sheets(views, answers).items():
+        sheet = book.create_sheet(name)
+        sheet.append(header)
+        for row in rows:
+            sheet.append([_cell(value) for value in row])
+        sizes[name] = len(rows)
+    book.save(target)
+    return sizes
+
+
+def drug_aliases(studies: list[dict[str, Any]]) -> list[str]:
+    """Every drug or biological name and other name of the studies, for RxClass."""
+    return [alias for study in studies for aliases in rx.drug_names(study).values() for alias in aliases]
+
+
 def write_design(folder: Path, *, get=rx.http_get, sleep=None) -> tuple[Path, dict[str, int]]:
     """Write design.xlsx (and classes.json) into a TrialLedger folder; return the path and sheet sizes."""
     from TrialLedger.record import record_problems
@@ -503,22 +597,71 @@ def write_design(folder: Path, *, get=rx.http_get, sleep=None) -> tuple[Path, di
     problems = record_problems(record, csv_path.read_bytes() if csv_path.is_file() else None)
     if problems:
         raise DesignError("not_verified", "the record does not verify: " + "; ".join(problems[:5]))
-    names = [alias for study in studies for aliases in rx.drug_names(study).values() for alias in aliases]
     kwargs = {"get": get} if sleep is None else {"get": get, "sleep": sleep}
-    answers = rx.load_or_lookup(folder, names, **kwargs)
-    views = [study_view(study, answers) for study in studies]
-    book = Workbook()
-    about = book.active
-    about.title = "About"
-    for row in ABOUT:
-        about.append(row)
-    sizes = {}
-    for name, (header, rows) in sheets(views, answers).items():
-        sheet = book.create_sheet(name)
-        sheet.append(header)
-        for row in rows:
-            sheet.append([_cell(value) for value in row])
-        sizes[name] = len(rows)
+    answers = rx.load_or_lookup(folder, drug_aliases(studies), **kwargs)
     target = folder / DESIGN_NAME
-    book.save(target)
-    return target, sizes
+    return target, write_book(target, studies, answers)
+
+
+def symbolic_output(studies: list[dict[str, Any]], answers: dict[str, Any]) -> list[dict[str, Any]]:
+    """Each study's symbolic reading as plain data: typed criteria, coordinates, drugs, outcomes and
+    expectation observations, each value with the record text it rests on. The JSON form of `resolve`."""
+    output = []
+    for study in studies:
+        view = study_view(study, answers)
+        output.append(
+            {
+                "nct": view["nct"],
+                "digest": view["digest"],
+                "lead_sponsor": view["sponsor"],
+                "status": view["status"],
+                "itemized": view["itemize"],
+                "criteria": [
+                    {
+                        "piece": index,
+                        "section": section,
+                        "text": text,
+                        "atoms": [
+                            {
+                                "bank": a[0],
+                                "concept": a[1],
+                                "values": list(a[2]),
+                                "params": dict(a[3]),
+                                "span": text[a[4] : a[5]],
+                            }
+                            for a in atoms
+                        ],
+                    }
+                    for index, section, text, atoms in view["criteria"]
+                ],
+                "coordinates": {
+                    name: {
+                        "domain": list(row["domain"]),
+                        "state": row["state"],
+                        "with_proposed_relations": list(row["with_proposed"]),
+                        "removed_by": [
+                            [c[0], list(c[1]), c[2]] for c in row["causes"] + row["proposed_causes"]
+                        ],
+                    }
+                    for name, row in view["coordinates"].items()
+                },
+                "experimental_drugs": [
+                    {"name": d, "state": s, "classes": e, "resolved_by": r} for d, s, e, r in view["drugs"]
+                ],
+                "outcomes": [
+                    {"type": k, "measure": m, "time_frame": f, "endpoint_classes": c, "time_points": p}
+                    for k, m, f, c, p in view["outcomes"]
+                ],
+                "expectations": {
+                    eid: {
+                        "status": s,
+                        "reason": r,
+                        "cited": c,
+                        "qualifiers": q,
+                        "deviation": deviation_status(s, len(q), ""),
+                    }
+                    for eid, (s, r, c, q) in view["observations"].items()
+                },
+            }
+        )
+    return output

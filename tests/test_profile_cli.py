@@ -1,4 +1,4 @@
-"""`trialledger profile` end to end, through the CLI.
+"""`trialledger profile` and `trialledger resolve` end to end, through the CLI.
 
 Positive: a written folder gets design.xlsx and classes.json, with every sheet the About sheet describes; the
 pull's own four files are byte for byte unchanged and the folder still verifies.
@@ -60,6 +60,7 @@ def test_profile_writes_beside_the_pull_and_changes_none_of_it(folder):
         "Coordinates",
         "Outcomes",
         "Results",
+        "Expectations",
         "Relations",
         "Classes",
         "Profile",
@@ -81,3 +82,31 @@ def test_a_tampered_record_gets_no_design(folder):
 def test_a_folder_without_a_record_gets_nothing(tmp_path):
     assert cli.main(["profile", str(tmp_path)], rxclass_get=rxclass) == 2
     assert list(tmp_path.iterdir()) == []
+
+
+def test_resolve_reads_live_and_saves_no_record(tmp_path, monkeypatch):
+    monkeypatch.setenv("TRIALLEDGER_CACHE", str(tmp_path / "cache" / "classes.json"))
+    first, second = results_study(), ongoing_study()
+    ids = [study["protocolSection"]["identificationModule"]["nctId"] for study in (first, second)]
+    api = FakeAPI(json_pages=[httpx.Response(200, json={"studies": [first, second], "totalCount": 2})])
+    out = tmp_path / "reading.json"
+    book = tmp_path / "design.xlsx"
+    code = cli.main(
+        ["resolve", f"filter.ids={','.join(ids)}", "--json", str(out), "--out", str(book)],
+        http=api.client(),
+        sleep=api.sleep,
+        rxclass_get=rxclass,
+    )
+    assert code == 0
+    reading = json.loads(out.read_text())
+    assert [s["nct"] for s in reading["studies"]] == ids
+    assert {"criteria", "coordinates", "experimental_drugs", "outcomes", "expectations"} <= set(
+        reading["studies"][0]
+    )
+    assert book.is_file() and (tmp_path / "cache" / "classes.json").is_file()
+    assert sorted(p.name for p in tmp_path.iterdir()) == ["cache", "design.xlsx", "reading.json"]
+
+
+def test_resolve_refuses_an_empty_query(tmp_path, monkeypatch):
+    monkeypatch.setenv("TRIALLEDGER_CACHE", str(tmp_path / "classes.json"))
+    assert cli.main(["resolve"], rxclass_get=rxclass) == 2

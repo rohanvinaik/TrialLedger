@@ -73,6 +73,7 @@ def test_the_production_path_ends_as_production_does(production):
         "verify": 0,
         "profile": 0,
         "profile_not_a_record": 2,
+        "resolve": 0,
         "verify_unreadable": 1,
         "failed_pull": 1,
     }

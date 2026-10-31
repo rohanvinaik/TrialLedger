@@ -22,7 +22,7 @@ SECTIONS = ("inclusion", "exclusion", "unsectioned")
 _HEADING = re.compile(
     r"^\s*(?:\*\*)?\s*(?:\d+(?:\.\d+)*\s+)?"
     r"(?:[A-Za-z()]+\s+){0,5}?"
-    r"(?P<kind>inclusion|exclusion)\s+(?:eligibility\s+)?criteri(?:a|on)"
+    r"(?P<non>non[- ]?)?(?P<kind>inclusion|exclusion)\s+(?:eligibility\s+)?criteri(?:a|on)"
     r"(?:\s+[A-Za-z0-9()]+){0,6}?"
     r"\s*[:：]?\s*(?:\*\*)?\s*$",
     re.IGNORECASE,
@@ -75,7 +75,8 @@ def itemize(text: str) -> tuple[str, list[tuple[str, str, int, int]]]:
         depth = len(line[: len(line) - len(line.lstrip())].expandtabs(4))
         heading = _HEADING.match(line)
         if heading and not _BOTH.search(line):  # a section number ("1.0") is not a bullet
-            section = heading.group("kind").lower()
+            # "Non-inclusion criteria" (a French protocol's exclusions) are exclusion criteria.
+            section = "exclusion" if heading.group("non") else heading.group("kind").lower()
             spans.append(["heading", section, start, end])
             continue
         last = spans[-1][0] if spans else None

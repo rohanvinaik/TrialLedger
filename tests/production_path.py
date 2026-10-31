@@ -11,6 +11,7 @@ unreadable; and a pull the server keeps failing.
 
 import ast
 import json
+import os
 import shutil
 import sys
 import tempfile
@@ -60,6 +61,12 @@ def main() -> None:
     first, second = results_study(), ongoing_study()
     first["protocolSection"]["descriptionModule"]["detailedDescription"] = "a bell\x07 no cell can hold"
     first["protocolSection"]["descriptionModule"]["a key with a bell\x07"] = "and a value with one\x07"
+    # an experimental drug only its own description classifies (anti-PD-1), so the stated-target fallback
+    # and the checkpoint-blocker expectation are both on the path
+    second["protocolSection"]["armsInterventionsModule"] = {
+        "armGroups": [{"label": "XB-1", "type": "EXPERIMENTAL", "interventionNames": ["Drug: XB-1"]}],
+        "interventions": [{"type": "DRUG", "name": "XB-1", "description": "XB-1 is an anti-PD-1 antibody"}],
+    }
     ids = [study["protocolSection"]["identificationModule"]["nctId"] for study in (first, second)]
     api = FakeAPI(
         json_pages=[
@@ -92,6 +99,14 @@ def main() -> None:
 
     codes["profile"] = cli.main(["profile", str(out)], rxclass_get=rxclass)
     codes["profile_not_a_record"] = cli.main(["profile", str(scratch / "nothing here")], rxclass_get=rxclass)
+    os.environ["TRIALLEDGER_CACHE"] = str(scratch / "cache" / "classes.json")
+    live = FakeAPI(json_pages=[httpx.Response(200, json={"studies": [first, second], "totalCount": 2})])
+    codes["resolve"] = cli.main(
+        ["resolve", query, "--json", str(scratch / "reading.json"), "--out", str(scratch / "design.xlsx")],
+        http=live.client(),
+        sleep=live.sleep,
+        rxclass_get=rxclass,
+    )
     broken = scratch / "broken"
     shutil.copytree(out, broken)
     (broken / "review.xlsx").write_bytes(b"not a workbook")

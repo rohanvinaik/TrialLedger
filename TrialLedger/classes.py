@@ -121,9 +121,18 @@ def http_get(url: str, params: dict[str, str]) -> tuple[int, Any]:
         return response.status_code, None
 
 
+# A live query (`trialledger resolve`) holds no folder: its RxClass answers persist in the user's cache.
+USER_CACHE = Path.home() / ".cache" / "trialledger" / CACHE_NAME
+
+
 def load_or_lookup(folder: Path, names: list[str], *, get=http_get, sleep=time.sleep) -> dict[str, Any]:
     """The folder's cached RxClass answers, extended by a lookup of any name not yet cached, and saved."""
-    path = folder / CACHE_NAME
+    return load_or_lookup_at(folder / CACHE_NAME, names, get=get, sleep=sleep)
+
+
+def load_or_lookup_at(path: Path, names: list[str], *, get=http_get, sleep=time.sleep) -> dict[str, Any]:
+    """The RxClass answers cached at `path`, extended by a lookup of any name not yet cached, and saved."""
+    path.parent.mkdir(parents=True, exist_ok=True)
     cache = json.loads(path.read_text(encoding="utf-8")) if path.is_file() else {}
     answers = cache.get("answers", {})
     missing = [n for n in dict.fromkeys(names) if n not in answers]

@@ -482,6 +482,45 @@ def compare_snapshots(before: tuple[str, str], after: tuple[str, str]) -> str:
     return "same" if before == after else "changed"
 
 
+def query_studies(
+    query: dict[str, str],
+    *,
+    http: httpx.Client | None = None,
+    sleep: Callable[[float], None] = time.sleep,
+    monotonic: Callable[[], float] = time.monotonic,
+    progress: Callable[[str], None] = _ignore,
+) -> tuple[list[dict[str, Any]], str, str]:
+    """Every JSON study `query` matches, from one registry snapshot, held in memory — or raise.
+
+    The live path for production use (`trialledger resolve`): the same complete-or-nothing paging and
+    snapshot check as `pull`, without the CSV or any file. Returns (studies, API version, data timestamp).
+    """
+    code, names = check_query(query)
+    if code != "ok":
+        raise PullError(f"query.{code}", ", ".join(names) or "no query parameters were given")
+    client = http or httpx.Client(
+        base_url=API_BASE,
+        timeout=TIMEOUT_SECONDS,
+        follow_redirects=False,
+        headers={"User-Agent": USER_AGENT},
+    )
+    session = Session(client, sleep=sleep, monotonic=monotonic, progress=progress)
+    try:
+        before = fetch_version(session)
+        _, studies, _ = fetch_json_pages(session, query)
+        after = fetch_version(session)
+    finally:
+        if http is None:
+            client.close()
+    if compare_snapshots(before, after) != "same":
+        raise PullError(
+            "snapshot.changed",
+            f"the registry changed during the query (API {before[0]}, data {before[1]} → "
+            f"API {after[0]}, data {after[1]}); run it again",
+        )
+    return studies, before[0], before[1]
+
+
 def pull(
     query: dict[str, str],
     *,

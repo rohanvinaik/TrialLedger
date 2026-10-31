@@ -249,7 +249,14 @@ uv run trialledger pull query.cond=sarcoidosis filter.overallStatus=RECRUITING
 uv run trialledger pull "filter.advanced=AREA[StartDate]RANGE[2024-01-01,2024-01-31]" query.cond=asthma
 uv run trialledger verify my_studies
 uv run trialledger profile my_studies
+uv run trialledger resolve query.cond="non-small cell lung cancer" filter.overallStatus=RECRUITING --json reading.json
 ```
+
+`resolve` answers the same questions without saving the registry's records: it queries ClinicalTrials.gov live
+(one snapshot, complete or nothing), resolves every matching study to its symbolic reading (typed criteria,
+design coordinates, drug classes, outcomes, and each declared expectation's observation and deviation), and
+writes that reading as JSON (`--json`, a path or `-`) and, with `--out`, as `design.xlsx`. Only drug-class
+answers from RxClass are cached, in `~/.cache/trialledger` (or `$TRIALLEDGER_CACHE`).
 
 `profile` reads a folder `pull` wrote and adds `design.xlsx` beside it: every eligibility criterion split out
 and typed by fixed rules (performance status, biomarker status, prior therapy and line, stage and setting,

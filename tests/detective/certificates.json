@@ -215,13 +215,31 @@
   },
   "TrialLedger/criteria.py::itemize": {
     "cut_reasons": [],
-    "function_digest": "69558f38ffa4113a",
+    "function_digest": "d57f70f1642780dd",
     "refusal": "",
     "standing": "complete"
   },
   "TrialLedger/eligibility.py::split_eligibility": {
     "cut_reasons": [],
     "function_digest": "4acac92198cf2482",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/expectations.py::autoimmune_exclusion": {
+    "cut_reasons": [],
+    "function_digest": "693599c915dc4909",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/expectations.py::conditional_rarity": {
+    "cut_reasons": [],
+    "function_digest": "837f92f44cfa66a9",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/expectations.py::deviation_status": {
+    "cut_reasons": [],
+    "function_digest": "58da1f44e7255eff",
     "refusal": "",
     "standing": "complete"
   },
