@@ -14,8 +14,11 @@ bank does not recognise gives no atom.
 import pytest
 
 from TrialLedger.banks import (
+    age_limits,
     biomarker_status,
     disease_setting,
+    histology,
+    named_conditions,
     organ_function,
     performance_status,
     prior_therapy,
@@ -307,13 +310,13 @@ def test_adequate_organ_function_without_numbers_is_unspecified():
 @pytest.mark.parametrize(
     "text",
     [
-        "* Written informed consent obtained prior to any screening procedures.",
-        "* Life expectancy ≥ 12 weeks",
+        "* Other inclusion criteria may apply.",
+        "* Any of the following cardiac criteria:",
         "",
     ],
 )
 def test_text_no_bank_recognises_gives_nothing(text):
-    assert [a for a in type_criterion(text) if a[0] != "prior_therapy"] == []
+    assert type_criterion(text) == []
 
 
 @pytest.mark.parametrize(
@@ -327,3 +330,75 @@ def test_every_atom_spans_its_words(text):
     for _bank, _concept, _values, _params, start, end in type_criterion(text):
         assert 0 <= start < end <= len(text)
         assert text[start:end].strip() == text[start:end]
+
+
+@pytest.mark.parametrize(
+    "text, concept, window",
+    [
+        ("* Written informed consent obtained prior to any screening procedures.", "informed_consent", None),
+        ("* Life expectancy ≥ 12 weeks", "life_expectancy", "12 weeks"),
+        (
+            "* Symptomatic, untreated, or actively progressing central nervous system (CNS) metastases",
+            "cns_metastases",
+            None,
+        ),
+        (
+            "7. Receipt of live attenuated vaccine within 30 days prior to the first dose of IP.",
+            "live_vaccine",
+            "30 days",
+        ),
+        (
+            "* Any active malignancy less than or equal to 2 years before randomization",
+            "other_malignancy",
+            "2 years",
+        ),
+        ("* Acute bacterial or fungal infection requiring intravenous antibiotics", "active_infection", None),
+    ],
+)
+def test_named_conditions_with_their_windows(text, concept, window):
+    found = {a[1][0]: dict(a[2]) for a in named_conditions(text)}
+    assert concept in found
+    assert found[concept].get("window") == window
+
+
+def test_a_toxicity_grade_is_kept_as_written():
+    text = "* Any toxicities from prior therapy must have resolved to CTCAE grade ≤ 1"
+    found = {a[1][0]: dict(a[2]) for a in named_conditions(text)}
+    assert found["unresolved_toxicity"]["grade"] == "≤1"
+
+
+@pytest.mark.parametrize(
+    "text, params",
+    [
+        ("* Age ≥ 18 years", {"minimum": "18"}),
+        ("2. Age ≥ 18 years and \\<75 years male or females;", {"minimum": "18", "maximum": "75"}),
+        ("8. Aged 18 to 75 years, ECOG PS: 0-1", {"minimum": "18", "maximum": "75"}),
+        ("1. Male or female ≥ 18 years.", {"minimum": "18"}),
+    ],
+)
+def test_age_limits(text, params):
+    assert [dict(a[2]) for a in age_limits(text)] == [params]
+
+
+@pytest.mark.parametrize(
+    "text",
+    ["* Other malignancy within ≥ 5 years prior to enrollment", "* Life expectancy ≥ 12 weeks"],
+)
+def test_a_duration_is_never_an_age(text):
+    assert age_limits(text) == []
+
+
+def test_histology_names_and_non_small_cell_is_not_small_cell():
+    text = "* Stage IV non-squamous or squamous NSCLC; mixed small-cell lung cancer histology excluded"
+    assert [a[1][0] for a in histology(text)] == ["non_squamous", "squamous", "small_cell"]
+    assert histology("* Histologically confirmed non-small cell lung cancer") == []
+
+
+def test_another_sites_squamous_carcinoma_is_not_histology():
+    assert histology("* Other malignancy except treated squamous cell carcinoma of the skin") == []
+
+
+def test_a_documented_status_is_known_either_way():
+    assert values(biomarker_status("3. Confirmed tumor PD-L1 status prior to randomization.")) == [
+        ("biomarker:PD-L1", ("negative", "positive"))
+    ]

@@ -1,13 +1,31 @@
 {
+  "TrialLedger/banks.py::age_limits": {
+    "cut_reasons": [],
+    "function_digest": "49554fe1f740bb40",
+    "refusal": "",
+    "standing": "complete"
+  },
   "TrialLedger/banks.py::biomarker_status": {
     "cut_reasons": [],
-    "function_digest": "96c7623c39a0e192",
+    "function_digest": "8aed03cd811a1df2",
     "refusal": "",
     "standing": "complete"
   },
   "TrialLedger/banks.py::disease_setting": {
     "cut_reasons": [],
     "function_digest": "ed13d85754c4b193",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/banks.py::histology": {
+    "cut_reasons": [],
+    "function_digest": "65ebf8cdd249fc1b",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/banks.py::named_conditions": {
+    "cut_reasons": [],
+    "function_digest": "81bd673d2f0119f5",
     "refusal": "",
     "standing": "complete"
   },

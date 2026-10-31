@@ -89,6 +89,12 @@ _ANTI = re.compile(
     r"(?:anti[\s-]*|targeting\s+|targeted (?:to|against)\s+|directed against\s+|inhibitors? of\s+)$",
     re.IGNORECASE,
 )
+# "Confirmed tumor PD-L1 status", "documented EGFR test result": a status that is known, whatever it is.
+_DOCUMENTED = re.compile(
+    r"(?:confirmed|documented|documentation of|known|available|recorded|measurement of)[^.;]{0,40}"
+    r"(?:status|result|expression|score|TPS)",
+    re.IGNORECASE,
+)
 # "any PD-L1 TPS": the trial admits every state, so the text restricts nothing.
 _ANY = re.compile(r"\bany\s+$", re.IGNORECASE)
 # "... are excluded from the study": a sentence of an inclusion criterion that states an exclusion.
@@ -106,7 +112,8 @@ _STATE = re.compile(f"(?P<neg>{_NEGATIVE})|(?P<unk>{_UNKNOWN})|(?P<pos>{_POSITIV
 # a K-ras mutation").
 _PRESENCE = re.compile(r"presence|positive|\bhas\b|\bhave\b|harbou?r", re.IGNORECASE)
 _PERCENT = re.compile(
-    r"(?:(?P<cmp>≥|>=|\\>=|<|\\<|≤|<=|\\<=|>|\\>)\s*)?(?P<a>\d{1,3})\s*%?(?:\s*(?:-|–|to)\s*(?P<b>\d{1,3}))?\s*%"
+    r"(?:(?P<cmp>≥|>=|\\>=|<|\\<|≤|<=|\\<=|>|\\>)\s*)?(?P<a>\d{1,3})\s*%?(?:\s*(?:-|–"
+    r"|to)\s*(?P<b>\d{1,3}))?\s*%"
 )
 
 
@@ -155,6 +162,8 @@ def biomarker_status(text: str) -> list[Atom]:
         elif after or before:
             state = after[0] if after else before[-1]
             values = {"negative" if state.group("neg") else "unknown" if state.group("unk") else "positive"}
+        if not values and _DOCUMENTED.search(text, clause_start, clause_end):
+            values = {"negative", "positive"}  # a documented status is known: either, never unknown
         if not values and not params:
             continue
         if _EXCLUDED.search(text, match.end(), clause_end):
@@ -357,6 +366,7 @@ ANALYTES = {
     "AST": r"aspartate (?:amino)?transferase|(?-i:\bAST\b|\bSGOT\b)",
     "ALT": r"alanine (?:amino)?transferase|(?-i:\bALT\b|\bSGPT\b)",
     "albumin": r"albumin",
+    "leukocytes": r"leukocytes?|white blood cells?(?: count)?|(?-i:\bWBC\b)",
 }
 # Names match in any case; acronyms only as written, so "eGFR" (kidney) is never "EGFR" (the gene).
 _ANALYTE = re.compile("|".join(f"(?P<n{i}>{p})" for i, p in enumerate(ANALYTES.values())), re.IGNORECASE)
@@ -370,12 +380,15 @@ _THRESHOLD = re.compile(
     r"(?P<cmp>" + "|".join(p for p, _ in _COMPARATORS) + r")\s*(?P<value>\d+(?:[.,]\d+)?)\s*"
     r"(?P<unit>(?:[×xX*]|times)\s*(?:the\s+)?(?:institutional\s+)?(?:upper limit of normal|ULN)|"
     r"[×xX*]\s*10\s*(?:\^|e)?\s*(?:9|⁹|12)\s*/\s*L|×\s*10⁹/L|/\s*(?:mm3|mm³|µL|μL|uL|L)|"
-    r"g/dL|g/L|mg/dL|mg/dl|µmol/L|μmol/L|umol/L|mL/min(?:/1\.73\s*m(?:2|²))?|ml/min(?:/1\.73\s*m(?:2|²))?|%)?",
+    r"/\s*mcL|g/dL|g/L|mg/dL|mg/dl|µmol/L|μmol/L|umol/L|mL/min(?:/1\.73\s*m(?:2|²))?"
+    r"|ml/min(?:/1\.73\s*m(?:2|²))?|%)?",
     re.IGNORECASE,
 )
 _UNSPECIFIED = re.compile(
-    r"adequate\s+(?:(?:baseline\s+)?(?:organ|bone marrow|hematologic|haematologic|hepatic|liver|renal|kidney)"
-    r"(?:\s*(?:,|and|or)\s*)?)+\s*(?:and\s+\w+\s+)?function",
+    r"adequate\s+(?:(?:baseline\s+)?(?:end-organ|organ|bone marrow|hematologic|haematologic|hepatic"
+    r"|liver|renal|"
+    r"kidney)(?:\s*(?:,|and|or)\s*)?)+\s*(?:and\s+\w+\s+)?function"
+    r"|(?:major )?organ (?:and bone marrow )?functions? (?:that )?(?:meets?|that meet)",
     re.IGNORECASE,
 )
 
@@ -413,12 +426,195 @@ def organ_function(text: str) -> list[Atom]:
     return atoms
 
 
+# ── named conditions, boilerplate, age and histology ────────────────────────────────────────────────
+
+# Each concept is a surface vocabulary as criteria write it (measured on the NSCLC residual); a match is the
+# concept's atom, with any time window or CTCAE grade written beside it. The table names things; it states no
+# relation between them, so whether a condition tracks a drug class is computed across trials and proposed.
+CONDITIONS = {
+    "informed_consent": r"informed consent|\bICF\b|sign(?:ed)? (?:the )?consent",
+    "compliance": r"(?:willing|able|ability)\b[^.;]{0,40}\bcompl(?:y|iance)|follow[- ]up (?:procedures"
+    r"|visits)",
+    "contraception": r"contracepti\w+|birth control|abstinen\w+|childbearing potential|sterili[sz]",
+    "pregnancy_or_breastfeeding": r"pregnan\w*|breast[- ]?feeding|lactat\w+|nursing",
+    "life_expectancy": r"life expectancy|expected survival|survival (?:duration"
+    r"|time) (?:of )?(?:more than|≥|>)",
+    "measurable_disease": r"measurable (?:disease|lesion)|RECIST",
+    "cns_metastases": r"(?:brain|CNS|central nervous system|intracranial|cerebral)\W{0,3}metasta\w+"
+    r"|leptomeningeal",
+    "other_malignancy": r"(?:other|another|second|prior|previous|concurrent|additional"
+    r"|active) (?:\w+ )?malignan\w+"
+    r"|malignan\w+ other than|other (?:primary )?(?:cancer|tumou?r)s?\b",
+    "hiv": r"\bHIV\b|human immunodeficiency virus|\bAIDS\b",
+    "hepatitis": r"hepatitis|\bHBV\b|\bHCV\b|HBsAg",
+    "tuberculosis": r"tubercul\w+",
+    "active_infection": r"(?:active|acute|uncontrolled|serious|severe|systemic)\s+(?:\w+\s+){0,3}infections?",
+    "autoimmune_disease": r"autoimmun\w+|immune[- ]mediated disease",
+    "pneumonitis_ild": r"pneumonitis|interstitial lung disease|\bILD\b|pulmonary fibrosis"
+    r"|organi[sz]ing pneumonia",
+    "organ_transplant": r"transplant",
+    "immunosuppression_steroids": r"immunosuppress\w+|corticosteroid|steroid|prednison\w*",
+    "qtc": r"\bQTc\w*\b|QT interval|QT prolongation",
+    "cardiac_disease": r"myocardial infarction|heart failure|\bNYHA\b|angina|arrhythmi\w+|cardiomyopath\w+"
+    r"|cardiac (?:disease|dysfunction|event)|cardiovascular disease|LVEF|ejection fraction",
+    "hypertension": r"hypertension|blood pressure",
+    "bleeding_thrombosis": r"bleeding|haemorrhag\w+|hemorrhag\w+|haemoptysis|hemoptysis|coagulopath\w+"
+    r"|thrombo\w+|embolism|anticoagula\w+|bleeding diathesis",
+    "gi_perforation_fistula": r"perforation|fistula|bowel obstruction|intestinal obstruction",
+    "malabsorption": r"malabsorption|swallow|absorption of (?:oral )?(?:medication|drug)",
+    "hypersensitivity": r"hypersensitiv\w+|allerg\w+|anaphyla\w+",
+    "live_vaccine": r"(?:live|attenuated)[\w\s-]{0,20}vaccin\w+",
+    "recent_surgery": r"(?:major )?surg(?:ery|ical procedure)\w*|thoracotomy",
+    "recent_radiotherapy": r"radiotherapy|radiation therapy|irradiat\w+|radiosurgery",
+    "unresolved_toxicity": r"toxicit(?:y|ies)[^.;]{0,60}(?:resolved|recover)|(?:resolved"
+    r"|recover\w*)[^.;]{0,40}"
+    r"grade|CTCAE",
+    "tissue_available": r"(?:archiv\w+|fresh)[\w\s-]{0,30}(?:tissue|tumou?r sample|biopsy|specimen)"
+    r"|tissue (?:sample )?(?:available|availability)",
+    "other_investigational": r"(?:other|another) (?:clinical )?(?:study|trial|investigational)"
+    r"|investigational (?:drug|agent|product|device)",
+    "interacting_medication": r"CYP\s?3A\w*|strong (?:inhibitors?|inducers?)|P-?gp"
+    r"|concomitant (?:medication|use)",
+    "substance_or_psychiatric": r"psychiatric|substance abuse|drug abuse|alcohol",
+    "smoking": r"smok\w+|tobacco|pack[- ]years?",
+    "effusion": r"effusion|ascites",
+    "neurologic_disorder": r"seizure|epilep\w+|encephalitis|meningitis|neurolog\w+ (?:disorder|disease)",
+    "pulmonary_function": r"pulmonary function|lung function|\bFEV1\b|\bDLCO\b",
+    "weight_loss": r"weight loss",
+    "investigator_judgment": r"investigator(?:'s)? (?:opinion|judge?ment|discretion)|in the opinion of"
+    r"|(?:serious|significant|uncontrolled|severe) (?:\w+ ){0,2}(?:comorbidit\w+|illness"
+    r"|medical conditions?)",
+    "sex": r"both sexes|\bmale (?:or|and) female|\bmales? (?:or|and) females?|either sex|all genders",
+    "diagnosis_confirmed": r"histolog\w+|cytolog\w+|patholog\w+ (?:confirmed|diagnosis|proven)",
+    "prior_enrollment": r"already (?:been )?(?:included|enrolled|randomi[sz]ed)|previously (?:enrolled"
+    r"|randomi[sz]ed)",
+    "vitamin_premedication": r"folic acid|vitamin B-?12",
+    "organ_impairment": r"hepatic impairment|renal (?:impairment|failure|insufficiency)|cirrhosis"
+    r"|liver disease",
+}
+_CONDITION = re.compile("|".join(f"(?P<c{i}>{p})" for i, p in enumerate(CONDITIONS.values())), re.IGNORECASE)
+_WINDOW = re.compile(
+    r"(?:within|in the (?:last|past|previous)|during the (?:last|past|previous)|for at least|at least|"
+    r"\b≥|>=|\\>=)?\s*(?P<n>\d+(?:\.\d+)?)\s*(?P<unit>days?|weeks?|months?|years?|half-lives)\b"
+    r"(?:\s*(?:prior|before|of|from|after|preceding))?",
+    re.IGNORECASE,
+)
+_GRADE = re.compile(r"grade\s*(?P<cmp>≤|<=|\\<=|>|≥|>=|\\>=|<)?\s*(?P<g>[0-5])", re.IGNORECASE)
+
+
+def named_conditions(text: str) -> list[Atom]:
+    """Each named condition, procedure or protocol requirement a criterion mentions (pure — pinned).
+
+    Every concept of CONDITIONS whose words appear gives one atom (the first mention), with the span of its
+    words; a time window ("within 4 weeks", "in the last 5 years", "30 days prior") within 60 characters
+    after it, and a CTCAE grade ("grade ≤ 1") in the criterion, are kept as written in its params. The
+    values are ("mentioned",): whether the criterion requires, allows or excludes the condition is its section
+    and wording, recorded elsewhere, never guessed here. Nothing named: no atom.
+    """
+    atoms: list[Atom] = []
+    names = list(CONDITIONS)
+    seen: set[str] = set()
+    for found in _CONDITION.finditer(text):
+        name = names[int(next(key for key, value in found.groupdict().items() if value)[1:])]
+        if name in seen:
+            continue
+        seen.add(name)
+        params: list[tuple[str, str]] = []
+        window = _WINDOW.search(text, found.end(), min(len(text), found.end() + 60))
+        if window:
+            params.append(("window", f"{window.group('n')} {window.group('unit').lower()}"))
+        grade = _GRADE.search(text)
+        if grade:
+            params.append(("grade", f"{(grade.group('cmp') or '').replace(chr(92), '')}{grade.group('g')}"))
+        atoms.append(("condition", (name,), tuple(params), found.start(), found.end()))
+    return atoms
+
+
+_AGE = re.compile(
+    r"(?:aged?|years? of age|years old|age (?:of|at)|≥|>=|\\>=|at least|older than|over)\s*[:\-]?\s*"
+    r"(?P<a>\d{1,3})\s*(?:(?:-|–|to|and)\s*(?P<b>\d{1,3}))?\s*(?:years?|yrs?)?",
+    re.IGNORECASE,
+)
+
+
+# "≥ 18 years" with no other word for age, but never a duration ("≥ 5 years prior", "within 3 years").
+_BARE_AGE = re.compile(
+    r"(?:≥|>=|\\>=|over|older than)\s*(?P<a>\d{2})\s*years?\b(?!\s*(?:prior|before|ago|since|after|from))"
+    r"(?P<b>)",
+    re.IGNORECASE,
+)
+_AGE_UPPER = re.compile(
+    r"(?:<|≤|<=|\\<|\\<=|younger than|under|no older than|not older than)\s*(?P<n>\d{2})\b"
+)
+
+
+def age_limits(text: str) -> list[Atom]:
+    """An age range a criterion states, in years as written (pure — pinned).
+
+    "aged 18 to 75 years", "≥ 18 years of age", "age ≥ 18", "≥ 18 years and <75 years": the lower bound,
+    and an upper bound when the range or a following "<", "≤", "younger than" gives one, as params; only when
+    the criterion speaks of age (age, aged, years of age, years old) or states "≥ N years" that is no
+    duration ("prior", "before", "ago").
+    Values ("stated",). No age: no atom.
+    """
+    bare = _BARE_AGE.search(text)
+    if not bare and not re.search(r"\bage\b|\baged\b|years of age|years old", text, re.IGNORECASE):
+        return []
+    found = _AGE.search(text) or bare
+    if not found:
+        return []
+    params = [("minimum", found.group("a"))]
+    upper = _AGE_UPPER.search(text, found.end())
+    if found.group("b"):
+        params.append(("maximum", found.group("b")))
+    elif upper:
+        params.append(("maximum", upper.group("n")))
+    return [("age", ("stated",), tuple(params), found.start(), found.end())]
+
+
+HISTOLOGY = {
+    "non_squamous": r"non[- ]?squamous|\bnsNSCLC\b",
+    "squamous": r"(?<!non-)(?<!non )(?<!non)squamous",
+    "adenocarcinoma": r"adenocarcinoma",
+    "large_cell": r"large[- ]cell",
+    "small_cell": r"small[- ]cell (?:lung )?(?:cancer|carcinoma)|\bSCLC\b",
+}
+_HISTOLOGY = re.compile("|".join(f"(?P<h{i}>{p})" for i, p in enumerate(HISTOLOGY.values())), re.IGNORECASE)
+
+
+def histology(text: str) -> list[Atom]:
+    """The histologies a criterion names, each once, as written (pure — pinned).
+
+    non_squamous ("non-squamous", "nsNSCLC"), squamous (not preceded by "non"), adenocarcinoma, large_cell,
+    small_cell ("small cell lung cancer", "SCLC"; "non-small cell" is never small cell). No histology: no
+    atom. Whether it is required or excluded is the criterion's section.
+    """
+    atoms: list[Atom] = []
+    names = list(HISTOLOGY)
+    seen: set[str] = set()
+    for found in _HISTOLOGY.finditer(text):
+        name = names[int(next(key for key, value in found.groupdict().items() if value)[1:])]
+        if name == "small_cell" and re.search(
+            r"non[- ]?$", text[max(0, found.start() - 4) : found.start()], re.I
+        ):
+            continue
+        if _OTHER_SITE.search(text[max(0, found.start() - 40) : found.end() + 40]):
+            continue  # "squamous cell carcinoma of the skin" is another malignancy, not this tumour
+        if name not in seen:
+            seen.add(name)
+            atoms.append(("histology", (name,), (), found.start(), found.end()))
+    return atoms
+
+
 BANKS = {
     "performance_status": performance_status,
     "biomarker": biomarker_status,
     "prior_therapy": prior_therapy,
     "setting": disease_setting,
     "organ_function": organ_function,
+    "conditions": named_conditions,
+    "age": age_limits,
+    "histology": histology,
 }
 
 
