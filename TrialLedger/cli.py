@@ -15,6 +15,7 @@ from typing import Any
 import httpx
 
 from TrialLedger import classes as rx
+from TrialLedger import warrants
 from TrialLedger.design import (
     DESIGN_NAME,
     DesignError,
@@ -24,7 +25,7 @@ from TrialLedger.design import (
     write_design,
 )
 from TrialLedger.ingest import SPEC_API_VERSION, PullError, check_query, pull, query_studies
-from TrialLedger.record import CSV_NAME, JSON_NAME, verify_folder, write_record
+from TrialLedger.record import CSV_NAME, JSON_NAME, code_commit, verify_folder, write_record
 from TrialLedger.workbook import RECORD_NAME, WORKBOOK_NAME, WorkbookError
 
 PULL_HELP = """\
@@ -115,6 +116,12 @@ def main(
     resolve_parser.add_argument("--out", type=Path, help="write design.xlsx for the matched studies here")
     resolve_parser.add_argument(
         "--json", help="write the symbolic reading as JSON here (- for standard output)"
+    )
+    resolve_parser.add_argument(
+        "--keep",
+        type=Path,
+        help="also save the exact snapshot read (records, digests, root) here, so the reading can be "
+        "re-checked after the registry changes; for a certified stored record use pull",
     )
     pull_parser = commands.add_parser(
         "pull",
@@ -222,13 +229,19 @@ def _resolve(args, *, http, sleep, rxclass_get) -> int:
             + " rows)",
             file=sys.stderr,
         )
+    digests = [warrants.study_digest(study) for study in studies]
+    basis = {
+        "query": params,
+        "api_version": api_version,
+        "data_timestamp": data_timestamp,
+        "study_digests": digests,
+        "merkle_root": warrants.merkle_root(digests),
+        "code_commit": code_commit(),
+    }
+    if args.keep:
+        args.keep.write_text(json.dumps({**basis, "studies": studies}, ensure_ascii=False), encoding="utf-8")
     if args.json or not args.out:
-        document = {
-            "query": params,
-            "api_version": api_version,
-            "data_timestamp": data_timestamp,
-            "studies": symbolic_output(studies, answers),
-        }
+        document = {**basis, "studies": symbolic_output(studies, answers)}
         text = json.dumps(document, indent=1, ensure_ascii=False)
         if not args.json or args.json == "-":
             print(text)

@@ -38,6 +38,7 @@ from TrialLedger.profile import (
     mechanism_rows,
     occupancy_rows,
 )
+from TrialLedger.provenance import PROVENANCE
 from TrialLedger.review import flags_for
 
 DESIGN_NAME = "design.xlsx"
@@ -455,6 +456,13 @@ def sheets(views: list[dict[str, Any]], answers: dict[str, Any]) -> dict[str, tu
             "Warrant",
         ],
         review_rows,
+    )
+    out["Rules"] = (
+        ["Rule", "Kind", "Origin", "Source or Note", "Warrant"],
+        [
+            [key, kind, origin, note, warrants.literal(key)]
+            for key, (kind, origin, note) in PROVENANCE.items()
+        ],
     )
     out["Relations"] = (
         ["Relation", "Statement", "Basis", "Approval", "Narrows", "To", "Warrant"],

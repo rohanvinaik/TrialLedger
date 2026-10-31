@@ -14,7 +14,7 @@ import pytest
 from conftest import FakeAPI, csv_page
 from records import ongoing_study, results_study
 
-from TrialLedger import cli
+from TrialLedger import cli, warrants
 
 PULL_FILES = ("studies.json", "studies.csv", "review.xlsx", "record.xlsx")
 
@@ -62,6 +62,7 @@ def test_profile_writes_beside_the_pull_and_changes_none_of_it(folder):
         "Results",
         "Expectations",
         "Review Queue",
+        "Rules",
         "Relations",
         "Classes",
         "Profile",
@@ -92,8 +93,18 @@ def test_resolve_reads_live_and_saves_no_record(tmp_path, monkeypatch):
     api = FakeAPI(json_pages=[httpx.Response(200, json={"studies": [first, second], "totalCount": 2})])
     out = tmp_path / "reading.json"
     book = tmp_path / "design.xlsx"
+    kept = tmp_path / "snapshot.json"
     code = cli.main(
-        ["resolve", f"filter.ids={','.join(ids)}", "--json", str(out), "--out", str(book)],
+        [
+            "resolve",
+            f"filter.ids={','.join(ids)}",
+            "--json",
+            str(out),
+            "--out",
+            str(book),
+            "--keep",
+            str(kept),
+        ],
         http=api.client(),
         sleep=api.sleep,
         rxclass_get=rxclass,
@@ -105,7 +116,12 @@ def test_resolve_reads_live_and_saves_no_record(tmp_path, monkeypatch):
         reading["studies"][0]
     )
     assert book.is_file() and (tmp_path / "cache" / "classes.json").is_file()
-    assert sorted(p.name for p in tmp_path.iterdir()) == ["cache", "design.xlsx", "reading.json"]
+    names = sorted(p.name for p in tmp_path.iterdir())
+    assert names == ["cache", "design.xlsx", "reading.json", "snapshot.json"]
+    snapshot = json.loads(kept.read_text())
+    assert snapshot["study_digests"] == reading["study_digests"] and len(snapshot["studies"]) == 2
+    assert reading["merkle_root"] == warrants.merkle_root(reading["study_digests"])
+    assert reading["data_timestamp"] and "code_commit" in reading
 
 
 def test_resolve_refuses_an_empty_query(tmp_path, monkeypatch):

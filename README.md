@@ -262,6 +262,12 @@ standard, which track a drug class, which settings and classes no trial occupies
 like). Only the RxClass answers are cached, in `~/.cache/trialledger` (or `$TRIALLEDGER_CACHE`). It ends with
 `0`, resolved; `1`, the query failed; `2`, the query was refused.
 
+The registry updates daily and sponsors edit their studies, so the same query can read differently next month.
+Every JSON reading therefore records what it read: the registry's data timestamp and API version, each study's
+digest, their Merkle root and the code commit, so a later run can name exactly which studies changed. When a
+reading will back a decision, a report or an audit, add `--keep snapshot.json` to save the exact records read
+with their digests, or use the stored path below, which also certifies the files.
+
 Each `NAME=VALUE` is one of the registry's own search parameters (`spec/ctg-oas-v2.yaml`), sent exactly as
 written; the registry rejects names it does not know. `query.*` parameters search the way the registry's
 website does, ranking by relevance and matching related terms, so they can return more than you meant;
