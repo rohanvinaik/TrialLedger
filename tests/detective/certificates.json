@@ -1,0 +1,68 @@
+{
+  "TrialLedger/cli.py::parse_query_args": {
+    "cut_reasons": [],
+    "function_digest": "4371f6511db40603",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/ingest.py::assess_completeness": {
+    "cut_reasons": [],
+    "function_digest": "9fec40a24c961450",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/ingest.py::check_query": {
+    "cut_reasons": [],
+    "function_digest": "258fd269efbc46bd",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/ingest.py::classify_csv_page": {
+    "cut_reasons": [],
+    "function_digest": "881cc91c26b4e78f",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/ingest.py::classify_json_page": {
+    "cut_reasons": [],
+    "function_digest": "de3cf8dd4976d69c",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/ingest.py::classify_progress": {
+    "cut_reasons": [],
+    "function_digest": "c9458bb7d1e82e12",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/ingest.py::classify_response": {
+    "cut_reasons": [],
+    "function_digest": "1f5bc444015faa72",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/ingest.py::classify_version": {
+    "cut_reasons": [],
+    "function_digest": "d32acb1fcde8fa67",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/ingest.py::compare_formats": {
+    "cut_reasons": [],
+    "function_digest": "a1eef8dee8d1e46d",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/ingest.py::compare_snapshots": {
+    "cut_reasons": [],
+    "function_digest": "1fd61efb463dc232",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/ingest.py::retry_delay": {
+    "cut_reasons": [],
+    "function_digest": "02339b635b0b7036",
+    "refusal": "",
+    "standing": "complete"
+  }
+}
