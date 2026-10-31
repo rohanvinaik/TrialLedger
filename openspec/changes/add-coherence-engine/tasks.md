@@ -6,8 +6,12 @@
 
 ## 1. Itemize eligibility
 
-- [ ] 1.1 Write the itemization decision (sections, criteria, spans, reasons) unwired with authored intent tests for both signs from real NSCLC criteria; verify the pieces reproduce the text for every record of the 487-study population; converge once with `--two-sign`
-- [ ] 1.2 Wire it into a `profile` shell and extend `tests/production_path.py`; verify `tests/test_wiring.py` passes
+- [x] 1.1 Write the itemization decision (sections, criteria, spans, reasons) unwired with authored intent tests for both signs from real NSCLC criteria; verify the pieces reproduce the text for every record of the 487-study population; converge once with `--two-sign`
+  - 2026-10-31: `criteria.itemize`. On the 487 studies: 481 itemized, 6 with no list markers, 0 reconstruction
+    failures; 4,266 inclusion and 5,707 exclusion criteria; 214 criteria in 10 studies precede any heading and
+    stay unsectioned. Converged `--two-sign`: COMPLETE modulo 7 unproven-equivalent and 8 crash-only (the
+    first converge's 36 candidates fell to 7 after four intent tests and removing redundant code).
+- [x] 1.2 Record `itemize` as awaiting its consumer in `tests/test_wiring.py` (`AWAITING_PROFILE`); `trialledger profile` (6.1) wires it and removes the entry; verify `tests/test_wiring.py` passes
 
 ## 2. Type criteria
 

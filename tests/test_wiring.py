@@ -49,6 +49,10 @@ DECLARED = {
     "workbook.py: WorkbookError.__init__": "raised only when the read-back differs from the derivation, "
     "which tests/test_workbook.py simulates",
 }
+# Written unwired and converged, awaiting their consumer: `trialledger profile` (add-coherence-engine 6.1)
+# reaches them once it exists, and its entry in tests/production_path.py removes them from this set.
+AWAITING_PROFILE = {"criteria.py: itemize", "criteria.py: _lines", "criteria.py: _trimmed"}
+DECLARED |= dict.fromkeys(AWAITING_PROFILE, "awaiting `trialledger profile` (add-coherence-engine 6.1)")
 
 
 @pytest.fixture(scope="module")

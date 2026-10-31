@@ -102,11 +102,14 @@ every folder, unchanged.
 
 ## Gate
 
-`scripts/ci_local.sh` is the gate: `uv sync --locked`; the Detective and Wesker it imports, which must be
-the founder's local checkouts (`~/tools/Detective`, `~/tools/Wesker`, or `DETECTIVE_ROOT`/`WESKER_ROOT`),
-never the copy installed in `.venv`; ruff check; ruff format check; pytest; `detective audit --two-sign
---check` on every function tagged `(pure — pinned)` (the list is read from the code, and an audit of none
-fails); then ty and two vulture scans, advisory. Run it whole and read its whole output before every commit.
+`scripts/ci_local.sh` is the fast gate, seconds: `uv sync --locked`, ruff check, ruff format check, pytest, ty
+(advisory). Run it and read its whole output before every commit. `scripts/ci_local.sh --deep` adds, in
+minutes, `detective audit --two-sign --check` on every function tagged `(pure — pinned)` (the list is read
+from the code, and an audit of none fails), with Detective and Wesker from the founder's local checkouts
+(`~/tools/Detective`, `~/tools/Wesker`, or `DETECTIVE_ROOT`/`WESKER_ROOT`), never the copy in `.venv`, and two
+vulture scans, advisory. Run the deep gate after converging new decisions and before an archive; a new decision
+is converged at write time, which the deep audit re-certifies but does not replace (the founder's instruction,
+2026-10-31, paraphrased: the local gate is a quick scan for common-sense failures, not a long slog).
 `.githooks/pre-push` runs `scripts/push_checks.py hook`, which runs the gate before a push of any tree it has
 not passed on, scans the pushed commits' added lines for secrets (detect-secrets) and audits the locked
 dependencies for known flaws (pip-audit, advisory). Install it with

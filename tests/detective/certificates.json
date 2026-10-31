@@ -119,6 +119,12 @@
     "refusal": "",
     "standing": "complete"
   },
+  "TrialLedger/criteria.py::itemize": {
+    "cut_reasons": [],
+    "function_digest": "69558f38ffa4113a",
+    "refusal": "",
+    "standing": "complete"
+  },
   "TrialLedger/eligibility.py::split_eligibility": {
     "cut_reasons": [],
     "function_digest": "4acac92198cf2482",
