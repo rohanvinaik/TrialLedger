@@ -92,8 +92,10 @@ gather facts and write files. `design.md`'s code-shape table gives each module's
 
 A rule's warrant commits to the code root: the Merkle root of the derivation code (`workbook.py` and every
 package module it imports, followed through their imports, `__init__.py` and the registry tables;
-`warrants.derivation_files`). Any change to that code, docstrings included, changes every computed warrant,
-so a folder written before it no longer certifies under the new code: `verify` names the code root and the
+`warrants.derivation_files`), each module hashed as its syntax tree without docstrings or comments
+(`warrants.semantic_source`) and each registry table as its bytes. A docstring or comment edit changes nothing;
+any change the interpreter would execute differently changes every computed warrant, so a folder written
+before it no longer certifies under the new code: `verify` names the code root and the
 commit that wrote the folder (`code_commit` in its provenance), at which it can be verified. A change to
 `cli.py`, `ingest.py`, `record.py` or anything else the derivation does not import leaves the root, and
 every folder, unchanged.

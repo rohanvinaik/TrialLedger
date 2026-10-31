@@ -5,7 +5,8 @@ of its studies' digests, in pull order. The code root is the Merkle root of the 
 derivation reads: workbook.py, every package module it imports (followed through their own imports), the
 package's __init__.py and the registry tables; so it commits to all the code and tables any rule can read,
 and to nothing that cannot change a derived value (the command line, the network layer, the writer and
-verifier of the folder). A value's warrant commits to its basis:
+verifier of the folder, and the docstrings and comments of the code: modules and rule functions are hashed as
+their syntax trees, see semantic_source). A value's warrant commits to its basis:
   stated   — the study digest, the value's location and the value;
   absent   — the study digest, the location and the absence state the registry's terms give it;
   computed — the rule (its id, the tool version, the code root and the digest of the functions that apply
@@ -22,6 +23,7 @@ import ast
 import hashlib
 import inspect
 import json
+import textwrap
 from collections.abc import Callable
 from pathlib import Path
 from typing import Any
@@ -67,9 +69,34 @@ def absent(study: str, location: str, state: str) -> str:
     return digest("absent", study, location, state)
 
 
+_DOCUMENTED = (ast.Module, ast.ClassDef, ast.FunctionDef, ast.AsyncFunctionDef)
+
+
+def semantic_source(source: str) -> str:
+    """The code of `source` as its syntax tree, without docstrings or comments (pure — pinned).
+
+    Two sources that differ only in comments, docstrings, blank lines, indentation of the whole block or
+    layout inside brackets give the same text; any change a Python interpreter would execute differently
+    gives a different text. A body left empty by removing its docstring holds `pass`, as the source would
+    have to.
+    """
+    tree = ast.parse(textwrap.dedent(source))
+    for node in ast.walk(tree):
+        if not isinstance(node, _DOCUMENTED) or not node.body:
+            continue
+        first = node.body[0]
+        if (
+            isinstance(first, ast.Expr)
+            and isinstance(first.value, ast.Constant)
+            and isinstance(first.value.value, str)
+        ):
+            node.body = node.body[1:] or [ast.Pass()]
+    return ast.dump(tree)
+
+
 def code_digest(*functions: Callable[..., Any]) -> str:
-    """The digest of the source code of the functions that apply a rule."""
-    return digest("code", *(inspect.getsource(function) for function in functions))
+    """The digest of the code of the functions that apply a rule, their docstrings and comments aside."""
+    return digest("code", *(semantic_source(inspect.getsource(function)) for function in functions))
 
 
 PACKAGE_NAME = "TrialLedger"
@@ -110,9 +137,15 @@ def derivation_files(package: Path) -> list[Path]:
 
 def code_root(package: Path) -> str:
     """The Merkle root of derivation_files: each leaf commits to a file's path within the package and its
-    bytes. Caches, editor files and code that cannot change a derived value are not part of it."""
+    content, a module as its semantic_source (so a docstring or comment edit leaves every warrant, and every
+    folder's verification, unchanged) and a registry table as its bytes. Caches, editor files and code that
+    cannot change a derived value are not part of it."""
     leaves = [
-        digest("file", path.relative_to(package).as_posix(), path.read_bytes())
+        digest(
+            "file",
+            path.relative_to(package).as_posix(),
+            semantic_source(path.read_text(encoding="utf-8")) if path.suffix == ".py" else path.read_bytes(),
+        )
         for path in derivation_files(package)
     ]
     return merkle_root(leaves)

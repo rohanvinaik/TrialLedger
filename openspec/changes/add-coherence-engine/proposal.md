@@ -45,8 +45,13 @@ each element's information against comparable trials. This change builds it, sta
 
 ### Modified Capabilities
 
-None. The review and record workbooks are unchanged in this change; projecting computed line of therapy and
-biomarker selection into `review.xlsx` is a later change, once the founder has approved the relations.
+- `review-workbook`: a warrant commits to the derivation code's syntax, not its prose, so a docstring or
+  comment edit no longer stops earlier folders from verifying (engineering feedback, 2026-10-31). `verify`
+  compares workbook files byte for byte first and re-derives cell by cell only for a file that differs, with the
+  same diagnostics as before (no requirement change; recorded in design.md).
+
+Projecting computed line of therapy and biomarker selection into `review.xlsx` is a later change, once the
+founder has approved the relations.
 
 ## Impact
 

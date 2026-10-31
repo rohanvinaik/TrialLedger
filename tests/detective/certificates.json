@@ -232,5 +232,11 @@
     "function_digest": "dedd5381416eaba7",
     "refusal": "",
     "standing": "complete"
+  },
+  "TrialLedger/warrants.py::semantic_source": {
+    "cut_reasons": [],
+    "function_digest": "c23d206d42cb3529",
+    "refusal": "",
+    "standing": "complete"
   }
 }

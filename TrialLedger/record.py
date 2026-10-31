@@ -218,15 +218,19 @@ def verify_folder(folder: Path, *, limit: int = 20) -> tuple[str, list[str]]:
             f"{provenance.get('code_commit')}), and this is {CODE_ROOT}; a warrant re-derives only under the "
             "code that wrote it, so verify the folder with TrialLedger at that commit"
         )
-    else:
+    elif provenance.get("writer") != WRITER:
         cells = [p for book in BOOKS for p in certify(record, folder / book.name, book=book, limit=limit)]
         problems.extend(cells)
-        if not cells and provenance.get("writer") != WRITER:
+        if not cells:
             problems.append(
                 f"record.writer: the workbooks were written with {provenance.get('writer')} and this "
                 f"TrialLedger writes with {WRITER}, so their files cannot be compared byte for byte"
             )
-        elif not cells:
-            for book in BOOKS:
-                problems.extend(file_problems(record, folder / book.name, book))
+    else:
+        # A file identical, part for part, to what this code writes for the record holds exactly the cells the
+        # record derives, so the cell-by-cell comparison runs only on a file that differs, to name the cells.
+        files = {book.name: file_problems(record, folder / book.name, book) for book in BOOKS}
+        differing = [book for book in BOOKS if files[book.name]]
+        cells = [p for book in differing for p in certify(record, folder / book.name, book=book, limit=limit)]
+        problems.extend(cells or [p for book in differing for p in files[book.name]])
     return ("certified", []) if not problems else ("not_certified", problems[:limit])

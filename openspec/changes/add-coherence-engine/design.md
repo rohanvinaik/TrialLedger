@@ -112,6 +112,15 @@ warranted; `verify` of `design.xlsx` is an open item); any model at any step.
     truthfully is flagged or fenced and named under Open items; a decision is not re-converged unless its code
     changes. One commit per task group.
 
+14. **Engineering feedback applied first (2026-10-31).** (a) `warrants.semantic_source` hashes a module or a
+    rule function as its syntax tree without docstrings (comments never reach the tree); registry tables stay
+    byte-hashed. A docstring or comment edit no longer changes the code root, so it no longer stops earlier
+    folders from verifying at HEAD; anything the interpreter would execute differently still does. (b)
+    `verify_folder` runs `file_problems` first when the writer matches; a file identical, part for part, to a
+    fresh write holds exactly the derived cells, so `certify` runs only for a file that differs, and its cell
+    diagnostics are reported when it finds any, the file's otherwise, as before. Clean folders verify in about
+    half the time.
+
 ## Risks / Trade-offs
 
 - [Typing errors propagate to every derived count] → spans on every atom, the residual inventory, and the

@@ -3,8 +3,9 @@
 Positive: canonical JSON ignores key order and nothing else; a digest commits to its kind and its parts, each
 length-prefixed; the Merkle root pairs digests upward and carries an unpaired last one unchanged; a rule's
 warrant changes with its code and with the code root; the code root commits to the workbook's derivation
-code (what workbook.py imports, followed through the package) and the registry tables, and is blind to
-caches, editor files and code the derivation does not import; equal bases give equal warrants.
+code (what workbook.py imports, followed through the package) as syntax trees and the registry tables as
+bytes, and is blind to caches, editor files, code the derivation does not import, and docstrings and comments;
+equal bases give equal warrants.
 Negative: no two different bases give the same warrant: joining parts differently, changing the kind, the
 location, the value, the study, the rule or an input all change it; changing a derivation module or a
 registry table, or wiring a module into the derivation, changes the code root; an empty pull still has a
@@ -111,8 +112,26 @@ def names(root):
 def test_the_code_root_commits_to_the_derivation_code_and_tables(tmp_path):
     root = package(tmp_path)
     assert names(root) == DERIVATION
-    leaves = [expected_digest("file", name, (root / name).read_bytes()) for name in DERIVATION]
+    leaves = [
+        expected_digest(
+            "file",
+            name,
+            warrants.semantic_source((root / name).read_text())
+            if name.endswith(".py")
+            else (root / name).read_bytes(),
+        )
+        for name in DERIVATION
+    ]
     assert warrants.code_root(root) == warrants.merkle_root(leaves)
+
+
+def test_a_docstring_or_comment_edit_leaves_the_root_unchanged(tmp_path):
+    root = package(tmp_path)
+    first = warrants.code_root(root)
+    (root / "ledger.py").write_text('"""The ledger."""\n\n\ndef get():  # read a value\n    ...\n')
+    assert warrants.code_root(root) == first
+    (root / "registry" / "enums.json").write_text("{ }")  # a table is committed byte for byte
+    assert warrants.code_root(root) != first
 
 
 def test_code_that_cannot_change_a_derived_value_is_not_in_the_root(tmp_path):
