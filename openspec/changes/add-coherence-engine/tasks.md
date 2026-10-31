@@ -66,8 +66,19 @@
 
 ## 7. Live
 
-- [ ] 7.1 Run `trialledger profile` on the NSCLC population; record residual size per bank, class coverage, resolved share per coordinate and the top standard and distinctive elements in this file
-- [ ] 7.2 Update README (status, `profile`) and AGENTS.md (shape, open items)
+- [x] 7.1 Run `trialledger profile` on the NSCLC population; record residual size per bank, class coverage, resolved share per coordinate and the top standard and distinctive elements in this file
+  - 2026-10-31, `trialledger profile /tmp/nsclc3` (487 Phase 3 NSCLC trials, data 2026-10-30), 16 s:
+    10,187 criteria, residual 1,624 (84% typed); 1,205 distinct drug names asked of RxClass; experimental
+    drug mentions classified 621, stated by the record 127, unresolved 290. Setting under approved relations:
+    advanced_first_line 71, unresolved 416 (approved relations narrow more than they resolve). No element
+    reaches the 90% standard share yet (top: confirmed histologic diagnosis 81%, ECOG 0-1 64%, measurable
+    disease 62%); every frequency is a floor while typing is incomplete. 581 of 3,133 mechanism rows meet the
+    proposal support. Among them, unprompted: VEGF inhibitor requires non-squamous histology (8/8 vs 49/126,
+    7 sponsors); PD-1 blockers exclude autoimmune disease (43/62 vs 19/72, 13 sponsors); PD-L1 blockers exclude
+    organ transplant (7/12 vs 27/122); PD-1 blockers exclude prior PD-1/PD-L1 agents. Small strata give
+    spurious rows (PD-1 :: stage IV, 6/7 vs 1/4): the support thresholds are first settings, to be set on a
+    wider corpus after typing widens.
+- [x] 7.2 Update README (status, `profile`) and AGENTS.md (shape, open items)
 
 ## Workflow follow-up
 
