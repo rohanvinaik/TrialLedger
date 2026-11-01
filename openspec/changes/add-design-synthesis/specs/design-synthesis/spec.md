@@ -35,6 +35,18 @@ record it as the user's.
 - **WHEN** two endpoint classes are each admissible and no priority settles them
 - **THEN** the design returns a closed question with both options and their corpus statistics
 
+### Requirement: Ranking never decides admissibility
+The system SHALL decide which designs, comparable trials and elements are admissible by hard constraints alone,
+and order the admissible ones by a separate score; a score SHALL never admit or exclude.
+
+#### Scenario: A highly ranked trial outside the constraints
+- **WHEN** a trial scores high on shared criteria but its indication lies outside the comparability constraint
+- **THEN** it is not a comparable trial, whatever its score
+
+#### Scenario: A standard the design lacks
+- **WHEN** a criterion is standard among comparable trials with probability P and the design lacks it
+- **THEN** the design carries the cost -log P for that absence and names it among what must be justified
+
 ### Requirement: The remainder is closed by suggested decisions
 The system SHALL surface what the rules leave open one question at a time, the question whose answer closes the
 most of the remaining admissible designs first, with a suggested answer chosen by warrant and then by closure,

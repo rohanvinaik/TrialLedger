@@ -19,6 +19,10 @@ Built after `add-agent-operation` (the founder's next priority) and on `add-scop
 ## 3. The solver and the output
 
 - [ ] 3.1 The exact, bounded solver over the design variables
+- [ ] 3.1a The recommendation stage (design Decision 8b): admissibility apart from ranking; signed hierarchical
+      positions; comparable trials by two-layer spreading activation; IDF and PMI weighting; standards with
+      conspicuous-absence cost; precedent PageRank; attenuated class inheritance; submodular combination and
+      MMR diversity; source agreement by the order parameter; tie clusters with their discriminating axis
 - [ ] 3.1b Closing the remainder (design Decision 9): each open variable scored by how evenly it splits the
       admissible designs and what its answers fix downstream; the suggested answer by warrant, then closure;
       question templates with ids; options carrying their brief amendments; one question at a time, and

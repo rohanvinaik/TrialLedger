@@ -47,6 +47,46 @@ the rule tables and the solver.
    enumeration, extended to design variables), with a declared resource bound returning UNDETERMINED rather than
    a guess. Output: the admissible designs, the one the priorities select, and the open questions.
 
+8b. **The recommendation stage (classical, from the founder's ModelAtlas and sparse-wiki).** Between the rules
+   and the closing step, TrialLedger ranks what the rules admit with the pre-LLM recommendation methods
+   ModelAtlas's navigator uses (`query_navigate.navigate`, `spreading_activation`, `pagerank`, `hierarchy`,
+   `bank_coherence`), applied to trials and design elements:
+   - **Admissibility and order are separate questions.** Hard constraints (definitions, deductions, sourced
+     rules, the brief) decide which designs, comparable trials and elements are admissible, as a set
+     intersection; a separate scalar decides what comes first. A ranking never admits or excludes anything, and a
+     filter never orders (ModelAtlas `docs/navigation.md`: "navigation decides who is admissible; the scalar
+     decides what comes first").
+   - **Signed hierarchical positions.** Design coordinates are positions in hierarchies with a direction and a
+     depth: a condition in the MeSH tree (more specific or more general than the brief's indication), a drug in
+     its class hierarchy (ATC level, EPC, MoA), treatment line and disease extent as ordered scales. "Comparable"
+     is a constraint on direction and depth ("the same indication or one level more specific"), never a vague
+     similarity; an unknown position is absent and costs something, never written as the zero state.
+   - **Comparable trials by spreading activation.** From the brief's coordinates, activation spreads over two
+     layers (Collins and Loftus, as ModelAtlas's `spread`): direct links between trials (the same drug, a
+     near-miss pair, the same sponsor's program) and shared anchors (the same typed criteria, drug class,
+     endpoint class), scoped by facet so unrelated dimensions do not bleed; each comparable trial carries the
+     decomposition of why it was reached.
+   - **Rarity weighting.** A shared criterion or class is weighted by its rarity in the registry (IDF) and its
+     association with the comparable set relative to the corpus (PMI): a rare shared exclusion says more about
+     comparability, and about a mechanism, than a universal one.
+   - **Standards and conspicuous absence.** A criterion present in more than the standard share of comparable
+     trials is a standard with its probability P; a design lacking it carries the surprise -log P as a cost the
+     design must justify, the absence bonus of ModelAtlas read the other way.
+   - **Precedent as a graph property.** Trials whose criteria and endpoint language later trials reuse (shared
+     typed criteria in time order) form a precedence graph; its PageRank, as a rank percentile, weighs precedent:
+     a template many trials inherit is stronger evidence of practice than one trial's choice.
+   - **Attenuated inheritance.** What is established for a drug class is inherited by a member without its own
+     trials, attenuated by distance in the hierarchy and kept interpolated, never known.
+   - **Combining signals.** Independent supports for one element combine with diminishing returns
+     (submodular: the strongest counts fully, the next by a decay), never as a product that compounds; the
+     alternatives shown to the user are re-ranked for diversity (maximal marginal relevance), so near-duplicate
+     designs are not listed as choices.
+   - **Agreement among sources.** Where independent sources imply one coordinate (a registry field, a typed
+     criterion, a stated class, a publication), their agreement is measured (the order parameter of
+     `bank_coherence`); dissent is reported, never resolved by picking a winner.
+   - **Ties feed the closing step.** Runs of designs whose scores tie within a declared epsilon are marked as tie
+     clusters with the axis that discriminates them; those axes are what Decision 9 asks about.
+
 9. **Closing the remainder ("Jeeves mode", the founder's term, from his ModelAtlas project).** After the
    definitions, deductions, design rules and corpus observations have narrowed the space, what remains is a set
    of admissible designs differing on some variables. TrialLedger does not leave the user a list of open
