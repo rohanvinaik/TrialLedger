@@ -20,8 +20,36 @@
     hides uncovered text: one `eligibility_gap` row per uncovered stretch and one `eligibility_overlap` row
     per stretch read twice; every manifest row carries `drawn_as`. Left: Detective convergence of
     `text_coverage` (accepted debt), so not ticked.
-- [ ] 2.2 Audit question builders: `atom_claim`, `untyped_criterion` (concept instances, out_of_taxonomy),
+- [x] 2.2 Audit question builders: `atom_claim`, `untyped_criterion` (concept instances, out_of_taxonomy),
       outcome and intervention claims; RxClass assignments checked deterministically against the kept artifact
+
+  - 2026-10-31: built. `untyped_criterion`: one question per criterion no bank typed, options the banks'
+    concept instances (`questions.CONCEPT_OPTIONS`, named as atoms name them: `biomarker:EGFR`,
+    `condition:hiv`, `lab:platelets`, `ecog_ps`) plus `out_of_taxonomy`, `none`, `insufficient_context`; the
+    answer is a list of instances, each with a span of the criterion itself (`validate_instances`);
+    `untyped_reading` names what it says (`concept_stated`, `out_of_taxonomy`, `no_requirement`,
+    `insufficient_context`); out_of_taxonomy answers are counted apart, never as errors. Outcomes:
+    `outcome_endpoint` (an endpoint class on the outcome's own measure) and `outcome_time_point` (each time
+    point on its own time frame, with the measure as context, in the role `time_point_role` gives it: "up to
+    N" a window, claimed as one; any other statement unmarked, claimed only as "a time point at N"; not_stated
+    when the frame does not state it as number then unit; wrong_role is only a window claimed as a time point
+    or the reverse). Interventions: `intervention_target` (a record-stated target on the experimental drug's
+    own entry: description, name as context). RxClass: before a trial is read, `run_audit` copies the RxClass
+    answers for its drug names into the audit folder (`rxclass.json`), each with its retrieval time (None for
+    an answer cached before answers carried one; `classes.lookup` now stamps each), each name once and never
+    rewritten; the reading's has_epc classes are checked against that kept copy as read back from disk
+    (`audit.rxclass_check`: matches_artifact, differs_from_artifact, not_in_artifact) and recorded in the
+    manifest, never asked; a drug with no RxClass class is recorded as `rxclass_unclassed` (every query of
+    every name not_found), `rxclass_not_established` (a lookup failed, a body was malformed, or a name was
+    never answered) or `differs_from_artifact` (`audit.rxclass_absence`), and is never asked unless its own
+    entry states a target. Each kind has its rubric, schema and validation; an outcome's or intervention's
+    envelope is its own field verbatim (`field_envelope`), refused over budget. The model identity is per kind
+    (`LocalModel.identity(kind)`, design.md Decision 3). Left: Detective convergence of the new decisions
+    (accepted debt); the split of a `concept_stated` answer into declined and silently missed is the
+    adjudicator's (5.2); an outcome with no endpoint class or time point is a manifest row (`no_claim`), never
+    asked; "within N" and similar are unmarked (the rule names only "up to"); a partly typed criterion gets no
+    untyped question (only a criterion with no atom does), so a requirement a bank missed beside an atom it
+    typed is seen by no question yet (open).
 
 ## 3. Live sample
 
@@ -31,9 +59,10 @@
 
   - 2026-10-31: built and converged (envelope, validate_answer, response_text, installed_digest, reserved,
     draw, inclusion: COMPLETE); `trialledger audit` writes the manifest and the atom-claim questions, then the
-    validated answers; untyped-criterion, outcome and intervention questions are still manifest rows only (2.2).
-    Id-only live paging: 80,929 IDs of the no-MeSH stratum in 103 s from one snapshot. 3.1 still lacks the
-    balance table (phase, intervention type, primary purpose) and its supplement; 2.1 lacks the gap check.
+    validated answers; untyped-criterion, outcome and intervention questions were then manifest rows only
+    (2.2, since built). Id-only live paging: 80,929 IDs of the no-MeSH stratum in 103 s from one snapshot. 3.1
+    still lacks the balance table (phase, intervention type, primary purpose) and its supplement; 2.1 lacks
+    the gap check.
   - 2026-10-31 (later): the balance table and its supplement are built. `sample.json` declares them before any
     draw (the axes with their search areas, the registry's values from the vendored enums plus the two phase
     combinations the metadata's rule names, one supplement trial per empty cell, the seed label). The audit

@@ -30,9 +30,11 @@ def drawn_units(questions: list[dict], include_supplement: bool) -> list[dict]:
 
 
 def to_label(questions: list[dict], n: int, seed: str) -> list[str]:
-    """The ids of `n` questions to label blind, drawn by seed from the questions' distinct ids in sorted order
-    (pure — pinned); all of them when there are fewer."""
-    ids = sorted({q["id"] for q in questions})
+    """The ids of `n` atom-claim questions to label blind, drawn by seed from their distinct ids in sorted
+    order (pure — pinned); all of them when there are fewer. The pilot's declared units are atom claims
+    (tasks.md 4, 2026-10-31), so another kind of question never enters this draw."""
+    kinds = {q["id"]: q["kind"] for q in questions}
+    ids = sorted(found for found, kind in kinds.items() if kind == "atom_claim")
     return random.Random(seed).sample(ids, min(max(n, 0), len(ids)))
 
 

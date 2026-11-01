@@ -67,10 +67,44 @@ def near_miss_study(nct: str, ecog: str) -> dict:
     return study
 
 
+def audited_study() -> dict:
+    """A trial with every kind of audit unit: a criterion no bank types (NCT04382755's), outcomes with an
+    endpoint class, a window ("up to") and an unmarked time point (NCT04693377's), an experimental drug only
+    its own entry classifies (anti-PD-1) beside one RxClass classifies."""
+    from records import ongoing_study
+
+    study = ongoing_study()
+    protocol = study["protocolSection"]
+    protocol["identificationModule"]["nctId"] = "NCT09000004"
+    protocol["eligibilityModule"]["eligibilityCriteria"] = (
+        "Inclusion Criteria:\n\n* ECOG performance status 0-1\n\n"
+        "Exclusion Criteria:\n\n* History of active or past meningococcal disease\n"
+    )
+    protocol["outcomesModule"] = {
+        "primaryOutcomes": [
+            {"measure": "Duration of response", "timeFrame": "Up to 24 weeks post-treatment"}
+        ],
+        "secondaryOutcomes": [{"measure": "Pain response", "timeFrame": "At 12 weeks post-treatment"}],
+    }
+    protocol["armsInterventionsModule"] = {
+        "armGroups": [
+            {"label": "A", "type": "EXPERIMENTAL", "interventionNames": ["Drug: XB-1", "Drug: Placebo"]}
+        ],
+        "interventions": [
+            {"type": "DRUG", "name": "XB-1", "description": "XB-1 is an anti-PD-1 antibody"},
+            {"type": "DRUG", "name": "Placebo"},
+        ],
+    }
+    return study
+
+
 def sample_and_audit(scratch: Path, studies: list[dict], rxclass) -> dict[str, int]:
     """`trialledger sample` over every stratum (id-only pages from one snapshot) and `trialledger audit` of
-    the draw, one trial at a time, with a local model that answers each question and is released at the end;
-    its balance table asks the registry about every empty cell and audits the one supplement drawn.
+    the draw, one trial at a time, with a local model that answers each question in its own kind's schema
+    (every kind: atom claims, an untyped criterion, outcome endpoints and time points, a stated target; the
+    RxClass answers used kept in the audit folder and an assignment checked against that kept copy, not asked)
+    and is released at the end; its balance table asks the registry about every empty cell and audits the one
+    supplement drawn.
     """
     import httpx
     from conftest import version
@@ -79,7 +113,7 @@ def sample_and_audit(scratch: Path, studies: list[dict], rxclass) -> dict[str, i
     from TrialLedger.ingest import API_BASE
     from TrialLedger.sample import reserved
 
-    by_id = {s["protocolSection"]["identificationModule"]["nctId"]: s for s in studies}
+    by_id = {s["protocolSection"]["identificationModule"]["nctId"]: s for s in [*studies, audited_study()]}
     drawable = [nct for nct in by_id if not reserved(nct)]
     # a screening trial outside the strata's draw: the registry holds it for the one empty cell it fills, so
     # the balance check asks every empty cell, finds one gap in the registry and audits its supplement
@@ -115,6 +149,15 @@ def sample_and_audit(scratch: Path, studies: list[dict], rxclass) -> dict[str, i
             return {"models": []}
         if url.endswith("/api/tags"):
             return {"models": [{"name": "qwen3:8b", "digest": "a" * 64}]}
+        operation = json.loads(json.loads(body).get("prompt", "{}")).get("operation") if body else None
+        if operation == "untyped_criterion":
+            instance = {"option": "out_of_taxonomy", "quote": "meningococcal disease"}
+            return {"response": json.dumps({"instances": [instance]}), "done_reason": "stop"}
+        if operation == "intervention_target":
+            return {
+                "response": json.dumps({"verdict": "supported", "quote": "anti-PD-1"}),
+                "done_reason": "stop",
+            }
         return {
             "response": json.dumps({"verdict": "insufficient_context", "quote": ""}),
             "done_reason": "stop",
@@ -123,7 +166,7 @@ def sample_and_audit(scratch: Path, studies: list[dict], rxclass) -> dict[str, i
     sample = scratch / "sample.json"
     codes = {
         "sample": cli.main(
-            ["sample", "--seed", "s", "--per-stratum", "2", "--out", str(sample)],
+            ["sample", "--seed", "s", "--per-stratum", "3", "--out", str(sample)],
             http=registry,
             sleep=lambda s: None,
         )

@@ -28,8 +28,12 @@ qwen3.8:27b (q4_K_M, q8_0), qwen3.5:35b (MoE), qwen3:8b and others; Qwen3.8-27B 
    canonical-JSON prompt `{operation, rubric, question}`; schema in `format`; temperature 0; think as configured;
    explicit context and output budgets; overflow refused; truncated output an error; a call budget required; named
    errors for timeout, connection, malformed envelope. Identity: model, digest, and a protocol digest over the
-   schema, rubric, options, inference options and envelope version. Cache keyed by request hash and identity; a
-   cache hit is a saved answer, not a new observation.
+   protocol version, the rubric of the kind being asked and the inference options; the schema, options and
+   envelope are in the cache key through the prompt and schema. Cache keyed by request hash and identity; a
+   cache hit is a saved answer, not a new observation. The identity is per question kind (a technical decision
+   the founder delegated, recorded 2026-11-01): only the asked kind's rubric is hashed, so adding a kind or
+   changing one kind's rubric never invalidates another kind's cached answers; the one-entry rubric map keeps
+   the digest's earlier shape, so atom-claim answers cached when it was the only kind are still hits.
 4. **Answers are validated deterministically.** Exactly one verdict per atom id; the cited span lies inside the
    envelope at its offsets (location, not entailment); options in the closed set; anything else is an audit
    error, never a verdict.
@@ -37,14 +41,25 @@ qwen3.8:27b (q4_K_M, q8_0), qwen3.5:35b (MoE), qwen3:8b and others; Qwen3.8-27B 
    offsets, and every gap between pieces confirmed whitespace; every registered outcome; every intervention. A
    unit exists for each; the human can see any piece no question touched.
 6. **Audit questions.** `atom_claim`: one atom of one criterion, options supported / wrong_value /
-   wrong_polarity_or_modality / unsupported / insufficient_context. `untyped_criterion`: a criterion no bank typed,
-   options the concept instances of the banks' domains (each with a span) plus none and out_of_taxonomy (with a
-   span, counted apart, never an engine error in this wave). Matching is at the concept-instance level ("EGFR or
-   ALK" is two instances); a wrong attribute of a captured concept is wrong_value, not also a miss. Untyped is
-   split into: no in-scope concept, declined, silently missed. Interventions: a record-stated target claim is an
-   `atom_claim` on the intervention's own text; an RxClass assignment is checked deterministically against its
-   kept RxClass artifact, never by the model. Outcomes: an endpoint class is an `atom_claim`; a time point is
-   graded against the rule that "up to N" is a window, not a scheduled measurement.
+   wrong_polarity_or_modality / unsupported / insufficient_context. `untyped_criterion`: a criterion no bank
+   typed, options the concept instances of the banks' domains (each with a span) plus none and out_of_taxonomy
+   (with a span, counted apart, never an engine error in this wave). Matching is at the concept-instance level
+   ("EGFR or ALK" is two instances); a wrong attribute of a captured concept is wrong_value, not also a miss.
+   Untyped is split into: no in-scope concept, declined, silently missed. Endpoint, time-point and target
+   claims are kinds of their own, not `atom_claim`s, because their envelope is a record field rather than a
+   criterion and they have no section polarity (as built 2026-10-31): `outcome_endpoint`, an endpoint class
+   claimed of the outcome's own measure, options supported / wrong_value / unsupported / insufficient_context;
+   `outcome_time_point`, a time point claimed of the outcome's own time frame (its measure as context),
+   options supported / wrong_value / wrong_role / unsupported / insufficient_context, where "up to N" is
+   claimed as a window (not a scheduled measurement, the founder's rule) and any other stated time only as "a
+   time point at N", with no role read into it, and wrong_role is only a window claimed as a time point or the
+   reverse; `intervention_target`, a record-stated target claimed of the intervention's own entry
+   (description, its name as context), the endpoint options. An RxClass assignment is checked
+   deterministically against its kept RxClass artifact (the answers copied into the audit folder with their
+   retrieval times before the trial is read, read back from disk), never by the model; a drug with no RxClass
+   class is recorded as unclassed by RxClass or as not established (a lookup failed or never answered). Open:
+   a criterion with some atoms gets no `untyped_criterion` question, so what its banks missed beside them is
+   not yet asked.
 7. **Adjudication.** Rows at three levels (unit, atom verdict, omission). Blind first: for the pilot and for
    sampled accepted units, the human records what the envelope supports before seeing the model's verdict. Every
    challenged item and `insufficient_context` goes to the human; a seeded random sample of accepted items,
@@ -62,18 +77,22 @@ qwen3.8:27b (q4_K_M, q8_0), qwen3.5:35b (MoE), qwen3:8b and others; Qwen3.8-27B 
    combined phases kept as written), intervention type and primary purpose, with gaps filled by a labelled
    supplement. Confirmation pool: sha256(nct) mod 10 < 3, declared now, never drawn for discovery. Kept: id lists,
    retrieval times, seed, code version, membership labels and every resolved record (`resolve --keep`).
-10. **The pilot.** 15–20 trials, 80–120 units across all unit types: a probability sample plus a separately
-    labelled challenge set (empty atoms, exceptions, conjunctions, alternatives, cohort scopes, multiple instances,
-    ambiguous time frames) plus the mutations. Configurations (the founder: a scoped, typed question needs no big
-    model; TriageGeist used an 8B Qwen; a smaller model may do better by not over-reaching; no ceiling reference):
-    qwen3:8b and qwen3.5:4b, thinking on. A probe of six claims on 2026-10-31 (two right, three planted wrong,
-    one a qualified exclusion): qwen3:8b with thinking accepted none of the three wrong claims (~15 s a
-    question); without thinking it accepted two of them (~1.5 s), so thinking stays on unless the pilot shows
-    otherwise. The deciding measure is wrong claims accepted, then correct ones challenged, then time. One
-    model loaded at a time, released after its run (the founder: be kind to memory). Compared per unit type and bank: known errors caught, known omissions caught, correct
-    readings challenged, insufficient context, invalid responses, latency, human burden. Criteria are declared before
-    the pilot runs; the least costly configuration meeting them is chosen, or the pilot reports insufficient
-    evidence. A small pilot finds failures; it does not estimate reliability.
+10. **The pilot.** The pilot draws `atom_claim` units only, as declared in tasks.md 4 (2026-10-31): its blind
+    labels and mutations are atom claims, and `pilot.to_label` never draws another kind; the other kinds
+    (`untyped_criterion`, `outcome_endpoint`, `outcome_time_point`, `intervention_target`) are first measured
+    in the discovery wave (task 5). As first designed: 15–20 trials, 80–120 units: a probability sample plus a
+    separately labelled challenge set (empty atoms, exceptions, conjunctions, alternatives, cohort scopes,
+    multiple instances, ambiguous time frames) plus the mutations. Configurations (the founder: a scoped,
+    typed question needs no big model; TriageGeist used an 8B Qwen; a smaller model may do better by not
+    over-reaching; no ceiling reference): qwen3:8b and qwen3.5:4b, thinking on. A probe of six claims on
+    2026-10-31 (two right, three planted wrong, one a qualified exclusion): qwen3:8b with thinking accepted
+    none of the three wrong claims (~15 s a question); without thinking it accepted two of them (~1.5 s), so
+    thinking stays on unless the pilot shows otherwise. The deciding measure is wrong claims accepted, then
+    correct ones challenged, then time. One model loaded at a time, released after its run (the founder: be
+    kind to memory). Compared per unit type and bank: known errors caught, known omissions caught, correct
+    readings challenged, insufficient context, invalid responses, latency, human burden. Criteria are declared
+    before the pilot runs; the least costly configuration meeting them is chosen, or the pilot reports
+    insufficient evidence. A small pilot finds failures; it does not estimate reliability.
 11. **Serial, per study, in the production path** (the founder, 2026-10-31: one study to one resolved encoding
     at a time; batching every call is wasteful of model intelligence). `resolve` reads one study at a time; with
     `--ask MODEL` it poses that study's targeted questions inline, one by one, only for the gaps its rules cannot

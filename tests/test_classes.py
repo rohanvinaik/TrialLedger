@@ -3,14 +3,25 @@
 Positive: a 200 response with classes gives them once each, sorted, with id, name, relation and source; an
 unknown name (200 without a listing) is not_found; a drug resolves by the first alias RxClass classifies,
 naming it; experimental drugs are read through the arms' "<type label>: <name>" references; the lookup asks
-both queries per name, once per name, spaced.
+both queries per name, once per name, spaced, and stamps each answer with its own retrieval time.
 Negative: a failed request is never "no class" (lookup_failed, and a drug whose only answers failed is
-lookup_failed, never unresolved); a malformed body is never a class; a placebo or a procedure is never a drug.
+lookup_failed, never unresolved); a malformed body is never a class; a placebo or a procedure is never a
+drug; an answer cached before answers carried a retrieval time is never given one.
 """
+
+import json
+from datetime import datetime, timedelta
 
 import pytest
 
-from TrialLedger.classes import drug_class, drug_names, experimental_drugs, lookup, rxclass_classes
+from TrialLedger.classes import (
+    drug_class,
+    drug_names,
+    experimental_drugs,
+    load_or_lookup_at,
+    lookup,
+    rxclass_classes,
+)
 
 PEMBRO = {
     "rxclassDrugInfoList": {
@@ -65,6 +76,9 @@ def test_lookup_asks_both_queries_once_per_name():
     assert calls == ["Pembrolizumab", "Pembrolizumab", "SCT-I10A", "SCT-I10A"]
     assert answers["Pembrolizumab"]["classes"] == [PEMBRO_CLASS]
     assert answers["SCT-I10A"]["codes"] == {"DAILYMED:has_epc": "not_found", "MEDRT:has_moa": "not_found"}
+    # each answer carries its own retrieval time, an ISO timestamp in UTC, whatever its code
+    for answer in answers.values():
+        assert datetime.fromisoformat(answer["retrieved"]).utcoffset() == timedelta(0)
 
 
 def test_a_drug_resolves_by_its_first_classified_alias():
@@ -107,3 +121,15 @@ def test_drug_names_and_experimental_drugs_follow_the_record():
         "Placebo": ["Placebo"],
     }
     assert experimental_drugs(STUDY) == ["SHR-1316", "Carboplatin"]
+
+
+def test_each_answer_keeps_its_own_retrieval_time(tmp_path):
+    """Positive: a name looked up now is cached with its own retrieval time. Negative: an answer cached before
+    answers carried one keeps none, never back-dated from the cache's last extension."""
+    path = tmp_path / "classes.json"
+    legacy = {"codes": {"DAILYMED:has_epc": "not_found", "MEDRT:has_moa": "not_found"}, "classes": []}
+    path.write_text(json.dumps({"retrieved": "2026-01-01T00:00:00+00:00", "answers": {"Old": legacy}}))
+    load_or_lookup_at(path, ["Old", "New"], get=lambda url, params: (200, {}), sleep=lambda _: None)
+    kept = json.loads(path.read_text())["answers"]
+    assert "retrieved" not in kept["Old"]
+    assert datetime.fromisoformat(kept["New"]["retrieved"]).utcoffset() == timedelta(0)

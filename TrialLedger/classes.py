@@ -6,7 +6,8 @@ intervention's name and then each other name the record gives it: `has_epc` from
 Established Pharmacologic Class) and `has_moa` from MED-RT (mechanism of action). Every class keeps its
 RxClass id and relation source. A name RxClass does not know is `not_found`; a failed request is
 `lookup_failed`; neither is ever read as "no class". The answers are cached beside the pull in classes.json,
-with the request and the retrieval time, so a profile can be re-derived without the network.
+with the request and the retrieval time (of the cache's last extension, and of each answer since 2026-11-01;
+an answer cached before then has none), so a profile can be re-derived without the network.
 """
 
 from __future__ import annotations
@@ -94,7 +95,8 @@ def lookup(
     sleep: Callable[[float], None] = time.sleep,
     spacing: float = 0.2,
 ) -> dict[str, dict[str, Any]]:
-    """Ask RxClass for each name, both queries, spaced; each name's code per query and its classes."""
+    """Ask RxClass for each name, both queries, spaced; each name's code per query, its classes and when it
+    was retrieved."""
     answers: dict[str, dict[str, Any]] = {}
     for name in dict.fromkeys(names):
         per_query = {}
@@ -105,6 +107,7 @@ def lookup(
         answers[name] = {
             "codes": {key: code for key, (code, _) in per_query.items()},
             "classes": sorted({c for _, classes in per_query.values() for c in classes}),
+            "retrieved": datetime.now(UTC).isoformat(timespec="seconds"),
         }
     return answers
 

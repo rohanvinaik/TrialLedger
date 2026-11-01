@@ -2,12 +2,13 @@
 
 Positive: the blind-label draw is seeded and order-free; each chosen claim yields a value mutation (a value
 the text does not state), a polarity mutation (inclusion read as exclusion) and a concept mutation (another
-criterion's concept), each keeping the original envelope and expecting its verdict; the units drawn are the
-sample's own (drawn_as sample, or no label from before supplements existed), and the supplement's too only
-when asked; a mutation keeps its original's drawn_as.
-Negative: a supplement question is never drawn by default, nor a question with any other label; no mutation
-reuses a concept its own criterion states; a claim with nothing to change yields no value mutation; an
-unsectioned claim yields no polarity mutation; n never exceeds what exists."""
+criterion's concept), each keeping the original envelope and expecting its verdict; only atom claims, the
+pilot's declared units, are drawn for blind labels; the units drawn are the sample's own (drawn_as sample, or
+no label from before supplements existed), and the supplement's too only when asked; a mutation keeps its
+original's drawn_as.
+Negative: a supplement question is never drawn by default, nor a question with any other label; no other kind
+of question is drawn; no mutation reuses a concept its own criterion states; a claim with nothing to change
+yields no value mutation; an unsectioned claim yields no polarity mutation; n never exceeds what exists."""
 
 from TrialLedger.pilot import changed_values, drawn_units, mutations, to_label
 from TrialLedger.questions import ATOM_CLAIM_OPTIONS, atom_claim, question
@@ -66,6 +67,15 @@ def test_n_is_bounded_and_nothing_to_change_yields_nothing():
     lone = [claim("NCT1", 1, "histology", ["squamous"], section="unsectioned")]
     assert mutations(lone, 5, "m") == []
     assert mutations(QUESTIONS, 0, "m") == []
+
+
+def test_only_atom_claims_are_drawn_for_blind_labels():
+    """Positive: the pilot's declared units are atom claims, and every one is drawn when n allows. Negative: a
+    question of another kind never enters the draw, and its presence leaves the draw unchanged."""
+    other = question("untyped_criterion", {"nct": "NCT1", "piece": 2}, HELD, ("none", "insufficient_context"))
+    assert to_label([*QUESTIONS, other], 9, "s") == to_label(QUESTIONS, 9, "s")
+    assert other["id"] not in to_label([*QUESTIONS, other], 9, "s")
+    assert to_label([other], 9, "s") == []
 
 
 def test_nothing_to_label_is_an_empty_list():

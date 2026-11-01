@@ -13,6 +13,7 @@ import pytest
 
 from TrialLedger.questions import ATOM_CLAIM_OPTIONS, answer_schema, question
 from TrialLedger.transport import (
+    RUBRICS,
     LocalModel,
     TransportError,
     installed_digest,
@@ -63,6 +64,28 @@ def test_a_pinned_model_answers_and_the_answer_is_cached(tmp_path):
     again = model(tmp_path, FakeOllama())
     assert again.ask(QUESTION, SCHEMA) == (text, identity, True)
     assert again.calls == 0
+
+
+def test_the_identity_is_per_question_kind(tmp_path, monkeypatch):
+    """Positive: the atom-claim identity hashes only its own rubric, in the shape it had when it was the only
+    kind (so an answer cached then is still a hit); another kind's rubric added or changed leaves it as it
+    was. Negative: a change to its own rubric changes it, and two kinds never share an identity."""
+    import hashlib
+
+    from TrialLedger import transport
+
+    local = model(tmp_path, FakeOllama())
+    alone = transport.canonical(
+        [transport.PROTOCOL_VERSION, {"atom_claim": RUBRICS["atom_claim"]}, local.options]
+    )
+    assert local.identity("atom_claim") == f"qwen#{DIGEST}@{hashlib.sha256(alone.encode()).hexdigest()[:16]}"
+    before = local.identity("atom_claim")
+    assert local.identity("outcome_endpoint") != before
+    monkeypatch.setitem(transport.RUBRICS, "new_kind", "Another rubric.")
+    monkeypatch.setitem(transport.RUBRICS, "outcome_endpoint", "A changed rubric.")
+    assert local.identity("atom_claim") == before
+    monkeypatch.setitem(transport.RUBRICS, "atom_claim", RUBRICS["atom_claim"] + " Changed.")
+    assert local.identity("atom_claim") != before
 
 
 def test_the_prompt_and_body_are_canonical():

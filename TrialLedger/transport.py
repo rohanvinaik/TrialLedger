@@ -5,7 +5,9 @@ verified before and after every call, so an answer from a changed model is refus
 JSON (operation, rubric, question); the answer is constrained by a JSON schema in Ollama's `format`;
 temperature 0; explicit context and output budgets; a prompt over budget is refused, never truncated; an
 answer cut by the output limit is an error. Every answer is cached under a hash of the model identity, the
-prompt and the schema: a cache hit is a saved answer, not a new observation. Nothing here reads or produces a
+prompt and the schema: a cache hit is a saved answer, not a new observation. The identity is per question
+kind (its rubric alone is hashed), so adding or changing one kind's rubric never invalidates another kind's
+cached answers. Nothing here reads or produces a
 TrialLedger reading.
 """
 
@@ -30,6 +32,49 @@ RUBRICS = {
         "requirement. unsupported: the target does not state it. insufficient_context: the envelope does "
         "not hold enough to decide. Quote the shortest verbatim text from the envelope that decides your "
         "verdict; quote nothing only for unsupported or insufficient_context."
+    ),
+    "untyped_criterion": (
+        "You name what one eligibility criterion states. Use only the envelope: the target text, its "
+        "section heading, scoping lines, stem and joined siblings. The options are the concepts "
+        "TrialLedger's banks type, named as concept or concept:instance (ecog_ps, age, biomarker:EGFR, "
+        "lab:platelets, condition:hiv, prior_agent:PD-1, histology:squamous). Give one instance for each "
+        "concept the target states, each with the shortest verbatim span of the target that states it; "
+        "separate concepts are separate instances (EGFR or ALK is biomarker:EGFR and biomarker:ALK). "
+        "out_of_taxonomy: a requirement of the target that no option names, with its verbatim span of the "
+        "target. none: the target states no requirement at all. insufficient_context: the envelope does not "
+        "hold enough to decide. none and insufficient_context stand alone. Name what the text states, "
+        "whether it requires or excludes it."
+    ),
+    "outcome_endpoint": (
+        "You check one claim about a registered outcome against its own measure title, the envelope's "
+        "target. supported: the measure is an endpoint of the claimed class. wrong_value: the measure is an "
+        "endpoint of a different class than the one claimed (disease-free where the claim says "
+        "progression-free survival). unsupported: the measure does not name an endpoint of that class (the "
+        "words appear in another sense or only as context). insufficient_context: the text does not hold "
+        "enough to decide. Quote the shortest verbatim text from the envelope that decides your verdict; "
+        "quote nothing only for unsupported or insufficient_context."
+    ),
+    "outcome_time_point": (
+        "You check one claim about a registered outcome's time frame, the envelope's target, read with its "
+        "measure (context). A claim says either that a time is the end of an observation window over which "
+        "events are counted (up to N is always a window, not a scheduled measurement), or only that the time "
+        "frame states a time point at N, with no role. supported: the time frame states the claimed time, as "
+        "a window if the claim says window, as a time point (not only as the end of a window) if the claim "
+        "says time point. wrong_value: it states a different time. wrong_role: only a window claimed where "
+        "the time frame states that time as a time point, or a time point claimed where it states that time "
+        "only as the end of a window. unsupported: the time frame does not state it. insufficient_context: "
+        "the envelope does not hold enough to decide. Quote the shortest verbatim text from the envelope "
+        "that decides your verdict; quote nothing only for unsupported or insufficient_context."
+    ),
+    "intervention_target": (
+        "You check one claim about a drug intervention against its own registry entry: its description "
+        "(the target) and its name (context). supported: the entry states that this intervention itself is "
+        "a drug of the claimed class or acts on the claimed target. wrong_value: the entry states a "
+        "different class or target for it. unsupported: the entry does not state it, or names the class "
+        "only for something else (a prior therapy, a condition, a partner drug of a combination). "
+        "insufficient_context: the entry does not hold enough to decide. Quote the shortest verbatim text "
+        "from the envelope that decides your verdict; quote nothing only for unsupported or "
+        "insufficient_context."
     ),
 }
 
@@ -157,12 +202,16 @@ class LocalModel:
         body = canonical({"model": self.model, "keep_alive": 0}).encode("utf-8")
         self.http("POST", f"{self.base_url}/api/generate", body, self.timeout)
 
-    def identity(self) -> str:
+    def identity(self, kind: str) -> str:
+        """The identity of this model asked one `kind` of question: the model, its digest and a digest of the
+        protocol, that kind's rubric alone and the inference options. A rubric added or changed for another
+        kind leaves it, and the answers cached under it, unchanged (design.md Decision 3); the one-entry
+        rubric map has the shape the protocol digest had when `atom_claim` was the only kind, so an atom-claim
+        answer cached then is still a hit."""
         if not self.digest:
             raise TransportError("model_not_pinned")
-        protocol = hashlib.sha256(canonical([PROTOCOL_VERSION, RUBRICS, self.options]).encode()).hexdigest()[
-            :16
-        ]
+        hashed = canonical([PROTOCOL_VERSION, {kind: RUBRICS[kind]}, self.options])
+        protocol = hashlib.sha256(hashed.encode()).hexdigest()[:16]
         return f"{self.model}#{self.digest}@{protocol}"
 
     def _cached(self) -> dict[str, str]:
@@ -173,7 +222,7 @@ class LocalModel:
     def ask(self, question: dict, schema: dict) -> tuple[str, str, bool]:
         """The raw answer to one question: (answer text, identity, from the cache)."""
         prompt = prompt_for(question)
-        identity = self.identity()
+        identity = self.identity(question["kind"])
         key = hashlib.sha256(canonical([identity, prompt, schema]).encode()).hexdigest()
         saved = self._cached().get(key)
         if saved is not None:

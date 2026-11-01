@@ -109,8 +109,23 @@ gather facts and write files. `design.md`'s code-shape table gives each module's
   (`text_coverage`: only whitespace between eligibility pieces; every uncovered stretch and every overlap
   named, both together) and `balance.json` beside the manifest; every manifest, question and answer row
   labelled `drawn_as` (sample or supplement); `pilot.py` and `trialledger pilot` (the seeded blind-label list
-  and the planted mutations with their known verdicts, asked of one model at a time, drawn from the sample's
-  own questions, `drawn_units`, unless `--include-supplement`). A model answer never becomes a reading.
+  of atom claims and the planted mutations with their known verdicts, asked of one model at a time, drawn
+  from the sample's own questions, `drawn_units`, unless `--include-supplement`). The audit's question kinds,
+  each one thing asked of its own unit's text, each with its rubric in `transport.RUBRICS`, its schema and its
+  validation: `atom_claim`; `untyped_criterion` (the banks' concept instances, `CONCEPT_OPTIONS`, each with a
+  span, or none, or out_of_taxonomy with a span, counted apart); `outcome_endpoint` and `outcome_time_point`
+  on the outcome's own measure or time frame (`time_point_role`: "up to N" is a window, claimed as one; any
+  other time point is unmarked and claimed only as "a time point at N"; one the frame does not state as number
+  then unit is not_stated); `intervention_target` on an experimental drug's own entry. An RxClass assignment
+  is never asked: before a trial is read, `run_audit` copies the RxClass answers for its drug names into the
+  audit folder's `rxclass.json`, each with its retrieval time (None for an answer cached before answers
+  carried one), each name once and never rewritten; the reading's has_epc classes are then checked against
+  that kept copy as read back from disk (`audit.rxclass_check`: matches_artifact, differs_from_artifact or
+  not_in_artifact), and a drug with no RxClass class is recorded as `rxclass_unclassed` (every query of every
+  name not_found), `rxclass_not_established` (a lookup failed, a body was malformed or a name was never
+  answered) or `differs_from_artifact` (the kept copy classifies it; `audit.rxclass_absence`). The model's
+  identity is per question kind (`LocalModel.identity(kind)` hashes only that kind's rubric). A model answer
+  never becomes a reading.
 - `reading.py`: the population read once (`read_population`: each study's view, the known classes, review
   flags and near-miss pairs), the one producer that `design.py` (design.xlsx) and `symbolic.py` (the
   `resolve` JSON) consume.
@@ -154,9 +169,10 @@ Vulture counts a function named in a table as used, so it cannot see a table ent
 `tests/production_path.py` drives what production does (a two-page pull with a retry and a value a cell
 cannot hold, `verify` of the folder, `profile` of it with RxClass answering for one name and failing for
 another, `profile` of a folder with no record, a live `resolve` of four studies of which two are a near-miss
-pair, `sample` over every stratum, `audit` of its draw (its balance check asking the registry about every empty
-cell and auditing the one supplement a cell's registry IDs yield) and `pilot` over that audit with a fake local
-model, an audit refused for want of
+pair, `sample` over every stratum, `audit` of its draw (a trial with every kind of question, answered in each
+kind's schema, the RxClass answers kept in the audit folder and an assignment checked against that kept copy;
+its balance check asking the registry about every empty cell and auditing the one supplement a cell's
+registry IDs yield) and `pilot` over that audit with a fake local model, an audit refused for want of
 a budget and one refused because its model is not installed, `verify` of an unreadable workbook, a pull the
 server keeps failing), and
 the test fails on any function of the package that path does not reach, except the declared ones: the twelve
@@ -171,8 +187,11 @@ Run from this repo's `.venv` with the local checkouts first:
 `PYTHONPATH=$HOME/tools/Detective:$HOME/tools/Wesker .venv/bin/detective ...`. Every pinned decision here
 was converged with `--two-sign`, which the printed DO THIS lines omit (keep adding it), except those not yet
 converged, accepted as debt by the founder and named under Open items (`sample.trial_cells`,
-`sample.holds_cell`, `sample.cell_status`, `sample.balance_rows`, `audit.text_coverage`, `pilot.drawn_units`);
-`scripts/ci_local.sh --deep` will flag each of them until it is converged. `pilot.mutations` keeps its own
+`sample.holds_cell`, `sample.cell_status`, `sample.balance_rows`, `audit.text_coverage`, `pilot.drawn_units`,
+and the audit question kinds' decisions: `field_envelope`, `time_point_role`, `validate_instances`,
+`untyped_reading`, `concept_instances`, `audit.rxclass_check`, `audit.rxclass_absence`, and the changed
+`validate_answer` and `pilot.to_label`); `scripts/ci_local.sh --deep` will flag each of them until it is
+converged. `pilot.mutations` keeps its own
 code, so the gate does not flag it, but its output changed through `_mutant` and it is to be re-converged.
 
 A new decision is written unwired, given direct-call intent tests for both signs, converged with
@@ -227,6 +246,19 @@ it. The proofs, so that they survive the machine:
   value). A stated class and an RxClass class match only as written; aligning the two vocabularies needs a
   sourced mapping. Each pair reports the lead sponsor and start year; sponsor
   lineage, geography and cohort structure, which the spec asks for, are not yet read.
+- The audit question kinds of `add-targeted-questions` 2.2 (2026-10-31) are not yet converged by Detective
+  (the founder accepted it as debt, to be reconciled serially): `field_envelope`, `time_point_role` (window,
+  unmarked, not_stated), `validate_instances`, `untyped_reading`, `concept_instances`, `audit.rxclass_check`,
+  `audit.rxclass_absence`, and the changed `validate_answer` and `pilot.to_label`.
+- The model identity is per question kind (a technical decision the founder delegated; design.md Decision 3):
+  `LocalModel.identity(kind)` hashes the protocol version, that kind's rubric alone and the inference options,
+  in the shape the digest had when `atom_claim` was the only kind, so atom-claim answers cached before the
+  other kinds were added are still cache hits, and a rubric added or changed for one kind invalidates only
+  that kind's cached answers (the `outcome_time_point` rubric, rewritten when time points stopped being called
+  scheduled, invalidated only answers of that kind).
+- A partly typed criterion is not asked about what its atoms miss: `untyped_criterion` is asked only of a
+  criterion with no atom, so a requirement a bank left untyped beside an atom it did type is seen by no
+  question until a kind for it is designed (`add-targeted-questions` 2.2).
 - Comparable posted results (`add-coherence-engine` 5.3) wait on the endpoint-class bank (2.2); the residual
   (about 70% of criteria in the NSCLC population) decides the next banks (2.1b).
 
