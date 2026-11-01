@@ -64,6 +64,12 @@ PROVENANCE: dict[str, tuple[str, str, str]] = {
         "prior: immune-related adverse events of checkpoint blockade",
         "surfaced on development data; frozen 2026-10-31; unconfirmed",
     ),
+    "representation:near_miss": (
+        "representation",
+        "prior: add-design-surprise Decision 5 (declared before any pair was read)",
+        "setting (one value) and experimental drug classes (all classified by RxClass); predicates ECOG,"
+        " histology, the checkpoint expectation; an unknown never matches",
+    ),
     "threshold:STANDARD_SHARE": ("threshold", "prior: first setting", "0.9; to be set on a wider corpus"),
     "threshold:SIGNAL_MIN_TRIALS": ("threshold", "prior: first setting", "5; to be set on a wider corpus"),
     "threshold:SIGNAL_MIN_SPONSORS": ("threshold", "prior: first setting", "3; to be set on a wider corpus"),

@@ -62,6 +62,7 @@ def test_profile_writes_beside_the_pull_and_changes_none_of_it(folder):
         "Results",
         "Expectations",
         "Review Queue",
+        "Near Misses",
         "Rules",
         "Relations",
         "Classes",
@@ -127,3 +128,40 @@ def test_resolve_reads_live_and_saves_no_record(tmp_path, monkeypatch):
 def test_resolve_refuses_an_empty_query(tmp_path, monkeypatch):
     monkeypatch.setenv("TRIALLEDGER_CACHE", str(tmp_path / "classes.json"))
     assert cli.main(["resolve"], rxclass_get=rxclass) == 2
+
+
+def near_miss_study(nct, ecog):
+    study = ongoing_study()
+    protocol = study["protocolSection"]
+    protocol["identificationModule"]["nctId"] = nct
+    protocol["eligibilityModule"]["eligibilityCriteria"] = (
+        "Inclusion Criteria:\n\n* Stage IV non-small cell lung cancer\n"
+        "* No prior systemic therapy for advanced or metastatic disease\n"
+        f"* ECOG performance status {ecog}\n\nExclusion Criteria:\n\n* Active autoimmune disease\n"
+    )
+    protocol["armsInterventionsModule"] = {
+        "armGroups": [{"label": "A", "type": "EXPERIMENTAL", "interventionNames": ["Drug: Pembrolizumab"]}],
+        "interventions": [{"type": "DRUG", "name": "Pembrolizumab"}],
+    }
+    return study
+
+
+def test_resolve_reports_a_near_miss_in_the_sheet_and_the_json(tmp_path, monkeypatch):
+    """Positive: two first-line PD-1 trials differing only in the ECOG they admit are one near-miss row, and
+    each study's JSON names the other. Negative: the studies of the other tests, with nothing comparable,
+    carry no near miss."""
+    monkeypatch.setenv("TRIALLEDGER_CACHE", str(tmp_path / "cache" / "classes.json"))
+    studies = [near_miss_study("NCT09000001", "0-1"), near_miss_study("NCT09000002", "0-2"), results_study()]
+    api = FakeAPI(json_pages=[httpx.Response(200, json={"studies": studies, "totalCount": 3})])
+    out, book = tmp_path / "reading.json", tmp_path / "design.xlsx"
+    query = "filter.ids=NCT09000001,NCT09000002"
+    argv = ["resolve", query, "--json", str(out), "--out", str(book)]
+    assert cli.main(argv, http=api.client(), sleep=api.sleep, rxclass_get=rxclass) == 0
+    header, *rows = openpyxl.load_workbook(book, read_only=True)["Near Misses"].iter_rows(values_only=True)
+    assert header[10].startswith("Representation (known for 2 of 3 trials")
+    assert [row[:5] for row in rows] == [("NCT09000001", "NCT09000002", "ecog_ps", "0|1", "0|1|2")]
+    reading = {s["nct"]: s["near_misses"] for s in json.loads(out.read_text())["studies"]}
+    assert [(m["other"], m["value"], m["other_value"]) for m in reading["NCT09000002"]] == [
+        ("NCT09000001", "0|1|2", "0|1")
+    ]
+    assert reading[results_study()["protocolSection"]["identificationModule"]["nctId"]] == []

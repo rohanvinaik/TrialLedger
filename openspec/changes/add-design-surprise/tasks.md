@@ -28,7 +28,18 @@
 ## 2. Contracts
 
 - [ ] 2.1 Provenance on every rule, vocabulary entry and threshold (external / prior / derived), shown on the Relations and a new Rules sheet
-- [ ] 2.2 Conditional rarity over declared cells with parent fallback and abstention; deviation statuses; near-miss pairs under a declared representation; each a pure decision, converged once
+- [x] 2.2 Conditional rarity over declared cells with parent fallback and abstention; deviation statuses; near-miss pairs under a declared representation; each a pure decision, converged once
+
+  - 2026-10-31, near misses (`nearmiss.near_misses`, `design.near_miss_input`, both converged COMPLETE; the
+    Near Misses sheet and each study's `near_misses` in the `resolve` JSON). Representation R, declared
+    before any pair was read: the setting when it is one value, and the experimental drugs' classes when
+    every drug is classified by RxClass; predicates: inclusion ECOG values, inclusion histologies, the
+    checkpoint expectation when present or explicitly negated. On the development data R is known for 12 of
+    487 trials (77 have one setting, 290 drug names are unresolved), and no pair exists; the header of the
+    sheet carries that count, so "0 rows" never reads as "none exist". Counting record-stated classes
+    ("stated: PD-L1") as known gave 2 pairs, both reader defects (ECOG "0 or 1" before the scale's name read
+    as "1"; fixed in `banks.performance_status`, re-converged, 7+ criteria corrected): that admission mixes
+    two vocabularies and is the founder's decision, not made here.
 
 ## 3. Rules from the design schema
 

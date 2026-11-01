@@ -16,7 +16,13 @@ def test_every_rule_has_provenance():
     expected = {f"bank:{name}" for name in BANKS}
     expected |= {f"relation:{relation.id}" for relation in RELATIONS}
     expected |= {f"expectation:{expectation.id}" for expectation in FROZEN}
-    expected |= {"bank:endpoints", "bank:stated_targets", "itemize", "classes:rxclass"}
+    expected |= {
+        "bank:endpoints",
+        "bank:stated_targets",
+        "itemize",
+        "classes:rxclass",
+        "representation:near_miss",
+    }
     expected |= {
         f"threshold:{name}" for name in ("STANDARD_SHARE", "SIGNAL_MIN_TRIALS", "SIGNAL_MIN_SPONSORS")
     }

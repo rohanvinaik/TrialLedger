@@ -450,3 +450,12 @@ def test_stated_targets_read_the_record_and_skip_generic_therapy():
     assert stated_targets(text) == ["PD-1"]
     assert stated_targets("Standard platinum-based chemotherapy") == ["platinum"]
     assert stated_targets("Best supportive care") == []
+
+
+def test_performance_status_reads_the_whole_expression_before_the_scale():
+    """Positive: "of 0 or 1 on the ECOG" reads 0 and 1, not the 1 nearest the name; "0-1 ECOG" still reads.
+    Negative: an expression ending more than 12 characters before the name is not read."""
+    text = "Has a performance status of 0 or 1 on the Eastern Cooperative Oncology Group (ECOG) scale."
+    assert [atom[:3] for atom in performance_status(text)] == [("ecog_ps", ("0", "1"), ())]
+    assert [atom[1] for atom in performance_status("0-1 ECOG score")] == [("0", "1")]
+    assert performance_status("Score 2 at baseline, assessed by the ECOG investigators") == []

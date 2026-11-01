@@ -29,6 +29,7 @@ from TrialLedger.expectations import (
     conditional_rarity,
     deviation_status,
 )
+from TrialLedger.nearmiss import near_misses
 from TrialLedger.profile import (
     SIGNAL_MIN_SPONSORS,
     SIGNAL_MIN_TRIALS,
@@ -147,6 +148,7 @@ def study_view(study: dict[str, Any], answers: dict[str, Any]) -> dict[str, Any]
         "nct": nct,
         "digest": warrants.study_digest(study),
         "sponsor": protocol.get("sponsorCollaboratorsModule", {}).get("leadSponsor", {}).get("name", ""),
+        "start_year": str(protocol.get("statusModule", {}).get("startDateStruct", {}).get("date", ""))[:4],
         "status": protocol.get("statusModule", {}).get("overallStatus", ""),
         "itemize": code,
         "criteria": criteria,
@@ -159,6 +161,36 @@ def study_view(study: dict[str, Any], answers: dict[str, Any]) -> dict[str, Any]
             expectation.id: _observe(expectation, readable, code, drugs) for expectation in FROZEN
         },
     }
+
+
+def near_miss_input(view: dict[str, Any]) -> tuple[str, dict[str, str], dict[str, str], str, str]:
+    """A study view as the near-miss decision reads it: its representation (setting when one value; its
+    experimental drugs' classes when every one is classified), its design predicates (the ECOG values and
+    histologies its inclusion criteria state, the checkpoint expectation when present or admitted), its lead
+    sponsor and its start year. Anything not known is ""."""
+    setting = view["coordinates"]["setting"]["with_proposed"]
+    drugs = view["drugs"]
+    classified = drugs and all(state == "classified" for _, state, _, _ in drugs)
+    classes = " + ".join(sorted({c for _, _, epc, _ in drugs for c in epc})) if classified else ""
+    ecog, histologies = "", set()
+    for _index, section, _text, atoms in view["criteria"]:
+        for _bank, concept, values, _params, _s, _e in atoms:
+            if section == "inclusion" and concept == "ecog_ps" and not ecog:
+                ecog = "|".join(values)
+            if section == "inclusion" and concept == "histology":
+                histologies |= set(values)
+    status = next(iter(view["observations"].values()), ("", "", [], []))[0]
+    return (
+        view["nct"],
+        {"setting": setting[0] if len(setting) == 1 else "", "classes": classes},
+        {
+            "ecog_ps": ecog,
+            "histology": "|".join(sorted(histologies)),
+            "autoimmune_exclusion": status if status in ("present", "explicitly_negated") else "",
+        },
+        view["sponsor"],
+        view["start_year"],
+    )
 
 
 def review_flags(view: dict[str, Any], known_classes: list[str]) -> list[tuple]:
@@ -457,6 +489,33 @@ def sheets(views: list[dict[str, Any]], answers: dict[str, Any]) -> dict[str, tu
         ],
         review_rows,
     )
+    nm_trials = [near_miss_input(v) for v in views]
+    digests = {v["nct"]: v["digest"] for v in views}
+    comparable = sum(all(t[1].values()) for t in nm_trials)
+    out["Near Misses"] = (
+        [
+            "NCT A",
+            "NCT B",
+            "The One Difference",
+            "Value in A",
+            "Value in B",
+            "Sponsor A",
+            "Sponsor B",
+            "Start Year A",
+            "Start Year B",
+            "Predicates Agreeing",
+            f"Representation (known for {comparable} of {len(views)} trials; an unknown never matches)",
+            "Warrant",
+        ],
+        [
+            [
+                *pair,
+                "setting (one value) and experimental drug classes (all classified)",
+                warrants.computed(_rule("near_miss", near_misses), digests[pair[0]], digests[pair[1]]),
+            ]
+            for pair in near_misses(nm_trials)
+        ],
+    )
     out["Rules"] = (
         ["Rule", "Kind", "Origin", "Source or Note", "Warrant"],
         [
@@ -672,10 +731,11 @@ def write_design(folder: Path, *, get=rx.http_get, sleep=None) -> tuple[Path, di
 
 
 def symbolic_output(studies: list[dict[str, Any]], answers: dict[str, Any]) -> list[dict[str, Any]]:
-    """Each study's symbolic reading as plain data: typed criteria, coordinates, drugs, outcomes and
-    expectation observations, each value with the record text it rests on. The JSON form of `resolve`."""
+    """Each study's symbolic reading as plain data: typed criteria, coordinates, drugs, outcomes, near misses
+    and expectation observations, each value with the record text it rests on. The JSON form of `resolve`."""
     views = [study_view(study, answers) for study in studies]
     known_classes = sorted({c for v in views for _, s, e, _ in v["drugs"] if s == "classified" for c in e})
+    pairs = near_misses([near_miss_input(v) for v in views])
     output = []
     for view in views:
         output.append(
@@ -733,6 +793,20 @@ def symbolic_output(studies: list[dict[str, Any]], answers: dict[str, Any]) -> l
                         "answer": None,
                     }
                     for k, el, why, pr, ev, q, opts in review_flags(view, known_classes)
+                ],
+                "near_misses": [
+                    {
+                        "other": p[1 - side],
+                        "difference": p[2],
+                        "value": p[3 + side],
+                        "other_value": p[4 - side],
+                        "other_sponsor": p[6 - side],
+                        "other_start_year": p[8 - side],
+                        "predicates_agreeing": p[9],
+                    }
+                    for p in pairs
+                    for side in (0, 1)
+                    if p[side] == view["nct"]
                 ],
                 "expectations": {
                     eid: {

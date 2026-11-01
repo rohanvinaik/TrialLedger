@@ -36,18 +36,22 @@ _PS_EXPR = re.compile(
 def performance_status(text: str) -> list[Atom]:
     """ECOG (or Zubrod or WHO) performance status values a criterion allows (pure — pinned).
 
-    The values are read from the first expression within 80 characters after the scale's name, or within 12
-    characters before it ("0-1 ECOG score"): a range ("0-1", "0 to 2", "0~1"), a list ("0, 1, or 2"), an upper
-    bound ("≤1", "<= 1") or a single value. No expression near the name: no atom.
+    The values are read from the first expression within 80 characters after the scale's name, or else the
+    last whole expression ending within 12 characters before it ("0-1 ECOG score", "of 0 or 1 on the ECOG
+    scale": the expression is read whole, from up to 40 characters back): a range ("0-1", "0 to 2", "0~1"),
+    a list ("0, 1, or 2"), an upper bound ("≤1", "<= 1") or a single value. No expression near the name: no
+    atom.
     """
     scale = _PS_SCALE.search(text)
     if not scale:
         return []
-    for window_start, window_end in (
-        (scale.end(), scale.end() + 80),
-        (max(0, scale.start() - 12), scale.start()),
-    ):
-        found = _PS_EXPR.search(text, window_start, min(window_end, len(text)))
+    after = _PS_EXPR.search(text, scale.end(), min(scale.end() + 80, len(text)))
+    before = [
+        found
+        for found in _PS_EXPR.finditer(text, max(0, scale.start() - 40), scale.start())
+        if found.end() >= scale.start() - 12
+    ]
+    for found in (after, before[-1] if before else None):
         if not found:
             continue
         if found.group("le"):

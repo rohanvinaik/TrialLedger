@@ -49,6 +49,24 @@ def defined() -> set[tuple[str, str]]:
     return found
 
 
+def near_miss_study(nct: str, ecog: str) -> dict:
+    from records import ongoing_study
+
+    study = ongoing_study()
+    protocol = study["protocolSection"]
+    protocol["identificationModule"]["nctId"] = nct
+    protocol["eligibilityModule"]["eligibilityCriteria"] = (
+        "Inclusion Criteria:\n\n* Stage IV non-small cell lung cancer\n"
+        "* No prior systemic therapy for advanced or metastatic disease\n"
+        f"* ECOG performance status {ecog}\n\nExclusion Criteria:\n\n* Active autoimmune disease\n"
+    )
+    protocol["armsInterventionsModule"] = {
+        "armGroups": [{"label": "A", "type": "EXPERIMENTAL", "interventionNames": ["Drug: Placebo"]}],
+        "interventions": [{"type": "DRUG", "name": "Placebo"}],
+    }
+    return study
+
+
 def main() -> None:
     sys.setprofile(record_call)
     sys.path.insert(0, str(HERE))
@@ -100,9 +118,21 @@ def main() -> None:
     codes["profile"] = cli.main(["profile", str(out)], rxclass_get=rxclass)
     codes["profile_not_a_record"] = cli.main(["profile", str(scratch / "nothing here")], rxclass_get=rxclass)
     os.environ["TRIALLEDGER_CACHE"] = str(scratch / "cache" / "classes.json")
-    live = FakeAPI(json_pages=[httpx.Response(200, json={"studies": [first, second], "totalCount": 2})])
+    # two first-line trials of the one drug RxClass classifies, differing only in the ECOG they admit: a
+    # near-miss pair, so the pairing and its ordering are on the path
+    pair = [near_miss_study(nct, ecog) for nct, ecog in (("NCT09000001", "0-1"), ("NCT09000002", "0-2"))]
+    live = FakeAPI(
+        json_pages=[httpx.Response(200, json={"studies": [first, second, *pair], "totalCount": 4})]
+    )
     codes["resolve"] = cli.main(
-        ["resolve", query, "--json", str(scratch / "reading.json"), "--out", str(scratch / "design.xlsx")],
+        [
+            "resolve",
+            query + ",NCT09000001,NCT09000002",
+            "--json",
+            str(scratch / "reading.json"),
+            "--out",
+            str(scratch / "design.xlsx"),
+        ],
         http=live.client(),
         sleep=live.sleep,
         rxclass_get=rxclass,

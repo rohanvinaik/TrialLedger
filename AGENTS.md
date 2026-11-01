@@ -92,6 +92,7 @@ gather facts and write files. `design.md`'s code-shape table gives each module's
 - `review.py`: the review queue, what the rules cannot cleanly resolve, as typed questions with closed answer
   options for an expert or a model; nothing in it is resolved by TrialLedger (the founder, 2026-10-31).
 - `expectations.py`: declared expectations, observation statuses, conditional rarity, deviation statuses.
+- `nearmiss.py`: near-miss pairs, one known difference under a declared representation.
 - The coherence engine (`openspec/changes/add-coherence-engine`), outside the review and record workbooks'
   derivation and code root: `criteria.py` (eligibility itemized into headings, criteria and prose, exact
   spans), `banks.py` (deterministic typing banks: spanned atoms or abstention; polarity is the section's),
@@ -173,6 +174,10 @@ it. The proofs, so that they survive the machine:
 - `detective converge TrialLedger/coherence.py::close --two-sign` printed UNGATEABLE (mutants exceeded a step
   budget); the target was not edited to clear it. The founder's decision.
 - Every relation in `coherence.RELATIONS` is proposed; the founder approves or rejects each by id.
+- Near misses (`add-design-surprise` 2.2) find no pair on the development data: their representation is known
+  for 12 of 487 trials. Whether a record-stated class ("stated: PD-L1") counts as known, which needs a
+  sourced mapping to the FDA EPC vocabulary, is the founder's decision; wider setting resolution and drug
+  classification raise the count without it.
 - Comparable posted results (`add-coherence-engine` 5.3) wait on the endpoint-class bank (2.2); the residual
   (about 70% of criteria in the NSCLC population) decides the next banks (2.1b).
 
