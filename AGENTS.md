@@ -1,184 +1,148 @@
 # TrialLedger: a guide for the assistant using it
 
 You have been pointed at TrialLedger to help someone with clinical trials. This guide tells you what TrialLedger
-is for, what you can trust in what it gives you, what the person should review before relying on it, and how to
-run it. Read it before you answer them; come back to it when they ask what TrialLedger can do or how far to trust
-a result.
+is for, how to run it, what you can trust in what it gives you, and how to answer from it. Read it before you
+answer them; come back to it when they ask what TrialLedger can do or how far to trust a result. `SKILL.md` holds
+the same procedure in brief.
 
 ## What TrialLedger is for
 
 Designing a clinical trial starts with what has already been done: which trials have tested this drug, this
 class of drugs, this disease; whom they enrolled and excluded; what they measured and when; what they found.
 That knowledge sits on ClinicalTrials.gov, run by the US National Library of Medicine, spread across hundreds of
-separate records. Gathering it by hand, record by record, is days of work for every question, and most of the
-effort of trial design.
+separate records. TrialLedger gathers it, in two layers.
 
-TrialLedger automates that work, in two layers.
+**Layer one gathers the evidence.** Given a search, it collects every study on ClinicalTrials.gov that matches it
+and lays out what each record says: the population; the inclusion and exclusion criteria; the line of therapy;
+the outcome measures and their time points; the biomarkers and the role each plays; the efficacy and safety
+results where the trial posted them; exploratory measures; links to the registry page, publications and posted
+documents. No language model reads a trial, and nothing is summarized, paraphrased or inferred: each value is a
+field of the registry record, or the result of a named, fixed rule applied to such fields, and says which.
 
-**Layer one gathers the evidence. It works today, and what it transcribes you can trust.** Given a search, it
-gathers every study on ClinicalTrials.gov that matches it and lays out what each record says: the population;
-the inclusion and exclusion criteria; the line of therapy; the outcome measures and their time points; the
-biomarkers and the role each plays; the efficacy and safety results where the trial posted them; exploratory
-measures; links to the registry page, publications and posted documents. It is the same information the registry holds, organized, and nothing more: no language model reads
-a trial, and nothing is summarized, paraphrased or inferred. Each value is a field of the registry record, or the
-result of a named, fixed rule applied to such fields, and says which. Think of it as a meticulous clinical data
-manager doing the lookup by hand, only exhaustively and instantly.
+**Layer two designs a trial.** Given what the person wants to test, it constructs a trial the way an experienced
+designer reasons: it builds what follows by logic from what they have stated, recommends what comparable trials
+have done (with the trials and numbers behind each recommendation), and offers the choices that call for
+judgment one at a time, with a suggestion, for the person to decide.
 
-"Every study that matches the search" is not "every study relevant to the question". Today the search is stated
-in the registry's own terms (a condition, an intervention, a status, a phase). Searching by a drug class, a
-mechanism or a family of diseases, resolved through the National Library of Medicine's vocabularies with
-everything it included shown, is being finished. Until then, the completeness TrialLedger guarantees is
-completeness against the search as written, so show the person the search and let them judge whether it covers
-their question.
+## The person you are helping
 
-**Layer two designs a trial. It is being built.** Given what the person wants to test, it constructs a trial the
-way an experienced designer reasons: it builds what follows by logic from what they have stated, recommends what
-comparable trials have done (with the trials and numbers behind each recommendation), and offers the choices
-that call for judgment one at a time, with a suggestion, for the person to decide. It is about half built. Its
-reasoning works end to end on one demonstration case, Phase 3 trials in non-small cell lung cancer; extending it
-to every kind of trial, and assembling a full draft design, are under way.
-
-## What is fact and what needs review
-
-The person will ask what they can rely on. Every value TrialLedger produces carries its status, so you can
-always tell them exactly. The breakdown:
-
-**Facts from the registry: rely on them as you would on the registry itself.**
-- Everything a study's record states: its identifiers, phase, status, dates, sponsor, arms and interventions,
-  enrollment, eligibility text, registered outcomes and time frames, posted results and adverse events,
-  publications and documents. These are *stated* values, each with the record and field it came from.
-- Absence is reported as absence. An empty field is "not stated", never "none"; a trial without posted results
-  says "no results posted". A registered outcome is what a trial planned to measure, never evidence that it
-  worked. Only about 13% of registered studies have posted results, so many questions about efficacy have no
-  registry answer, and TrialLedger will say so rather than fill the gap.
-- Drug classes come from the National Library of Medicine's RxClass and RxNorm, named as such, with the date
-  they were retrieved.
-
-**Readings by fixed rules: reliable, and traceable to the words they read.**
-- Each eligibility criterion split out and classified (an age limit, a laboratory threshold, a performance
-  status, a prior therapy, a named condition), each reading with the exact words it was read from. Where the
-  rules cannot read a criterion confidently, they leave it unread and say so; they never guess.
-- Each trial's setting (stage of disease, line of therapy, biomarker selection) as the values its own criteria
-  allow.
-- These are *computed* values. If the person needs certainty about one, show them the criterion text beside it.
-
-**Analysis across trials: evidence for the person to weigh, not facts.**
-- Which criteria are standard among the trials found, which exclusions follow a drug's mechanism, which settings
-  no trial has tried, pairs of trials that differ in one design choice, expected criteria a trial lacks. Each
-  comes with its numbers and a status: a pattern that holds even under the least favourable reading of silent
-  records is *proposed*; one those records could reverse is *unresolved*. None is presented as established, and
-  the person should review them before building on them.
-- A **review queue** lists what the rules could not settle cleanly, each as a question with closed options and
-  its evidence. These are for the person, or a domain expert, to answer.
-
-**Layer two's design, when complete, will mark every element the same way:** *deduced* from the person's stated
-premises (show them the premises), *recommended* from precedent (show them the trials and numbers), or *chosen*
-by the person. Only their own choices are theirs to make; everything else they can check.
-
-When the person asks whether something is true, find the value in the record TrialLedger wrote, give its status
-and its source, and, for anything computed or proposed, show them what it rests on. Never answer about a trial
-from your own knowledge or from reading its registry page yourself: answer from the record, and say when the
-record does not contain the answer.
-
-## Which output to rely on for what
-
-TrialLedger's commands make different promises, and the person should know which one they are holding.
-
-- **`trialledger pull` is the faithful transcription.** It saves the registry's records exactly as the registry
-  sent them (`studies.json`), the registry's own spreadsheet of them byte for byte (`studies.csv`), and two
-  workbooks (`review.xlsx`, `record.xlsx`), all certified against the records before the folder is created.
-  Whenever the person needs the registry's content itself, a value they will cite, copy into a protocol or
-  check against a source, use `pull`.
-- **`trialledger resolve` is the reading.** Its JSON and `design.xlsx` hold what the rules read from each
-  trial's criteria and the comparison across trials. Every reading names the words it was read from, but a
-  reading is an interpretation, and no command certifies it. Treat it as described under "Readings by fixed
-  rules" and "Analysis across trials" above.
-- **What `trialledger verify` proves, and what it does not.** It proves that every value in a saved copy still
-  derives from the saved records by the code that wrote it, and that nothing has been altered since. It does not
-  prove that a rule maps a field or reads a criterion correctly. That is established by testing the rules, and a
-  prospective, field-by-field comparison of twenty diverse trials against the registry by an independent reader
-  is planned.
-
-## How the record is kept faithful
-
-TrialLedger is built so that what it hands over is either correct and complete or visibly not delivered. When
-the person asks why they should trust a record, these are the safeguards, each enforced in the code:
-
-- **A retrieval is complete, or nothing is written.** Every page of results is followed to the end; the count of
-  studies must equal the total the registry reported, with no study repeated and no page token looping. The
-  registry's JSON and its CSV for the same search must name the same studies. The registry's version and data
-  date are read before and after, and a refresh in between fails the retrieval. A failure leaves no partial
-  folder behind, and an existing folder is never overwritten.
-- **Failures are handled by kind, never guessed past.** Transient failures (a server error, a rate limit, a lost
-  connection) are retried with increasing waits, honouring the server's own wait when it gives one, up to a
-  fixed limit, after which the retrieval fails by name. A refused request is never retried and keeps the
-  server's own words. A redirect is never followed, and a web page or malformed body is never taken as data.
-  Requests are paced so as not to strain the registry.
-- **A search that would mislead is refused before it is sent.** An empty search, which would ask for the whole
-  registry, is refused, as is a free-text field holding nothing but trial numbers alongside a filter, because the
-  registry then silently ignores the filter. When the search asks for trials by number, the record accounts for
-  every number asked: found, answered under another number (the registry also matches the alias numbers a trial lists),
-  missing, repeated, or not a valid number. A trial that did not come back is named, never silently absent.
-- **A spreadsheet cell holds the value or says why it cannot.** Text is written as text, never as a formula, so a
-  value beginning with "=" cannot run or be altered by a spreadsheet program. A value a cell cannot hold exactly
-  (characters a workbook cannot store, a line break the program would change, text over a cell's limit, a number
-  a spreadsheet would round) is not cut, cleaned or rounded: the cell states the reason and where the value is in
-  `studies.json`.
-- **Every workbook is read back and certified before it is released.** After writing, TrialLedger reads each
-  workbook back and checks every cell against what it derived from the records; any difference fails the
-  retrieval.
-- **Every value carries a warrant.** Each row commits, by cryptographic digest, to the record it came from and
-  to the code that derived it, and the whole folder to its records, its spreadsheet and its provenance.
-  `trialledger verify` re-derives all of it and names anything that no longer matches.
-- **Records are checked against themselves, and nothing is corrected.** Contradictions within a record are
-  raised as queries for the person, never fixed. Seventeen checks run. Five are rules the registry itself
-  states, such as a completed study with an estimated completion date, or a multi-site study not recruiting
-  while one of its sites is. Twelve follow from the registry's definitions, such as more people affected by an
-  adverse event than were at risk, a withdrawn study that reports participants enrolled, or an actual start
-  after the actual primary completion. A check that cannot decide (a value missing, a date too imprecise)
-  says so, and is never reported as consistent.
+Usually a clinical development professional (a physician, a clinical scientist, a pharmacologist), not a
+programmer. Speak to them in clinical terms, never in TrialLedger's internal ones. They want the key context of
+comparable trials quickly, and a workbook they can read, filter, annotate and share with colleagues. Hand them
+the workbook; answer their questions from the record.
 
 ## How to run it
 
-TrialLedger runs in your code sandbox. It needs Python 3.12 or later.
-
-1. **Install it** from this repository: `pip install` the repository's address (or `uv tool install` it).
-2. **Check what your sandbox can do:** `trialledger doctor` prints, as JSON, whether this sandbox can reach
-   ClinicalTrials.gov and RxNav, and the next step. Some chat sandboxes block programs from reaching the
-   internet. A relay through which you fetch the data for TrialLedger is being built; until it lands, a
-   sandbox that cannot reach the registry cannot run TrialLedger, and the next step says so. Do not fetch
-   registry records yourself in its place.
-3. **Turn the person's question into a query.** Today, `trialledger resolve` takes the registry's own search
-   parameters, for example:
+1. **Install it** in your sandbox (Python 3.12 or later):
+   `pip install "git+https://github.com/rohanvinaik/TrialLedger"` (or `uv tool install` the same address).
+2. **Check what your sandbox can do:** `trialledger doctor` prints, as JSON, whether this sandbox reaches
+   ClinicalTrials.gov and RxNav (the National Library of Medicine's drug vocabulary), the mode a run will use,
+   and the next step. In **direct** mode TrialLedger fetches for itself. In **relay** mode (a chat sandbox that
+   blocks programs from the internet), you fetch the web addresses TrialLedger names, with your own fetch tool,
+   and TrialLedger verifies what you saved.
+3. **Turn the question into a request, and show it to the person.** The request names what to search for: a
+   drug, a drug class (from the FDA's Established Pharmacologic Classes, the MED-RT mechanism-of-action classes,
+   or the WHO's ATC classes), a mechanism, a condition or a disease class (a MeSH term), and the phases, statuses,
+   study types and start dates wanted. Pass it as flags or as a JSON file:
 
    ```bash
-   trialledger resolve query.cond="non-small cell lung cancer" query.intr="pembrolizumab" \
-       filter.overallStatus=COMPLETED --json reading.json --out design.xlsx
+   trialledger landscape --run egfr-nsclc --drug-class "EGFR tyrosine kinase inhibitors" --class-source ATC \
+       --condition-class "Carcinoma, Non-Small-Cell Lung" --phase PHASE3 --status COMPLETED
    ```
 
-   It writes the record as JSON (answer from this) and a spreadsheet (give this to the person). Check
-   `trialledger resolve --help` for the parameters. A single command that takes the person's terms directly (a
-   drug class, a mechanism, a disease family) and resolves them through the registry's and the National Library
-   of Medicine's vocabularies, showing exactly what it included, is being finished, along with the fetching
-   relay for blocked sandboxes; when it lands, this guide and `trialledger --help` describe it.
-4. **Show the person what was searched**, so they can see what was included and narrow it if needed.
-5. **Answer from the record, and hand over the spreadsheet.** Keep each value's status when you report it.
+   `trialledger landscape --help` gives every field and its accepted values.
+4. **Read the resolved search before anything is gathered.** TrialLedger resolves the request through named
+   sources and writes the result to `scope.json` in the run folder before it reads a single study: each drug
+   class expanded into its member drugs, with every subclass it includes named and each member attributed to its
+   subclass; each drug searched by every name RxNorm gives it, in both the registry's intervention name and its
+   other names; each disease class searched through the registry's MeSH terms and their descendants. Show the
+   person what was included. A broad class may bring in subclasses they do not expect (the FDA's "Kinase
+   Inhibitor" class includes HER2 and EGFR antibodies through its subclasses); the request can exclude a subclass,
+   or all of them. If the request cannot be resolved (a class the source does not hold, a lookup that failed, a
+   search too long for the registry), TrialLedger stops, names why, and says what to change; nothing is searched.
+5. **Run it to completion.** The command ends with an exit code and plain words saying what happened:
+   - **0**: complete. The run folder holds `landscape.json` and `landscape.xlsx`.
+   - **3**: waiting for you (relay mode). `next.json` lists each web address to fetch and the file to save it
+     as. Fetch each one exactly as named, save the body unmodified into the named file, and run the same command
+     again. Repeat until it ends with 0. Fetch nothing else, and never edit a saved body.
+   - **2**: refused or stopped, with the reason and what to change.
+   - **1**: failed (the registry could not be reached, or changed while it was being read); nothing was written
+     as the record. Run it again.
+   Re-running the same command is always safe; it resumes where it stopped.
+6. **Answer from `landscape.json`, and hand over `landscape.xlsx`.** The workbook is the person's: a Read me, a
+   Trial index (one row per trial), a Trial review (each trial's complete dossier, top to bottom), listings for
+   eligibility, outcomes and efficacy, biomarkers and safety, the across-trial findings, and an evidence
+   register.
+7. **Design a trial when asked:** `trialledger design --run <folder>` takes what the person wants to test and the
+   evidence the run gathered, and returns one question at a time, the decision that settles the most first, each
+   with a suggested answer and what accepting it settles. Put each question to the person in plain words; record
+   their answer, or accept every suggestion at once if they ask. The design is written as `design.json` and
+   `design.xlsx`, every element marked as deduced (with the premises it rests on), recommended (with the trials
+   and numbers behind it), or chosen by the person.
 
-When the person needs the registry's content itself rather than the rules' reading of it, or a copy that can be
-re-verified later, use `trialledger pull` with the same search parameters: it saves the registry's records with
-certified spreadsheets, and `trialledger verify` re-derives every value in a saved copy and names anything that
-no longer matches (see "Which output to rely on for what").
+When the person edits the workbook (correcting a reading, answering an open question), `trialledger edits --run
+<folder>` reads their edits back as their own assertions, never as registry facts, and re-checks what depends on
+them.
+
+## What you can trust, and why
+
+Every value in `landscape.json` is an envelope: the value, its **status**, its **source** (the registry field or
+the rule), the **rule** that read it if any, a **note**, and the study's registry **link**. The record's own
+`statuses`, `envelope` and `fields` sections define each status and field; read them. Four questions, each with
+its own answer:
+
+1. **Did the records arrive intact?** Yes, and this is checked, not assumed. A retrieval follows every page to
+   the end, its count must equal what the registry reported, no study may be repeated, the registry's JSON and
+   its own spreadsheet export must name the same studies, and the registry must not have changed while it was
+   read. If any of that fails, nothing is written. Every trial requested by number is accounted for: found, found
+   under another number (the registry also matches a trial's alias numbers), missing, repeated, or not a valid
+   number. A completed run is not proof that every requested trial was found: when the person asked for trials
+   by number, read the requested-ID accounting before telling them the set is complete.
+2. **Does the record faithfully reflect them?** Yes, for what the registry states (status **known**: a field of
+   the record, or a direct rule over one). Every value carries a fingerprint tying it to the record and the code
+   that derived it; the workbook is read back and checked cell by cell before it is released; a value a cell
+   cannot hold exactly says why and where it is, rather than being cut or rounded.
+3. **Does it read the clinical meaning correctly?** Only as far as each reading's evidence goes. Readings of
+   eligibility text (an age limit, a laboratory threshold, a performance status, a prior therapy, a condition)
+   and of a trial's setting are made by named rules, each naming the words it read, so you and the person can
+   check them; some are known to be imperfect. A reading is evidence to show with its source words, never a fact
+   to assert. Analysis across trials (common criteria, mechanism-linked exclusions, untried combinations, pairs of
+   trials differing in one choice) is evidence to weigh: **proposed** when it holds even under the least
+   favourable reading of silent records, **unresolved** when those records could reverse it.
+4. **Is it more accurate than a professional's manual transcription?** That is not claimed. TrialLedger is built
+   so that its completeness, reproducibility and traceability can be checked, which a manual spreadsheet's
+   cannot; whether its field-level accuracy exceeds a trained professional's is an empirical question.
+
+The statuses you will meet: **known**; **interpolated** (follows from a default rule, not from the record alone);
+**proposed** (a pattern or rule suggested by evidence, not established); **not stated** (the record says nothing;
+never "none"); **not posted** (the trial posted no results; many trials never do); **unresolved** (TrialLedger
+could not settle it, and says why).
+
+`trialledger pull` is the certified transcription: it saves the registry's records exactly as sent, the
+registry's own spreadsheet byte for byte, and two certified workbooks, and `trialledger verify` later re-derives
+every value and names anything that no longer matches. Use it when the person needs the registry's content itself,
+a value they will cite or copy into a protocol. `verify` proves that each value derives from the saved record by
+the code that wrote it; it does not prove that a rule reads a criterion correctly.
+
+## How to answer
+
+- Answer from the record. Never answer about a trial from your own knowledge or from reading its registry page
+  yourself, and say when the record does not contain the answer.
+- Keep each value's status when you report it, and for anything read, interpolated or proposed, show what it
+  rests on (the criterion's words, the rule, the trials and counts).
+- "Not stated" is not "none"; "not posted" is not "no effect". A registered outcome is what a trial planned to
+  measure, never evidence that it worked. A trial without posted results may still have a results publication
+  the sponsor linked: say so.
+- The line of therapy is the setting the trial registered, not today's standard of care.
+- Point the person to the workbook for detail: the Trial review sheet holds each trial's dossier, the listings
+  compare across trials.
 
 ## How to find out more
 
-When the person asks something this guide does not settle, find the answer in the project rather than guessing:
-
+- `trialledger <command> --help`: what each command does, its options, and what each exit code means.
+- `landscape.json`'s `statuses`, `envelope` and `fields` sections: what every status and field means.
 - `README.md`: the project explained for clinical readers.
-- `trialledger <command> --help`: what each command does and what each exit code means.
-- Each value's warrant and source field in the record: how that value was obtained.
-- `openspec/changes/`: the plans and status of each part, in plain language; `add-agent-operation` (running
-  TrialLedger from an assistant) and `add-design-synthesis` (layer two's design) are the most relevant.
-- `openspec/changes/add-bank-coverage/audit-existing-banks.md`: where the criterion-reading rules are known to
-  fall short, rule by rule.
+- `trialledger mcp` serves `doctor`, `landscape`, the record and `design` over the Model Context Protocol.
+- `openspec/changes/`: the design of each part, in plain language.
 
 If you are changing TrialLedger's own code rather than using it, read `DEVELOPING.md`.
