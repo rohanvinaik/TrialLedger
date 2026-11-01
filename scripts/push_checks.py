@@ -13,10 +13,13 @@ using Detective and Wesker at his local checkouts; so the gate runs here, before
 - scans every line the pushed commits add, file by file, for secrets (detect-secrets). Detective's typed
   16-hex function digests are recognized only in tests/detective/certificates.json, matched exactly against
   that commit's fields. A test file Detective generated (tests/detective/test_*_synth.py) pins pure outputs as
-  goldens, a 16-hex digest among them (an atom's content digest): such a value is recognized only on a line
-  that is exactly `assert result == "<16 lowercase hex>"` of that file, matched exactly (the founder,
-  2026-11-01). Any other finding refuses the push. A line carrying `# pragma: allowlist secret`,
-  detect-secrets' own mark for a finding reviewed as no secret, is not a finding;
+  goldens, digests among them (an atom's 16-hex content digest; a record's 64-hex study digests and roots):
+  such a value is recognized only as a string constant that is wholly that digest inside a witness's inputs
+  (`result = <call>`) or its golden (`assert result == ...`) in that file, matched exactly (the founder,
+  2026-11-01, for the 16-hex line form; widened the same day to whole witnesses, since a record's tests
+  carry its SHA-256 digests inside them). Any other finding refuses the push. A line carrying
+  `# pragma: allowlist secret`, detect-secrets' own mark for a finding reviewed as no secret, is not a
+  finding;
 - audits the lockfile with all extras and groups (pip-audit) and names its result: no_known_flaws;
   flaws_found, each flaw printed with its package and the versions that fix it; or audit_did_not_run, with
   pip-audit's messages. The audit refuses nothing: its findings are leads, not verdicts.
@@ -31,6 +34,7 @@ cannot run.
 
 from __future__ import annotations
 
+import ast
 import hashlib
 import json
 import os
@@ -47,6 +51,7 @@ CERTIFICATES = "tests/detective/certificates.json"
 HEX = "Hex High Entropy String"
 GENERATED_TESTS = ("tests/detective/test_", "_synth.py")  # a Detective-generated test file: prefix, suffix
 GOLDEN = re.compile(r'^\s*assert result == "([0-9a-f]{16})"\s*$')
+PINNED = re.compile(r"[0-9a-f]{16}|[0-9a-f]{64}")  # a digest Detective pins: a function's, or a SHA-256
 # Pinned, so every push is checked with the same versions.
 DETECT_SECRETS = "detect-secrets@1.5.0"  # pragma: allowlist secret
 PIP_AUDIT = "pip-audit@2.10.1"
@@ -112,14 +117,58 @@ def finding_verdict(
     return "unexplained"
 
 
+def _witness_parts(node: ast.AST) -> list[ast.AST]:
+    """The parts of a Detective test a digest may sit in: the call of `result = <call>` (the witness's inputs)
+    and the expected side of `assert result == <expected>` (its golden); nothing else."""
+    if isinstance(node, ast.Assign) and [type(t) for t in node.targets] == [ast.Name]:
+        target = node.targets[0]
+        if isinstance(target, ast.Name) and target.id == "result" and isinstance(node.value, ast.Call):
+            return [node.value]
+    test = node.test if isinstance(node, ast.Assert) else None
+    if (
+        isinstance(test, ast.Compare)
+        and len(test.ops) == 1
+        and isinstance(test.ops[0], ast.Eq)
+        and isinstance(test.left, ast.Name)
+        and test.left.id == "result"
+    ):
+        return [test.comparators[0]]
+    return []
+
+
+def pinned_digests(source: str) -> set[str] | None:
+    """The digests a Detective test file pins: every string constant that is wholly a 16- or 64-lowercase-hex
+    value (Detective's function and content digests, SHA-256 study digests and roots) inside a witness's
+    inputs (`result = <call>`) or its golden (`assert result == <expected>`); None when the text does not
+    parse as Python (the added lines of a partial edit)."""
+    try:
+        tree = ast.parse(source)
+    except SyntaxError:
+        return None
+    values: set[str] = set()
+    for node in ast.walk(tree):
+        for part in _witness_parts(node):
+            for inner in ast.walk(part):
+                if (
+                    isinstance(inner, ast.Constant)
+                    and isinstance(inner.value, str)
+                    and PINNED.fullmatch(inner.value)
+                ):
+                    values.add(inner.value)
+    return values
+
+
 def golden_hashes(path: str, lines: list[str]) -> frozenset[str]:
-    """detect-secrets' SHA-1 of each golden digest the added lines of one file pin: the 16-lowercase-hex value
-    of a line that is exactly `assert result == "<hex>"`, in a Detective-generated test file only; nothing
-    elsewhere, nothing from any other line."""
+    """detect-secrets' SHA-1 of each digest the added lines of one file pin, in a Detective-generated test
+    file only: when the lines parse, the digests `pinned_digests` finds in its witnesses' inputs and goldens
+    (2026-11-01, for tests of a record whose study digests and roots are 64-hex); otherwise the
+    16-lowercase-hex value of a line that is exactly `assert result == "<hex>"`. Nothing elsewhere."""
     if not (path.startswith(GENERATED_TESTS[0]) and path.endswith(GENERATED_TESTS[1])):
         return frozenset()
-    found = (GOLDEN.match(line) for line in lines)
-    values = {match.group(1) for match in found if match}
+    values = pinned_digests("\n".join(lines))
+    if values is None:
+        found = (GOLDEN.match(line) for line in lines)
+        values = {match.group(1) for match in found if match}
     return frozenset(hashlib.sha1(value.encode(), usedforsecurity=False).hexdigest() for value in values)
 
 

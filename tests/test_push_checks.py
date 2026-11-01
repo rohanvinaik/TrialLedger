@@ -119,3 +119,40 @@ def test_a_generated_golden_digest_is_recognized_only_where_detective_pins_it():
         "tests/test_evaluation.py", push_checks.HEX, hashed, frozenset(), goldens
     ) == ("unexplained")
     assert push_checks.golden_hashes(generated, [f'assert result == "{GOLDEN_VALUE[:-1]}"']) == frozenset()
+
+
+# A study digest of Detective's landscape_manifest golden (SHA-256 of a test record): reviewed as no secret.
+STUDY_DIGEST = "183f6dc518ee38946bae08096097d1c5a9e50ef95b7a5c039d0ef05d1723dab6"  # pragma: allowlist secret
+
+
+def test_a_whole_expected_object_pins_its_digests_and_nothing_else():
+    """Positive: in a Detective-generated file that parses, every 16- or 64-hex string constant inside a
+    witness's inputs (`result = f(...)`) or its golden (`assert result == ...`) is pinned, however deeply
+    nested. Negative: the same kind of value assigned to another name, compared with another name, cut
+    short, in capitals, or in a hand-written file, is not; a file that does not parse falls back to the
+    one-line form."""
+    import hashlib
+
+    generated = "tests/detective/test_TrialLedger_landscape_landscape_manifest_3f52b6b51f_synth.py"
+    file_lines = [
+        "def test_value():",
+        f'    result = f(view={{"digest": "{GOLDEN_VALUE}"}})',
+        f'    unrelated = f(view={{"digest": "{OTHER_VALUE}"}})',
+        "    assert result == {",
+        f'        "study_digests": ["{STUDY_DIGEST}"],',
+        f'        "short": "{STUDY_DIGEST[:-1]}",',
+        f'        "upper": "{STUDY_DIGEST.upper()}",',
+        "    }",
+        f'TOKEN = "{OTHER_VALUE}"',
+        f'assert other == "{GOLDEN_VALUE}"',
+    ]
+
+    def hashed(value):
+        return hashlib.sha1(value.encode(), usedforsecurity=False).hexdigest()
+
+    assert push_checks.pinned_digests("\n".join(file_lines)) == {STUDY_DIGEST, GOLDEN_VALUE}
+    assert push_checks.golden_hashes(generated, file_lines) == frozenset(
+        {hashed(STUDY_DIGEST), hashed(GOLDEN_VALUE)}
+    )
+    assert push_checks.golden_hashes("tests/test_landscape.py", file_lines) == frozenset()
+    assert push_checks.pinned_digests("    assert result == {") is None
