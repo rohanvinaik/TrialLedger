@@ -179,3 +179,7 @@ must trust it. **ModelAtlas** contributed the recommendation engine and its mann
 remains open, and suggest the decision that settles the most.
 
 The full design is in [`docs/THEORY_OF_THE_CASE.md`](docs/THEORY_OF_THE_CASE.md).
+
+## Licence
+
+MIT; see [`LICENSE`](LICENSE).

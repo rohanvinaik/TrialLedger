@@ -8,6 +8,8 @@ dynamic = ["version"]
 description = "A tool AI assistants use for clinical trials: every ClinicalTrials.gov study matching a question gathered into a verified record and a professional workbook, and a trial designed from that evidence. No language model abstracts a trial or supplies a fact."
 readme = "README.md"
 requires-python = ">=3.12"
+license = "MIT"
+license-files = ["LICENSE"]
 authors = [{ name = "Rohan Vinaik" }]
 dependencies = [
     "httpx>=0.28",
