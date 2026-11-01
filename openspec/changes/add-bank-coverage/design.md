@@ -84,7 +84,29 @@ the code by Claude; **As built here** marks the reconciliation.
     through `trialledger audit`. **As built here**: parallel packages run as a workflow in temporary worktrees
     (the founder's exception of 2026-11-01), merged serially to main, one commit each.
 
-## Founder decisions (Codex's recommended choice in each; none taken here)
+## Founder decisions (decided 2026-11-01: the founder approved Claude's recommendations)
+
+- B1. Supported universe of v1: every interventional study, all phases including not applicable, all primary
+  purposes and populations, start 2010 to the present; observational studies and expanded access explicitly
+  unsupported, each a declared later type.
+- B2. "Typed" is reported at three levels apart: mention, complete scoped representation, evaluated eligibility.
+- B3. Indication disambiguates and specializes; it never suppresses an explicit mention.
+- B4. Exposure is always recorded; a population that informed a rule never confirms it.
+- B5. Open authorities first: LOINC, UCUM, RxNorm and RxClass, MeSH, NCI Thesaurus, HGNC and HGVS, ICD-10-CM and
+  ICD-11. SNOMED CT needs a UMLS licence and is not required for v1. DSM and the AJCC tables are proprietary:
+  psychiatric diagnoses are coded through ICD with DSM names kept only as words; cancer stage groups are
+  recognized as words citing the AJCC edition, its tables never reproduced.
+- B6. Audit authority: Claude labels blind and Codex second-reads, both required to quote the source text, so
+  adjudication is source-grounded; a human expert's spot-check when one is available; model agreement without a
+  quote is reported as model-review agreement.
+- B7. Release thresholds, declared before measuring: lower-bound precision at least 95% on consequential classes
+  (polarity, modality, subject, qualifier) and at least 90% on the rest; recall reported, v1 target at least 70%
+  for the general packages; abstention is always preferred to a wrong reading.
+- B8. The reserved 30% confirmation pool is split now into three sequential 10% batches (sha256(NCT ID) mod 10
+  equal to 0, 1, 2), one per release; a batch is never reused for a revised version.
+- B9. The local model stays a reviewer; recognition and compilation stay deterministic.
+
+## Codex's recommended settings (kept for the record)
 
 - The supported universe and type matrix of this release (interventional only, or more).
 - What "typed" means: mention, complete scoped representation and evaluated eligibility reported apart.
@@ -95,6 +117,18 @@ the code by Claude; **As built here** marks the reconciliation.
 - Release thresholds per bank and predicate, including consequential error classes, declared in advance.
 - Confirmation reuse: inspected batches retired for revised rules; future batch allocation declared now.
 - The local model stays a reviewer; bank recognition and assertion compilation stay deterministic.
+
+11. **Beyond eligibility: outcomes, arms, interventions and safety for every trial type** (Claude's gap,
+    approved 2026-11-01). The founder's original ten-point list covers endpoints and time points, safety signals,
+    comparators and exploratory measures; today's endpoint, intervention and safety typing is oncology-shaped.
+    The same package treatment applies: endpoint classes for every domain (measurement instruments, events,
+    composite endpoints, patient-reported outcomes), outcome time frames (window, scheduled point, landmark,
+    event-driven), arm structure (experimental, active comparator, placebo, sham, standard of care, add-on),
+    dosing and regimen, and safety grading (CTCAE for adverse events only, MedDRA terms where posted), each with
+    its registry fragment, sources and evaluation.
+12. **Results comparability across domains.** "What we need to beat" compares posted results only within the same
+    endpoint class, measure type, unit and population; per-domain measure types (change from baseline, responder
+    rate, time to event, rate ratio) and unit handling (UCUM) declared; nothing pooled or converted silently.
 
 ## Risks / Trade-offs
 

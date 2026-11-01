@@ -2,7 +2,7 @@
 
 ## 0. Founder decisions
 
-- [ ] 0.1 The eight decisions listed in design.md, each recorded with the founder's words (paraphrased)
+- [x] 0.1 The eight decisions, recorded in design.md (2026-11-01)
 
 ## 1. Object model and registry
 

@@ -2,7 +2,7 @@
 
 ## 0. Founder decisions
 
-- [ ] 0.1 The nine decisions listed in design.md
+- [x] 0.1 The nine decisions, recorded in design.md (2026-11-01)
 
 ## 1. Contracts and evaluation definitions (frozen before any package)
 
@@ -32,6 +32,13 @@
 ## 5. Domain extensions (parallel, against frozen interfaces, order from 4.1)
 
 - [ ] 5.1 Oncology (existing NSCLC rules migrated) and the other domain packages of design.md, one per worker
+
+## 5b. Outcomes, arms, interventions and safety (Decision 11)
+
+- [ ] 5b.1 Endpoint classes and outcome time frames for every domain
+- [ ] 5b.2 Arm structure, comparators, dosing and regimen
+- [ ] 5b.3 Safety grading and adverse-event terms
+- [ ] 5b.4 Results comparability per domain (Decision 12)
 
 ## 6. Integration
 

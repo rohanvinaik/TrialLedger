@@ -106,7 +106,22 @@ Claude with the code as built. Reconciliation notes are marked **As built here**
     another person to the participant, erase an antecedent, re-anchor to enrollment, promote interpolated) must
     be killed; verification through the real consumer entry points.
 
-## Founder decisions (from the draft; none is taken here)
+## Founder decisions (decided 2026-11-01: the founder approved Claude's recommendations, "Good. Let's encode this")
+
+- A1. Separate requirement, exclusion, permission and allowed-set projections; occupancy means the trial's
+  required constraints admit the cell, with "mentions it" reported apart.
+- A2. No question kind's model answers are adopted automatically until that kind passes its own pilot (planted
+  errors accepted at most as rarely as the auditor's 1 of 164); a kind that passes is adopted as interpolated;
+  the rest are queued.
+- A3. A grammar rule confers known only when its construction is unambiguous, two-sign tested and confirmed on
+  data it was not written on; ontology relations only with a cited source.
+- A4. Unresolved results are shown as blocked claims with their cause, never as absent.
+- A5. Named cohorts are exhaustive only on explicit evidence.
+- A6. Conflicting defaults: neither fires, the conflict reported.
+- A7. Unspecified temporal boundaries preserved; any assumed convention interpolated.
+- A8. Definitions: explicit local references first; wider binding only by separately specified rules.
+
+## The draft's proposed settings (kept for the record)
 
 - What the profile and occupancy mean: separate requirement, exclusion, permission and allowed-set projections,
   and an explicit definition of occupancy.
