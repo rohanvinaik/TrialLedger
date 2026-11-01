@@ -292,3 +292,37 @@ def test_a_confirmation_draw_needs_clean_code_and_retires_its_batch_in_the_ledge
     assert main(with_ledger, git=_clean_git()) == 2
     assert "confirmation.ledger_unreadable" in capsys.readouterr().err
     assert not out.exists()
+
+
+def test_a_sample_frame_runs_to_the_present_and_records_it(tmp_path, monkeypatch, capsys):
+    """add-bank-coverage B1 (2010 to the present). Positive: `sample` ends start dates at today's UTC date by
+    default, or at --present, and sample.json records it with the base filter. Negative: a present that is not
+    a calendar date, or lies before 2010-01-01, is refused (2) before any registry query, and nothing is
+    written."""
+    from datetime import UTC, datetime
+
+    from TrialLedger import ingest
+
+    asked = []
+
+    def query_ids(query, **kwargs):
+        asked.append(query["filter.advanced"])
+        return [], "2.0.5", "T"
+
+    monkeypatch.setattr(ingest, "query_ids", query_ids)
+    out = tmp_path / "sample.json"
+    assert main(["sample", "--seed", "s", "--out", str(out), "--present", "2026-10-15"]) == 0
+    sample = json.loads(out.read_text(encoding="utf-8"))
+    assert sample["present"] == "2026-10-15" and sample["base"].endswith("RANGE[2010-01-01,2026-10-15]")
+    assert asked and all("RANGE[2010-01-01,2026-10-15]" in q for q in asked)
+    today = tmp_path / "today.json"
+    assert main(["sample", "--seed", "s", "--out", str(today)]) == 0
+    assert json.loads(today.read_text(encoding="utf-8"))["present"] == datetime.now(UTC).date().isoformat()
+
+    asked.clear()
+    capsys.readouterr()
+    refused = tmp_path / "refused.json"
+    for bad in ("2026-13-01", "26-11-01", "2026-11-1", "2009-12-31", "now"):
+        assert main(["sample", "--seed", "s", "--out", str(refused), "--present", bad]) == 2
+        assert f"refused (sample.present): {bad}" in capsys.readouterr().err
+    assert not asked and not refused.exists()

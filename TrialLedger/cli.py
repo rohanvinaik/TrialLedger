@@ -10,6 +10,7 @@ import os
 import sys
 import time
 from collections.abc import Callable
+from datetime import UTC, date, datetime
 from pathlib import Path
 from typing import Any
 
@@ -165,7 +166,8 @@ def main(
         help="draw a live, stratified sample of interventional trials for an audit",
         description=(
             "Fetch, live and from one registry snapshot, the NCT IDs of interventional trials started "
-            "2010-2025 in each top-level condition category (the registry's derived condition MeSH, a label "
+            "from 2010-01-01 to the present (today's UTC date, or --present; recorded in the file) in each "
+            "top-level condition category (the registry's derived condition MeSH, a label "
             "for spread only) and among trials with no condition MeSH; draw a seeded random sample within "
             "each stratum from the discovery pool (a hash of the NCT ID reserves 30%% for confirmation, "
             "never drawn here); write the strata, pool sizes, draws, memberships and inclusion probabilities"
@@ -186,6 +188,10 @@ def main(
     sample_parser.add_argument("--per-stratum", type=int, default=6)
     sample_parser.add_argument("--seed", required=True)
     sample_parser.add_argument("--out", type=Path, required=True)
+    sample_parser.add_argument(
+        "--present",
+        help="the last start date of the frame, YYYY-MM-DD (default: today's UTC date)",
+    )
     sample_parser.add_argument(
         "--confirmation-batch",
         type=int,
@@ -322,8 +328,26 @@ def _inspected_list(path: Path) -> dict[str, Any]:
 
 def _sample(args, *, http, sleep, git) -> int:
     from TrialLedger.ingest import query_ids
-    from TrialLedger.sample import SnapshotChanged, batch_request, code_state, draw_sample, ledger_batches
+    from TrialLedger.sample import (
+        BASE_FROM,
+        SnapshotChanged,
+        batch_request,
+        code_state,
+        draw_sample,
+        ledger_batches,
+    )
 
+    present = args.present or datetime.now(UTC).date().isoformat()
+    try:
+        valid = date.fromisoformat(present).isoformat() == present and present >= BASE_FROM
+    except ValueError:
+        valid = False
+    if not valid:
+        print(
+            f"trialledger: refused (sample.present): {present} is not a date from {BASE_FROM}",
+            file=sys.stderr,
+        )
+        return 2
     batch = args.confirmation_batch
     commit = code_commit()
     inspected: list[dict[str, Any]] = []
@@ -362,6 +386,7 @@ def _sample(args, *, http, sleep, git) -> int:
             progress=lambda m: print(m, file=sys.stderr),
             batch=batch,
             inspected=frozenset(nct for item in inspected for nct in item["ncts"]),
+            present=present,
         )
     except (PullError, SnapshotChanged) as error:
         print(f"trialledger: nothing written — {error}", file=sys.stderr)

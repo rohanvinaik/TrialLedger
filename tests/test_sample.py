@@ -28,11 +28,14 @@ from pathlib import Path
 import pytest
 
 from TrialLedger.sample import (
+    BASE_FROM,
     CATEGORIES,
+    LEGACY_PRESENT,
     NO_MESH,
     NONE,
     VERIFIED_FORMS,
     SnapshotChanged,
+    base_query,
     batch_request,
     cell_query,
     code_state,
@@ -53,6 +56,7 @@ from TrialLedger.sample import (
 )
 
 IDS = [f"NCT{n:08d}" for n in range(1, 201)]
+P = "2026-11-01"  # the present a test sample is drawn on
 
 
 def test_the_confirmation_pool_is_fixed_and_never_drawn():
@@ -84,10 +88,42 @@ def test_union_inclusion_probability():
 
 
 def test_stratum_queries():
-    assert stratum_query(NO_MESH).endswith("AREA[ConditionMeshTerm]MISSING")
-    query = stratum_query("Eye Diseases")
+    assert stratum_query(NO_MESH, "2026-11-01").endswith("AREA[ConditionMeshTerm]MISSING")
+    query = stratum_query("Eye Diseases", "2026-11-01")
     assert 'AREA[ConditionMeshTerm]"Eye Diseases" OR AREA[ConditionAncestorTerm]"Eye Diseases"' in query
-    assert query.startswith("AREA[StudyType]INTERVENTIONAL AND AREA[StartDate]RANGE[2010-01-01,2025-12-31]")
+    assert query.startswith("AREA[StudyType]INTERVENTIONAL AND AREA[StartDate]RANGE[2010-01-01,2026-11-01]")
+
+
+def test_the_frame_runs_to_the_present_the_sample_records():
+    """Positive (B1, 2010 to the present): every stratum's query ends start dates at the present passed in,
+    and the sample records that present and its base filter. Negative: no query keeps the old end, 2025-12-31,
+    which only a sample drawn before the present was recorded is read with (LEGACY_PRESENT)."""
+    asked = []
+
+    def fake(query, progress):
+        asked.append(query["filter.advanced"])
+        return [], "2.0.5", "T"
+
+    sample = draw_sample(2, "s", fake, present="2026-11-01")
+    assert sample["present"] == "2026-11-01" and sample["base"] == base_query("2026-11-01")
+    assert base_query("2026-11-01").endswith("AREA[StartDate]RANGE[2010-01-01,2026-11-01]")
+    assert len(asked) == len(CATEGORIES) + 1
+    assert all(q.startswith(base_query("2026-11-01") + " AND ") for q in asked)
+    assert not any("2025-12-31" in q for q in asked)
+    assert LEGACY_PRESENT == "2025-12-31" and BASE_FROM == "2010-01-01"
+
+
+def test_supplements_query_the_frame_of_their_sample():
+    rows = [{"axis": "phase", "value": "PHASE4", "status": "not_checked"}]
+    asked = []
+
+    def fake(query, progress):
+        asked.append(query["filter.advanced"])
+        return [], "2.0.5", "T"
+
+    draw_supplements(rows, "s", 1, set(), fake, lambda m: None, LEGACY_PRESENT)
+    draw_supplements(rows, "s", 1, set(), fake, lambda m: None, "2026-11-01")
+    assert asked[0].startswith(base_query(LEGACY_PRESENT)) and asked[1].startswith(base_query("2026-11-01"))
 
 
 def test_the_whole_sample_keeps_memberships_and_its_snapshot():
@@ -98,7 +134,7 @@ def test_the_whole_sample_keeps_memberships_and_its_snapshot():
             return shared, "2.0.5", "T"
         return [], "2.0.5", "T"
 
-    sample = draw_sample(2, "s", fake)
+    sample = draw_sample(2, "s", fake, present=P)
     assert sample["data_timestamp"] == "T" and len(sample["strata"]) == len(CATEGORIES) + 1
     trials = {t["nct"]: t for t in sample["trials"]}
     assert set(trials) <= set(shared) and 2 <= len(trials) <= 3
@@ -114,11 +150,11 @@ def test_a_sample_across_snapshots_fails():
         return [], "2.0.5", next(stamps)
 
     with pytest.raises(SnapshotChanged, match="changed while sampling"):
-        draw_sample(2, "s", fake)
+        draw_sample(2, "s", fake, present=P)
 
 
 def test_the_sample_declares_its_balance_check_before_any_draw():
-    sample = draw_sample(2, "s", lambda query, progress: ([], "2.0.5", "T"))
+    sample = draw_sample(2, "s", lambda query, progress: ([], "2.0.5", "T"), present=P)
     declared = sample["balance"]
     assert declared["cells"] == declared_cells() and declared["supplement_per_cell"] == 1
     assert declared["axes"] == {
@@ -129,18 +165,18 @@ def test_the_sample_declares_its_balance_check_before_any_draw():
 
 
 def test_a_cell_query_is_exact_and_within_the_frame():
-    query = cell_query("phase", "PHASE2")
+    query = cell_query("phase", "PHASE2", P)
     assert query.startswith(
-        "AREA[StudyType]INTERVENTIONAL AND AREA[StartDate]RANGE[2010-01-01,2025-12-31] AND ("
+        "AREA[StudyType]INTERVENTIONAL AND AREA[StartDate]RANGE[2010-01-01,2026-11-01] AND ("
     )
     assert "AREA[ConditionMeshTerm]MISSING" in query and 'AREA[ConditionAncestorTerm]"Eye Diseases"' in query
     assert "AREA[Phase]PHASE2" in query and "NOT AREA[Phase]PHASE1" in query
     assert "NOT AREA[Phase]PHASE2" not in query
-    both = cell_query("phase", "PHASE1|PHASE2")
+    both = cell_query("phase", "PHASE1|PHASE2", P)
     assert "AREA[Phase]PHASE1 AND AREA[Phase]PHASE2 AND NOT AREA[Phase]NA" in both
     assert "NOT AREA[Phase]PHASE1" not in both and "NOT AREA[Phase]PHASE3" in both
-    assert cell_query("primary_purpose", "SCREENING").endswith("AREA[DesignPrimaryPurpose]SCREENING")
-    assert cell_query("intervention_type", "GENETIC").endswith("AREA[InterventionType]GENETIC")
+    assert cell_query("primary_purpose", "SCREENING", P).endswith("AREA[DesignPrimaryPurpose]SCREENING")
+    assert cell_query("intervention_type", "GENETIC", P).endswith("AREA[InterventionType]GENETIC")
 
 
 def test_supplements_fill_only_empty_registry_cells_from_one_snapshot():
@@ -159,15 +195,15 @@ def test_supplements_fill_only_empty_registry_cells_from_one_snapshot():
             return [*drawable[:3], *[n for n in IDS if reserved(n)][:2]], "2.0.5", "T"
         return [], "2.0.5", "T"
 
-    registry, supplements, snapshot = draw_supplements(rows, "s", 1, {drawable[0]}, fake, lambda m: None)
+    registry, supplements, snapshot = draw_supplements(rows, "s", 1, {drawable[0]}, fake, lambda m: None, P)
     assert len(asked) == 2 and registry == {"phase=PHASE4": 5, "primary_purpose=SCREENING": 0}
     assert snapshot == {"api_version": "2.0.5", "data_timestamp": "T"}
     [item] = supplements
     assert item["nct"] in drawable[1:3] and item["label"] == "supplement phase=PHASE4"
     assert item["pool"] == 2 and item["inclusion_probability"] == pytest.approx(0.5)
-    again = draw_supplements(rows, "s", 1, {drawable[0]}, fake, lambda m: None)[1]
+    again = draw_supplements(rows, "s", 1, {drawable[0]}, fake, lambda m: None, P)[1]
     assert again == supplements
-    nothing = draw_supplements(rows[:1], "s", 1, set(), fake, lambda m: None)
+    nothing = draw_supplements(rows[:1], "s", 1, set(), fake, lambda m: None, P)
     assert nothing == ({}, [], {"api_version": "", "data_timestamp": ""})
 
 
@@ -179,7 +215,7 @@ def test_supplements_across_snapshots_fail():
         return [], "2.0.5", next(stamps)
 
     with pytest.raises(SnapshotChanged, match="changed while supplementing"):
-        draw_supplements(rows, "s", 1, set(), fake, lambda m: None)
+        draw_supplements(rows, "s", 1, set(), fake, lambda m: None, P)
 
 
 def test_an_empty_stratum_draws_nothing_and_says_its_pool_is_empty():
@@ -205,7 +241,7 @@ def test_a_trial_supplementing_two_cells_carries_its_union_probability():
             return drawable[:2], "2.0.5", "T"
         return drawable[5:9], "2.0.5", "T"
 
-    _registry, supplements, _snapshot = draw_supplements(rows, "s", 1, set(), fake, lambda m: None)
+    _registry, supplements, _snapshot = draw_supplements(rows, "s", 1, set(), fake, lambda m: None, P)
     assert len(supplements) == 3
     for item in supplements[:2]:
         assert item["inclusion_probability"] == pytest.approx(0.5)
@@ -231,7 +267,7 @@ def test_the_query_forms_of_a_cell():
     assert query_forms("primary_purpose", "SCREENING") == ["AREA[DesignPrimaryPurpose]"]
     assert query_forms("intervention_type", "DRUG") == ["AREA[InterventionType]"]
     for axis in ("phase", "primary_purpose", "intervention_type"):
-        assert all(form in cell_query(axis, "PHASE2") for form in query_forms(axis, "PHASE2"))
+        assert all(form in cell_query(axis, "PHASE2", P) for form in query_forms(axis, "PHASE2"))
 
 
 def test_every_verified_form_was_tried_live_on_its_date():
@@ -359,14 +395,19 @@ def test_a_confirmation_sample_never_draws_an_inspected_trial_and_counts_the_exc
     the excluded trials once across strata. Negative: with nothing inspected, the B8 draw is unchanged."""
     batch2 = sorted(nct for nct in IDS if pool(nct) == "confirmation_2")
     inspected = frozenset(batch2[2:])
-    sample = draw_sample(4, "s", lambda query, progress: (IDS, "2.0.5", "T"), batch=2, inspected=inspected)
+    sample = draw_sample(
+        4, "s", lambda query, progress: (IDS, "2.0.5", "T"), batch=2, inspected=inspected, present=P
+    )
     assert {t["nct"] for t in sample["trials"]} == set(batch2[:2])
     assert all(s["pool"] == 2 and s["inspected_excluded"] == 20 for s in sample["strata"])
     assert sample["inspected_excluded"] == 20
-    plain = draw_sample(4, "s", lambda query, progress: (IDS, "2.0.5", "T"), batch=2)
+    plain = draw_sample(4, "s", lambda query, progress: (IDS, "2.0.5", "T"), batch=2, present=P)
     assert plain["inspected_excluded"] == 0 and all(s["pool"] == 22 for s in plain["strata"])
     assert plain["strata"][0]["drawn"] == draw_batch(IDS, 4, "s", CATEGORIES[0], 2)[0]
-    assert draw_sample(4, "s", lambda query, progress: (IDS, "2.0.5", "T"))["inspected_excluded"] is None
+    assert (
+        draw_sample(4, "s", lambda query, progress: (IDS, "2.0.5", "T"), present=P)["inspected_excluded"]
+        is None
+    )
 
 
 def _fake_git(answers):
@@ -403,13 +444,13 @@ def test_the_code_state_names_the_commit_the_changes_and_a_digest_of_the_source(
 
 
 def test_a_confirmation_sample_records_its_batch_and_declares_no_supplement():
-    sample = draw_sample(4, "s", lambda query, progress: (IDS, "2.0.5", "T"), batch=2)
+    sample = draw_sample(4, "s", lambda query, progress: (IDS, "2.0.5", "T"), batch=2, present=P)
     assert sample["drawn_from"] == "confirmation_2" and sample["confirmation_batch"] == 2
     assert sample["confirmation_batches"]["confirmation_1"] == "sha256(NCT ID) mod 10 == 1"
     assert sample["balance"]["supplement_per_cell"] == 0
     assert sample["trials"] and all(pool(t["nct"]) == "confirmation_2" for t in sample["trials"])
     assert all(s["pool"] == 22 for s in sample["strata"])
-    discovery = draw_sample(4, "s", lambda query, progress: (IDS, "2.0.5", "T"))
+    discovery = draw_sample(4, "s", lambda query, progress: (IDS, "2.0.5", "T"), present=P)
     assert discovery["drawn_from"] == "discovery" and discovery["confirmation_batch"] is None
     assert discovery["balance"]["supplement_per_cell"] == 1
     assert all(pool(t["nct"]) == "discovery" for t in discovery["trials"])

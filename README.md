@@ -323,8 +323,9 @@ cached, and marks a drug whose classes were never looked up as "not looked up", 
 hundred trials).
 
 **Auditing a reading.** `trialledger sample --seed S --out sample.json` draws, live, a stratified random
-sample of interventional trials across the registry's condition categories (a hashed 30% of trials is reserved
-for confirmation and never drawn). `trialledger audit sample.json --out DIR --model qwen3:8b --budget N` then
+sample of interventional trials started from 2010 to the day of the draw (or to `--present YYYY-MM-DD`; the
+date is recorded, and the audit's supplements use it too), across the registry's condition categories (a hashed
+30% of trials is reserved for confirmation and never drawn). `trialledger audit sample.json --out DIR --model qwen3:8b --budget N` then
 takes the trials one at a time: it reads each live (the record kept), resolves it, writes the questions its
 reading raises, and asks a local [Ollama](https://ollama.com) model each question in turn. Each question asks
 one thing and shows only the text it is about: a typed claim with its criterion and headings; a criterion no

@@ -20,8 +20,8 @@
   spans or nondeterminism (Decision 2's last three, to land with the shared parsers of 3.1, which define
   units and spans); per-bank recall needs gold concepts mapped to their owners through `Registry.owners`,
   which no function does yet; `universe_status` takes the present as a full YYYY-MM-DD date; authority
-  editions are unpinned (each pinned from its source by the package that first uses it, 3.x; AJCC's by 5.1
-  unless the founder rules sooner: `bank:setting` and two approved relations name the 8th edition in their
+  editions are unpinned (each pinned from its source by the package that first uses it, 3.x; AJCC's by 5.1,
+  the founder's decision of 2026-11-01 to wait: `bank:setting` and two approved relations name the 8th edition in their
   notes, but none is pinned from its source), and the performance-status scale is marked `unversioned` and flagged on the
   registry until 2.1 or 3.3 pins its source edition.
 
@@ -35,7 +35,8 @@
   (`TrialLedger/**`), and the tags of `contracts.atom_digest`, `contracts.slug`, `evaluation.agreement_kind`,
   `unit_rates` and `complete_representation` were written whole so it finds them.
 
-  Prior settings awaiting the founder's ratification (Claude's first settings, 2026-11-01, not decided):
+  Claude's first settings, accepted by the founder to start (2026-11-01; open to review: "we can always
+  review"):
   `evaluation.MINIMUM_DENOMINATOR` (30 judged items and 5 trials for either threshold) and
   `evaluation.BOOTSTRAP` (seed `evaluation-bootstrap-2026-11-01`, 2000 resamples, the 50th smallest: the
   2.5th percentile, nearest rank, of the pessimistic rate C/(C+W+U)); and the annotator verdicts `holds`,
@@ -74,13 +75,13 @@
 - [ ] 4.1 ~6 trials per condition stratum plus balance supplements for the type matrix, through
       `trialledger audit`, frozen; Claude labels; residual read for missing capabilities; the priority table
 
-  Open item (2026-11-01, for the discovery wave): the sample's base query `sample.BASE` ends start dates at
-  2025-12-31 (`AREA[StartDate]RANGE[2010-01-01,2025-12-31]`), while B1's supported universe runs from 2010 to
-  the present (`typematrix.universe_status`). A discovery draw from today's `sample` cannot reach a trial
-  started in 2026, so the matrix's balance and the residual would say nothing of them. Since 7.1b a
-  confirmation draw (`draw_sample` with a batch) goes through the same `BASE`, so its batches miss them too.
-  `sample.py` is another change's work; the discovery wave reconciles `BASE` with B1 (or the founder narrows
-  B1) before it draws, and before any confirmation draw.
+  Resolved 2026-11-01 (the founder: extend the base). The sample's frame was fixed at start dates
+  2010-01-01 to 2025-12-31, short of B1's 2010-to-the-present universe. It now runs to the present:
+  `sample.base_query(present)`, with the present the UTC date of the draw (or `trialledger sample
+  --present`), passed in and never read from a clock in `sample.py`. Each sample records its `present` and
+  `base`, and its audit's supplements query the same frame. A sample drawn before the present was recorded
+  (the pilot's) is read with `sample.LEGACY_PRESENT`, 2025-12-31, so its supplements are unchanged. Discovery
+  and confirmation draws go through the same base.
 
 ## 5. Domain extensions (parallel, against frozen interfaces, order from 4.1)
 

@@ -147,7 +147,7 @@ CONCEPT_AUTHORITIES: dict[str, tuple[str, str | None, str, str]] = {
         "words_only",
         "proprietary: stage groups recognized as words citing the edition, its tables never reproduced; "
         "bank:setting and two approved relations name the 8th edition in their notes, but no edition is "
-        "pinned from its source yet; the oncology package (5.1) pins one, or the founder rules sooner",
+        "pinned from its source yet; the oncology package (5.1) pins one (the founder, 2026-11-01: wait)",
     ),
     "who_thoracic": (
         "WHO classification of lung tumours",

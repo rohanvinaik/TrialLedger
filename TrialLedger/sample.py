@@ -38,7 +38,19 @@ from typing import Any
 
 from TrialLedger.registry import enum_labels
 
-BASE = "AREA[StudyType]INTERVENTIONAL AND AREA[StartDate]RANGE[2010-01-01,2025-12-31]"
+# add-bank-coverage B1 (founder, 2026-11-01): interventional trials started from 2010 to the present. The
+# present is the UTC date the sample is drawn on, passed in (never read from a clock here) and recorded in the
+# sample, so its audit's supplements query the same frame. A sample drawn before the present was recorded
+# ended its start dates at LEGACY_PRESENT, and is read with it.
+BASE_FROM = "2010-01-01"
+LEGACY_PRESENT = "2025-12-31"
+
+
+def base_query(present: str) -> str:
+    """The base filter: interventional trials started from BASE_FROM to `present` (YYYY-MM-DD)."""
+    return f"AREA[StudyType]INTERVENTIONAL AND AREA[StartDate]RANGE[{BASE_FROM},{present}]"
+
+
 CATEGORIES = (
     "Neoplasms",
     "Cardiovascular Diseases",
@@ -80,9 +92,10 @@ def _condition(label: str) -> str:
     return f"(AREA[ConditionMeshTerm]{term} OR AREA[ConditionAncestorTerm]{term})"
 
 
-def stratum_query(label: str) -> str:
-    """The registry query of one stratum: the base filter and the category as a condition term or ancestor."""
-    return f"{BASE} AND {_condition(label)}"
+def stratum_query(label: str, present: str) -> str:
+    """The registry query of one stratum: the base filter to `present` and the category as a condition term or
+    ancestor."""
+    return f"{base_query(present)} AND {_condition(label)}"
 
 
 def reserved(nct: str) -> bool:
@@ -260,9 +273,12 @@ def draw_sample(
     progress: Callable[[str], None] = lambda message: None,
     batch: int | None = None,
     inspected: frozenset[str] = frozenset(),
+    *,
+    present: str,
 ) -> dict[str, Any]:
     """The whole sample, fetched live: every stratum's IDs, its draw, and each drawn trial's memberships and
     union inclusion probability. Every stratum is read from the same registry snapshot, or the sample fails.
+    The frame's start dates run from BASE_FROM to `present`, which the sample records with its base filter.
 
     With `batch` (add-bank-coverage B8), every stratum is drawn from that one confirmation batch instead of
     the discovery pool, and the sample records the batch; its balance check declares no supplement, since a
@@ -275,7 +291,7 @@ def draw_sample(
     excluded: set[str] = set()
     drawn_from = DISCOVERY if batch is None else BATCH_POOL.format(batch=batch)
     for label in (*CATEGORIES, NO_MESH):
-        query = stratum_query(label)
+        query = stratum_query(label, present)
         ids, version, timestamp = query_ids({"filter.advanced": query}, progress=progress)
         snapshots.add((version, timestamp))
         stratum: dict[str, Any] = {"label": label, "query": query, "matched": len(ids)}
@@ -301,6 +317,8 @@ def draw_sample(
     return {
         "seed": seed,
         "per_stratum": per_stratum,
+        "present": present,
+        "base": base_query(present),
         "confirmation_pool": f"sha256(NCT ID) mod 10 < {CONFIRMATION_SHARE}",
         "confirmation_batches": {
             BATCH_POOL.format(batch=b): f"sha256(NCT ID) mod 10 == {b}" for b in CONFIRMATION_BATCHES
@@ -481,16 +499,16 @@ def frame_condition() -> str:
     return "(" + " OR ".join(_condition(label) for label in (*CATEGORIES, NO_MESH)) + ")"
 
 
-def cell_query(axis: str, value: str) -> str:
-    """The registry query for the frame's trials holding one cell. A phase cell is exact: it excludes every
-    other phase, so "PHASE2" never matches a "PHASE1|PHASE2" record."""
+def cell_query(axis: str, value: str, present: str) -> str:
+    """The registry query for the frame's trials (start dates to the sample's `present`) holding one cell. A
+    phase cell is exact: it excludes every other phase, so "PHASE2" never matches a "PHASE1|PHASE2" record."""
     piece = AXES[axis][0]
     if axis != "phase":
-        return f"{BASE} AND {frame_condition()} AND AREA[{piece}]{value}"
+        return f"{base_query(present)} AND {frame_condition()} AND AREA[{piece}]{value}"
     held = value.split("|")
     terms = [f"AREA[Phase]{p}" for p in held]
     terms += [f"NOT AREA[Phase]{p}" for p in enum_labels("Phase") if p not in held]
-    return f"{BASE} AND {frame_condition()} AND " + " AND ".join(terms)
+    return f"{base_query(present)} AND {frame_condition()} AND " + " AND ".join(terms)
 
 
 def draw_supplements(
@@ -500,8 +518,10 @@ def draw_supplements(
     sampled: set[str],
     query_ids: Callable[..., tuple[list[str], str, str]],
     progress: Callable[[str], None],
+    present: str,
 ) -> tuple[dict[str, int], list[dict[str, Any]], dict[str, str]]:
-    """For each declared cell no drawn trial holds: the frame's IDs holding it, fetched live, and a seeded
+    """For each declared cell no drawn trial holds: the frame's IDs holding it (start dates to the sample's
+    `present`, so the frame is the sample's), fetched live, and a seeded
     draw of `per_cell` from their discovery pool outside the sample, each its own labelled draw. Returns (the
     registry's count per asked cell, the supplement draws, the snapshot); every cell is read from one
     snapshot, or this fails (`SnapshotChanged`). Each draw carries its own inclusion probability n/N and the
@@ -514,7 +534,7 @@ def draw_supplements(
         if row["status"] != "not_checked":
             continue
         cell = f"{row['axis']}={row['value']}"
-        query = cell_query(row["axis"], row["value"])
+        query = cell_query(row["axis"], row["value"], present)
         ids, version, timestamp = query_ids({"filter.advanced": query}, progress=progress)
         snapshots.add((version, timestamp))
         registry[cell] = len(set(ids))

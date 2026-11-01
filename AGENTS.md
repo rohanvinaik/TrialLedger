@@ -360,12 +360,18 @@ it. The proofs, so that they survive the machine:
   `unit_rates`, `complete_representation`, `parameter_accuracy`, `clustered_lower_bound`, `precision_group`,
   `threshold_verdict`). The assertions: `assertions.model_problem`, `assertions.canonical`,
   `entail.proposition_formula`, `entail.assertion_formula`, `entail.weakest_status`, `entail.decide`.
-- Open from those foundations, for the founder: `sample.BASE` ends start dates at 2025-12-31 while B1's
-  universe runs to the present (to reconcile before the discovery wave draws); `--batch-ledger` accepts any
+- The sample's frame runs to the present (the founder, 2026-11-01): `sample.base_query(present)`, the
+  present the UTC date of the draw or `sample --present`, recorded in sample.json with the base and used by
+  its audit's supplements; a sample without one (the pilot's) is read with `LEGACY_PRESENT`, 2025-12-31.
+- Open from those foundations, for the founder: `--batch-ledger` accepts any
   path, so a draw against a fresh ledger bypasses the declared one (recorded in sample.json, not prevented);
   who commits the ledger after a draw (committing moves HEAD, after which a re-draw is refused as
-  `batch_used`); the AJCC edition is unpinned although `bank:setting` names the 8th; Claude's first settings
-  of `MINIMUM_DENOMINATOR` and `BOOTSTRAP` and the annotator verdicts await ratification.
+  `batch_used`). Decided 2026-11-01: the AJCC edition stays unpinned until the oncology package (5.1) pins it
+  from its source (the founder: wait), although `bank:setting` names the 8th; Claude's first settings of
+  `MINIMUM_DENOMINATOR` and `BOOTSTRAP` and the annotator verdicts are accepted to start, open to review.
+- Mechanism signals (the founder, 2026-11-01): every comparison that holds at some reading is listed,
+  below-support and unresolved rows included; weak but present signals are shown, to be pruned when the
+  expansion is done, never hidden now.
 - Comparable posted results (`add-coherence-engine` 5.3) wait on the endpoint-class bank (2.2); the residual
   (about 70% of criteria in the NSCLC population) decides the next banks (2.1b).
 

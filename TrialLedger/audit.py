@@ -53,6 +53,7 @@ from TrialLedger.questions import (
 )
 from TrialLedger.reading import drug_aliases, effective_section, read_population
 from TrialLedger.sample import (
+    LEGACY_PRESENT,
     VERIFIED_FORMS,
     balance_rows,
     declared_cells,
@@ -452,7 +453,13 @@ def run_audit(
         if declaration and query_ids is not None and len(trials) == len(sample["trials"]):
             sampled = {t["nct"] for t in sample["trials"]}
             registry, supplements, snapshot = draw_supplements(
-                rows, sample["seed"], declaration["supplement_per_cell"], sampled, query_ids, progress
+                rows,
+                sample["seed"],
+                declaration["supplement_per_cell"],
+                sampled,
+                query_ids,
+                progress,
+                sample.get("present", LEGACY_PRESENT),
             )
             held = {}
             for nct in dict.fromkeys(item["nct"] for item in supplements):
@@ -472,6 +479,7 @@ def run_audit(
         "verified_query_forms": VERIFIED_FORMS,
         "supplements": supplements,
         "supplement_snapshot": snapshot,
+        "frame_present": sample.get("present", LEGACY_PRESENT),
     }
     (out / "balance.json").write_text(json.dumps(table, indent=1, ensure_ascii=False), encoding="utf-8")
     return counts
