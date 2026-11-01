@@ -897,6 +897,18 @@
     "refusal": "",
     "standing": "complete"
   },
+  "TrialLedger/semantics/loader.py::example_problems": {
+    "cut_reasons": [],
+    "function_digest": "3f85c5fb4d653fab",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/semantics/loader.py::nondeterminism_problems": {
+    "cut_reasons": [],
+    "function_digest": "2725fa0d006c74d5",
+    "refusal": "",
+    "standing": "complete"
+  },
   "TrialLedger/semantics/loader.py::registry_flags": {
     "cut_reasons": [],
     "function_digest": "c6523bc4e97bb278",
@@ -906,6 +918,54 @@
   "TrialLedger/semantics/loader.py::registry_problems": {
     "cut_reasons": [],
     "function_digest": "2ff32977ca01945b",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/semantics/loader.py::unit_problems": {
+    "cut_reasons": [],
+    "function_digest": "22bcfb0bae1848a3",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/semantics/parsers.py::read_comparator": {
+    "cut_reasons": [],
+    "function_digest": "290729b1d05bdb98",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/semantics/parsers.py::read_duration": {
+    "cut_reasons": [],
+    "function_digest": "42bb836a82cd1caf",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/semantics/parsers.py::read_interval": {
+    "cut_reasons": [],
+    "function_digest": "2b011851db79085b",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/semantics/parsers.py::read_number": {
+    "cut_reasons": [],
+    "function_digest": "e86f9706312db08e",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/semantics/parsers.py::read_reference": {
+    "cut_reasons": [],
+    "function_digest": "cce93afe932c1207",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/semantics/parsers.py::read_unit": {
+    "cut_reasons": [],
+    "function_digest": "3d036cafe269dc8e",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/semantics/parsers.py::read_window": {
+    "cut_reasons": [],
+    "function_digest": "9b5c5adba3394778",
     "refusal": "",
     "standing": "complete"
   },

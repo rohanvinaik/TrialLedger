@@ -64,7 +64,36 @@
 
 ## 3. Shared primitives and general packages (parallel, file-disjoint)
 
-- [ ] 3.1 Shared parsers: numbers, units (UCUM), durations, intervals, reference expressions
+- [x] 3.1 Shared parsers: numbers, units (UCUM), durations, intervals, reference expressions
+
+  2026-11-01, built in `TrialLedger/semantics/parsers.py` (see design.md "As built here: the shared parsers"):
+  `read_number`, `read_comparator`, `read_unit`, `read_reference`, `read_duration`, `read_window`,
+  `read_interval`, each a pure decision over the original criterion text returning a `Parse` (parsed,
+  ambiguous or abstained, every reading as named string fields, half-open spans); and the registry build's
+  last three refusals of Decision 2 in `semantics/loader.py`: `unsupported_unit` (`unit_problems`, over a
+  concept's new optional `units`), `invalid_span` (`example_problems`, over its new optional `examples`) and
+  `nondeterministic_fragment` (`nondeterminism_problems`, every fragment file loaded twice by
+  `load_fragments`). Two-sign tests in `tests/test_semantic_parsers.py` and `tests/test_registry_refusals.py`,
+  from the real criteria of `tests/test_banks.py` and the pilot's; no bank's output changed, and the seed
+  registry's version is unchanged (the new fields enter its canonical JSON only when used). Converged with
+  `--two-sign`, each COMPLETE: the seven readers, `unit_problems`, `example_problems`,
+  `nondeterminism_problems` and `registry_problems` (changed through its helper); `fragment_from_data`
+  (changed: units and examples) ends INCOMPLETE with `outcome_snapshot_failed`, the Detective defect already
+  named in AGENTS.md. Left: nothing consumes the parsers in production yet (declared in `tests/test_wiring.py`
+  until 3.2-3.5); the contract's span roles hold no `reference` (a parse's reference span has that role, and an
+  example cannot carry one: contracts.py is outside this task); UCUM's edition is unpinned in
+  `provenance.CONCEPT_AUTHORITIES` (the table's codes are UCUM expressions, no edition cited); a list built
+  from a set's iteration order inside one process loads alike twice and is not detected.
+
+  2026-11-01, review of 662906a fixed (design.md "As built here"): a number before a multiplication or digits
+  no unit or reference reads is no bound, and a factor after its reference is abstained; a two-sided window
+  ("before or after") is abstained; a slash compound is read only from unit symbols; a power of ten only with
+  its sign or a superscript ("109/L" is no unit); "> =" is no comparator (">or=" is ≥); "h" is lower case; a
+  NaN is named once. Re-converged with `--two-sign`, each COMPLETE: `read_comparator`, `read_unit`,
+  `read_reference`, `read_duration`, `read_window`, `read_interval`, `nondeterminism_problems`,
+  `unit_problems`, `example_problems`, `registry_problems`. Left for the founder: whether "109/L" (a lost
+  superscript) is read as 10^9/L; for 3.3: the reference forms not held ("ULRR", "upper limit of
+  institutional normal", "-fold ULN"); for contracts.py's owner: the `reference` span role.
 - [ ] 3.2 Demographics and developmental age; sex and reproductive status; reproductive requirements
 - [ ] 3.3 Laboratory measurements; vitals and anthropometry; scales and functional status
 - [ ] 3.4 Conditions and events; medication and substance exposure; procedures, anatomy and devices

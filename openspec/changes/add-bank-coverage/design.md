@@ -99,13 +99,14 @@ the code by Claude; **As built here** marks the reconciliation.
 - **1.2 (Decision 2)** `TrialLedger/semantics/loader.py`: the nine families with the argument names each
   takes, ten argument types, `ConceptEntry`, `Reference` (a shared concept another package owns, with the
   signature expected of it: how "incompatible" is detected across packages without a second definition),
-  `Fragment`, `registry_problems` (twenty named codes; a duplicate or incompatible concept names both
+  `Fragment`, `registry_problems` (twenty named codes, twenty-three since 3.1; a duplicate or incompatible concept names both
   owners), `compile_registry` (version: SHA-256 of the fragments' canonical JSON in name order),
   `load_fragments` (`*.json`, or `*.py` with a `FRAGMENT` dict, in `semantics/fragments/`, never under the
   vendored `TrialLedger/registry/`), `atom_registry_problems`. The seed fragment `nsclc_legacy` (91 concepts)
   is built from the banks' own tables, exposure `fragment:nsclc_legacy`. One legacy disagreement is kept for
   2.1: the conditions bank reads "≥ 18 years" as a window of `sex` (an Attribute takes no window).
-  Not yet refused: unsupported units, invalid spans, nondeterminism (with 3.1's shared parsers). No version is
+  Not yet refused: unsupported units, invalid spans, nondeterminism (with 3.1's shared parsers; refused since
+  3.1, below). No version is
   invented: each local concept carries its own definition date (`defined_on`, YYYY-MM-DD; refused without
   one); a scale names its pinned source edition, or, in a fragment of `LEGACY_FRAGMENTS` only, the explicit
   mark `unversioned`, which the build accepts and lists in `Registry.flags` (`registry_flags`); a new
@@ -137,6 +138,74 @@ the code by Claude; **As built here** marks the reconciliation.
   `threshold_verdict`: the measure its threshold names only (else wrong_measure), at or above the minimum
   sample only (else insufficient_denominator), judged on `clustered_lower_bound`, the 50th smallest of 2000
   seeded resamples of the trials of the pessimistic rate C/(C+W+U), never on the unresolved bound alone.
+
+## As built here: the shared parsers (task 3.1, 2026-11-01)
+
+- `TrialLedger/semantics/parsers.py`, one owner for every package. Each reader takes the criterion's text and
+  a position, skips whitespace and reads one expression there into a `Parse(kind, status, readings, spans,
+  end, note)`: status `parsed` (one reading), `ambiguous` (every reading the words allow, none chosen) or
+  `abstained` (none, with its note); each reading a tuple of named string fields (never a float, a bool or
+  NaN); spans `contracts.Span`, half-open on the original text. Nothing is unescaped first: the API's
+  "=\<", "\>=", "\^", "\~" are read where they stand.
+  - `read_number`: digits, signed only where no digit stands before the sign ("0-1" is a range), or a written
+    form (zero to ninety-nine). One mark before three digits ("50,000", "1.500") is ambiguous, grouping or
+    decimal; a comma that cannot group ("0,1": a decimal comma or a list) is abstained; digits inside a name
+    ("PD-L1", "CTLA-4", "B12", "HbA1c") are not read; number words are ASCII letters only, and a fraction
+    ("one-third") or a tens word before a hyphenated word ("twenty-something") is abstained, never a wrong
+    value.
+  - `read_comparator`: symbols, escaped forms and word forms (`COMPARATORS`), the longest first, normalised to
+    <, ≤, >, ≥, =; the sign is the matched form's (each form its own group), never the matched text looked up
+    again, so a form case-insensitive matching folds ("leſs than") is still a named result. A strict sign or
+    "=" never reads the start of a two-symbol form the table does not hold ("> =", "< /=", "= <": abstained);
+    ">or=" and "<or=" are held. A form is read where the caller starts: a caller starts at the phrase's head
+    ("more than" read inside "not more than" is the shorter form).
+  - `read_unit`: `UNITS`, each written form with its UCUM expression (10*9/L, /mm3, mg/dL, mL/min, a, mo, wk,
+    d, h, min, ...) or none; a slash compound of unit symbols the table does not hold ("G/L", "IU/dL",
+    "copies/mL"; each part an SI prefix and a base, a counted thing, a unit of time or "G", from a closed set,
+    so a pair of words such as "AST/ALT", "Male/female" or "inclusion/exclusion" is no unit) and a unit with
+    no UCUM form here ("half-lives", "pack-years", "mL/min/1.73 m2": its normalisation is left unmapped rather
+    than guessed) are kept as written and named `unmapped`. A power of ten is read only with its sign or a
+    superscript ("10^9/L", "10e9/L", "10⁹/L"); "109/L", where the registry's text lost a superscript, is no
+    unit (reading it as 10^9/L is a convention left to the founder). "h" is hours in lower case only ("H.
+    pylori"). A reference expression is never a unit.
+  - `read_reference`: an optional factor, ×/x/*/"times", ULN or LLN in any written form; the factor is "" when
+    none is written, never 1; a factor written after the reference ("ULN x 2.5") is abstained (`FACTOR_AFTER`),
+    never read as no factor; its span's role is `reference`, which `contracts.SPAN_ROLES` does not yet hold.
+    Forms not held ("ULRR", "upper limit of reference range", "upper limit of institutional normal", "the
+    normal upper limit", "2.5-fold ULN") are no reference: vocabulary for 3.3 to add with its source.
+  - `read_duration`: a number then a unit of time ("a 4-week washout" too).
+  - `read_window` (add-scoped-assertions Decision 4 and A7): a marker ("within", "in the last", "within prior")
+    or a comparator, a duration, an orientation (before, after, or unspecified: "of" or "from" after a marker)
+    and its anchor as written, else "unresolved" (never the enrollment). A marker bounds by N with
+    inclusivity unspecified; a comparator gives its own. An unmarked duration with a direction ("4 weeks prior
+    to randomization") is ambiguous: within N, or at least N. "within ≥ 5 years" is abstained; a duration
+    with no marker and no direction ("≥ 12 weeks", "2 years of smoking") is no window. A window on both sides
+    of its anchor ("within 14 days before or after randomization", "before/after") is abstained: no
+    orientation value names both, and inventing one is a design decision. A clause word ends the anchor
+    wherever it stands, its first word included ("before and during the study": anchor unresolved).
+  - `read_interval`: one comparator and a bound (its inclusivity), two comparators on two sides (explicit), a
+    range ("18 to 75 years", "0\~1", "6 through 35 years", "between ... and ...") unspecified unless
+    "inclusive"/"exclusive" is written, or "or more"/"or older"/"or less". A bound is a reference (its factor)
+    or a number with its unit; a unit written once is the range's, two different ones are abstained. A number
+    followed, on its line, by a multiplication (×, *, x, "times", "-fold") or digits that no unit or reference
+    reads ("≤ 1.5 × ULRR", "≥ 1.5 x 10 9/L", "≥ 100 109/L", "100 000/mm3") is no bound (`UNREAD_AFTER`): the
+    interval is abstained, never a bare number with its unit or reference lost.
+- The registry build refuses, through these parsers, the last three of Decision 2. `ConceptEntry` gains two
+  optional fields, `units` (as written) and `examples` (`Example(text, spans)`), parsed by
+  `fragment_from_data`; `compile_registry` writes them into its canonical JSON only when a concept has them,
+  so the seed's version is unchanged. `unsupported_unit` (`unit_problems`): a declared unit on a concept with
+  no unit argument, one `read_unit` does not read whole (a reference such as "× ULN" among them), or an
+  unmapped unit where the unit argument is `ucum_unit`. `invalid_span` (`example_problems`): a span of no
+  contract role, outside or empty on its example's text, or a comparator, unit or (for a numeric value
+  argument) value span the parsers do not read there as its role. `nondeterministic_fragment`
+  (`nondeterminism_problems`): `load_fragments` loads every file twice; an unordered set, a non-finite
+  number, or two loads that differ are refused, each place named. The loads are compared with a NaN alike to
+  a NaN in the same place (each JSON load makes its own float object), so a NaN is named once, by its place.
+- Review of 2026-11-01 (commit 662906a), fixed: a lost reference or factor after a multiplication, the
+  two-sided window, the slash compound read from any pair of words, the power of ten read from run-on digits,
+  the strict comparator read from "> =", "H" as hours, a NaN reported twice, and two test criteria quoted
+  as edited excerpts (now verbatim). Left as disclosed: the `reference` span role (contracts.py's owner) and
+  a comparator read from inside a longer phrase (callers start at the head).
 
 ## Founder decisions (decided 2026-11-01: the founder approved Claude's recommendations)
 
