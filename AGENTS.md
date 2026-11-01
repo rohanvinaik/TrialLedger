@@ -51,8 +51,9 @@ record.
 (`openspec/specs/`, archived change `openspec/changes/archive/2026-10-31-add-review-workbook`) are built; the
 coherence engine (typing, each trial's design coordinates, the cross-trial profile) is under construction in
 `openspec/changes/add-coherence-engine`, declared expectations, deviations and near misses in
-`openspec/changes/add-design-surprise`, and the epistemic statuses, scoped assertions and indication gating in
-`openspec/changes/add-scoped-reasoning`; the publication parser is designed in `docs/THEORY_OF_THE_CASE.md` and
+`openspec/changes/add-design-surprise`, the epistemic statuses, scoped assertions and indication gating in
+`openspec/changes/add-scoped-reasoning`, and the targeted questions a local model answers (the audit among them)
+in `openspec/changes/add-targeted-questions`; the publication parser is designed in `docs/THEORY_OF_THE_CASE.md` and
 the archived change's `design.md`. The README explains the system to
 its clinical readers.
 

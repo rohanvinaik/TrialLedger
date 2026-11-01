@@ -72,10 +72,11 @@ trials and establish nothing about other populations.
    abstained, wrong, inapplicable, audit-unresolved; over-narrowing reported apart.
 10. **Who audits** (the founder's decision, 2026-10-31, after a side reviewer noted no reviewer was named): a model
     audits, a human adjudicates. The founder places the model here as a bounded tail role (AGENTS.md's escape
-    hatch): it grades TrialLedger's output and never produces it, and nothing it says enters a reading. Its
-    contract: it reads the whole trial record and TrialLedger's reading of it, and marks each value right, wrong
-    or missed, citing the record span; a value it calls wrong or missed goes to the human, whose answer is the
-    grade. Agreement between the auditor and TrialLedger is not confirmation (their errors can coincide): a
+    hatch): it grades TrialLedger's output and never produces it, and nothing it says enters a reading. How
+    (the founder, later the same day): never a whole record; the model answers only specific, targeted questions
+    the symbolic system poses, each with closed options and a bounded section envelope, through his GSE setup on
+    a local Qwen; specified in `openspec/changes/add-targeted-questions`. A value it challenges goes to the
+    human, whose answer is the grade. Agreement between the auditor and TrialLedger is not confirmation (their errors can coincide): a
     random sample of the agreed values, declared in advance, also goes to the human, and the auditor's own miss
     rate, with its interval, is reported beside every estimate. The auditor is a model independent of the one
     that wrote the rules (not Claude), named and versioned in the frozen plan; its prompt and rubric are frozen
