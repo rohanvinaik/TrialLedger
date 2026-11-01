@@ -24,7 +24,7 @@ from TrialLedger.ledger import get as _get
 from TrialLedger.ledger import location
 from TrialLedger.registry import enum_labels
 
-CHECKS_VERSION = 1
+CHECKS_VERSION = 2
 CLOSED_STATUSES = ("COMPLETED", "TERMINATED")
 # Statuses the registry assigns itself (glossary, «Last verified»; metadata overallStatus rules on Withheld),
 # so they are not the responsible party's statement about recruitment.
@@ -289,6 +289,27 @@ def dates_ordered(earlier: str | None, later: str | None) -> str:
     return "not_checkable"
 
 
+def actual_dates_ordered(
+    earlier: str | None, earlier_type: str | None, later: str | None, later_type: str | None
+) -> str:
+    """Whether two dates that must come in order do, where both record events that happened (pure — pinned).
+
+    An ESTIMATED date is a forecast, and a forecast left standing after the event it forecast is out of date,
+    not a contradiction: an estimated start still after an actual primary completion says only that the start
+    was never updated. So the order is checked only between two ACTUAL dates (Codex's counterexample,
+    2026-11-01, adopted).
+      "not_checkable"  — a date type is not reported, or `dates_ordered` cannot decide.
+      "not_applicable" — either date is typed other than ACTUAL.
+      "consistent"     — both ACTUAL and in order.
+      "conflict"       — both ACTUAL and certainly inverted.
+    """
+    if earlier_type is None or later_type is None:
+        return "not_checkable"
+    if earlier_type != "ACTUAL" or later_type != "ACTUAL":
+        return "not_applicable"
+    return dates_ordered(earlier, later)
+
+
 def whole_count(text: str | None) -> int | None:
     """A participant count the registry stores as text, as a number (pure — pinned).
 
@@ -455,14 +476,14 @@ CHECKS = (
     ),
     Check(
         "start_before_primary_completion",
-        "Study start date ≤ primary completion date, partial dates read as intervals",
+        "Study start date ≤ primary completion date, both typed ACTUAL, partial dates read as intervals",
         "P#StartDate «the actual date on which the first participant was enrolled»; P#LastFollowUpDate «The "
         "date that the final participant was examined or received an intervention for the purposes of final "
         "collection of data for the primary outcome»",
     ),
     Check(
         "primary_completion_before_completion",
-        "Primary completion date ≤ study completion date, partial dates read as intervals",
+        "Primary completion date ≤ study completion date, both typed ACTUAL, partial dates read as intervals",
         "P#LastFollowUpDate: primary completion is final collection of data «for the primary outcome»; study "
         "completion is final collection «for the primary and secondary outcome measures and adverse events».",
     ),
@@ -493,17 +514,16 @@ BASIS = {
     "primary_completion_before_completion": "entailed by definitions",
 }
 
-# The checks that run (version 1). A check is approved when the registry states its relation; any other is
-# proposed, built and pinned like the rest, and runs only once the founder approves it by name, here.
-APPROVED = frozenset(
-    {
-        "closed_primary_completion_actual",
-        "closed_completion_actual",
-        "recruiting_site_recruiting_study",
-        "flow_reasons_account",
-        "results_flag_first_submit",
-    }
-)
+# The checks that run, approved by name here. Version 1 ran the five the registry states. Version 2
+# (2026-11-01) adds the twelve its definitions entail: the founder asked that such rulings be settled from the
+# registry's definitions, domain knowledge and logic, and Claude's reading and Codex's independent one agreed
+# that each relation is entailed, after three conditions were met. The two date orders hold only between
+# ACTUAL dates (Codex's counterexample: a stale forecast is not a contradiction). The arm cross-reference's
+# "<label>: <name>" form is the API's own (2,468 of 2,468 NSCLC arm entries, 2026-11-01, beside 5,362 of 5,362
+# earlier). No non-interventional study in the registry carries a phase (0 of 142,366 observational studies,
+# none with expanded access, against 224,835 interventional ones with a phase, live, 2026-11-01), so the
+# registry itself keeps the boundary the phase check reads.
+APPROVED = frozenset(check.id for check in CHECKS)
 
 # The pure decisions that apply each check; a check's warrant commits to their code and to run_checks'.
 DECISIONS = {
@@ -522,8 +542,8 @@ DECISIONS = {
     "ae_group_totals_within_at_risk": (bounded, combine),
     "flow_reasons_account": (whole_count, reasons_account, combine),
     "age_limits_ordered": (age_magnitude, age_limits_ordered),
-    "start_before_primary_completion": (date_interval, dates_ordered),
-    "primary_completion_before_completion": (date_interval, dates_ordered),
+    "start_before_primary_completion": (date_interval, dates_ordered, actual_dates_ordered),
+    "primary_completion_before_completion": (date_interval, dates_ordered, actual_dates_ordered),
 }
 
 
@@ -850,7 +870,13 @@ def _gather_ages(study: Any) -> tuple[str, str]:
 def _dates(study: Any, first_struct: str, second_struct: str) -> tuple[str, str]:
     first = _get(study, P, "statusModule", first_struct, "date")
     second = _get(study, P, "statusModule", second_struct, "date")
-    return dates_ordered(first, second), f"{first_struct}.date={first}; {second_struct}.date={second}"
+    first_type = _text_at(study, P, "statusModule", first_struct, "type")
+    second_type = _text_at(study, P, "statusModule", second_struct, "type")
+    return (
+        actual_dates_ordered(first, first_type, second, second_type),
+        f"{first_struct}.date={first}; {first_struct}.type={first_type}; "
+        f"{second_struct}.date={second}; {second_struct}.type={second_type}",
+    )
 
 
 def _gather_start_before_primary(study: Any) -> tuple[str, str]:
@@ -914,12 +940,12 @@ READS: dict[str, tuple[str, ...]] = {
         "protocolSection.eligibilityModule.maximumAge",
     ),
     "start_before_primary_completion": (
-        f"{STATUS}.startDateStruct.date",
-        f"{STATUS}.primaryCompletionDateStruct.date",
+        f"{STATUS}.startDateStruct",
+        f"{STATUS}.primaryCompletionDateStruct",
     ),
     "primary_completion_before_completion": (
-        f"{STATUS}.primaryCompletionDateStruct.date",
-        f"{STATUS}.completionDateStruct.date",
+        f"{STATUS}.primaryCompletionDateStruct",
+        f"{STATUS}.completionDateStruct",
     ),
 }
 

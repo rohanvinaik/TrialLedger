@@ -131,12 +131,12 @@ the person asks why they should trust a record, these are the safeguards, each e
   to the code that derived it, and the whole folder to its records, its spreadsheet and its provenance.
   `trialledger verify` re-derives all of it and names anything that no longer matches.
 - **Records are checked against themselves, and nothing is corrected.** Contradictions within a record are
-  raised as queries for the person, never fixed. Seventeen such checks are defined. The five that run today
-  are rules the registry itself states: a completed or terminated study with an estimated completion date, a
-  multi-site study not recruiting while one of its sites is, results posted without a results submission date or the
-  reverse, and reasons for leaving a study that do not account for everyone who did not complete it. The other
-  twelve, such as more people affected by an adverse event than were at risk, follow from the registry's
-  definitions by TrialLedger's own reading, and wait for approval before they run.
+  raised as queries for the person, never fixed. Seventeen checks run. Five are rules the registry itself
+  states, such as a completed study with an estimated completion date, or a multi-site study not recruiting
+  while one of its sites is. Twelve follow from the registry's definitions, such as more people affected by an
+  adverse event than were at risk, a withdrawn study that reports participants enrolled, or an actual start
+  after the actual primary completion. A check that cannot decide (a value missing, a date too imprecise)
+  says so, and is never reported as consistent.
 
 ## How to run it
 

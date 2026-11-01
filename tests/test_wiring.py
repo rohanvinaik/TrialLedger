@@ -31,17 +31,10 @@ HERE = Path(__file__).resolve().parent
 PROPOSED = [check.id for check in CHECKS if check.id not in APPROVED]
 # Code that runs only once the founder approves a proposed check (law 13: a rule TrialLedger's reading entails
 # is proposed for his approval, never self-approved). Approving a check moves its code onto the path.
-DORMANT_DECISIONS = {
-    "withdrawn_enrollment_zero",
-    "phase_interventional_only",
-    "member",
-    "bounded",
-    "age_magnitude",
-    "age_limits_ordered",
-    "date_interval",
-    "dates_ordered",
-}
-DORMANT_HELPERS = {"_dates", "_event_counts", "_event_groups", "_unknown"}
+# Every check is approved since version 2 (2026-11-01), so none is dormant; the tests below keep the rule for
+# any check proposed later.
+DORMANT_DECISIONS: set[str] = set()
+DORMANT_HELPERS: set[str] = set()
 # Reached by no production path, each for its reason.
 DECLARED = {
     "record.py: _ignore": "write_record's default progress sink, likewise",

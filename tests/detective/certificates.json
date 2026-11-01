@@ -125,6 +125,12 @@
     "refusal": "",
     "standing": "complete"
   },
+  "TrialLedger/checks.py::actual_dates_ordered": {
+    "cut_reasons": [],
+    "function_digest": "c4bca44fa7eeea29",
+    "refusal": "",
+    "standing": "complete"
+  },
   "TrialLedger/checks.py::age_limits_ordered": {
     "cut_reasons": [],
     "function_digest": "8abfcc6585a06a40",
