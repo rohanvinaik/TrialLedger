@@ -2,6 +2,14 @@
 
 The founder, 2026-11-01: the next priority, built to completion.
 
+## 0. Feasibility probe (first)
+
+- [ ] 0.1 In each vendor's app, the agent fetches four real URLs into its sandbox (the registry's version, an ID
+      page of 1,000, one full study record, an RxClass classMembers answer) and reports, per URL, whether it
+      arrived, its size, whether it parses whole as JSON; and whether its Python reaches them directly. The relay
+      mode's page sizes and the entry point's instructions are set from what arrives; a vendor whose agent can
+      neither fetch nor reach them is named unsupported in the entry point, never worked around.
+
 ## 1. The record contract
 
 - [ ] 1.1 `landscape.json` schema v1: request, scope, manifest, per-study ten-point extract and extras, cohort
