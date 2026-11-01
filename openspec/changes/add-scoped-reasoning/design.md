@@ -84,6 +84,34 @@ trials and establish nothing about other populations.
     a sample and every disagreement (add-targeted-questions, Decision 12); who adjudicated is recorded per grade. Sizes follow the adjudicator's capacity: the plan states, before a run, how many trials and agreed
     values the human can read and the interval width that buys.
 
+11. **Drug-class axes beyond EPC and MoA** (the founder, 2026-10-31: structural homologs and cell type are
+    missing; Codex's reading the same day, adopted). Measured live: RxClass serves ATC (level 4 gives the
+    precise class EPC lacks: gefitinib and osimertinib L01EB "EGFR tyrosine kinase inhibitors" where EPC says
+    "Kinase Inhibitor"; pembrolizumab L01FF), and `has_chemical_structure` (DAILYMED, FDASPL), which returned
+    nothing for those three; the record carries registry-derived intervention MeSH; `DRUG_TYPES` omits GENETIC.
+    Contracts: separate coordinates never merged (pharmacologic class, mechanism, ATC, structure, modality
+    facets, cell properties); a class is a source assertion about a resolved entity (identity resolution first:
+    combinations, salts and brands never inherit ingredient classes by an API answer alone); trial-level MeSH
+    stays at trial level unless a link or warranted mapping names its drug; record-stated targets align to ATC
+    by a sourced crosswalk with named relations (equivalent_to, narrower_than, broader_than, overlaps,
+    unresolved), membership only when the relation entails it; structure is reported as
+    `shares_structure_class(a, b, taxonomy, class, release)`, never as homology without a separate rule;
+    modality is multi-faceted (antibody, conjugate, radioactive, cell, gene, vaccine function), cell properties
+    separate lineage, engineering, preparation and donor relationship; every extraction keeps subject,
+    property, value, polarity, scope, evidence location, rule, status and warrant, so "prior CAR-T excluded" is
+    an eligibility assertion, not the intervention's modality; name-suffix guesses are interpolated at most.
+12. **Eligibility coverage, not "completeness"** (the founder: an abbreviated record's silence is read as
+    absence; `_ABBREVIATED` is used only in expectations.py). Separate attributes: content (empty, present),
+    sectioning (sectioned, unsectioned), coverage evidence (abbreviation stated, completeness stated,
+    unspecified), each with its marker's location and scope ("Key Exclusion Criteria" scopes the exclusions).
+    No marker never means complete. Two named estimands: the registry statement rate (records stating / cohort,
+    a point), and the full-criteria frequency, an identification interval [S/N, (S+U)/N] where S states it, A
+    establishes its absence by a declared ascertainment rule, U is unresolved (empty, abbreviated, unspecified
+    silence, no rule match); a threshold is met only when the lower bound reaches it, not met when the upper bound
+    falls short, unresolved otherwise; mechanism signals, occupancy, expectations and near misses handle it at
+    their own decision points. Before any metric is replaced, a transition report on the same frozen records:
+    old value, new rate, new bounds, changed decisions and their reasons.
+
 ## Risks / Trade-offs
 
 - [Scoped assertions need disjunction and modality parsing, a larger reader] → built bank by bank, the setting
