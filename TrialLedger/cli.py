@@ -159,7 +159,8 @@ def main(
             "for spread only) and among trials with no condition MeSH; draw a seeded random sample within "
             "each stratum from the discovery pool (a hash of the NCT ID reserves 30%% for confirmation, "
             "never drawn here); write the strata, pool sizes, draws, memberships and inclusion probabilities"
-            " as JSON. Ends with 0, written; 1, the registry query failed."
+            " as JSON, with the declared balance check (phase, intervention type, primary purpose) and its "
+            "seeded supplement, which the audit applies. Ends with 0, written; 1, the registry query failed."
         ),
     )
     sample_parser.add_argument("--per-stratum", type=int, default=6)
@@ -173,8 +174,10 @@ def main(
             "it, write its source manifest and its questions (one per typed claim, each with a bounded "
             "envelope of its own eligibility text), then, with --model, ask a local Ollama model each "
             "question and write the validated answers. Questions are written before any answer, for blind "
-            "references. Nothing changes a reading. Ends with 0, done; 1, the registry or the model failed; "
-            "2, refused."
+            "references. Then balance.json: the trials by phase, intervention type and primary purpose, each "
+            "registry value no drawn trial holds checked live against the registry and, as the sample "
+            "declares, filled by a labelled, seeded supplement (audited in turn). Nothing changes a reading. "
+            "Ends with 0, done; 1, the registry or the model failed; 2, refused."
         ),
     )
     audit_parser.add_argument("sample", type=Path)
@@ -191,9 +194,10 @@ def main(
         description=(
             "Over an audit folder's questions: write the seeded list of questions to label blind "
             "(to_label.json) and the planted mutations with the verdicts they must receive "
-            "(mutations.jsonl); with --model, ask that one model the labelled questions and the mutations, "
-            "one at a time, into DIR/pilot-<model>/answers.jsonl, and release it. Ends with 0, done; 2, "
-            "refused."
+            "(mutations.jsonl), both drawn from the sample's own trials (drawn_as sample) unless "
+            "--include-supplement; with --model, ask that one model the labelled questions and the "
+            "mutations, one at a time, into DIR/pilot-<model>/answers.jsonl, and release it. Ends with 0, "
+            "done; 2, refused."
         ),
     )
     pilot_parser.add_argument("folder", type=Path)
@@ -202,6 +206,11 @@ def main(
     pilot_parser.add_argument("--model")
     pilot_parser.add_argument("--budget", type=int, default=0)
     pilot_parser.add_argument("--no-think", action="store_true")
+    pilot_parser.add_argument(
+        "--include-supplement",
+        action="store_true",
+        help="also draw from the questions of trials drawn as a balance supplement (default: sample only)",
+    )
     args = parser.parse_args(argv)
     if args.command == "pilot":
         return _pilot(args, model_http=model_http)
@@ -255,29 +264,34 @@ def main(
 
 def _sample(args, *, http, sleep) -> int:
     from TrialLedger.ingest import query_ids
-    from TrialLedger.sample import draw_sample
+    from TrialLedger.sample import SnapshotChanged, draw_sample
 
     def ids(query, progress):
         return query_ids(query, http=http, sleep=sleep, progress=progress)
 
     try:
         sample = draw_sample(args.per_stratum, args.seed, ids, progress=lambda m: print(m, file=sys.stderr))
-    except (PullError, RuntimeError) as error:
+    except (PullError, SnapshotChanged) as error:
         print(f"trialledger: nothing written — {error}", file=sys.stderr)
         return 1
     sample["code_commit"] = code_commit()
     args.out.write_text(json.dumps(sample, indent=1), encoding="utf-8")
-    print(f"{args.out} written ({len(sample['trials'])} trials, data as of {sample['data_timestamp']})")
+    cells = sum(len(values) for values in sample["balance"]["cells"].values())
+    print(
+        f"{args.out} written ({len(sample['trials'])} trials, data as of {sample['data_timestamp']}; "
+        f"balance declared over {cells} registry values, {sample['balance']['supplement_per_cell']} "
+        "supplement trial per empty cell)"
+    )
     return 0
 
 
 def _pilot(args, *, model_http) -> int:
     from TrialLedger.audit import answer_questions
-    from TrialLedger.pilot import mutations, to_label
+    from TrialLedger.pilot import drawn_units, mutations, to_label
     from TrialLedger.transport import LocalModel, TransportError, urllib_http
 
     lines = (args.folder / "questions.jsonl").read_text(encoding="utf-8").splitlines()
-    questions = [json.loads(line) for line in lines]
+    questions = drawn_units([json.loads(line) for line in lines], args.include_supplement)
     labelled = to_label(questions, args.label, "pilot-labels")
     planted = mutations(questions, args.mutate, "pilot-mutations")
     (args.folder / "to_label.json").write_text(json.dumps(labelled, indent=1), encoding="utf-8")
@@ -320,6 +334,8 @@ def _pilot(args, *, model_http) -> int:
 
 def _audit(args, *, http, sleep, rxclass_get, model_http) -> int:
     from TrialLedger.audit import run_audit
+    from TrialLedger.ingest import query_ids
+    from TrialLedger.sample import SnapshotChanged
     from TrialLedger.transport import LocalModel, TransportError, urllib_http
 
     sample = json.loads(args.sample.read_text(encoding="utf-8"))
@@ -351,6 +367,9 @@ def _audit(args, *, http, sleep, rxclass_get, model_http) -> int:
     def classes_for(studies):
         return rx.load_or_lookup_at(cache, drug_aliases(studies), sleep=sleep, **lookup)
 
+    def ids(query, progress):
+        return query_ids(query, http=http, sleep=sleep, progress=progress)
+
     try:
         counts = run_audit(
             sample,
@@ -359,9 +378,10 @@ def _audit(args, *, http, sleep, rxclass_get, model_http) -> int:
             classes_for=classes_for,
             model=model,
             limit=args.limit,
+            query_ids=ids,
             progress=lambda m: print(m, file=sys.stderr),
         )
-    except PullError as error:
+    except (PullError, SnapshotChanged) as error:
         print(f"trialledger: audit stopped — {error}", file=sys.stderr)
         return 1
     print(f"{args.out}: " + ", ".join(f"{k} {v}" for k, v in counts.items()))

@@ -6,6 +6,9 @@ state: expected `wrong_value`), the section's polarity (inclusion read as exclus
 `wrong_polarity_or_modality`), or the concept (another trial's claim made of this criterion: expected
 `unsupported`). It tests whether a model challenges a supplied answer, the anchoring a model that sees
 TrialLedger's reading is exposed to.
+
+Both draws are taken over the sample's own units: a question drawn as a supplement (`drawn_as`) is left out
+unless the caller asks for it, since its trial was not drawn with the strata's probabilities.
 """
 
 from __future__ import annotations
@@ -15,6 +18,15 @@ import random
 from TrialLedger.questions import ATOM_CLAIM_OPTIONS, atom_claim, question
 
 FLIP = {"inclusion": "exclusion", "exclusion": "inclusion", "permitted": "inclusion"}
+
+
+def drawn_units(questions: list[dict], include_supplement: bool) -> list[dict]:
+    """The questions a pilot or a rate draws from (pure — pinned): those drawn as "sample", and with
+    `include_supplement` those drawn as "supplement" too. A question with no `drawn_as` was written before
+    supplements existed, when every audited trial was the sample's, and counts as "sample"; any other label
+    is never drawn."""
+    allowed = {"sample", "supplement"} if include_supplement else {"sample"}
+    return [q for q in questions if q.get("drawn_as", "sample") in allowed]
 
 
 def to_label(questions: list[dict], n: int, seed: str) -> list[str]:
@@ -76,4 +88,5 @@ def mutations(questions: list[dict], n: int, seed: str) -> list[tuple[dict, str]
 
 def _mutant(original: dict, claim: str, kind: str) -> dict:
     target = {**original["target"], "claim": claim, "mutation": kind, "of": original["id"]}
-    return question("atom_claim", target, original["envelope"], ATOM_CLAIM_OPTIONS)
+    made = question("atom_claim", target, original["envelope"], ATOM_CLAIM_OPTIONS)
+    return made | ({"drawn_as": original["drawn_as"]} if "drawn_as" in original else {})

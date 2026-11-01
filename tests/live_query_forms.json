@@ -1,0 +1,62 @@
+{
+ "asked": "2026-11-01",
+ "how": "GET https://clinicaltrials.gov/api/v2/studies with filter.advanced=QUERY, countTotal=true, pageSize=1, fields=NCTId; one request each, 1.5 s apart",
+ "api_version": "2.0.5",
+ "data_timestamp": "2026-10-30T09:00:04",
+ "base": {
+  "query": "AREA[StudyType]INTERVENTIONAL AND AREA[StartDate]RANGE[2010-01-01,2025-12-31]",
+  "status": 200,
+  "totalCount": 354831
+ },
+ "forms": {
+  "AREA[Phase]": {
+   "query": "AREA[StudyType]INTERVENTIONAL AND AREA[StartDate]RANGE[2010-01-01,2025-12-31] AND AREA[Phase]PHASE2",
+   "status": 200,
+   "totalCount": 61650
+  },
+  "AREA[InterventionType]": {
+   "query": "AREA[StudyType]INTERVENTIONAL AND AREA[StartDate]RANGE[2010-01-01,2025-12-31] AND AREA[InterventionType]DRUG",
+   "status": 200,
+   "totalCount": 140144
+  },
+  "AREA[DesignPrimaryPurpose]": {
+   "query": "AREA[StudyType]INTERVENTIONAL AND AREA[StartDate]RANGE[2010-01-01,2025-12-31] AND AREA[DesignPrimaryPurpose]SCREENING",
+   "status": 200,
+   "totalCount": 3610
+  },
+  "NOT AREA[Phase]": {
+   "query": "AREA[StudyType]INTERVENTIONAL AND AREA[StartDate]RANGE[2010-01-01,2025-12-31] AND AREA[Phase]PHASE2 AND NOT AREA[Phase]NA AND NOT AREA[Phase]EARLY_PHASE1 AND NOT AREA[Phase]PHASE1 AND NOT AREA[Phase]PHASE3 AND NOT AREA[Phase]PHASE4",
+   "status": 200,
+   "totalCount": 43790
+  }
+ },
+ "also": {
+  "exact PHASE1|PHASE2": {
+   "query": "AREA[StudyType]INTERVENTIONAL AND AREA[StartDate]RANGE[2010-01-01,2025-12-31] AND AREA[Phase]PHASE1 AND AREA[Phase]PHASE2 AND NOT AREA[Phase]NA AND NOT AREA[Phase]EARLY_PHASE1 AND NOT AREA[Phase]PHASE3 AND NOT AREA[Phase]PHASE4",
+   "status": 200,
+   "totalCount": 12496,
+   "first": {
+    "nct": "NCT01030536",
+    "phases": [
+     "PHASE1",
+     "PHASE2"
+    ]
+   }
+  },
+  "AREA[DesignPrimaryPurpose]TREATMENT": {
+   "query": "AREA[StudyType]INTERVENTIONAL AND AREA[StartDate]RANGE[2010-01-01,2025-12-31] AND AREA[DesignPrimaryPurpose]TREATMENT",
+   "status": 200,
+   "totalCount": 217158
+  },
+  "unknown phase value": {
+   "query": "AREA[StudyType]INTERVENTIONAL AND AREA[StartDate]RANGE[2010-01-01,2025-12-31] AND AREA[Phase]PHASE9",
+   "status": 400,
+   "error": "Error parsing query in advanced filter: Allowed values for enum field `protocolSection.designModule.phases` are `NA`, `EARLY_PHASE1`, `PHASE1`, `PHASE2`, `PHASE3`, `PHASE4`"
+  },
+  "unknown search area": {
+   "query": "AREA[StudyType]INTERVENTIONAL AND AREA[StartDate]RANGE[2010-01-01,2025-12-31] AND AREA[PrimaryPurposeX]SCREENING",
+   "status": 400,
+   "error": "Error parsing query in advanced filter: Unknown area name: `PrimaryPurposeX`"
+  }
+ }
+}

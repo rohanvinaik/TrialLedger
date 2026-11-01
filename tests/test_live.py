@@ -42,3 +42,20 @@ def test_a_live_pull_writes_a_certified_folder_whose_links_resolve(tmp_path):
     assert code == "ok"
     head = httpx.head(url, follow_redirects=True, timeout=60)
     assert head.status_code == 200 and head.headers["content-type"] == "application/pdf"
+
+
+def test_every_verified_query_form_still_returns_trials():
+    """Each form in sample.VERIFIED_FORMS, asked as recorded in tests/live_query_forms.json (countTotal, one
+    ID per page), still returns trials; a recount is not expected to equal the recorded one."""
+    import time
+    from pathlib import Path
+
+    from TrialLedger.ingest import API_BASE
+    from TrialLedger.sample import VERIFIED_FORMS
+
+    fixture = json.loads((Path(__file__).parent / "live_query_forms.json").read_text(encoding="utf-8"))
+    for form in VERIFIED_FORMS:
+        params = {"filter.advanced": fixture["forms"][form]["query"], "countTotal": "true", "pageSize": "1"}
+        response = httpx.get(f"{API_BASE}/studies", params=params | {"fields": "NCTId"}, timeout=60)
+        assert response.status_code == 200 and response.json()["totalCount"] > 0
+        time.sleep(1.5)

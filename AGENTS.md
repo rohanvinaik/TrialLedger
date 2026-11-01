@@ -99,11 +99,18 @@ gather facts and write files. `design.md`'s code-shape table gives each module's
 - `questions.py`, `transport.py`, `sample.py`, `audit.py` (`openspec/changes/add-targeted-questions`): a
   targeted question with closed options and a bounded envelope of the record's own text; a local Ollama model
   behind GSE's contract (named explicitly, digest pinned and re-verified, schema-constrained, temperature 0,
-  budgets, one model loaded at a time and released after the run); a live stratified sample with a hash-reserved
-  confirmation pool; the serial audit loop (`trialledger sample`, `trialledger audit`), one trial at a time;
-  `pilot.py` and `trialledger pilot` (the seeded blind-label list and the planted mutations with their known
-  verdicts, asked of one model at a time).
-  A model answer never becomes a reading.
+  budgets, one model loaded at a time and released after the run); a live stratified sample with a
+  hash-reserved confirmation pool and a declared balance check (`trial_cells`, `holds_cell`, `cell_status`,
+  `balance_rows`: phase with combined phases as written and matched in any order, intervention type, primary
+  purpose; an empty registry cell asked of the registry live and filled by a labelled, seeded supplement with
+  its own and its union inclusion probability; a zero-hit cell is empty only by query forms tried live,
+  `VERIFIED_FORMS`, else `query_unverified`; a snapshot change raises `SnapshotChanged`); the serial audit
+  loop (`trialledger sample`, `trialledger audit`), one trial at a time, its manifest's gap check
+  (`text_coverage`: only whitespace between eligibility pieces; every uncovered stretch and every overlap
+  named, both together) and `balance.json` beside the manifest; every manifest, question and answer row
+  labelled `drawn_as` (sample or supplement); `pilot.py` and `trialledger pilot` (the seeded blind-label list
+  and the planted mutations with their known verdicts, asked of one model at a time, drawn from the sample's
+  own questions, `drawn_units`, unless `--include-supplement`). A model answer never becomes a reading.
 - `reading.py`: the population read once (`read_population`: each study's view, the known classes, review
   flags and near-miss pairs), the one producer that `design.py` (design.xlsx) and `symbolic.py` (the
   `resolve` JSON) consume.
@@ -147,7 +154,9 @@ Vulture counts a function named in a table as used, so it cannot see a table ent
 `tests/production_path.py` drives what production does (a two-page pull with a retry and a value a cell
 cannot hold, `verify` of the folder, `profile` of it with RxClass answering for one name and failing for
 another, `profile` of a folder with no record, a live `resolve` of four studies of which two are a near-miss
-pair, `sample` over every stratum, `audit` of its draw and `pilot` over that audit with a fake local model, an audit refused for want of
+pair, `sample` over every stratum, `audit` of its draw (its balance check asking the registry about every empty
+cell and auditing the one supplement a cell's registry IDs yield) and `pilot` over that audit with a fake local
+model, an audit refused for want of
 a budget and one refused because its model is not installed, `verify` of an unreadable workbook, a pull the
 server keeps failing), and
 the test fails on any function of the package that path does not reach, except the declared ones: the twelve
@@ -160,7 +169,11 @@ to a lookup, and every code a decision returns to its words.
 
 Run from this repo's `.venv` with the local checkouts first:
 `PYTHONPATH=$HOME/tools/Detective:$HOME/tools/Wesker .venv/bin/detective ...`. Every pinned decision here
-was converged with `--two-sign`, which the printed DO THIS lines omit; keep adding it.
+was converged with `--two-sign`, which the printed DO THIS lines omit (keep adding it), except those not yet
+converged, accepted as debt by the founder and named under Open items (`sample.trial_cells`,
+`sample.holds_cell`, `sample.cell_status`, `sample.balance_rows`, `audit.text_coverage`, `pilot.drawn_units`);
+`scripts/ci_local.sh --deep` will flag each of them until it is converged. `pilot.mutations` keeps its own
+code, so the gate does not flag it, but its output changed through `_mutant` and it is to be re-converged.
 
 A new decision is written unwired, given direct-call intent tests for both signs, converged with
 `--two-sign` in isolation, and only then wired into the shell. Run `ruff format` before converging, never
@@ -190,6 +203,17 @@ it. The proofs, so that they survive the machine:
 
 ## Open items
 
+- Decisions added or changed 2026-10-31 and 2026-11-01 for the balance table, the gap check and the
+  supplement's labelling (`sample.trial_cells`, `sample.holds_cell`, `sample.cell_status`,
+  `sample.balance_rows`, `audit.text_coverage`, `pilot.drawn_units`) have two-sign intent tests but are not
+  yet converged with Detective (the founder accepted this as debt, to be reconciled serially); the deep gate
+  flags them until they are. `pilot.mutations` is unchanged in its own code (so not flagged) but its output
+  changed through `_mutant` and is to be re-converged. The balance cell queries use the
+  metadata's `piece` names (`Phase`, `InterventionType`, `DesignPrimaryPurpose`) as search areas and Essie
+  `NOT` for an exact phase; each form was tried live once on 2026-11-01 and returned trials (counts in
+  `tests/live_query_forms.json`; an unknown area or phase value is refused with HTTP 400), and
+  `sample.VERIFIED_FORMS` declares them with that date. A supplement whose record does not hold its cell is
+  named (`holds_cell: false`) and fills nothing.
 - `detective converge TrialLedger/coherence.py::close --two-sign` printed UNGATEABLE (mutants exceeded a step
   budget); the target was not edited to clear it. The founder's decision.
 - The setting relations are being re-ruled under `openspec/changes/add-scoped-reasoning` (the founder

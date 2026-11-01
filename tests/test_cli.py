@@ -10,6 +10,7 @@ changed record is not certified (exit 1); a folder that is not a record is refus
 import json
 
 import httpx
+import pytest
 from conftest import FakeAPI, csv_page, json_page, version
 
 from TrialLedger.cli import main
@@ -133,3 +134,27 @@ def test_api_version_drift_is_reported(tmp_path, capsys):
         == 0
     )
     assert "the API reports version 2.1.0" in capsys.readouterr().err
+
+
+def test_an_audit_stops_on_a_snapshot_change_and_only_on_that(tmp_path, monkeypatch, capsys):
+    """Positive: the registry changing between the balance check's queries ends the audit with 1, named.
+    Negative: any other RuntimeError is not caught as one; it propagates."""
+    from TrialLedger import audit
+    from TrialLedger.sample import SnapshotChanged
+
+    sample = tmp_path / "sample.json"
+    sample.write_text(json.dumps({"seed": "s", "trials": []}), encoding="utf-8")
+
+    def changed(*args, **kwargs):
+        raise SnapshotChanged("the registry changed while supplementing: [T1, T2]")
+
+    monkeypatch.setattr(audit, "run_audit", changed)
+    assert main(["audit", str(sample), "--out", str(tmp_path / "a")]) == 1
+    assert "audit stopped — the registry changed while supplementing" in capsys.readouterr().err
+
+    def broken(*args, **kwargs):
+        raise RuntimeError("a fault, not a snapshot change")
+
+    monkeypatch.setattr(audit, "run_audit", broken)
+    with pytest.raises(RuntimeError, match="a fault"):
+        main(["audit", str(sample), "--out", str(tmp_path / "b")])

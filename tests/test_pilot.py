@@ -2,11 +2,14 @@
 
 Positive: the blind-label draw is seeded and order-free; each chosen claim yields a value mutation (a value
 the text does not state), a polarity mutation (inclusion read as exclusion) and a concept mutation (another
-criterion's concept), each keeping the original envelope and expecting its verdict.
-Negative: no mutation reuses a concept its own criterion states; a claim with nothing to change yields no
-value mutation; an unsectioned claim yields no polarity mutation; n never exceeds what exists."""
+criterion's concept), each keeping the original envelope and expecting its verdict; the units drawn are the
+sample's own (drawn_as sample, or no label from before supplements existed), and the supplement's too only
+when asked; a mutation keeps its original's drawn_as.
+Negative: a supplement question is never drawn by default, nor a question with any other label; no mutation
+reuses a concept its own criterion states; a claim with nothing to change yields no value mutation; an
+unsectioned claim yields no polarity mutation; n never exceeds what exists."""
 
-from TrialLedger.pilot import changed_values, mutations, to_label
+from TrialLedger.pilot import changed_values, drawn_units, mutations, to_label
 from TrialLedger.questions import ATOM_CLAIM_OPTIONS, atom_claim, question
 
 HELD = {"target": {"text": "* ECOG 0-1"}, "headings": ["Inclusion Criteria:"], "scoping": [], "stem": ""}
@@ -69,3 +72,22 @@ def test_nothing_to_label_is_an_empty_list():
     """Positive: no questions, or a negative n, give an empty list of ids. Negative: never None."""
     assert to_label([], -1, "") == []
     assert to_label([], 5, "s") == [] and isinstance(to_label([], 5, "s"), list)
+
+
+def test_only_the_samples_units_are_drawn_unless_the_supplement_is_asked_for():
+    sample, supplement, unlabelled, other = (
+        QUESTIONS[0] | {"drawn_as": "sample"},
+        QUESTIONS[1] | {"drawn_as": "supplement"},
+        QUESTIONS[2],
+        claim("NCT4", 1, "ecog_ps", ["2"]) | {"drawn_as": "confirmation"},
+    )
+    units = [sample, supplement, unlabelled, other]
+    assert drawn_units(units, False) == [sample, unlabelled]
+    assert drawn_units(units, True) == [sample, supplement, unlabelled]
+    assert drawn_units([], True) == []
+    made = mutations([sample, supplement], 2, "m")
+    assert made and {q["drawn_as"] for q, _ in made} <= {"sample", "supplement"}
+    assert all(
+        q["drawn_as"] == ("sample" if q["target"]["of"] == sample["id"] else "supplement") for q, _ in made
+    )
+    assert all("drawn_as" not in q for q, _ in mutations(QUESTIONS, 3, "m"))

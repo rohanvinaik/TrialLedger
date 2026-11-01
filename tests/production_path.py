@@ -69,7 +69,8 @@ def near_miss_study(nct: str, ecog: str) -> dict:
 
 def sample_and_audit(scratch: Path, studies: list[dict], rxclass) -> dict[str, int]:
     """`trialledger sample` over every stratum (id-only pages from one snapshot) and `trialledger audit` of
-    the draw, one trial at a time, with a local model that answers each question and is released at the end.
+    the draw, one trial at a time, with a local model that answers each question and is released at the end;
+    its balance table asks the registry about every empty cell and audits the one supplement drawn.
     """
     import httpx
     from conftest import version
@@ -80,13 +81,28 @@ def sample_and_audit(scratch: Path, studies: list[dict], rxclass) -> dict[str, i
 
     by_id = {s["protocolSection"]["identificationModule"]["nctId"]: s for s in studies}
     drawable = [nct for nct in by_id if not reserved(nct)]
+    # a screening trial outside the strata's draw: the registry holds it for the one empty cell it fills, so
+    # the balance check asks every empty cell, finds one gap in the registry and audits its supplement
+    screening = near_miss_study("NCT09000003", "0-1")
+    screening["protocolSection"]["designModule"] = {
+        "studyType": "INTERVENTIONAL",
+        "phases": ["PHASE2", "PHASE3"],
+        "designInfo": {"primaryPurpose": "SCREENING"},
+    }
+    by_id["NCT09000003"] = screening
 
     def route(request: httpx.Request) -> httpx.Response:
         if request.url.path == "/api/v2/version":
             return version()
         params = request.url.params
         if params.get("fields") == "NCTId":
-            ids = drawable if "Neoplasms" in params.get("filter.advanced", "") else []
+            where = params.get("filter.advanced", "")
+            if "AREA[DesignPrimaryPurpose]SCREENING" in where:
+                ids = ["NCT09000003"]
+            elif "AREA[Phase]" in where or "AREA[InterventionType]" in where or "AREA[Design" in where:
+                ids = []
+            else:
+                ids = drawable if "Neoplasms" in where else []
             page = [{"protocolSection": {"identificationModule": {"nctId": nct}}} for nct in ids]
             return httpx.Response(200, json={"studies": page, "totalCount": len(ids)})
         nct = params.get("filter.ids", "")

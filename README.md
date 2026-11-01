@@ -294,13 +294,26 @@ about as long as the original write. `profile` writes the same `design.xlsx` as 
 folder, changes none of its files, and refuses a folder whose record no longer matches its digests (`1`) or
 that holds no record (`2`).
 
-**Auditing a reading.** `trialledger sample --seed S --out sample.json` draws, live, a stratified random sample of
-interventional trials across the registry's condition categories (a hashed 30% of trials is reserved for
-confirmation and never drawn). `trialledger audit sample.json --out DIR --model qwen3:8b --budget N` then takes
-the trials one at a time: it reads each live (the record kept), resolves it, writes the questions its reading
-raises (one per typed claim, each with only the criterion's own text and its headings), and asks a local
-[Ollama](https://ollama.com) model each question in turn. The model only grades; its answers never change a
-reading, and every challenged answer goes to a reviewer.
+**Auditing a reading.** `trialledger sample --seed S --out sample.json` draws, live, a stratified random
+sample of interventional trials across the registry's condition categories (a hashed 30% of trials is reserved
+for confirmation and never drawn). `trialledger audit sample.json --out DIR --model qwen3:8b --budget N` then
+takes the trials one at a time: it reads each live (the record kept), resolves it, writes the questions its
+reading raises (one per typed claim, each with only the criterion's own text and its headings), and asks a
+local [Ollama](https://ollama.com) model each question in turn. The model only grades; its answers never
+change a reading, and every challenged answer goes to a reviewer. Its manifest lists every piece of each
+trial's eligibility text and confirms that nothing but whitespace lies between the pieces; any text no piece
+covers is always named, with its place and its words, even when pieces also overlap (each overlap is named
+too). Beside it, `balance.json` counts the trials by phase (combined phases such as Phase 1/Phase 2 kept as
+written, and counted whatever order the record lists them in), intervention type and primary purpose. The
+registry is asked about the cells only when the whole of a sample that declares its balance check has been
+audited (not with `--limit`, and not for a sample drawn before the declaration; their empty cells are "not
+checked"): a registry value no drawn trial holds is then checked live against the registry and, where the
+registry holds such trials, one is drawn as a labelled supplement (seeded, with its own inclusion probability,
+and its union probability if it was drawn for more than one cell, declared in sample.json) and audited too. A
+cell the registry returns no trial for is called empty only when the form of its query has been tried live
+(the dated list in `sample.VERIFIED_FORMS`); otherwise it is "query unverified". Every row of the manifest,
+the questions and the answers says whether its trial was drawn as the sample or as a supplement, and
+`trialledger pilot` draws only from the sample unless given `--include-supplement`.
 
 To check the build: `scripts/ci_local.sh` runs the fast gate (`--deep` adds the Detective audit of every
 pinned decision and the vulture scans; it needs local checkouts of Detective and Wesker),

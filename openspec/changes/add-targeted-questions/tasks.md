@@ -11,6 +11,15 @@
 ## 2. Source manifest and audit questions
 
 - [ ] 2.1 The source manifest of a resolved trial (eligibility pieces and gaps, outcomes, interventions)
+
+  - 2026-10-31: the gap check is built: `audit.text_coverage` (pure — pinned) confirms that only whitespace lies
+    before, between and after the pieces; each trial's manifest has an `eligibility_text` row with the result
+    and one `eligibility_gap` row (offsets and text) per stretch no piece covers, and overlapping pieces are
+    named.
+  - 2026-11-01: overlaps and holes are reported together (`overlapping_and_uncovered`), so an overlap never
+    hides uncovered text: one `eligibility_gap` row per uncovered stretch and one `eligibility_overlap` row
+    per stretch read twice; every manifest row carries `drawn_as`. Left: Detective convergence of
+    `text_coverage` (accepted debt), so not ticked.
 - [ ] 2.2 Audit question builders: `atom_claim`, `untyped_criterion` (concept instances, out_of_taxonomy),
       outcome and intervention claims; RxClass assignments checked deterministically against the kept artifact
 
@@ -25,6 +34,30 @@
     validated answers; untyped-criterion, outcome and intervention questions are still manifest rows only (2.2).
     Id-only live paging: 80,929 IDs of the no-MeSH stratum in 103 s from one snapshot. 3.1 still lacks the
     balance table (phase, intervention type, primary purpose) and its supplement; 2.1 lacks the gap check.
+  - 2026-10-31 (later): the balance table and its supplement are built. `sample.json` declares them before any
+    draw (the axes with their search areas, the registry's values from the vendored enums plus the two phase
+    combinations the metadata's rule names, one supplement trial per empty cell, the seed label). The audit
+    reads each trial's cells from its record when it is resolved (`trial_cells`: a combined phase is one cell,
+    as written; a field the record leaves empty is "(none recorded)", never a gap) and writes `balance.json`
+    beside its manifest (`balance_rows`, `cell_status`): drawn and supplement counts apart, the registry's count
+    for each cell it asked. Audited whole, a declared sample has each empty registry cell fetched live within the
+    frame (one snapshot), and a cell the registry holds gets a seeded supplement from its discovery pool outside
+    the sample, with its own inclusion probability n/N, audited in the same loop and labelled in the manifest
+    (`drawn_as`); a supplement whose record lacks its cell is named and fills nothing. A partial audit, or a
+    sample from before the declaration (the pilot's), asks the registry nothing: its empty cells are
+    "not_checked".
+  - 2026-11-01: the three search areas and the exact-phase `NOT` were tried live once (countTotal, pageSize 1;
+    `tests/live_query_forms.json`, data of 2026-10-30) and each returned trials; `sample.VERIFIED_FORMS`
+    declares them with that date, and a zero-hit cell whose query uses a form not on that list is
+    "query_unverified", never "empty_in_registry". A declared phase combination matches a record listing its
+    phases in another order (`holds_cell`), the written value kept. A trial drawn as a supplement for two
+    cells carries its union probability. Question and answer rows carry `drawn_as`, and `trialledger pilot`
+    draws only the sample's questions unless `--include-supplement`. A snapshot change raises
+    `SnapshotChanged`, the only error besides `PullError` that `sample` and `audit` catch. Left, so not
+    ticked: Detective convergence of `trial_cells`, `holds_cell`, `cell_status`, `balance_rows` (accepted
+    debt); under-representation (sample share against the registry's share for a non-empty cell) is not
+    measured, since the registry's count is fetched only for empty cells; the drawn trials are kept as the
+    audit's records, not through `resolve --keep`.
 
 ## 4. Pilot
 
