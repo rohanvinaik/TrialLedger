@@ -209,6 +209,11 @@ def landscape_runs(scratch: Path, studies: list[dict], rxclass, sandbox) -> dict
     codes["landscape"] = direct("landscape-direct", *flags)
     codes["landscape_again"] = direct("landscape-direct", *flags)
     codes["landscape_stopped"] = direct("landscape-mechanism", "--mechanism", "PD-1", "--mode", "direct")
+    # A class with subclasses (the FDA's Kinase Inhibitor: HER2, EGFR, JAK ... below it), so each subclass's
+    # own members are asked and every member attributed to the subclass it comes through.
+    codes["landscape_subclasses"] = direct(
+        "landscape-kinase", "--drug-class", "Kinase Inhibitor", "--class-source", "EPC", "--mode", "direct"
+    )
     held = scratch / "request.json"
     held.write_text(json.dumps(recorded["requests"][0]), encoding="utf-8")
     relayed = scratch / "landscape-relay"

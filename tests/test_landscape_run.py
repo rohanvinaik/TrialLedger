@@ -47,7 +47,7 @@ DOC = json.loads((Path(__file__).parent / "rxnav_request_answers.json").read_tex
 ANSWERS = DOC["answers"]
 PD1_IN_LUNG, _BY_NAME, _ALK_ATC, _ALK_AS_EPC, NO_CLASS, _KINASE_EPC, KINASE_MOA = DOC["requests"]
 VERSION = "https://rxnav.nlm.nih.gov/REST/version.json"
-PD1_CLAUSE_START = '(AREA[InterventionName]"pembrolizumab" OR '
+PD1_CLAUSE_START = '(AREA[InterventionName]("pembrolizumab" OR '
 
 
 def drug_free(study):

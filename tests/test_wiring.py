@@ -243,6 +243,7 @@ def test_the_production_path_ends_as_production_does(production):
         "landscape": 0,
         "landscape_again": 0,
         "landscape_stopped": 2,
+        "landscape_subclasses": 0,
         "landscape_relay": 0,
         "sample": 0,
         "sample_confirmation": 0,

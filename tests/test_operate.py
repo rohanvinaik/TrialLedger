@@ -64,7 +64,7 @@ PD1 = (
 
 
 def test_every_recorded_request_line_splits_into_its_url_and_parameters_and_back():
-    assert len(ANSWERS) == 97
+    assert len(ANSWERS) == 158
     for line in ANSWERS:
         url, params = lookup_request(line)
         assert "?" not in url and lookup_url(url, params) == line
