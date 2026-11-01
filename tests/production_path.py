@@ -119,6 +119,21 @@ def sample_and_audit(scratch: Path, studies: list[dict], rxclass) -> dict[str, i
         rxclass_get=rxclass,
         model_http=ollama,
     )
+    codes["pilot"] = cli.main(
+        [
+            "pilot",
+            str(scratch / "audit"),
+            "--label",
+            "2",
+            "--mutate",
+            "2",
+            "--model",
+            "qwen3:8b",
+            "--budget",
+            "50",
+        ],
+        model_http=ollama,
+    )
     codes["audit_no_budget"] = cli.main(
         ["audit", str(sample), "--out", str(scratch / "nobudget"), "--model", "qwen3:8b"], model_http=ollama
     )

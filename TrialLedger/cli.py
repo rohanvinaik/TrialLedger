@@ -185,7 +185,26 @@ def main(
     audit_parser.add_argument("--budget", type=int, default=0, help="the most model calls this run may make")
     audit_parser.add_argument("--no-think", action="store_true")
     audit_parser.add_argument("--limit", type=int, default=0, help="audit only the first N trials")
+    pilot_parser = commands.add_parser(
+        "pilot",
+        help="the auditor pilot over an audit folder: blind-label list, mutations, one model's answers",
+        description=(
+            "Over an audit folder's questions: write the seeded list of questions to label blind "
+            "(to_label.json) and the planted mutations with the verdicts they must receive "
+            "(mutations.jsonl); with --model, ask that one model the labelled questions and the mutations, "
+            "one at a time, into DIR/pilot-<model>/answers.jsonl, and release it. Ends with 0, done; 2, "
+            "refused."
+        ),
+    )
+    pilot_parser.add_argument("folder", type=Path)
+    pilot_parser.add_argument("--label", type=int, default=100)
+    pilot_parser.add_argument("--mutate", type=int, default=60)
+    pilot_parser.add_argument("--model")
+    pilot_parser.add_argument("--budget", type=int, default=0)
+    pilot_parser.add_argument("--no-think", action="store_true")
     args = parser.parse_args(argv)
+    if args.command == "pilot":
+        return _pilot(args, model_http=model_http)
     if args.command == "sample":
         return _sample(args, http=http, sleep=sleep)
     if args.command == "audit":
@@ -249,6 +268,53 @@ def _sample(args, *, http, sleep) -> int:
     sample["code_commit"] = code_commit()
     args.out.write_text(json.dumps(sample, indent=1), encoding="utf-8")
     print(f"{args.out} written ({len(sample['trials'])} trials, data as of {sample['data_timestamp']})")
+    return 0
+
+
+def _pilot(args, *, model_http) -> int:
+    from TrialLedger.audit import answer_questions
+    from TrialLedger.pilot import mutations, to_label
+    from TrialLedger.transport import LocalModel, TransportError, urllib_http
+
+    lines = (args.folder / "questions.jsonl").read_text(encoding="utf-8").splitlines()
+    questions = [json.loads(line) for line in lines]
+    labelled = to_label(questions, args.label, "pilot-labels")
+    planted = mutations(questions, args.mutate, "pilot-mutations")
+    (args.folder / "to_label.json").write_text(json.dumps(labelled, indent=1), encoding="utf-8")
+    with (args.folder / "mutations.jsonl").open("w", encoding="utf-8") as out:
+        for item, expected in planted:
+            out.write(json.dumps({"question": item, "expected": expected}, ensure_ascii=False) + "\n")
+    print(f"{args.folder}: {len(labelled)} to label blind, {len(planted)} mutations")
+    if not args.model:
+        return 0
+    if args.budget <= 0:
+        print("trialledger: refused (a model needs --budget, the most calls it may make)", file=sys.stderr)
+        return 2
+    where = args.folder / f"pilot-{args.model.replace(':', '_').replace('/', '_')}"
+    where.mkdir(exist_ok=True)
+    try:
+        model = LocalModel(
+            args.model,
+            model_http or urllib_http,
+            where / "answer_cache.jsonl",
+            budget=args.budget,
+            think=not args.no_think,
+        )
+        model.pin()
+    except TransportError as error:
+        print(f"trialledger: refused (model.{error.code})", file=sys.stderr)
+        return 2
+    chosen = set(labelled)
+    asked = [q for q in questions if q["id"] in chosen] + [item for item, _ in planted]
+    try:
+        rows = answer_questions(model, asked)
+    finally:
+        model.release()
+    with (where / "answers.jsonl").open("w", encoding="utf-8") as out:
+        for row in rows:
+            out.write(json.dumps(row, ensure_ascii=False) + "\n")
+    answered = sum(row["code"] == "ok" for row in rows)
+    print(f"{where}: {answered} answered, {len(rows) - answered} errors")
     return 0
 
 

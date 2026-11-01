@@ -60,6 +60,8 @@ def trial_questions(study: dict[str, Any], view: dict[str, Any]) -> tuple[list[d
                 row["status"] = code
             for number, atom in enumerate(atoms if code == "ok" else []):
                 target = {"nct": nct, "piece": index, "atom": number, "claim": atom_claim(atom, section)}
+                target |= {"concept": atom[1], "values": list(atom[2]), "params": [list(p) for p in atom[3]]}
+                target["section"] = section
                 questions.append(question("atom_claim", target, held, ATOM_CLAIM_OPTIONS))
         manifest.append(row)
     for number, (kind, measure, frame, classes, points) in enumerate(view["outcomes"]):
@@ -73,6 +75,25 @@ def trial_questions(study: dict[str, Any], view: dict[str, Any]) -> tuple[list[d
             | {"classes": classes, "source": source, "status": "not_asked_this_wave"}
         )
     return questions, manifest
+
+
+def answer_questions(model: LocalModel, questions: list[dict]) -> list[dict]:
+    """Ask `model` each question in turn; each answer is validated, and a refusal or a failure is kept as its
+    named code, never as a verdict."""
+    schema = answer_schema(ATOM_CLAIM_OPTIONS)
+    rows = []
+    for item in questions:
+        try:
+            raw, identity, cached = model.ask(item, schema)
+            code, verdict, quote = validate_answer(raw, ATOM_CLAIM_OPTIONS, item["envelope"])
+        except TransportError as error:
+            raw, identity, cached = "", "", False
+            code, verdict, quote = error.code, "", ""
+        rows.append(
+            {"question": item["id"], "nct": item["target"].get("nct", ""), "code": code, "verdict": verdict}
+            | {"quote": quote, "identity": identity, "cached": cached, "raw": raw}
+        )
+    return rows
 
 
 def _append(path: Path, rows: list[dict]) -> None:
@@ -97,7 +118,6 @@ def run_audit(
     records = out / "records"
     records.mkdir(parents=True, exist_ok=True)
     counts = {"trials": 0, "questions": 0, "answered": 0, "answer_errors": 0}
-    schema = answer_schema(ATOM_CLAIM_OPTIONS)
     trials = sample["trials"][:limit] if limit else sample["trials"]
     try:
         for trial in trials:
@@ -119,22 +139,11 @@ def run_audit(
             counts["trials"] += 1
             counts["questions"] += len(questions)
             progress(f"{nct}: {len(questions)} questions, {len(manifest)} manifest rows")
-            for item in questions if model is not None else []:
-                assert model is not None
-                try:
-                    raw, identity, cached = model.ask(item, schema)
-                    code, verdict, quote = validate_answer(raw, ATOM_CLAIM_OPTIONS, item["envelope"])
-                except TransportError as error:
-                    raw, identity, cached = "", "", False
-                    code, verdict, quote = error.code, "", ""
-                counts["answered" if code == "ok" else "answer_errors"] += 1
-                _append(
-                    out / "answers.jsonl",
-                    [
-                        {"question": item["id"], "nct": nct, "code": code, "verdict": verdict, "quote": quote}
-                        | {"identity": identity, "cached": cached, "raw": raw}
-                    ],
-                )
+            if model is not None:
+                rows = answer_questions(model, questions)
+                counts["answered"] += sum(1 for row in rows if row["code"] == "ok")
+                counts["answer_errors"] += sum(1 for row in rows if row["code"] != "ok")
+                _append(out / "answers.jsonl", rows)
     finally:
         if model is not None:
             model.release()

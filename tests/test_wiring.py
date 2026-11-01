@@ -79,6 +79,7 @@ def test_the_production_path_ends_as_production_does(production):
         "resolve": 0,
         "sample": 0,
         "audit": 0,
+        "pilot": 0,
         "audit_no_budget": 2,
         "audit_refused": 2,
         "verify_unreadable": 1,

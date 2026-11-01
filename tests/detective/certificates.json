@@ -357,6 +357,24 @@
     "refusal": "",
     "standing": "complete"
   },
+  "TrialLedger/pilot.py::changed_values": {
+    "cut_reasons": [],
+    "function_digest": "294bed6aa17c465a",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/pilot.py::mutations": {
+    "cut_reasons": [],
+    "function_digest": "c6a4c32d06f36b4f",
+    "refusal": "environment_gated:reads entropy via random.Random()",
+    "standing": "complete"
+  },
+  "TrialLedger/pilot.py::to_label": {
+    "cut_reasons": [],
+    "function_digest": "cf47362b9dc9018d",
+    "refusal": "environment_gated:reads entropy via random.Random()",
+    "standing": "complete"
+  },
   "TrialLedger/profile.py::element_key": {
     "cut_reasons": [],
     "function_digest": "ea8676d2ccc50cff",
