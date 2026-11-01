@@ -287,8 +287,8 @@ only when it is stated more often in that class even if every record among the o
 is abbreviated is counted as stating it; when such records could reverse the comparison, it is shown as
 unresolved. Only the RxClass answers are cached, in `~/.cache/trialledger` (or `$TRIALLEDGER_CACHE`), with,
 for each experimental drug's names, what RxNorm says it is and its ATC and chemical-structure classes, each
-with its request, retrieval time and RxNav release; the first run after an update asks RxNav about every such
-name already cached, four to six spaced requests a name. It ends with `0`, resolved; `1`, the query failed;
+with its request, retrieval time and RxNav release; after an update, `resolve` asks RxNav about every such name
+already cached, four to six spaced requests a name. It ends with `0`, resolved; `1`, the query failed;
 `2`, the query was refused.
 
 The registry updates daily and sponsors edit their studies, so the same query can read differently next month.
@@ -317,7 +317,10 @@ the query was refused. `verify` re-derives a saved folder and ends with `0`, cer
 each difference named; `2`, no TrialLedger record; it rewrites both workbooks to compare the files, so it takes
 about as long as the original write. `profile` writes the same `design.xlsx` as `resolve --out` beside a saved
 folder, changes none of its files, and refuses a folder whose record no longer matches its digests (`1`) or
-that holds no record (`2`).
+that holds no record (`2`). It reads each drug's RxNorm identity, ATC and chemical-structure classes as already
+cached, and marks a drug whose classes were never looked up as "not looked up", never as having no class;
+`profile --fill-axes` asks RxNav for them first (four to six spaced requests a name, over an hour for a few
+hundred trials).
 
 **Auditing a reading.** `trialledger sample --seed S --out sample.json` draws, live, a stratified random
 sample of interventional trials across the registry's condition categories (a hashed 30% of trials is reserved
@@ -348,6 +351,15 @@ of its query has been tried live (the dated list in `sample.VERIFIED_FORMS`); ot
 unverified". Every row of the manifest, the questions and the answers says whether its trial was drawn as the
 sample or as a supplement, and `trialledger pilot` draws only from the sample unless given
 `--include-supplement`.
+
+The reserved 30% is split into three confirmation batches, each to be used once. `trialledger sample
+--confirmation-batch N --inspected FILE ... --batch-ledger confirmation_ledger.json` draws from one batch and
+leaves out every trial of each population named with `--inspected`, since a rule cannot be confirmed on trials
+it was written against. Inspected populations are a record folder, a sample or an audit's balance check; each
+list is kept with its file's digest, and the number of trials left out is counted. The draw is refused unless
+the code is committed with no uncommitted changes, so the confirmation names exactly the code it tested. The
+ledger records the batch as used, by that commit, after the sample is written, and refuses the batch to any
+other commit.
 
 To check the build: `scripts/ci_local.sh` runs the fast gate (`--deep` adds the Detective audit of every
 pinned decision and the vulture scans; it needs local checkouts of Detective and Wesker),

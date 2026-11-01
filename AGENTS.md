@@ -135,7 +135,34 @@ gather facts and write files. `design.md`'s code-shape table gives each module's
   review flags, near-miss pairs, the aligned pairs (drug classes compared by ATC, labelled `rxclass` or
   `crosswalk`) and the structure relations), the one producer that `design.py` (design.xlsx) and `symbolic.py`
   (the
-  `resolve` JSON) consume.
+  `resolve` JSON) consume. A drug's axes are read as cached: a stored-folder `profile` asks RxNav for them
+  only with `--fill-axes` (once the record verifies), `resolve` always; `reading.axes_not_looked_up` names
+  the names never asked and `reading.axes_as_looked_up` reads such a drug `not_looked_up`, never no class
+  and never aligned; the Drug Axes sheet's warrant digests both rules and `drug_axes_view`.
+- The confirmation draw (`add-bank-coverage` B8, 7.1b): `sample.pool` splits the reserved pool into
+  batches 0-2; `trialledger sample --confirmation-batch N` draws from one, excluding every trial of the
+  inspected populations declared with `--inspected` (`inspected_ids`, `screen_inspected`; each list kept
+  with its file's sha256, `inspected_excluded` counted), refused by `batch_request` unless TrialLedger/ and
+  tests/ are clean at a commit (`code_state` through `git_query`, injectable as `cli.main(git=...)`;
+  `code_commit` and `code_source_digest` recorded) and unless the declared ledger `confirmation_ledger.json`
+  (`--batch-ledger`, `ledger_batches`) leaves the batch unused or gives it to the same commit; the batch is
+  recorded there after the sample is written.
+- The bank foundations (`add-bank-coverage` group 1), consumed by no production path yet (declared in
+  `tests/test_wiring.py` with the task that will): `semantics/` (`contracts.py`: the bank contract, `Atom`,
+  `Span`, `Finding`, `BankResult` and the legacy adapter; `loader.py`: predicate families, `ConceptEntry`
+  with `defined_on`, fragments, `registry_problems`, `registry_flags`, `compile_registry`, `UNVERSIONED`
+  and `LEGACY_FRAGMENTS`; `fragments/nsclc_legacy.py`, the seed of the existing banks' concepts),
+  `typematrix.py` (the supported-type axes, `study_coordinates`, `universe_status`, the manifest),
+  `evaluation.py` (three levels kept apart through `at_level`; `GoldRecord` with each annotator's `Read` and
+  the agreement kind; `THRESHOLDS`, `THRESHOLD_MEASURE`, `MINIMUM_DENOMINATOR` and a seeded cluster
+  `BOOTSTRAP` read by `threshold_verdict`), and `provenance.py`'s `CONCEPT_AUTHORITIES`,
+  `DEVELOPMENT_POPULATIONS` and `RULE_EXPOSURE`, concept provenance apart from rule provenance.
+- `assertions.py` and `entail.py` (`add-scoped-assertions` 1.1, 3.1, 3.2), dormant until its 5.1: the
+  `ScopedAssertion` model (`Proposition`: `Literal`, `AllOf`, `AnyOf`, `Not`, `Opaque`; no default rule,
+  `UNRESOLVED_RULE` explicit and never a premise; an unknown branch position is unresolved) and entailment
+  with its six results, minimal proofs and blockers, the weakest premise status, proposed never a premise.
+  A negative qualified literal is NOT (base AND qualifiers); an enum set's `in`/`not_in` are membership
+  variables (`not_in` holds none); a literal's time identity excludes certainty.
 - The coherence engine (`openspec/changes/add-coherence-engine`), outside the review and record workbooks'
   derivation and code root: `criteria.py` (eligibility itemized into headings, criteria and prose, exact
   spans; `eligibility_coverage`: content, sectioning and each section's coverage evidence, abbreviation
@@ -178,7 +205,9 @@ every folder, unchanged.
 `scripts/ci_local.sh` is the fast gate, seconds: `uv sync --locked`, ruff check, ruff format check, pytest, ty
 (advisory). Run it and read its whole output before every commit. `scripts/ci_local.sh --deep` adds, in
 minutes, `detective audit --two-sign --check` on every function tagged `(pure — pinned)` (the list is read
-from the code, and an audit of none fails), with Detective and Wesker from the founder's local checkouts
+from the code under `TrialLedger/**`, subpackages included, and an audit of none fails; a tag counts only
+written whole on one line with nothing else inside its parentheses, and `banks.permitted`,
+`classes.rxnorm_concepts` and `classes.name_identity` still break theirs over two lines), with Detective and Wesker from the founder's local checkouts
 (`~/tools/Detective`, `~/tools/Wesker`, or `DETECTIVE_ROOT`/`WESKER_ROOT`), never the copy in `.venv`, and two
 vulture scans, advisory. Run the deep gate after converging new decisions and before an archive; a new decision
 is converged at write time, which the deep audit re-certifies but does not replace (the founder's instruction,
@@ -196,7 +225,9 @@ hold, `verify` of the folder, `profile` of it with RxClass answering for one nam
 (whose records say their exclusions are abbreviated, so the coverage markers and their review flag are
 reached; with RxNav resolving an ingredient, a brand and a combination and answering ATC and structure
 classes, an own name RxNorm does not hold beside a combination alias, and a genetic intervention whose entry
-states a CAR-T product), `sample` over every stratum, `audit` of its draw (a trial with every kind of
+states a CAR-T product), `sample` over every stratum, a confirmation `sample` of batch 1 that excludes that discovery
+sample (a fake git names a clean commit) and one refused for an undeclared batch, which asks the real git,
+`audit` of its draw (a trial with every kind of
 question, answered in each kind's schema, the RxClass answers kept in the audit folder and an assignment
 checked against that kept copy; its balance check asking the registry about every empty cell and auditing the
 one supplement a cell's registry IDs yield) and `pilot` over that audit with a fake local model, an audit
@@ -217,7 +248,8 @@ converged, accepted as debt by the founder and named under Open items (`sample.t
 `sample.holds_cell`, `sample.cell_status`, `sample.balance_rows`, `audit.text_coverage`, `pilot.drawn_units`,
 and the audit question kinds' decisions: `field_envelope`, `time_point_role`, `validate_instances`,
 `untyped_reading`, `concept_instances`, `audit.rxclass_check`, `audit.rxclass_absence`, and the changed
-`validate_answer` and `pilot.to_label`); `scripts/ci_local.sh --deep` will flag each of them until it is
+`validate_answer` and `pilot.to_label`; and the foundations of
+2026-11-01 named under Open items); `scripts/ci_local.sh --deep` will flag each of them until it is
 converged. `pilot.mutations` keeps its own
 code, so the gate does not flag it, but its output changed through `_mutant` and it is to be re-converged.
 
@@ -315,6 +347,25 @@ it. The proofs, so that they survive the machine:
   unresolved), so the `crosswalk` basis of the aligned reading gives no class yet. New and changed pure
   decisions in `classes.py` and `modality.py` are not yet converged by Detective (accepted as debt by the
   founder, to be reconciled serially).
+- The foundations of 2026-11-01, built in parallel worktrees, are not yet converged with Detective (the
+  founder accepted this as debt incurred by parallel workflow work, to be reconciled serially); each has
+  two-sign intent tests. The confirmation draw: `sample.inspected_ids`, `sample.ledger_batches`,
+  `sample.screen_inspected` and the changed `sample.batch_request`. The lazy axes:
+  `reading.axes_not_looked_up`, `reading.axes_as_looked_up` and the changed `reading.drug_axes_view`. The
+  contracts: `semantics.contracts` (`atom_digest`, `atom_problems`, `result_problems`, `slug`,
+  `legacy_concept_id`, `from_legacy`, `to_legacy`, `legacy_result`), `semantics.loader`
+  (`fragment_from_data`, `registry_problems`, `registry_flags`, `atom_registry_problems`), `typematrix`
+  (`study_coordinates`, `universe_status`, `manifest_problems`), `evaluation` (`agreement_kind`,
+  `gold_problems`, `at_level`, `match`, `judge`, `bounds`, `rate`, `recall`, `precision`, `miss_rate`,
+  `unit_rates`, `complete_representation`, `parameter_accuracy`, `clustered_lower_bound`, `precision_group`,
+  `threshold_verdict`). The assertions: `assertions.model_problem`, `assertions.canonical`,
+  `entail.proposition_formula`, `entail.assertion_formula`, `entail.weakest_status`, `entail.decide`.
+- Open from those foundations, for the founder: `sample.BASE` ends start dates at 2025-12-31 while B1's
+  universe runs to the present (to reconcile before the discovery wave draws); `--batch-ledger` accepts any
+  path, so a draw against a fresh ledger bypasses the declared one (recorded in sample.json, not prevented);
+  who commits the ledger after a draw (committing moves HEAD, after which a re-draw is refused as
+  `batch_used`); the AJCC edition is unpinned although `bank:setting` names the 8th; Claude's first settings
+  of `MINIMUM_DENOMINATOR` and `BOOTSTRAP` and the annotator verdicts await ratification.
 - Comparable posted results (`add-coherence-engine` 5.3) wait on the endpoint-class bank (2.2); the residual
   (about 70% of criteria in the NSCLC population) decides the next banks (2.1b).
 
