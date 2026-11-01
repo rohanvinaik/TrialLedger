@@ -90,6 +90,13 @@ PROVENANCE: dict[str, tuple[str, str, str]] = {
         " known: RxClass, or stated by its record); predicates ECOG, histology, the checkpoint expectation;"
         " an unknown never matches; classes match only as written (the two vocabularies are not aligned)",
     ),
+    "gate:mention_value": (
+        "gate",
+        "derived: the auditor pilot of 2026-11-01 (18 trials, seed pilot-2026-10-31), development data",
+        "overrules qwen3:8b's wrong_value on a named-condition claim the rules re-derive in the same "
+        "effective section and window; on the pilot 25 right and 3 wrong claims overruled; to confirm on an "
+        "unseen sample",
+    ),
     "threshold:STANDARD_SHARE": ("threshold", "prior: first setting", "0.9; to be set on a wider corpus"),
     "threshold:SIGNAL_MIN_TRIALS": ("threshold", "prior: first setting", "5; to be set on a wider corpus"),
     "threshold:SIGNAL_MIN_SPONSORS": ("threshold", "prior: first setting", "3; to be set on a wider corpus"),

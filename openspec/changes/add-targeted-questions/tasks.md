@@ -135,3 +135,19 @@ immunosuppressive disease is not therapy; "capable of becoming pregnant" is not 
 corrected, 68 of 68 right claims unchanged; on the NSCLC set the frozen expectation is unchanged (110 present, 0
 verified deviations). The 12 left need the scoped-assertion layer (add-scoped-reasoning task 2): alternatives,
 another person's condition, definitional text, qualified subsets, a study's own procedures.
+
+## The auditor pilot's result (2026-11-01)
+
+qwen3.5:4b with thinking took about five minutes a question (8 of 277 answered, 7 matching Claude's reference)
+and was stopped; it fails on time. qwen3:8b with thinking answered 257 of 277 (18 quotes not found verbatim, 2
+truncated): planted mutations accepted as supported 1 of 164 (0.6%, criterion 1 met); of Claude's 100 labelled
+claims, wrong ones caught 24 of 28, right ones challenged 30 of 65 (46%, criterion 2 as declared not met). The
+founder's ruling: an over-challenge is a warrant for a symbolic gate, not a failure. 26 of the 30 were
+"wrong_value" on named-condition claims (the model grading `condition = pregnancy_or_breastfeeding` as a
+value): named-condition claims now read in words, and `gates.mention_value_gate` (derived from this pilot,
+recorded as such) overrules that challenge where the rules re-derive the condition in the same effective section
+and window; on the pilot it overrules 25 right and 3 wrong claims, the 3 being scoped-assertion cases. The quote
+normalizer (`questions.quote_in`: markdown escapes, whitespace, quotation marks, a trailing ellipsis as a prefix)
+answers the quote errors. The 4 wrong claims the model accepted are all scoped-assertion cases (alternatives,
+another person, a qualified subset, a paired threshold). qwen3:8b with thinking is the auditor. Codex's
+second read of Claude's labels and the disagreements is the remaining step of 4.2.

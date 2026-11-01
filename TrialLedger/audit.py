@@ -29,6 +29,7 @@ from typing import Any
 from TrialLedger import classes as rx
 from TrialLedger import warrants
 from TrialLedger.criteria import itemize
+from TrialLedger.gates import mention_value_gate
 from TrialLedger.questions import (
     ATOM_CLAIM_OPTIONS,
     FIELD_CLAIM_OPTIONS,
@@ -340,8 +341,10 @@ def answer_questions(model: LocalModel, questions: list[dict]) -> list[dict]:
         except TransportError as error:
             raw, identity, cached = "", "", False
             code, verdict, quote = error.code, "", ""
+        gate = "mention_value" if code == "ok" and mention_value_gate(item, verdict) else ""
         rows.append(
             {"question": item["id"], "nct": item["target"].get("nct", ""), "kind": item["kind"], "code": code}
+            | {"gate": gate, "verdict_after_gates": "supported" if gate else verdict}
             | {"verdict": verdict, "quote": quote, "instances": [list(pair) for pair in found]}
             | {"identity": identity, "cached": cached, "raw": raw}
             | {"drawn_as": item.get("drawn_as", "")}

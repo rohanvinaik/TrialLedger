@@ -96,6 +96,8 @@ gather facts and write files. `design.md`'s code-shape table gives each module's
   options for an expert or a model; nothing in it is resolved by TrialLedger (the founder, 2026-10-31).
 - `expectations.py`: declared expectations, observation statuses, conditional rarity, deviation statuses.
 - `nearmiss.py`: near-miss pairs, one known difference under a declared representation.
+- `gates.py`: symbolic gates on the auditor's answers (a model challenge resolved by a rule the symbols can
+  re-derive; each gate's provenance in `provenance.py`); `gate:mention_value` from the auditor pilot.
 - `questions.py`, `transport.py`, `sample.py`, `audit.py` (`openspec/changes/add-targeted-questions`): a
   targeted question with closed options and a bounded envelope of the record's own text; a local Ollama model
   behind GSE's contract (named explicitly, digest pinned and re-verified, schema-constrained, temperature 0,

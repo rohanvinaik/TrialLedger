@@ -132,6 +132,17 @@ def atom_claim(atom: tuple, section: str) -> str:
     detail = "; ".join(
         f"{name} {value}" for name, value in params if name not in ("text_polarity", "modality")
     )
+    if concept == "condition":
+        # a mention-type atom names a condition, not a value: say it in words, so no reader grades the
+        # concept's name as if it were a value the text should state (the auditor pilot, 2026-11-01)
+        stated = " or ".join(value.replace("_", " ") for value in values) + (f" ({detail})" if detail else "")
+        if section == "permitted":
+            return f"This criterion permits, without requiring, participants who have: {stated}"
+        if section == "exclusion":
+            return f"This exclusion criterion excludes participants who have: {stated}"
+        if section == "inclusion":
+            return f"This inclusion criterion requires participants to have: {stated}"
+        return f"This criterion (no inclusion or exclusion heading) names: {stated}"
     stated = f"{concept} = {' | '.join(values)}" + (f" ({detail})" if detail else "")
     if section == "permitted":
         return f"This criterion permits, without requiring, participants to have: {stated}"
@@ -263,11 +274,30 @@ def validate_answer(raw: str, options: tuple[str, ...], held: dict) -> tuple[str
         return "malformed", "", ""
     if verdict not in options:
         return "unknown_verdict", "", ""
-    if quote.strip() and not any(quote.strip() in part for part in envelope_texts(held)):
+    if quote.strip() and not quote_in(quote, envelope_texts(held)):
         return "quote_not_in_envelope", "", ""
     if not quote.strip() and verdict not in ("insufficient_context", "unsupported"):
         return "quote_not_in_envelope", "", ""
     return "ok", verdict, quote
+
+
+_ESCAPE = re.compile(r"\\([\\`*_{}\[\]()#+\-.!<>^|~=])")
+_ELLIPSIS = re.compile(r"(?:\.\.\.|…)\s*$")
+
+
+def normal_text(text: str) -> str:
+    """Text as a quote is compared (pure — pinned): markdown backslash escapes removed ("\\>" is ">"),
+    surrounding quotation marks dropped, runs of whitespace one space, ends trimmed."""
+    return " ".join(_ESCAPE.sub(r"\1", text).strip().strip("\"'“”‘’").split())
+
+
+def quote_in(quote: str, texts: list[str]) -> bool:
+    """Whether a model's quote lies in the envelope (pure — pinned): verbatim after `normal_text` on both
+    sides; a quote ending in "..." or "…" is a prefix (what precedes the marks must lie in a text). An empty
+    quote, or one that is only the marks, lies nowhere."""
+    prefix = bool(_ELLIPSIS.search(quote))
+    wanted = normal_text(_ELLIPSIS.sub("", quote) if prefix else quote)
+    return bool(wanted) and any(wanted in normal_text(text) for text in texts)
 
 
 def envelope_texts(held: dict) -> list[str]:

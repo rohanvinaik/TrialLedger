@@ -107,9 +107,7 @@ def test_the_effective_section_follows_the_wording():
         ("c", "condition", ("pregnancy_or_breastfeeding",), (("text_polarity", "excluded"),), 0, 1),
         "exclusion",
     )
-    assert (
-        claim == "This exclusion criterion excludes participants with: condition = pregnancy_or_breastfeeding"
-    )
+    assert claim == "This exclusion criterion excludes participants who have: pregnancy or breastfeeding"
     allowed = atom_claim(
         ("p", "prior_agent", ("chemotherapy",), (("modality", "permitted"),), 0, 1), "permitted"
     )
