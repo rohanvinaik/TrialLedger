@@ -271,7 +271,9 @@ def prior_therapy(text: str) -> list[Atom]:
 _ROMAN = str.maketrans({"Ⅰ": "I", "Ⅱ": "II", "Ⅲ": "III", "Ⅳ": "IV"})
 # A negation ending just before a stage or extent word: "no", "not", "without", "excluding", "other than".
 _NEGATED = re.compile(
-    r"\b(?:no|not|without|excluding|except|other than|non)\b[\w\s,/-]{0,20}$", re.IGNORECASE
+    r"\b(?:no|not|without|excluding|except|other than|non|rul(?:e[sd]?|ing) out|free of|absence of)\b"
+    r"[\w\s,/-]{0,20}$",
+    re.IGNORECASE,
 )
 _STAGE_TOKEN = r"(?:IV|I{1,3}|Ⅰ|Ⅱ|Ⅲ|Ⅳ)[ABCabc]?\d?"
 _STAGE = re.compile(
@@ -368,13 +370,18 @@ ANALYTES = {
     ),
     "creatinine": r"(?:serum )?creatinine(?! clearance)|(?-i:\bCr\b)",
     "bilirubin": r"(?:total |serum )?bilirubin|(?-i:\bTBIL\b)",
-    "AST": r"aspartate (?:amino)?transferase|(?-i:\bAST\b|\bSGOT\b)",
-    "ALT": r"alanine (?:amino)?transferase|(?-i:\bALT\b|\bSGPT\b)",
+    "AST": r"aspartate (?:amino)?trans(?:fer|amin)ase|(?-i:\bAST\b|\bSGOT\b)",
+    "ALT": r"alanine (?:amino)?trans(?:fer|amin)ase|(?-i:\bALT\b|\bSGPT\b)",
     "albumin": r"albumin",
     "leukocytes": r"leukocytes?|white blood cells?(?: count)?|(?-i:\bWBC\b)",
 }
 # Names match in any case; acronyms only as written, so "eGFR" (kidney) is never "EGFR" (the gene).
 _ANALYTE = re.compile("|".join(f"(?P<n{i}>{p})" for i, p in enumerate(ANALYTES.values())), re.IGNORECASE)
+# What may stand between two analytes of one run sharing a threshold: brackets (the registry escapes them
+# with a backslash), commas, slashes, "and", "or", and a specimen word ("serum", "plasma").
+_ANALYTE_JOIN = re.compile(
+    r"(?:[\s,/()\[\]\\]|\band\b|\bor\b|\bserum\b|\bplasma\b|\blevels?\b)*", re.IGNORECASE
+)
 _COMPARATORS = (
     (r"≥|>=|=\\?>|\\>=|\\>/=|>/=|greater than or equal to|at least|no less than|not less than", "≥"),
     (r"≤|<=|=\\?<|\\<=|\\</=|</=|less than or equal to|no (?:more|greater) than|not exceed\w*|up to", "≤"),
@@ -383,7 +390,7 @@ _COMPARATORS = (
 )
 _THRESHOLD = re.compile(
     r"(?P<cmp>" + "|".join(p for p, _ in _COMPARATORS) + r")\s*(?P<value>\d+(?:[.,]\d+)?)\s*"
-    r"(?P<unit>(?:[×xX*]|times)\s*(?:the\s+)?(?:institutional\s+)?(?:upper limit of normal|ULN)|"
+    r"(?P<unit>(?:[×xX*]|times)\s*(?:the\s+)?(?:institutional\s+)?(?:upper limits? (?:of )?normal|ULN)|"
     r"[×xX*]\s*10\s*(?:\^|e)?\s*(?:9|⁹|12)\s*/\s*L|×\s*10⁹/L|/\s*(?:mm3|mm³|µL|μL|uL|L)|"
     r"/\s*mcL|g/dL|g/L|mg/dL|mg/dl|µmol/L|μmol/L|umol/L|mL/min(?:/1\.73\s*m(?:2|²))?"
     r"|ml/min(?:/1\.73\s*m(?:2|²))?|%)?",
@@ -404,22 +411,39 @@ def organ_function(text: str) -> list[Atom]:
     lab: an analyte (neutrophils, platelets, hemoglobin, creatinine clearance, creatinine, bilirubin, AST,
     ALT, albumin; "eGFR" in that case is kidney function, never the EGFR gene) followed within 40 characters
     by a comparator and a number, with the unit as written (× ULN, × 10^9/L, mg/dL, mL/min ...), the
-    comparator normalised to ≥, ≤, > or <, never a converted value. organ_function_unspecified: "adequate
+    comparator normalised to ≥, ≤, > or <, never a converted value. A run of analytes joined only by brackets,
+    commas, "and", "or" or a specimen word shares the threshold after its last mention ("AST and ALT ≤ 2.5 ×
+    ULN" is two atoms), and an analyte named twice against one threshold (a name and its abbreviation) is one
+    atom. organ_function_unspecified: "adequate
     organ / hematologic / hepatic / renal function" with no threshold in the criterion. Nothing: no atom.
     """
     atoms: list[Atom] = []
+    seen: set[tuple[str, int]] = set()
     names = list(ANALYTES)
-    for analyte in _ANALYTE.finditer(text):
+    mentions = list(_ANALYTE.finditer(text))
+    for index, analyte in enumerate(mentions):
         name = names[int(next(key for key, value in analyte.groupdict().items() if value)[1:])]
+        # A threshold shared by a run of analytes ("AST (aspartate aminotransferase [AST]) and ALT ≤ 2.5 ×
+        # ULN") is measured from the run's last mention: mentions joined only by brackets, commas, "and", "or"
+        # or a specimen word belong to one run.
+        last = index
+        for following in range(index + 1, len(mentions)):  # bounded: at most the mentions after this one
+            if not _ANALYTE_JOIN.fullmatch(text[mentions[following - 1].end() : mentions[following].start()]):
+                break
+            last = following
         threshold = _THRESHOLD.search(text, analyte.end())
-        if not threshold or threshold.start() - analyte.end() > 40:
+        if not threshold or threshold.start() - mentions[last].end() > 40:
             continue
+        if (name, threshold.start()) in seen:
+            continue  # the same analyte named again (its abbreviation) against the same threshold
+        seen.add((name, threshold.start()))
         found = [threshold]
         following = _THRESHOLD.search(text, threshold.end())
         if (
             following
             and following.start() - threshold.end() <= 30
             and re.search(r"\b(?:or|and)\b", text[threshold.end() : following.start()], re.IGNORECASE)
+            and not _ANALYTE.search(text, threshold.end(), following.start())
         ):
             found.append(following)
         for each in found:

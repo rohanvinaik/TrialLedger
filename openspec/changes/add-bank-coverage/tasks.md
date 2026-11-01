@@ -91,6 +91,20 @@
   - Two entailments authored inside banks, to register apart (Decision 2).
   - The performance-status scale, still `unversioned` and flagged (3.3).
 
+  2026-11-01, readings a clinical reader's usability test of twenty lung-cancer trials found wrong, fixed
+  (tests/test_bank_readings_ux.py, from the real criteria; `organ_function` and `disease_setting` re-converged
+  COMPLETE). NCT02595944 (ANVIL) read "to rule out metastatic disease" as metastatic extent, and read "aspartate
+  transaminase (AST) and alanine transaminase (ALT) =< 2.5 x upper limit normal" as ALT twice with no unit.
+  Causes: "rule out", "free of" and "absence of" were not negations; "transaminase" was not an AST/ALT
+  synonym; "upper limit normal" (no "of") was not a ULN unit; a threshold shared by a run of analytes reached
+  only the analyte within 40 characters of it; an analyte named twice (name and abbreviation) was read twice;
+  and a second threshold joined by "and"/"or" was given to the analyte before it even when another analyte was
+  named between ("platelets >= 100,000/mm3 and ANC >= 1500/mm3" gave platelets 1500). On the 10,187 NSCLC
+  criteria: 148 organ-function readings and 2 extent readings change, every one read and every one a
+  correction (duplicates gone, thresholds no longer crossing analytes, missed AST readings found; NCT04416035
+  #9's "ALT <= 5 x ULN if liver metastases" is no longer given to AST). Tests on the frozen expectation pass
+  unchanged.
+
 ## 3. Shared primitives and general packages (parallel, file-disjoint)
 
 - [ ] 3.1b The quantity grammar (the founder, 2026-11-01: numbers and units parsed by a proper mathematical and
