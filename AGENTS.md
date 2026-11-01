@@ -50,8 +50,9 @@ record.
 `trialledger verify <folder>` re-derives a written folder. The ingestion layer and the first projection
 (`openspec/specs/`, archived change `openspec/changes/archive/2026-10-31-add-review-workbook`) are built; the
 coherence engine (typing, each trial's design coordinates, the cross-trial profile) is under construction in
-`openspec/changes/add-coherence-engine`, and declared expectations, deviations and near misses in
-`openspec/changes/add-design-surprise`; the publication parser is designed in `docs/THEORY_OF_THE_CASE.md` and
+`openspec/changes/add-coherence-engine`, declared expectations, deviations and near misses in
+`openspec/changes/add-design-surprise`, and the epistemic statuses, scoped assertions and indication gating in
+`openspec/changes/add-scoped-reasoning`; the publication parser is designed in `docs/THEORY_OF_THE_CASE.md` and
 the archived change's `design.md`. The README explains the system to
 its clinical readers.
 
@@ -180,7 +181,11 @@ it. The proofs, so that they survive the machine:
 
 - `detective converge TrialLedger/coherence.py::close --two-sign` printed UNGATEABLE (mutants exceeded a step
   budget); the target was not edited to clear it. The founder's decision.
-- Every relation in `coherence.RELATIONS` is proposed; the founder approves or rejects each by id.
+- The setting relations are being re-ruled under `openspec/changes/add-scoped-reasoning` (the founder
+  deferred the ruling to Claude and Codex, 2026-10-31): the four approved earlier are not strict (each
+  excludes a qualifying design), `setting` is to be split into disease extent, treatment history and
+  treatment role, premises are to read scoped assertions, and an indication coordinate is to gate every
+  lung-specific rule. Until task 1.1 lands, the known setting still rests on the four relations.
 - Near misses (`add-design-surprise` 2.2) find no pair on the development data: their representation is known
   for 22 of 487 trials (a record-stated class counts as known, the founder's decision 2026-10-31; the
   setting is read under approved relations only). The bottleneck is the setting (71 trials have one known

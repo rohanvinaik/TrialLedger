@@ -194,7 +194,14 @@ known, a class the record itself states included. Known is a literal field of th
 direct symbolic derivation from one (his hypothetical: a pediatric age written as 2 years and encoded as 24
 months). Apart from it stand inference-driven values, which can be countered or overruled; and among those he
 separates a coherent interpolation, assumed correct until overruled, on which symbolic rules may build, from a
-genuine proposal, uncertain, which is shown but never built on.
+genuine proposal, uncertain, which is shown but never built on. RxClass classes count as known, with a warrant
+for their derivation. He defers the ruling on the setting relations to Claude and Codex, by the standard of what an
+expert in clinical-trial design would hold valid; their reading (`openspec/changes/add-scoped-reasoning`): the
+relations approved earlier are not strict; "setting" conflates the disease extent required, the treatment
+history at enrollment and the role of the treatment under test, of which only the first two can be entailed by
+eligibility; rule premises must read assertions in their scope (a disjunction or a permission is not a
+requirement); and, as in harmonizing, where the organism gates which values are admissible, the trial's
+indication gates which rules apply.
 
 **Corrections he accepted, 2026-10-31** (from a Codex consultation on Claude's reading):
 
