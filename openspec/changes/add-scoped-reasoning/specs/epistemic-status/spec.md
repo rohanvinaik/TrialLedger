@@ -49,3 +49,12 @@ identified, abstained, wrong, inapplicable and audit-unresolved counts.
 #### Scenario: An inspected confirmation set is retired
 - **WHEN** a confirmation population's records are read to change a rule
 - **THEN** that population is development data from then on, and confirmation needs a fresh one
+
+### Requirement: A model audits and a human adjudicates
+The system's evaluation SHALL use a model only to grade TrialLedger's readings, never to produce them; SHALL send
+every value the auditor calls wrong or missed, and a declared random sample of the values it agrees with, to a
+human adjudicator whose answer is the grade; and SHALL report the auditor's own miss rate with every estimate.
+
+#### Scenario: Agreement is not confirmation
+- **WHEN** the auditor agrees with a value TrialLedger produced
+- **THEN** the value is counted right only if it was not sampled for adjudication or the adjudicator confirmed it, and the sampled agreements estimate how often the auditor and TrialLedger are wrong together

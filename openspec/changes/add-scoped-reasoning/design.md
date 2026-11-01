@@ -70,6 +70,18 @@ trials and establish nothing about other populations.
    independent audited items bounds the error near 3/n for that sample only; rare banks get their own probability
    samples. Audits sample whole trials (so misses and abstentions are seen), scoring per bank and slot: identified,
    abstained, wrong, inapplicable, audit-unresolved; over-narrowing reported apart.
+10. **Who audits** (the founder's decision, 2026-10-31, after a side reviewer noted no reviewer was named): a model
+    audits, a human adjudicates. The founder places the model here as a bounded tail role (AGENTS.md's escape
+    hatch): it grades TrialLedger's output and never produces it, and nothing it says enters a reading. Its
+    contract: it reads the whole trial record and TrialLedger's reading of it, and marks each value right, wrong
+    or missed, citing the record span; a value it calls wrong or missed goes to the human, whose answer is the
+    grade. Agreement between the auditor and TrialLedger is not confirmation (their errors can coincide): a
+    random sample of the agreed values, declared in advance, also goes to the human, and the auditor's own miss
+    rate, with its interval, is reported beside every estimate. The auditor is a model independent of the one
+    that wrote the rules (not Claude), named and versioned in the frozen plan; its prompt and rubric are frozen
+    with it. The human adjudicator is the founder, or a domain expert when one is available; which, is recorded
+    per grade. Sizes follow the adjudicator's capacity: the plan states, before a run, how many trials and agreed
+    values the human can read and the interval width that buys.
 
 ## Risks / Trade-offs
 
@@ -77,5 +89,8 @@ trials and establish nothing about other populations.
   premises first; until then the affected rules are defaults or proposals, never strict.
 - [The known setting becomes rarer in the interim] → the near-miss representation and the strata say so in
   their headers; correctness before coverage.
+- [A model auditor reads trial data] → placed by the founder as a grader only; its agreements are sampled for
+  human review, so a shared error is measured rather than assumed away; its consultation budget (the Codex weekly
+  window stood at 96% used on 2026-10-31) bounds how many trials a wave can audit.
 - [The founder is not a trial-design expert and deferred the rulings] → every ruling cites its counterexamples and
   is listed for review by a domain expert when one is available.

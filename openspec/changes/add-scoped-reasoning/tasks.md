@@ -33,7 +33,9 @@
 
 ## 6. Evaluation through the live path
 
-- [ ] 6.1 The evaluation plan recorded and frozen before any new population is opened (Decision 9)
+- [ ] 6.1 The evaluation plan recorded and frozen before any new population is opened (Decisions 9-10): the
+      auditor model and its version, prompt and rubric; the adjudicator; the sample of agreed values sent to the
+      human; sizes from the adjudicator's capacity and the auditor's budget
 - [ ] 6.2 Discovery wave 1 (untouched later NSCLC Phase 3) through `resolve --keep`; outputs kept before any error
       is read
 - [ ] 6.3 Confirmation on a population no rule was written against, scored per bank and slot
