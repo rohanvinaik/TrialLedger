@@ -132,10 +132,13 @@ clinical readers.
 
 ## The rule this project exists for
 
-No code here interprets, summarises or rewrites study content, and no agent does either. The founder's
-first prompt names the failure this project rejects: handing trial pages to a chatbot to parse. Every
-value a person reads traces to a named field of the record, or to a named rule over such fields; what
-cannot be traced is shown as unresolved, never filled.
+No language model abstracts a trial or supplies a fact, and no code summarises or rewrites study content.
+The founder's first prompt names the failure this project rejects: handing trial pages to a chatbot to
+parse. Code does read clinical text (the banks type criteria, the coverage rules read headings), but only by
+named, deterministic rules whose every reading names the words it read; a model may only grade those
+readings, through closed questions, and its answer never becomes a value. Every value a person reads traces
+to a named field of the record, or to a named rule over such fields; what cannot be traced is shown as
+unresolved, never filled.
 
 ## Shape
 
@@ -151,8 +154,9 @@ gather facts and write files. `design.md`'s code-shape table gives each module's
   `node_role`; the tests hold them to an independent walk that rebuilds every record), absence and results
   states.
 - `checks.py`: seventeen edit checks, each with the registry's words, its basis and its approval; their
-  decisions; one gatherer per check. Only `APPROVED` (five) run; a present but malformed input raises
-  `Malformed` and its check is `not_checkable`.
+  decisions; one gatherer per check. All seventeen are `APPROVED` since checks version 2 (2026-11-01; the two
+  date orders between ACTUAL dates only); a present but malformed input raises `Malformed` and its check is
+  `not_checkable`.
 - `eligibility.py`, `links.py`, `cells.py`: the eligibility split; link forms and reference roles; what a
   cell can hold exactly (`cell_text_state`, `cell_number_state`, `sheet_fits`).
 - `warrants.py`: digests, the Merkle root, the code root (the derivation code and registry tables),
@@ -328,9 +332,10 @@ checked against that kept copy; its balance check asking the registry about ever
 one supplement a cell's registry IDs yield) and `pilot` over that audit with a fake local model, an audit
 refused for want of a budget and one refused because its model is not installed, `verify` of an unreadable
 workbook, a pull the server keeps failing), and the test fails on any function of the package that path does
-not reach, except the declared ones: the twelve proposed checks' gatherers, their four helpers and the eight
-decisions only they use (dormant until the founder approves them; the gatherers are derived from
-`APPROVED`), the two default progress sinks the CLI overrides, and `WorkbookError`'s constructor. It also
+not reach, except the declared ones: the gatherers of any proposed check and the decisions and helpers only
+they use (none since checks version 2; the gatherers are derived from `APPROVED`), the default progress sinks
+the CLI overrides, `WorkbookError`'s constructor, and the foundations each named with the task that will wire
+it. It also
 holds every sheet to its columns, every rule of `RULE` to a lookup, and every code a decision returns to its
 words.
 
@@ -480,11 +485,11 @@ it. The proofs, so that they survive the machine:
 - Comparable posted results (`add-coherence-engine` 5.3) wait on the endpoint-class bank (2.2); the residual
   (about 70% of criteria in the NSCLC population) decides the next banks (2.1b).
 
-- Twelve proposed edit checks wait for the founder's approval by name: `withdrawn_actual_enrollment_zero`,
-  `phase_interventional_only`, `arm_interventions_declared`, `intervention_arms_defined`,
-  `ae_counts_name_groups`, `ae_affected_within_at_risk`, `ae_event_within_group_total`,
-  `ae_events_at_least_affected`, `ae_group_totals_within_at_risk`, `age_limits_ordered`,
-  `start_before_primary_completion`, `primary_completion_before_completion`.
+- The twelve edit checks the registry's definitions entail were approved on 2026-11-01 (checks version 2),
+  the founder having asked that such rulings be settled from definitions, domain knowledge and logic: Claude's
+  reading and Codex's independent one agreed, and the conditions Codex set were met (date orders between
+  ACTUAL dates only; the arm cross-reference form measured as the API's own; no non-interventional study in
+  the registry carries a phase). The evidence is in `checks.APPROVED`'s comment.
 - Which publications the end-stage parser reads for a study without posted results is the founder's
   decision: RESULT alone misses most results papers, and DERIVED states no role.
 - `detective decompose TrialLedger/cli.py::parse_query_args --apply` stops on five crash-only survivors and
