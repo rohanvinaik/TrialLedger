@@ -87,12 +87,24 @@
   - 20 prior lines invented from "failure rate" or "intolerance to" (3.4, 5.1).
   - The lung gates of the resection and histology rules, which suppress explicit mentions against
     Decision 4: a breast trial's resection on the pilot (NCT02712437), 117 and 89 drops on NSCLC (5.1,
-    6.1). A standing exception to B3 until then, for the founder to accept.
+    6.1). A standing exception to B3 until then; accepted by the founder, 2026-11-01.
   - Two entailments authored inside banks, to register apart (Decision 2).
   - The performance-status scale, still `unversioned` and flagged (3.3).
 
 ## 3. Shared primitives and general packages (parallel, file-disjoint)
 
+- [ ] 3.1b The quantity grammar (the founder, 2026-11-01: numbers and units parsed by a proper mathematical and
+      unit-of-measure grammar, normalized and typed to be machine readable). Every quantity becomes a typed
+      structure: its value an exact number (a mantissa and a power of a base, "10⁹/L" read as base 10, exponent
+      9, unit L; "1.5 × 10^9/L" as mantissa 1.5), its unit in UCUM with its dimension, the text as written kept
+      beside it. One value is one value however it is written ("10⁹", "1×10⁹", "1,000,000,000", "1e9", "one
+      billion"), and the record gives its renderings from the structure, never from the text. Values compare
+      by converting to the unit's canonical form (10⁹/L equals 10³/µL), exactly, never by string. Two readings
+      the registry's text forces: a superscript lost in the text ("109/L", "1012/L", "103/uL") is read as the
+      power of ten it lost, where the unit and the exponent's place admit no other reading, and recorded as a
+      reading by that rule; a grouping mark before three digits ("100,000/mm3") is read as grouping where the
+      unit and magnitude make the decimal reading impossible, and stays ambiguous otherwise. Built before
+      3.3, which reads laboratory values through it.
 - [x] 3.1 Shared parsers: numbers, units (UCUM), durations, intervals, reference expressions
 
   2026-11-01, built in `TrialLedger/semantics/parsers.py` (see design.md "As built here: the shared parsers"):

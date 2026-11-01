@@ -389,11 +389,13 @@ it. The proofs, so that they survive the machine:
   rule (20 of 117), the conditions bank's criterion-wide grade (25 registry problems). `named_conditions` reads a
   window in years overlapping the age bank's span as that age, never a condition's window. The lung gates of the
   resection and histology rules suppress explicit mentions against B3 (a breast trial's resection on the pilot)
-  until 5.1 and 6.1: a standing exception for the founder to accept.
-- The shared parsers (`add-bank-coverage` 3.1, 2026-11-01) leave questions. For the founder: whether "109/L",
-  "1012/L" or "103/uL", where the registry's text lost a superscript, are read as 10^9/L, 10^12/L or 10^3/uL
-  (today no unit, and a bound before them is abstained), and how "100,000/mm3" and every other single grouping mark
-  before three digits are read (ambiguous until a declared domain rule). For `contracts.py`'s owner: the span role
+  until 5.1 and 6.1: a standing exception, accepted by the founder (2026-11-01).
+- The shared parsers (`add-bank-coverage` 3.1, 2026-11-01) leave questions. The founder ruled (2026-11-01) that
+  numbers and units get a proper quantity grammar, normalized and typed (task 3.1b, before 3.3): a value is an
+  exact number (mantissa, base, exponent) with its UCUM unit and dimension, rendered from the structure in any
+  form, compared after conversion to the unit's canonical form; a superscript the registry's text lost ("109/L")
+  is read as its power of ten where nothing else can be meant, and a grouping mark before three digits
+  ("100,000/mm3") as grouping where the decimal reading is impossible, each recorded as a reading by that rule. For `contracts.py`'s owner: the span role
   `reference`, which a parse gives and `contracts.SPAN_ROLES` does not hold, and an NCT id and record version on
   `Example`, which Decision 10's fixtures cite. For 3.3, each with its source: the reference forms not held
   ("ULRR", "upper limit of reference range", "-fold ULN") and the closed set of slash-compound unit symbols
@@ -406,7 +408,8 @@ it. The proofs, so that they survive the machine:
   transplant; disease_attribute for measurable disease and CNS metastases), value kinds and cardinality (ECOG,
   stage and prior lines single-valued enums; extent a member set), and `FAMILY_VALUE_KINDS`. Predicate kinds the
   vocabulary lacks (an undertaking, a capability, availability, study participation, a treatment role) leave their
-  concepts unresolved.
+  concepts unresolved. The founder (2026-11-01): these interpretations stand as interpolated defaults, each
+  surfaced for human review where a reading or a design depends on it (layer 2's closing questions).
 - Comparable posted results (`add-coherence-engine` 5.3) wait on the endpoint-class bank (2.2); the residual
   (about 70% of criteria in the NSCLC population) decides the next banks (2.1b).
 

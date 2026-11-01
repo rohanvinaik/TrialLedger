@@ -103,6 +103,10 @@ the rule tables and the solver.
      warranted options, the one that closes the most of the remaining space. The suggestion is shown with its
      warrant and with what accepting it would close ("this also fixes the comparator and three criteria"); the
      user accepts it, picks another option, or answers freely, and whichever they choose is recorded as theirs.
+   - **Representation choices are questions too.** Where a design depends on how a concept is represented
+     (an interpretation the predicate registry fixes as an interpolated default: smoking as an exposure, stage
+     as a single value, and the others add-scoped-assertions 1.2 lists), that interpretation is surfaced among
+     these questions with the default as its suggestion (the founder, 2026-11-01).
    - **The form.** Questions are declarative templates with typed slots and a stable `question_id`, never
      phrased ad hoc, so the agent can switch on the id; every option carries the brief amendment it applies, so
      the agent merges it and re-runs `design` mechanically until nothing is open. One question at a time, the

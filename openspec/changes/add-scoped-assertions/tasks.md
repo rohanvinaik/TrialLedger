@@ -19,9 +19,12 @@
       in tests/test_wiring.py until 2.1. Revised after review the same day: the named measurements' value
       unresolved (their concepts declare no number), a written unit never replaced, vitamin premedication
       unresolved, tissue availability of the participant. Left: the compiler that calls `atom_literal` (group
-      2), the params it names unread (window, grade, scope, expression, qualifier: D5 and D6), the founder's
-      ruling on the unresolved concepts, on the per-concept interpretations listed in design.md and on the
-      vocabulary words they lack, and a mapping fragment per package as add-bank-coverage 3.x adds concepts)
+      2), the params it names unread (window, grade, scope, expression, qualifier: D5 and D6), the vocabulary
+      words the unresolved concepts lack, and a mapping fragment per package as add-bank-coverage 3.x adds
+      concepts. The founder, 2026-11-01: the per-concept interpretations listed in design.md (predicate kinds
+      not stated by Decision 2, value kinds and cardinality) stand as interpolated defaults, never known, and
+      each is surfaced for human review where a reading or a design depends on it: in layer 2, among the
+      closing questions of add-design-synthesis Decision 9, with the default as the suggestion)
 
 ## 2. Compiling decisions (each pure, two-sign, from the measured failures)
 
