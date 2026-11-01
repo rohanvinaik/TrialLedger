@@ -283,7 +283,13 @@
   },
   "TrialLedger/classes.py::rxclass_members": {
     "cut_reasons": [],
-    "function_digest": "2e1b6e40dbee9805",
+    "function_digest": "49cd2e7319cf09e7",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/classes.py::rxclass_tree": {
+    "cut_reasons": [],
+    "function_digest": "e69309717cd3bc72",
     "refusal": "",
     "standing": "complete"
   },
@@ -1023,6 +1029,12 @@
     "refusal": "",
     "standing": "complete"
   },
+  "TrialLedger/request.py::_subclass_expansions": {
+    "cut_reasons": [],
+    "function_digest": "70f5d7aa6dcd6343",
+    "refusal": "",
+    "standing": "complete"
+  },
   "TrialLedger/request.py::class_matches": {
     "cut_reasons": [],
     "function_digest": "8ef0b8e8e6724490",
@@ -1065,6 +1077,18 @@
     "refusal": "",
     "standing": "complete"
   },
+  "TrialLedger/request.py::member_names": {
+    "cut_reasons": [],
+    "function_digest": "d6e2b7a5a4de79ce",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/request.py::name_clause": {
+    "cut_reasons": [],
+    "function_digest": "ad0462101913673f",
+    "refusal": "",
+    "standing": "complete"
+  },
   "TrialLedger/request.py::request_problems": {
     "cut_reasons": [],
     "function_digest": "7e8be975315aaf07",
@@ -1073,13 +1097,19 @@
   },
   "TrialLedger/request.py::resolve_scope": {
     "cut_reasons": [],
-    "function_digest": "0f882d62e3659a98",
+    "function_digest": "6fe921bf5dafc6e2",
     "refusal": "",
     "standing": "complete"
   },
   "TrialLedger/request.py::slot_value_ok": {
     "cut_reasons": [],
-    "function_digest": "4adff84749497608",
+    "function_digest": "5672244be0413248",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/request.py::subclass_attribution": {
+    "cut_reasons": [],
+    "function_digest": "7098a1ade196f3ae",
     "refusal": "",
     "standing": "complete"
   },

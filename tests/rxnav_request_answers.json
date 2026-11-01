@@ -1,6 +1,6 @@
 {
  "asked": "2026-11-01",
- "how": "GET each URL request.lookups_needed named for the requests below, 0.3 s apart; [status, body] as RxNav answered",
+ "how": "GET each URL request.lookups_needed named for the requests below, 0.3 s apart; [status, body] as RxNav answered. Second round, 2026-11-01, still release 05-Oct-2026: each confirmed class's classTree and each subclass's own members (classMembers with trans=1), the requests lookups_needed names since the subclass rulings of that day; only the answers not already held were fetched",
  "requests": [
   {
    "drug_class": {
@@ -9013,6 +9013,5810 @@
      ]
     }
    }
+  ],
+  "https://rxnav.nlm.nih.gov/REST/rxclass/classTree.json?classId=N0000191260": [
+   200,
+   {
+    "rxclassTree": [
+     {
+      "rxclassMinConceptItem": {
+       "classId": "N0000191260",
+       "className": "Programmed Death Receptor-1 Blocking Antibody",
+       "classType": "EPC"
+      }
+     }
+    ]
+   }
+  ],
+  "https://rxnav.nlm.nih.gov/REST/rxclass/classTree.json?classId=L01ED": [
+   200,
+   {
+    "rxclassTree": [
+     {
+      "rxclassMinConceptItem": {
+       "classId": "L01ED",
+       "className": "Anaplastic lymphoma kinase (ALK) inhibitors",
+       "classType": "ATC1-4"
+      }
+     }
+    ]
+   }
+  ],
+  "https://rxnav.nlm.nih.gov/REST/rxclass/classTree.json?classId=N0000175605": [
+   200,
+   {
+    "rxclassTree": [
+     {
+      "rxclassMinConceptItem": {
+       "classId": "N0000175605",
+       "className": "Kinase Inhibitor",
+       "classType": "EPC"
+      },
+      "rxclassTree": [
+       {
+        "rxclassMinConceptItem": {
+         "classId": "N0000175625",
+         "className": "mTOR Inhibitor Immunosuppressant",
+         "classType": "EPC"
+        }
+       },
+       {
+        "rxclassMinConceptItem": {
+         "classId": "N0000175661",
+         "className": "HER2/neu Receptor Antagonist",
+         "classType": "EPC"
+        }
+       },
+       {
+        "rxclassMinConceptItem": {
+         "classId": "N0000175664",
+         "className": "Epidermal Growth Factor Receptor Antagonist",
+         "classType": "EPC"
+        }
+       },
+       {
+        "rxclassMinConceptItem": {
+         "classId": "N0000190858",
+         "className": "Janus Kinase Inhibitor",
+         "classType": "EPC"
+        },
+        "rxclassTree": [
+         {
+          "rxclassMinConceptItem": {
+           "classId": "N0000194043",
+           "className": "Tyrosine Kinase 2 Inhibitor",
+           "classType": "EPC"
+          }
+         }
+        ]
+       },
+       {
+        "rxclassMinConceptItem": {
+         "classId": "N0000191009",
+         "className": "Vascular Endothelial Growth Factor Receptor 2 Antagonist",
+         "classType": "EPC"
+        }
+       },
+       {
+        "rxclassMinConceptItem": {
+         "classId": "N0000193788",
+         "className": "Rho Kinase Inhibitor",
+         "classType": "EPC"
+        }
+       },
+       {
+        "rxclassMinConceptItem": {
+         "classId": "N0000193976",
+         "className": "Cytomegalovirus pUL97 Kinase Inhibitor",
+         "classType": "EPC"
+        }
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "https://rxnav.nlm.nih.gov/REST/rxclass/classMembers.json?classId=N0000175625&relaSource=DAILYMED&rela=has_epc&trans=1": [
+   200,
+   {
+    "drugMemberGroup": {
+     "drugMember": [
+      {
+       "minConcept": {
+        "rxcui": "141704",
+        "name": "everolimus",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "9HW64Q8G6G"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "EVEROLIMUS"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "35302",
+        "name": "sirolimus",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "W36ZG6FT64"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "SIROLIMUS"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        }
+       ]
+      }
+     ]
+    }
+   }
+  ],
+  "https://rxnav.nlm.nih.gov/REST/rxclass/classMembers.json?classId=N0000175661&relaSource=DAILYMED&rela=has_epc&trans=1": [
+   200,
+   {
+    "drugMemberGroup": {
+     "drugMember": [
+      {
+       "minConcept": {
+        "rxcui": "1298944",
+        "name": "pertuzumab",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "K16AIQ8CTM"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "PERTUZUMAB"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "224905",
+        "name": "trastuzumab",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "P188ANX8CK"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "TRASTUZUMAB"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2473851",
+        "name": "margetuximab",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "K911R84KEW"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "MARGETUXIMAB"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        }
+       ]
+      }
+     ]
+    }
+   }
+  ],
+  "https://rxnav.nlm.nih.gov/REST/rxclass/classMembers.json?classId=N0000175664&relaSource=DAILYMED&rela=has_epc&trans=1": [
+   200,
+   {
+    "drugMemberGroup": {
+     "drugMember": [
+      {
+       "minConcept": {
+        "rxcui": "263034",
+        "name": "panitumumab",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "6A901E312A"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "PANITUMUMAB"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "318341",
+        "name": "cetuximab",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "PQX0D8J21J"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "CETUXIMAB"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        }
+       ]
+      }
+     ]
+    }
+   }
+  ],
+  "https://rxnav.nlm.nih.gov/REST/rxclass/classMembers.json?classId=N0000190858&relaSource=DAILYMED&rela=has_epc&trans=1": [
+   200,
+   {
+    "drugMemberGroup": {
+     "drugMember": [
+      {
+       "minConcept": {
+        "rxcui": "1193326",
+        "name": "ruxolitinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "82S8X8XX8H"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "RUXOLITINIB"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "1357536",
+        "name": "tofacitinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "87LA6FU830"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "TOFACITINIB"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2047232",
+        "name": "baricitinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "ISP4442I3Y"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "BARICITINIB"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2196092",
+        "name": "upadacitinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "4RA0KN46E0"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "UPADACITINIB"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2591476",
+        "name": "abrocitinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "73SM5SF3OR"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "ABROCITINIB"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2716558",
+        "name": "deuruxolitinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "0CA0VSF91Y"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "DEURUXOLITINIB"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        }
+       ]
+      }
+     ]
+    }
+   }
+  ],
+  "https://rxnav.nlm.nih.gov/REST/rxclass/classMembers.json?classId=N0000194043&relaSource=DAILYMED&rela=has_epc&trans=1": [
+   200,
+   {
+    "drugMemberGroup": {
+     "drugMember": [
+      {
+       "minConcept": {
+        "rxcui": "2612087",
+        "name": "deucravacitinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "N0A21N6RAU"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "DEUCRAVACITINIB"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        }
+       ]
+      }
+     ]
+    }
+   }
+  ],
+  "https://rxnav.nlm.nih.gov/REST/rxclass/classMembers.json?classId=N0000191009&relaSource=DAILYMED&rela=has_epc&trans=1": [
+   200,
+   {
+    "drugMemberGroup": {
+     "drugMember": [
+      {
+       "minConcept": {
+        "rxcui": "1535922",
+        "name": "ramucirumab",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "D99YVK4L0X"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "RAMUCIRUMAB"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        }
+       ]
+      }
+     ]
+    }
+   }
+  ],
+  "https://rxnav.nlm.nih.gov/REST/rxclass/classMembers.json?classId=N0000193788&relaSource=DAILYMED&rela=has_epc&trans=1": [
+   200,
+   {
+    "drugMemberGroup": {
+     "drugMember": [
+      {
+       "minConcept": {
+        "rxcui": "1992864",
+        "name": "netarsudil",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "W6I5QDT7QI"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "NETARSUDIL"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        }
+       ]
+      }
+     ]
+    }
+   }
+  ],
+  "https://rxnav.nlm.nih.gov/REST/rxclass/classMembers.json?classId=N0000193976&relaSource=DAILYMED&rela=has_epc&trans=1": [
+   200,
+   {
+    "drugMemberGroup": {
+     "drugMember": [
+      {
+       "minConcept": {
+        "rxcui": "2586068",
+        "name": "maribavir",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "PTB4X93HE1"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "MARIBAVIR"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        }
+       ]
+      }
+     ]
+    }
+   }
+  ],
+  "https://rxnav.nlm.nih.gov/REST/rxclass/classTree.json?classId=N0000175082": [
+   200,
+   {
+    "rxclassTree": [
+     {
+      "rxclassMinConceptItem": {
+       "classId": "N0000175082",
+       "className": "Kinase Inhibitors",
+       "classType": "MOA"
+      },
+      "rxclassTree": [
+       {
+        "rxclassMinConceptItem": {
+         "classId": "N0000175076",
+         "className": "Protein Kinase Inhibitors",
+         "classType": "MOA"
+        },
+        "rxclassTree": [
+         {
+          "rxclassMinConceptItem": {
+           "classId": "N0000020001",
+           "className": "Tyrosine Kinase Inhibitors",
+           "classType": "MOA"
+          },
+          "rxclassTree": [
+           {
+            "rxclassMinConceptItem": {
+             "classId": "N0000020000",
+             "className": "Receptor Tyrosine Kinase Inhibitors",
+             "classType": "MOA"
+            },
+            "rxclassTree": [
+             {
+              "rxclassMinConceptItem": {
+               "classId": "N0000020006",
+               "className": "HER Receptor Family Antagonists",
+               "classType": "MOA"
+              },
+              "rxclassTree": [
+               {
+                "rxclassMinConceptItem": {
+                 "classId": "N0000020008",
+                 "className": "HER2/Neu/cerbB2 Antagonists",
+                 "classType": "MOA"
+                },
+                "rxclassTree": [
+                 {
+                  "rxclassMinConceptItem": {
+                   "classId": "N0000194209",
+                   "className": "HER2/Neu/cerbB2 Kinase Inhibitors",
+                   "classType": "MOA"
+                  }
+                 }
+                ]
+               },
+               {
+                "rxclassMinConceptItem": {
+                 "classId": "N0000020010",
+                 "className": "HER1 Antagonists",
+                 "classType": "MOA"
+                }
+               },
+               {
+                "rxclassMinConceptItem": {
+                 "classId": "N0000020012",
+                 "className": "HER3 Antagonists",
+                 "classType": "MOA"
+                }
+               }
+              ]
+             },
+             {
+              "rxclassMinConceptItem": {
+               "classId": "N0000020007",
+               "className": "Vascular Endothelial Growth Factor Receptor Inhibitors",
+               "classType": "MOA"
+              },
+              "rxclassTree": [
+               {
+                "rxclassMinConceptItem": {
+                 "classId": "N0000020031",
+                 "className": "VEGFR1 Inhibitors",
+                 "classType": "MOA"
+                }
+               },
+               {
+                "rxclassMinConceptItem": {
+                 "classId": "N0000020032",
+                 "className": "VEGFR2 Inhibitors",
+                 "classType": "MOA"
+                }
+               },
+               {
+                "rxclassMinConceptItem": {
+                 "classId": "N0000020033",
+                 "className": "VEGFR3 Inhibitors",
+                 "classType": "MOA"
+                }
+               }
+              ]
+             },
+             {
+              "rxclassMinConceptItem": {
+               "classId": "N0000020009",
+               "className": "Bcr-Abl Tyrosine Kinase Inhibitors",
+               "classType": "MOA"
+              }
+             },
+             {
+              "rxclassMinConceptItem": {
+               "classId": "N0000020030",
+               "className": "Platelet-derived Growth Factor Receptor Inhibitors",
+               "classType": "MOA"
+              },
+              "rxclassTree": [
+               {
+                "rxclassMinConceptItem": {
+                 "classId": "N0000020028",
+                 "className": "Platelet-derived Growth Factor alpha Receptor Inhibitors",
+                 "classType": "MOA"
+                }
+               },
+               {
+                "rxclassMinConceptItem": {
+                 "classId": "N0000020029",
+                 "className": "Platelet-derived Growth Factor beta Receptor Inhibitors",
+                 "classType": "MOA"
+                }
+               }
+              ]
+             },
+             {
+              "rxclassMinConceptItem": {
+               "classId": "N0000020034",
+               "className": "Stem Cell Factor (KIT) Receptor Inhibitors",
+               "classType": "MOA"
+              }
+             },
+             {
+              "rxclassMinConceptItem": {
+               "classId": "N0000020036",
+               "className": "Colony Stimulating Factor Receptor Type 1 (CSF-1R) Inhibitors",
+               "classType": "MOA"
+              }
+             },
+             {
+              "rxclassMinConceptItem": {
+               "classId": "N0000020037",
+               "className": "Neurotrophic Factor Receptor (RET) Inhibitors",
+               "classType": "MOA"
+              }
+             },
+             {
+              "rxclassMinConceptItem": {
+               "classId": "N0000193929",
+               "className": "Mesenchymal Epithelial Transition Inhibitors",
+               "classType": "MOA"
+              }
+             },
+             {
+              "rxclassMinConceptItem": {
+               "classId": "N0000193947",
+               "className": "Rearranged during Transfection (RET) Inhibitors",
+               "classType": "MOA"
+              }
+             },
+             {
+              "rxclassMinConceptItem": {
+               "classId": "N0000194026",
+               "className": "Fibroblast Growth Factor Receptor Inhibitors",
+               "classType": "MOA"
+              }
+             },
+             {
+              "rxclassMinConceptItem": {
+               "classId": "N0000194085",
+               "className": "FMS-like Receptor Tyrosine Kinase 3 (FLT3) Inhibitors",
+               "classType": "MOA"
+              }
+             }
+            ]
+           },
+           {
+            "rxclassMinConceptItem": {
+             "classId": "N0000190857",
+             "className": "Janus Kinase Inhibitors",
+             "classType": "MOA"
+            },
+            "rxclassTree": [
+             {
+              "rxclassMinConceptItem": {
+               "classId": "N0000194044",
+               "className": "Tyrosine Kinase 2 Inhibitors",
+               "classType": "MOA"
+              },
+              "rxclassTree": [
+               {
+                "rxclassMinConceptItem": {
+                 "classId": "N0000194169",
+                 "className": "Proline-rich Tyrosine Kinase 2 Inhibitors",
+                 "classType": "MOA"
+                }
+               }
+              ]
+             },
+             {
+              "rxclassMinConceptItem": {
+               "classId": "N0000194064",
+               "className": "Janus Kinase 3 Inhibitors",
+               "classType": "MOA"
+              }
+             }
+            ]
+           },
+           {
+            "rxclassMinConceptItem": {
+             "classId": "N0000193934",
+             "className": "Bruton's Tyrosine Kinase Inhibitors",
+             "classType": "MOA"
+            }
+           },
+           {
+            "rxclassMinConceptItem": {
+             "classId": "N0000194093",
+             "className": "Proto-Oncogene Tyrosine-Protein Kinase ROS1 Inhibitors",
+             "classType": "MOA"
+            }
+           },
+           {
+            "rxclassMinConceptItem": {
+             "classId": "N0000194167",
+             "className": "Focal Adhesion Kinase Inhibitors",
+             "classType": "MOA"
+            }
+           }
+          ]
+         },
+         {
+          "rxclassMinConceptItem": {
+           "classId": "N0000193789",
+           "className": "Rho Kinase Inhibitors",
+           "classType": "MOA"
+          }
+         },
+         {
+          "rxclassMinConceptItem": {
+           "classId": "N0000193859",
+           "className": "Tropomyosin Receptor Kinases Inhibitors",
+           "classType": "MOA"
+          },
+          "rxclassTree": [
+           {
+            "rxclassMinConceptItem": {
+             "classId": "N0000194094",
+             "className": "Tropomyosin Receptor Tyrosine Kinase A Inhibitors",
+             "classType": "MOA"
+            }
+           },
+           {
+            "rxclassMinConceptItem": {
+             "classId": "N0000194095",
+             "className": "Tropomyosin Receptor Tyrosine Kinase B Inhibitors",
+             "classType": "MOA"
+            }
+           },
+           {
+            "rxclassMinConceptItem": {
+             "classId": "N0000194096",
+             "className": "Tropomyosin Receptor Tyrosine Kinase C Inhibitors",
+             "classType": "MOA"
+            }
+           }
+          ]
+         },
+         {
+          "rxclassMinConceptItem": {
+           "classId": "N0000193933",
+           "className": "Serine/Threonine Kinase Inhibitors",
+           "classType": "MOA"
+          },
+          "rxclassTree": [
+           {
+            "rxclassMinConceptItem": {
+             "classId": "N0000175411",
+             "className": "BRAF Serine/Threonine Kinase Inhibitors",
+             "classType": "MOA"
+            },
+            "rxclassTree": [
+             {
+              "rxclassMinConceptItem": {
+               "classId": "N0000175624",
+               "className": "mTOR Inhibitors",
+               "classType": "MOA"
+              }
+             }
+            ]
+           },
+           {
+            "rxclassMinConceptItem": {
+             "classId": "N0000193921",
+             "className": "Cyclin-dependent Kinase 4 Inhibitors",
+             "classType": "MOA"
+            }
+           },
+           {
+            "rxclassMinConceptItem": {
+             "classId": "N0000193922",
+             "className": "Cyclin-dependent Kinase 6 Inhibitors",
+             "classType": "MOA"
+            }
+           },
+           {
+            "rxclassMinConceptItem": {
+             "classId": "N0000193945",
+             "className": "Mitogen-Activated Protein Kinase Kinase Inhibitors",
+             "classType": "MOA"
+            },
+            "rxclassTree": [
+             {
+              "rxclassMinConceptItem": {
+               "classId": "N0000193943",
+               "className": "Mitogen-Activated Protein Kinase Kinase 1 Inhibitors",
+               "classType": "MOA"
+              }
+             },
+             {
+              "rxclassMinConceptItem": {
+               "classId": "N0000193944",
+               "className": "Mitogen-Activated Protein Kinase Kinase 2 Inhibitors",
+               "classType": "MOA"
+              }
+             }
+            ]
+           },
+           {
+            "rxclassMinConceptItem": {
+             "classId": "N0000194133",
+             "className": "Type II RAF Kinase Inhibitors",
+             "classType": "MOA"
+            }
+           }
+          ]
+         },
+         {
+          "rxclassMinConceptItem": {
+           "classId": "N0000193977",
+           "className": "Cytomegalovirus pUL97 Kinase Inhibitors",
+           "classType": "MOA"
+          }
+         }
+        ]
+       },
+       {
+        "rxclassMinConceptItem": {
+         "classId": "N0000194055",
+         "className": "Phosphoinositide 3-Kinases Inhibitors",
+         "classType": "MOA"
+        },
+        "rxclassTree": [
+         {
+          "rxclassMinConceptItem": {
+           "classId": "N0000194054",
+           "className": "Phosphoinositide 3-Kinase delta Inhibitors",
+           "classType": "MOA"
+          }
+         },
+         {
+          "rxclassMinConceptItem": {
+           "classId": "N0000194130",
+           "className": "Phosphoinositide 3-Kinase alpha Inhibitors",
+           "classType": "MOA"
+          }
+         }
+        ]
+       },
+       {
+        "rxclassMinConceptItem": {
+         "classId": "N0000194147",
+         "className": "Anaplastic Lymphoma Kinase Inhibitors",
+         "classType": "MOA"
+        }
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "https://rxnav.nlm.nih.gov/REST/rxclass/classMembers.json?classId=N0000175076&relaSource=MEDRT&rela=has_moa&trans=1": [
+   200,
+   {
+    "drugMemberGroup": {
+     "drugMember": [
+      {
+       "minConcept": {
+        "rxcui": "141704",
+        "name": "everolimus",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "141704"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "everolimus"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/141704"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "1425098",
+        "name": "trametinib dimethyl sulfoxide",
+        "tty": "PIN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "1425098"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "trametinib dimethyl sulfoxide"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/1425098"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "1425099",
+        "name": "trametinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "1425099"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "trametinib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/1425099"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "1442981",
+        "name": "ibrutinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "1442981"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "ibrutinib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/1442981"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "1546019",
+        "name": "dasatinib anhydrous",
+        "tty": "PIN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "1546019"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "dasatinib anhydrous"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/1546019"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "1722365",
+        "name": "cobimetinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "1722365"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "cobimetinib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/1722365"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "1722380",
+        "name": "cobimetinib fumarate",
+        "tty": "PIN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "1722380"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "cobimetinib fumarate"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/1722380"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2049122",
+        "name": "binimetinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2049122"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "binimetinib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2049122"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2058848",
+        "name": "dacomitinib anhydrous",
+        "tty": "PIN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2058848"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "dacomitinib anhydrous"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2058848"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2058849",
+        "name": "dacomitinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2058849"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "dacomitinib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2058849"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2197862",
+        "name": "entrectinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2197862"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "entrectinib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2197862"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2289380",
+        "name": "selumetinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2289380"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "selumetinib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2289380"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2361596",
+        "name": "selumetinib sulfate",
+        "tty": "PIN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2361596"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "selumetinib sulfate"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2361596"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2698561",
+        "name": "nilotinib tartrate",
+        "tty": "PIN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2698561"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "nilotinib tartrate"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2698561"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2701416",
+        "name": "nilotinib hydrochloride monohydrate",
+        "tty": "PIN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2701416"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "nilotinib hydrochloride monohydrate"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2701416"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "475342",
+        "name": "dasatinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "475342"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "dasatinib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/475342"
+        }
+       ]
+      }
+     ]
+    }
+   }
+  ],
+  "https://rxnav.nlm.nih.gov/REST/rxclass/classMembers.json?classId=N0000020001&relaSource=MEDRT&rela=has_moa&trans=1": [
+   200,
+   {
+    "drugMemberGroup": {
+     "drugMember": [
+      {
+       "minConcept": {
+        "rxcui": "1098413",
+        "name": "vandetanib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "1098413"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "vandetanib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/1098413"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "1307619",
+        "name": "bosutinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "1307619"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "bosutinib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/1307619"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "1314319",
+        "name": "bosutinib monohydrate",
+        "tty": "PIN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "1314319"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "bosutinib monohydrate"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/1314319"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "1363267",
+        "name": "cabozantinib s-malate",
+        "tty": "PIN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "1363267"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "cabozantinib s-malate"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/1363267"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "1363268",
+        "name": "cabozantinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "1363268"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "cabozantinib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/1363268"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "1364347",
+        "name": "ponatinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "1364347"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "ponatinib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/1364347"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "1364953",
+        "name": "ponatinib hydrochloride",
+        "tty": "PIN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "1364953"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "ponatinib hydrochloride"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/1364953"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "1430438",
+        "name": "afatinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "1430438"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "afatinib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/1430438"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "1430441",
+        "name": "afatinib dimaleate",
+        "tty": "PIN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "1430441"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "afatinib dimaleate"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/1430441"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "1535457",
+        "name": "ceritinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "1535457"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "ceritinib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/1535457"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "1727454",
+        "name": "alectinib hydrochloride",
+        "tty": "PIN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "1727454"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "alectinib hydrochloride"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/1727454"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "1727455",
+        "name": "alectinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "1727455"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "alectinib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/1727455"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "1921217",
+        "name": "brigatinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "1921217"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "brigatinib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/1921217"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2044896",
+        "name": "fostamatinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2044896"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "fostamatinib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2044896"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2055929",
+        "name": "fostamatinib disodium",
+        "tty": "PIN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2055929"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "fostamatinib disodium"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2055929"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2123125",
+        "name": "erdafitinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2123125"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "erdafitinib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2123125"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2183102",
+        "name": "pexidartinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2183102"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "pexidartinib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2183102"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2183103",
+        "name": "pexidartinib hydrochloride",
+        "tty": "PIN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2183103"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "pexidartinib hydrochloride"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2183103"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2197490",
+        "name": "fedratinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2197490"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "fedratinib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2197490"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2197594",
+        "name": "fedratinib hydrochloride",
+        "tty": "PIN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2197594"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "fedratinib hydrochloride"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2197594"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2262435",
+        "name": "zanubrutinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2262435"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "zanubrutinib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2262435"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2272107",
+        "name": "avapritinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2272107"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "avapritinib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2272107"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2361285",
+        "name": "tucatinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2361285"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "tucatinib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2361285"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2369389",
+        "name": "ripretinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2369389"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "ripretinib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2369389"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2612087",
+        "name": "deucravacitinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2612087"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "deucravacitinib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2612087"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2641595",
+        "name": "ritlecitinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2641595"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "ritlecitinib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2641595"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2641596",
+        "name": "ritlecitinib tosylate",
+        "tty": "PIN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2641596"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "ritlecitinib tosylate"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2641596"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2714501",
+        "name": "defactinib hydrochloride",
+        "tty": "PIN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2714501"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "defactinib hydrochloride"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2714501"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2714502",
+        "name": "defactinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2714502"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "defactinib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2714502"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2716919",
+        "name": "taletrectinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2716919"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "taletrectinib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2716919"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2716920",
+        "name": "taletrectinib adipate",
+        "tty": "PIN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2716920"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "taletrectinib adipate"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2716920"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2719226",
+        "name": "sunvozertinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2719226"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "sunvozertinib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2719226"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2728187",
+        "name": "sevabertinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2728187"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "sevabertinib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2728187"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "5509",
+        "name": "hydroquinone",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "5509"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "hydroquinone"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/5509"
+        }
+       ]
+      }
+     ]
+    }
+   }
+  ],
+  "https://rxnav.nlm.nih.gov/REST/rxclass/classMembers.json?classId=N0000020000&relaSource=MEDRT&rela=has_moa&trans=1": [
+   200,
+   {
+    "drugMemberGroup": {
+     "drugMember": [
+      {
+       "minConcept": {
+        "rxcui": "1148495",
+        "name": "crizotinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "1148495"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "crizotinib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/1148495"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "1242999",
+        "name": "axitinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "1242999"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "axitinib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/1242999"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "1592736",
+        "name": "nintedanib esylate",
+        "tty": "PIN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "1592736"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "nintedanib esylate"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/1592736"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "1592737",
+        "name": "nintedanib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "1592737"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "nintedanib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/1592737"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "1603296",
+        "name": "lenvatinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "1603296"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "lenvatinib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/1603296"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "1604346",
+        "name": "lenvatinib mesylate",
+        "tty": "PIN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "1604346"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "lenvatinib mesylate"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/1604346"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "1919083",
+        "name": "midostaurin",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "1919083"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "midostaurin"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/1919083"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2103164",
+        "name": "lorlatinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2103164"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "lorlatinib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2103164"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2105806",
+        "name": "gilteritinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2105806"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "gilteritinib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2105806"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2105823",
+        "name": "gilteritinib fumarate",
+        "tty": "PIN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2105823"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "gilteritinib fumarate"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2105823"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2197862",
+        "name": "entrectinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2197862"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "entrectinib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2197862"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2534233",
+        "name": "tivozanib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2534233"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "tivozanib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2534233"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2534245",
+        "name": "tivozanib hydrochloride",
+        "tty": "PIN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2534245"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "tivozanib hydrochloride"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2534245"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2670644",
+        "name": "repotrectinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2670644"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "repotrectinib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2670644"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2685302",
+        "name": "dictamnine",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2685302"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "dictamnine"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2685302"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2721604",
+        "name": "zongertinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2721604"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "zongertinib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2721604"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "357977",
+        "name": "sunitinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "357977"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "sunitinib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/357977"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "616275",
+        "name": "sunitinib malate",
+        "tty": "PIN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "616275"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "sunitinib malate"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/616275"
+        }
+       ]
+      }
+     ]
+    }
+   }
+  ],
+  "https://rxnav.nlm.nih.gov/REST/rxclass/classMembers.json?classId=N0000020006&relaSource=MEDRT&rela=has_moa&trans=1": [
+   200,
+   {}
+  ],
+  "https://rxnav.nlm.nih.gov/REST/rxclass/classMembers.json?classId=N0000020008&relaSource=MEDRT&rela=has_moa&trans=1": [
+   200,
+   {
+    "drugMemberGroup": {
+     "drugMember": [
+      {
+       "minConcept": {
+        "rxcui": "1298944",
+        "name": "pertuzumab",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "1298944"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "pertuzumab"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/1298944"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "1371041",
+        "name": "ado-trastuzumab emtansine",
+        "tty": "PIN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "1371041"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "ado-trastuzumab emtansine"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/1371041"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2103478",
+        "name": "trastuzumab-dkst",
+        "tty": "PIN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2103478"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "trastuzumab-dkst"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2103478"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2107051",
+        "name": "trastuzumab-pkrb",
+        "tty": "PIN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2107051"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "trastuzumab-pkrb"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2107051"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2174802",
+        "name": "trastuzumab-anns",
+        "tty": "PIN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2174802"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "trastuzumab-anns"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2174802"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "224905",
+        "name": "trastuzumab",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "224905"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "trastuzumab"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/224905"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2267574",
+        "name": "fam-trastuzumab deruxtecan-nxki",
+        "tty": "PIN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2267574"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "fam-trastuzumab deruxtecan-nxki"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2267574"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2267582",
+        "name": "trastuzumab deruxtecan",
+        "tty": "PIN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2267582"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "trastuzumab deruxtecan"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2267582"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2280730",
+        "name": "trastuzumab-qyyp",
+        "tty": "PIN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2280730"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "trastuzumab-qyyp"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2280730"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2289225",
+        "name": "trastuzumab-dttb",
+        "tty": "PIN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2289225"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "trastuzumab-dttb"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2289225"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2375543",
+        "name": "trastuzumab-oysk",
+        "tty": "PIN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2375543"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "trastuzumab-oysk"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2375543"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2382597",
+        "name": "pertuzumab-zzxf",
+        "tty": "PIN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2382597"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "pertuzumab-zzxf"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2382597"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2382599",
+        "name": "trastuzumab-zzxf",
+        "tty": "PIN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2382599"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "trastuzumab-zzxf"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2382599"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2473850",
+        "name": "margetuximab-cmkb",
+        "tty": "PIN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2473850"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "margetuximab-cmkb"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2473850"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2473851",
+        "name": "margetuximab",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2473851"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "margetuximab"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2473851"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2699587",
+        "name": "zenocutuzumab-zbco",
+        "tty": "PIN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2699587"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "zenocutuzumab-zbco"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2699587"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2699588",
+        "name": "zenocutuzumab",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2699588"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "zenocutuzumab"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2699588"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2700714",
+        "name": "trastuzumab-strf",
+        "tty": "PIN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2700714"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "trastuzumab-strf"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2700714"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2721604",
+        "name": "zongertinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2721604"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "zongertinib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2721604"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "480167",
+        "name": "lapatinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "480167"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "lapatinib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/480167"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "481474",
+        "name": "lapatinib ditosylate",
+        "tty": "PIN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "481474"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "lapatinib ditosylate"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/481474"
+        }
+       ]
+      }
+     ]
+    }
+   }
+  ],
+  "https://rxnav.nlm.nih.gov/REST/rxclass/classMembers.json?classId=N0000194209&relaSource=MEDRT&rela=has_moa&trans=1": [
+   200,
+   {}
+  ],
+  "https://rxnav.nlm.nih.gov/REST/rxclass/classMembers.json?classId=N0000020010&relaSource=MEDRT&rela=has_moa&trans=1": [
+   200,
+   {
+    "drugMemberGroup": {
+     "drugMember": [
+      {
+       "minConcept": {
+        "rxcui": "1723738",
+        "name": "necitumumab",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "1723738"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "necitumumab"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/1723738"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "263034",
+        "name": "panitumumab",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "263034"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "panitumumab"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/263034"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "318341",
+        "name": "cetuximab",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "318341"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "cetuximab"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/318341"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "328134",
+        "name": "gefitinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "328134"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "gefitinib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/328134"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "337525",
+        "name": "erlotinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "337525"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "erlotinib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/337525"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "477320",
+        "name": "erlotinib hydrochloride",
+        "tty": "PIN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "477320"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "erlotinib hydrochloride"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/477320"
+        }
+       ]
+      }
+     ]
+    }
+   }
+  ],
+  "https://rxnav.nlm.nih.gov/REST/rxclass/classMembers.json?classId=N0000020012&relaSource=MEDRT&rela=has_moa&trans=1": [
+   200,
+   {
+    "drugMemberGroup": {
+     "drugMember": [
+      {
+       "minConcept": {
+        "rxcui": "2699587",
+        "name": "zenocutuzumab-zbco",
+        "tty": "PIN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2699587"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "zenocutuzumab-zbco"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2699587"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2699588",
+        "name": "zenocutuzumab",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2699588"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "zenocutuzumab"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2699588"
+        }
+       ]
+      }
+     ]
+    }
+   }
+  ],
+  "https://rxnav.nlm.nih.gov/REST/rxclass/classMembers.json?classId=N0000020007&relaSource=MEDRT&rela=has_moa&trans=1": [
+   200,
+   {
+    "drugMemberGroup": {
+     "drugMember": [
+      {
+       "minConcept": {
+        "rxcui": "2046138",
+        "name": "bevacizumab-awwb",
+        "tty": "PIN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2046138"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "bevacizumab-awwb"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2046138"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2268037",
+        "name": "bevacizumab-bvzr",
+        "tty": "PIN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2268037"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "bevacizumab-bvzr"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2268037"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "253337",
+        "name": "bevacizumab",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "253337"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "bevacizumab"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/253337"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2599041",
+        "name": "bevacizumab-maly",
+        "tty": "PIN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2599041"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "bevacizumab-maly"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2599041"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2602351",
+        "name": "ranibizumab-nuna",
+        "tty": "PIN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2602351"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "ranibizumab-nuna"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2602351"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2612673",
+        "name": "ranibizumab-eqrn",
+        "tty": "PIN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2612673"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "ranibizumab-eqrn"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2612673"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2627648",
+        "name": "bevacizumab-adcd",
+        "tty": "PIN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2627648"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "bevacizumab-adcd"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2627648"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2670179",
+        "name": "fruquintinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2670179"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "fruquintinib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2670179"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2700660",
+        "name": "bevacizumab-tnjn",
+        "tty": "PIN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2700660"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "bevacizumab-tnjn"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2700660"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2712044",
+        "name": "bevacizumab-nwgd",
+        "tty": "PIN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2712044"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "bevacizumab-nwgd"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2712044"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2744883",
+        "name": "ranibizumab-leyk",
+        "tty": "PIN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2744883"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "ranibizumab-leyk"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2744883"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "595060",
+        "name": "ranibizumab",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "595060"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "ranibizumab"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/595060"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "714438",
+        "name": "pazopanib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "714438"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "pazopanib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/714438"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "732187",
+        "name": "pazopanib hydrochloride",
+        "tty": "PIN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "732187"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "pazopanib hydrochloride"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/732187"
+        }
+       ]
+      }
+     ]
+    }
+   }
+  ],
+  "https://rxnav.nlm.nih.gov/REST/rxclass/classMembers.json?classId=N0000020031&relaSource=MEDRT&rela=has_moa&trans=1": [
+   200,
+   {
+    "drugMemberGroup": {
+     "drugMember": [
+      {
+       "minConcept": {
+        "rxcui": "2670179",
+        "name": "fruquintinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2670179"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "fruquintinib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2670179"
+        }
+       ]
+      }
+     ]
+    }
+   }
+  ],
+  "https://rxnav.nlm.nih.gov/REST/rxclass/classMembers.json?classId=N0000020032&relaSource=MEDRT&rela=has_moa&trans=1": [
+   200,
+   {
+    "drugMemberGroup": {
+     "drugMember": [
+      {
+       "minConcept": {
+        "rxcui": "1535922",
+        "name": "ramucirumab",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "1535922"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "ramucirumab"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/1535922"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2670179",
+        "name": "fruquintinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2670179"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "fruquintinib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2670179"
+        }
+       ]
+      }
+     ]
+    }
+   }
+  ],
+  "https://rxnav.nlm.nih.gov/REST/rxclass/classMembers.json?classId=N0000020033&relaSource=MEDRT&rela=has_moa&trans=1": [
+   200,
+   {
+    "drugMemberGroup": {
+     "drugMember": [
+      {
+       "minConcept": {
+        "rxcui": "2670179",
+        "name": "fruquintinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2670179"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "fruquintinib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2670179"
+        }
+       ]
+      }
+     ]
+    }
+   }
+  ],
+  "https://rxnav.nlm.nih.gov/REST/rxclass/classMembers.json?classId=N0000020009&relaSource=MEDRT&rela=has_moa&trans=1": [
+   200,
+   {
+    "drugMemberGroup": {
+     "drugMember": [
+      {
+       "minConcept": {
+        "rxcui": "1804015",
+        "name": "nilotinib hydrochloride",
+        "tty": "PIN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "1804015"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "nilotinib hydrochloride"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/1804015"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2584303",
+        "name": "asciminib hydrochloride",
+        "tty": "PIN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2584303"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "asciminib hydrochloride"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2584303"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2584304",
+        "name": "asciminib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2584304"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "asciminib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2584304"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2698561",
+        "name": "nilotinib tartrate",
+        "tty": "PIN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2698561"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "nilotinib tartrate"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2698561"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2701416",
+        "name": "nilotinib hydrochloride monohydrate",
+        "tty": "PIN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2701416"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "nilotinib hydrochloride monohydrate"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2701416"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2715454",
+        "name": "nilotinib d-tartrate",
+        "tty": "PIN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2715454"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "nilotinib d-tartrate"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2715454"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "282388",
+        "name": "imatinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "282388"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "imatinib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/282388"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "284924",
+        "name": "imatinib mesylate",
+        "tty": "PIN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "284924"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "imatinib mesylate"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/284924"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "662281",
+        "name": "nilotinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "662281"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "nilotinib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/662281"
+        }
+       ]
+      }
+     ]
+    }
+   }
+  ],
+  "https://rxnav.nlm.nih.gov/REST/rxclass/classMembers.json?classId=N0000020030&relaSource=MEDRT&rela=has_moa&trans=1": [
+   200,
+   {
+    "drugMemberGroup": {
+     "drugMember": [
+      {
+       "minConcept": {
+        "rxcui": "714438",
+        "name": "pazopanib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "714438"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "pazopanib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/714438"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "732187",
+        "name": "pazopanib hydrochloride",
+        "tty": "PIN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "732187"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "pazopanib hydrochloride"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/732187"
+        }
+       ]
+      }
+     ]
+    }
+   }
+  ],
+  "https://rxnav.nlm.nih.gov/REST/rxclass/classMembers.json?classId=N0000020028&relaSource=MEDRT&rela=has_moa&trans=1": [
+   200,
+   {
+    "drugMemberGroup": {
+     "drugMember": [
+      {
+       "minConcept": {
+        "rxcui": "1855735",
+        "name": "olaratumab",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "1855735"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "olaratumab"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/1855735"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2272107",
+        "name": "avapritinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2272107"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "avapritinib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2272107"
+        }
+       ]
+      }
+     ]
+    }
+   }
+  ],
+  "https://rxnav.nlm.nih.gov/REST/rxclass/classMembers.json?classId=N0000020029&relaSource=MEDRT&rela=has_moa&trans=1": [
+   200,
+   {
+    "drugMemberGroup": {
+     "drugMember": [
+      {
+       "minConcept": {
+        "rxcui": "10735",
+        "name": "trapidil",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "10735"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "trapidil"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/10735"
+        }
+       ]
+      }
+     ]
+    }
+   }
+  ],
+  "https://rxnav.nlm.nih.gov/REST/rxclass/classMembers.json?classId=N0000020034&relaSource=MEDRT&rela=has_moa&trans=1": [
+   200,
+   {}
+  ],
+  "https://rxnav.nlm.nih.gov/REST/rxclass/classMembers.json?classId=N0000020036&relaSource=MEDRT&rela=has_moa&trans=1": [
+   200,
+   {
+    "drugMemberGroup": {
+     "drugMember": [
+      {
+       "minConcept": {
+        "rxcui": "2691526",
+        "name": "axatilimab",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2691526"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "axatilimab"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2691526"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2691528",
+        "name": "axatilimab-csfr",
+        "tty": "PIN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2691528"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "axatilimab-csfr"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2691528"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2705378",
+        "name": "vimseltinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2705378"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "vimseltinib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2705378"
+        }
+       ]
+      }
+     ]
+    }
+   }
+  ],
+  "https://rxnav.nlm.nih.gov/REST/rxclass/classMembers.json?classId=N0000020037&relaSource=MEDRT&rela=has_moa&trans=1": [
+   200,
+   {}
+  ],
+  "https://rxnav.nlm.nih.gov/REST/rxclass/classMembers.json?classId=N0000193929&relaSource=MEDRT&rela=has_moa&trans=1": [
+   200,
+   {}
+  ],
+  "https://rxnav.nlm.nih.gov/REST/rxclass/classMembers.json?classId=N0000193947&relaSource=MEDRT&rela=has_moa&trans=1": [
+   200,
+   {}
+  ],
+  "https://rxnav.nlm.nih.gov/REST/rxclass/classMembers.json?classId=N0000194026&relaSource=MEDRT&rela=has_moa&trans=1": [
+   200,
+   {}
+  ],
+  "https://rxnav.nlm.nih.gov/REST/rxclass/classMembers.json?classId=N0000194085&relaSource=MEDRT&rela=has_moa&trans=1": [
+   200,
+   {}
+  ],
+  "https://rxnav.nlm.nih.gov/REST/rxclass/classMembers.json?classId=N0000190857&relaSource=MEDRT&rela=has_moa&trans=1": [
+   200,
+   {
+    "drugMemberGroup": {
+     "drugMember": [
+      {
+       "minConcept": {
+        "rxcui": "1193325",
+        "name": "ruxolitinib phosphate",
+        "tty": "PIN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "1193325"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "ruxolitinib phosphate"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/1193325"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "1193326",
+        "name": "ruxolitinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "1193326"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "ruxolitinib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/1193326"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "1357536",
+        "name": "tofacitinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "1357536"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "tofacitinib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/1357536"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "1358492",
+        "name": "tofacitinib citrate",
+        "tty": "PIN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "1358492"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "tofacitinib citrate"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/1358492"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2047232",
+        "name": "baricitinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2047232"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "baricitinib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2047232"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2196092",
+        "name": "upadacitinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2196092"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "upadacitinib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2196092"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2197490",
+        "name": "fedratinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2197490"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "fedratinib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2197490"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2197594",
+        "name": "fedratinib hydrochloride",
+        "tty": "PIN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2197594"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "fedratinib hydrochloride"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2197594"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2612087",
+        "name": "deucravacitinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2612087"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "deucravacitinib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2612087"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2641595",
+        "name": "ritlecitinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2641595"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "ritlecitinib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2641595"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2641596",
+        "name": "ritlecitinib tosylate",
+        "tty": "PIN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2641596"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "ritlecitinib tosylate"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2641596"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2665204",
+        "name": "momelotinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2665204"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "momelotinib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2665204"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2665205",
+        "name": "momelotinib dihydrochloride monohydrate",
+        "tty": "PIN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2665205"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "momelotinib dihydrochloride monohydrate"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2665205"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2716557",
+        "name": "deuruxolitinib phosphate",
+        "tty": "PIN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2716557"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "deuruxolitinib phosphate"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2716557"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2716558",
+        "name": "deuruxolitinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2716558"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "deuruxolitinib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2716558"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2721163",
+        "name": "delgocitinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2721163"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "delgocitinib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2721163"
+        }
+       ]
+      }
+     ]
+    }
+   }
+  ],
+  "https://rxnav.nlm.nih.gov/REST/rxclass/classMembers.json?classId=N0000194044&relaSource=MEDRT&rela=has_moa&trans=1": [
+   200,
+   {
+    "drugMemberGroup": {
+     "drugMember": [
+      {
+       "minConcept": {
+        "rxcui": "2721163",
+        "name": "delgocitinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2721163"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "delgocitinib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2721163"
+        }
+       ]
+      }
+     ]
+    }
+   }
+  ],
+  "https://rxnav.nlm.nih.gov/REST/rxclass/classMembers.json?classId=N0000194169&relaSource=MEDRT&rela=has_moa&trans=1": [
+   200,
+   {}
+  ],
+  "https://rxnav.nlm.nih.gov/REST/rxclass/classMembers.json?classId=N0000194064&relaSource=MEDRT&rela=has_moa&trans=1": [
+   200,
+   {
+    "drugMemberGroup": {
+     "drugMember": [
+      {
+       "minConcept": {
+        "rxcui": "2721163",
+        "name": "delgocitinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2721163"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "delgocitinib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2721163"
+        }
+       ]
+      }
+     ]
+    }
+   }
+  ],
+  "https://rxnav.nlm.nih.gov/REST/rxclass/classMembers.json?classId=N0000193934&relaSource=MEDRT&rela=has_moa&trans=1": [
+   200,
+   {
+    "drugMemberGroup": {
+     "drugMember": [
+      {
+       "minConcept": {
+        "rxcui": "2629338",
+        "name": "pirtobrutinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2629338"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "pirtobrutinib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2629338"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2722398",
+        "name": "rilzabrutinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2722398"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "rilzabrutinib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2722398"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2724365",
+        "name": "remibrutinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2724365"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "remibrutinib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2724365"
+        }
+       ]
+      }
+     ]
+    }
+   }
+  ],
+  "https://rxnav.nlm.nih.gov/REST/rxclass/classMembers.json?classId=N0000194093&relaSource=MEDRT&rela=has_moa&trans=1": [
+   200,
+   {
+    "drugMemberGroup": {
+     "drugMember": [
+      {
+       "minConcept": {
+        "rxcui": "2670644",
+        "name": "repotrectinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2670644"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "repotrectinib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2670644"
+        }
+       ]
+      }
+     ]
+    }
+   }
+  ],
+  "https://rxnav.nlm.nih.gov/REST/rxclass/classMembers.json?classId=N0000194167&relaSource=MEDRT&rela=has_moa&trans=1": [
+   200,
+   {}
+  ],
+  "https://rxnav.nlm.nih.gov/REST/rxclass/classMembers.json?classId=N0000193789&relaSource=MEDRT&rela=has_moa&trans=1": [
+   200,
+   {
+    "drugMemberGroup": {
+     "drugMember": [
+      {
+       "minConcept": {
+        "rxcui": "1992863",
+        "name": "netarsudil mesylate",
+        "tty": "PIN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "1992863"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "netarsudil mesylate"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/1992863"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2564025",
+        "name": "belumosudil",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2564025"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "belumosudil"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2564025"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2565692",
+        "name": "belumosudil mesylate",
+        "tty": "PIN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2565692"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "belumosudil mesylate"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2565692"
+        }
+       ]
+      }
+     ]
+    }
+   }
+  ],
+  "https://rxnav.nlm.nih.gov/REST/rxclass/classMembers.json?classId=N0000193859&relaSource=MEDRT&rela=has_moa&trans=1": [
+   200,
+   {
+    "drugMemberGroup": {
+     "drugMember": [
+      {
+       "minConcept": {
+        "rxcui": "2104548",
+        "name": "larotrectinib sulfate",
+        "tty": "PIN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2104548"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "larotrectinib sulfate"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2104548"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2105628",
+        "name": "larotrectinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2105628"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "larotrectinib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2105628"
+        }
+       ]
+      }
+     ]
+    }
+   }
+  ],
+  "https://rxnav.nlm.nih.gov/REST/rxclass/classMembers.json?classId=N0000194094&relaSource=MEDRT&rela=has_moa&trans=1": [
+   200,
+   {
+    "drugMemberGroup": {
+     "drugMember": [
+      {
+       "minConcept": {
+        "rxcui": "2716919",
+        "name": "taletrectinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2716919"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "taletrectinib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2716919"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2716920",
+        "name": "taletrectinib adipate",
+        "tty": "PIN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2716920"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "taletrectinib adipate"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2716920"
+        }
+       ]
+      }
+     ]
+    }
+   }
+  ],
+  "https://rxnav.nlm.nih.gov/REST/rxclass/classMembers.json?classId=N0000194095&relaSource=MEDRT&rela=has_moa&trans=1": [
+   200,
+   {
+    "drugMemberGroup": {
+     "drugMember": [
+      {
+       "minConcept": {
+        "rxcui": "2716919",
+        "name": "taletrectinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2716919"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "taletrectinib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2716919"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2716920",
+        "name": "taletrectinib adipate",
+        "tty": "PIN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2716920"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "taletrectinib adipate"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2716920"
+        }
+       ]
+      }
+     ]
+    }
+   }
+  ],
+  "https://rxnav.nlm.nih.gov/REST/rxclass/classMembers.json?classId=N0000194096&relaSource=MEDRT&rela=has_moa&trans=1": [
+   200,
+   {
+    "drugMemberGroup": {
+     "drugMember": [
+      {
+       "minConcept": {
+        "rxcui": "2716919",
+        "name": "taletrectinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2716919"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "taletrectinib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2716919"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2716920",
+        "name": "taletrectinib adipate",
+        "tty": "PIN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2716920"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "taletrectinib adipate"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2716920"
+        }
+       ]
+      }
+     ]
+    }
+   }
+  ],
+  "https://rxnav.nlm.nih.gov/REST/rxclass/classMembers.json?classId=N0000193933&relaSource=MEDRT&rela=has_moa&trans=1": [
+   200,
+   {
+    "drugMemberGroup": {
+     "drugMember": [
+      {
+       "minConcept": {
+        "rxcui": "2669967",
+        "name": "capivasertib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2669967"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "capivasertib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2669967"
+        }
+       ]
+      }
+     ]
+    }
+   }
+  ],
+  "https://rxnav.nlm.nih.gov/REST/rxclass/classMembers.json?classId=N0000175411&relaSource=MEDRT&rela=has_moa&trans=1": [
+   200,
+   {
+    "drugMemberGroup": {
+     "drugMember": [
+      {
+       "minConcept": {
+        "rxcui": "1147220",
+        "name": "vemurafenib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "1147220"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "vemurafenib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/1147220"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "1424911",
+        "name": "dabrafenib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "1424911"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "dabrafenib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/1424911"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "1425222",
+        "name": "dabrafenib mesylate",
+        "tty": "PIN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "1425222"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "dabrafenib mesylate"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/1425222"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2049106",
+        "name": "encorafenib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2049106"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "encorafenib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2049106"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2682434",
+        "name": "tovorafenib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2682434"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "tovorafenib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2682434"
+        }
+       ]
+      }
+     ]
+    }
+   }
+  ],
+  "https://rxnav.nlm.nih.gov/REST/rxclass/classMembers.json?classId=N0000175624&relaSource=MEDRT&rela=has_moa&trans=1": [
+   200,
+   {
+    "drugMemberGroup": {
+     "drugMember": [
+      {
+       "minConcept": {
+        "rxcui": "2712352",
+        "name": "sirolimus protein-bound",
+        "tty": "PIN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2712352"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "sirolimus protein-bound"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2712352"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "35302",
+        "name": "sirolimus",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "35302"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "sirolimus"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/35302"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "657797",
+        "name": "temsirolimus",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "657797"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "temsirolimus"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/657797"
+        }
+       ]
+      }
+     ]
+    }
+   }
+  ],
+  "https://rxnav.nlm.nih.gov/REST/rxclass/classMembers.json?classId=N0000193921&relaSource=MEDRT&rela=has_moa&trans=1": [
+   200,
+   {}
+  ],
+  "https://rxnav.nlm.nih.gov/REST/rxclass/classMembers.json?classId=N0000193922&relaSource=MEDRT&rela=has_moa&trans=1": [
+   200,
+   {}
+  ],
+  "https://rxnav.nlm.nih.gov/REST/rxclass/classMembers.json?classId=N0000193945&relaSource=MEDRT&rela=has_moa&trans=1": [
+   200,
+   {
+    "drugMemberGroup": {
+     "drugMember": [
+      {
+       "minConcept": {
+        "rxcui": "2739518",
+        "name": "navepegritide",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2739518"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "navepegritide"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2739518"
+        }
+       ]
+      }
+     ]
+    }
+   }
+  ],
+  "https://rxnav.nlm.nih.gov/REST/rxclass/classMembers.json?classId=N0000193943&relaSource=MEDRT&rela=has_moa&trans=1": [
+   200,
+   {
+    "drugMemberGroup": {
+     "drugMember": [
+      {
+       "minConcept": {
+        "rxcui": "2705551",
+        "name": "mirdametinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2705551"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "mirdametinib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2705551"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2714514",
+        "name": "avutometinib potassium",
+        "tty": "PIN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2714514"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "avutometinib potassium"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2714514"
+        }
+       ]
+      },
+      {
+       "minConcept": {
+        "rxcui": "2714515",
+        "name": "avutometinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2714515"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "avutometinib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2714515"
+        }
+       ]
+      }
+     ]
+    }
+   }
+  ],
+  "https://rxnav.nlm.nih.gov/REST/rxclass/classMembers.json?classId=N0000193944&relaSource=MEDRT&rela=has_moa&trans=1": [
+   200,
+   {
+    "drugMemberGroup": {
+     "drugMember": [
+      {
+       "minConcept": {
+        "rxcui": "2705551",
+        "name": "mirdametinib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2705551"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "mirdametinib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2705551"
+        }
+       ]
+      }
+     ]
+    }
+   }
+  ],
+  "https://rxnav.nlm.nih.gov/REST/rxclass/classMembers.json?classId=N0000194133&relaSource=MEDRT&rela=has_moa&trans=1": [
+   200,
+   {}
+  ],
+  "https://rxnav.nlm.nih.gov/REST/rxclass/classMembers.json?classId=N0000193977&relaSource=MEDRT&rela=has_moa&trans=1": [
+   200,
+   {
+    "drugMemberGroup": {
+     "drugMember": [
+      {
+       "minConcept": {
+        "rxcui": "2586068",
+        "name": "maribavir",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2586068"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "maribavir"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2586068"
+        }
+       ]
+      }
+     ]
+    }
+   }
+  ],
+  "https://rxnav.nlm.nih.gov/REST/rxclass/classMembers.json?classId=N0000194055&relaSource=MEDRT&rela=has_moa&trans=1": [
+   200,
+   {
+    "drugMemberGroup": {
+     "drugMember": [
+      {
+       "minConcept": {
+        "rxcui": "2695422",
+        "name": "inavolisib",
+        "tty": "IN"
+       },
+       "nodeAttr": [
+        {
+         "attrName": "SourceId",
+         "attrValue": "2695422"
+        },
+        {
+         "attrName": "SourceName",
+         "attrValue": "inavolisib"
+        },
+        {
+         "attrName": "Relation",
+         "attrValue": "DIRECT"
+        },
+        {
+         "attrName": "SourceUrl",
+         "attrValue": "https://rxnav.nlm.nih.gov/id/rxnorm/2695422"
+        }
+       ]
+      }
+     ]
+    }
+   }
+  ],
+  "https://rxnav.nlm.nih.gov/REST/rxclass/classMembers.json?classId=N0000194054&relaSource=MEDRT&rela=has_moa&trans=1": [
+   200,
+   {}
+  ],
+  "https://rxnav.nlm.nih.gov/REST/rxclass/classMembers.json?classId=N0000194130&relaSource=MEDRT&rela=has_moa&trans=1": [
+   200,
+   {}
+  ],
+  "https://rxnav.nlm.nih.gov/REST/rxclass/classMembers.json?classId=N0000194147&relaSource=MEDRT&rela=has_moa&trans=1": [
+   200,
+   {}
   ]
  }
 }

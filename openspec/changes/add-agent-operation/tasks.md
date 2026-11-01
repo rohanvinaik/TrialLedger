@@ -44,15 +44,30 @@ The founder, 2026-11-01: the next priority, built to completion.
 ## 2. Request resolution
 
 - [x] 2.1 The request object and its refusals
-- [ ] 2.2 Drug class → members (RxClass `classMembers`, RxNorm names); mechanism → classes (crosswalk, entailed
+- [x] 2.2 Drug class → members (RxClass `classMembers`, RxNorm names); mechanism → classes (crosswalk, entailed
       only); condition class → `AREA[ConditionAncestorTerm]`; drug → `AREA[InterventionName]` with other names
-      (2026-11-01: built and converged in `request.py`, pending the founder's ruling on two departures from
-      this text, design.md As built here: the condition class is emitted as sample.py's verified
-      term-or-ancestor form, not the ancestor alone, since the ancestor alone misses the trials tagged with
-      the descriptor itself; and "other names" are RxNorm's names (its concept's, and a salt's, brand's or
-      other form's ingredient's), not the registry's `AREA[InterventionOtherName]`, which is not emitted. Also
-      for the founder: every RxClass member is expanded, INDIRECT ones included, and a PIN member is searched
-      by its ingredient's name too.)
+      (2026-11-01: settled as the rulings below record; where they and this line differ, the rulings hold.)
+
+  2026-11-01, settled by Claude's reading and Codex's independent one, with the facts measured live that day
+  (design.md As built here, "The rulings of 2026-11-01"): (1) the condition class keeps the term-or-ancestor
+  form; (2) each drug name is searched in `AREA[InterventionName]` OR `AREA[InterventionOtherName]`, the names
+  grouped inside each area (`request.name_clause`; both new forms in `NEW_FORMS` and
+  `tests/request_query_forms.json`, dated, with an opt-in live test that they filter and that unheld names
+  give 0); (3) a class means the class with its subclasses: `classes.rxclass_tree` (classTree) and each
+  subclass's own members (`classes.direct_members_request`, trans=1) are asked, `rxclass_members` keeps every
+  relation a member states, and `request.subclass_attribution` lists every subclass, attributes each member to
+  the subclasses that list it as DIRECT and applies the new `drug_class.subclasses` ("include", "exclude" or
+  ids to exclude, each with its subclasses; a DIRECT member never excluded); (4) a class member's base
+  ingredient is searched only as a member the class lists, otherwise shown as a candidate
+  (`request.member_names`). Every new request is named by `lookups_needed`; the RxNav answers they need were
+  fetched into `tests/rxnav_request_answers.json` (release still 05-Oct-2026). Every changed or new decision
+  converged `--two-sign` COMPLETE (`rxclass_tree`, `rxclass_members`, `slot_value_ok`,
+  `subclass_attribution`, `member_names`, `resolve_scope`, `lookups_needed`; after review, the subclass
+  orchestration `request._subclass_expansions`, now pinned with direct tests of each stop and wait, and
+  `request.name_clause`). Left, for the founder: whether ruling 4 extends to a salt or biosimilar the person
+  names in `drug` (today it is searched by its ingredient's name too); whether it should reach a brand or
+  another-form member, as built, beyond the ruling's salt and biosimilar; and a biosimilar member's identity
+  code, `salt` (`classes.name_identity`'s). Production reaches it through `trialledger landscape` (4.2).
 - [x] 2.3 The resolved scope written before any study is read; named codes for what cannot resolve
       (2026-11-01: the scope object, its named codes and the lookups it needs are built and converged,
       `request.resolve_scope` and `request.lookups_needed`; what is left is writing it into the run folder

@@ -9,6 +9,18 @@
    "status": 200,
    "totalCount": 2584
   },
+  "AREA[InterventionOtherName]\"<name>\"": {
+   "query": "AREA[InterventionOtherName]\"pembrolizumab\"",
+   "status": 200,
+   "totalCount": 1610,
+   "asked": "2026-11-01, the second round (the ruling: each name in the intervention's name or other names)"
+  },
+  "AREA[<area>](\"<name>\" OR \"<name>\")": {
+   "query": "AREA[InterventionName](\"crizotinib\" OR \"alectinib\")",
+   "status": 200,
+   "totalCount": 184,
+   "asked": "2026-11-01, the second round; the same names one by one, (AREA[InterventionName]\"crizotinib\" OR AREA[InterventionName]\"alectinib\"), 184 too (below)"
+  },
   "AREA[OverallStatus]": {
    "query": "AREA[OverallStatus]RECRUITING",
    "status": 200,
@@ -36,6 +48,43 @@
    "status": 200,
    "totalCount": 0
   },
+  "a name no trial holds, as an other name": {
+   "query": "AREA[InterventionOtherName]\"no such drug zzqx\"",
+   "status": 200,
+   "totalCount": 0
+  },
+  "names no trial holds, grouped": {
+   "query": "AREA[InterventionName](\"no such drug zzqx\" OR \"nor this zzqy\")",
+   "status": 200,
+   "totalCount": 0
+  },
+  "two names grouped and one by one": {
+   "grouped": {"query": "AREA[InterventionName](\"crizotinib\" OR \"alectinib\")", "status": 200, "totalCount": 184},
+   "one by one": {"query": "(AREA[InterventionName]\"crizotinib\" OR AREA[InterventionName]\"alectinib\")", "status": 200, "totalCount": 184},
+   "name or other name, grouped": {"query": "(AREA[InterventionName](\"crizotinib\" OR \"alectinib\") OR AREA[InterventionOtherName](\"crizotinib\" OR \"alectinib\"))", "status": 200, "totalCount": 190},
+   "name or other name, one by one": {"query": "(AREA[InterventionName]\"crizotinib\" OR AREA[InterventionOtherName]\"crizotinib\" OR AREA[InterventionName]\"alectinib\" OR AREA[InterventionOtherName]\"alectinib\")", "status": 200, "totalCount": 190}
+  },
+  "the EPC Kinase Inhibitor's 81 searched names, grouped and one by one": {
+   "how": "the names request.resolve_scope searches for {\"drug_class\": {\"name\": \"Kinase Inhibitor\", \"source\": \"EPC\"}} (2026-11-01, second round); url_length is the whole URL httpx sent",
+   "InterventionName one by one": {"status": 200, "totalCount": 13284, "url_length": 3874},
+   "InterventionName grouped": {"status": 200, "totalCount": 13284, "url_length": 1794},
+   "name or other name, grouped (request.name_clause, emitted)": {"status": 200, "totalCount": 13723, "url_length": 3505},
+   "name or other name, one by one": {"escaped_length": 8619, "note": "over request.QUERY_LIMIT (7,000), so not sent: the grouped form is emitted"}
+  },
+  "the registry total": {"status": 200, "totalCount": 609551},
+  "names the registry reads alike (measured 2026-11-01, for the founder; nothing here relies on it)": {
+   "AREA[InterventionName]\"Keytruda\"": 2584,
+   "AREA[InterventionName]\"pembrolizumab\"": 2584,
+   "AREA[InterventionName]\"bevacizumab\"": 2667,
+   "AREA[InterventionName]\"Avastin\"": 2777,
+   "AREA[InterventionName]\"bevacizumab-awwb\"": 4,
+   "AREA[InterventionName]\"Mvasi\"": 4,
+   "AREA[InterventionOtherName]\"bevacizumab-awwb\"": 90,
+   "AREA[InterventionName]\"dasatinib anhydrous\"": 1,
+   "AREA[InterventionName]\"dasatinib\"": 344,
+   "AREA[InterventionName]\"osimertinib mesylate\"": 19,
+   "AREA[InterventionName]\"osimertinib\"": 294
+  },
   "unknown status value": {
    "query": "AREA[OverallStatus]RECRUTING",
    "status": 400,
@@ -58,11 +107,12 @@
    "smallest_refused": {"url_length": 8234, "status": 414, "error": "414 Request-URI Too Large (nginx/1.26.2)"}
   },
   "resolved scopes sent (tests/rxnav_request_answers.json requests)": {
-   "EPC Programmed Death Receptor-1 Blocking Antibody in Lung Neoplasms, phase 3, recruiting, interventional, from 2015": {"status": 200, "totalCount": 61, "url_length": 698},
-   "Keytruda, osimertinib, osimertinib mesylate, XB-1 zzq, to 2024-12-31": {"status": 200, "totalCount": 2432, "url_length": 391},
-   "ATC L01ED": {"status": 200, "totalCount": 307, "url_length": 328},
-   "EPC Kinase Inhibitor (81 members)": {"status": 200, "totalCount": 13534, "url_length": 3919},
-   "MoA Kinase Inhibitors (194 members)": {"status": 414, "url_length": 9969, "note": "request.resolve_scope names it query_too_long and sends nothing"}
+   "EPC Programmed Death Receptor-1 Blocking Antibody in Lung Neoplasms, phase 3, recruiting, interventional, from 2015": {"status": 200, "totalCount": 63, "url_length": 735, "first_round": {"totalCount": 61, "url_length": 698}},
+   "Keytruda, osimertinib, osimertinib mesylate, XB-1 zzq, to 2024-12-31": {"status": 200, "totalCount": 2495, "url_length": 440, "first_round": {"totalCount": 2432, "url_length": 391}},
+   "ATC L01ED": {"status": 200, "totalCount": 314, "url_length": 365, "first_round": {"totalCount": 307, "url_length": 328}},
+   "EPC Kinase Inhibitor (81 members, its eight subclasses' 17 members among them, each searched by its own name)": {"status": 200, "totalCount": 13723, "url_length": 3505, "first_round": {"totalCount": 13534, "url_length": 3919, "note": "InterventionName only, with dasatinib searched for dasatinib anhydrous"}},
+   "MoA Kinase Inhibitors (194 members)": {"escaped_length": 11437, "note": "request.resolve_scope names it query_too_long and sends nothing", "first_round": {"status": 414, "url_length": 9969}},
+   "note": "first_round: as sent on 2026-11-01 before the rulings of that day (InterventionName only, one name at a time, a precise ingredient member's base name searched); the second round, the same day and the same data timestamp, sends each name in the intervention's name or other names, grouped"
   }
  }
 }

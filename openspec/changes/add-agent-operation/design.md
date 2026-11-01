@@ -182,45 +182,95 @@ may not reach ClinicalTrials.gov or RxNav. Desktop and CLI agents (Claude Code, 
 
 ## As built here
 
-- **Decisions 4 and 5, 2026-11-01** (`TrialLedger/request.py`; `classes.class_members_request` and
-  `classes.rxclass_members` beside the existing RxClass lookups). The request is validated by
+- **Decisions 4 and 5, 2026-11-01** (`TrialLedger/request.py`; `classes.class_members_request`,
+  `classes.direct_members_request`, `classes.class_tree_request`, `classes.rxclass_members` and
+  `classes.rxclass_tree` beside the existing RxClass lookups). The request is validated by
   `request_problems` (`not_an_object`, `empty_request`, `unknown_slot`, `malformed_value` per
   `slot_value_ok`, a start_from after the start_to, `params_<check_query code>`, and `params_conflict` for a raw
   `filter.advanced` or `query.cond` the slots set themselves). `drug` is a list of names, `drug_class` an object
-  of `source` (EPC, MoA, ATC) and exactly one of `name` or `id`, `phase` and `status` lists of the registry's
-  enum values, `study_type` one value, dates YYYY-MM-DD; a name or condition class holding a double quote is
-  refused, since it is quoted in the query.
+  of `source` (EPC, MoA, ATC), exactly one of `name` or `id` and optionally `subclasses` ("include", the
+  default; "exclude"; or a non-empty list of subclass ids to exclude), `phase` and `status` lists of the
+  registry's enum values, `study_type` one value, dates YYYY-MM-DD; a name or condition class holding a double
+  quote is refused, since it is quoted in the query.
 - Resolution reads answers already fetched: `answers` maps each RxNav request, written as one URL line
   (`lookup_url`, the key task 3 can put in `next.json`), to its `[status, body]`. `lookups_needed(request,
   answers)` names the requests still needed, round by round (the release, `version.json`, first whenever any
   is needed): a class, the requested one or an ATC class an entailed crosswalk row names, is first confirmed
-  by byName (with the source's class type: EPC, MOA, ATC1-4) or byId, and only then are its members asked
-  (classMembers; EPC under DAILYMED has_epc, MoA under MEDRT has_moa, ATC under ATC), because RxClass answers
-  `{}` both for an unknown class id and for a class with no member. A named
-  drug's identity follows `lookup_axes`' chain (rxcui by exact name, properties, related ingredients); a member
-  is already an RxNorm concept, and only a member that is not an ingredient (a PIN) asks its ingredients.
-- Names (`drug_names`): the name asked; RxNorm's concept name when it resolves and differs; and, for a salt, a
-  brand or another form of one ingredient, that ingredient's name, each with its source. A combination is
-  never searched by one of its ingredients. A name RxNorm does not hold (or holds more than once) is searched
-  as asked, with its code; a failed or malformed answer stops the scope (`name_lookup_failed`,
-  `name_malformed`), never a name searched alone.
+  by byName (with the source's class type: EPC, MOA, ATC1-4) or byId, and only then are its members
+  (classMembers; EPC under DAILYMED has_epc, MoA under MEDRT has_moa, ATC under ATC) and its tree (classTree)
+  asked, because RxClass answers `{}` both for an unknown class id and for a class with no member; then each
+  subclass's own members (classMembers with trans=1); then, once `subclass_attribution` has read which members
+  are searched, those members' ingredients. A named drug's identity follows `lookup_axes`' chain (rxcui by
+  exact name, properties, related ingredients); a member is already an RxNorm concept, and only a member that
+  is not an ingredient (a PIN) asks its ingredients.
+- Names (`drug_names`, for a drug the person names): the name asked; RxNorm's concept name when it resolves
+  and differs; and, for a salt, a brand or another form of one ingredient, that ingredient's name, each with
+  its source. A combination is never searched by one of its ingredients. A name RxNorm does not hold (or holds
+  more than once) is searched as asked, with its code; a failed or malformed answer stops the scope
+  (`name_lookup_failed`, `name_malformed`), never a name searched alone. A class member's names
+  (`member_names`) follow ruling 4 below.
 - The join: the names of one slot are joined by OR, the slots by AND (`request.JOIN`, in every scope). Forms:
-  `AREA[InterventionName]"<name>"`, `AREA[Phase]X` and `AREA[OverallStatus]X` as OR groups,
-  `AREA[StudyType]X`, `AREA[StartDate]RANGE[from|MIN,to|MAX]`, `condition` as the registry's `query.cond`,
-  raw parameters beside them. The forms sample.py had not verified (`request.NEW_FORMS`) were tried live on
-  2026-11-01 (`tests/request_query_forms.json`; `tests/test_request_live.py`, opt-in).
-- Deviation, the condition class, pending the founder's ruling: emitted as sample.py's verified form,
-  `(AREA[ConditionMeshTerm]"X" OR AREA[ConditionAncestorTerm]"X")`, not the ancestor alone. An ancestor is
-  never the trial's own term, so the ancestor alone misses every trial tagged with the descriptor itself: for
-  "Lung Neoplasms", 6,499 trials by ancestor, 11,763 by term or ancestor (2026-11-01).
-- Pending the founder's ruling, "other names": a drug's other names are RxNorm's (its concept's name, and a
-  salt's, brand's or other form's ingredient's); the registry's `AREA[InterventionOtherName]` is not emitted (a
-  new form, untried live). Every RxClass member is expanded, DIRECT and INDIRECT (a member of a narrower class,
-  as RxClass states it, kept with its relation): the EPC Kinase Inhibitor's 14 INDIRECT members include
-  cetuximab, panitumumab, pertuzumab, ramucirumab, trastuzumab and margetuximab; the MoA Kinase Inhibitors'
-  153 include bevacizumab and its biosimilars. A PIN member (a salt, or a biosimilar such as
-  bevacizumab-awwb) is searched by its ingredient's name too, so a biosimilar widens to its reference
-  product's name.
+  each slot's names as `(AREA[InterventionName]X OR AREA[InterventionOtherName]X)`, X one quoted name or the
+  quoted names joined by OR in parentheses (`request.name_clause`, ruling 2 below), `AREA[Phase]X` and
+  `AREA[OverallStatus]X` as OR groups, `AREA[StudyType]X`, `AREA[StartDate]RANGE[from|MIN,to|MAX]`,
+  `condition` as the registry's `query.cond`, raw parameters beside them. The forms sample.py had not verified
+  (`request.NEW_FORMS`) were tried live on 2026-11-01 (`tests/request_query_forms.json`;
+  `tests/test_request_live.py`, opt-in).
+- **The rulings of 2026-11-01 on task 2.2's open points** (Claude's reading and Codex's independent one,
+  with the facts measured live that day; until then the first two were built as departures pending a ruling,
+  and every member, DIRECT and INDIRECT, was searched with a PIN member's ingredient):
+  1. *The condition class keeps the term-or-ancestor form* (agreed): `(AREA[ConditionMeshTerm]"X" OR
+     AREA[ConditionAncestorTerm]"X")`, sample.py's verified form, not the ancestor alone. An ancestor is never
+     the trial's own term, so the ancestor alone misses every trial tagged with the descriptor itself: for
+     "Lung Neoplasms", 6,499 trials by ancestor, 11,763 by term or ancestor.
+  2. *Each drug name is searched in `AREA[InterventionName]` OR `AREA[InterventionOtherName]`* (agreed:
+     sponsors put the identifying name in either field). Measured: `AREA[InterventionOtherName]"pembrolizumab"`
+     1,610 of 609,551 registered studies; an unheld name 0. Pairing the areas name by name would take the
+     EPC Kinase Inhibitor's query to 8,619 escaped characters, over `QUERY_LIMIT`, so the names are grouped
+     inside each area, `AREA[InterventionName]("a" OR "b")`, a second new form: the registry answered the
+     Kinase Inhibitor's 81 names grouped exactly as one by one (13,284 each), two names alike (184; with
+     other names, 190), and the grouped name-or-other-name query in 3,505 characters (4,071 escaped; 13,723
+     trials). Both forms are in `NEW_FORMS` with their date and checked by the opt-in live test (above 0 and
+     below the registry total; unheld names 0, singly, as an other name and grouped; grouped equal to one by
+     one); the counts are in `tests/request_query_forms.json`.
+  3. *A class means the class with its subclasses, and nothing is hidden.* Measured: RxClass's INDIRECT
+     members of a class are the members of its subclasses in the source's own hierarchy; classMembers without
+     trans returned DIRECT and INDIRECT entries (ruxolitinib, everolimus and sirolimus carry both in one
+     member's attributes, which `rxclass_members` now keeps as every relation stated, sorted), with trans=1
+     the DIRECT ones only. The EPC Kinase Inhibitor's classTree lists eight subclasses (mTOR Inhibitor
+     Immunosuppressant, HER2/neu Receptor Antagonist, Epidermal Growth Factor Receptor Antagonist, Janus Kinase
+     Inhibitor and under it Tyrosine Kinase 2 Inhibitor, Vascular Endothelial Growth Factor Receptor 2
+     Antagonist, Rho Kinase Inhibitor, Cytomegalovirus pUL97 Kinase Inhibitor); the MoA Kinase Inhibitors'
+     tree holds 49 classes under it, to six levels. `rxclass_tree` reads a tree (each class under its parent,
+     a class under two parents under each); `subclass_attribution` lists every subclass and gives each member
+     its `via`, the subclasses whose own members (trans=1) list it as DIRECT ("trastuzumab, via HER2/neu
+     Receptor Antagonist"; deucravacitinib via Tyrosine Kinase 2 Inhibitor, not Janus Kinase Inhibitor).
+     `drug_class.subclasses` excludes all subclasses or the ids listed, each with every subclass under it; a
+     member the class lists as DIRECT is never excluded, and one reached through several subclasses only when
+     all are excluded. Excluded members stay in the scope, marked, and are not searched. Named stops:
+     `subclasses_not_found`, `subclasses_lookup_failed`, `subclasses_malformed` (the tree),
+     `subclass_members_lookup_failed`, `subclass_members_malformed`, `tree_not_of_class` (the tree's top is
+     not the class), `subclass_not_in_class` (an id to exclude is no subclass of it) and
+     `member_unattributed` (a subclass is excluded and a member that is not DIRECT has no subclass listing it,
+     so whether it is excluded cannot be read; under "include" such a member is searched, its via empty). A
+     subclass with no own member is no stop. With every subclass excluded the EPC Kinase Inhibitor keeps 67 of
+     its 81 members (the 14 INDIRECT-only ones out; ruxolitinib, everolimus and sirolimus kept).
+  4. *A precise ingredient's base name is searched only when the class itself lists that ingredient* (Codex:
+     widening bevacizumab-awwb to bevacizumab would admit Avastin trials). `member_names`: a member that is not
+     an ingredient (a PIN, a brand, another form) is searched by its own name; its ingredient is searched only
+     as a member the class lists (the MoA Kinase Inhibitors list bevacizumab, so bevacizumab-awwb adds
+     nothing), and otherwise shown as a candidate, `[name, "rxnorm_ingredient", "the ingredient of <member>
+     (<tty>)"]`, in its expansion's `candidates`, not searched: the EPC Kinase Inhibitor lists dasatinib
+     anhydrous and not dasatinib, so dasatinib is a candidate (measured: 1 trial names dasatinib anhydrous,
+     344 dasatinib). Applied to class members only: a drug the person names is still searched by its
+     ingredient's name beside its own (Keytruda with pembrolizumab, osimertinib mesylate with osimertinib), as
+     before; whether the ruling extends to a named salt or biosimilar is open for the founder. Beyond the
+     ruling's words, for the founder: it is applied to every member that is not an ingredient, so a brand (BN)
+     or another-form member is not widened to its ingredient either; and a biosimilar member shows the identity
+     code `salt` (`classes.name_identity`'s, unchanged: bevacizumab-awwb is a PIN). Measured beside
+     it, for the founder, and relied on nowhere: the registry reads some names alike itself
+     (`AREA[InterventionName]"Keytruda"` and `"pembrolizumab"` both 2,584), but not a biosimilar's
+     ("bevacizumab-awwb" 4, "bevacizumab" 2,667).
 - The mechanism: `mechanism_rows` matches a crosswalk target apart from case; only a row whose relation
   `entails_membership` is expanded, into its ATC class's members; every other row is listed with its relation.
   No present row entails membership, so every mechanism stops today as `mechanism_not_entailed` (or
@@ -231,11 +281,19 @@ may not reach ClinicalTrials.gov or RxNav. Desktop and CLI agents (Claude Code, 
   `check`, `join`, every slot with its clause, every expansion with its source, request, code and the RxNav
   `release`, `lookups`, `pending`, `stops` ([slot, code, detail]: `class_not_found`, `class_ambiguous` with the
   candidates, `class_source_mismatch`, `class_lookup_failed`, `class_malformed`, `mechanism_not_in_crosswalk`,
-  `mechanism_not_entailed` with the rows, `no_members`, `members_lookup_failed`, `members_malformed`,
-  `name_lookup_failed`, `name_malformed`, `name_not_quotable`, `query_<check_query code>`, `query_too_long`) and,
-  only when resolved, `query`. Any stop stops the scope, whatever is still pending, so no registry query is
-  sent for a scope that is short. A `*_lookup_failed` stop is final for those answers: to retry, the caller
-  drops the failed answer and asks `lookups_needed` again (task 3.1); the other stops are RxNav's answer.
+  `mechanism_not_entailed` with the rows, `no_members`, `members_lookup_failed`, `members_malformed`, the
+  subclass stops of ruling 3, `name_lookup_failed`, `name_malformed`, `name_not_quotable`,
+  `query_<check_query code>`, `query_too_long`) and, only when resolved, `query`. A class's expansions, in
+  order: `class` (the confirmation), `class_members` (each member with its relations), `class_tree`, one
+  `subclass_members` per subclass, `subclass_attribution` (the rule, every subclass with whether it is
+  excluded, every member with its via and whether it is searched), then one `drug_names` per searched member
+  (its names and its `candidates`; a named drug's `candidates` are always empty). The subclass expansions and
+  their stops are `_subclass_expansions`' (pinned with direct tests after review, 2026-11-01): the tree, each
+  subclass once (one under two parents too), and the attribution only once nothing has stopped, no answer is
+  pending and the class's members were found. Any stop stops the scope, whatever is still pending, so no
+  registry query is sent for a scope that is short. A `*_lookup_failed` stop is final for those answers: to
+  retry, the caller drops the failed answer and asks `lookups_needed` again (task 3.1); the other stops are
+  RxNav's answer.
 - The release, as built: `answers` is keyed by request, and version.json is one request, so the release is
   asked once, in the first round, and stamped on every expansion of later rounds without being re-read; the
   scope says so (`release_basis`, `request.RELEASE_BASIS`). Detecting a release change between rounds (asked
@@ -246,9 +304,12 @@ may not reach ClinicalTrials.gov or RxNav. Desktop and CLI agents (Claude Code, 
 - Measured 2026-11-01: the registry answers a URL of 8,185 characters and refuses one of 8,234 with HTTP 414. A
   query whose parameters, as `urlencode(query, quote_via=quote)` writes them (letters, digits, `_.-~` and `/`
   kept, every other byte as %XX), exceed `request.QUERY_LIMIT` (7,000) stops as `query_too_long`; the measure
-  is no shorter than the URL sent (4,163 for the EPC Kinase Inhibitor query, whose whole URL as sent was
-  3,919): the MoA class Kinase Inhibitors (194 members) does; the EPC Kinase Inhibitor (81 members)
-  resolves and was answered (13,534 trials). Splitting a long query is for the step protocol (3.1).
+  is no shorter than the URL sent (4,071 for the EPC Kinase Inhibitor query under the grouped
+  name-or-other-name form, whose whole URL as sent was 3,505; 4,163 and 3,919 under the first round's
+  InterventionName-only form):
+  the MoA class Kinase Inhibitors (194 members, 11,437 escaped) does; the EPC Kinase Inhibitor (81 members)
+  resolves and was answered (13,723 trials; 13,534 in the first round). Splitting a long query is for the step
+  protocol (3.1).
 - **The operation, 2026-11-01 (task 4.2; `TrialLedger/operate.py`, `trialledger landscape` in `cli.py`).**
   `trialledger landscape --run DIR (--request FILE | the slot flags) [--mode direct|relay]`, the mode by
   default `doctor.report`'s. The run folder, in the order written: `request.json` (only once

@@ -419,16 +419,26 @@ def lookup_axes(
 
 # A drug class's members (add-agent-operation, Decision 5): RxClass classMembers, asked by class id under the
 # relation source and relation of the class's own source. Observed 2026-11-01 (RxNav release 05-Oct-2026):
-# each member is an RxNorm concept (an ingredient, IN, or a precise ingredient, PIN) with a "Relation" node
-# attribute, DIRECT or INDIRECT (a member of a narrower class); an unknown class id answers {}.
+# each member is an RxNorm concept (an ingredient, IN, or a precise ingredient, PIN) with "Relation" node
+# attributes, DIRECT or INDIRECT (a direct member of one of the class's subclasses in the source's own
+# hierarchy), one member sometimes carrying both in one list (ruxolitinib, everolimus and sirolimus in the EPC
+# Kinase Inhibitor); an unknown class id answers {}. Asked with trans=1 the answer held the DIRECT entries
+# only (the class's own members, without its subclasses'); without it, both.
 RXCLASS_MEMBERS = f"{RXNAV}/rxclass/classMembers.json"
+# The class's subclasses: RxClass classTree, the class as its root and each subclass under its parent, at any
+# depth (the EPC Kinase Inhibitor's Janus Kinase Inhibitor holds Tyrosine Kinase 2 Inhibitor, 2026-11-01); a
+# class id RxClass does not hold answers {}.
+RXCLASS_TREE = f"{RXNAV}/rxclass/classTree.json"
 # Each class source a request may name: (RxClass class type, relation source, relation).
 CLASS_SOURCES = {
     "EPC": ("EPC", "DAILYMED", "has_epc"),
     "MoA": ("MOA", "MEDRT", "has_moa"),
     "ATC": ("ATC1-4", "ATC", ""),
 }
-Member = tuple[str, str, str, str]  # (rxcui, name, term type, relation: DIRECT or INDIRECT, "" when unstated)
+# (rxcui, name, term type, relations: each "Relation" the member states, once, sorted; () when it states none)
+Member = tuple[str, str, str, tuple[str, ...]]
+# (class id, class name, class type, parent class id: "" for the root)
+TreeClass = tuple[str, str, str, str]
 
 
 def class_members_request(class_id: str, source: str) -> tuple[str, dict[str, str]]:
@@ -439,11 +449,70 @@ def class_members_request(class_id: str, source: str) -> tuple[str, dict[str, st
     )
 
 
+def direct_members_request(class_id: str, source: str) -> tuple[str, dict[str, str]]:
+    """The classMembers request for one class's own (DIRECT) members, without its subclasses': the class's
+    request with trans=1 (URL, parameters)."""
+    url, params = class_members_request(class_id, source)
+    return url, params | {"trans": "1"}
+
+
+def class_tree_request(class_id: str) -> tuple[str, dict[str, str]]:
+    """The RxClass classTree request for one class: (URL, parameters)."""
+    return RXCLASS_TREE, {"classId": class_id}
+
+
+def rxclass_tree(status: int, body: Any) -> tuple[str, list[TreeClass]]:
+    """The classes in one RxClass classTree response, each under its parent (pure — pinned).
+
+    found        — HTTP 200 and a tree: each class as (classId, className, classType, parent classId), the
+                   top classes with parent "", in the tree's own order, each class before its subclasses; a
+                   class listed under the same parent again is listed once (a class under two parents is
+                   listed under each).
+    not_found    — HTTP 200 and an object without rxclassTree (RxClass's answer for a class id it does not
+                   hold, observed 2026-11-01).
+    malformed    — HTTP 200 but the body is not an object, its rxclassTree is not a non-empty list, a node is
+                   not an object, a node's rxclassTree is not a list, or a node lacks a string classId,
+                   className and classType.
+    lookup_failed — any other HTTP status.
+    """
+    if status != 200:
+        return "lookup_failed", []
+    if not isinstance(body, dict):
+        return "malformed", []
+    top = body.get("rxclassTree")
+    if top is None:
+        return "not_found", []
+    if not isinstance(top, list) or not top:
+        return "malformed", []
+    found: list[TreeClass] = []
+    stack: list[tuple[Any, str]] = [(node, "") for node in reversed(top)]
+    while stack:
+        node, parent = stack.pop()
+        item = node.get("rxclassMinConceptItem") if isinstance(node, dict) else None
+        fields = (
+            [item.get(key) for key in ("classId", "className", "classType")] if isinstance(item, dict) else []
+        )
+        children = node.get("rxclassTree", []) if isinstance(node, dict) else None
+        if (
+            not fields
+            or not all(isinstance(field, str) for field in fields)
+            or not isinstance(children, list)
+        ):
+            return "malformed", []
+        entry = (fields[0], fields[1], fields[2], parent)
+        if entry not in found:
+            found.append(entry)
+        stack += [(child, fields[0]) for child in reversed(children)]
+    return "found", found
+
+
 def rxclass_members(status: int, body: Any) -> tuple[str, list[Member]]:
     """The member drugs in one RxClass classMembers response, or why there are none (pure — pinned).
 
-    found        — HTTP 200 with at least one member; each (rxcui, name, tty, relation), once, sorted; the
-                   relation is the member's "Relation" node attribute, "" when it states none.
+    found        — HTTP 200 with at least one member; each (rxcui, name, tty, relations), once, sorted; the
+                   relations are every "Relation" node attribute the member states (DIRECT, INDIRECT or both,
+                   as RxClass lists them in one member's attributes), each as text, once, sorted; () when it
+                   states none.
     not_found    — HTTP 200 and an object without drugMemberGroup, or a group without drugMember (RxClass's
                    answer for a class id it does not hold, or a class with no member under that source).
     malformed    — HTTP 200 but the body is not an object, the group is not one, the listing is empty or not a
@@ -469,15 +538,14 @@ def rxclass_members(status: int, body: Any) -> tuple[str, list[Member]]:
         if not fields or not all(isinstance(field, str) for field in fields):
             return "malformed", []
         attributes = entry.get("nodeAttr")
-        relation = next(
-            (
-                str(attribute.get("attrValue", ""))
-                for attribute in (attributes if isinstance(attributes, list) else [])
-                if isinstance(attribute, dict) and attribute.get("attrName") == "Relation"
-            ),
-            "",
-        )
-        found.add((fields[0], fields[1], fields[2], relation))
+        relations = {
+            str(attribute["attrValue"])
+            for attribute in (attributes if isinstance(attributes, list) else [])
+            if isinstance(attribute, dict)
+            and attribute.get("attrName") == "Relation"
+            and "attrValue" in attribute
+        }
+        found.add((fields[0], fields[1], fields[2], tuple(sorted(relations))))
     return "found", sorted(found)
 
 
