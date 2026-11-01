@@ -1382,5 +1382,89 @@
     "function_digest": "370f0a53535590e3",
     "refusal": "",
     "standing": "complete"
+  },
+  "scripts/release_check.py::accounting_problems": {
+    "cut_reasons": [],
+    "function_digest": "48812ee4442c6caf",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "scripts/release_check.py::captured_text": {
+    "cut_reasons": [],
+    "function_digest": "0e6547209a592900",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "scripts/release_check.py::clone_source": {
+    "cut_reasons": [],
+    "function_digest": "b7d52d8dd53912ad",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "scripts/release_check.py::install_spec": {
+    "cut_reasons": [],
+    "function_digest": "4b514e04feb8f35d",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "scripts/release_check.py::jargon_found": {
+    "cut_reasons": [],
+    "function_digest": "899fb595505621fe",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "scripts/release_check.py::missing_package_files": {
+    "cut_reasons": [],
+    "function_digest": "1c004c7c83ea8888",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "scripts/release_check.py::new_files": {
+    "cut_reasons": [],
+    "function_digest": "3d5bb9e8eeb00da1",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "scripts/release_check.py::output_findings": {
+    "cut_reasons": [],
+    "function_digest": "47da540f79b42785",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "scripts/release_check.py::outputs_missing": {
+    "cut_reasons": [],
+    "function_digest": "32a2cdbe477a77d4",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "scripts/release_check.py::overall_verdict": {
+    "cut_reasons": [],
+    "function_digest": "e86653d1f08a63ce",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "scripts/release_check.py::sheet_departures": {
+    "cut_reasons": [],
+    "function_digest": "605979468cb3dceb",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "scripts/release_check.py::step_verdict": {
+    "cut_reasons": [],
+    "function_digest": "77e34da9ad7e6ea2",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "scripts/release_check.py::subcommand_names": {
+    "cut_reasons": [],
+    "function_digest": "08f3522e9edbb516",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "scripts/release_check.py::unknown_commands": {
+    "cut_reasons": [],
+    "function_digest": "9ff3a47230b0bffc",
+    "refusal": "",
+    "standing": "complete"
   }
 }

@@ -191,6 +191,39 @@ The founder, 2026-11-01: the next priority, built to completion.
   tables and the seed fragment load from the installed package, and a live `resolve` of NCT04852770 run
   outside the repository writes its JSON and workbook. At runtime the package reads only its own files.
   Left: the same from the GitHub URL once the repository is public, and in each vendor's sandbox (0.1, 5.3).
+
+  2026-11-01, the release check: `scripts/release_check.py` (tests in `tests/test_release_check.py`, how to
+  run it in `scripts/README.md`) does what a first-time user does, in a new temporary directory outside the
+  repository. It makes a fresh Python 3.12 environment with uv, then `pip install`s the repository's path or
+  address (pip without its configuration or cache) and also `uv tool install`s it; a repository address is
+  also cloned, so AGENTS.md and the package's file list are read from what the address serves. From that
+  directory it runs every `--help`, `doctor`, a live `pull` of NCT04852770, NCT01827384 and NCT01086644,
+  `verify` of the pulled folder and a one-trial `resolve` with --json and --out, then opens every workbook
+  written. It reports each step's exit code, wall time, files written, warnings and tracebacks, and five
+  checks, each with its problems or "not checked" and why (a check that did not run makes the verdict
+  not_ready): the tracked package files the install left out, the outputs a user is handed, the requested-ID
+  accounting, the commands AGENTS.md names that the CLI lacks, and pull's review.xlsx and record.xlsx against
+  workbook-design.md's conventions (widths set, a filter and frozen panes on each listing); design.xlsx is
+  inspected the same way, as leads. It also lists jargon in the help texts, printed words and workbooks. Its
+  fourteen decisions converged `--two-sign` COMPLETE: five with nothing left; nine modulo unproven-equivalent
+  or crash-only mutants (accounting_problems 51/55 killed, captured_text 36/40, jargon_found 21/23,
+  missing_package_files 16/17, new_files 17/18, unknown_commands 17/20; clone_source 38/38, install_spec
+  69/69 and subcommand_names 21/21 with such residuals besides).
+
+  Run after the review's fixes, from this checkout and through `git+file://` (the address route, committed
+  tree only), on this commit's code before this note was added: both not_ready, for one reason. Every step ended as expected; no package file
+  was missing (48 tracked, all installed), so pyproject.toml is unchanged; the pull named NCT01086644 as
+  aliased, answered by NCT01030536; `verify` certified the folder; the resolve of NCT01827384 from an empty
+  cache took 169 s. pull's review.xlsx (17 sheets, Studies 50 columns) and record.xlsx set no column width
+  and no filter on any sheet (their listings do freeze panes); design.xlsx sets none of the three and has
+  blank cells (Classes 180, Results 186, Drug Axes 70) and an Audit sheet with "Founder: correct?" columns.
+  Found and left for their owners: `TRIALLEDGER_CACHE` names the cache file, but `resolve --help` reads as if
+  it named a folder, and a folder there fails the resolve with a traceback after all its RxNav lookups.
+  `resolve` prints nothing during those lookups. `doctor` creates its run folder although its help says it
+  changes nothing. `pull --help` cites `spec/ctg-oas-v2.yaml`, which an install does not have. An installed
+  copy records `code_commit` "not a git checkout". main's AGENTS.md now names `landscape`, `design`, `edits`
+  and `mcp`, which this CLI lacks: the guide check will name them until they land. The GitHub address itself
+  waits on the public repository.
 - [ ] 5.3 End to end with a real agent per vendor, in its app, relay mode where its sandbox needs it
 
 ## 6. Edits and the MCP adapter
