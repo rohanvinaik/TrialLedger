@@ -15,10 +15,31 @@ The founder, 2026-11-01: the next priority, built to completion.
 
 ## 1. The record contract
 
-- [ ] 1.1 `landscape.json` schema v1: request, scope, manifest, per-study ten-point extract and extras, cohort
+- [x] 1.1 `landscape.json` schema v1: request, scope, manifest, per-study ten-point extract and extras, cohort
       profile, review queue, coverage; each value with status, source and link; the `fields` self-description
-- [ ] 1.2 The per-study extract from the existing reading (no reading changes); planned outcomes apart from
+- [x] 1.2 The per-study extract from the existing reading (no reading changes); planned outcomes apart from
       posted results
+
+  2026-11-01: built in `TrialLedger/landscape.py` (`FIELDS`, `schema_problems`, the extract's assembly and
+  `landscape_record(reading, studies, request, scope, manifest)`, `landscape_manifest`), every decision
+  converged COMPLETE; tests in `tests/test_landscape.py`. Left: the command that calls it and writes the file
+  (4.2), the scope it carries (2.3, here an opaque object), the workbook's Scope, Manifest and Study sheets
+  (4.3), and comparable posted results in the cohort (waiting on `add-coherence-engine` 5.3). Nothing in
+  production reaches the module until 4.2: its functions are declared in `tests/test_wiring.py` "until
+  add-agent-operation 4.2".
+
+  2026-11-01, after review: the record now carries `statuses` and `envelope` (what each status and each key of
+  a value means) beside `fields`; `schema_problems` also checks every field's and value's type (scalars, an
+  object's keys, a table's columns), a study's link against its own NCT number (a null link exempts nothing),
+  efficacy and safety agreeing on the results and posting nothing without a results section, and coverage and
+  the review queue naming the record's studies; it states what it cannot see (a value changed alike
+  everywhere; only re-deriving from the studies finds it). `landscape_record` refuses a reading whose views'
+  digests are not the studies', in order. A proposed relation that leaves a coordinate no value is unresolved,
+  not proposed. Left as well: the Detective goldens of the landscape functions pin 64-hex study digests and
+  warrants, which `scripts/push_checks.py` recognizes only as 16-hex `assert result == "<hex>"` lines, so the
+  push scan refuses them until the founder decides how the scan treats them; and the cohort's occupancy copies
+  `design.sheets`' code and imports `design._profile_trials` and `symbolic._axes`, which wants a shared public
+  helper in `design.py` and `symbolic.py`.
 
 ## 2. Request resolution
 

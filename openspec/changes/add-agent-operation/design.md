@@ -117,6 +117,57 @@ may not reach ClinicalTrials.gov or RxNav. Desktop and CLI agents (Claude Code, 
    queue's closed questions; coverage per trial type from the supported-type matrix. Planned endpoints and posted
    results are different fields: a registered outcome is never efficacy evidence.
 
+   *As built here (2026-11-01, tasks 1.1 and 1.2; `TrialLedger/landscape.py`).* Schema version "1". Every
+   value a person reads is an envelope of six keys: `value`, `status`, `source` (its location in the study
+   record, as `ledger.location` writes it), `rule` ("" when the value is the record's own, exactly as held;
+   otherwise the named rule that read it), `note` (the ledger's absence state for a field not stated, or why a
+   value is unresolved) and `link` (`links.study_link`). The record describes itself in three sections:
+   `statuses` (what each status means), `envelope` (what each of those six keys means) and `fields` (each
+   field's meaning, type, admitted statuses and source; its own meaning explains the type notation). The
+   statuses are closed (`STATUSES`): known, interpolated (a modality read from a name stem), proposed (a
+   coordinate narrowed by a proposed relation), not_stated (no value; the note is `not_reported`,
+   `not_applicable` or `redacted`, never zero or no), not_posted (no results posted) and unresolved; each
+   field admits only its own (`fields[...]["statuses"]`), so a posted measurement can never be not_posted and
+   a planned outcome never sits under efficacy; an object value's type names its keys in order (`value(object:
+   ...)`), or says the object is shown as the record holds it. Per study, the ten points are `population`;
+   `inclusion`, `exclusion` (and `unsectioned`) as itemized, each atom with its effective section and element
+   key; `line_of_therapy_and_setting` (setting and prior advanced lines under approved relations, and beside
+   each the domain proposed relations would leave: the approved status when they do not narrow it, proposed
+   when they do, unresolved when they leave no value); `outcomes` (planned: primary, secondary, other, each
+   with its bank-read endpoint classes and time points); `biomarkers` (eligibility atoms; outcome and
+   exploratory by the `biomarker_endpoint` class of primary/secondary and of other outcomes); `efficacy` and
+   `safety` (the results state, then each posted measurement per arm and each adverse event per arm, read from
+   the results section only, at-risk counts as stated and never filled from a group total);
+   `exploratory_measures` (the other pre-specified outcomes); `standard_language` (each criterion's elements
+   with their tier from the frequency rows over all trials; an untyped criterion has no tier, never not_met).
+   The extras: sponsor, phases, overall status, study type, conditions, the three dates, enrollment, arms,
+   interventions (the entry; its drug class and axes when it is an experimental drug, else unresolved; its
+   modality extractions with their own status), publications (with `links.reference_role`) and documents (with
+   `links.document_link`). The cohort is the profile as design.xlsx's sheets compute it, rows named by column
+   (frequency and mechanism over all trials then by known setting, occupancy, near misses as written and
+   aligned, structure relations, the thresholds) plus `endpoints` (each outcome type and endpoint class with
+   its trials and time points); comparable posted results wait on `add-coherence-engine` 5.3. Coverage is v1's
+   universe, every declared type's status (`typematrix.declared_manifest`) and each study's coordinates and
+   universe status at the manifest's data timestamp. The manifest is `landscape_manifest`'s: `resolve`'s names
+   (api_version, data_timestamp, study_digests, merkle_root, code_commit) with `rule_versions` (the command
+   passes `RULE_VERSIONS`: schema, tool, design, derivation code root, every relation's approval) and
+   `retrieval` as given. `landscape_record` refuses (ValueError) a reading whose views' digests are not the
+   studies' digests, in order, so it never pairs one study with another's reading. `schema_problems` names by
+   code every departure the record itself shows: a changed description; an undescribed or missing field; a
+   field or value not of its type (`type_holds`: strings, integers, booleans, an object's exact keys, a
+   table's exact columns; null only for not_stated or unresolved); a malformed envelope; an unknown or
+   inadmissible status; no source; no link, or one not the study's own (`links.study_link` of the study's NCT
+   number, which the study's own `link` must also be: a null link exempts nothing); efficacy and safety that
+   disagree on the results state, a results value that is not `results_value`'s for its status, or anything
+   posted while there is no results section; a posted value not from the results section; coverage rows or
+   review questions of studies the record does not hold; digests or a root that disagree with the studies. It
+   walks the record level by level to a declared depth, so it ends whatever it is given. It checks the record
+   against the schema and against itself, never against the study records: a value changed alike everywhere it
+   appears (both results states, or a study's NCT number with its link and every value's) passes it, and only
+   re-deriving the record from the studies its manifest names finds that. The module reads no study
+   differently from `reading.read_population`, changes no existing output, and is outside the derivation code
+   root, so no warrant changes.
+
 8. **The workbook.** `landscape.xlsx` is the existing design workbook (its sheets and warrants unchanged) with a
    Scope sheet (the resolved scope), a Manifest sheet and a Study sheet per the ten points. Readable in Excel,
    Numbers and Google Sheets.

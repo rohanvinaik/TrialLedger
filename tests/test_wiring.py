@@ -261,6 +261,38 @@ AGENT_OPERATION_DORMANT = {
     for name in names
 }
 DECLARED |= AGENT_OPERATION_DORMANT
+# The record of truth (add-agent-operation 1.1, 1.2): `trialledger landscape` is its only consumer and is not
+# written yet. tests/test_landscape.py reaches every one.
+LANDSCAPE_DORMANT = {
+    f"landscape.py: {name}": "until add-agent-operation 4.2"
+    for name in (
+        "axes_value",
+        "biomarker_values",
+        "cohort_section",
+        "coordinate_values",
+        "criterion_sections",
+        "drug_class_value",
+        "endpoint_profile",
+        "envelope",
+        "envelope_problems",
+        "intervention_sections",
+        "landscape_manifest",
+        "landscape_record",
+        "outcome_sections",
+        "posted_events",
+        "posted_measurements",
+        "reference_values",
+        "results_problems",
+        "results_value",
+        "schema_problems",
+        "standard_values",
+        "stated",
+        "study_extract",
+        "study_mismatches",
+        "type_holds",
+    )
+}
+DECLARED |= LANDSCAPE_DORMANT
 
 
 @pytest.fixture(scope="module")
