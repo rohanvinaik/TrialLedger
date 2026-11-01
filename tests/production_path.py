@@ -156,10 +156,11 @@ def sample_and_audit(scratch: Path, studies: list[dict], rxclass) -> dict[str, i
 
     from TrialLedger import cli
     from TrialLedger.ingest import API_BASE
-    from TrialLedger.sample import reserved
 
     by_id = {s["protocolSection"]["identificationModule"]["nctId"]: s for s in [*studies, audited_study()]}
-    drawable = [nct for nct in by_id if not reserved(nct)]
+    # the Neoplasms stratum holds every one of these trials; the discovery draw takes only the unreserved,
+    # and a confirmation draw of batch 1 (add-bank-coverage B8) takes NCT09000002, the one in that batch
+    frame = list(by_id)
     # a screening trial outside the strata's draw: the registry holds it for the one empty cell it fills, so
     # the balance check asks every empty cell, finds one gap in the registry and audits its supplement
     screening = near_miss_study("NCT09000003", "0-1")
@@ -181,7 +182,7 @@ def sample_and_audit(scratch: Path, studies: list[dict], rxclass) -> dict[str, i
             elif "AREA[Phase]" in where or "AREA[InterventionType]" in where or "AREA[Design" in where:
                 ids = []
             else:
-                ids = drawable if "Neoplasms" in where else []
+                ids = frame if "Neoplasms" in where else []
             page = [{"protocolSection": {"identificationModule": {"nctId": nct}}} for nct in ids]
             return httpx.Response(200, json={"studies": page, "totalCount": len(ids)})
         nct = params.get("filter.ids", "")
@@ -216,6 +217,23 @@ def sample_and_audit(scratch: Path, studies: list[dict], rxclass) -> dict[str, i
             sleep=lambda s: None,
         )
     }
+    # a confirmation draw (Decision 9, B4; B8) excludes the discovery sample just drawn, needs clean code at a
+    # commit (a fake git answers for this run, whose tree is being edited; the refused draw asks the real git)
+    # and records its batch in the ledger of used batches
+    ledger = scratch / "ledger.json"
+    ledger.write_text(json.dumps({"batches": {}}), encoding="utf-8")
+    confirmation = ["sample", "--seed", "s", "--per-stratum", "1", "--inspected", str(sample)]
+    confirmation += ["--batch-ledger", str(ledger), "--confirmation-batch"]
+    answers = {"rev-parse": "c" * 40 + "\n", "status": "", "ls-files": "TrialLedger/sample.py\0"}
+    codes["sample_confirmation"] = cli.main(
+        [*confirmation, "1", "--out", str(scratch / "confirmation.json")],
+        http=registry,
+        sleep=lambda s: None,
+        git=lambda root, *args: answers[args[0]],
+    )
+    codes["sample_confirmation_refused"] = cli.main(
+        [*confirmation, "3", "--out", str(scratch / "refused.json")], http=registry, sleep=lambda s: None
+    )
     codes["audit"] = cli.main(
         ["audit", str(sample), "--out", str(scratch / "audit"), "--model", "qwen3:8b", "--budget", "50"],
         http=registry,

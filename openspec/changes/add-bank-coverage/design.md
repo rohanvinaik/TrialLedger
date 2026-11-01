@@ -103,7 +103,21 @@ the code by Claude; **As built here** marks the reconciliation.
   (polarity, modality, subject, qualifier) and at least 90% on the rest; recall reported, v1 target at least 70%
   for the general packages; abstention is always preferred to a wrong reading.
 - B8. The reserved 30% confirmation pool is split now into three sequential 10% batches (sha256(NCT ID) mod 10
-  equal to 0, 1, 2), one per release; a batch is never reused for a revised version.
+  equal to 0, 1, 2), one per release; a batch is never reused for a revised version. **As built here**
+  (2026-11-01, task 7.1a): `sample.pool(nct)` returns `discovery` or `confirmation_0`/`_1`/`_2`;
+  `sample.reserved` is unchanged in code and holds exactly when `pool` is a batch, so every discovery draw is as
+  before. `sample.draw_batch` draws one stratum from one batch, seeded by seed, batch and label;
+  `trialledger sample --confirmation-batch N` uses it for every stratum, after `sample.batch_request` allows it
+  (`unknown_batch` outside 0-2, `no_code_version` when `record.code_commit` cannot name the code), and writes
+  `drawn_from`, `confirmation_batch`, `confirmation_batches` and `code_commit` into sample.json. A confirmation
+  sample declares `supplement_per_cell` 0, since the balance supplement is drawn from the discovery pool; its
+  balance table still asks the registry and names each gap. The code version recorded is `code_commit`'s
+  (it watches only the review workbook's derivation files, not the banks). Since task 7.1b (2026-11-01) a
+  confirmation draw records instead the commit at which TrialLedger/ and tests/ are clean (refused otherwise)
+  and a digest of their tracked source; it excludes every trial of the inspected populations declared with
+  `--inspected` (Decision 9, B4), keeping each list and counting the exclusions; and it consults the declared
+  ledger `confirmation_ledger.json` (batch to the commit it confirmed), refusing a batch already given to
+  another commit and recording the batch once the sample is written.
 - B9. The local model stays a reviewer; recognition and compilation stay deterministic.
 
 ## Codex's recommended settings (kept for the record)

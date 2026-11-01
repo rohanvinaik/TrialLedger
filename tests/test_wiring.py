@@ -78,6 +78,8 @@ def test_the_production_path_ends_as_production_does(production):
         "profile_not_a_record": 2,
         "resolve": 0,
         "sample": 0,
+        "sample_confirmation": 0,
+        "sample_confirmation_refused": 2,
         "audit": 0,
         "pilot": 0,
         "audit_no_budget": 2,

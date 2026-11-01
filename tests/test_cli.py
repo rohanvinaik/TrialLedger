@@ -158,3 +158,137 @@ def test_an_audit_stops_on_a_snapshot_change_and_only_on_that(tmp_path, monkeypa
     monkeypatch.setattr(audit, "run_audit", broken)
     with pytest.raises(RuntimeError, match="a fault"):
         main(["audit", str(sample), "--out", str(tmp_path / "b")])
+
+
+def _clean_git(commit="c" * 40, status=""):
+    """A fake of the git query: HEAD at `commit`, `status` as the changed paths, nothing tracked."""
+    answers = {"rev-parse": commit + "\n", "status": status, "ls-files": ""}
+    return lambda root, *args: answers[args[0]]
+
+
+def _confirmation_inputs(tmp_path, inspected):
+    """A kept sample listing `inspected` and an empty ledger of used batches."""
+    kept = tmp_path / "discovery_sample.json"
+    kept.write_text(json.dumps({"trials": [{"nct": nct} for nct in inspected]}), encoding="utf-8")
+    ledger = tmp_path / "ledger.json"
+    ledger.write_text(json.dumps({"batches": {}}), encoding="utf-8")
+    return kept, ledger
+
+
+def test_a_confirmation_sample_is_drawn_from_one_named_batch_with_its_code_version(
+    tmp_path, monkeypatch, capsys
+):
+    """add-bank-coverage B8. Positive: `sample --confirmation-batch 1` draws only batch-1 trials and records
+    the batch, the code's commit and source digest in sample.json; without it the sample is the discovery
+    draw, as before. Negative: a batch outside 0, 1, 2, or a code version git cannot name, is refused (2)
+    before any registry query, and nothing is written."""
+    from TrialLedger import cli, ingest
+    from TrialLedger.sample import pool
+
+    ids = [f"NCT{n:08d}" for n in range(1, 201)]
+    asked = []
+
+    def query_ids(query, **kwargs):
+        asked.append(query)
+        return ids, "2.0.5", "T"
+
+    monkeypatch.setattr(ingest, "query_ids", query_ids)
+    monkeypatch.setattr(cli, "code_commit", lambda: "d" * 40)
+    kept, ledger = _confirmation_inputs(tmp_path, ["NCT00000001"])
+    batch = ["--inspected", str(kept), "--batch-ledger", str(ledger), "--confirmation-batch"]
+    out = tmp_path / "confirmation.json"
+    argv = ["sample", "--seed", "s", "--per-stratum", "2", "--out", str(out), *batch, "1"]
+    assert main(argv, git=_clean_git()) == 0
+    sample = json.loads(out.read_text(encoding="utf-8"))
+    assert sample["confirmation_batch"] == 1 and sample["drawn_from"] == "confirmation_1"
+    assert sample["code_commit"] == "c" * 40 and sample["balance"]["supplement_per_cell"] == 0
+    assert len(sample["code_source_digest"]) == 64 and sample["code_watched"] == ["TrialLedger", "tests"]
+    assert sample["trials"] and all(pool(t["nct"]) == "confirmation_1" for t in sample["trials"])
+    assert "from the confirmation_1 pool" in capsys.readouterr().out
+    plain = tmp_path / "discovery.json"
+    assert main(["sample", "--seed", "s", "--per-stratum", "2", "--out", str(plain)]) == 0
+    discovery = json.loads(plain.read_text(encoding="utf-8"))
+    assert discovery["confirmation_batch"] is None and discovery["drawn_from"] == "discovery"
+    assert discovery["code_commit"] == "d" * 40 and "inspected" not in discovery
+    assert all(pool(t["nct"]) == "discovery" for t in discovery["trials"])
+
+    asked.clear()
+    capsys.readouterr()
+    refused = tmp_path / "refused.json"
+    argv = ["sample", "--seed", "s", "--out", str(refused), *batch]
+    assert main([*argv, "3"], git=_clean_git()) == 2
+    assert "refused (confirmation.unknown_batch): batch 3" in capsys.readouterr().err
+    assert main([*argv, "0"], git=_clean_git(commit="")) == 2
+    assert "refused (confirmation.no_code_version)" in capsys.readouterr().err
+    assert not asked and not refused.exists()
+
+
+def test_a_confirmation_sample_excludes_every_inspected_trial_and_keeps_the_lists(tmp_path, monkeypatch):
+    """Decision 9, B4. Positive: the trials of a kept sample and of a record folder are never drawn; each list
+    is kept in sample.json with its file, its digest and its IDs, and the exclusions are counted. Negative: a
+    draw with no inspected list, or with one that lists nothing, is refused and writes nothing."""
+    from TrialLedger import ingest
+    from TrialLedger.sample import pool
+
+    ids = [f"NCT{n:08d}" for n in range(1, 201)]
+    monkeypatch.setattr(ingest, "query_ids", lambda query, **kwargs: (ids, "2.0.5", "T"))
+    batch1 = sorted(nct for nct in ids if pool(nct) == "confirmation_1")
+    kept, ledger = _confirmation_inputs(tmp_path, batch1[:10])
+    folder = tmp_path / "nsclc"
+    folder.mkdir()
+    studies = [{"protocolSection": {"identificationModule": {"nctId": nct}}} for nct in batch1[10:14]]
+    (folder / "studies.json").write_text(json.dumps({"studies": studies}), encoding="utf-8")
+    out = tmp_path / "confirmation.json"
+    base = ["sample", "--seed", "s", "--per-stratum", "50", "--out", str(out), "--batch-ledger", str(ledger)]
+    inspected = ["--inspected", str(kept), "--inspected", str(folder)]
+    assert main([*base, *inspected, "--confirmation-batch", "1"], git=_clean_git()) == 0
+    sample = json.loads(out.read_text(encoding="utf-8"))
+    assert {t["nct"] for t in sample["trials"]} == set(batch1[14:])
+    assert sample["inspected_excluded"] == 14
+    assert [item["ncts"] for item in sample["inspected"]] == [batch1[:10], batch1[10:14]]
+    assert sample["inspected"][1]["path"] == str(folder / "studies.json")
+    assert all(len(item["sha256"]) == 64 for item in sample["inspected"])
+
+    out.unlink()
+    assert main([*base, "--confirmation-batch", "1"], git=_clean_git()) == 2
+    empty = tmp_path / "empty.json"
+    empty.write_text("{}", encoding="utf-8")
+    assert main([*base, "--inspected", str(empty), "--confirmation-batch", "1"], git=_clean_git()) == 2
+    missing = ["--inspected", str(tmp_path / "missing.json")]
+    assert main([*base, *missing, "--confirmation-batch", "1"], git=_clean_git()) == 2
+    assert not out.exists()
+
+
+def test_a_confirmation_draw_needs_clean_code_and_retires_its_batch_in_the_ledger(
+    tmp_path, monkeypatch, capsys
+):
+    """add-bank-coverage B8. Positive: a draw records its batch and commit in the ledger; a re-draw of the
+    same batch for the same commit is allowed and leaves the ledger as it was. Negative: uncommitted changes
+    under TrialLedger/ or tests/, a batch the ledger gives another commit, and a missing or malformed ledger
+    are each refused, writing no sample and leaving the ledger byte for byte."""
+    from TrialLedger import ingest
+
+    ids = [f"NCT{n:08d}" for n in range(1, 201)]
+    monkeypatch.setattr(ingest, "query_ids", lambda query, **kwargs: (ids, "2.0.5", "T"))
+    kept, ledger = _confirmation_inputs(tmp_path, ["NCT00000001"])
+    out = tmp_path / "confirmation.json"
+    argv = ["sample", "--seed", "s", "--out", str(out), "--inspected", str(kept), "--confirmation-batch", "2"]
+    with_ledger = [*argv, "--batch-ledger", str(ledger)]
+    assert main(with_ledger, git=_clean_git()) == 0
+    assert json.loads(ledger.read_text(encoding="utf-8")) == {"batches": {"2": "c" * 40}}
+    written = ledger.read_bytes()
+    assert main(with_ledger, git=_clean_git()) == 0 and ledger.read_bytes() == written
+
+    out.unlink()
+    capsys.readouterr()
+    assert main(with_ledger, git=_clean_git(status=" M TrialLedger/banks.py\n")) == 2
+    assert "confirmation.uncommitted_changes" in capsys.readouterr().err
+    assert main(with_ledger, git=_clean_git(commit="e" * 40)) == 2
+    assert "confirmation.batch_used" in capsys.readouterr().err
+    assert ledger.read_bytes() == written
+    assert main(argv, git=_clean_git()) == 2
+    assert main([*argv, "--batch-ledger", str(tmp_path / "none.json")], git=_clean_git()) == 2
+    ledger.write_text(json.dumps({"batches": {"5": "x"}}), encoding="utf-8")
+    assert main(with_ledger, git=_clean_git()) == 2
+    assert "confirmation.ledger_unreadable" in capsys.readouterr().err
+    assert not out.exists()

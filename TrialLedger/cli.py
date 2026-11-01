@@ -4,6 +4,7 @@ workbook out. And `trialledger verify`, which re-derives a written folder from i
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import os
 import sys
@@ -85,6 +86,7 @@ def main(
     sleep: Callable[[float], None] = time.sleep,
     rxclass_get: Callable[[str, dict[str, str]], tuple[int, Any]] | None = None,
     model_http: Callable[..., Any] | None = None,
+    git: Callable[..., str] | None = None,
 ) -> int:
     parser = argparse.ArgumentParser(
         prog="trialledger",
@@ -160,12 +162,39 @@ def main(
             "each stratum from the discovery pool (a hash of the NCT ID reserves 30%% for confirmation, "
             "never drawn here); write the strata, pool sizes, draws, memberships and inclusion probabilities"
             " as JSON, with the declared balance check (phase, intervention type, primary purpose) and its "
-            "seeded supplement, which the audit applies. Ends with 0, written; 1, the registry query failed."
+            "seeded supplement, which the audit applies. With --confirmation-batch N, draw instead from that "
+            "one confirmation batch (sha256 mod 10 equal to N, of 0, 1, 2: one batch per release, never "
+            "reused for a revised version), recorded in the file with the code's commit and source digest, "
+            "and declare no supplement. A confirmation draw needs TrialLedger/ and tests/ clean at a commit, "
+            "every inspected population declared with --inspected (a sample.json, an audit's balance.json, "
+            "or a record folder or its studies.json: the NSCLC record, the pilot and discovery samples), "
+            "whose trials it never draws, and --batch-ledger, the declared file of batches used (batch to "
+            "the commit it confirmed), which it consults and then records this batch in. Ends with 0, "
+            "written; 1, the registry query failed; 2, refused (a batch not declared, code not clean at a "
+            "commit, no or an empty inspected list, an unreadable ledger, or a batch already used for "
+            "another commit)."
         ),
     )
     sample_parser.add_argument("--per-stratum", type=int, default=6)
     sample_parser.add_argument("--seed", required=True)
     sample_parser.add_argument("--out", type=Path, required=True)
+    sample_parser.add_argument(
+        "--confirmation-batch",
+        type=int,
+        help="draw a confirmation sample from this one batch (0, 1 or 2) instead of the discovery pool",
+    )
+    sample_parser.add_argument(
+        "--inspected",
+        type=Path,
+        action="append",
+        default=[],
+        help="a kept list of trials already inspected, never drawn for confirmation (repeat for each)",
+    )
+    sample_parser.add_argument(
+        "--batch-ledger",
+        type=Path,
+        help="the declared ledger of confirmation batches used (confirmation_ledger.json)",
+    )
     audit_parser = commands.add_parser(
         "audit",
         help="ask a local model targeted questions about a sample's readings, one trial at a time",
@@ -215,7 +244,7 @@ def main(
     if args.command == "pilot":
         return _pilot(args, model_http=model_http)
     if args.command == "sample":
-        return _sample(args, http=http, sleep=sleep)
+        return _sample(args, http=http, sleep=sleep, git=git)
     if args.command == "audit":
         return _audit(args, http=http, sleep=sleep, rxclass_get=rxclass_get, model_http=model_http)
     if args.command == "resolve":
@@ -262,25 +291,88 @@ def main(
     return 0
 
 
-def _sample(args, *, http, sleep) -> int:
+def _read_json(path: Path) -> Any:
+    """A JSON file's content, or None when it cannot be read as JSON."""
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return None
+
+
+def _inspected_list(path: Path) -> dict[str, Any]:
+    """One declared list of inspected trials as kept in a confirmation sample: the file (a record folder's
+    studies.json), the SHA-256 of its bytes and the NCT IDs it lists."""
+    from TrialLedger.sample import inspected_ids
+
+    path = path / JSON_NAME if path.is_dir() else path
+    try:
+        digest = hashlib.sha256(path.read_bytes()).hexdigest()
+    except OSError:
+        digest = ""
+    return {"path": str(path), "sha256": digest, "ncts": inspected_ids(_read_json(path))}
+
+
+def _sample(args, *, http, sleep, git) -> int:
     from TrialLedger.ingest import query_ids
-    from TrialLedger.sample import SnapshotChanged, draw_sample
+    from TrialLedger.sample import SnapshotChanged, batch_request, code_state, draw_sample, ledger_batches
+
+    batch = args.confirmation_batch
+    commit = code_commit()
+    inspected: list[dict[str, Any]] = []
+    extra: dict[str, Any] = {}
+    used: dict[str, str] | None = None
+    if batch is not None:
+        state = code_state(git=git)
+        inspected = [_inspected_list(path) for path in args.inspected]
+        ledger = _read_json(args.batch_ledger) if args.batch_ledger else None
+        used = ledger_batches(ledger)
+        commit = state["commit"]
+        verdict = batch_request(batch, commit, state["dirty"], [len(i["ncts"]) for i in inspected], used)
+        if verdict != "ok":
+            dirty = ", ".join(state["dirty"][:5])
+            print(
+                f"trialledger: refused (confirmation.{verdict}): batch {batch}, code {commit or 'unnamed'}"
+                + (f", uncommitted: {dirty}" if dirty else ""),
+                file=sys.stderr,
+            )
+            return 2
+        extra = {
+            "code_source_digest": state["source_digest"],
+            "code_watched": state["watched"],
+            "inspected": inspected,
+            "batch_ledger": str(args.batch_ledger),
+        }
 
     def ids(query, progress):
         return query_ids(query, http=http, sleep=sleep, progress=progress)
 
     try:
-        sample = draw_sample(args.per_stratum, args.seed, ids, progress=lambda m: print(m, file=sys.stderr))
+        sample = draw_sample(
+            args.per_stratum,
+            args.seed,
+            ids,
+            progress=lambda m: print(m, file=sys.stderr),
+            batch=batch,
+            inspected=frozenset(nct for item in inspected for nct in item["ncts"]),
+        )
     except (PullError, SnapshotChanged) as error:
         print(f"trialledger: nothing written — {error}", file=sys.stderr)
         return 1
-    sample["code_commit"] = code_commit()
+    sample["code_commit"] = commit
+    sample.update(extra)
     args.out.write_text(json.dumps(sample, indent=1), encoding="utf-8")
+    if batch is not None and used is not None and str(batch) not in used:
+        retired = {**(ledger or {}), "batches": used | {str(batch): commit}}
+        args.batch_ledger.write_text(json.dumps(retired, indent=1) + "\n", encoding="utf-8")
     cells = sum(len(values) for values in sample["balance"]["cells"].values())
+    excluded = sample["inspected_excluded"]
     print(
-        f"{args.out} written ({len(sample['trials'])} trials, data as of {sample['data_timestamp']}; "
+        f"{args.out} written ({len(sample['trials'])} trials from the {sample['drawn_from']} pool, "
+        f"data as of {sample['data_timestamp']}; "
         f"balance declared over {cells} registry values, {sample['balance']['supplement_per_cell']} "
-        "supplement trial per empty cell)"
+        "supplement trial per empty cell"
+        + (f"; {excluded} inspected trials of the batch excluded" if excluded is not None else "")
+        + ")"
     )
     return 0
 

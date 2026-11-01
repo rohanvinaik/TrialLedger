@@ -1,0 +1,8 @@
+{
+ "rule": [
+  "add-bank-coverage B8: each confirmation batch (sha256(NCT ID) mod 10 equal to 0, 1, 2) confirms one",
+  "code commit. `trialledger sample --confirmation-batch N --batch-ledger confirmation_ledger.json`",
+  "refuses a batch given here to another commit and records the commit it drew for."
+ ],
+ "batches": {}
+}
