@@ -1,0 +1,85 @@
+{
+ "selection_sha256": "73510ea27128470f6602ae466525079dd74b5506aef7094a9d5a9938bb89d08a",
+ "nct_ids": [
+  "NCT00027027",
+  "NCT00773474",
+  "NCT01410227",
+  "NCT07625644",
+  "NCT00134160",
+  "NCT07739043",
+  "NCT05939830",
+  "NCT06145282",
+  "NCT00682838",
+  "NCT00238160",
+  "NCT00209664",
+  "NCT03100175",
+  "NCT07835126",
+  "NCT02161783",
+  "NCT00322439",
+  "NCT07848750",
+  "NCT07780110",
+  "NCT02556008",
+  "NCT00069758",
+  "NCT01569555"
+ ],
+ "version_before": {
+  "file": "independent/version-before.json",
+  "url": "https://clinicaltrials.gov/api/v2/version",
+  "status": 200,
+  "content_type": "application/json",
+  "requested_at": "2026-11-01T22:10:47.875582Z",
+  "received_at": "2026-11-01T22:10:48.059957Z",
+  "bytes": 71,
+  "sha256": "29d9582e9bb670968bdc5d8a1814bbd36c0e6a1cb1681fb3fa524de01f489547",
+  "x_total_count": null,
+  "x_next_page_token": null
+ },
+ "pull": {
+  "command": [
+   "trialledger",
+   "pull",
+   "filter.ids=NCT00027027,NCT00773474,NCT01410227,NCT07625644,NCT00134160,NCT07739043,NCT05939830,NCT06145282,NCT00682838,NCT00238160,NCT00209664,NCT03100175,NCT07835126,NCT02161783,NCT00322439,NCT07848750,NCT07780110,NCT02556008,NCT00069758,NCT01569555",
+   "--out",
+   "acceptance/runs/2026-11-01/pull"
+  ],
+  "exit": 0,
+  "started_at": "2026-11-01T22:10:48.060017Z",
+  "finished_at": "2026-11-01T22:10:55.304407Z"
+ },
+ "json": {
+  "file": "independent/studies.page1.json",
+  "url": "https://clinicaltrials.gov/api/v2/studies?filter.ids=NCT00027027%2CNCT00773474%2CNCT01410227%2CNCT07625644%2CNCT00134160%2CNCT07739043%2CNCT05939830%2CNCT06145282%2CNCT00682838%2CNCT00238160%2CNCT00209664%2CNCT03100175%2CNCT07835126%2CNCT02161783%2CNCT00322439%2CNCT07848750%2CNCT07780110%2CNCT02556008%2CNCT00069758%2CNCT01569555&pageSize=100&countTotal=true&format=json",
+  "status": 200,
+  "content_type": "application/json",
+  "requested_at": "2026-11-01T22:10:56.309387Z",
+  "received_at": "2026-11-01T22:10:56.691287Z",
+  "bytes": 697072,
+  "sha256": "123c605d5b8452a251edbb29a41119536a46602156e6389ff648b30b5b2a8af4",
+  "x_total_count": null,
+  "x_next_page_token": null
+ },
+ "csv": {
+  "file": "independent/studies.page1.csv",
+  "url": "https://clinicaltrials.gov/api/v2/studies?filter.ids=NCT00027027%2CNCT00773474%2CNCT01410227%2CNCT07625644%2CNCT00134160%2CNCT07739043%2CNCT05939830%2CNCT06145282%2CNCT00682838%2CNCT00238160%2CNCT00209664%2CNCT03100175%2CNCT07835126%2CNCT02161783%2CNCT00322439%2CNCT07848750%2CNCT07780110%2CNCT02556008%2CNCT00069758%2CNCT01569555&pageSize=100&countTotal=true&format=csv",
+  "status": 200,
+  "content_type": "text/csv",
+  "requested_at": "2026-11-01T22:10:57.696923Z",
+  "received_at": "2026-11-01T22:10:57.815625Z",
+  "bytes": 114711,
+  "sha256": "144ee1232a9cb91b5ec689a16bb86443e4f7e0ade415d450f5d8a31881191456",
+  "x_total_count": "20",
+  "x_next_page_token": null
+ },
+ "version_after": {
+  "file": "independent/version-after.json",
+  "url": "https://clinicaltrials.gov/api/v2/version",
+  "status": 200,
+  "content_type": "application/json",
+  "requested_at": "2026-11-01T22:10:58.820812Z",
+  "received_at": "2026-11-01T22:10:58.901977Z",
+  "bytes": 71,
+  "sha256": "29d9582e9bb670968bdc5d8a1814bbd36c0e6a1cb1681fb3fa524de01f489547",
+  "x_total_count": null,
+  "x_next_page_token": null
+ }
+}

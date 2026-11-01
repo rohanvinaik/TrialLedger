@@ -1,0 +1,1 @@
+acceptance/runs/2026-11-01/pull: certified — every digest and root, every cell and warrant of both workbooks, and both workbook files re-derive from studies.json

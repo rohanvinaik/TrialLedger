@@ -365,4 +365,37 @@ The founder, 2026-11-01: the next priority, built to completion.
       each, an independent reader compares every field of `record.xlsx` and `review.xlsx` against the
       registry's own page, field by field, and every difference is recorded with its cause. `verify` proves a
       value derives from the record by the code; this establishes that the code maps each field faithfully.
-      The result is reported as it falls, differences included.
+      The result is reported as it falls, differences included. (2026-11-01: built and run, pending the
+      founder's rulings below, as 2.2 is.)
+
+  2026-11-01: built and run in `acceptance/` (report `acceptance/report-2026-11-01.md`), written without
+  reading TrialLedger's code or tests: `select.py` froze a seeded selection of twenty trials over twenty
+  strata in `selection.json` (its creation time and the script's SHA-256 in it) before the pull; `compare.py`
+  ran `trialledger pull` on them as a black box, fetched the same records independently as JSON and CSV, and
+  compared, per field: (a) every Record row of `record.xlsx` with the raw JSON at its Location, every leaf of
+  the JSON with the rows, and each Role's facets with the record; (b) the API's CSV with the JSON by the
+  registry's documented columns (`csv-columns.md`) and with `record.xlsx`; (c) every `review.xlsx` column
+  declared stated from one registry field, the stated columns giving a row's place, the computed at-risk
+  count against its declared rule, each sheet's rows against the records' elements, the links, and every
+  pairing of a column with a field against the About sheet's declaration; (d) `studies.csv` byte for byte;
+  (e) `verify`; (f) `studies.json` record by record; (g) the About sheets' provenance. Sixteen planted defects
+  are all caught (the first version of (d), a whole-file comparison, missed the one in `studies.csv`; kept
+  and reported). Tests: `tests/test_acceptance.py`, on small excerpts of the records; the reader's decisions
+  are converged with Detective. Departure from this text: the reference is the registry's record as the API
+  sends it (JSON and CSV, the sources `pull` reads), not the HTML study page. Independence, as it stands:
+  which registry field each `review.xlsx` column holds was transcribed from `review.xlsx`'s own About sheet;
+  the reader resolves each field in the registry's JSON independently. Found, for the founder: all 14,718
+  record values agree and every one is held once; `studies.csv` is the API's CSV with a UTF-8 byte-order mark
+  put before it, not byte for byte as AGENTS.md says; `review.xlsx`'s Outcome Results sheet has no row for a
+  results-section outcome measure with nothing posted (three NOT_POSTED measures of NCT06145282), which only
+  `record.xlsx` shows; Publications › Retractions says "none in the record", an absence wording the About
+  sheet does not define; `record.xlsx`'s Role is declared stated though its source is a rule
+  (`ledger.node_role`); the registry's CSV Age column omits the minimum and maximum ages its documentation
+  lists. Every change made to the reader after its first comparison, including the revision after review, is
+  listed in the report.
+
+  2026-11-01, after review: left unticked, pending the founder's rulings: the byte-order mark (and AGENTS.md's
+  "byte for byte"); the NOT_POSTED measures; the "none in the record" wording; Role's status; and whether the
+  comparison with the HTML study page this text names is still wanted. Not covered by this test, by design:
+  human transcribers, clinical meaning, and the columns computed by TrialLedger's rules other than the
+  at-risk count.

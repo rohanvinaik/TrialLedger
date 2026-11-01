@@ -1,0 +1,1074 @@
+{
+ "what": "TrialLedger layer-one acceptance test (add-agent-operation 7.1): the frozen selection",
+ "created_at": "2026-11-01T22:03:35Z",
+ "written_at": "2026-11-01T22:05:19Z",
+ "code": {
+  "file": "acceptance/select.py",
+  "sha256": "8bb2dda0fdc18c6ac161cbfa36be4de8ca65200309f62f713591f3071d72da5a"
+ },
+ "seed": 20261101,
+ "criteria": "Twenty trials, one per stratum, so that together they span every study type (interventional, observational, expanded access); the phases EARLY_PHASE1, PHASE1, PHASE2, PHASE3, PHASE4 and NA, with two combined-phase records; the overall statuses COMPLETED, TERMINATED, RECRUITING, NOT_YET_RECRUITING, ACTIVE_NOT_RECRUITING, WITHDRAWN, SUSPENDED, UNKNOWN, ENROLLING_BY_INVITATION and the expanded-access statuses; results posted and not; the lead sponsor classes INDUSTRY, OTHER, NIH, FED, NETWORK, OTHER_GOV and INDIV; record size from the smallest of five draws to the largest of five; and at least one record whose identification lists NCT ID aliases. Strata are fixed in this script before any draw; the draws are seeded; nothing about TrialLedger's output informs them.",
+ "method": {
+  "whole_stratum_at_most": 3000,
+  "max_windows": 12,
+  "months": "2000-01 to 2026-09",
+  "size_draws": 5,
+  "choice": "random.Random(f'{seed}/{stratum}/choice/{attempt}').choice(sorted IDs)"
+ },
+ "registry": {
+  "api": "https://clinicaltrials.gov/api/v2",
+  "version_before": {
+   "apiVersion": "2.0.5",
+   "dataTimestamp": "2026-10-30T09:00:04"
+  },
+  "version_after": {
+   "apiVersion": "2.0.5",
+   "dataTimestamp": "2026-10-30T09:00:04"
+  },
+  "requests": 105
+ },
+ "strata": [
+  {
+   "name": "phase1_completed_results_industry",
+   "purpose": "Phase 1, completed, results posted, industry sponsor",
+   "rule": "random",
+   "expressions_tried": [
+    {
+     "expression": "AREA[StudyType]INTERVENTIONAL AND AREA[Phase]PHASE1 AND AREA[OverallStatus]COMPLETED AND AREA[HasResults]true AND AREA[LeadSponsorClass]INDUSTRY",
+     "count": 4844
+    }
+   ],
+   "expression": "AREA[StudyType]INTERVENTIONAL AND AREA[Phase]PHASE1 AND AREA[OverallStatus]COMPLETED AND AREA[HasResults]true AND AREA[LeadSponsorClass]INDUSTRY",
+   "count": 4844,
+   "draws": [
+    {
+     "attempt": 0,
+     "window": "2001-06",
+     "count": 0,
+     "chosen": null
+    },
+    {
+     "attempt": 0,
+     "window": "2001",
+     "expression": "(AREA[StudyType]INTERVENTIONAL AND AREA[Phase]PHASE1 AND AREA[OverallStatus]COMPLETED AND AREA[HasResults]true AND AREA[LeadSponsorClass]INDUSTRY) AND AREA[StudyFirstPostDate]RANGE[2001-01-01,2001-12-31]",
+     "count": 1,
+     "ids_read": 1,
+     "chosen": "NCT00027027"
+    }
+   ],
+   "candidates": [
+    {
+     "nctId": "NCT00027027",
+     "recordBytes": 108757,
+     "sha256": "b42a6cc7b6bd95d37e55d9d04dca116a452206765f52adcabc9619d7105718af"
+    }
+   ],
+   "chosen": "NCT00027027"
+  },
+  {
+   "name": "phase2_terminated_results_other",
+   "purpose": "Phase 2, terminated, results posted, sponsor class OTHER (universities, hospitals)",
+   "rule": "random",
+   "expressions_tried": [
+    {
+     "expression": "AREA[StudyType]INTERVENTIONAL AND AREA[Phase]PHASE2 AND AREA[OverallStatus]TERMINATED AND AREA[HasResults]true AND AREA[LeadSponsorClass]OTHER",
+     "count": 2829
+    }
+   ],
+   "expression": "AREA[StudyType]INTERVENTIONAL AND AREA[Phase]PHASE2 AND AREA[OverallStatus]TERMINATED AND AREA[HasResults]true AND AREA[LeadSponsorClass]OTHER",
+   "count": 2829,
+   "draws": [
+    {
+     "attempt": 0,
+     "window": "whole stratum",
+     "count": 2829,
+     "chosen": "NCT00773474"
+    }
+   ],
+   "candidates": [
+    {
+     "nctId": "NCT00773474",
+     "recordBytes": 49443,
+     "sha256": "e3cdb2a89c02b65814f065313da9a5c91ff71a1625907705f7f841f8ef830933"
+    }
+   ],
+   "chosen": "NCT00773474"
+  },
+  {
+   "name": "phase3_completed_results_industry_largest",
+   "purpose": "Phase 3, completed, results posted, industry sponsor: the largest record of five draws",
+   "rule": "largest",
+   "expressions_tried": [
+    {
+     "expression": "AREA[StudyType]INTERVENTIONAL AND AREA[Phase]PHASE3 AND AREA[OverallStatus]COMPLETED AND AREA[HasResults]true AND AREA[LeadSponsorClass]INDUSTRY",
+     "count": 9910
+    }
+   ],
+   "expression": "AREA[StudyType]INTERVENTIONAL AND AREA[Phase]PHASE3 AND AREA[OverallStatus]COMPLETED AND AREA[HasResults]true AND AREA[LeadSponsorClass]INDUSTRY",
+   "count": 9910,
+   "draws": [
+    {
+     "attempt": 0,
+     "window": "2011-08",
+     "expression": "(AREA[StudyType]INTERVENTIONAL AND AREA[Phase]PHASE3 AND AREA[OverallStatus]COMPLETED AND AREA[HasResults]true AND AREA[LeadSponsorClass]INDUSTRY) AND AREA[StudyFirstPostDate]RANGE[2011-08-01,2011-08-31]",
+     "count": 56,
+     "ids_read": 56,
+     "chosen": "NCT01410227"
+    },
+    {
+     "attempt": 1,
+     "window": "2010-11",
+     "expression": "(AREA[StudyType]INTERVENTIONAL AND AREA[Phase]PHASE3 AND AREA[OverallStatus]COMPLETED AND AREA[HasResults]true AND AREA[LeadSponsorClass]INDUSTRY) AND AREA[StudyFirstPostDate]RANGE[2010-11-01,2010-11-30]",
+     "count": 62,
+     "ids_read": 62,
+     "chosen": "NCT01248780"
+    },
+    {
+     "attempt": 2,
+     "window": "2019-01",
+     "expression": "(AREA[StudyType]INTERVENTIONAL AND AREA[Phase]PHASE3 AND AREA[OverallStatus]COMPLETED AND AREA[HasResults]true AND AREA[LeadSponsorClass]INDUSTRY) AND AREA[StudyFirstPostDate]RANGE[2019-01-01,2019-01-31]",
+     "count": 27,
+     "ids_read": 27,
+     "chosen": "NCT03812510"
+    },
+    {
+     "attempt": 3,
+     "window": "2025-01",
+     "expression": "(AREA[StudyType]INTERVENTIONAL AND AREA[Phase]PHASE3 AND AREA[OverallStatus]COMPLETED AND AREA[HasResults]true AND AREA[LeadSponsorClass]INDUSTRY) AND AREA[StudyFirstPostDate]RANGE[2025-01-01,2025-01-31]",
+     "count": 1,
+     "ids_read": 1,
+     "chosen": "NCT06774859"
+    },
+    {
+     "attempt": 4,
+     "window": "2011-06",
+     "expression": "(AREA[StudyType]INTERVENTIONAL AND AREA[Phase]PHASE3 AND AREA[OverallStatus]COMPLETED AND AREA[HasResults]true AND AREA[LeadSponsorClass]INDUSTRY) AND AREA[StudyFirstPostDate]RANGE[2011-06-01,2011-06-30]",
+     "count": 61,
+     "ids_read": 61,
+     "chosen": "NCT01371565"
+    }
+   ],
+   "candidates": [
+    {
+     "nctId": "NCT01410227",
+     "recordBytes": 219711,
+     "sha256": "7325bfd3e3c4e0cb4913cf138586c7149cd073ae2cac9a247bdc608122f0d542"
+    },
+    {
+     "nctId": "NCT01248780",
+     "recordBytes": 27589,
+     "sha256": "6443094453370a4a6e17214f1c9b813d14195bde98d6a557acbeaf870cadb34c"
+    },
+    {
+     "nctId": "NCT03812510",
+     "recordBytes": 79681,
+     "sha256": "411ca011c1a6f2c4b82f9f8bd3c6a52ebe73544550d8802c01f50a8d17115816"
+    },
+    {
+     "nctId": "NCT06774859",
+     "recordBytes": 86875,
+     "sha256": "fe5859bc3dbaa48993154060fab335952a0c75a5a5a6aed297de6cd9b8f5541a"
+    },
+    {
+     "nctId": "NCT01371565",
+     "recordBytes": 21535,
+     "sha256": "cf7a024e324781d108015aa3a87689aa6d641538fd276d46a097ecaf78abe43f"
+    }
+   ],
+   "chosen": "NCT01410227"
+  },
+  {
+   "name": "phase3_recruiting_industry",
+   "purpose": "Phase 3, recruiting, no results, industry sponsor",
+   "rule": "random",
+   "expressions_tried": [
+    {
+     "expression": "AREA[StudyType]INTERVENTIONAL AND AREA[Phase]PHASE3 AND AREA[OverallStatus]RECRUITING AND AREA[HasResults]false AND AREA[LeadSponsorClass]INDUSTRY",
+     "count": 1779
+    }
+   ],
+   "expression": "AREA[StudyType]INTERVENTIONAL AND AREA[Phase]PHASE3 AND AREA[OverallStatus]RECRUITING AND AREA[HasResults]false AND AREA[LeadSponsorClass]INDUSTRY",
+   "count": 1779,
+   "draws": [
+    {
+     "attempt": 0,
+     "window": "whole stratum",
+     "count": 1779,
+     "chosen": "NCT07625644"
+    }
+   ],
+   "candidates": [
+    {
+     "nctId": "NCT07625644",
+     "recordBytes": 26669,
+     "sha256": "a1fd1d1b4d84933d9d0171ccdd6a20bb5a33d14fbf4b38a744f674d4236add18"
+    }
+   ],
+   "chosen": "NCT07625644"
+  },
+  {
+   "name": "phase4_completed_no_results_other",
+   "purpose": "Phase 4, completed, no results posted, sponsor class OTHER",
+   "rule": "random",
+   "expressions_tried": [
+    {
+     "expression": "AREA[StudyType]INTERVENTIONAL AND AREA[Phase]PHASE4 AND AREA[OverallStatus]COMPLETED AND AREA[HasResults]false AND AREA[LeadSponsorClass]OTHER",
+     "count": 10684
+    }
+   ],
+   "expression": "AREA[StudyType]INTERVENTIONAL AND AREA[Phase]PHASE4 AND AREA[OverallStatus]COMPLETED AND AREA[HasResults]false AND AREA[LeadSponsorClass]OTHER",
+   "count": 10684,
+   "draws": [
+    {
+     "attempt": 0,
+     "window": "2005-08",
+     "expression": "(AREA[StudyType]INTERVENTIONAL AND AREA[Phase]PHASE4 AND AREA[OverallStatus]COMPLETED AND AREA[HasResults]false AND AREA[LeadSponsorClass]OTHER) AND AREA[StudyFirstPostDate]RANGE[2005-08-01,2005-08-31]",
+     "count": 61,
+     "ids_read": 61,
+     "chosen": "NCT00134160"
+    }
+   ],
+   "candidates": [
+    {
+     "nctId": "NCT00134160",
+     "recordBytes": 12610,
+     "sha256": "8e3d8e23343c91e59ddbbd0e0ba546fa1d893bc99862c06edd6ae358906eaf82"
+    }
+   ],
+   "chosen": "NCT00134160"
+  },
+  {
+   "name": "early_phase1_not_yet_recruiting",
+   "purpose": "Early Phase 1, not yet recruiting",
+   "rule": "random",
+   "expressions_tried": [
+    {
+     "expression": "AREA[StudyType]INTERVENTIONAL AND AREA[Phase]EARLY_PHASE1 AND AREA[OverallStatus]NOT_YET_RECRUITING",
+     "count": 494
+    }
+   ],
+   "expression": "AREA[StudyType]INTERVENTIONAL AND AREA[Phase]EARLY_PHASE1 AND AREA[OverallStatus]NOT_YET_RECRUITING",
+   "count": 494,
+   "draws": [
+    {
+     "attempt": 0,
+     "window": "whole stratum",
+     "count": 494,
+     "chosen": "NCT07739043"
+    }
+   ],
+   "candidates": [
+    {
+     "nctId": "NCT07739043",
+     "recordBytes": 10734,
+     "sha256": "fc44f38c1fa6f2aea14eb533f9185073d148ff5f9c7b0be69a4a217753596127"
+    }
+   ],
+   "chosen": "NCT07739043"
+  },
+  {
+   "name": "phase_na_recruiting_other",
+   "purpose": "Phase not applicable (devices, behaviour), recruiting, sponsor class OTHER",
+   "rule": "random",
+   "expressions_tried": [
+    {
+     "expression": "AREA[StudyType]INTERVENTIONAL AND AREA[Phase]NA AND AREA[OverallStatus]RECRUITING AND AREA[LeadSponsorClass]OTHER",
+     "count": 23784
+    }
+   ],
+   "expression": "AREA[StudyType]INTERVENTIONAL AND AREA[Phase]NA AND AREA[OverallStatus]RECRUITING AND AREA[LeadSponsorClass]OTHER",
+   "count": 23784,
+   "draws": [
+    {
+     "attempt": 0,
+     "window": "2003-02",
+     "count": 0,
+     "chosen": null
+    },
+    {
+     "attempt": 0,
+     "window": "2003",
+     "count": 0,
+     "chosen": null
+    },
+    {
+     "attempt": 0,
+     "window": "2023-07",
+     "expression": "(AREA[StudyType]INTERVENTIONAL AND AREA[Phase]NA AND AREA[OverallStatus]RECRUITING AND AREA[LeadSponsorClass]OTHER) AND AREA[StudyFirstPostDate]RANGE[2023-07-01,2023-07-31]",
+     "count": 191,
+     "ids_read": 191,
+     "chosen": "NCT05939830"
+    }
+   ],
+   "candidates": [
+    {
+     "nctId": "NCT05939830",
+     "recordBytes": 11182,
+     "sha256": "c03eca85a108668c22c4c1c78a735ba56fd7dcb9399a24248deb56364e26009b"
+    }
+   ],
+   "chosen": "NCT05939830"
+  },
+  {
+   "name": "phase1_phase2_active_nih",
+   "purpose": "Phases 1 and 2 combined, active not recruiting, NIH sponsor",
+   "rule": "random",
+   "expressions_tried": [
+    {
+     "expression": "AREA[StudyType]INTERVENTIONAL AND AREA[Phase]PHASE1 AND AREA[Phase]PHASE2 AND AREA[OverallStatus]ACTIVE_NOT_RECRUITING AND AREA[LeadSponsorClass]NIH",
+     "count": 50
+    }
+   ],
+   "expression": "AREA[StudyType]INTERVENTIONAL AND AREA[Phase]PHASE1 AND AREA[Phase]PHASE2 AND AREA[OverallStatus]ACTIVE_NOT_RECRUITING AND AREA[LeadSponsorClass]NIH",
+   "count": 50,
+   "draws": [
+    {
+     "attempt": 0,
+     "window": "whole stratum",
+     "count": 50,
+     "chosen": "NCT06145282"
+    }
+   ],
+   "candidates": [
+    {
+     "nctId": "NCT06145282",
+     "recordBytes": 50836,
+     "sha256": "8db54c383cd2ab4a2d8596ec45099b50880709e655a45b003ab6768234879fff"
+    }
+   ],
+   "chosen": "NCT06145282"
+  },
+  {
+   "name": "phase2_phase3_results_fed",
+   "purpose": "Phases 2 and 3 combined, results posted, other US federal sponsor (FED)",
+   "rule": "random",
+   "expressions_tried": [
+    {
+     "expression": "AREA[StudyType]INTERVENTIONAL AND AREA[Phase]PHASE2 AND AREA[Phase]PHASE3 AND AREA[HasResults]true AND AREA[LeadSponsorClass]FED",
+     "count": 41
+    }
+   ],
+   "expression": "AREA[StudyType]INTERVENTIONAL AND AREA[Phase]PHASE2 AND AREA[Phase]PHASE3 AND AREA[HasResults]true AND AREA[LeadSponsorClass]FED",
+   "count": 41,
+   "draws": [
+    {
+     "attempt": 0,
+     "window": "whole stratum",
+     "count": 41,
+     "chosen": "NCT00682838"
+    }
+   ],
+   "candidates": [
+    {
+     "nctId": "NCT00682838",
+     "recordBytes": 13962,
+     "sha256": "684f1ff6be69582565aecdddfa92b89a56b5ed989365553a2ee504197928b428"
+    }
+   ],
+   "chosen": "NCT00682838"
+  },
+  {
+   "name": "interventional_withdrawn",
+   "purpose": "Withdrawn before enrolling",
+   "rule": "random",
+   "expressions_tried": [
+    {
+     "expression": "AREA[StudyType]INTERVENTIONAL AND AREA[OverallStatus]WITHDRAWN",
+     "count": 13960
+    }
+   ],
+   "expression": "AREA[StudyType]INTERVENTIONAL AND AREA[OverallStatus]WITHDRAWN",
+   "count": 13960,
+   "draws": [
+    {
+     "attempt": 0,
+     "window": "2005-10",
+     "expression": "(AREA[StudyType]INTERVENTIONAL AND AREA[OverallStatus]WITHDRAWN) AND AREA[StudyFirstPostDate]RANGE[2005-10-01,2005-10-31]",
+     "count": 24,
+     "ids_read": 24,
+     "chosen": "NCT00238160"
+    }
+   ],
+   "candidates": [
+    {
+     "nctId": "NCT00238160",
+     "recordBytes": 6176,
+     "sha256": "97abf1633ce38bbabb0538316fba234eca0286c45be0ca8252207910bd49867a"
+    }
+   ],
+   "chosen": "NCT00238160"
+  },
+  {
+   "name": "interventional_suspended",
+   "purpose": "Suspended",
+   "rule": "random",
+   "expressions_tried": [
+    {
+     "expression": "AREA[StudyType]INTERVENTIONAL AND AREA[OverallStatus]SUSPENDED",
+     "count": 1443
+    }
+   ],
+   "expression": "AREA[StudyType]INTERVENTIONAL AND AREA[OverallStatus]SUSPENDED",
+   "count": 1443,
+   "draws": [
+    {
+     "attempt": 0,
+     "window": "whole stratum",
+     "count": 1443,
+     "chosen": "NCT00209664"
+    }
+   ],
+   "candidates": [
+    {
+     "nctId": "NCT00209664",
+     "recordBytes": 4768,
+     "sha256": "314885ea8a8ea1b4280d000c93aa8ecd85cca551ee35c8c65af22d2cd700aa95"
+    }
+   ],
+   "chosen": "NCT00209664"
+  },
+  {
+   "name": "interventional_unknown_status",
+   "purpose": "Status unknown (not verified for two years)",
+   "rule": "random",
+   "expressions_tried": [
+    {
+     "expression": "AREA[StudyType]INTERVENTIONAL AND AREA[OverallStatus]UNKNOWN",
+     "count": 67434
+    }
+   ],
+   "expression": "AREA[StudyType]INTERVENTIONAL AND AREA[OverallStatus]UNKNOWN",
+   "count": 67434,
+   "draws": [
+    {
+     "attempt": 0,
+     "window": "2017-04",
+     "expression": "(AREA[StudyType]INTERVENTIONAL AND AREA[OverallStatus]UNKNOWN) AND AREA[StudyFirstPostDate]RANGE[2017-04-01,2017-04-30]",
+     "count": 338,
+     "ids_read": 338,
+     "chosen": "NCT03100175"
+    }
+   ],
+   "candidates": [
+    {
+     "nctId": "NCT03100175",
+     "recordBytes": 13325,
+     "sha256": "78b2b7191983642c08ecf3581c24422af08be7d0f82bb06695bd9834d0062463"
+    }
+   ],
+   "chosen": "NCT03100175"
+  },
+  {
+   "name": "enrolling_by_invitation_network",
+   "purpose": "Enrolling by invitation, network sponsor (NETWORK)",
+   "rule": "random",
+   "expressions_tried": [
+    {
+     "expression": "AREA[OverallStatus]ENROLLING_BY_INVITATION AND AREA[LeadSponsorClass]NETWORK",
+     "count": 49
+    }
+   ],
+   "expression": "AREA[OverallStatus]ENROLLING_BY_INVITATION AND AREA[LeadSponsorClass]NETWORK",
+   "count": 49,
+   "draws": [
+    {
+     "attempt": 0,
+     "window": "whole stratum",
+     "count": 49,
+     "chosen": "NCT07835126"
+    }
+   ],
+   "candidates": [
+    {
+     "nctId": "NCT07835126",
+     "recordBytes": 8267,
+     "sha256": "357c57e182ea71351799a558a91261999086e10df09f108faa73a2fe352da89f"
+    }
+   ],
+   "chosen": "NCT07835126"
+  },
+  {
+   "name": "observational_recruiting_other",
+   "purpose": "Observational, recruiting, sponsor class OTHER",
+   "rule": "random",
+   "expressions_tried": [
+    {
+     "expression": "AREA[StudyType]OBSERVATIONAL AND AREA[OverallStatus]RECRUITING AND AREA[LeadSponsorClass]OTHER",
+     "count": 14702
+    }
+   ],
+   "expression": "AREA[StudyType]OBSERVATIONAL AND AREA[OverallStatus]RECRUITING AND AREA[LeadSponsorClass]OTHER",
+   "count": 14702,
+   "draws": [
+    {
+     "attempt": 0,
+     "window": "2014-06",
+     "expression": "(AREA[StudyType]OBSERVATIONAL AND AREA[OverallStatus]RECRUITING AND AREA[LeadSponsorClass]OTHER) AND AREA[StudyFirstPostDate]RANGE[2014-06-01,2014-06-30]",
+     "count": 6,
+     "ids_read": 6,
+     "chosen": "NCT02161783"
+    }
+   ],
+   "candidates": [
+    {
+     "nctId": "NCT02161783",
+     "recordBytes": 7514,
+     "sha256": "072ad0467efd95d135f878573aeec1079af110865b6ce11fd34079c6fef72143"
+    }
+   ],
+   "chosen": "NCT02161783"
+  },
+  {
+   "name": "observational_completed_results",
+   "purpose": "Observational, completed, results posted",
+   "rule": "random",
+   "expressions_tried": [
+    {
+     "expression": "AREA[StudyType]OBSERVATIONAL AND AREA[OverallStatus]COMPLETED AND AREA[HasResults]true",
+     "count": 4407
+    }
+   ],
+   "expression": "AREA[StudyType]OBSERVATIONAL AND AREA[OverallStatus]COMPLETED AND AREA[HasResults]true",
+   "count": 4407,
+   "draws": [
+    {
+     "attempt": 0,
+     "window": "2006-05",
+     "expression": "(AREA[StudyType]OBSERVATIONAL AND AREA[OverallStatus]COMPLETED AND AREA[HasResults]true) AND AREA[StudyFirstPostDate]RANGE[2006-05-01,2006-05-31]",
+     "count": 6,
+     "ids_read": 6,
+     "chosen": "NCT00322439"
+    }
+   ],
+   "candidates": [
+    {
+     "nctId": "NCT00322439",
+     "recordBytes": 121502,
+     "sha256": "f4a8964a4d6d834b7a7a607991315756a590e4deeaa2258e206ad33d9b9e4fdd"
+    }
+   ],
+   "chosen": "NCT00322439"
+  },
+  {
+   "name": "observational_other_gov",
+   "purpose": "Observational, non-US government sponsor (OTHER_GOV)",
+   "rule": "random",
+   "expressions_tried": [
+    {
+     "expression": "AREA[StudyType]OBSERVATIONAL AND AREA[LeadSponsorClass]OTHER_GOV",
+     "count": 5110
+    }
+   ],
+   "expression": "AREA[StudyType]OBSERVATIONAL AND AREA[LeadSponsorClass]OTHER_GOV",
+   "count": 5110,
+   "draws": [
+    {
+     "attempt": 0,
+     "window": "2026-09",
+     "expression": "(AREA[StudyType]OBSERVATIONAL AND AREA[LeadSponsorClass]OTHER_GOV) AND AREA[StudyFirstPostDate]RANGE[2026-09-01,2026-09-30]",
+     "count": 64,
+     "ids_read": 64,
+     "chosen": "NCT07848750"
+    }
+   ],
+   "candidates": [
+    {
+     "nctId": "NCT07848750",
+     "recordBytes": 11224,
+     "sha256": "6f7830aa9dbf19d061ab204f809b93e7ab447e3902495c9e20102976f41850a1"
+    }
+   ],
+   "chosen": "NCT07848750"
+  },
+  {
+   "name": "expanded_access_available",
+   "purpose": "Expanded access, available",
+   "rule": "random",
+   "expressions_tried": [
+    {
+     "expression": "AREA[StudyType]EXPANDED_ACCESS AND AREA[OverallStatus]AVAILABLE",
+     "count": 249
+    }
+   ],
+   "expression": "AREA[StudyType]EXPANDED_ACCESS AND AREA[OverallStatus]AVAILABLE",
+   "count": 249,
+   "draws": [
+    {
+     "attempt": 0,
+     "window": "whole stratum",
+     "count": 249,
+     "chosen": "NCT07780110"
+    }
+   ],
+   "candidates": [
+    {
+     "nctId": "NCT07780110",
+     "recordBytes": 1738,
+     "sha256": "4e516c5a86d92c51c0071dd87cb6ee97a5801ad45fa70a58fa83231793ec741c"
+    }
+   ],
+   "chosen": "NCT07780110"
+  },
+  {
+   "name": "expanded_access_closed",
+   "purpose": "Expanded access, no longer available or approved for marketing",
+   "rule": "random",
+   "expressions_tried": [
+    {
+     "expression": "AREA[StudyType]EXPANDED_ACCESS AND (AREA[OverallStatus]NO_LONGER_AVAILABLE OR AREA[OverallStatus]APPROVED_FOR_MARKETING)",
+     "count": 788
+    }
+   ],
+   "expression": "AREA[StudyType]EXPANDED_ACCESS AND (AREA[OverallStatus]NO_LONGER_AVAILABLE OR AREA[OverallStatus]APPROVED_FOR_MARKETING)",
+   "count": 788,
+   "draws": [
+    {
+     "attempt": 0,
+     "window": "whole stratum",
+     "count": 788,
+     "chosen": "NCT02556008"
+    }
+   ],
+   "candidates": [
+    {
+     "nctId": "NCT02556008",
+     "recordBytes": 7554,
+     "sha256": "f23f65eed1bfdc0e56c2edfdf202f6f68e6455d7f0975d3607aed19de5ab0032"
+    }
+   ],
+   "chosen": "NCT02556008"
+  },
+  {
+   "name": "nct_id_aliases",
+   "purpose": "A record whose identification lists NCT ID aliases (obsolete or duplicate NCT numbers)",
+   "rule": "random",
+   "expressions_tried": [
+    {
+     "expression": "AREA[NCTIdAlias:size]RANGE[1,MAX]",
+     "count": 3172
+    }
+   ],
+   "expression": "AREA[NCTIdAlias:size]RANGE[1,MAX]",
+   "count": 3172,
+   "draws": [
+    {
+     "attempt": 0,
+     "window": "2003-10",
+     "expression": "(AREA[NCTIdAlias:size]RANGE[1,MAX]) AND AREA[StudyFirstPostDate]RANGE[2003-10-01,2003-10-31]",
+     "count": 9,
+     "ids_read": 9,
+     "chosen": "NCT00069758"
+    }
+   ],
+   "candidates": [
+    {
+     "nctId": "NCT00069758",
+     "recordBytes": 7443,
+     "sha256": "5dce1955241a7101f38948eb16fdc2efb6a55ad2b2b4f3c00b6ad49f75b87db1"
+    }
+   ],
+   "chosen": "NCT00069758"
+  },
+  {
+   "name": "individual_sponsor_smallest",
+   "purpose": "An individual as lead sponsor (INDIV): the smallest record of five draws",
+   "rule": "smallest",
+   "expressions_tried": [
+    {
+     "expression": "AREA[LeadSponsorClass]INDIV",
+     "count": 561
+    }
+   ],
+   "expression": "AREA[LeadSponsorClass]INDIV",
+   "count": 561,
+   "draws": [
+    {
+     "attempt": 0,
+     "window": "whole stratum",
+     "count": 561,
+     "chosen": "NCT02545114"
+    },
+    {
+     "attempt": 1,
+     "window": "whole stratum",
+     "count": 561,
+     "chosen": "NCT01547572"
+    },
+    {
+     "attempt": 2,
+     "window": "whole stratum",
+     "count": 561,
+     "chosen": "NCT01569555"
+    },
+    {
+     "attempt": 3,
+     "window": "whole stratum",
+     "count": 561,
+     "chosen": "NCT01258543"
+    },
+    {
+     "attempt": 4,
+     "window": "whole stratum",
+     "count": 561,
+     "chosen": "NCT03143608"
+    }
+   ],
+   "candidates": [
+    {
+     "nctId": "NCT02545114",
+     "recordBytes": 17473,
+     "sha256": "f343ab58f0a0fe38701259decab9b3f598a3dcf7e464673caf1d1b029d4ef013"
+    },
+    {
+     "nctId": "NCT01547572",
+     "recordBytes": 9795,
+     "sha256": "b8eaa41f7fc6d833db7a56df67449ba07661c142fa74d5bee1d0a99e52468f6a"
+    },
+    {
+     "nctId": "NCT01569555",
+     "recordBytes": 3607,
+     "sha256": "5cf66f6196e9f1f8e86734982343e4118fb4bb84936f14e6f72b0ba851020819"
+    },
+    {
+     "nctId": "NCT01258543",
+     "recordBytes": 16674,
+     "sha256": "2cbc37e36670c588128cbddbf80c12503da477ea3806ffa23b1b5ba2ca4c51dc"
+    },
+    {
+     "nctId": "NCT03143608",
+     "recordBytes": 6246,
+     "sha256": "0b78df40ccd9ee7261eb72265eb614247fa782544ecae3254507f5b616b57eee"
+    }
+   ],
+   "chosen": "NCT01569555"
+  }
+ ],
+ "nct_ids": [
+  "NCT00027027",
+  "NCT00773474",
+  "NCT01410227",
+  "NCT07625644",
+  "NCT00134160",
+  "NCT07739043",
+  "NCT05939830",
+  "NCT06145282",
+  "NCT00682838",
+  "NCT00238160",
+  "NCT00209664",
+  "NCT03100175",
+  "NCT07835126",
+  "NCT02161783",
+  "NCT00322439",
+  "NCT07848750",
+  "NCT07780110",
+  "NCT02556008",
+  "NCT00069758",
+  "NCT01569555"
+ ],
+ "facts": [
+  {
+   "stratum": "phase1_completed_results_industry",
+   "nctId": "NCT00027027",
+   "phases": [
+    "PHASE1"
+   ],
+   "overallStatus": "COMPLETED",
+   "studyType": "INTERVENTIONAL",
+   "hasResults": true,
+   "leadSponsorClass": "INDUSTRY",
+   "recordBytes": 108757,
+   "nctIdAliases": []
+  },
+  {
+   "stratum": "phase2_terminated_results_other",
+   "nctId": "NCT00773474",
+   "phases": [
+    "PHASE2"
+   ],
+   "overallStatus": "TERMINATED",
+   "studyType": "INTERVENTIONAL",
+   "hasResults": true,
+   "leadSponsorClass": "OTHER",
+   "recordBytes": 49443,
+   "nctIdAliases": []
+  },
+  {
+   "stratum": "phase3_completed_results_industry_largest",
+   "nctId": "NCT01410227",
+   "phases": [
+    "PHASE3"
+   ],
+   "overallStatus": "COMPLETED",
+   "studyType": "INTERVENTIONAL",
+   "hasResults": true,
+   "leadSponsorClass": "INDUSTRY",
+   "recordBytes": 219711,
+   "nctIdAliases": []
+  },
+  {
+   "stratum": "phase3_recruiting_industry",
+   "nctId": "NCT07625644",
+   "phases": [
+    "PHASE3"
+   ],
+   "overallStatus": "RECRUITING",
+   "studyType": "INTERVENTIONAL",
+   "hasResults": false,
+   "leadSponsorClass": "INDUSTRY",
+   "recordBytes": 26669,
+   "nctIdAliases": []
+  },
+  {
+   "stratum": "phase4_completed_no_results_other",
+   "nctId": "NCT00134160",
+   "phases": [
+    "PHASE4"
+   ],
+   "overallStatus": "COMPLETED",
+   "studyType": "INTERVENTIONAL",
+   "hasResults": false,
+   "leadSponsorClass": "OTHER",
+   "recordBytes": 12610,
+   "nctIdAliases": []
+  },
+  {
+   "stratum": "early_phase1_not_yet_recruiting",
+   "nctId": "NCT07739043",
+   "phases": [
+    "EARLY_PHASE1"
+   ],
+   "overallStatus": "NOT_YET_RECRUITING",
+   "studyType": "INTERVENTIONAL",
+   "hasResults": false,
+   "leadSponsorClass": "OTHER",
+   "recordBytes": 10734,
+   "nctIdAliases": []
+  },
+  {
+   "stratum": "phase_na_recruiting_other",
+   "nctId": "NCT05939830",
+   "phases": [
+    "NA"
+   ],
+   "overallStatus": "RECRUITING",
+   "studyType": "INTERVENTIONAL",
+   "hasResults": false,
+   "leadSponsorClass": "OTHER",
+   "recordBytes": 11182,
+   "nctIdAliases": []
+  },
+  {
+   "stratum": "phase1_phase2_active_nih",
+   "nctId": "NCT06145282",
+   "phases": [
+    "PHASE1",
+    "PHASE2"
+   ],
+   "overallStatus": "ACTIVE_NOT_RECRUITING",
+   "studyType": "INTERVENTIONAL",
+   "hasResults": true,
+   "leadSponsorClass": "NIH",
+   "recordBytes": 50836,
+   "nctIdAliases": []
+  },
+  {
+   "stratum": "phase2_phase3_results_fed",
+   "nctId": "NCT00682838",
+   "phases": [
+    "PHASE2",
+    "PHASE3"
+   ],
+   "overallStatus": "COMPLETED",
+   "studyType": "INTERVENTIONAL",
+   "hasResults": true,
+   "leadSponsorClass": "FED",
+   "recordBytes": 13962,
+   "nctIdAliases": []
+  },
+  {
+   "stratum": "interventional_withdrawn",
+   "nctId": "NCT00238160",
+   "phases": [
+    "PHASE3"
+   ],
+   "overallStatus": "WITHDRAWN",
+   "studyType": "INTERVENTIONAL",
+   "hasResults": false,
+   "leadSponsorClass": "OTHER",
+   "recordBytes": 6176,
+   "nctIdAliases": []
+  },
+  {
+   "stratum": "interventional_suspended",
+   "nctId": "NCT00209664",
+   "phases": [
+    "PHASE2"
+   ],
+   "overallStatus": "SUSPENDED",
+   "studyType": "INTERVENTIONAL",
+   "hasResults": false,
+   "leadSponsorClass": "OTHER",
+   "recordBytes": 4768,
+   "nctIdAliases": []
+  },
+  {
+   "stratum": "interventional_unknown_status",
+   "nctId": "NCT03100175",
+   "phases": [
+    "NA"
+   ],
+   "overallStatus": "UNKNOWN",
+   "studyType": "INTERVENTIONAL",
+   "hasResults": false,
+   "leadSponsorClass": "OTHER",
+   "recordBytes": 13325,
+   "nctIdAliases": []
+  },
+  {
+   "stratum": "enrolling_by_invitation_network",
+   "nctId": "NCT07835126",
+   "phases": [
+    "NA"
+   ],
+   "overallStatus": "ENROLLING_BY_INVITATION",
+   "studyType": "INTERVENTIONAL",
+   "hasResults": false,
+   "leadSponsorClass": "NETWORK",
+   "recordBytes": 8267,
+   "nctIdAliases": []
+  },
+  {
+   "stratum": "observational_recruiting_other",
+   "nctId": "NCT02161783",
+   "phases": [],
+   "overallStatus": "RECRUITING",
+   "studyType": "OBSERVATIONAL",
+   "hasResults": false,
+   "leadSponsorClass": "OTHER",
+   "recordBytes": 7514,
+   "nctIdAliases": []
+  },
+  {
+   "stratum": "observational_completed_results",
+   "nctId": "NCT00322439",
+   "phases": [],
+   "overallStatus": "COMPLETED",
+   "studyType": "OBSERVATIONAL",
+   "hasResults": true,
+   "leadSponsorClass": "INDUSTRY",
+   "recordBytes": 121502,
+   "nctIdAliases": []
+  },
+  {
+   "stratum": "observational_other_gov",
+   "nctId": "NCT07848750",
+   "phases": [],
+   "overallStatus": "RECRUITING",
+   "studyType": "OBSERVATIONAL",
+   "hasResults": false,
+   "leadSponsorClass": "OTHER_GOV",
+   "recordBytes": 11224,
+   "nctIdAliases": []
+  },
+  {
+   "stratum": "expanded_access_available",
+   "nctId": "NCT07780110",
+   "phases": [],
+   "overallStatus": "AVAILABLE",
+   "studyType": "EXPANDED_ACCESS",
+   "hasResults": false,
+   "leadSponsorClass": "INDUSTRY",
+   "recordBytes": 1738,
+   "nctIdAliases": []
+  },
+  {
+   "stratum": "expanded_access_closed",
+   "nctId": "NCT02556008",
+   "phases": [],
+   "overallStatus": "NO_LONGER_AVAILABLE",
+   "studyType": "EXPANDED_ACCESS",
+   "hasResults": false,
+   "leadSponsorClass": "OTHER",
+   "recordBytes": 7554,
+   "nctIdAliases": []
+  },
+  {
+   "stratum": "nct_id_aliases",
+   "nctId": "NCT00069758",
+   "phases": [
+    "PHASE2"
+   ],
+   "overallStatus": "COMPLETED",
+   "studyType": "INTERVENTIONAL",
+   "hasResults": false,
+   "leadSponsorClass": "INDUSTRY",
+   "recordBytes": 7443,
+   "nctIdAliases": [
+    "NCT00085033"
+   ]
+  },
+  {
+   "stratum": "individual_sponsor_smallest",
+   "nctId": "NCT01569555",
+   "phases": [],
+   "overallStatus": "UNKNOWN",
+   "studyType": "OBSERVATIONAL",
+   "hasResults": false,
+   "leadSponsorClass": "INDIV",
+   "recordBytes": 3607,
+   "nctIdAliases": []
+  }
+ ],
+ "coverage": {
+  "phase": {
+   "EARLY_PHASE1": 1,
+   "NA": 3,
+   "PHASE1": 2,
+   "PHASE2": 5,
+   "PHASE3": 4,
+   "PHASE4": 1
+  },
+  "combined_phases": {
+   "PHASE1+PHASE2": 1,
+   "PHASE2+PHASE3": 1
+  },
+  "no_phase_field": 6,
+  "overallStatus": {
+   "ACTIVE_NOT_RECRUITING": 1,
+   "AVAILABLE": 1,
+   "COMPLETED": 6,
+   "ENROLLING_BY_INVITATION": 1,
+   "NOT_YET_RECRUITING": 1,
+   "NO_LONGER_AVAILABLE": 1,
+   "RECRUITING": 4,
+   "SUSPENDED": 1,
+   "TERMINATED": 1,
+   "UNKNOWN": 2,
+   "WITHDRAWN": 1
+  },
+  "studyType": {
+   "EXPANDED_ACCESS": 2,
+   "INTERVENTIONAL": 14,
+   "OBSERVATIONAL": 4
+  },
+  "hasResults": {
+   "False": 14,
+   "True": 6
+  },
+  "leadSponsorClass": {
+   "FED": 1,
+   "INDIV": 1,
+   "INDUSTRY": 6,
+   "NETWORK": 1,
+   "NIH": 1,
+   "OTHER": 9,
+   "OTHER_GOV": 1
+  },
+  "with_nct_id_aliases": 1,
+  "recordBytes": {
+   "min": 1738,
+   "median": 11224,
+   "max": 219711
+  }
+ }
+}

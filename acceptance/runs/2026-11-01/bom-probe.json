@@ -1,0 +1,118 @@
+{
+ "probed_at": "2026-11-01T22:21:02Z",
+ "pulled_first_bytes": "efbbbf",
+ "pulled_sha256": "49f0ebcde26d5adebe48cfc4d9ed20e5b6475d5c5c9fa904e871b194964330fb",
+ "responses": [
+  {
+   "params": {
+    "pageSize": 100,
+    "countTotal": "true"
+   },
+   "headers": {},
+   "status": 200,
+   "first_bytes": "4e4354",
+   "bytes": 114711,
+   "sha256": "144ee1232a9cb91b5ec689a16bb86443e4f7e0ade415d450f5d8a31881191456",
+   "next_page_token": false,
+   "equals_pulled": false,
+   "equals_pulled_without_bom": true
+  },
+  {
+   "params": {
+    "pageSize": 100
+   },
+   "headers": {},
+   "status": 200,
+   "first_bytes": "4e4354",
+   "bytes": 114711,
+   "sha256": "144ee1232a9cb91b5ec689a16bb86443e4f7e0ade415d450f5d8a31881191456",
+   "next_page_token": false,
+   "equals_pulled": false,
+   "equals_pulled_without_bom": true
+  },
+  {
+   "params": {
+    "pageSize": 1000
+   },
+   "headers": {},
+   "status": 200,
+   "first_bytes": "4e4354",
+   "bytes": 114711,
+   "sha256": "144ee1232a9cb91b5ec689a16bb86443e4f7e0ade415d450f5d8a31881191456",
+   "next_page_token": false,
+   "equals_pulled": false,
+   "equals_pulled_without_bom": true
+  },
+  {
+   "params": {
+    "pageSize": 1000,
+    "countTotal": "true"
+   },
+   "headers": {},
+   "status": 200,
+   "first_bytes": "4e4354",
+   "bytes": 114711,
+   "sha256": "144ee1232a9cb91b5ec689a16bb86443e4f7e0ade415d450f5d8a31881191456",
+   "next_page_token": false,
+   "equals_pulled": false,
+   "equals_pulled_without_bom": true
+  },
+  {
+   "params": {},
+   "headers": {},
+   "status": 200,
+   "first_bytes": "4e4354",
+   "bytes": 79739,
+   "sha256": "830e43a66f48dc2e5938bb961e524c8c47ea47d7f05e7600346424deeb41f2cd",
+   "next_page_token": true,
+   "equals_pulled": false,
+   "equals_pulled_without_bom": false
+  },
+  {
+   "params": {
+    "pageSize": 1000
+   },
+   "headers": {
+    "Accept": "text/csv"
+   },
+   "status": 200,
+   "first_bytes": "4e4354",
+   "bytes": 114711,
+   "sha256": "144ee1232a9cb91b5ec689a16bb86443e4f7e0ade415d450f5d8a31881191456",
+   "next_page_token": false,
+   "equals_pulled": false,
+   "equals_pulled_without_bom": true
+  },
+  {
+   "params": {
+    "pageSize": 1000
+   },
+   "headers": {
+    "Accept-Encoding": "identity"
+   },
+   "status": 200,
+   "first_bytes": "4e4354",
+   "bytes": 114711,
+   "sha256": "144ee1232a9cb91b5ec689a16bb86443e4f7e0ade415d450f5d8a31881191456",
+   "next_page_token": false,
+   "equals_pulled": false,
+   "equals_pulled_without_bom": true
+  },
+  {
+   "params": {
+    "pageSize": 1000
+   },
+   "headers": {
+    "Accept": "*/*",
+    "User-Agent": "acceptance-probe"
+   },
+   "status": 200,
+   "first_bytes": "4e4354",
+   "bytes": 114711,
+   "sha256": "144ee1232a9cb91b5ec689a16bb86443e4f7e0ade415d450f5d8a31881191456",
+   "next_page_token": false,
+   "equals_pulled": false,
+   "equals_pulled_without_bom": true
+  }
+ ]
+}

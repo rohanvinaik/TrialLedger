@@ -1,0 +1,393 @@
+{
+ "date": "2026-11-01",
+ "compared_at": "2026-11-01T22:15:13.132822Z",
+ "defects": [
+  {
+   "id": 1,
+   "kind": "changed text value",
+   "file": "record.xlsx",
+   "nct": "NCT00027027",
+   "comparison": "a",
+   "marks": [
+    "protocolSection.identificationModule.briefTitle"
+   ],
+   "what": "briefTitle 'Safety Study of rhuMAb 2C4 to Treat Advanced Solid Tumors' → 'Sefety Study of rhuMAb 2C4 to Treat Advanced Solid Tumors'",
+   "caught": true,
+   "caught_by": [
+    {
+     "comparison": "a",
+     "nct": "NCT00027027",
+     "where": "protocolSection.identificationModule.briefTitle",
+     "field": "protocolSection.identificationModule.briefTitle",
+     "result": "differ",
+     "why": "different text",
+     "expected": "Safety Study of rhuMAb 2C4 to Treat Advanced Solid Tumors",
+     "found": "Sefety Study of rhuMAb 2C4 to Treat Advanced Solid Tumors"
+    }
+   ]
+  },
+  {
+   "id": 2,
+   "kind": "changed number",
+   "file": "record.xlsx",
+   "nct": "NCT00069758",
+   "comparison": "a",
+   "marks": [
+    "protocolSection.designModule.enrollmentInfo.count"
+   ],
+   "what": "enrollment 72 → 73",
+   "caught": true,
+   "caught_by": [
+    {
+     "comparison": "a",
+     "nct": "NCT00069758",
+     "where": "protocolSection.designModule.enrollmentInfo.count",
+     "field": "protocolSection.designModule.enrollmentInfo.count",
+     "result": "differ",
+     "why": "different value",
+     "expected": 72,
+     "found": 73
+    }
+   ]
+  },
+  {
+   "id": 3,
+   "kind": "truncated text",
+   "file": "record.xlsx",
+   "nct": "NCT00134160",
+   "comparison": "a",
+   "marks": [
+    "protocolSection.eligibilityModule.eligibilityCriteria"
+   ],
+   "what": "eligibilityCriteria cut from 2101 to 1050 characters",
+   "caught": true,
+   "caught_by": [
+    {
+     "comparison": "a",
+     "nct": "NCT00134160",
+     "where": "protocolSection.eligibilityModule.eligibilityCriteria",
+     "field": "protocolSection.eligibilityModule.eligibilityCriteria",
+     "result": "differ",
+     "why": "the cell holds the first 1050 of 2101 characters",
+     "expected": "Inclusion Criteria:\n\n* Outpatients aged 65 years or older, and less than 85 years (at the time of informed consent), regardless of sex\n* Current antihypertensive treatment with monotherapy\n* SBP ≥ 140mmHg or DBP ≥ 90mmHg in a sitting position on two measurements on two clinic visits\n* At least one of the following risk factors:\n\n  * Diabetes mellitus Type 2;\n  * History of cerebral infarction, cerebral hemorrhage, subarachnoid hemorrhage, or transient ischemic attack (more than 6 months before giving informed consent);\n  * Diagnosis of asymptomatic cerebrovascular disease;\n  * History of myocardial infarction (more than 6 months before giving informed consent);\n  * Diagnosis of angina pectoris or heart failure (New York Heart Association \\[NYHA\\] functional classification I or II);\n  * Diagnosis of left ventricular hypertrophy (thickness of the wall of interventricular septum ≥ 12mm on echocardiography or Sv1+Rv5 ≥ 35mm on electrocardiography before informed consent);\n  * Diagnosis of aortic aneurysm;\n  * History of aortic dissection (more than 6 months before giving informed consent);\n  * Diagnosis of arteriosclerotic peripheral arterial obstruction (Fontaine classification from 2 to 4);\n  * Serum creatinine: 1.2-2.5mg/dL (male); 1.0-2.5mg/dL (female);\n  * Proteinuria: ≥ +1 (or ≥ 0.3g/g･Cr. estimated from 24-hour urine collection or random urinary protein corrected by urine creatinine).\n\nExclusion Criteria:\n\n* Secondary hypertension or malignant hypertension\n* Heart failure (NYHA functional classification III or IV)\n* Required treatment for malignant tumor\n* Serious liver or renal dysfunction (serum creatinine \\> 2.5mg/dL or with dialysis treatment)\n* Not appropriate for change to the test drugs from current therapy for hypertension or coronary diseases (i.e. calcium channel blockers, β-blockers, thiazide diuretics, etc.)\n* History of serious adverse drug reactions to angiotensin II receptor blockers or calcium channel blockers\n* Patients with other serious reasons (i.e. illness, significant abnormalities, etc.) that investigators judge inappropriate for the study",
+     "found": "Inclusion Criteria:\n\n* Outpatients aged 65 years or older, and less than 85 years (at the time of informed consent), regardless of sex\n* Current antihypertensive treatment with monotherapy\n* SBP ≥ 140mmHg or DBP ≥ 90mmHg in a sitting position on two measurements on two clinic visits\n* At least one of the following risk factors:\n\n  * Diabetes mellitus Type 2;\n  * History of cerebral infarction, cerebral hemorrhage, subarachnoid hemorrhage, or transient ischemic attack (more than 6 months before giving informed consent);\n  * Diagnosis of asymptomatic cerebrovascular disease;\n  * History of myocardial infarction (more than 6 months before giving informed consent);\n  * Diagnosis of angina pectoris or heart failure (New York Heart Association \\[NYHA\\] functional classification I or II);\n  * Diagnosis of left ventricular hypertrophy (thickness of the wall of interventricular septum ≥ 12mm on echocardiography or Sv1+Rv5 ≥ 35mm on electrocardiography before informed consent);\n  * Diagnosis of aortic aneurysm;\n  * History of aortic dissection "
+    }
+   ]
+  },
+  {
+   "id": 4,
+   "kind": "swapped pair between studies",
+   "file": "record.xlsx",
+   "nct": "*",
+   "comparison": "a",
+   "marks": [
+    "protocolSection.statusModule.overallStatus"
+   ],
+   "what": "overallStatus of NCT00209664 (SUSPENDED) and NCT00027027 (COMPLETED)",
+   "caught": true,
+   "caught_by": [
+    {
+     "comparison": "a",
+     "nct": "NCT00209664",
+     "where": "protocolSection.statusModule.overallStatus",
+     "field": "protocolSection.statusModule.overallStatus",
+     "result": "differ",
+     "why": "different text",
+     "expected": "SUSPENDED",
+     "found": "COMPLETED"
+    },
+    {
+     "comparison": "a",
+     "nct": "NCT00027027",
+     "where": "protocolSection.statusModule.overallStatus",
+     "field": "protocolSection.statusModule.overallStatus",
+     "result": "differ",
+     "why": "different text",
+     "expected": "COMPLETED",
+     "found": "SUSPENDED"
+    }
+   ]
+  },
+  {
+   "id": 5,
+   "kind": "duplicated row",
+   "file": "record.xlsx",
+   "nct": "NCT00209664",
+   "comparison": "a",
+   "marks": [
+    "protocolSection.conditionsModule.conditions[0]"
+   ],
+   "what": "the Record row of protocolSection.conditionsModule.conditions[0] twice",
+   "caught": true,
+   "caught_by": [
+    {
+     "comparison": "a-leaves",
+     "nct": "NCT00209664",
+     "where": "protocolSection.conditionsModule.conditions[0]",
+     "field": "protocolSection.conditionsModule.conditions[]",
+     "result": "duplicated",
+     "why": "2 Record rows hold this location",
+     "expected": "Gastric Cancer",
+     "found": 2
+    }
+   ]
+  },
+  {
+   "id": 6,
+   "kind": "dropped row",
+   "file": "record.xlsx",
+   "nct": "NCT00238160",
+   "comparison": "a",
+   "marks": [
+    "protocolSection.contactsLocationsModule.locations[0].city"
+   ],
+   "what": "the Record row of protocolSection.contactsLocationsModule.locations[0].city removed",
+   "caught": true,
+   "caught_by": [
+    {
+     "comparison": "a-leaves",
+     "nct": "NCT00238160",
+     "where": "protocolSection.contactsLocationsModule.locations[0].city",
+     "field": "protocolSection.contactsLocationsModule.locations[].city",
+     "result": "omitted",
+     "why": "a value of the record no Record row holds",
+     "expected": "Kyoto",
+     "found": null
+    }
+   ]
+  },
+  {
+   "id": 7,
+   "kind": "changed link",
+   "file": "review.xlsx",
+   "nct": "NCT00322439",
+   "comparison": "c-links",
+   "marks": [
+    "Studies!row 16"
+   ],
+   "what": "Studies › NCT Number link of NCT00322439 → https://clinicaltrials.gov/study/NCT00682838",
+   "caught": true,
+   "caught_by": [
+    {
+     "comparison": "c-links",
+     "nct": "NCT00322439",
+     "where": "Studies!row 16",
+     "field": "Studies › NCT Number link",
+     "result": "differ",
+     "why": "not the study's registry page",
+     "expected": "https://clinicaltrials.gov/study/NCT00322439",
+     "found": "https://clinicaltrials.gov/study/NCT00682838"
+    }
+   ]
+  },
+  {
+   "id": 8,
+   "kind": "altered date",
+   "file": "review.xlsx",
+   "nct": "NCT00773474",
+   "comparison": "c",
+   "marks": [
+    "Studies!row 21"
+   ],
+   "what": "Studies › Start Date 2008-10 → 2009-10",
+   "caught": true,
+   "caught_by": [
+    {
+     "comparison": "c",
+     "nct": "NCT00773474",
+     "where": "Studies!row 21",
+     "field": "Studies › Start Date",
+     "result": "differ",
+     "why": "different text",
+     "expected": "2008-10",
+     "found": "2009-10"
+    }
+   ]
+  },
+  {
+   "id": 9,
+   "kind": "dropped row",
+   "file": "review.xlsx",
+   "nct": "NCT07739043",
+   "comparison": "c-rows",
+   "marks": [
+    "protocolSection.outcomesModule.primaryOutcomes[0]"
+   ],
+   "what": "the Outcomes row of protocolSection.outcomesModule.primaryOutcomes[0] removed",
+   "caught": true,
+   "caught_by": [
+    {
+     "comparison": "c-rows",
+     "nct": "NCT07739043",
+     "where": "protocolSection.outcomesModule.primaryOutcomes[0]",
+     "field": "Outcomes",
+     "result": "omitted",
+     "why": "an element of the record no row of the sheet stands for",
+     "expected": null,
+     "found": null
+    }
+   ]
+  },
+  {
+   "id": 10,
+   "kind": "duplicated row",
+   "file": "review.xlsx",
+   "nct": "NCT07739043",
+   "comparison": "c-rows",
+   "marks": [
+    "protocolSection.contactsLocationsModule.locations[0]"
+   ],
+   "what": "the Sites row of protocolSection.contactsLocationsModule.locations[0] twice",
+   "caught": true,
+   "caught_by": [
+    {
+     "comparison": "c-rows",
+     "nct": "NCT07739043",
+     "where": "protocolSection.contactsLocationsModule.locations[0]",
+     "field": "Sites",
+     "result": "duplicated",
+     "why": "2 rows of the sheet stand for this element",
+     "expected": 1,
+     "found": 2
+    }
+   ]
+  },
+  {
+   "id": 11,
+   "kind": "changed number",
+   "file": "review.xlsx",
+   "nct": "NCT01410227",
+   "comparison": "c",
+   "marks": [
+    "Adverse Events!row 10"
+   ],
+   "what": "Adverse Events › Participants Affected 1 → 2",
+   "caught": true,
+   "caught_by": [
+    {
+     "comparison": "c",
+     "nct": "NCT01410227",
+     "where": "Adverse Events!row 10",
+     "field": "Adverse Events › Participants Affected",
+     "result": "differ",
+     "why": "different value",
+     "expected": 1,
+     "found": 2
+    }
+   ]
+  },
+  {
+   "id": 12,
+   "kind": "swapped pair between studies",
+   "file": "review.xlsx",
+   "nct": "*",
+   "comparison": "c",
+   "marks": [
+    "Studies!row 11",
+    "Studies!row 5"
+   ],
+   "what": "Lead Sponsor of NCT01410227 ('Baxalta now part of Shire') and NCT01569555 ('Uelk, J. Daniel, D.O.')",
+   "caught": true,
+   "caught_by": [
+    {
+     "comparison": "c",
+     "nct": "NCT01569555",
+     "where": "Studies!row 5",
+     "field": "Studies › Lead Sponsor",
+     "result": "differ",
+     "why": "different text",
+     "expected": "Uelk, J. Daniel, D.O.",
+     "found": "Baxalta now part of Shire"
+    },
+    {
+     "comparison": "c",
+     "nct": "NCT01410227",
+     "where": "Studies!row 11",
+     "field": "Studies › Lead Sponsor",
+     "result": "differ",
+     "why": "different text",
+     "expected": "Baxalta now part of Shire",
+     "found": "Uelk, J. Daniel, D.O."
+    }
+   ]
+  },
+  {
+   "id": 13,
+   "kind": "changed text value",
+   "file": "studies.csv",
+   "nct": "*",
+   "comparison": "d",
+   "marks": [
+    "studies.csv"
+   ],
+   "what": "the first 'COMPLETED' in studies.csv → 'COMPLETEX'",
+   "caught": false,
+   "caught_by": []
+  }
+ ],
+ "new_issues": 19,
+ "unattributed": [
+  {
+   "comparison": "b-workbook",
+   "nct": "NCT00069758",
+   "where": "Enrollment",
+   "field": "protocolSection.designModule.enrollmentInfo.count",
+   "result": "differ",
+   "why": "different text",
+   "expected": "72",
+   "found": "73"
+  },
+  {
+   "comparison": "b-workbook",
+   "nct": "NCT00209664",
+   "where": "Study Status",
+   "field": "protocolSection.statusModule.overallStatus",
+   "result": "differ",
+   "why": "different text",
+   "expected": "SUSPENDED",
+   "found": "COMPLETED"
+  },
+  {
+   "comparison": "b-workbook",
+   "nct": "NCT00027027",
+   "where": "Study Title",
+   "field": "protocolSection.identificationModule.briefTitle",
+   "result": "differ",
+   "why": "different text",
+   "expected": "Safety Study of rhuMAb 2C4 to Treat Advanced Solid Tumors",
+   "found": "Sefety Study of rhuMAb 2C4 to Treat Advanced Solid Tumors"
+  },
+  {
+   "comparison": "b-workbook",
+   "nct": "NCT00027027",
+   "where": "Study Status",
+   "field": "protocolSection.statusModule.overallStatus",
+   "result": "differ",
+   "why": "different text",
+   "expected": "COMPLETED",
+   "found": "SUSPENDED"
+  },
+  {
+   "comparison": "e",
+   "nct": "*",
+   "where": "trialledger verify",
+   "field": "verify",
+   "result": "differ",
+   "why": "exit 1: 00134160', 'PRIMARY', 5, 'Diabetic complications (nephropathy, retinopathy and neuropathy)', 'not reported', '36 Months', 'protocolSection.outcomesModule.primaryOutcomes[4]', '9c8b204524dfb0d590a5c401f3c8b64b219455f0698f12f7fab79ef9adf4976f']\ntrialledger: does not follow — Outcomes row 15: expected ['NCT00134160', 'PRIMARY', 5, 'Diabetic complications (nephropathy, retinopathy and neuropathy)', 'not reported', '36 Months', 'protocolSection.outcomesModule.primaryOutcomes[4]', '9c8b204524dfb0d590a5c401f3c8b64b219455f0698f12f7fab79ef9adf4976f'], found ['NCT00134160', 'PRIMARY', 6, 'Renal dysfunction (doubling of serum creatinine, end stage renal diseases)', 'not reported', '36 Months', 'protocolSection.outcomesModule.primaryOutcomes[5]', 'ecb884cf74839052d667899e058c15c012a690a6b30fe79d001ba51178fa13bf']\ntrialledger: does not follow — Outcomes row 16: expected ['NCT00134160', 'PRIMARY', 6, 'Renal dysfunction (doubling of serum creatinine, end stage renal diseases)', 'not reported', '36 Months', 'protocolSection.outcomesModule.primaryOutcomes[5]', 'ecb884cf74839052d667899e058c15c012a690a6b30fe79d001ba51178fa13bf'], found ['NCT00134160', 'PRIMARY', 7, 'All cause mortality', 'not reported', '36 Months', 'protocolSection.outcomesModule.primaryOutcomes[6]', '5faa3077498a8b9960b565b2d725f3d206b5a83e89d3d98c91ceed921e651fac']\ntrialledger: does not follow — Outcomes row 17: expected ['NCT00134160', 'PRIMARY', 7, 'All cause mortality', 'not reported', '36 Months', 'protocolSection.outcomesModule.primaryOutcomes[6]', '5faa3077498a8b9960b565b2d725f3d206b5a83e89d3d98c91ceed921e651fac'], found ['NCT00134160', 'SECONDARY', 1, 'Development of each cardiovascular event', 'not reported', '36 Months', 'protocolSection.outcomesModule.secondaryOutcomes[0]', '704a113caefa8bc86ff3e86d7ccb4b75b6a48cd6748a876785509be6377c06a2']\ntrialledger: /Users/rohanvinaik/tools/TrialLedger/.claude/worktrees/wf_eb0db221-903-5/acceptance/runs/2026-11-01/defects-copy is NOT certified (20 difference(s) shown)",
+   "expected": null,
+   "found": null
+  }
+ ],
+ "verify_on_copy": [
+  {
+   "comparison": "e",
+   "nct": "*",
+   "where": "trialledger verify",
+   "field": "verify",
+   "result": "differ",
+   "why": "exit 1: 00134160', 'PRIMARY', 5, 'Diabetic complications (nephropathy, retinopathy and neuropathy)', 'not reported', '36 Months', 'protocolSection.outcomesModule.primaryOutcomes[4]', '9c8b204524dfb0d590a5c401f3c8b64b219455f0698f12f7fab79ef9adf4976f']\ntrialledger: does not follow — Outcomes row 15: expected ['NCT00134160', 'PRIMARY', 5, 'Diabetic complications (nephropathy, retinopathy and neuropathy)', 'not reported', '36 Months', 'protocolSection.outcomesModule.primaryOutcomes[4]', '9c8b204524dfb0d590a5c401f3c8b64b219455f0698f12f7fab79ef9adf4976f'], found ['NCT00134160', 'PRIMARY', 6, 'Renal dysfunction (doubling of serum creatinine, end stage renal diseases)', 'not reported', '36 Months', 'protocolSection.outcomesModule.primaryOutcomes[5]', 'ecb884cf74839052d667899e058c15c012a690a6b30fe79d001ba51178fa13bf']\ntrialledger: does not follow — Outcomes row 16: expected ['NCT00134160', 'PRIMARY', 6, 'Renal dysfunction (doubling of serum creatinine, end stage renal diseases)', 'not reported', '36 Months', 'protocolSection.outcomesModule.primaryOutcomes[5]', 'ecb884cf74839052d667899e058c15c012a690a6b30fe79d001ba51178fa13bf'], found ['NCT00134160', 'PRIMARY', 7, 'All cause mortality', 'not reported', '36 Months', 'protocolSection.outcomesModule.primaryOutcomes[6]', '5faa3077498a8b9960b565b2d725f3d206b5a83e89d3d98c91ceed921e651fac']\ntrialledger: does not follow — Outcomes row 17: expected ['NCT00134160', 'PRIMARY', 7, 'All cause mortality', 'not reported', '36 Months', 'protocolSection.outcomesModule.primaryOutcomes[6]', '5faa3077498a8b9960b565b2d725f3d206b5a83e89d3d98c91ceed921e651fac'], found ['NCT00134160', 'SECONDARY', 1, 'Development of each cardiovascular event', 'not reported', '36 Months', 'protocolSection.outcomesModule.secondaryOutcomes[0]', '704a113caefa8bc86ff3e86d7ccb4b75b6a48cd6748a876785509be6377c06a2']\ntrialledger: /Users/rohanvinaik/tools/TrialLedger/.claude/worktrees/wf_eb0db221-903-5/acceptance/runs/2026-11-01/defects-copy is NOT certified (20 difference(s) shown)",
+   "expected": null,
+   "found": null
+  }
+ ]
+}

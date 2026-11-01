@@ -1748,5 +1748,245 @@
     "function_digest": "9ff3a47230b0bffc",
     "refusal": "",
     "standing": "complete"
+  },
+  "acceptance/compare.py::absence_result": {
+    "cut_reasons": [],
+    "function_digest": "91ff4a816fc62cd0",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "acceptance/compare.py::at_risk_result": {
+    "cut_reasons": [],
+    "function_digest": "06b1c9cbdbe93a3a",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "acceptance/compare.py::column_path": {
+    "cut_reasons": [],
+    "function_digest": "6aea175c3455a3b8",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "acceptance/compare.py::column_value": {
+    "cut_reasons": [],
+    "function_digest": "4514b967c30cc277",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "acceptance/compare.py::compare_csv": {
+    "cut_reasons": [],
+    "function_digest": "635c8e551cb68753",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "acceptance/compare.py::compare_declared": {
+    "cut_reasons": [],
+    "function_digest": "7e1f6455629b5068",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "acceptance/compare.py::compare_record_rows": {
+    "cut_reasons": [],
+    "function_digest": "1bc06730a0ac3367",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "acceptance/compare.py::compare_records": {
+    "cut_reasons": [],
+    "function_digest": "14791f4bc8d90efa",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "acceptance/compare.py::compare_review": {
+    "cut_reasons": [],
+    "function_digest": "45c7675eb48ae561",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "acceptance/compare.py::csv_bytes_results": {
+    "cut_reasons": [],
+    "function_digest": "3433db3a0d1c6b3f",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "acceptance/compare.py::csv_cell_result": {
+    "cut_reasons": [],
+    "function_digest": "bc0b6891d3d66539",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "acceptance/compare.py::csv_expected": {
+    "cut_reasons": [],
+    "function_digest": "387aaf38eafffddd",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "acceptance/compare.py::declared_source_result": {
+    "cut_reasons": [],
+    "function_digest": "59f7224f586c4830",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "acceptance/compare.py::defect_caught": {
+    "cut_reasons": [],
+    "function_digest": "775de699c0e3eebe",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "acceptance/compare.py::expand": {
+    "cut_reasons": [],
+    "function_digest": "b1f0eed29d8251d0",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "acceptance/compare.py::field_pattern": {
+    "cut_reasons": [],
+    "function_digest": "27ad3cc0c463d62b",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "acceptance/compare.py::finding": {
+    "cut_reasons": [],
+    "function_digest": "c75f2ede34b72e14",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "acceptance/compare.py::format_location": {
+    "cut_reasons": [],
+    "function_digest": "377e878dfcd4a679",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "acceptance/compare.py::issue_key": {
+    "cut_reasons": [],
+    "function_digest": "19ae6e8c8ca796b9",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "acceptance/compare.py::json_leaves": {
+    "cut_reasons": [],
+    "function_digest": "9620fae464a04ff1",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "acceptance/compare.py::metadata_titles": {
+    "cut_reasons": [],
+    "function_digest": "883c15b24616ac85",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "acceptance/compare.py::parse_location": {
+    "cut_reasons": [],
+    "function_digest": "617df1be3191af17",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "acceptance/compare.py::placeholder_result": {
+    "cut_reasons": [],
+    "function_digest": "e6eae2b44c7886e6",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "acceptance/compare.py::project": {
+    "cut_reasons": [],
+    "function_digest": "163719ed895af884",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "acceptance/compare.py::provenance_results": {
+    "cut_reasons": [],
+    "function_digest": "a5afb8eaeda7ecc1",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "acceptance/compare.py::resolve": {
+    "cut_reasons": [],
+    "function_digest": "6b385cbefc4824cd",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "acceptance/compare.py::review_cell_result": {
+    "cut_reasons": [],
+    "function_digest": "5ae4f8ecf8b88baa",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "acceptance/compare.py::role_result": {
+    "cut_reasons": [],
+    "function_digest": "4377de8dd842862f",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "acceptance/compare.py::row_elements": {
+    "cut_reasons": [],
+    "function_digest": "6b0a532538dad179",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "acceptance/compare.py::special_checks": {
+    "cut_reasons": [],
+    "function_digest": "adaee8bffde4838f",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "acceptance/compare.py::structure_value": {
+    "cut_reasons": [],
+    "function_digest": "61bc6d2ad0415791",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "acceptance/compare.py::summarize": {
+    "cut_reasons": [],
+    "function_digest": "f2b3f7d6a76afc0d",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "acceptance/compare.py::title_result": {
+    "cut_reasons": [],
+    "function_digest": "6e50237017d1e903",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "acceptance/compare.py::value_result": {
+    "cut_reasons": [],
+    "function_digest": "b804be8f2eadc3f8",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "acceptance/compare.py::workbook_text": {
+    "cut_reasons": [],
+    "function_digest": "4e31dce2e03badcd",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "acceptance/select.py::choose": {
+    "cut_reasons": [],
+    "function_digest": "4e2c6de5b5e5d3d6",
+    "refusal": "environment_gated:reads entropy via random.Random()",
+    "standing": "complete"
+  },
+  "acceptance/select.py::coverage": {
+    "cut_reasons": [],
+    "function_digest": "a638305c049996aa",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "acceptance/select.py::month_draw": {
+    "cut_reasons": [],
+    "function_digest": "5f2e0afc9e93a15e",
+    "refusal": "environment_gated:reads entropy via random.Random()",
+    "standing": "complete"
+  },
+  "acceptance/select.py::record_facts": {
+    "cut_reasons": [],
+    "function_digest": "aa6dede41ce5fc94",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "acceptance/select.py::window_expression": {
+    "cut_reasons": [],
+    "function_digest": "00a34ea8979411b5",
+    "refusal": "",
+    "standing": "complete"
   }
 }

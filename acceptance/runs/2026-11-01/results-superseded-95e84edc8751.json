@@ -1,0 +1,4322 @@
+{
+ "what": "results.json before a later reader rewrote it; not-comparable results left out",
+ "sha256": "95e84edc8751d63808dc836e7583cca4ad9495dea8fd024cfd5d0197f9014289",
+ "code": {
+  "file": "acceptance/compare.py",
+  "sha256": "5274ae510d2832d08ecc992515072661c0ad039a97457331e3009bbf66714b2b"
+ },
+ "compared_at": "2026-11-01T22:25:20.407683Z",
+ "summary": {
+  "a": {
+   "derivedSection.conditionBrowseModule.ancestors[].id": {
+    "agree": 94,
+    "studies": 14
+   },
+   "derivedSection.conditionBrowseModule.ancestors[].term": {
+    "agree": 94,
+    "studies": 14
+   },
+   "derivedSection.conditionBrowseModule.meshes[].id": {
+    "agree": 22,
+    "studies": 15
+   },
+   "derivedSection.conditionBrowseModule.meshes[].term": {
+    "agree": 22,
+    "studies": 15
+   },
+   "derivedSection.interventionBrowseModule.ancestors[].id": {
+    "agree": 138,
+    "studies": 13
+   },
+   "derivedSection.interventionBrowseModule.ancestors[].term": {
+    "agree": 138,
+    "studies": 13
+   },
+   "derivedSection.interventionBrowseModule.meshes[].id": {
+    "agree": 36,
+    "studies": 15
+   },
+   "derivedSection.interventionBrowseModule.meshes[].term": {
+    "agree": 36,
+    "studies": 15
+   },
+   "derivedSection.miscInfoModule.removedCountries[]": {
+    "agree": 4,
+    "studies": 2
+   },
+   "derivedSection.miscInfoModule.versionHolder": {
+    "agree": 20,
+    "studies": 20
+   },
+   "documentSection.largeDocumentModule.largeDocs[].date": {
+    "agree": 2,
+    "studies": 1
+   },
+   "documentSection.largeDocumentModule.largeDocs[].filename": {
+    "agree": 2,
+    "studies": 1
+   },
+   "documentSection.largeDocumentModule.largeDocs[].hasIcf": {
+    "agree": 2,
+    "studies": 1
+   },
+   "documentSection.largeDocumentModule.largeDocs[].hasProtocol": {
+    "agree": 2,
+    "studies": 1
+   },
+   "documentSection.largeDocumentModule.largeDocs[].hasSap": {
+    "agree": 2,
+    "studies": 1
+   },
+   "documentSection.largeDocumentModule.largeDocs[].label": {
+    "agree": 2,
+    "studies": 1
+   },
+   "documentSection.largeDocumentModule.largeDocs[].size": {
+    "agree": 2,
+    "studies": 1
+   },
+   "documentSection.largeDocumentModule.largeDocs[].typeAbbrev": {
+    "agree": 2,
+    "studies": 1
+   },
+   "documentSection.largeDocumentModule.largeDocs[].uploadDate": {
+    "agree": 2,
+    "studies": 1
+   },
+   "hasResults": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.armsInterventionsModule.armGroups[].description": {
+    "agree": 28,
+    "studies": 13
+   },
+   "protocolSection.armsInterventionsModule.armGroups[].interventionNames[]": {
+    "agree": 43,
+    "studies": 13
+   },
+   "protocolSection.armsInterventionsModule.armGroups[].label": {
+    "agree": 28,
+    "studies": 13
+   },
+   "protocolSection.armsInterventionsModule.armGroups[].type": {
+    "agree": 23,
+    "studies": 10
+   },
+   "protocolSection.armsInterventionsModule.interventions[].armGroupLabels[]": {
+    "agree": 43,
+    "studies": 13
+   },
+   "protocolSection.armsInterventionsModule.interventions[].description": {
+    "agree": 28,
+    "studies": 14
+   },
+   "protocolSection.armsInterventionsModule.interventions[].name": {
+    "agree": 40,
+    "studies": 19
+   },
+   "protocolSection.armsInterventionsModule.interventions[].otherNames[]": {
+    "agree": 20,
+    "studies": 7
+   },
+   "protocolSection.armsInterventionsModule.interventions[].type": {
+    "agree": 40,
+    "studies": 19
+   },
+   "protocolSection.conditionsModule.conditions[]": {
+    "agree": 37,
+    "studies": 20
+   },
+   "protocolSection.conditionsModule.keywords[]": {
+    "agree": 38,
+    "studies": 13
+   },
+   "protocolSection.contactsLocationsModule.centralContacts[].email": {
+    "agree": 10,
+    "studies": 7
+   },
+   "protocolSection.contactsLocationsModule.centralContacts[].name": {
+    "agree": 10,
+    "studies": 7
+   },
+   "protocolSection.contactsLocationsModule.centralContacts[].phone": {
+    "agree": 10,
+    "studies": 7
+   },
+   "protocolSection.contactsLocationsModule.centralContacts[].role": {
+    "agree": 10,
+    "studies": 7
+   },
+   "protocolSection.contactsLocationsModule.locations[].city": {
+    "agree": 154,
+    "studies": 17
+   },
+   "protocolSection.contactsLocationsModule.locations[].contacts[].email": {
+    "agree": 4,
+    "studies": 4
+   },
+   "protocolSection.contactsLocationsModule.locations[].contacts[].name": {
+    "agree": 68,
+    "studies": 4
+   },
+   "protocolSection.contactsLocationsModule.locations[].contacts[].phone": {
+    "agree": 4,
+    "studies": 4
+   },
+   "protocolSection.contactsLocationsModule.locations[].contacts[].role": {
+    "agree": 68,
+    "studies": 4
+   },
+   "protocolSection.contactsLocationsModule.locations[].country": {
+    "agree": 154,
+    "studies": 17
+   },
+   "protocolSection.contactsLocationsModule.locations[].facility": {
+    "agree": 154,
+    "studies": 17
+   },
+   "protocolSection.contactsLocationsModule.locations[].geoPoint.lat": {
+    "agree": 152,
+    "studies": 17
+   },
+   "protocolSection.contactsLocationsModule.locations[].geoPoint.lon": {
+    "agree": 152,
+    "studies": 17
+   },
+   "protocolSection.contactsLocationsModule.locations[].state": {
+    "agree": 61,
+    "studies": 15
+   },
+   "protocolSection.contactsLocationsModule.locations[].status": {
+    "agree": 65,
+    "studies": 4
+   },
+   "protocolSection.contactsLocationsModule.locations[].zip": {
+    "agree": 151,
+    "studies": 15
+   },
+   "protocolSection.contactsLocationsModule.overallOfficials[].affiliation": {
+    "agree": 12,
+    "studies": 11
+   },
+   "protocolSection.contactsLocationsModule.overallOfficials[].name": {
+    "agree": 12,
+    "studies": 11
+   },
+   "protocolSection.contactsLocationsModule.overallOfficials[].role": {
+    "agree": 12,
+    "studies": 11
+   },
+   "protocolSection.descriptionModule.briefSummary": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.descriptionModule.detailedDescription": {
+    "agree": 13,
+    "studies": 13
+   },
+   "protocolSection.designModule.bioSpec.description": {
+    "agree": 1,
+    "studies": 1
+   },
+   "protocolSection.designModule.bioSpec.retention": {
+    "agree": 1,
+    "studies": 1
+   },
+   "protocolSection.designModule.designInfo.allocation": {
+    "agree": 13,
+    "studies": 13
+   },
+   "protocolSection.designModule.designInfo.interventionModel": {
+    "agree": 13,
+    "studies": 13
+   },
+   "protocolSection.designModule.designInfo.maskingInfo.masking": {
+    "agree": 13,
+    "studies": 13
+   },
+   "protocolSection.designModule.designInfo.maskingInfo.maskingDescription": {
+    "agree": 1,
+    "studies": 1
+   },
+   "protocolSection.designModule.designInfo.maskingInfo.whoMasked[]": {
+    "agree": 3,
+    "studies": 3
+   },
+   "protocolSection.designModule.designInfo.observationalModel": {
+    "agree": 4,
+    "studies": 4
+   },
+   "protocolSection.designModule.designInfo.primaryPurpose": {
+    "agree": 14,
+    "studies": 14
+   },
+   "protocolSection.designModule.designInfo.timePerspective": {
+    "agree": 4,
+    "studies": 4
+   },
+   "protocolSection.designModule.enrollmentInfo.count": {
+    "agree": 18,
+    "studies": 18
+   },
+   "protocolSection.designModule.enrollmentInfo.type": {
+    "agree": 16,
+    "studies": 16
+   },
+   "protocolSection.designModule.expandedAccessTypes.individual": {
+    "agree": 1,
+    "studies": 1
+   },
+   "protocolSection.designModule.patientRegistry": {
+    "agree": 3,
+    "studies": 3
+   },
+   "protocolSection.designModule.phases[]": {
+    "agree": 16,
+    "studies": 14
+   },
+   "protocolSection.designModule.studyType": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.designModule.targetDuration": {
+    "agree": 1,
+    "studies": 1
+   },
+   "protocolSection.eligibilityModule.eligibilityCriteria": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.eligibilityModule.healthyVolunteers": {
+    "agree": 18,
+    "studies": 18
+   },
+   "protocolSection.eligibilityModule.maximumAge": {
+    "agree": 6,
+    "studies": 6
+   },
+   "protocolSection.eligibilityModule.minimumAge": {
+    "agree": 16,
+    "studies": 16
+   },
+   "protocolSection.eligibilityModule.samplingMethod": {
+    "agree": 4,
+    "studies": 4
+   },
+   "protocolSection.eligibilityModule.sex": {
+    "agree": 19,
+    "studies": 19
+   },
+   "protocolSection.eligibilityModule.stdAges[]": {
+    "agree": 42,
+    "studies": 20
+   },
+   "protocolSection.eligibilityModule.studyPopulation": {
+    "agree": 4,
+    "studies": 4
+   },
+   "protocolSection.identificationModule.acronym": {
+    "agree": 2,
+    "studies": 2
+   },
+   "protocolSection.identificationModule.briefTitle": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.identificationModule.nctId": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.identificationModule.nctIdAliases[]": {
+    "agree": 1,
+    "studies": 1
+   },
+   "protocolSection.identificationModule.officialTitle": {
+    "agree": 19,
+    "studies": 19
+   },
+   "protocolSection.identificationModule.orgStudyIdInfo.id": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.identificationModule.organization.class": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.identificationModule.organization.fullName": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.identificationModule.secondaryIdInfos[].domain": {
+    "agree": 3,
+    "studies": 3
+   },
+   "protocolSection.identificationModule.secondaryIdInfos[].id": {
+    "agree": 5,
+    "studies": 5
+   },
+   "protocolSection.identificationModule.secondaryIdInfos[].type": {
+    "agree": 4,
+    "studies": 4
+   },
+   "protocolSection.ipdSharingStatementModule.accessCriteria": {
+    "agree": 1,
+    "studies": 1
+   },
+   "protocolSection.ipdSharingStatementModule.description": {
+    "agree": 2,
+    "studies": 2
+   },
+   "protocolSection.ipdSharingStatementModule.infoTypes[]": {
+    "agree": 4,
+    "studies": 1
+   },
+   "protocolSection.ipdSharingStatementModule.ipdSharing": {
+    "agree": 7,
+    "studies": 7
+   },
+   "protocolSection.ipdSharingStatementModule.url": {
+    "agree": 1,
+    "studies": 1
+   },
+   "protocolSection.outcomesModule.primaryOutcomes[].description": {
+    "agree": 21,
+    "studies": 12
+   },
+   "protocolSection.outcomesModule.primaryOutcomes[].measure": {
+    "agree": 30,
+    "studies": 15
+   },
+   "protocolSection.outcomesModule.primaryOutcomes[].timeFrame": {
+    "agree": 29,
+    "studies": 14
+   },
+   "protocolSection.outcomesModule.secondaryOutcomes[].description": {
+    "agree": 104,
+    "studies": 9
+   },
+   "protocolSection.outcomesModule.secondaryOutcomes[].measure": {
+    "agree": 114,
+    "studies": 13
+   },
+   "protocolSection.outcomesModule.secondaryOutcomes[].timeFrame": {
+    "agree": 113,
+    "studies": 12
+   },
+   "protocolSection.oversightModule.isFdaRegulatedDevice": {
+    "agree": 7,
+    "studies": 7
+   },
+   "protocolSection.oversightModule.isFdaRegulatedDrug": {
+    "agree": 7,
+    "studies": 7
+   },
+   "protocolSection.oversightModule.isUsExport": {
+    "agree": 1,
+    "studies": 1
+   },
+   "protocolSection.oversightModule.oversightHasDmc": {
+    "agree": 12,
+    "studies": 12
+   },
+   "protocolSection.referencesModule.references[].citation": {
+    "agree": 12,
+    "studies": 4
+   },
+   "protocolSection.referencesModule.references[].pmid": {
+    "agree": 11,
+    "studies": 4
+   },
+   "protocolSection.referencesModule.references[].type": {
+    "agree": 12,
+    "studies": 4
+   },
+   "protocolSection.referencesModule.seeAlsoLinks[].label": {
+    "agree": 3,
+    "studies": 3
+   },
+   "protocolSection.referencesModule.seeAlsoLinks[].url": {
+    "agree": 3,
+    "studies": 3
+   },
+   "protocolSection.sponsorCollaboratorsModule.collaborators[].class": {
+    "agree": 4,
+    "studies": 3
+   },
+   "protocolSection.sponsorCollaboratorsModule.collaborators[].name": {
+    "agree": 4,
+    "studies": 3
+   },
+   "protocolSection.sponsorCollaboratorsModule.leadSponsor.class": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.sponsorCollaboratorsModule.leadSponsor.name": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.sponsorCollaboratorsModule.responsibleParty.investigatorAffiliation": {
+    "agree": 4,
+    "studies": 4
+   },
+   "protocolSection.sponsorCollaboratorsModule.responsibleParty.investigatorFullName": {
+    "agree": 4,
+    "studies": 4
+   },
+   "protocolSection.sponsorCollaboratorsModule.responsibleParty.investigatorTitle": {
+    "agree": 4,
+    "studies": 4
+   },
+   "protocolSection.sponsorCollaboratorsModule.responsibleParty.oldNameTitle": {
+    "agree": 1,
+    "studies": 1
+   },
+   "protocolSection.sponsorCollaboratorsModule.responsibleParty.oldOrganization": {
+    "agree": 1,
+    "studies": 1
+   },
+   "protocolSection.sponsorCollaboratorsModule.responsibleParty.type": {
+    "agree": 16,
+    "studies": 16
+   },
+   "protocolSection.statusModule.completionDateStruct.date": {
+    "agree": 17,
+    "studies": 17
+   },
+   "protocolSection.statusModule.completionDateStruct.type": {
+    "agree": 16,
+    "studies": 16
+   },
+   "protocolSection.statusModule.dispFirstPostDateStruct.date": {
+    "agree": 1,
+    "studies": 1
+   },
+   "protocolSection.statusModule.dispFirstPostDateStruct.type": {
+    "agree": 1,
+    "studies": 1
+   },
+   "protocolSection.statusModule.dispFirstSubmitDate": {
+    "agree": 1,
+    "studies": 1
+   },
+   "protocolSection.statusModule.dispFirstSubmitQcDate": {
+    "agree": 1,
+    "studies": 1
+   },
+   "protocolSection.statusModule.expandedAccessInfo.hasExpandedAccess": {
+    "agree": 18,
+    "studies": 18
+   },
+   "protocolSection.statusModule.lastKnownStatus": {
+    "agree": 2,
+    "studies": 2
+   },
+   "protocolSection.statusModule.lastUpdatePostDateStruct.date": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.statusModule.lastUpdatePostDateStruct.type": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.statusModule.lastUpdateSubmitDate": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.statusModule.overallStatus": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.statusModule.primaryCompletionDateStruct.date": {
+    "agree": 16,
+    "studies": 16
+   },
+   "protocolSection.statusModule.primaryCompletionDateStruct.type": {
+    "agree": 16,
+    "studies": 16
+   },
+   "protocolSection.statusModule.resultsFirstPostDateStruct.date": {
+    "agree": 6,
+    "studies": 6
+   },
+   "protocolSection.statusModule.resultsFirstPostDateStruct.type": {
+    "agree": 6,
+    "studies": 6
+   },
+   "protocolSection.statusModule.resultsFirstSubmitDate": {
+    "agree": 6,
+    "studies": 6
+   },
+   "protocolSection.statusModule.resultsFirstSubmitQcDate": {
+    "agree": 6,
+    "studies": 6
+   },
+   "protocolSection.statusModule.startDateStruct.date": {
+    "agree": 17,
+    "studies": 17
+   },
+   "protocolSection.statusModule.startDateStruct.type": {
+    "agree": 10,
+    "studies": 10
+   },
+   "protocolSection.statusModule.statusVerifiedDate": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.statusModule.studyFirstPostDateStruct.date": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.statusModule.studyFirstPostDateStruct.type": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.statusModule.studyFirstSubmitDate": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.statusModule.studyFirstSubmitQcDate": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.statusModule.whyStopped": {
+    "agree": 1,
+    "studies": 1
+   },
+   "resultsSection.adverseEventsModule.description": {
+    "agree": 2,
+    "studies": 2
+   },
+   "resultsSection.adverseEventsModule.eventGroups[].deathsNumAffected": {
+    "agree": 3,
+    "studies": 1
+   },
+   "resultsSection.adverseEventsModule.eventGroups[].deathsNumAtRisk": {
+    "agree": 3,
+    "studies": 1
+   },
+   "resultsSection.adverseEventsModule.eventGroups[].description": {
+    "agree": 15,
+    "studies": 6
+   },
+   "resultsSection.adverseEventsModule.eventGroups[].id": {
+    "agree": 15,
+    "studies": 6
+   },
+   "resultsSection.adverseEventsModule.eventGroups[].otherNumAffected": {
+    "agree": 15,
+    "studies": 6
+   },
+   "resultsSection.adverseEventsModule.eventGroups[].otherNumAtRisk": {
+    "agree": 15,
+    "studies": 6
+   },
+   "resultsSection.adverseEventsModule.eventGroups[].seriousNumAffected": {
+    "agree": 15,
+    "studies": 6
+   },
+   "resultsSection.adverseEventsModule.eventGroups[].seriousNumAtRisk": {
+    "agree": 15,
+    "studies": 6
+   },
+   "resultsSection.adverseEventsModule.eventGroups[].title": {
+    "agree": 15,
+    "studies": 6
+   },
+   "resultsSection.adverseEventsModule.frequencyThreshold": {
+    "agree": 6,
+    "studies": 6
+   },
+   "resultsSection.adverseEventsModule.otherEvents[].assessmentType": {
+    "agree": 306,
+    "studies": 4
+   },
+   "resultsSection.adverseEventsModule.otherEvents[].organSystem": {
+    "agree": 306,
+    "studies": 4
+   },
+   "resultsSection.adverseEventsModule.otherEvents[].sourceVocabulary": {
+    "agree": 306,
+    "studies": 4
+   },
+   "resultsSection.adverseEventsModule.otherEvents[].stats[].groupId": {
+    "agree": 968,
+    "studies": 4
+   },
+   "resultsSection.adverseEventsModule.otherEvents[].stats[].numAffected": {
+    "agree": 968,
+    "studies": 4
+   },
+   "resultsSection.adverseEventsModule.otherEvents[].stats[].numAtRisk": {
+    "agree": 968,
+    "studies": 4
+   },
+   "resultsSection.adverseEventsModule.otherEvents[].stats[].numEvents": {
+    "agree": 203,
+    "studies": 3
+   },
+   "resultsSection.adverseEventsModule.otherEvents[].term": {
+    "agree": 306,
+    "studies": 4
+   },
+   "resultsSection.adverseEventsModule.seriousEvents[].assessmentType": {
+    "agree": 411,
+    "studies": 5
+   },
+   "resultsSection.adverseEventsModule.seriousEvents[].organSystem": {
+    "agree": 411,
+    "studies": 5
+   },
+   "resultsSection.adverseEventsModule.seriousEvents[].sourceVocabulary": {
+    "agree": 411,
+    "studies": 5
+   },
+   "resultsSection.adverseEventsModule.seriousEvents[].stats[].groupId": {
+    "agree": 497,
+    "studies": 5
+   },
+   "resultsSection.adverseEventsModule.seriousEvents[].stats[].numAffected": {
+    "agree": 497,
+    "studies": 5
+   },
+   "resultsSection.adverseEventsModule.seriousEvents[].stats[].numAtRisk": {
+    "agree": 497,
+    "studies": 5
+   },
+   "resultsSection.adverseEventsModule.seriousEvents[].stats[].numEvents": {
+    "agree": 46,
+    "studies": 3
+   },
+   "resultsSection.adverseEventsModule.seriousEvents[].term": {
+    "agree": 411,
+    "studies": 5
+   },
+   "resultsSection.adverseEventsModule.timeFrame": {
+    "agree": 6,
+    "studies": 6
+   },
+   "resultsSection.baselineCharacteristicsModule.denoms[].counts[].groupId": {
+    "agree": 18,
+    "studies": 6
+   },
+   "resultsSection.baselineCharacteristicsModule.denoms[].counts[].value": {
+    "agree": 18,
+    "studies": 6
+   },
+   "resultsSection.baselineCharacteristicsModule.denoms[].units": {
+    "agree": 6,
+    "studies": 6
+   },
+   "resultsSection.baselineCharacteristicsModule.groups[].description": {
+    "agree": 18,
+    "studies": 6
+   },
+   "resultsSection.baselineCharacteristicsModule.groups[].id": {
+    "agree": 18,
+    "studies": 6
+   },
+   "resultsSection.baselineCharacteristicsModule.groups[].title": {
+    "agree": 18,
+    "studies": 6
+   },
+   "resultsSection.baselineCharacteristicsModule.measures[].classes[].categories[].measurements[].groupId": {
+    "agree": 136,
+    "studies": 6
+   },
+   "resultsSection.baselineCharacteristicsModule.measures[].classes[].categories[].measurements[].lowerLimit": {
+    "agree": 3,
+    "studies": 2
+   },
+   "resultsSection.baselineCharacteristicsModule.measures[].classes[].categories[].measurements[].spread": {
+    "agree": 7,
+    "studies": 2
+   },
+   "resultsSection.baselineCharacteristicsModule.measures[].classes[].categories[].measurements[].upperLimit": {
+    "agree": 3,
+    "studies": 2
+   },
+   "resultsSection.baselineCharacteristicsModule.measures[].classes[].categories[].measurements[].value": {
+    "agree": 136,
+    "studies": 6
+   },
+   "resultsSection.baselineCharacteristicsModule.measures[].classes[].categories[].title": {
+    "agree": 38,
+    "studies": 6
+   },
+   "resultsSection.baselineCharacteristicsModule.measures[].classes[].title": {
+    "agree": 22,
+    "studies": 4
+   },
+   "resultsSection.baselineCharacteristicsModule.measures[].description": {
+    "agree": 2,
+    "studies": 1
+   },
+   "resultsSection.baselineCharacteristicsModule.measures[].dispersionType": {
+    "agree": 5,
+    "studies": 4
+   },
+   "resultsSection.baselineCharacteristicsModule.measures[].paramType": {
+    "agree": 23,
+    "studies": 6
+   },
+   "resultsSection.baselineCharacteristicsModule.measures[].title": {
+    "agree": 23,
+    "studies": 6
+   },
+   "resultsSection.baselineCharacteristicsModule.measures[].unitOfMeasure": {
+    "agree": 23,
+    "studies": 6
+   },
+   "resultsSection.baselineCharacteristicsModule.populationDescription": {
+    "agree": 5,
+    "studies": 5
+   },
+   "resultsSection.moreInfoModule.certainAgreement.otherDetails": {
+    "agree": 3,
+    "studies": 3
+   },
+   "resultsSection.moreInfoModule.certainAgreement.piSponsorEmployee": {
+    "agree": 6,
+    "studies": 6
+   },
+   "resultsSection.moreInfoModule.certainAgreement.restrictionType": {
+    "agree": 3,
+    "studies": 3
+   },
+   "resultsSection.moreInfoModule.certainAgreement.restrictiveAgreement": {
+    "agree": 4,
+    "studies": 4
+   },
+   "resultsSection.moreInfoModule.limitationsAndCaveats.description": {
+    "agree": 1,
+    "studies": 1
+   },
+   "resultsSection.moreInfoModule.pointOfContact.email": {
+    "agree": 5,
+    "studies": 5
+   },
+   "resultsSection.moreInfoModule.pointOfContact.organization": {
+    "agree": 6,
+    "studies": 6
+   },
+   "resultsSection.moreInfoModule.pointOfContact.phone": {
+    "agree": 6,
+    "studies": 6
+   },
+   "resultsSection.moreInfoModule.pointOfContact.title": {
+    "agree": 6,
+    "studies": 6
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].analyses[].ciLowerLimit": {
+    "agree": 1,
+    "studies": 1
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].analyses[].ciNumSides": {
+    "agree": 1,
+    "studies": 1
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].analyses[].ciPctValue": {
+    "agree": 1,
+    "studies": 1
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].analyses[].ciUpperLimit": {
+    "agree": 1,
+    "studies": 1
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].analyses[].groupIds[]": {
+    "agree": 5,
+    "studies": 2
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].analyses[].nonInferiorityComment": {
+    "agree": 1,
+    "studies": 1
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].analyses[].nonInferiorityType": {
+    "agree": 2,
+    "studies": 2
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].analyses[].pValue": {
+    "agree": 1,
+    "studies": 1
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].analyses[].paramType": {
+    "agree": 1,
+    "studies": 1
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].analyses[].paramValue": {
+    "agree": 1,
+    "studies": 1
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].analyses[].statisticalMethod": {
+    "agree": 2,
+    "studies": 2
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].analyses[].testedNonInferiority": {
+    "agree": 1,
+    "studies": 1
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].classes[].categories[].measurements[].comment": {
+    "agree": 2,
+    "studies": 1
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].classes[].categories[].measurements[].groupId": {
+    "agree": 269,
+    "studies": 6
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].classes[].categories[].measurements[].lowerLimit": {
+    "agree": 117,
+    "studies": 3
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].classes[].categories[].measurements[].spread": {
+    "agree": 68,
+    "studies": 3
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].classes[].categories[].measurements[].upperLimit": {
+    "agree": 117,
+    "studies": 3
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].classes[].categories[].measurements[].value": {
+    "agree": 269,
+    "studies": 6
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].classes[].title": {
+    "agree": 203,
+    "studies": 4
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].denomUnitsSelected": {
+    "agree": 9,
+    "studies": 2
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].denoms[].counts[].groupId": {
+    "agree": 133,
+    "studies": 6
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].denoms[].counts[].value": {
+    "agree": 133,
+    "studies": 6
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].denoms[].units": {
+    "agree": 98,
+    "studies": 6
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].description": {
+    "agree": 90,
+    "studies": 6
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].dispersionType": {
+    "agree": 72,
+    "studies": 5
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].groups[].description": {
+    "agree": 126,
+    "studies": 6
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].groups[].id": {
+    "agree": 127,
+    "studies": 6
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].groups[].title": {
+    "agree": 127,
+    "studies": 6
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].paramType": {
+    "agree": 92,
+    "studies": 6
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].populationDescription": {
+    "agree": 23,
+    "studies": 5
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].reportingStatus": {
+    "agree": 95,
+    "studies": 6
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].timeFrame": {
+    "agree": 95,
+    "studies": 6
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].title": {
+    "agree": 95,
+    "studies": 6
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].type": {
+    "agree": 95,
+    "studies": 6
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].typeUnitsAnalyzed": {
+    "agree": 6,
+    "studies": 1
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].unitOfMeasure": {
+    "agree": 92,
+    "studies": 6
+   },
+   "resultsSection.participantFlowModule.groups[].description": {
+    "agree": 18,
+    "studies": 6
+   },
+   "resultsSection.participantFlowModule.groups[].id": {
+    "agree": 18,
+    "studies": 6
+   },
+   "resultsSection.participantFlowModule.groups[].title": {
+    "agree": 18,
+    "studies": 6
+   },
+   "resultsSection.participantFlowModule.periods[].dropWithdraws[].reasons[].groupId": {
+    "agree": 49,
+    "studies": 3
+   },
+   "resultsSection.participantFlowModule.periods[].dropWithdraws[].reasons[].numSubjects": {
+    "agree": 49,
+    "studies": 3
+   },
+   "resultsSection.participantFlowModule.periods[].dropWithdraws[].type": {
+    "agree": 11,
+    "studies": 3
+   },
+   "resultsSection.participantFlowModule.periods[].milestones[].achievements[].groupId": {
+    "agree": 75,
+    "studies": 6
+   },
+   "resultsSection.participantFlowModule.periods[].milestones[].achievements[].numSubjects": {
+    "agree": 75,
+    "studies": 6
+   },
+   "resultsSection.participantFlowModule.periods[].milestones[].type": {
+    "agree": 23,
+    "studies": 6
+   },
+   "resultsSection.participantFlowModule.periods[].title": {
+    "agree": 6,
+    "studies": 6
+   },
+   "resultsSection.participantFlowModule.preAssignmentDetails": {
+    "agree": 1,
+    "studies": 1
+   },
+   "resultsSection.participantFlowModule.recruitmentDetails": {
+    "agree": 1,
+    "studies": 1
+   }
+  },
+  "a-leaves": {
+   "derivedSection.conditionBrowseModule.ancestors[].id": {
+    "agree": 94,
+    "studies": 14
+   },
+   "derivedSection.conditionBrowseModule.ancestors[].term": {
+    "agree": 94,
+    "studies": 14
+   },
+   "derivedSection.conditionBrowseModule.meshes[].id": {
+    "agree": 22,
+    "studies": 15
+   },
+   "derivedSection.conditionBrowseModule.meshes[].term": {
+    "agree": 22,
+    "studies": 15
+   },
+   "derivedSection.interventionBrowseModule.ancestors[].id": {
+    "agree": 138,
+    "studies": 13
+   },
+   "derivedSection.interventionBrowseModule.ancestors[].term": {
+    "agree": 138,
+    "studies": 13
+   },
+   "derivedSection.interventionBrowseModule.meshes[].id": {
+    "agree": 36,
+    "studies": 15
+   },
+   "derivedSection.interventionBrowseModule.meshes[].term": {
+    "agree": 36,
+    "studies": 15
+   },
+   "derivedSection.miscInfoModule.removedCountries[]": {
+    "agree": 4,
+    "studies": 2
+   },
+   "derivedSection.miscInfoModule.versionHolder": {
+    "agree": 20,
+    "studies": 20
+   },
+   "documentSection.largeDocumentModule.largeDocs[].date": {
+    "agree": 2,
+    "studies": 1
+   },
+   "documentSection.largeDocumentModule.largeDocs[].filename": {
+    "agree": 2,
+    "studies": 1
+   },
+   "documentSection.largeDocumentModule.largeDocs[].hasIcf": {
+    "agree": 2,
+    "studies": 1
+   },
+   "documentSection.largeDocumentModule.largeDocs[].hasProtocol": {
+    "agree": 2,
+    "studies": 1
+   },
+   "documentSection.largeDocumentModule.largeDocs[].hasSap": {
+    "agree": 2,
+    "studies": 1
+   },
+   "documentSection.largeDocumentModule.largeDocs[].label": {
+    "agree": 2,
+    "studies": 1
+   },
+   "documentSection.largeDocumentModule.largeDocs[].size": {
+    "agree": 2,
+    "studies": 1
+   },
+   "documentSection.largeDocumentModule.largeDocs[].typeAbbrev": {
+    "agree": 2,
+    "studies": 1
+   },
+   "documentSection.largeDocumentModule.largeDocs[].uploadDate": {
+    "agree": 2,
+    "studies": 1
+   },
+   "hasResults": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.armsInterventionsModule.armGroups[].description": {
+    "agree": 28,
+    "studies": 13
+   },
+   "protocolSection.armsInterventionsModule.armGroups[].interventionNames[]": {
+    "agree": 43,
+    "studies": 13
+   },
+   "protocolSection.armsInterventionsModule.armGroups[].label": {
+    "agree": 28,
+    "studies": 13
+   },
+   "protocolSection.armsInterventionsModule.armGroups[].type": {
+    "agree": 23,
+    "studies": 10
+   },
+   "protocolSection.armsInterventionsModule.interventions[].armGroupLabels[]": {
+    "agree": 43,
+    "studies": 13
+   },
+   "protocolSection.armsInterventionsModule.interventions[].description": {
+    "agree": 28,
+    "studies": 14
+   },
+   "protocolSection.armsInterventionsModule.interventions[].name": {
+    "agree": 40,
+    "studies": 19
+   },
+   "protocolSection.armsInterventionsModule.interventions[].otherNames[]": {
+    "agree": 20,
+    "studies": 7
+   },
+   "protocolSection.armsInterventionsModule.interventions[].type": {
+    "agree": 40,
+    "studies": 19
+   },
+   "protocolSection.conditionsModule.conditions[]": {
+    "agree": 37,
+    "studies": 20
+   },
+   "protocolSection.conditionsModule.keywords[]": {
+    "agree": 38,
+    "studies": 13
+   },
+   "protocolSection.contactsLocationsModule.centralContacts[].email": {
+    "agree": 10,
+    "studies": 7
+   },
+   "protocolSection.contactsLocationsModule.centralContacts[].name": {
+    "agree": 10,
+    "studies": 7
+   },
+   "protocolSection.contactsLocationsModule.centralContacts[].phone": {
+    "agree": 10,
+    "studies": 7
+   },
+   "protocolSection.contactsLocationsModule.centralContacts[].role": {
+    "agree": 10,
+    "studies": 7
+   },
+   "protocolSection.contactsLocationsModule.locations[].city": {
+    "agree": 154,
+    "studies": 17
+   },
+   "protocolSection.contactsLocationsModule.locations[].contacts[].email": {
+    "agree": 4,
+    "studies": 4
+   },
+   "protocolSection.contactsLocationsModule.locations[].contacts[].name": {
+    "agree": 68,
+    "studies": 4
+   },
+   "protocolSection.contactsLocationsModule.locations[].contacts[].phone": {
+    "agree": 4,
+    "studies": 4
+   },
+   "protocolSection.contactsLocationsModule.locations[].contacts[].role": {
+    "agree": 68,
+    "studies": 4
+   },
+   "protocolSection.contactsLocationsModule.locations[].country": {
+    "agree": 154,
+    "studies": 17
+   },
+   "protocolSection.contactsLocationsModule.locations[].facility": {
+    "agree": 154,
+    "studies": 17
+   },
+   "protocolSection.contactsLocationsModule.locations[].geoPoint.lat": {
+    "agree": 152,
+    "studies": 17
+   },
+   "protocolSection.contactsLocationsModule.locations[].geoPoint.lon": {
+    "agree": 152,
+    "studies": 17
+   },
+   "protocolSection.contactsLocationsModule.locations[].state": {
+    "agree": 61,
+    "studies": 15
+   },
+   "protocolSection.contactsLocationsModule.locations[].status": {
+    "agree": 65,
+    "studies": 4
+   },
+   "protocolSection.contactsLocationsModule.locations[].zip": {
+    "agree": 151,
+    "studies": 15
+   },
+   "protocolSection.contactsLocationsModule.overallOfficials[].affiliation": {
+    "agree": 12,
+    "studies": 11
+   },
+   "protocolSection.contactsLocationsModule.overallOfficials[].name": {
+    "agree": 12,
+    "studies": 11
+   },
+   "protocolSection.contactsLocationsModule.overallOfficials[].role": {
+    "agree": 12,
+    "studies": 11
+   },
+   "protocolSection.descriptionModule.briefSummary": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.descriptionModule.detailedDescription": {
+    "agree": 13,
+    "studies": 13
+   },
+   "protocolSection.designModule.bioSpec.description": {
+    "agree": 1,
+    "studies": 1
+   },
+   "protocolSection.designModule.bioSpec.retention": {
+    "agree": 1,
+    "studies": 1
+   },
+   "protocolSection.designModule.designInfo.allocation": {
+    "agree": 13,
+    "studies": 13
+   },
+   "protocolSection.designModule.designInfo.interventionModel": {
+    "agree": 13,
+    "studies": 13
+   },
+   "protocolSection.designModule.designInfo.maskingInfo.masking": {
+    "agree": 13,
+    "studies": 13
+   },
+   "protocolSection.designModule.designInfo.maskingInfo.maskingDescription": {
+    "agree": 1,
+    "studies": 1
+   },
+   "protocolSection.designModule.designInfo.maskingInfo.whoMasked[]": {
+    "agree": 3,
+    "studies": 3
+   },
+   "protocolSection.designModule.designInfo.observationalModel": {
+    "agree": 4,
+    "studies": 4
+   },
+   "protocolSection.designModule.designInfo.primaryPurpose": {
+    "agree": 14,
+    "studies": 14
+   },
+   "protocolSection.designModule.designInfo.timePerspective": {
+    "agree": 4,
+    "studies": 4
+   },
+   "protocolSection.designModule.enrollmentInfo.count": {
+    "agree": 18,
+    "studies": 18
+   },
+   "protocolSection.designModule.enrollmentInfo.type": {
+    "agree": 16,
+    "studies": 16
+   },
+   "protocolSection.designModule.expandedAccessTypes.individual": {
+    "agree": 1,
+    "studies": 1
+   },
+   "protocolSection.designModule.patientRegistry": {
+    "agree": 3,
+    "studies": 3
+   },
+   "protocolSection.designModule.phases[]": {
+    "agree": 16,
+    "studies": 14
+   },
+   "protocolSection.designModule.studyType": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.designModule.targetDuration": {
+    "agree": 1,
+    "studies": 1
+   },
+   "protocolSection.eligibilityModule.eligibilityCriteria": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.eligibilityModule.healthyVolunteers": {
+    "agree": 18,
+    "studies": 18
+   },
+   "protocolSection.eligibilityModule.maximumAge": {
+    "agree": 6,
+    "studies": 6
+   },
+   "protocolSection.eligibilityModule.minimumAge": {
+    "agree": 16,
+    "studies": 16
+   },
+   "protocolSection.eligibilityModule.samplingMethod": {
+    "agree": 4,
+    "studies": 4
+   },
+   "protocolSection.eligibilityModule.sex": {
+    "agree": 19,
+    "studies": 19
+   },
+   "protocolSection.eligibilityModule.stdAges[]": {
+    "agree": 42,
+    "studies": 20
+   },
+   "protocolSection.eligibilityModule.studyPopulation": {
+    "agree": 4,
+    "studies": 4
+   },
+   "protocolSection.identificationModule.acronym": {
+    "agree": 2,
+    "studies": 2
+   },
+   "protocolSection.identificationModule.briefTitle": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.identificationModule.nctId": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.identificationModule.nctIdAliases[]": {
+    "agree": 1,
+    "studies": 1
+   },
+   "protocolSection.identificationModule.officialTitle": {
+    "agree": 19,
+    "studies": 19
+   },
+   "protocolSection.identificationModule.orgStudyIdInfo.id": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.identificationModule.organization.class": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.identificationModule.organization.fullName": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.identificationModule.secondaryIdInfos[].domain": {
+    "agree": 3,
+    "studies": 3
+   },
+   "protocolSection.identificationModule.secondaryIdInfos[].id": {
+    "agree": 5,
+    "studies": 5
+   },
+   "protocolSection.identificationModule.secondaryIdInfos[].type": {
+    "agree": 4,
+    "studies": 4
+   },
+   "protocolSection.ipdSharingStatementModule.accessCriteria": {
+    "agree": 1,
+    "studies": 1
+   },
+   "protocolSection.ipdSharingStatementModule.description": {
+    "agree": 2,
+    "studies": 2
+   },
+   "protocolSection.ipdSharingStatementModule.infoTypes[]": {
+    "agree": 4,
+    "studies": 1
+   },
+   "protocolSection.ipdSharingStatementModule.ipdSharing": {
+    "agree": 7,
+    "studies": 7
+   },
+   "protocolSection.ipdSharingStatementModule.url": {
+    "agree": 1,
+    "studies": 1
+   },
+   "protocolSection.outcomesModule.primaryOutcomes[].description": {
+    "agree": 21,
+    "studies": 12
+   },
+   "protocolSection.outcomesModule.primaryOutcomes[].measure": {
+    "agree": 30,
+    "studies": 15
+   },
+   "protocolSection.outcomesModule.primaryOutcomes[].timeFrame": {
+    "agree": 29,
+    "studies": 14
+   },
+   "protocolSection.outcomesModule.secondaryOutcomes[].description": {
+    "agree": 104,
+    "studies": 9
+   },
+   "protocolSection.outcomesModule.secondaryOutcomes[].measure": {
+    "agree": 114,
+    "studies": 13
+   },
+   "protocolSection.outcomesModule.secondaryOutcomes[].timeFrame": {
+    "agree": 113,
+    "studies": 12
+   },
+   "protocolSection.oversightModule.isFdaRegulatedDevice": {
+    "agree": 7,
+    "studies": 7
+   },
+   "protocolSection.oversightModule.isFdaRegulatedDrug": {
+    "agree": 7,
+    "studies": 7
+   },
+   "protocolSection.oversightModule.isUsExport": {
+    "agree": 1,
+    "studies": 1
+   },
+   "protocolSection.oversightModule.oversightHasDmc": {
+    "agree": 12,
+    "studies": 12
+   },
+   "protocolSection.referencesModule.references[].citation": {
+    "agree": 12,
+    "studies": 4
+   },
+   "protocolSection.referencesModule.references[].pmid": {
+    "agree": 11,
+    "studies": 4
+   },
+   "protocolSection.referencesModule.references[].type": {
+    "agree": 12,
+    "studies": 4
+   },
+   "protocolSection.referencesModule.seeAlsoLinks[].label": {
+    "agree": 3,
+    "studies": 3
+   },
+   "protocolSection.referencesModule.seeAlsoLinks[].url": {
+    "agree": 3,
+    "studies": 3
+   },
+   "protocolSection.sponsorCollaboratorsModule.collaborators[].class": {
+    "agree": 4,
+    "studies": 3
+   },
+   "protocolSection.sponsorCollaboratorsModule.collaborators[].name": {
+    "agree": 4,
+    "studies": 3
+   },
+   "protocolSection.sponsorCollaboratorsModule.leadSponsor.class": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.sponsorCollaboratorsModule.leadSponsor.name": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.sponsorCollaboratorsModule.responsibleParty.investigatorAffiliation": {
+    "agree": 4,
+    "studies": 4
+   },
+   "protocolSection.sponsorCollaboratorsModule.responsibleParty.investigatorFullName": {
+    "agree": 4,
+    "studies": 4
+   },
+   "protocolSection.sponsorCollaboratorsModule.responsibleParty.investigatorTitle": {
+    "agree": 4,
+    "studies": 4
+   },
+   "protocolSection.sponsorCollaboratorsModule.responsibleParty.oldNameTitle": {
+    "agree": 1,
+    "studies": 1
+   },
+   "protocolSection.sponsorCollaboratorsModule.responsibleParty.oldOrganization": {
+    "agree": 1,
+    "studies": 1
+   },
+   "protocolSection.sponsorCollaboratorsModule.responsibleParty.type": {
+    "agree": 16,
+    "studies": 16
+   },
+   "protocolSection.statusModule.completionDateStruct.date": {
+    "agree": 17,
+    "studies": 17
+   },
+   "protocolSection.statusModule.completionDateStruct.type": {
+    "agree": 16,
+    "studies": 16
+   },
+   "protocolSection.statusModule.dispFirstPostDateStruct.date": {
+    "agree": 1,
+    "studies": 1
+   },
+   "protocolSection.statusModule.dispFirstPostDateStruct.type": {
+    "agree": 1,
+    "studies": 1
+   },
+   "protocolSection.statusModule.dispFirstSubmitDate": {
+    "agree": 1,
+    "studies": 1
+   },
+   "protocolSection.statusModule.dispFirstSubmitQcDate": {
+    "agree": 1,
+    "studies": 1
+   },
+   "protocolSection.statusModule.expandedAccessInfo.hasExpandedAccess": {
+    "agree": 18,
+    "studies": 18
+   },
+   "protocolSection.statusModule.lastKnownStatus": {
+    "agree": 2,
+    "studies": 2
+   },
+   "protocolSection.statusModule.lastUpdatePostDateStruct.date": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.statusModule.lastUpdatePostDateStruct.type": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.statusModule.lastUpdateSubmitDate": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.statusModule.overallStatus": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.statusModule.primaryCompletionDateStruct.date": {
+    "agree": 16,
+    "studies": 16
+   },
+   "protocolSection.statusModule.primaryCompletionDateStruct.type": {
+    "agree": 16,
+    "studies": 16
+   },
+   "protocolSection.statusModule.resultsFirstPostDateStruct.date": {
+    "agree": 6,
+    "studies": 6
+   },
+   "protocolSection.statusModule.resultsFirstPostDateStruct.type": {
+    "agree": 6,
+    "studies": 6
+   },
+   "protocolSection.statusModule.resultsFirstSubmitDate": {
+    "agree": 6,
+    "studies": 6
+   },
+   "protocolSection.statusModule.resultsFirstSubmitQcDate": {
+    "agree": 6,
+    "studies": 6
+   },
+   "protocolSection.statusModule.startDateStruct.date": {
+    "agree": 17,
+    "studies": 17
+   },
+   "protocolSection.statusModule.startDateStruct.type": {
+    "agree": 10,
+    "studies": 10
+   },
+   "protocolSection.statusModule.statusVerifiedDate": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.statusModule.studyFirstPostDateStruct.date": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.statusModule.studyFirstPostDateStruct.type": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.statusModule.studyFirstSubmitDate": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.statusModule.studyFirstSubmitQcDate": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.statusModule.whyStopped": {
+    "agree": 1,
+    "studies": 1
+   },
+   "resultsSection.adverseEventsModule.description": {
+    "agree": 2,
+    "studies": 2
+   },
+   "resultsSection.adverseEventsModule.eventGroups[].deathsNumAffected": {
+    "agree": 3,
+    "studies": 1
+   },
+   "resultsSection.adverseEventsModule.eventGroups[].deathsNumAtRisk": {
+    "agree": 3,
+    "studies": 1
+   },
+   "resultsSection.adverseEventsModule.eventGroups[].description": {
+    "agree": 15,
+    "studies": 6
+   },
+   "resultsSection.adverseEventsModule.eventGroups[].id": {
+    "agree": 15,
+    "studies": 6
+   },
+   "resultsSection.adverseEventsModule.eventGroups[].otherNumAffected": {
+    "agree": 15,
+    "studies": 6
+   },
+   "resultsSection.adverseEventsModule.eventGroups[].otherNumAtRisk": {
+    "agree": 15,
+    "studies": 6
+   },
+   "resultsSection.adverseEventsModule.eventGroups[].seriousNumAffected": {
+    "agree": 15,
+    "studies": 6
+   },
+   "resultsSection.adverseEventsModule.eventGroups[].seriousNumAtRisk": {
+    "agree": 15,
+    "studies": 6
+   },
+   "resultsSection.adverseEventsModule.eventGroups[].title": {
+    "agree": 15,
+    "studies": 6
+   },
+   "resultsSection.adverseEventsModule.frequencyThreshold": {
+    "agree": 6,
+    "studies": 6
+   },
+   "resultsSection.adverseEventsModule.otherEvents[].assessmentType": {
+    "agree": 306,
+    "studies": 4
+   },
+   "resultsSection.adverseEventsModule.otherEvents[].organSystem": {
+    "agree": 306,
+    "studies": 4
+   },
+   "resultsSection.adverseEventsModule.otherEvents[].sourceVocabulary": {
+    "agree": 306,
+    "studies": 4
+   },
+   "resultsSection.adverseEventsModule.otherEvents[].stats[].groupId": {
+    "agree": 968,
+    "studies": 4
+   },
+   "resultsSection.adverseEventsModule.otherEvents[].stats[].numAffected": {
+    "agree": 968,
+    "studies": 4
+   },
+   "resultsSection.adverseEventsModule.otherEvents[].stats[].numAtRisk": {
+    "agree": 968,
+    "studies": 4
+   },
+   "resultsSection.adverseEventsModule.otherEvents[].stats[].numEvents": {
+    "agree": 203,
+    "studies": 3
+   },
+   "resultsSection.adverseEventsModule.otherEvents[].term": {
+    "agree": 306,
+    "studies": 4
+   },
+   "resultsSection.adverseEventsModule.seriousEvents[].assessmentType": {
+    "agree": 411,
+    "studies": 5
+   },
+   "resultsSection.adverseEventsModule.seriousEvents[].organSystem": {
+    "agree": 411,
+    "studies": 5
+   },
+   "resultsSection.adverseEventsModule.seriousEvents[].sourceVocabulary": {
+    "agree": 411,
+    "studies": 5
+   },
+   "resultsSection.adverseEventsModule.seriousEvents[].stats[].groupId": {
+    "agree": 497,
+    "studies": 5
+   },
+   "resultsSection.adverseEventsModule.seriousEvents[].stats[].numAffected": {
+    "agree": 497,
+    "studies": 5
+   },
+   "resultsSection.adverseEventsModule.seriousEvents[].stats[].numAtRisk": {
+    "agree": 497,
+    "studies": 5
+   },
+   "resultsSection.adverseEventsModule.seriousEvents[].stats[].numEvents": {
+    "agree": 46,
+    "studies": 3
+   },
+   "resultsSection.adverseEventsModule.seriousEvents[].term": {
+    "agree": 411,
+    "studies": 5
+   },
+   "resultsSection.adverseEventsModule.timeFrame": {
+    "agree": 6,
+    "studies": 6
+   },
+   "resultsSection.baselineCharacteristicsModule.denoms[].counts[].groupId": {
+    "agree": 18,
+    "studies": 6
+   },
+   "resultsSection.baselineCharacteristicsModule.denoms[].counts[].value": {
+    "agree": 18,
+    "studies": 6
+   },
+   "resultsSection.baselineCharacteristicsModule.denoms[].units": {
+    "agree": 6,
+    "studies": 6
+   },
+   "resultsSection.baselineCharacteristicsModule.groups[].description": {
+    "agree": 18,
+    "studies": 6
+   },
+   "resultsSection.baselineCharacteristicsModule.groups[].id": {
+    "agree": 18,
+    "studies": 6
+   },
+   "resultsSection.baselineCharacteristicsModule.groups[].title": {
+    "agree": 18,
+    "studies": 6
+   },
+   "resultsSection.baselineCharacteristicsModule.measures[].classes[].categories[].measurements[].groupId": {
+    "agree": 136,
+    "studies": 6
+   },
+   "resultsSection.baselineCharacteristicsModule.measures[].classes[].categories[].measurements[].lowerLimit": {
+    "agree": 3,
+    "studies": 2
+   },
+   "resultsSection.baselineCharacteristicsModule.measures[].classes[].categories[].measurements[].spread": {
+    "agree": 7,
+    "studies": 2
+   },
+   "resultsSection.baselineCharacteristicsModule.measures[].classes[].categories[].measurements[].upperLimit": {
+    "agree": 3,
+    "studies": 2
+   },
+   "resultsSection.baselineCharacteristicsModule.measures[].classes[].categories[].measurements[].value": {
+    "agree": 136,
+    "studies": 6
+   },
+   "resultsSection.baselineCharacteristicsModule.measures[].classes[].categories[].title": {
+    "agree": 38,
+    "studies": 6
+   },
+   "resultsSection.baselineCharacteristicsModule.measures[].classes[].title": {
+    "agree": 22,
+    "studies": 4
+   },
+   "resultsSection.baselineCharacteristicsModule.measures[].description": {
+    "agree": 2,
+    "studies": 1
+   },
+   "resultsSection.baselineCharacteristicsModule.measures[].dispersionType": {
+    "agree": 5,
+    "studies": 4
+   },
+   "resultsSection.baselineCharacteristicsModule.measures[].paramType": {
+    "agree": 23,
+    "studies": 6
+   },
+   "resultsSection.baselineCharacteristicsModule.measures[].title": {
+    "agree": 23,
+    "studies": 6
+   },
+   "resultsSection.baselineCharacteristicsModule.measures[].unitOfMeasure": {
+    "agree": 23,
+    "studies": 6
+   },
+   "resultsSection.baselineCharacteristicsModule.populationDescription": {
+    "agree": 5,
+    "studies": 5
+   },
+   "resultsSection.moreInfoModule.certainAgreement.otherDetails": {
+    "agree": 3,
+    "studies": 3
+   },
+   "resultsSection.moreInfoModule.certainAgreement.piSponsorEmployee": {
+    "agree": 6,
+    "studies": 6
+   },
+   "resultsSection.moreInfoModule.certainAgreement.restrictionType": {
+    "agree": 3,
+    "studies": 3
+   },
+   "resultsSection.moreInfoModule.certainAgreement.restrictiveAgreement": {
+    "agree": 4,
+    "studies": 4
+   },
+   "resultsSection.moreInfoModule.limitationsAndCaveats.description": {
+    "agree": 1,
+    "studies": 1
+   },
+   "resultsSection.moreInfoModule.pointOfContact.email": {
+    "agree": 5,
+    "studies": 5
+   },
+   "resultsSection.moreInfoModule.pointOfContact.organization": {
+    "agree": 6,
+    "studies": 6
+   },
+   "resultsSection.moreInfoModule.pointOfContact.phone": {
+    "agree": 6,
+    "studies": 6
+   },
+   "resultsSection.moreInfoModule.pointOfContact.title": {
+    "agree": 6,
+    "studies": 6
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].analyses[].ciLowerLimit": {
+    "agree": 1,
+    "studies": 1
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].analyses[].ciNumSides": {
+    "agree": 1,
+    "studies": 1
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].analyses[].ciPctValue": {
+    "agree": 1,
+    "studies": 1
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].analyses[].ciUpperLimit": {
+    "agree": 1,
+    "studies": 1
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].analyses[].groupIds[]": {
+    "agree": 5,
+    "studies": 2
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].analyses[].nonInferiorityComment": {
+    "agree": 1,
+    "studies": 1
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].analyses[].nonInferiorityType": {
+    "agree": 2,
+    "studies": 2
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].analyses[].pValue": {
+    "agree": 1,
+    "studies": 1
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].analyses[].paramType": {
+    "agree": 1,
+    "studies": 1
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].analyses[].paramValue": {
+    "agree": 1,
+    "studies": 1
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].analyses[].statisticalMethod": {
+    "agree": 2,
+    "studies": 2
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].analyses[].testedNonInferiority": {
+    "agree": 1,
+    "studies": 1
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].classes[].categories[].measurements[].comment": {
+    "agree": 2,
+    "studies": 1
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].classes[].categories[].measurements[].groupId": {
+    "agree": 269,
+    "studies": 6
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].classes[].categories[].measurements[].lowerLimit": {
+    "agree": 117,
+    "studies": 3
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].classes[].categories[].measurements[].spread": {
+    "agree": 68,
+    "studies": 3
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].classes[].categories[].measurements[].upperLimit": {
+    "agree": 117,
+    "studies": 3
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].classes[].categories[].measurements[].value": {
+    "agree": 269,
+    "studies": 6
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].classes[].title": {
+    "agree": 203,
+    "studies": 4
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].denomUnitsSelected": {
+    "agree": 9,
+    "studies": 2
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].denoms[].counts[].groupId": {
+    "agree": 133,
+    "studies": 6
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].denoms[].counts[].value": {
+    "agree": 133,
+    "studies": 6
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].denoms[].units": {
+    "agree": 98,
+    "studies": 6
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].description": {
+    "agree": 90,
+    "studies": 6
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].dispersionType": {
+    "agree": 72,
+    "studies": 5
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].groups[].description": {
+    "agree": 126,
+    "studies": 6
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].groups[].id": {
+    "agree": 127,
+    "studies": 6
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].groups[].title": {
+    "agree": 127,
+    "studies": 6
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].paramType": {
+    "agree": 92,
+    "studies": 6
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].populationDescription": {
+    "agree": 23,
+    "studies": 5
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].reportingStatus": {
+    "agree": 95,
+    "studies": 6
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].timeFrame": {
+    "agree": 95,
+    "studies": 6
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].title": {
+    "agree": 95,
+    "studies": 6
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].type": {
+    "agree": 95,
+    "studies": 6
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].typeUnitsAnalyzed": {
+    "agree": 6,
+    "studies": 1
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].unitOfMeasure": {
+    "agree": 92,
+    "studies": 6
+   },
+   "resultsSection.participantFlowModule.groups[].description": {
+    "agree": 18,
+    "studies": 6
+   },
+   "resultsSection.participantFlowModule.groups[].id": {
+    "agree": 18,
+    "studies": 6
+   },
+   "resultsSection.participantFlowModule.groups[].title": {
+    "agree": 18,
+    "studies": 6
+   },
+   "resultsSection.participantFlowModule.periods[].dropWithdraws[].reasons[].groupId": {
+    "agree": 49,
+    "studies": 3
+   },
+   "resultsSection.participantFlowModule.periods[].dropWithdraws[].reasons[].numSubjects": {
+    "agree": 49,
+    "studies": 3
+   },
+   "resultsSection.participantFlowModule.periods[].dropWithdraws[].type": {
+    "agree": 11,
+    "studies": 3
+   },
+   "resultsSection.participantFlowModule.periods[].milestones[].achievements[].groupId": {
+    "agree": 75,
+    "studies": 6
+   },
+   "resultsSection.participantFlowModule.periods[].milestones[].achievements[].numSubjects": {
+    "agree": 75,
+    "studies": 6
+   },
+   "resultsSection.participantFlowModule.periods[].milestones[].type": {
+    "agree": 23,
+    "studies": 6
+   },
+   "resultsSection.participantFlowModule.periods[].title": {
+    "agree": 6,
+    "studies": 6
+   },
+   "resultsSection.participantFlowModule.preAssignmentDetails": {
+    "agree": 1,
+    "studies": 1
+   },
+   "resultsSection.participantFlowModule.recruitmentDetails": {
+    "agree": 1,
+    "studies": 1
+   }
+  },
+  "a-title": {
+   "derivedSection.conditionBrowseModule.ancestors[].id": {
+    "agree": 94,
+    "studies": 14
+   },
+   "derivedSection.conditionBrowseModule.ancestors[].term": {
+    "agree": 94,
+    "studies": 14
+   },
+   "derivedSection.conditionBrowseModule.meshes[].id": {
+    "agree": 22,
+    "studies": 15
+   },
+   "derivedSection.conditionBrowseModule.meshes[].term": {
+    "agree": 22,
+    "studies": 15
+   },
+   "derivedSection.interventionBrowseModule.ancestors[].id": {
+    "agree": 138,
+    "studies": 13
+   },
+   "derivedSection.interventionBrowseModule.ancestors[].term": {
+    "agree": 138,
+    "studies": 13
+   },
+   "derivedSection.interventionBrowseModule.meshes[].id": {
+    "agree": 36,
+    "studies": 15
+   },
+   "derivedSection.interventionBrowseModule.meshes[].term": {
+    "agree": 36,
+    "studies": 15
+   },
+   "derivedSection.miscInfoModule.removedCountries[]": {
+    "agree": 4,
+    "studies": 2
+   },
+   "derivedSection.miscInfoModule.versionHolder": {
+    "agree": 20,
+    "studies": 20
+   },
+   "documentSection.largeDocumentModule.largeDocs[].date": {
+    "agree": 2,
+    "studies": 1
+   },
+   "documentSection.largeDocumentModule.largeDocs[].filename": {
+    "agree": 2,
+    "studies": 1
+   },
+   "documentSection.largeDocumentModule.largeDocs[].hasIcf": {
+    "agree": 2,
+    "studies": 1
+   },
+   "documentSection.largeDocumentModule.largeDocs[].hasProtocol": {
+    "agree": 2,
+    "studies": 1
+   },
+   "documentSection.largeDocumentModule.largeDocs[].hasSap": {
+    "agree": 2,
+    "studies": 1
+   },
+   "documentSection.largeDocumentModule.largeDocs[].label": {
+    "agree": 2,
+    "studies": 1
+   },
+   "documentSection.largeDocumentModule.largeDocs[].size": {
+    "agree": 2,
+    "studies": 1
+   },
+   "documentSection.largeDocumentModule.largeDocs[].typeAbbrev": {
+    "agree": 2,
+    "studies": 1
+   },
+   "documentSection.largeDocumentModule.largeDocs[].uploadDate": {
+    "agree": 2,
+    "studies": 1
+   },
+   "hasResults": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.armsInterventionsModule.armGroups[].description": {
+    "agree": 28,
+    "studies": 13
+   },
+   "protocolSection.armsInterventionsModule.armGroups[].interventionNames[]": {
+    "agree": 43,
+    "studies": 13
+   },
+   "protocolSection.armsInterventionsModule.armGroups[].label": {
+    "agree": 28,
+    "studies": 13
+   },
+   "protocolSection.armsInterventionsModule.armGroups[].type": {
+    "agree": 23,
+    "studies": 10
+   },
+   "protocolSection.armsInterventionsModule.interventions[].armGroupLabels[]": {
+    "agree": 43,
+    "studies": 13
+   },
+   "protocolSection.armsInterventionsModule.interventions[].description": {
+    "agree": 28,
+    "studies": 14
+   },
+   "protocolSection.armsInterventionsModule.interventions[].name": {
+    "agree": 40,
+    "studies": 19
+   },
+   "protocolSection.armsInterventionsModule.interventions[].otherNames[]": {
+    "agree": 20,
+    "studies": 7
+   },
+   "protocolSection.armsInterventionsModule.interventions[].type": {
+    "agree": 40,
+    "studies": 19
+   },
+   "protocolSection.conditionsModule.conditions[]": {
+    "agree": 37,
+    "studies": 20
+   },
+   "protocolSection.conditionsModule.keywords[]": {
+    "agree": 38,
+    "studies": 13
+   },
+   "protocolSection.contactsLocationsModule.centralContacts[].email": {
+    "agree": 10,
+    "studies": 7
+   },
+   "protocolSection.contactsLocationsModule.centralContacts[].name": {
+    "agree": 10,
+    "studies": 7
+   },
+   "protocolSection.contactsLocationsModule.centralContacts[].phone": {
+    "agree": 10,
+    "studies": 7
+   },
+   "protocolSection.contactsLocationsModule.centralContacts[].role": {
+    "agree": 10,
+    "studies": 7
+   },
+   "protocolSection.contactsLocationsModule.locations[].city": {
+    "agree": 154,
+    "studies": 17
+   },
+   "protocolSection.contactsLocationsModule.locations[].contacts[].email": {
+    "agree": 4,
+    "studies": 4
+   },
+   "protocolSection.contactsLocationsModule.locations[].contacts[].name": {
+    "agree": 68,
+    "studies": 4
+   },
+   "protocolSection.contactsLocationsModule.locations[].contacts[].phone": {
+    "agree": 4,
+    "studies": 4
+   },
+   "protocolSection.contactsLocationsModule.locations[].contacts[].role": {
+    "agree": 68,
+    "studies": 4
+   },
+   "protocolSection.contactsLocationsModule.locations[].country": {
+    "agree": 154,
+    "studies": 17
+   },
+   "protocolSection.contactsLocationsModule.locations[].facility": {
+    "agree": 154,
+    "studies": 17
+   },
+   "protocolSection.contactsLocationsModule.locations[].geoPoint.lat": {
+    "not_comparable": 152,
+    "studies": 17
+   },
+   "protocolSection.contactsLocationsModule.locations[].geoPoint.lon": {
+    "not_comparable": 152,
+    "studies": 17
+   },
+   "protocolSection.contactsLocationsModule.locations[].state": {
+    "agree": 61,
+    "studies": 15
+   },
+   "protocolSection.contactsLocationsModule.locations[].status": {
+    "agree": 65,
+    "studies": 4
+   },
+   "protocolSection.contactsLocationsModule.locations[].zip": {
+    "agree": 151,
+    "studies": 15
+   },
+   "protocolSection.contactsLocationsModule.overallOfficials[].affiliation": {
+    "agree": 12,
+    "studies": 11
+   },
+   "protocolSection.contactsLocationsModule.overallOfficials[].name": {
+    "agree": 12,
+    "studies": 11
+   },
+   "protocolSection.contactsLocationsModule.overallOfficials[].role": {
+    "agree": 12,
+    "studies": 11
+   },
+   "protocolSection.descriptionModule.briefSummary": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.descriptionModule.detailedDescription": {
+    "agree": 13,
+    "studies": 13
+   },
+   "protocolSection.designModule.bioSpec.description": {
+    "agree": 1,
+    "studies": 1
+   },
+   "protocolSection.designModule.bioSpec.retention": {
+    "agree": 1,
+    "studies": 1
+   },
+   "protocolSection.designModule.designInfo.allocation": {
+    "agree": 13,
+    "studies": 13
+   },
+   "protocolSection.designModule.designInfo.interventionModel": {
+    "agree": 13,
+    "studies": 13
+   },
+   "protocolSection.designModule.designInfo.maskingInfo.masking": {
+    "agree": 13,
+    "studies": 13
+   },
+   "protocolSection.designModule.designInfo.maskingInfo.maskingDescription": {
+    "agree": 1,
+    "studies": 1
+   },
+   "protocolSection.designModule.designInfo.maskingInfo.whoMasked[]": {
+    "not_comparable": 3,
+    "studies": 3
+   },
+   "protocolSection.designModule.designInfo.observationalModel": {
+    "agree": 4,
+    "studies": 4
+   },
+   "protocolSection.designModule.designInfo.primaryPurpose": {
+    "agree": 14,
+    "studies": 14
+   },
+   "protocolSection.designModule.designInfo.timePerspective": {
+    "agree": 4,
+    "studies": 4
+   },
+   "protocolSection.designModule.enrollmentInfo.count": {
+    "agree": 18,
+    "studies": 18
+   },
+   "protocolSection.designModule.enrollmentInfo.type": {
+    "agree": 16,
+    "studies": 16
+   },
+   "protocolSection.designModule.expandedAccessTypes.individual": {
+    "agree": 1,
+    "studies": 1
+   },
+   "protocolSection.designModule.patientRegistry": {
+    "agree": 3,
+    "studies": 3
+   },
+   "protocolSection.designModule.phases[]": {
+    "agree": 16,
+    "studies": 14
+   },
+   "protocolSection.designModule.studyType": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.designModule.targetDuration": {
+    "agree": 1,
+    "studies": 1
+   },
+   "protocolSection.eligibilityModule.eligibilityCriteria": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.eligibilityModule.healthyVolunteers": {
+    "agree": 18,
+    "studies": 18
+   },
+   "protocolSection.eligibilityModule.maximumAge": {
+    "agree": 6,
+    "studies": 6
+   },
+   "protocolSection.eligibilityModule.minimumAge": {
+    "agree": 16,
+    "studies": 16
+   },
+   "protocolSection.eligibilityModule.samplingMethod": {
+    "agree": 4,
+    "studies": 4
+   },
+   "protocolSection.eligibilityModule.sex": {
+    "agree": 19,
+    "studies": 19
+   },
+   "protocolSection.eligibilityModule.stdAges[]": {
+    "agree": 42,
+    "studies": 20
+   },
+   "protocolSection.eligibilityModule.studyPopulation": {
+    "agree": 4,
+    "studies": 4
+   },
+   "protocolSection.identificationModule.acronym": {
+    "agree": 2,
+    "studies": 2
+   },
+   "protocolSection.identificationModule.briefTitle": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.identificationModule.nctId": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.identificationModule.nctIdAliases[]": {
+    "agree": 1,
+    "studies": 1
+   },
+   "protocolSection.identificationModule.officialTitle": {
+    "agree": 19,
+    "studies": 19
+   },
+   "protocolSection.identificationModule.orgStudyIdInfo.id": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.identificationModule.organization.class": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.identificationModule.organization.fullName": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.identificationModule.secondaryIdInfos[].domain": {
+    "agree": 3,
+    "studies": 3
+   },
+   "protocolSection.identificationModule.secondaryIdInfos[].id": {
+    "agree": 5,
+    "studies": 5
+   },
+   "protocolSection.identificationModule.secondaryIdInfos[].type": {
+    "agree": 4,
+    "studies": 4
+   },
+   "protocolSection.ipdSharingStatementModule.accessCriteria": {
+    "agree": 1,
+    "studies": 1
+   },
+   "protocolSection.ipdSharingStatementModule.description": {
+    "agree": 2,
+    "studies": 2
+   },
+   "protocolSection.ipdSharingStatementModule.infoTypes[]": {
+    "agree": 4,
+    "studies": 1
+   },
+   "protocolSection.ipdSharingStatementModule.ipdSharing": {
+    "agree": 7,
+    "studies": 7
+   },
+   "protocolSection.ipdSharingStatementModule.url": {
+    "agree": 1,
+    "studies": 1
+   },
+   "protocolSection.outcomesModule.primaryOutcomes[].description": {
+    "agree": 21,
+    "studies": 12
+   },
+   "protocolSection.outcomesModule.primaryOutcomes[].measure": {
+    "agree": 30,
+    "studies": 15
+   },
+   "protocolSection.outcomesModule.primaryOutcomes[].timeFrame": {
+    "agree": 29,
+    "studies": 14
+   },
+   "protocolSection.outcomesModule.secondaryOutcomes[].description": {
+    "agree": 104,
+    "studies": 9
+   },
+   "protocolSection.outcomesModule.secondaryOutcomes[].measure": {
+    "agree": 114,
+    "studies": 13
+   },
+   "protocolSection.outcomesModule.secondaryOutcomes[].timeFrame": {
+    "agree": 113,
+    "studies": 12
+   },
+   "protocolSection.oversightModule.isFdaRegulatedDevice": {
+    "agree": 7,
+    "studies": 7
+   },
+   "protocolSection.oversightModule.isFdaRegulatedDrug": {
+    "agree": 7,
+    "studies": 7
+   },
+   "protocolSection.oversightModule.isUsExport": {
+    "agree": 1,
+    "studies": 1
+   },
+   "protocolSection.oversightModule.oversightHasDmc": {
+    "agree": 12,
+    "studies": 12
+   },
+   "protocolSection.referencesModule.references[].citation": {
+    "agree": 12,
+    "studies": 4
+   },
+   "protocolSection.referencesModule.references[].pmid": {
+    "agree": 11,
+    "studies": 4
+   },
+   "protocolSection.referencesModule.references[].type": {
+    "agree": 12,
+    "studies": 4
+   },
+   "protocolSection.referencesModule.seeAlsoLinks[].label": {
+    "agree": 3,
+    "studies": 3
+   },
+   "protocolSection.referencesModule.seeAlsoLinks[].url": {
+    "not_comparable": 3,
+    "studies": 3
+   },
+   "protocolSection.sponsorCollaboratorsModule.collaborators[].class": {
+    "agree": 4,
+    "studies": 3
+   },
+   "protocolSection.sponsorCollaboratorsModule.collaborators[].name": {
+    "agree": 4,
+    "studies": 3
+   },
+   "protocolSection.sponsorCollaboratorsModule.leadSponsor.class": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.sponsorCollaboratorsModule.leadSponsor.name": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.sponsorCollaboratorsModule.responsibleParty.investigatorAffiliation": {
+    "agree": 4,
+    "studies": 4
+   },
+   "protocolSection.sponsorCollaboratorsModule.responsibleParty.investigatorFullName": {
+    "agree": 4,
+    "studies": 4
+   },
+   "protocolSection.sponsorCollaboratorsModule.responsibleParty.investigatorTitle": {
+    "agree": 4,
+    "studies": 4
+   },
+   "protocolSection.sponsorCollaboratorsModule.responsibleParty.oldNameTitle": {
+    "agree": 1,
+    "studies": 1
+   },
+   "protocolSection.sponsorCollaboratorsModule.responsibleParty.oldOrganization": {
+    "agree": 1,
+    "studies": 1
+   },
+   "protocolSection.sponsorCollaboratorsModule.responsibleParty.type": {
+    "agree": 16,
+    "studies": 16
+   },
+   "protocolSection.statusModule.completionDateStruct.date": {
+    "agree": 17,
+    "studies": 17
+   },
+   "protocolSection.statusModule.completionDateStruct.type": {
+    "agree": 16,
+    "studies": 16
+   },
+   "protocolSection.statusModule.dispFirstPostDateStruct.date": {
+    "agree": 1,
+    "studies": 1
+   },
+   "protocolSection.statusModule.dispFirstPostDateStruct.type": {
+    "agree": 1,
+    "studies": 1
+   },
+   "protocolSection.statusModule.dispFirstSubmitDate": {
+    "agree": 1,
+    "studies": 1
+   },
+   "protocolSection.statusModule.dispFirstSubmitQcDate": {
+    "agree": 1,
+    "studies": 1
+   },
+   "protocolSection.statusModule.expandedAccessInfo.hasExpandedAccess": {
+    "agree": 18,
+    "studies": 18
+   },
+   "protocolSection.statusModule.lastKnownStatus": {
+    "agree": 2,
+    "studies": 2
+   },
+   "protocolSection.statusModule.lastUpdatePostDateStruct.date": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.statusModule.lastUpdatePostDateStruct.type": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.statusModule.lastUpdateSubmitDate": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.statusModule.overallStatus": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.statusModule.primaryCompletionDateStruct.date": {
+    "agree": 16,
+    "studies": 16
+   },
+   "protocolSection.statusModule.primaryCompletionDateStruct.type": {
+    "agree": 16,
+    "studies": 16
+   },
+   "protocolSection.statusModule.resultsFirstPostDateStruct.date": {
+    "agree": 6,
+    "studies": 6
+   },
+   "protocolSection.statusModule.resultsFirstPostDateStruct.type": {
+    "agree": 6,
+    "studies": 6
+   },
+   "protocolSection.statusModule.resultsFirstSubmitDate": {
+    "agree": 6,
+    "studies": 6
+   },
+   "protocolSection.statusModule.resultsFirstSubmitQcDate": {
+    "agree": 6,
+    "studies": 6
+   },
+   "protocolSection.statusModule.startDateStruct.date": {
+    "agree": 17,
+    "studies": 17
+   },
+   "protocolSection.statusModule.startDateStruct.type": {
+    "agree": 10,
+    "studies": 10
+   },
+   "protocolSection.statusModule.statusVerifiedDate": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.statusModule.studyFirstPostDateStruct.date": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.statusModule.studyFirstPostDateStruct.type": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.statusModule.studyFirstSubmitDate": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.statusModule.studyFirstSubmitQcDate": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.statusModule.whyStopped": {
+    "agree": 1,
+    "studies": 1
+   },
+   "resultsSection.adverseEventsModule.description": {
+    "agree": 2,
+    "studies": 2
+   },
+   "resultsSection.adverseEventsModule.eventGroups[].deathsNumAffected": {
+    "agree": 3,
+    "studies": 1
+   },
+   "resultsSection.adverseEventsModule.eventGroups[].deathsNumAtRisk": {
+    "agree": 3,
+    "studies": 1
+   },
+   "resultsSection.adverseEventsModule.eventGroups[].description": {
+    "agree": 15,
+    "studies": 6
+   },
+   "resultsSection.adverseEventsModule.eventGroups[].id": {
+    "agree": 15,
+    "studies": 6
+   },
+   "resultsSection.adverseEventsModule.eventGroups[].otherNumAffected": {
+    "agree": 15,
+    "studies": 6
+   },
+   "resultsSection.adverseEventsModule.eventGroups[].otherNumAtRisk": {
+    "agree": 15,
+    "studies": 6
+   },
+   "resultsSection.adverseEventsModule.eventGroups[].seriousNumAffected": {
+    "agree": 15,
+    "studies": 6
+   },
+   "resultsSection.adverseEventsModule.eventGroups[].seriousNumAtRisk": {
+    "agree": 15,
+    "studies": 6
+   },
+   "resultsSection.adverseEventsModule.eventGroups[].title": {
+    "agree": 15,
+    "studies": 6
+   },
+   "resultsSection.adverseEventsModule.frequencyThreshold": {
+    "agree": 6,
+    "studies": 6
+   },
+   "resultsSection.adverseEventsModule.otherEvents[].assessmentType": {
+    "not_comparable": 306,
+    "studies": 4
+   },
+   "resultsSection.adverseEventsModule.otherEvents[].organSystem": {
+    "not_comparable": 306,
+    "studies": 4
+   },
+   "resultsSection.adverseEventsModule.otherEvents[].sourceVocabulary": {
+    "not_comparable": 306,
+    "studies": 4
+   },
+   "resultsSection.adverseEventsModule.otherEvents[].stats[].groupId": {
+    "not_comparable": 968,
+    "studies": 4
+   },
+   "resultsSection.adverseEventsModule.otherEvents[].stats[].numAffected": {
+    "not_comparable": 968,
+    "studies": 4
+   },
+   "resultsSection.adverseEventsModule.otherEvents[].stats[].numAtRisk": {
+    "not_comparable": 968,
+    "studies": 4
+   },
+   "resultsSection.adverseEventsModule.otherEvents[].stats[].numEvents": {
+    "not_comparable": 203,
+    "studies": 3
+   },
+   "resultsSection.adverseEventsModule.otherEvents[].term": {
+    "not_comparable": 306,
+    "studies": 4
+   },
+   "resultsSection.adverseEventsModule.seriousEvents[].assessmentType": {
+    "agree": 411,
+    "studies": 5
+   },
+   "resultsSection.adverseEventsModule.seriousEvents[].organSystem": {
+    "agree": 411,
+    "studies": 5
+   },
+   "resultsSection.adverseEventsModule.seriousEvents[].sourceVocabulary": {
+    "agree": 411,
+    "studies": 5
+   },
+   "resultsSection.adverseEventsModule.seriousEvents[].stats[].groupId": {
+    "agree": 497,
+    "studies": 5
+   },
+   "resultsSection.adverseEventsModule.seriousEvents[].stats[].numAffected": {
+    "agree": 497,
+    "studies": 5
+   },
+   "resultsSection.adverseEventsModule.seriousEvents[].stats[].numAtRisk": {
+    "agree": 497,
+    "studies": 5
+   },
+   "resultsSection.adverseEventsModule.seriousEvents[].stats[].numEvents": {
+    "agree": 46,
+    "studies": 3
+   },
+   "resultsSection.adverseEventsModule.seriousEvents[].term": {
+    "agree": 411,
+    "studies": 5
+   },
+   "resultsSection.adverseEventsModule.timeFrame": {
+    "agree": 6,
+    "studies": 6
+   },
+   "resultsSection.baselineCharacteristicsModule.denoms[].counts[].groupId": {
+    "agree": 18,
+    "studies": 6
+   },
+   "resultsSection.baselineCharacteristicsModule.denoms[].counts[].value": {
+    "not_comparable": 18,
+    "studies": 6
+   },
+   "resultsSection.baselineCharacteristicsModule.denoms[].units": {
+    "agree": 6,
+    "studies": 6
+   },
+   "resultsSection.baselineCharacteristicsModule.groups[].description": {
+    "agree": 18,
+    "studies": 6
+   },
+   "resultsSection.baselineCharacteristicsModule.groups[].id": {
+    "agree": 18,
+    "studies": 6
+   },
+   "resultsSection.baselineCharacteristicsModule.groups[].title": {
+    "agree": 18,
+    "studies": 6
+   },
+   "resultsSection.baselineCharacteristicsModule.measures[].classes[].categories[].measurements[].groupId": {
+    "agree": 136,
+    "studies": 6
+   },
+   "resultsSection.baselineCharacteristicsModule.measures[].classes[].categories[].measurements[].lowerLimit": {
+    "agree": 3,
+    "studies": 2
+   },
+   "resultsSection.baselineCharacteristicsModule.measures[].classes[].categories[].measurements[].spread": {
+    "agree": 7,
+    "studies": 2
+   },
+   "resultsSection.baselineCharacteristicsModule.measures[].classes[].categories[].measurements[].upperLimit": {
+    "agree": 3,
+    "studies": 2
+   },
+   "resultsSection.baselineCharacteristicsModule.measures[].classes[].categories[].measurements[].value": {
+    "agree": 136,
+    "studies": 6
+   },
+   "resultsSection.baselineCharacteristicsModule.measures[].classes[].categories[].title": {
+    "agree": 38,
+    "studies": 6
+   },
+   "resultsSection.baselineCharacteristicsModule.measures[].classes[].title": {
+    "agree": 22,
+    "studies": 4
+   },
+   "resultsSection.baselineCharacteristicsModule.measures[].description": {
+    "agree": 2,
+    "studies": 1
+   },
+   "resultsSection.baselineCharacteristicsModule.measures[].dispersionType": {
+    "agree": 5,
+    "studies": 4
+   },
+   "resultsSection.baselineCharacteristicsModule.measures[].paramType": {
+    "agree": 23,
+    "studies": 6
+   },
+   "resultsSection.baselineCharacteristicsModule.measures[].title": {
+    "agree": 23,
+    "studies": 6
+   },
+   "resultsSection.baselineCharacteristicsModule.measures[].unitOfMeasure": {
+    "agree": 23,
+    "studies": 6
+   },
+   "resultsSection.baselineCharacteristicsModule.populationDescription": {
+    "agree": 5,
+    "studies": 5
+   },
+   "resultsSection.moreInfoModule.certainAgreement.otherDetails": {
+    "agree": 3,
+    "studies": 3
+   },
+   "resultsSection.moreInfoModule.certainAgreement.piSponsorEmployee": {
+    "agree": 6,
+    "studies": 6
+   },
+   "resultsSection.moreInfoModule.certainAgreement.restrictionType": {
+    "agree": 3,
+    "studies": 3
+   },
+   "resultsSection.moreInfoModule.certainAgreement.restrictiveAgreement": {
+    "agree": 4,
+    "studies": 4
+   },
+   "resultsSection.moreInfoModule.limitationsAndCaveats.description": {
+    "agree": 1,
+    "studies": 1
+   },
+   "resultsSection.moreInfoModule.pointOfContact.email": {
+    "agree": 5,
+    "studies": 5
+   },
+   "resultsSection.moreInfoModule.pointOfContact.organization": {
+    "agree": 6,
+    "studies": 6
+   },
+   "resultsSection.moreInfoModule.pointOfContact.phone": {
+    "agree": 6,
+    "studies": 6
+   },
+   "resultsSection.moreInfoModule.pointOfContact.title": {
+    "agree": 6,
+    "studies": 6
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].analyses[].ciLowerLimit": {
+    "agree": 1,
+    "studies": 1
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].analyses[].ciNumSides": {
+    "agree": 1,
+    "studies": 1
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].analyses[].ciPctValue": {
+    "agree": 1,
+    "studies": 1
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].analyses[].ciUpperLimit": {
+    "agree": 1,
+    "studies": 1
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].analyses[].groupIds[]": {
+    "not_comparable": 5,
+    "studies": 2
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].analyses[].nonInferiorityComment": {
+    "agree": 1,
+    "studies": 1
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].analyses[].nonInferiorityType": {
+    "agree": 2,
+    "studies": 2
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].analyses[].pValue": {
+    "agree": 1,
+    "studies": 1
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].analyses[].paramType": {
+    "agree": 1,
+    "studies": 1
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].analyses[].paramValue": {
+    "agree": 1,
+    "studies": 1
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].analyses[].statisticalMethod": {
+    "agree": 2,
+    "studies": 2
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].analyses[].testedNonInferiority": {
+    "agree": 1,
+    "studies": 1
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].classes[].categories[].measurements[].comment": {
+    "agree": 2,
+    "studies": 1
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].classes[].categories[].measurements[].groupId": {
+    "agree": 269,
+    "studies": 6
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].classes[].categories[].measurements[].lowerLimit": {
+    "agree": 117,
+    "studies": 3
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].classes[].categories[].measurements[].spread": {
+    "agree": 68,
+    "studies": 3
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].classes[].categories[].measurements[].upperLimit": {
+    "agree": 117,
+    "studies": 3
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].classes[].categories[].measurements[].value": {
+    "agree": 269,
+    "studies": 6
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].classes[].title": {
+    "not_comparable": 203,
+    "studies": 4
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].denomUnitsSelected": {
+    "not_comparable": 9,
+    "studies": 2
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].denoms[].counts[].groupId": {
+    "not_comparable": 133,
+    "studies": 6
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].denoms[].counts[].value": {
+    "not_comparable": 133,
+    "studies": 6
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].denoms[].units": {
+    "not_comparable": 98,
+    "studies": 6
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].description": {
+    "agree": 90,
+    "studies": 6
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].dispersionType": {
+    "agree": 72,
+    "studies": 5
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].groups[].description": {
+    "not_comparable": 126,
+    "studies": 6
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].groups[].id": {
+    "not_comparable": 127,
+    "studies": 6
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].groups[].title": {
+    "not_comparable": 127,
+    "studies": 6
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].paramType": {
+    "agree": 92,
+    "studies": 6
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].populationDescription": {
+    "agree": 23,
+    "studies": 5
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].reportingStatus": {
+    "agree": 95,
+    "studies": 6
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].timeFrame": {
+    "agree": 95,
+    "studies": 6
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].title": {
+    "agree": 95,
+    "studies": 6
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].type": {
+    "agree": 95,
+    "studies": 6
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].typeUnitsAnalyzed": {
+    "agree": 6,
+    "studies": 1
+   },
+   "resultsSection.outcomeMeasuresModule.outcomeMeasures[].unitOfMeasure": {
+    "agree": 92,
+    "studies": 6
+   },
+   "resultsSection.participantFlowModule.groups[].description": {
+    "agree": 18,
+    "studies": 6
+   },
+   "resultsSection.participantFlowModule.groups[].id": {
+    "agree": 18,
+    "studies": 6
+   },
+   "resultsSection.participantFlowModule.groups[].title": {
+    "agree": 18,
+    "studies": 6
+   },
+   "resultsSection.participantFlowModule.periods[].dropWithdraws[].reasons[].groupId": {
+    "agree": 49,
+    "studies": 3
+   },
+   "resultsSection.participantFlowModule.periods[].dropWithdraws[].reasons[].numSubjects": {
+    "agree": 49,
+    "studies": 3
+   },
+   "resultsSection.participantFlowModule.periods[].dropWithdraws[].type": {
+    "agree": 11,
+    "studies": 3
+   },
+   "resultsSection.participantFlowModule.periods[].milestones[].achievements[].groupId": {
+    "agree": 75,
+    "studies": 6
+   },
+   "resultsSection.participantFlowModule.periods[].milestones[].achievements[].numSubjects": {
+    "agree": 75,
+    "studies": 6
+   },
+   "resultsSection.participantFlowModule.periods[].milestones[].type": {
+    "agree": 23,
+    "studies": 6
+   },
+   "resultsSection.participantFlowModule.periods[].title": {
+    "agree": 6,
+    "studies": 6
+   },
+   "resultsSection.participantFlowModule.preAssignmentDetails": {
+    "agree": 1,
+    "studies": 1
+   },
+   "resultsSection.participantFlowModule.recruitmentDetails": {
+    "agree": 1,
+    "studies": 1
+   }
+  },
+  "b-json": {
+   "Acronym": {
+    "agree": 20,
+    "studies": 20
+   },
+   "Age": {
+    "differ": 16,
+    "agree": 4,
+    "studies": 20
+   },
+   "Brief Summary": {
+    "agree": 20,
+    "studies": 20
+   },
+   "Collaborators": {
+    "agree": 20,
+    "studies": 20
+   },
+   "Completion Date": {
+    "agree": 20,
+    "studies": 20
+   },
+   "Conditions": {
+    "agree": 20,
+    "studies": 20
+   },
+   "Enrollment": {
+    "agree": 20,
+    "studies": 20
+   },
+   "First Posted": {
+    "agree": 20,
+    "studies": 20
+   },
+   "Funder Type": {
+    "agree": 20,
+    "studies": 20
+   },
+   "Interventions": {
+    "agree": 20,
+    "studies": 20
+   },
+   "Last Update Posted": {
+    "agree": 20,
+    "studies": 20
+   },
+   "Locations": {
+    "agree": 20,
+    "studies": 20
+   },
+   "NCT Number": {
+    "agree": 20,
+    "studies": 20
+   },
+   "Other IDs": {
+    "agree": 20,
+    "studies": 20
+   },
+   "Other Outcome Measures": {
+    "agree": 20,
+    "studies": 20
+   },
+   "Phases": {
+    "agree": 20,
+    "studies": 20
+   },
+   "Primary Completion Date": {
+    "agree": 20,
+    "studies": 20
+   },
+   "Primary Outcome Measures": {
+    "agree": 20,
+    "studies": 20
+   },
+   "Results First Posted": {
+    "agree": 20,
+    "studies": 20
+   },
+   "Secondary Outcome Measures": {
+    "agree": 20,
+    "studies": 20
+   },
+   "Sex": {
+    "agree": 20,
+    "studies": 20
+   },
+   "Sponsor": {
+    "agree": 20,
+    "studies": 20
+   },
+   "Start Date": {
+    "agree": 20,
+    "studies": 20
+   },
+   "Study Design": {
+    "agree": 20,
+    "studies": 20
+   },
+   "Study Documents": {
+    "agree": 20,
+    "studies": 20
+   },
+   "Study Results": {
+    "agree": 20,
+    "studies": 20
+   },
+   "Study Status": {
+    "agree": 20,
+    "studies": 20
+   },
+   "Study Title": {
+    "agree": 20,
+    "studies": 20
+   },
+   "Study Type": {
+    "agree": 20,
+    "studies": 20
+   },
+   "Study URL": {
+    "agree": 20,
+    "studies": 20
+   },
+   "header": {
+    "agree": 1,
+    "studies": 1
+   }
+  },
+  "b-workbook": {
+   "protocolSection.conditionsModule.conditions[]": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.descriptionModule.briefSummary": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.designModule.enrollmentInfo.count": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.designModule.phases[]": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.designModule.studyType": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.eligibilityModule.sex": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.identificationModule.acronym": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.identificationModule.briefTitle": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.identificationModule.nctId": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.sponsorCollaboratorsModule.collaborators[].name": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.sponsorCollaboratorsModule.leadSponsor.class": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.sponsorCollaboratorsModule.leadSponsor.name": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.statusModule.completionDateStruct.date": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.statusModule.lastUpdatePostDateStruct.date": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.statusModule.overallStatus": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.statusModule.primaryCompletionDateStruct.date": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.statusModule.resultsFirstPostDateStruct.date": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.statusModule.startDateStruct.date": {
+    "agree": 20,
+    "studies": 20
+   },
+   "protocolSection.statusModule.studyFirstPostDateStruct.date": {
+    "agree": 20,
+    "studies": 20
+   }
+  },
+  "c": {
+   "Adverse Events › Assessment Type": {
+    "agree": 1465,
+    "studies": 5
+   },
+   "Adverse Events › Events": {
+    "agree": 1465,
+    "of which absent": 1216,
+    "studies": 5
+   },
+   "Adverse Events › Group ID": {
+    "agree": 1465,
+    "studies": 5
+   },
+   "Adverse Events › Group Title": {
+    "agree": 1465,
+    "studies": 5
+   },
+   "Adverse Events › Notes": {
+    "agree": 1465,
+    "of which absent": 1465,
+    "studies": 5
+   },
+   "Adverse Events › Organ System": {
+    "agree": 1465,
+    "studies": 5
+   },
+   "Adverse Events › Participants Affected": {
+    "agree": 1465,
+    "studies": 5
+   },
+   "Adverse Events › Participants at Risk": {
+    "agree": 1465,
+    "studies": 5
+   },
+   "Adverse Events › Source Vocabulary": {
+    "agree": 1465,
+    "studies": 5
+   },
+   "Adverse Events › Term": {
+    "agree": 1465,
+    "studies": 5
+   },
+   "Analyses › CI Level (%)": {
+    "agree": 2,
+    "of which absent": 1,
+    "studies": 2
+   },
+   "Analyses › CI Lower": {
+    "agree": 2,
+    "of which absent": 1,
+    "studies": 2
+   },
+   "Analyses › CI Sides": {
+    "agree": 2,
+    "of which absent": 1,
+    "studies": 2
+   },
+   "Analyses › CI Upper": {
+    "agree": 2,
+    "of which absent": 1,
+    "studies": 2
+   },
+   "Analyses › Dispersion Type": {
+    "agree": 2,
+    "of which absent": 2,
+    "studies": 2
+   },
+   "Analyses › Dispersion Value": {
+    "agree": 2,
+    "of which absent": 2,
+    "studies": 2
+   },
+   "Analyses › Estimated Value": {
+    "agree": 2,
+    "of which absent": 1,
+    "studies": 2
+   },
+   "Analyses › Estimation Comment": {
+    "agree": 2,
+    "of which absent": 2,
+    "studies": 2
+   },
+   "Analyses › Estimation Parameter": {
+    "agree": 2,
+    "of which absent": 1,
+    "studies": 2
+   },
+   "Analyses › Group Description": {
+    "agree": 2,
+    "of which absent": 2,
+    "studies": 2
+   },
+   "Analyses › Outcome Title": {
+    "agree": 2,
+    "studies": 2
+   },
+   "Analyses › P-Value": {
+    "agree": 2,
+    "of which absent": 1,
+    "studies": 2
+   },
+   "Analyses › P-Value Comment": {
+    "agree": 2,
+    "of which absent": 2,
+    "studies": 2
+   },
+   "Analyses › Statistical Method": {
+    "agree": 2,
+    "studies": 2
+   },
+   "Analyses › Test Type": {
+    "agree": 2,
+    "studies": 2
+   },
+   "Arms › Arm Label": {
+    "agree": 28,
+    "studies": 13
+   },
+   "Arms › Arm Type": {
+    "agree": 28,
+    "of which absent": 5,
+    "studies": 13
+   },
+   "Arms › Description": {
+    "agree": 28,
+    "studies": 13
+   },
+   "Arms › Interventions Named": {
+    "agree": 28,
+    "of which absent": 2,
+    "studies": 13
+   },
+   "Baseline › Category": {
+    "agree": 136,
+    "of which absent": 38,
+    "studies": 6
+   },
+   "Baseline › Class": {
+    "agree": 136,
+    "of which absent": 108,
+    "studies": 6
+   },
+   "Baseline › Dispersion Type": {
+    "agree": 136,
+    "of which absent": 126,
+    "studies": 6
+   },
+   "Baseline › Group ID": {
+    "agree": 136,
+    "studies": 6
+   },
+   "Baseline › Lower Limit": {
+    "agree": 136,
+    "of which absent": 133,
+    "studies": 6
+   },
+   "Baseline › Measure": {
+    "agree": 136,
+    "studies": 6
+   },
+   "Baseline › Measure Type": {
+    "agree": 136,
+    "studies": 6
+   },
+   "Baseline › Spread": {
+    "agree": 136,
+    "of which absent": 129,
+    "studies": 6
+   },
+   "Baseline › Unit of Measure": {
+    "agree": 136,
+    "studies": 6
+   },
+   "Baseline › Upper Limit": {
+    "agree": 136,
+    "of which absent": 133,
+    "studies": 6
+   },
+   "Baseline › Value": {
+    "agree": 136,
+    "studies": 6
+   },
+   "Documents › Document Date": {
+    "agree": 2,
+    "studies": 1
+   },
+   "Documents › Document Type": {
+    "agree": 2,
+    "studies": 1
+   },
+   "Documents › File": {
+    "agree": 2,
+    "studies": 1
+   },
+   "Documents › Includes ICF": {
+    "agree": 2,
+    "studies": 1
+   },
+   "Documents › Includes Protocol": {
+    "agree": 2,
+    "studies": 1
+   },
+   "Documents › Includes SAP": {
+    "agree": 2,
+    "studies": 1
+   },
+   "Documents › Label": {
+    "agree": 2,
+    "studies": 1
+   },
+   "Documents › Uploaded": {
+    "agree": 2,
+    "studies": 1
+   },
+   "Eligibility › Age Groups": {
+    "agree": 20,
+    "studies": 20
+   },
+   "Eligibility › Gender Based": {
+    "agree": 20,
+    "of which absent": 20,
+    "studies": 20
+   },
+   "Eligibility › Gender Description": {
+    "agree": 20,
+    "of which absent": 20,
+    "studies": 20
+   },
+   "Eligibility › Healthy Volunteers": {
+    "agree": 20,
+    "of which absent": 2,
+    "studies": 20
+   },
+   "Eligibility › Maximum Age": {
+    "agree": 20,
+    "of which absent": 14,
+    "studies": 20
+   },
+   "Eligibility › Minimum Age": {
+    "agree": 20,
+    "of which absent": 4,
+    "studies": 20
+   },
+   "Eligibility › NCT Number": {
+    "agree": 20,
+    "studies": 20
+   },
+   "Eligibility › Sampling Method": {
+    "agree": 20,
+    "of which absent": 16,
+    "studies": 20
+   },
+   "Eligibility › Sex": {
+    "agree": 20,
+    "of which absent": 1,
+    "studies": 20
+   },
+   "Eligibility › Study Population": {
+    "agree": 20,
+    "of which absent": 16,
+    "studies": 20
+   },
+   "Eligibility › Whole Text": {
+    "agree": 4,
+    "studies": 4
+   },
+   "Eligibility › split parts, joined": {
+    "agree": 16,
+    "studies": 16
+   },
+   "Event Groups › All-Cause Mortality Comment": {
+    "agree": 15,
+    "of which absent": 15,
+    "studies": 6
+   },
+   "Event Groups › Deaths Affected": {
+    "agree": 15,
+    "of which absent": 12,
+    "studies": 6
+   },
+   "Event Groups › Deaths at Risk": {
+    "agree": 15,
+    "of which absent": 12,
+    "studies": 6
+   },
+   "Event Groups › Description": {
+    "agree": 15,
+    "studies": 6
+   },
+   "Event Groups › Frequency Threshold (%)": {
+    "agree": 15,
+    "studies": 6
+   },
+   "Event Groups › Group ID": {
+    "agree": 15,
+    "studies": 6
+   },
+   "Event Groups › Other Affected": {
+    "agree": 15,
+    "studies": 6
+   },
+   "Event Groups › Other at Risk": {
+    "agree": 15,
+    "studies": 6
+   },
+   "Event Groups › Reporting Description": {
+    "agree": 15,
+    "of which absent": 11,
+    "studies": 6
+   },
+   "Event Groups › Serious Affected": {
+    "agree": 15,
+    "studies": 6
+   },
+   "Event Groups › Serious at Risk": {
+    "agree": 15,
+    "studies": 6
+   },
+   "Event Groups › Time Frame": {
+    "agree": 15,
+    "studies": 6
+   },
+   "Event Groups › Title": {
+    "agree": 15,
+    "studies": 6
+   },
+   "Interventions › Arms Named": {
+    "agree": 40,
+    "of which absent": 13,
+    "studies": 19
+   },
+   "Interventions › Description": {
+    "agree": 40,
+    "of which absent": 12,
+    "studies": 19
+   },
+   "Interventions › Name": {
+    "agree": 40,
+    "studies": 19
+   },
+   "Interventions › Other Names": {
+    "agree": 40,
+    "of which absent": 27,
+    "studies": 19
+   },
+   "Interventions › Type": {
+    "agree": 40,
+    "studies": 19
+   },
+   "Outcome Results › Category": {
+    "agree": 269,
+    "of which absent": 269,
+    "studies": 6
+   },
+   "Outcome Results › Class": {
+    "agree": 269,
+    "of which absent": 54,
+    "studies": 6
+   },
+   "Outcome Results › Comment": {
+    "agree": 269,
+    "of which absent": 267,
+    "studies": 6
+   },
+   "Outcome Results › Description": {
+    "agree": 269,
+    "of which absent": 2,
+    "studies": 6
+   },
+   "Outcome Results › Dispersion Type": {
+    "agree": 269,
+    "of which absent": 84,
+    "studies": 6
+   },
+   "Outcome Results › Group ID": {
+    "agree": 269,
+    "studies": 6
+   },
+   "Outcome Results › Lower Limit": {
+    "agree": 269,
+    "of which absent": 152,
+    "studies": 6
+   },
+   "Outcome Results › Measure Type": {
+    "agree": 269,
+    "studies": 6
+   },
+   "Outcome Results › Outcome Type": {
+    "agree": 269,
+    "studies": 6
+   },
+   "Outcome Results › Population Description": {
+    "agree": 269,
+    "of which absent": 155,
+    "studies": 6
+   },
+   "Outcome Results › Reporting Status": {
+    "agree": 269,
+    "studies": 6
+   },
+   "Outcome Results › Spread": {
+    "agree": 269,
+    "of which absent": 201,
+    "studies": 6
+   },
+   "Outcome Results › Time Frame": {
+    "agree": 269,
+    "studies": 6
+   },
+   "Outcome Results › Title": {
+    "agree": 269,
+    "studies": 6
+   },
+   "Outcome Results › Unit of Measure": {
+    "agree": 269,
+    "studies": 6
+   },
+   "Outcome Results › Upper Limit": {
+    "agree": 269,
+    "of which absent": 152,
+    "studies": 6
+   },
+   "Outcome Results › Value": {
+    "agree": 269,
+    "studies": 6
+   },
+   "Outcomes › Description": {
+    "agree": 144,
+    "of which absent": 19,
+    "studies": 15
+   },
+   "Outcomes › Measure": {
+    "agree": 144,
+    "studies": 15
+   },
+   "Outcomes › Time Frame": {
+    "agree": 144,
+    "of which absent": 2,
+    "studies": 15
+   },
+   "Participant Flow › Comment": {
+    "agree": 124,
+    "of which absent": 124,
+    "studies": 6
+   },
+   "Participant Flow › Group ID": {
+    "agree": 124,
+    "studies": 6
+   },
+   "Participant Flow › Participants": {
+    "agree": 124,
+    "studies": 6
+   },
+   "Participant Flow › Period": {
+    "agree": 124,
+    "studies": 6
+   },
+   "Participant Flow › Type": {
+    "agree": 124,
+    "studies": 6
+   },
+   "Publications › Citation": {
+    "agree": 12,
+    "studies": 4
+   },
+   "Publications › PMID": {
+    "agree": 12,
+    "of which absent": 1,
+    "studies": 4
+   },
+   "Publications › Type": {
+    "agree": 12,
+    "studies": 4
+   },
+   "Sites › City": {
+    "agree": 154,
+    "studies": 17
+   },
+   "Sites › Country": {
+    "agree": 154,
+    "studies": 17
+   },
+   "Sites › Facility": {
+    "agree": 154,
+    "studies": 17
+   },
+   "Sites › Site Status": {
+    "agree": 154,
+    "of which absent": 89,
+    "studies": 17
+   },
+   "Sites › State": {
+    "agree": 154,
+    "of which absent": 93,
+    "studies": 17
+   },
+   "Sites › ZIP": {
+    "agree": 154,
+    "of which absent": 3,
+    "studies": 17
+   },
+   "Studies › Acronym": {
+    "agree": 20,
+    "of which absent": 18,
+    "studies": 20
+   },
+   "Studies › Age Groups": {
+    "agree": 20,
+    "studies": 20
+   },
+   "Studies › Allocation": {
+    "agree": 20,
+    "of which absent": 7,
+    "studies": 20
+   },
+   "Studies › Brief Title": {
+    "agree": 20,
+    "studies": 20
+   },
+   "Studies › Completion Date": {
+    "agree": 20,
+    "of which absent": 3,
+    "studies": 20
+   },
+   "Studies › Completion Date Type": {
+    "agree": 20,
+    "of which absent": 4,
+    "studies": 20
+   },
+   "Studies › Condition MeSH Ancestors": {
+    "agree": 20,
+    "of which absent": 6,
+    "studies": 20
+   },
+   "Studies › Condition MeSH Terms": {
+    "agree": 20,
+    "of which absent": 5,
+    "studies": 20
+   },
+   "Studies › Conditions": {
+    "agree": 20,
+    "studies": 20
+   },
+   "Studies › Enrollment": {
+    "agree": 20,
+    "of which absent": 2,
+    "studies": 20
+   },
+   "Studies › Enrollment Type": {
+    "agree": 20,
+    "of which absent": 4,
+    "studies": 20
+   },
+   "Studies › Gender Based": {
+    "agree": 20,
+    "of which absent": 20,
+    "studies": 20
+   },
+   "Studies › Healthy Volunteers": {
+    "agree": 20,
+    "of which absent": 2,
+    "studies": 20
+   },
+   "Studies › Intervention MeSH Ancestors": {
+    "agree": 20,
+    "of which absent": 7,
+    "studies": 20
+   },
+   "Studies › Intervention MeSH Terms": {
+    "agree": 20,
+    "of which absent": 5,
+    "studies": 20
+   },
+   "Studies › Intervention Model": {
+    "agree": 20,
+    "of which absent": 7,
+    "studies": 20
+   },
+   "Studies › Lead Sponsor": {
+    "agree": 20,
+    "studies": 20
+   },
+   "Studies › Lead Sponsor Class": {
+    "agree": 20,
+    "studies": 20
+   },
+   "Studies › Masking": {
+    "agree": 20,
+    "of which absent": 7,
+    "studies": 20
+   },
+   "Studies › Maximum Age": {
+    "agree": 20,
+    "of which absent": 14,
+    "studies": 20
+   },
+   "Studies › Minimum Age": {
+    "agree": 20,
+    "of which absent": 4,
+    "studies": 20
+   },
+   "Studies › NCT Number": {
+    "agree": 20,
+    "studies": 20
+   },
+   "Studies › Observational Model": {
+    "agree": 20,
+    "of which absent": 16,
+    "studies": 20
+   },
+   "Studies › Overall Status": {
+    "agree": 20,
+    "studies": 20
+   },
+   "Studies › Phases": {
+    "agree": 20,
+    "of which absent": 6,
+    "studies": 20
+   },
+   "Studies › Primary Completion Date": {
+    "agree": 20,
+    "of which absent": 4,
+    "studies": 20
+   },
+   "Studies › Primary Completion Date Type": {
+    "agree": 20,
+    "of which absent": 4,
+    "studies": 20
+   },
+   "Studies › Primary Purpose": {
+    "agree": 20,
+    "of which absent": 6,
+    "studies": 20
+   },
+   "Studies › Results Delay Requested": {
+    "agree": 20,
+    "of which absent": 19,
+    "studies": 20
+   },
+   "Studies › Results First Posted": {
+    "agree": 20,
+    "of which absent": 14,
+    "studies": 20
+   },
+   "Studies › Results Submitted, Not Yet Posted": {
+    "agree": 20,
+    "of which absent": 20,
+    "studies": 20
+   },
+   "Studies › Results Waived": {
+    "agree": 20,
+    "of which absent": 20,
+    "studies": 20
+   },
+   "Studies › Sex": {
+    "agree": 20,
+    "of which absent": 1,
+    "studies": 20
+   },
+   "Studies › Start Date": {
+    "agree": 20,
+    "of which absent": 3,
+    "studies": 20
+   },
+   "Studies › Start Date Type": {
+    "agree": 20,
+    "of which absent": 10,
+    "studies": 20
+   },
+   "Studies › Study Type": {
+    "agree": 20,
+    "studies": 20
+   },
+   "Studies › Time Perspective": {
+    "agree": 20,
+    "of which absent": 16,
+    "studies": 20
+   },
+   "Studies › Who Masked": {
+    "agree": 20,
+    "of which absent": 17,
+    "studies": 20
+   },
+   "Studies › Why Stopped": {
+    "agree": 20,
+    "of which absent": 19,
+    "studies": 20
+   }
+  },
+  "c-links": {
+   "Adverse Events › NCT Number link": {
+    "agree": 1479,
+    "studies": 19
+   },
+   "Analyses › NCT Number link": {
+    "agree": 2,
+    "studies": 2
+   },
+   "Arms › NCT Number link": {
+    "agree": 28,
+    "studies": 13
+   },
+   "Baseline › NCT Number link": {
+    "agree": 136,
+    "studies": 6
+   },
+   "Documents › File link": {
+    "agree": 2,
+    "studies": 1
+   },
+   "Documents › NCT Number link": {
+    "agree": 2,
+    "studies": 1
+   },
+   "Eligibility › NCT Number link": {
+    "agree": 20,
+    "studies": 20
+   },
+   "Event Groups › NCT Number link": {
+    "agree": 15,
+    "studies": 6
+   },
+   "Interventions › NCT Number link": {
+    "agree": 40,
+    "studies": 19
+   },
+   "Outcome Results › NCT Number link": {
+    "agree": 283,
+    "studies": 20
+   },
+   "Outcomes › NCT Number link": {
+    "agree": 149,
+    "studies": 20
+   },
+   "Participant Flow › NCT Number link": {
+    "agree": 124,
+    "studies": 6
+   },
+   "Publications › NCT Number link": {
+    "agree": 12,
+    "studies": 4
+   },
+   "Publications › PMID link": {
+    "agree": 11,
+    "studies": 4
+   },
+   "Sites › NCT Number link": {
+    "agree": 154,
+    "studies": 17
+   },
+   "Studies › NCT Number link": {
+    "agree": 20,
+    "studies": 20
+   }
+  },
+  "c-rows": {
+   "Adverse Events": {
+    "agree": 1479,
+    "of which absent": 14,
+    "studies": 19
+   },
+   "Analyses": {
+    "agree": 2,
+    "studies": 2
+   },
+   "Arms": {
+    "agree": 28,
+    "studies": 13
+   },
+   "Baseline": {
+    "agree": 136,
+    "studies": 6
+   },
+   "Documents": {
+    "agree": 2,
+    "studies": 1
+   },
+   "Eligibility": {
+    "agree": 20,
+    "studies": 20
+   },
+   "Event Groups": {
+    "agree": 15,
+    "studies": 6
+   },
+   "Interventions": {
+    "agree": 40,
+    "studies": 19
+   },
+   "Outcome Results": {
+    "agree": 283,
+    "of which absent": 14,
+    "omitted": 3,
+    "studies": 20
+   },
+   "Outcomes": {
+    "agree": 149,
+    "of which absent": 5,
+    "studies": 20
+   },
+   "Participant Flow": {
+    "agree": 124,
+    "studies": 6
+   },
+   "Publications": {
+    "agree": 12,
+    "studies": 4
+   },
+   "Sites": {
+    "agree": 154,
+    "studies": 17
+   },
+   "Studies": {
+    "agree": 20,
+    "studies": 20
+   }
+  },
+  "d": {
+   "studies.csv": {
+    "differ": 1,
+    "studies": 1
+   },
+   "studies.csv byte-order mark": {
+    "differ": 1,
+    "studies": 1
+   },
+   "studies.csv line": {
+    "agree": 102,
+    "studies": 22
+   }
+  },
+  "e": {
+   "verify": {
+    "agree": 1,
+    "studies": 1
+   }
+  },
+  "f": {
+   "record": {
+    "agree": 20,
+    "studies": 20
+   }
+  }
+ },
+ "issues": [
+  {
+   "comparison": "b-json",
+   "nct": "NCT07739043",
+   "where": "Age",
+   "field": "Age",
+   "result": "differ",
+   "why": "missing from the cell: 18 Years",
+   "expected": [
+    "18 Years",
+    "ADULT",
+    "OLDER_ADULT"
+   ],
+   "found": "ADULT, OLDER_ADULT"
+  },
+  {
+   "comparison": "b-json",
+   "nct": "NCT07848750",
+   "where": "Age",
+   "field": "Age",
+   "result": "differ",
+   "why": "missing from the cell: 18 Years",
+   "expected": [
+    "18 Years",
+    "ADULT",
+    "OLDER_ADULT"
+   ],
+   "found": "ADULT, OLDER_ADULT"
+  },
+  {
+   "comparison": "b-json",
+   "nct": "NCT00682838",
+   "where": "Age",
+   "field": "Age",
+   "result": "differ",
+   "why": "missing from the cell: 18 Years",
+   "expected": [
+    "18 Years",
+    "ADULT",
+    "OLDER_ADULT"
+   ],
+   "found": "ADULT, OLDER_ADULT"
+  },
+  {
+   "comparison": "b-json",
+   "nct": "NCT07835126",
+   "where": "Age",
+   "field": "Age",
+   "result": "differ",
+   "why": "missing from the cell: 18 Years",
+   "expected": [
+    "18 Years",
+    "ADULT",
+    "OLDER_ADULT"
+   ],
+   "found": "ADULT, OLDER_ADULT"
+  },
+  {
+   "comparison": "b-json",
+   "nct": "NCT00134160",
+   "where": "Age",
+   "field": "Age",
+   "result": "differ",
+   "why": "missing from the cell: 65 Years | 84 Years",
+   "expected": [
+    "65 Years",
+    "84 Years",
+    "OLDER_ADULT"
+   ],
+   "found": "OLDER_ADULT"
+  },
+  {
+   "comparison": "b-json",
+   "nct": "NCT00069758",
+   "where": "Age",
+   "field": "Age",
+   "result": "differ",
+   "why": "missing from the cell: 18 Years",
+   "expected": [
+    "18 Years",
+    "ADULT",
+    "OLDER_ADULT"
+   ],
+   "found": "ADULT, OLDER_ADULT"
+  },
+  {
+   "comparison": "b-json",
+   "nct": "NCT03100175",
+   "where": "Age",
+   "field": "Age",
+   "result": "differ",
+   "why": "missing from the cell: 70 Years",
+   "expected": [
+    "70 Years",
+    "OLDER_ADULT"
+   ],
+   "found": "OLDER_ADULT"
+  },
+  {
+   "comparison": "b-json",
+   "nct": "NCT01410227",
+   "where": "Age",
+   "field": "Age",
+   "result": "differ",
+   "why": "missing from the cell: 18 Years | 65 Years",
+   "expected": [
+    "18 Years",
+    "65 Years",
+    "ADULT",
+    "OLDER_ADULT"
+   ],
+   "found": "ADULT, OLDER_ADULT"
+  },
+  {
+   "comparison": "b-json",
+   "nct": "NCT00209664",
+   "where": "Age",
+   "field": "Age",
+   "result": "differ",
+   "why": "missing from the cell: 18 Years | 75 Years",
+   "expected": [
+    "18 Years",
+    "75 Years",
+    "ADULT",
+    "OLDER_ADULT"
+   ],
+   "found": "ADULT, OLDER_ADULT"
+  },
+  {
+   "comparison": "b-json",
+   "nct": "NCT06145282",
+   "where": "Age",
+   "field": "Age",
+   "result": "differ",
+   "why": "missing from the cell: 4 Years | 100 Years",
+   "expected": [
+    "4 Years",
+    "100 Years",
+    "CHILD",
+    "ADULT",
+    "OLDER_ADULT"
+   ],
+   "found": "CHILD, ADULT, OLDER_ADULT"
+  },
+  {
+   "comparison": "b-json",
+   "nct": "NCT07625644",
+   "where": "Age",
+   "field": "Age",
+   "result": "differ",
+   "why": "missing from the cell: 18 Years",
+   "expected": [
+    "18 Years",
+    "ADULT",
+    "OLDER_ADULT"
+   ],
+   "found": "ADULT, OLDER_ADULT"
+  },
+  {
+   "comparison": "b-json",
+   "nct": "NCT00322439",
+   "where": "Age",
+   "field": "Age",
+   "result": "differ",
+   "why": "missing from the cell: 18 Years",
+   "expected": [
+    "18 Years",
+    "ADULT",
+    "OLDER_ADULT"
+   ],
+   "found": "ADULT, OLDER_ADULT"
+  },
+  {
+   "comparison": "b-json",
+   "nct": "NCT00027027",
+   "where": "Age",
+   "field": "Age",
+   "result": "differ",
+   "why": "missing from the cell: 18 Years",
+   "expected": [
+    "18 Years",
+    "ADULT",
+    "OLDER_ADULT"
+   ],
+   "found": "ADULT, OLDER_ADULT"
+  },
+  {
+   "comparison": "b-json",
+   "nct": "NCT02556008",
+   "where": "Age",
+   "field": "Age",
+   "result": "differ",
+   "why": "missing from the cell: 1 Year | 17 Years",
+   "expected": [
+    "1 Year",
+    "17 Years",
+    "CHILD"
+   ],
+   "found": "CHILD"
+  },
+  {
+   "comparison": "b-json",
+   "nct": "NCT05939830",
+   "where": "Age",
+   "field": "Age",
+   "result": "differ",
+   "why": "missing from the cell: 18 Years | 70 Years",
+   "expected": [
+    "18 Years",
+    "70 Years",
+    "ADULT",
+    "OLDER_ADULT"
+   ],
+   "found": "ADULT, OLDER_ADULT"
+  },
+  {
+   "comparison": "b-json",
+   "nct": "NCT00773474",
+   "where": "Age",
+   "field": "Age",
+   "result": "differ",
+   "why": "missing from the cell: 18 Years",
+   "expected": [
+    "18 Years",
+    "ADULT",
+    "OLDER_ADULT"
+   ],
+   "found": "ADULT, OLDER_ADULT"
+  },
+  {
+   "comparison": "c-rows",
+   "nct": "NCT06145282",
+   "where": "resultsSection.outcomeMeasuresModule.outcomeMeasures[1]",
+   "field": "Outcome Results",
+   "result": "omitted",
+   "why": "an element of the record no row of the sheet stands for",
+   "expected": null,
+   "found": null
+  },
+  {
+   "comparison": "c-rows",
+   "nct": "NCT06145282",
+   "where": "resultsSection.outcomeMeasuresModule.outcomeMeasures[2]",
+   "field": "Outcome Results",
+   "result": "omitted",
+   "why": "an element of the record no row of the sheet stands for",
+   "expected": null,
+   "found": null
+  },
+  {
+   "comparison": "c-rows",
+   "nct": "NCT06145282",
+   "where": "resultsSection.outcomeMeasuresModule.outcomeMeasures[3]",
+   "field": "Outcome Results",
+   "result": "omitted",
+   "why": "an element of the record no row of the sheet stands for",
+   "expected": null,
+   "found": null
+  },
+  {
+   "comparison": "d",
+   "nct": "*",
+   "where": "studies.csv",
+   "field": "studies.csv",
+   "result": "differ",
+   "why": "not byte for byte identical",
+   "expected": "144ee1232a9cb91b5ec689a16bb86443e4f7e0ade415d450f5d8a31881191456",
+   "found": "49f0ebcde26d5adebe48cfc4d9ed20e5b6475d5c5c9fa904e871b194964330fb"
+  },
+  {
+   "comparison": "d",
+   "nct": "*",
+   "where": "byte-order mark",
+   "field": "studies.csv byte-order mark",
+   "result": "differ",
+   "why": "a UTF-8 byte-order mark (EF BB BF) begins studies.csv only",
+   "expected": "4e4354",
+   "found": "efbbbf"
+  }
+ ]
+}
