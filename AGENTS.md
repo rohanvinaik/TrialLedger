@@ -40,28 +40,88 @@ retired in the 2026-10-20 purge).
 
 ---
 
-# TrialLedger — what an agent working here must keep true
+# TrialLedger: what it is
 
-TrialLedger pulls ClinicalTrials.gov records through the API in `spec/ctg-oas-v2.yaml` and writes a folder:
-`studies.json` (the records as sent, plus provenance and content addresses), `studies.csv` (the API's own
-CSV), `review.xlsx` (the review workbook: the design sheets and the checks) and `record.xlsx` (every value
-of every study, in the registry's categories), every cell of both warranted and certified against the
-record.
-`trialledger verify <folder>` re-derives a written folder. The ingestion layer and the first projection
-(`openspec/specs/`, archived change `openspec/changes/archive/2026-10-31-add-review-workbook`) are built; the
-coherence engine (typing, each trial's design coordinates, the cross-trial profile) is under construction in
-`openspec/changes/add-coherence-engine`, declared expectations, deviations and near misses in
-`openspec/changes/add-design-surprise`, the epistemic statuses, scoped assertions and indication gating in
-`openspec/changes/add-scoped-reasoning`, the targeted questions a local model answers (the audit among them)
-in `openspec/changes/add-targeted-questions`, and the scoped-assertion layer (eligibility as scoped constraints
-with entailment and proof-bearing projections; Codex's draft reconciled) in `openspec/changes/add-scoped-assertions`, and banks for every declared trial type (registry,
-packages, contextual resolution, evaluation, confirmation) in `openspec/changes/add-bank-coverage`; the agent
-operation (an LLM agent pointed at the repository installs it, runs one command for a user's question, answers
-from the record it writes and hands over the workbook; no hosted service; the founder's next priority) in
-`openspec/changes/add-agent-operation`, and the second layer, a draft trial design built symbolically from that
-record, in `openspec/changes/add-design-synthesis`; the publication parser is designed in `docs/THEORY_OF_THE_CASE.md` and
-the archived change's `design.md`. The README explains the system to
-its clinical readers.
+TrialLedger is a tool an AI assistant (ChatGPT, Claude, Gemini) picks up to work with clinical trials. A person
+asks their assistant about trials; the assistant fetches this repository, runs it, and answers from what
+TrialLedger builds. TrialLedger does two jobs, in two layers. Know which layer a change belongs to: they are held
+to different standards.
+
+## Layer one: the secretary
+
+**What it is for.** The person wants to know about some kind of trial: trials of a drug, a drug class, a
+mechanism, a disease or a family of diseases. Layer one does the secretarial work a person would otherwise do by
+opening hundreds of registry records one at a time: it finds every matching study on ClinicalTrials.gov and lays
+out, cleanly and completely, what each one says (the population, the inclusion and exclusion criteria, the line
+of therapy, the outcome measures and their time points, the biomarkers and their roles, posted efficacy and
+safety, exploratory measures, links), as a JSON record the assistant answers from and a spreadsheet the person
+can read, edit and share.
+
+**Its standard is correctness, and nothing else.** It makes no judgments and no recommendations. Every value is a
+literal field of the registry record or a named rule over such fields, carries a warrant, and says how it is
+known; what cannot be traced is shown as unresolved, never filled; an empty field is never a "none"; a planned
+outcome is never a result; records are checked against themselves and contradictions raised as queries; a
+retrieval that is not complete writes nothing.
+
+**How it works.** A query reaches the registry's API (vendored in `spec/ctg-oas-v2.yaml`) live (`resolve`), or
+is saved as a certified folder (`pull`: `studies.json`, the records as sent with provenance and content
+addresses; `studies.csv`, the API's own CSV; `review.xlsx` and `record.xlsx`, every cell warranted and certified;
+`verify` re-derives it). Every element of every record enters a ledger with its place and role (`ledger.py`); the eligibility
+text is split and itemized (`eligibility.py`, `criteria.py`) and typed by deterministic banks into spanned atoms
+or abstentions (`banks.py`, against the contract and registry of `semantics/`); drug classes come from NLM RxClass
+and RxNorm (`classes.py`); each study is read once (`reading.py`) and written as the JSON (`symbolic.py`) and the
+workbooks (`workbook.py`, `design.py`, `record.py`), every cell warranted (`warrants.py`).
+
+**Status: functional.** It runs end to end on the live registry. Being finished now
+(`openspec/changes/add-agent-operation`, the founder's top priority): the single operation an assistant runs
+from a chat app. `trialledger doctor` (built) reports what the assistant's sandbox can do; request resolution
+turns the person's terms (a drug class, a mechanism, a disease class) into registry queries, shown and never
+guessed; a step protocol lets the assistant fetch the URLs TrialLedger names when its sandbox blocks TrialLedger
+from the registry; `trialledger landscape` writes the record, the spreadsheet and a manifest in one run folder;
+`SKILL.md` tells the assistant the procedure.
+
+## Layer two: the designer
+
+**What it is for.** Given what the person wants to test, layer two constructs the trial itself: a draft with
+its population and eligibility, endpoints and time points, schedule and sample-size inputs. It reasons the way an
+experienced trial designer does, by symbolic operations over layer one's record, never by a language model.
+
+**How it works: three kinds of decision, each treated differently.**
+1. **What is correct by logic is built as-is.** Eligibility is represented as scoped assertions (a modality on a
+   proposition, with its subject, time, cohort and applicability: `assertions.py`), and consequences of the
+   person's stated premises are derived by exact entailment (`entail.py`), each with the premises it used;
+   contradictions are named. A deduction holds only under premises the person has stated.
+2. **What comparable trials have done is recommended, with its evidence.** A classical recommendation engine
+   (the founder's ModelAtlas lineage): comparable trials found by constraint on positions in clinical hierarchies
+   and by connections through shared drugs and criteria; the criteria they share (`profile.py`: statement rates
+   with their silence bounds, the standard tier), the exclusions that track a mechanism (mechanism signals),
+   untried combinations (occupancy), pairs that differ in one design choice (`nearmiss.py`), declared
+   expectations (`expectations.py`), and comparable posted results. Admissibility is decided by constraints and
+   ranking by evidence, separately; a ranking never admits or excludes.
+3. **What needs judgment is offered, never decided.** What the logic and the evidence leave open is surfaced one
+   question at a time, the decision that settles the most first, with a suggested answer and what accepting it
+   settles ("Jeeves mode"); the person's choice is recorded as theirs. Representation choices (how a concept is
+   modelled) are among these questions.
+
+**Status: about half built.** The reasoning works end to end on a test case, Phase 3 trials in non-small cell
+lung cancer: standard criteria, mechanism signals, occupancy, near misses, expectations and their deviations, and
+entailment over hand-built assertions. Being built: typing for every kind of trial (`add-bank-coverage`), the
+compiler from criteria text to scoped assertions (`add-scoped-assertions` group 2), and the synthesizer that
+assembles the draft, its recommendation stage and its closing questions (`add-design-synthesis`). Layer two is
+finished after layer one's agent operation.
+
+## Where the plans live
+
+Each piece of work is an OpenSpec change under `openspec/changes/`; read the change before touching its code.
+Built and archived: the ingestion layer and the review workbook (`archive/2026-10-31-add-review-workbook`).
+Layer one: `add-agent-operation`. Layer two's foundations: `add-coherence-engine` (typing, design coordinates,
+the profile), `add-design-surprise` (expectations, deviations, near misses), `add-scoped-reasoning` (epistemic
+statuses, indication, drug-class axes, eligibility coverage), `add-scoped-assertions` (the assertion layer and
+entailment), `add-bank-coverage` (banks for every trial type, their contract, registry, evaluation and
+confirmation); the designer itself: `add-design-synthesis`. The rules are tested by `add-targeted-questions`: a
+small local model is asked narrow, closed questions about readings and only grades; its answers never become
+facts. The publication parser is designed in `docs/THEORY_OF_THE_CASE.md`. The README explains all of this to
+clinical readers.
 
 ## The rule this project exists for
 
