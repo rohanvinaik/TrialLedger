@@ -128,3 +128,12 @@ def test_one_mention_is_one_extraction():
     assert mentions(r"\bCAR-T\b|cell therapy", "CAR-T cell therapy") == [(0, 18)]
     assert mentions(r"\bCAR-T\b|cell therapy", "CAR-T, then cell therapy") == [(0, 5), (12, 24)]
     assert mentions(r"x", "") == []
+
+
+def test_dosing_and_enrollment_wording_is_not_history():
+    """Positive: "previously treated with" and "having received" are the patient's history. Negative: the
+    intervention's own dosing ("will be treated with") and enrollment ("who are eligible") are not."""
+    assert not history_clause("Participants will be treated with autologous ")
+    assert not history_clause("Subjects who are eligible will receive ")
+    assert history_clause("Patients previously treated with ")
+    assert history_clause("Subjects having received ")

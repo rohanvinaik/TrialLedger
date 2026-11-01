@@ -84,10 +84,10 @@ _NEGATION = re.compile(r"(?i:\bnon[- ]?|\bnot (?:an? )?|\bwithout (?:an? )?)$")
 # Wording of the patient's history or eligibility; its clause runs back to the last ".", ";", ":" or break.
 _HISTORY = re.compile(
     r"(?i:\bno prior\b|\bprior\b(?!\s+to\b)|\bprevious(?:ly)?\b|\bpre-?treated\b"
-    r"|\b(?:have |has |had )?received\b|\btreated with\b"
-    r"|\b(?:patients?|subjects?|participants?) (?:who|whose|with prior|having)\b"
+    r"|\b(?:have |has |had )?received\b|\b(?:previously|already|been) treated with\b"
+    r"|\b(?:patients?|subjects?|participants?) (?:with prior|having (?:received|been treated))\b"
     r"|\bhistory of\b|\bexpos(?:ure|ed) to\b|\brefractory\b|\bfail(?:ed|ure)\b|\bprogress(?:ed|ion)\b"
-    r"|\beligib\w*|\bexclu\w*|\binclu(?:ded|sion)\b)"
+    r"|\bexclu\w*|\binclu(?:ded|sion)\b)"
 )
 _CLAUSE = re.compile(r"[.;:\n]")
 

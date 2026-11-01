@@ -250,7 +250,7 @@ def drug_axes_view(drug: str, aliases: list[str], entry: str, answers: dict[str,
     warrants, the targets its own entry (`entry`: its name and description) states of it and their crosswalk
     alignment, and its ATC classes for the aligned near-miss representation with their basis."""
     code, reason, identities, assertions = rx.drug_axes(aliases, answers)
-    targets = rx.own_targets(entry)
+    targets = rx.own_targets(entry, drug)
     alignment = rx.target_alignment(targets)
     known = [a[2] for a in assertions if a[1] == "ATC" and a[5] == "known"]
     return {

@@ -701,19 +701,34 @@ TARGET_WORDS = {
 }
 
 
-def own_targets(entry: str) -> list[str]:
+_OTHER_DRUG = re.compile(
+    r"\b[A-Za-z][\w-]*(?:mab|nib|ciclib|parib|platin|taxel|mustine|rubicin|trexed|citabine)\b"
+    r"|\b(?:cisplatin|carboplatin|oxaliplatin|paclitaxel|docetaxel|pemetrexed|gemcitabine|etoposide)\b",
+    re.IGNORECASE,
+)
+
+
+def own_targets(entry: str, own_name: str = "") -> list[str]:
     """The targets a drug's own entry states of the drug itself (pure — pinned).
 
     Each TARGET_WORDS target named in `entry` (the intervention's own name and description), each once, in the
     order first named, except a mention whose clause states the patient's history or eligibility
-    (modality.history_clause: "patients previously treated with an anti-PD-1"), which is about the patient.
-    A word naming another drug is no target ("XB-1 given after carboplatin and paclitaxel" states none). None
-    stated: an empty list.
-    """
+    (modality.history_clause: "patients previously treated with an anti-PD-1"), which is about the patient,
+    and a mention whose clause names another drug before it ("XB-1 given with pembrolizumab, an anti-PD-1
+    antibody"), which may be that drug's: a drug-name stem other than `own_name` makes the reading abstain,
+    never assert. A word naming another drug is no target ("XB-1 given after carboplatin and paclitaxel"
+    states none). None stated: an empty list."""
+    own = own_name.strip().lower()
     found: dict[str, int] = {}
     for target, pattern in TARGET_WORDS.items():
         for match in re.finditer(pattern, entry, re.IGNORECASE):
-            if not history_clause(entry[: match.start()]):
+            clause_start = max(entry.rfind(mark, 0, match.start()) for mark in (". ", ";", "\n")) + 1
+            others = [
+                m
+                for m in _OTHER_DRUG.finditer(entry, clause_start, match.start())
+                if m.group(0).lower() != own
+            ]
+            if not history_clause(entry[: match.start()]) and not others:
                 found[target] = min(found.get(target, match.start()), match.start())
     return sorted(found, key=lambda target: found[target])
 

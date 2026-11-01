@@ -607,3 +607,11 @@ def test_a_name_no_experimental_drug_carries_is_never_asked_rxnav(tmp_path):
     )
     assert "axes" not in answers["Placebo"] and "axes" in answers["XB-1"]
     assert asked.count("version.json") == 1 and asked.count("rxcui.json") == 1
+
+
+def test_a_partners_target_in_this_drugs_entry_is_not_this_drugs():
+    """Positive: a drug's own stated target counts, even when its own name has a drug-name stem. Negative: a
+    target stated after another drug is named in the same clause is that drug's, so this one abstains."""
+    assert own_targets("XB-1 given with pembrolizumab, an anti-PD-1 antibody", "XB-1") == []
+    assert own_targets("Pembrolizumab is an anti-PD-1 antibody", "Pembrolizumab") == ["PD-1"]
+    assert own_targets("XB-1 is an anti-PD-1 antibody; given with carboplatin", "XB-1") == ["PD-1"]
