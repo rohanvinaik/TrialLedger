@@ -1,0 +1,68 @@
+{
+ "asked": "2026-11-01",
+ "how": "GET https://clinicaltrials.gov/api/v2/studies with filter.advanced=QUERY, countTotal=true, pageSize=1, fields=NCTId; one request each, 1.5 s apart",
+ "api_version": "2.0.5",
+ "data_timestamp": "2026-10-30T09:00:04",
+ "forms": {
+  "AREA[InterventionName]\"<name>\"": {
+   "query": "AREA[InterventionName]\"pembrolizumab\"",
+   "status": 200,
+   "totalCount": 2584
+  },
+  "AREA[OverallStatus]": {
+   "query": "AREA[OverallStatus]RECRUITING",
+   "status": 200,
+   "totalCount": 65221
+  },
+  "AREA[StartDate]RANGE[<date>,MAX]": {
+   "query": "AREA[StartDate]RANGE[2024-01-01,MAX]",
+   "status": 200,
+   "totalCount": 120864
+  },
+  "AREA[StartDate]RANGE[MIN,<date>]": {
+   "query": "AREA[StartDate]RANGE[MIN,2010-12-31]",
+   "status": 200,
+   "totalCount": 111873
+  }
+ },
+ "also": {
+  "every form together": {
+   "query": "AREA[StudyType]INTERVENTIONAL AND (AREA[InterventionName]\"crizotinib\" OR AREA[InterventionName]\"alectinib\") AND (AREA[ConditionMeshTerm]\"Lung Neoplasms\" OR AREA[ConditionAncestorTerm]\"Lung Neoplasms\") AND (AREA[Phase]PHASE2 OR AREA[Phase]PHASE3) AND (AREA[OverallStatus]RECRUITING OR AREA[OverallStatus]COMPLETED)",
+   "status": 200,
+   "totalCount": 29
+  },
+  "a name no trial holds": {
+   "query": "AREA[InterventionName]\"no such drug zzqx\"",
+   "status": 200,
+   "totalCount": 0
+  },
+  "unknown status value": {
+   "query": "AREA[OverallStatus]RECRUTING",
+   "status": 400,
+   "error": "Error parsing query in advanced filter: Allowed values for enum field `protocolSection.statusModule.overallStatus` are `ACTIVE_NOT_RECRUITING`, `COMPLETED`, `ENROLLING_BY_INVITATION`, `NOT_YET_RECRUITING`, `RECRUITING`, `SUSPENDED`, `TERMINATED`, `WITHDRAWN`, `AVAILABLE`, `NO_LONGER_AVAILABLE`, `TEMPORARILY_NOT_AVAILABLE`, `APPROVED_FOR_MARKETING`, `WITHHELD`, `UNKNOWN`"
+  },
+  "the descriptor as ancestor only": {
+   "query": "AREA[ConditionAncestorTerm]\"Lung Neoplasms\"",
+   "status": 200,
+   "totalCount": 6499,
+   "note": "an ancestor is never the trial's own MeSH term, so the descriptor alone misses the trials tagged with it"
+  },
+  "the descriptor as term or ancestor (sample.py's form, emitted)": {
+   "query": "(AREA[ConditionMeshTerm]\"Lung Neoplasms\" OR AREA[ConditionAncestorTerm]\"Lung Neoplasms\")",
+   "status": 200,
+   "totalCount": 11763
+  },
+  "the URL length the registry answers": {
+   "how": "a filter.advanced of N quoted InterventionName terms, bisected on N; the length is the whole URL httpx sent",
+   "largest_answered": {"url_length": 8185, "status": 200},
+   "smallest_refused": {"url_length": 8234, "status": 414, "error": "414 Request-URI Too Large (nginx/1.26.2)"}
+  },
+  "resolved scopes sent (tests/rxnav_request_answers.json requests)": {
+   "EPC Programmed Death Receptor-1 Blocking Antibody in Lung Neoplasms, phase 3, recruiting, interventional, from 2015": {"status": 200, "totalCount": 61, "url_length": 698},
+   "Keytruda, osimertinib, osimertinib mesylate, XB-1 zzq, to 2024-12-31": {"status": 200, "totalCount": 2432, "url_length": 391},
+   "ATC L01ED": {"status": 200, "totalCount": 307, "url_length": 328},
+   "EPC Kinase Inhibitor (81 members)": {"status": 200, "totalCount": 13534, "url_length": 3919},
+   "MoA Kinase Inhibitors (194 members)": {"status": 414, "url_length": 9969, "note": "request.resolve_scope names it query_too_long and sends nothing"}
+  }
+ }
+}

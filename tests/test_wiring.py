@@ -227,6 +227,40 @@ STEPS_DORMANT = {
     )
 }
 DECLARED |= STEPS_DORMANT
+# The request and its resolution (add-agent-operation 2.1-2.3): `trialledger landscape`, the command that
+# resolves a request and sends its query, is task 4.2; tests/test_request.py and tests/test_class_members.py
+# reach every one meanwhile.
+UNTIL_LANDSCAPE = "until add-agent-operation 4.2"
+AGENT_OPERATION_DORMANT = {
+    f"{module}: {name}": UNTIL_LANDSCAPE
+    for module, names in (
+        ("classes.py", ("class_members_request", "rxclass_members")),
+        (
+            "request.py",
+            (
+                "_class_expansion",
+                "_iso_date",
+                "_members_expansion",
+                "any_of",
+                "class_matches",
+                "class_request",
+                "class_resolution",
+                "condition_clause",
+                "drug_names",
+                "identity_chain",
+                "lookup_url",
+                "lookups_needed",
+                "mechanism_rows",
+                "member_identity",
+                "request_problems",
+                "resolve_scope",
+                "slot_value_ok",
+            ),
+        ),
+    )
+    for name in names
+}
+DECLARED |= AGENT_OPERATION_DORMANT
 
 
 @pytest.fixture(scope="module")

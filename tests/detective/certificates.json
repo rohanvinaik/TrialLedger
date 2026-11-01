@@ -281,6 +281,12 @@
     "refusal": "",
     "standing": "complete"
   },
+  "TrialLedger/classes.py::rxclass_members": {
+    "cut_reasons": [],
+    "function_digest": "2e1b6e40dbee9805",
+    "refusal": "",
+    "standing": "complete"
+  },
   "TrialLedger/classes.py::rxnav_release": {
     "cut_reasons": [],
     "function_digest": "ab2ee5e1453ca347",
@@ -792,6 +798,72 @@
   "TrialLedger/record.py::record_problems": {
     "cut_reasons": [],
     "function_digest": "dedd5381416eaba7",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/request.py::_iso_date": {
+    "cut_reasons": [],
+    "function_digest": "2dd89913cc16e329",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/request.py::class_matches": {
+    "cut_reasons": [],
+    "function_digest": "8ef0b8e8e6724490",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/request.py::class_resolution": {
+    "cut_reasons": [],
+    "function_digest": "98294368a3a83414",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/request.py::drug_names": {
+    "cut_reasons": [],
+    "function_digest": "3188b27316b9884c",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/request.py::identity_chain": {
+    "cut_reasons": [],
+    "function_digest": "00bf7f39bfe5d691",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/request.py::lookups_needed": {
+    "cut_reasons": [],
+    "function_digest": "735c37b7880abcc1",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/request.py::mechanism_rows": {
+    "cut_reasons": [],
+    "function_digest": "860e7cfc12cb3f5e",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/request.py::member_identity": {
+    "cut_reasons": [],
+    "function_digest": "9b02c888b60d6cb5",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/request.py::request_problems": {
+    "cut_reasons": [],
+    "function_digest": "7e8be975315aaf07",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/request.py::resolve_scope": {
+    "cut_reasons": [],
+    "function_digest": "0f882d62e3659a98",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/request.py::slot_value_ok": {
+    "cut_reasons": [],
+    "function_digest": "4adff84749497608",
     "refusal": "",
     "standing": "complete"
   },

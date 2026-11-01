@@ -22,10 +22,24 @@ The founder, 2026-11-01: the next priority, built to completion.
 
 ## 2. Request resolution
 
-- [ ] 2.1 The request object and its refusals
+- [x] 2.1 The request object and its refusals
 - [ ] 2.2 Drug class → members (RxClass `classMembers`, RxNorm names); mechanism → classes (crosswalk, entailed
       only); condition class → `AREA[ConditionAncestorTerm]`; drug → `AREA[InterventionName]` with other names
+      (2026-11-01: built and converged in `request.py`, pending the founder's ruling on two departures from
+      this text, design.md As built here: the condition class is emitted as sample.py's verified
+      term-or-ancestor form, not the ancestor alone, since the ancestor alone misses the trials tagged with
+      the descriptor itself; and "other names" are RxNorm's names (its concept's, and a salt's, brand's or
+      other form's ingredient's), not the registry's `AREA[InterventionOtherName]`, which is not emitted. Also
+      for the founder: every RxClass member is expanded, INDIRECT ones included, and a PIN member is searched
+      by its ingredient's name too.)
 - [ ] 2.3 The resolved scope written before any study is read; named codes for what cannot resolve
+      (2026-11-01: the scope object, its named codes and the lookups it needs are built and converged,
+      `request.resolve_scope` and `request.lookups_needed`; what is left is writing it into the run folder
+      before any study is read, which needs the run folder (3.1, 3.2) and the command (4.2). A class whose
+      query exceeds the registry's URL limit stops as `query_too_long`; splitting it into several queries is
+      left to the step protocol, 3.1. Also left to 3.1: re-reading the RxNav release after the last round and
+      refusing a change, since the scope's release is asked once, in the first round (`release_basis`), and
+      retrying a failed lookup, which stops the scope until its answer is dropped and asked again.)
 
 ## 3. The step protocol
 

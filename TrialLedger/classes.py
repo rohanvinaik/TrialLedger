@@ -417,6 +417,70 @@ def lookup_axes(
     return out
 
 
+# A drug class's members (add-agent-operation, Decision 5): RxClass classMembers, asked by class id under the
+# relation source and relation of the class's own source. Observed 2026-11-01 (RxNav release 05-Oct-2026):
+# each member is an RxNorm concept (an ingredient, IN, or a precise ingredient, PIN) with a "Relation" node
+# attribute, DIRECT or INDIRECT (a member of a narrower class); an unknown class id answers {}.
+RXCLASS_MEMBERS = f"{RXNAV}/rxclass/classMembers.json"
+# Each class source a request may name: (RxClass class type, relation source, relation).
+CLASS_SOURCES = {
+    "EPC": ("EPC", "DAILYMED", "has_epc"),
+    "MoA": ("MOA", "MEDRT", "has_moa"),
+    "ATC": ("ATC1-4", "ATC", ""),
+}
+Member = tuple[str, str, str, str]  # (rxcui, name, term type, relation: DIRECT or INDIRECT, "" when unstated)
+
+
+def class_members_request(class_id: str, source: str) -> tuple[str, dict[str, str]]:
+    """The RxClass classMembers request for one class of a source of CLASS_SOURCES: (URL, parameters)."""
+    _kind, rela_source, rela = CLASS_SOURCES[source]
+    return RXCLASS_MEMBERS, {"classId": class_id, "relaSource": rela_source} | (
+        {"rela": rela} if rela else {}
+    )
+
+
+def rxclass_members(status: int, body: Any) -> tuple[str, list[Member]]:
+    """The member drugs in one RxClass classMembers response, or why there are none (pure — pinned).
+
+    found        — HTTP 200 with at least one member; each (rxcui, name, tty, relation), once, sorted; the
+                   relation is the member's "Relation" node attribute, "" when it states none.
+    not_found    — HTTP 200 and an object without drugMemberGroup, or a group without drugMember (RxClass's
+                   answer for a class id it does not hold, or a class with no member under that source).
+    malformed    — HTTP 200 but the body is not an object, the group is not one, the listing is empty or not a
+                   list, or a member lacks a concept with a string rxcui, name and term type.
+    lookup_failed — any other HTTP status.
+    """
+    if status != 200:
+        return "lookup_failed", []
+    if not isinstance(body, dict):
+        return "malformed", []
+    group = body.get("drugMemberGroup")
+    if group is None:
+        return "not_found", []
+    listing = group.get("drugMember") if isinstance(group, dict) else []
+    if listing is None:
+        return "not_found", []
+    if not isinstance(listing, list) or not listing:
+        return "malformed", []
+    found: set[Member] = set()
+    for entry in listing:
+        concept = entry.get("minConcept") if isinstance(entry, dict) else None
+        fields = [concept.get(key) for key in ("rxcui", "name", "tty")] if isinstance(concept, dict) else []
+        if not fields or not all(isinstance(field, str) for field in fields):
+            return "malformed", []
+        attributes = entry.get("nodeAttr")
+        relation = next(
+            (
+                str(attribute.get("attrValue", ""))
+                for attribute in (attributes if isinstance(attributes, list) else [])
+                if isinstance(attribute, dict) and attribute.get("attrName") == "Relation"
+            ),
+            "",
+        )
+        found.add((fields[0], fields[1], fields[2], relation))
+    return "found", sorted(found)
+
+
 def axis_key(source: str, rela: str) -> str:
     """The name of an axis in the cache and the reading: its source, then its relation when it has one."""
     return f"{source}:{rela}" if rela else source
