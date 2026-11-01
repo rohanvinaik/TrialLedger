@@ -211,9 +211,11 @@ from the code under `TrialLedger/**`, subpackages included, and an audit of none
 written whole on one line with nothing else inside its parentheses, and `banks.permitted`,
 `classes.rxnorm_concepts` and `classes.name_identity` still break theirs over two lines), with Detective and Wesker from the founder's local checkouts
 (`~/tools/Detective`, `~/tools/Wesker`, or `DETECTIVE_ROOT`/`WESKER_ROOT`), never the copy in `.venv`, and two
-vulture scans, advisory. Run the deep gate after converging new decisions and before an archive; a new decision
-is converged at write time, which the deep audit re-certifies but does not replace (the founder's instruction,
-2026-10-31, paraphrased: the local gate is a quick scan for common-sense failures, not a long slog).
+vulture scans, advisory. The deep gate is not part of the regular workflow: it re-audits every pinned decision of the
+repository, a whole-repo redundant mutation pass, and is run once, at the very end, as a professionalism
+cleanup (the founder, 2026-11-01). A new decision is converged at write time with `detective converge
+--two-sign` on that one function; that is the workflow's Detective step (the founder's instruction, 2026-10-31,
+paraphrased: the local gate is a quick scan for common-sense failures, not a long slog).
 `.githooks/pre-push` runs `scripts/push_checks.py hook`, which runs the gate before a push of any tree it has
 not passed on, scans the pushed commits' added lines for secrets (detect-secrets) and audits the locked
 dependencies for known flaws (pip-audit, advisory). Install it with
@@ -245,15 +247,12 @@ words.
 
 Run from this repo's `.venv` with the local checkouts first:
 `PYTHONPATH=$HOME/tools/Detective:$HOME/tools/Wesker .venv/bin/detective ...`. Every pinned decision here
-was converged with `--two-sign`, which the printed DO THIS lines omit (keep adding it), except those not yet
-converged, accepted as debt by the founder and named under Open items (`sample.trial_cells`,
-`sample.holds_cell`, `sample.cell_status`, `sample.balance_rows`, `audit.text_coverage`, `pilot.drawn_units`,
-and the audit question kinds' decisions: `field_envelope`, `time_point_role`, `validate_instances`,
-`untyped_reading`, `concept_instances`, `audit.rxclass_check`, `audit.rxclass_absence`, and the changed
-`validate_answer` and `pilot.to_label`; and the foundations of
-2026-11-01 named under Open items); `scripts/ci_local.sh --deep` will flag each of them until it is
-converged. `pilot.mutations` keeps its own
-code, so the gate does not flag it, but its output changed through `_mutant` and it is to be re-converged.
+was converged with `--two-sign`, which the printed DO THIS lines omit (keep adding it). The debt the founder
+accepted for decisions written in parallel or in haste (2026-10-31 and 2026-11-01) was reconciled serially on
+2026-11-01, one decision at a time: every one ends COMPLETE (operator universe, modulo unproven-equivalent and
+crash-only value gaps, no flag set) except the three named under Open items that Detective cannot measure.
+Where converge asked for it, an outcome it ran but would not write is pinned by a hand-written test (an
+exception compared as a value, a seeded draw, an object built without its constructor's check).
 
 A new decision is written unwired, given direct-call intent tests for both signs, converged with
 `--two-sign` in isolation, and only then wired into the shell. Run `ruff format` before converging, never
@@ -284,11 +283,8 @@ it. The proofs, so that they survive the machine:
 ## Open items
 
 - Decisions added or changed 2026-10-31 and 2026-11-01 for the balance table, the gap check and the
-  supplement's labelling (`sample.trial_cells`, `sample.holds_cell`, `sample.cell_status`,
-  `sample.balance_rows`, `audit.text_coverage`, `pilot.drawn_units`) have two-sign intent tests but are not
-  yet converged with Detective (the founder accepted this as debt, to be reconciled serially); the deep gate
-  flags them until they are. `pilot.mutations` is unchanged in its own code (so not flagged) but its output
-  changed through `_mutant` and is to be re-converged. The balance cell queries use the
+  supplement's labelling are converged (2026-11-01), `sample.balance_rows` excepted (below). The balance
+  cell queries use the
   metadata's `piece` names (`Phase`, `InterventionType`, `DesignPrimaryPurpose`) as search areas and Essie
   `NOT` for an exact phase; each form was tried live once on 2026-11-01 and returned trials (counts in
   `tests/live_query_forms.json`; an unknown area or phase value is refused with HTTP 400), and
@@ -307,10 +303,6 @@ it. The proofs, so that they survive the machine:
   value). A stated class and an RxClass class match only as written; aligning the two vocabularies needs a
   sourced mapping. Each pair reports the lead sponsor and start year; sponsor
   lineage, geography and cohort structure, which the spec asks for, are not yet read.
-- The audit question kinds of `add-targeted-questions` 2.2 (2026-10-31) are not yet converged by Detective
-  (the founder accepted it as debt, to be reconciled serially): `field_envelope`, `time_point_role` (window,
-  unmarked, not_stated), `validate_instances`, `untyped_reading`, `concept_instances`, `audit.rxclass_check`,
-  `audit.rxclass_absence`, and the changed `validate_answer` and `pilot.to_label`.
 - The model identity is per question kind (a technical decision the founder delegated; design.md Decision 3):
   `LocalModel.identity(kind)` hashes the protocol version, that kind's rubric alone and the inference options,
   in the shape the digest had when `atom_claim` was the only kind, so atom-claim answers cached before the
@@ -333,11 +325,8 @@ it. The proofs, so that they survive the machine:
   `pattern:eligibility_complete`, prior). Mechanism signals are bounded against abbreviated silences only; a
   typed (itemized) trial no bank typed any criterion of stays in its mechanism group as stating nothing (the
   founder's to rule on). The `design-profile` delta's MODIFIED requirements need `add-coherence-engine`
-  archived first. The new decisions (`eligibility_coverage`, `element_silence`, `full_criteria_tier`) and the
-  changed ones (`frequency_rows`, `mechanism_rows`, `flags_for`, `autoimmune_exclusion`) are not yet converged
-  with Detective (accepted by the founder as debt, to be reconciled serially); the two generated tests whose
-  signatures or rows changed (`tests/detective/…autoimmune_exclusion…` and `…mechanism_rows…`) were adapted by
-  hand, each saying so, and are regenerated by that converge.
+  archived first. Its decisions are converged (2026-11-01; `flags_for` re-measured with `--isolated`, as
+  converge directed), `criteria.eligibility_coverage` excepted (below).
 - The drug-class axes (`add-scoped-reasoning` group 7, 2026-11-01) are rendered in the `resolve` JSON (each
   drug's axes, the extractions with their warrants, the intervention MeSH at its level, the aligned pairs and
   the structure relations) and in design.xlsx's Drug Axes sheet. EPC and MoA classes are still attached by
@@ -346,22 +335,15 @@ it. The proofs, so that they survive the machine:
   ("XB-1 given after carboplatin" states "platinum"), so the existing outputs are unchanged; gating them is a
   change of output for the founder to approve. The crosswalk has nine rows, only the targets of
   `classes.TARGET_WORDS` (no drug name keys a row); none entails membership (each is overlaps, broader_than or
-  unresolved), so the `crosswalk` basis of the aligned reading gives no class yet. New and changed pure
-  decisions in `classes.py` and `modality.py` are not yet converged by Detective (accepted as debt by the
-  founder, to be reconciled serially).
-- The foundations of 2026-11-01, built in parallel worktrees, are not yet converged with Detective (the
-  founder accepted this as debt incurred by parallel workflow work, to be reconciled serially); each has
-  two-sign intent tests. The confirmation draw: `sample.inspected_ids`, `sample.ledger_batches`,
-  `sample.screen_inspected` and the changed `sample.batch_request`. The lazy axes:
-  `reading.axes_not_looked_up`, `reading.axes_as_looked_up` and the changed `reading.drug_axes_view`. The
-  contracts: `semantics.contracts` (`atom_digest`, `atom_problems`, `result_problems`, `slug`,
-  `legacy_concept_id`, `from_legacy`, `to_legacy`, `legacy_result`), `semantics.loader`
-  (`fragment_from_data`, `registry_problems`, `registry_flags`, `atom_registry_problems`), `typematrix`
-  (`study_coordinates`, `universe_status`, `manifest_problems`), `evaluation` (`agreement_kind`,
-  `gold_problems`, `at_level`, `match`, `judge`, `bounds`, `rate`, `recall`, `precision`, `miss_rate`,
-  `unit_rates`, `complete_representation`, `parameter_accuracy`, `clustered_lower_bound`, `precision_group`,
-  `threshold_verdict`). The assertions: `assertions.model_problem`, `assertions.canonical`,
-  `entail.proposition_formula`, `entail.assertion_formula`, `entail.weakest_status`, `entail.decide`.
+  unresolved), so the `crosswalk` basis of the aligned reading gives no class yet. The pure decisions of
+  `classes.py` and `modality.py` are converged (2026-11-01).
+- Three decisions Detective cannot measure: `sample.balance_rows`, `criteria.eligibility_coverage` and
+  `semantics.loader.fragment_from_data` end converge (and audit) INCOMPLETE with `outcome_snapshot_failed`.
+  In its witness search Detective deep-copies each observed return (`Detective/equivalence.py`, `_outcome`);
+  a synthesized argument carried into the returned value can fail that copy with TypeError, and one such
+  failure stops the whole run rather than the one witness. A defect of Detective, for its own repository;
+  their two-sign intent tests stand meanwhile. Six `sample.py` decisions and three others whose tag read
+  "(pure — pinned; ...)" or broke over two lines are now written whole, so the deep gate sees them.
 - The sample's frame runs to the present (the founder, 2026-11-01): `sample.base_query(present)`, the
   present the UTC date of the draw or `sample --present`, recorded in sample.json with the base and used by
   its audit's supplements; a sample without one (the pilot's) is read with `LEGACY_PRESENT`, 2025-12-31.

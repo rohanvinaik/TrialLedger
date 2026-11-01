@@ -9,7 +9,7 @@
 - [x] 1.1 `ScopedAssertion`, `Proposition` (Literal, AllOf, AnyOf, Not, Opaque), the closed vocabularies, and
       `TemporalScope`, as immutable typed data with validation (2026-11-01: `TrialLedger/assertions.py`,
       `model_problem` and `canonical`/`from_canonical`, tests/test_assertions.py; left: the registry of 1.2
-      that fills predicate keys, units and values; Detective convergence, accepted as debt)
+      that fills predicate keys, units and values)
 - [ ] 1.2 The first predicate registry: each bank concept mapped to its predicate kind, versioned, with
       provenance
 
@@ -28,15 +28,18 @@
       resource bound, deterministic order (2026-11-01: `TrialLedger/entail.py`, `decide`, `assertion_formula`,
       `proposition_formula`, tests/test_entail.py on hand-built assertions; left: assertions compiled from
       text (group 2), the run in shadow mode that wires it (5.1; declared dormant in tests/test_wiring.py
-      until then), Detective convergence, accepted as debt)
+      until then))
 - [x] 3.2 Epistemic propagation (weakest support; proposed never a premise; no promotion) (2026-11-01:
       `entail.weakest_status` and the proofs of `decide`; left: propagation through the consumers, group 6)
 
-## Detective convergence: debt accepted by the founder (2026-11-01), to be reconciled serially
+## Detective convergence: the accepted debt, reconciled serially (2026-11-01)
 
 The founder accepted, on 2026-11-01, Detective convergence as debt incurred by parallel workflow work, to be
-reconciled serially afterwards. None of the decisions below is converged; each has two-sign intent tests and
-none is settled until `detective converge --two-sign` certifies it:
+reconciled serially afterwards. Reconciled the same day, one decision at a time: each below ends COMPLETE
+(operator universe, modulo unproven-equivalent and crash-only value gaps). `model_problem` needed direct
+intent tests (every class asked directly, one field forced past its constructor, and three instances built
+without the constructor's own check); `proposition_formula` and `weakest_status` an exception compared as a
+value; `decide` a query that widens the search past its bound:
 
 - `assertions.model_problem` (changed 2026-11-01: an assertion refused without its rule; an unresolved rule
   naming provenance refused; the branch node "unresolved")

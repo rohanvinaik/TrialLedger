@@ -10,7 +10,7 @@
 
 ## 2. Source manifest and audit questions
 
-- [ ] 2.1 The source manifest of a resolved trial (eligibility pieces and gaps, outcomes, interventions)
+- [x] 2.1 The source manifest of a resolved trial (eligibility pieces and gaps, outcomes, interventions)
 
   - 2026-10-31: the gap check is built: `audit.text_coverage` (pure — pinned) confirms that only whitespace lies
     before, between and after the pieces; each trial's manifest has an `eligibility_text` row with the result
@@ -18,8 +18,8 @@
     named.
   - 2026-11-01: overlaps and holes are reported together (`overlapping_and_uncovered`), so an overlap never
     hides uncovered text: one `eligibility_gap` row per uncovered stretch and one `eligibility_overlap` row
-    per stretch read twice; every manifest row carries `drawn_as`. Left: Detective convergence of
-    `text_coverage` (accepted debt), so not ticked.
+    per stretch read twice; every manifest row carries `drawn_as`. `text_coverage` converged on 2026-11-01
+    (the accepted debt, reconciled serially).
 - [x] 2.2 Audit question builders: `atom_claim`, `untyped_criterion` (concept instances, out_of_taxonomy),
       outcome and intervention claims; RxClass assignments checked deterministically against the kept artifact
 
@@ -44,8 +44,8 @@
     never answered) or `differs_from_artifact` (`audit.rxclass_absence`), and is never asked unless its own
     entry states a target. Each kind has its rubric, schema and validation; an outcome's or intervention's
     envelope is its own field verbatim (`field_envelope`), refused over budget. The model identity is per kind
-    (`LocalModel.identity(kind)`, design.md Decision 3). Left: Detective convergence of the new decisions
-    (accepted debt); the split of a `concept_stated` answer into declined and silently missed is the
+    (`LocalModel.identity(kind)`, design.md Decision 3). The new decisions converged on 2026-11-01. Left: the
+    split of a `concept_stated` answer into declined and silently missed is the
     adjudicator's (5.2); an outcome with no endpoint class or time point is a manifest row (`no_claim`), never
     asked; "within N" and similar are unmarked (the rule names only "up to"); a partly typed criterion gets no
     untyped question (only a criterion with no atom does), so a requirement a bank missed beside an atom it
@@ -82,9 +82,9 @@
     phases in another order (`holds_cell`), the written value kept. A trial drawn as a supplement for two
     cells carries its union probability. Question and answer rows carry `drawn_as`, and `trialledger pilot`
     draws only the sample's questions unless `--include-supplement`. A snapshot change raises
-    `SnapshotChanged`, the only error besides `PullError` that `sample` and `audit` catch. Left, so not
-    ticked: Detective convergence of `trial_cells`, `holds_cell`, `cell_status`, `balance_rows` (accepted
-    debt); under-representation (sample share against the registry's share for a non-empty cell) is not
+    `SnapshotChanged`, the only error besides `PullError` that `sample` and `audit` catch. `trial_cells`,
+    `holds_cell` and `cell_status` converged on 2026-11-01; `balance_rows` cannot be measured by Detective
+    yet (`outcome_snapshot_failed`, a Detective defect). Left, so not ticked: under-representation (sample share against the registry's share for a non-empty cell) is not
     measured, since the registry's count is fetched only for empty cells; the drawn trials are kept as the
     audit's records, not through `resolve --keep`.
 

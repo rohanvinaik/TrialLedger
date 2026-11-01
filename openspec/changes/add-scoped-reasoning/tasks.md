@@ -73,8 +73,8 @@
   extractions with warrants, the intervention MeSH at its level, the aligned pairs and the structure
   relations, and design.xlsx a Drug Axes sheet. 7.4 stays open: its "sourced mappings" are only the USAN name
   stems, interpolated. Left: gating EPC/MoA (and the EPC `stated_by_record` fallback, which still reads drug
-  names as stated classes) by identity, an output change for the founder; a sourced modality mapping;
-  Detective convergence of the new decisions (debt the founder accepted).
+  names as stated classes) by identity, an output change for the founder; a sourced modality mapping. The
+  new decisions were converged on 2026-11-01 (the accepted debt, reconciled serially).
 
   2026-11-01, the axes made lazy (a performance regression: asked on every profile, the axes took
   `trialledger profile` of the stored 487-trial NSCLC folder from about 17 s to over an hour on first run).
@@ -95,12 +95,11 @@
   of them changes the warrant. Left: the stored folder's axes, asked only when someone runs `--fill-axes`
   (974 names there).
 
-  Detective debt, not settled: the founder accepted, on 2026-11-01, Detective convergence as debt incurred by
-  parallel workflow work, to be reconciled serially afterwards. Under that acceptance, and not under the
-  earlier one for group 7's decisions, these decisions of the lazy axes are not converged:
-  `reading.axes_not_looked_up` (new), `reading.axes_as_looked_up` (new) and `reading.drug_axes_view`
-  (changed: its aligned ATC is unknown when not looked up). They have two-sign intent tests; the deep gate
-  flags the pinned ones until they are converged.
+  Detective debt, reconciled serially on 2026-11-01: `reading.axes_not_looked_up` and
+  `reading.axes_as_looked_up` converge COMPLETE; `reading.drug_axes_view` is not a pinned decision and keeps
+  its two-sign intent tests. Group 8's decisions likewise converge COMPLETE, `criteria.eligibility_coverage`
+  excepted: Detective cannot snapshot one of its witnesses (`outcome_snapshot_failed`, a Detective defect,
+  AGENTS.md Open items).
 
 ## 8. Eligibility coverage (Decision 12)
 

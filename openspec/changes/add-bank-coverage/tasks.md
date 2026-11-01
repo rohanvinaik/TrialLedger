@@ -42,9 +42,10 @@
   2.5th percentile, nearest rank, of the pessimistic rate C/(C+W+U)); and the annotator verdicts `holds`,
   `does_not_hold`, `unsure`.
 
-  Not converged with Detective. The founder accepted on 2026-11-01 Detective convergence as debt incurred by
-  parallel workflow work, to be reconciled serially afterwards; under that acceptance, and not settled, these
-  pinned decisions of group 1 have two-sign intent tests but no converge:
+  Detective convergence, accepted by the founder on 2026-11-01 as debt incurred by parallel workflow work,
+  was reconciled serially the same day: every decision below converges COMPLETE (operator universe, modulo
+  unproven-equivalent and crash-only value gaps), `semantics.loader.fragment_from_data` excepted, which
+  Detective cannot snapshot (`outcome_snapshot_failed`, a Detective defect, AGENTS.md Open items):
   `semantics.contracts`: `atom_digest`, `atom_problems`, `result_problems`, `slug`, `legacy_concept_id`,
   `from_legacy`, `to_legacy`, `legacy_result`;
   `semantics.loader`: `fragment_from_data`, `registry_problems` (changed: definition dates, unversioned
@@ -54,9 +55,8 @@
   (changed), `at_level` (new), `match` and `judge` (changed: mixed levels refused), `bounds`, `rate` (changed:
   per-trial counts), `recall`, `precision`, `miss_rate`, `unit_rates`, `complete_representation`,
   `parameter_accuracy` (changed: level filtering), `clustered_lower_bound` (new), `precision_group` (new),
-  `threshold_verdict` (changed). The deep gate (`scripts/ci_local.sh --deep`) flags each until it is
-  converged. Outside this change, `banks.permitted`, `classes.rxnorm_concepts` and `classes.name_identity`
-  break their tag over two lines, so the deep gate's list still misses them.
+  `threshold_verdict` (changed). The tags of `banks.permitted`, `classes.rxnorm_concepts` and
+  `classes.name_identity`, broken over two lines, are now written whole, and those three converge COMPLETE.
 
 ## 2. The existing banks against the contract
 
@@ -109,7 +109,7 @@
         `drawn_from`, `confirmation_batch`, the batch rule and `code_commit`, and declares no supplement.
         Left (2026-11-01): freezing the confirmation records (Decision 9's downloaded records, not a live
         re-draw), gold annotation and evaluation; the ledger of used batches is task 7.1b. The new decisions
-        are not yet converged by Detective.
+        converge COMPLETE (2026-11-01).
   - [x] 7.1b Inspected trials excluded, the code version named, used batches retired (2026-11-01; Decision 9,
         B4, B8). A confirmation draw takes `--inspected PATH` for each inspected population (the NSCLC record
         folder or its studies.json, the pilot and discovery sample.json files, an audit's balance.json), whose
@@ -126,8 +126,8 @@
         `ledger_unreadable` and `batch_used` beside `unknown_batch` and `no_code_version`. Two-sign tests in
         tests/test_sample.py and tests/test_cli.py; the production path draws a confirmation sample excluding
         its discovery sample. Not converged by Detective, under the founder's acceptance of 2026-11-01 of
-        Detective convergence as debt incurred by parallel workflow work, to be reconciled serially afterwards
-        (not settled): the new `sample.inspected_ids`, `sample.ledger_batches`, `sample.screen_inspected` and
+        Detective convergence as debt incurred by parallel workflow work, reconciled serially the same day
+        (each COMPLETE): the new `sample.inspected_ids`, `sample.ledger_batches`, `sample.screen_inspected` and
         the changed `sample.batch_request` (new signature and codes); `sample.draw_sample` (its new
         `inspected` input), `sample.code_state` and `sample.git_query` are shells, not pinned.
         Revised 2026-11-01 (the founder approved Claude's recommendation): the ledger names the code a batch
@@ -137,6 +137,6 @@
         `--batch-ledger` is gone: only the declared `confirmation_ledger.json` at the code's root
         (`sample.LEDGER_NAME`) is read, injectable for tests only as `cli.main(ledger=...)`. After recording
         the batch the draw commits the ledger alone (`git commit -- confirmation_ledger.json`); a failed
-        commit is named and ends with 1. `ledger_batches` and `batch_request` changed again; both stay in the
-        Detective debt.
+        commit is named and ends with 1. `ledger_batches` and `batch_request` changed again; both converge
+        COMPLETE after the change.
 - [ ] 7.2 Release with the supported/unsupported manifest
