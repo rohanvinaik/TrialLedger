@@ -4,11 +4,14 @@ Positive: ECOG ranges, lists, upper bounds and reversed order give their values;
 tumour's attribute gets the state nearest it ("negative or unknown" both); a PD-L1 percentage is kept as
 written; "no prior systemic therapy" is zero lines and "advanced" scope; a count or a progression gives its
 lines; agent words in a prior-exposure criterion are prior agents; stage expressions span their groups; a
-lab threshold keeps comparator, number and unit as written; every atom's span lies in the text.
-Negative: a gene named as a drug's target ("anti-PD-L1", "EGFR TKI") is never a biomarker; "eGFR" is never
-EGFR; "metastases" in a CNS exclusion is never "metastatic"; resection of the stomach is never tumour
-resection; "No prior exposure to anti-PD-1" is never zero prior lines; a threshold is never converted; text a
-bank does not recognise gives no atom.
+lab threshold keeps comparator, number and unit as written; every atom's span lies in the text; an age
+beside a sex or consent mention is the age bank's ("Male or female ≥ 18 years", NCT04416035).
+Negative: a lone ECOG value read first abstains ("ECOG ≥2 points", NCT03372694); a gene named as a drug's
+target ("anti-PD-L1", "EGFR TKI") is never a biomarker; "eGFR" is never EGFR; "metastases" in a CNS
+exclusion is never "metastatic"; resection of the stomach is never tumour resection; "No prior exposure to
+anti-PD-1" is never zero prior lines; a threshold is never converted; text a
+bank does not recognise gives no atom; an age in years is never a condition's window, and a window in months
+is never taken for an age (NCT04325763, NCT02893332).
 """
 
 import pytest
@@ -391,6 +394,87 @@ def test_a_duration_is_never_an_age(text):
     assert age_limits(text) == []
 
 
+@pytest.mark.parametrize(
+    "text, condition, age",
+    [
+        # NCT04416035
+        ("1. Male or female ≥ 18 years.", ("condition", ("sex",), (), 3, 17), (("minimum", "18"),)),
+        # NCT03521154
+        (
+            "1. Male or female aged at least 18 years.",
+            ("condition", ("sex",), (), 3, 17),
+            (("minimum", "18"),),
+        ),
+        # NCT06254599
+        (
+            "1. At the time of signing the informed consent form (ICF), age is ≥ 18 years.",
+            ("condition", ("informed_consent",), (), 30, 46),
+            (("minimum", "18"),),
+        ),
+    ],
+)
+def test_an_age_beside_a_condition_is_the_age_banks(text, condition, age):
+    """Positive: the age bank reads the age (add-bank-coverage 2.1). Negative: the sex or consent mention
+    beside it carries no window: an age in years is not a time window, and `sex` (an Attribute) takes none."""
+    assert named_conditions(text) == [condition]
+    assert [atom[2] for atom in age_limits(text)] == [age]
+
+
+@pytest.mark.parametrize(
+    "text, condition, window",
+    [
+        # NCT04325763
+        (
+            "1. 18-75 years old ; Eastern Cooperative Oncology Group (ECOG) performance status of 0 to 1; "
+            "Life expectancy ≥ 3 months.",
+            ("condition", ("life_expectancy",), (("window", "3 months"),), 93, 108),
+            "≥ 3 months",
+        ),
+        # NCT02893332
+        (
+            "* Men and women of childbearing age must be willing to use effective contraception while on "
+            "treatment and for at least 3 months thereafter",
+            ("condition", ("contraception",), (("window", "3 months"),), 69, 82),
+            "for at least 3 months",
+        ),
+    ],
+)
+def test_a_window_in_months_is_never_taken_for_an_age(text, condition, window):
+    """Positive: a window in months keeps its window even where the age bank reads its number as an age.
+    Negative: only a window in years can be the age, so these are never dropped.
+
+    Where the age bank reads one at all: its minimum 3 is read from the window's words, a defect recorded
+    in the 2.1 audit and owned by 3.1 and 3.2. Once fixed, the age bank reads nothing here and the window
+    stays."""
+    assert named_conditions(text) == [condition]
+    window_start = text.index(window)
+    for _concept, _values, _params, start, end in age_limits(text):
+        assert start < window_start + len(window) and window_start < end  # the age read overlaps the window
+
+
+def test_a_window_in_years_apart_from_the_age_is_kept():
+    """Positive: a window in years whose words are not the age's is the condition's window, the age before it
+    or after it. Negative: neither is taken for the age. Authored (no real criterion of the NSCLC or pilot
+    records holds an age beside a window in years apart from it, measured 2026-11-01); the contract and
+    registry tests read these texts too."""
+    excluded = (("window", "5 years"), ("text_polarity", "excluded"))
+    first = "* Age ≥ 18 years; no other malignancy within 5 years"
+    assert named_conditions(first) == [("condition", ("other_malignancy",), excluded, 21, 37)]
+    assert [atom[3:] for atom in age_limits(first)] == [(6, 16)]
+    last = "* No other malignancy within 5 years; age ≥ 18 years"
+    assert named_conditions(last) == [("condition", ("other_malignancy",), excluded, 5, 21)]
+    assert [atom[3:] for atom in age_limits(last)] == [(42, 52)]
+
+
+def test_an_age_in_capitalised_years_is_the_age_banks_too():
+    """Positive: "Years", as the registry's own age fields write it, is the age bank's like "years". Negative:
+    the sex mention beside it carries no window. Authored (no criterion of the NSCLC or pilot records writes
+    it beside a mention, measured 2026-11-01)."""
+    text = "* Male or female ≥ 18 Years"
+    assert named_conditions(text) == [("condition", ("sex",), (), 2, 16)]
+    assert age_limits(text) == [("age", ("stated",), (("minimum", "18"),), 17, 27)]
+
+
 def test_histology_names_and_non_small_cell_is_not_small_cell():
     text = "* Stage IV non-squamous or squamous NSCLC; mixed small-cell lung cancer histology excluded"
     assert [a[1][0] for a in histology(text)] == ["non_squamous", "squamous", "small_cell"]
@@ -450,6 +534,38 @@ def test_stated_targets_read_the_record_and_skip_generic_therapy():
     assert stated_targets(text) == ["PD-1"]
     assert stated_targets("Standard platinum-based chemotherapy") == ["platinum"]
     assert stated_targets("Best supportive care") == []
+
+
+def test_an_age_that_only_touches_a_window_is_not_its_words():
+    """Positive: spans are half-open, so an age read up to where a window in years begins ("≥ 40 " then
+    "within 5 years") shares none of its words, and the window stays the condition's. Negative: the age is
+    not taken for that window. Authored (no criterion of the NSCLC or pilot records has such a pair,
+    measured 2026-11-01)."""
+    text = "* Other malignancy at age ≥ 40 within 5 years"
+    assert age_limits(text) == [("age", ("stated",), (("minimum", "40"),), 26, 31)]
+    assert text.index("within") == 31
+    assert named_conditions(text) == [("condition", ("other_malignancy",), (("window", "5 years"),), 2, 18)]
+
+
+@pytest.mark.parametrize(
+    "text",
+    [
+        "* The score of ECOG ≥2 points",  # NCT03372694, NCT03244605
+        "4. ECOG PS \\< 1",  # NCT03469960
+        "6. ECOG 0～1;",  # NCT05157776
+        "* The patient must have an ECOG performance status of 0, 1.",  # NCT02273375
+        "6. Eastern Cooperative Oncology Group (ECOG) performance status zero (0) to 1.",  # NCT06564324
+        "* Good performance status better than Eastern Cooperative Group (ECOG) of 2 or a general status of "
+        "Karnofsky (KPS) \\> 70 %",  # NCT02448992
+        # NCT03195491
+        "* Eastern Cooperative Oncology Group (ECOG) Performance Status of less than or equal to 1",
+    ],
+)
+def test_a_lone_performance_status_value_read_first_abstains(text):
+    """Negative (add-bank-coverage 2.1, B7): a lone value read first gives no atom; on the NSCLC records every
+    such reading left words unread and was wrong. Positive: a range, list or upper bound still reads
+    (test_performance_status_values)."""
+    assert performance_status(text) == []
 
 
 def test_performance_status_reads_the_whole_expression_before_the_scale():

@@ -23,6 +23,8 @@ from TrialLedger.coherence import RELATIONS
 from TrialLedger.expectations import FROZEN
 from TrialLedger.provenance import (
     CONCEPT_AUTHORITIES,
+    DEV,
+    DEV_AND_PILOT,
     DEVELOPMENT_POPULATIONS,
     LICENCE_STATUSES,
     PROVENANCE,
@@ -58,6 +60,19 @@ def test_the_coverage_marker_patterns_say_where_they_came_from():
     assert not any(
         PROVENANCE[key][1].startswith("external") for key in PROVENANCE if key.startswith("pattern:")
     )
+
+
+def test_the_banks_the_pilot_revised_name_it_in_their_origin():
+    """Positive (add-bank-coverage 2.1): the banks whose rules the pilot's corrections revised (the escaped
+    less-or-equal in performance status and organ function, paired thresholds, the conditions' negation,
+    windows and boundaries, and 2.1's age beside a condition) are derived from the NSCLC trials and the pilot.
+    Negative: a bank the pilot only read, never revised, keeps the NSCLC origin alone (its exposure, in
+    RULE_EXPOSURE, still lists the pilot)."""
+    for bank in ("performance_status", "organ_function", "conditions"):
+        assert PROVENANCE[f"bank:{bank}"][1] == DEV_AND_PILOT, bank
+    for bank in ("biomarker", "prior_therapy", "setting", "age", "histology", "endpoints", "stated_targets"):
+        assert PROVENANCE[f"bank:{bank}"][1] == DEV, bank
+        assert "pilot_2026_10_31" in RULE_EXPOSURE[f"bank:{bank}"][0], bank
 
 
 def test_every_origin_is_one_of_three():

@@ -1,8 +1,9 @@
 """The seed fragment: the existing banks' concepts (TrialLedger/banks.py), as
 `semantics.contracts.from_legacy` names them, labelled with their development exposure
 (`provenance.RULE_EXPOSURE["fragment:nsclc_legacy"]`: the 487 Phase 3 NSCLC trials and the 18-trial pilot).
-Plain data, built from the banks' own vocabulary tables so the two cannot drift; add-bank-coverage 2.1 audits
-each concept and keeps, migrates or retires it.
+Plain data, built from the banks' own vocabulary tables so the two cannot drift. add-bank-coverage 2.1
+(2026-11-01, `openspec/changes/add-bank-coverage/audit-existing-banks.md`) audited each concept: every one is
+kept, unchanged, until its package (3.x, 5.1) migrates it; no concept was retired.
 
 Every concept is in TrialLedger's local namespace (the words the banks match, not an authority's codes),
 except the stage groups (AJCC, words only) and the histology names (WHO lung tumour names, words only); the

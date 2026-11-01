@@ -104,7 +104,8 @@ the code by Claude; **As built here** marks the reconciliation.
   `load_fragments` (`*.json`, or `*.py` with a `FRAGMENT` dict, in `semantics/fragments/`, never under the
   vendored `TrialLedger/registry/`), `atom_registry_problems`. The seed fragment `nsclc_legacy` (91 concepts)
   is built from the banks' own tables, exposure `fragment:nsclc_legacy`. One legacy disagreement is kept for
-  2.1: the conditions bank reads "≥ 18 years" as a window of `sex` (an Attribute takes no window).
+  2.1: the conditions bank reads "≥ 18 years" as a window of `sex` (an Attribute takes no window). 2.1
+  resolved it: the age is the age bank's.
   Not yet refused: unsupported units, invalid spans, nondeterminism (with 3.1's shared parsers; refused since
   3.1, below). No version is
   invented: each local concept carries its own definition date (`defined_on`, YYYY-MM-DD; refused without
@@ -206,6 +207,36 @@ the code by Claude; **As built here** marks the reconciliation.
   the strict comparator read from "> =", "H" as hours, a NaN reported twice, and two test criteria quoted
   as edited excerpts (now verbatim). Left as disclosed: the `reference` span role (contracts.py's owner) and
   a comparator read from inside a longer phrase (callers start at the head).
+
+## As built here: the existing banks audited (task 2.1, 2026-11-01)
+
+- **Decisions 1, 2, 4, 5**, report `audit-existing-banks.md`. The audit ran every bank over the 10,187
+  criteria of the NSCLC development records, from a private copy of `/tmp/nsclc3`, and over the pilot's 228.
+  Every atom passes `contracts.result_problems`. Keep or retire is decided by B7, rule by rule: a rule or
+  branch with no reading found right is retired (it abstains); a rule whose wrong readings no narrow guard
+  can separate from its others without 3.1's parsers or 6.1's assertion layer is kept, its wrong readings
+  counted, and B7 binds it at release, when its owning package must make them abstain.
+- **Retired: performance status's single-value branch.** All 8 of its NSCLC readings were wrong ("ECOG ≥2
+  points" read 2, "less than or equal to 1" read 1, "0～1" read 0) and it read nothing on the pilot. A lone
+  value read first now abstains. That removes 8 `ecog_ps` atoms, their 8 `inclusion:ecog_ps` profile
+  elements (7 Profile and 5 unresolved Mechanism rows of design.xlsx) and their near-miss predicates; the 8
+  criteria are now untyped (8,565 → 8,557 typed). The frozen expectation, the coordinates and the near-miss
+  pairs (none) are unchanged.
+- **The age is the age bank's.** `banks.named_conditions` no longer takes a window in years whose words
+  overlap the age bank's span (`age_limits`) for a condition's window. A window in any other unit is never
+  taken for an age. This resolves 1.2's kept disagreement: "≥ 18 years" read as the window of `sex`, an
+  Attribute. The registry problems left on NSCLC (25, none on the pilot or the tests' real criteria) are
+  criterion-wide grades. They are attachment, the assertion layer's (6.1), and are not hidden by gating
+  the grade on a family. On the pilot the one window removed (NCT04693377 #8, "50 years") overlaps an age
+  the age bank invents from a definition of menopause: the outcome is right, but not because the age is
+  eligibility's.
+- **Nonconforming with Decision 4, kept.** No bank reads the indication. But the resection and histology
+  rules drop a mention near a non-lung site, or, for resection, far from a lung word. On the pilot that
+  suppresses a breast trial's resection. They stay until 5.1 gives resection and histology a site and 6.1's
+  resolver says whose tumour it is.
+- **Decision 5.** `provenance.DEV_AND_PILOT` names the pilot in the rule origin of every bank its
+  corrections revised: performance status, organ function and conditions. Exposure (`RULE_EXPOSURE`) is
+  unchanged. Every bank already listed both populations.
 
 ## Founder decisions (decided 2026-11-01: the founder approved Claude's recommendations)
 

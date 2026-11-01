@@ -13,8 +13,8 @@ unknown authority or exposure, a code from a licence-required, words-only or unp
 concept without a definition or without a valid definition date of its own, an unversioned scale (a scale
 marked unversioned in any package but the legacy fragment among them), an unresolved dependency or
 requirement, a duplicate or unversioned fragment and a malformed fragment are each refused by name; a param a
-concept does not declare is named (the conditions bank's "≥ 18 years" read as the window of `sex` is one, left
-for task 2.1).
+concept does not declare is named (the conditions bank's "≥ 18 years" once read as the window of `sex` was
+one, resolved by task 2.1: no real criterion of tests/test_banks.py now gives one).
 """
 
 import json
@@ -73,8 +73,9 @@ def test_the_seed_compiles_and_owns_every_legacy_concept():
         for bank, function in BANKS.items():
             for atom in legacy_result(bank, text, function(text)).atoms:
                 problems += [(atom.concept_id, p, text) for p in atom_registry_problems(atom, registry)]
-    # one known disagreement, kept for 2.1: the conditions bank reads "≥ 18 years" as a window of `sex`
-    assert problems == [("nsclc.condition.sex", "unknown_argument", "1. Male or female ≥ 18 years.")]
+    # none: the one disagreement kept for 2.1 ("≥ 18 years" read as a window of `sex`, which an Attribute
+    # does not take) is resolved there, the age being the age bank's
+    assert problems == []
 
 
 def test_the_version_is_the_fragments_digest_in_any_order():

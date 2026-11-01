@@ -60,7 +60,36 @@
 
 ## 2. The existing banks against the contract
 
-- [ ] 2.1 Each bank audited, its rules kept or retired with reasons, its NSCLC and pilot exposure recorded
+- [x] 2.1 Each bank audited, its rules kept or retired with reasons, its NSCLC and pilot exposure recorded
+
+  2026-11-01, the report is `audit-existing-banks.md` (this folder). Every atom of every bank on the 10,187
+  NSCLC criteria and the pilot's 228 passes the contract. Keep or retire follows B7, rule by rule (retired
+  when no reading was found right; kept, wrong readings counted, when no narrow guard separates them before
+  3.1 or 6.1). One branch is retired: performance status's single value, 8 of 8 NSCLC readings wrong, now
+  abstaining (8 `ecog_ps` atoms, 8 `inclusion:ecog_ps` profile elements and near-miss predicates removed, 7
+  Profile and 5 Mechanism rows of design.xlsx with them, the 8 criteria now untyped, each listed in the
+  report). One rule is fixed: the disagreement kept from 1.2. In `banks.named_conditions`, a window in years
+  whose words the age bank reads as the age is the age's, never a condition's window ("1. Male or female ≥ 18
+  years.", NCT04416035). Registry problems on NSCLC fell from 62 to 25, and to 0 on the real criteria of
+  tests/test_banks.py. 39 atoms changed: 37 `sex` and 1 `informed_consent` window on NSCLC, 1 `contraception`
+  window on the pilot, each listed in the report. The frozen expectation is unchanged (110 present, 0 verified
+  deviations), and so are the coordinates, trial for trial, and the near-miss pairs (none). `named_conditions`
+  and `performance_status` converge COMPLETE. The pilot's one changed window (NCT04693377 #8) overlaps an age
+  the age bank invents from a definition of menopause; the report says so. `provenance.PROVENANCE` now names
+  the pilot in the origin of the two other banks its corrections revised (`bank:performance_status`,
+  `bank:organ_function`; `DEV_AND_PILOT`). That changes three rows of design.xlsx's Rules sheet.
+
+  Left, not fixed here, each routed in the report:
+  - 25 criterion-wide grades on families that take none (3.4, 6.1).
+  - 21 ages invented from a duration, a laboratory value or a definition on NSCLC; on the pilot 1 invented
+    (NCT04693377 #8) and 2 incomplete (3.1, 3.2).
+  - ECOG's comparator words ("≥2", "less than or equal to"), now abstaining rather than misread (3.1, 3.3).
+  - 20 prior lines invented from "failure rate" or "intolerance to" (3.4, 5.1).
+  - The lung gates of the resection and histology rules, which suppress explicit mentions against
+    Decision 4: a breast trial's resection on the pilot (NCT02712437), 117 and 89 drops on NSCLC (5.1,
+    6.1). A standing exception to B3 until then, for the founder to accept.
+  - Two entailments authored inside banks, to register apart (Decision 2).
+  - The performance-status scale, still `unversioned` and flagged (3.3).
 
 ## 3. Shared primitives and general packages (parallel, file-disjoint)
 

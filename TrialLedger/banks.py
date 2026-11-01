@@ -39,8 +39,9 @@ def performance_status(text: str) -> list[Atom]:
     The values are read from the first expression within 80 characters after the scale's name, or else the
     last whole expression ending within 12 characters before it ("0-1 ECOG score", "of 0 or 1 on the ECOG
     scale": the expression is read whole, from up to 40 characters back): a range ("0-1", "0 to 2", "0~1"),
-    a list ("0, 1, or 2"), an upper bound ("≤1", "<= 1") or a single value. No expression near the name: no
-    atom.
+    a list ("0, 1, or 2") or an upper bound ("≤1", "<= 1"). A lone value read first is not read: every one
+    on the NSCLC records was a reading of words left unread ("ECOG ≥2 points", "less than or equal to 1",
+    "0～1"), so it abstains (add-bank-coverage 2.1, B7). No expression near the name: no atom.
     """
     scale = _PS_SCALE.search(text)
     if not scale:
@@ -61,7 +62,7 @@ def performance_status(text: str) -> list[Atom]:
         elif found.group("list"):
             values = [int(digit) for digit in re.findall(r"[0-5]", found.group("list"))]
         else:
-            values = [int(found.group("one"))]
+            return []
         return [("ecog_ps", tuple(str(v) for v in sorted(set(values))), (), found.start(), found.end())]
     return []
 
@@ -537,13 +538,16 @@ def named_conditions(text: str) -> list[Atom]:
 
     Every concept of CONDITIONS whose words appear gives one atom (the first mention), with the span of its
     words; a time window ("within 4 weeks", "in the last 5 years", "30 days prior") within 60 characters
-    after it, and a CTCAE grade ("grade ≤ 1") in the criterion, are kept as written in its params. The
-    values are ("mentioned",): whether the criterion requires, allows or excludes the condition is its section
-    and wording, recorded elsewhere, never guessed here. Nothing named: no atom.
+    after it, and a CTCAE grade ("grade ≤ 1") in the criterion, are kept as written in its params. A window
+    in years whose words the age bank reads as the criterion's age (they overlap age_limits' span: "Male or
+    female ≥ 18 years") is the age, the age bank's, and no condition's window; a window in any other unit is
+    never an age. The values are the concept's own name: whether the criterion requires, allows or excludes
+    the condition is its section and wording, recorded elsewhere, never guessed here. Nothing named: no atom.
     """
     atoms: list[Atom] = []
     names = list(CONDITIONS)
     seen: set[str] = set()
+    ages = [(atom[3], atom[4]) for atom in age_limits(text)]
     for found in _CONDITION.finditer(text):
         name = names[int(next(key for key, value in found.groupdict().items() if value)[1:])]
         if name in seen:
@@ -556,7 +560,11 @@ def named_conditions(text: str) -> list[Atom]:
                 window.group("n") or window.group("n2"),
                 window.group("unit") or window.group("unit2"),
             )
-            params.append(("window", f"{amount} {unit.lower()}"))
+            is_age = unit.lower().startswith("year") and any(
+                start < window.end() and window.start() < end for start, end in ages
+            )
+            if not is_age:
+                params.append(("window", f"{amount} {unit.lower()}"))
         grade = _GRADE.search(text)
         if grade:
             params.append(("grade", f"{(grade.group('cmp') or '').replace(chr(92), '')}{grade.group('g')}"))

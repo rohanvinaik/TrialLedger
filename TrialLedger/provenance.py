@@ -14,9 +14,21 @@ DEV = (
     "derived: 487 interventional Phase 3 NSCLC trials started 2015-2024 (pulled 2026-10-31), development data"
 )
 
+# A bank whose rules the pilot's corrections revised (add-targeted-questions, "Symbolic corrections from the
+# pilot") was derived from the pilot too.
+DEV_AND_PILOT = (
+    DEV + "; and the 18-trial stratified pilot of 2026-10-31 (seed pilot-2026-10-31), development data"
+)
+
 PROVENANCE: dict[str, tuple[str, str, str]] = {
     # kind, origin, source or note
-    "bank:performance_status": ("bank", DEV, "ECOG / WHO / Zubrod scale wording"),
+    "bank:performance_status": (
+        "bank",
+        DEV_AND_PILOT,
+        "ECOG / WHO / Zubrod scale wording; the API's escaped less-or-equal (=\\<) from the pilot's labels; "
+        "a lone value read first abstains, every such reading on the NSCLC records being wrong "
+        "(add-bank-coverage 2.1, 2026-11-01)",
+    ),
     "bank:biomarker": (
         "bank",
         DEV,
@@ -24,12 +36,19 @@ PROVENANCE: dict[str, tuple[str, str, str]] = {
     ),
     "bank:prior_therapy": ("bank", DEV, "line-of-therapy wording; agent-class words"),
     "bank:setting": ("bank", DEV, "AJCC 8th edition stage groups; extent and setting words"),
-    "bank:organ_function": ("bank", DEV, "analyte names and units as criteria write them"),
+    "bank:organ_function": (
+        "bank",
+        DEV_AND_PILOT,
+        "analyte names and units as criteria write them; the API's escaped comparators and paired thresholds "
+        "with their qualifiers from the pilot's labels",
+    ),
     "bank:conditions": (
         "bank",
-        DEV + "; and the 18-trial stratified pilot of 2026-10-31 (seed pilot-2026-10-31), development data",
+        DEV_AND_PILOT,
         "named-condition vocabulary with time windows (a temporal marker required), CTCAE grades and in-text "
-        "negation; boundaries corrected from Claude's blind labels of the pilot",
+        "negation; boundaries corrected from Claude's blind labels of the pilot; a window in years whose "
+        "words overlap the age bank's span is that age, never the mention's window (add-bank-coverage 2.1, "
+        "2026-11-01, on the same two populations)",
     ),
     "bank:age": ("bank", DEV, "age limit wording"),
     "bank:histology": ("bank", DEV, "WHO lung tumour histology names"),

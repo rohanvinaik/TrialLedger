@@ -61,7 +61,7 @@
   },
   "TrialLedger/banks.py::named_conditions": {
     "cut_reasons": [],
-    "function_digest": "4c793f6516caae8d",
+    "function_digest": "3f33785c1489c839",
     "refusal": "",
     "standing": "complete"
   },
@@ -73,7 +73,7 @@
   },
   "TrialLedger/banks.py::performance_status": {
     "cut_reasons": [],
-    "function_digest": "3a5fac4687d568c4",
+    "function_digest": "4d8c7cb28db13e8c",
     "refusal": "",
     "standing": "complete"
   },
