@@ -223,17 +223,23 @@ def sample_and_audit(scratch: Path, studies: list[dict], rxclass) -> dict[str, i
     }
     # a confirmation draw (Decision 9, B4; B8) excludes the discovery sample just drawn, needs clean code at a
     # commit (a fake git answers for this run, whose tree is being edited; the refused draw asks the real git)
-    # and records its batch in the ledger of used batches
+    # and records its batch in the ledger of used batches, which it commits (the fake git again)
     ledger = scratch / "ledger.json"
     ledger.write_text(json.dumps({"batches": {}}), encoding="utf-8")
     confirmation = ["sample", "--seed", "s", "--per-stratum", "1", "--inspected", str(sample)]
-    confirmation += ["--batch-ledger", str(ledger), "--confirmation-batch"]
-    answers = {"rev-parse": "c" * 40 + "\n", "status": "", "ls-files": "TrialLedger/sample.py\0"}
+    confirmation += ["--confirmation-batch"]
+    answers = {
+        "rev-parse": "c" * 40 + "\n",
+        "status": "",
+        "ls-files": "TrialLedger/sample.py\0",
+        "commit": "",
+    }
     codes["sample_confirmation"] = cli.main(
         [*confirmation, "1", "--out", str(scratch / "confirmation.json")],
         http=registry,
         sleep=lambda s: None,
         git=lambda root, *args: answers[args[0]],
+        ledger=ledger,
     )
     codes["sample_confirmation_refused"] = cli.main(
         [*confirmation, "3", "--out", str(scratch / "refused.json")], http=registry, sleep=lambda s: None

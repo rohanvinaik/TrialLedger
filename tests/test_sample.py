@@ -326,39 +326,49 @@ def test_a_confirmation_draw_takes_only_its_own_batch():
 
 
 def test_a_confirmation_request_is_refused_unless_its_batch_and_code_version_are_named():
-    a = "a" * 40
-    assert batch_request(0, a, [], [3], {}) == "ok" and batch_request(2, a, [], [3, 1], {}) == "ok"
-    assert batch_request(3, a, [], [3], {}) == "unknown_batch"
-    assert batch_request(-1, a, [], [3], {}) == "unknown_batch"
-    assert batch_request(1, "not a git checkout", [], [3], {}) == "no_code_version"
-    assert batch_request(1, "", [], [3], {}) == "no_code_version"
-    assert batch_request(7, "not a git checkout", ["x"], [], None) == "unknown_batch"
+    a, d = "a" * 40, "d" * 64
+    assert batch_request(0, a, d, [], [3], {}) == "ok" and batch_request(2, a, d, [], [3, 1], {}) == "ok"
+    assert batch_request(3, a, d, [], [3], {}) == "unknown_batch"
+    assert batch_request(-1, a, d, [], [3], {}) == "unknown_batch"
+    assert batch_request(1, "not a git checkout", d, [], [3], {}) == "no_code_version"
+    assert batch_request(1, "", d, [], [3], {}) == "no_code_version"
+    assert batch_request(1, a, "", [], [3], {}) == "no_code_version"  # the source could not be digested
+    assert batch_request(7, "not a git checkout", "", ["x"], [], None) == "unknown_batch"
 
 
 def test_a_confirmation_request_needs_clean_code_the_inspected_lists_and_an_unused_batch():
     """Positive: clean code at a commit, every inspected list holding IDs, and a batch the ledger has not
-    given to another commit (unused, or used for this same commit, so a re-draw of the same code is allowed).
-    Negative: a changed path, no inspected list, an empty one, an unreadable ledger, a batch used for another
-    commit are each refused by name."""
-    a, b = "a" * 40, "b" * 40
-    assert batch_request(1, a, [], [5], {"1": a}) == "ok"
-    assert batch_request(1, a, [], [5], {"0": b, "2": b}) == "ok"
-    assert batch_request(1, a, ["TrialLedger/banks.py"], [5], {}) == "uncommitted_changes"
-    assert batch_request(1, a, [], [], {}) == "no_inspected"
-    assert batch_request(1, a, [], [5, 0], {}) == "inspected_empty"
-    assert batch_request(1, a, [], [5], None) == "ledger_unreadable"
-    assert batch_request(1, a, [], [5], {"1": b}) == "batch_used"
+    given to other code (unused, or used for this same source digest, whatever the commit now is, so
+    committing the ledger never refuses a re-draw of the same code). Negative: a changed path, no inspected
+    list, an empty one, an unreadable ledger, a batch used for other code are each refused by name."""
+    a, b, d, e = "a" * 40, "b" * 40, "d" * 64, "e" * 64
+    assert batch_request(1, a, d, [], [5], {"1": d}) == "ok"
+    assert batch_request(1, b, d, [], [5], {"1": d}) == "ok"  # HEAD moved (the ledger committed), same code
+    assert batch_request(1, a, d, [], [5], {"0": e, "2": e}) == "ok"
+    assert batch_request(1, a, d, ["TrialLedger/banks.py"], [5], {}) == "uncommitted_changes"
+    assert batch_request(1, a, d, [], [], {}) == "no_inspected"
+    assert batch_request(1, a, d, [], [5, 0], {}) == "inspected_empty"
+    assert batch_request(1, a, d, [], [5], None) == "ledger_unreadable"
+    assert batch_request(1, a, d, [], [5], {"1": e}) == "batch_used"
 
 
-def test_the_ledger_declares_each_used_batch_with_its_commit():
-    """Positive: the declared batches each map to a commit; an empty ledger has none used. Negative: a ledger
-    of another shape, an undeclared batch or an empty commit is None, never read as no batch used."""
-    assert ledger_batches({"rule": "r", "batches": {"0": "a", "2": "b"}}) == {"0": "a", "2": "b"}
+def test_the_ledger_declares_each_used_batch_with_its_code():
+    """Positive: each declared batch maps to the source digest of the code it confirmed (its entry naming the
+    digest and the commit); an empty ledger has none used; the repository's ledger has none used. Negative: a
+    ledger of another shape, an undeclared batch, an entry that is not an object, or one with an empty or
+    missing digest or commit is None, never read as no batch used."""
+    entry = {"source_digest": "d", "commit": "a"}
+    other = {"source_digest": "e", "commit": "b"}
+    assert ledger_batches({"rule": "r", "batches": {"0": entry, "2": other}}) == {"0": "d", "2": "e"}
     assert ledger_batches({"batches": {}}) == {}
     assert ledger_batches(None) is None and ledger_batches([]) is None and ledger_batches({}) is None
     assert ledger_batches({"batches": []}) is None
-    assert ledger_batches({"batches": {"3": "a"}}) is None
-    assert ledger_batches({"batches": {"1": ""}}) is None and ledger_batches({"batches": {"1": 7}}) is None
+    assert ledger_batches({"batches": {"3": entry}}) is None
+    assert ledger_batches({"batches": {"1": "a"}}) is None  # the earlier commit-only form is not read
+    assert ledger_batches({"batches": {"1": {"source_digest": "", "commit": "a"}}}) is None
+    assert ledger_batches({"batches": {"1": {"source_digest": "d", "commit": ""}}}) is None
+    assert ledger_batches({"batches": {"1": {"source_digest": "d"}}}) is None
+    assert ledger_batches({"batches": {"1": {"source_digest": 7, "commit": "a"}}}) is None
     repo = json.loads((Path(__file__).parent.parent / "confirmation_ledger.json").read_text(encoding="utf-8"))
     assert ledger_batches(repo) == {}
 

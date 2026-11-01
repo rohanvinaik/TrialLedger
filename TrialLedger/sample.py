@@ -17,7 +17,8 @@ populations (the NSCLC record, the pilot and discovery samples) are declared as 
 `inspected_ids` reads, `screen_inspected` removes them before the draw, and the sample keeps each list and
 counts what it excluded.
 It is allowed only for code clean at a named commit (TrialLedger/ and tests/, `code_state`, with a digest of
-their source) and only for a batch the ledger of used batches has not already given to another commit.
+their source) and only for a batch the declared ledger of used batches (`LEDGER_NAME`) has not already given
+to other code, identified by that digest.
 
 The sample also declares its balance check: the drawn trials are counted by phase (each registry value,
 combined phases kept as written), intervention type and primary purpose, read from each record when it is
@@ -172,38 +173,57 @@ def inspected_ids(document: Any) -> list[str]:
     return sorted(found)
 
 
+LEDGER_NAME = "confirmation_ledger.json"  # the one declared ledger of used batches, at the code's root
+
+
 def ledger_batches(document: Any) -> dict[str, str] | None:
     """The used batches a ledger file declares (pure — pinned; add-bank-coverage B8): its `batches`, each a
-    declared batch ("0", "1", "2") mapped to the non-empty code commit it confirmed; None when the file is not
-    of that shape, so a malformed ledger is never read as one with no batch used."""
+    declared batch ("0", "1", "2") mapped to the code it confirmed, an entry naming a non-empty
+    `source_digest` (the digest of TrialLedger/ and tests/, `code_state`) and a non-empty `commit`;
+    returned as batch → source digest. None when the file is not of that shape, so a malformed ledger is
+    never read as one with no batch used."""
     if not isinstance(document, dict) or not isinstance(document.get("batches"), dict):
         return None
     batches = document["batches"]
     names = {str(b) for b in CONFIRMATION_BATCHES}
-    if not all(key in names and isinstance(value, str) and value for key, value in batches.items()):
-        return None
-    return dict(batches)
+    used = {}
+    for key, entry in batches.items():
+        if key not in names or not isinstance(entry, dict):
+            return None
+        digest, commit = entry.get("source_digest"), entry.get("commit")
+        if not (isinstance(digest, str) and digest and isinstance(commit, str) and commit):
+            return None
+        used[key] = digest
+    return used
 
 
 def batch_request(
-    batch: int, commit: str, dirty: list[str], inspected: list[int], used: dict[str, str] | None
+    batch: int,
+    commit: str,
+    digest: str,
+    dirty: list[str],
+    inspected: list[int],
+    used: dict[str, str] | None,
 ) -> str:
     """Whether a confirmation draw from one named batch may be made (pure — pinned; add-bank-coverage B8,
-    Decision 9, B4). `commit` and `dirty` are the code's (`code_state`), `inspected` the number of IDs in each
-    declared list of inspected trials, `used` the ledger's batches (`ledger_batches`).
-    "ok"                  — a declared batch, clean code at a named commit, every inspected list holding
-                            IDs, and the batch unused or used for this same commit.
+    Decision 9, B4). `commit`, `digest` and `dirty` are the code's (`code_state`), `inspected` the number of
+    IDs in each declared list of inspected trials, `used` the ledger's batches (`ledger_batches`), each with
+    the source digest of the code it confirmed. The code is identified by its digest, not its commit, so
+    committing the ledger (which moves HEAD and changes no watched file) never refuses a re-draw of the same
+    code, while any change to the code does.
+    "ok"                  — a declared batch, clean code at a named commit with a digest, every inspected
+                            list holding IDs, and the batch unused or used for this same code.
     "unknown_batch"       — not 0, 1 or 2: no other confirmation batch is declared.
-    "no_code_version"     — git cannot name the code's commit.
+    "no_code_version"     — git cannot name the code's commit, or its source could not be digested.
     "uncommitted_changes" — TrialLedger/ or tests/ differs from the commit, so it names no code exactly.
     "no_inspected"        — no inspected population declared: nothing shows the draw excludes them.
     "inspected_empty"     — a declared inspected list holds no ID (unreadable, or not a sample or record).
     "ledger_unreadable"   — the ledger of used batches is missing or malformed.
-    "batch_used"          — the ledger gives the batch to another commit: a batch never confirms twice.
+    "batch_used"          — the ledger gives the batch to other code: a batch never confirms twice.
     """
     if batch not in CONFIRMATION_BATCHES:
         return "unknown_batch"
-    if not commit or commit == NOT_A_CHECKOUT:
+    if not commit or commit == NOT_A_CHECKOUT or not digest:
         return "no_code_version"
     if dirty:
         return "uncommitted_changes"
@@ -213,7 +233,7 @@ def batch_request(
         return "inspected_empty"
     if used is None:
         return "ledger_unreadable"
-    if used.get(str(batch), commit) != commit:
+    if used.get(str(batch), digest) != digest:
         return "batch_used"
     return "ok"
 

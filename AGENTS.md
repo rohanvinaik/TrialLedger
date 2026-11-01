@@ -145,8 +145,10 @@ gather facts and write files. `design.md`'s code-shape table gives each module's
   with its file's sha256, `inspected_excluded` counted), refused by `batch_request` unless TrialLedger/ and
   tests/ are clean at a commit (`code_state` through `git_query`, injectable as `cli.main(git=...)`;
   `code_commit` and `code_source_digest` recorded) and unless the declared ledger `confirmation_ledger.json`
-  (`--batch-ledger`, `ledger_batches`) leaves the batch unused or gives it to the same commit; the batch is
-  recorded there after the sample is written.
+  (`sample.LEDGER_NAME` at the code's root, the only one read; injectable only as `cli.main(ledger=...)`;
+  `ledger_batches`) leaves the batch unused or gives it to the same code, named by its source digest, so a
+  new commit of unchanged code may re-draw; the batch is recorded there with the digest and the commit after
+  the sample is written, and the ledger alone is committed (a failed commit is named, exit 1).
 - The bank foundations (`add-bank-coverage` group 1), consumed by no production path yet (declared in
   `tests/test_wiring.py` with the task that will): `semantics/` (`contracts.py`: the bank contract, `Atom`,
   `Span`, `Finding`, `BankResult` and the legacy adapter; `loader.py`: predicate families, `ConceptEntry`
@@ -363,10 +365,8 @@ it. The proofs, so that they survive the machine:
 - The sample's frame runs to the present (the founder, 2026-11-01): `sample.base_query(present)`, the
   present the UTC date of the draw or `sample --present`, recorded in sample.json with the base and used by
   its audit's supplements; a sample without one (the pilot's) is read with `LEGACY_PRESENT`, 2025-12-31.
-- Open from those foundations, for the founder: `--batch-ledger` accepts any
-  path, so a draw against a fresh ledger bypasses the declared one (recorded in sample.json, not prevented);
-  who commits the ledger after a draw (committing moves HEAD, after which a re-draw is refused as
-  `batch_used`). Decided 2026-11-01: the AJCC edition stays unpinned until the oncology package (5.1) pins it
+- Decided 2026-11-01: the ledger names code by its source digest, only the declared ledger is read, and a
+  draw commits it (Claude's recommendation, approved); the AJCC edition stays unpinned until the oncology package (5.1) pins it
   from its source (the founder: wait), although `bank:setting` names the 8th; Claude's first settings of
   `MINIMUM_DENOMINATOR` and `BOOTSTRAP` and the annotator verdicts are accepted to start, open to review.
 - Mechanism signals (the founder, 2026-11-01): every comparison that holds at some reading is listed,

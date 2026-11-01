@@ -8,6 +8,8 @@ changed record is not certified (exit 1); a folder that is not a record is refus
 """
 
 import json
+import subprocess
+from pathlib import Path
 
 import httpx
 import pytest
@@ -160,10 +162,18 @@ def test_an_audit_stops_on_a_snapshot_change_and_only_on_that(tmp_path, monkeypa
         main(["audit", str(sample), "--out", str(tmp_path / "b")])
 
 
-def _clean_git(commit="c" * 40, status=""):
-    """A fake of the git query: HEAD at `commit`, `status` as the changed paths, nothing tracked."""
-    answers = {"rev-parse": commit + "\n", "status": status, "ls-files": ""}
-    return lambda root, *args: answers[args[0]]
+def _clean_git(commit="c" * 40, status="", tracked="", calls=None):
+    """A fake of the git query: HEAD at `commit`, `status` as the changed paths, `tracked` as the tracked
+    files (NUL-separated, read from the package root, so they set the source digest); every call is
+    appended to `calls` when given, and a commit succeeds."""
+    answers = {"rev-parse": commit + "\n", "status": status, "ls-files": tracked, "commit": ""}
+
+    def git(root, *args):
+        if calls is not None:
+            calls.append((Path(root), *args))
+        return answers[args[0]]
+
+    return git
 
 
 def _confirmation_inputs(tmp_path, inspected):
@@ -195,11 +205,12 @@ def test_a_confirmation_sample_is_drawn_from_one_named_batch_with_its_code_versi
     monkeypatch.setattr(ingest, "query_ids", query_ids)
     monkeypatch.setattr(cli, "code_commit", lambda: "d" * 40)
     kept, ledger = _confirmation_inputs(tmp_path, ["NCT00000001"])
-    batch = ["--inspected", str(kept), "--batch-ledger", str(ledger), "--confirmation-batch"]
+    batch = ["--inspected", str(kept), "--confirmation-batch"]
     out = tmp_path / "confirmation.json"
     argv = ["sample", "--seed", "s", "--per-stratum", "2", "--out", str(out), *batch, "1"]
-    assert main(argv, git=_clean_git()) == 0
+    assert main(argv, git=_clean_git(), ledger=ledger) == 0
     sample = json.loads(out.read_text(encoding="utf-8"))
+    assert sample["batch_ledger"] == str(ledger)
     assert sample["confirmation_batch"] == 1 and sample["drawn_from"] == "confirmation_1"
     assert sample["code_commit"] == "c" * 40 and sample["balance"]["supplement_per_cell"] == 0
     assert len(sample["code_source_digest"]) == 64 and sample["code_watched"] == ["TrialLedger", "tests"]
@@ -216,9 +227,9 @@ def test_a_confirmation_sample_is_drawn_from_one_named_batch_with_its_code_versi
     capsys.readouterr()
     refused = tmp_path / "refused.json"
     argv = ["sample", "--seed", "s", "--out", str(refused), *batch]
-    assert main([*argv, "3"], git=_clean_git()) == 2
+    assert main([*argv, "3"], git=_clean_git(), ledger=ledger) == 2
     assert "refused (confirmation.unknown_batch): batch 3" in capsys.readouterr().err
-    assert main([*argv, "0"], git=_clean_git(commit="")) == 2
+    assert main([*argv, "0"], git=_clean_git(commit=""), ledger=ledger) == 2
     assert "refused (confirmation.no_code_version)" in capsys.readouterr().err
     assert not asked and not refused.exists()
 
@@ -239,9 +250,9 @@ def test_a_confirmation_sample_excludes_every_inspected_trial_and_keeps_the_list
     studies = [{"protocolSection": {"identificationModule": {"nctId": nct}}} for nct in batch1[10:14]]
     (folder / "studies.json").write_text(json.dumps({"studies": studies}), encoding="utf-8")
     out = tmp_path / "confirmation.json"
-    base = ["sample", "--seed", "s", "--per-stratum", "50", "--out", str(out), "--batch-ledger", str(ledger)]
+    base = ["sample", "--seed", "s", "--per-stratum", "50", "--out", str(out)]
     inspected = ["--inspected", str(kept), "--inspected", str(folder)]
-    assert main([*base, *inspected, "--confirmation-batch", "1"], git=_clean_git()) == 0
+    assert main([*base, *inspected, "--confirmation-batch", "1"], git=_clean_git(), ledger=ledger) == 0
     sample = json.loads(out.read_text(encoding="utf-8"))
     assert {t["nct"] for t in sample["trials"]} == set(batch1[14:])
     assert sample["inspected_excluded"] == 14
@@ -250,48 +261,76 @@ def test_a_confirmation_sample_excludes_every_inspected_trial_and_keeps_the_list
     assert all(len(item["sha256"]) == 64 for item in sample["inspected"])
 
     out.unlink()
-    assert main([*base, "--confirmation-batch", "1"], git=_clean_git()) == 2
+    assert main([*base, "--confirmation-batch", "1"], git=_clean_git(), ledger=ledger) == 2
     empty = tmp_path / "empty.json"
     empty.write_text("{}", encoding="utf-8")
-    assert main([*base, "--inspected", str(empty), "--confirmation-batch", "1"], git=_clean_git()) == 2
+    assert (
+        main([*base, "--inspected", str(empty), "--confirmation-batch", "1"], git=_clean_git(), ledger=ledger)
+        == 2
+    )
     missing = ["--inspected", str(tmp_path / "missing.json")]
-    assert main([*base, *missing, "--confirmation-batch", "1"], git=_clean_git()) == 2
+    assert main([*base, *missing, "--confirmation-batch", "1"], git=_clean_git(), ledger=ledger) == 2
     assert not out.exists()
 
 
 def test_a_confirmation_draw_needs_clean_code_and_retires_its_batch_in_the_ledger(
     tmp_path, monkeypatch, capsys
 ):
-    """add-bank-coverage B8. Positive: a draw records its batch and commit in the ledger; a re-draw of the
-    same batch for the same commit is allowed and leaves the ledger as it was. Negative: uncommitted changes
-    under TrialLedger/ or tests/, a batch the ledger gives another commit, and a missing or malformed ledger
-    are each refused, writing no sample and leaving the ledger byte for byte."""
+    """add-bank-coverage B8. Positive: a draw records its batch in the declared ledger with the code's
+    source digest and commit, and commits the ledger alone; a re-draw of the same batch for the same code is
+    allowed, even at a new commit (the ledger's own), and neither rewrites nor commits the ledger. Negative:
+    uncommitted changes under TrialLedger/ or tests/, a batch the ledger gives other code, and a missing or
+    malformed ledger are each refused, writing no sample and leaving the ledger byte for byte; a ledger that
+    cannot be committed is named and ends with 1. No option names another ledger."""
     from TrialLedger import ingest
+    from TrialLedger.sample import code_state
 
     ids = [f"NCT{n:08d}" for n in range(1, 201)]
     monkeypatch.setattr(ingest, "query_ids", lambda query, **kwargs: (ids, "2.0.5", "T"))
     kept, ledger = _confirmation_inputs(tmp_path, ["NCT00000001"])
     out = tmp_path / "confirmation.json"
     argv = ["sample", "--seed", "s", "--out", str(out), "--inspected", str(kept), "--confirmation-batch", "2"]
-    with_ledger = [*argv, "--batch-ledger", str(ledger)]
-    assert main(with_ledger, git=_clean_git()) == 0
-    assert json.loads(ledger.read_text(encoding="utf-8")) == {"batches": {"2": "c" * 40}}
+    calls = []
+    assert main(argv, git=_clean_git(calls=calls), ledger=ledger) == 0
+    digest = code_state(git=_clean_git())["source_digest"]
+    entry = {"source_digest": digest, "commit": "c" * 40}
+    assert json.loads(ledger.read_text(encoding="utf-8")) == {"batches": {"2": entry}}
+    committed = [call for call in calls if call[1] == "commit"]
+    assert len(committed) == 1 and committed[0][0] == tmp_path and committed[0][-2:] == ("--", ledger.name)
+    assert "Confirmation batch 2 used for code cccccccccccc" in committed[0][3]
     written = ledger.read_bytes()
-    assert main(with_ledger, git=_clean_git()) == 0 and ledger.read_bytes() == written
+    calls.clear()
+    assert main(argv, git=_clean_git(commit="f" * 40, calls=calls), ledger=ledger) == 0
+    assert ledger.read_bytes() == written and not [call for call in calls if call[1] == "commit"]
 
     out.unlink()
     capsys.readouterr()
-    assert main(with_ledger, git=_clean_git(status=" M TrialLedger/banks.py\n")) == 2
+    assert main(argv, git=_clean_git(status=" M TrialLedger/banks.py\n"), ledger=ledger) == 2
     assert "confirmation.uncommitted_changes" in capsys.readouterr().err
-    assert main(with_ledger, git=_clean_git(commit="e" * 40)) == 2
+    other_code = _clean_git(commit="e" * 40, tracked="pyproject.toml\0")
+    assert main(argv, git=other_code, ledger=ledger) == 2
     assert "confirmation.batch_used" in capsys.readouterr().err
     assert ledger.read_bytes() == written
-    assert main(argv, git=_clean_git()) == 2
-    assert main([*argv, "--batch-ledger", str(tmp_path / "none.json")], git=_clean_git()) == 2
-    ledger.write_text(json.dumps({"batches": {"5": "x"}}), encoding="utf-8")
-    assert main(with_ledger, git=_clean_git()) == 2
+    assert main(argv, git=_clean_git(), ledger=tmp_path / "none.json") == 2
+    ledger.write_text(json.dumps({"batches": {"5": entry}}), encoding="utf-8")
+    assert main(argv, git=_clean_git(), ledger=ledger) == 2
     assert "confirmation.ledger_unreadable" in capsys.readouterr().err
     assert not out.exists()
+    with pytest.raises(SystemExit):
+        main([*argv, "--batch-ledger", str(ledger)], git=_clean_git(), ledger=ledger)
+
+    ledger.write_text(json.dumps({"batches": {}}), encoding="utf-8")
+    failing = _clean_git()
+
+    def no_commit(root, *args):
+        if args[0] == "commit":
+            raise subprocess.CalledProcessError(1, ["git", "commit"])
+        return failing(root, *args)
+
+    capsys.readouterr()
+    assert main(argv, git=no_commit, ledger=ledger) == 1
+    assert "but the ledger was not committed" in capsys.readouterr().err
+    assert out.exists() and json.loads(ledger.read_text(encoding="utf-8"))["batches"]["2"] == entry
 
 
 def test_a_sample_frame_runs_to_the_present_and_records_it(tmp_path, monkeypatch, capsys):

@@ -7,6 +7,7 @@ import argparse
 import hashlib
 import json
 import os
+import subprocess
 import sys
 import time
 from collections.abc import Callable
@@ -88,6 +89,7 @@ def main(
     rxclass_get: Callable[[str, dict[str, str]], tuple[int, Any]] | None = None,
     model_http: Callable[..., Any] | None = None,
     git: Callable[..., str] | None = None,
+    ledger: Path | None = None,
 ) -> int:
     parser = argparse.ArgumentParser(
         prog="trialledger",
@@ -178,11 +180,12 @@ def main(
             "and declare no supplement. A confirmation draw needs TrialLedger/ and tests/ clean at a commit, "
             "every inspected population declared with --inspected (a sample.json, an audit's balance.json, "
             "or a record folder or its studies.json: the NSCLC record, the pilot and discovery samples), "
-            "whose trials it never draws, and --batch-ledger, the declared file of batches used (batch to "
-            "the commit it confirmed), which it consults and then records this batch in. Ends with 0, "
-            "written; 1, the registry query failed; 2, refused (a batch not declared, code not clean at a "
-            "commit, no or an empty inspected list, an unreadable ledger, or a batch already used for "
-            "another commit)."
+            "whose trials it never draws. It consults the declared ledger of batches used, "
+            "confirmation_ledger.json at the code's root (each batch with the source digest and commit of "
+            "the code it confirmed), then records this batch there and commits the ledger alone. Ends with "
+            "0, written; 1, the registry query failed, or the ledger was recorded but not committed; 2, "
+            "refused (a batch not declared, code not clean at a commit, no or an empty inspected list, an "
+            "unreadable ledger, or a batch already used for other code)."
         ),
     )
     sample_parser.add_argument("--per-stratum", type=int, default=6)
@@ -203,11 +206,6 @@ def main(
         action="append",
         default=[],
         help="a kept list of trials already inspected, never drawn for confirmation (repeat for each)",
-    )
-    sample_parser.add_argument(
-        "--batch-ledger",
-        type=Path,
-        help="the declared ledger of confirmation batches used (confirmation_ledger.json)",
     )
     audit_parser = commands.add_parser(
         "audit",
@@ -258,7 +256,7 @@ def main(
     if args.command == "pilot":
         return _pilot(args, model_http=model_http)
     if args.command == "sample":
-        return _sample(args, http=http, sleep=sleep, git=git)
+        return _sample(args, http=http, sleep=sleep, git=git, ledger=ledger)
     if args.command == "audit":
         return _audit(args, http=http, sleep=sleep, rxclass_get=rxclass_get, model_http=model_http)
     if args.command == "resolve":
@@ -326,14 +324,17 @@ def _inspected_list(path: Path) -> dict[str, Any]:
     return {"path": str(path), "sha256": digest, "ncts": inspected_ids(_read_json(path))}
 
 
-def _sample(args, *, http, sleep, git) -> int:
+def _sample(args, *, http, sleep, git, ledger) -> int:
     from TrialLedger.ingest import query_ids
     from TrialLedger.sample import (
         BASE_FROM,
+        LEDGER_NAME,
+        PACKAGE_ROOT,
         SnapshotChanged,
         batch_request,
         code_state,
         draw_sample,
+        git_query,
         ledger_batches,
     )
 
@@ -353,13 +354,17 @@ def _sample(args, *, http, sleep, git) -> int:
     inspected: list[dict[str, Any]] = []
     extra: dict[str, Any] = {}
     used: dict[str, str] | None = None
+    ledger_path: Path = ledger or PACKAGE_ROOT / LEDGER_NAME
+    document: Any = None
+    state: dict[str, Any] = {}
     if batch is not None:
         state = code_state(git=git)
         inspected = [_inspected_list(path) for path in args.inspected]
-        ledger = _read_json(args.batch_ledger) if args.batch_ledger else None
-        used = ledger_batches(ledger)
+        document = _read_json(ledger_path)
+        used = ledger_batches(document)
         commit = state["commit"]
-        verdict = batch_request(batch, commit, state["dirty"], [len(i["ncts"]) for i in inspected], used)
+        counts = [len(i["ncts"]) for i in inspected]
+        verdict = batch_request(batch, commit, state["source_digest"], state["dirty"], counts, used)
         if verdict != "ok":
             dirty = ", ".join(state["dirty"][:5])
             print(
@@ -372,7 +377,7 @@ def _sample(args, *, http, sleep, git) -> int:
             "code_source_digest": state["source_digest"],
             "code_watched": state["watched"],
             "inspected": inspected,
-            "batch_ledger": str(args.batch_ledger),
+            "batch_ledger": str(ledger_path),
         }
 
     def ids(query, progress):
@@ -395,8 +400,21 @@ def _sample(args, *, http, sleep, git) -> int:
     sample.update(extra)
     args.out.write_text(json.dumps(sample, indent=1), encoding="utf-8")
     if batch is not None and used is not None and str(batch) not in used:
-        retired = {**(ledger or {}), "batches": used | {str(batch): commit}}
-        args.batch_ledger.write_text(json.dumps(retired, indent=1) + "\n", encoding="utf-8")
+        entry = {"source_digest": state["source_digest"], "commit": commit}
+        retired = {**document, "batches": {**document["batches"], str(batch): entry}}
+        ledger_path.write_text(json.dumps(retired, indent=1) + "\n", encoding="utf-8")
+        message = (
+            f"Confirmation batch {batch} used for code {commit[:12]} (source {entry['source_digest'][:12]})"
+        )
+        try:
+            (git or git_query)(ledger_path.parent, "commit", "-m", message, "--", ledger_path.name)
+        except (OSError, subprocess.CalledProcessError) as error:
+            print(
+                f"trialledger: {args.out} written and batch {batch} recorded in {ledger_path}, but the "
+                f"ledger was not committed ({error}); commit it before any other draw",
+                file=sys.stderr,
+            )
+            return 1
     cells = sum(len(values) for values in sample["balance"]["cells"].values())
     excluded = sample["inspected_excluded"]
     print(

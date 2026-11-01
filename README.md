@@ -354,13 +354,14 @@ sample or as a supplement, and `trialledger pilot` draws only from the sample un
 `--include-supplement`.
 
 The reserved 30% is split into three confirmation batches, each to be used once. `trialledger sample
---confirmation-batch N --inspected FILE ... --batch-ledger confirmation_ledger.json` draws from one batch and
+--confirmation-batch N --inspected FILE ...` draws from one batch and
 leaves out every trial of each population named with `--inspected`, since a rule cannot be confirmed on trials
 it was written against. Inspected populations are a record folder, a sample or an audit's balance check; each
 list is kept with its file's digest, and the number of trials left out is counted. The draw is refused unless
 the code is committed with no uncommitted changes, so the confirmation names exactly the code it tested. The
-ledger records the batch as used, by that commit, after the sample is written, and refuses the batch to any
-other commit.
+repository's own ledger, `confirmation_ledger.json` (no other file is read), records the batch as used by that
+code, named by a fingerprint of its source and its commit, after the sample is written, and the draw commits
+the ledger on its own. The batch is refused to any other code; the same code may draw it again.
 
 To check the build: `scripts/ci_local.sh` runs the fast gate (`--deep` adds the Detective audit of every
 pinned decision and the vulture scans; it needs local checkouts of Detective and Wesker),

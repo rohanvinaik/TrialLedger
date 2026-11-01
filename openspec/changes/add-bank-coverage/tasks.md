@@ -130,4 +130,13 @@
         (not settled): the new `sample.inspected_ids`, `sample.ledger_batches`, `sample.screen_inspected` and
         the changed `sample.batch_request` (new signature and codes); `sample.draw_sample` (its new
         `inspected` input), `sample.code_state` and `sample.git_query` are shells, not pinned.
+        Revised 2026-11-01 (the founder approved Claude's recommendation): the ledger names the code a batch
+        confirmed by its source digest, with the commit beside it (`{"source_digest", "commit"}`), so
+        committing the ledger, which moves HEAD and changes no watched file, never refuses a re-draw of the
+        same code; `batch_request` takes the digest and names an undigested source `no_code_version`.
+        `--batch-ledger` is gone: only the declared `confirmation_ledger.json` at the code's root
+        (`sample.LEDGER_NAME`) is read, injectable for tests only as `cli.main(ledger=...)`. After recording
+        the batch the draw commits the ledger alone (`git commit -- confirmation_ledger.json`); a failed
+        commit is named and ends with 1. `ledger_batches` and `batch_request` changed again; both stay in the
+        Detective debt.
 - [ ] 7.2 Release with the supported/unsupported manifest
