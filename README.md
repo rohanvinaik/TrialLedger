@@ -148,5 +148,5 @@ not absence, conflicts are reported rather than voted away, and a pattern only e
 must trust it. **ModelAtlas** contributed the recommendation engine and its manner of closing: surface what
 remains open, and suggest the decision that settles the most.
 
-The full design is in [`docs/THEORY_OF_THE_CASE.md`](docs/THEORY_OF_THE_CASE.md). Contributors should start with
-[`AGENTS.md`](AGENTS.md).
+The full design is in [`docs/THEORY_OF_THE_CASE.md`](docs/THEORY_OF_THE_CASE.md). An assistant using TrialLedger
+reads [`AGENTS.md`](AGENTS.md); contributors start with [`DEVELOPING.md`](DEVELOPING.md).
