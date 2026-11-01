@@ -20,8 +20,9 @@
   spans or nondeterminism (Decision 2's last three, to land with the shared parsers of 3.1, which define
   units and spans); per-bank recall needs gold concepts mapped to their owners through `Registry.owners`,
   which no function does yet; `universe_status` takes the present as a full YYYY-MM-DD date; authority
-  editions are unpinned (each pinned from its source by the package that first uses it, 3.x; AJCC's by 5.1,
-  since no bank cites one), and the performance-status scale is marked `unversioned` and flagged on the
+  editions are unpinned (each pinned from its source by the package that first uses it, 3.x; AJCC's by 5.1
+  unless the founder rules sooner: `bank:setting` and two approved relations name the 8th edition in their
+  notes, but none is pinned from its source), and the performance-status scale is marked `unversioned` and flagged on the
   registry until 2.1 or 3.3 pins its source edition.
 
   Revised 2026-11-01 after review: every measure reads one level and matching or judging a mixture is

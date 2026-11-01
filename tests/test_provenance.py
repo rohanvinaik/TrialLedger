@@ -14,7 +14,8 @@ exposure record is a rule with an origin, the seed fragment's derived from both 
 Negative: no licence status outside the five; SNOMED CT is not usable without a licence; DSM and AJCC are
 words only; no exposure names an unknown population or lacks an origin, and no rule is confirmed on a
 population that informed it; no bank omits the pilot; no edition is invented (the local namespace has none,
-and AJCC, which no bank cites by edition, none).
+and AJCC none: its 8th edition is named in bank:setting's note and two relations' origins, never pinned from
+its source).
 """
 
 from TrialLedger.banks import BANKS

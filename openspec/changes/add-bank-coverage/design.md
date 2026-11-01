@@ -112,7 +112,8 @@ the code by Claude; **As built here** marks the reconciliation.
   package's unversioned scale is refused. The seed's performance-status scale is so marked and flagged.
 - **1.3 (Decision 5)** `provenance.py` gains `CONCEPT_AUTHORITIES` (B5's open authorities first; SNOMED CT
   licence_required; DSM, AJCC and the WHO lung histology names words_only; every edition unpinned, AJCC's
-  too (no bank cites one), and the local namespace has none, borrowing none from a fragment; a code from an
+  too (`bank:setting` and two approved relations name the 8th edition in their notes, but no edition is
+  pinned from its source; the founder's to rule, else 5.1 pins it), and the local namespace has none, borrowing none from a fragment; a code from an
   unpinned authority is refused), `LICENCE_STATUSES`, `DEVELOPMENT_POPULATIONS` and `RULE_EXPOSURE`
   (populations inspected, freeze, confirmation batches) beside the unchanged `PROVENANCE`. Every existing
   bank lists the pilot (2026-10-31/11-01) among its populations: the pilot's audit read every bank's atoms.

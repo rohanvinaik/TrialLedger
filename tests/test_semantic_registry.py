@@ -230,7 +230,7 @@ def test_an_atom_of_no_concept_or_with_an_undeclared_param_is_named():
 
 def test_no_version_is_invented():
     assert provenance.CONCEPT_AUTHORITIES["local"][1] is None  # nothing borrowed from the NSCLC fragment
-    assert provenance.CONCEPT_AUTHORITIES["ajcc"][1] is None  # the setting bank cites no AJCC edition
+    assert provenance.CONCEPT_AUTHORITIES["ajcc"][1] is None  # named in notes, never pinned from its source
     seed = load_fragments()
     for entry in seed[0].concepts:
         assert entry.defined_on == "2026-11-01", entry.concept_id
