@@ -7,6 +7,14 @@ is named by its absence state; a computed value names its rule; a value that nee
 filled. The record workbook's Record sheets present every value of every study, under the registry's own
 category and field names; the review workbook holds the design sheets and the checks. After writing, each
 workbook is read back cell by cell and every row warrant re-derived; any difference refuses the write.
+
+The layout follows the clinical listing conventions of openspec/changes/add-agent-operation/workbook-design.md
+("Formatting and print"): Arial 10, a bold header row ruled below, the header row and the identifying column
+frozen, a filter over every listing, each column's width and wrapping by the kind of value its source names
+(`width_class`), every cell top-aligned and never merged, landscape pages with the header row repeated and a
+footer naming the sheet and the page, fitted to one page wide only where the type stays readable
+(`print_fit`), else a defined print area with the identifying column repeated. The layout changes no value:
+dates stay the registry's text at its precision, and a number keeps its general format.
 """
 
 from __future__ import annotations
@@ -26,7 +34,9 @@ from xml.etree import ElementTree
 import openpyxl
 from openpyxl import Workbook, load_workbook
 from openpyxl.cell import WriteOnlyCell
-from openpyxl.styles import Font
+from openpyxl.styles import Alignment, Border, Font, Side
+from openpyxl.utils import get_column_letter
+from openpyxl.utils.indexed_list import IndexedList
 
 from TrialLedger import __version__, registry, warrants
 from TrialLedger.cells import FORBIDDEN_CHARACTERS, cell_number_state, cell_text_state, sheet_fits
@@ -1406,6 +1416,145 @@ def _about_rows(record: dict[str, Any], book: Book) -> Iterator[list[Fact]]:
             ]
 
 
+# ── layout: how a reader sees and prints the sheets ───────────────────────────────────────────────────
+
+# A column's width class, from the words its source is described by (`width_class`), in this order: phrases
+# that describe a column without naming a field; then the name of the field or rule the source begins with.
+SOURCE_PHRASES = (
+    ("exact text", "long_text"),  # the eligibility text's split parts
+    ("as the record holds", "long_text"),  # a check's detail; the Record sheet's value
+    ("quoted from", "long_text"),  # the registry's words for a check
+    ("the record location", "summary"),
+    ("exact place", "summary"),
+    ("the relation", "summary"),
+    ("the role", "summary"),
+    ("an approved edit check", "summary"),  # a check's id, up to 36 characters
+)
+IDENTIFIER_NAMES = ("nctId", "id", "groupId")
+LONG_TEXT_ENDINGS = ("description", "summary", "comment", "criteria", "population", "notes", "citation")
+SUMMARY_ENDINGS = (
+    "title",
+    "measure",
+    "frame",
+    "conditions",
+    "term",
+    "name",
+    "names",
+    "label",
+    "labels",
+    "facility",
+    "method",
+    "system",
+    "retractions",
+    "collaborators",
+    "stopped",
+    "form",
+    "analyzed",
+    "publications",
+    "role",
+    "checks",  # the check table, whose ids are long
+)
+# Each class's width in characters (workbook-design.md: identifiers 15-18, short categories 14-22, summaries
+# 35-50, verbatim criteria and long text 65-85) and whether its cells wrap. Every class but the warrant wraps,
+# so nothing is cut off: an identifier fits its 18 characters and is never broken, while a longer value in its
+# column (a combined document's file name, a stated absence) wraps; a warrant, a 64-character SHA-256 digest,
+# is shown whole on one line.
+WIDTHS = {"identifier": 18, "category": 18, "summary": 40, "long_text": 72, "warrant": 66}
+WRAPS = {"identifier": True, "category": True, "summary": True, "long_text": True, "warrant": False}
+# The About sheet's four columns: the topic (wide enough for the book's title above it), the item, its meaning
+# or value, and a column's source.
+ABOUT_CLASSES = ("summary", "category", "long_text", "summary")
+# The widest sheet, in characters, that still prints readably on one landscape page: a Letter page less
+# 0.75-inch margins leaves 9.5 inches, about 130 characters of Arial 10 at full size, so 170 prints at about
+# 76% (Arial 10 as 7.6 pt), the smallest type a listing is read at. A wider sheet is never scaled further.
+READABLE_WIDTH = 170
+FONT = Font(name="Arial", size=10)
+LINK_FONT = Font(name="Arial", size=10, underline="single")  # a link shown as one, without colour
+HEADER_FONT = Font(name="Arial", size=10, bold=True)
+HEADER_RULE = Border(bottom=Side(style="thin"))
+WRAPPED = Alignment(vertical="top", wrap_text=True)
+UNWRAPPED = Alignment(vertical="top")
+FOOTER_LEFT = "&A"  # the sheet's name
+FOOTER_RIGHT = "Page &P of &N"
+
+
+def width_class(kind: str, source: str) -> str:
+    """How wide a column is and whether it wraps, from its kind and its source's description (pure — pinned).
+
+    The first that applies, in this order:
+      "warrant"    — a warrant or digest: 64 hexadecimal characters, kept whole on one line, never wrapped;
+      "identifier" — a link (an NCT number, a PMID, a file): an identifier's width, whatever its source says;
+      the class of the first of SOURCE_PHRASES the source holds (a column described in words, not a field);
+      "summary"    — a needs-review column, whose cell is a sentence saying where to read;
+    then by the source's name, the last field of the path it begins with or the rule it begins with:
+      "identifier" — an identifier field (IDENTIFIER_NAMES);
+      "long_text"  — a name ending in a LONG_TEXT_ENDINGS word (descriptions, summaries, criteria, citations);
+      "summary"    — a name ending in a SUMMARY_ENDINGS word (titles, measures, time frames, names);
+      "category"   — anything else: a status, a type, a date, a count, a short value.
+    """
+    if kind == "warrant":
+        return "warrant"
+    if kind == "stated (link)":
+        return "identifier"
+    for phrase, code in SOURCE_PHRASES:
+        if phrase in source:
+            return code
+    if kind == "needs review":
+        return "summary"
+    path = re.split(r"[\s:,]", source)[0]
+    name = path.replace("[]", "").split(".")[-1]
+    if name in IDENTIFIER_NAMES:
+        return "identifier"
+    if name.lower().endswith(LONG_TEXT_ENDINGS):
+        return "long_text"
+    if name.lower().endswith(SUMMARY_ENDINGS):
+        return "summary"
+    return "category"
+
+
+def print_fit(width: int) -> str:
+    """How a sheet whose columns are `width` characters wide prints across a page (pure — pinned).
+
+    "fit_width"  — at most READABLE_WIDTH: scaled to one page wide, the type still readable.
+    "print_area" — wider: printed at full size over a defined print area, page after page across, with the
+                   identifying column repeated, never scaled to unreadable type.
+    """
+    return "fit_width" if width <= READABLE_WIDTH else "print_area"
+
+
+def _layouts(book: Book) -> Iterator[list[str]]:
+    """Each worksheet's column classes, in the order `_planned` gives the worksheets: About's, then each
+    sheet's, its Warrant column last."""
+    yield list(ABOUT_CLASSES)
+    for sheet in book.sheets:
+        classes = [width_class(column.kind, column.source) for column in sheet.columns]
+        yield classes + ([width_class("warrant", WARRANT_HEADER)] if sheet.warranted else [])
+
+
+def _lay_out(sheet: Any, classes: list[str], rows: int, listing: bool) -> None:
+    """Set a worksheet's widths, panes, filter and print setup, before its first row is written. A listing
+    (a sheet with a header row) gets its header row and identifying column frozen, a filter over every row
+    and its header row repeated on every printed page."""
+    for number, code in enumerate(classes, start=1):
+        sheet.column_dimensions[get_column_letter(number)].width = WIDTHS[code]
+    extent = f"A1:{get_column_letter(len(classes))}{max(rows, 1)}"
+    sheet.page_setup.orientation = "landscape"
+    sheet.HeaderFooter.oddFooter.left.text = FOOTER_LEFT
+    sheet.HeaderFooter.oddFooter.right.text = FOOTER_RIGHT
+    if listing:
+        sheet.freeze_panes = "B2"
+        sheet.auto_filter.ref = extent
+        sheet.print_title_rows = "1:1"
+    if print_fit(sum(WIDTHS[code] for code in classes)) == "fit_width":
+        sheet.sheet_properties.pageSetUpPr.fitToPage = True
+        sheet.page_setup.fitToWidth = 1
+        sheet.page_setup.fitToHeight = 0
+    else:
+        sheet.print_area = extent
+        if listing:
+            sheet.print_title_cols = "A:A"
+
+
 # ── writing, and reading back ─────────────────────────────────────────────────────────────────────────
 
 
@@ -1479,35 +1628,54 @@ def write_workbook(record: dict[str, Any], path: Path, book: Book = REVIEW) -> i
 
 def _write(record: dict[str, Any], path: Path, contexts: list[Ctx], book: Book) -> int:
     output = Workbook(write_only=True)
-    bold = Font(bold=True)
+    # The Normal style and the default cell format, both bound to the first font, in Arial 10: an empty cell,
+    # and whatever a reader types into one, reads in the listing's type.
+    output._fonts = IndexedList([FONT])
+    output._named_styles["Normal"].font = FONT
     written = 0
-    for name, header, rows in _planned(record, contexts, book):
+    for (name, header, rows), classes in zip(_planned(record, contexts, book), _layouts(book), strict=True):
+        alignments = [WRAPPED if WRAPS[code] else UNWRAPPED for code in classes]
         for part, part_rows in _chunks(name, header, rows):
             sheet = output.create_sheet(part)
+            _lay_out(sheet, classes, len(part_rows) + (header is not None), header is not None)
             if header is not None:
-                sheet.freeze_panes = "B2"
                 cells = []
                 for text in header:
                     cell = WriteOnlyCell(sheet, value=text)
                     cell.data_type = "s"
-                    cell.font = bold
+                    cell.font = HEADER_FONT
+                    cell.border = HEADER_RULE
+                    cell.alignment = WRAPPED
                     cells.append(cell)
                 sheet.append(cells)
                 written += len(cells)
             for facts in part_rows:
-                sheet.append([_cell(sheet, fact) for fact in facts])
+                sheet.append(
+                    [
+                        _styled(_cell(sheet, fact), alignment)
+                        for fact, alignment in zip(facts, alignments, strict=True)
+                    ]
+                )
                 written += len(facts)
     output.save(path)
     return written
 
 
+def _styled(cell: Any, alignment: Alignment) -> Any:
+    """A body cell top-aligned and wrapped as its column is (`_cell` gives its type)."""
+    cell.alignment = alignment
+    return cell
+
+
 def _cell(sheet: Any, fact: Fact) -> Any:
     encoded = _encoded(fact)
     cell = WriteOnlyCell(sheet, value=encoded)
+    cell.font = FONT
     if isinstance(encoded, str):
         cell.data_type = "s"  # never a formula or an error code: text is text
         if fact.url and encoded == fact.value:
             cell.hyperlink = fact.url
+            cell.font = LINK_FONT
     return cell
 
 

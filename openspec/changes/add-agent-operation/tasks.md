@@ -155,6 +155,32 @@ The founder, 2026-11-01: the next priority, built to completion.
   whole resolution is set aside (today only the failed answers are, so the re-asked first release postdates
   the class and member answers it vouches for).
 
+  2026-11-01, `pull`'s review.xlsx and record.xlsx laid out by workbook-design.md's "Formatting and print"
+  (`TrialLedger/workbook.py`, formatting only): Arial 10, the header row bold and ruled below, the header row
+  and identifying column frozen (B2), a filter over every listing, every cell top-aligned, widths and wrapping
+  by column class from the existing `Column.kind` and `Column.source` (`width_class`: identifier 18 unwrapped,
+  category 18, summary 40, long text 72), landscape with the header row repeated and a footer of the sheet's
+  name and page; a sheet at most 170 characters wide fitted to one page wide, a wider one printed at full size
+  over a defined print area with column A repeated (`print_fit`); no merged cells, no formulas, no number or
+  date formats (dates stay the registry's text). Both decisions converged `--two-sign` COMPLETE. About stays
+  first (it has no header row, so no frozen header and no filter); Checks, Check Rules and Record were already
+  last. No cell value changes: with the code root pinned to the previous one, every cell of both books,
+  warrants included, is identical; the code root itself changes (workbook.py is derivation code), so every
+  computed warrant changes and a folder pulled before this commit verifies only at its own commit. Writing is
+  about 1.3 times slower (300 studies: review 3.0 s to 4.0 s, record 4.5 s to 5.9 s, write and certify).
+  Tests: `tests/test_width_class.py`, `tests/test_workbook_layout.py`. Left: the landscape.xlsx sheets
+  themselves; a passage taller than Excel's 409-point row is still clipped on screen (continuation rows would
+  change values).
+
+  2026-11-01, after review: a warrant or record digest (64 characters) has its own class, 66 wide and unwrapped,
+  so it is never cut off on screen or at the print area's edge (it had been an 18-wide identifier); an
+  identifier column now wraps, so a value longer than 18 (a combined document's file name such as
+  Prot_SAP_ICF_000.pdf, a stated absence) is never cut off, while an NCT number, PMID or group id fits; the Checks
+  sheet is now wider than 170 and prints over a print area, so About is the one sheet fitted to a page. The
+  Normal style and the default cell format are Arial 10, so empty cells and a reader's own entries match; a
+  link is underlined, without colour; a brief summary is long text; About's topic and item columns swap widths
+  (topic 40, item 18, the total still 170), so the book's title in A1 has a summary's width. No value changes.
+
 ## 5. The agent entry point
 
 - [ ] 5.1 `SKILL.md` and the README's "For an agent" section, one procedure

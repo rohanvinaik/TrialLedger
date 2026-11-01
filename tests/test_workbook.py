@@ -383,9 +383,7 @@ def test_a_file_any_reader_fails_on_is_named_never_raised(written):
     rewrite_part(
         path,
         "xl/worksheets/sheet1.xml",
-        lambda part: re.sub(
-            rb'<c r="A1" t="inlineStr">.*?</c>', b'<c r="A1" t="s"><v>999999</v></c>', part, count=1
-        ),
+        lambda part: re.sub(rb'<c r="A1"[^>]*>.*?</c>', b'<c r="A1" t="s"><v>999999</v></c>', part, count=1),
     )
     problems = certify(data, path)
     assert len(problems) == 1 and problems[0].startswith("workbook.unreadable: review.xlsx")

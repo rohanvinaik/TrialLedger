@@ -1370,5 +1370,17 @@
     "function_digest": "c23d206d42cb3529",
     "refusal": "",
     "standing": "complete"
+  },
+  "TrialLedger/workbook.py::print_fit": {
+    "cut_reasons": [],
+    "function_digest": "cab03e1d92add377",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/workbook.py::width_class": {
+    "cut_reasons": [],
+    "function_digest": "370f0a53535590e3",
+    "refusal": "",
+    "standing": "complete"
   }
 }
