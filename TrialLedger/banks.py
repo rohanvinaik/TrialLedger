@@ -735,8 +735,8 @@ _PERMITTED = re.compile(r"\b(?:permissible|permitted|allowed)\b", re.IGNORECASE)
 
 
 def permitted(text: str, start: int, end: int) -> bool:
-    """Whether the sentence holding text[start:end] grants a permission rather than a requirement (pure —
-    pinned): it says "permissible", "permitted" or "allowed" ("acceptable" describes a method, not a
+    """Whether the sentence holding text[start:end] grants a permission rather than a requirement
+    (pure — pinned): it says "permissible", "permitted" or "allowed" ("acceptable" describes a method, not a
     permission), and does not say the thing is excluded or not allowed. "All lines of prior therapy are
     permissible" permits; "prior therapy is not allowed" does not."""
     sentence_start = max(text.rfind(mark, 0, start) for mark in (". ", ";", "\n")) + 1

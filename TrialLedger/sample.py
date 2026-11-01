@@ -106,7 +106,7 @@ def reserved(nct: str) -> bool:
 
 
 def pool(nct: str) -> str:
-    """The pool an NCT ID belongs to (pure — pinned; add-bank-coverage B8): "confirmation_0",
+    """The pool an NCT ID belongs to (pure — pinned), add-bank-coverage B8: "confirmation_0",
     "confirmation_1" or "confirmation_2" when its SHA-256 mod 10 is 0, 1 or 2 (the three sequential
     confirmation batches, one per release), else "discovery". A trial is in a confirmation batch exactly when
     `reserved` holds, so the discovery pool is unchanged."""
@@ -151,7 +151,7 @@ def code_state(root: Path = PACKAGE_ROOT, git: Callable[..., str] | None = None)
 
 
 def inspected_ids(document: Any) -> list[str]:
-    """The NCT IDs a kept file of an inspected population lists (pure — pinned; Decision 9, B4), each once,
+    """The NCT IDs a kept file of an inspected population lists (pure — pinned), Decision 9, B4, each once,
     sorted: a sample's drawn trials (`trials[].nct`), an audit's balance supplement (`supplements[].nct`) and
     a record's studies (`studies[].protocolSection.identificationModule.nctId`). Anything else lists nothing,
     so a file of none of these shapes gives no ID, never a guessed one."""
@@ -177,7 +177,7 @@ LEDGER_NAME = "confirmation_ledger.json"  # the one declared ledger of used batc
 
 
 def ledger_batches(document: Any) -> dict[str, str] | None:
-    """The used batches a ledger file declares (pure — pinned; add-bank-coverage B8): its `batches`, each a
+    """The used batches a ledger file declares (pure — pinned), add-bank-coverage B8: its `batches`, each a
     declared batch ("0", "1", "2") mapped to the code it confirmed, an entry naming a non-empty
     `source_digest` (the digest of TrialLedger/ and tests/, `code_state`) and a non-empty `commit`;
     returned as batch → source digest. None when the file is not of that shape, so a malformed ledger is
@@ -205,8 +205,8 @@ def batch_request(
     inspected: list[int],
     used: dict[str, str] | None,
 ) -> str:
-    """Whether a confirmation draw from one named batch may be made (pure — pinned; add-bank-coverage B8,
-    Decision 9, B4). `commit`, `digest` and `dirty` are the code's (`code_state`), `inspected` the number of
+    """Whether a confirmation draw from one named batch may be made (pure — pinned), add-bank-coverage B8,
+    Decision 9, B4. `commit`, `digest` and `dirty` are the code's (`code_state`), `inspected` the number of
     IDs in each declared list of inspected trials, `used` the ledger's batches (`ledger_batches`), each with
     the source digest of the code it confirmed. The code is identified by its digest, not its commit, so
     committing the ledger (which moves HEAD and changes no watched file) never refuses a re-draw of the same
@@ -239,7 +239,7 @@ def batch_request(
 
 
 def screen_inspected(ids: list[str], inspected: frozenset[str], batch: int) -> tuple[list[str], list[str]]:
-    """One stratum's IDs with every inspected trial removed (pure — pinned; Decision 9, B4). Returns (the IDs
+    """One stratum's IDs with every inspected trial removed (pure — pinned), Decision 9, B4. Returns (the IDs
     not inspected, in their order; the distinct IDs of that confirmation batch removed, sorted): an inspected
     trial outside the batch could never be drawn, so it is not counted as excluded."""
     name = BATCH_POOL.format(batch=batch)
@@ -249,8 +249,8 @@ def screen_inspected(ids: list[str], inspected: frozenset[str], batch: int) -> t
 
 
 def draw_batch(ids: list[str], n: int, seed: str, label: str, batch: int) -> tuple[list[str], int]:
-    """A seeded simple random draw of `n` from one stratum's IDs in one confirmation batch (pure — pinned;
-    add-bank-coverage B8).
+    """A seeded simple random draw of `n` from one stratum's IDs in one confirmation batch (pure — pinned),
+    add-bank-coverage B8.
 
     The pool is the stratum's distinct IDs whose `pool` is that batch, sorted, so the draw depends on the set
     of IDs, the seed, the label and the batch alone; never an ID of the discovery pool or of another batch.

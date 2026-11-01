@@ -303,8 +303,8 @@ def rxnorm_ids(status: int, body: Any) -> tuple[str, list[str]]:
 
 
 def rxnorm_concepts(status: int, body: Any) -> tuple[str, list[Concept]]:
-    """The concepts of one RxNorm properties.json or related.json answer, as (rxcui, name, tty) (pure —
-    pinned).
+    """The concepts of one RxNorm properties.json or related.json answer, as (rxcui, name, tty)
+    (pure — pinned).
 
     found — HTTP 200 and at least one concept, each once, sorted; not_found — HTTP 200 and an object holding
     neither properties nor a relatedGroup, or a relatedGroup with no concept; malformed — a body that is not
@@ -423,8 +423,8 @@ def axis_key(source: str, rela: str) -> str:
 
 
 def name_identity(ids: list, concept: list, ingredients: list) -> tuple[str, str, list[str]]:
-    """What RxNorm says one intervention name is: (code, its concept's rxcui, its ingredients) (pure —
-    pinned).
+    """What RxNorm says one intervention name is: (code, its concept's rxcui, its ingredients)
+    (pure — pinned).
 
     `ids`, `concept` and `ingredients` are the (code, values) of rxnorm_ids and rxnorm_concepts, a request not
     made being ("not_asked", []); the ingredients are rxcuis, sorted.
