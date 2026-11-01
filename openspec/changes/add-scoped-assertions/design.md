@@ -106,6 +106,64 @@ Claude with the code as built. Reconciliation notes are marked **As built here**
     another person to the participant, erase an antecedent, re-anchor to enrollment, promote interpolated) must
     be killed; verification through the real consumer entry points.
 
+## As built here: the object model and the decision procedure (tasks 1.1, 3.1, 3.2; 2026-11-01)
+
+- `TrialLedger/assertions.py` holds the model as frozen dataclasses (`Evidence`, `Subject`, `Predicate`,
+  `Value`, `TemporalScope`, `Always`, `Literal`, `AllOf`, `AnyOf`, `Not`, `Opaque`, `Scope`, `Branch`, `Span`,
+  `Rule`, `ScopedAssertion`) and the vocabularies of Decision 2 as frozensets; every class refuses on
+  construction what `model_problem` names (a code, `ModelError`), so an unknown word cannot enter. `canonical`
+  is tagged, key-sorted JSON that writes every number as a float and keeps order and nesting; `from_canonical`
+  reads it back to an equal object. A predicate is its kind and its registry key (the registry is 1.2). A
+  value is `boolean`, `enum` (eq, ne, in, not_in over members), `enum_set`, `quantity` (one number, the unit
+  as written, "" when missing), `interval` ([number, upper] with its inclusivity), a reference, or
+  `unresolved`. An assertion's defaults are the weakest: status proposed, resolution unresolved.
+- `TrialLedger/entail.py` decides by exact enumeration: a literal is a variable keyed by subject, predicate
+  and time with every evidence field stripped; a quantity or interval is a typed comparison on a measurement
+  keyed also by its unit, enumerated at every named threshold, every midpoint and one beyond each end; an
+  enumerated value ranges over its named members and one unlisted member (open domain). The formula is split
+  into components by shared variables; every component is checked for satisfiability (INCONSISTENT anywhere
+  stops everything), then the query's component decides it. The bound is `MAX_ASSIGNMENTS` (65,536
+  assignments per enumeration). A proof is a minimal premise set, from known premises alone when they
+  suffice, premises dropped weakest first, then by id.
+- Interpretations fixed here, each open to the founder's ruling:
+  - OUT_OF_SCOPE means no constraint in the query's context speaks of the query's variables, but an
+    assertion scoped to another context does; nothing speaking of it at all is UNDETERMINED
+    ("no_constraint_mentions_query").
+  - A context names the participant's one entry cohort, phase or arm: naming cohort A makes a cohort-B scope
+    false (entry cohorts disjoint). A context that names none leaves each named scope a free variable (A5:
+    named cohorts are never exhaustive), so a cohort-B requirement is UNDETERMINED trial-wide.
+  - A qualified literal is the conjunction of its base and its qualifiers, and its polarity negates that
+    conjunction: a negative qualified literal is NOT (base AND qualifiers), never (NOT base) AND qualifiers.
+    So required(negative "HIV with CD4 < 200") and excluded(HIV qualified by CD4 < 200) compile to one formula
+    and entail neither NOT HIV nor CD4 < 200 (corrected 2026-11-01; the first build negated the base alone).
+  - A member-set (`enum_set`) value is one membership Boolean per member: `in` S holds every member of S,
+    `not_in` S holds none of them (as `not_in` excludes every member for `enum`), so `in` {a} and `not_in` {a}
+    are one variable and requiring both is INCONSISTENT; `in` {a, b} implies `in` {a} and `not_in` {a, b}
+    implies `not_in` {a}, never the reverse. A boolean is one variable on its subject, predicate and time; a
+    reference (`entity_ref`, `definition_ref`) one Boolean per member. The comparison, unit and inclusivity of
+    these kinds never split a variable.
+  - A reference compared with `eq` is not taken as single-valued: `eq` R1 required leaves `eq` R2
+    UNDETERMINED, never refuted (as in the first build). Whether a reference predicate is single-valued is
+    the registry's to say (task 1.2) and open to the founder's ruling.
+  - A literal's time identity is its orientation, anchor, bounds, unit and inclusivity; its certainty, like
+    its evidence, is epistemic metadata and never splits a variable.
+  - No invented provenance: a `ScopedAssertion` has no default rule and is refused without one
+    ("assertion_without_rule"); `UNRESOLVED_RULE` (id and version "unresolved", nothing else) says explicitly
+    that the derivation is not known, and such an assertion is never a premise ("unresolved_rule"). The branch
+    node vocabulary has "unresolved", the default position; an unknown position is never "leaf".
+  - An interval whose inclusivity is unspecified leaves each boundary point undecided (a free variable per
+    boundary; A7: the boundary is preserved, never assumed).
+  - Another unit, or a missing unit, is another measurement: no conversion, so no entailment across units;
+    another time scope (orientation, anchor, bounds) is likewise another variable.
+  - An assertion whose resolution is unresolved, or whose modality is, contributes nothing and is named as a
+    blocker; one whose resolution is conflicting contributes nothing (A6); a partially resolved one
+    contributes its body with its `Opaque` parts free.
+  - A literal with an unresolved subject, predicate, polarity or value kind is a free variable, never false; a
+    query holding one, or an `Opaque`, is UNSUPPORTED_QUERY; so is a query holding an interval whose
+    inclusivity is unspecified (its boundary points are undecided).
+  - A decision's blockers pool every blocker the trial's assertions raise in the context (an `Opaque` in an
+    unrelated criterion is named on every query), with the result's own code added.
+
 ## Founder decisions (decided 2026-11-01: the founder approved Claude's recommendations, "Good. Let's encode this")
 
 - A1. Separate requirement, exclusion, permission and allowed-set projections; occupancy means the trial's

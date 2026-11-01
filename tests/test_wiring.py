@@ -119,6 +119,53 @@ FOUNDATIONS = {
     ),
 }
 DECLARED |= {f"{file}: {name}": reason for reason, (file, names) in FOUNDATIONS.items() for name in names}
+# The scoped-assertion object model and its decision procedure (add-scoped-assertions 1.1, 3.1, 3.2): a
+# foundation nothing in production builds assertions for yet; the shadow-mode run reaches it, until
+# add-scoped-assertions 5.1. tests/test_assertions.py and tests/test_entail.py reach every one.
+UNTIL_SHADOW_MODE = "until add-scoped-assertions 5.1 (assertions produced in shadow mode)"
+SCOPED_ASSERTIONS_DORMANT = {
+    f"{module}: {name}": UNTIL_SHADOW_MODE
+    for module, names in (
+        (
+            "assertions.py",
+            (
+                "_Validated.__post_init__",
+                "_assertion_problem",
+                "_build",
+                "_evidence_problem",
+                "_finite",
+                "_plain",
+                "_scope_problem",
+                "_time_problem",
+                "_value_problem",
+                "_whole",
+                "canonical",
+                "from_canonical",
+                "model_problem",
+            ),
+        ),
+        (
+            "entail.py",
+            (
+                "_atoms",
+                "_components",
+                "_fold",
+                "_holds",
+                "_literal_formula",
+                "_negate",
+                "_proof",
+                "_satisfiable",
+                "_scope_formula",
+                "assertion_formula",
+                "decide",
+                "proposition_formula",
+                "weakest_status",
+            ),
+        ),
+    )
+    for name in names
+}
+DECLARED |= SCOPED_ASSERTIONS_DORMANT
 
 
 @pytest.fixture(scope="module")

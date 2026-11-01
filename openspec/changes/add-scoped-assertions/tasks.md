@@ -6,8 +6,10 @@
 
 ## 1. Object model and registry
 
-- [ ] 1.1 `ScopedAssertion`, `Proposition` (Literal, AllOf, AnyOf, Not, Opaque), the closed vocabularies, and
-      `TemporalScope`, as immutable typed data with validation
+- [x] 1.1 `ScopedAssertion`, `Proposition` (Literal, AllOf, AnyOf, Not, Opaque), the closed vocabularies, and
+      `TemporalScope`, as immutable typed data with validation (2026-11-01: `TrialLedger/assertions.py`,
+      `model_problem` and `canonical`/`from_canonical`, tests/test_assertions.py; left: the registry of 1.2
+      that fills predicate keys, units and values; Detective convergence, accepted as debt)
 - [ ] 1.2 The first predicate registry: each bank concept mapped to its predicate kind, versioned, with
       provenance
 
@@ -22,9 +24,28 @@
 
 ## 3. Entailment
 
-- [ ] 3.1 The finite-domain decision procedure with the six results, typed interval comparisons, a declared
-      resource bound, deterministic order
-- [ ] 3.2 Epistemic propagation (weakest support; proposed never a premise; no promotion)
+- [x] 3.1 The finite-domain decision procedure with the six results, typed interval comparisons, a declared
+      resource bound, deterministic order (2026-11-01: `TrialLedger/entail.py`, `decide`, `assertion_formula`,
+      `proposition_formula`, tests/test_entail.py on hand-built assertions; left: assertions compiled from
+      text (group 2), the run in shadow mode that wires it (5.1; declared dormant in tests/test_wiring.py
+      until then), Detective convergence, accepted as debt)
+- [x] 3.2 Epistemic propagation (weakest support; proposed never a premise; no promotion) (2026-11-01:
+      `entail.weakest_status` and the proofs of `decide`; left: propagation through the consumers, group 6)
+
+## Detective convergence: debt accepted by the founder (2026-11-01), to be reconciled serially
+
+The founder accepted, on 2026-11-01, Detective convergence as debt incurred by parallel workflow work, to be
+reconciled serially afterwards. None of the decisions below is converged; each has two-sign intent tests and
+none is settled until `detective converge --two-sign` certifies it:
+
+- `assertions.model_problem` (changed 2026-11-01: an assertion refused without its rule; an unresolved rule
+  naming provenance refused; the branch node "unresolved")
+- `assertions.canonical`
+- `entail.proposition_formula` (changed 2026-11-01: a negative qualified literal negates the conjunction;
+  member-set and reference values as membership variables; time identity without certainty)
+- `entail.assertion_formula` (changed 2026-11-01: an assertion with an unresolved rule is never a premise)
+- `entail.weakest_status`
+- `entail.decide`
 
 ## 4. Targeted questions
 
