@@ -59,22 +59,16 @@ _CONDITIONAL = re.compile(
     r"\b(?:if|provided(?: that)?|as long as|only if|when|unless)\b[^.;]{0,160}", re.IGNORECASE
 )
 
-# A record that says it lists only some criteria: its silence says less than a complete record's.
-_ABBREVIATED = re.compile(
-    r"\b(?:key|main|major|most important|selected)\s+(?:inclusion|exclusion|eligibility)\b"
-    r"|other\s+(?:protocol[- ]?defined\s+)?(?:inclusion\s*/\s*exclusion\s+|inclusion\s+|exclusion\s+)?"
-    r"criteria\s+(?:may|could|will|might)\s+apply"
-    r"|further\s+(?:inclusion|exclusion)\s+criteria\s+apply|include,? but (?:are|is) not limited to",
-    re.IGNORECASE,
-)
-
 STATUSES = ("present", "explicitly_negated", "not_documented", "unresolved", "not_applicable")
 
 
-def autoimmune_exclusion(pieces: list[tuple[str, str]]) -> tuple[str, str, list[int], list[str]]:
+def autoimmune_exclusion(
+    pieces: list[tuple[str, str]], coverage: tuple[tuple[str, str], ...]
+) -> tuple[str, str, list[int], list[str]]:
     """The status of "excludes autoimmune disease" in one trial's eligibility (pure — pinned).
 
-    `pieces` are (section, text) for every criterion and prose piece of the trial, in order.
+    `pieces` are (section, text) for every piece of the trial, in order; `coverage` is the coverage
+    evidence of each section, as `criteria.eligibility_coverage` gives it ((scope, evidence) pairs).
     Returns (status, reason, the indices of the pieces it rests on, the qualifiers written beside
     them). A piece naming autoimmune disease (the class words, or a named autoimmune disease):
       exclusion section — excludes it; a sentence in it that allows or permits something ("replacement
@@ -86,10 +80,11 @@ def autoimmune_exclusion(pieces: list[tuple[str, str]]) -> tuple[str, str, list[
     Excluding and admitting pieces together are cohorts that disagree: unresolved,
     "conflicting_scopes". Only excluding: present, its exceptions kept as qualifiers. Only
     admitting: explicitly_negated, its conditions ("if controlled ...") kept as qualifiers. Only
-    unsectioned: unresolved, "unsectioned_mention". None names it, in a record that says it lists
-    only key criteria ("Key Exclusion Criteria", "other protocol-defined criteria may apply"):
-    unresolved, "abbreviated_criteria". None names it otherwise: not_documented, "not_named" — the
-    text was read, and nothing in it says the trial admits it.
+    unsectioned: unresolved, "unsectioned_mention". None names it, in a record whose coverage of either
+    section is abbreviation_stated (it says it lists only key criteria: "Key Exclusion Criteria",
+    "other protocol-defined criteria may apply"; either section, because an inclusion criterion can
+    exclude it too): unresolved, "abbreviated_criteria". None names it otherwise: not_documented,
+    "not_named" — the text was read, and nothing in it says the trial admits it.
     """
     excludes: list[int] = []
     admits: list[int] = []
@@ -124,7 +119,7 @@ def autoimmune_exclusion(pieces: list[tuple[str, str]]) -> tuple[str, str, list[
         return "explicitly_negated", "admitted", admits, conditions
     if unscoped:
         return "unresolved", "unsectioned_mention", unscoped, []
-    if any(_ABBREVIATED.search(text) for _, text in pieces):
+    if any(evidence == "abbreviation_stated" for _scope, evidence in coverage):
         return "unresolved", "abbreviated_criteria", [], []
     return "not_documented", "not_named", [], []
 

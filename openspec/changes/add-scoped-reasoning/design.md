@@ -104,13 +104,19 @@ trials and establish nothing about other populations.
     absence; `_ABBREVIATED` is used only in expectations.py). Separate attributes: content (empty, present),
     sectioning (sectioned, unsectioned), coverage evidence (abbreviation stated, completeness stated,
     unspecified), each with its marker's location and scope ("Key Exclusion Criteria" scopes the exclusions).
-    No marker never means complete. Two named estimands: the registry statement rate (records stating / cohort,
-    a point), and the full-criteria frequency, an identification interval [S/N, (S+U)/N] where S states it, A
-    establishes its absence by a declared ascertainment rule, U is unresolved (empty, abbreviated, unspecified
-    silence, no rule match); a threshold is met only when the lower bound reaches it, not met when the upper bound
-    falls short, unresolved otherwise; mechanism signals, occupancy, expectations and near misses handle it at
-    their own decision points. Before any metric is replaced, a transition report on the same frozen records:
-    old value, new rate, new bounds, changed decisions and their reasons.
+    No marker never means complete. Two named estimands: the registry statement rate (records stating /
+    cohort, a point), and the full-criteria frequency, an identification interval [S/N, (S+U)/N] where S
+    states it, A establishes its absence by a declared ascertainment rule, U is unresolved (empty,
+    abbreviated, unspecified silence, no rule match); a threshold is met only when the lower bound reaches it,
+    not met when the upper bound falls short, unresolved otherwise; mechanism signals, occupancy, expectations
+    and near misses handle it at their own decision points. Before any metric is replaced, a transition report
+    on the same frozen records: old value, new rate, new bounds, changed decisions and their reasons. As built
+    (2026-11-01; the `design-profile` delta): no ascertainment rule is declared, so A is 0 by construction; a
+    primary endpoint is not eligibility and has the statement rate only, no interval or tier; a mechanism
+    signal is a statement-rate comparison over typed trials, proposed only when it holds with every
+    abbreviated silence among the others counted as stating and every one in the class as lacking (the least
+    favourable reading), unresolved when those silences could reverse it, not listed when it fails at every
+    reading.
 
 ## Risks / Trade-offs
 

@@ -113,9 +113,17 @@ def test_resolve_reads_live_and_saves_no_record(tmp_path, monkeypatch):
     assert code == 0
     reading = json.loads(out.read_text())
     assert [s["nct"] for s in reading["studies"]] == ids
-    assert {"criteria", "coordinates", "experimental_drugs", "outcomes", "expectations"} <= set(
-        reading["studies"][0]
-    )
+    assert {
+        "eligibility_coverage",
+        "criteria",
+        "coordinates",
+        "experimental_drugs",
+        "outcomes",
+        "expectations",
+    } <= set(reading["studies"][0])
+    coverage = reading["studies"][0]["eligibility_coverage"]
+    assert set(coverage) == {"content", "sectioning", "evidence", "markers"}
+    assert set(coverage["evidence"]) == {"inclusion", "exclusion"}
     assert book.is_file() and (tmp_path / "cache" / "classes.json").is_file()
     names = sorted(p.name for p in tmp_path.iterdir())
     assert names == ["cache", "design.xlsx", "reading.json", "snapshot.json"]
@@ -160,8 +168,80 @@ def test_resolve_reports_a_near_miss_in_the_sheet_and_the_json(tmp_path, monkeyp
     header, *rows = openpyxl.load_workbook(book, read_only=True)["Near Misses"].iter_rows(values_only=True)
     assert header[10].startswith("Representation (known for 2 of 3 trials")
     assert [row[:5] for row in rows] == [("NCT09000001", "NCT09000002", "ecog_ps", "0|1", "0|1|2")]
+    header, *trials = openpyxl.load_workbook(book, read_only=True)["Trials"].iter_rows(values_only=True)
+    columns = [
+        header.index(name) for name in ("Eligibility Content", "Inclusion Coverage", "Exclusion Coverage")
+    ]
+    assert {tuple(row[i] for i in columns) for row in trials[:2]} == {
+        ("present", "unspecified", "unspecified")
+    }
     reading = {s["nct"]: s["near_misses"] for s in json.loads(out.read_text())["studies"]}
     assert [(m["other"], m["value"], m["other_value"]) for m in reading["NCT09000002"]] == [
         ("NCT09000001", "0|1|2", "0|1")
     ]
     assert reading[results_study()["protocolSection"]["identificationModule"]["nctId"]] == []
+
+
+ABBREVIATED = (
+    "Inclusion Criteria:\n\n* Stage IV non-small cell lung cancer\n* ECOG performance status 0-1\n\n"
+    "Key Exclusion Criteria:\n\n* Active autoimmune disease\n"
+)
+
+
+def test_resolve_carries_an_abbreviated_record_to_the_sheets_and_the_json(tmp_path, monkeypatch):
+    """Positive: a record whose exclusions are "Key Exclusion Criteria" shows its sectioning, its coverage per
+    section and its marker with the marker's exact offsets on the Trials sheet and in the JSON, and its
+    eligibility_abbreviated question on the Review Queue sheet and in the JSON. Negative: a record with no
+    marker has no marker, reads unspecified in both sections (never complete) and gets no such question."""
+    monkeypatch.setenv("TRIALLEDGER_CACHE", str(tmp_path / "cache" / "classes.json"))
+    abbreviated = near_miss_study("NCT09000003", "0-1")
+    abbreviated["protocolSection"]["eligibilityModule"]["eligibilityCriteria"] = ABBREVIATED
+    plain = near_miss_study("NCT09000004", "0-1")
+    api = FakeAPI(json_pages=[httpx.Response(200, json={"studies": [abbreviated, plain], "totalCount": 2})])
+    out, book = tmp_path / "reading.json", tmp_path / "design.xlsx"
+    argv = ["resolve", "filter.ids=NCT09000003,NCT09000004", "--json", str(out), "--out", str(book)]
+    assert cli.main(argv, http=api.client(), sleep=api.sleep, rxclass_get=rxclass) == 0
+    start = ABBREVIATED.index("Key Exclusion")
+    end = start + len("Key Exclusion")
+
+    studies = {s["nct"]: s for s in json.loads(out.read_text())["studies"]}
+    coverage = studies["NCT09000003"]["eligibility_coverage"]
+    assert (coverage["content"], coverage["sectioning"]) == ("present", "sectioned")
+    assert coverage["evidence"] == {"inclusion": "unspecified", "exclusion": "abbreviation_stated"}
+    ((marker,),) = [coverage["markers"]]
+    assert (marker["kind"], marker["scope"], marker["start"], marker["end"]) == (
+        "abbreviation_stated",
+        "exclusion",
+        start,
+        end,
+    )
+    assert ABBREVIATED[marker["start"] : marker["end"]] == marker["text"] == "Key Exclusion"
+    (flag,) = [f for f in studies["NCT09000003"]["review"] if f["kind"] == "eligibility_abbreviated"]
+    assert flag["evidence"] == [
+        f"[exclusion] piece {marker['piece']}, characters {start}-{end}: Key Exclusion"
+    ]
+    assert flag["answer"] is None
+    assert studies["NCT09000004"]["eligibility_coverage"]["markers"] == []
+    assert studies["NCT09000004"]["eligibility_coverage"]["evidence"] == {
+        "inclusion": "unspecified",
+        "exclusion": "unspecified",
+    }
+    assert not [f for f in studies["NCT09000004"]["review"] if f["kind"] == "eligibility_abbreviated"]
+
+    workbook = openpyxl.load_workbook(book, read_only=True)
+    header, *rows = workbook["Trials"].iter_rows(values_only=True)
+    trials = {row[0]: dict(zip(header, row, strict=True)) for row in rows}
+    row = trials["NCT09000003"]
+    assert (row["Eligibility Content"], row["Sectioning"]) == ("present", "sectioned")
+    assert (row["Inclusion Coverage"], row["Exclusion Coverage"]) == ("unspecified", "abbreviation_stated")
+    assert row["Coverage Markers"] == (
+        f"abbreviation_stated [exclusion] piece {marker['piece']}, characters {start}-{end}: Key Exclusion"
+    )
+    assert (trials["NCT09000004"]["Exclusion Coverage"], trials["NCT09000004"]["Coverage Markers"]) in {
+        ("unspecified", None),
+        ("unspecified", ""),
+    }
+    header, *rows = workbook["Review Queue"].iter_rows(values_only=True)
+    queue = [dict(zip(header, row, strict=True)) for row in rows]
+    flagged = [(q["NCT Number"], q["Evidence"]) for q in queue if q["Kind"] == "eligibility_abbreviated"]
+    assert flagged == [("NCT09000003", flag["evidence"][0])]

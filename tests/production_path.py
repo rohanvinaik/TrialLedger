@@ -58,7 +58,8 @@ def near_miss_study(nct: str, ecog: str) -> dict:
     protocol["eligibilityModule"]["eligibilityCriteria"] = (
         "Inclusion Criteria:\n\n* Stage IV non-small cell lung cancer\n"
         "* No prior systemic therapy for advanced or metastatic disease\n"
-        f"* ECOG performance status {ecog}\n\nExclusion Criteria:\n\n* Active autoimmune disease\n"
+        # a record that says its exclusions are abbreviated: the coverage markers and their flag are reached
+        f"* ECOG performance status {ecog}\n\nKey Exclusion Criteria:\n\n* Active autoimmune disease\n"
     )
     protocol["armsInterventionsModule"] = {
         "armGroups": [{"label": "A", "type": "EXPERIMENTAL", "interventionNames": ["Drug: Placebo"]}],

@@ -10,7 +10,8 @@ exceptions kept; an inclusion that admits it is explicitly negated, its conditio
 "are excluded" inclusion is present; rarity is −log2 of the cell's share with the cell's size, falling
 back to the parent and saying so.
 Negative: an omission is never "admitted" (not_documented, a verified deviation, never explanation
-supported); unsectioned text and disagreeing cohorts are never resolved; unresolved observations never
+supported); a record that says its criteria are abbreviated (either section) never has its silence read as
+not documented; unsectioned text and disagreeing cohorts are never resolved; unresolved observations never
 enter a count; a sparse cell never reports a rarity; a valid unexplained exception is never noise.
 """
 
@@ -18,12 +19,15 @@ import math
 
 import pytest
 
+from TrialLedger.criteria import eligibility_coverage, itemize
 from TrialLedger.expectations import (
     FROZEN,
     autoimmune_exclusion,
     conditional_rarity,
     deviation_status,
 )
+
+UNSPECIFIED = (("inclusion", "unspecified"), ("exclusion", "unspecified"))
 
 EXPLICIT = [
     ("exclusion", "* Active autoimmune disease that has required systemic treatment in the past 2 years")
@@ -63,34 +67,54 @@ ADMITTED = [("inclusion", "* Patients with a history of autoimmune disease")]
     ],
 )
 def test_observation_status(pieces, status, reason):
-    assert autoimmune_exclusion(pieces)[:2] == (status, reason)
+    assert autoimmune_exclusion(pieces, UNSPECIFIED)[:2] == (status, reason)
 
 
 def test_exceptions_and_conditions_are_kept_as_written():
-    assert autoimmune_exclusion(QUALIFIED)[3] == [
+    assert autoimmune_exclusion(QUALIFIED, UNSPECIFIED)[3] == [
         "except vitiligo, type 1 diabetes or hypothyroidism on stable hormone replacement"
     ]
-    assert autoimmune_exclusion(ADMITTED_IF)[3] == ["if controlled on stable therapy"]
+    assert autoimmune_exclusion(ADMITTED_IF, UNSPECIFIED)[3] == ["if controlled on stable therapy"]
 
 
 def test_an_omission_is_never_permission():
-    status = autoimmune_exclusion(OMISSION)[0]
+    status = autoimmune_exclusion(OMISSION, UNSPECIFIED)[0]
     assert status == "not_documented" and status != "explicitly_negated"
     assert deviation_status(status, 0, "") == "omission"
 
 
-def test_an_abbreviated_record_says_less_by_its_silence():
-    pieces = [("exclusion", "Key Exclusion Criteria:"), ("exclusion", "* Pregnancy")]
-    assert autoimmune_exclusion(pieces)[:2] == ("unresolved", "abbreviated_criteria")
-    note = [
-        ("exclusion", "* Pregnancy"),
-        ("exclusion", "Other protocol-defined exclusion criteria may apply"),
-    ]
-    assert autoimmune_exclusion(note)[:2] == ("unresolved", "abbreviated_criteria")
+def read(text):
+    """A text's pieces as the expectation reads them, and its coverage evidence, as production gives both."""
+    pieces = itemize(text)[1]
+    return [(section, text[a:b]) for _, section, a, b in pieces], eligibility_coverage(text, pieces)[2]
+
+
+@pytest.mark.parametrize(
+    "text",
+    [
+        "Key Inclusion Criteria:\n\n* ECOG 0-1\n\nKey Exclusion Criteria:\n\n* Pregnancy\n",
+        "Inclusion Criteria:\n\n* ECOG 0-1\n\nExclusion Criteria:\n\n* Pregnancy\n\n"
+        "Note: Other protocol defined Inclusion/Exclusion criteria may apply\n",
+        # an inclusion-only marker: an inclusion criterion could have excluded it too, so silence is open
+        "Key Inclusion Criteria:\n\n* ECOG 0-1\n\nExclusion Criteria:\n\n* Pregnancy\n",
+    ],
+)
+def test_an_abbreviated_record_says_less_by_its_silence(text):
+    assert autoimmune_exclusion(*read(text))[:2] == ("unresolved", "abbreviated_criteria")
+
+
+def test_a_record_that_says_nothing_of_its_coverage_is_read_as_before():
+    text = "Inclusion Criteria:\n\n* ECOG 0-1\n\nExclusion Criteria:\n\n* Pregnancy\n"
+    assert autoimmune_exclusion(*read(text))[:2] == ("not_documented", "not_named")
+
+
+def test_an_abbreviated_record_that_names_it_is_read_as_named():
+    text = "Key Exclusion Criteria:\n\n* Active autoimmune disease\n"
+    assert autoimmune_exclusion(*read(text))[:2] == ("present", "excluded")
 
 
 def test_a_valid_unexplained_exception_survives():
-    status, _, _, qualifiers = autoimmune_exclusion(ADMITTED)
+    status, _, _, qualifiers = autoimmune_exclusion(ADMITTED, UNSPECIFIED)
     assert deviation_status(status, len(qualifiers), "") == "verified_deviation"
 
 
@@ -147,7 +171,7 @@ def test_the_frozen_expectation_records_its_provenance():
     ],
 )
 def test_an_exclusion_with_a_permitted_exception_is_present(text):
-    status, reason, cited, qualifiers = autoimmune_exclusion([("exclusion", text)])
+    status, reason, cited, qualifiers = autoimmune_exclusion([("exclusion", text)], UNSPECIFIED)
     assert (status, reason, cited) == ("present", "excluded", [0])
     assert qualifiers and deviation_status(status, len(qualifiers), "") == "conforms"
 
@@ -157,7 +181,7 @@ def test_two_exclusions_never_conflict():
         ("exclusion", "9. Active or prior documented inflammatory bowel disease (e.g. Crohn's disease)."),
         ("exclusion", "8. Active autoimmune disease. NOTE: Patients with vitiligo are eligible."),
     ]
-    assert autoimmune_exclusion(pieces)[:2] == ("present", "excluded")
+    assert autoimmune_exclusion(pieces, UNSPECIFIED)[:2] == ("present", "excluded")
 
 
 def test_a_negation_reaches_across_an_example_list():
@@ -165,4 +189,4 @@ def test_a_negation_reaches_across_an_example_list():
         "* Patients must not have significant gastrointestinal disorders with diarrhea as a major symptom "
         "(e.g., Crohn's disease, malabsorption, etc.)"
     )
-    assert autoimmune_exclusion([("inclusion", text)])[:2] == ("present", "excluded")
+    assert autoimmune_exclusion([("inclusion", text)], UNSPECIFIED)[:2] == ("present", "excluded")

@@ -251,20 +251,33 @@ uv run trialledger resolve query.cond="non-small cell lung cancer" filter.overal
 
 **The main path is `resolve`.** It queries ClinicalTrials.gov live (one snapshot, complete or nothing) and
 resolves every matching study to its symbolic reading, without saving the registry's records: each eligibility
-criterion split out and typed by fixed rules, each trial's design coordinates (setting, prior lines, biomarker
-selection) as the values its own criteria still allow, each experimental drug's pharmacologic class from the
-National Library of Medicine's RxClass, its registered outcomes, each declared expectation's observation and
-deviation, its **near misses** (another trial with the same setting and drug classes that differs from it in
-exactly one known design choice, such as the performance status it admits; an unknown never matches, and each
-pair names both sponsors and start years, because shared templates and eras explain many differences), and a
-**review queue**: what the rules could not cleanly resolve (an unclassified drug, a coordinate
-the criteria contradict, an unresolved or deviating observation), each as a question with closed answer options
-and its evidence, for a domain expert or a model to answer. TrialLedger never forces those answers. `--json`
-writes the reading as JSON (a path, or `-` for standard output; the default); `--out` writes `design.xlsx`,
-which adds the profile across the matched trials (how often each criterion appears, which criteria are
-standard, which track a drug class, which settings and classes no trial occupies, and results grouped like for
-like). Only the RxClass answers are cached, in `~/.cache/trialledger` (or `$TRIALLEDGER_CACHE`). It ends with
-`0`, resolved; `1`, the query failed; `2`, the query was refused.
+criterion split out and typed by fixed rules, what the eligibility text says about itself (whether there is
+any, whether it is split into inclusion and exclusion, and whether the record says either list is abbreviated,
+as in "Key Exclusion Criteria" or "other protocol-defined criteria may apply", says it is complete, or says
+nothing; saying nothing never counts as complete), each trial's design coordinates (setting, prior lines,
+biomarker selection) as the values its own criteria still allow, each experimental drug's pharmacologic class
+from the National Library of Medicine's RxClass, its registered outcomes, each declared expectation's
+observation and deviation, its **near misses** (another trial with the same setting and drug classes that
+differs from it in exactly one known design choice, such as the performance status it admits; an unknown never
+matches, and each pair names both sponsors and start years, because shared templates and eras explain many
+differences), and a **review queue**: what the rules could not cleanly resolve (an unclassified drug, a
+coordinate the criteria contradict, an unresolved or deviating observation, a record that says its criteria
+are abbreviated), each as a question with closed answer options and its evidence, for a domain expert or a
+model to answer. TrialLedger never forces those answers. `--json` writes the reading as JSON (a path, or `-`
+for standard output; the default); `--out` writes `design.xlsx`, which adds the profile across the matched
+trials (how often each criterion appears, which criteria are standard, which track a drug class, which
+settings and classes no trial occupies, and results grouped like for like). How often a criterion appears is
+given two ways that are never merged: the share of records that state it, and the range its share among the
+trials' full criteria could take, because a record that is silent about a criterion (its eligibility empty,
+never typed by any rule, abbreviated, or silent about its own coverage) has not said the trial lacks it. A
+criterion is standard only when the low end of that range reaches the threshold, not standard only when the
+high end falls short, and unresolved otherwise; since no rule yet establishes that a silent trial lacks a
+criterion, the high end is 100% wherever any trial is silent, and "not standard" does not yet occur. A primary
+endpoint is not a criterion: only the share of records stating it is given. A criterion tracks a drug class
+only when it is stated more often in that class even if every record among the other trials that says its list
+is abbreviated is counted as stating it; when such records could reverse the comparison, it is shown as
+unresolved. Only the RxClass answers are cached, in `~/.cache/trialledger` (or `$TRIALLEDGER_CACHE`). It ends
+with `0`, resolved; `1`, the query failed; `2`, the query was refused.
 
 The registry updates daily and sponsors edit their studies, so the same query can read differently next month.
 Every JSON reading therefore records what it read: the registry's data timestamp and API version, each study's

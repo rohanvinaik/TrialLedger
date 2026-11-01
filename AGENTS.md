@@ -131,11 +131,18 @@ gather facts and write files. `design.md`'s code-shape table gives each module's
   `resolve` JSON) consume.
 - The coherence engine (`openspec/changes/add-coherence-engine`), outside the review and record workbooks'
   derivation and code root: `criteria.py` (eligibility itemized into headings, criteria and prose, exact
-  spans), `banks.py` (deterministic typing banks: spanned atoms or abstention; polarity is the section's),
-  `coherence.py` (coordinate domains, evidence narrowing, relations all proposed, closure), `classes.py`
-  (NLM RxClass, every class with its id, failures named), `profile.py` (element keys, frequencies over typed
-  trials, mechanism associations as proposals, occupancy), `design.py` (a reading laid out as `design.xlsx`;
-  `profile` over a folder), `symbolic.py` (a reading as the `resolve` JSON).
+  spans; `eligibility_coverage`: content, sectioning and each section's coverage evidence, abbreviation
+  stated, completeness stated or unspecified, each marker with its piece, offsets and scope;
+  `add-scoped-reasoning` Decision 12), `banks.py` (deterministic typing banks: spanned atoms or abstention;
+  polarity is the section's), `coherence.py` (coordinate domains, evidence narrowing, relations all proposed,
+  closure), `classes.py` (NLM RxClass, every class with its id, failures named), `profile.py` (element keys;
+  over every trial of a stratum, the registry statement rate S/N and, for an eligibility element, the
+  full-criteria interval [S/N, (S+U)/N], a silent trial's silence unresolved as empty, no rule match,
+  abbreviated or unspecified, never absent; a primary endpoint the statement rate only; the standard tier
+  three-valued; mechanism associations as a statement-rate comparison over typed trials, proposed only when it
+  holds with abbreviated silences read least favourably, unresolved when they could reverse it; occupancy),
+  `design.py` (a reading laid out as `design.xlsx`; `profile` over a folder), `symbolic.py` (a reading as the
+  `resolve` JSON).
 - `spec/ctg-oas-v2.yaml` and `TrialLedger/registry/*.json`: the vendored contracts;
   `tests/test_spec_contract.py` holds the code to them.
 
@@ -166,20 +173,20 @@ dependencies for known flaws (pip-audit, advisory). Install it with
 
 Vulture counts a function named in a table as used, so it cannot see a table entry nothing calls.
 `tests/test_wiring.py` holds the wiring instead: in its own process, recording every call from before import,
-`tests/production_path.py` drives what production does (a two-page pull with a retry and a value a cell
-cannot hold, `verify` of the folder, `profile` of it with RxClass answering for one name and failing for
-another, `profile` of a folder with no record, a live `resolve` of four studies of which two are a near-miss
-pair, `sample` over every stratum, `audit` of its draw (a trial with every kind of question, answered in each
-kind's schema, the RxClass answers kept in the audit folder and an assignment checked against that kept copy;
-its balance check asking the registry about every empty cell and auditing the one supplement a cell's
-registry IDs yield) and `pilot` over that audit with a fake local model, an audit refused for want of
-a budget and one refused because its model is not installed, `verify` of an unreadable workbook, a pull the
-server keeps failing), and
-the test fails on any function of the package that path does not reach, except the declared ones: the twelve
-proposed checks' gatherers, their four helpers and the eight decisions only they use (dormant until the
-founder approves them; the gatherers are derived from `APPROVED`), the two default progress sinks the CLI
-overrides, and `WorkbookError`'s constructor. It also holds every sheet to its columns, every rule of `RULE`
-to a lookup, and every code a decision returns to its words.
+`tests/production_path.py` drives what production does (a two-page pull with a retry and a value a cell cannot
+hold, `verify` of the folder, `profile` of it with RxClass answering for one name and failing for another,
+`profile` of a folder with no record, a live `resolve` of four studies of which two are a near-miss pair
+(whose records say their exclusions are abbreviated, so the coverage markers and their review flag are
+reached), `sample` over every stratum, `audit` of its draw (a trial with every kind of question, answered in
+each kind's schema, the RxClass answers kept in the audit folder and an assignment checked against that kept
+copy; its balance check asking the registry about every empty cell and auditing the one supplement a cell's
+registry IDs yield) and `pilot` over that audit with a fake local model, an audit refused for want of a budget
+and one refused because its model is not installed, `verify` of an unreadable workbook, a pull the server
+keeps failing), and the test fails on any function of the package that path does not reach, except the
+declared ones: the twelve proposed checks' gatherers, their four helpers and the eight decisions only they use
+(dormant until the founder approves them; the gatherers are derived from `APPROVED`), the two default progress
+sinks the CLI overrides, and `WorkbookError`'s constructor. It also holds every sheet to its columns, every
+rule of `RULE` to a lookup, and every code a decision returns to its words.
 
 ## Detective
 
@@ -259,6 +266,24 @@ it. The proofs, so that they survive the machine:
 - A partly typed criterion is not asked about what its atoms miss: `untyped_criterion` is asked only of a
   criterion with no atom, so a requirement a bank left untyped beside an atom it did type is seen by no
   question until a kind for it is designed (`add-targeted-questions` 2.2).
+- Eligibility coverage (`add-scoped-reasoning` 8.1-8.3, 2026-10-31; the transition report is
+  `openspec/changes/add-scoped-reasoning/transition-eligibility-coverage.md`). The abbreviation pattern moved
+  to `criteria.py` unchanged so that the expectation observations would not change (none did, on the 487 NSCLC
+  records); measured there and left for the founder: it misses "Other protocol-defined inclusion/exclusion
+  criteria apply" (no modal verb) and two other wordings (11 records read "unspecified"), and it matches
+  "include, but are not limited to" inside a criterion's list of examples (7 records read "abbreviation
+  stated" on that alone; the review flag asks about each). No ascertainment rule is declared, so A is 0 by
+  construction and every full-criteria upper bound is 1 where any trial is silent: the standard tier is met or
+  unresolved, never not met, until the founder declares one. The completeness pattern is prior and matched
+  nothing. Both patterns have `provenance.py` entries (`pattern:eligibility_abbreviated`, derived;
+  `pattern:eligibility_complete`, prior). Mechanism signals are bounded against abbreviated silences only; a
+  typed (itemized) trial no bank typed any criterion of stays in its mechanism group as stating nothing (the
+  founder's to rule on). The `design-profile` delta's MODIFIED requirements need `add-coherence-engine`
+  archived first. The new decisions (`eligibility_coverage`, `element_silence`, `full_criteria_tier`) and the
+  changed ones (`frequency_rows`, `mechanism_rows`, `flags_for`, `autoimmune_exclusion`) are not yet converged
+  with Detective (accepted by the founder as debt, to be reconciled serially); the two generated tests whose
+  signatures or rows changed (`tests/detective/…autoimmune_exclusion…` and `…mechanism_rows…`) were adapted by
+  hand, each saying so, and are regenerated by that converge.
 - Comparable posted results (`add-coherence-engine` 5.3) wait on the endpoint-class bank (2.2); the residual
   (about 70% of criteria in the NSCLC population) decides the next banks (2.1b).
 

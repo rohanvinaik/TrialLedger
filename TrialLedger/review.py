@@ -14,6 +14,7 @@ PRIORITY = {
     "verified_deviation": 1,
     "expectation_unresolved": 2,
     "drug_class_unresolved": 3,
+    "eligibility_abbreviated": 3,
 }
 
 Flag = tuple[
@@ -27,13 +28,15 @@ def flags_for(
     full_domains: dict[str, list[str]],
     observations: dict[str, tuple[str, str, list[str]]],
     known_classes: list[str],
+    abbreviations: list[tuple[str, str]],
 ) -> list[Flag]:
     """The review flags of one trial (pure — pinned).
 
     `drugs` are (experimental drug, class state); `coordinates` map a coordinate to (domain, state, the
     criteria or relations that removed values); `full_domains` give each coordinate's every value;
     `observations` map an expectation to (status, reason, cited texts); `known_classes` are the classes the
-    population's classified drugs carry. Flags, in this order:
+    population's classified drugs carry; `abbreviations` are (scope, where and what) for each marker by which
+    the record says its eligibility criteria are abbreviated. Flags, in this order:
       drug_class_unresolved   — a drug whose state is unresolved or lookup_failed: "What is <drug>'s
                                 pharmacologic class?", options the known classes and "none of these";
       coordinate_conflict     — a coordinate whose domain is empty: which value the trial's criteria state,
@@ -41,7 +44,11 @@ def flags_for(
       expectation_unresolved  — an unresolved observation: whether the trial excludes it, options "excludes",
                                 "admits", "differs by cohort", "not stated";
       verified_deviation      — an explicitly_negated observation: whether the trial admits it, options
-                                "admits (confirmed)", "excludes (the reading is wrong)".
+                                "admits (confirmed)", "excludes (the reading is wrong)";
+      eligibility_abbreviated — one flag for a record with any abbreviation marker, every marker its
+                                evidence: whether the record says it lists only some of its criteria, as
+                                read, options "abbreviated (confirmed)", "not abbreviated (the marker is
+                                misread)". Wherever its silence is counted, it is unresolved.
     Each flag is (kind, element, why, priority, evidence, question, options); a trial with nothing to flag has
     an empty list.
     """
@@ -97,4 +104,17 @@ def flags_for(
                     ["admits (confirmed)", "excludes (the reading is wrong)"],
                 )
             )
+    if abbreviations:
+        scopes = sorted({scope for scope, _ in abbreviations})
+        flags.append(
+            (
+                "eligibility_abbreviated",
+                "eligibility",
+                f"the record says its criteria are abbreviated ({', '.join(scopes)})",
+                str(PRIORITY["eligibility_abbreviated"]),
+                [f"[{scope}] {said}" for scope, said in abbreviations],
+                "Does the record say it lists only some of its eligibility criteria, as read?",
+                ["abbreviated (confirmed)", "not abbreviated (the marker is misread)"],
+            )
+        )
     return flags

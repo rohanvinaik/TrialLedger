@@ -44,6 +44,20 @@ PROVENANCE: dict[str, tuple[str, str, str]] = {
         DEV,
         "the registry's eligibility headings and list markers, with measured variants",
     ),
+    "pattern:eligibility_abbreviated": (
+        "pattern",
+        DEV,
+        'criteria._ABBREVIATED: a record that says it lists only some criteria ("Key Exclusion Criteria", '
+        '"other protocol-defined criteria may apply"); measured there 2026-10-31: misses three wordings (11 '
+        'records) and matches "include, but are not limited to" inside a criterion\'s examples (7 records), '
+        "left for the founder",
+    ),
+    "pattern:eligibility_complete": (
+        "pattern",
+        "prior: authored before measuring",
+        "criteria._COMPLETE: a record that says its list is the whole of its criteria; matches nothing in "
+        "the development data, so its tests are synthetic; no ascertainment rule reads it yet",
+    ),
     "classes:rxclass": (
         "source",
         "external: NLM RxClass (FDA EPC via DailyMed; MED-RT)",

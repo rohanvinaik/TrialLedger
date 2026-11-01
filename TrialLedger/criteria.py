@@ -7,6 +7,10 @@ it with variants, measured on the 487 interventional Phase 3 NSCLC trials starte
 marked "*", "-", "•", "1.", "1)", "1.1", "a." or "i)"; deeper-indented markers as sub-items. Every piece is a
 span of the original text; the gaps between pieces are whitespace only, so the pieces and gaps in order
 reproduce the text exactly.
+
+`eligibility_coverage` gives the text's own attributes, kept apart (openspec/changes/add-scoped-reasoning,
+Decision 12): whether there is any content, whether headings section it, and what it says about its own
+coverage in each section (abbreviated, complete, or nothing said), each marker with its location and scope.
 """
 
 from __future__ import annotations
@@ -89,3 +93,86 @@ def itemize(text: str) -> tuple[str, list[tuple[str, str, int, int]]]:
     pieces = [(kind, sec, *_trimmed(text, start, end)) for kind, sec, start, end in spans]
     code = "itemized" if any(kind == "criterion" for kind, *_ in pieces) else "no_list_markers"
     return code, pieces
+
+
+# A record that says it lists only some criteria ("Key Exclusion Criteria", "other protocol-defined criteria
+# may apply"): its silence says less than a complete record's. Moved here unchanged from expectations.py
+# (where it was used only by `autoimmune_exclusion`), so that the observations it gates do not change.
+# Provenance (`pattern:eligibility_abbreviated`): derived, the 487 NSCLC development trials. Measured there
+# (2026-10-31) and left for the founder's decision: it misses "Other protocol-defined inclusion/exclusion
+# criteria apply" (no modal verb), "Other protocol inclusion/exclusion criteria may apply" and "Other
+# inclusion and exclusion criteria will apply per protocol", and it also matches "include, but are not limited
+# to" inside a criterion's list of examples.
+_ABBREVIATED = re.compile(
+    r"\b(?:key|main|major|most important|selected)\s+(?:inclusion|exclusion|eligibility)\b"
+    r"|other\s+(?:protocol[- ]?defined\s+)?(?:inclusion\s*/\s*exclusion\s+|inclusion\s+|exclusion\s+)?"
+    r"criteria\s+(?:may|could|will|might)\s+apply"
+    r"|further\s+(?:inclusion|exclusion)\s+criteria\s+apply|include,? but (?:are|is) not limited to",
+    re.IGNORECASE,
+)
+# A record that says its list is the whole of its criteria. Provenance (`pattern:eligibility_complete`):
+# prior (authored before measuring);
+# it matches nothing in the 487 NSCLC development trials, so its tests are synthetic. Kept narrow on purpose:
+# "see the protocol for the complete list" is an abbreviation, not a statement of completeness.
+_COMPLETE = re.compile(
+    r"\bno (?:other|additional|further) (?:inclusion |exclusion |eligibility )?criteria (?:apply|are used)\b"
+    r"|\b(?:these|the above) are (?:all|the complete|the full|all of the) "
+    r"(?:inclusion |exclusion |eligibility )?criteria\b",
+    re.IGNORECASE,
+)
+# The words a marker's phrase names its scope with, read up to the word "criteria" when it follows closely.
+_PHRASE = re.compile(r".{0,40}?criteri", re.IGNORECASE | re.DOTALL)
+SCOPES = ("inclusion", "exclusion")
+
+
+def eligibility_coverage(
+    text: str, pieces: list[tuple[str, str, int, int]]
+) -> tuple[str, str, tuple[tuple[str, str], ...], list[tuple[str, str, int, int, int]]]:
+    """What a trial's eligibility text says about itself, as separate attributes (pure — pinned).
+
+    `pieces` are `itemize(text)`'s. Returns (content, sectioning, evidence, markers):
+      content     — "empty" (no text, or whitespace only) or "present";
+      sectioning  — "sectioned" (a heading divides the text) or "unsectioned";
+      evidence    — for each scope, ("inclusion", e) and ("exclusion", e), e one of
+                    abbreviation_stated (a marker scoping it says the list is partial: "Key Exclusion
+                    Criteria", "other protocol-defined criteria may apply"), completeness_stated (a marker
+                    says the list is whole, and none says it is partial) or unspecified. No marker never
+                    means complete;
+      markers     — each (kind, scope, piece index, start, end), kind abbreviation_stated or
+                    completeness_stated, start and end the marker's offsets in `text`, scope "inclusion",
+                    "exclusion" or "both".
+    A marker's scope is the kind its own phrase names ("Key Exclusion Criteria" → exclusion; "Other
+    protocol defined Inclusion/Exclusion criteria may apply" → both), else the section of the piece it sits
+    in ("Other protocol defined criteria could apply" under the inclusion heading → inclusion), else, in
+    unsectioned text, both. Markers are read piece by piece, every piece (headings included), and listed in
+    piece order, a piece's abbreviation markers before its completeness markers.
+    """
+    if not text.strip():
+        return "empty", "unsectioned", tuple((scope, "unspecified") for scope in SCOPES), []
+    sectioning = "sectioned" if any(kind == "heading" for kind, *_ in pieces) else "unsectioned"
+    markers = []
+    for index, (_kind, section, start, end) in enumerate(pieces):
+        piece = text[start:end]
+        found = [("abbreviation_stated", m) for m in _ABBREVIATED.finditer(piece)]
+        found += [("completeness_stated", m) for m in _COMPLETE.finditer(piece)]
+        for kind, match in found:
+            phrase = _PHRASE.match(piece, match.start())
+            words = (phrase.group(0) if phrase else match.group(0)).lower()
+            named = [scope for scope in SCOPES if scope in words]
+            if len(named) == 1:
+                scope = named[0]
+            elif named or section not in SCOPES:
+                scope = "both"
+            else:
+                scope = section
+            markers.append((kind, scope, index, start + match.start(), start + match.end()))
+    evidence = []
+    for scope in SCOPES:
+        kinds = {kind for kind, marked, *_ in markers if marked in (scope, "both")}
+        if "abbreviation_stated" in kinds:
+            evidence.append((scope, "abbreviation_stated"))
+        elif "completeness_stated" in kinds:
+            evidence.append((scope, "completeness_stated"))
+        else:
+            evidence.append((scope, "unspecified"))
+    return "present", sectioning, tuple(evidence), markers

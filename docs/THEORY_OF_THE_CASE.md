@@ -165,18 +165,23 @@ Claude's sketch, from the accepted restatement and his decisions; each part name
 8. **The information layer** (DATA_GEOMETRY: Informational Zero, Minority Channel Advantage, reference
    profiles as the zero-state; TriageGeist's deviation from cohort expectation). Over a declared population of
    comparable trials (first: Phase 3 NSCLC, 2015–2024), four quantities kept apart: logical state (the
-   domains), frequency (an element's share of trials whose text was typed, so untyped is never absent),
-   association (an element's frequency within a mechanism class against the rest of the stratum, with sponsor
-   counts and the count of trials whose class is unresolved), and relevance (relative to the question each view
-   answers). Surprisal against the population measures how unexpected an element is, not how important it is.
-   The standard tier, the elements nearly every trial states, is the empirical source of reusable protocol
-   language (item 10), not a verdict that they are clinically unimportant or valid across mechanisms. An element
-   that tracks a mechanism class beyond the indication is a proposed mechanism-linked exclusion, never an
-   established one. The design space's cells are occupied (a failed or withdrawn trial occupies its cell),
-   unknown (unresolved trials could fall there) or empty; an empty feasible cell is an exploration lead, and
-   calling it underserved needs evidence of patient need. Posted results are compared only within the same
-   endpoint class, setting, unit and measure type; an anticipated efficacy threshold needs a stated decision
-   rule on top of them.
+   domains), frequency, association and relevance (relative to the question each view answers). Frequency is
+   two estimands, never one number (revised 2026-11-01, `openspec/changes/add-scoped-reasoning` Decision 12):
+   the registry statement rate, the share of every trial's record that states an element (a point), and, for
+   an eligibility element, the full-criteria frequency, which a record identifies only as an interval from
+   that rate up to the share that states it or is silent without its silence establishing absence (empty,
+   untyped, abbreviated or unspecified; no ascertainment rule is declared yet, so no silence is absence).
+   Association is a statement-rate comparison within a mechanism class against the rest of the stratum's typed
+   trials, with sponsor counts and the count of trials whose class is unresolved, proposed only when it
+   survives the least favourable reading of abbreviated silences. Surprisal against the population measures
+   how unexpected an element is, not how important it is. The standard tier, the elements nearly every trial
+   states, is the empirical source of reusable protocol language (item 10), not a verdict that they are
+   clinically unimportant or valid across mechanisms. An element that tracks a mechanism class beyond the
+   indication is a proposed mechanism-linked exclusion, never an established one. The design space's cells are
+   occupied (a failed or withdrawn trial occupies its cell), unknown (unresolved trials could fall there) or
+   empty; an empty feasible cell is an exploration lead, and calling it underserved needs evidence of patient
+   need. Posted results are compared only within the same endpoint class, setting, unit and measure type; an
+   anticipated efficacy threshold needs a stated decision rule on top of them.
 
 **His decisions later that day (paraphrased):** the live query of the registry's API is the expected main path,
 and stored data an intentional fallback when the user wants it; what the symbolic system cannot cleanly resolve

@@ -93,6 +93,13 @@ warranted; `verify` of `design.xlsx` is an open item); any model at any step.
    2×2 counts, the frequency difference, distinct lead sponsors among supporting trials, unresolved-class
    count; offered as a proposed relation only with at least 3 supporting sponsors and 5 supporting trials
    (named constants). No p-values are computed or implied.
+   (2026-11-01: the denominator, frequency, tier and mechanism status above are superseded by
+   `openspec/changes/add-scoped-reasoning` Decision 12 and its `design-profile` delta: N is every trial of the
+   stratum; the registry statement rate S/N and, for an eligibility element, the full-criteria interval
+   [S/N, (S+U)/N], unresolved silences counted by kind (empty, no rule match, abbreviated, unspecified); the
+   tier three-valued on the interval; a primary endpoint the statement rate only; a mechanism signal proposed
+   only when it holds with abbreviated silences read least favourably, unresolved when they could reverse it.
+   That delta's MODIFIED requirements need this change archived first.)
 10. **Occupancy** counts trials per (setting, biomarker selection, experimental class) among resolved trials,
     and per cell the unresolved trials that could fall in it; a cell is `occupied`, `unknown` or `empty`
     (empty only when no unresolved trial could fall there). Infeasible cells need approved infeasibility

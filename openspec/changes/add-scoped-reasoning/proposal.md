@@ -66,6 +66,9 @@ What the founder's rule exposed, measured on the 487 development trials and read
   strata, quarantine and per-value justifications (a delta once the mechanism is fixed).
 - `design-deviations` (add-design-surprise): the near-miss representation and the expectation cells read declared
   statuses.
+- `design-profile` (add-coherence-engine): the profile's denominators, its standard tier and its mechanism
+  signals read eligibility coverage (Decision 12): the registry statement rate beside the full-criteria
+  interval, silences unresolved by kind, a three-valued tier and signals bounded against abbreviated silences.
 
 ## Impact
 

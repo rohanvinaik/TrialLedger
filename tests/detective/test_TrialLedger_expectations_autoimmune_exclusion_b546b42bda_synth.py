@@ -9,13 +9,16 @@ import pytest
 
 from TrialLedger.expectations import autoimmune_exclusion
 
+# Adapted by hand to the coverage argument (add-scoped-reasoning 8.1) until the next converge regenerates this file.
+UNSPECIFIED = (("inclusion", "unspecified"), ("exclusion", "unspecified"))
+
 
 @pytest.mark.detective
 @pytest.mark.parametrize(
     "args, expected",
     [
-        (([("x", "x")],), ("not_documented", "not_named", [], [])),
-        (([("x", "x"), ("x", "x")],), ("not_documented", "not_named", [], [])),
+        (([("x", "x")], UNSPECIFIED), ("not_documented", "not_named", [], [])),
+        (([("x", "x"), ("x", "x")], UNSPECIFIED), ("not_documented", "not_named", [], [])),
     ],
 )
 def test_autoimmune_exclusion_golden(args, expected):

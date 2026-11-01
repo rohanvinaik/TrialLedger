@@ -1,6 +1,6 @@
-"""The JSON form of `trialledger resolve`: a population reading rendered as plain data, each study's typed
-criteria, coordinates, drugs, outcomes, near misses, review flags and expectation observations, each value
-with the record text it rests on."""
+"""The JSON form of `trialledger resolve`: a population reading rendered as plain data, each study's
+eligibility coverage, typed criteria, coordinates, drugs, outcomes, near misses, review flags and expectation
+observations, each value with the record text it rests on."""
 
 from __future__ import annotations
 
@@ -22,6 +22,15 @@ def symbolic_output(reading: dict[str, Any]) -> list[dict[str, Any]]:
                 "lead_sponsor": view["sponsor"],
                 "status": view["status"],
                 "itemized": view["itemize"],
+                "eligibility_coverage": {
+                    "content": view["coverage"]["content"],
+                    "sectioning": view["coverage"]["sectioning"],
+                    "evidence": dict(view["coverage"]["evidence"]),
+                    "markers": [
+                        {"kind": k, "scope": sc, "piece": p, "start": s, "end": e, "text": t}
+                        for k, sc, p, s, e, t in view["coverage"]["markers"]
+                    ],
+                },
                 "criteria": [
                     {
                         "piece": index,

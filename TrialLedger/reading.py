@@ -2,7 +2,8 @@
 
 `read_population` is the one producer the outputs consume: `design.sheets` lays the reading out as
 design.xlsx and `symbolic.symbolic_output` renders it as the JSON of `trialledger resolve`. Each study's
-eligibility is itemized and typed, its coordinates resolved, its experimental drugs classed (RxClass, or a
+eligibility is itemized and typed and its coverage read (content, sectioning, what the record says of its own
+coverage in each section), its coordinates resolved, its experimental drugs classed (RxClass, or a
 target its own record states), its outcomes and results typed and its frozen expectations observed; across
 the views, the classes known to the population, each view's review flags and the near-miss pairs.
 """
@@ -15,7 +16,7 @@ from TrialLedger import classes as rx
 from TrialLedger import warrants
 from TrialLedger.banks import endpoint_classes, stated_targets, time_points, type_criterion
 from TrialLedger.coherence import COORDINATES, resolve
-from TrialLedger.criteria import itemize
+from TrialLedger.criteria import eligibility_coverage, itemize
 from TrialLedger.expectations import FROZEN, autoimmune_exclusion
 from TrialLedger.nearmiss import near_misses
 from TrialLedger.profile import element_key
@@ -54,12 +55,14 @@ def effective_section(section: str, params: tuple) -> str:
 
 
 def study_view(study: dict[str, Any], answers: dict[str, Any]) -> dict[str, Any]:
-    """One study as the design layers read it: criteria with atoms, evidence, coordinates, elements,
-    classes."""
+    """One study as the design layers read it: eligibility coverage, criteria with atoms, evidence,
+    coordinates, elements, classes."""
     protocol = study.get("protocolSection", {})
     nct = protocol.get("identificationModule", {}).get("nctId", "")
     text = protocol.get("eligibilityModule", {}).get("eligibilityCriteria") or ""
-    code, pieces = itemize(text if isinstance(text, str) else "")
+    text = text if isinstance(text, str) else ""
+    code, pieces = itemize(text)
+    content, sectioning, coverage, markers = eligibility_coverage(text, pieces)
     readable = [(section, text[start:end]) for _kind, section, start, end in pieces]
     criteria, evidence, elements = [], [], []
     for index, (kind, section, start, end) in enumerate(pieces):
@@ -133,6 +136,15 @@ def study_view(study: dict[str, Any], answers: dict[str, Any]) -> dict[str, Any]
         "start_year": str(protocol.get("statusModule", {}).get("startDateStruct", {}).get("date", ""))[:4],
         "status": protocol.get("statusModule", {}).get("overallStatus", ""),
         "itemize": code,
+        "coverage": {
+            "content": content,
+            "sectioning": sectioning,
+            "evidence": coverage,
+            "markers": [
+                (kind, scope, piece, start, end, text[start:end])
+                for kind, scope, piece, start, end in markers
+            ],
+        },
         "criteria": criteria,
         "coordinates": resolve(evidence),
         "elements": elements,
@@ -140,19 +152,20 @@ def study_view(study: dict[str, Any], answers: dict[str, Any]) -> dict[str, Any]
         "outcomes": outcomes,
         "results": results,
         "observations": {
-            expectation.id: _observe(expectation, readable, code, drugs) for expectation in FROZEN
+            expectation.id: _observe(expectation, readable, code, coverage, drugs) for expectation in FROZEN
         },
     }
 
 
-def _observe(expectation, readable, code, drugs) -> tuple[str, str, list[str], list[str]]:
-    """One trial's observation of a frozen expectation: (status, reason, cited texts, qualifiers)."""
+def _observe(expectation, readable, code, coverage, drugs) -> tuple[str, str, list[str], list[str]]:
+    """One trial's observation of a frozen expectation: (status, reason, cited texts, qualifiers); `coverage`
+    is the trial's coverage evidence per section, which tells an abbreviated record's silence from others'."""
     classes = {c for _, state, epc, _ in drugs if state in ("classified", "stated_by_record") for c in epc}
     if not classes & set(expectation.applies_to):
         return "not_applicable", "no experimental drug of the expectation's classes", [], []
     if code == "empty":
         return "unresolved", "no eligibility text", [], []
-    status, reason, indices, qualifiers = autoimmune_exclusion(readable)
+    status, reason, indices, qualifiers = autoimmune_exclusion(readable, coverage)
     return status, reason, [readable[i][1] for i in indices], qualifiers
 
 
@@ -162,7 +175,9 @@ def near_miss_input(view: dict[str, Any]) -> tuple[str, dict[str, str], dict[str
     from RxClass or stated by its own record), its design predicates (the ECOG values and histologies its
     inclusion criteria state, the checkpoint expectation when present or admitted), its lead sponsor and its
     start year. Anything not known is "". Known means read from the record or derived from it by an approved
-    rule; a proposed relation's narrowing is not known (the founder, 2026-10-31)."""
+    rule; a proposed relation's narrowing is not known (the founder, 2026-10-31). Eligibility coverage needs
+    no handling here: every predicate is a stated value or "", and "" never matches, so a silent record
+    (empty, abbreviated or unspecified) is never read as differing."""
     setting = view["coordinates"]["setting"]["domain"]
     drugs = view["drugs"]
     classified = drugs and all(state in ("classified", "stated_by_record") for _, state, _, _ in drugs)
@@ -189,7 +204,8 @@ def near_miss_input(view: dict[str, Any]) -> tuple[str, dict[str, str], dict[str
 
 
 def review_flags(view: dict[str, Any], known_classes: list[str]) -> list[tuple]:
-    """The review flags of one study view: what the symbolic reading leaves for an expert or a model."""
+    """The review flags of one study view: what the symbolic reading leaves for an expert or a model, the
+    record's own abbreviation markers among them."""
     return flags_for(
         [(drug, state) for drug, state, _, _ in view["drugs"]],
         {
@@ -199,6 +215,11 @@ def review_flags(view: dict[str, Any], known_classes: list[str]) -> list[tuple]:
         {name: list(values) for name, values in COORDINATES.items()},
         {eid: (s, r, c) for eid, (s, r, c, _) in view["observations"].items()},
         known_classes,
+        [
+            (scope, f"piece {piece}, characters {start}-{end}: {said}")
+            for kind, scope, piece, start, end, said in view["coverage"]["markers"]
+            if kind == "abbreviation_stated"
+        ],
     )
 
 

@@ -9,37 +9,44 @@ import pytest
 
 from TrialLedger.profile import mechanism_rows
 
+# Adapted by hand to the Trial shape and row of add-scoped-reasoning 8.2 (the least favourable difference)
+# until the next converge regenerates this file.
+SAID_NOTHING = (("inclusion", "unspecified"), ("exclusion", "unspecified"))
+
 
 @pytest.mark.detective
 def test_mechanism_rows_value_0():
     """VALUE survivor — distinguishing witness (equivalence search)."""
     result = mechanism_rows(
         trials=[
-            ("in0", "S0", "all", True, ["e"], ["VEGF"], False),
-            ("in1", "S1", "all", True, ["e"], ["VEGF"], False),
-            ("in2", "S2", "all", True, ["e"], ["VEGF"], False),
-            ("in3", "S3", "all", True, ["e"], ["VEGF"], False),
-            ("in4", "S4", "all", True, ["e"], ["VEGF"], False),
-            ("in5", "S5", "all", True, ["e"], ["VEGF"], False),
-            ("out0", "T0", "all", True, ["e"], ["PD-1"], False),
-            ("out1", "T1", "all", True, [], ["PD-1"], False),
-            ("out2", "T2", "all", True, [], ["PD-1"], False),
-            ("out3", "T3", "all", True, [], ["PD-1"], False),
-            ("out4", "T4", "all", True, [], ["PD-1"], False),
-            ("out5", "T5", "all", True, [], ["PD-1"], False),
-            ("u", "U", "all", True, ["e"], [], True),
+            ("in0", "S0", "all", True, ["e"], ["VEGF"], False, "present", SAID_NOTHING),
+            ("in1", "S1", "all", True, ["e"], ["VEGF"], False, "present", SAID_NOTHING),
+            ("in2", "S2", "all", True, ["e"], ["VEGF"], False, "present", SAID_NOTHING),
+            ("in3", "S3", "all", True, ["e"], ["VEGF"], False, "present", SAID_NOTHING),
+            ("in4", "S4", "all", True, ["e"], ["VEGF"], False, "present", SAID_NOTHING),
+            ("in5", "S5", "all", True, ["e"], ["VEGF"], False, "present", SAID_NOTHING),
+            ("out0", "T0", "all", True, ["e"], ["PD-1"], False, "present", SAID_NOTHING),
+            ("out1", "T1", "all", True, [], ["PD-1"], False, "present", SAID_NOTHING),
+            ("out2", "T2", "all", True, [], ["PD-1"], False, "present", SAID_NOTHING),
+            ("out3", "T3", "all", True, [], ["PD-1"], False, "present", SAID_NOTHING),
+            ("out4", "T4", "all", True, [], ["PD-1"], False, "present", SAID_NOTHING),
+            ("out5", "T5", "all", True, [], ["PD-1"], False, "present", SAID_NOTHING),
+            ("u", "U", "all", True, ["e"], [], True, "present", SAID_NOTHING),
         ],
         min_trials=5,
         min_sponsors=3,
     )
-    assert result == [("all", "VEGF", "e", 6, 6, 1, 6, 1.0, 0.1667, 0.8333, 6, 1, "proposed")]
+    assert result == [("all", "VEGF", "e", 6, 6, 1, 6, 1.0, 0.1667, 0.8333, 0.8333, 6, 1, 0, 0, "proposed")]
 
 
 @pytest.mark.detective
 def test_mechanism_rows_value_1():
     """VALUE survivor — golden capture (pure + deterministic)."""
     result = mechanism_rows(
-        trials=[("A", "S1", "all", True, ["e"], ["X"], False), ("B", "S2", "all", True, [], ["X"], False)],
+        trials=[
+            ("A", "S1", "all", True, ["e"], ["X"], False, "present", SAID_NOTHING),
+            ("B", "S2", "all", True, [], ["X"], False, "present", SAID_NOTHING),
+        ],
         min_trials=5,
         min_sponsors=3,
     )

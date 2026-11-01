@@ -23,7 +23,7 @@ from TrialLedger import warrants
 from TrialLedger.banks import type_criterion
 from TrialLedger.cells import cell_number_state, cell_text_state
 from TrialLedger.coherence import RELATIONS, SETTINGS, resolve
-from TrialLedger.criteria import itemize
+from TrialLedger.criteria import eligibility_coverage, itemize
 from TrialLedger.expectations import (
     FROZEN,
     autoimmune_exclusion,
@@ -36,7 +36,9 @@ from TrialLedger.profile import (
     SIGNAL_MIN_TRIALS,
     STANDARD_SHARE,
     element_key,
+    element_silence,
     frequency_rows,
+    full_criteria_tier,
     mechanism_rows,
     occupancy_rows,
 )
@@ -80,6 +82,8 @@ def _stratum(view: dict[str, Any]) -> str:
 
 
 def _profile_trials(views: list[dict[str, Any]], by_setting: bool) -> list[tuple]:
+    """Each view as the profile reads it: every trial, with whether its eligibility was typed and its
+    eligibility content and coverage, so that its silence is counted as unresolved, never as absence."""
     rows = []
     for view in views:
         classes = sorted({c for _, state, epc, _ in view["drugs"] if state == "classified" for c in epc})
@@ -93,6 +97,8 @@ def _profile_trials(views: list[dict[str, Any]], by_setting: bool) -> list[tuple
                 view["elements"],
                 classes,
                 unresolved,
+                view["coverage"]["content"],
+                view["coverage"]["evidence"],
             )
         )
     return rows
@@ -103,7 +109,7 @@ def sheets(reading: dict[str, Any], answers: dict[str, Any]) -> dict[str, tuple[
     its warrant."""
     views = reading["views"]
     digests = {v["nct"]: v["digest"] for v in views}
-    trials_rule = _rule("trials", study_view, resolve, type_criterion, itemize)
+    trials_rule = _rule("trials", study_view, resolve, type_criterion, itemize, eligibility_coverage)
     out: dict[str, tuple[list[str], list[list]]] = {}
 
     out["Trials"] = (
@@ -112,6 +118,11 @@ def sheets(reading: dict[str, Any], answers: dict[str, Any]) -> dict[str, tuple[
             "Lead Sponsor",
             "Status",
             "Itemized",
+            "Eligibility Content",
+            "Sectioning",
+            "Inclusion Coverage",
+            "Exclusion Coverage",
+            "Coverage Markers",
             "Criteria",
             "Typed",
             "Untyped",
@@ -128,6 +139,14 @@ def sheets(reading: dict[str, Any], answers: dict[str, Any]) -> dict[str, tuple[
                 v["sponsor"],
                 v["status"],
                 v["itemize"],
+                v["coverage"]["content"],
+                v["coverage"]["sectioning"],
+                dict(v["coverage"]["evidence"])["inclusion"],
+                dict(v["coverage"]["evidence"])["exclusion"],
+                " ⏐ ".join(
+                    f"{kind} [{scope}] piece {piece}, characters {start}-{end}: {said}"
+                    for kind, scope, piece, start, end, said in v["coverage"]["markers"]
+                ),
                 len(v["criteria"]),
                 sum(1 for c in v["criteria"] if c[3]),
                 sum(1 for c in v["criteria"] if not c[3]),
@@ -287,7 +306,8 @@ def sheets(reading: dict[str, Any], answers: dict[str, Any]) -> dict[str, tuple[
                     bits if known else None,
                     deviation_status(status, len(qualifiers), ""),
                     warrants.computed(
-                        _rule(expectation.id, autoimmune_exclusion, conditional_rarity), v["digest"]
+                        _rule(expectation.id, autoimmune_exclusion, eligibility_coverage, conditional_rarity),
+                        v["digest"],
                     ),
                 ]
             )
@@ -324,7 +344,7 @@ def sheets(reading: dict[str, Any], answers: dict[str, Any]) -> dict[str, tuple[
                     " | ".join(options),
                     "",
                     "",
-                    warrants.computed(_rule("review", flags_for), v["digest"]),
+                    warrants.computed(_rule("review", flags_for, eligibility_coverage), v["digest"]),
                 ]
             )
     review_rows.sort(key=lambda row: (row[0], row[1], row[2]))
@@ -396,26 +416,35 @@ def sheets(reading: dict[str, Any], answers: dict[str, Any]) -> dict[str, tuple[
             for klass in (answer["classes"] or [("", "", "", "")])
         ],
     )
-    profile_rule = _rule("profile", frequency_rows, element_key)
+    profile_rule = _rule(
+        "profile", frequency_rows, element_key, element_silence, full_criteria_tier, eligibility_coverage
+    )
+    mechanism_rule = _rule("mechanism", mechanism_rows, element_silence, eligibility_coverage)
     frequency, mechanism = [], []
     for by_setting in (False, True):
         trials = _profile_trials(views, by_setting)
         root = warrants.merkle_root([digests[t[0]] for t in trials])
         frequency += [[*row, warrants.computed(profile_rule, root)] for row in frequency_rows(trials)]
-        mechanism += [
-            [*row, warrants.computed(_rule("mechanism", mechanism_rows), root)]
-            for row in mechanism_rows(trials)
-        ]
+        mechanism += [[*row, warrants.computed(mechanism_rule, root)] for row in mechanism_rows(trials)]
     out["Profile"] = (
         [
             "Stratum",
             "Element",
-            "Trials Stating",
-            "Trials Typed",
-            "Frequency",
-            "Surprisal (bits)",
+            "Trials Stating (S)",
+            "Absence Established (A): no ascertainment rule is declared, so 0 by construction",
+            "Unresolved: Empty Eligibility",
+            "Unresolved: No Rule Match (eligibility never typed)",
+            "Unresolved: Abbreviated",
+            "Unresolved: Unspecified",
+            "Unresolved (U)",
+            "Trials (N)",
+            "Registry Statement Rate (S/N)",
+            "Full-Criteria Lower Bound (S/N)",
+            "Full-Criteria Upper Bound ((S+U)/N)",
+            "Surprisal of the Statement Rate (bits)",
             "Sponsors",
-            f"Tier (standard ≥ {STANDARD_SHARE:.0%})",
+            f'Standard Tier (≥ {STANDARD_SHARE:.0%}: met, not_met, unresolved; "" for a primary endpoint)',
+            "Estimand",
             "Warrant",
         ],
         frequency,
@@ -429,12 +458,17 @@ def sheets(reading: dict[str, Any], answers: dict[str, Any]) -> dict[str, tuple[
             "In Class",
             "Others Stating",
             "Others",
-            "Frequency in Class",
-            "Frequency in Others",
-            "Difference",
+            "Statement Rate in Class",
+            "Statement Rate in Others",
+            "Difference of Statement Rates",
+            "Difference, Abbreviated Silences Least Favourable (others' counted as stating)",
             "Sponsors Stating",
             "Trials with Unresolved Class",
-            f"Status (proposed: ≥{SIGNAL_MIN_TRIALS} trials, ≥{SIGNAL_MIN_SPONSORS} sponsors)",
+            "Silent in Class, Abbreviated",
+            "Silent in Others, Abbreviated",
+            "Status of the statement-rate comparison (proposed: holds with abbreviated silences read least "
+            f"favourably, ≥{SIGNAL_MIN_TRIALS} trials, ≥{SIGNAL_MIN_SPONSORS} sponsors; below_support: holds "
+            "so, less support; unresolved: abbreviated silences could reverse it)",
             "Warrant",
         ],
         mechanism,
@@ -474,7 +508,8 @@ ABOUT = [
         "Review Queue",
         "What this symbolic reading could not cleanly resolve, each as a typed question with closed answer "
         "options and its evidence, for a domain expert or a model to answer: unresolved drug classes, "
-        "coordinate conflicts, unresolved expectation observations and verified deviations. Nothing in it "
+        "coordinate conflicts, unresolved expectation observations, verified deviations and records that "
+        "say their eligibility criteria are abbreviated. Nothing in it "
         "is resolved by TrialLedger; an answer is recorded with who gave it.",
     ],
     [
@@ -492,7 +527,10 @@ ABOUT = [
     ],
     [
         "Trials",
-        "One row per study: how its eligibility was itemized and typed, its coordinates, and its "
+        "One row per study: how its eligibility was itemized and typed; what the text says about itself, "
+        "kept apart (content empty or present; sectioned or not; for the inclusion and the exclusion "
+        "criteria, whether the record says its list is abbreviated, says it is complete, or says nothing, "
+        "each marker with its place and scope; no marker never means complete); its coordinates, and its "
         "experimental drugs with their RxClass state and FDA Established Pharmacologic Class.",
     ],
     [
@@ -520,17 +558,29 @@ ABOUT = [
     ],
     [
         "Profile",
-        "Each element's frequency over the trials whose text was typed, its surprisal (how unexpected, "
-        "not how important), its sponsors, and the standard tier (the empirical source of reusable protocol "
-        "language, not a verdict on clinical value). Strata by setting use the known setting only; "
+        "Each element over every trial of the stratum (N), as two estimands kept apart: the registry "
+        "statement rate (S/N, the share of records that state it, a point) and, for an eligibility element,"
+        " the full-criteria frequency, which records identify only as an interval from S/N to (S+U)/N, "
+        "where U counts the silent trials whose silence does not establish absence, each kind named (empty "
+        "eligibility; eligibility no rule typed; a record that says its list is abbreviated; one that says "
+        "nothing of its coverage). No ascertainment rule is declared, so A is 0 by construction and the "
+        "upper bound is 1 wherever a trial is silent. A primary endpoint is not eligibility: its row gives "
+        "the statement rate only, and says so. The surprisal of the statement rate (how unexpected, not how"
+        " important), the sponsors, and the standard tier (the empirical source of reusable protocol "
+        "language, not a verdict on clinical value): met when the lower bound reaches it, not_met when the "
+        "upper bound falls short, unresolved otherwise. Strata by setting use the known setting only; "
         "proposed relations are never built on.",
     ],
     [
         "Mechanism Signals",
-        "Elements more frequent among trials of one drug class than among the rest of the "
-        "stratum. Every row is a proposal for review, never an established mechanism link; sponsor "
-        "templates and "
-        "eras can produce the same pattern, so sponsors and unresolved-class trials are shown.",
+        "A statement-rate comparison: elements stated more often by the typed trials of one drug class than "
+        "by the rest of the stratum's typed trials (a trial whose text was never typed is in neither group). "
+        "A record that says its list is abbreviated may hold an element it does not state, so the comparison "
+        "is bounded: proposed only when it still holds with every such silence among the others counted as "
+        "stating and every one in the class as lacking (the least favourable reading), unresolved when those "
+        "silences could reverse it. Every row is a proposal for review, never an established mechanism link; "
+        "sponsor templates and eras can produce the same pattern, so sponsors and unresolved-class trials "
+        "are shown.",
     ],
     [
         "Occupancy",
