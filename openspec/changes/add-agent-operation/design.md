@@ -249,6 +249,60 @@ may not reach ClinicalTrials.gov or RxNav. Desktop and CLI agents (Claude Code, 
   is no shorter than the URL sent (4,163 for the EPC Kinase Inhibitor query, whose whole URL as sent was
   3,919): the MoA class Kinase Inhibitors (194 members) does; the EPC Kinase Inhibitor (81 members)
   resolves and was answered (13,534 trials). Splitting a long query is for the step protocol (3.1).
+- **The operation, 2026-11-01 (task 4.2; `TrialLedger/operate.py`, `trialledger landscape` in `cli.py`).**
+  `trialledger landscape --run DIR (--request FILE | the slot flags) [--mode direct|relay]`, the mode by
+  default `doctor.report`'s. The run folder, in the order written: `request.json` (only once
+  `request_problems` says ok; a folder holding another request is refused, `request_differs`); the
+  resolution's RxNav answers in `lookups/` (`lookup-NNN.json`, one a request, named in `lookups.json`, never
+  renamed), each request the `request.lookup_url` line split back (`lookup_request`) and fetched directly
+  through `classes.http_get`, 0.2 s apart, or relayed in `next.json` in the step protocol's own shape and
+  instructions (`why` rxnav_answer, `save_as` under `lookups/`); a direct answer is saved as JSON or as the
+  note of its failure (`answer_bytes`) and every saved answer read back as `(200, body)` or `(0, None)`
+  (`saved_answer`), as `steps.rxnav_answers` reads one, so a relayed run and a direct run read the same
+  answers. After the last round RxNav's `version.json` is asked again (`lookups/release-end.json`) and
+  compared (`release_check`): a change is refused (`rxnav_release_changed`, exit 1), a failed request asked
+  again, a release not stated on either side recorded and refusing nothing; the scope's `release_basis`
+  then says so and `release_check` holds the code and both releases. A scope whose stops are all failed
+  lookups (`stop_status`) sets every failed answer aside in `lookups/dropped/` and ends 1, so the same
+  command asks them again; any other stop ends 2 with its advice (`stop_advice`; `query_too_long`: narrow
+  the request), joined by `scope_advice`, which tells a failed lookup beside another stop once, as asked
+  again in the new run folder the changed request needs (this folder sets nothing aside, so a re-run here
+  stops alike). `resolution.json` (the scope as resolved, the record's `scope`) and `scope.json` (its query,
+  through `steps.open_run`, no RxNav requests) are written before any study is read; once `scope.json`
+  exists the resolution is read back, never asked again. Then `steps.advance`; on complete, the reading:
+  direct mode `classes.load_or_lookup_at` with the run folder's own `classes.json` and `fill_axes=True`,
+  exactly as `resolve`; relay mode no answers at all, so every experimental drug's EPC and MoA classes are
+  `not_looked_up` (`reading.classes_as_looked_up`, new; a drug none of whose names was ever asked, never no
+  class and never lookup_failed; a class its own entry states is still read, `stated_by_record`, as for any
+  drug RxClass does not classify) and its axes too (`reading.axes_as_looked_up`, as before). The manifest's
+  `retrieval` (`retrieval_coverage`) states the mode, the registry's count and the studies read, whether the
+  classes were looked up (direct: RxClass asked for the EPC and MoA classes of every drug, biological and
+  genetic intervention, RxNav for the identity, ATC classes and structure of experimental arms' only, as
+  `reading.axes_aliases` names them; relay: not, with why), and, for a filter.ids query,
+  `ingest.reconcile_ids`'s accounting. A relay run's record therefore equals a direct run's (but for
+  `retrieval`'s `mode` and `drug_classes`) only when no study read has an experimental arm's drug. The
+  record is refused unless `landscape.schema_problems` finds nothing in the decoded bytes to be written
+  (`schema_problem`); `manifest.json` then `landscape.json` are written staged and renamed, and
+  a re-run that derives the same bytes writes nothing, one that derives others is refused
+  (`record_differs`), the record never overwritten (`record_state`); a finished run is re-read in the mode
+  its record names (`record_mode`), and the record always carries the request as `request.json` keeps it,
+  so the same request given again otherwise (a file's key order, the flags) writes the same bytes. Exit
+  codes (`run_exit`): 0 complete; 3 awaiting fetch; 1 failed (`lookup_failed`, `rxnav_release_changed`,
+  `pull_failed`, `snapshot_changed`, `incomplete_total`; nothing written as the record; `lookup_failed` and
+  `pull_failed` are resumed by the same command, the other three need a new run folder, as their words
+  say); 2 every other end (the request, a scope stop, a refused body, `schema_problem`,
+  `record_differs`). `landscape.xlsx` has one call site, `operate.write_book`, importing
+  `TrialLedger.landscape_book.write_landscape_book` (4.3) with `.landscape.partial.xlsx` as the path and
+  renaming that into place, so a run cut short leaves no partial workbook a re-run would keep; until that
+  module exists it writes nothing and the run says the workbook is not built. Deviations, for the founder:
+  the relay statement that classes were not looked up sits in `manifest.retrieval` (the record's retrieval
+  coverage, as `landscape.py` names it), not in `coverage`, which is per-trial-type coverage from the
+  supported-type matrix and whose keys `landscape.FIELDS` fixes (another unit's file); and `manifest.json`
+  (the spec's) is written beside `landscape.json`, the same manifest. Changed outputs: `doctor`'s `next` for
+  direct and relay now names `trialledger landscape`; a reading in which no name of an experimental drug has
+  an answer now reads that drug `not_looked_up` where it read `lookup_failed` (no existing command reads one
+  so: `resolve`, `profile` and `audit` ask every name), so such a drug is no longer a
+  `drug_class_unresolved` review question.
 
 ## Risks / Trade-offs
 

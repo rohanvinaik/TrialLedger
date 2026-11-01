@@ -32,19 +32,21 @@ PROBES = {
 }
 PROBE_TIMEOUT_S = 8.0
 MODES = ("direct", "relay", "unsupported_python", "missing_dependency", "folder_not_writable")
-# Each step names only commands that exist today. `trialledger landscape` and the relay through next.json
-# (add-agent-operation 3.2 and 4.2) replace the first two when they land.
+# Each step names only commands that exist today (add-agent-operation 4.2: `trialledger landscape` and its
+# relay through next.json).
 NEXT_STEP = {
     "direct": (
-        "Run `trialledger pull` with the registry's search parameters for a certified copy of every matching "
-        "study, or `trialledger resolve` for the criteria read study by study (see `trialledger <command> "
-        "--help`); TrialLedger fetches from the registry itself."
+        "Run `trialledger landscape --run <folder>` with the person's request (--request FILE, or the slot "
+        "flags: see `trialledger landscape --help`); TrialLedger fetches from the registry and RxNav itself "
+        "and writes the record, landscape.json, into the folder. Answer from that record."
     ),
     "relay": (
-        "This process cannot reach the registry or RxNav, and the relay through which you would fetch for "
-        "TrialLedger is not built yet. If only RxNav is unreachable, `trialledger pull` still works (it "
-        "needs only the registry); otherwise tell the person TrialLedger cannot fetch from this sandbox "
-        "yet. Do not fetch registry records yourself in its place."
+        "This process cannot reach the registry or RxNav, so you fetch for TrialLedger. Run `trialledger "
+        "landscape --run <folder> --mode relay` with the person's request (--request FILE, or the slot "
+        "flags: see `trialledger landscape --help`). It writes next.json in the folder: fetch each URL "
+        "next.json names into the file it names (save_as, inside the folder), exactly as fetched, then run "
+        "the same command again; repeat until it reports complete, then answer from landscape.json. Fetch "
+        "only the URLs next.json names: do not fetch registry records yourself in place of TrialLedger."
     ),
     "unsupported_python": "Install Python 3.12 or later (with uv, for example), then TrialLedger again.",
     "missing_dependency": "Install TrialLedger with its dependencies: pip install the repository.",

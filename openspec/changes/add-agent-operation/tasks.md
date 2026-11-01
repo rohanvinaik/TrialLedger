@@ -53,7 +53,7 @@ The founder, 2026-11-01: the next priority, built to completion.
       other form's ingredient's), not the registry's `AREA[InterventionOtherName]`, which is not emitted. Also
       for the founder: every RxClass member is expanded, INDIRECT ones included, and a PIN member is searched
       by its ingredient's name too.)
-- [ ] 2.3 The resolved scope written before any study is read; named codes for what cannot resolve
+- [x] 2.3 The resolved scope written before any study is read; named codes for what cannot resolve
       (2026-11-01: the scope object, its named codes and the lookups it needs are built and converged,
       `request.resolve_scope` and `request.lookups_needed`; what is left is writing it into the run folder
       before any study is read, which needs the run folder (3.1, 3.2) and the command (4.2). A class whose
@@ -61,6 +61,18 @@ The founder, 2026-11-01: the next priority, built to completion.
       left to the step protocol, 3.1. Also left to 3.1: re-reading the RxNav release after the last round and
       refusing a change, since the scope's release is asked once, in the first round (`release_basis`), and
       retrying a failed lookup, which stops the scope until its answer is dropped and asked again.)
+
+  2026-11-01, with 4.2 (`TrialLedger/operate.py`): the resolved scope is written into the run folder
+  (`resolution.json`, `request.resolve_scope`'s with its release check; its query in `scope.json` through
+  `steps.open_run`) before any study is read, and never resolved again once `scope.json` holds it. RxNav's
+  release is asked again after the last round and a change refused by name (`operate.release_check`,
+  `rxnav_release_changed`); a stop of failed lookups only (`operate.stop_status`) sets the failed answers
+  aside in `lookups/dropped/`, so the same command asks them again; every other stop ends the run with its
+  advice (`operate.stop_advice`, joined by `operate.scope_advice`, which tells a failed lookup beside such a
+  stop as asked again in the new run folder the changed request needs, never in this one, whose failed
+  answers are not set aside). `query_too_long` is not split: it ends the run (exit 2) advising a
+  narrower request (an EPC class instead of a MoA class, a narrower subclass, the drugs themselves), as the
+  4.2 task decided.
 
 ## 3. The step protocol
 
@@ -81,6 +93,16 @@ The founder, 2026-11-01: the next priority, built to completion.
   by the studies or by an earlier answer, are not yet named by the decision. A run is started by
   `trialledger landscape` (4.2), until which `steps.py` is declared in `tests/test_wiring.py`.
 
+  2026-11-01, with 4.2: production now starts runs (`trialledger landscape`), so `steps.py` is on the
+  production path but for `rxnav_answers` and `StepError` (declared in `tests/test_wiring.py`). The duties
+  2.3 left to 3.1 are done in `operate.py` (above, 2.3), which resolves the request through its own
+  `lookups/` before `open_run`, so the scope's RxNav requests are never relayed beside the registry's (it
+  passes none). The post-pull RxNav answers are not planned by the step decision: direct mode asks them
+  through `classes.load_or_lookup_at` exactly as `resolve` does; relay mode does not ask them (hundreds to
+  thousands of URLs; decided 2026-11-01 by Claude and Codex independently), every drug's classes and axes
+  reading not_looked_up. Left for 3.1: whether it closes so (the founder's call), and with it whether
+  `open_run`'s `rxnav` and `rxnav_answers` are kept for another consumer or retired.
+
 ## 4. The operation and the workbook
 
 - [x] 4.1 `trialledger doctor` (capability check as JSON, mode decided)
@@ -92,8 +114,31 @@ The founder, 2026-11-01: the next priority, built to completion.
   (67/67); each mode carries the agent's next step. `trialledger doctor [--run DIR]` prints the report as JSON
   and ends 0 when a run can start, 2 when it cannot; the probe is injectable (`cli.main(probe_get=...)`), and
   the production path runs it as a sandbox where RxNav is blocked (relay).
-- [ ] 4.2 `trialledger landscape` (request → run folder → record, workbook, manifest)
+- [x] 4.2 `trialledger landscape` (request → run folder → record, workbook, manifest)
 - [ ] 4.3 `landscape.xlsx`: the design workbook with Scope, Manifest and Study sheets
+
+  2026-11-01: `TrialLedger/operate.py` (the run, end to end) and `trialledger landscape --run DIR
+  (--request FILE | slot flags) [--mode direct|relay]` in `cli.py` (the flags read by
+  `cli.request_from_flags`; the mode by default `doctor.report`'s). Exit codes: 0 complete, 3 awaiting fetch,
+  2 refused or stopped by name, 1 failed (`operate.run_exit`), each printed with the agent's next step. The
+  run writes `request.json`, `lookups/` and `lookups.json`, `resolution.json`, then the step protocol's
+  folder, then `manifest.json` and `landscape.json` (refused unless `landscape.schema_problems` finds nothing
+  in exactly the bytes written; never overwritten by a different record). Twelve pure decisions, each
+  converged `--two-sign` COMPLETE (`lookup_request`, `saved_answer`, `answer_bytes`, `release_check`,
+  `stop_status`, `stop_advice`, `scope_advice`, `run_exit`, `record_state`, `record_mode`,
+  `retrieval_coverage`, `cli.request_from_flags`), and `reading.classes_as_looked_up`. `doctor.NEXT_STEP`
+  names `trialledger landscape` for direct and relay. The production path runs it in both modes. A relay
+  run's record equals a direct run's, apart from `manifest.retrieval`'s `mode` and `drug_classes`, only when
+  no study read has an experimental arm's drug, biological or genetic intervention: with one, relay mode reads
+  its classes and axes `not_looked_up` (no post-pull RxNav lookups, by design), and the review flags and
+  cross-trial rows that follow from them differ too. Left: `landscape.xlsx` (4.3) has one call site,
+  `operate.write_book` (staged, then renamed into place), which says "not built" until
+  `TrialLedger/landscape_book.py` lands; the AGENTS.md, README.md and DEVELOPING.md updates (the task's
+  report carries their text); and 5.1 (`SKILL.md`). For the founder: whether a class an experimental drug's
+  own entry states is read `stated_by_record` in relay mode (as now) or `not_looked_up`, and whether a
+  `not_looked_up` drug is a review question; and, when the first round's `version.json` failed, whether the
+  whole resolution is set aside (today only the failed answers are, so the re-asked first release postdates
+  the class and member answers it vouches for).
 
 ## 5. The agent entry point
 

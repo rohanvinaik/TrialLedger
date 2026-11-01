@@ -68,6 +68,9 @@ from TrialLedger.workbook import CODE_ROOT
 LINK = "https://clinicaltrials.gov/study/NCT01234567"
 PLACEBO_EPC = ["N0000191260", "Programmed Death Receptor-1 Blocking Antibody", "has_epc", "DAILYMED"]
 ANSWERS = {"Placebo": {"codes": {"DAILYMED:has_epc": "found"}, "classes": [PLACEBO_EPC]}}
+# Testamab asked and its lookup failed (lookup_failed); a drug never asked is not_looked_up
+# (add-agent-operation 4.2, reading.classes_as_looked_up)
+ANSWERS["Testamab"] = {"codes": {"DAILYMED:has_epc": "lookup_failed"}, "classes": []}
 STANDARD_RULE = "profile.frequency_rows (all trials), keyed by profile.element_key"
 
 
@@ -612,7 +615,7 @@ def test_study_extract_reads_one_study_from_its_view():
     assert extract["standard_language"][0]["elements"][0]["note"] == "not profiled"
     assert [i["drug_class"]["value"]["state"] for i in extract["interventions"]] == [
         "stated_by_record",
-        "lookup_failed",
+        "not_looked_up",
     ]
     assert extract["arms"][0]["source"] == "protocolSection.armsInterventionsModule.armGroups[0]"
 
@@ -1419,7 +1422,7 @@ def test_interventions_carry_their_class_axes_and_modality():
     assert xb1["modality"][0]["source"].startswith(
         "protocolSection.armsInterventionsModule.interventions[0]."
     )
-    assert placebo["drug_class"]["value"]["state"] == "lookup_failed" and placebo["modality"] == []
+    assert placebo["drug_class"]["value"]["state"] == "not_looked_up" and placebo["modality"] == []
     unnamed = audited_study()
     unnamed["protocolSection"]["armsInterventionsModule"]["interventions"][0]["name"] = ["XB-1"]
     view = study_view(audited_study(), {})
@@ -1669,11 +1672,11 @@ def test_every_intervention_entry_reads_its_class_axes_and_modality_in_full():
         {
             "entry": env(entries[0], "known", f"{base}[0]"),
             "drug_class": env(
-                {"state": "lookup_failed", "classes": [], "resolved_by": ""},
+                {"state": "not_looked_up", "classes": [], "resolved_by": ""},
                 "unresolved",
                 f"{base}[0]",
                 "classes.drug_class (NLM RxClass, has_epc)",
-                "lookup_failed",
+                "not_looked_up",
             ),
             "axes": env(
                 {

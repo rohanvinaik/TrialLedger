@@ -10,8 +10,10 @@ RxNav resolving an ingredient, a brand and a combination and answering ATC and s
 for the experimental drugs' names); `profile` of a folder that is no record; a
 live `resolve` with a near-miss pair, an aligned pair, a shared structure class, an own name RxNorm does not
 hold beside a combination alias, a target the drug's own entry states and a genetic CAR-T entry, rendered as
-the JSON and design.xlsx with its Drug Axes sheet; `sample`, `audit` and `pilot`; `verify` of a folder whose
-workbook is unreadable; and a pull the server keeps failing.
+the JSON and design.xlsx with its Drug Axes sheet; `landscape` in direct mode (a drug class in a condition
+class with a named drug, a failed lookup asked again, a finished run run again, a mechanism stopped by name)
+and in relay mode through next.json; `sample`, `audit` and `pilot`; `verify` of a folder whose workbook is
+unreadable; and a pull the server keeps failing.
 """
 
 import ast
@@ -145,6 +147,91 @@ def axis(params: dict) -> tuple[int, dict]:
         "relaSource": params["relaSource"],
     }
     return 200, {"rxclassDrugInfoList": {"rxclassDrugInfo": [entry]}}
+
+
+def landscape_runs(scratch: Path, studies: list[dict], rxclass, sandbox) -> dict[str, int]:
+    """`trialledger landscape`, as an assistant runs it (add-agent-operation 4.2), over the registry's pages
+    for `studies` and RxNav's recorded answers (tests/rxnav_request_answers.json) beside `rxclass`'s for the
+    studies' drugs: in direct mode, a drug class in a condition class with a named drug, every slot of the
+    request resolved (its first members lookup failing once, so the failed answer is set aside and asked
+    again on the next run), then run again, finished; a mechanism no crosswalk row expands, stopped by name;
+    and in relay mode, as the doctor decides for a sandbox that cannot reach RxNav, a request file relayed
+    through next.json until complete, every fetch made by the agent and saved where it says."""
+    import httpx
+    from conftest import version
+
+    from TrialLedger import cli
+    from TrialLedger.ingest import API_BASE
+    from TrialLedger.request import lookup_url
+
+    recorded = json.loads((HERE / "rxnav_request_answers.json").read_text(encoding="utf-8"))
+    by_id = {s["protocolSection"]["identificationModule"]["nctId"]: s for s in studies}
+    members = f"{RXNAV}/rxclass/classMembers.json?classId=N0000191260&relaSource=DAILYMED&rela=has_epc"
+    failing = [members]
+
+    def rxnav_answer(url, params):
+        key = lookup_url(url, params)
+        if key in failing:
+            failing.remove(key)
+            return 503, None
+        if key in recorded["answers"]:
+            return tuple(recorded["answers"][key])
+        return rxclass(url, params)
+
+    def route(request: httpx.Request) -> httpx.Response:
+        if request.url.path == "/api/v2/version":
+            return version()
+        params = request.url.params
+        if params.get("fields") == "NCTId":
+            page = [{"protocolSection": {"identificationModule": {"nctId": nct}}} for nct in by_id]
+            return httpx.Response(200, json={"studies": page, "totalCount": len(page)})
+        asked = params["filter.ids"].split(",")
+        return httpx.Response(200, json={"studies": [by_id[nct] for nct in asked], "totalCount": len(asked)})
+
+    def registry():
+        return httpx.Client(base_url=API_BASE, transport=httpx.MockTransport(route), follow_redirects=False)
+
+    pd1 = recorded["requests"][0]["drug_class"]["name"]
+    flags = ["--drug-class", pd1, "--class-source", "EPC", "--drug", "Keytruda"]
+    flags += ["--condition-class", "Lung Neoplasms", "--phase", "PHASE3", "--status", "RECRUITING"]
+    flags += ["--study-type", "INTERVENTIONAL", "--start-from", "2015-01-01", "--mode", "direct"]
+
+    def direct(name, *words):
+        return cli.main(
+            ["landscape", "--run", str(scratch / name), *words],
+            http=registry(),
+            sleep=lambda s: None,
+            rxclass_get=rxnav_answer,
+            probe_get=sandbox,
+        )
+
+    codes = {"landscape_lookup_failed": direct("landscape-direct", *flags)}
+    codes["landscape"] = direct("landscape-direct", *flags)
+    codes["landscape_again"] = direct("landscape-direct", *flags)
+    codes["landscape_stopped"] = direct("landscape-mechanism", "--mechanism", "PD-1", "--mode", "direct")
+    held = scratch / "request.json"
+    held.write_text(json.dumps(recorded["requests"][0]), encoding="utf-8")
+    relayed = scratch / "landscape-relay"
+    client = registry()
+    while True:
+        codes["landscape_relay"] = cli.main(
+            ["landscape", "--run", str(relayed), "--request", str(held)], probe_get=sandbox
+        )
+        if codes["landscape_relay"] != 3:
+            break
+        for fetch in json.loads((relayed / "next.json").read_text(encoding="utf-8"))["fetches"]:
+            url = httpx.URL(fetch["url"])
+            if url.host == "rxnav.nlm.nih.gov":
+                status, body = rxnav_answer(str(url.copy_with(query=None)), dict(url.params))
+                (relayed / fetch["save_as"]).write_text(
+                    json.dumps(body) if status == 200 else f"failed: {status}"
+                )
+            else:
+                (relayed / fetch["save_as"]).write_bytes(client.get(fetch["url"]).content)
+    return codes
+
+
+RXNAV = "https://rxnav.nlm.nih.gov/REST"
 
 
 def sample_and_audit(scratch: Path, studies: list[dict], rxclass) -> dict[str, int]:
@@ -376,6 +463,7 @@ def main() -> None:
         sleep=live.sleep,
         rxclass_get=rxclass,
     )
+    codes |= landscape_runs(scratch, [first, second, *pair], rxclass, sandbox)
     codes |= sample_and_audit(scratch, pair, rxclass)
     broken = scratch / "broken"
     shutil.copytree(out, broken)

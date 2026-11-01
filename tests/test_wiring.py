@@ -3,7 +3,8 @@
 Vulture counts a function named in a table as used, so it cannot see a table entry nothing ever calls; these
 tests can. The production path (tests/production_path.py, run in its own process with every call recorded
 from before import) is a two-page pull with a retry and a value a cell cannot hold, `verify` of the folder
-written, `verify` of an unreadable workbook, and a pull the server keeps failing.
+written, `verify` of an unreadable workbook, a pull the server keeps failing, and `landscape` run in direct
+and in relay mode (its module docstring lists every command it runs).
 
 Positive: the check tables agree with each other; production gathers exactly the approved checks; every
 function of the package runs on the production path except the declared ones; every sheet fills every column
@@ -47,6 +48,7 @@ DECLARED = {
     "sample.py: draw_sample.<locals>.<lambda>": "draw_sample's default progress sink; the CLI passes its own",
     "transport.py: urllib_http": "the local model's network call; production_path injects a fake, as it does "
     "the registry and RxClass",
+    "operate.py: _ignore": "operate.run's default progress sink; the CLI passes its own",
 }
 # The frozen contracts of add-bank-coverage group 1, which the parallel packages are written against: nothing
 # in production consumes them yet. Each name is declared with the task that will put it on the path; that task
@@ -115,9 +117,11 @@ FOUNDATIONS = {
             "read_window",
         ),
     ),
+    # landscape.json's coverage (add-agent-operation 4.2) reaches _module, declared_manifest,
+    # study_coordinates and universe_status
     "until add-bank-coverage 4.1 (the discovery wave's type balance) and 7.2 (the release manifest)": (
         "typematrix.py",
-        ("_module", "declared_manifest", "manifest_problems", "study_coordinates", "universe_status"),
+        ("manifest_problems",),
     ),
     "until add-bank-coverage 7.1 (the confirmation evaluated through the real entry point)": (
         "evaluation.py",
@@ -202,97 +206,15 @@ DECLARED |= {
     f"predicates.py: {name}": UNTIL_THE_COMPILER
     for name in ("_digest", "atom_literal", "mapping_problems", "predicate_registry")
 }
-# The run folder and its next step (add-agent-operation 3.1, 3.2): nothing in production starts a run until
-# the `landscape` command does. tests/test_steps.py and the decisions' own tests reach every one.
-STEPS_DORMANT = {
-    f"steps.py: {name}": "until add-agent-operation 4.2"
-    for name in (
-        "StepError.__init__",
-        "_fetch",
-        "_ignore",
-        "_json_bytes",
-        "_name",
-        "_relay",
-        "_shown",
-        "_state",
-        "_write",
-        "advance",
-        "follow_batches",
-        "follow_ids",
-        "next_step",
-        "open_run",
-        "records",
-        "request_url",
-        "rxnav_answers",
-    )
+# The run folder's shell beyond what `trialledger landscape` (add-agent-operation 4.2) reaches:
+# tests/test_steps.py reaches every one.
+DECLARED |= {
+    "steps.py: StepError.__init__": "raised by records and rxnav_answers on a folder not complete, which "
+    "operate.run never asks them of",
+    "steps.py: _ignore": "advance's default progress sink; the CLI passes its own",
+    "steps.py: rxnav_answers": "until add-agent-operation 3.1 (the RxNav requests the step decision relays "
+    "beside the registry's; operate.run asks none of it)",
 }
-DECLARED |= STEPS_DORMANT
-# The request and its resolution (add-agent-operation 2.1-2.3): `trialledger landscape`, the command that
-# resolves a request and sends its query, is task 4.2; tests/test_request.py and tests/test_class_members.py
-# reach every one meanwhile.
-UNTIL_LANDSCAPE = "until add-agent-operation 4.2"
-AGENT_OPERATION_DORMANT = {
-    f"{module}: {name}": UNTIL_LANDSCAPE
-    for module, names in (
-        ("classes.py", ("class_members_request", "rxclass_members")),
-        (
-            "request.py",
-            (
-                "_class_expansion",
-                "_iso_date",
-                "_members_expansion",
-                "any_of",
-                "class_matches",
-                "class_request",
-                "class_resolution",
-                "condition_clause",
-                "drug_names",
-                "identity_chain",
-                "lookup_url",
-                "lookups_needed",
-                "mechanism_rows",
-                "member_identity",
-                "request_problems",
-                "resolve_scope",
-                "slot_value_ok",
-            ),
-        ),
-    )
-    for name in names
-}
-DECLARED |= AGENT_OPERATION_DORMANT
-# The record of truth (add-agent-operation 1.1, 1.2): `trialledger landscape` is its only consumer and is not
-# written yet. tests/test_landscape.py reaches every one.
-LANDSCAPE_DORMANT = {
-    f"landscape.py: {name}": "until add-agent-operation 4.2"
-    for name in (
-        "axes_value",
-        "biomarker_values",
-        "cohort_section",
-        "coordinate_values",
-        "criterion_sections",
-        "drug_class_value",
-        "endpoint_profile",
-        "envelope",
-        "envelope_problems",
-        "intervention_sections",
-        "landscape_manifest",
-        "landscape_record",
-        "outcome_sections",
-        "posted_events",
-        "posted_measurements",
-        "reference_values",
-        "results_problems",
-        "results_value",
-        "schema_problems",
-        "standard_values",
-        "stated",
-        "study_extract",
-        "study_mismatches",
-        "type_holds",
-    )
-}
-DECLARED |= LANDSCAPE_DORMANT
 
 
 @pytest.fixture(scope="module")
@@ -317,6 +239,11 @@ def test_the_production_path_ends_as_production_does(production):
         "profile_fill_axes": 0,
         "profile_not_a_record": 2,
         "resolve": 0,
+        "landscape_lookup_failed": 1,
+        "landscape": 0,
+        "landscape_again": 0,
+        "landscape_stopped": 2,
+        "landscape_relay": 0,
         "sample": 0,
         "sample_confirmation": 0,
         "sample_confirmation_refused": 2,

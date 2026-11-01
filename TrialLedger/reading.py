@@ -97,8 +97,12 @@ def study_view(study: dict[str, Any], answers: dict[str, Any]) -> dict[str, Any]
     # cannot be attributed to one drug: only the intervention's own entry is read.
     drugs = []
     for drug in rx.experimental_drugs(study):
-        state, found, resolved_by = rx.drug_class(answers, names[drug])
+        held = rx.drug_class(answers, names[drug])
+        state, found, resolved_by = classes_as_looked_up(names[drug], answers, held)
         epc = sorted({c[1] for c in found if c[2] == "has_epc"})
+        # As for any drug RxClass does not classify, a class its own entry states is read (a record's own
+        # statement, asked of no service); a drug RxClass was never asked about and whose entry states none
+        # stays not_looked_up.
         if state != "classified":
             stated = stated_targets(descriptions.get(drug, ""))
             if stated:
@@ -267,6 +271,22 @@ def drug_axes_view(drug: str, aliases: list[str], entry: str, answers: dict[str,
         "alignment": alignment,
         "atc": ("", []) if code == "not_looked_up" else rx.drug_atc(known, targets, alignment),
     }
+
+
+def classes_as_looked_up(aliases: list[str], answers: dict[str, Any], found: tuple) -> tuple[str, list, str]:
+    """A drug's EPC and MoA classes (classes.drug_class's answer) as far as RxClass was asked about its names
+    (pure — pinned).
+
+    RxClass is asked name by name (classes.load_or_lookup_at); a run that asks nothing after the pull (a relay
+    run of `trialledger landscape`) holds no answer for any name. `aliases` are the drug's names, its own name
+    first; `found` is classes.drug_class's (state, classes, the name that resolved) over the same answers.
+    not_looked_up — no name of the drug has an answer: ("not_looked_up", [], ""), never "no class"
+                    (unresolved) and never "lookup failed", whatever `found` says.
+    looked up     — some name has an answer: `found` unchanged.
+    """
+    if any(answers.get(alias) is not None for alias in aliases):
+        return found
+    return "not_looked_up", [], ""
 
 
 def axes_not_looked_up(aliases: list[str], answers: dict[str, Any]) -> list[str]:

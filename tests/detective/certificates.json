@@ -323,6 +323,12 @@
     "refusal": "",
     "standing": "complete"
   },
+  "TrialLedger/cli.py::request_from_flags": {
+    "cut_reasons": [],
+    "function_digest": "c08c80eee089f970",
+    "refusal": "",
+    "standing": "complete"
+  },
   "TrialLedger/coherence.py::close": {
     "cut_reasons": [
       "budget_exhausted",
@@ -783,6 +789,72 @@
     "refusal": "",
     "standing": "complete"
   },
+  "TrialLedger/operate.py::answer_bytes": {
+    "cut_reasons": [],
+    "function_digest": "67eeed8e08c4ea34",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/operate.py::lookup_request": {
+    "cut_reasons": [],
+    "function_digest": "97e6f2bb2c81c685",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/operate.py::record_mode": {
+    "cut_reasons": [],
+    "function_digest": "b5c26dc49c5aec76",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/operate.py::record_state": {
+    "cut_reasons": [],
+    "function_digest": "1426ced44f42be2d",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/operate.py::release_check": {
+    "cut_reasons": [],
+    "function_digest": "46f0fc654709a675",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/operate.py::retrieval_coverage": {
+    "cut_reasons": [],
+    "function_digest": "525b2ecc5b0973c4",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/operate.py::run_exit": {
+    "cut_reasons": [],
+    "function_digest": "f84a412517d1d3da",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/operate.py::saved_answer": {
+    "cut_reasons": [],
+    "function_digest": "f1d67ee315bf2f10",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/operate.py::scope_advice": {
+    "cut_reasons": [],
+    "function_digest": "4b821166502e116d",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/operate.py::stop_advice": {
+    "cut_reasons": [],
+    "function_digest": "8bbbce1766842bfe",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/operate.py::stop_status": {
+    "cut_reasons": [],
+    "function_digest": "fd7d3dff0b042fd4",
+    "refusal": "",
+    "standing": "complete"
+  },
   "TrialLedger/pilot.py::changed_values": {
     "cut_reasons": [],
     "function_digest": "294bed6aa17c465a",
@@ -918,6 +990,12 @@
   "TrialLedger/reading.py::axes_not_looked_up": {
     "cut_reasons": [],
     "function_digest": "b5a675a97b5f28ad",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/reading.py::classes_as_looked_up": {
+    "cut_reasons": [],
+    "function_digest": "09d22581ddee1f2e",
     "refusal": "",
     "standing": "complete"
   },

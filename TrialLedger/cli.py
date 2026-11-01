@@ -57,6 +57,37 @@ that no longer follows is named; a studies.json whose objects repeat a key is re
 exit status: 0 certified · 1 not certified (the differences are printed) · 2 not a TrialLedger record
 """
 
+LANDSCAPE_HELP = """\
+One run, from a person's request to the record an assistant answers from: every ClinicalTrials.gov study the
+request matches, read into DIR/landscape.json (each value with its status, source and registry link) beside
+DIR/manifest.json. The request is a JSON object (--request FILE) or the slot flags below. Its terms are
+resolved symbolically before any study is read: a drug class into its member drugs by NLM RxClass, each drug
+into its RxNorm names, a condition class into the registry's MeSH tree; what was searched is written into
+DIR/resolution.json and the record's scope. What cannot resolve stops the run by name, with what to do.
+The request file's slots, each optional (an empty request is refused): drug (a list of names), drug_class
+({"name" or "id", "source": EPC, MoA or ATC}), mechanism, condition, condition_class, phase and status
+(lists of the registry's values), study_type, start_from and start_to (YYYY-MM-DD), params (raw registry
+parameters, NAME: VALUE).
+
+The run folder is the checkpoint: run the same command again to resume; a finished run run again changes
+nothing. In direct mode TrialLedger fetches from the registry and RxNav itself. In relay mode (a sandbox
+that cannot reach them) it writes DIR/next.json, naming each URL to fetch and the file to save its body as:
+fetch each, exactly as fetched, then run the same command again, until it reports complete. Relay mode does
+not ask RxNav about the studies' drugs after the pull: their classes read not_looked_up. The mode defaults to
+what `trialledger doctor` finds.
+
+examples:
+  trialledger landscape --run nsclc --drug-class "Programmed Death Receptor-1 Blocking Antibody" \\
+      --class-source EPC --condition-class "Lung Neoplasms" --phase PHASE3
+  trialledger landscape --run asthma --request request.json --mode relay
+
+exit status: 0 complete (landscape.json written) · 3 awaiting fetch (relay: fetch what next.json names, then
+run the same command again) · 2 refused or stopped by name (the request, a scope stop such as class_not_found
+or query_too_long, a body or the record refused; the words printed say what to do) · 1 failed (RxNav or the
+registry did not answer, RxNav's release or the registry's data changed during the run; nothing written as
+the record; the words printed say whether to run the same command again or start a new run folder)
+"""
+
 
 def parse_query_args(args: list[str]) -> tuple[str, dict[str, str], list[str]]:
     """Turn `name=value` command-line words into ClinicalTrials.gov API parameters (pure — pinned).
@@ -79,6 +110,49 @@ def parse_query_args(args: list[str]) -> tuple[str, dict[str, str], list[str]]:
     if duplicates:
         return "duplicate", {}, duplicates
     return "ok", params, []
+
+
+# The request slots `trialledger landscape` takes as flags of their own name, each as given.
+FLAG_SLOTS = (
+    "drug",
+    "mechanism",
+    "condition",
+    "condition_class",
+    "phase",
+    "status",
+    "study_type",
+    "start_from",
+    "start_to",
+)
+
+
+def request_from_flags(flags: dict[str, Any]) -> tuple[str, dict[str, Any], list[str]]:
+    """The request that `trialledger landscape`'s slot flags state (pure — pinned).
+
+    `flags` holds each flag's value as argparse gives it, None (or an empty list) when the flag is not
+    given. Each slot of FLAG_SLOTS given is the request's slot, as given; --drug-class (a name),
+    --drug-class-id (an id) and --class-source (EPC, MoA or ATC) make the drug_class object, holding only
+    those given (request.request_problems refuses one without a source, or with both a name and an id);
+    the --param NAME=VALUE words are the raw params, read as parse_query_args reads them.
+      "ok"                    — the request (empty when no flag is given, which request_problems refuses).
+      "params_not_name_value" — a --param word with no "=" or nothing before it: no request.
+      "params_duplicate"      — a --param name given more than once: no request.
+    Returns (code, the request, the --param words concerned).
+    """
+    request: dict[str, Any] = {
+        slot: flags[slot] for slot in FLAG_SLOTS if flags.get(slot) is not None and flags.get(slot) != []
+    }
+    named = (("name", "drug_class"), ("id", "drug_class_id"), ("source", "class_source"))
+    drug_class = {key: flags[flag] for key, flag in named if flags.get(flag) is not None}
+    if drug_class:
+        request["drug_class"] = drug_class
+    words = flags.get("param") or []
+    if words:
+        code, params, offending = parse_query_args(list(words))
+        if code != "ok":
+            return f"params_{code}", {}, offending
+        request["params"] = params
+    return "ok", request, []
 
 
 def main(
@@ -118,6 +192,46 @@ def main(
         type=Path,
         default=Path("trialledger-run"),
         help="the run folder to check (default ./trialledger-run)",
+    )
+    landscape_parser = commands.add_parser(
+        "landscape",
+        help="one run from a person's request to the record an assistant answers from (landscape.json)",
+        description=LANDSCAPE_HELP,
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+    )
+    landscape_parser.add_argument(
+        "--run", type=Path, required=True, metavar="DIR", help="the run folder (created if absent)"
+    )
+    landscape_parser.add_argument(
+        "--request", type=Path, metavar="FILE", help="the request as a JSON object of slots"
+    )
+    landscape_parser.add_argument(
+        "--drug", action="append", default=[], help="a drug's name (repeat for each)"
+    )
+    landscape_parser.add_argument("--drug-class", help="an RxClass class by name (with --class-source)")
+    landscape_parser.add_argument("--drug-class-id", help="an RxClass class by id (with --class-source)")
+    landscape_parser.add_argument("--class-source", help="the class's source: EPC, MoA or ATC")
+    landscape_parser.add_argument("--mechanism", help="a target of TrialLedger's sourced crosswalk")
+    landscape_parser.add_argument("--condition", help="a condition, searched as the registry's query.cond")
+    landscape_parser.add_argument(
+        "--condition-class", help="a MeSH descriptor, read with everything under it"
+    )
+    landscape_parser.add_argument(
+        "--phase", action="append", default=[], help="a registry Phase value (repeat)"
+    )
+    landscape_parser.add_argument(
+        "--status", action="append", default=[], help="a registry Status value (repeat)"
+    )
+    landscape_parser.add_argument("--study-type", help="a registry StudyType value")
+    landscape_parser.add_argument("--start-from", help="the earliest start date, YYYY-MM-DD")
+    landscape_parser.add_argument("--start-to", help="the latest start date, YYYY-MM-DD")
+    landscape_parser.add_argument(
+        "--param", action="append", default=[], metavar="NAME=VALUE", help="a raw registry parameter (repeat)"
+    )
+    landscape_parser.add_argument(
+        "--mode",
+        choices=("direct", "relay"),
+        help="direct or relay (default: what `trialledger doctor` finds)",
     )
     resolve_parser = commands.add_parser(
         "resolve",
@@ -273,6 +387,8 @@ def main(
     args = parser.parse_args(argv)
     if args.command == "doctor":
         return _doctor(args.run, probe_get)
+    if args.command == "landscape":
+        return _landscape(args, http=http, sleep=sleep, rxclass_get=rxclass_get, probe_get=probe_get)
     if args.command == "pilot":
         return _pilot(args, model_http=model_http)
     if args.command == "sample":
@@ -356,6 +472,50 @@ def _doctor(folder: Path, probe_get: Callable[..., Any] | None) -> int:
     found = report(folder, probe_get)
     print(json.dumps(found, indent=1))
     return 0 if found["mode"] in ("direct", "relay") else 2
+
+
+def _landscape(args, *, http, sleep, rxclass_get, probe_get) -> int:
+    """`trialledger landscape`: the request from --request or the slot flags, the mode from --mode or the
+    doctor, the run (operate.run), and its end in plain words."""
+    from TrialLedger.doctor import NEXT_STEP, report
+    from TrialLedger.operate import Outcome, run, run_exit
+
+    code, request, offending = request_from_flags(vars(args))
+    outcome: Outcome | None = None
+    if args.request is not None:
+        flagged = code != "ok" or bool(request)
+        request = _read_json(args.request)
+        if flagged:
+            words = "Give the request either as --request FILE or as slot flags, not both."
+            outcome = Outcome("request_refused", "request_and_flags", words)
+        elif request is None:
+            words = "The request file cannot be read as JSON: write the request as one JSON object of slots."
+            outcome = Outcome("request_refused", f"request_unreadable: {args.request}", words)
+    elif code != "ok":
+        words = "Each --param is one registry parameter written NAME=VALUE, each name once."
+        outcome = Outcome("request_refused", f"{code}: {' '.join(offending)}", words)
+    mode = args.mode
+    if outcome is None and mode is None:
+        mode = report(args.run, probe_get)["mode"]
+        if mode not in ("direct", "relay"):
+            outcome = Outcome("mode_unavailable", mode, NEXT_STEP[mode])
+    if outcome is None:
+        outcome = run(
+            args.run,
+            request,
+            mode,
+            get=rxclass_get or rx.http_get,
+            http=http,
+            sleep=sleep,
+            progress=lambda message: print(message, file=sys.stderr),
+        )
+    code_ = run_exit(outcome.status)
+    stream = sys.stdout if code_ in (0, 3) else sys.stderr
+    print(f"trialledger landscape: {outcome.status} (exit {code_}) — run folder {args.run}", file=stream)
+    if outcome.detail:
+        print(outcome.detail, file=stream)
+    print(outcome.advice, file=stream)
+    return code_
 
 
 def _sample(args, *, http, sleep, git, ledger) -> int:
