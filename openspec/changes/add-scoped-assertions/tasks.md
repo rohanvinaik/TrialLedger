@@ -10,8 +10,18 @@
       `TemporalScope`, as immutable typed data with validation (2026-11-01: `TrialLedger/assertions.py`,
       `model_problem` and `canonical`/`from_canonical`, tests/test_assertions.py; left: the registry of 1.2
       that fills predicate keys, units and values)
-- [ ] 1.2 The first predicate registry: each bank concept mapped to its predicate kind, versioned, with
-      provenance
+- [x] 1.2 The first predicate registry: each bank concept mapped to its predicate kind, versioned, with
+      provenance (2026-11-01: `TrialLedger/predicates.py`, all 91 concepts of the `nsclc_legacy` seed, 12 of
+      them "unresolved" with their reasons (`UNRESOLVED`); `VERSION` the mapping's digest; `predicate_registry`
+      with each concept's authority and its fragment's exposure, checked against the concept registry's
+      families and declared arguments; pure `mapping_problems` and `atom_literal`, both converged COMPLETE;
+      tests/test_predicates.py on the real criteria of tests/test_banks.py, every row pinned; declared dormant
+      in tests/test_wiring.py until 2.1. Revised after review the same day: the named measurements' value
+      unresolved (their concepts declare no number), a written unit never replaced, vitamin premedication
+      unresolved, tissue availability of the participant. Left: the compiler that calls `atom_literal` (group
+      2), the params it names unread (window, grade, scope, expression, qualifier: D5 and D6), the founder's
+      ruling on the unresolved concepts, on the per-concept interpretations listed in design.md and on the
+      vocabulary words they lack, and a mapping fragment per package as add-bank-coverage 3.x adds concepts)
 
 ## 2. Compiling decisions (each pure, two-sign, from the measured failures)
 
@@ -49,6 +59,11 @@ value; `decide` a query that widens the search past its bound:
 - `entail.assertion_formula` (changed 2026-11-01: an assertion with an unresolved rule is never a premise)
 - `entail.weakest_status`
 - `entail.decide`
+
+Converged at write time (2026-11-01, task 1.2), each COMPLETE modulo unproven-equivalent and crash-only gaps:
+`predicates.mapping_problems` (re-measured with `--isolated`, as converge directed) and
+`predicates.atom_literal` (four of Detective's witnesses pinned by a hand-written test, the exception compared
+as a value).
 
 ## 4. Targeted questions
 

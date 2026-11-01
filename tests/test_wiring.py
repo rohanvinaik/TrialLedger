@@ -199,6 +199,16 @@ SCOPED_ASSERTIONS_DORMANT = {
     for name in names
 }
 DECLARED |= SCOPED_ASSERTIONS_DORMANT
+# The first predicate registry (add-scoped-assertions 1.2): the compiler of task group 2 reads it, starting
+# with D1 structure and D2 alternatives (2.1), and nothing in production builds literals before then.
+# tests/test_predicates.py reaches every one.
+UNTIL_THE_COMPILER = (
+    "until add-scoped-assertions 2.1 (the compiler reads atoms as literals through the registry)"
+)
+DECLARED |= {
+    f"predicates.py: {name}": UNTIL_THE_COMPILER
+    for name in ("_digest", "atom_literal", "mapping_problems", "predicate_registry")
+}
 
 
 @pytest.fixture(scope="module")

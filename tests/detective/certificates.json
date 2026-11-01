@@ -645,6 +645,18 @@
     "refusal": "environment_gated:reads entropy via random.Random()",
     "standing": "complete"
   },
+  "TrialLedger/predicates.py::atom_literal": {
+    "cut_reasons": [],
+    "function_digest": "9eb74e10c0bc6b2a",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/predicates.py::mapping_problems": {
+    "cut_reasons": [],
+    "function_digest": "aff76e4a08f909dd",
+    "refusal": "",
+    "standing": "complete"
+  },
   "TrialLedger/profile.py::element_key": {
     "cut_reasons": [],
     "function_digest": "ea8676d2ccc50cff",

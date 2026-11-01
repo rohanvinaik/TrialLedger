@@ -164,6 +164,73 @@ Claude with the code as built. Reconciliation notes are marked **As built here**
   - A decision's blockers pool every blocker the trial's assertions raise in the context (an `Opaque` in an
     unrelated criterion is named on every query), with the result's own code added.
 
+## As built here: the first predicate registry (task 1.2; 2026-11-01, revised after review the same day)
+
+- `TrialLedger/predicates.py` maps each concept of the seed concept registry (add-bank-coverage's
+  `nsclc_legacy` fragment, 91 concepts) to a `PredicateMapping`: its predicate kind, the value kind of its
+  literal, its unit (none; the concept's own, "years" for age; or the atom's as written, `UNIT_AS_WRITTEN`,
+  for the labs) and its subject (the participant for every seed concept: none names another). The rows are
+  built from the banks' own vocabulary tables, as the fragment is. The named conditions come from an explicit
+  table by name with no default, so a condition added to bank:conditions and not mapped is named
+  (`registry_concept_unmapped`); the rows of the gene, prior-agent, analyte and histology tables are generated
+  (disease_attribute enum, treatment_history boolean, measurement quantity, disease_attribute boolean), so a
+  new entry of one of those tables IS mapped by its table's construction, never named.
+- The key is the concept id itself: one predicate per registry concept, so no two concepts are one variable of
+  entailment (`prior_agent.radiotherapy` and `condition.recent_radiotherapy` stay apart); merging them is an
+  ontology relation and needs a cited source (A3).
+- What Decision 2 states, mapped as it says: labs to measurement (quantity, unit as written), age to
+  demographic (an interval, "years"), prior lines and prior agents to treatment_history, the named conditions
+  to condition_status.
+- Static per-concept interpretations fixed here, departing from Decision 2's default or going beyond it, each
+  open to the founder's ruling (Decision 2 sends a named condition elsewhere only when a construction says
+  exposure, history or procedure, and D4 says a concept hit alone decides nothing; these are per concept, not
+  per construction, and D4 decides per construction when the compiler reads a criterion): exposure (smoking,
+  live vaccine); medication_use (steroids, anticoagulants, interacting medication); procedure_event (surgery,
+  transplant); treatment_history (recent radiotherapy); consent (informed consent); reproductive_status
+  (pregnancy or breastfeeding); measurement with an unresolved value (life expectancy, QTc, pulmonary
+  function: the concepts declare a window alone, so no number); demographic (sex, an enum); condition_status
+  for weight loss although its family is Event; disease_attribute (stage, biomarker status, histology, extent,
+  measurable disease, CNS metastases: attributes of the trial's own disease); ECOG one score of an ordinal
+  scale (an enum, its scores members); prior lines an enum (3+ is no number); extent a member set (recurrent
+  and metastatic hold at once); stage single-valued.
+- Unresolved, never guessed (`UNRESOLVED`, twelve, each note saying why): `setting_word` (a treatment's role,
+  which no predicate kind names), `resection` (resected is a procedure, resectable a disease attribute),
+  `organ_function_unspecified` (the record leaves what is measured unspecified), and the conditions
+  `compliance`, `contraception` and `vitamin_premedication` (undertakings, Commitments, which no predicate
+  kind names; informed consent, the fourth Commitment, is the one a kind names), `malabsorption` (a condition
+  and a capability), `tissue_available` (a specimen's availability; its subject stays the participant, as the
+  concept names no specimen), `other_investigational` and `prior_enrollment` (study participation),
+  `investigator_judgment` (a relation) and `diagnosis_confirmed` (names no condition).
+- Each predicate family takes the value kinds `FAMILY_VALUE_KINDS` gives it (the first setting); "unresolved"
+  fits every family. `mapping_problems` (pure) names a duplicate, a concept of no registry, a kind, subject or
+  value kind outside its vocabulary, another person as a concept's subject (a referent is the text's), a value
+  kind the family does not take, a value kind reading an operand (`OPERANDS`: a quantity's comparator, value
+  and unit, an interval's minimum and maximum) that the concept does not declare as an argument
+  (`operand_not_declared`: no atom of it could carry one, so the two registries would disagree), a unit on a
+  value kind with none, and each registry concept left unmapped.
+- `VERSION` is the SHA-256 of the mapping's canonical JSON in concept order. `predicate_registry` checks the
+  mapping against the compiled concept registry, its families and declared arguments (`PredicateError` naming
+  every problem), and gives each entry its provenance: the concept's authority and the rule exposure of its
+  owning fragment with that exposure's populations (`provenance.RULE_EXPOSURE`), with the concept registry's
+  version beside its own. tests/test_predicates.py pins every row's kind, value kind and unit.
+- Cardinality is carried by the value kind: an `enum` predicate holds one value (stage, ECOG, prior lines,
+  biomarker status, sex), an `enum_set` several (extent, setting words, resection). No seed concept takes a
+  reference value (`entity_ref`, `definition_ref`), so whether a reference predicate is single-valued, which
+  the 3.1 notes left to this registry, stays open until a concept takes one.
+- `atom_literal` (pure) is the literal a mapped atom becomes, for the compiler of group 2: the mapping's
+  subject and kind, keyed by the atom's concept, positive, no time, no qualifier, the atom as its evidence. A
+  keyed concept's own vocabulary entry is never a member. A unit is kept as written (Decision 4): a mapping
+  with its own unit uses it only when the atom writes none or the same, never in place of another.
+  Its code names what could not be read: concept_not_mapped (subject, predicate and value unresolved),
+  predicate_unresolved (the value kept as read), operand_not_kept (no member; no comparator or number; an age
+  with its lower bound only, since the bank keeps no comparator and "older than 18" is not "at least 18";
+  "male or female", which names no member) or operand_not_read (a decimal comma, a comparator outside the
+  four, reversed bounds, a unit written other than the mapping's own, a value beside a boolean concept's name,
+  a value kind with no reading here, as the named measurements' unresolved value). Every param that is not an
+  operand and not an annotation (a window, a grade, a scope, a stage or PD-L1 expression, a lab's qualifier, a
+  unit written on an interval) is named back unread, for D5 and D6 to attach; `text_polarity` and `modality`
+  are never read (Decision 1).
+
 ## Founder decisions (decided 2026-11-01: the founder approved Claude's recommendations, "Good. Let's encode this")
 
 - A1. Separate requirement, exclusion, permission and allowed-set projections; occupancy means the trial's
