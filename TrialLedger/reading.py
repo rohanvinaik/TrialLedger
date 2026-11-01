@@ -143,13 +143,15 @@ def _observe(expectation, readable, code, drugs) -> tuple[str, str, list[str], l
 
 
 def near_miss_input(view: dict[str, Any]) -> tuple[str, dict[str, str], dict[str, str], str, str]:
-    """A study view as the near-miss decision reads it: its representation (setting when one value; its
-    experimental drugs' classes when every one is classified), its design predicates (the ECOG values and
-    histologies its inclusion criteria state, the checkpoint expectation when present or admitted), its lead
-    sponsor and its start year. Anything not known is ""."""
-    setting = view["coordinates"]["setting"]["with_proposed"]
+    """A study view as the near-miss decision reads it: its representation (its setting when the record and
+    the approved relations leave one value; its experimental drugs' classes when every drug's class is known,
+    from RxClass or stated by its own record), its design predicates (the ECOG values and histologies its
+    inclusion criteria state, the checkpoint expectation when present or admitted), its lead sponsor and its
+    start year. Anything not known is "". Known means read from the record or derived from it by an approved
+    rule; a proposed relation's narrowing is not known (the founder, 2026-10-31)."""
+    setting = view["coordinates"]["setting"]["domain"]
     drugs = view["drugs"]
-    classified = drugs and all(state == "classified" for _, state, _, _ in drugs)
+    classified = drugs and all(state in ("classified", "stated_by_record") for _, state, _, _ in drugs)
     classes = " + ".join(sorted({c for _, _, epc, _ in drugs for c in epc})) if classified else ""
     ecog, histologies = "", set()
     for _index, section, _text, atoms in view["criteria"]:

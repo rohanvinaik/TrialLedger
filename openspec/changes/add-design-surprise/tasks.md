@@ -40,6 +40,12 @@
     ("stated: PD-L1") as known gave 2 pairs, both reader defects (ECOG "0 or 1" before the scale's name read
     as "1"; fixed in `banks.performance_status`, re-converged, 7+ criteria corrected): that admission mixes
     two vocabularies and is the founder's decision, not made here.
+    The founder's decision (2026-10-31, paraphrased): a class the record itself states is known; known is a
+    literal field or a direct symbolic derivation from one (a unit conversion, say), as against an inference.
+    So the representation now admits record-stated classes and reads the setting under approved relations
+    only (a proposed relation's narrowing is not known). Known for 22 of 487 trials (71 have one known
+    setting, 201 have every drug's class known); still no pair. Classes match only as written: a stated
+    "PD-L1" and RxClass's "Programmed Death Ligand-1 Blocker" are not aligned without a sourced mapping.
     Residual against the requirement (design-deviations, "Near-miss pairs are relative to a declared
     representation"): each pair reports the lead sponsor and start year, not sponsor lineage (collaborators,
     shared templates), geography or cohort structure; and its differing predicate is a typed atom, verified

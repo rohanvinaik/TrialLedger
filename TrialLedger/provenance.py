@@ -67,8 +67,9 @@ PROVENANCE: dict[str, tuple[str, str, str]] = {
     "representation:near_miss": (
         "representation",
         "prior: add-design-surprise Decision 5 (declared before any pair was read)",
-        "setting (one value) and experimental drug classes (all classified by RxClass); predicates ECOG,"
-        " histology, the checkpoint expectation; an unknown never matches",
+        "setting (one value under approved relations) and experimental drug classes (every drug's class"
+        " known: RxClass, or stated by its record); predicates ECOG, histology, the checkpoint expectation;"
+        " an unknown never matches; classes match only as written (the two vocabularies are not aligned)",
     ),
     "threshold:STANDARD_SHARE": ("threshold", "prior: first setting", "0.9; to be set on a wider corpus"),
     "threshold:SIGNAL_MIN_TRIALS": ("threshold", "prior: first setting", "5; to be set on a wider corpus"),

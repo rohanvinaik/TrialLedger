@@ -1,9 +1,11 @@
 """A study view as the near-miss decision reads it.
 
-Positive: one setting and all-classified drugs make a known representation; the first inclusion ECOG atom and
-every inclusion histology are predicates; a present or negated checkpoint expectation is a predicate.
-Negative: several candidate settings, an unclassified drug or no drugs leave the representation unknown;
-exclusion atoms are not predicates; an expectation not documented, unresolved or not applicable is unknown.
+Positive: one setting under approved relations and drugs whose classes are all known (RxClass or stated by
+the record) make a known representation; the first inclusion ECOG atom and every inclusion histology are
+predicates; a present or negated checkpoint expectation is a predicate.
+Negative: several candidate settings, a setting only proposed relations narrow, an unresolved drug or no drugs
+leave the representation unknown; exclusion atoms are not predicates; an expectation not documented,
+unresolved or not applicable is unknown.
 """
 
 from TrialLedger.reading import near_miss_input
@@ -11,10 +13,10 @@ from TrialLedger.reading import near_miss_input
 PD1 = "Programmed Death Receptor-1 Blocking Antibody"
 
 
-def view(settings=("advanced_first_line",), drugs=None, criteria=(), status="present"):
+def view(settings=("advanced_first_line",), drugs=None, criteria=(), status="present", proposed=None):
     return {
         "nct": "NCT1",
-        "coordinates": {"setting": {"with_proposed": settings}},
+        "coordinates": {"setting": {"domain": settings, "with_proposed": proposed or settings}},
         "drugs": [("pembrolizumab", "classified", [PD1], "dailymed")] if drugs is None else drugs,
         "criteria": list(criteria),
         "observations": {"checkpoint": (status, "", [], [])} if status else {},
@@ -55,7 +57,11 @@ def test_unknowns_stay_unknown():
     assert near_miss_input(view(settings=()))[1]["setting"] == ""
     unresolved = [("a", "classified", [PD1], "x"), ("b", "unresolved", [], "")]
     assert near_miss_input(view(drugs=unresolved))[1]["classes"] == ""
-    assert near_miss_input(view(drugs=[("a", "stated_by_record", ["stated: PD-1"], "d")]))[1]["classes"] == ""
+    assert near_miss_input(view(drugs=[("a", "stated_by_record", ["stated: PD-1"], "d")]))[1]["classes"] == (
+        "stated: PD-1"
+    )
+    many = ("advanced_first_line", "advanced_previously_treated")
+    assert near_miss_input(view(settings=many, proposed=("advanced_first_line",)))[1]["setting"] == ""
     assert near_miss_input(view(drugs=[]))[1]["classes"] == ""
     excluded = [(0, "exclusion", "", [atom("ecog_ps", ("2",)), atom("histology", ("squamous",))])]
     assert near_miss_input(view(criteria=excluded))[2] == {

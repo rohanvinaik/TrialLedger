@@ -383,7 +383,7 @@
   },
   "TrialLedger/reading.py::near_miss_input": {
     "cut_reasons": [],
-    "function_digest": "9381dec80c4af720",
+    "function_digest": "8f6b29edf86ba623",
     "refusal": "",
     "standing": "complete"
   },

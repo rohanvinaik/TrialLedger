@@ -501,8 +501,9 @@ ABOUT = [
     ["Audit", "A sample of typed criteria for the founder's review. Typing accuracy is judged here, by him."],
     [
         "Coordinates",
-        "Domains of still-possible values. 'Domain' uses approved relations only (none is approved "
-        "yet); 'With Proposed Relations' shows what the proposed relations would add. Conflict means the "
+        "Domains of still-possible values. 'Domain' is known: the record's own criteria and the relations "
+        "the founder approved (see Relations); 'With Proposed Relations' shows what the proposed relations "
+        "would add, which is proposed, not known. Conflict means the "
         "record's "
         "own criteria, or the relations, exclude every value; each cause is named.",
     ],
@@ -541,7 +542,7 @@ ABOUT = [
     ],
     [
         "Near Misses",
-        "Pairs of trials whose representation (one setting; every experimental drug classified) is known "
+        "Pairs of trials whose representation (one setting; every experimental drug's class) is known "
         "and equal and that differ in exactly one predicate known for both. The header gives how many trials "
         "the representation is known for. Shared sponsors and eras confound; an outcome difference between a "
         "pair is an association to investigate.",

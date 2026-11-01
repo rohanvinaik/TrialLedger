@@ -186,8 +186,15 @@ the population they are measured on; and structured disagreement that is not pur
 successor of near-miss learning and surprise; SIGNIFICANCE_WEIGHTING.md), so a valid unexplained deviation is
 kept, never folded into noise (`openspec/changes/add-design-surprise`). Built from them: `resolve` as the main
 path; the review queue; one frozen expectation with five observation statuses and its deviations; near-miss
-pairs under a declared representation (one setting, every experimental drug classified), which on the
-development trials is known for 12 of 487 and yields no pair; and the provenance of every rule.
+pairs under a declared representation (one setting, every experimental drug's class known), which on the
+development trials is known for 22 of 487 and yields no pair; and the provenance of every rule.
+
+**What counts as known** (his decision, 2026-10-31, paraphrased): any typed, structural information counts as
+known, a class the record itself states included. Known is a literal field of the registry's record or a
+direct symbolic derivation from one (his hypothetical: a pediatric age written as 2 years and encoded as 24
+months). Apart from it stand inference-driven values, which can be countered or overruled; and among those he
+separates a coherent interpolation, assumed correct until overruled, on which symbolic rules may build, from a
+genuine proposal, uncertain, which is shown but never built on.
 
 **Corrections he accepted, 2026-10-31** (from a Codex consultation on Claude's reading):
 

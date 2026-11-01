@@ -182,9 +182,10 @@ it. The proofs, so that they survive the machine:
   budget); the target was not edited to clear it. The founder's decision.
 - Every relation in `coherence.RELATIONS` is proposed; the founder approves or rejects each by id.
 - Near misses (`add-design-surprise` 2.2) find no pair on the development data: their representation is known
-  for 12 of 487 trials. Whether a record-stated class ("stated: PD-L1") counts as known, which needs a
-  sourced mapping to the FDA EPC vocabulary, is the founder's decision; wider setting resolution and drug
-  classification raise the count without it. Each pair reports the lead sponsor and start year; sponsor
+  for 22 of 487 trials (a record-stated class counts as known, the founder's decision 2026-10-31; the
+  setting is read under approved relations only). The bottleneck is the setting (71 trials have one known
+  value). A stated class and an RxClass class match only as written; aligning the two vocabularies needs a
+  sourced mapping. Each pair reports the lead sponsor and start year; sponsor
   lineage, geography and cohort structure, which the spec asks for, are not yet read.
 - Comparable posted results (`add-coherence-engine` 5.3) wait on the endpoint-class bank (2.2); the residual
   (about 70% of criteria in the NSCLC population) decides the next banks (2.1b).
