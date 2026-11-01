@@ -10,8 +10,6 @@ domain; a relation whose facts are absent never applies; an unknown relation id 
 an empty domain is never resolved.
 """
 
-import itertools
-
 import pytest
 
 from TrialLedger.coherence import (
@@ -115,12 +113,25 @@ def test_maintenance_survives_a_prior_line_requirement():
     assert "maintenance" in setting_after(["inclusion:extent:metastatic"], ("1",))
 
 
+def orders(ids):
+    """Every rotation of `ids` and of its reverse: each relation in every position, in both directions (a
+    declared set of 2n orders in place of all n! permutations, which made each mutant of `close` run 5,040
+    closures and left Detective's measurement of it without a verdict)."""
+    forward, backward = list(ids), list(reversed(ids))
+    return [seq[i:] + seq[:i] for seq in (forward, backward) for i in range(len(seq))]
+
+
+def test_the_declared_orders_put_every_relation_everywhere():
+    found = orders(RELATION_IDS)
+    assert len(found) == 2 * len(RELATION_IDS)
+    for relation in RELATION_IDS:
+        assert {order.index(relation) for order in found} == set(range(len(RELATION_IDS)))
+
+
 def test_closure_is_order_independent():
     domains, _ = narrow_by_evidence(FIRST_LINE)
     facts = ["inclusion:stage:IV", "inclusion:extent:metastatic", "inclusion:resection:resected"]
-    results = {
-        tuple(close(domains, facts, list(order))[0].items()) for order in itertools.permutations(RELATION_IDS)
-    }
+    results = {tuple(close(domains, facts, order)[0].items()) for order in orders(RELATION_IDS)}
     assert len(results) == 1
 
 
