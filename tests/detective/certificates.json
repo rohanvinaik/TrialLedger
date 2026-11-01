@@ -999,6 +999,24 @@
     "refusal": "",
     "standing": "complete"
   },
+  "TrialLedger/steps.py::follow_batches": {
+    "cut_reasons": [],
+    "function_digest": "08734bafbb7ced75",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/steps.py::follow_ids": {
+    "cut_reasons": [],
+    "function_digest": "6fec20e565581c20",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/steps.py::next_step": {
+    "cut_reasons": [],
+    "function_digest": "e61b35c9d77a9bab",
+    "refusal": "",
+    "standing": "complete"
+  },
   "TrialLedger/transport.py::installed_digest": {
     "cut_reasons": [],
     "function_digest": "93d9542064651612",

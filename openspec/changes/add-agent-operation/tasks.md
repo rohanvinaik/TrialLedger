@@ -30,8 +30,21 @@ The founder, 2026-11-01: the next priority, built to completion.
 ## 3. The step protocol
 
 - [ ] 3.1 The pure decision naming what a run folder needs next (queries, pages, RxNav answers, complete)
-- [ ] 3.2 Direct mode through the existing transport; relay mode writing `next.json` and verifying fetched
+- [x] 3.2 Direct mode through the existing transport; relay mode writing `next.json` and verifying fetched
       bodies with the existing classifiers; idempotent re-runs; nothing partial written as the record
+
+  2026-11-01: built in `TrialLedger/steps.py` (`follow_ids`, `follow_batches`, `next_step`, converged
+  `--two-sign` COMPLETE; the shell `open_run`, `advance`, `records`, `rxnav_answers`), with
+  `ingest.json_query_params` extracted from `fetch_json_pages` unchanged (design.md Decision 6, "As built
+  here"). 3.2 is done for the registry: every registry body is verified with the existing classifiers. RxNav
+  bodies are not: each is only checked to be there, one that is not JSON (an error page, a recorded failure)
+  is a failed lookup, and `rxnav_answers` hands them to their consumer in classes.py's `(status, body)` shape,
+  so the classes.py decisions are applied by 4.2, not here. 3.1 holds the registry's whole plan (versions, ID
+  pages, batches, every refusal) and relays the RxNav requests the scope fixes before any study is read. Left
+  for 3.1: the RxNav answers the reading needs after the pull (`classes.load_or_lookup_at` over the pulled
+  studies' drug names, chained: rxcui, then properties and related, then RxClass by name), each request fixed
+  by the studies or by an earlier answer, are not yet named by the decision. A run is started by
+  `trialledger landscape` (4.2), until which `steps.py` is declared in `tests/test_wiring.py`.
 
 ## 4. The operation and the workbook
 

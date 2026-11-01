@@ -56,6 +56,58 @@ may not reach ClinicalTrials.gov or RxNav. Desktop and CLI agents (Claude Code, 
    snapshot that changed mid-run, is refused by name; nothing partial is ever written as the record. The folder is
    the checkpoint; re-running is idempotent.
 
+   *As built here (2026-11-01, tasks 3.1 and 3.2; `TrialLedger/steps.py`).* The run folder holds
+   `request.json`, `scope.json` (the registry query and the RxNav requests, each `[url, params]`),
+   `fetches.json` (every fetch named so far, in order, never rewritten: its full URL, parameters, the file its
+   body is saved as and why: `version_start`, `id_page`, `studies_batch`, `version_end`, `rxnav_answer`),
+   `bodies/` and, in relay mode, `next.json`. The plan is the direct path's own requests: /version; the ID
+   pages exactly as `query_ids` sends them (fields=NCTId, 1,000 a page, each later page with the previous
+   page's token), one at a time; then every batch of `PAGE_SIZE` (100) IDs at once, each exactly the request
+   `query_studies({"filter.ids": ...})` sends; then /version again, named only once every batch is saved; the
+   scope's RxNav requests are named alongside the first /version. The parameters come from
+   `ingest.json_query_params`, extracted from `fetch_json_pages` unchanged, and each URL is httpx's own
+   encoding of them, so the relayed URL is the URL the Session sends (tested against FakeAPI's recorded
+   requests). Three pure decisions, each converged `--two-sign` to COMPLETE: `follow_ids` (the ID pages
+   through `classify_json_page`, `classify_progress` and `assess_completeness`), `follow_batches` (each batch
+   exactly its IDs, once, and exactly its totalCount; a whole batch is accepted even with a nextPageToken,
+   since a further page could only exceed totalCount: the registry sent one with each full batch of 100 in a
+   live run, 2026-11-01) and `next_step` (the whole folder: `classify_version` on both /version answers and
+   `compare_snapshots` between them). One code, one remedy: `not_json` (a registry body that is a truncated
+   download or an HTML page) and `not_a_registry_page` (a classifier's code in the detail): delete it and
+   fetch again; `page_out_of_order` (a file saved for a fetch not yet named, or in no plan): delete it;
+   `incomplete_total` (the ID pages cannot be followed to totalCount, `classify_progress`'s repeated_token,
+   overrun or stalled in the detail, or do not hold exactly totalCount IDs; a batch is not exactly its IDs)
+   and `snapshot_changed`: start a new run folder. A missing body is simply awaited by name; a hidden file in
+   `bodies/` (`.DS_Store`) is no body.
+
+   What is checked, exactly: every registry body as a direct pull checks its pages (form, totalCount, page
+   tokens, every batch exactly its IDs, one snapshot from the first /version to the last). Nothing in a
+   registry page says which request it answers, so a page saved under another page's name is caught only when
+   its tokens or counts disagree; the relay instructions say so. An RxNav answer is answered once its file is
+   saved, whatever it holds, and is checked no further (no snapshot covers it): one that is not JSON is a
+   failed lookup, never refused and never asked again. Direct mode saves an RxNav request that fails
+   (`PullError` from the Session: 404, 400, 5xx after retries) as a note `failed: <code>: <detail>`; the relay
+   instructions ask the agent to save `failed: HTTP <status>` likewise; a registry request that fails still
+   raises `PullError`, as in a direct pull. `rxnav_answers` reads them back in classes.py's `(status, body)`
+   shape (`http_get`'s): 200 and the body for JSON, 0 and None otherwise, which `rxclass_classes`,
+   `rxnorm_ids` and the others read as `lookup_failed`, never as no class. The classes.py decisions are
+   applied by the consumer (4.2), not by the step decision. A recorded failure stays (a transient 5xx after
+   the Session's retries included): to ask again, delete the file and run the same command. The Session's 1.25
+   s spacing paces the RxNav requests too.
+
+   The shell (`open_run`, `advance`, `records`, `rxnav_answers`) is the transport seam: direct mode fetches
+   through `ingest.Session` and saves each body (staged, then renamed); relay mode writes `next.json` (status,
+   detail, the run folder, plain instructions or the refusal's advice, and each fetch's URL and `save_as`) and
+   returns `awaiting_fetch`. `records` assembles the studies in the ID pages' order only when `next_step` says
+   complete; a relay round trip, a direct-mode run and `query_studies` give the same records on the same fake
+   pages, and an opt-in live test (`test_a_live_run_holds_what_query_studies_returns`) found a direct-mode run
+   equal to `query_studies`, order included, for a 269-study query on 2026-11-01. Left: the decision names
+   only the RxNav requests the scope fixes before any study is read; the answers the reading needs after the
+   pull (`classes.load_or_lookup_at` over the pulled studies' drug names, chained: rxcui, then properties and
+   related, then RxClass by name, each request fixed by the studies or an earlier answer) are not yet planned,
+   so task 3.1 stays open. Nothing in production starts a run until `trialledger landscape` (4.2), so
+   `steps.py` is declared in `tests/test_wiring.py` until then.
+
 7. **The record contract.** `landscape.json`, versioned (`schema_version`), self-describing (a `fields` section
    gives each field's meaning, status vocabulary and source): the request; the resolved scope; the manifest (data
    timestamp, API version, each study's digest, the Merkle root, code commit, rule versions, retrieval coverage);

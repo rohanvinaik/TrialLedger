@@ -202,6 +202,31 @@ DECLARED |= {
     f"predicates.py: {name}": UNTIL_THE_COMPILER
     for name in ("_digest", "atom_literal", "mapping_problems", "predicate_registry")
 }
+# The run folder and its next step (add-agent-operation 3.1, 3.2): nothing in production starts a run until
+# the `landscape` command does. tests/test_steps.py and the decisions' own tests reach every one.
+STEPS_DORMANT = {
+    f"steps.py: {name}": "until add-agent-operation 4.2"
+    for name in (
+        "StepError.__init__",
+        "_fetch",
+        "_ignore",
+        "_json_bytes",
+        "_name",
+        "_relay",
+        "_shown",
+        "_state",
+        "_write",
+        "advance",
+        "follow_batches",
+        "follow_ids",
+        "next_step",
+        "open_run",
+        "records",
+        "request_url",
+        "rxnav_answers",
+    )
+}
+DECLARED |= STEPS_DORMANT
 
 
 @pytest.fixture(scope="module")

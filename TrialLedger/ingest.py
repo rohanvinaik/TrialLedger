@@ -418,12 +418,11 @@ def fetch_version(session: Session) -> tuple[str, str]:
     return payload["apiVersion"], payload["dataTimestamp"]
 
 
-def fetch_json_pages(
-    session: Session, query: dict[str, str], fields: str = ""
-) -> tuple[int, list[dict[str, Any]], list[str]]:
-    """Every JSON study for `query`: (totalCount, studies in API order, their NCT IDs). Complete, or raise.
-    With `fields` (the API's projection, e.g. "NCTId"), each study holds only those fields."""
-    params = {
+def json_query_params(query: dict[str, str], fields: str = "") -> dict[str, str]:
+    """The parameters of a JSON /studies query's first page, in the order they are sent: the caller's query,
+    then the tool's own. A later page adds its pageToken. The direct pull and the run folder's relay
+    (steps.py) both send exactly these, so the two ask the registry the same questions."""
+    return {
         **query,
         "format": "json",
         "markupFormat": "markdown",
@@ -431,6 +430,14 @@ def fetch_json_pages(
         "pageSize": str(ID_PAGE_SIZE if fields == "NCTId" else PAGE_SIZE),
         **({"fields": fields} if fields else {}),
     }
+
+
+def fetch_json_pages(
+    session: Session, query: dict[str, str], fields: str = ""
+) -> tuple[int, list[dict[str, Any]], list[str]]:
+    """Every JSON study for `query`: (totalCount, studies in API order, their NCT IDs). Complete, or raise.
+    With `fields` (the API's projection, e.g. "NCTId"), each study holds only those fields."""
+    params = json_query_params(query, fields)
     studies: list[dict[str, Any]] = []
     seen_tokens: list[str] = []
     total = 0
