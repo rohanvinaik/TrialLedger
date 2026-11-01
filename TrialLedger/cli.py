@@ -16,16 +16,11 @@ import httpx
 
 from TrialLedger import classes as rx
 from TrialLedger import warrants
-from TrialLedger.design import (
-    DESIGN_NAME,
-    DesignError,
-    drug_aliases,
-    symbolic_output,
-    write_book,
-    write_design,
-)
+from TrialLedger.design import DESIGN_NAME, DesignError, write_book, write_design
 from TrialLedger.ingest import SPEC_API_VERSION, PullError, check_query, pull, query_studies
+from TrialLedger.reading import drug_aliases, read_population
 from TrialLedger.record import CSV_NAME, JSON_NAME, code_commit, verify_folder, write_record
+from TrialLedger.symbolic import symbolic_output
 from TrialLedger.workbook import RECORD_NAME, WORKBOOK_NAME, WorkbookError
 
 PULL_HELP = """\
@@ -221,8 +216,9 @@ def _resolve(args, *, http, sleep, rxclass_get) -> int:
     lookup = {"get": rxclass_get} if rxclass_get else {}
     cache = Path(os.environ.get("TRIALLEDGER_CACHE", str(rx.USER_CACHE)))
     answers = rx.load_or_lookup_at(cache, drug_aliases(studies), sleep=sleep, **lookup)
+    reading = read_population(studies, answers)
     if args.out:
-        sizes = write_book(args.out, studies, answers)
+        sizes = write_book(args.out, reading, answers)
         print(
             f"{args.out} written ({len(studies)} studies; "
             + ", ".join(f"{k} {v}" for k, v in sizes.items())
@@ -241,7 +237,7 @@ def _resolve(args, *, http, sleep, rxclass_get) -> int:
     if args.keep:
         args.keep.write_text(json.dumps({**basis, "studies": studies}, ensure_ascii=False), encoding="utf-8")
     if args.json or not args.out:
-        document = {**basis, "studies": symbolic_output(studies, answers)}
+        document = {**basis, "studies": symbolic_output(reading)}
         text = json.dumps(document, indent=1, ensure_ascii=False)
         if not args.json or args.json == "-":
             print(text)

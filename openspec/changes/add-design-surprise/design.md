@@ -43,6 +43,26 @@ corrected it in five places, all accepted.
    definition, the deviation statuses and the near-miss representation together, before the banks are
    refactored.
 
+## Code shape (as built, 2026-10-31)
+
+One owner per job; the population is read once and every output consumes that reading.
+
+| Module | One job | Public interface | Imports |
+|---|---|---|---|
+| `expectations.py` | declared expectations; observation, rarity and deviation decisions | `FROZEN`, `autoimmune_exclusion`, `conditional_rarity`, `deviation_status` | none of the package |
+| `review.py` | what the rules cannot cleanly resolve, as closed questions | `flags_for`, `PRIORITY` | none of the package |
+| `nearmiss.py` | the near-miss decision under a declared representation | `near_misses` | none of the package |
+| `provenance.py` | where every rule, representation and threshold came from | `PROVENANCE`, `DEV` | none of the package |
+| `reading.py` | each study read once into a view; what is computed across the views | `read_population`, `study_view`, `near_miss_input`, `review_flags`, `drug_aliases` | the banks, coherence, criteria, classes, expectations, nearmiss, profile, review, warrants |
+| `design.py` | a reading laid out as design.xlsx; `profile` over a written folder | `sheets`, `write_book`, `write_design`, `ABOUT` | reading, profile, expectations, provenance, cells, warrants; banks, coherence, criteria, nearmiss and review only to name the rule functions each warrant hashes; record and classes for `profile` |
+| `symbolic.py` | a reading rendered as the JSON of `resolve` | `symbolic_output` | expectations |
+| `cli.py` | `resolve`: query, classes, one reading, then the workbook and/or the JSON | `main` | ingest, reading, design, symbolic, record |
+
+Path: `resolve` → `ingest.query_studies` → `classes.load_or_lookup_at` → `reading.read_population` →
+(`design.write_book`, `symbolic.symbolic_output`); `profile` → `design.write_design` → the same
+`read_population` → `write_book`. `tests/production_path.py` drives both and fails on any function neither
+reaches.
+
 ## Risks / Trade-offs
 
 - [The schema was shaped by reading this population] → recorded as such under Decision 1; its claims are

@@ -40,6 +40,11 @@
     ("stated: PD-L1") as known gave 2 pairs, both reader defects (ECOG "0 or 1" before the scale's name read
     as "1"; fixed in `banks.performance_status`, re-converged, 7+ criteria corrected): that admission mixes
     two vocabularies and is the founder's decision, not made here.
+    Residual against the requirement (design-deviations, "Near-miss pairs are relative to a declared
+    representation"): each pair reports the lead sponsor and start year, not sponsor lineage (collaborators,
+    shared templates), geography or cohort structure; and its differing predicate is a typed atom, verified
+    only by the falsifier pass above, not by an audit of every pair. Both stay open until a pair exists to
+    audit (a wider population).
 
 ## 3. Rules from the design schema
 

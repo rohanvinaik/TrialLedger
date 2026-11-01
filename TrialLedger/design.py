@@ -1,11 +1,12 @@
-"""`trialledger profile`: the coherence engine over a written folder, written to design.xlsx beside the pull.
+"""design.xlsx: a population reading (`reading.read_population`) laid out as sheets, each row with its
+warrant.
 
-The shell composes the layers: the folder's record is checked against its own digests (nothing is written for
-a record that does not verify); each study's eligibility is itemized and typed; each trial's coordinates are
-resolved; drug classes are read from NLM RxClass (cached in classes.json); the profile is computed over the
-folder's population; and every sheet is written with each row's warrant. The pull's own files are never
-touched. Accuracy of the typing is for the founder to judge on the Audit sheet, never scored against labels
-Claude wrote.
+`write_book` writes the workbook from a reading; `write_design` is `trialledger profile` over a written
+folder: the folder's record is checked against its own digests (nothing is written for a record that does not
+verify), drug classes are read from NLM RxClass (cached in classes.json), the population is read once and the
+workbook written beside the pull, whose own files are never touched. The cross-trial layers computed only for
+the sheets (the profile, mechanism signals, occupancy, conditional rarity) are computed here. Accuracy of the
+typing is for the founder to judge on the Audit sheet, never scored against labels Claude wrote.
 """
 
 from __future__ import annotations
@@ -19,7 +20,7 @@ from openpyxl import Workbook
 
 from TrialLedger import classes as rx
 from TrialLedger import warrants
-from TrialLedger.banks import endpoint_classes, stated_targets, time_points, type_criterion
+from TrialLedger.banks import type_criterion
 from TrialLedger.cells import cell_number_state, cell_text_state
 from TrialLedger.coherence import RELATIONS, SETTINGS, resolve
 from TrialLedger.criteria import itemize
@@ -40,6 +41,7 @@ from TrialLedger.profile import (
     occupancy_rows,
 )
 from TrialLedger.provenance import PROVENANCE
+from TrialLedger.reading import drug_aliases, read_population, study_view
 from TrialLedger.review import flags_for
 
 DESIGN_NAME = "design.xlsx"
@@ -70,156 +72,6 @@ def _rule(name: str, *functions: Callable[..., Any]) -> str:
     return warrants.rule(name, VERSION, "", warrants.code_digest(*functions))
 
 
-def study_view(study: dict[str, Any], answers: dict[str, Any]) -> dict[str, Any]:
-    """One study as the design layers read it: criteria with atoms, evidence, coordinates, elements,
-    classes."""
-    protocol = study.get("protocolSection", {})
-    nct = protocol.get("identificationModule", {}).get("nctId", "")
-    text = protocol.get("eligibilityModule", {}).get("eligibilityCriteria") or ""
-    code, pieces = itemize(text if isinstance(text, str) else "")
-    readable = [(section, text[start:end]) for _kind, section, start, end in pieces]
-    criteria, evidence, elements = [], [], []
-    for index, (kind, section, start, end) in enumerate(pieces):
-        if kind != "criterion":
-            continue
-        atoms = type_criterion(text[start:end])
-        criteria.append((index, section, text[start:end], atoms))
-        for _bank, concept, values, params, _s, _e in atoms:
-            flipped = dict(params).get("text_polarity") == "excluded" and section == "inclusion"
-            effective = "exclusion" if flipped else section
-            evidence.append((effective, concept, values, dict(params).get("scope", ""), f"criterion {index}"))
-            elements.append(element_key(effective, concept, values, params))
-    names = rx.drug_names(study)
-    arms_module = protocol.get("armsInterventionsModule", {})
-    descriptions = {
-        item.get("name"): " ".join(str(item.get(k) or "") for k in ("name", "description"))
-        for item in arms_module.get("interventions", []) or []
-        if isinstance(item, dict)
-    }
-    # An arm's description names its whole combination ("SCT-I10A plus docetaxel"), so an agent word in it
-    # cannot be attributed to one drug: only the intervention's own entry is read.
-    drugs = []
-    for drug in rx.experimental_drugs(study):
-        state, found, resolved_by = rx.drug_class(answers, names[drug])
-        epc = sorted({c[1] for c in found if c[2] == "has_epc"})
-        if state != "classified":
-            stated = stated_targets(descriptions.get(drug, ""))
-            if stated:
-                state, epc, resolved_by = "stated_by_record", [f"stated: {s}" for s in stated], "description"
-        drugs.append((drug, state, epc, resolved_by))
-    outcomes = []
-    for kind, key in (
-        ("primary", "primaryOutcomes"),
-        ("secondary", "secondaryOutcomes"),
-        ("other", "otherOutcomes"),
-    ):
-        for outcome in protocol.get("outcomesModule", {}).get(key, []) or []:
-            measure, frame = str(outcome.get("measure") or ""), str(outcome.get("timeFrame") or "")
-            classes = endpoint_classes(measure)
-            outcomes.append((kind, measure, frame, classes, time_points(frame)))
-            if kind == "primary":
-                elements.extend(f"primary:endpoint:{c}" for c in classes)
-    results = []
-    for measure in (study.get("resultsSection", {}).get("outcomeMeasuresModule", {}) or {}).get(
-        "outcomeMeasures", []
-    ) or []:
-        groups = {g.get("id"): g.get("title") for g in measure.get("groups", []) or [] if isinstance(g, dict)}
-        title = str(measure.get("title") or "")
-        for klass in measure.get("classes", []) or []:
-            for category in klass.get("categories", []) or []:
-                for m in category.get("measurements", []) or []:
-                    results.append(
-                        (
-                            title,
-                            endpoint_classes(title),
-                            str(measure.get("type") or ""),
-                            str(measure.get("unitOfMeasure") or ""),
-                            str(measure.get("paramType") or ""),
-                            str(measure.get("timeFrame") or ""),
-                            str(groups.get(m.get("groupId"), "")),
-                            str(klass.get("title") or category.get("title") or ""),
-                            str(m.get("value") or ""),
-                            str(m.get("spread") or ""),
-                            str(m.get("lowerLimit") or ""),
-                            str(m.get("upperLimit") or ""),
-                        )
-                    )
-    return {
-        "nct": nct,
-        "digest": warrants.study_digest(study),
-        "sponsor": protocol.get("sponsorCollaboratorsModule", {}).get("leadSponsor", {}).get("name", ""),
-        "start_year": str(protocol.get("statusModule", {}).get("startDateStruct", {}).get("date", ""))[:4],
-        "status": protocol.get("statusModule", {}).get("overallStatus", ""),
-        "itemize": code,
-        "criteria": criteria,
-        "coordinates": resolve(evidence),
-        "elements": elements,
-        "drugs": drugs,
-        "outcomes": outcomes,
-        "results": results,
-        "observations": {
-            expectation.id: _observe(expectation, readable, code, drugs) for expectation in FROZEN
-        },
-    }
-
-
-def near_miss_input(view: dict[str, Any]) -> tuple[str, dict[str, str], dict[str, str], str, str]:
-    """A study view as the near-miss decision reads it: its representation (setting when one value; its
-    experimental drugs' classes when every one is classified), its design predicates (the ECOG values and
-    histologies its inclusion criteria state, the checkpoint expectation when present or admitted), its lead
-    sponsor and its start year. Anything not known is ""."""
-    setting = view["coordinates"]["setting"]["with_proposed"]
-    drugs = view["drugs"]
-    classified = drugs and all(state == "classified" for _, state, _, _ in drugs)
-    classes = " + ".join(sorted({c for _, _, epc, _ in drugs for c in epc})) if classified else ""
-    ecog, histologies = "", set()
-    for _index, section, _text, atoms in view["criteria"]:
-        for _bank, concept, values, _params, _s, _e in atoms:
-            if section == "inclusion" and concept == "ecog_ps" and not ecog:
-                ecog = "|".join(values)
-            if section == "inclusion" and concept == "histology":
-                histologies |= set(values)
-    status = next(iter(view["observations"].values()), ("", "", [], []))[0]
-    return (
-        view["nct"],
-        {"setting": setting[0] if len(setting) == 1 else "", "classes": classes},
-        {
-            "ecog_ps": ecog,
-            "histology": "|".join(sorted(histologies)),
-            "autoimmune_exclusion": status if status in ("present", "explicitly_negated") else "",
-        },
-        view["sponsor"],
-        view["start_year"],
-    )
-
-
-def review_flags(view: dict[str, Any], known_classes: list[str]) -> list[tuple]:
-    """The review flags of one study view: what the symbolic reading leaves for an expert or a model."""
-    from TrialLedger.coherence import COORDINATES
-
-    return flags_for(
-        [(drug, state) for drug, state, _, _ in view["drugs"]],
-        {
-            name: (list(row["domain"]), row["state"], [c[2] for c in row["causes"]])
-            for name, row in view["coordinates"].items()
-        },
-        {name: list(values) for name, values in COORDINATES.items()},
-        {eid: (s, r, c) for eid, (s, r, c, _) in view["observations"].items()},
-        known_classes,
-    )
-
-
-def _observe(expectation, readable, code, drugs) -> tuple[str, str, list[str], list[str]]:
-    """One trial's observation of a frozen expectation: (status, reason, cited texts, qualifiers)."""
-    classes = {c for _, state, epc, _ in drugs if state in ("classified", "stated_by_record") for c in epc}
-    if not classes & set(expectation.applies_to):
-        return "not_applicable", "no experimental drug of the expectation's classes", [], []
-    if code == "empty":
-        return "unresolved", "no eligibility text", [], []
-    status, reason, indices, qualifiers = autoimmune_exclusion(readable)
-    return status, reason, [readable[i][1] for i in indices], qualifiers
-
-
 def _stratum(view: dict[str, Any]) -> str:
     setting = view["coordinates"]["setting"]["with_proposed"]
     return setting[0] if len(setting) == 1 else "setting unresolved"
@@ -244,8 +96,10 @@ def _profile_trials(views: list[dict[str, Any]], by_setting: bool) -> list[tuple
     return rows
 
 
-def sheets(views: list[dict[str, Any]], answers: dict[str, Any]) -> dict[str, tuple[list[str], list[list]]]:
-    """Every sheet of design.xlsx as (header, rows), each row ending in its warrant."""
+def sheets(reading: dict[str, Any], answers: dict[str, Any]) -> dict[str, tuple[list[str], list[list]]]:
+    """Every sheet of design.xlsx, laid out from a population reading, as (header, rows), each row ending in
+    its warrant."""
+    views = reading["views"]
     digests = {v["nct"]: v["digest"] for v in views}
     trials_rule = _rule("trials", study_view, resolve, type_criterion, itemize)
     out: dict[str, tuple[list[str], list[list]]] = {}
@@ -453,10 +307,9 @@ def sheets(views: list[dict[str, Any]], answers: dict[str, Any]) -> dict[str, tu
         ],
         rows_exp,
     )
-    known_classes = sorted({c for v in views for _, s, e, _ in v["drugs"] if s == "classified" for c in e})
     review_rows = []
-    for v in views:
-        for kind, element, why, priority, evidence, question, options in review_flags(v, known_classes):
+    for v, flags in zip(views, reading["flags"], strict=True):
+        for kind, element, why, priority, evidence, question, options in flags:
             review_rows.append(
                 [
                     priority,
@@ -489,9 +342,7 @@ def sheets(views: list[dict[str, Any]], answers: dict[str, Any]) -> dict[str, tu
         ],
         review_rows,
     )
-    nm_trials = [near_miss_input(v) for v in views]
-    digests = {v["nct"]: v["digest"] for v in views}
-    comparable = sum(all(t[1].values()) for t in nm_trials)
+    comparable = sum(all(t[1].values()) for t in reading["near_miss_trials"])
     out["Near Misses"] = (
         [
             "NCT A",
@@ -510,10 +361,10 @@ def sheets(views: list[dict[str, Any]], answers: dict[str, Any]) -> dict[str, tu
         [
             [
                 *pair,
-                "setting (one value) and experimental drug classes (all classified)",
+                PROVENANCE["representation:near_miss"][2],
                 warrants.computed(_rule("near_miss", near_misses), digests[pair[0]], digests[pair[1]]),
             ]
-            for pair in near_misses(nm_trials)
+            for pair in reading["pairs"]
         ],
     )
     out["Rules"] = (
@@ -682,20 +533,39 @@ ABOUT = [
         "Each setting and drug class: occupied, unknown (unresolved trials could fall here) or empty. "
         "An empty cell is a lead for exploration, not proof of unmet need.",
     ],
+    [
+        "Expectations",
+        "Each frozen expectation observed in every trial: present, explicitly negated, not documented, "
+        "unresolved or not applicable, with the criteria cited, how rare the observation is in its cell, and "
+        "its deviation status. An omission is never read as permission.",
+    ],
+    [
+        "Near Misses",
+        "Pairs of trials whose representation (one setting; every experimental drug classified) is known "
+        "and equal and that differ in exactly one predicate known for both. The header gives how many trials "
+        "the representation is known for. Shared sponsors and eras confound; an outcome difference between a "
+        "pair is an association to investigate.",
+    ],
+    [
+        "Rules",
+        "Every bank, relation, expectation, representation and threshold, with where it came from: "
+        "external (a cited source), prior (domain knowledge declared before measuring) or derived (written "
+        "while reading a named population, which therefore cannot confirm it).",
+    ],
     ["Warrant", "Each row's hash over the rule that derived it and the studies it rests on."],
 ]
 
 
-def write_book(target: Path, studies: list[dict[str, Any]], answers: dict[str, Any]) -> dict[str, int]:
-    """Analyse `studies` with the RxClass `answers` and write design.xlsx at `target`; the sheets' sizes."""
-    views = [study_view(study, answers) for study in studies]
+def write_book(target: Path, reading: dict[str, Any], answers: dict[str, Any]) -> dict[str, int]:
+    """Write design.xlsx at `target` from a population reading and the RxClass `answers`; the sheets'
+    sizes."""
     book = Workbook()
     about = book.active
     about.title = "About"
     for row in ABOUT:
         about.append(row)
     sizes = {}
-    for name, (header, rows) in sheets(views, answers).items():
+    for name, (header, rows) in sheets(reading, answers).items():
         sheet = book.create_sheet(name)
         sheet.append(header)
         for row in rows:
@@ -703,11 +573,6 @@ def write_book(target: Path, studies: list[dict[str, Any]], answers: dict[str, A
         sizes[name] = len(rows)
     book.save(target)
     return sizes
-
-
-def drug_aliases(studies: list[dict[str, Any]]) -> list[str]:
-    """Every drug or biological name and other name of the studies, for RxClass."""
-    return [alias for study in studies for aliases in rx.drug_names(study).values() for alias in aliases]
 
 
 def write_design(folder: Path, *, get=rx.http_get, sleep=None) -> tuple[Path, dict[str, int]]:
@@ -727,97 +592,4 @@ def write_design(folder: Path, *, get=rx.http_get, sleep=None) -> tuple[Path, di
     kwargs = {"get": get} if sleep is None else {"get": get, "sleep": sleep}
     answers = rx.load_or_lookup(folder, drug_aliases(studies), **kwargs)
     target = folder / DESIGN_NAME
-    return target, write_book(target, studies, answers)
-
-
-def symbolic_output(studies: list[dict[str, Any]], answers: dict[str, Any]) -> list[dict[str, Any]]:
-    """Each study's symbolic reading as plain data: typed criteria, coordinates, drugs, outcomes, near misses
-    and expectation observations, each value with the record text it rests on. The JSON form of `resolve`."""
-    views = [study_view(study, answers) for study in studies]
-    known_classes = sorted({c for v in views for _, s, e, _ in v["drugs"] if s == "classified" for c in e})
-    pairs = near_misses([near_miss_input(v) for v in views])
-    output = []
-    for view in views:
-        output.append(
-            {
-                "nct": view["nct"],
-                "digest": view["digest"],
-                "lead_sponsor": view["sponsor"],
-                "status": view["status"],
-                "itemized": view["itemize"],
-                "criteria": [
-                    {
-                        "piece": index,
-                        "section": section,
-                        "text": text,
-                        "atoms": [
-                            {
-                                "bank": a[0],
-                                "concept": a[1],
-                                "values": list(a[2]),
-                                "params": dict(a[3]),
-                                "span": text[a[4] : a[5]],
-                            }
-                            for a in atoms
-                        ],
-                    }
-                    for index, section, text, atoms in view["criteria"]
-                ],
-                "coordinates": {
-                    name: {
-                        "domain": list(row["domain"]),
-                        "state": row["state"],
-                        "with_proposed_relations": list(row["with_proposed"]),
-                        "removed_by": [
-                            [c[0], list(c[1]), c[2]] for c in row["causes"] + row["proposed_causes"]
-                        ],
-                    }
-                    for name, row in view["coordinates"].items()
-                },
-                "experimental_drugs": [
-                    {"name": d, "state": s, "classes": e, "resolved_by": r} for d, s, e, r in view["drugs"]
-                ],
-                "outcomes": [
-                    {"type": k, "measure": m, "time_frame": f, "endpoint_classes": c, "time_points": p}
-                    for k, m, f, c, p in view["outcomes"]
-                ],
-                "review": [
-                    {
-                        "kind": k,
-                        "element": el,
-                        "why": why,
-                        "priority": int(pr),
-                        "evidence": ev,
-                        "question": q,
-                        "options": opts,
-                        "answer": None,
-                    }
-                    for k, el, why, pr, ev, q, opts in review_flags(view, known_classes)
-                ],
-                "near_misses": [
-                    {
-                        "other": p[1 - side],
-                        "difference": p[2],
-                        "value": p[3 + side],
-                        "other_value": p[4 - side],
-                        "other_sponsor": p[6 - side],
-                        "other_start_year": p[8 - side],
-                        "predicates_agreeing": p[9],
-                    }
-                    for p in pairs
-                    for side in (0, 1)
-                    if p[side] == view["nct"]
-                ],
-                "expectations": {
-                    eid: {
-                        "status": s,
-                        "reason": r,
-                        "cited": c,
-                        "qualifiers": q,
-                        "deviation": deviation_status(s, len(q), ""),
-                    }
-                    for eid, (s, r, c, q) in view["observations"].items()
-                },
-            }
-        )
-    return output
+    return target, write_book(target, read_population(studies, answers), answers)

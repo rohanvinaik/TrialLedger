@@ -101,10 +101,11 @@ warranted; `verify` of `design.xlsx` is an open item); any model at any step.
     progression-free survival, objective response rate, disease-free survival, event-free survival, duration
     of response); posted measurements are grouped by (endpoint class, setting, unit, measure type) and shown as
     posted with the arm and time frame. Groups never merge across any of those.
-12. **Output.** `design.xlsx` sheets: About (every sheet and column, its kind and rule), Criteria, Atoms,
-    Residual, Classes, Coordinates, Relations, Profile, Mechanism Signals, Occupancy, Results, Audit (a sample
-    of criteria with their spans and atoms for the founder's review; accuracy is scored only against his
-    review, never against labels Claude wrote). Every row carries a warrant: `computed(rule, digests…)` from
+12. **Output.** `design.xlsx` sheets, as built: About (every sheet, its kind and rule), Trials, Criteria (each
+    criterion with its atoms), Residual, Audit (a sample of criteria with their spans and atoms for the
+    founder's review; accuracy is scored only against his review, never against labels Claude wrote),
+    Coordinates, Outcomes, Results, Relations, Classes, Profile, Mechanism Signals, Occupancy; and, from
+    `add-design-surprise`, Expectations, Review Queue, Near Misses and Rules. Every row carries a warrant: `computed(rule, digests…)` from
     the existing `warrants` module. The existing cell writer's exactness rules (`cells.py`) apply.
 13. **Construction.** Each pure decision is written unwired, given authored intent tests for both signs from
     real criteria of the population, formatted, converged once with `detective converge --two-sign`, then

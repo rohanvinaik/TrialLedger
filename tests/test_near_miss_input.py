@@ -6,7 +6,7 @@ Negative: several candidate settings, an unclassified drug or no drugs leave the
 exclusion atoms are not predicates; an expectation not documented, unresolved or not applicable is unknown.
 """
 
-from TrialLedger.design import near_miss_input
+from TrialLedger.reading import near_miss_input
 
 PD1 = "Programmed Death Receptor-1 Blocking Antibody"
 
@@ -65,3 +65,13 @@ def test_unknowns_stay_unknown():
     }
     for status in ("not_documented", "unresolved", "not_applicable", ""):
         assert near_miss_input(view(status=status))[2]["autoimmune_exclusion"] == ""
+
+
+def test_the_class_key_is_sorted_whatever_order_the_drugs_name_them():
+    """Positive: the classes are joined in sorted order, so two trials of the same classes always match.
+    Negative: the order in which a record lists its drugs never changes the representation."""
+    names = ["Zeta", "Epsilon", "Delta", "Gamma", "Beta", "Alpha"]
+    drugs = [(name, "classified", [name], "x") for name in names]
+    expected = "Alpha + Beta + Delta + Epsilon + Gamma + Zeta"
+    assert near_miss_input(view(drugs=drugs))[1]["classes"] == expected
+    assert near_miss_input(view(drugs=drugs[::-1]))[1]["classes"] == expected

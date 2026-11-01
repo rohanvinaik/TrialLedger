@@ -16,7 +16,6 @@ import pytest
 
 from TrialLedger.coherence import (
     COORDINATES,
-    RELATION_IDS,
     RELATIONS,
     SETTINGS,
     close,
@@ -24,6 +23,8 @@ from TrialLedger.coherence import (
     narrow_by_evidence,
     resolve,
 )
+
+RELATION_IDS = tuple(relation.id for relation in RELATIONS)
 
 FIRST_LINE = [
     ("inclusion", "prior_lines", ("0",), "advanced", "c3"),

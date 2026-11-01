@@ -381,6 +381,12 @@
     "refusal": "",
     "standing": "complete"
   },
+  "TrialLedger/reading.py::near_miss_input": {
+    "cut_reasons": [],
+    "function_digest": "9381dec80c4af720",
+    "refusal": "",
+    "standing": "complete"
+  },
   "TrialLedger/record.py::record_problems": {
     "cut_reasons": [],
     "function_digest": "dedd5381416eaba7",

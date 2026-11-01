@@ -50,7 +50,8 @@ record.
 `trialledger verify <folder>` re-derives a written folder. The ingestion layer and the first projection
 (`openspec/specs/`, archived change `openspec/changes/archive/2026-10-31-add-review-workbook`) are built; the
 coherence engine (typing, each trial's design coordinates, the cross-trial profile) is under construction in
-`openspec/changes/add-coherence-engine`; the publication parser is designed in `docs/THEORY_OF_THE_CASE.md` and
+`openspec/changes/add-coherence-engine`, and declared expectations, deviations and near misses in
+`openspec/changes/add-design-surprise`; the publication parser is designed in `docs/THEORY_OF_THE_CASE.md` and
 the archived change's `design.md`. The README explains the system to
 its clinical readers.
 
@@ -93,12 +94,16 @@ gather facts and write files. `design.md`'s code-shape table gives each module's
   options for an expert or a model; nothing in it is resolved by TrialLedger (the founder, 2026-10-31).
 - `expectations.py`: declared expectations, observation statuses, conditional rarity, deviation statuses.
 - `nearmiss.py`: near-miss pairs, one known difference under a declared representation.
+- `reading.py`: the population read once (`read_population`: each study's view, the known classes, review
+  flags and near-miss pairs), the one producer that `design.py` (design.xlsx) and `symbolic.py` (the
+  `resolve` JSON) consume.
 - The coherence engine (`openspec/changes/add-coherence-engine`), outside the review and record workbooks'
   derivation and code root: `criteria.py` (eligibility itemized into headings, criteria and prose, exact
   spans), `banks.py` (deterministic typing banks: spanned atoms or abstention; polarity is the section's),
   `coherence.py` (coordinate domains, evidence narrowing, relations all proposed, closure), `classes.py`
   (NLM RxClass, every class with its id, failures named), `profile.py` (element keys, frequencies over typed
-  trials, mechanism associations as proposals, occupancy), `design.py` (the shell and `design.xlsx`).
+  trials, mechanism associations as proposals, occupancy), `design.py` (a reading laid out as `design.xlsx`;
+  `profile` over a folder), `symbolic.py` (a reading as the `resolve` JSON).
 - `spec/ctg-oas-v2.yaml` and `TrialLedger/registry/*.json`: the vendored contracts;
   `tests/test_spec_contract.py` holds the code to them.
 
@@ -130,7 +135,9 @@ dependencies for known flaws (pip-audit, advisory). Install it with
 Vulture counts a function named in a table as used, so it cannot see a table entry nothing calls.
 `tests/test_wiring.py` holds the wiring instead: in its own process, recording every call from before import,
 `tests/production_path.py` drives what production does (a two-page pull with a retry and a value a cell
-cannot hold, `verify` of the folder, `verify` of an unreadable workbook, a pull the server keeps failing), and
+cannot hold, `verify` of the folder, `profile` of it with RxClass answering for one name and failing for
+another, `profile` of a folder with no record, a live `resolve` of four studies of which two are a near-miss
+pair, `verify` of an unreadable workbook, a pull the server keeps failing), and
 the test fails on any function of the package that path does not reach, except the declared ones: the twelve
 proposed checks' gatherers, their four helpers and the eight decisions only they use (dormant until the
 founder approves them; the gatherers are derived from `APPROVED`), the two default progress sinks the CLI
@@ -177,7 +184,8 @@ it. The proofs, so that they survive the machine:
 - Near misses (`add-design-surprise` 2.2) find no pair on the development data: their representation is known
   for 12 of 487 trials. Whether a record-stated class ("stated: PD-L1") counts as known, which needs a
   sourced mapping to the FDA EPC vocabulary, is the founder's decision; wider setting resolution and drug
-  classification raise the count without it.
+  classification raise the count without it. Each pair reports the lead sponsor and start year; sponsor
+  lineage, geography and cohort structure, which the spec asks for, are not yet read.
 - Comparable posted results (`add-coherence-engine` 5.3) wait on the endpoint-class bank (2.2); the residual
   (about 70% of criteria in the NSCLC population) decides the next banks (2.1b).
 

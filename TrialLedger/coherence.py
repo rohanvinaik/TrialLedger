@@ -33,13 +33,6 @@ COORDINATES: dict[str, tuple[str, ...]] = {
     "prior_advanced_lines": PRIOR_LINES,
     **{f"selection:{gene}": STATES for gene in SELECTED_GENES},
 }
-EARLY = (
-    "neoadjuvant",
-    "adjuvant",
-    "perioperative",
-    "definitive_chemoradiation",
-    "consolidation_after_chemoradiation",
-)
 ADVANCED = (
     "advanced_first_line",
     "advanced_previously_treated",
@@ -166,7 +159,6 @@ RELATIONS = (
         ("consolidation_after_chemoradiation", "local_consolidative_therapy"),
     ),
 )
-RELATION_IDS = tuple(relation.id for relation in RELATIONS)
 
 
 def narrow_by_evidence(

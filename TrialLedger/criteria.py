@@ -13,8 +13,6 @@ from __future__ import annotations
 
 import re
 
-SECTIONS = ("inclusion", "exclusion", "unsectioned")
-
 # A heading is a whole line: an optional section number, at most five words of qualifier, the word inclusion
 # or exclusion, optionally "eligibility", then "criteria" or "criterion", at most six words of qualifier, and
 # an optional colon. A line naming both kinds ("inclusion/exclusion criteria apply") is a note, not a heading,
