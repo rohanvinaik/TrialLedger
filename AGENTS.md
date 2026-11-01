@@ -52,8 +52,9 @@ record.
 coherence engine (typing, each trial's design coordinates, the cross-trial profile) is under construction in
 `openspec/changes/add-coherence-engine`, declared expectations, deviations and near misses in
 `openspec/changes/add-design-surprise`, the epistemic statuses, scoped assertions and indication gating in
-`openspec/changes/add-scoped-reasoning`, and the targeted questions a local model answers (the audit among them)
-in `openspec/changes/add-targeted-questions`; the publication parser is designed in `docs/THEORY_OF_THE_CASE.md` and
+`openspec/changes/add-scoped-reasoning`, the targeted questions a local model answers (the audit among them)
+in `openspec/changes/add-targeted-questions`, and the scoped-assertion layer (eligibility as scoped constraints
+with entailment and proof-bearing projections; Codex's draft reconciled) in `openspec/changes/add-scoped-assertions`; the publication parser is designed in `docs/THEORY_OF_THE_CASE.md` and
 the archived change's `design.md`. The README explains the system to
 its clinical readers.
 
