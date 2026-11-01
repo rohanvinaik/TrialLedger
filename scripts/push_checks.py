@@ -12,7 +12,10 @@ using Detective and Wesker at his local checkouts; so the gate runs here, before
   the gate checks the working tree;
 - scans every line the pushed commits add, file by file, for secrets (detect-secrets). Detective's typed
   16-hex function digests are recognized only in tests/detective/certificates.json, matched exactly against
-  that commit's fields; any other finding refuses the push. A line carrying `# pragma: allowlist secret`,
+  that commit's fields. A test file Detective generated (tests/detective/test_*_synth.py) pins pure outputs as
+  goldens, a 16-hex digest among them (an atom's content digest): such a value is recognized only on a line
+  that is exactly `assert result == "<16 lowercase hex>"` of that file, matched exactly (the founder,
+  2026-11-01). Any other finding refuses the push. A line carrying `# pragma: allowlist secret`,
   detect-secrets' own mark for a finding reviewed as no secret, is not a finding;
 - audits the lockfile with all extras and groups (pip-audit) and names its result: no_known_flaws;
   flaws_found, each flaw printed with its package and the versions that fix it; or audit_did_not_run, with
@@ -31,6 +34,7 @@ from __future__ import annotations
 import hashlib
 import json
 import os
+import re
 import subprocess
 import sys
 import tempfile
@@ -41,6 +45,8 @@ ROOT = Path(__file__).resolve().parents[1]
 ZERO = "0" * 40
 CERTIFICATES = "tests/detective/certificates.json"
 HEX = "Hex High Entropy String"
+GENERATED_TESTS = ("tests/detective/test_", "_synth.py")  # a Detective-generated test file: prefix, suffix
+GOLDEN = re.compile(r'^\s*assert result == "([0-9a-f]{16})"\s*$')
 # Pinned, so every push is checked with the same versions.
 DETECT_SECRETS = "detect-secrets@1.5.0"  # pragma: allowlist secret
 PIP_AUDIT = "pip-audit@2.10.1"
@@ -91,12 +97,30 @@ def ref_check(local_sha: str, local_tree: str, passed: frozenset[str], head: str
     return "gate_not_run_on_this_tree"
 
 
-def finding_verdict(path: str, kind: str, hashed: str, recognized: frozenset[str]) -> str:
+def finding_verdict(
+    path: str, kind: str, hashed: str, recognized: frozenset[str], goldens: frozenset[str] = frozenset()
+) -> str:
     """Whether a detect-secrets finding is a recognized digest: "function_digest" only for an exact Detective
-    function digest of that commit's certificates file, at that file's own path; "unexplained" otherwise."""
+    function digest of that commit's certificates file, at that file's own path; "detective_golden" only for
+    a hex finding in a Detective-generated test file whose value is one of that file's golden digests
+    (`golden_hashes`); "unexplained" otherwise."""
     if kind == HEX and path == CERTIFICATES and hashed in recognized:
         return "function_digest"
+    generated = path.startswith(GENERATED_TESTS[0]) and path.endswith(GENERATED_TESTS[1])
+    if kind == HEX and generated and hashed in goldens:
+        return "detective_golden"
     return "unexplained"
+
+
+def golden_hashes(path: str, lines: list[str]) -> frozenset[str]:
+    """detect-secrets' SHA-1 of each golden digest the added lines of one file pin: the 16-lowercase-hex value
+    of a line that is exactly `assert result == "<hex>"`, in a Detective-generated test file only; nothing
+    elsewhere, nothing from any other line."""
+    if not (path.startswith(GENERATED_TESTS[0]) and path.endswith(GENERATED_TESTS[1])):
+        return frozenset()
+    found = (GOLDEN.match(line) for line in lines)
+    values = {match.group(1) for match in found if match}
+    return frozenset(hashlib.sha1(value.encode(), usedforsecurity=False).hexdigest() for value in values)
 
 
 def added_lines(diff: str) -> list[str]:
@@ -157,8 +181,10 @@ def scan(commits: list[str]) -> list[str]:
     with tempfile.TemporaryDirectory() as folder:
         base = Path(folder)
         written = 0
+        goldens: dict[tuple[str, str], frozenset[str]] = {}
         for sha in commits:
             for path, lines in commit_additions(sha).items():
+                goldens[(sha, path)] = golden_hashes(path, lines)
                 target = base / sha / path
                 target.parent.mkdir(parents=True, exist_ok=True)
                 target.write_text("\n".join(lines) + "\n", encoding="utf-8")
@@ -178,15 +204,21 @@ def scan(commits: list[str]) -> list[str]:
         if sha not in recognized:
             recognized[sha] = certificate_hashes(sha)
         for finding in findings:
-            verdict = finding_verdict(path, finding["type"], finding["hashed_secret"], recognized[sha])
-            if verdict == "function_digest":
+            golden = goldens.get((sha, path), frozenset())
+            verdict = finding_verdict(
+                path, finding["type"], finding["hashed_secret"], recognized[sha], golden
+            )
+            if verdict in ("function_digest", "detective_golden"):
                 accepted += 1
             else:
                 refusals.append(
                     f"a possible secret in {sha[:7]} {path}, "
                     f"added line {finding['line_number']}: {finding['type']}"
                 )
-    print(f"secret scan: {accepted} findings are exact Detective function digests; {len(refusals)} are not")
+    print(
+        f"secret scan: {accepted} findings are exact Detective function or golden digests; "
+        f"{len(refusals)} are not"
+    )
     return refusals
 
 
