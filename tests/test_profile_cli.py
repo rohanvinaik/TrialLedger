@@ -19,7 +19,10 @@ from TrialLedger import cli, warrants
 PULL_FILES = ("studies.json", "studies.csv", "review.xlsx", "record.xlsx")
 
 
-def rxclass(_url, params):
+def rxclass(url, params):
+    # RxNorm and the RxNav release know nothing here, and only DailyMed's EPC answers.
+    if not url.endswith("/byDrugName.json") or params.get("relas") != "has_epc":
+        return 200, {}
     if params["relaSource"] == "DAILYMED":
         item = {"classId": "N0000191260", "className": "Programmed Death Receptor-1 Blocking Antibody"}
         entry = {"rxclassMinConceptItem": item, "rela": "has_epc", "relaSource": "DAILYMED"}
@@ -63,6 +66,7 @@ def test_profile_writes_beside_the_pull_and_changes_none_of_it(folder):
         "Expectations",
         "Review Queue",
         "Near Misses",
+        "Drug Axes",
         "Rules",
         "Relations",
         "Classes",

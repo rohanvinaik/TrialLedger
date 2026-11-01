@@ -7,6 +7,7 @@ import json
 import httpx
 import pytest
 
+from TrialLedger import classes as rx
 from TrialLedger.ingest import SPEC_API_VERSION, pull
 from TrialLedger.links import document_link, study_link
 from TrialLedger.record import verify_folder, write_record
@@ -59,3 +60,17 @@ def test_every_verified_query_form_still_returns_trials():
         response = httpx.get(f"{API_BASE}/studies", params=params | {"fields": "NCTId"}, timeout=60)
         assert response.status_code == 200 and response.json()["totalCount"] > 0
         time.sleep(1.5)
+
+
+def test_rxnav_resolves_identity_before_a_class_is_attributed():
+    """Against RxNav (observed 2026-10-31 and 2026-11-01): gefitinib is its own ingredient and its ATC class
+    L01EB is known; Keytruda is a brand that RxClass answers as pembrolizumab, so L01FF is not inherited."""
+    answers = {
+        name: {"axes": axes}
+        for name, axes in rx.lookup_axes(["gefitinib", "Keytruda"], get=rx.http_get).items()
+    }
+    _, _, _, gefitinib = rx.drug_axes(["gefitinib"], answers)
+    assert ("ATC", "L01EB", "known") in {(a[1], a[2], a[5]) for a in gefitinib}
+    _, _, identities, keytruda = rx.drug_axes(["Keytruda"], answers)
+    assert identities[0][1] == "brand"
+    assert ("ATC", "L01FF", "not_inherited") in {(a[1], a[2], a[5]) for a in keytruda}

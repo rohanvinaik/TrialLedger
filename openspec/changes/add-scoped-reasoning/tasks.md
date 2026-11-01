@@ -42,11 +42,39 @@
 
 ## 7. Drug-class axes (Decision 11)
 
-- [ ] 7.1 Identity resolution of an intervention name (ingredient, combination, salt, brand), then RxClass ATC
+- [x] 7.1 Identity resolution of an intervention name (ingredient, combination, salt, brand), then RxClass ATC
       and `has_chemical_structure` with warrants; `DRUG_TYPES` gains GENETIC
-- [ ] 7.2 Registry intervention MeSH kept at trial level unless linked; `shares_structure_class`
-- [ ] 7.3 The sourced target-to-ATC crosswalk with named relations; near misses read alignment as alignment
+- [x] 7.2 Registry intervention MeSH kept at trial level unless linked; `shares_structure_class`
+- [x] 7.3 The sourced target-to-ATC crosswalk with named relations; near misses read alignment as alignment
 - [ ] 7.4 Modality facets and cell properties from bound record wording and sourced mappings
+
+  2026-11-01, done: `classes.py` resolves each name by RxNorm (exact-name rxcui, its term type, a
+  non-ingredient's ingredients: `name_identity`), asks RxClass ATC and `has_chemical_structure` (DAILYMED and
+  FDASPL, kept apart) and keeps each class with the concept RxClass asserts it of (`rxclass_assertions`). The
+  intervention's own name decides its identity (`drug_axes`): another name may confirm that concept but never
+  supplies one (`alias_role`), so an own name RxNorm does not hold is `unresolved` with a named reason
+  whatever its aliases resolve to ("Carboplatin/Pemetrexed" beside "carboplatin": `alias_is_one_ingredient`;
+  "XB-1" beside "XB-1 + carboplatin": `alias_is_combination`), and an alias naming another concept is a
+  `conflict`. A class is `known` only when asserted of the own name's concept (`class_standing`; Keytruda and
+  osimertinib mesylate, answered by RxClass as their ingredients, are `not_inherited`). Every answer is cached
+  under the name's `axes` with its request, retrieval time and RxNav release, asked only for the experimental
+  drugs' names (the only ones read); a name cached earlier is asked for the axes alone.
+  `shares_structure_class` relates two distinct concepts, keyed by rxcui, per taxonomy and release, never
+  homology. Intervention MeSH stays at trial level unless the term is literally one intervention's name or
+  other name (`mesh_scope`; the "link" read as that literal identity). `CROSSWALK` aligns to ATC only targets
+  a drug's own entry states of it (`own_targets`: anti-PD-1, EGFR inhibitor ...; a word naming another drug,
+  or a target in the patient's history, is none), each row citing the ATC name RxClass returns with its byId
+  request (read 2026-11-01); `entails_membership` admits equivalent_to and narrower_than only, and no present
+  row does; the aligned near-miss reading (`aligned_near_miss_input`, `drug_atc`) pairs by ATC classes and
+  labels each pair `rxclass` or `crosswalk`, beside the pairs as written, which are unchanged. `modality.py`
+  reads the facets and cell properties from each intervention's own name, other names and description, one
+  extraction per mention, patient-history and eligibility wording as `history` (never the modality, never
+  unlocking cell properties). All of it is rendered: the `resolve` JSON gives each drug's axes, the
+  extractions with warrants, the intervention MeSH at its level, the aligned pairs and the structure
+  relations, and design.xlsx a Drug Axes sheet. 7.4 stays open: its "sourced mappings" are only the USAN name
+  stems, interpolated. Left: gating EPC/MoA (and the EPC `stated_by_record` fallback, which still reads drug
+  names as stated classes) by identity, an output change for the founder; a sourced modality mapping;
+  Detective convergence of the new decisions (debt the founder accepted).
 
 ## 8. Eligibility coverage (Decision 12)
 

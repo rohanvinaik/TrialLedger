@@ -43,7 +43,7 @@ from TrialLedger.profile import (
     occupancy_rows,
 )
 from TrialLedger.provenance import PROVENANCE
-from TrialLedger.reading import drug_aliases, read_population, study_view
+from TrialLedger.reading import axes_aliases, drug_aliases, read_population, study_view
 from TrialLedger.review import flags_for
 
 DESIGN_NAME = "design.xlsx"
@@ -104,12 +104,49 @@ def _profile_trials(views: list[dict[str, Any]], by_setting: bool) -> list[tuple
     return rows
 
 
+def _axes_rows(axes: dict[str, Any]) -> list[list[Any]]:
+    """One drug's axes as rows: each name with what RxNorm says it is and its role beside the own name, each
+    ATC or structure class with its standing, each own-entry target with its crosswalk row, and its ATC
+    classes for the aligned reading; every row with its request and retrieval."""
+    rows = []
+    for name, code, rxcui, parts, role, requests, release in axes["identities"]:
+        value = f"{code} {rxcui}".strip() + (f" (ingredients {', '.join(parts)})" if parts else "")
+        rows.append(
+            [
+                "name",
+                name,
+                value,
+                role,
+                rxcui,
+                release,
+                " | ".join(r for r, _ in requests),
+                " | ".join(t for _, t in requests),
+            ]
+        )
+    for name, axis, class_id, class_name, kind, standing, rxcui, subject, release, request, retrieved in axes[
+        "assertions"
+    ]:
+        value = f"{axis}: {class_id} {class_name} ({kind})"
+        rows.append(["class", name, value, standing, f"{rxcui} {subject}", release, request, retrieved])
+    for target, atc, atc_name, relation, member, request, read in axes["alignment"]:
+        value = f"ATC {atc} {atc_name}" if atc else "(no crosswalk row)"
+        rows.append(
+            ["target", target, value, relation + (" (member)" if member else ""), "", "", request, read]
+        )
+    basis, classes = axes["atc"]
+    rows.append(["aligned ATC", "", " | ".join(classes) or "(unknown)", basis or "(none)", "", "", "", ""])
+    return rows
+
+
 def sheets(reading: dict[str, Any], answers: dict[str, Any]) -> dict[str, tuple[list[str], list[list]]]:
     """Every sheet of design.xlsx, laid out from a population reading, as (header, rows), each row ending in
     its warrant."""
     views = reading["views"]
     digests = {v["nct"]: v["digest"] for v in views}
     trials_rule = _rule("trials", study_view, resolve, type_criterion, itemize, eligibility_coverage)
+    axes_rule = _rule(
+        "drug_axes", rx.drug_axes, rx.alias_role, rx.own_targets, rx.target_alignment, rx.drug_atc
+    )
     out: dict[str, tuple[list[str], list[list]]] = {}
 
     out["Trials"] = (
@@ -389,6 +426,36 @@ def sheets(reading: dict[str, Any], answers: dict[str, Any]) -> dict[str, tuple[
             for pair in reading["pairs"]
         ],
     )
+    out["Drug Axes"] = (
+        [
+            "NCT Number",
+            "Drug",
+            "Identity (own name)",
+            "Reason",
+            "Row",
+            "Name or Target",
+            "Value",
+            "Standing, Role or Relation",
+            "Asserted Of (RxNorm)",
+            "RxNav Release",
+            "Request",
+            "Retrieved",
+            "Warrant",
+        ],
+        [
+            [
+                v["nct"],
+                axes["drug"],
+                axes["identity"],
+                axes["reason"],
+                *row,
+                warrants.computed(axes_rule, v["digest"]),
+            ]
+            for v in views
+            for axes in v["drug_axes"]
+            for row in _axes_rows(axes)
+        ],
+    )
     out["Rules"] = (
         ["Rule", "Kind", "Origin", "Source or Note", "Warrant"],
         [
@@ -601,6 +668,18 @@ ABOUT = [
         "pair is an association to investigate.",
     ],
     [
+        "Drug Axes",
+        "Each experimental drug's axes beside its FDA class, never merged with it: what RxNorm says its "
+        "own name is (another name may confirm that concept, never supply one; an unresolved own name "
+        "gives its reason), each ATC and chemical-structure class RxClass asserted with its standing "
+        "(known only when asserted of the own name's concept: a brand or a salt does not inherit its "
+        "ingredient's class), each target its own entry states with its crosswalk row (membership only "
+        "where the relation entails it; a word naming another drug is no target), and its ATC classes for"
+        " the aligned near-miss reading with their basis. Every row gives its RxNav request, retrieval "
+        "time and release. The modality and cell extractions, the intervention MeSH, the aligned pairs "
+        "and the structure relations are in the resolve JSON.",
+    ],
+    [
         "Rules",
         "Every bank, relation, expectation, representation and threshold, with where it came from: "
         "external (a cited source), prior (domain knowledge declared before measuring) or derived (written "
@@ -644,6 +723,6 @@ def write_design(folder: Path, *, get=rx.http_get, sleep=None) -> tuple[Path, di
     if problems:
         raise DesignError("not_verified", "the record does not verify: " + "; ".join(problems[:5]))
     kwargs = {"get": get} if sleep is None else {"get": get, "sleep": sleep}
-    answers = rx.load_or_lookup(folder, drug_aliases(studies), **kwargs)
+    answers = rx.load_or_lookup(folder, drug_aliases(studies), axes_aliases(studies), **kwargs)
     target = folder / DESIGN_NAME
     return target, write_book(target, read_population(studies, answers), answers)

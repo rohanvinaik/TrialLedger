@@ -126,8 +126,11 @@ gather facts and write files. `design.md`'s code-shape table gives each module's
   answered) or `differs_from_artifact` (the kept copy classifies it; `audit.rxclass_absence`). The model's
   identity is per question kind (`LocalModel.identity(kind)` hashes only that kind's rubric). A model answer
   never becomes a reading.
-- `reading.py`: the population read once (`read_population`: each study's view, the known classes, review
-  flags and near-miss pairs), the one producer that `design.py` (design.xlsx) and `symbolic.py` (the
+- `reading.py`: the population read once (`read_population`: each study's view, with each experimental drug's
+  axes, every entry's modality and cell extractions and the trial's intervention MeSH; the known classes,
+  review flags, near-miss pairs, the aligned pairs (drug classes compared by ATC, labelled `rxclass` or
+  `crosswalk`) and the structure relations), the one producer that `design.py` (design.xlsx) and `symbolic.py`
+  (the
   `resolve` JSON) consume.
 - The coherence engine (`openspec/changes/add-coherence-engine`), outside the review and record workbooks'
   derivation and code root: `criteria.py` (eligibility itemized into headings, criteria and prose, exact
@@ -135,14 +138,24 @@ gather facts and write files. `design.md`'s code-shape table gives each module's
   stated, completeness stated or unspecified, each marker with its piece, offsets and scope;
   `add-scoped-reasoning` Decision 12), `banks.py` (deterministic typing banks: spanned atoms or abstention;
   polarity is the section's), `coherence.py` (coordinate domains, evidence narrowing, relations all proposed,
-  closure), `classes.py` (NLM RxClass, every class with its id, failures named), `profile.py` (element keys;
-  over every trial of a stratum, the registry statement rate S/N and, for an eligibility element, the
-  full-criteria interval [S/N, (S+U)/N], a silent trial's silence unresolved as empty, no rule match,
-  abbreviated or unspecified, never absent; a primary endpoint the statement rate only; the standard tier
-  three-valued; mechanism associations as a statement-rate comparison over typed trials, proposed only when it
-  holds with abbreviated silences read least favourably, unresolved when they could reverse it; occupancy),
-  `design.py` (a reading laid out as `design.xlsx`; `profile` over a folder), `symbolic.py` (a reading as the
-  `resolve` JSON).
+  closure), `classes.py` (NLM RxClass, every class with its id, failures named; the drug-class axes of
+  `add-scoped-reasoning` Decision 11: RxNorm identity first (ingredient, salt, brand, combination), decided by
+  the intervention's own name, an alias confirming it or naming its reason (`alias_role`) but never supplying
+  a concept; ATC and `has_chemical_structure`, asked only for the experimental drugs' names, each with its
+  warrant and the standing of every class (known only when asserted of the own name's concept);
+  `shares_structure_class`; the sourced target-to-ATC `CROSSWALK` with named relations, keyed only by targets
+  the drug's own entry states of it (`own_targets`), each row with its RxClass request and retrieval date;
+  trial-level intervention MeSH), `modality.py` (modality facets and cell properties from the intervention's
+  own entry, every extraction with its subject, property, value, polarity, scope, location, rule and status;
+  one extraction per mention; patient-history or eligibility wording is `history`, never the modality; name
+  stems interpolated), `profile.py` (element keys; over every trial of a stratum, the registry statement rate
+  S/N and, for an eligibility element, the full-criteria interval [S/N, (S+U)/N], a silent trial's silence
+  unresolved as empty, no rule match, abbreviated or unspecified, never absent; a primary endpoint the
+  statement rate only; the standard tier three-valued; mechanism associations as a statement-rate comparison
+  over typed trials, proposed only when it holds with abbreviated silences read least favourably, unresolved
+  when they could reverse it; occupancy), `design.py` (a reading laid out as `design.xlsx`, its Drug Axes
+  sheet among them; `profile` over a folder), `symbolic.py` (a reading as the `resolve` JSON, with each
+  drug's axes, the extractions, the intervention MeSH, the aligned pairs and the structure relations).
 - `spec/ctg-oas-v2.yaml` and `TrialLedger/registry/*.json`: the vendored contracts;
   `tests/test_spec_contract.py` holds the code to them.
 
@@ -177,16 +190,19 @@ Vulture counts a function named in a table as used, so it cannot see a table ent
 hold, `verify` of the folder, `profile` of it with RxClass answering for one name and failing for another,
 `profile` of a folder with no record, a live `resolve` of four studies of which two are a near-miss pair
 (whose records say their exclusions are abbreviated, so the coverage markers and their review flag are
-reached), `sample` over every stratum, `audit` of its draw (a trial with every kind of question, answered in
-each kind's schema, the RxClass answers kept in the audit folder and an assignment checked against that kept
-copy; its balance check asking the registry about every empty cell and auditing the one supplement a cell's
-registry IDs yield) and `pilot` over that audit with a fake local model, an audit refused for want of a budget
-and one refused because its model is not installed, `verify` of an unreadable workbook, a pull the server
-keeps failing), and the test fails on any function of the package that path does not reach, except the
-declared ones: the twelve proposed checks' gatherers, their four helpers and the eight decisions only they use
-(dormant until the founder approves them; the gatherers are derived from `APPROVED`), the two default progress
-sinks the CLI overrides, and `WorkbookError`'s constructor. It also holds every sheet to its columns, every
-rule of `RULE` to a lookup, and every code a decision returns to its words.
+reached; with RxNav resolving an ingredient, a brand and a combination and answering ATC and structure
+classes, an own name RxNorm does not hold beside a combination alias, and a genetic intervention whose entry
+states a CAR-T product), `sample` over every stratum, `audit` of its draw (a trial with every kind of
+question, answered in each kind's schema, the RxClass answers kept in the audit folder and an assignment
+checked against that kept copy; its balance check asking the registry about every empty cell and auditing the
+one supplement a cell's registry IDs yield) and `pilot` over that audit with a fake local model, an audit
+refused for want of a budget and one refused because its model is not installed, `verify` of an unreadable
+workbook, a pull the server keeps failing), and the test fails on any function of the package that path does
+not reach, except the declared ones: the twelve proposed checks' gatherers, their four helpers and the eight
+decisions only they use (dormant until the founder approves them; the gatherers are derived from
+`APPROVED`), the two default progress sinks the CLI overrides, and `WorkbookError`'s constructor. It also
+holds every sheet to its columns, every rule of `RULE` to a lookup, and every code a decision returns to its
+words.
 
 ## Detective
 
@@ -284,6 +300,17 @@ it. The proofs, so that they survive the machine:
   with Detective (accepted by the founder as debt, to be reconciled serially); the two generated tests whose
   signatures or rows changed (`tests/detective/…autoimmune_exclusion…` and `…mechanism_rows…`) were adapted by
   hand, each saying so, and are regenerated by that converge.
+- The drug-class axes (`add-scoped-reasoning` group 7, 2026-11-01) are rendered in the `resolve` JSON (each
+  drug's axes, the extractions with their warrants, the intervention MeSH at its level, the aligned pairs and
+  the structure relations) and in design.xlsx's Drug Axes sheet. EPC and MoA classes are still attached by
+  RxClass's answer without the identity step (a brand still reads its ingredient's EPC), and the EPC fallback
+  `stated_by_record` still reads every agent word of an intervention's description, drug names among them
+  ("XB-1 given after carboplatin" states "platinum"), so the existing outputs are unchanged; gating them is a
+  change of output for the founder to approve. The crosswalk has nine rows, only the targets of
+  `classes.TARGET_WORDS` (no drug name keys a row); none entails membership (each is overlaps, broader_than or
+  unresolved), so the `crosswalk` basis of the aligned reading gives no class yet. New and changed pure
+  decisions in `classes.py` and `modality.py` are not yet converged by Detective (accepted as debt by the
+  founder, to be reconciled serially).
 - Comparable posted results (`add-coherence-engine` 5.3) wait on the endpoint-class bank (2.2); the residual
   (about 70% of criteria in the NSCLC population) decides the next banks (2.1b).
 

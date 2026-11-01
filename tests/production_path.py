@@ -5,8 +5,12 @@ them reached; tests/test_wiring.py holds that set to the declared one.
 The profiler starts before TrialLedger is imported, so the tables built at import are reached. The path is
 what production does: `trialledger pull` over two pages, with a retry and a value a cell cannot hold;
 `trialledger verify` of the folder written; `trialledger profile` of it, with RxClass answering for one source
-and failing for the other; `profile` of a folder that is no record; `verify` of a folder whose workbook is
-unreadable; and a pull the server keeps failing.
+and failing for the other, and RxNav resolving an ingredient, a brand and a combination and answering ATC and
+structure classes (asked only for the experimental drugs' names); `profile` of a folder that is no record; a
+live `resolve` with a near-miss pair, an aligned pair, a shared structure class, an own name RxNorm does not
+hold beside a combination alias, a target the drug's own entry states and a genetic CAR-T entry, rendered as
+the JSON and design.xlsx with its Drug Axes sheet; `sample`, `audit` and `pilot`; `verify` of a folder whose
+workbook is unreadable; and a pull the server keeps failing.
 """
 
 import ast
@@ -97,6 +101,46 @@ def audited_study() -> dict:
         ],
     }
     return study
+
+
+RXNORM = {"Testamab": ("9001", "IN"), "Placebo": ("9002", "IN"), "TM-1": ("9003", "BN")}
+RXNORM["XB-1 + carboplatin"] = ("9004", "MIN")
+INGREDIENTS = {"9003": [("9001", "testamab")], "9004": [("9005", "xb-1"), ("9006", "carboplatin")]}
+SUBJECTS = {"Testamab": ("9001", "testamab"), "TM-1": ("9001", "testamab"), "Placebo": ("9002", "placebo")}
+
+
+def rxnav(url: str, params: dict) -> tuple[int, dict]:
+    """RxNav's release and RxNorm's identity answers, as the live service gives them."""
+    if url.endswith("/version.json"):
+        return 200, {"version": "05-Oct-2026", "apiVersion": "3.1.356"}
+    if url.endswith("/rxcui.json"):
+        known = RXNORM.get(params["name"])
+        return 200, {"idGroup": {"rxnormId": [known[0]]} if known else {"name": params["name"]}}
+    rxcui = url.rsplit("/", 2)[-2]
+    if url.endswith("/properties.json"):
+        name, (_, tty) = next((n, v) for n, v in RXNORM.items() if v[0] == rxcui)
+        return 200, {"properties": {"rxcui": rxcui, "name": name, "tty": tty}}
+    parts = [{"rxcui": r, "name": n, "tty": "IN"} for r, n in INGREDIENTS[rxcui]]
+    return 200, {"relatedGroup": {"conceptGroup": [{"tty": "IN", "conceptProperties": parts}]}}
+
+
+def axis(params: dict) -> tuple[int, dict]:
+    """RxClass's ATC and structure answers: PD-1/PD-L1 inhibitors (ATC) and platinum-containing compounds
+    (structure) for the names RxNorm resolves, each about the ingredient, as RxClass answers a brand."""
+    subject = SUBJECTS.get(params["drugName"])
+    if subject is None:
+        return 200, {}
+    if params["relaSource"] == "ATC":
+        item = {"classId": "L01FF", "className": "PD-1/PD-L1 inhibitors", "classType": "ATC1-4"}
+    else:
+        item = {"classId": "N0000175073", "className": "Platinum-containing Compounds", "classType": "CHEM"}
+    entry = {
+        "minConcept": {"rxcui": subject[0], "name": subject[1], "tty": "IN"},
+        "rxclassMinConceptItem": item,
+        "rela": params.get("relas", ""),
+        "relaSource": params["relaSource"],
+    }
+    return 200, {"rxclassDrugInfoList": {"rxclassDrugInfo": [entry]}}
 
 
 def sample_and_audit(scratch: Path, studies: list[dict], rxclass) -> dict[str, int]:
@@ -218,9 +262,21 @@ def main() -> None:
     first["protocolSection"]["descriptionModule"]["a key with a bell\x07"] = "and a value with one\x07"
     # an experimental drug only its own description classifies (anti-PD-1), so the stated-target fallback
     # and the checkpoint-blocker expectation are both on the path
+    # and a genetic intervention whose own entry states a CAR-T product, so the modality facets and the cell
+    # properties are read
     second["protocolSection"]["armsInterventionsModule"] = {
-        "armGroups": [{"label": "XB-1", "type": "EXPERIMENTAL", "interventionNames": ["Drug: XB-1"]}],
-        "interventions": [{"type": "DRUG", "name": "XB-1", "description": "XB-1 is an anti-PD-1 antibody"}],
+        "armGroups": [
+            {"label": "XB-1", "type": "EXPERIMENTAL", "interventionNames": ["Drug: XB-1", "Genetic: XB-2"]}
+        ],
+        "interventions": [
+            {
+                "type": "DRUG",
+                "name": "XB-1",
+                "otherNames": ["XB-1 + carboplatin"],
+                "description": "XB-1 is an anti-PD-1 antibody",
+            },
+            {"type": "GENETIC", "name": "XB-2", "description": "Autologous CAR-T cells, ex vivo expanded"},
+        ],
     }
     ids = [study["protocolSection"]["identificationModule"]["nctId"] for study in (first, second)]
     api = FakeAPI(
@@ -238,6 +294,14 @@ def main() -> None:
     codes["verify"] = cli.main(["verify", str(out)])
 
     def rxclass(url, params):
+        # RxNav: RxNorm resolves Testamab and Placebo as ingredients, TM-1 as Testamab's brand (an alias that
+        # confirms its own name) and "XB-1 + carboplatin" as a combination (an alias that cannot resolve XB-1,
+        # which RxNorm does not hold); ATC and structure classes come back for the first three, so a known
+        # class, a shared structure class and an aligned pair are all reached.
+        if not url.endswith("/byDrugName.json"):
+            return rxnav(url, params)
+        if params.get("relas") == "has_chemical_structure" or params["relaSource"] == "ATC":
+            return axis(params)
         # DailyMed knows only "Placebo" (one class), so the experimental drug falls back to what its record
         # states; MED-RT fails: an answer, an unknown name and a failure are all reached.
         if params["relaSource"] == "DAILYMED" and params["drugName"] == "Placebo":

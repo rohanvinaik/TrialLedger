@@ -18,7 +18,7 @@ from TrialLedger import classes as rx
 from TrialLedger import warrants
 from TrialLedger.design import DESIGN_NAME, DesignError, write_book, write_design
 from TrialLedger.ingest import SPEC_API_VERSION, PullError, check_query, pull, query_studies
-from TrialLedger.reading import drug_aliases, read_population
+from TrialLedger.reading import axes_aliases, drug_aliases, read_population
 from TrialLedger.record import CSV_NAME, JSON_NAME, code_commit, verify_folder, write_record
 from TrialLedger.symbolic import symbolic_output
 from TrialLedger.workbook import RECORD_NAME, WORKBOOK_NAME, WorkbookError
@@ -409,7 +409,7 @@ def _resolve(args, *, http, sleep, rxclass_get) -> int:
         return 1
     lookup = {"get": rxclass_get} if rxclass_get else {}
     cache = Path(os.environ.get("TRIALLEDGER_CACHE", str(rx.USER_CACHE)))
-    answers = rx.load_or_lookup_at(cache, drug_aliases(studies), sleep=sleep, **lookup)
+    answers = rx.load_or_lookup_at(cache, drug_aliases(studies), axes_aliases(studies), sleep=sleep, **lookup)
     reading = read_population(studies, answers)
     if args.out:
         sizes = write_book(args.out, reading, answers)
