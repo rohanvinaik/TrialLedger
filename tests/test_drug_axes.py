@@ -21,7 +21,8 @@ structure classes are never merged, a class under an unknown release relates not
 related to itself (no homology is ever claimed); a word naming another drug (carboplatin, paclitaxel,
 bevacizumab) or a target in the patient's history is no target of the drug, and no crosswalk row is keyed by a
 drug's name; broader_than, overlaps and unresolved never entail membership; a MeSH term matching no name, or
-two interventions' names, stays at trial level; a name outside the experimental drugs is never asked RxNav.
+two interventions' names, stays at trial level; a name outside the experimental drugs is never asked RxNav,
+and no name is asked about the axes unless the fill is asked for (EPC and MoA are asked as before).
 """
 
 import json
@@ -570,7 +571,9 @@ def test_a_name_cached_before_the_axes_is_asked_for_them_alone(tmp_path):
             return 200, {"properties": {"rxcui": "328134", "name": "gefitinib", "tty": "IN"}}
         return (200, GEFITINIB_ATC) if params["relaSource"] == "ATC" else (200, {})
 
-    answers = load_or_lookup_at(path, ["gefitinib"], ["gefitinib"], get=get, sleep=lambda _: None)
+    answers = load_or_lookup_at(
+        path, ["gefitinib"], ["gefitinib"], fill_axes=True, get=get, sleep=lambda _: None
+    )
     assert asked == [
         ("version.json", ""),
         ("rxcui.json", "gefitinib"),
@@ -591,7 +594,7 @@ def test_a_name_cached_before_the_axes_is_asked_for_them_alone(tmp_path):
         ["328134"],
     ]
     asked.clear()
-    load_or_lookup_at(path, ["gefitinib"], ["gefitinib"], get=get, sleep=lambda _: None)
+    load_or_lookup_at(path, ["gefitinib"], ["gefitinib"], fill_axes=True, get=get, sleep=lambda _: None)
     assert asked == []
 
 
@@ -603,10 +606,38 @@ def test_a_name_no_experimental_drug_carries_is_never_asked_rxnav(tmp_path):
         return 200, {}
 
     answers = load_or_lookup_at(
-        tmp_path / "c.json", ["Placebo", "XB-1"], ["XB-1"], get=get, sleep=lambda _: None
+        tmp_path / "c.json", ["Placebo", "XB-1"], ["XB-1"], fill_axes=True, get=get, sleep=lambda _: None
     )
     assert "axes" not in answers["Placebo"] and "axes" in answers["XB-1"]
     assert asked.count("version.json") == 1 and asked.count("rxcui.json") == 1
+
+
+def test_the_axes_are_asked_only_when_filled_and_epc_moa_as_before(tmp_path):
+    """Positive: with fill_axes the axes are asked, and EPC and MoA exactly as without it, request for
+    request. Negative: without it no RxNav request about the axes is made, on a cold cache or on one whose
+    names were cached before the axes, which is left as it was."""
+
+    def run(path, fill):
+        asked = []
+
+        def get(url, params):
+            asked.append((url, tuple(sorted(params.items()))))
+            return 200, {}
+
+        load_or_lookup_at(path, ["Placebo", "XB-1"], ["XB-1"], fill_axes=fill, get=get, sleep=lambda _: None)
+        return asked
+
+    def classes_only(asked):
+        return [a for a in asked if dict(a[1]).get("relas") in ("has_epc", "has_moa")]
+
+    lazy, filled = run(tmp_path / "lazy.json", False), run(tmp_path / "filled.json", True)
+    assert lazy == classes_only(lazy) == classes_only(filled) and len(lazy) == 4
+    assert len(filled) > len(lazy)
+    before = tmp_path / "before.json"
+    old = {"codes": {"DAILYMED:has_epc": "not_found"}, "classes": []}
+    before.write_text(json.dumps({"answers": {"Placebo": old, "XB-1": old}}))
+    text = before.read_text()
+    assert run(before, False) == [] and before.read_text() == text
 
 
 def test_a_partners_target_in_this_drugs_entry_is_not_this_drugs():

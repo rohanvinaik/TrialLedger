@@ -101,6 +101,14 @@ trials and establish nothing about other populations.
     separate lineage, engineering, preparation and donor relationship; every extraction keeps subject,
     property, value, polarity, scope, evidence location, rule, status and warrant, so "prior CAR-T excluded" is
     an eligibility assertion, not the intervention's modality; name-suffix guesses are interpolated at most.
+    As built here (2026-11-01, a performance repair): the axes are looked up explicitly and lazily. EPC and
+    MoA lookups are unchanged; the axes are asked of RxNav only by a consumer that reads them (`resolve`, whose
+    JSON and design.xlsx render them) or by the explicit fill (`trialledger profile --fill-axes`, after the
+    record verifies). A plain profile renders the axes classes.json holds and names the rest `not_looked_up`
+    (`reading.axes_not_looked_up` names the names not asked; `reading.axes_as_looked_up`: the own name's not
+    asked, nothing attributed; an alias's not asked, no class known, since the alias could make a conflict), a
+    named state never read as "no class" and never aligned. The Drug Axes sheet's warrant digests both rules
+    and `reading.drug_axes_view` with the `classes.py` axes rules.
 12. **Eligibility coverage, not "completeness"** (the founder: an abbreviated record's silence is read as
     absence; `_ABBREVIATED` is used only in expectations.py). Separate attributes: content (empty, present),
     sectioning (sectioned, unsectioned), coverage evidence (abbreviation stated, completeness stated,

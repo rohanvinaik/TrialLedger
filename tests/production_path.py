@@ -5,8 +5,9 @@ them reached; tests/test_wiring.py holds that set to the declared one.
 The profiler starts before TrialLedger is imported, so the tables built at import are reached. The path is
 what production does: `trialledger pull` over two pages, with a retry and a value a cell cannot hold;
 `trialledger verify` of the folder written; `trialledger profile` of it, with RxClass answering for one source
-and failing for the other, and RxNav resolving an ingredient, a brand and a combination and answering ATC and
-structure classes (asked only for the experimental drugs' names); `profile` of a folder that is no record; a
+and failing for the other and the axes read as cached (none: not_looked_up), then `profile --fill-axes`, with
+RxNav resolving an ingredient, a brand and a combination and answering ATC and structure classes (asked only
+for the experimental drugs' names); `profile` of a folder that is no record; a
 live `resolve` with a near-miss pair, an aligned pair, a shared structure class, an own name RxNorm does not
 hold beside a combination alias, a target the drug's own entry states and a genetic CAR-T entry, rendered as
 the JSON and design.xlsx with its Drug Axes sheet; `sample`, `audit` and `pilot`; `verify` of a folder whose
@@ -334,7 +335,9 @@ def main() -> None:
             return 200, body
         return (200, {}) if params["relaSource"] == "DAILYMED" else (503, None)
 
+    # a profile reads the axes as cached (none yet: not_looked_up), then --fill-axes asks RxNav for them
     codes["profile"] = cli.main(["profile", str(out)], rxclass_get=rxclass)
+    codes["profile_fill_axes"] = cli.main(["profile", str(out), "--fill-axes"], rxclass_get=rxclass)
     codes["profile_not_a_record"] = cli.main(["profile", str(scratch / "nothing here")], rxclass_get=rxclass)
     os.environ["TRIALLEDGER_CACHE"] = str(scratch / "cache" / "classes.json")
     # two first-line trials of the one drug RxClass classifies, differing only in the ECOG they admit: a

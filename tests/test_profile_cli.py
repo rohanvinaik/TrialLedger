@@ -1,9 +1,12 @@
 """`trialledger profile` and `trialledger resolve` end to end, through the CLI.
 
 Positive: a written folder gets design.xlsx and classes.json, with every sheet the About sheet describes; the
-pull's own four files are byte for byte unchanged and the folder still verifies.
+pull's own four files are byte for byte unchanged and the folder still verifies; a profile asks EPC and MoA
+and marks the axes it has not cached not_looked_up; `--fill-axes` asks them once, then they are read from the
+cache; resolve asks the axes its outputs read.
 Negative: a record that no longer matches its digests gets no design.xlsx (exit 1); a folder with no record
-gets nothing (exit 2).
+gets nothing (exit 2); a profile without `--fill-axes` asks RxNav nothing about the axes, and with it, a
+record that does not verify is asked nothing.
 """
 
 import json
@@ -249,3 +252,79 @@ def test_resolve_carries_an_abbreviated_record_to_the_sheets_and_the_json(tmp_pa
     queue = [dict(zip(header, row, strict=True)) for row in rows]
     flagged = [(q["NCT Number"], q["Evidence"]) for q in queue if q["Kind"] == "eligibility_abbreviated"]
     assert flagged == [("NCT09000003", flag["evidence"][0])]
+
+
+def recording(asked):
+    """The `rxclass` fake, recording each request as EPC/MoA ("classes") or an axis request ("axes")."""
+
+    def get(url, params):
+        epc = url.endswith("/byDrugName.json") and params.get("relas") in ("has_epc", "has_moa")
+        asked.append(("classes" if epc else "axes", url.rsplit("/", 1)[-1], params.get("drugName", "")))
+        return rxclass(url, params)
+
+    return get
+
+
+def axes_identities(folder):
+    sheet = openpyxl.load_workbook(folder / "design.xlsx", read_only=True)["Drug Axes"]
+    _header, *rows = sheet.iter_rows(values_only=True)
+    return {(row[1], row[2], row[3]) for row in rows}
+
+
+def test_a_profile_asks_no_axes_and_marks_them_not_looked_up(folder, capsys):
+    """Positive: a profile asks RxClass for EPC and MoA as before and renders every experimental drug whose
+    axes were never asked as not_looked_up. Negative: it asks RxNav nothing about the axes."""
+    asked = []
+    assert cli.main(["profile", str(folder)], rxclass_get=recording(asked)) == 0
+    assert asked and {kind for kind, *_ in asked} == {"classes"}
+    assert sorted({name for *_, name in asked}) == ["Placebo", "TM-1", "Testamab"]
+    assert axes_identities(folder) == {("Testamab", "not_looked_up", "own_name_not_looked_up")}
+    assert "--fill-axes" in capsys.readouterr().err
+    cache = json.loads((folder / "classes.json").read_text())["answers"]
+    assert not any("axes" in answer for answer in cache.values())
+
+
+def test_fill_axes_asks_once_then_a_profile_reads_the_cache(folder):
+    """Positive: --fill-axes asks RxNav for the experimental drugs' names, after which the sheet shows their
+    identity; a later profile reads them from the cache. Negative: the placebo outside the experimental arm is
+    never asked for axes, and the later profile asks nothing at all."""
+    asked = []
+    assert cli.main(["profile", str(folder), "--fill-axes"], rxclass_get=recording(asked)) == 0
+    axes = [name for kind, _, name in asked if kind == "axes" and name]
+    assert set(axes) == {"Testamab", "TM-1"}
+    filled = axes_identities(folder)
+    assert filled and not any(code == "not_looked_up" for _, code, _ in filled)
+    asked.clear()
+    assert cli.main(["profile", str(folder)], rxclass_get=recording(asked)) == 0
+    assert asked == [] and axes_identities(folder) == filled
+
+
+def test_fill_axes_asks_nothing_for_a_record_that_does_not_verify(folder, tmp_path):
+    """Positive: a tampered record with --fill-axes ends 1 and a missing one 2, as without it. Negative:
+    neither asks RxNav anything, and the folder's classes.json is not written."""
+    record = json.loads((folder / "studies.json").read_text())
+    record["studies"][0]["protocolSection"]["identificationModule"]["briefTitle"] = "changed"
+    (folder / "studies.json").write_text(json.dumps(record))
+    asked = []
+    assert cli.main(["profile", str(folder), "--fill-axes"], rxclass_get=recording(asked)) == 1
+    assert asked == [] and not (folder / "classes.json").exists()
+    empty = tmp_path / "empty"
+    empty.mkdir()
+    assert cli.main(["profile", str(empty), "--fill-axes"], rxclass_get=recording(asked)) == 2
+    assert asked == [] and list(empty.iterdir()) == []
+
+
+def test_resolve_asks_the_axes_its_outputs_read(tmp_path, monkeypatch):
+    """Positive: resolve, whose JSON reads the axes, asks RxNav for them. Negative: its drug is never left
+    not_looked_up."""
+    monkeypatch.setenv("TRIALLEDGER_CACHE", str(tmp_path / "cache" / "classes.json"))
+    study = results_study()
+    nct = study["protocolSection"]["identificationModule"]["nctId"]
+    api = FakeAPI(json_pages=[httpx.Response(200, json={"studies": [study], "totalCount": 1})])
+    out = tmp_path / "reading.json"
+    asked = []
+    argv = ["resolve", f"filter.ids={nct}", "--json", str(out)]
+    assert cli.main(argv, http=api.client(), sleep=api.sleep, rxclass_get=recording(asked)) == 0
+    assert {name for kind, _, name in asked if kind == "axes" and name} == {"Testamab", "TM-1"}
+    [axes] = json.loads(out.read_text())["studies"][0]["drug_axes"]
+    assert axes["drug"] == "Testamab" and axes["identity"] != "not_looked_up"

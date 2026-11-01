@@ -75,6 +75,7 @@ def test_the_production_path_ends_as_production_does(production):
         "pull": 0,
         "verify": 0,
         "profile": 0,
+        "profile_fill_axes": 0,
         "profile_not_a_record": 2,
         "resolve": 0,
         "sample": 0,

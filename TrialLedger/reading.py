@@ -5,7 +5,8 @@ design.xlsx and `symbolic.symbolic_output` renders it as the JSON of `trialledge
 eligibility is itemized and typed and its coverage read (content, sectioning, what the record says of its own
 coverage in each section), its coordinates resolved, its experimental drugs classed (RxClass, or a
 target its own record states) and given their axes (RxNorm identity by the own name, ATC and structure classes
-with their standing and warrants, the own entry's targets aligned to ATC), every intervention entry's modality
+with their standing and warrants, the own entry's targets aligned to ATC; not_looked_up where the axes were
+never asked of RxNav), every intervention entry's modality
 and cell extractions read with their warrants, its intervention MeSH scoped, its outcomes and results typed
 and its frozen expectations observed; across the views, the classes known to the population, each view's
 review flags, the near-miss pairs as written, the aligned pairs (ATC) and the structure relations.
@@ -248,8 +249,11 @@ def drug_axes_view(drug: str, aliases: list[str], entry: str, answers: dict[str,
     """One experimental drug's axes, apart from its EPC and MoA classes: its RxNorm identity decided by its
     own name (with the reason when it is not resolved), its ATC and structure classes with their standing and
     warrants, the targets its own entry (`entry`: its name and description) states of it and their crosswalk
-    alignment, and its ATC classes for the aligned near-miss representation with their basis."""
-    code, reason, identities, assertions = rx.drug_axes(aliases, answers)
+    alignment, and its ATC classes for the aligned near-miss representation with their basis. A drug whose
+    names' axes were not looked up (axes_not_looked_up, axes_as_looked_up) is not_looked_up, its aligned ATC
+    unknown."""
+    missing = axes_not_looked_up(aliases, answers)
+    code, reason, identities, assertions = axes_as_looked_up(aliases, missing, rx.drug_axes(aliases, answers))
     targets = rx.own_targets(entry, drug)
     alignment = rx.target_alignment(targets)
     known = [a[2] for a in assertions if a[1] == "ATC" and a[5] == "known"]
@@ -261,8 +265,39 @@ def drug_axes_view(drug: str, aliases: list[str], entry: str, answers: dict[str,
         "assertions": assertions,
         "targets": targets,
         "alignment": alignment,
-        "atc": rx.drug_atc(known, targets, alignment),
+        "atc": ("", []) if code == "not_looked_up" else rx.drug_atc(known, targets, alignment),
     }
+
+
+def axes_not_looked_up(aliases: list[str], answers: dict[str, Any]) -> list[str]:
+    """The names of a drug whose axes were not looked up (pure — pinned): each of `aliases`, in order, whose
+    cached answer holds no axes (no answer, no `axes` entry, or an empty one). The axes are asked of RxNav
+    only on request (classes.load_or_lookup_at's `fill_axes`); a name listed here is "not looked up", never
+    "no class" (axes_as_looked_up)."""
+    return [alias for alias in aliases if not (answers.get(alias) or {}).get("axes")]
+
+
+def axes_as_looked_up(aliases: list[str], missing: list[str], axes: tuple) -> tuple[str, str, list, list]:
+    """A drug's axes (classes.drug_axes's answer) as far as its names' axes were looked up (pure — pinned).
+
+    The axes are asked of RxNav only on request (classes.load_or_lookup_at's `fill_axes`), so a name may hold
+    none: that is "not looked up", never "no class" and never an identity. `aliases` are the drug's names, its
+    own name first; `missing` those whose axes the answers do not hold.
+    looked up              — no name missing: `axes` unchanged.
+    own_name_not_looked_up — the own name's axes are missing: ("not_looked_up", that reason, [], []); nothing
+                             is attributed, whatever an alias's cached answer says.
+    alias_not_looked_up    — the own name's are held, an alias's are not: ("not_looked_up", that reason, the
+                             identities and assertions held), and a class that would be known is
+                             alias_not_looked_up, since the unasked alias could name another concept (a
+                             conflict, in which nothing is known).
+    """
+    if not missing:
+        return axes
+    if not aliases or aliases[0] in missing:
+        return "not_looked_up", "own_name_not_looked_up", [], []
+    _code, _reason, identities, assertions = axes
+    held = [(*a[:5], "alias_not_looked_up" if a[5] == "known" else a[5], *a[6:]) for a in assertions]
+    return "not_looked_up", "alias_not_looked_up", identities, sorted(held)
 
 
 def aligned_near_miss_input(view: dict[str, Any], trial: tuple) -> tuple[tuple, str]:
@@ -332,7 +367,8 @@ def drug_aliases(studies: list[dict[str, Any]]) -> list[str]:
 
 def axes_aliases(studies: list[dict[str, Any]]) -> list[str]:
     """The names and other names of every experimental arm's drug, biological or genetic intervention: the
-    only names whose axes the reading reads, so the only ones RxNav is asked about."""
+    only names whose axes the reading reads, so the only ones RxNav is asked about (when the axes are filled:
+    classes.load_or_lookup_at's `fill_axes`)."""
     out = []
     for study in studies:
         names = rx.drug_names(study)

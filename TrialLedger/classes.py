@@ -20,7 +20,8 @@ intervention's own name decides what it is; another name the record gives it may
 never supplies one. A class counts as the intervention's own (`known`) only when it is asserted of the very
 concept its own name resolves to; a salt, brand or combination never inherits its ingredient's class by an API
 answer alone. Every axis answer keeps its warrant: the request, the retrieval time, the RxNav release and the
-ids, and the axes are asked only for the experimental drugs' names, the only ones read. A target the drug's
+ids, and the axes are asked only for the experimental drugs' names, the only ones read, and only when a
+consumer of them or the explicit fill asks (load_or_lookup_at's `fill_axes`). A target the drug's
 own entry states (anti-PD-1, EGFR inhibitor) aligns to ATC through a sourced crosswalk with named relations,
 membership only where the relation entails it; a word naming another drug (carboplatin, paclitaxel) is no
 target of this one. Registry intervention MeSH stays at trial level unless the record's own name of one
@@ -162,17 +163,40 @@ USER_CACHE = Path.home() / ".cache" / "trialledger" / CACHE_NAME
 
 
 def load_or_lookup(
-    folder: Path, names: list[str], axes_names: Sequence[str] = (), *, get=http_get, sleep=time.sleep
+    folder: Path,
+    names: list[str],
+    axes_names: Sequence[str] = (),
+    *,
+    fill_axes: bool = False,
+    get=http_get,
+    sleep=time.sleep,
 ) -> dict[str, Any]:
-    """The folder's cached RxClass answers, extended by a lookup of any name not yet cached, and saved."""
-    return load_or_lookup_at(folder / CACHE_NAME, names, axes_names, get=get, sleep=sleep)
+    """The folder's cached RxClass answers, extended by a lookup of any name not yet cached, and saved; the
+    axes of `axes_names` are asked only with `fill_axes` (load_or_lookup_at)."""
+    return load_or_lookup_at(
+        folder / CACHE_NAME, names, axes_names, fill_axes=fill_axes, get=get, sleep=sleep
+    )
 
 
 def load_or_lookup_at(
-    path: Path, names: list[str], axes_names: Sequence[str] = (), *, get=http_get, sleep=time.sleep
+    path: Path,
+    names: list[str],
+    axes_names: Sequence[str] = (),
+    *,
+    fill_axes: bool = False,
+    get=http_get,
+    sleep=time.sleep,
 ) -> dict[str, Any]:
-    """The RxClass answers cached at `path`, extended by a lookup of any name not yet cached, and saved; the
-    axes are asked only for `axes_names` (the experimental drugs' names, the only ones the reading reads)."""
+    """The RxClass answers cached at `path`, extended by a lookup of any name not yet cached, and saved.
+
+    EPC and MoA are asked for every name of `names` and `axes_names` not yet cached. The axes (RxNorm
+    identity, ATC, structure: four to six spaced requests a name) are asked only when `fill_axes` is given,
+    and only for `axes_names` (the experimental drugs' names, the only ones the reading reads) not yet holding
+    them: a consumer that reads them (the `resolve` JSON and its design.xlsx) or the explicit fill
+    (`trialledger profile --fill-axes`) asks; any other run reads the axes already cached, and the reading
+    names the rest not_looked_up (reading.axes_as_looked_up), never "no class". Asked on every profile, they
+    took a stored 487-trial folder from seconds to over an hour (2026-11-01), which a profile must not need.
+    """
     path.parent.mkdir(parents=True, exist_ok=True)
     cache = json.loads(path.read_text(encoding="utf-8")) if path.is_file() else {}
     answers = cache.get("answers", {})
@@ -180,7 +204,7 @@ def load_or_lookup_at(
     if missing:
         answers.update(lookup(missing, get=get, sleep=sleep))
     # A name cached before the axes existed is asked for them alone; its classes stay as they were answered.
-    unasked = [n for n in dict.fromkeys(axes_names) if "axes" not in answers[n]]
+    unasked = [n for n in dict.fromkeys(axes_names) if "axes" not in answers[n]] if fill_axes else []
     if unasked:
         for name, axes in lookup_axes(unasked, get=get, sleep=sleep).items():
             answers[name]["axes"] = axes

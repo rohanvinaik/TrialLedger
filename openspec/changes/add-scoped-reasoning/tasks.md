@@ -76,6 +76,32 @@
   names as stated classes) by identity, an output change for the founder; a sourced modality mapping;
   Detective convergence of the new decisions (debt the founder accepted).
 
+  2026-11-01, the axes made lazy (a performance regression: asked on every profile, the axes took
+  `trialledger profile` of the stored 487-trial NSCLC folder from about 17 s to over an hour on first run).
+  `classes.load_or_lookup(_at)` asks EPC and MoA exactly as before, request for request; the axes only with
+  `fill_axes`, which `resolve` passes (its JSON and design.xlsx read them) and `trialledger profile
+  --fill-axes` passes after the record verifies (a record that does not verify is asked nothing). A plain
+  profile reads the axes cached in classes.json, and `reading.axes_as_looked_up` marks a drug whose own name's
+  axes were never asked `not_looked_up` / `own_name_not_looked_up` (no identity, no class, aligned ATC
+  unknown), and one whose alias's were not `not_looked_up` / `alias_not_looked_up` (no class known: the
+  unasked alias could make it a conflict); never "no class". Measured on a private copy of the folder, RxNav
+  faked as unavailable (every request a transport failure, answered at once), the spacing sleep real: before,
+  812.5 s and 3,897 axis requests (a floor: live, each request also waits on the network); after, 16.4 s and
+  0 requests; EPC and MoA 0 requests in both (all cached). Which names were not looked up is its own pure
+  decision, `reading.axes_not_looked_up` (a name with no answer, no `axes` entry or an empty one), and the
+  Drug Axes sheet's warrant commits to every rule that decides its rows: `design.sheets`'s `drug_axes` rule
+  digests `reading.drug_axes_view` (whose aligned ATC is unknown for a drug not looked up),
+  `reading.axes_not_looked_up` and `reading.axes_as_looked_up` beside the `classes.py` rules, so changing any
+  of them changes the warrant. Left: the stored folder's axes, asked only when someone runs `--fill-axes`
+  (974 names there).
+
+  Detective debt, not settled: the founder accepted, on 2026-11-01, Detective convergence as debt incurred by
+  parallel workflow work, to be reconciled serially afterwards. Under that acceptance, and not under the
+  earlier one for group 7's decisions, these decisions of the lazy axes are not converged:
+  `reading.axes_not_looked_up` (new), `reading.axes_as_looked_up` (new) and `reading.drug_axes_view`
+  (changed: its aligned ATC is unknown when not looked up). They have two-sign intent tests; the deep gate
+  flags the pinned ones until they are converged.
+
 ## 8. Eligibility coverage (Decision 12)
 
 - [x] 8.1 Content, sectioning and coverage-evidence attributes, one pure decision, with marker locations and

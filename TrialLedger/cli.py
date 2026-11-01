@@ -144,14 +144,22 @@ def main(
         description=(
             "Itemize and type every study's eligibility by deterministic rules, resolve each trial's design "
             "coordinates, classify experimental drugs by NLM RxClass (cached in classes.json), and measure "
-            "every "
-            "typed element against the folder's population. Writes design.xlsx and classes.json; the pull's "
-            "files are not changed. Ends with 0, written; 1, the record does not verify (nothing written); "
-            "2, "
-            "not a TrialLedger folder."
+            "every typed element against the folder's population. The drug-class axes (RxNorm identity, ATC, "
+            "structure) are read from classes.json as cached: a drug whose axes were never asked of RxNav is "
+            "marked not_looked_up on the Drug Axes sheet (never read as no class), unless --fill-axes asks "
+            "for them first. Writes design.xlsx and classes.json; the pull's files are not changed. Ends "
+            "with 0, written; 1, the record does not verify (nothing written, nothing asked); 2, not a "
+            "TrialLedger folder."
         ),
     )
     profile_parser.add_argument("folder", type=Path)
+    profile_parser.add_argument(
+        "--fill-axes",
+        action="store_true",
+        help="first ask RxNav, spaced, for the axes of every experimental drug name classes.json does not "
+        "yet hold (four to six requests a name: about an hour for a 487-trial folder never filled), and "
+        "cache them",
+    )
     sample_parser = commands.add_parser(
         "sample",
         help="draw a live, stratified sample of interventional trials for an audit",
@@ -252,7 +260,7 @@ def main(
     if args.command == "verify":
         return _verify(args.folder)
     if args.command == "profile":
-        return _profile(args.folder, rxclass_get)
+        return _profile(args.folder, rxclass_get, fill_axes=args.fill_axes)
 
     code, params, offending = parse_query_args(args.parameters)
     if code != "ok":
@@ -501,7 +509,10 @@ def _resolve(args, *, http, sleep, rxclass_get) -> int:
         return 1
     lookup = {"get": rxclass_get} if rxclass_get else {}
     cache = Path(os.environ.get("TRIALLEDGER_CACHE", str(rx.USER_CACHE)))
-    answers = rx.load_or_lookup_at(cache, drug_aliases(studies), axes_aliases(studies), sleep=sleep, **lookup)
+    # Both outputs of resolve (the JSON and design.xlsx) read the axes, so they are asked for here.
+    answers = rx.load_or_lookup_at(
+        cache, drug_aliases(studies), axes_aliases(studies), fill_axes=True, sleep=sleep, **lookup
+    )
     reading = read_population(studies, answers)
     if args.out:
         sizes = write_book(args.out, reading, answers)
@@ -532,15 +543,45 @@ def _resolve(args, *, http, sleep, rxclass_get) -> int:
     return 0
 
 
-def _profile(folder: Path, rxclass_get: Callable[[str, dict[str, str]], tuple[int, Any]] | None) -> int:
+def _profile(
+    folder: Path, rxclass_get: Callable[[str, dict[str, str]], tuple[int, Any]] | None, *, fill_axes: bool
+) -> int:
+    get = {"get": rxclass_get} if rxclass_get else {}
+    if fill_axes:
+        _fill_axes(folder, **get)
     try:
-        target, sizes = write_design(folder, get=rxclass_get) if rxclass_get else write_design(folder)
+        target, sizes = write_design(folder, **get)
     except DesignError as error:
         print(f"trialledger: nothing written — {error}", file=sys.stderr)
         return 2 if error.code == "not_a_record" else 1
     counts = ", ".join(f"{name} {count}" for name, count in sizes.items())
     print(f"{target} written ({DESIGN_NAME}: {counts} rows); the pull's own files are unchanged")
+    if not fill_axes:
+        print(
+            "drug axes read as cached in classes.json; any not yet asked are marked not_looked_up "
+            "(trialledger profile --fill-axes asks RxNav for them)",
+            file=sys.stderr,
+        )
     return 0
+
+
+def _fill_axes(folder: Path, get: Callable[[str, dict[str, str]], tuple[int, Any]] = rx.http_get) -> None:
+    """`profile --fill-axes`: ask RxNav for the axes of the folder's experimental drug names not yet cached in
+    its classes.json, only once its record verifies; a folder that is no record or does not verify is left
+    as it is, for write_design to name."""
+    from TrialLedger.record import record_problems
+
+    try:
+        record = json.loads((folder / JSON_NAME).read_text(encoding="utf-8"))
+        studies = record["studies"]
+    except (OSError, ValueError, KeyError, TypeError):
+        return
+    csv_path = folder / CSV_NAME
+    if record_problems(record, csv_path.read_bytes() if csv_path.is_file() else None):
+        return
+    names = axes_aliases(studies)
+    print(f"asking RxNav for the axes of up to {len(set(names))} names, spaced", file=sys.stderr)
+    rx.load_or_lookup(folder, drug_aliases(studies), names, fill_axes=True, get=get)
 
 
 def _verify(folder: Path) -> int:

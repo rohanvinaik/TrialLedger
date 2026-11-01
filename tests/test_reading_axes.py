@@ -6,8 +6,15 @@ modality and cell extraction of every intervention entry with its warrant, and t
 linked only by a literal name; a genetic intervention of an experimental arm is read as a drug; two trials
 whose drugs' ATC classes align and differ in one predicate are an aligned pair labelled with each basis; two
 distinct drugs with a known shared structure class are related by shares_structure_class, keyed by rxcui; the
-resolve JSON and design.xlsx's Drug Axes sheet render all of it with its requests.
-Negative: the drug tuples the outputs read are unchanged; an aligned pair is never a pair as written (the
+resolve JSON and design.xlsx's Drug Axes sheet render all of it with its requests; axes every name of which
+was looked up are read as drug_axes gives them (axes_as_looked_up); a name whose answer holds axes is not
+missing (axes_not_looked_up); changing a rule that decides the Drug Axes rows (axes_not_looked_up,
+axes_as_looked_up) changes the sheet's warrant.
+Negative: a drug whose axes were not looked up (own name or alias) is not_looked_up, with no identity, no
+known class and no aligned ATC, never "no class"; a name with no answer, no axes entry or an empty one is
+missing; a docstring-only change to those rules leaves the warrant, and the Trials sheet's warrant, as they
+are; the drug tuples the outputs read are unchanged; an aligned
+pair is never a pair as written (the
 existing pairs are untouched); a brand's ingredient class, given by its other name, aligns nothing; a drug
 whose target only overlaps an ATC class leaves the aligned representation unknown; another drug's name in the
 entry ("XB-1 given after carboplatin and paclitaxel") gives no ATC membership; an arm's wording and the
@@ -15,14 +22,18 @@ eligibility text give no modality.
 """
 
 import json
+from typing import Any
 
 from records import ongoing_study
 from test_drug_axes import ANSWERS, NOT_ASKED, axes_answer
 
+from TrialLedger.classes import drug_axes
 from TrialLedger.design import sheets
 from TrialLedger.reading import (
     aligned_near_miss_input,
     axes_aliases,
+    axes_as_looked_up,
+    axes_not_looked_up,
     drug_aliases,
     near_miss_input,
     read_population,
@@ -101,7 +112,9 @@ def test_a_view_carries_each_drugs_axes_and_each_entrys_extractions():
         ("pembrolizumab", "not_inherited"),
     ]
     assert keytruda["atc"] == ("", [])
-    assert (xb2["identity"], xb2["reason"]) == ("unresolved", "own_name_not_asked") and xb2["atc"] == ("", [])
+    # XB-2's axes were never asked of RxNav: not looked up, never an identity or "no class"
+    assert (xb2["identity"], xb2["reason"]) == ("not_looked_up", "own_name_not_looked_up")
+    assert xb2["atc"] == ("", []) and xb2["assertions"] == []
     extracted = {(e[0], e[1], e[2], e[7]) for e in view["properties"]}
     assert extracted == {
         ("XB-2", "modality", "cell", "known"),
@@ -279,3 +292,107 @@ def test_only_an_experimental_drugs_names_are_asked_rxnav_for_axes():
         "Placebo"
     ]
     assert axes_aliases([study("NCT43", [{"type": "DRUG", "name": "Placebo"}], [])]) == []
+
+
+def test_axes_looked_up_are_read_as_they_are():
+    """Positive: every name looked up leaves drug_axes's answer as it is: pembrolizumab beside gefitinib is a
+    conflict, pembrolizumab alone resolved with its class known."""
+    for aliases in (["pembrolizumab", "gefitinib"], ["pembrolizumab"]):
+        held = drug_axes(aliases, ANSWERS)
+        assert axes_as_looked_up(aliases, [], held) == held
+    assert drug_axes(["pembrolizumab", "gefitinib"], ANSWERS)[:2] == ("conflict", "alias_other_concept")
+    assert {a[5] for a in drug_axes(["pembrolizumab"], ANSWERS)[3]} == {"known"}
+
+
+def test_axes_not_looked_up_are_never_an_identity_or_a_known_class():
+    """Negative: an own name not looked up attributes nothing, whatever an alias's cached answer says; an
+    alias not looked up leaves no class known and no identity resolved, since the alias (gefitinib, another
+    concept) would make it a conflict once asked."""
+    assert axes_as_looked_up(
+        ["never asked", "pembrolizumab"],
+        ["never asked"],
+        drug_axes(["never asked", "pembrolizumab"], ANSWERS),
+    ) == ("not_looked_up", "own_name_not_looked_up", [], [])
+    lazy = {name: answer for name, answer in ANSWERS.items() if name != "gefitinib"}
+    lazy["gefitinib"] = {"codes": {}, "classes": []}
+    code, reason, identities, assertions = axes_as_looked_up(
+        ["pembrolizumab", "gefitinib"], ["gefitinib"], drug_axes(["pembrolizumab", "gefitinib"], lazy)
+    )
+    assert (code, reason) == ("not_looked_up", "alias_not_looked_up")
+    assert [i[0] for i in identities] == ["pembrolizumab"]
+    assert assertions and {a[5] for a in assertions} == {"alias_not_looked_up"}
+
+
+def test_a_view_of_a_drug_not_looked_up_aligns_nothing():
+    """Negative: a drug whose axes were not looked up has no aligned ATC classes, even where its own entry
+    states a target, and no structure relation; positive: once looked up, the same drug reads its class."""
+    entry = {"type": "DRUG", "name": "AB-1", "description": "AB-1 is an anti-PD-1 antibody"}
+    record = study("NCT44", [entry], ["Drug: AB-1"])
+    unasked = {name: answer for name, answer in platinum_answers().items() if name != "AB-1"}
+    axes = study_view(record, unasked)["drug_axes"][0]
+    assert (axes["identity"], axes["atc"], axes["targets"]) == ("not_looked_up", ("", []), ["PD-1"])
+    assert study_view(record, platinum_answers())["drug_axes"][0]["atc"] == ("rxclass", ["L01XA"])
+
+
+def test_a_name_whose_answer_holds_axes_is_looked_up():
+    """Positive: names whose cached answers hold axes are not missing."""
+    assert axes_not_looked_up(["pembrolizumab", "gefitinib"], ANSWERS) == []
+
+
+def test_a_name_with_no_axes_is_not_looked_up():
+    """Negative: a name with no answer, an answer with no axes entry or with empty axes is missing, in
+    order."""
+    held = {"a": {"codes": {}, "classes": []}, "b": {"axes": {}}, "pembrolizumab": ANSWERS["pembrolizumab"]}
+    assert axes_not_looked_up(["never asked", "a", "pembrolizumab", "b"], held) == ["never asked", "a", "b"]
+
+
+def _rules():
+    """Stand-ins with the rules' own names and signatures: two whose bodies differ from the rules', and one
+    that differs from axes_not_looked_up only in its docstring and a comment."""
+
+    def axes_not_looked_up(aliases: list[str], answers: dict[str, Any]) -> list[str]:
+        return [alias for alias in aliases if "axes" not in (answers.get(alias) or {})]
+
+    changed_not = axes_not_looked_up
+
+    def axes_as_looked_up(aliases: list[str], missing: list[str], axes: tuple) -> tuple[str, str, list, list]:
+        return axes if not missing else ("not_looked_up", "own_name_not_looked_up", [], [])
+
+    changed_as = axes_as_looked_up
+
+    def axes_not_looked_up(aliases: list[str], answers: dict[str, Any]) -> list[str]:  # noqa: F811
+        """Reworded: the names whose answers hold no axes."""
+        return [alias for alias in aliases if not (answers.get(alias) or {}).get("axes")]  # a comment
+
+    return changed_not, changed_as, axes_not_looked_up
+
+
+def _warrants(reading, name):
+    return [row[-1] for row in sheets(reading, {})[name][1]]
+
+
+def test_changing_a_not_looked_up_rule_changes_the_drug_axes_warrant(monkeypatch):
+    """Positive: replacing axes_not_looked_up or axes_as_looked_up by a different rule changes every Drug Axes
+    warrant, so the warrant commits to the rules that decide its rows."""
+    reading = read_population([first_line("NCT31", "0-1", "AB-1")], platinum_answers())
+    before = _warrants(reading, "Drug Axes")
+    assert before
+    changed_not, changed_as, _reworded = _rules()
+    for name, changed in (("axes_not_looked_up", changed_not), ("axes_as_looked_up", changed_as)):
+        with monkeypatch.context() as patch:
+            patch.setattr(f"TrialLedger.design.{name}", changed)
+            after = _warrants(reading, "Drug Axes")
+        assert len(after) == len(before) and not set(after) & set(before)
+    assert _warrants(reading, "Drug Axes") == before
+
+
+def test_a_reworded_rule_or_another_sheet_leaves_the_warrant(monkeypatch):
+    """Negative: a docstring or comment change to axes_not_looked_up leaves the Drug Axes warrant; changing it
+    leaves the Trials sheet's warrant."""
+    reading = read_population([first_line("NCT31", "0-1", "AB-1")], platinum_answers())
+    axes, trials = _warrants(reading, "Drug Axes"), _warrants(reading, "Trials")
+    changed_not, _changed_as, reworded = _rules()
+    monkeypatch.setattr("TrialLedger.design.axes_not_looked_up", reworded)
+    assert _warrants(reading, "Drug Axes") == axes
+    monkeypatch.setattr("TrialLedger.design.axes_not_looked_up", changed_not)
+    assert _warrants(reading, "Trials") == trials

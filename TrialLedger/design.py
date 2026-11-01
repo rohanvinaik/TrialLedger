@@ -43,7 +43,15 @@ from TrialLedger.profile import (
     occupancy_rows,
 )
 from TrialLedger.provenance import PROVENANCE
-from TrialLedger.reading import axes_aliases, drug_aliases, read_population, study_view
+from TrialLedger.reading import (
+    axes_aliases,
+    axes_as_looked_up,
+    axes_not_looked_up,
+    drug_aliases,
+    drug_axes_view,
+    read_population,
+    study_view,
+)
 from TrialLedger.review import flags_for
 
 DESIGN_NAME = "design.xlsx"
@@ -145,7 +153,15 @@ def sheets(reading: dict[str, Any], answers: dict[str, Any]) -> dict[str, tuple[
     digests = {v["nct"]: v["digest"] for v in views}
     trials_rule = _rule("trials", study_view, resolve, type_criterion, itemize, eligibility_coverage)
     axes_rule = _rule(
-        "drug_axes", rx.drug_axes, rx.alias_role, rx.own_targets, rx.target_alignment, rx.drug_atc
+        "drug_axes",
+        rx.drug_axes,
+        rx.alias_role,
+        rx.own_targets,
+        rx.target_alignment,
+        rx.drug_atc,
+        drug_axes_view,
+        axes_not_looked_up,
+        axes_as_looked_up,
     )
     out: dict[str, tuple[list[str], list[list]]] = {}
 
