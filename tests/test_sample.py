@@ -464,3 +464,10 @@ def test_a_confirmation_sample_records_its_batch_and_declares_no_supplement():
     assert discovery["drawn_from"] == "discovery" and discovery["confirmation_batch"] is None
     assert discovery["balance"]["supplement_per_cell"] == 1
     assert all(pool(t["nct"]) == "discovery" for t in discovery["trials"])
+
+
+def test_a_confirmation_draw_from_no_ids_is_an_empty_draw_from_an_empty_pool():
+    """Positive: no IDs give the pair (no trial drawn, a pool of 0). Negative: never None, a bare list or
+    count, nor a tuple of another length."""
+    result = draw_batch([], 3, "s", "x", 0)
+    assert result == ([], 0) and type(result) is tuple and type(result[0]) is list

@@ -356,3 +356,11 @@ def test_agreement_is_source_grounded_only_with_quotes_at_their_spans():
     assert agreement_kind(TEXT, [read("claude", ALT)]) == "model_review_agreement"
     assert agreement_kind(TEXT, [read("claude", ALT), read("claude", AST)]) == "model_review_agreement"
     assert agreement_kind(TEXT, [read("claude", ALT), read("codex", (70, 99))]) == "model_review_agreement"
+
+
+def test_one_cluster_bounds_at_its_own_pessimistic_rate_and_a_rank_outside_the_draws_is_none():
+    """Positive: one trial with one hit, one miss and one unresolved item has the pessimistic rate 1/3, and
+    the only draw's only rank is that rate. Negative: a rank outside 1..resamples gives None, never a
+    number."""
+    assert clustered_lower_bound((("x", 1, 1, 1),), "abc", 1, 1) == pytest.approx(1 / 3)
+    assert clustered_lower_bound((("x", 1, 1, 1),), "abc", 3, 0) is None

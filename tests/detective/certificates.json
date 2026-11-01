@@ -367,13 +367,13 @@
     "cut_reasons": [],
     "function_digest": "a1bd3fa2b505678e",
     "refusal": "",
-    "standing": "incomplete"
+    "standing": "complete"
   },
   "TrialLedger/entail.py::weakest_status": {
     "cut_reasons": [],
     "function_digest": "1e55eaf76900b3ab",
     "refusal": "",
-    "standing": "incomplete"
+    "standing": "complete"
   },
   "TrialLedger/evaluation.py::agreement_kind": {
     "cut_reasons": [],
@@ -397,7 +397,7 @@
     "cut_reasons": [],
     "function_digest": "759335795616b8df",
     "refusal": "environment_gated:reads entropy via random.Random()",
-    "standing": "incomplete"
+    "standing": "complete"
   },
   "TrialLedger/evaluation.py::complete_representation": {
     "cut_reasons": [],
@@ -766,12 +766,10 @@
     "standing": "complete"
   },
   "TrialLedger/review.py::flags_for": {
-    "cut_reasons": [
-      "nonreproducible_in_process"
-    ],
+    "cut_reasons": [],
     "function_digest": "3bda5186c3bcfa3d",
     "refusal": "",
-    "standing": "ungateable"
+    "standing": "complete"
   },
   "TrialLedger/sample.py::batch_request": {
     "cut_reasons": [],
@@ -795,7 +793,7 @@
     "cut_reasons": [],
     "function_digest": "7a41ec9d1d24ee23",
     "refusal": "environment_gated:reads entropy via random.Random()",
-    "standing": "incomplete"
+    "standing": "complete"
   },
   "TrialLedger/sample.py::holds_cell": {
     "cut_reasons": [],

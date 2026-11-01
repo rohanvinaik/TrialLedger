@@ -432,3 +432,26 @@ def test_an_unresolved_rule_is_never_a_premise():
     beside = decide((unknown, rule("x1", "excluded", A)), A)
     assert beside.result == REFUTED and beside.proof == ("x1",)
     assert decide((rule("r1", "required", A),), A).result == ENTAILED
+
+
+def test_a_status_outside_the_vocabulary_is_refused_by_name():
+    """Positive: proposed, interpolated and known are the vocabulary. Negative: any other word raises exactly
+    ModelError("status_outside_vocabulary"), never another error type nor a bare ModelError."""
+    assert _outcome(weakest_status, ("known", "certain")) == ("ModelError", ("status_outside_vocabulary",))
+    assert weakest_status(("known", "interpolated")) == "interpolated"
+
+
+def test_anything_but_a_proposition_is_refused_by_name():
+    """Positive: Always, Opaque, Not, AllOf, AnyOf and Literal compile. Negative: anything else, a bare string
+    among them, raises exactly ModelError("not_a_proposition"), never another error type, a bare ModelError,
+    or a formula."""
+    assert _outcome(proposition_formula, "A") == ("ModelError", ("not_a_proposition",))
+
+
+def _outcome(function, argument):
+    """What a call does, as a value: its return, or the exact type name and arguments of what it raised, so
+    an assertion (not a crash) tells a ModelError from any other error."""
+    try:
+        return ("returned", function(argument))
+    except Exception as error:  # every error is compared by name and arguments, never passed through
+        return (type(error).__name__, error.args)
