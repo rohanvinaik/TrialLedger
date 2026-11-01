@@ -96,6 +96,12 @@ gather facts and write files. `design.md`'s code-shape table gives each module's
   options for an expert or a model; nothing in it is resolved by TrialLedger (the founder, 2026-10-31).
 - `expectations.py`: declared expectations, observation statuses, conditional rarity, deviation statuses.
 - `nearmiss.py`: near-miss pairs, one known difference under a declared representation.
+- `questions.py`, `transport.py`, `sample.py`, `audit.py` (`openspec/changes/add-targeted-questions`): a
+  targeted question with closed options and a bounded envelope of the record's own text; a local Ollama model
+  behind GSE's contract (named explicitly, digest pinned and re-verified, schema-constrained, temperature 0,
+  budgets, one model loaded at a time and released after the run); a live stratified sample with a hash-reserved
+  confirmation pool; the serial audit loop (`trialledger sample`, `trialledger audit`), one trial at a time.
+  A model answer never becomes a reading.
 - `reading.py`: the population read once (`read_population`: each study's view, the known classes, review
   flags and near-miss pairs), the one producer that `design.py` (design.xlsx) and `symbolic.py` (the
   `resolve` JSON) consume.
@@ -139,7 +145,9 @@ Vulture counts a function named in a table as used, so it cannot see a table ent
 `tests/production_path.py` drives what production does (a two-page pull with a retry and a value a cell
 cannot hold, `verify` of the folder, `profile` of it with RxClass answering for one name and failing for
 another, `profile` of a folder with no record, a live `resolve` of four studies of which two are a near-miss
-pair, `verify` of an unreadable workbook, a pull the server keeps failing), and
+pair, `sample` over every stratum and `audit` of its draw with a fake local model, an audit refused for want of
+a budget and one refused because its model is not installed, `verify` of an unreadable workbook, a pull the
+server keeps failing), and
 the test fails on any function of the package that path does not reach, except the declared ones: the twelve
 proposed checks' gatherers, their four helpers and the eight decisions only they use (dormant until the
 founder approves them; the gatherers are derived from `APPROVED`), the two default progress sinks the CLI

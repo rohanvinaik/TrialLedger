@@ -63,5 +63,5 @@ needs declared overlap handling and inclusion probabilities, and its id lists an
 ## Impact
 
 New modules (`questions.py`, `transport.py`, `sample.py`, `audit.py`), new CLI commands (`trialledger sample`,
-`trialledger audit`), an adjudication workbook. No model call inside `resolve`; no change to any reading's
-derivation, the pull, the workbooks or their verification.
+`trialledger audit`) and `resolve --ask MODEL` (serial, one study at a time), an adjudication workbook. Without
+`--ask`, `resolve` is unchanged; no change to the pull, the workbooks or their verification.

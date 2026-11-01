@@ -294,6 +294,14 @@ about as long as the original write. `profile` writes the same `design.xlsx` as 
 folder, changes none of its files, and refuses a folder whose record no longer matches its digests (`1`) or
 that holds no record (`2`).
 
+**Auditing a reading.** `trialledger sample --seed S --out sample.json` draws, live, a stratified random sample of
+interventional trials across the registry's condition categories (a hashed 30% of trials is reserved for
+confirmation and never drawn). `trialledger audit sample.json --out DIR --model qwen3:8b --budget N` then takes
+the trials one at a time: it reads each live (the record kept), resolves it, writes the questions its reading
+raises (one per typed claim, each with only the criterion's own text and its headings), and asks a local
+[Ollama](https://ollama.com) model each question in turn. The model only grades; its answers never change a
+reading, and every challenged answer goes to a reviewer.
+
 To check the build: `scripts/ci_local.sh` runs the fast gate (`--deep` adds the Detective audit of every
 pinned decision and the vulture scans; it needs local checkouts of Detective and Wesker),
 `.venv/bin/python scripts/push_checks.py install` installs the pre-push hook that runs the gate before every

@@ -80,8 +80,8 @@ trials and establish nothing about other populations.
     random sample of the agreed values, declared in advance, also goes to the human, and the auditor's own miss
     rate, with its interval, is reported beside every estimate. The auditor is a model independent of the one
     that wrote the rules (not Claude), named and versioned in the frozen plan; its prompt and rubric are frozen
-    with it. The human adjudicator is the founder, or a domain expert when one is available; which, is recorded
-    per grade. Sizes follow the adjudicator's capacity: the plan states, before a run, how many trials and agreed
+    with it. The adjudicator (later the same day, the founder's decision): Claude, blind, with Codex second-reading
+    a sample and every disagreement (add-targeted-questions, Decision 12); who adjudicated is recorded per grade. Sizes follow the adjudicator's capacity: the plan states, before a run, how many trials and agreed
     values the human can read and the interval width that buys.
 
 ## Risks / Trade-offs

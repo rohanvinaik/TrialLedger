@@ -84,6 +84,7 @@ def main(
     http: httpx.Client | None = None,
     sleep: Callable[[float], None] = time.sleep,
     rxclass_get: Callable[[str, dict[str, str]], tuple[int, Any]] | None = None,
+    model_http: Callable[..., Any] | None = None,
 ) -> int:
     parser = argparse.ArgumentParser(
         prog="trialledger",
@@ -149,7 +150,46 @@ def main(
         ),
     )
     profile_parser.add_argument("folder", type=Path)
+    sample_parser = commands.add_parser(
+        "sample",
+        help="draw a live, stratified sample of interventional trials for an audit",
+        description=(
+            "Fetch, live and from one registry snapshot, the NCT IDs of interventional trials started "
+            "2010-2025 in each top-level condition category (the registry's derived condition MeSH, a label "
+            "for spread only) and among trials with no condition MeSH; draw a seeded random sample within "
+            "each stratum from the discovery pool (a hash of the NCT ID reserves 30%% for confirmation, "
+            "never drawn here); write the strata, pool sizes, draws, memberships and inclusion probabilities"
+            " as JSON. Ends with 0, written; 1, the registry query failed."
+        ),
+    )
+    sample_parser.add_argument("--per-stratum", type=int, default=6)
+    sample_parser.add_argument("--seed", required=True)
+    sample_parser.add_argument("--out", type=Path, required=True)
+    audit_parser = commands.add_parser(
+        "audit",
+        help="ask a local model targeted questions about a sample's readings, one trial at a time",
+        description=(
+            "For each trial of a sample, in turn: read it live (the record kept under OUT/records), resolve "
+            "it, write its source manifest and its questions (one per typed claim, each with a bounded "
+            "envelope of its own eligibility text), then, with --model, ask a local Ollama model each "
+            "question and write the validated answers. Questions are written before any answer, for blind "
+            "references. Nothing changes a reading. Ends with 0, done; 1, the registry or the model failed; "
+            "2, refused."
+        ),
+    )
+    audit_parser.add_argument("sample", type=Path)
+    audit_parser.add_argument("--out", type=Path, required=True)
+    audit_parser.add_argument(
+        "--model", help="an installed Ollama model, named explicitly (none: questions only)"
+    )
+    audit_parser.add_argument("--budget", type=int, default=0, help="the most model calls this run may make")
+    audit_parser.add_argument("--no-think", action="store_true")
+    audit_parser.add_argument("--limit", type=int, default=0, help="audit only the first N trials")
     args = parser.parse_args(argv)
+    if args.command == "sample":
+        return _sample(args, http=http, sleep=sleep)
+    if args.command == "audit":
+        return _audit(args, http=http, sleep=sleep, rxclass_get=rxclass_get, model_http=model_http)
     if args.command == "resolve":
         return _resolve(args, http=http, sleep=sleep, rxclass_get=rxclass_get)
     if args.command == "verify":
@@ -191,6 +231,74 @@ def main(
         f"{RECORD_NAME}, "
         f"certified) — ClinicalTrials.gov data as of {result.data_timestamp}, API {result.api_version}"
     )
+    return 0
+
+
+def _sample(args, *, http, sleep) -> int:
+    from TrialLedger.ingest import query_ids
+    from TrialLedger.sample import draw_sample
+
+    def ids(query, progress):
+        return query_ids(query, http=http, sleep=sleep, progress=progress)
+
+    try:
+        sample = draw_sample(args.per_stratum, args.seed, ids, progress=lambda m: print(m, file=sys.stderr))
+    except (PullError, RuntimeError) as error:
+        print(f"trialledger: nothing written — {error}", file=sys.stderr)
+        return 1
+    sample["code_commit"] = code_commit()
+    args.out.write_text(json.dumps(sample, indent=1), encoding="utf-8")
+    print(f"{args.out} written ({len(sample['trials'])} trials, data as of {sample['data_timestamp']})")
+    return 0
+
+
+def _audit(args, *, http, sleep, rxclass_get, model_http) -> int:
+    from TrialLedger.audit import run_audit
+    from TrialLedger.transport import LocalModel, TransportError, urllib_http
+
+    sample = json.loads(args.sample.read_text(encoding="utf-8"))
+    model = None
+    if args.model:
+        if args.budget <= 0:
+            print(
+                "trialledger: refused (a model needs --budget, the most calls it may make)", file=sys.stderr
+            )
+            return 2
+        try:
+            model = LocalModel(
+                args.model,
+                model_http or urllib_http,
+                args.out / "answer_cache.jsonl",
+                budget=args.budget,
+                think=not args.no_think,
+            )
+            model.pin()
+        except TransportError as error:
+            print(f"trialledger: refused (model.{error.code})", file=sys.stderr)
+            return 2
+    lookup = {"get": rxclass_get} if rxclass_get else {}
+    cache = Path(os.environ.get("TRIALLEDGER_CACHE", str(rx.USER_CACHE)))
+
+    def fetch(nct):
+        return query_studies({"filter.ids": nct}, http=http, sleep=sleep)
+
+    def classes_for(studies):
+        return rx.load_or_lookup_at(cache, drug_aliases(studies), sleep=sleep, **lookup)
+
+    try:
+        counts = run_audit(
+            sample,
+            args.out,
+            fetch=fetch,
+            classes_for=classes_for,
+            model=model,
+            limit=args.limit,
+            progress=lambda m: print(m, file=sys.stderr),
+        )
+    except PullError as error:
+        print(f"trialledger: audit stopped — {error}", file=sys.stderr)
+        return 1
+    print(f"{args.out}: " + ", ".join(f"{k} {v}" for k, v in counts.items()))
     return 0
 
 

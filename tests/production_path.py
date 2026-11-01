@@ -67,6 +67,68 @@ def near_miss_study(nct: str, ecog: str) -> dict:
     return study
 
 
+def sample_and_audit(scratch: Path, studies: list[dict], rxclass) -> dict[str, int]:
+    """`trialledger sample` over every stratum (id-only pages from one snapshot) and `trialledger audit` of
+    the draw, one trial at a time, with a local model that answers each question and is released at the end.
+    """
+    import httpx
+    from conftest import version
+
+    from TrialLedger import cli
+    from TrialLedger.ingest import API_BASE
+    from TrialLedger.sample import reserved
+
+    by_id = {s["protocolSection"]["identificationModule"]["nctId"]: s for s in studies}
+    drawable = [nct for nct in by_id if not reserved(nct)]
+
+    def route(request: httpx.Request) -> httpx.Response:
+        if request.url.path == "/api/v2/version":
+            return version()
+        params = request.url.params
+        if params.get("fields") == "NCTId":
+            ids = drawable if "Neoplasms" in params.get("filter.advanced", "") else []
+            page = [{"protocolSection": {"identificationModule": {"nctId": nct}}} for nct in ids]
+            return httpx.Response(200, json={"studies": page, "totalCount": len(ids)})
+        nct = params.get("filter.ids", "")
+        return httpx.Response(200, json={"studies": [by_id[nct]], "totalCount": 1})
+
+    registry = httpx.Client(base_url=API_BASE, transport=httpx.MockTransport(route), follow_redirects=False)
+
+    def ollama(method, url, body, timeout):
+        if url.endswith("/api/ps"):
+            return {"models": []}
+        if url.endswith("/api/tags"):
+            return {"models": [{"name": "qwen3:8b", "digest": "a" * 64}]}
+        return {
+            "response": json.dumps({"verdict": "insufficient_context", "quote": ""}),
+            "done_reason": "stop",
+        }
+
+    sample = scratch / "sample.json"
+    codes = {
+        "sample": cli.main(
+            ["sample", "--seed", "s", "--per-stratum", "2", "--out", str(sample)],
+            http=registry,
+            sleep=lambda s: None,
+        )
+    }
+    codes["audit"] = cli.main(
+        ["audit", str(sample), "--out", str(scratch / "audit"), "--model", "qwen3:8b", "--budget", "50"],
+        http=registry,
+        sleep=lambda s: None,
+        rxclass_get=rxclass,
+        model_http=ollama,
+    )
+    codes["audit_no_budget"] = cli.main(
+        ["audit", str(sample), "--out", str(scratch / "nobudget"), "--model", "qwen3:8b"], model_http=ollama
+    )
+    codes["audit_refused"] = cli.main(
+        ["audit", str(sample), "--out", str(scratch / "refused"), "--model", "absent:1b", "--budget", "5"],
+        model_http=ollama,
+    )
+    return codes
+
+
 def main() -> None:
     sys.setprofile(record_call)
     sys.path.insert(0, str(HERE))
@@ -137,6 +199,7 @@ def main() -> None:
         sleep=live.sleep,
         rxclass_get=rxclass,
     )
+    codes |= sample_and_audit(scratch, pair, rxclass)
     broken = scratch / "broken"
     shutil.copytree(out, broken)
     (broken / "review.xlsx").write_bytes(b"not a workbook")

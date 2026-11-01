@@ -381,6 +381,18 @@
     "refusal": "",
     "standing": "complete"
   },
+  "TrialLedger/questions.py::envelope": {
+    "cut_reasons": [],
+    "function_digest": "4b5ca7d7dcd10777",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/questions.py::validate_answer": {
+    "cut_reasons": [],
+    "function_digest": "7319caf3c80f6107",
+    "refusal": "",
+    "standing": "complete"
+  },
   "TrialLedger/reading.py::near_miss_input": {
     "cut_reasons": [],
     "function_digest": "8f6b29edf86ba623",
@@ -396,6 +408,36 @@
   "TrialLedger/review.py::flags_for": {
     "cut_reasons": [],
     "function_digest": "3ef0fd17d483f12e",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/sample.py::draw": {
+    "cut_reasons": [],
+    "function_digest": "b59dc45754e19f31",
+    "refusal": "environment_gated:reads entropy via random.Random()",
+    "standing": "complete"
+  },
+  "TrialLedger/sample.py::inclusion": {
+    "cut_reasons": [],
+    "function_digest": "3697e9a745f9d0c6",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/sample.py::reserved": {
+    "cut_reasons": [],
+    "function_digest": "8c1991d7307c1a3f",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/transport.py::installed_digest": {
+    "cut_reasons": [],
+    "function_digest": "93d9542064651612",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/transport.py::response_text": {
+    "cut_reasons": [],
+    "function_digest": "b533ee209ea3e2f3",
     "refusal": "",
     "standing": "complete"
   },

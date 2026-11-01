@@ -64,19 +64,37 @@ qwen3.8:27b (q4_K_M, q8_0), qwen3.5:35b (MoE), qwen3:8b and others; Qwen3.8-27B 
    retrieval times, seed, code version, membership labels and every resolved record (`resolve --keep`).
 10. **The pilot.** 15–20 trials, 80–120 units across all unit types: a probability sample plus a separately
     labelled challenge set (empty atoms, exceptions, conjunctions, alternatives, cohort scopes, multiple instances,
-    ambiguous time frames) plus the mutations. Configurations: qwen3.8:27b q4_K_M, qwen3.8:27b q8_0, qwen3.5:35b,
-    each with thinking on. Compared per unit type and bank: known errors caught, known omissions caught, correct
+    ambiguous time frames) plus the mutations. Configurations (the founder: a scoped, typed question needs no big
+    model; TriageGeist used an 8B Qwen; a smaller model may do better by not over-reaching; no ceiling reference):
+    qwen3:8b and qwen3.5:4b, thinking on. A probe of six claims on 2026-10-31 (two right, three planted wrong,
+    one a qualified exclusion): qwen3:8b with thinking accepted none of the three wrong claims (~15 s a
+    question); without thinking it accepted two of them (~1.5 s), so thinking stays on unless the pilot shows
+    otherwise. The deciding measure is wrong claims accepted, then correct ones challenged, then time. One
+    model loaded at a time, released after its run (the founder: be kind to memory). Compared per unit type and bank: known errors caught, known omissions caught, correct
     readings challenged, insufficient context, invalid responses, latency, human burden. Criteria are declared before
     the pilot runs; the least costly configuration meeting them is chosen, or the pilot reports insufficient
     evidence. A small pilot finds failures; it does not estimate reliability.
-11. **Answers are not readings.** No model call inside `resolve` or `profile`. When an `assertion_modality` or
-    similar question later feeds the symbolic system (add-scoped-reasoning), its answer is an overrulable value with
-    its provenance, never known.
+11. **Serial, per study, in the production path** (the founder, 2026-10-31: one study to one resolved encoding
+    at a time; batching every call is wasteful of model intelligence). `resolve` reads one study at a time; with
+    `--ask MODEL` it poses that study's targeted questions inline, one by one, only for the gaps its rules cannot
+    close, and records each answer with its provenance as an overrulable value (interpolated), never known;
+    without a model the questions go to the review queue as now. The audit is the same loop over a sampled
+    study. No batching. `profile` never calls a model.
+
+12. **Who labels** (the founder, 2026-10-31, asked how many blind labels he could give): Claude labels. His
+    reasoning, paraphrased: he is not a trial-design expert; Claude has broader domain training, the full registry
+    API and the papers, and is asked a scoped, disciplined question bounded by the symbolic system, with Codex on
+    call; he will spend the time and tokens to do it right. Claude records each blind reference (what the
+    envelope supports, with the quote) before any auditor answer exists for that question. Because Claude also
+    wrote the banks, the references and TrialLedger can share a blind spot: Codex, by the SquishOS recipe, second-
+    reads a seeded random sample of Claude's references and every question where Claude and the auditor disagree,
+    and the Claude-Codex disagreement rate is reported beside every estimate. The founder may spot-check any row.
 
 ## Risks / Trade-offs
 
-- [The adjudicator is the founder, not a trial-design expert] → blind references and named rates make his
-  burden and his judgments visible; an expert can re-adjudicate the same rows later.
-- [Model latency on a laptop] → measured in the pilot; batching a section's questions with slot-keyed output
-  (GSE's batch transport) is a later optimisation once per-question agreement is known.
+- [The references come from the model that wrote the banks] → Codex second-reads a declared sample and every
+  Claude-auditor disagreement; the disagreement rate is reported; an expert can re-adjudicate the same rows.
+- [Model latency on a laptop] → small models, targeted questions only where the rules leave a gap, measured in
+  the pilot; a 27B smoke test (2026-10-31) took about 30 s a question including load, and answered three probes
+  right (a correct ECOG claim, a mutated threshold, a disjunction read as a requirement).
 - [MeSH strata mislabel some trials] → strata are for spread, not for claims about a disease; membership kept.

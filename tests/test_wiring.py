@@ -44,13 +44,16 @@ DORMANT_DECISIONS = {
 DORMANT_HELPERS = {"_dates", "_event_counts", "_event_groups", "_unknown"}
 # Reached by no production path, each for its reason.
 DECLARED = {
-    "ingest.py: _ignore": "pull's default progress sink; the CLI, the only production caller, passes its own",
     "record.py: _ignore": "write_record's default progress sink, likewise",
     "workbook.py: WorkbookError.__init__": "raised only when the read-back differs from the derivation, "
     "which tests/test_workbook.py simulates",
     "classes.py: http_get": "RxClass's network transport; production_path injects a fake, as it does the API",
     "profile.py: mechanism_rows.<locals>.<lambda>": "sorts mechanism rows, and two studies make none; "
     "tests/test_profile.py reaches it",
+    "audit.py: run_audit.<locals>.<lambda>": "run_audit's default progress sink; the CLI passes its own",
+    "sample.py: draw_sample.<locals>.<lambda>": "draw_sample's default progress sink; the CLI passes its own",
+    "transport.py: urllib_http": "the local model's network call; production_path injects a fake, as it does "
+    "the registry and RxClass",
 }
 
 
@@ -74,6 +77,10 @@ def test_the_production_path_ends_as_production_does(production):
         "profile": 0,
         "profile_not_a_record": 2,
         "resolve": 0,
+        "sample": 0,
+        "audit": 0,
+        "audit_no_budget": 2,
+        "audit_refused": 2,
         "verify_unreadable": 1,
         "failed_pull": 1,
     }

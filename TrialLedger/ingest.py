@@ -23,6 +23,7 @@ from TrialLedger import __version__
 API_BASE = "https://clinicaltrials.gov/api/v2"  # spec: servers[0].url
 SPEC_API_VERSION = "2.0.5"  # spec: info.version
 PAGE_SIZE = 100  # spec: pageSize is coerced down to 1,000 if greater
+ID_PAGE_SIZE = 1000  # the API's largest page; an NCT ID alone is a few bytes
 MAX_EMPTY_PAGES = 2  # consecutive empty pages tolerated while a nextPageToken is still offered
 RETRY_BASE_SECONDS = 2.0  # first wait after a failed attempt; doubles with each further failure
 RETRY_CAP_SECONDS = 60.0  # no single wait is longer than this
@@ -370,14 +371,18 @@ def fetch_version(session: Session) -> tuple[str, str]:
     return payload["apiVersion"], payload["dataTimestamp"]
 
 
-def fetch_json_pages(session: Session, query: dict[str, str]) -> tuple[int, list[dict[str, Any]], list[str]]:
-    """Every JSON study for `query`: (totalCount, studies in API order, their NCT IDs). Complete, or raise."""
+def fetch_json_pages(
+    session: Session, query: dict[str, str], fields: str = ""
+) -> tuple[int, list[dict[str, Any]], list[str]]:
+    """Every JSON study for `query`: (totalCount, studies in API order, their NCT IDs). Complete, or raise.
+    With `fields` (the API's projection, e.g. "NCTId"), each study holds only those fields."""
     params = {
         **query,
         "format": "json",
         "markupFormat": "markdown",
         "countTotal": "true",
-        "pageSize": str(PAGE_SIZE),
+        "pageSize": str(ID_PAGE_SIZE if fields == "NCTId" else PAGE_SIZE),
+        **({"fields": fields} if fields else {}),
     }
     studies: list[dict[str, Any]] = []
     seen_tokens: list[str] = []
@@ -495,6 +500,39 @@ def query_studies(
     The live path for production use (`trialledger resolve`): the same complete-or-nothing paging and
     snapshot check as `pull`, without the CSV or any file. Returns (studies, API version, data timestamp).
     """
+    return _query_snapshot(query, "", http=http, sleep=sleep, monotonic=monotonic, progress=progress)
+
+
+def query_ids(
+    query: dict[str, str],
+    *,
+    http: httpx.Client | None = None,
+    sleep: Callable[[float], None] = time.sleep,
+    monotonic: Callable[[], float] = time.monotonic,
+    progress: Callable[[str], None] = _ignore,
+) -> tuple[list[str], str, str]:
+    """Every NCT ID `query` matches, from one registry snapshot — or raise. The same complete-or-nothing
+    paging and snapshot check as `query_studies`, with only the IDs held in memory (for drawing samples).
+    Returns (NCT IDs in API order, API version, data timestamp)."""
+    studies, version, timestamp = _query_snapshot(
+        query, "NCTId", http=http, sleep=sleep, monotonic=monotonic, progress=progress
+    )
+    return (
+        [study["protocolSection"]["identificationModule"]["nctId"] for study in studies],
+        version,
+        timestamp,
+    )
+
+
+def _query_snapshot(
+    query: dict[str, str],
+    fields: str,
+    *,
+    http: httpx.Client | None,
+    sleep: Callable[[float], None],
+    monotonic: Callable[[], float],
+    progress: Callable[[str], None],
+) -> tuple[list[dict[str, Any]], str, str]:
     code, names = check_query(query)
     if code != "ok":
         raise PullError(f"query.{code}", ", ".join(names) or "no query parameters were given")
@@ -507,7 +545,7 @@ def query_studies(
     session = Session(client, sleep=sleep, monotonic=monotonic, progress=progress)
     try:
         before = fetch_version(session)
-        _, studies, _ = fetch_json_pages(session, query)
+        _, studies, _ = fetch_json_pages(session, query, fields)
         after = fetch_version(session)
     finally:
         if http is None:
