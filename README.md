@@ -16,8 +16,8 @@ is wrong.
 
 TrialLedger takes a different approach. It is a tool your AI assistant (ChatGPT, Claude or Gemini) picks up and
 runs. TrialLedger does the work by fixed, checkable rules, and the assistant answers you from what TrialLedger
-built. No language model ever reads or summarizes a trial. It works in two layers: the first gathers the evidence,
-the second designs a trial from it.
+built. No language model abstracts a trial or supplies a fact: every value comes from the registry record or from
+a named rule. It works in two layers: the first gathers the evidence, the second designs a trial from it.
 
 ## Layer one: gathering the evidence
 
@@ -61,10 +61,15 @@ It works the way an experienced trial designer thinks. Most of a protocol is not
 simply correct, because it follows from the question. Much of it is what comparable trials have done, for reasons
 the field has settled. Only a small part calls for judgment. TrialLedger treats each part accordingly.
 
-**What is obviously correct, it builds.** A study of outcomes in pregnancy enrolls only people who can become
-pregnant; a first-line trial enrolls people with no prior therapy for advanced disease; a pediatric study bounds
-the age of its population. These are deductions, not decisions. TrialLedger represents eligibility as precise
-logical statements, derives what follows, shows each step, and flags any requirements that contradict each other.
+**What is obviously correct, it builds.** Much of a design follows from what you have already stated. If the
+outcomes are measured in the pregnant participant herself, the population is people who can become pregnant; a
+study that enrolls partners states a different population, and gets different consequences. If "first-line" means
+no prior systemic therapy for advanced disease, that follows for the eligibility criteria, while treatment given
+earlier in the disease, such as after surgery, stays a separate question. These are deductions from explicit
+premises, not decisions, and TrialLedger never treats a premise as given that you have not stated. It represents
+eligibility as precise logical statements, keeping disease extent, treatment history and the role of the therapy
+apart, derives what follows, shows each step with the premises it rests on, and flags any requirements that
+contradict each other.
 
 **What has been done before, it recommends, with the evidence.** Here TrialLedger works as a recommendation
 engine, using classical methods rather than a language model. It finds the genuinely comparable trials, those
@@ -101,7 +106,7 @@ assembling the full draft with its suggestions, are under way.
 
 ## What TrialLedger will never do
 
-- Let an AI read, summarize or interpret a trial.
+- Let a language model abstract a trial or supply a value as fact.
 - Fill in a value it cannot trace to its source.
 - Hide a gap, a conflict or a failed retrieval.
 - Compare results that are not comparable.
@@ -129,8 +134,9 @@ no longer matches, and `profile` writes the comparison for a saved copy. Each co
 
 **How the rules are tested.** TrialLedger's rules are checked on fresh trials they were not written against.
 `sample` draws a random sample across every disease category; `audit` reads each trial and puts narrow, closed
-questions about its reading to a small local model, which grades and never reads for itself, and every challenge
-goes to a person. A share of the registry is set aside, never looked at during development, for confirming the
+questions about its reading to a small local model. The model sees only the excerpt each question is about and
+grades TrialLedger's reading of it; it never abstracts the trial, its answer never becomes a fact, and every
+challenge it raises goes to a person. A share of the registry is set aside, never looked at during development, for confirming the
 rules once they are frozen.
 
 ## Background
