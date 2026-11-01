@@ -29,15 +29,18 @@ CALLED: set[tuple[str, str]] = set()
 
 def record_call(frame, event, _arg):
     if event == "call" and frame.f_code.co_filename.startswith(str(PACKAGE)):
-        CALLED.add((Path(frame.f_code.co_filename).name, frame.f_code.co_qualname))
+        # keyed by the path within the package, so a subpackage's module never shares a top-level one's key
+        where = Path(frame.f_code.co_filename).relative_to(PACKAGE).as_posix()
+        CALLED.add((where, frame.f_code.co_qualname))
 
 
 def defined() -> set[tuple[str, str]]:
-    """Every function, method and lambda the package defines, by file and qualified name."""
+    """Every function, method and lambda the package and its subpackages define, by the file's path within
+    the package ("record.py", "semantics/loader.py") and qualified name."""
     found: set[tuple[str, str]] = set()
-    for path in sorted(PACKAGE.glob("*.py")):
+    for path in sorted(PACKAGE.rglob("*.py")):
 
-        def walk(node: ast.AST, prefix: str, file: str = path.name) -> None:
+        def walk(node: ast.AST, prefix: str, file: str = path.relative_to(PACKAGE).as_posix()) -> None:
             for child in ast.iter_child_nodes(node):
                 if isinstance(child, (ast.FunctionDef, ast.AsyncFunctionDef)):
                     found.add((file, prefix + child.name))

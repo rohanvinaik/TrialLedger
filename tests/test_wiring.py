@@ -55,6 +55,70 @@ DECLARED = {
     "transport.py: urllib_http": "the local model's network call; production_path injects a fake, as it does "
     "the registry and RxClass",
 }
+# The frozen contracts of add-bank-coverage group 1, which the parallel packages are written against: nothing
+# in production consumes them yet. Each name is declared with the task that will put it on the path; that task
+# removes its names from here.
+FOUNDATIONS = {
+    "until add-bank-coverage 2.1 (each existing bank audited through the contract and reporting by it)": (
+        "semantics/contracts.py",
+        (
+            "_span_problems",
+            "atom_digest",
+            "atom_problems",
+            "from_legacy",
+            "legacy_concept_id",
+            "legacy_result",
+            "result_problems",
+            "slug",
+            "to_legacy",
+        ),
+    ),
+    "until add-bank-coverage 2.1 and 3.x (the banks read under the compiled registry's version; each package "
+    "compiles its fragment)": (
+        "semantics/loader.py",
+        (
+            "RegistryError.__init__",
+            "_entry_problems",
+            "_is_date",
+            "_pairs",
+            "atom_registry_problems",
+            "compile_registry",
+            "fragment_from_data",
+            "load_fragments",
+            "registry_flags",
+            "registry_problems",
+        ),
+    ),
+    "until add-bank-coverage 4.1 (the discovery wave's type balance) and 7.2 (the release manifest)": (
+        "typematrix.py",
+        ("_module", "declared_manifest", "manifest_problems", "study_coordinates", "universe_status"),
+    ),
+    "until add-bank-coverage 7.1 (the confirmation evaluated through the real entry point)": (
+        "evaluation.py",
+        (
+            "_key",
+            "_known_level",
+            "_single_level",
+            "agreement_kind",
+            "at_level",
+            "bounds",
+            "clustered_lower_bound",
+            "complete_representation",
+            "gold_problems",
+            "judge",
+            "match",
+            "miss_rate",
+            "parameter_accuracy",
+            "precision",
+            "precision_group",
+            "rate",
+            "recall",
+            "threshold_verdict",
+            "unit_rates",
+        ),
+    ),
+}
+DECLARED |= {f"{file}: {name}": reason for reason, (file, names) in FOUNDATIONS.items() for name in names}
 
 
 @pytest.fixture(scope="module")

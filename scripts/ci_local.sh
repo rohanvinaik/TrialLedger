@@ -80,7 +80,7 @@ EOF
 import ast
 import pathlib
 
-for path in sorted(pathlib.Path("TrialLedger").glob("*.py")):
+for path in sorted(pathlib.Path("TrialLedger").glob("**/*.py")):
     for node in ast.walk(ast.parse(path.read_text(encoding="utf-8"))):
         if isinstance(node, ast.FunctionDef) and "(pure — pinned)" in (ast.get_docstring(node) or ""):
             print(f"{path}::{node.name}")
