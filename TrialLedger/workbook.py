@@ -1350,6 +1350,14 @@ def _about_rows(record: dict[str, Any], book: Book) -> Iterator[list[Fact]]:
             literal(shown if shown is not None else "not recorded", f"provenance.{key}"),
             literal(""),
         ]
+    for index, entry in enumerate(provenance.get("requested_ids") or []):
+        study = f" (study {entry['study']})" if entry["status"] == "aliased" else ""
+        yield [
+            literal("requested id"),
+            literal(entry["requested"]),
+            literal(f"{entry['status']}{study}", f"provenance.requested_ids[{index}]"),
+            literal(""),
+        ]
     for name, meaning in (
         ("stated", "read from a structured field of the record; the column's source names it"),
         ("computed", "derived by the named rule from the named fields"),

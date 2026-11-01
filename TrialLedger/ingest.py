@@ -12,7 +12,7 @@ import json
 import re
 import time
 from collections.abc import Callable
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from datetime import UTC, datetime
 from typing import Any, cast
 
@@ -43,6 +43,7 @@ RESERVED_PARAMETERS = ("format", "markupFormat", "fields", "countTotal", "pageSi
 _CANONICAL_NCT_ID = re.compile(r"NCT[0-9]{8}")
 _SPEC_NCT_ID = re.compile(r"[Nn][Cc][Tt]0*[1-9][0-9]{0,7}")  # spec: ^[Nn][Cc][Tt]0*[1-9]\d{0,7}$
 _ID_LIST_SEPARATORS = re.compile(r"[,\s]+")  # spec: "comma- and/or space-separated"
+_ID_FILTER_SEPARATORS = re.compile(r"[,|\s]+")  # spec: filter.ids is a comma- or pipe-separated list
 
 
 def check_query(params: dict[str, str]) -> tuple[str, list[str]]:
@@ -79,6 +80,50 @@ def check_query(params: dict[str, str]) -> tuple[str, list[str]]:
         if id_only:
             return "filters_ignored", sorted(id_only)
     return "ok", []
+
+
+def reconcile_ids(requested: str, studies: list[dict[str, Any]]) -> list[dict[str, str]]:
+    """What became of each NCT number a `filter.ids` value asked for (pure — pinned).
+
+    The registry matches a requested number against each study's own NCT number and its aliases, and answers
+    with the study under its own number, so a pull can return fewer studies than were asked for, or studies
+    under other numbers, without saying why. One entry per requested token, in the order given: the token as
+    written, its canonical form ("NCT" and eight digits; empty when malformed), the status, and the NCT
+    number of the study that answered it (empty unless found or aliased). Statuses:
+      found     — a returned study has this number;
+      aliased   — a returned study lists this number among its aliases (nctIdAliases);
+      missing   — no returned study has it or lists it;
+      duplicate — an earlier token named the same number;
+      malformed — not an NCT number in the form the API accepts.
+    """
+    own: dict[str, str] = {}
+    aliases: dict[str, str] = {}
+    for study in studies:
+        identification = study.get("protocolSection", {}).get("identificationModule", {})
+        nct_id = identification.get("nctId", "")
+        own[nct_id] = nct_id
+        for alias in identification.get("nctIdAliases") or []:
+            aliases.setdefault(alias, nct_id)
+    entries: list[dict[str, str]] = []
+    seen: set[str] = set()
+    for token in _ID_FILTER_SEPARATORS.split(requested):
+        if not token:
+            continue
+        if not _SPEC_NCT_ID.fullmatch(token):
+            entries.append({"requested": token, "id": "", "status": "malformed", "study": ""})
+            continue
+        canonical = "NCT" + token[3:].lstrip("0").zfill(8)
+        if canonical in seen:
+            status, study = "duplicate", ""
+        elif canonical in own:
+            status, study = "found", canonical
+        elif canonical in aliases:
+            status, study = "aliased", aliases[canonical]
+        else:
+            status, study = "missing", ""
+        seen.add(canonical)
+        entries.append({"requested": token, "id": canonical, "status": status, "study": study})
+    return entries
 
 
 def classify_response(
@@ -285,6 +330,8 @@ class Pull:
     total_count: int
     studies: list[dict[str, Any]]
     csv_text: str
+    # What became of each NCT number in `filter.ids` (reconcile_ids); empty when the query names none.
+    requested_ids: list[dict[str, str]] = field(default_factory=list)
 
 
 def _ignore(_message: str) -> None:
@@ -612,4 +659,5 @@ def pull(
         total_count=total,
         studies=studies,
         csv_text=csv_text,
+        requested_ids=reconcile_ids(query["filter.ids"], studies) if "filter.ids" in query else [],
     )

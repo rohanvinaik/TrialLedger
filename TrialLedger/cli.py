@@ -308,6 +308,12 @@ def main(
             f"spec/ctg-oas-v2.yaml describes {SPEC_API_VERSION}",
             file=sys.stderr,
         )
+    for entry in result.requested_ids:
+        if entry["status"] != "found":
+            answered = f", answered by {entry['study']}" if entry["study"] else ""
+            print(
+                f"trialledger: requested {entry['requested']}: {entry['status']}{answered}", file=sys.stderr
+            )
     stamp = result.retrieved_at.replace("-", "").replace(":", "")
     out_dir: Path = args.out or Path(f"trialledger_{stamp}")
     try:

@@ -114,6 +114,8 @@ def write_record(pull: Pull, out_dir: Path, *, progress: Callable[[str], None] =
             "code_root": CODE_ROOT,
             "code_commit": code_commit(),
         }
+        if pull.requested_ids:
+            provenance["requested_ids"] = pull.requested_ids
         provenance.update(digests(provenance, pull.studies, spreadsheet))
         record = {"provenance": provenance, "studies": pull.studies}
         (staging / JSON_NAME).write_text(

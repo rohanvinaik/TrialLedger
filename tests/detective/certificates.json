@@ -555,6 +555,12 @@
     "refusal": "",
     "standing": "complete"
   },
+  "TrialLedger/ingest.py::reconcile_ids": {
+    "cut_reasons": [],
+    "function_digest": "80709cfa64595907",
+    "refusal": "",
+    "standing": "complete"
+  },
   "TrialLedger/ingest.py::retry_delay": {
     "cut_reasons": [],
     "function_digest": "02339b635b0b7036",
