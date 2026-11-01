@@ -32,12 +32,19 @@ PROBES = {
 }
 PROBE_TIMEOUT_S = 8.0
 MODES = ("direct", "relay", "unsupported_python", "missing_dependency", "folder_not_writable")
+# Each step names only commands that exist today. `trialledger landscape` and the relay through next.json
+# (add-agent-operation 3.2 and 4.2) replace the first two when they land.
 NEXT_STEP = {
-    "direct": "Run `trialledger landscape` with the request; TrialLedger fetches from the registry itself.",
+    "direct": (
+        "Run `trialledger pull` with the registry's search parameters for a certified copy of every matching "
+        "study, or `trialledger resolve` for the criteria read study by study (see `trialledger <command> "
+        "--help`); TrialLedger fetches from the registry itself."
+    ),
     "relay": (
-        "Run `trialledger landscape` with the request and `--run <folder>`. This process cannot reach the "
-        "registry or RxNav, so the run writes next.json: fetch each URL it names into the file it names, "
-        "with your own fetch tool, then run the same command again, until it reports complete."
+        "This process cannot reach the registry or RxNav, and the relay through which you would fetch for "
+        "TrialLedger is not built yet. If only RxNav is unreachable, `trialledger pull` still works (it "
+        "needs only the registry); otherwise tell the person TrialLedger cannot fetch from this sandbox "
+        "yet. Do not fetch registry records yourself in its place."
     ),
     "unsupported_python": "Install Python 3.12 or later (with uv, for example), then TrialLedger again.",
     "missing_dependency": "Install TrialLedger with its dependencies: pip install the repository.",

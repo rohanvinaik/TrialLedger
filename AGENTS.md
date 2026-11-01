@@ -81,7 +81,9 @@ TrialLedger runs in your code sandbox. It needs Python 3.12 or later.
 1. **Install it** from this repository: `pip install` the repository's address (or `uv tool install` it).
 2. **Check what your sandbox can do:** `trialledger doctor` prints, as JSON, whether this sandbox can reach
    ClinicalTrials.gov and RxNav, and the next step. Some chat sandboxes block programs from reaching the
-   internet; the next step then explains how you fetch the data for TrialLedger.
+   internet. A relay through which you fetch the data for TrialLedger is being built; until it lands, a
+   sandbox that cannot reach the registry cannot run TrialLedger, and the next step says so. Do not fetch
+   registry records yourself in its place.
 3. **Turn the person's question into a query.** Today, `trialledger resolve` takes the registry's own search
    parameters, for example:
 
