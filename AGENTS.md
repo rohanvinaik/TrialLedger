@@ -54,7 +54,8 @@ coherence engine (typing, each trial's design coordinates, the cross-trial profi
 `openspec/changes/add-design-surprise`, the epistemic statuses, scoped assertions and indication gating in
 `openspec/changes/add-scoped-reasoning`, the targeted questions a local model answers (the audit among them)
 in `openspec/changes/add-targeted-questions`, and the scoped-assertion layer (eligibility as scoped constraints
-with entailment and proof-bearing projections; Codex's draft reconciled) in `openspec/changes/add-scoped-assertions`; the publication parser is designed in `docs/THEORY_OF_THE_CASE.md` and
+with entailment and proof-bearing projections; Codex's draft reconciled) in `openspec/changes/add-scoped-assertions`, and banks for every declared trial type (registry,
+packages, contextual resolution, evaluation, confirmation) in `openspec/changes/add-bank-coverage`; the publication parser is designed in `docs/THEORY_OF_THE_CASE.md` and
 the archived change's `design.md`. The README explains the system to
 its clinical readers.
 

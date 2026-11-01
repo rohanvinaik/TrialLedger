@@ -27,7 +27,8 @@ trials and establish nothing about other populations.
    trial only when every eligible branch in scope entails it. Absence has three states: a same-scope contradiction;
    a same-scope assertion of absence (the only known negative); nothing found (at most a named default
    assumption).
-4. **Indication gates the rules** (harmonizing's organism gate). A coordinate of its own, resolved from the
+4. **Indication gates the rules** (harmonizing's organism gate; revised 2026-11-01 by add-bank-coverage Decision 4:
+   indication disambiguates and specializes, never suppresses an explicit eligibility mention). A coordinate of its own, resolved from the
    literal `conditions`, the record's own disease assertions in eligibility and title, and the derived MeSH as a
    lower-priority source whose disagreement is a named conflict. Each bank and relation declares the indications
    it applies to (AJCC 8th lung staging: NSCLC; the NSCLC setting vocabulary: NSCLC); outside them it is
