@@ -63,3 +63,12 @@ The founder, 2026-11-01: the next priority, built to completion.
 
 - [ ] 6.1 `trialledger edits`: workbook edits as user assertions
 - [ ] 6.2 The stdio MCP adapter over `doctor`, `landscape`, `record`
+
+## 7. Layer-one acceptance
+
+- [ ] 7.1 Twenty trials, chosen and written down before any comparison is made, diverse by phase, status,
+      study type, results posted or not, sponsor class and record size (one with aliases among them); for
+      each, an independent reader compares every field of `record.xlsx` and `review.xlsx` against the
+      registry's own page, field by field, and every difference is recorded with its cause. `verify` proves a
+      value derives from the record by the code; this establishes that the code maps each field faithfully.
+      The result is reported as it falls, differences included.

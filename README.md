@@ -1,7 +1,7 @@
 # TrialLedger
 
-**Gives an AI assistant real command of clinical trial data: every relevant study gathered and verified, and a
-new trial designed from that evidence.**
+**Gives an AI assistant real command of clinical trial data: every study matching a search gathered and verified,
+and a new trial designed from that evidence.**
 
 Designing a clinical trial starts with what has already been done. Which trials have tested this drug, this class
 of drugs, this disease? Whom did they enroll and exclude, what did they measure and when, and what happened? The
@@ -45,13 +45,16 @@ and it holds itself to the standards of clinical data management:
   This matters: only about 13% of registered studies have posted results.
 - **Planned is never reported.** An outcome a trial registered is what it meant to measure, never evidence that it
   worked.
-- **Records are checked against themselves.** A completed study should not carry an estimated completion date; no
-  adverse event can affect more people than were at risk. Contradictions are raised as queries, never quietly
-  corrected.
+- **Records are checked against themselves.** A completed study should not carry an estimated completion date; a
+  multi-site study cannot be other than recruiting while one of its sites is recruiting. Contradictions are raised as
+  queries, never quietly corrected.
 - **Complete or nothing.** If any part of a retrieval fails, nothing is presented as finished.
 
-**Status: working.** This layer runs end to end on the live registry today. Packaging it as a single step your
-assistant takes from a chat app is being finished now.
+**Status: working.** This layer runs end to end on the live registry today. It gathers every study that matches
+the search it is given, which is not the same as every study relevant to your question: today the search is
+stated in the registry's own terms (a condition, an intervention, a status, a phase), and searching by drug
+class, mechanism or family of diseases through the National Library of Medicine's vocabularies is being
+finished, along with packaging the whole as a single step your assistant takes from a chat app.
 
 ## Layer two: designing the trial
 
@@ -126,18 +129,20 @@ uv run trialledger resolve query.cond="non-small cell lung cancer" filter.overal
     --json reading.json --out design.xlsx
 ```
 
-`resolve` queries the registry live and writes the reading of every matching trial, and the comparison across
-them, as a record and a spreadsheet. To keep a stored, independently verifiable copy instead, `pull` saves the
-registry's records with their spreadsheets, `verify` re-derives every value in a saved copy and names anything that
-no longer matches, and `profile` writes the comparison for a saved copy. Each command explains its options with
-`--help`.
+The two main commands differ in what they promise. `pull` saves the registry's own records with their
+spreadsheets, certified: each value is a field of the record, and `verify` later re-derives every value in the
+saved copy and names anything that no longer matches. Use it whenever a faithful transcription is what you need.
+`resolve` queries the registry live and writes the rules' reading of every matching trial, and the comparison
+across them, as a record and a spreadsheet; each reading names the words it read, but the reading is
+interpretation, and no command certifies it. `profile` writes the comparison for a saved copy. Each command
+explains its options with `--help`.
 
 **How the rules are tested.** TrialLedger's rules are checked on fresh trials they were not written against.
 `sample` draws a random sample across every disease category; `audit` reads each trial and puts narrow, closed
 questions about its reading to a small local model. The model sees only the excerpt each question is about and
 grades TrialLedger's reading of it; it never abstracts the trial, its answer never becomes a fact, and every
-challenge it raises goes to a person. A share of the registry is set aside, never looked at during development, for confirming the
-rules once they are frozen.
+challenge it raises goes to a person. A share of the registry is set aside, never looked at during development,
+for confirming the rules once they are frozen.
 
 ## Background
 
