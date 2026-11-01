@@ -157,7 +157,17 @@ gather facts and write files. `design.md`'s code-shape table gives each module's
   `tests/test_wiring.py` with the task that will): `semantics/` (`contracts.py`: the bank contract, `Atom`,
   `Span`, `Finding`, `BankResult` and the legacy adapter; `loader.py`: predicate families, `ConceptEntry`
   with `defined_on`, fragments, `registry_problems`, `registry_flags`, `compile_registry`, `UNVERSIONED`
-  and `LEGACY_FRAGMENTS`; `fragments/nsclc_legacy.py`, the seed of the existing banks' concepts),
+  and `LEGACY_FRAGMENTS`; `fragments/nsclc_legacy.py`, the seed of the existing banks' concepts, audited by
+  2.1), `semantics/parsers.py` (add-bank-coverage 3.1, dormant until 3.2-3.5: `read_number`,
+  `read_comparator`, `read_unit`, `read_reference`, `read_duration`, `read_window`, `read_interval`, each
+  over the original criterion text into a `Parse` that is parsed, ambiguous or abstained, every value a
+  string, spans half-open; a unit keeps its writing with its UCUM form or is named unmapped, a slash compound
+  only of unit symbols; a reference is never a unit, and a factor after it, a number before a factor or digits
+  no unit or reference reads, and a window on both sides of its anchor are abstained), and in `loader.py` the
+  three refusals the parsers make possible, `unsupported_unit` (`unit_problems`), `invalid_span`
+  (`example_problems`) and `nondeterministic_fragment` (`nondeterminism_problems`; every fragment file
+  loaded twice, a NaN alike to a NaN), over a concept's optional `units` and `examples`; the seed's registry
+  version is unchanged,
   `typematrix.py` (the supported-type axes, `study_coordinates`, `universe_status`, the manifest),
   `evaluation.py` (three levels kept apart through `at_level`; `GoldRecord` with each annotator's `Read` and
   the agreement kind; `THRESHOLDS`, `THRESHOLD_MEASURE`, `MINIMUM_DENOMINATOR` and a seeded cluster
@@ -168,7 +178,15 @@ gather facts and write files. `design.md`'s code-shape table gives each module's
   `UNRESOLVED_RULE` explicit and never a premise; an unknown branch position is unresolved) and entailment
   with its six results, minimal proofs and blockers, the weakest premise status, proposed never a premise.
   A negative qualified literal is NOT (base AND qualifiers); an enum set's `in`/`not_in` are membership
-  variables (`not_in` holds none); a literal's time identity excludes certainty.
+  variables (`not_in` holds none); a literal's time identity excludes certainty. `predicates.py`
+  (`add-scoped-assertions` 1.2), dormant until its 2.1: the first predicate registry, each of the 91 seed
+  concepts mapped to its predicate kind, value kind, unit and subject (the participant for all of them), the
+  key the concept id itself, versioned by the mapping's SHA-256 (`VERSION`), each entry with its concept's
+  authority and its fragment's rule exposure; twelve concepts are `unresolved` with their reasons
+  (`UNRESOLVED`); `mapping_problems` refuses a mapping that disagrees with the concept registry, including a
+  value kind reading an operand the concept does not declare; `atom_literal` is the literal a mapped atom
+  becomes, a unit kept as written and never replaced by the mapping's own, an age with its lower bound alone
+  not kept (the bank keeps no comparator), every non-operand param named back unread.
 - The coherence engine (`openspec/changes/add-coherence-engine`), outside the review and record workbooks'
   derivation and code root: `criteria.py` (eligibility itemized into headings, criteria and prose, exact
   spans; `eligibility_coverage`: content, sectioning and each section's coverage evidence, abbreviation
@@ -344,7 +362,8 @@ it. The proofs, so that they survive the machine:
   unresolved), so the `crosswalk` basis of the aligned reading gives no class yet. The pure decisions of
   `classes.py` and `modality.py` are converged (2026-11-01).
 - Three decisions Detective cannot measure: `sample.balance_rows`, `criteria.eligibility_coverage` and
-  `semantics.loader.fragment_from_data` end converge (and audit) INCOMPLETE with `outcome_snapshot_failed`.
+  `semantics.loader.fragment_from_data` end converge (and audit) INCOMPLETE with `outcome_snapshot_failed`
+  (`fragment_from_data` changed again in 3.1, the units and examples keys, and still ends so).
   In its witness search Detective deep-copies each observed return (`Detective/equivalence.py`, `_outcome`);
   a synthesized argument carried into the returned value can fail that copy with TypeError, and one such
   failure stops the whole run rather than the one witness. A defect of Detective, for its own repository;
@@ -360,6 +379,34 @@ it. The proofs, so that they survive the machine:
 - Mechanism signals (the founder, 2026-11-01): every comparison that holds at some reading is listed,
   below-support and unresolved rows included; weak but present signals are shown, to be pruned when the
   expansion is done, never hidden now.
+- The existing banks audited (`add-bank-coverage` 2.1, 2026-11-01; report
+  `openspec/changes/add-bank-coverage/audit-existing-banks.md`). Keep or retire follows B7 rule by rule: a rule or
+  branch with no reading found right is retired (it abstains); a rule whose wrong readings no narrow guard can
+  separate before the shared parsers or the assertion layer is kept, its wrong readings counted. Retired, with the
+  founder's assent of 2026-11-01: the performance-status single-value branch (all 8 of its NSCLC readings wrong; 8
+  criteria now untyped, 7 Profile and 5 Mechanism rows of design.xlsx removed). Kept with counted defects: the age
+  bank (21 of 258 NSCLC atoms invented, 1 invented and 2 incomplete of 7 on the pilot), the prior-lines progression
+  rule (20 of 117), the conditions bank's criterion-wide grade (25 registry problems). `named_conditions` reads a
+  window in years overlapping the age bank's span as that age, never a condition's window. The lung gates of the
+  resection and histology rules suppress explicit mentions against B3 (a breast trial's resection on the pilot)
+  until 5.1 and 6.1: a standing exception for the founder to accept.
+- The shared parsers (`add-bank-coverage` 3.1, 2026-11-01) leave questions. For the founder: whether "109/L",
+  "1012/L" or "103/uL", where the registry's text lost a superscript, are read as 10^9/L, 10^12/L or 10^3/uL
+  (today no unit, and a bound before them is abstained), and how "100,000/mm3" and every other single grouping mark
+  before three digits are read (ambiguous until a declared domain rule). For `contracts.py`'s owner: the span role
+  `reference`, which a parse gives and `contracts.SPAN_ROLES` does not hold, and an NCT id and record version on
+  `Example`, which Decision 10's fixtures cite. For 3.3, each with its source: the reference forms not held
+  ("ULRR", "upper limit of reference range", "-fold ULN") and the closed set of slash-compound unit symbols
+  ("beats/min", "units/kg", "cells/HPF" abstain today). `read_window` abstains on "up to N" with no direction while
+  `time_point_role` reads it as a window in an outcome's time frame: 5b.1 reconciles them. A caller reads a
+  comparator from its phrase's head.
+- The predicate registry (`add-scoped-assertions` 1.2) fixes interpretations for the founder's ruling: per-concept
+  predicate kinds not stated by Decision 2 (exposure for smoking and live vaccines; medication_use for
+  immunosuppressants, anticoagulants and interacting medication; procedure_event for recent surgery and organ
+  transplant; disease_attribute for measurable disease and CNS metastases), value kinds and cardinality (ECOG,
+  stage and prior lines single-valued enums; extent a member set), and `FAMILY_VALUE_KINDS`. Predicate kinds the
+  vocabulary lacks (an undertaking, a capability, availability, study participation, a treatment role) leave their
+  concepts unresolved.
 - Comparable posted results (`add-coherence-engine` 5.3) wait on the endpoint-class bank (2.2); the residual
   (about 70% of criteria in the NSCLC population) decides the next banks (2.1b).
 

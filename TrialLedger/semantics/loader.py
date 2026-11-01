@@ -99,8 +99,9 @@ _DATE = re.compile(r"[0-9]{4}-[0-9]{2}-[0-9]{2}")
 # The explicit mark of a scale whose source edition is not pinned: never a version, never borrowed from a
 # fragment's own version. Accepted, and flagged, only in a legacy fragment.
 UNVERSIONED = "unversioned"
-# Fragments that predate the contract, whose entries may carry UNVERSIONED scales until they are audited
-# (add-bank-coverage 2.1). Declared here, never by a fragment of itself.
+# Fragments that predate the contract, whose entries may carry UNVERSIONED scales. Audited by
+# add-bank-coverage 2.1, which routed the scale's source edition to 3.3. Declared here, never by a fragment of
+# itself.
 LEGACY_FRAGMENTS = ("nsclc_legacy",)
 
 Problem = tuple[str, str, str]  # (code, subject, detail)
