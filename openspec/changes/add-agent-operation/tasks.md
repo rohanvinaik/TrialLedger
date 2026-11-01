@@ -8,7 +8,10 @@ The founder, 2026-11-01: the next priority, built to completion.
       page of 1,000, one full study record, an RxClass classMembers answer) and reports, per URL, whether it
       arrived, its size, whether it parses whole as JSON; and whether its Python reaches them directly. The relay
       mode's page sizes and the entry point's instructions are set from what arrives; a vendor whose agent can
-      neither fetch nor reach them is named unsupported in the entry point, never worked around.
+      neither fetch nor reach them is named unsupported in the entry point, never worked around. Also, per
+      vendor, whether the agent can fetch the repository itself from GitHub (ChatGPT's code container is
+      reported to reach package registries through a proxy but not other hosts); if it cannot, publishing the
+      package to PyPI is the founder's decision.
 
 ## 1. The record contract
 
@@ -32,14 +35,28 @@ The founder, 2026-11-01: the next priority, built to completion.
 
 ## 4. The operation and the workbook
 
-- [ ] 4.1 `trialledger doctor` (capability check as JSON, mode decided)
+- [x] 4.1 `trialledger doctor` (capability check as JSON, mode decided)
+
+  2026-11-01: `TrialLedger/doctor.py`. `report` gathers the facts (Python version and support, each
+  dependency's version, a short GET to clinicaltrials.gov, rxnav.nlm.nih.gov and github.com, a write-and-remove
+  test of the run folder); the pure decision `run_mode` names the mode: `direct`, `relay`, or why no run can
+  start (`unsupported_python`, `missing_dependency`, `folder_not_writable`, in that order), converged COMPLETE
+  (67/67); each mode carries the agent's next step. `trialledger doctor [--run DIR]` prints the report as JSON
+  and ends 0 when a run can start, 2 when it cannot; the probe is injectable (`cli.main(probe_get=...)`), and
+  the production path runs it as a sandbox where RxNav is blocked (relay).
 - [ ] 4.2 `trialledger landscape` (request → run folder → record, workbook, manifest)
 - [ ] 4.3 `landscape.xlsx`: the design workbook with Scope, Manifest and Study sheets
 
 ## 5. The agent entry point
 
 - [ ] 5.1 `SKILL.md` and the README's "For an agent" section, one procedure
-- [ ] 5.2 Packaging for a one-line install from the repository (package data, entry point, no compiler)
+- [x] 5.2 Packaging for a one-line install from the repository (package data, entry point, no compiler)
+
+  2026-11-01, measured: installed into a fresh Python 3.12 environment from the repository (`uv pip install
+  <path>`; httpx and openpyxl and their pure-Python dependencies, no compiler), the CLI runs, the registry
+  tables and the seed fragment load from the installed package, and a live `resolve` of NCT04852770 run
+  outside the repository writes its JSON and workbook. At runtime the package reads only its own files.
+  Left: the same from the GitHub URL once the repository is public, and in each vendor's sandbox (0.1, 5.3).
 - [ ] 5.3 End to end with a real agent per vendor, in its app, relay mode where its sandbox needs it
 
 ## 6. Edits and the MCP adapter

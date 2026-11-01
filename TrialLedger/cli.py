@@ -90,6 +90,7 @@ def main(
     model_http: Callable[..., Any] | None = None,
     git: Callable[..., str] | None = None,
     ledger: Path | None = None,
+    probe_get: Callable[..., Any] | None = None,
 ) -> int:
     parser = argparse.ArgumentParser(
         prog="trialledger",
@@ -101,6 +102,23 @@ def main(
         ),
     )
     commands = parser.add_subparsers(dest="command", required=True)
+    doctor_parser = commands.add_parser(
+        "doctor",
+        help="check what this sandbox can do before a run (an agent runs this first)",
+        description=(
+            "Report, as JSON, what this sandbox can do: the Python version, the dependencies, whether "
+            "clinicaltrials.gov, rxnav.nlm.nih.gov and github.com answer from this process, and whether the "
+            "run folder is writable; and the mode a run will use: direct (TrialLedger fetches), relay (the "
+            "agent fetches the URLs TrialLedger names), or why no run can start, with the next step. Changes "
+            "nothing. Ends with 0, a run can start; 2, it cannot."
+        ),
+    )
+    doctor_parser.add_argument(
+        "--run",
+        type=Path,
+        default=Path("trialledger-run"),
+        help="the run folder to check (default ./trialledger-run)",
+    )
     resolve_parser = commands.add_parser(
         "resolve",
         help="resolve a live query's studies to their symbolic reading, without saving the records",
@@ -253,6 +271,8 @@ def main(
         help="also draw from the questions of trials drawn as a balance supplement (default: sample only)",
     )
     args = parser.parse_args(argv)
+    if args.command == "doctor":
+        return _doctor(args.run, probe_get)
     if args.command == "pilot":
         return _pilot(args, model_http=model_http)
     if args.command == "sample":
@@ -322,6 +342,14 @@ def _inspected_list(path: Path) -> dict[str, Any]:
     except OSError:
         digest = ""
     return {"path": str(path), "sha256": digest, "ncts": inspected_ids(_read_json(path))}
+
+
+def _doctor(folder: Path, probe_get: Callable[..., Any] | None) -> int:
+    from TrialLedger.doctor import report
+
+    found = report(folder, probe_get)
+    print(json.dumps(found, indent=1))
+    return 0 if found["mode"] in ("direct", "relay") else 2
 
 
 def _sample(args, *, http, sleep, git, ledger) -> int:

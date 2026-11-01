@@ -226,6 +226,7 @@ def production():
 
 def test_the_production_path_ends_as_production_does(production):
     assert production["codes"] == {
+        "doctor": 0,
         "pull": 0,
         "verify": 0,
         "profile": 0,

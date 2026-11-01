@@ -318,7 +318,15 @@ def main() -> None:
     scratch = Path(tempfile.mkdtemp())
     out = scratch / "run"
     query = f"filter.ids={','.join(ids)}"
-    codes = {"pull": cli.main(["pull", query, "--out", str(out)], http=api.client(), sleep=api.sleep)}
+
+    def sandbox(url, **kwargs):
+        # the capability check in a chat app's sandbox: the registry and GitHub answer, RxNav is blocked
+        if "rxnav" in url:
+            raise ConnectionRefusedError("egress blocked")
+        return httpx.Response(200)
+
+    codes = {"doctor": cli.main(["doctor", "--run", str(scratch / "doctor")], probe_get=sandbox)}
+    codes["pull"] = cli.main(["pull", query, "--out", str(out)], http=api.client(), sleep=api.sleep)
     codes["verify"] = cli.main(["verify", str(out)])
 
     def rxclass(url, params):

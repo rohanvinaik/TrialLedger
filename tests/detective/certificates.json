@@ -345,6 +345,12 @@
     "refusal": "",
     "standing": "complete"
   },
+  "TrialLedger/doctor.py::run_mode": {
+    "cut_reasons": [],
+    "function_digest": "95ab449240e2dd15",
+    "refusal": "",
+    "standing": "complete"
+  },
   "TrialLedger/eligibility.py::split_eligibility": {
     "cut_reasons": [],
     "function_digest": "4acac92198cf2482",

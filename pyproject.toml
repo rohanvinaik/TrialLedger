@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "TrialLedger"
 dynamic = ["version"]
-description = "Pull ClinicalTrials.gov study records through the official API into a record, the registry's spreadsheet and a certified review workbook: complete, or nothing written."
+description = "A tool AI assistants use for clinical trials: every relevant ClinicalTrials.gov study gathered into a verified record and spreadsheet, and a trial designed from that evidence. No language model abstracts a trial or supplies a fact."
 readme = "README.md"
 requires-python = ">=3.12"
 authors = [{ name = "Rohan Vinaik" }]
