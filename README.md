@@ -3,12 +3,45 @@
 **Trial registry data, abstracted the way a clinical data manager would: every value from source, every
 inconsistency queried, nothing invented.**
 
-TrialLedger reads ClinicalTrials.gov through the registry's official API and produces files a person can
-open, check and rely on: the complete record of every study a question matches, and a review workbook laid
-out around what study design needs: population, eligibility, endpoints and time points, results, safety.
-Every value it shows can be traced to the field of the registry record it came from or to a named rule
-applied to such fields, and carries a warrant that lets anyone re-derive it. What cannot be traced is shown
-as unresolved. Nothing is filled in by guesswork, and no AI system reads or summarizes the trials.
+TrialLedger is a tool an AI agent picks up to work with clinical trials. Point an agent (in ChatGPT, Claude or
+Gemini) at this repository and it can carry out two operations for a person who asks it about trials: the
+first does the busywork of gathering what the registry holds; the second uses that to design a trial.
+
+## The two operations
+
+### 1. The landscape: every relevant trial, gathered and verified
+
+Someone asks about a drug, a drug class, a mechanism, a disease or a disease class, or any other way people
+think about a group of trials. TrialLedger finds every matching study on ClinicalTrials.gov and turns the lot
+into a record of truth: for each study, the population, the inclusion and exclusion criteria, the line of
+therapy, the outcome measures and their time points, the biomarkers and the role each plays, efficacy and
+safety where results were posted, the exploratory measures; and, across the studies, which criteria are
+standard, which exclusions follow the drug's mechanism, which settings no trial occupies. Every value traces
+to the registry field it came from or to the named rule that derived it, and says how it is known. The agent
+answers the person from that record, and hands them the same content as a spreadsheet to read, edit and share.
+
+This is the work a person otherwise does by opening hundreds of registry pages one at a time and copying
+their fields by hand, for every question. **Status: functional.** It runs end to end today on live registry
+data; making it a single operation an agent runs from a chat app is being finished now.
+
+### 2. The design: a trial built from that record
+
+Given what someone wants to test, TrialLedger builds the trial itself, by symbolic reasoning over the
+landscape, not by a language model: it inherits the criteria comparable trials share, applies the exclusions a
+drug's mechanism calls for, derives what follows from the question by logic (a study of outcomes in pregnancy
+enrolls only people who can be pregnant), chooses endpoints and time points from comparable trials, positions
+the design against what has and has not been tried, and takes event rates and effect sizes from comparable
+posted results. Each element of the design carries its warrant; what the rules leave open comes back as a short
+list of closed questions.
+
+**Status: about half built.** The reasoning it rests on works end to end on a test case, Phase 3 trials in
+non-small cell lung cancer, as a demonstration of the thesis: standard criteria, mechanism-linked exclusions,
+unoccupied settings, near-miss pairs that isolate one design choice, declared expectations and their
+deviations, and exact logical entailment over eligibility. Extending the reasoning to every kind of trial and
+assembling it into a full draft design are being built.
+
+Throughout, nothing is filled in by guesswork, what cannot be traced is shown as unresolved, and no AI system
+reads or summarizes a trial: the agent reads the record TrialLedger built.
 
 ## Why this exists
 
@@ -17,13 +50,15 @@ to summarize the design. The answer reads well and cannot be source-verified. A 
 it does not abstract. It can drop an exclusion criterion, merge two arms, attach a time point to the wrong
 endpoint, report an estimated date as an actual one, or describe results that were never posted, and
 nothing in the answer tells you which sentence is the wrong one. For a design decision, a fluent answer
-with an unknown error rate is worse than no answer, because it looks finished.
+with an unknown error rate is worse than no answer, because it looks finished. And done properly, by hand,
+the same work takes days for every question.
 
 Clinical research already has the discipline this calls for. Trial data is abstracted from source
 documents, every value is source-verifiable, and edit checks raise queries on values that contradict each
-other before anyone analyzes them. TrialLedger applies the same discipline to the registry itself.
+other before anyone analyzes them. TrialLedger applies the same discipline to the registry itself, and lets an
+agent do the abstracting at the speed of a query.
 
-## What it does today
+## The landscape in detail: what a pull writes
 
 Ask for one study, a list of studies, or every study matching a condition, an intervention, a sponsor, a
 recruitment status or a date range. TrialLedger asks the registry's API and writes a new folder with four
@@ -228,6 +263,8 @@ TrialLedger is built on information theory and data geometry. In practical terms
 
 ## Status
 
+The detail behind the two statuses above, part by part.
+
 | Part | State |
 |---|---|
 | Pulling studies; the record file and the registry's spreadsheet; the completeness guarantees | Built and verified, against the live registry |
@@ -235,9 +272,11 @@ TrialLedger is built on information theory and data geometry. In practical terms
 | The twelve further edit checks | Built and tested; each waits for the founder's approval |
 | Typed criteria, each trial's design coordinates, drug classes and the profile across a pull (`trialledger profile`) | First slice built, on the Phase 3 NSCLC trials of 2015–2024; every relation awaits the founder's approval ([`add-coherence-engine`](openspec/changes/add-coherence-engine/)) |
 | Declared expectations and their deviations, the review queue, near misses, the provenance of every rule (`trialledger resolve`) | First slice built on the NSCLC development trials; confirmation on a population no rule was written against is next ([`add-design-surprise`](openspec/changes/add-design-surprise/)) |
+| Eligibility as scoped assertions, with exact logical entailment (what a trial's criteria require, exclude or leave open) | Object model and entailment built and tested; compiling assertions from criteria text is being built ([`add-scoped-assertions`](openspec/changes/add-scoped-assertions/)) |
+| Typing for every kind of trial (all condition categories, interventions, purposes and phases; children, pregnancy, healthy volunteers) | Contracts, registry and evaluation built; the general packages are being built ([`add-bank-coverage`](openspec/changes/add-bank-coverage/)) |
 | Publication evidence for studies without posted results | Designed |
-| The agent operation: a chat app's agent runs TrialLedger from this repository for a user's question, answers from the record it writes and hands over the workbook | Designed; being built next ([`add-agent-operation`](openspec/changes/add-agent-operation/)) |
-| A draft trial design built symbolically from that record | Designed ([`add-design-synthesis`](openspec/changes/add-design-synthesis/)) |
+| The agent operation: a chat app's agent runs TrialLedger from this repository for a user's question, answers from the record it writes and hands over the workbook | Being built ([`add-agent-operation`](openspec/changes/add-agent-operation/)) |
+| A full draft trial design assembled symbolically from that record | Designed; its reasoning is the parts above ([`add-design-synthesis`](openspec/changes/add-design-synthesis/)) |
 
 ## Running it
 
