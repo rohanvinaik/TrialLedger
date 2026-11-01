@@ -25,7 +25,7 @@ from TrialLedger.questions import (
     question,
     validate_answer,
 )
-from TrialLedger.reading import read_population
+from TrialLedger.reading import effective_section, read_population
 from TrialLedger.transport import LocalModel, TransportError
 
 
@@ -59,9 +59,10 @@ def trial_questions(study: dict[str, Any], view: dict[str, Any]) -> tuple[list[d
             if code != "ok":
                 row["status"] = code
             for number, atom in enumerate(atoms if code == "ok" else []):
-                target = {"nct": nct, "piece": index, "atom": number, "claim": atom_claim(atom, section)}
+                claimed = effective_section(section, atom[3])
+                target = {"nct": nct, "piece": index, "atom": number, "claim": atom_claim(atom, claimed)}
                 target |= {"concept": atom[1], "values": list(atom[2]), "params": [list(p) for p in atom[3]]}
-                target["section"] = section
+                target["section"] = claimed
                 questions.append(question("atom_claim", target, held, ATOM_CLAIM_OPTIONS))
         manifest.append(row)
     for number, (kind, measure, frame, classes, points) in enumerate(view["outcomes"]):

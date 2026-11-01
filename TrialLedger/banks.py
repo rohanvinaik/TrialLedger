@@ -26,7 +26,7 @@ _PS_SCALE = re.compile(
     r"(?i:Eastern (?:Cooperative Oncology|Cancer Cooperative) Group)"
 )
 _PS_EXPR = re.compile(
-    r"(?P<le>(?:≤|<=|\\<=|=<|\\</=)\s*(?P<le_n>[0-5]))"
+    r"(?P<le>(?:≤|<=|\\<=|=\\?<|\\</=)\s*(?P<le_n>[0-5]))"
     r"|(?P<a>[0-5])\s*(?:-|–|to|\\?~)\s*(?P<b>[0-5])"
     r"|(?P<list>[0-5](?:\s*,\s*[0-5])*\s*,?\s*(?:or|and)\s*[0-5])"
     r"|(?<![\d.])(?P<one>[0-5])(?![\d.%])"
@@ -375,8 +375,8 @@ ANALYTES = {
 # Names match in any case; acronyms only as written, so "eGFR" (kidney) is never "EGFR" (the gene).
 _ANALYTE = re.compile("|".join(f"(?P<n{i}>{p})" for i, p in enumerate(ANALYTES.values())), re.IGNORECASE)
 _COMPARATORS = (
-    (r"≥|>=|=>|\\>=|\\>/=|>/=|greater than or equal to|at least|no less than|not less than", "≥"),
-    (r"≤|<=|=<|\\<=|\\</=|</=|less than or equal to|no (?:more|greater) than|not exceed\w*|up to", "≤"),
+    (r"≥|>=|=\\?>|\\>=|\\>/=|>/=|greater than or equal to|at least|no less than|not less than", "≥"),
+    (r"≤|<=|=\\?<|\\<=|\\</=|</=|less than or equal to|no (?:more|greater) than|not exceed\w*|up to", "≤"),
     (r">|\\>|greater than|more than|above|exceeding", ">"),
     (r"<|\\<|less than|below", "<"),
 )
@@ -413,17 +413,29 @@ def organ_function(text: str) -> list[Atom]:
         threshold = _THRESHOLD.search(text, analyte.end())
         if not threshold or threshold.start() - analyte.end() > 40:
             continue
-        comparator = next(
-            sign
-            for pattern, sign in _COMPARATORS
-            if re.fullmatch(pattern, threshold.group("cmp"), re.IGNORECASE)
-        )
-        params = (
-            ("comparator", comparator),
-            ("value", threshold.group("value")),
-            ("unit", (threshold.group("unit") or "").strip()),
-        )
-        atoms.append(("lab", (name,), params, analyte.start(), threshold.end()))
+        found = [threshold]
+        following = _THRESHOLD.search(text, threshold.end())
+        if (
+            following
+            and following.start() - threshold.end() <= 30
+            and re.search(r"\b(?:or|and)\b", text[threshold.end() : following.start()], re.IGNORECASE)
+        ):
+            found.append(following)
+        for each in found:
+            comparator = next(
+                sign
+                for pattern, sign in _COMPARATORS
+                if re.fullmatch(pattern, each.group("cmp"), re.IGNORECASE)
+            )
+            params = (
+                ("comparator", comparator),
+                ("value", each.group("value")),
+                ("unit", (each.group("unit") or "").strip()),
+            )
+            qualifier = re.match(r"\s*\(([^()]{1,30})\)", text[each.end() :])
+            if qualifier and len(found) > 1:
+                params = (*params, ("qualifier", qualifier.group(1).strip()))
+            atoms.append(("lab", (name,), params, analyte.start(), each.end()))
     if not atoms:
         for found in _UNSPECIFIED.finditer(text):
             atoms.append(("organ_function_unspecified", ("adequate",), (), found.start(), found.end()))
@@ -439,8 +451,9 @@ CONDITIONS = {
     "informed_consent": r"informed consent|\bICF\b|sign(?:ed)? (?:the )?consent",
     "compliance": r"(?:willing|able|ability)\b[^.;]{0,40}\bcompl(?:y|iance)|follow[- ]up (?:procedures"
     r"|visits)",
-    "contraception": r"contracepti\w+|birth control|abstinen\w+|childbearing potential|sterili[sz]",
-    "pregnancy_or_breastfeeding": r"pregnan\w*|breast[- ]?feeding|lactat\w+|nursing",
+    "contraception": r"contracepti\w+|birth control|abstinen\w+|sterili[sz]|\bcondoms?\b",
+    "pregnancy_or_breastfeeding": r"(?<!of becoming )(?<!able to become )pregnan\w*"
+    r"|breast[- ]?feeding|lactat\w+|nursing",
     "life_expectancy": r"life expectancy|expected survival|survival (?:duration"
     r"|time) (?:of )?(?:more than|≥|>)",
     "measurable_disease": r"measurable (?:disease|lesion)|RECIST",
@@ -449,7 +462,7 @@ CONDITIONS = {
     "other_malignancy": r"(?:other|another|second|prior|previous|concurrent|additional"
     r"|active) (?:\w+ )?malignan\w+"
     r"|malignan\w+ other than|other (?:primary )?(?:cancer|tumou?r)s?\b",
-    "hiv": r"\bHIV\b|human immunodeficiency virus|\bAIDS\b",
+    "hiv": r"\bHIV\b|human immunodeficiency virus|(?-i:\bAIDS\b)",
     "hepatitis": r"hepatitis|\bHBV\b|\bHCV\b|HBsAg",
     "tuberculosis": r"tubercul\w+",
     "active_infection": r"(?:active|acute|uncontrolled|serious|severe|systemic)\s+(?:\w+\s+){0,3}infections?",
@@ -457,13 +470,16 @@ CONDITIONS = {
     "pneumonitis_ild": r"pneumonitis|interstitial lung disease|\bILD\b|pulmonary fibrosis"
     r"|organi[sz]ing pneumonia",
     "organ_transplant": r"transplant",
-    "immunosuppression_steroids": r"immunosuppress\w+|corticosteroid|steroid|prednison\w*",
+    "immunosuppression_steroids": r"immunosuppress\w+ "
+    r"(?:therap\w+|treatment|drugs?|agents?|medications?|medicinal)"
+    r"|systemic immunosuppression|immunosuppressants?|corticosteroid|steroid|prednison\w*",
     "qtc": r"\bQTc\w*\b|QT interval|QT prolongation",
     "cardiac_disease": r"myocardial infarction|heart failure|\bNYHA\b|angina|arrhythmi\w+|cardiomyopath\w+"
     r"|cardiac (?:disease|dysfunction|event)|cardiovascular disease|LVEF|ejection fraction",
     "hypertension": r"hypertension|blood pressure",
     "bleeding_thrombosis": r"bleeding|haemorrhag\w+|hemorrhag\w+|haemoptysis|hemoptysis|coagulopath\w+"
-    r"|thrombo\w+|embolism|anticoagula\w+|bleeding diathesis",
+    r"|thrombo\w+|embolism|bleeding diathesis",
+    "anticoagulant_use": r"anticoagula\w+|antiplatelet|\bheparin\b|\bwarfarin\b|\bLMWH\b",
     "gi_perforation_fistula": r"perforation|fistula|bowel obstruction|intestinal obstruction",
     "malabsorption": r"malabsorption|swallow|absorption of (?:oral )?(?:medication|drug)",
     "hypersensitivity": r"hypersensitiv\w+|allerg\w+|anaphyla\w+",
@@ -476,7 +492,7 @@ CONDITIONS = {
     "tissue_available": r"(?:archiv\w+|fresh)[\w\s-]{0,30}(?:tissue|tumou?r sample|biopsy|specimen)"
     r"|tissue (?:sample )?(?:available|availability)",
     "other_investigational": r"(?:other|another) (?:clinical )?(?:study|trial|investigational)"
-    r"|investigational (?:drug|agent|product|device)",
+    r"|(?<!with )investigational (?:drug|agent|product|device)(?! administration)",
     "interacting_medication": r"CYP\s?3A\w*|strong (?:inhibitors?|inducers?)|P-?gp"
     r"|concomitant (?:medication|use)",
     "substance_or_psychiatric": r"psychiatric|substance abuse|drug abuse|alcohol",
@@ -485,22 +501,32 @@ CONDITIONS = {
     "neurologic_disorder": r"seizure|epilep\w+|encephalitis|meningitis|neurolog\w+ (?:disorder|disease)",
     "pulmonary_function": r"pulmonary function|lung function|\bFEV1\b|\bDLCO\b",
     "weight_loss": r"weight loss",
-    "investigator_judgment": r"investigator(?:'s)? (?:opinion|judge?ment|discretion)|in the opinion of"
-    r"|(?:serious|significant|uncontrolled|severe) (?:\w+ ){0,2}(?:comorbidit\w+|illness"
-    r"|medical conditions?)",
+    "investigator_judgment": r"investigator(?:'s)? (?:opinion|judge?ment|discretion)|in the opinion of",
+    "serious_comorbidity": r"(?:serious|significant|uncontrolled|severe) (?:\w+ ){0,2}"
+    r"(?:comorbidit\w+|illness|medical conditions?)",
     "sex": r"both sexes|\bmale (?:or|and) female|\bmales? (?:or|and) females?|either sex|all genders",
     "diagnosis_confirmed": r"histolog\w+|cytolog\w+|patholog\w+ (?:confirmed|diagnosis|proven)",
     "prior_enrollment": r"already (?:been )?(?:included|enrolled|randomi[sz]ed)|previously (?:enrolled"
     r"|randomi[sz]ed)",
-    "vitamin_premedication": r"folic acid|vitamin B-?12",
+    "vitamin_premedication": r"(?:take|taking|receive|use|supplement\w*|premedicat\w+|pre-?treat\w*)"
+    r"[\w\s,/-]{0,30}(?:folic acid|vitamin B-?12)"
+    r"|(?:folic acid|vitamin B-?12)[\w\s,/-]{0,30}(?:supplement\w*|premedicat\w+|pre-?treat\w*|injection)",
     "organ_impairment": r"hepatic impairment|renal (?:impairment|failure|insufficiency)|cirrhosis"
     r"|liver disease",
 }
 _CONDITION = re.compile("|".join(f"(?P<c{i}>{p})" for i, p in enumerate(CONDITIONS.values())), re.IGNORECASE)
 _WINDOW = re.compile(
     r"(?:within|in the (?:last|past|previous)|during the (?:last|past|previous)|for at least|at least|"
-    r"\b≥|>=|\\>=)?\s*(?P<n>\d+(?:\.\d+)?)\s*(?P<unit>days?|weeks?|months?|years?|half-lives)\b"
-    r"(?:\s*(?:prior|before|of|from|after|preceding))?",
+    r"≥|>=|\\>=)\s*(?:(?:the\s+)?(?:prior|past|last|previous)\s+)?(?P<n>\d+(?:\.\d+)?)\s*(?P<unit>days?|weeks?|months?|years?|half-lives)\b"
+    r"(?:\s*(?:prior|before|of|from|after|preceding))?"
+    r"|(?P<n2>\d+(?:\.\d+)?)\s*(?P<unit2>days?|weeks?|months?|years?|half-lives)\s+(?:prior|before|preceding|ago)\b",
+    re.IGNORECASE,
+)
+# A negation just before a condition's mention, in its clause: "non-pregnant", "negative pregnancy test",
+# "to avoid pregnancy", "unless using effective contraception", "unwillingness to use birth control".
+_NEGATED_MENTION = re.compile(
+    r"\b(?:non|not(?! limited| only)|no|negative|without|avoid\w*|unwilling\w*|unable to|unless)\b"
+    r"[\w\s,/-]{0,40}$",
     re.IGNORECASE,
 )
 _GRADE = re.compile(r"grade\s*(?P<cmp>≤|<=|\\<=|>|≥|>=|\\>=|<)?\s*(?P<g>[0-5])", re.IGNORECASE)
@@ -526,10 +552,17 @@ def named_conditions(text: str) -> list[Atom]:
         params: list[tuple[str, str]] = []
         window = _WINDOW.search(text, found.end(), min(len(text), found.end() + 60))
         if window:
-            params.append(("window", f"{window.group('n')} {window.group('unit').lower()}"))
+            amount, unit = (
+                window.group("n") or window.group("n2"),
+                window.group("unit") or window.group("unit2"),
+            )
+            params.append(("window", f"{amount} {unit.lower()}"))
         grade = _GRADE.search(text)
         if grade:
             params.append(("grade", f"{(grade.group('cmp') or '').replace(chr(92), '')}{grade.group('g')}"))
+        clause_start = max(text.rfind(mark, 0, found.start()) for mark in (". ", ";", "\n")) + 1
+        if _NEGATED_MENTION.search(text[clause_start : found.start()]):
+            params.append(("text_polarity", "excluded"))
         atoms.append(("condition", (name,), tuple(params), found.start(), found.end()))
     return atoms
 
@@ -698,8 +731,35 @@ BANKS = {
 }
 
 
+_PERMITTED = re.compile(r"\b(?:permissible|permitted|allowed)\b", re.IGNORECASE)
+
+
+def permitted(text: str, start: int, end: int) -> bool:
+    """Whether the sentence holding text[start:end] grants a permission rather than a requirement (pure —
+    pinned): it says "permissible", "permitted" or "allowed" ("acceptable" describes a method, not a
+    permission), and does not say the thing is excluded or not allowed. "All lines of prior therapy are
+    permissible" permits; "prior therapy is not allowed" does not."""
+    sentence_start = max(text.rfind(mark, 0, start) for mark in (". ", ";", "\n")) + 1
+    ends = [i for i in (text.find(mark, end) for mark in (". ", ";", "\n")) if i >= 0]
+    sentence = text[sentence_start : min(ends, default=len(text))]
+    return bool(_PERMITTED.search(sentence)) and not _EXCLUDED.search(sentence)
+
+
 def type_criterion(
     text: str,
 ) -> list[tuple[str, str, tuple[str, ...], tuple[tuple[str, str], ...], int, int]]:
-    """Every bank's atoms for one criterion, each prefixed by its bank's name, in bank order."""
-    return [(bank, *atom) for bank, function in BANKS.items() for atom in function(text)]
+    """Every bank's atoms for one criterion, each prefixed by its bank's name, in bank order; an atom in a
+    sentence that grants a permission carries ("modality", "permitted"), so no reader takes it for a
+    requirement."""
+    atoms = [(bank, *atom) for bank, function in BANKS.items() for atom in function(text)]
+    return [
+        (
+            bank,
+            concept,
+            values,
+            (*params, ("modality", "permitted")) if permitted(text, s, e) else params,
+            s,
+            e,
+        )
+        for bank, concept, values, params, s, e in atoms
+    ]

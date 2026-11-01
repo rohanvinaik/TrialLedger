@@ -25,7 +25,12 @@ PROVENANCE: dict[str, tuple[str, str, str]] = {
     "bank:prior_therapy": ("bank", DEV, "line-of-therapy wording; agent-class words"),
     "bank:setting": ("bank", DEV, "AJCC 8th edition stage groups; extent and setting words"),
     "bank:organ_function": ("bank", DEV, "analyte names and units as criteria write them"),
-    "bank:conditions": ("bank", DEV, "named-condition vocabulary with time windows and CTCAE grades"),
+    "bank:conditions": (
+        "bank",
+        DEV + "; and the 18-trial stratified pilot of 2026-10-31 (seed pilot-2026-10-31), development data",
+        "named-condition vocabulary with time windows (a temporal marker required), CTCAE grades and in-text "
+        "negation; boundaries corrected from Claude's blind labels of the pilot",
+    ),
     "bank:age": ("bank", DEV, "age limit wording"),
     "bank:histology": ("bank", DEV, "WHO lung tumour histology names"),
     "bank:endpoints": ("bank", DEV, "endpoint names and acronyms"),

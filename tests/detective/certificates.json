@@ -31,19 +31,25 @@
   },
   "TrialLedger/banks.py::named_conditions": {
     "cut_reasons": [],
-    "function_digest": "81bd673d2f0119f5",
+    "function_digest": "4c793f6516caae8d",
     "refusal": "",
     "standing": "complete"
   },
   "TrialLedger/banks.py::organ_function": {
     "cut_reasons": [],
-    "function_digest": "4fbc5dc692894394",
+    "function_digest": "33dd457a02a02cdf",
     "refusal": "",
     "standing": "complete"
   },
   "TrialLedger/banks.py::performance_status": {
     "cut_reasons": [],
-    "function_digest": "0e237df2905ffe88",
+    "function_digest": "3a5fac4687d568c4",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/banks.py::permitted": {
+    "cut_reasons": [],
+    "function_digest": "e5346ce4a6d0bc9c",
     "refusal": "",
     "standing": "complete"
   },
@@ -408,6 +414,12 @@
   "TrialLedger/questions.py::validate_answer": {
     "cut_reasons": [],
     "function_digest": "7319caf3c80f6107",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/reading.py::effective_section": {
+    "cut_reasons": [],
+    "function_digest": "90df6e943c20d5c2",
     "refusal": "",
     "standing": "complete"
   },

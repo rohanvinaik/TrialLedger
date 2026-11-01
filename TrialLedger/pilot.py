@@ -14,7 +14,7 @@ import random
 
 from TrialLedger.questions import ATOM_CLAIM_OPTIONS, atom_claim, question
 
-FLIP = {"inclusion": "exclusion", "exclusion": "inclusion"}
+FLIP = {"inclusion": "exclusion", "exclusion": "inclusion", "permitted": "inclusion"}
 
 
 def to_label(questions: list[dict], n: int, seed: str) -> list[str]:

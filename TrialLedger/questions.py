@@ -80,8 +80,12 @@ def envelope(text: str, pieces: list[Piece], index: int, budget: int = ENVELOPE_
 def atom_claim(atom: tuple, section: str) -> str:
     """The claim one typed atom makes about its criterion, in words a reader checks against the text."""
     _bank, concept, values, params, _s, _e = atom
-    detail = "; ".join(f"{name} {value}" for name, value in params)
+    detail = "; ".join(
+        f"{name} {value}" for name, value in params if name not in ("text_polarity", "modality")
+    )
     stated = f"{concept} = {' | '.join(values)}" + (f" ({detail})" if detail else "")
+    if section == "permitted":
+        return f"This criterion permits, without requiring, participants to have: {stated}"
     if section == "exclusion":
         return f"This exclusion criterion excludes participants with: {stated}"
     if section == "inclusion":

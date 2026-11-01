@@ -58,3 +58,18 @@
 The small model answers targeted questions; Claude and Codex audit its answers for correctness; what the audit
 finds becomes symbolic rules, bank fixes and sharper questions that pre-empt the model's drift and uncertainty,
 so what is left for the model keeps shrinking.
+
+## Symbolic corrections from the pilot (2026-10-31)
+
+Claude's 100 blind labels of the pilot's questions found 32 wrong claims (5 wrong value, 15 wrong polarity or
+modality, 12 unsupported). Corrected by general rules, each with tests, every changed decision re-converged:
+the API's escaped `=\<`; paired thresholds with their qualifiers; in-text negation of a condition's mention
+(`text_polarity`), with "not limited to" and "not only" excepted; permission as a sentence-level modality
+(`permitted`), never a requirement; a window needs a temporal marker; `reading.effective_section` shared by the
+reading and the audit claims; vocabulary boundaries (AIDS in capitals only; vitamin premedication needs its
+context; anticoagulant use and serious comorbidity split from bleeding and investigator judgment; "childbearing
+potential" is not contraception; the study's own investigational product is not another study's; an
+immunosuppressive disease is not therapy; "capable of becoming pregnant" is not pregnancy). Result: 20 of the 32
+corrected, 68 of 68 right claims unchanged; on the NSCLC set the frozen expectation is unchanged (110 present, 0
+verified deviations). The 12 left need the scoped-assertion layer (add-scoped-reasoning task 2): alternatives,
+another person's condition, definitional text, qualified subsets, a study's own procedures.

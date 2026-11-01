@@ -38,6 +38,21 @@ def read_population(studies: list[dict[str, Any]], answers: dict[str, Any]) -> d
     }
 
 
+def effective_section(section: str, params: tuple) -> str:
+    """The section an atom's claim belongs to, once its own wording is read (pure — pinned).
+
+    A permission ("prior therapy is permissible") is "permitted", never a requirement, whatever its section; a
+    mention its text negates ("non-pregnant", "unless using contraception") belongs to the other section
+    (inclusion to exclusion, exclusion to inclusion); otherwise the criterion's own section.
+    """
+    held = dict(params)
+    if held.get("modality") == "permitted":
+        return "permitted"
+    if held.get("text_polarity") == "excluded":
+        return {"inclusion": "exclusion", "exclusion": "inclusion"}.get(section, section)
+    return section
+
+
 def study_view(study: dict[str, Any], answers: dict[str, Any]) -> dict[str, Any]:
     """One study as the design layers read it: criteria with atoms, evidence, coordinates, elements,
     classes."""
@@ -53,8 +68,7 @@ def study_view(study: dict[str, Any], answers: dict[str, Any]) -> dict[str, Any]
         atoms = type_criterion(text[start:end])
         criteria.append((index, section, text[start:end], atoms))
         for _bank, concept, values, params, _s, _e in atoms:
-            flipped = dict(params).get("text_polarity") == "excluded" and section == "inclusion"
-            effective = "exclusion" if flipped else section
+            effective = effective_section(section, params)
             evidence.append((effective, concept, values, dict(params).get("scope", ""), f"criterion {index}"))
             elements.append(element_key(effective, concept, values, params))
     names = rx.drug_names(study)
