@@ -234,6 +234,7 @@ TrialLedger is built on information theory and data geometry. In practical terms
 | Ledger, the five approved edit checks, the review workbook, warrants and `trialledger verify` | Built and verified, against the live registry ([`add-review-workbook`](openspec/changes/archive/2026-10-31-add-review-workbook/)) |
 | The twelve further edit checks | Built and tested; each waits for the founder's approval |
 | Typed criteria, each trial's design coordinates, drug classes and the profile across a pull (`trialledger profile`) | First slice built, on the Phase 3 NSCLC trials of 2015–2024; every relation awaits the founder's approval ([`add-coherence-engine`](openspec/changes/add-coherence-engine/)) |
+| Declared expectations and their deviations, the review queue, near misses, the provenance of every rule (`trialledger resolve`) | First slice built on the NSCLC development trials; confirmation on a population no rule was written against is next ([`add-design-surprise`](openspec/changes/add-design-surprise/)) |
 | Publication evidence for studies without posted results | Designed |
 | An interface that needs no terminal | Planned |
 
@@ -253,7 +254,10 @@ resolves every matching study to its symbolic reading, without saving the regist
 criterion split out and typed by fixed rules, each trial's design coordinates (setting, prior lines, biomarker
 selection) as the values its own criteria still allow, each experimental drug's pharmacologic class from the
 National Library of Medicine's RxClass, its registered outcomes, each declared expectation's observation and
-deviation, and a **review queue**: what the rules could not cleanly resolve (an unclassified drug, a coordinate
+deviation, its **near misses** (another trial with the same setting and drug classes that differs from it in
+exactly one known design choice, such as the performance status it admits; an unknown never matches, and each
+pair names both sponsors and start years, because shared templates and eras explain many differences), and a
+**review queue**: what the rules could not cleanly resolve (an unclassified drug, a coordinate
 the criteria contradict, an unresolved or deviating observation), each as a question with closed answer options
 and its evidence, for a domain expert or a model to answer. TrialLedger never forces those answers. `--json`
 writes the reading as JSON (a path, or `-` for standard output; the default); `--out` writes `design.xlsx`,

@@ -184,7 +184,10 @@ and stored data an intentional fallback when the user wants it; what the symboli
 resolve directly, never forced; rules are completed from domain priors without fitting them to the residual of
 the population they are measured on; and structured disagreement that is not pure entropy is information (the
 successor of near-miss learning and surprise; SIGNIFICANCE_WEIGHTING.md), so a valid unexplained deviation is
-kept, never folded into noise (`openspec/changes/add-design-surprise`).
+kept, never folded into noise (`openspec/changes/add-design-surprise`). Built from them: `resolve` as the main
+path; the review queue; one frozen expectation with five observation statuses and its deviations; near-miss
+pairs under a declared representation (one setting, every experimental drug classified), which on the
+development trials is known for 12 of 487 and yields no pair; and the provenance of every rule.
 
 **Corrections he accepted, 2026-10-31** (from a Codex consultation on Claude's reading):
 
