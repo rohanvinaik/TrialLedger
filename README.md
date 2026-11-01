@@ -236,7 +236,8 @@ TrialLedger is built on information theory and data geometry. In practical terms
 | Typed criteria, each trial's design coordinates, drug classes and the profile across a pull (`trialledger profile`) | First slice built, on the Phase 3 NSCLC trials of 2015–2024; every relation awaits the founder's approval ([`add-coherence-engine`](openspec/changes/add-coherence-engine/)) |
 | Declared expectations and their deviations, the review queue, near misses, the provenance of every rule (`trialledger resolve`) | First slice built on the NSCLC development trials; confirmation on a population no rule was written against is next ([`add-design-surprise`](openspec/changes/add-design-surprise/)) |
 | Publication evidence for studies without posted results | Designed |
-| An interface that needs no terminal | Planned |
+| The agent operation: a chat app's agent runs TrialLedger from this repository for a user's question, answers from the record it writes and hands over the workbook | Designed; being built next ([`add-agent-operation`](openspec/changes/add-agent-operation/)) |
+| A draft trial design built symbolically from that record | Designed ([`add-design-synthesis`](openspec/changes/add-design-synthesis/)) |
 
 ## Running it
 

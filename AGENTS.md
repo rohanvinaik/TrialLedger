@@ -55,7 +55,11 @@ coherence engine (typing, each trial's design coordinates, the cross-trial profi
 `openspec/changes/add-scoped-reasoning`, the targeted questions a local model answers (the audit among them)
 in `openspec/changes/add-targeted-questions`, and the scoped-assertion layer (eligibility as scoped constraints
 with entailment and proof-bearing projections; Codex's draft reconciled) in `openspec/changes/add-scoped-assertions`, and banks for every declared trial type (registry,
-packages, contextual resolution, evaluation, confirmation) in `openspec/changes/add-bank-coverage`; the publication parser is designed in `docs/THEORY_OF_THE_CASE.md` and
+packages, contextual resolution, evaluation, confirmation) in `openspec/changes/add-bank-coverage`; the agent
+operation (an LLM agent pointed at the repository installs it, runs one command for a user's question, answers
+from the record it writes and hands over the workbook; no hosted service; the founder's next priority) in
+`openspec/changes/add-agent-operation`, and the second layer, a draft trial design built symbolically from that
+record, in `openspec/changes/add-design-synthesis`; the publication parser is designed in `docs/THEORY_OF_THE_CASE.md` and
 the archived change's `design.md`. The README explains the system to
 its clinical readers.
 
