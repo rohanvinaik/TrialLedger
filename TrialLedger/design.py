@@ -73,7 +73,9 @@ def _rule(name: str, *functions: Callable[..., Any]) -> str:
 
 
 def _stratum(view: dict[str, Any]) -> str:
-    setting = view["coordinates"]["setting"]["with_proposed"]
+    """A trial's setting stratum: its setting when known (the record and the approved relations leave one
+    value), else "setting unresolved". A proposed relation's narrowing is never built on."""
+    setting = view["coordinates"]["setting"]["domain"]
     return setting[0] if len(setting) == 1 else "setting unresolved"
 
 
@@ -243,7 +245,7 @@ def sheets(reading: dict[str, Any], answers: dict[str, Any]) -> dict[str, tuple[
     out["Results"] = (
         [
             "Endpoint Class",
-            "Setting (with proposed relations)",
+            "Setting (known)",
             "Unit",
             "Measure Type",
             "NCT Number",
@@ -297,7 +299,7 @@ def sheets(reading: dict[str, Any], answers: dict[str, Any]) -> dict[str, tuple[
             "Reason",
             "Criteria Cited",
             "Qualifiers",
-            "Cell (setting, with proposed relations)",
+            "Cell (setting, known)",
             "Rarity Source",
             "Share Present in Cell",
             "Known in Cell",
@@ -440,7 +442,7 @@ def sheets(reading: dict[str, Any], answers: dict[str, Any]) -> dict[str, tuple[
     occupancy_trials = [
         (
             v["nct"],
-            v["coordinates"]["setting"]["with_proposed"],
+            v["coordinates"]["setting"]["domain"],
             tuple(sorted({c for _, s, e, _ in v["drugs"] if s == "classified" for c in e}))
             if v["drugs"] and all(s == "classified" for _, s, _, _ in v["drugs"])
             else (),
@@ -452,7 +454,7 @@ def sheets(reading: dict[str, Any], answers: dict[str, Any]) -> dict[str, tuple[
     root = warrants.merkle_root([v["digest"] for v in views])
     out["Occupancy"] = (
         [
-            "Setting (with proposed relations)",
+            "Setting (known)",
             "Class (FDA EPC)",
             "Occupying Trials",
             "Trials That Could Fall Here",
@@ -520,7 +522,8 @@ ABOUT = [
         "Profile",
         "Each element's frequency over the trials whose text was typed, its surprisal (how unexpected, "
         "not how important), its sponsors, and the standard tier (the empirical source of reusable protocol "
-        "language, not a verdict on clinical value). Strata by setting rest on the proposed relations.",
+        "language, not a verdict on clinical value). Strata by setting use the known setting only; "
+        "proposed relations are never built on.",
     ],
     [
         "Mechanism Signals",
