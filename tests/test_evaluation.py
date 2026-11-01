@@ -364,3 +364,16 @@ def test_one_cluster_bounds_at_its_own_pessimistic_rate_and_a_rank_outside_the_d
     number."""
     assert clustered_lower_bound((("x", 1, 1, 1),), "abc", 1, 1) == pytest.approx(1 / 3)
     assert clustered_lower_bound((("x", 1, 1, 1),), "abc", 3, 0) is None
+
+
+def test_a_unit_complete_but_for_an_unresolved_record_is_unresolved_never_complete():
+    """Positive: a unit whose only gold record is unresolved, with its claim emitted, is one unresolved unit:
+    in the denominator, not the numerator, its bounds 0 to 1. Negative: it is never counted complete, and a
+    wrong claim in the same unit makes the unit incomplete, a miss."""
+    found = complete_representation("mention", [gold(ALT, resolution="unresolved")], [claim(ALT, source="b")])
+    assert (found.numerator, found.denominator, found.lower, found.upper) == (0, 1, 0.0, 1.0)
+    assert found.clusters == (("NCT00000001", 0, 0, 1),)
+    wrong = [gold(ALT, resolution="unresolved"), gold(AST, "nsclc.lab.ast")]
+    emitted = [claim(ALT, source="b"), claim(AST, "nsclc.lab.ast", params=(), source="b")]
+    found = complete_representation("mention", wrong, emitted)
+    assert (found.numerator, found.denominator, found.clusters) == (0, 1, (("NCT00000001", 0, 1, 0),))

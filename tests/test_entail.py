@@ -455,3 +455,15 @@ def _outcome(function, argument):
         return ("returned", function(argument))
     except Exception as error:  # every error is compared by name and arguments, never passed through
         return (type(error).__name__, error.args)
+
+
+def test_a_query_that_widens_the_search_past_the_bound_abstains():
+    """Positive: with A required (two assignments) and the query A and B (four), a bound of two lets the
+    premises be checked but not the query against them: UNDETERMINED for want of resource, no proof. A bound
+    of four decides it: A alone neither entails nor refutes A and B. Negative: the bound never yields a
+    proof, an entailment or a refutation it did not check."""
+    required = (rule("r1", "required", A),)
+    bounded = decide(required, AllOf((A, B)), EVERYONE, 2)
+    assert (bounded.result, bounded.proof, bounded.blockers) == (UNDETERMINED, (), ("resource_bound",))
+    open_ = decide(required, AllOf((A, B)), EVERYONE, 4)
+    assert (open_.result, open_.blockers) == (UNDETERMINED, ("undecided_by_constraints",))

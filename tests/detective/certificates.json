@@ -9,7 +9,7 @@
     "cut_reasons": [],
     "function_digest": "a4f6bc0927ce8a84",
     "refusal": "",
-    "standing": "incomplete"
+    "standing": "complete"
   },
   "TrialLedger/audit.py::rxclass_absence": {
     "cut_reasons": [],
@@ -267,7 +267,7 @@
     "cut_reasons": [],
     "function_digest": "b1b69d6035444811",
     "refusal": "",
-    "standing": "incomplete"
+    "standing": "complete"
   },
   "TrialLedger/classes.py::rxclass_classes": {
     "cut_reasons": [],
@@ -361,7 +361,7 @@
     "cut_reasons": [],
     "function_digest": "0b8e4697feaa55e4",
     "refusal": "",
-    "standing": "incomplete"
+    "standing": "complete"
   },
   "TrialLedger/entail.py::proposition_formula": {
     "cut_reasons": [],
@@ -403,7 +403,7 @@
     "cut_reasons": [],
     "function_digest": "bf14cb029d48a1f0",
     "refusal": "",
-    "standing": "incomplete"
+    "standing": "complete"
   },
   "TrialLedger/evaluation.py::gold_problems": {
     "cut_reasons": [],
@@ -601,7 +601,7 @@
     "cut_reasons": [],
     "function_digest": "8ab2d17796aec446",
     "refusal": "",
-    "standing": "incomplete"
+    "standing": "complete"
   },
   "TrialLedger/modality.py::history_clause": {
     "cut_reasons": [],
@@ -907,7 +907,7 @@
     "cut_reasons": [],
     "function_digest": "2ff32977ca01945b",
     "refusal": "",
-    "standing": "incomplete"
+    "standing": "complete"
   },
   "TrialLedger/transport.py::installed_digest": {
     "cut_reasons": [],

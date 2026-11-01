@@ -253,3 +253,29 @@ def test_an_unversioned_scale_is_flagged_in_the_legacy_fragment_and_refused_in_a
     pinned = replace(scaled, scale=("performance status", "Oken et al. 1982"))
     assert registry_flags([fragment("nsclc_legacy", [pinned])]) == ()
     assert compile_registry([fragment("measurements", [HBA1C])]).flags == ()
+
+
+def test_each_fragment_level_fault_is_named_in_fragment_order():
+    """Positive: a well-formed fragment raises nothing. Negative: a fragment name given twice, a blank
+    version, no exposure, an exposure the table does not hold, a required fragment absent and a dependency on
+    no defined concept are each named, with its subject and detail, in the order the fragments are given."""
+    assert registry_problems([fragment("measurements", [HBA1C])], AUTHORITIES, EXPOSURES) == ()
+    found = registry_problems(
+        [
+            fragment("measurements", [HBA1C]),
+            fragment("measurements", version=" "),
+            fragment("vitals", exposure=""),
+            fragment("scales", exposure="fragment:nowhere", requires=["absent"]),
+            fragment("metabolic", [replace(HBA1C, concept_id="lab.glucose", depends_on=("lab.missing",))]),
+        ],
+        AUTHORITIES,
+        EXPOSURES,
+    )
+    assert found == (
+        ("duplicate_fragment", "measurements", "a fragment of this name was given before"),
+        ("unversioned_fragment", "measurements", "no version"),
+        ("missing_provenance", "vitals", "no rule exposure"),
+        ("unknown_exposure", "scales", "fragment:nowhere"),
+        ("unresolved_requirement", "scales", "absent"),
+        ("unresolved_dependency", "lab.glucose", "lab.missing"),
+    )

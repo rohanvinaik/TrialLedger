@@ -211,3 +211,114 @@ def test_provenance_is_never_invented():
         "unresolved_rule_with_provenance"
     )
     assert Rule("D5", "unresolved").version == "unresolved"
+
+
+def _forced(item, **fields):
+    """A copy of a well-formed object with fields set past its own check, as data read from elsewhere could
+    arrive; `model_problem` must still name what is wrong with it."""
+    copy = dataclasses.replace(item)
+    for name, value in fields.items():
+        object.__setattr__(copy, name, value)
+    return copy
+
+
+EVIDENCE = Evidence("text_span", "0-12")
+WELL_FORMED = (
+    ALWAYS,
+    EVIDENCE,
+    PARTICIPANT,
+    Subject("other_person", "the source case"),
+    HIV.predicate,
+    Predicate("unresolved"),
+    TRUE,
+    TemporalScope("before", "enrollment"),
+    HIV,
+    AllOf((HIV, CD4_LOW)),
+    AnyOf((HIV, CD4_LOW)),
+    Not(HIV),
+    Opaque("piece 3 tail"),
+    Scope("cohort_ref", "A"),
+    Branch("any_of", (0, 1)),
+    Span(3, 3),
+    D5,
+    UNRESOLVED_RULE,
+    ScopedAssertion("a1", "c1", "required", HIV, rule=D5),
+)
+
+
+def test_every_well_formed_object_is_ok_when_asked_directly():
+    """Positive: each class of the model, built well, is "ok" when model_problem is called on it directly.
+    Negative: anything outside the model is "not_a_model_object"."""
+    assert [model_problem(item) for item in WELL_FORMED] == ["ok"] * len(WELL_FORMED)
+    assert model_problem(("participant",)) == "not_a_model_object"
+
+
+@pytest.mark.parametrize(
+    ("item", "fields", "code"),
+    [
+        (EVIDENCE, {"kind": "guess"}, "evidence_kind_outside_vocabulary"),
+        (EVIDENCE, {"ref": ""}, "evidence_without_ref"),
+        (EVIDENCE, {"ref": 7}, "evidence_without_ref"),
+        (PARTICIPANT, {"kind": "population"}, "subject_kind_outside_vocabulary"),
+        (Subject("other_person", "x"), {"referent": ""}, "other_person_without_referent"),
+        (PARTICIPANT, {"referent": 7}, "referent_not_text"),
+        (HIV.predicate, {"kind": "diagnosis"}, "predicate_kind_outside_vocabulary"),
+        (HIV.predicate, {"key": ""}, "predicate_without_key"),
+        (Predicate("unresolved"), {"key": 7}, "predicate_without_key"),
+        (HIV, {"subject": "participant"}, "literal_subject_not_subject"),
+        (HIV, {"predicate": "HIV"}, "literal_predicate_not_predicate"),
+        (HIV, {"value": True}, "literal_value_not_value"),
+        (HIV, {"polarity": "maybe"}, "polarity_outside_vocabulary"),
+        (HIV, {"time": "4 weeks"}, "literal_time_not_temporal_scope"),
+        (HIV, {"qualifiers": "CD4"}, "qualifiers_not_condition"),
+        (HIV, {"evidence": [EVIDENCE]}, "evidence_not_tuple_of_evidence"),
+        (AllOf((HIV, CD4_LOW)), {"parts": (HIV,)}, "compound_needs_two_parts"),
+        (AnyOf((HIV, CD4_LOW)), {"parts": [HIV, CD4_LOW]}, "compound_needs_two_parts"),
+        (AllOf((HIV, CD4_LOW)), {"parts": (HIV, "CD4")}, "compound_part_not_proposition"),
+        (Not(HIV), {"part": "HIV"}, "negated_part_not_proposition"),
+        (Opaque("x"), {"ref": ""}, "opaque_without_ref"),
+        (Opaque("x"), {"ref": 7}, "opaque_without_ref"),
+        (Branch("any_of", (0, 1)), {"node": "xor"}, "branch_node_outside_vocabulary"),
+        (Branch("any_of", (0, 1)), {"path": (0, -1)}, "branch_path_not_indexes"),
+        (Branch("any_of", (0, 1)), {"path": [0, 1]}, "branch_path_not_indexes"),
+        (Branch("any_of", (0, 1)), {"path": (0, 1.0)}, "branch_path_not_indexes"),
+        (Span(3, 3), {"start": -1}, "span_not_offsets"),
+        (Span(3, 3), {"end": 3.0}, "span_not_offsets"),
+        (Span(3, 3), {"start": 4}, "span_not_half_open"),
+        (D5, {"id": ""}, "rule_without_id_or_version"),
+        (D5, {"version": ""}, "rule_without_id_or_version"),
+        (UNRESOLVED_RULE, {"version": "1"}, "unresolved_rule_with_provenance"),
+        (UNRESOLVED_RULE, {"answers": ("q1",)}, "unresolved_rule_with_provenance"),
+        (D5, {"premises": ["atom:3"]}, "rule_refs_not_text"),
+        (D5, {"warrants": ("",)}, "rule_refs_not_text"),
+        (D5, {"answers": (7,)}, "rule_refs_not_text"),
+    ],
+)
+def test_a_malformed_field_is_named_when_asked_directly(item, fields, code):
+    """Negative: one field set past the constructor's check (a word outside its vocabulary, a missing ref
+    or key, a field of the wrong class, a list where a tuple belongs, a compound of one part, a negative or
+    fractional index or offset, a reversed span, a rule without its id or version, an unresolved rule naming
+    provenance, a reference that is not text) is named by its code, never "ok"."""
+    assert model_problem(_forced(item, **fields)) == code
+
+
+def _unchecked(cls, **fields):
+    """An instance built without its constructor's check, which itself calls model_problem: so the answer
+    model_problem gives is observed as a value, never pre-empted by a refusal at construction."""
+    item = object.__new__(cls)
+    for field in dataclasses.fields(cls):
+        default = field.default if field.default is not dataclasses.MISSING else None
+        object.__setattr__(item, field.name, fields.get(field.name, default))
+    return item
+
+
+def test_a_subject_a_predicate_and_a_value_are_ok_each_on_its_own_branch():
+    """Positive: a participant subject with no referent, a keyed condition predicate and a boolean value are
+    each "ok" by their own class's check, asked of instances whose construction did not already ask. Negative:
+    none is read as another class's object (an evidence, subject or predicate check would refuse its kind)."""
+    assert model_problem(_unchecked(Subject, kind="participant", referent="")) == "ok"
+    assert model_problem(_unchecked(Predicate, kind="condition_status", key="HIV")) == "ok"
+    boolean = _unchecked(
+        Value, kind="boolean", comparison="eq", members=(), unit="", inclusivity="unspecified"
+    )
+    assert model_problem(boolean) == "ok"
