@@ -19,6 +19,10 @@ Built after `add-agent-operation` (the founder's next priority) and on `add-scop
 ## 3. The solver and the output
 
 - [ ] 3.1 The exact, bounded solver over the design variables
+- [ ] 3.1b Closing the remainder (design Decision 9): each open variable scored by how evenly it splits the
+      admissible designs and what its answers fix downstream; the suggested answer by warrant, then closure;
+      question templates with ids; options carrying their brief amendments; one question at a time, and
+      accept-all
 - [ ] 3.2 `design.json` and `design.xlsx`; `trialledger design`
 - [ ] 3.3 Edits read back as the user's assertions, the design re-checked
 - [ ] 3.4 The entry point's procedure extended to `design`

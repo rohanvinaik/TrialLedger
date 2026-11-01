@@ -34,3 +34,18 @@ record it as the user's.
 #### Scenario: Two admissible primary endpoints
 - **WHEN** two endpoint classes are each admissible and no priority settles them
 - **THEN** the design returns a closed question with both options and their corpus statistics
+
+### Requirement: The remainder is closed by suggested decisions
+The system SHALL surface what the rules leave open one question at a time, the question whose answer closes the
+most of the remaining admissible designs first, with a suggested answer chosen by warrant and then by closure,
+shown with what accepting it would fix.
+
+#### Scenario: A setting choice that settles several variables
+- **WHEN** two settings remain admissible and one of them, through entailment, also fixes the line of therapy,
+  the comparator and the prior-therapy criteria
+- **THEN** the setting is asked before variables it would settle, and its suggestion names everything accepting it
+  would fix
+
+#### Scenario: Accept every suggestion
+- **WHEN** the user accepts every suggestion
+- **THEN** the design closes, each accepted choice recorded as the user's with its warrant

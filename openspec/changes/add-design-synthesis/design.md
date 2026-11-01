@@ -47,7 +47,28 @@ the rule tables and the solver.
    enumeration, extended to design variables), with a declared resource bound returning UNDETERMINED rather than
    a guess. Output: the admissible designs, the one the priorities select, and the open questions.
 
-9. **The output.** `design.json` (the brief, every variable with value, status and warrant, the eligibility as
+9. **Closing the remainder ("Jeeves mode", the founder's term, from his ModelAtlas project).** After the
+   definitions, deductions, design rules and corpus observations have narrowed the space, what remains is a set
+   of admissible designs differing on some variables. TrialLedger does not leave the user a list of open
+   questions to work through: it surfaces the remainder and suggests the decision that closes it most
+   effectively, by symbolic logic, as ModelAtlas's refinement guidance does (`build_refinement_guidance`):
+   - **Which question.** Each open variable is scored by how much its answer would close: how evenly its values
+     split the remaining admissible designs (the balance `k * (n - k)`, zero for a value every design shares,
+     which closes nothing), plus what each answer would fix downstream through entailment (a choice of setting
+     that settles the line, the prior-therapy criteria and the comparator closes more than one that settles
+     only itself). The question asked first is the one whose answer leaves the fewest admissible designs in the
+     worst case; ties break on a declared order, deterministically.
+   - **Which answer to suggest.** Among that question's options, the suggestion is the one with the strongest
+     warrant (a deduction over a design rule over a corpus standard over a corpus majority), and, among equally
+     warranted options, the one that closes the most of the remaining space. The suggestion is shown with its
+     warrant and with what accepting it would close ("this also fixes the comparator and three criteria"); the
+     user accepts it, picks another option, or answers freely, and whichever they choose is recorded as theirs.
+   - **The form.** Questions are declarative templates with typed slots and a stable `question_id`, never
+     phrased ad hoc, so the agent can switch on the id; every option carries the brief amendment it applies, so
+     the agent merges it and re-runs `design` mechanically until nothing is open. One question at a time, the
+     highest-value first; "accept every suggestion" closes the design in one step, every acceptance recorded.
+
+10. **The output.** `design.json` (the brief, every variable with value, status and warrant, the eligibility as
    scoped assertions and as text, the endpoint and schedule tables, the sample-size inputs, the open questions)
    and `design.xlsx` (a synopsis sheet, eligibility, endpoints, schedule, warrants), in the same run folder as the
    landscape, delivered by the same entry point.
