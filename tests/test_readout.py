@@ -240,7 +240,7 @@ def env(value, status, source="src", rule="", note=""):
 
 
 ELIGIBILITY = "protocolSection.eligibilityModule.eligibilityCriteria"
-CARRIED = "landscape.json (schema 1) carries no such field"
+CARRIED = "landscape.json (schema 2) carries no such field"
 
 
 def absent(field):
@@ -434,6 +434,48 @@ def test_a_coordinate_reads_its_one_value_or_says_what_remains():
     assert coordinate_cell(conflict)[0] == "Unresolved — no value remains (a conflict); conflict"
     assert coordinate_cell(env(None, "not_stated", note="not_reported"))[0] == "Not stated"
     assert coordinate_cell(env("x", "known"))[0] == "x"
+    assumed = env(["advanced_first_line"], "interpolated", "s", "r", "resolved; 1 removed by z")
+    assert coordinate_cell(assumed) == (
+        "Interpolated — advanced_first_line",
+        "",
+        "interpolated",
+        "s",
+        "r",
+        "resolved; 1 removed by z",
+    )
+
+
+def test_a_coordinate_under_approved_relations_is_the_known_value_unless_they_narrow_it():
+    known = env(["a", "b"], "unresolved", "s", "known rule", "unnarrowed")
+    same = env(["a", "b"], "unresolved", "s", "interpolated rule", "no default relation narrows it")
+    narrowed = env(["a"], "interpolated", "s", "interpolated rule", "resolved; b removed by r")
+    assert readout.approved_coordinate({"x": known, "x_interpolated": same}, "x") is known
+    assert readout.approved_coordinate({"x": known, "x_interpolated": narrowed}, "x") is narrowed
+
+
+def test_proposed_relations_each_narrow_the_approved_value_alone():
+    approved = env(["0", "1"], "unresolved", "s", "r", "unnarrowed")
+    assert readout.proposals_cell(approved, [])[:3] == (
+        "Unresolved — 2 values remain: 0 | 1; no proposed relation narrows it",
+        "",
+        "unresolved",
+    )
+    one = env(["0"], "proposed", "s", "p1", "resolved; 1 removed by p1")
+    none = env([], "unresolved", "s", "p2", "conflict; 0|1 removed by p2")
+    assert readout.proposals_cell(approved, [one]) == (
+        "Proposed — 0; resolved; 1 removed by p1",
+        "",
+        "proposed",
+        "s",
+        "p1",
+        "resolved; 1 removed by p1",
+    )
+    both = readout.proposals_cell(approved, [one, none])
+    assert both[0].splitlines() == [
+        "Proposed — 0; resolved; 1 removed by p1",
+        "Unresolved — no value remains (a conflict); conflict; 0|1 removed by p2",
+    ]
+    assert both[2:5] == ("unresolved", "s", "p1; p2")
 
 
 def test_criteria_are_numbered_in_the_texts_order_whatever_their_heading(small):
@@ -737,7 +779,11 @@ def test_identification_and_population_are_the_records_own_values(record):
     ]
     assert first[-1][2] == absent("Posted baseline characteristics")
     pair = population_entries(record["studies"][2])
-    assert [held[0] for _, _, held in pair[8:11]] == ["advanced_first_line", "advanced_first_line", "0"]
+    assert [held[0] for _, _, held in pair[8:11]] == [
+        "Interpolated — advanced_first_line",
+        "Interpolated — advanced_first_line",
+        "0",
+    ]
     assert pair[-2:] == [
         (
             "Enrolled population: actual enrollment",
@@ -988,7 +1034,7 @@ def test_the_index_is_one_row_per_trial_with_the_landscape_columns(record):
     )
     pair = index_row(record["studies"][2], ("Trial review 2", 9))
     assert [held[0] for held in pair[5:8]] == [
-        "Setting: advanced_first_line\nPrior lines for advanced disease: 0",
+        "Setting: Interpolated — advanced_first_line\nPrior lines for advanced disease: 0",
         "A (EXPERIMENTAL): Drug: Placebo",
         "No comparator arm registered",
     ]
@@ -1550,7 +1596,7 @@ def test_the_register_holds_one_row_per_displayed_value_with_its_source(record):
         "Not stated",
         readout.STATUS_WORDS["absent_from_record"],
         "Not carried by the record",
-        "Short title (landscape.json schema 1)",
+        "Short title (landscape.json schema 2)",
         "https://clinicaltrials.gov/study/NCT01234567",
     ]
     assert [held[0] for held in register[2][7:9]] == [

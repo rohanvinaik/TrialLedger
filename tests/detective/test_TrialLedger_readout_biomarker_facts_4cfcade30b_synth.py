@@ -1044,7 +1044,7 @@ def test_biomarker_facts_value_0():
                 "absent_from_record",
                 "Biomarker assay",
                 "",
-                "landscape.json (schema 1) carries no such field",
+                "landscape.json (schema 2) carries no such field",
             ),
             (
                 "Not stated",
@@ -1052,7 +1052,7 @@ def test_biomarker_facts_value_0():
                 "absent_from_record",
                 "Biomarker specimen",
                 "",
-                "landscape.json (schema 1) carries no such field",
+                "landscape.json (schema 2) carries no such field",
             ),
             (
                 "Not stated",
@@ -1121,7 +1121,7 @@ def test_biomarker_facts_value_1():
                 "absent_from_record",
                 "Biomarker assay",
                 "",
-                "landscape.json (schema 1) carries no such field",
+                "landscape.json (schema 2) carries no such field",
             ),
             (
                 "Not stated",
@@ -1129,7 +1129,7 @@ def test_biomarker_facts_value_1():
                 "absent_from_record",
                 "Biomarker specimen",
                 "",
-                "landscape.json (schema 1) carries no such field",
+                "landscape.json (schema 2) carries no such field",
             ),
             ("expression >=50%", "", "known", "s", "r", ""),
             (
@@ -1138,7 +1138,7 @@ def test_biomarker_facts_value_1():
                 "absent_from_record",
                 "Biomarker timing",
                 "",
-                "landscape.json (schema 1) carries no such field",
+                "landscape.json (schema 2) carries no such field",
             ),
             ("“PD-L1” (criterion piece 2)", "", "known", "s", "r", ""),
         )
@@ -1824,7 +1824,7 @@ def test_biomarker_facts_value_2():
                 "absent_from_record",
                 "Biomarker assay",
                 "",
-                "landscape.json (schema 1) carries no such field",
+                "landscape.json (schema 2) carries no such field",
             ),
             (
                 "Not stated",
@@ -1832,7 +1832,7 @@ def test_biomarker_facts_value_2():
                 "absent_from_record",
                 "Biomarker specimen",
                 "",
-                "landscape.json (schema 1) carries no such field",
+                "landscape.json (schema 2) carries no such field",
             ),
             (
                 "Not stated",
@@ -1848,7 +1848,7 @@ def test_biomarker_facts_value_2():
                 "absent_from_record",
                 "Biomarker timing",
                 "",
-                "landscape.json (schema 1) carries no such field",
+                "landscape.json (schema 2) carries no such field",
             ),
             (
                 "“EGFR” (criterion piece 4)",
@@ -1906,7 +1906,7 @@ def test_biomarker_facts_value_3():
                 "absent_from_record",
                 "Biomarker assay",
                 "",
-                "landscape.json (schema 1) carries no such field",
+                "landscape.json (schema 2) carries no such field",
             ),
             (
                 "Not stated",
@@ -1914,7 +1914,7 @@ def test_biomarker_facts_value_3():
                 "absent_from_record",
                 "Biomarker specimen",
                 "",
-                "landscape.json (schema 1) carries no such field",
+                "landscape.json (schema 2) carries no such field",
             ),
             ("Not stated", "", "not_stated", "s", "r", "no threshold read"),
             ("8 weeks", "", "known", "s", "r", ""),

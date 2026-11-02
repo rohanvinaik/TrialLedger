@@ -6,7 +6,7 @@ statement), Eligibility, Outcomes and efficacy, Biomarkers, Safety, Across-trial
 register, in that order. Every cell is a value of the record, shown by a named rule, or the record's silence
 in words: "Not stated", "Not posted", "Not applicable" (only where the registry's definitions establish it),
 "Unresolved — <reason>", "Proposed — ...", "Interpolated — ..."; never a blank, a dash or "N/A". Where the
-design names something landscape.json (schema 1) does not carry (a short title, an assay, a specimen, an
+design names something landscape.json (schema 2) does not carry (a short title, an assay, a specimen, an
 anticipated threshold, a grade, an assessment schedule), the cell says "Not stated" and the register says the
 record carries no such field. Nothing is read with a model: a criterion's role is `criteria.criterion_role`,
 a named rule over its own words.
@@ -52,14 +52,15 @@ UNRESOLVED = "Unresolved — "
 # TrialLedger's own words labelling a row (a section, an item, a statement type).
 ABSENT = "absent_from_record"
 LABEL = "label"
-NOT_CARRIED = "landscape.json (schema 1) carries no such field"
+NOT_CARRIED = f"landscape.json (schema {SCHEMA_VERSION}) carries no such field"
 STATUS_WORDS = {
     "known": "Known: stated by the record, or read by the named rule",
     "not_stated": "Not stated: the record holds no value",
     "not_posted": "Not posted: no results or document posted",
     "unresolved": "Unresolved: the rules cannot settle it from the record",
     "proposed": "Proposed: through a relation not approved",
-    "interpolated": "Interpolated: a guess from a name's wording, never a reading",
+    "interpolated": "Interpolated: assumed by an approved relation, or a guess from a name's wording; "
+    "never a reading",
     ABSENT: "Not carried: " + NOT_CARRIED + "; the cell says Not stated",
     LABEL: "TrialLedger's own label",
 }
@@ -226,7 +227,7 @@ SHEETS = (
 )
 SHEET_NAMES = tuple(name for name, *_ in SHEETS)
 CAPACITY = ROW_LIMIT - 1  # data rows a worksheet holds below its header row
-# Fields of the design that landscape.json (schema 1) does not carry, each with what the cell says instead.
+# Fields of the design that landscape.json (schema 2) does not carry, each with what the cell says instead.
 NOT_IN_RECORD = (
     ("Short title", "the registry's brief title"),
     ("Last registry update", "the registry's last update date"),
@@ -446,16 +447,18 @@ def role_cell(text: str, heading: str) -> tuple:
 def coordinate_cell(value: dict[str, Any]) -> tuple:
     """A design coordinate (the setting, the prior advanced lines) as one cell (pure — pinned).
 
-    known — its one value; proposed — "Proposed — <values joined by |>; <why>"; unresolved — "Unresolved —
-    <n> values remain: <values>; <why>", or "Unresolved — no value remains (a conflict); <why>"; any other
-    status — shown.
+    known — its one value; interpolated — "Interpolated — <values joined by |>" (why, in the register's
+    inputs); proposed — "Proposed — <values>; <why>"; unresolved — "Unresolved — <n> values remain: <values>;
+    <why>", or "Unresolved — no value remains (a conflict); <why>"; any other status — shown.
     """
     status, held, note = value["status"], value["value"], value["note"]
-    if status not in ("known", "proposed", "unresolved") or not isinstance(held, list):
+    if status not in ("known", "proposed", "interpolated", "unresolved") or not isinstance(held, list):
         return shown(value)
     values = " | ".join(str(item) for item in held)
     if status == "known":
         words = values or NOT_STATED
+    elif status == "interpolated":
+        words = f"Interpolated — {values}"
     elif status == "proposed":
         words = f"Proposed — {values}; {note}"
     elif held:
@@ -463,6 +466,39 @@ def coordinate_cell(value: dict[str, Any]) -> tuple:
     else:
         words = f"{UNRESOLVED}no value remains (a conflict); {note}"
     return cell(words, status, value["source"], value["rule"], note)
+
+
+def approved_coordinate(coordinates: dict[str, Any], name: str) -> dict[str, Any]:
+    """A design coordinate under approved relations, as landscape.json schema 2 carries it (pure — pinned).
+
+    The approved relations are the record's default relations, so their value is <name>_interpolated: that
+    value when they narrow the coordinate (interpolated, or unresolved when they leave none); the known value
+    <name>, with its own note, when they leave it as it is.
+    """
+    known, interpolated = coordinates[name], coordinates[f"{name}_interpolated"]
+    return known if interpolated["value"] == known["value"] else interpolated
+
+
+def proposals_cell(value: dict[str, Any], proposals: list[dict[str, Any]]) -> tuple:
+    """A design coordinate as each proposed relation alone would narrow it, as one cell (pure — pinned).
+
+    `value` is the coordinate under approved relations (approved_coordinate), `proposals`
+    its <name>_proposed: one value for each proposed relation that narrows it.
+      none narrowing it — `value` as coordinate_cell shows it, noted "no proposed relation narrows it";
+      one or more      — each one's coordinate_cell words, one per line; the status unresolved when any is
+                         (a conflict), else proposed; their rules and notes joined by "; ".
+    """
+    if not proposals:
+        return coordinate_cell({**value, "note": "no proposed relation narrows it"})
+    shown_each = [coordinate_cell(proposal) for proposal in proposals]
+    status = "unresolved" if any(held[2] == "unresolved" for held in shown_each) else "proposed"
+    return cell(
+        "\n".join(held[0] for held in shown_each),
+        status,
+        value["source"],
+        "; ".join(held[4] for held in shown_each),
+        "; ".join(held[5] for held in shown_each),
+    )
 
 
 # ── a trial's criteria, read once for the dossier and the Eligibility listing ─────────────────────────
@@ -764,12 +800,15 @@ def population_entries(study: dict[str, Any]) -> list[tuple]:
     """Block 2: the eligible population and setting; separately, the enrolled population (pure — pinned).
 
     The conditions and the population fields as the record states them; the setting and the prior lines for
-    advanced disease under approved relations and with proposed ones (coordinate_cell, readings); then the
+    advanced disease under approved relations (approved_coordinate) and with each proposed one alone
+    (<name>_proposed; coordinate_cell, proposals_cell, readings); then the
     actual enrollment (the enrollment only when its type is ACTUAL, else "Not stated") and the posted
     baseline characteristics ("Not posted" when no results are posted, else not carried by the record).
     """
     population, enrollment = study["population"], study["enrollment"]
     coordinates = study["line_of_therapy_and_setting"]
+    setting = approved_coordinate(coordinates, "setting")
+    lines = approved_coordinate(coordinates, "prior_advanced_lines")
     held = enrollment["value"]
     if enrollment["status"] == "known" and isinstance(held, dict) and held.get("type") == "ACTUAL":
         actual = enrolled(enrollment)
@@ -789,21 +828,17 @@ def population_entries(study: dict[str, Any]) -> list[tuple]:
         ("Gender eligibility description", "record", shown(population["gender_description"])),
         ("Healthy volunteers", "record", shown(population["healthy_volunteers"])),
         ("Standard age groups", "record", shown(population["std_ages"])),
-        ("Treatment setting (approved relations)", "reading", coordinate_cell(coordinates["setting"])),
+        ("Treatment setting (approved relations)", "reading", coordinate_cell(setting)),
         (
             "Treatment setting with proposed relations",
             "reading",
-            coordinate_cell(coordinates["setting_with_proposed_relations"]),
+            proposals_cell(setting, coordinates["setting_proposed"]),
         ),
-        (
-            "Prior lines for advanced disease (approved relations)",
-            "reading",
-            coordinate_cell(coordinates["prior_advanced_lines"]),
-        ),
+        ("Prior lines for advanced disease (approved relations)", "reading", coordinate_cell(lines)),
         (
             "Prior lines for advanced disease with proposed relations",
             "reading",
-            coordinate_cell(coordinates["prior_advanced_lines_with_proposed_relations"]),
+            proposals_cell(lines, coordinates["prior_advanced_lines_proposed"]),
         ),
         ("Enrolled population: actual enrollment", "record", actual),
         ("Enrolled population: posted baseline characteristics", "record", baseline),
@@ -1278,7 +1313,7 @@ def index_row(study: dict[str, Any], dossier: tuple[str, int]) -> tuple:
 
     The Trial ID linked to its registry page; the short title and last update (not carried by the record);
     phase; status; eligible population (population_cell); the setting and prior lines as registered
-    (approved relations); the investigational and comparator arms (arm_treatments); enrollment, labelled
+    (approved_coordinate); the investigational and comparator arms (arm_treatments); enrollment, labelled
     actual or anticipated; the primary outcomes and their time frames, numbered; the registry's results; the
     results publication beside them (publication_note); the dossier's first row, `dossier` (its sheet and
     row), linked inside the workbook; the evidence key "<Trial ID>-I".
@@ -1287,7 +1322,10 @@ def index_row(study: dict[str, Any], dossier: tuple[str, int]) -> tuple:
     coordinates = study["line_of_therapy_and_setting"]
     setting = joined(
         ("Setting", "Prior lines for advanced disease"),
-        (coordinate_cell(coordinates["setting"]), coordinate_cell(coordinates["prior_advanced_lines"])),
+        (
+            coordinate_cell(approved_coordinate(coordinates, "setting")),
+            coordinate_cell(approved_coordinate(coordinates, "prior_advanced_lines")),
+        ),
         ELIGIBILITY_TEXT,
         "coherence.resolve under approved relations",
     )

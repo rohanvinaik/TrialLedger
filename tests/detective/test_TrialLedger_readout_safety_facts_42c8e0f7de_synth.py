@@ -1918,7 +1918,7 @@ def test_safety_facts_value_1():
                 "absent_from_record",
                 "Grade",
                 "",
-                "landscape.json (schema 1) carries no such field",
+                "landscape.json (schema 2) carries no such field",
             ),
             (
                 "Not stated",
@@ -1926,7 +1926,7 @@ def test_safety_facts_value_1():
                 "absent_from_record",
                 "Grade source",
                 "",
-                "landscape.json (schema 1) carries no such field",
+                "landscape.json (schema 2) carries no such field",
             ),
             (
                 1,
@@ -1950,7 +1950,7 @@ def test_safety_facts_value_1():
                 "absent_from_record",
                 "Events in a group total",
                 "",
-                "landscape.json (schema 1) carries no such field",
+                "landscape.json (schema 2) carries no such field",
             ),
             (
                 "Not stated",
@@ -1958,7 +1958,7 @@ def test_safety_facts_value_1():
                 "absent_from_record",
                 "Collection method of a group total",
                 "",
-                "landscape.json (schema 1) carries no such field",
+                "landscape.json (schema 2) carries no such field",
             ),
             (
                 "Up to 30 days after last dose",
@@ -2016,7 +2016,7 @@ def test_safety_facts_value_1():
                 "absent_from_record",
                 "Grade",
                 "",
-                "landscape.json (schema 1) carries no such field",
+                "landscape.json (schema 2) carries no such field",
             ),
             (
                 "Not stated",
@@ -2024,7 +2024,7 @@ def test_safety_facts_value_1():
                 "absent_from_record",
                 "Grade source",
                 "",
-                "landscape.json (schema 1) carries no such field",
+                "landscape.json (schema 2) carries no such field",
             ),
             (
                 6,
@@ -2048,7 +2048,7 @@ def test_safety_facts_value_1():
                 "absent_from_record",
                 "Events in a group total",
                 "",
-                "landscape.json (schema 1) carries no such field",
+                "landscape.json (schema 2) carries no such field",
             ),
             (
                 "Not stated",
@@ -2056,7 +2056,7 @@ def test_safety_facts_value_1():
                 "absent_from_record",
                 "Collection method of a group total",
                 "",
-                "landscape.json (schema 1) carries no such field",
+                "landscape.json (schema 2) carries no such field",
             ),
             (
                 "Up to 30 days after last dose",
@@ -2114,7 +2114,7 @@ def test_safety_facts_value_1():
                 "absent_from_record",
                 "Grade",
                 "",
-                "landscape.json (schema 1) carries no such field",
+                "landscape.json (schema 2) carries no such field",
             ),
             (
                 "Not stated",
@@ -2122,7 +2122,7 @@ def test_safety_facts_value_1():
                 "absent_from_record",
                 "Grade source",
                 "",
-                "landscape.json (schema 1) carries no such field",
+                "landscape.json (schema 2) carries no such field",
             ),
             (
                 30,
@@ -2146,7 +2146,7 @@ def test_safety_facts_value_1():
                 "absent_from_record",
                 "Events in a group total",
                 "",
-                "landscape.json (schema 1) carries no such field",
+                "landscape.json (schema 2) carries no such field",
             ),
             (
                 "Not stated",
@@ -2154,7 +2154,7 @@ def test_safety_facts_value_1():
                 "absent_from_record",
                 "Collection method of a group total",
                 "",
-                "landscape.json (schema 1) carries no such field",
+                "landscape.json (schema 2) carries no such field",
             ),
             (
                 "Up to 30 days after last dose",
@@ -2212,7 +2212,7 @@ def test_safety_facts_value_1():
                 "absent_from_record",
                 "Grade",
                 "",
-                "landscape.json (schema 1) carries no such field",
+                "landscape.json (schema 2) carries no such field",
             ),
             (
                 "Not stated",
@@ -2220,7 +2220,7 @@ def test_safety_facts_value_1():
                 "absent_from_record",
                 "Grade source",
                 "",
-                "landscape.json (schema 1) carries no such field",
+                "landscape.json (schema 2) carries no such field",
             ),
             (
                 0,
@@ -2244,7 +2244,7 @@ def test_safety_facts_value_1():
                 "absent_from_record",
                 "Events in a group total",
                 "",
-                "landscape.json (schema 1) carries no such field",
+                "landscape.json (schema 2) carries no such field",
             ),
             (
                 "Not stated",
@@ -2252,7 +2252,7 @@ def test_safety_facts_value_1():
                 "absent_from_record",
                 "Collection method of a group total",
                 "",
-                "landscape.json (schema 1) carries no such field",
+                "landscape.json (schema 2) carries no such field",
             ),
             (
                 "Up to 30 days after last dose",
@@ -2310,7 +2310,7 @@ def test_safety_facts_value_1():
                 "absent_from_record",
                 "Grade",
                 "",
-                "landscape.json (schema 1) carries no such field",
+                "landscape.json (schema 2) carries no such field",
             ),
             (
                 "Not stated",
@@ -2318,7 +2318,7 @@ def test_safety_facts_value_1():
                 "absent_from_record",
                 "Grade source",
                 "",
-                "landscape.json (schema 1) carries no such field",
+                "landscape.json (schema 2) carries no such field",
             ),
             (
                 2,
@@ -2342,7 +2342,7 @@ def test_safety_facts_value_1():
                 "absent_from_record",
                 "Events in a group total",
                 "",
-                "landscape.json (schema 1) carries no such field",
+                "landscape.json (schema 2) carries no such field",
             ),
             (
                 "Not stated",
@@ -2350,7 +2350,7 @@ def test_safety_facts_value_1():
                 "absent_from_record",
                 "Collection method of a group total",
                 "",
-                "landscape.json (schema 1) carries no such field",
+                "landscape.json (schema 2) carries no such field",
             ),
             (
                 "Up to 30 days after last dose",
@@ -2408,7 +2408,7 @@ def test_safety_facts_value_1():
                 "absent_from_record",
                 "Grade",
                 "",
-                "landscape.json (schema 1) carries no such field",
+                "landscape.json (schema 2) carries no such field",
             ),
             (
                 "Not stated",
@@ -2416,7 +2416,7 @@ def test_safety_facts_value_1():
                 "absent_from_record",
                 "Grade source",
                 "",
-                "landscape.json (schema 1) carries no such field",
+                "landscape.json (schema 2) carries no such field",
             ),
             (
                 20,
@@ -2440,7 +2440,7 @@ def test_safety_facts_value_1():
                 "absent_from_record",
                 "Events in a group total",
                 "",
-                "landscape.json (schema 1) carries no such field",
+                "landscape.json (schema 2) carries no such field",
             ),
             (
                 "Not stated",
@@ -2448,7 +2448,7 @@ def test_safety_facts_value_1():
                 "absent_from_record",
                 "Collection method of a group total",
                 "",
-                "landscape.json (schema 1) carries no such field",
+                "landscape.json (schema 2) carries no such field",
             ),
             (
                 "Up to 30 days after last dose",
@@ -2506,7 +2506,7 @@ def test_safety_facts_value_1():
                 "absent_from_record",
                 "Grade",
                 "",
-                "landscape.json (schema 1) carries no such field",
+                "landscape.json (schema 2) carries no such field",
             ),
             (
                 "Not stated",
@@ -2514,7 +2514,7 @@ def test_safety_facts_value_1():
                 "absent_from_record",
                 "Grade source",
                 "",
-                "landscape.json (schema 1) carries no such field",
+                "landscape.json (schema 2) carries no such field",
             ),
             (
                 3,
@@ -2604,7 +2604,7 @@ def test_safety_facts_value_1():
                 "absent_from_record",
                 "Grade",
                 "",
-                "landscape.json (schema 1) carries no such field",
+                "landscape.json (schema 2) carries no such field",
             ),
             (
                 "Not stated",
@@ -2612,7 +2612,7 @@ def test_safety_facts_value_1():
                 "absent_from_record",
                 "Grade source",
                 "",
-                "landscape.json (schema 1) carries no such field",
+                "landscape.json (schema 2) carries no such field",
             ),
             (
                 0,
@@ -2702,7 +2702,7 @@ def test_safety_facts_value_1():
                 "absent_from_record",
                 "Grade",
                 "",
-                "landscape.json (schema 1) carries no such field",
+                "landscape.json (schema 2) carries no such field",
             ),
             (
                 "Not stated",
@@ -2710,7 +2710,7 @@ def test_safety_facts_value_1():
                 "absent_from_record",
                 "Grade source",
                 "",
-                "landscape.json (schema 1) carries no such field",
+                "landscape.json (schema 2) carries no such field",
             ),
             (
                 18,
@@ -2800,7 +2800,7 @@ def test_safety_facts_value_1():
                 "absent_from_record",
                 "Grade",
                 "",
-                "landscape.json (schema 1) carries no such field",
+                "landscape.json (schema 2) carries no such field",
             ),
             (
                 "Not stated",
@@ -2808,7 +2808,7 @@ def test_safety_facts_value_1():
                 "absent_from_record",
                 "Grade source",
                 "",
-                "landscape.json (schema 1) carries no such field",
+                "landscape.json (schema 2) carries no such field",
             ),
             (
                 10,
@@ -2910,7 +2910,7 @@ def test_safety_facts_value_2():
                 "absent_from_record",
                 "Grade",
                 "",
-                "landscape.json (schema 1) carries no such field",
+                "landscape.json (schema 2) carries no such field",
             ),
             (
                 "Not stated",
@@ -2918,7 +2918,7 @@ def test_safety_facts_value_2():
                 "absent_from_record",
                 "Grade source",
                 "",
-                "landscape.json (schema 1) carries no such field",
+                "landscape.json (schema 2) carries no such field",
             ),
             ("Not stated", "", "known", "src", "", ""),
             ("Not stated", "", "known", "src", "", ""),

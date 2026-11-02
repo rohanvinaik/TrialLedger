@@ -37,6 +37,8 @@ EPC = {
 
 
 def rxclass(url, params):
+    if url == classes.RXNAV_VERSION:  # the release, asked once a lookup batch (classes.lookup's warrant)
+        return 200, {"version": "05-Oct-2026", "apiVersion": "3.1.356"}
     if params["drugName"] == "pembrolizumab" and params["relaSource"] == "DAILYMED":
         return 200, EPC
     if params["drugName"] == "flaky":

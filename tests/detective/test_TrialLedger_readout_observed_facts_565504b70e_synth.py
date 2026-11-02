@@ -102,7 +102,7 @@ def test_observed_facts_value_0():
             "absent_from_record",
             "Denominator",
             "",
-            "landscape.json (schema 1) carries no such field",
+            "landscape.json (schema 2) carries no such field",
         ),
         (
             "Not stated",
@@ -110,7 +110,7 @@ def test_observed_facts_value_0():
             "absent_from_record",
             "Statistical analysis",
             "",
-            "landscape.json (schema 1) carries no such field",
+            "landscape.json (schema 2) carries no such field",
         ),
         (
             "Not stated",

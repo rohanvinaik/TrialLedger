@@ -1195,7 +1195,7 @@ def test_outcome_entries_value_0():
                 "absent_from_record",
                 "Explicit assessment schedule",
                 "",
-                "landscape.json (schema 1) carries no such field",
+                "landscape.json (schema 2) carries no such field",
             ),
         ),
     ]
@@ -1506,7 +1506,7 @@ def test_outcome_entries_value_1():
                 "absent_from_record",
                 "Explicit assessment schedule",
                 "",
-                "landscape.json (schema 1) carries no such field",
+                "landscape.json (schema 2) carries no such field",
             ),
         ),
     ]
