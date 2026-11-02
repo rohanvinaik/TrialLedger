@@ -8,7 +8,7 @@ plain value from the body it came from.
 
 | File | What it shows |
 |---|---|
-| `record.json` | A schema-3 record of two studies: NCT04852770 (an ordinary study without results; values the registry does not hold; the general universe) and NCT01030536 (posted results nested as the registry nests them: a measure with its groups, its denominators per group, a class and a category, and the registry's "NA" values with their comments; a baseline measure; participant flow with a withdrawal reason; an adverse-event table; an unresolved drug class; an unresolved coordinate) |
+| `record.json` | A schema-3 record of two studies: NCT04852770 (an ordinary study without results; values the registry does not hold; the general universe) and NCT01030536 (posted results nested as the registry nests them: a measure with its groups, its denominators per group, a class and a category, and the registry's "NA" values with their comments; a baseline measure; participant flow with a withdrawal reason; an adverse-event table; an unresolved drug class; a domain pack whose applicability is unresolved) |
 | `universes.json` | The universe assignment of the three trials asked for by number: the PTSD trial (general), the CLL and lymphoma immunotoxin (haematologic), and the solid-tumour basket without condition MeSH (solid, from its free-text condition) |
 | `safety.json` | The Safety sheet's columns and rows for two trials with 5 and 2 adverse-event groups (n = 5; the second trial's G3 to G5 cells are blank, as they cannot apply), and the Groups sheet's G1 ... Gn names |
 | `mcp_paging.json` | The MCP record tool's `studies` part, paged: the first page of two of three studies |
@@ -22,7 +22,9 @@ plain value from the body it came from.
 - A rule's reading is a value object `{"status", "rule", "words", "result", "note"}`: the rule (the contract's
   rule for the field), the words it read, what it found, its status and why.
 - A domain reading a trial's universe does not permit is absent (the PTSD trial has no coordinates; the
-  universe reading's note says why); the haematologic trial carries prior lines only, its pack's coordinate.
+  universe reading's note says why); the haematologic trial's one pack, prior lines, requires an intervention
+  that treats the cancer, and RxNav gives CAT-8015 no ATC class, so its applicability reads unresolved in the
+  universe reading (`treated_target`, `applicability`) and the trial carries no coordinate.
 - Each Safety row is addressed by a JSON pointer into the record the sheet was written from; in
   `safety.json` that record holds the two trials in the order listed under `trials`.
 

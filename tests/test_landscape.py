@@ -32,18 +32,32 @@ BODIES = [
 NCT = "protocolSection.identificationModule.nctId"
 
 
-def build(studies):
+# RxNav's ATC answers for the fixtures' drug names, as the baseline runs' classes.json records them
+# (2026-11-01), in classes.json's shape; a name absent here was never asked.
+ANSWERS = {
+    name: {"axes": {"ATC": {"code": "found" if codes else "not_found", "assertions": [[c] for c in codes]}}}
+    for name, codes in {
+        "Osimertinib": ("L01EB",),
+        "osimertinib": ("L01EB",),
+        "Carboplatin": ("L01XA",),
+        "Amivantamab": ("L01FX",),
+        **{f"CAT-8015 {dose} mcg/kg": () for dose in (20, 30, 40, 50, 60)},
+    }.items()
+}
+
+
+def build(studies, answers=None):
     reading = read_population(studies, {})
     manifest = landscape.landscape_manifest(
         studies, "2.0.5", "2026-11-01T00:00:00", "abc", {}, landscape.RULE_VERSIONS
     )
-    record = landscape.landscape_record(reading, studies, {"ids": []}, {"query": {}}, manifest, None)
+    record = landscape.landscape_record(reading, studies, {"ids": []}, {"query": {}}, manifest, answers)
     return json.loads(json.dumps(record, ensure_ascii=False))
 
 
 @pytest.fixture(scope="module")
 def record():
-    return build(BODIES)
+    return build(BODIES, ANSWERS)
 
 
 def by_nct(record, nct):
@@ -295,27 +309,46 @@ def test_a_general_trial_carries_no_domain_reading(record):
     assert not any(q["result"]["kind"] == "coordinate_conflict" for q in psd["open_questions"])
 
 
-def test_a_haematologic_trial_carries_prior_lines_only(record):
+def test_a_haematologic_trial_carries_no_line_reading_where_what_it_treats_cannot_be_read(record):
+    """The CLL trial's only pack is prior lines; RxNav gives CAT-8015 no ATC class, so the pack's
+    applicability reads unresolved in the universe reading: no coordinate is computed or denied silently."""
     cll = by_nct(record, "NCT01030536")
-    assert set(cll["coordinates"]) <= {
-        "prior_advanced_lines",
-        "prior_advanced_lines_interpolated",
-        "prior_advanced_lines_proposed",
-    }
-    assert "prior_advanced_lines" in cll["coordinates"]
-    assert "oncology.heme/prior_lines" in cll["coordinates"]["prior_advanced_lines"]["note"]
+    assert "coordinates" not in cll
+    assert cll["universe"]["result"]["applicability"] == [
+        {
+            "pack": "oncology.heme/prior_lines",
+            "status": "unresolved_treated_target",
+            "words": cll["universe"]["result"]["applicability"][0]["words"],
+        }
+    ]
+    assert "Prior lines of therapy: applicability unresolved" in cll["universe"]["note"]
 
 
-def test_a_solid_treatment_trial_carries_setting_lines_and_selection(record):
+def test_a_solid_treatment_trial_of_an_anticancer_drug_carries_setting_lines_and_selection(record):
     solid = [
         study
         for study in record["studies"]
         if study["universe"]["result"]["universes"] == ["oncology.solid"]
         and study["primary_purpose"] == "TREATMENT"
     ]
-    assert solid
+    treating = [s for s in solid if s["universe"]["result"]["treated_target"]["status"] == "cancer"]
+    assert treating and len(treating) < len(solid)
     for study in solid:
-        assert {"setting", "prior_advanced_lines", "selection"} <= set(study["coordinates"])
+        if study in treating:
+            assert {"setting", "prior_advanced_lines", "selection"} <= set(study["coordinates"])
+        else:
+            assert {"setting", "prior_advanced_lines"}.isdisjoint(study.get("coordinates", {}))
+            assert "applicability unresolved" in study["universe"]["note"]
+
+
+def test_in_relay_mode_no_setting_is_read_and_each_trial_says_why():
+    relayed = build(BODIES)
+    for study in relayed["studies"]:
+        if study["universe"]["result"]["universes"] == ["oncology.solid"]:
+            assert "setting" not in study.get("coordinates", {})
+            target = study["universe"]["result"]["treated_target"]
+            assert target["status"] == "unresolved"
+            assert "not looked up" in target["words"] or target["words"].startswith("no intervention")
 
 
 def test_an_experimental_drug_has_its_class_and_says_why_it_is_unresolved(record):

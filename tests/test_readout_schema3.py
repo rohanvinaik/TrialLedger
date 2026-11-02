@@ -40,6 +40,8 @@ from TrialLedger.readout import (
 
 SAFETY = json.loads((EXAMPLES / "safety.json").read_text(encoding="utf-8"))
 RECORD = record_of()
+# RxNav's ATC answer for osimertinib, as the baseline's classes.json holds it, in that file's shape.
+OSIMERTINIB = {"Osimertinib": {"axes": {"ATC": {"code": "found", "assertions": [["L01EB"]]}}}}
 PLAN = {name: (headers, rows) for name, headers, rows, _starts in readout.book_plan(RECORD)}
 
 
@@ -156,6 +158,9 @@ def test_why_a_reading_is_not_made_is_said_in_clinical_words():
 def test_an_index_reading_left_open_by_the_default_relations_reads_unresolved():
     study = copy.deepcopy(RECORD["studies"][1])
     study["universe"]["result"]["universes"] = ["oncology.solid"]
+    study["universe"]["result"]["applicability"] = [
+        {"pack": "oncology.solid/setting_and_line", "status": "permitted", "words": "applies"}
+    ]
     study["primary_purpose"] = "TREATMENT"
     left_open = {"status": "unresolved", "rule": "r", "words": [], "result": ["a", "b"], "note": ""}
     narrowed = {"status": "interpolated", "rule": "r", "words": [], "result": ["a", "b"], "note": ""}
@@ -177,15 +182,18 @@ def test_outside_its_universe_a_reading_is_not_applicable_on_the_index_with_its_
     for column in ("Treatment setting", "Prior lines for advanced disease", "Gene selection"):
         assert index[2][column] == "Not applicable"
     assert index[0]["Treatment setting"] == "Not applicable"
+    # The CLL trial's prior-lines pack needs an intervention that treats the cancer; RxNav gives CAT-8015 no
+    # class (and in relay mode nothing is looked up), so its applicability reads unresolved, with its reason.
     assert index[0]["Prior lines for advanced disease"] == "Unresolved"
     facts = dossier(RECORD["studies"][0])
-    assert facts["Prior lines for advanced disease"] == (
-        "Unresolved — the eligibility criteria do not state the prior lines of therapy for advanced disease",
-        "Unresolved",
-    )
+    words, label_ = facts["Prior lines for advanced disease"]
+    assert words.startswith("Unresolved — what the interventions treat cannot be read (the drugs' classes")
+    assert label_ == "Unresolved"
     assert facts["Treatment setting"][0].startswith("Not read for haematologic cancer trials")
-    assert "Treatment setting and line: what they are" in facts
+    assert "Treatment setting and line: what they are" not in facts
     assert "Treatment setting and line: what they are" not in dossier(RECORD["studies"][2])
+    answered = record_of(("NCT02151981",), answers=OSIMERTINIB)["studies"][0]
+    assert "Treatment setting and line: what they are" in dossier(answered)
 
 
 # ── the dossier ─────────────────────────────────────────────────────────────────────────────────────────
@@ -463,10 +471,12 @@ def test_the_readings_sheet_names_each_field_plainly():
 
 
 def test_a_reading_the_default_relations_leave_as_it_is_is_one_dossier_row():
-    facts = dossier(RECORD["studies"][0])
+    """On NCT02151981 read as a direct run reads it: osimertinib (an other name) is antineoplastic, so its
+    setting and line packs apply and its prior lines are read."""
+    study = copy.deepcopy(record_of(("NCT02151981",), answers=OSIMERTINIB)["studies"][0])
+    facts = dossier(study)
     assert "Prior lines for advanced disease" in facts
     assert "Prior lines for advanced disease (with the default relations)" not in facts
-    study = copy.deepcopy(RECORD["studies"][0])
     narrowed = {**study["coordinates"]["prior_advanced_lines"], "status": "interpolated", "result": ["0"]}
     study["coordinates"]["prior_advanced_lines_interpolated"] = narrowed
     assert "Prior lines for advanced disease (with the default relations)" in dossier(study)

@@ -28,10 +28,11 @@ from TrialLedger.universes import (
     atc_classes,
     counted_universe,
     drug_anchor,
-    permitted_packs,
+    pack_applicability,
     reading,
     scope_case,
     term_hits,
+    treated_target,
 )
 
 FIXTURES = Path(__file__).resolve().parent / "fixtures" / "contract"
@@ -113,9 +114,22 @@ def test_the_ptsd_trial_is_general_and_says_why():
 
 
 def test_the_lymphoma_and_cll_trial_is_haematologic_with_prior_lines_only():
+    """Positive: haematologic, its prior-lines pack the only one it could carry. Negative: RxNav gives
+    CAT-8015 no ATC class, so what it treats cannot be read: the pack's applicability is unresolved, and
+    said so."""
     found = assign(BODIES["NCT01030536"], CLASSES)
     assert (found.universes, found.decided_by) == (("oncology.heme",), "condition_mesh")
-    assert found.packs == ("oncology.heme/prior_lines",)
+    assert found.packs == ()
+    assert found.applicability == (
+        {
+            "pack": "oncology.heme/prior_lines",
+            "status": "unresolved_treated_target",
+            "words": "applicability unresolved: what the interventions treat cannot be read (RxNav gives no "
+            "ATC class (CAT-8015 20 mcg/kg; CAT-8015 30 mcg/kg; CAT-8015 40 mcg/kg; CAT-8015 50 mcg/kg; "
+            "CAT-8015 60 mcg/kg))",
+        },
+    )
+    assert found.words.endswith("; Prior lines of therapy: " + found.applicability[0]["words"])
     anchors = [finding["anchor"] for finding in source(found, "condition_mesh")["found"]]
     assert anchors == ["Lymphoma", "Leukemia"]  # Neoplasms, an ancestor too, is not listed beside them
     assert found.words.startswith("Haematologic oncology (condition MeSH: Lymphoma, Non-Hodgkin")
@@ -244,6 +258,88 @@ def test_a_supportive_care_trial_in_cancer_patients_gets_no_setting():
     assert set(coordinates) == {f"selection:{gene}" for gene in contract.SELECTED_GENES}
 
 
+BREAST = {
+    "conditions": ["Breast Cancer", "Depression"],
+    "mesh": ["Breast Neoplasms", "Depression"],
+    "ancestors": ["Neoplasms by Site", "Neoplasms", "Behavioral Symptoms"],
+}
+
+
+def radiation(body, name="Stereotactic Body Radiation Therapy"):
+    body["protocolSection"]["armsInterventionsModule"]["interventions"].append(
+        {"type": "RADIATION", "name": name}
+    )
+    return body
+
+
+def test_a_treatment_trial_of_depression_in_cancer_patients_gets_no_setting_and_says_why():
+    """Negative: cancer conditions and a treatment purpose, but every drug read is an antidepressant or a
+    placebo: the setting and line pack and the setting relations do not apply. Positive: gene selection
+    still does, and the index words say why the setting is absent."""
+    depression = study(**BREAST, interventions=[("Sertraline", "Zoloft"), ("Placebo",)])
+    found = assign(depression, {"Sertraline": ("N06AB",), "Placebo": ()})
+    assert found.universes == ("oncology.solid",)
+    assert found.target == {
+        "status": "not_cancer",
+        "words": "every drug read is of another class (Sertraline; Placebo)",
+    }
+    assert found.packs == ("oncology.solid/gene_selection",)
+    assert [row["status"] for row in found.applicability] == [
+        "not_permitted_treated_target",
+        "permitted",
+        "not_permitted_treated_target",
+    ]
+    assert found.words.endswith(
+        "; Treatment setting and prior lines for advanced disease: not applicable: no intervention treats "
+        "the cancer (every drug read is of another class (Sertraline; Placebo))"
+    )
+    assert "setting" not in coherence.resolve([], found)
+    result = reading(found)["result"]
+    assert result["treated_target"]["status"] == "not_cancer"
+    assert result["applicability"] == [dict(row) for row in found.applicability]
+
+
+def test_a_radiation_trial_treats_the_cancer_even_in_relay_mode():
+    found = assign(radiation(study(**BREAST)), None)
+    assert found.target == {"status": "cancer", "words": "Stereotactic Body Radiation Therapy (radiation)"}
+    assert "oncology.solid/setting_and_line" in found.packs
+
+
+def test_a_chemotherapy_trial_treats_the_cancer():
+    found = assign(study(**BREAST, interventions=[("Cisplatin",), ("Placebo",)]), {"Cisplatin": ("L01XA",)})
+    assert found.target["status"] == "cancer"
+    assert found.packs == (
+        "oncology.solid/setting_and_line",
+        "oncology.solid/gene_selection",
+        "oncology.solid/nsclc_relations",
+    )
+
+
+@pytest.mark.parametrize(
+    "mapping, interventions, why",
+    [
+        (None, [("Cisplatin",)], "the drugs' classes were not looked up (Cisplatin)"),
+        ({"Cisplatin": None}, [("Cisplatin",)], "RxNav did not answer for a drug's class (Cisplatin)"),
+        ({"XB-1": ()}, [("XB-1",)], "RxNav gives no ATC class (XB-1)"),
+        ({}, [], "no intervention is a drug or radiation"),
+    ],
+)
+def test_what_cannot_be_read_leaves_the_setting_unresolved_with_its_reason(mapping, interventions, why):
+    """Negative: a relay-mode trial, a failed lookup, a drug RxNav cannot class and a trial with no drug or
+    radiation never get the setting, and never silently: the applicability reads unresolved, with why."""
+    found = assign(study(**BREAST, interventions=interventions), mapping)
+    assert found.target == {"status": "unresolved", "words": why}
+    assert "oncology.solid/setting_and_line" not in found.packs
+    assert found.applicability[0] == {
+        "pack": "oncology.solid/setting_and_line",
+        "status": "unresolved_treated_target",
+        "words": f"applicability unresolved: what the interventions treat cannot be read ({why})",
+    }
+    assert found.words.endswith(
+        f"applicability unresolved: what the interventions treat cannot be read ({why})"
+    )
+
+
 def test_methotrexate_in_rheumatoid_arthritis_is_unresolved_never_oncology():
     arthritis = study(
         conditions=["Rheumatoid Arthritis"],
@@ -279,8 +375,8 @@ def test_a_lymphomas_antineoplastic_drug_counts_as_haematologic():
 
 
 def test_solid_and_haematologic_conditions_give_the_union():
-    basket = study(conditions=["Melanoma", "Hodgkin Lymphoma"])
-    found = assign(basket, {})
+    basket = study(conditions=["Melanoma", "Hodgkin Lymphoma"], interventions=[("Cyclophosphamide",)])
+    found = assign(basket, {"Cyclophosphamide": ("L01AA",)})
     assert found.universes == ("oncology.solid", "oncology.heme")
     assert (
         found.words
@@ -359,17 +455,64 @@ def test_scope_case(condition, other, outside, code):
     assert code in universes.CASE_CODES
 
 
+def permitted_packs(universes_, purpose, target):
+    return [pack for pack, code in pack_applicability(universes_, purpose, target) if code == "permitted"]
+
+
 def test_permitted_packs_need_every_requirement():
-    assert permitted_packs(["oncology.solid"], "TREATMENT") == [
+    assert permitted_packs(["oncology.solid"], "TREATMENT", "cancer") == [
         "oncology.solid/setting_and_line",
         "oncology.solid/gene_selection",
         "oncology.solid/nsclc_relations",
     ]
-    assert permitted_packs(["oncology.heme"], "TREATMENT") == ["oncology.heme/prior_lines"]
-    assert permitted_packs(["oncology.heme"], "SUPPORTIVE_CARE") == []
-    assert permitted_packs(["oncology.solid"], "") == ["oncology.solid/gene_selection"]
-    assert permitted_packs(["general"], "TREATMENT") == []
-    assert permitted_packs([], "TREATMENT") == []
+    assert permitted_packs(["oncology.heme"], "TREATMENT", "cancer") == ["oncology.heme/prior_lines"]
+    assert permitted_packs(["oncology.heme"], "SUPPORTIVE_CARE", "cancer") == []
+    assert permitted_packs(["oncology.solid"], "", "cancer") == ["oncology.solid/gene_selection"]
+    assert permitted_packs(["oncology.solid"], "TREATMENT", "not_cancer") == ["oncology.solid/gene_selection"]
+    assert permitted_packs(["oncology.solid"], "TREATMENT", "unresolved") == ["oncology.solid/gene_selection"]
+    assert permitted_packs(["general"], "TREATMENT", "cancer") == []
+    assert permitted_packs([], "TREATMENT", "cancer") == []
+
+
+def test_pack_applicability_names_the_requirement_that_fails_or_leaves_it_open():
+    assert pack_applicability(["oncology.heme"], "TREATMENT", "unresolved") == [
+        ("oncology.heme/prior_lines", "unresolved_treated_target")
+    ]
+    assert pack_applicability(["oncology.heme"], "TREATMENT", "not_cancer") == [
+        ("oncology.heme/prior_lines", "not_permitted_treated_target")
+    ]
+    # A definite failure outranks an open target: a supportive-care trial is not permitted, never unresolved.
+    assert pack_applicability(["oncology.heme"], "SUPPORTIVE_CARE", "unresolved") == [
+        ("oncology.heme/prior_lines", "not_permitted_primary_purpose")
+    ]
+    assert pack_applicability(["oncology.solid"], "TREATMENT", "cancer") == [
+        ("oncology.solid/setting_and_line", "permitted"),
+        ("oncology.solid/gene_selection", "permitted"),
+        ("oncology.solid/nsclc_relations", "permitted"),
+    ]
+    assert pack_applicability(["general"], "TREATMENT", "cancer") == []
+    for _pack, code in pack_applicability(["oncology.solid", "oncology.heme"], "", "unresolved"):
+        assert code in universes.APPLICABILITY_CODES
+
+
+@pytest.mark.parametrize(
+    "drugs, radiation, target",
+    [
+        (["anchored", "not_looked_up"], False, "cancer"),
+        (["not_looked_up"], True, "cancer"),
+        ([], True, "cancer"),
+        (["classed", "placebo"], False, "not_cancer"),
+        (["classed"], False, "not_cancer"),
+        (["placebo"], False, "unresolved"),
+        (["classed", "unclassed"], False, "unresolved"),
+        (["classed", "lookup_failed"], False, "unresolved"),
+        (["not_looked_up"], False, "unresolved"),
+        ([], False, "unresolved"),
+    ],
+)
+def test_treated_target(drugs, radiation, target):
+    assert treated_target(drugs, radiation) == target
+    assert target in contract.TREATED_TARGETS
 
 
 def test_atc_classes_keeps_answered_names_and_marks_failed_ones():
@@ -403,7 +546,7 @@ FIRST_LINE = [
 
 
 def scoped(universes_, purpose="TREATMENT"):
-    packs = tuple(permitted_packs(list(universes_), purpose))
+    packs = tuple(permitted_packs(list(universes_), purpose, "cancer"))
     return Assignment("oncology", "oncology", tuple(universes_), "", purpose, (), packs, "")
 
 

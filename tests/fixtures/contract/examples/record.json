@@ -78,7 +78,12 @@
        "found": [],
        "non_oncology": []
       }
-     ]
+     ],
+     "treated_target": {
+      "status": "unresolved",
+      "words": "no intervention is a drug or radiation"
+     },
+     "applicability": []
     },
     "note": "General: no domain readings apply (condition MeSH: Stress Disorders, Post-Traumatic; COVID-19)"
    }
@@ -387,9 +392,20 @@
        "found": [],
        "non_oncology": []
       }
+     ],
+     "treated_target": {
+      "status": "unresolved",
+      "words": "RxNav gives no ATC class (CAT-8015 20 mcg/kg; CAT-8015 30 mcg/kg; CAT-8015 40 mcg/kg; CAT-8015 50 mcg/kg; CAT-8015 60 mcg/kg)"
+     },
+     "applicability": [
+      {
+       "pack": "oncology.heme/prior_lines",
+       "status": "unresolved_treated_target",
+       "words": "applicability unresolved: what the interventions treat cannot be read (RxNav gives no ATC class (CAT-8015 20 mcg/kg; CAT-8015 30 mcg/kg; CAT-8015 40 mcg/kg; CAT-8015 50 mcg/kg; CAT-8015 60 mcg/kg))"
+      }
      ]
     },
-    "note": "Haematologic oncology (condition MeSH: Lymphoma, Non-Hodgkin; Leukemia, Lymphocytic, Chronic, B-Cell)"
+    "note": "Haematologic oncology (condition MeSH: Lymphoma, Non-Hodgkin; Leukemia, Lymphocytic, Chronic, B-Cell); Prior lines of therapy: applicability unresolved: what the interventions treat cannot be read (RxNav gives no ATC class (CAT-8015 20 mcg/kg; CAT-8015 30 mcg/kg; CAT-8015 40 mcg/kg; CAT-8015 50 mcg/kg; CAT-8015 60 mcg/kg))"
    },
    "interventions": [
     {
@@ -408,21 +424,7 @@
       "note": "unresolved (the baseline record names no cause; its wording is unit A's to settle)"
      }
     }
-   ],
-   "coordinates": {
-    "prior_advanced_lines": {
-     "status": "unresolved",
-     "rule": "coherence.resolve",
-     "words": [],
-     "result": [
-      "0",
-      "1",
-      "2",
-      "3+"
-     ],
-     "note": "unnarrowed (no typed atom narrows it)"
-    }
-   }
+   ]
   }
  ]
 }

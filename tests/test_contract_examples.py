@@ -76,8 +76,10 @@ def test_the_example_record_holds_only_contract_fields():
         "studies[].participant_flow.periods[].withdrawals[].reason",
         "studies[].adverse_events.events[].counts[].at_risk",
         "studies[].interventions[].drug_class",
-        "studies[].coordinates.prior_advanced_lines",
     }
+    # Neither example trial carries a coordinate: the PTSD trial is general, and what the CLL trial's
+    # CAT-8015 treats cannot be read (RxNav gives it no ATC class), so its prior-lines pack is unresolved.
+    assert not any(name.startswith("studies[].coordinates.") for name, _p, _v in found)
 
 
 def test_every_plain_value_is_the_registrys_and_every_absence_is_real():

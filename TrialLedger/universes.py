@@ -2,7 +2,11 @@
 
 A universe (contract.UNIVERSES) names the rule packs it owns; a rule outside every universe a trial is in is
 never applied. Membership is not permission: each pack states what it requires (the trial's universe and,
-for the setting and line-of-therapy pack, a treatment purpose) before its coordinates are computed.
+for the setting and line-of-therapy packs, a treatment purpose and an intervention that treats the cancer)
+before its coordinates are computed. What the interventions treat (treated_target) is read from the drug and
+biological interventions' ATC classes and the radiation interventions: an antineoplastic drug or radiation
+treats the cancer; drugs all read and of other classes (or placebo) do not; anything unread leaves the pack's
+applicability unresolved, stated with its reason in the assignment and its words, never silently absent.
 
 `assign` reads three named sources of the registry's study record, each recorded with what it found:
 1. condition_mesh: the condition MeSH terms and their ancestors, matched whole against the MeSH anchors
@@ -32,7 +36,8 @@ How they decide (scope_case):
 - unresolved, no domain: no positive evidence of any domain and no oncology signal (no usable condition, or
   conditions naming neither vocabulary: "Unmapped condition ZYX-123"); never general.
 
-The decisions are pure and pinned (term_hits, drug_anchor, counted_universe, scope_case, permitted_packs);
+The decisions are pure and pinned (term_hits, drug_anchor, counted_universe, scope_case, treated_target,
+pack_applicability);
 `assign` gathers their inputs from the study record and assembles the Assignment and its words.
 """
 
@@ -80,6 +85,17 @@ CASE_CODES = {
     "unresolved_disagreement": "Scope unresolved — the sources disagree",
     "unresolved_no_domain": "Scope unresolved — no source identifies a domain",
 }
+# The intervention types the drug source reads for what a trial treats, and the one that treats the cancer.
+DRUG_TYPES = ("DRUG", "BIOLOGICAL")
+RADIATION = "RADIATION"
+# What pack_applicability names, each in words.
+APPLICABILITY_CODES = {
+    "permitted": "applies",
+    "not_permitted_universe": "not applicable: the trial is not in the pack's universe",
+    "not_permitted_primary_purpose": "not applicable: not a treatment trial",
+    "not_permitted_treated_target": "not applicable: no intervention treats the cancer",
+    "unresolved_treated_target": "applicability unresolved: what the interventions treat cannot be read",
+}
 _WORD = re.compile(r"[A-Za-z0-9]+")
 
 
@@ -94,9 +110,11 @@ class Assignment:
     primary_purpose — the registry's primary purpose code, "" when the record states none;
     sources         — one dict per contract.ASSIGNMENT_SOURCES entry, in order: {"source", "status",
                       "found": [{"term", "anchor", "universe"}], "non_oncology": [terms]};
-    packs           — "universe/pack" for every pack whose requirements hold (permitted_packs);
-    words           — the Trial index words;
-    conditions      — the free-text conditions as the registry gives them.
+    packs           — "universe/pack" for every pack whose requirements hold (pack_applicability);
+    words           — the Trial index words, with every domain pack that does not apply and why;
+    conditions      — the free-text conditions as the registry gives them;
+    target          — what the interventions treat (treated_target), with its words;
+    applicability   — each pack of the trial's universes: {"pack", "status", "words"}.
     """
 
     case: str
@@ -108,6 +126,8 @@ class Assignment:
     packs: tuple[str, ...]
     words: str
     conditions: tuple[str, ...] = ()
+    target: dict[str, str] | None = None
+    applicability: tuple[dict[str, str], ...] = ()
 
 
 def term_hits(text: str, terms: list[tuple[str, str]]) -> list[str]:
@@ -177,26 +197,58 @@ def scope_case(condition_oncology: bool, other_oncology: bool, non_oncology: boo
     return "general" if non_oncology else "unresolved_no_domain"
 
 
-def permitted_packs(universes: list[str], primary_purpose: str) -> list[str]:
-    """Every pack whose requirements hold, as "universe/pack", in contract.UNIVERSES order (pure — pinned).
+def treated_target(drugs: list[str], radiation: bool) -> str:
+    """What the trial's interventions treat, as contract.TREATED_TARGETS names it (pure — pinned).
 
-    A pack of a universe the trial is in is permitted when each of its requirements holds: a "universe"
-    requirement when one of `universes` is among its values, a "primary_purpose" requirement when
-    `primary_purpose` is. A requirement of another kind never holds. Membership alone permits nothing.
+    `drugs` holds each drug or biological intervention's state, as the drug source read it: "anchored" (a
+    name's ATC class is antineoplastic, L01 or L02), "classed" (an ATC class, none antineoplastic), "placebo"
+    (its name says placebo), "unclassed" (RxNav gives no ATC class), "lookup_failed" or "not_looked_up";
+    `radiation`: an intervention is of type RADIATION.
+      "cancer"     — radiation, or an antineoplastic drug;
+      "not_cancer" — a drug of another class, and every drug classed or a placebo;
+      "unresolved" — otherwise: a drug unread (not looked up, its lookup failed, no ATC class), or no drug.
     """
-    permitted = []
+    if radiation or "anchored" in drugs:
+        return "cancer"
+    if "classed" in drugs and all(state in ("classed", "placebo") for state in drugs):
+        return "not_cancer"
+    return "unresolved"
+
+
+def pack_applicability(universes: list[str], primary_purpose: str, target: str) -> list[tuple[str, str]]:
+    """Each pack of the trial's universes and whether it applies, in UNIVERSES order (pure — pinned).
+
+    Each pack, as ("universe/pack", code): its requirements are read in order; a "universe" requirement holds
+    when one of `universes` is among its values, a "primary_purpose" one when `primary_purpose` is, a
+    "treated_target" one when `target` (treated_target's) is, and one of another kind never holds.
+      "permitted"                     — every requirement holds;
+      "not_permitted_<kind>"          — the first requirement that does not hold, by its kind;
+      "unresolved_treated_target"     — every other requirement holds and `target` is "unresolved".
+    Membership alone permits nothing; a pack of a universe the trial is not in is not listed.
+    """
+    applicability = []
     for universe in contract.UNIVERSES:
         if universe.name not in universes:
             continue
         for pack in universe.packs:
-            held = [
-                (requirement.kind == "universe" and any(name in requirement.values for name in universes))
-                or (requirement.kind == "primary_purpose" and primary_purpose in requirement.values)
-                for requirement in pack.requires
-            ]
-            if all(held):
-                permitted.append(f"{universe.name}/{pack.name}")
-    return permitted
+            failed, open_target = "", False
+            for requirement in pack.requires:
+                if requirement.kind == "treated_target" and target == "unresolved":
+                    open_target = True
+                    continue
+                holds = (
+                    (requirement.kind == "universe" and any(name in requirement.values for name in universes))
+                    or (requirement.kind == "primary_purpose" and primary_purpose in requirement.values)
+                    or (requirement.kind == "treated_target" and target in requirement.values)
+                )
+                if not holds and not failed:
+                    failed = requirement.kind
+            if failed:
+                code = f"not_permitted_{failed}"
+            else:
+                code = "unresolved_treated_target" if open_target else "permitted"
+            applicability.append((f"{universe.name}/{pack.name}", code))
+    return applicability
 
 
 def pack_scope(packs: tuple[str, ...]) -> tuple[dict[str, list[str]], tuple[str, ...]]:
@@ -307,6 +359,64 @@ def _drug_findings(
     return "read", found
 
 
+def _drug_state(names: list[str], drug_classes: dict[str, tuple[str, ...] | None] | None) -> str:
+    """A drug intervention's state for treated_target, from the ATC answers for its name and other names."""
+    answers = {
+        name: drug_classes[name] for name in names if drug_classes is not None and name in drug_classes
+    }
+    codes = [code for held in answers.values() for code in held or ()]
+    if drug_anchor(codes):
+        return "anchored"
+    if any(term_hits(name, [("placebo", "word")]) for name in names):
+        return "placebo"
+    if codes:
+        return "classed"
+    if any(held is None for held in answers.values()):
+        return "lookup_failed"
+    return "unclassed" if answers else "not_looked_up"
+
+
+def _target(
+    entries: list[tuple[str, list[str]]], drug_classes: dict[str, tuple[str, ...] | None] | None
+) -> dict[str, str]:
+    """What the interventions treat (treated_target), with its words: the drugs or radiation it rests on."""
+    drugs = [(names[0], _drug_state(names, drug_classes)) for kind, names in entries if kind in DRUG_TYPES]
+    radiation = [names[0] for kind, names in entries if kind == RADIATION]
+    target = treated_target([state for _name, state in drugs], bool(radiation))
+
+    def named(*states: str) -> str:
+        return "; ".join(name for name, state in drugs if state in states)
+
+    if target == "cancer":
+        treats = [f"{named('anchored')} (antineoplastic)"] if named("anchored") else []
+        words = "; ".join([*treats, *(f"{name} (radiation)" for name in radiation)])
+    elif target == "not_cancer":
+        words = f"every drug read is of another class ({named('classed', 'placebo')})"
+    else:
+        reasons = [
+            (f"{why} ({named(state)})")
+            for state, why in (
+                ("not_looked_up", "the drugs' classes were not looked up"),
+                ("lookup_failed", "RxNav did not answer for a drug's class"),
+                ("unclassed", "RxNav gives no ATC class"),
+            )
+            if named(state)
+        ]
+        words = "; ".join(reasons) or "no intervention is a drug or radiation"
+    return {"status": target, "words": words}
+
+
+def _applicability(universes: list[str], purpose: str, target: dict[str, str]) -> list[dict[str, str]]:
+    """Each pack of the trial's universes with whether it applies and why, in words."""
+    rows = []
+    for pack, code in pack_applicability(universes, purpose, target["status"]):
+        words = APPLICABILITY_CODES.get(code, f"not applicable: {code}")
+        if code.endswith("treated_target"):
+            words = f"{words} ({target['words']})"
+        rows.append({"pack": pack, "status": code, "words": words})
+    return rows
+
+
 def _titled(source: dict[str, Any]) -> bool:
     """Whether a source's findings are the titles' (free text, where no condition names a cancer)."""
     return source["status"] in ("titles", "conditions_and_titles")
@@ -407,11 +517,12 @@ def assign(
     else:
         text_status = "conditions_and_titles" if usable else "titles"
     text_found = condition_found or title_found
-    interventions = [
-        [str(entry["name"]), *(str(other) for other in entry.get("otherNames") or [])]
+    entries = [
+        (str(entry.get("type") or ""), [str(entry["name"]), *(str(o) for o in entry.get("otherNames") or [])])
         for entry in (protocol.get("armsInterventionsModule") or {}).get("interventions") or []
-        if entry.get("name")
+        if isinstance(entry, dict) and entry.get("name")
     ]
+    interventions = [names for _kind, names in entries]
     drug_status, drug_found = _drug_findings(interventions, drug_classes, purpose)
     found = [mesh_found, _specific_only(text_found), drug_found]
     haematologic = any(finding["universe"] == HEME for findings in found for finding in findings)
@@ -448,6 +559,16 @@ def assign(
         universes = [GENERAL]
         decided_by = str(next(source["source"] for source in sources if source["non_oncology"]))
     case = "unresolved" if code.startswith("unresolved") else code
+    target = _target(entries, drug_classes)
+    applicability = _applicability(universes, purpose, target)
+    # A domain pack that computes coordinates and does not apply for what the trial treats says so where the
+    # universe is shown: its absence is never silent.
+    labels = {f"{u.name}/{p.name}": p.label for u in contract.UNIVERSES for p in u.packs if p.coordinates}
+    withheld = [
+        f"{labels[row['pack']]}: {row['words']}"
+        for row in applicability
+        if row["status"].endswith("treated_target") and row["pack"] in labels
+    ]
     return Assignment(
         case,
         code,
@@ -455,9 +576,11 @@ def assign(
         decided_by,
         purpose,
         tuple(sources),
-        tuple(permitted_packs(universes, purpose)),
-        _words(code, universes, sources, mesh, conditions, unmatched),
+        tuple(row["pack"] for row in applicability if row["status"] == "permitted"),
+        "; ".join([_words(code, universes, sources, mesh, conditions, unmatched), *withheld]),
         tuple(conditions),
+        target,
+        tuple(applicability),
     )
 
 
@@ -484,6 +607,8 @@ def reading(assignment: Assignment) -> dict[str, Any]:
             "universes": list(assignment.universes),
             "decided_by": assignment.decided_by,
             "sources": [dict(source) for source in assignment.sources],
+            "treated_target": dict(assignment.target or {}),
+            "applicability": [dict(row) for row in assignment.applicability],
         },
         "note": assignment.words,
     }

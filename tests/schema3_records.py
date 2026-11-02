@@ -28,8 +28,13 @@ NOT_STATED = {"status": "not_stated", "note": "not_reported"}
 SAMPLE = ("NCT01030536", "NCT02151981", "NCT04852770")
 
 
-def record_of(ncts: tuple[str, ...] = SAMPLE, bodies: dict[str, Any] | None = None) -> dict[str, Any]:
-    """The schema-3 record of the given trials, in that order (module docstring)."""
+def record_of(
+    ncts: tuple[str, ...] = SAMPLE,
+    bodies: dict[str, Any] | None = None,
+    answers: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    """The schema-3 record of the given trials, in that order (module docstring); with `answers`, RxNav's
+    answers in classes.json's shape, read as a direct run reads them."""
     held = bodies if bodies is not None else BODIES
     studies = [held[nct] for nct in ncts]
     ids = ",".join(ncts)
@@ -44,5 +49,5 @@ def record_of(ncts: tuple[str, ...] = SAMPLE, bodies: dict[str, Any] | None = No
     )
     reading = read_population(studies, {})
     request, scope = {"params": {"filter.ids": ids}}, {"query": {"filter.ids": ids}}
-    record = landscape.landscape_record(reading, studies, request, scope, manifest, None)
+    record = landscape.landscape_record(reading, studies, request, scope, manifest, answers)
     return json.loads(json.dumps(record, ensure_ascii=False))

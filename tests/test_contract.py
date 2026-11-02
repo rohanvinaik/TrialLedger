@@ -318,8 +318,13 @@ def test_the_universes_name_what_coherence_holds():
             assert pack.requires
             for requirement in pack.requires:
                 assert requirement.kind in contract.REQUIREMENT_KINDS
-                allowed = set(names) if requirement.kind == "universe" else purposes
+                allowed = {
+                    "universe": set(names),
+                    "primary_purpose": purposes,
+                    "treated_target": {"cancer"},
+                }[requirement.kind]
                 assert set(requirement.values) <= allowed, (pack.name, requirement)
+    assert set(contract.TREATED_TARGETS) == {"cancer", "not_cancer", "unresolved"}
     assert contract.UNIVERSES[-1].packs == ()
 
 

@@ -522,6 +522,35 @@ def pack_applies(coordinate: str, universes: tuple[str, ...], purpose: Any) -> s
     return "other_purpose" if in_universe else "outside_universe"
 
 
+def withheld(study: dict[str, Any], coordinate: str) -> tuple[str, str]:
+    """Where the trial's universe reading says no pack computing the coordinate applies for what the trial's
+    interventions treat (universes.pack_applicability): (STATUS_LABELS["unresolved"], reason) where that
+    cannot be read, (NOT_APPLICABLE, reason) where no intervention treats the cancer, the reason the
+    reading's own words after its status; ("", "") otherwise, the universe table then deciding
+    (pack_applies)."""
+    value = study.get("universe")
+    result = value.get("result") if isinstance(value, dict) and held_kind(value) == "reading" else None
+    rows = (result.get("applicability") or []) if isinstance(result, dict) else []
+    computing = {
+        f"{universe.name}/{pack.name}"
+        for universe in contract.UNIVERSES
+        for pack in universe.packs
+        if any(name.split(":")[0] == coordinate for name in pack.coordinates)
+    }
+    mine = [row for row in rows if isinstance(row, dict) and row.get("pack") in computing]
+    if not mine or any(row.get("status") == "permitted" for row in mine):
+        return "", ""
+    for status, cell in (
+        ("unresolved_treated_target", STATUS_LABELS["unresolved"]),
+        ("not_permitted_treated_target", NOT_APPLICABLE),
+    ):
+        held = [row for row in mine if row.get("status") == status]
+        if held:
+            words = str(held[0].get("words") or "")
+            return cell, words.split(": ", 1)[-1]
+    return "", ""
+
+
 def not_applicable_words(coordinate: str, universes: tuple[str, ...], purpose: Any) -> str:
     """Why a domain reading is not made for a trial, in clinical words, from the universe table."""
     defined = []
@@ -532,7 +561,7 @@ def not_applicable_words(coordinate: str, universes: tuple[str, ...], purpose: A
                 for requirement in pack.requires:
                     if requirement.kind == "universe":
                         defined += [DEFINED_FOR.get(name, name) for name in requirement.values]
-                    else:
+                    elif requirement.kind == "primary_purpose":
                         purposes += [
                             item_words(code, "PrimaryPurpose").lower() for code in requirement.values
                         ]
@@ -627,6 +656,9 @@ def coordinate_short(study: dict[str, Any], name: str) -> Any:
     status, universes = assigned(study)
     if status == "missing":
         return NO_READING
+    cell, _why = withheld(study, name)
+    if cell:
+        return cell
     if pack_applies(name, universes, study.get("primary_purpose")) != "applies":
         return NOT_APPLICABLE
     levels = dict(coordinate_levels(study, name)[:2])
@@ -812,6 +844,17 @@ def universe_band_rows(study: dict[str, Any]) -> list[tuple[str, Any, str]]:
     for name, title in COORDINATE_WORDS.items():
         if status == "missing":
             rows.append((title, NO_READING, STATUS_LABELS["not_stated"]))
+            continue
+        cell, why = withheld(study, name)
+        if cell:
+            words = contract.REASON_FORM.format(status=cell, reason=why)
+            rows.append(
+                (
+                    title,
+                    words,
+                    STATUS_LABELS["unresolved"] if cell == STATUS_LABELS["unresolved"] else READING,
+                )
+            )
             continue
         if pack_applies(name, universes, purpose) != "applies":
             rows.append((title, not_applicable_words(name, universes, purpose), READING))

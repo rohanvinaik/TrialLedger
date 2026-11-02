@@ -773,6 +773,7 @@ _STUDY_FIELDS: tuple[Field, ...] = (
             f"{DI}.primaryPurpose",
             f"{AI}.interventions[].name",
             f"{AI}.interventions[].otherNames[]",
+            f"{AI}.interventions[].type",
         ),
     ),
     # Each coordinate at the levels coherence.resolve gives it (landscape.json schema 2, kept in schema 3):
@@ -2664,12 +2665,25 @@ class Universe(NamedTuple):
     packs: tuple[Pack, ...]
 
 
-UNIVERSE_TABLE_VERSION = "universes-1"
+UNIVERSE_TABLE_VERSION = "universes-2"
 REQUIREMENT_KINDS = {
     "universe": "the trial is assigned to one of these universes (membership is not permission: each pack "
     "states the rest)",
     "primary_purpose": "the registry's primary purpose is one of these codes (the PrimaryPurpose enum)",
+    "treated_target": "what the trial's interventions treat is one of these (TREATED_TARGETS): a trial of "
+    "cancer patients treating their depression treats no cancer",
 }
+# What universes.treated_target reads the trial's interventions to treat, each in words. Only "cancer" holds a
+# treated_target requirement; "unresolved" leaves the pack's applicability unresolved, never denied silently.
+TREATED_TARGETS = {
+    "cancer": "an intervention treats the cancer: a drug of an antineoplastic ATC class (L01, L02), or "
+    "radiation",
+    "not_cancer": "every drug was read and none is of an antineoplastic class, and no intervention is "
+    "radiation",
+    "unresolved": "what the interventions treat cannot be read: a drug's class not looked up, its lookup "
+    "failed or RxNav gives it no ATC class, or no intervention is a drug or radiation",
+}
+TREATS_CANCER = Requirement("treated_target", ("cancer",))
 SELECTED_GENES = ("EGFR", "ALK", "ROS1", "KRAS", "BRAF", "MET", "RET", "NTRK", "HER2")
 NSCLC_RELATIONS = (
     "first_line_when_no_prior_advanced_therapy",
@@ -2685,14 +2699,14 @@ UNIVERSES: tuple[Universe, ...] = (
     Universe(
         "oncology.solid",
         "Solid-tumour oncology",
-        "1",
+        "2",
         (
             Pack(
                 "setting_and_line",
                 "Treatment setting and prior lines for advanced disease",
                 ("setting", "prior_advanced_lines"),
                 (),
-                (Requirement("universe", ("oncology.solid",)), TREATMENT),
+                (Requirement("universe", ("oncology.solid",)), TREATMENT, TREATS_CANCER),
             ),
             Pack(
                 "gene_selection",
@@ -2706,21 +2720,21 @@ UNIVERSES: tuple[Universe, ...] = (
                 "The setting relations of non-small cell lung cancer",
                 (),
                 NSCLC_RELATIONS,
-                (Requirement("universe", ("oncology.solid",)), TREATMENT),
+                (Requirement("universe", ("oncology.solid",)), TREATMENT, TREATS_CANCER),
             ),
         ),
     ),
     Universe(
         "oncology.heme",
         "Haematologic oncology",
-        "1",
+        "2",
         (
             Pack(
                 "prior_lines",
                 "Prior lines of therapy",
                 ("prior_advanced_lines",),
                 (),
-                (Requirement("universe", ("oncology.heme",)), TREATMENT),
+                (Requirement("universe", ("oncology.heme",)), TREATMENT, TREATS_CANCER),
             ),
         ),
     ),
@@ -2745,7 +2759,12 @@ ASSIGNMENT_SOURCES: tuple[tuple[str, str, tuple[str, ...]], ...] = (
         "drug_class",
         "for a treatment trial, its drugs' ATC classes as RxNav gives them for the intervention's name and "
         "other names (antineoplastic agents, L01; endocrine therapy, L02); in relay mode not looked up",
-        (f"{AI}.interventions[].name", f"{AI}.interventions[].otherNames[]", f"{DI}.primaryPurpose"),
+        (
+            f"{AI}.interventions[].name",
+            f"{AI}.interventions[].otherNames[]",
+            f"{AI}.interventions[].type",
+            f"{DI}.primaryPurpose",
+        ),
     ),
 )
 # How the sources decide, in order (the rule unit B builds as universes.assign).
