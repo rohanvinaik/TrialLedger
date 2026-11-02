@@ -1425,9 +1425,15 @@
     "refusal": "",
     "standing": "complete"
   },
+  "TrialLedger/warrants.py::canonical_tree": {
+    "cut_reasons": [],
+    "function_digest": "471c36fabcffebc4",
+    "refusal": "",
+    "standing": "complete"
+  },
   "TrialLedger/warrants.py::semantic_source": {
     "cut_reasons": [],
-    "function_digest": "c23d206d42cb3529",
+    "function_digest": "ab6b87c22360272b",
     "refusal": "",
     "standing": "complete"
   },

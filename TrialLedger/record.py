@@ -8,7 +8,6 @@ import hashlib
 import json
 import shutil
 import subprocess
-import sys
 from collections import Counter
 from collections.abc import Callable
 from pathlib import Path
@@ -257,15 +256,12 @@ def verify_folder(folder: Path, *, limit: int = 20) -> tuple[str, list[str]]:
     if missing:
         problems.extend(f"workbook.missing: {name} is not in the folder" for name in missing)
     elif provenance.get("code_root") != CODE_ROOT:
-        # The code's fingerprint is taken over its syntax as this Python reads it, so the same commit under
-        # another Python version has another one: the words say so.
-        python = ".".join(map(str, sys.version_info[:2]))
+        # The code's fingerprint is the same under every supported Python (warrants.canonical_tree), so a
+        # different one means different code: the words name the commit that wrote the folder.
         problems.append(
             f"record.code_root: written by TrialLedger code {provenance.get('code_root')} (commit "
-            f"{provenance.get('code_commit')}), and this TrialLedger, under Python {python}, is {CODE_ROOT}; "
-            "a folder is checked only by the code that wrote it, so verify it with TrialLedger at that "
-            "commit, under the Python version that wrote it (the same commit under another Python version "
-            "reads as other code)"
+            f"{provenance.get('code_commit')}), and this TrialLedger is {CODE_ROOT}; a folder is checked "
+            "only by the code that wrote it, so verify it with TrialLedger at that commit"
         )
     elif provenance.get("writer") != WRITER:
         cells = [p for book in BOOKS for p in certify(record, folder / book.name, book=book, limit=limit)]

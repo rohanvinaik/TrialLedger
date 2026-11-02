@@ -118,10 +118,9 @@ VERIFY_HELP = """\
 Check a folder that `trialledger pull` wrote: that every record in studies.json is exactly as it was saved
 (each record's fingerprint, and one over them all), that studies.csv is unchanged, and that every cell of
 review.xlsx and record.xlsx, and each file itself, is exactly what the same version of TrialLedger writes
-from those records. Each difference is named. A folder written by another version of TrialLedger, or by
-the same version under another version of Python (3.12, 3.13, ...), can be checked only by that version
-under that Python: the words printed name the commit to install. A studies.json that holds one field twice
-in the same place is not certified (exit 1).
+from those records. Each difference is named. A folder written by another version of TrialLedger can be
+checked only by that version, under any Python TrialLedger supports: the words printed name the commit to
+install. A studies.json that holds one field twice in the same place is not certified (exit 1).
 
 What it shows: that each value follows from the saved record by the code that wrote it. Not that the
 registry is right, nor that a rule reads a criterion correctly.

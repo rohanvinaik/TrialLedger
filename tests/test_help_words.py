@@ -122,9 +122,10 @@ def test_the_printed_next_steps_use_no_internal_words():
     assert not [mode for mode, words in NEXT_STEP.items() if "slot" in words]
 
 
-def test_verify_says_a_folder_needs_the_python_that_wrote_it_and_a_repeated_field_ends_1(capsys):
+def test_verify_needs_the_version_that_wrote_a_folder_under_any_python_and_a_repeated_field_ends_1(capsys):
+    """A folder's code fingerprint is the same under every supported Python (warrants.canonical_tree)."""
     text = " ".join(help_text(capsys, "verify").split())
-    assert "another version of Python" in text and "under that Python" in text
+    assert "only by that version, under any Python TrialLedger supports" in text
     assert "is not certified (exit 1)" in text and "is refused" not in text
 
 

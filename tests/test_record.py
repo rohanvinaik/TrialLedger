@@ -14,7 +14,6 @@ without a readable record is not a record.
 import hashlib
 import json
 import subprocess
-import sys
 import zipfile
 
 import pytest
@@ -198,15 +197,13 @@ def test_another_code_or_writer_is_never_certified(tmp_path, monkeypatch):
     monkeypatch.setattr(record_module, "CODE_ROOT", "another code root")
     code, problems = verify_folder(out)
     assert code == "not_certified"
-    python = ".".join(map(str, sys.version_info[:2]))
     assert problems == [
         f"record.code_root: written by TrialLedger code {provenance['code_root']} (commit "
-        f"{provenance['code_commit']}), and this TrialLedger, under Python {python}, is another code root; "
-        "a folder is checked only by the code that wrote it, so verify it with TrialLedger at that commit, "
-        "under the Python version that wrote it (the same commit under another Python version reads as "
-        "other code)"
+        f"{provenance['code_commit']}), and this TrialLedger is another code root; a folder is checked only "
+        "by the code that wrote it, so verify it with TrialLedger at that commit"
     ]
-    assert "derivation code" not in problems[0] and "re-derives" not in problems[0]
+    words = problems[0].split("), and this TrialLedger", 1)[1]  # the message's own words, not the commit's
+    assert "derivation code" not in words and "re-derives" not in words
     monkeypatch.undo()
     monkeypatch.setattr(record_module, "WRITER", "openpyxl 9.9 (etree serializer)")
     code, problems = verify_folder(out)

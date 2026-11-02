@@ -91,7 +91,29 @@ def semantic_source(source: str) -> str:
             and isinstance(first.value.value, str)
         ):
             node.body = node.body[1:] or [ast.Pass()]
-    return ast.dump(tree)
+    return canonical_tree(tree)
+
+
+def canonical_tree(node: object) -> str:
+    """A syntax tree written the same way under every supported Python (pure — pinned).
+
+    `ast.dump`'s form changes between Python versions (3.13 began leaving out empty lists and None), so a code
+    root built on it differed between Pythons for the same code, and a folder written under one Python failed
+    `verify` under another (found 2026-11-01). Here every node is its class name and its fields in their
+    declared order, each written only when it holds something: a field that is None or an empty list is left
+    out, whichever version declares it; a list is its items in order; anything else is its repr.
+    """
+    if isinstance(node, ast.AST):
+        fields = []
+        for name in node._fields:
+            value = getattr(node, name, None)
+            if value is None or value == []:
+                continue
+            fields.append(f"{name}={canonical_tree(value)}")
+        return f"{type(node).__name__}({', '.join(fields)})"
+    if isinstance(node, list):
+        return f"[{', '.join(canonical_tree(item) for item in node)}]"
+    return repr(node)
 
 
 def code_digest(*functions: Callable[..., Any]) -> str:
