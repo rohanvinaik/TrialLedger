@@ -56,8 +56,9 @@ the workbook; answer their questions from the record.
 4. **Read the resolved search before anything is gathered.** TrialLedger resolves the request through named
    sources and writes the result to `resolution.json` in the run folder (the record carries it as `scope`)
    before it reads a single study: each drug class expanded into its member drugs, with every subclass it
-   includes named and each member attributed to its subclass; each member searched by its own name, its base
-   ingredient searched only when the class itself lists it (otherwise shown as a candidate); each drug the
+   includes named and each member attributed to its subclass; each member searched by its own name, a salt or
+   hydrate also by its ingredient's name (the same molecule), while a biosimilar's or a brand's reference
+   ingredient is searched only when the class itself lists it, and is otherwise shown as a candidate; each drug the
    person names searched by every name RxNorm gives it; every name in both the registry's intervention name and
    its other names; each disease class searched through the registry's MeSH terms and their descendants. Show the
    person what was included. A broad class may bring in subclasses they do not expect (the FDA's "Kinase
