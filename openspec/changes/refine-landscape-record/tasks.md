@@ -23,6 +23,9 @@
       sources recorded; the cohort section counts only trials a reading applies to and emits empty sections not
       at all.
 - [ ] 1.6 schema 3: schema check, statuses, `fields`, RULE_VERSIONS (the universe table's version); study type kept.
+- [ ] 1.8 The key-criteria reading (a named rule over each criterion's typed readings and a declared category set)
+      and the standard-language section (criteria stated by most trials of the same universe, with counts,
+      representative verbatim wording and their trials), per design §4a.
 - [ ] 1.7 Preservation: an independent check of registry value → record value for every contract field on the
       fixture bodies (nested populations, category-level denominators, comments, precision), failing on planted
       defects (a measurement under the wrong group, a dropped nested field).
@@ -50,6 +53,7 @@
 - [ ] 3.5 The compact Trial index (short fields, short unresolved labels, reasons in the dossier) and the
       dossier's section bands with links to the listings; the Read me's plain search first, provenance last; the
       treatment-context limit stated wherever setting or line appears.
+- [ ] 3.7 The dossier's "Key criteria" band and the "Standard protocol language" sheet of design §4a.
 - [ ] 3.6 Every row's address in the record in its key column; an independent record value → displayed cell
       check that fails on planted defects; a mixed-trial safety fixture (different group counts, a missing
       denominator, explicit zeros, a stat not reported for a group).

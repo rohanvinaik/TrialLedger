@@ -161,6 +161,27 @@ assessment), sourced to the API's enum definitions.
 
 A listing too long for one sheet continues on numbered sheets of the same columns; no row is dropped.
 
+## 4a. What the reviewer asked for, item by item (2026-11-01)
+
+The founder's list of what each study's report must hold (paraphrased): the patient population; the key
+inclusion and exclusion criteria; the trial's line of therapy on the current standard-of-care ladder; the
+clinical outcome measures with the time points assessed; the biomarkers with their time points; the anticipated
+efficacy threshold; the safety signals, with adverse-event grades (what a new trial must do better than); the
+exploratory biomarkers, imaging and biopsies; and standard protocol language reusable across studies in an
+indication. This change answers each from the registry, or names the source a later change adds:
+
+| Item | This change | Later (add-evidence-sources) |
+|---|---|---|
+| Population | eligibility, population fields; the enrolled baseline apart | |
+| Key inclusion and exclusion | a "Key criteria" band in each dossier: the criteria whose readings fall in a declared set of decisive categories (performance status, biomarker selection, prior therapy and line, measurable disease, organ-function thresholds, CNS metastases, autoimmune disease and immunosuppression, HIV and hepatitis B and C, cardiac history), each verbatim with its reading; every criterion stays in Eligibility | |
+| Line on today's ladder | the registered setting and line, labelled as registered | dated treatment context (labels, PDQ) under named rules |
+| Outcomes and time points | registered outcomes with time-point readings | assessment schedules from publications |
+| Biomarkers and time points | biomarker mentions with their words and role | assays, specimens and schedules from publications |
+| Efficacy threshold | posted results and statistical analyses (including non-inferiority margins) | the protocol's stated success criterion; a planning target under a named decision rule, kept apart from observed results |
+| Safety, with grade | counts per group within their reporting period and threshold | grades from publications under CTCAE, by version |
+| Exploratory measures | the registry's other outcomes and biomarker mentions | assays, imaging and biopsies from publications |
+| Standard protocol language | a "Standard protocol language" sheet: each criterion most comparable trials state (comparable = the same universe), with how many of how many, representative verbatim wording and its trials | template language (NIH protocol templates) kept apart from language recurring across trials |
+
 ## 5. Lookups
 
 Ask RxNav for distinct drugs taken from the registry's structured intervention names, never arm labels; a dose
