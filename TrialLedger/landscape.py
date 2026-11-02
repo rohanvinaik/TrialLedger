@@ -36,7 +36,7 @@ import copy
 from collections.abc import Callable, Sequence
 from typing import Any
 
-from TrialLedger import __version__, contract, warrants
+from TrialLedger import __version__, coherence, contract, universes, warrants
 from TrialLedger.banks import endpoint_classes, time_points
 from TrialLedger.coherence import RELATIONS, SETTINGS, STATES, level_status
 from TrialLedger.contract import FIELDS as CONTRACT_FIELDS
@@ -791,8 +791,6 @@ def domain_readings(
     `answers`; None in relay mode, where nothing was looked up), its reading (universes.reading), then
     coherence.resolve over the study's criteria evidence under that assignment: a coordinate no permitted
     pack owns is absent, and each row names the packs that own it."""
-    from TrialLedger import coherence, universes
-
     classes = None if answers is None else universes.atc_classes(answers)
     assignment = universes.assign(study, classes)
     resolved = coherence.resolve(criteria_evidence(view["criteria"]), assignment)
@@ -1062,22 +1060,21 @@ def landscape_record(
     scope: Any,
     manifest: dict[str, Any],
     answers: dict[str, Any] | None,
-    domains: Callable[..., tuple[dict[str, Any], dict[str, Any]]] = domain_readings,
 ) -> dict[str, Any]:
     """landscape.json: the record of truth for one run, schema 3.
 
     `reading` is reading.read_population's over `studies`, in the same order: a reading whose views' digests
     are not the studies' digests, in order, raises ValueError and pairs nothing. `request` and `scope` are
     carried as given; `manifest` is landscape_manifest's; `answers` the RxNav answers the reading was made
-    with (None in relay mode, where nothing was looked up); `domains` gives each study's universe reading and
-    the coordinates its universe admits (domain_readings: universes.assign, then coherence.resolve). The
+    with (None in relay mode, where nothing was looked up), from which domain_readings gives each study's
+    universe reading and the coordinates its universe admits (universes.assign, then coherence.resolve). The
     record: RECORD_KEYS in order, each study's extract (study_extract), the cohort (cohort_section), the
     standard protocol language across the studies (standard_language) and the record's self-description.
     """
     views = reading["views"]
     if [view["digest"] for view in views] != [warrants.study_digest(study) for study in studies]:
         raise ValueError("the reading is not of these studies, in this order")
-    found = [domains(study, view, answers) for study, view in zip(studies, views, strict=True)]
+    found = [domain_readings(study, view, answers) for study, view in zip(studies, views, strict=True)]
     admitted = [set(resolved) for _universe, resolved in found]
     extracts = [
         study_extract(study, view, flags, universe, resolved)

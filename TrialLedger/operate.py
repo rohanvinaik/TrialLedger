@@ -637,7 +637,9 @@ def run(
     manifest = landscape_manifest(
         studies, api_version, data_timestamp, code_commit(), retrieval, RULE_VERSIONS
     )
-    text = _json_bytes(landscape_record(reading, studies, request, scope, manifest))
+    # The RxNav answers decide each drug's ATC class for its universe; in relay mode none was looked up.
+    looked_up = answers if reading_mode == "direct" else None
+    text = _json_bytes(landscape_record(reading, studies, request, scope, manifest, looked_up))
     problems = schema_problems(json.loads(text))
     if problems:
         detail = "; ".join(f"{problem} at {where}" for problem, where in problems[:20])

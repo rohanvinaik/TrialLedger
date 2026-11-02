@@ -15,8 +15,6 @@ import copy
 import json
 from pathlib import Path
 
-from universe_shim import shim_domains
-
 from TrialLedger import landscape
 from TrialLedger.contract import FIELDS
 from TrialLedger.reading import read_population
@@ -127,7 +125,7 @@ def preservation_problems(record, bodies):
 def build():
     reading = read_population(BODIES, {})
     manifest = landscape.landscape_manifest(BODIES, "2", "t", "c", {}, landscape.RULE_VERSIONS)
-    record = landscape.landscape_record(reading, BODIES, {}, {}, manifest, None, shim_domains)
+    record = landscape.landscape_record(reading, BODIES, {}, {}, manifest, None)
     return json.loads(json.dumps(record, ensure_ascii=False))
 
 

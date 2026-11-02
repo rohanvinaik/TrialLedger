@@ -80,11 +80,10 @@ class FakeAPI:
 
 
 # ── until_unit_c: the one place tests wait on the parallel units of refine-landscape-record ──────────────
-# landscape.json is schema 3 (unit A). The workbook (readout.py, unit C) still reads schema 2, and operate.py
-# (the lead's) still calls landscape_record without the RxNav answers and without unit B's universes; every
-# test below runs one of those, so each is expected to fail, strictly, until unit C lands and the lead wires
-# the record. tests/test_readout.py imports schema-2 helpers that no longer exist, so it is not collected.
-UNTIL_UNIT_C = "until unit C (the workbook) lands and the lead wires the schema-3 record into operate.py"
+# landscape.json is schema 3 (unit A). The workbook (readout.py, unit C) still reads schema 2, and every test
+# below writes or reads it, so each is expected to fail, strictly, until unit C lands. tests/test_readout.py
+# imports schema-2 helpers that no longer exist, so it is not collected.
+UNTIL_UNIT_C = "until unit C (the workbook) lands"
 collect_ignore = ["test_readout.py"]
 UNTIL_UNIT_C_TESTS = {
     "detective/test_TrialLedger_readout_biomarker_facts_4cfcade30b_synth.py": (
@@ -120,13 +119,12 @@ UNTIL_UNIT_C_TESTS = {
         "test_failed_lookups_are_set_aside_and_asked_again",
         "test_a_failed_release_reread_is_asked_again",
         "test_a_record_that_differs_is_never_overwritten",
-        "test_a_record_the_schema_refuses_is_not_written",
         "test_the_workbook_is_the_readout_of_the_record_and_certified",
-        "test_the_workbook_is_staged_then_renamed_and_kept_on_a_rerun",
         "test_the_command_ends_0_when_complete",
         "test_a_finished_run_given_its_request_otherwise_writes_the_same_record",
         "test_the_command_says_how_far_its_rxnav_requests_have_got",
         "test_the_command_takes_trials_by_number_and_says_what_became_of_each",
+        "test_drug_lookups_whose_release_is_not_stated_still_make_the_record",
     ),
     "test_mcp_server.py": (
         "test_a_relay_run_through_the_tools_writes_the_record_a_direct_run_writes",

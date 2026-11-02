@@ -9,8 +9,8 @@ Negative: no per-value source or link copies, none of the removed sections, no v
 registry holds, no setting for a general trial, no endpoint among the criterion frequencies, and the validator
 names every planted departure.
 
-Unit B's interface (universes.assign, coherence.resolve under an assignment) is stood in for by
-tests/universe_shim.py until unit B lands.
+The universes are unit B's (universes.assign and coherence.resolve under the assignment), in relay
+mode: no drug's class was looked up.
 """
 
 import copy
@@ -18,7 +18,6 @@ import json
 from pathlib import Path
 
 import pytest
-from universe_shim import shim_domains
 
 from TrialLedger import contract, landscape
 from TrialLedger.contract import FIELDS, holds_value, template_values
@@ -38,9 +37,7 @@ def build(studies):
     manifest = landscape.landscape_manifest(
         studies, "2.0.5", "2026-11-01T00:00:00", "abc", {}, landscape.RULE_VERSIONS
     )
-    record = landscape.landscape_record(
-        reading, studies, {"ids": []}, {"query": {}}, manifest, None, shim_domains
-    )
+    record = landscape.landscape_record(reading, studies, {"ids": []}, {"query": {}}, manifest, None)
     return json.loads(json.dumps(record, ensure_ascii=False))
 
 
@@ -377,7 +374,7 @@ def test_a_reading_of_other_studies_is_refused():
     reading = read_population(BODIES[:2], {})
     manifest = landscape.landscape_manifest(BODIES[:2], "2", "t", "c", {}, landscape.RULE_VERSIONS)
     with pytest.raises(ValueError, match="not of these studies"):
-        landscape.landscape_record(reading, BODIES[1::-1], {}, {}, manifest, None, shim_domains)
+        landscape.landscape_record(reading, BODIES[1::-1], {}, {}, manifest, None)
 
 
 @pytest.mark.parametrize(
