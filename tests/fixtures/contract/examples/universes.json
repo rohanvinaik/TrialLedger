@@ -1,0 +1,136 @@
+{
+ "NCT04852770": {
+  "status": "known",
+  "rule": "universes.assign",
+  "words": [
+   "Stress Disorders, Post-Traumatic",
+   "COVID-19"
+  ],
+  "result": {
+   "universes": [
+    "general"
+   ],
+   "decided_by": "condition_mesh",
+   "sources": [
+    {
+     "source": "condition_mesh",
+     "found": [],
+     "non_oncology": [
+      "Stress Disorders, Post-Traumatic",
+      "COVID-19"
+     ]
+    },
+    {
+     "source": "free_text",
+     "found": [],
+     "non_oncology": [
+      "Posttraumatic Stress Disorder",
+      "Covid19"
+     ]
+    },
+    {
+     "source": "intervention_mesh",
+     "found": [],
+     "non_oncology": []
+    }
+   ]
+  },
+  "note": "General: no domain readings apply (the conditions are post-traumatic stress disorder and COVID-19; no source finds an oncology term)"
+ },
+ "NCT01030536": {
+  "status": "known",
+  "rule": "universes.assign",
+  "words": [
+   "Lymphoma",
+   "Leukemia"
+  ],
+  "result": {
+   "universes": [
+    "oncology.heme"
+   ],
+   "decided_by": "condition_mesh",
+   "sources": [
+    {
+     "source": "condition_mesh",
+     "found": [
+      {
+       "term": "Lymphoma",
+       "anchor": "Lymphoma",
+       "universe": "oncology.heme"
+      },
+      {
+       "term": "Leukemia",
+       "anchor": "Leukemia",
+       "universe": "oncology.heme"
+      }
+     ],
+     "non_oncology": []
+    },
+    {
+     "source": "free_text",
+     "found": [
+      {
+       "term": "Non-Hodgkin Lymphoma",
+       "anchor": "lymphoma",
+       "universe": "oncology.heme"
+      },
+      {
+       "term": "Chronic Lymphocytic Leukemia",
+       "anchor": "leukemia",
+       "universe": "oncology.heme"
+      }
+     ],
+     "non_oncology": []
+    },
+    {
+     "source": "intervention_mesh",
+     "found": [],
+     "non_oncology": []
+    }
+   ]
+  },
+  "note": "Neoplasms is also an ancestor; a solid-tumour anchor counts only where no haematologic anchor holds"
+ },
+ "NCT01827384": {
+  "status": "known",
+  "rule": "universes.assign",
+  "words": [
+   "Advanced Malignant Solid Neoplasm"
+  ],
+  "result": {
+   "universes": [
+    "oncology.solid"
+   ],
+   "decided_by": "free_text",
+   "sources": [
+    {
+     "source": "condition_mesh",
+     "found": [],
+     "non_oncology": []
+    },
+    {
+     "source": "free_text",
+     "found": [
+      {
+       "term": "Advanced Malignant Solid Neoplasm",
+       "anchor": "malignan",
+       "universe": "oncology.solid"
+      },
+      {
+       "term": "Advanced Malignant Solid Neoplasm",
+       "anchor": "neoplasm",
+       "universe": "oncology.solid"
+      }
+     ],
+     "non_oncology": []
+    },
+    {
+     "source": "intervention_mesh",
+     "found": [],
+     "non_oncology": []
+    }
+   ]
+  },
+  "note": "the registry gives no condition MeSH term; the free-text condition decides"
+ }
+}

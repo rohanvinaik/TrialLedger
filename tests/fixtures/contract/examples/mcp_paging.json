@@ -1,0 +1,43 @@
+{
+ "part": "studies",
+ "studies": [
+  {
+   "nct": "NCT04852770",
+   "link": "https://clinicaltrials.gov/study/NCT04852770",
+   "overall_status": "TERMINATED",
+   "phases": [
+    "NA"
+   ],
+   "conditions": [
+    "Posttraumatic Stress Disorder",
+    "Covid19"
+   ],
+   "universe": [
+    "general"
+   ]
+  },
+  {
+   "nct": "NCT01030536",
+   "link": "https://clinicaltrials.gov/study/NCT01030536",
+   "overall_status": "COMPLETED",
+   "phases": [
+    "PHASE1",
+    "PHASE2"
+   ],
+   "conditions": [
+    "Non-Hodgkin Lymphoma",
+    "Chronic Lymphocytic Leukemia"
+   ],
+   "universe": [
+    "oncology.heme"
+   ]
+  }
+ ],
+ "page": {
+  "offset": 0,
+  "limit": 2,
+  "returned": 2,
+  "total": 3,
+  "next_offset": 2
+ }
+}
