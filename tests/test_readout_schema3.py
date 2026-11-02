@@ -398,41 +398,37 @@ def test_an_empty_listing_and_the_across_trial_sheets_say_so_on_one_line():
     assert findings["Type"] == "Too few comparable trials to assess"
     assert findings["Population and limits"] == "Too few comparable trials to assess (3; at least 5 needed)"
     record = copy.deepcopy(RECORD)
-    record["standard_language"] = []
-    (standard,) = readout.standard_rows(record)
-    assert standard[1][0].startswith("No criterion is stated by most comparable trials")
+    record["recurring_criteria"] = []
+    (recurring,) = readout.recurring_rows(record)
+    assert recurring[0][0].startswith("No criterion is stated by more than half")
 
 
 def test_at_the_signal_minimum_an_empty_section_never_reads_as_too_few():
     record = copy.deepcopy(RECORD)
     record["studies"] = record["studies"] * 2
-    record["standard_language"] = []
+    record["recurring_criteria"] = []
     record["cohort"] = {"thresholds": RECORD["cohort"]["thresholds"]}
-    (row,) = readout.standard_rows(record)
-    assert row[1][0].startswith("No criterion is stated by most comparable trials")
+    (row,) = readout.recurring_rows(record)
+    assert row[0][0].startswith("No criterion is stated by more than half")
     (row,) = readout.findings_rows(record)
     assert row[1][0] == "The record holds no across-trial finding for these trials"
 
 
-def test_standard_protocol_language_shows_each_criterion_with_its_counts_and_wording():
+def test_recurring_criteria_show_each_element_with_its_grouping_and_whole_criteria_as_examples():
     record = record_of(tuple(BODIES))
-    rows = [[held[0] for held in row] for row in readout.standard_rows(record)]
-    headers = readout.sheet_headers(contract.STANDARD, 0)
+    rows = [[held[0] for held in row] for row in readout.recurring_rows(record)]
+    headers = readout.sheet_headers(contract.RECURRING, 0)
     named = [dict(zip(headers, row, strict=True)) for row in rows]
     too_few = [row for row in named if row["Role"] is None]
-    assert too_few and all(row["Criterion"].endswith("needed)") for row in too_few)
-    confirmed = next(
-        row for row in named if row["Criterion"] == "Solid tumour: Condition: diagnosis confirmed"
-    )
-    assert (confirmed["Role"], confirmed["Trials stating it"], confirmed["Of comparable trials"]) == (
-        "Inclusion",
-        6,
-        8,
-    )
-    assert confirmed["Representative wording"].startswith("“2. Pathologically confirmed adenocarcinoma")
-    assert confirmed["Wording from"].startswith("NCT02296125, inclusion criterion 2")
-    entry = resolve(record, confirmed[contract.ADDRESS])
-    assert entry["trials"] == 6 and entry["other_trials"][0] in confirmed["Other trials"]
+    assert too_few and all(row["Element"].startswith(("Too few", "No condition grouping")) for row in too_few)
+    shown = [row for row in named if row["Role"] is not None]
+    assert shown
+    for row in shown:
+        entry = resolve(record, row[contract.ADDRESS])
+        assert row["Element"] == entry["element"]["words"]
+        assert row["Grouping"] == entry["grouping"]
+        assert row[contract.RECURRING_EXAMPLE].startswith("Example (whole criterion): “")
+        assert row["Trials stating it"] == entry["trials"] and entry["trials"] * 2 > entry["of_trials"]
 
 
 def test_every_reading_has_its_row_in_the_readings_sheet():
@@ -628,11 +624,11 @@ BLANK_ALLOWED = {
     # the record's one line below the signal minimum: no finding, so no counts or rule apply
     contract.FINDINGS: {"Finding", "Trial IDs", "Numerator / denominator", "Rule"},
     # a universe with too few trials for standard language: its counts and wordings cannot apply
-    contract.STANDARD: {
+    contract.RECURRING: {
         "Role",
         "Trials stating it",
-        "Representative wording",
-        "Wording from",
+        contract.RECURRING_EXAMPLE,
+        "Examples from",
         "Other trials",
     },
 }

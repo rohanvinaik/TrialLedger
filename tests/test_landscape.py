@@ -654,54 +654,99 @@ def test_a_criterion_in_several_key_categories_is_one_entry_naming_them_all():
     ]
 
 
-def trial(nct, universes, texts):
-    atom = ("performance_status", "ecog_ps", ("0", "1"), (), 0, 4)
-    criteria = landscape.criterion_entries([(i, "inclusion", text, [atom]) for i, text in enumerate(texts)])
-    return {"nct": nct, "universe": {"result": {"universes": universes}}, "criteria": criteria}
+def trial(
+    nct,
+    universes,
+    texts,
+    mesh=("Carcinoma, Non-Small-Cell Lung",),
+    concept="condition",
+    values=("cns_metastases",),
+):
+    atom = ("conditions", concept, values, (), 0, 4)
+    criteria = landscape.criterion_entries([(i, "exclusion", text, [atom]) for i, text in enumerate(texts)])
+    return {
+        "nct": nct,
+        "universe": {"result": {"universes": universes}},
+        "condition_mesh": list(mesh) if mesh else {"status": "not_stated", "note": "not_reported"},
+        "criteria": criteria,
+    }
 
 
-def test_a_reading_most_trials_of_a_universe_state_is_standard_with_its_wording():
+def test_an_element_every_trial_shares_is_one_row_with_every_whole_criterion_as_an_example():
+    # each whole criterion adds a different requirement beside the shared element
     studies = [
-        trial("NCT3", ["oncology.solid"], ["ECOG 0-1"]),
-        trial("NCT1", ["oncology.solid"], ["ECOG performance status of 0 or 1 at screening"]),
-        trial("NCT2", ["oncology.solid"], ["ECOG 0 or 1"]),
-        trial("NCT4", ["oncology.solid"], []),
+        trial("NCT1", ["oncology.solid"], ["Untreated CNS metastases, unless stable for 4 weeks"]),
+        trial("NCT2", ["oncology.solid"], ["CNS metastases or leptomeningeal disease"]),
+        trial("NCT3", ["oncology.solid"], ["Symptomatic CNS metastases requiring steroids"]),
     ]
-    [row] = landscape.standard_language(studies)
-    assert list(row) == [
-        "criterion",
-        "role",
-        "trials",
-        "of_trials",
-        "wording",
-        "wording_from",
-        "other_trials",
-    ]
-    assert (row["trials"], row["of_trials"], row["other_trials"]) == (3, 4, ["NCT2"])
-    assert row["wording"] == ["ECOG 0-1", "ECOG performance status of 0 or 1 at screening"]
-    assert row["wording_from"][0] == {
-        "nct": "NCT3",
-        "heading": "inclusion",
+    [row] = landscape.recurring_criteria(studies, "")
+    assert list(row) == ["element", "role", "trials", "of_trials", "grouping", "examples", "other_trials"]
+    assert row["element"]["words"] == "Condition: cns metastases (exclusion)"
+    assert (row["role"], row["trials"], row["of_trials"], row["other_trials"]) == ("exclusion", 3, 3, [])
+    assert row["grouping"] == (
+        "among the 3 trials in solid-tumour oncology whose condition MeSH term is "
+        "Carcinoma, Non-Small-Cell Lung"
+    )
+    assert sorted(example["text"] for example in row["examples"]) == sorted(
+        criterion["text"] for study in studies for criterion in study["criteria"]
+    )
+    assert [list(example) for example in row["examples"]] == [["text", "trial", "criterion"]] * 3
+    assert row["examples"][0]["criterion"] == {
+        "heading": "exclusion",
         "number": 1,
-        "at": "/studies/0/criteria/0",
+        "at": "/studies/1/criteria/0",
     }
-    assert row["role"] == "inclusion" and row["criterion"]["universe"] == "oncology.solid"
+    assert "wording" not in row and "representative" not in str(row)
 
 
-def test_a_reading_too_few_trials_state_is_not_standard_and_a_small_universe_says_why():
-    studies = [trial(f"NCT{i}", ["oncology.solid"], ["ECOG 0-1"] if i < 2 else []) for i in range(5)]
-    studies.append(trial("NCT9", ["general"], ["ECOG 0-1"]))
-    [row] = landscape.standard_language(studies)
-    assert row["criterion"] == {
-        "universe": "general",
-        "element": None,
-        "reason": "too few comparable trials to assess (1; at least 3 needed)",
+def test_half_of_the_trials_is_no_majority():
+    studies = [trial(f"NCT{i}", ["oncology.solid"], ["CNS metastases"] if i < 3 else []) for i in range(6)]
+    assert landscape.recurring_criteria(studies, "") == []
+    studies[3] = trial("NCT3", ["oncology.solid"], ["CNS metastases"])
+    [row] = landscape.recurring_criteria(studies, "")
+    assert (row["trials"], row["of_trials"]) == (4, 6)
+
+
+def test_trials_of_different_conditions_are_never_compared():
+    studies = [trial(f"NCT{i}", ["oncology.solid"], ["CNS metastases"]) for i in range(3)]
+    studies += [trial(f"NCT{i}", ["oncology.solid"], [], mesh=("Breast Neoplasms",)) for i in range(3, 6)]
+    [row] = landscape.recurring_criteria(studies, "")
+    assert (row["trials"], row["of_trials"]) == (3, 3)
+    assert row["grouping"].endswith("whose condition MeSH term is Carcinoma, Non-Small-Cell Lung")
+
+
+def test_a_trial_without_condition_mesh_is_grouped_by_the_requested_class_or_not_at_all():
+    studies = [trial(f"NCT{i}", ["oncology.solid"], ["CNS metastases"], mesh=()) for i in range(3)]
+    [row] = landscape.recurring_criteria(studies, "Lung Neoplasms")
+    assert row["grouping"].endswith(
+        "that give no condition MeSH term, found by the condition class Lung Neoplasms"
+    )
+    [row] = landscape.recurring_criteria(studies, "")
+    assert row["element"]["key"] is None and row["examples"] == []
+    assert row["element"]["words"] == "no condition grouping the record establishes for these trials"
+
+
+def test_a_group_too_small_is_one_row_saying_why():
+    studies = [trial("NCT9", ["general"], ["CNS metastases"])]
+    [row] = landscape.recurring_criteria(studies, "")
+    assert row["element"] == {
+        "key": None,
+        "concept": None,
+        "values": [],
+        "words": "too few comparable trials to assess (1; at least 3 needed)",
     }
-    assert (row["trials"], row["of_trials"], row["wording"]) == (0, 1, [])
+    assert (row["trials"], row["of_trials"], row["examples"]) == (0, 1, [])
 
 
-def test_the_record_holds_key_criteria_and_standard_language(record):
-    assert isinstance(record["standard_language"], list) and record["standard_language"]
+def test_examples_are_capped_and_the_rest_named_as_other_trials():
+    studies = [trial(f"NCT{i}", ["oncology.solid"], ["CNS metastases" + " x" * i]) for i in range(7)]
+    [row] = landscape.recurring_criteria(studies, "")
+    assert len(row["examples"]) == contract.RECURRING_EXAMPLES
+    assert row["other_trials"] == ["NCT5", "NCT6"]
+
+
+def test_the_record_holds_key_criteria_and_recurring_criteria(record):
+    assert isinstance(record["recurring_criteria"], list) and record["recurring_criteria"]
     for study in record["studies"]:
         for key in study["key_criteria"]:
             criterion = study["criteria"][int(key["reading"]["at"].rpartition("/")[2])]

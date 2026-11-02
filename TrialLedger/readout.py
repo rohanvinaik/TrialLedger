@@ -1585,41 +1585,44 @@ def cohort_reason(record: dict[str, Any]) -> Any:
     return cohort.get("reason") if isinstance(cohort, dict) else None
 
 
-def standard_rows(record: dict[str, Any]) -> list[tuple]:
-    """The Standard protocol language rows: one per criterion most comparable trials state, with how many of
-    how many, a representative wording verbatim, its trial and the others; none — one line saying so."""
-    held = record.get("standard_language")
+def recurring_rows(record: dict[str, Any]) -> list[tuple]:
+    """The Recurring criteria rows: one per element more than half of a group of comparable trials state, with
+    how many of how many, the grouping in words, and examples of whole criteria (each may carry further
+    requirements; never reusable text) with their trials; a group too small, one line saying why; none at
+    all, one line saying so."""
+    held = record.get("recurring_criteria")
     rows = []
     for i, entry in enumerate(held if isinstance(held, list) else []):
-        address = f"/standard_language/{i}"
-        criterion = entry.get("criterion") if isinstance(entry.get("criterion"), dict) else {}
-        universe = UNIVERSE_SHORT.get(criterion.get("universe"), str(criterion.get("universe")))
-        if criterion.get("element") is None:
-            # a universe with too few trials: one line saying so, its counts' other columns cannot apply
-            reason = str(criterion.get("reason") or "too few trials to assess")
-            line = f"{universe} trials: {reason[:1].upper()}{reason[1:]}"
-            values = (address, line, None, None, value_words(entry.get("of_trials")), None, None, None)
+        address = f"/recurring_criteria/{i}"
+        element = entry.get("element") if isinstance(entry.get("element"), dict) else {}
+        words = str(element.get("words") or NOT_STATED)
+        if element.get("key") is None:
+            # a group too small (or of no established condition): its counts and examples cannot apply
+            line = f"{words[:1].upper()}{words[1:]}"
+            grouping = value_words(entry.get("grouping"))
+            values = (line, None, None, value_words(entry.get("of_trials")), grouping, None, None, None)
         else:
+            examples = [e for e in entry.get("examples") or [] if isinstance(e, dict)]
+            places = [e.get("criterion") if isinstance(e.get("criterion"), dict) else {} for e in examples]
             sources = [
-                f"{source.get('nct')}, {HEADINGS.get(str(source.get('heading')), 'no heading').lower()} "
-                f"criterion {source.get('number')}"
-                for source in entry.get("wording_from") or []
-                if isinstance(source, dict)
+                f"{e.get('trial')}, {HEADINGS.get(str(place.get('heading')), 'no heading').lower()} "
+                f"criterion {place.get('number')}"
+                for e, place in zip(examples, places, strict=True)
             ]
             values = (
-                address,
-                f"{universe}: {atom_words(criterion)}",
+                words,
                 HEADINGS.get(str(entry.get("role")), value_words(entry.get("role"))),
                 value_words(entry.get("trials")),
                 value_words(entry.get("of_trials")),
-                "\n".join(f"“{wording}”" for wording in entry.get("wording") or []) or NOT_STATED,
+                value_words(entry.get("grouping")),
+                "\n".join(f"Example (whole criterion): “{e.get('text')}”" for e in examples) or NOT_STATED,
                 "\n".join(sources) or NOT_STATED,
                 value_words(entry.get("other_trials"), "", ", "),
             )
-        rows.append(tuple(cell(value, "known", address) for value in values))
+        rows.append(tuple(cell(value, "known", address) for value in (*values, address)))
     if not rows:
-        line = "No criterion is stated by most comparable trials (the same universe) in this record"
-        rows.append((cell("/standard_language", "known"), cell(line, "known"), *(cell(None, "known"),) * 6))
+        line = "No criterion is stated by more than half of a group of comparable trials in this record"
+        rows.append((cell(line, "known"), *(cell(None, "known"),) * 7, cell("/recurring_criteria", "known")))
     return rows
 
 
@@ -2022,13 +2025,14 @@ LAYOUT: dict[str, tuple[str, dict[str, int], bool, int]] = {
         True,
         8,
     ),
-    contract.STANDARD: (
+    contract.RECURRING: (
         "B2",
         {
-            "Criterion": 34,
+            "Element": 34,
             "Role": 11,
-            "Representative wording": 60,
-            "Wording from": 14,
+            "Grouping": 40,
+            contract.RECURRING_EXAMPLE: 60,
+            "Examples from": 14,
             "Other trials": 30,
             contract.ADDRESS: 22,
         },
@@ -2150,7 +2154,7 @@ def book_plan(record: dict[str, Any]) -> list[tuple]:
     rows[contract.INDEX] = [index_cells(study, *held) for study, held in zip(studies, links_, strict=True)]
     rows[contract.REVIEW] = review
     rows[contract.FINDINGS] = findings_rows(record)
-    rows[contract.STANDARD] = standard_rows(record)
+    rows[contract.RECURRING] = recurring_rows(record)
     rows[contract.DICTIONARY] = dictionary_rows(n)
     return [
         (

@@ -4,7 +4,7 @@ One record per run, laid out by the contract (`contract.FIELDS`): the request; t
 manifest (the registry snapshot read, each study's digest and their Merkle root, the code commit, the rule
 versions, the retrieval coverage); the universes and their rule packs as run; per study, every contract field
 the registry record holds, its key criteria among them; across the cohort, the findings the evidence supports
-and the standard protocol language of each universe's trials; and the record's own
+and the criteria that recur among comparable trials; and the record's own
 description: `statuses`, `envelope` (what each key of a value object means) and `fields`, the field dictionary
 that states each field's label, kind and API path or rule once.
 
@@ -218,7 +218,7 @@ RECORD_KEYS = (
     "universes",
     "coverage",
     "cohort",
-    "standard_language",
+    "recurring_criteria",
     "statuses",
     "envelope",
     "fields",
@@ -668,38 +668,77 @@ def key_criteria(criteria: list[dict[str, Any]]) -> list[dict[str, Any]]:
     return found
 
 
-def standard_language(studies: list[dict[str, Any]]) -> list[dict[str, Any]]:
-    """Standard protocol language: each criterion reading most trials of one universe state (pure — pinned).
+def element_words(concept: str, values: list[str], role: str) -> str:
+    """A typed reading as a reviewer reads it: "Condition: cns metastases (exclusion)" (pure)."""
+    head, _, named = concept.partition(":")
+    label = head.replace("_", " ").capitalize() + (f" {named}" if named else "")
+    held = ", ".join(str(value).replace("_", " ") for value in values)
+    return f"{label}: {held} ({role})" if held else f"{label} ({role})"
 
-    `studies` are the record's studies (their nct, universe reading and criteria). A trial counts in each
-    universe its universe reading names ("unresolved scope" when it names none). Within a universe of at least
-    contract.STANDARD_LANGUAGE_MIN_TRIALS trials, a reading (its element key) is standard when the trials
-    stating it are at least that many and at least contract.STANDARD_LANGUAGE_SHARE of the universe's trials.
-    Each row: the criterion (the universe, the element, its concept and values), its role (the effective
-    section), the trials stating it of the universe's trials, the representative wording (the shortest
-    statement and the longest other one) with where each is from (trial, heading, number, address) and the
-    other trials stating it; rows by universe, then most trials, then element. A universe with too few trials
-    is one row: its criterion names the universe and why, and it states no wording.
+
+def comparable_groups(studies: list[dict[str, Any]], condition_class: str) -> list[dict[str, Any]]:
+    """The groups of comparable trials the record can establish, each with its grouping in words (pure).
+
+    A trial counts in each universe its universe reading names ("unresolved scope" when it names none) and,
+    within it, under each of its condition MeSH terms; a trial with none counts under the run's requested
+    condition class (`condition_class`), else under no condition the record establishes. Each group: its
+    universe, the term ("" for none), how the term was established ("mesh", "requested" or ""), its members
+    ((position in the record, study)) and its grouping words, in the order universes, then terms, are met.
     """
-    groups: dict[str, list[tuple[int, dict[str, Any]]]] = {}
+    labels = {universe.name: universe.label for universe in contract.UNIVERSES}
+    groups: dict[tuple[str, str, str], list[tuple[int, dict[str, Any]]]] = {}
     for position, study in enumerate(studies):
-        for name in study["universe"]["result"]["universes"] or ["unresolved scope"]:
-            groups.setdefault(name, []).append((position, study))
-    least = contract.STANDARD_LANGUAGE_MIN_TRIALS
+        mesh = study.get("condition_mesh")
+        terms = [(term, "mesh") for term in mesh] if isinstance(mesh, list) and mesh else []
+        terms = terms or [(condition_class, "requested") if condition_class else ("", "")]
+        for universe in study["universe"]["result"]["universes"] or ["unresolved scope"]:
+            for term, how in terms:
+                groups.setdefault((universe, term, how), []).append((position, study))
+    found = []
+    for (universe, term, how), members in groups.items():
+        within = f"trials in {labels[universe].lower()}" if universe in labels else f"trials of {universe}"
+        count = f"among the {len(members)} {within}"
+        if how == "mesh":
+            words = f"{count} whose condition MeSH term is {term}"
+        elif how == "requested":
+            words = f"{count} that give no condition MeSH term, found by the condition class {term}"
+        else:
+            words = f"{count} that give no condition MeSH term (no condition grouping the record establishes)"
+        found.append({"universe": universe, "term": term, "how": how, "members": members, "grouping": words})
+    return found
+
+
+def recurring_criteria(studies: list[dict[str, Any]], condition_class: str) -> list[dict[str, Any]]:
+    """Recurring criteria: each typed reading (an element) more than half of a group of comparable trials
+    state (pure — pinned).
+
+    `studies` are the record's studies; `condition_class` the run's requested condition class ("" for none).
+    The groups are comparable_groups's. A group of fewer than contract.RECURRING_MIN_TRIALS trials, or whose
+    condition the record does not establish, is one row saying why (no element, no counts stated, no
+    examples). Within a group, an element recurs when the trials stating it are more than
+    contract.RECURRING_SHARE of the group's and at least contract.RECURRING_MIN_TRIALS. Each row: the element
+    (its key, concept, values and words), its role (the effective section), the trials stating it of the
+    group's, the grouping in words, examples of the WHOLE criteria that state it (one per trial, shortest
+    first, at most contract.RECURRING_EXAMPLES; each may carry further requirements and is never reusable
+    text), each with its trial and its criterion (heading, number, address), and the other trials stating it;
+    rows by group, then most trials, then element.
+    """
+    least = contract.RECURRING_MIN_TRIALS
     rows = []
-    for universe in sorted(groups):
-        members = groups[universe]
-        if len(members) < least:
-            reason = too_few(len(members), least)
-            criterion = {"universe": universe, "element": None, "reason": reason}
+    for group in comparable_groups(studies, condition_class):
+        members = group["members"]
+        reason = too_few(len(members), least) or (
+            "" if group["how"] else "no condition grouping the record establishes for these trials"
+        )
+        if reason:
             rows.append(
                 {
-                    "criterion": criterion,
+                    "element": {"key": None, "concept": None, "values": [], "words": reason},
                     "role": "",
                     "trials": 0,
                     "of_trials": len(members),
-                    "wording": [],
-                    "wording_from": [],
+                    "grouping": group["grouping"],
+                    "examples": [],
                     "other_trials": [],
                 }
             )
@@ -713,41 +752,45 @@ def standard_language(studies: list[dict[str, Any]]) -> list[dict[str, Any]]:
                         result["element"],
                         {"concept": result["concept"], "values": result["values"], "role": result["section"]},
                     )
-                    entry.setdefault("wording", []).append(
+                    by_trial = entry.setdefault("by_trial", {})
+                    by_trial.setdefault(
+                        study["nct"],
                         {
                             "text": criterion["text"],
-                            "nct": study["nct"],
-                            "heading": criterion["heading"],
-                            "number": criterion["number"],
-                            "at": f"/studies/{position}/criteria/{index}",
-                        }
+                            "trial": study["nct"],
+                            "criterion": {
+                                "heading": criterion["heading"],
+                                "number": criterion["number"],
+                                "at": f"/studies/{position}/criteria/{index}",
+                            },
+                        },
                     )
         found = []
-        for element, entry in stated.items():
-            trials = sorted({wording["nct"] for wording in entry["wording"]})
-            if len(trials) < least or len(trials) < contract.STANDARD_LANGUAGE_SHARE * len(members):
+        for key, entry in stated.items():
+            trials = sorted(entry["by_trial"])
+            if len(trials) < least or len(trials) <= contract.RECURRING_SHARE * len(members):
                 continue
-            ordered = sorted(entry["wording"], key=lambda w: (len(w["text"]), w["nct"], w["number"], w["at"]))
-            shown = [ordered[0]] + ([ordered[-1]] if ordered[-1]["text"] != ordered[0]["text"] else [])
-            sources = {wording["nct"] for wording in shown}
-            criterion = {
-                "universe": universe,
-                "element": element,
+            ordered = sorted(entry["by_trial"].values(), key=lambda e: (len(e["text"]), e["trial"]))
+            examples = ordered[: contract.RECURRING_EXAMPLES]
+            shown = {example["trial"] for example in examples}
+            element = {
+                "key": key,
                 "concept": entry["concept"],
                 "values": entry["values"],
+                "words": element_words(entry["concept"], entry["values"], entry["role"]),
             }
             found.append(
                 {
-                    "criterion": criterion,
+                    "element": element,
                     "role": entry["role"],
                     "trials": len(trials),
                     "of_trials": len(members),
-                    "wording": [wording["text"] for wording in shown],
-                    "wording_from": [{k: w[k] for k in ("nct", "heading", "number", "at")} for w in shown],
-                    "other_trials": [nct for nct in trials if nct not in sources],
+                    "grouping": group["grouping"],
+                    "examples": examples,
+                    "other_trials": [nct for nct in trials if nct not in shown],
                 }
             )
-        found.sort(key=lambda row: (-row["trials"], row["criterion"]["element"]))
+        found.sort(key=lambda row: (-row["trials"], row["element"]["key"]))
         rows += found
     return rows
 
@@ -1080,6 +1123,12 @@ def universes_table() -> list[dict[str, Any]]:
     ]
 
 
+def requested_class(request: Any) -> str:
+    """The run's requested condition class, "" when the request names none."""
+    held = request.get("condition_class") if isinstance(request, dict) else None
+    return held if isinstance(held, str) else ""
+
+
 def landscape_record(
     reading: dict[str, Any],
     studies: list[dict[str, Any]],
@@ -1096,7 +1145,7 @@ def landscape_record(
     with (None in relay mode, where nothing was looked up), from which domain_readings gives each study's
     universe reading and the coordinates its universe admits (universes.assign, then coherence.resolve). The
     record: RECORD_KEYS in order, each study's extract (study_extract), the cohort (cohort_section), the
-    standard protocol language across the studies (standard_language) and the record's self-description.
+    recurring criteria across the studies (recurring_criteria) and the record's self-description.
     """
     views = reading["views"]
     if [view["digest"] for view in views] != [warrants.study_digest(study) for study in studies]:
@@ -1117,7 +1166,7 @@ def landscape_record(
         "universes": universes_table(),
         "coverage": {"universe": copy.deepcopy(UNIVERSE)},
         "cohort": cohort_section(reading, admitted),
-        "standard_language": standard_language(extracts),
+        "recurring_criteria": recurring_criteria(extracts, requested_class(request)),
         "statuses": dict(STATUSES),
         "envelope": dict(ENVELOPE_MEANINGS),
         "fields": copy.deepcopy(FIELD_DICTIONARY),

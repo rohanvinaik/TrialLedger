@@ -59,9 +59,11 @@ DECLARED = {
     "trials up, which production_path's few trials do not reach; tests/test_landscape.py reaches it",
     "readout.py: ReadoutError.__init__": "raised only when landscape.xlsx read back differs from its "
     "derivation, which tests/test_readout_schema3.py simulates",
-    "landscape.py: standard_language.<locals>.<lambda>": "orders the criteria a universe's trials share, and "
-    "production_path's runs hold fewer trials of one universe than standard language needs; "
+    "landscape.py: recurring_criteria.<locals>.<lambda>": "orders the examples of a recurring criterion, and "
+    "production_path's runs hold fewer comparable trials than a recurring criterion needs; "
     "tests/test_landscape.py reaches it",
+    "landscape.py: element_words": "words a recurring criterion's element, and production_path's runs hold "
+    "fewer comparable trials than a recurring criterion needs; tests/test_landscape.py reaches it",
 }
 # The frozen contracts of add-bank-coverage group 1, which the parallel packages are written against: nothing
 # in production consumes them yet. Each name is declared with the task that will put it on the path; that task

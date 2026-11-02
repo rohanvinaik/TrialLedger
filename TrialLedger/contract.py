@@ -127,7 +127,8 @@ GROUPS = "Groups"
 SAFETY = "Safety"
 BIOMARKERS = "Biomarkers"
 FINDINGS = "Across-trial findings"
-STANDARD = "Standard protocol language"
+RECURRING = "Recurring criteria"
+RECURRING_EXAMPLE = "Example wording (whole criteria; may carry further requirements)"
 READINGS = "Readings"
 DICTIONARY = "Column dictionary"
 
@@ -1622,29 +1623,31 @@ _RECORD_FIELDS: tuple[Field, ...] = (
             ("structure_relations", "Drugs sharing a structure class", "reading.structure_relations"),
         )
     ),
-    # standard protocol language: each criterion reading most trials of one universe state
-    # (STANDARD_LANGUAGE_SHARE, STANDARD_LANGUAGE_MIN_TRIALS); a universe with too few trials, one row
-    # saying so
+    # recurring criteria: each typed reading (an element) more than half of a group of comparable trials
+    # state; the starting material for standard protocol language, never established text
     *(
         Field(
-            f"standard_language[].{name}",
+            f"recurring_criteria[].{name}",
             label,
             "reading",
-            ("landscape.standard_language",),
-            (("sheet", STANDARD, column), ("mcp", "findings")),
+            ("landscape.recurring_criteria",),
+            (("sheet", RECURRING, column), ("mcp", "findings")),
             reads=(f"{EL}.eligibilityCriteria",),
         )
         for name, label, column in (
-            ("criterion", "The criterion reading, and the universe its trials share", "Criterion"),
+            ("element", "The recurring element: the typed reading the trials share", "Element"),
             ("role", "Its role (inclusion or exclusion)", "Role"),
             ("trials", "Trials stating it", "Trials stating it"),
-            ("of_trials", "Of comparable trials (the universe's)", "Of comparable trials"),
+            ("of_trials", "Of comparable trials", "Of comparable trials"),
+            ("grouping", "Which trials are comparable, in words", "Grouping"),
             (
-                "wording",
-                "Representative wording: the shortest statement and a longer one",
-                "Representative wording",
+                "examples[].text",
+                "An example: one trial's whole criterion stating the element, which may carry further "
+                "requirements; never reusable text",
+                RECURRING_EXAMPLE,
             ),
-            ("wording_from", "Each wording's trial and criterion", "Wording from"),
+            ("examples[].trial", "The example's trial", "Examples from"),
+            ("examples[].criterion", "The example's criterion (heading, number, address)", "Examples from"),
             ("other_trials", "The other trials stating it", "Other trials"),
         )
     ),
@@ -2284,22 +2287,21 @@ SHEETS: tuple[Sheet, ...] = (
         ),
     ),
     Sheet(
-        STANDARD,
-        "criterion reading × universe (a universe with too few trials, one line saying so)",
+        RECURRING,
+        "recurring element × group of comparable trials (a group too small, one line saying so)",
         (
-            Column(ADDRESS, (), "address"),
-            *(
-                Column(column, (f"standard_language[].{name}",))
-                for name, column in (
-                    ("criterion", "Criterion"),
-                    ("role", "Role"),
-                    ("trials", "Trials stating it"),
-                    ("of_trials", "Of comparable trials"),
-                    ("wording", "Representative wording"),
-                    ("wording_from", "Wording from"),
-                    ("other_trials", "Other trials"),
-                )
+            Column("Element", ("recurring_criteria[].element",)),
+            Column("Role", ("recurring_criteria[].role",)),
+            Column("Trials stating it", ("recurring_criteria[].trials",)),
+            Column("Of comparable trials", ("recurring_criteria[].of_trials",)),
+            Column("Grouping", ("recurring_criteria[].grouping",)),
+            Column(RECURRING_EXAMPLE, ("recurring_criteria[].examples[].text",)),
+            Column(
+                "Examples from",
+                ("recurring_criteria[].examples[].trial", "recurring_criteria[].examples[].criterion"),
             ),
+            Column("Other trials", ("recurring_criteria[].other_trials",)),
+            Column(ADDRESS, (), "address"),
         ),
     ),
     Sheet(
@@ -2492,10 +2494,12 @@ KEY_CRITERION_CATEGORIES: tuple[tuple[str, str, tuple[tuple[str, tuple[str, ...]
     ("hiv_and_hepatitis", "HIV, hepatitis B and C", (("condition", ("hiv", "hepatitis")),)),
     ("cardiac_history", "Cardiac history", (("condition", ("cardiac_disease", "qtc")),)),
 )
-# Standard protocol language: a criterion reading is standard within a universe when at least this share of
-# the universe's trials state it and at least this many trials do; a universe with fewer trials has none.
-STANDARD_LANGUAGE_SHARE = 0.5
-STANDARD_LANGUAGE_MIN_TRIALS = 3
+# Recurring criteria: an element recurs within a group of comparable trials when MORE than this share of the
+# group's trials state it and at least RECURRING_MIN_TRIALS do; a smaller group has none. Each recurring
+# element shows at most RECURRING_EXAMPLES whole criteria as examples.
+RECURRING_SHARE = 0.5
+RECURRING_MIN_TRIALS = 3
+RECURRING_EXAMPLES = 5
 
 # ── what the record does not carry, and why ─────────────────────────────────────────────────────────────
 # Every field of the API's metadata is carried (a plain field's path, or a path a reading reads) or named
