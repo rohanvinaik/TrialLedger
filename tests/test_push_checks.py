@@ -1,14 +1,15 @@
 """scripts/push_checks.py — the pre-push gate's decisions.
 
 Positive: a deletion needs nothing; a tree the gate passed on needs nothing; the clean checkout is gated now;
-an exact Detective function digest in the certificates file is recognized, and a golden digest Detective pins
-in a test file it generated; a readable report with no flaw is
-no_known_flaws; added lines are read from a diff without headers or prefixes.
-Negative: any other pushed tree is refused; a digest elsewhere, or not in that commit's certificates, is
-unexplained; a missing, unreadable or empty audit report is never a clean audit.
+a readable report with no flaw is no_known_flaws; added lines are read from a diff without headers or
+prefixes; the secret scan runs detect-secrets with its hex-entropy detector disabled and every other one on.
+Negative: any other pushed tree is refused; every finding of the secret scan refuses the push, and a scan that
+fails or cannot be read is never a pass; a missing, unreadable or empty audit report is never a clean audit.
 """
 
 import importlib.util
+import json
+import subprocess
 from pathlib import Path
 
 import pytest
@@ -35,23 +36,6 @@ TREE = "b" * 40
 )
 def test_ref_check(local_sha, tree, passed, head, clean, expected):
     assert push_checks.ref_check(local_sha, tree, passed, head, clean) == expected
-
-
-def test_finding_verdict():
-    recognized = frozenset({"h1"})
-    assert (
-        push_checks.finding_verdict(push_checks.CERTIFICATES, push_checks.HEX, "h1", recognized)
-        == "function_digest"
-    )
-    assert push_checks.finding_verdict("tests/other.json", push_checks.HEX, "h1", recognized) == "unexplained"
-    assert (
-        push_checks.finding_verdict(push_checks.CERTIFICATES, push_checks.HEX, "h2", recognized)
-        == "unexplained"
-    )
-    assert (
-        push_checks.finding_verdict(push_checks.CERTIFICATES, "Secret Keyword", "h1", recognized)
-        == "unexplained"
-    )
 
 
 @pytest.mark.parametrize(
@@ -82,77 +66,56 @@ def test_added_lines_drop_headers_and_prefixes():
     assert push_checks.added_lines(diff) == ["first", "second"]
 
 
-# Two atom content digests from Detective's generated atom_digest test: test data, reviewed as no secret.
-GOLDEN_VALUE = "de62bd6f4154f381"  # pragma: allowlist secret
-OTHER_VALUE = "0136a6da21b97e5e"  # pragma: allowlist secret
+def _fake_scan(monkeypatch, stdout, returncode=0):
+    """Stand in for git and detect-secrets: one commit adding one file; every command run is recorded."""
+    commands = []
+
+    def fake_run(command, cwd=None, env=None):
+        commands.append(command)
+        return subprocess.CompletedProcess(command, returncode, stdout=stdout, stderr="boom")
+
+    monkeypatch.setattr(push_checks, "commit_additions", lambda sha: {"runs/a.json": ['"k": "v"']})
+    monkeypatch.setattr(push_checks, "run", fake_run)
+    return commands
 
 
-def test_a_generated_golden_digest_is_recognized_only_where_detective_pins_it():
-    """Positive: a 16-hex value on an exact `assert result == "..."` line of a Detective-generated test file
-    is a golden digest, recognized for that file. Negative: the same value in a hand-written test, on any
-    other line, of another length or case, or a finding of another type, stays unexplained."""
-    import hashlib
-
-    generated = "tests/detective/test_TrialLedger_semantics_contracts_atom_digest_687ff1ce81_synth.py"
-    lines = [
-        f'    assert result == "{GOLDEN_VALUE}"',
-        f'TOKEN = "{OTHER_VALUE}"',
-        f'assert result == "{GOLDEN_VALUE.upper()}"',
+def test_the_scan_disables_hex_entropy_and_refuses_every_other_finding(monkeypatch):
+    """Positive: detect-secrets runs with HexHighEntropyString disabled and nothing else disabled, and each
+    finding it reports refuses the push. Negative: a scan with no finding refuses nothing."""
+    report = {
+        "results": {
+            f"./{SHA}/runs/a.json": [
+                {"type": "AWS Access Key", "line_number": 3},
+                {"type": "Secret Keyword", "line_number": 7},
+            ]
+        }
+    }
+    commands = _fake_scan(monkeypatch, json.dumps(report))
+    refusals = push_checks.scan([SHA])
+    assert commands == [
+        [
+            "uvx",
+            push_checks.DETECT_SECRETS,
+            "scan",
+            "--disable-plugin",
+            "HexHighEntropyString",
+            "--all-files",
+            ".",
+        ]
     ]
-    hashed = hashlib.sha1(GOLDEN_VALUE.encode(), usedforsecurity=False).hexdigest()
-    other = hashlib.sha1(OTHER_VALUE.encode(), usedforsecurity=False).hexdigest()
-    goldens = push_checks.golden_hashes(generated, lines)
-    assert goldens == frozenset({hashed})
-    assert (
-        push_checks.finding_verdict(generated, push_checks.HEX, hashed, frozenset(), goldens)
-        == "detective_golden"
-    )
-    assert (
-        push_checks.finding_verdict(generated, push_checks.HEX, other, frozenset(), goldens) == "unexplained"
-    )
-    assert (
-        push_checks.finding_verdict(generated, "Secret Keyword", hashed, frozenset(), goldens)
-        == "unexplained"
-    )
-    assert push_checks.golden_hashes("tests/test_evaluation.py", lines) == frozenset()
-    assert push_checks.finding_verdict(
-        "tests/test_evaluation.py", push_checks.HEX, hashed, frozenset(), goldens
-    ) == ("unexplained")
-    assert push_checks.golden_hashes(generated, [f'assert result == "{GOLDEN_VALUE[:-1]}"']) == frozenset()
-
-
-# A study digest of Detective's landscape_manifest golden (SHA-256 of a test record): reviewed as no secret.
-STUDY_DIGEST = "183f6dc518ee38946bae08096097d1c5a9e50ef95b7a5c039d0ef05d1723dab6"  # pragma: allowlist secret
-
-
-def test_a_whole_expected_object_pins_its_digests_and_nothing_else():
-    """Positive: in a Detective-generated file that parses, every 16- or 64-hex string constant inside a
-    witness's inputs (`result = f(...)`) or its golden (`assert result == ...`) is pinned, however deeply
-    nested. Negative: the same kind of value assigned to another name, compared with another name, cut
-    short, in capitals, or in a hand-written file, is not; a file that does not parse falls back to the
-    one-line form."""
-    import hashlib
-
-    generated = "tests/detective/test_TrialLedger_landscape_landscape_manifest_3f52b6b51f_synth.py"
-    file_lines = [
-        "def test_value():",
-        f'    result = f(view={{"digest": "{GOLDEN_VALUE}"}})',
-        f'    unrelated = f(view={{"digest": "{OTHER_VALUE}"}})',
-        "    assert result == {",
-        f'        "study_digests": ["{STUDY_DIGEST}"],',
-        f'        "short": "{STUDY_DIGEST[:-1]}",',
-        f'        "upper": "{STUDY_DIGEST.upper()}",',
-        "    }",
-        f'TOKEN = "{OTHER_VALUE}"',
-        f'assert other == "{GOLDEN_VALUE}"',
+    assert refusals == [
+        f"a possible secret in {SHA[:7]} runs/a.json, added line 3: AWS Access Key",
+        f"a possible secret in {SHA[:7]} runs/a.json, added line 7: Secret Keyword",
     ]
+    _fake_scan(monkeypatch, json.dumps({"results": {}}))
+    assert push_checks.scan([SHA]) == []
 
-    def hashed(value):
-        return hashlib.sha1(value.encode(), usedforsecurity=False).hexdigest()
 
-    assert push_checks.pinned_digests("\n".join(file_lines)) == {STUDY_DIGEST, GOLDEN_VALUE}
-    assert push_checks.golden_hashes(generated, file_lines) == frozenset(
-        {hashed(STUDY_DIGEST), hashed(GOLDEN_VALUE)}
-    )
-    assert push_checks.golden_hashes("tests/test_landscape.py", file_lines) == frozenset()
-    assert push_checks.pinned_digests("    assert result == {") is None
+@pytest.mark.parametrize(
+    "stdout, returncode",
+    [("", 1), ("not json", 0), (json.dumps({"no": "results"}), 0), (json.dumps({"results": []}), 0)],
+)
+def test_a_scan_that_did_not_run_is_never_a_pass(monkeypatch, stdout, returncode):
+    _fake_scan(monkeypatch, stdout, returncode)
+    with pytest.raises(push_checks.Unchecked):
+        push_checks.scan([SHA])

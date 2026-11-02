@@ -312,9 +312,9 @@ cleanup (the founder, 2026-11-01). A new decision is converged at write time wit
 --two-sign` on that one function; that is the workflow's Detective step (the founder's instruction, 2026-10-31,
 paraphrased: the local gate is a quick scan for common-sense failures, not a long slog).
 `.githooks/pre-push` runs `scripts/push_checks.py hook`, which runs the gate before a push of any tree it has
-not passed on, scans the pushed commits' added lines for secrets (detect-secrets; Detective's function digests in
-`tests/detective/certificates.json` and the 16-hex goldens on an exact `assert result == "…"` line of a
-Detective-generated `test_*_synth.py` are recognized, nothing else) and audits the locked
+not passed on, scans the pushed commits' added lines for secrets (detect-secrets with its hex-entropy detector
+disabled, since the project's lowercase hex digests are fingerprints, never credentials; every other detector
+runs and any finding refuses the push, unless its line carries `# pragma: allowlist secret`) and audits the locked
 dependencies for known flaws (pip-audit, advisory). Install it with
 `.venv/bin/python scripts/push_checks.py install`. Live calls are opt-in: `uv run pytest -m live`.
 
