@@ -22,7 +22,10 @@
 - [ ] 1.5 Universe assignment and per-universe readings wired in (consuming unit B), each study's assignment and
       sources recorded; the cohort section counts only trials a reading applies to and emits empty sections not
       at all.
-- [ ] 1.6 schema 3: schema check, statuses, `fields`, RULE_VERSIONS (the universe table's version).
+- [ ] 1.6 schema 3: schema check, statuses, `fields`, RULE_VERSIONS (the universe table's version); study type kept.
+- [ ] 1.7 Preservation: an independent check of registry value → record value for every contract field on the
+      fixture bodies (nested populations, category-level denominators, comments, precision), failing on planted
+      defects (a measurement under the wrong group, a dropped nested field).
 
 ## 2. Unit B: universes (`universes.py`, `coherence.py`, `semantics/loader.py`)
 
@@ -33,7 +36,8 @@
 - [ ] 2.4 Named fixtures: the PTSD trial (general), the lymphoma/CLL immunotoxin (haematologic), the solid-tumour
       basket without condition MeSH (solid, from its free-text condition), an osimertinib trial whose condition is
       "Progression Free Survival" (solid, from its intervention), a supportive-care trial in cancer patients (no
-      setting).
+      setting); a study with no usable condition at all (scope unresolved, never general) beside an identified
+      non-oncology study (general).
 
 ## 3. Unit C: the workbook (`readout.py`)
 
@@ -43,6 +47,12 @@
 - [ ] 3.3 Safety as term × groups; Posted results long by group; Groups, Baseline, Participant flow and
       Statistical analyses listings.
 - [ ] 3.4 Read-back certification and deterministic bytes kept; continuation sheets past the row limit.
+- [ ] 3.5 The compact Trial index (short fields, short unresolved labels, reasons in the dossier) and the
+      dossier's section bands with links to the listings; the Read me's plain search first, provenance last; the
+      treatment-context limit stated wherever setting or line appears.
+- [ ] 3.6 Every row's address in the record in its key column; an independent record value → displayed cell
+      check that fails on planted defects; a mixed-trial safety fixture (different group counts, a missing
+      denominator, explicit zeros, a stat not reported for a group).
 
 ## 4. Unit D: lookups (`classes.py`, `request.py`, `reading.py`)
 
@@ -56,5 +66,15 @@
 - [ ] 5.1 README, AGENTS.md, SKILL.md and the MCP tool descriptions rewritten as built (the record's form, the
       Readings sheet and column dictionary, universes); documented-interface.md updated with them.
 - [ ] 5.2 Acceptance: the 3-trial and 49-trial baselines re-run and a run of a few hundred trials, measured as in
-      design §7; the lung-cancer universe check; the workbook opened and read as a reviewer would.
+      design §7; the lung-cancer universe check; the reviewer's tasks of design §6, each with its expected
+      destination, evidence and unresolved cases.
 - [ ] 5.3 `scripts/release_check.py` against the public repository.
+
+## 6. Unit F: the search preview and the assistant's interface (design §5a)
+
+- [ ] 6.1 The preview stop: resolve, write resolution.json, return the scope, retrieve nothing (a test asserts
+      zero study requests for a broad drug class); the run then executes against that fixed scope;
+      `landscape --preview`; MCP `scope` previews.
+- [ ] 6.2 MCP `record` reads schema 3; parts for the across-trial findings and the review questions; large parts
+      paged with a declared bound; a workbook row's address resolved to its value; tested through the MCP
+      interface on a schema-3 fixture.

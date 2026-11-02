@@ -72,3 +72,31 @@ does not depend on the order replies arrive.
 #### Scenario: dose-labelled arms are one drug
 - **WHEN** five arms name the same drug at five doses
 - **THEN** RxNav is asked about that drug once
+
+### Requirement: The person sees the search before anything is gathered
+The run SHALL offer a preview that resolves the request, writes the resolved search and returns it without
+retrieving any study, and SHALL then execute against that fixed search.
+
+#### Scenario: previewing a broad class retrieves nothing
+- **WHEN** the person previews a request for a broad drug class
+- **THEN** the resolved search with every member and subclass is returned and no study is requested from the
+  registry
+
+### Requirement: Every workbook row can be traced to the record
+Every row of every listing SHALL carry its address in landscape.json, and the assistant's record tool SHALL
+return the value at that address.
+
+#### Scenario: asking about a workbook row
+- **WHEN** the person names a row of the Posted results sheet to the assistant
+- **THEN** the assistant reads that row's address and returns the same measurement, group, population and
+  denominator the row shows
+
+### Requirement: A study with no identifiable domain is never treated as general
+A study SHALL be assigned the general universe only on positive evidence of a non-oncology domain; a study whose
+sources identify no domain SHALL be scope unresolved.
+
+#### Scenario: conditions that are not diseases
+- **WHEN** a study has no condition MeSH and its only condition is "Progression Free Survival", and its
+  interventions identify no domain
+- **THEN** its scope is unresolved with each source's finding, and no domain reading is computed or denied
+  silently
