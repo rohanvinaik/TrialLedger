@@ -1,33 +1,50 @@
-"""landscape.json: the record of truth an agent answers from (add-agent-operation, Decisions 7 and 8).
+"""landscape.json schema 3: the record an assistant answers from (refine-landscape-record, design §1 and §2).
 
-One record per run: the request; the resolved scope (request resolution's, carried as given); the manifest
-(the data timestamp, the API version, each study's digest, their Merkle root, the code commit, the rule
-versions, the retrieval coverage); per study, the ten-point extract and its extras; across the cohort, the
-profile as `profile.py` computes it for design.xlsx; the review queue's closed questions; coverage per trial
-type from the supported-type matrix; and its self-description: `statuses` (what each status means),
-`envelope` (what each key of a value means) and `fields`, which describes every field: its meaning, its value
-type, the statuses it may carry and its source.
+One record per run, laid out by the contract (`contract.FIELDS`): the request; the resolved scope; the
+manifest (the registry snapshot read, each study's digest and their Merkle root, the code commit, the rule
+versions, the retrieval coverage); the universes and their rule packs as run; per study, every contract field
+the registry record holds; across the cohort, the findings the evidence supports; and the record's own
+description: `statuses`, `envelope` (what each key of a value object means) and `fields`, the field dictionary
+that states each field's label, kind and API path or rule once.
 
-Every value a person reads is an envelope: the value, its status, its source (its location in the study
-record), the rule that read it ("" when the value is the record's own, exactly as held), a note (an absence
-state, or why it is unresolved), and the study's registry link. Statuses (STATUSES): known, interpolated,
-proposed, not_stated, not_posted, unresolved. Nothing here reads a study differently from the reading the
-workbooks are laid out from (`reading.read_population`): the extract is assembled from that reading and the
-record's own fields. A registered outcome is planned, never efficacy: planned outcomes and posted results are
-different fields, and a study without posted results states "no results posted".
+How a value is held:
+- a registry value is held plain, exactly as the registry holds it (its precision, units and wording; a
+  registry "NA" stays "NA", with its comment beside it); its API path is stated once, in `fields`;
+- a study's or a results module's own field the registry does not hold is a value object
+  {"status": "not_stated", "note": <the ledger's absence state>}; a results module of a study that posted no
+  results is {"status": "not_posted", "note": ...};
+- inside an element of a registry list (an arm, a posted measurement, an adverse event's count), a key the
+  registry does not hold is left out, as the registry leaves it out (an untitled class is the registry's one
+  class of a measure, not a missing value);
+- a rule's reading is a value object {"status", "rule", "words", "result", "note"}: the contract's rule for
+  the field, the words it read, what it found, its status and why;
+- a domain reading (a treatment setting, prior lines, gene selection) is present only where the study's
+  universe assignment (`universes.assign`) admits its pack; elsewhere it is absent and the universe reading
+  says why.
+
+Results, baseline, participant flow and adverse events keep the registry's own nesting, each module's groups
+keyed within the module by the registry's group IDs, denominators at the scope the registry gives them, its
+listed zeros kept. Every element sits at a stable place (the registry's order), so a JSON pointer into
+landscape.json names any value exactly. A registered outcome is planned, never efficacy: registered outcomes
+and posted measures are different fields.
 """
 
 from __future__ import annotations
 
 import copy
+from collections.abc import Callable, Sequence
 from typing import Any
 
-from TrialLedger import __version__, warrants
-from TrialLedger.coherence import RELATIONS, SETTINGS, level_status
+from TrialLedger import __version__, contract, warrants
+from TrialLedger.banks import endpoint_classes, time_points
+from TrialLedger.coherence import RELATIONS, SETTINGS, STATES, level_status
+from TrialLedger.contract import FIELDS as CONTRACT_FIELDS
+from TrialLedger.contract import holds_value, template_values
+from TrialLedger.criteria import criterion_role
 from TrialLedger.design import VERSION as DESIGN_VERSION
 from TrialLedger.design import _profile_trials
-from TrialLedger.ledger import as_list, field_state, get, location, results_state
-from TrialLedger.links import document_link, pubmed_link, reference_role, study_link
+from TrialLedger.ledger import APPLIES_TO, REDACTED_WHEN_WITHHELD, absence_state, get, results_state
+from TrialLedger.links import document_link, study_link
 from TrialLedger.profile import (
     SIGNAL_MIN_SPONSORS,
     SIGNAL_MIN_TRIALS,
@@ -39,30 +56,25 @@ from TrialLedger.profile import (
 )
 from TrialLedger.reading import effective_section
 from TrialLedger.symbolic import _axes
-from TrialLedger.typematrix import UNIVERSE, declared_manifest, study_coordinates, universe_status
-from TrialLedger.workbook import CODE_ROOT, NO_RESULTS, RESULTS_TEXT
+from TrialLedger.typematrix import UNIVERSE
+from TrialLedger.workbook import CODE_ROOT, RESULTS_TEXT
 
-# Schema 2 (add-scoped-reasoning 1.1): each coordinate at three statuses (<name>, <name>_interpolated,
-# <name>_proposed, replacing <name>_with_proposed_relations), the statuses' meanings with them, each near-miss
-# pair's `rests_on`, and the rule versions' `relation_kinds`.
-SCHEMA_VERSION = "2"
+SCHEMA_VERSION = contract.SCHEMA_VERSION
 JSON_NAME = "landscape.json"
-P = "protocolSection"
-R = "resultsSection"
-ELIGIBILITY_TEXT = f"{P}.eligibilityModule.eligibilityCriteria"
-# What each key of a value's envelope means, in the envelope's order; the record carries it as `envelope`.
+STUDY = "studies[]"
+# The eligibility text's API path: what every criterion, its role and its readings were read from.
+ELIGIBILITY_TEXT = "protocolSection.eligibilityModule.eligibilityCriteria"
+READING_KEYS = ("status", "rule", "words", "result", "note")
+ABSENT_KEYS = ("status", "note")
+# What each key of a value object means; the record carries it as `envelope`.
 ENVELOPE_MEANINGS = {
-    "value": "the value: the record's own when the rule is empty, else what the rule read; null only when "
-    "the status is not_stated or unresolved (nothing stated, or nothing the rules could settle)",
-    "status": "how far the value can be relied on: one of `statuses`, and one its field admits (`fields`)",
-    "source": "where the value was read: its field path in the study record (list positions as [i]), or what "
-    "the rule read",
-    "rule": 'the named rule that read the value; "" when it is the record\'s own, exactly as held',
-    "note": "for a value not stated, the ledger's absence state (not_reported, not_applicable, redacted); "
-    "for one unresolved or proposed, why; otherwise empty or where it was read (a criterion's piece)",
-    "link": "the study's registry page, where the value can be checked against the registry",
+    "status": "how far the value can be relied on: one of `statuses`",
+    "rule": "the named rule that read it (the contract's rule for its field, as `fields` names it)",
+    "words": "the words the rule read, as the registry holds them (empty when it read no words)",
+    "result": "what the rule found",
+    "note": "why: for a value not stated, the ledger's absence state (not_reported, not_applicable, "
+    "redacted); for one unresolved or proposed, why; otherwise empty",
 }
-ENVELOPE = tuple(ENVELOPE_MEANINGS)
 STATUSES = {
     "known": "read from the record as it holds it, or derived from it by a named rule that reads what it "
     "states (a typed criterion, a class the record or RxClass states, a strict relation's conclusion); never "
@@ -70,21 +82,48 @@ STATUSES = {
     "interpolated": "assumed until overruled: a default relation's conclusion, or a guess from a rule over "
     "the record's wording (a name's stem); never a reading, and built on only where a consumer says so",
     "proposed": "a proposal's narrowing, each on its own: shown, never built on and never reported as known",
-    "not_stated": "the record holds no value; the note gives the ledger's absence state; never zero or no",
+    "not_stated": "the registry record holds no value; the note gives the ledger's absence state; never zero "
+    "or no",
     "not_posted": "no results are posted for the study (the registry's own flag): nothing is reported",
     "unresolved": "the rules cannot settle it from the record; the note says why; it is not an absence",
 }
-NOT_EXPERIMENTAL = (
-    "not an experimental arm's drug, biological or genetic intervention: only those are classed"
-)
-UNTYPED = "no bank typed this criterion: no element to measure"
+# The words a drug class's state is explained in (design §2): why a class is or is not known.
+CLASS_NOTES = {
+    "classified": "",
+    "stated_by_record": "the intervention's own entry states the class; RxClass gives none",
+    "unresolved": "RxClass holds no class for this name (the name is not in RxNorm, or RxNorm gives it none)",
+    "lookup_failed": "the lookup failed; it is asked again on the next run",
+    "not_looked_up": "not looked up (in relay mode the gathered trials' drug classes are not looked up)",
+}
 OUTCOME_KINDS = (
     ("primary", "primaryOutcomes"),
     ("secondary", "secondaryOutcomes"),
     ("other", "otherOutcomes"),
 )
-EVENT_TABLES = (("serious", "seriousEvents"), ("other", "otherEvents"))
+# The words of a "which list" field: the list that holds the entry.
+LIST_WORDS = {
+    "primaryOutcomes": "primary",
+    "secondaryOutcomes": "secondary",
+    "otherOutcomes": "other",
+    "seriousEvents": "serious",
+    "otherEvents": "other",
+}
+# The results modules a study holds as sections or lists, each with the registry's module it reads.
+RESULTS_MODULES = {
+    "posted_outcomes": ("resultsSection", "outcomeMeasuresModule"),
+    "baseline": ("resultsSection", "baselineCharacteristicsModule"),
+    "participant_flow": ("resultsSection", "participantFlowModule"),
+    "adverse_events": ("resultsSection", "adverseEventsModule"),
+}
+# Criterion readings carry the itemizer's own words: heading, number and text are the registry's text as
+# itemized, held plain.
+ITEMIZED = (
+    "studies[].criteria[].heading",
+    "studies[].criteria[].number",
+    "studies[].criteria[].text",
+)
 ALL_TRIALS = "all trials"  # the stratum design.xlsx's profile names the whole cohort by
+ENDPOINT_ELEMENT = "primary:endpoint:"  # an element the cohort's endpoints hold, never a criterion's
 # The columns of each cohort table, in the order of its rows' values.
 FREQUENCY_COLUMNS = (
     "stratum",
@@ -124,8 +163,6 @@ MECHANISM_COLUMNS = (
     "status",
 )
 OCCUPANCY_COLUMNS = ("setting", "class", "occupying", "could_fall_here", "state")
-# A pair's columns as nearmiss.near_misses gives them; each table adds what its reading adds, and `rests_on`
-# last: the weakest status the pair's two settings rest on (reading.read_population's pair statuses).
 PAIR_COLUMNS = (
     "a",
     "b",
@@ -142,8 +179,7 @@ NEAR_MISS_COLUMNS = (*PAIR_COLUMNS, "rests_on")
 ALIGNED_COLUMNS = (*PAIR_COLUMNS, "basis_a", "basis_b", "rests_on")
 ENDPOINT_COLUMNS = ("outcome_type", "endpoint_class", "trials", "ncts", "outcomes", "time_points")
 STRUCTURE_COLUMNS = ("rxcui_a", "name_a", "rxcui_b", "name_b", "taxonomy", "class", "release")
-REVIEW_COLUMNS = ("nct", "kind", "element", "why", "priority", "evidence", "question", "options", "answer")
-UNIVERSE_COLUMNS = ("nct", "universe", "coordinates")
+QUESTION_KEYS = ("kind", "element", "why", "priority", "question", "options")
 MANIFEST_KEYS = (
     "api_version",
     "data_timestamp",
@@ -155,764 +191,685 @@ MANIFEST_KEYS = (
 )
 RULE_VERSIONS = {
     "landscape_schema": SCHEMA_VERSION,
+    "contract": contract.CONTRACT_VERSION,
     "trialledger": __version__,
     "design": DESIGN_VERSION,
     "derivation_code_root": CODE_ROOT,
     "relations": {relation.id: relation.approval for relation in RELATIONS},
     # each relation's kind (add-scoped-reasoning, Decision 2): what its conclusion is, apart from its approval
     "relation_kinds": {relation.id: relation.kind for relation in RELATIONS},
+    "universes": {
+        "table": contract.UNIVERSE_TABLE_VERSION,
+        **{universe.name: universe.version for universe in contract.UNIVERSES},
+    },
+    "display": contract.DISPLAY_VERSION,
 }
-
-# The keys of each object value, in order: `fields` names them, and tests/test_landscape.py holds every value
-# of a record to them. AS_HELD marks an object the record holds, shown exactly as it holds it.
-AS_HELD = "as the record holds it"
-COVERAGE_KEYS = ("content", "sectioning", "inclusion", "exclusion", "markers")
-ATOM_KEYS = ("bank", "concept", "values", "params", "span", "section", "element")
-BIOMARKER_KEYS = ("biomarker", "states", "params", "span", "piece", "section")
-BIOMARKER_OUTCOME_KEYS = ("outcome_type", "measure", "time_frame", "time_points")
-MEASUREMENT_KEYS = (
-    "outcome_type",
-    "measure",
-    "time_frame",
-    "unit",
-    "param_type",
-    "dispersion_type",
-    "arm",
-    "group_id",
-    "class",
-    "category",
-    "value",
-    "spread",
-    "lower_limit",
-    "upper_limit",
-    "endpoint_classes",
-)
-EVENT_GROUP_KEYS = (
-    "group_id",
-    "title",
-    "deaths_affected",
-    "deaths_at_risk",
-    "serious_affected",
-    "serious_at_risk",
-    "other_affected",
-    "other_at_risk",
-)
-EVENT_KEYS = (
-    "table",
-    "term",
-    "organ_system",
-    "source_vocabulary",
-    "assessment_type",
-    "group_id",
-    "arm",
-    "affected",
-    "at_risk",
-    "events",
-)
-TIER_KEYS = ("element", "tier", "statement_rate", "lower_bound", "upper_bound")
-CLASS_KEYS = ("state", "classes", "resolved_by")
-AXES_KEYS = ("drug", "identity", "reason", "names", "classes", "targets", "alignment", "atc")
-MODALITY_KEYS = ("property", "value", "polarity", "scope", "warrant")
-PUBLICATION_KEYS = ("pmid", "type", "role", "citation", "pubmed")
-DOCUMENT_KEYS = (
-    "type",
-    "label",
-    "has_protocol",
-    "has_sap",
-    "has_icf",
-    "date",
-    "upload_date",
-    "filename",
-    "url",
+# The record's sections, in order; `cohort` omits a table that holds no row.
+RECORD_KEYS = (
+    "schema_version",
+    "request",
+    "scope",
+    "manifest",
+    "universes",
+    "coverage",
+    "cohort",
+    "standard_language",
+    "statuses",
+    "envelope",
+    "fields",
+    "studies",
 )
 
-# ── the self-description: every field, its meaning, type, statuses and source ─────────────────────────
+# ── the field dictionary and the shape the contract gives a study ─────────────────────────────────────
 
-STATED = ("known", "not_stated")
-KNOWN = ("known",)
-RESOLVED = ("known", "unresolved")
-INTERPOLATED = ("known", "interpolated", "unresolved")
-PROPOSED = ("proposed", "unresolved")
-RESULTS = ("known", "not_posted", "not_stated", "unresolved")
-MODALITY = ("known", "interpolated")
-ROWS = "list of row: "
-KNOWN_RULE = "coherence.resolve, known: stated evidence and strict relations"
-INTERPOLATED_RULE = "coherence.resolve, interpolated: default relations added"
 
-_CRITERION = (
-    ("piece", "integer", (), "criteria.itemize", "the criterion's piece number in the eligibility text"),
-    ("text", "value(string)", KNOWN, ELIGIBILITY_TEXT, "the criterion's exact text, itemized"),
-    (
-        "atoms",
-        "list of value(object: " + ", ".join(ATOM_KEYS) + ")",
-        KNOWN,
-        ELIGIBILITY_TEXT,
-        "each atom a bank typed: bank, concept, values, params, its span, effective section and element",
-    ),
+def field_dictionary() -> dict[str, dict[str, Any]]:
+    """Every contract field once: its label, kind, API paths or rule, form, display dictionary and the paths
+    a reading reads. The record carries it as `fields`."""
+    return {
+        field.name: {
+            "label": field.label,
+            "kind": field.kind,
+            "source": list(field.source),
+            "form": field.form,
+            "display": field.display,
+            "reads": list(field.reads),
+        }
+        for field in CONTRACT_FIELDS
+    }
+
+
+FIELD_DICTIONARY = field_dictionary()
+KINDS = {field.name: field.kind for field in CONTRACT_FIELDS}
+# A study's plain fields, each as (its path below the study, its API path templates, its form).
+PLAIN_FIELDS: tuple[tuple[tuple[str, ...], tuple[str, ...], str], ...] = tuple(
+    (tuple(field.name.removeprefix(f"{STUDY}.").split(".")), field.source, field.form)
+    for field in CONTRACT_FIELDS
+    if field.kind == "plain" and field.name.startswith(f"{STUDY}.")
 )
-_OUTCOME = (
-    ("measure", "value(string)", STATED, f"{P}.outcomesModule.<type>Outcomes[i].measure", "the measure"),
-    ("time_frame", "value(string)", STATED, f"{P}.outcomesModule.<type>Outcomes[i].timeFrame", "time frame"),
-    ("description", "value(string)", STATED, f"{P}.outcomesModule.<type>Outcomes[i].description", "as given"),
-    (
-        "endpoint_classes",
-        "value(list of string)",
-        KNOWN,
-        "banks.endpoint_classes over the measure",
-        "the endpoint classes the measure's title names; an empty list when it names none, never a guess",
-    ),
-    (
-        "time_points",
-        "value(list of string)",
-        KNOWN,
-        "banks.time_points over the time frame",
-        "the time points the time frame states as number then unit",
-    ),
-)
-FIELD_TABLE: tuple[tuple[str, str, tuple[str, ...], str, str], ...] = (
-    ("schema_version", "string", (), "landscape.SCHEMA_VERSION", "the version of this record's schema"),
-    ("request", "opaque", (), "the request as given", "the user's request, as the agent gave it"),
-    ("scope", "opaque", (), "request resolution", "every expansion of the request, its source and query"),
-    ("manifest", "section", (), "the run", "what the record was read from and by"),
-    ("manifest.api_version", "string", (), "/version: apiVersion", "the registry API's version"),
-    ("manifest.data_timestamp", "string", (), "/version: dataTimestamp", "the registry snapshot read"),
-    (
-        "manifest.study_digests",
-        "list of string",
-        (),
-        "warrants.study_digest",
-        "each study's digest, in order",
-    ),
-    ("manifest.merkle_root", "string", (), "warrants.merkle_root", "the Merkle root of the study digests"),
-    ("manifest.code_commit", "string", (), "record.code_commit", "the code's git commit, marked when dirty"),
-    (
-        "manifest.rule_versions",
-        "object",
-        (),
-        "landscape.RULE_VERSIONS",
-        "schema, tool, design, code root, each relation's approval (relations) and kind (relation_kinds)",
-    ),
-    ("manifest.retrieval", "object", (), "the pull", "how many studies matched and how many were read"),
-    ("studies", "list of section", (), "each study record", "every study read, in the pull's order"),
-    ("studies[].nct", "value(string)", STATED, f"{P}.identificationModule.nctId", "the NCT number"),
-    ("studies[].digest", "string", (), "warrants.study_digest", "the study record's digest"),
-    ("studies[].link", "string", (), "links.study_link", "the study's registry page"),
-    ("studies[].population", "section", (), f"{P}.eligibilityModule", "point 1: the patient population"),
-    *(
-        (f"studies[].population.{name}", f"value({kind})", STATED, f"{P}.eligibilityModule.{key}", meaning)
-        for name, key, kind, meaning in (
-            ("minimum_age", "minimumAge", "string", "the minimum age, as written"),
-            ("maximum_age", "maximumAge", "string", "the maximum age, as written"),
-            ("std_ages", "stdAges", "list of string", "the registry's standard age groups"),
-            ("sex", "sex", "string", "the sexes eligible"),
-            ("gender_based", "genderBased", "boolean", "whether eligibility is based on gender"),
-            ("gender_description", "genderDescription", "string", "the gender eligibility description"),
-            ("healthy_volunteers", "healthyVolunteers", "boolean", "whether healthy volunteers are accepted"),
-        )
-    ),
-    ("studies[].eligibility", "section", (), ELIGIBILITY_TEXT, "the eligibility text and how it was read"),
-    ("studies[].eligibility.text", "value(string)", STATED, ELIGIBILITY_TEXT, "the whole eligibility text"),
-    (
-        "studies[].eligibility.itemized",
-        "value(string)",
-        KNOWN,
-        "criteria.itemize",
-        "itemized (criteria found), no_list_markers (prose only) or empty",
-    ),
-    (
-        "studies[].eligibility.coverage",
-        "value(object: " + ", ".join(COVERAGE_KEYS) + ")",
-        KNOWN,
-        "criteria.eligibility_coverage",
-        "content, sectioning, and per section whether the record says its list is abbreviated or complete",
-    ),
-    *(
-        entry
-        for section, point in (
-            ("inclusion", "point 2: inclusion criteria"),
-            ("exclusion", "point 3: exclusion criteria"),
-            ("unsectioned", "criteria under no inclusion or exclusion heading"),
-        )
-        for entry in (
-            (f"studies[].{section}", "list of section", (), "criteria.itemize", f"{point}, as itemized"),
-            *((f"studies[].{section}[].{n}", t, s, src, m) for n, t, s, src, m in _CRITERION),
-        )
-    ),
-    (
-        "studies[].line_of_therapy_and_setting",
-        "section",
-        (),
-        "coherence.resolve",
-        "point 4: the design coordinates, each a domain of still-possible values, known, interpolated and as "
-        "each proposal alone would narrow it",
-    ),
-    *(
-        entry
-        for name, meaning in (
-            ("setting", "the treatment setting"),
-            ("prior_advanced_lines", "the prior lines of therapy for advanced disease"),
-        )
-        for entry in (
-            (
-                f"studies[].line_of_therapy_and_setting.{name}",
-                "value(list of string)",
-                RESOLVED,
-                KNOWN_RULE,
-                f"{meaning}, known (the record's own criteria and the strict relations): known when one "
-                "value remains, unresolved when several or none (a conflict)",
-            ),
-            (
-                f"studies[].line_of_therapy_and_setting.{name}_interpolated",
-                "value(list of string)",
-                INTERPOLATED,
-                INTERPOLATED_RULE,
-                f"{meaning} as the default relations narrow the known value: the known value's status when "
-                "they do not narrow it, interpolated when they leave one or more values, unresolved when "
-                "none (a conflict)",
-            ),
-            (
-                f"studies[].line_of_therapy_and_setting.{name}_proposed",
-                "list of value(list of string)",
-                PROPOSED,
-                "coherence.resolve, each proposal alone",
-                f"{meaning} as each proposal alone would narrow the interpolated value, one value for each "
-                "proposal that narrows it: proposed, or unresolved when it leaves none; never built on",
-            ),
-        )
-    ),
-    (
-        "studies[].outcomes",
-        "section",
-        (),
-        f"{P}.outcomesModule",
-        "point 5: the registered (planned) outcomes",
-    ),
-    *(
-        entry
-        for kind, meaning in (
-            ("primary", "primary outcomes"),
-            ("secondary", "secondary outcomes"),
-            ("other", "other pre-specified outcomes"),
-        )
-        for entry in (
-            (
-                f"studies[].outcomes.{kind}",
-                "list of section",
-                (),
-                f"{P}.outcomesModule",
-                f"planned {meaning}",
-            ),
-            *((f"studies[].outcomes.{kind}[].{n}", t, s, src, m) for n, t, s, src, m in _OUTCOME),
-        )
-    ),
-    ("studies[].biomarkers", "section", (), "the banks and the outcomes", "point 6: biomarkers by role"),
-    (
-        "studies[].biomarkers.eligibility",
-        "list of value(object: " + ", ".join(BIOMARKER_KEYS) + ")",
-        KNOWN,
-        "banks.biomarker_status over the criteria",
-        "each biomarker a criterion states, with the states it allows and its effective section",
-    ),
-    (
-        "studies[].biomarkers.outcome",
-        "list of value(object: " + ", ".join(BIOMARKER_OUTCOME_KEYS) + ")",
-        KNOWN,
-        "banks.endpoint_classes (biomarker_endpoint) over primary and secondary outcomes",
-        "each primary or secondary outcome whose measure names a biomarker endpoint",
-    ),
-    (
-        "studies[].biomarkers.exploratory",
-        "list of value(object: " + ", ".join(BIOMARKER_OUTCOME_KEYS) + ")",
-        KNOWN,
-        "banks.endpoint_classes (biomarker_endpoint) over other pre-specified outcomes",
-        "each other pre-specified outcome whose measure names a biomarker endpoint",
-    ),
-    ("studies[].efficacy", "section", (), R, "point 7: posted outcome results; never a registered outcome"),
-    (
-        "studies[].efficacy.results",
-        "value(string)",
-        RESULTS,
-        "ledger.results_state over hasResults and the results section",
-        'whether results are posted: "results posted", or "no results posted" (not_posted)',
-    ),
-    (
-        "studies[].efficacy.measurements",
-        "list of value(object: " + ", ".join(MEASUREMENT_KEYS) + ")",
-        KNOWN,
-        f"{R}.outcomeMeasuresModule",
-        "each posted measurement per arm (group), with its measure's type, title, time frame, unit and class",
-    ),
-    ("studies[].safety", "section", (), f"{R}.adverseEventsModule", "point 8: posted adverse events per arm"),
-    (
-        "studies[].safety.results",
-        "value(string)",
-        RESULTS,
-        "ledger.results_state over hasResults and the results section",
-        'whether results are posted: "results posted", or "no results posted" (not_posted)',
-    ),
-    (
-        "studies[].safety.time_frame",
-        "value(string)",
-        STATED,
-        f"{R}.adverseEventsModule.timeFrame",
-        "the adverse events' time frame",
-    ),
-    (
-        "studies[].safety.groups",
-        "list of value(object: " + ", ".join(EVENT_GROUP_KEYS) + ")",
-        KNOWN,
-        f"{R}.adverseEventsModule.eventGroups",
-        "each arm's (event group's) deaths, serious and other events: affected and at risk, as stated",
-    ),
-    (
-        "studies[].safety.events",
-        "list of value(object: " + ", ".join(EVENT_KEYS) + ")",
-        KNOWN,
-        f"{R}.adverseEventsModule.seriousEvents and otherEvents",
-        "each adverse event per arm: its table, term, organ system, affected, at risk and events, as stated",
-    ),
-    (
-        "studies[].exploratory_measures",
-        "list of section",
-        (),
-        f"{P}.outcomesModule.otherOutcomes",
-        "point 9: the other pre-specified outcomes",
-    ),
-    *(
-        (f"studies[].exploratory_measures[].{n}", t, s, src.replace("<type>", "other"), m)
-        for n, t, s, src, m in _OUTCOME
-    ),
-    (
-        "studies[].standard_language",
-        "list of section",
-        (),
-        "profile.frequency_rows over all trials",
-        "point 10: each criterion's elements with their standard tier across the cohort",
-    ),
-    (
-        "studies[].standard_language[].piece",
-        "integer",
-        (),
-        "criteria.itemize",
-        "the criterion's piece number",
-    ),
-    ("studies[].standard_language[].section", "string", (), "criteria.itemize", "the criterion's section"),
-    (
-        "studies[].standard_language[].elements",
-        "list of value(object: " + ", ".join(TIER_KEYS) + ")",
-        RESOLVED,
-        "profile.frequency_rows (all trials), keyed by profile.element_key",
-        "each element: its tier (met, not_met, unresolved), statement rate and full-criteria interval",
-    ),
-    *(
-        (f"studies[].{name}", f"value({kind})", STATED, source, meaning)
-        for name, kind, source, meaning in (
-            ("sponsor", "string", f"{P}.sponsorCollaboratorsModule.leadSponsor.name", "the lead sponsor"),
-            ("phases", "list of string", f"{P}.designModule.phases", "the phases"),
-            ("overall_status", "string", f"{P}.statusModule.overallStatus", "the recruitment status"),
-            ("study_type", "string", f"{P}.designModule.studyType", "the study type"),
-            ("conditions", "list of string", f"{P}.conditionsModule.conditions", "the conditions"),
-            (
-                "start_date",
-                "object: " + AS_HELD,
-                f"{P}.statusModule.startDateStruct",
-                "the start date and its type",
-            ),
-            (
-                "primary_completion_date",
-                "object: " + AS_HELD,
-                f"{P}.statusModule.primaryCompletionDateStruct",
-                "the primary completion date and its type",
-            ),
-            (
-                "completion_date",
-                "object: " + AS_HELD,
-                f"{P}.statusModule.completionDateStruct",
-                "the completion date and its type",
-            ),
-            (
-                "enrollment",
-                "object: " + AS_HELD,
-                f"{P}.designModule.enrollmentInfo",
-                "the enrollment count and its type",
-            ),
-        )
-    ),
-    (
-        "studies[].arms",
-        "list of value(object: " + AS_HELD + ")",
-        STATED,
-        f"{P}.armsInterventionsModule.armGroups",
-        "each arm as the record holds it",
-    ),
-    (
-        "studies[].interventions",
-        "list of section",
-        (),
-        f"{P}.armsInterventionsModule.interventions",
-        "each intervention with its drug class, axes and modality",
-    ),
-    (
-        "studies[].interventions[].entry",
-        "value(object: " + AS_HELD + ")",
-        STATED,
-        f"{P}.armsInterventionsModule.interventions[i]",
-        "the intervention as the record holds it",
-    ),
-    (
-        "studies[].interventions[].drug_class",
-        "value(object: " + ", ".join(CLASS_KEYS) + ")",
-        RESOLVED,
-        "classes.drug_class (NLM RxClass), else banks.stated_targets",
-        "an experimental drug's FDA established pharmacologic class, or the class its own entry states",
-    ),
-    (
-        "studies[].interventions[].axes",
-        "value(object: " + ", ".join(AXES_KEYS) + ")",
-        RESOLVED,
-        "classes.drug_axes through reading.drug_axes_view",
-        "an experimental drug's RxNorm identity, ATC and structure classes and its own entry's targets",
-    ),
-    (
-        "studies[].interventions[].modality",
-        "list of value(object: " + ", ".join(MODALITY_KEYS) + ")",
-        MODALITY,
-        "modality.entry_properties",
-        "each modality facet or cell property its entry states (known) or a name stem hints (interpolated)",
-    ),
-    (
-        "studies[].publications",
-        "list of value(object: " + ", ".join(PUBLICATION_KEYS) + ")",
-        KNOWN,
-        f"{P}.referencesModule.references",
-        "each reference with its registry type, that type's role in the registry's terms and PubMed link",
-    ),
-    (
-        "studies[].documents",
-        "list of value(object: " + ", ".join(DOCUMENT_KEYS) + ")",
-        KNOWN,
-        "documentSection.largeDocumentModule.largeDocs",
-        "each posted document with its link",
-    ),
-    ("cohort", "section", (), "profile.py", "the cohort profile, as design.xlsx's sheets compute it"),
-    ("cohort.thresholds", "object", (), "profile.py", "the standard share and the signal supports"),
-    (
-        "cohort.frequency",
-        ROWS + ", ".join(FREQUENCY_COLUMNS),
-        (),
-        "profile.frequency_rows",
-        "each element's statement rate and full-criteria interval with its silences, over all trials and by "
-        "known setting",
-    ),
-    (
-        "cohort.mechanism_signals",
-        ROWS + ", ".join(MECHANISM_COLUMNS),
-        (),
-        "profile.mechanism_rows",
-        "statement-rate comparisons by experimental class, bounded against abbreviated silences; proposals",
-    ),
-    (
-        "cohort.occupancy",
-        ROWS + ", ".join(OCCUPANCY_COLUMNS),
-        (),
-        "profile.occupancy_rows",
-        "each setting and class cell",
-    ),
-    (
-        "cohort.near_misses",
-        ROWS + ", ".join(NEAR_MISS_COLUMNS),
-        (),
-        "nearmiss.near_misses",
-        "pairs whose representation (one setting, known or interpolated; every experimental drug's class) is "
-        "equal and that differ in one predicate known for both; rests_on: the weakest status the pair's two "
-        "settings rest on (known, or interpolated where a default relation decided either)",
-    ),
-    (
-        "cohort.aligned_near_misses",
-        ROWS + ", ".join(ALIGNED_COLUMNS),
-        (),
-        "nearmiss.near_misses over reading.aligned_near_miss_input",
-        "pairs aligned by ATC class, each with its basis and, in rests_on, the weakest status the pair's two "
-        "settings rest on (known or interpolated)",
-    ),
-    (
-        "cohort.endpoints",
-        ROWS + ", ".join(ENDPOINT_COLUMNS),
-        (),
-        "landscape.endpoint_profile over the planned outcomes",
-        "each outcome type and endpoint class: the trials and outcomes naming it and their time points",
-    ),
-    (
-        "cohort.structure_relations",
-        ROWS + ", ".join(STRUCTURE_COLUMNS),
-        (),
-        "reading.structure_relations",
-        "distinct drugs sharing a known structure class",
-    ),
-    (
-        "review_queue",
-        ROWS + ", ".join(REVIEW_COLUMNS),
-        (),
-        "review.flags_for",
-        "what the rules cannot cleanly resolve, as closed questions for an expert or a model; never answered",
-    ),
-    ("coverage", "section", (), "typematrix.py", "the supported-type matrix"),
-    ("coverage.universe", "object", (), "typematrix.UNIVERSE", "v1's declared universe"),
-    (
-        "coverage.types",
-        ROWS + ", ".join(("axis", "value", "status", "reason", "evidence")),
-        (),
-        "typematrix.declared_manifest",
-        "every declared value of every axis: supported, unsupported (with its reason) or unmeasured",
-    ),
-    (
-        "coverage.studies",
-        ROWS + ", ".join(UNIVERSE_COLUMNS),
-        (),
-        "typematrix.universe_status and study_coordinates",
-        "each study's type coordinates and whether it is in v1's universe, or why not",
-    ),
-    ("statuses", "object", (), "landscape.STATUSES", "what each status a value can carry means"),
-    ("envelope", "object", (), "landscape.ENVELOPE_MEANINGS", "what each key of a value's envelope means"),
-    (
-        "fields",
-        "object",
-        (),
-        "landscape.FIELDS",
-        "this description of every field by its path (list items as []): its meaning; its type (value(T): an "
-        "envelope whose value is a T; section: an object of described fields; object: k1, ...: an object "
-        "with exactly those keys, in order; list of row: c1, ...: objects with exactly those columns; "
-        "opaque: carried as given); the statuses its values may carry; and its source",
-    ),
-)
-FIELDS: dict[str, dict[str, Any]] = {
-    path: {"meaning": meaning, "type": kind, "statuses": list(statuses), "source": source}
-    for path, kind, statuses, source, meaning in FIELD_TABLE
-}
-SECTIONS = tuple(path for path in FIELDS if "." not in path)
-# Each section's described keys, keyed by its prefix: "" the record, "studies[]" a study, "manifest" itself.
-CHILDREN: dict[str, tuple[str, ...]] = {
-    parent: tuple(path.rpartition(".")[2] for path in FIELDS if path.rpartition(".")[0] == parent)
-    for parent in dict.fromkeys(path.rpartition(".")[0] for path in FIELDS)
-}
-# The levels schema_problems walks: a node of a field path is reached at one level a segment and one more a
-# list, and a list field's items one level further.
-WALK_DEPTH = 2 + max(len(path.split(".")) + path.count("[]") for path in FIELDS)
-# The fields that hold posted results: every value in them must come from the results section.
-POSTED_FIELDS = ("studies[].efficacy.measurements", "studies[].safety.groups", "studies[].safety.events")
 
 
-# ── the envelope and the decisions on one value ───────────────────────────────────────────────────────
+def list_prefix(template: str) -> str:
+    """The API path of the list a template's first "[]" segment names, "" when it names none (pure — pinned).
 
-
-def envelope(value: Any, status: str, source: str, rule: str, note: str, link: str) -> dict[str, Any]:
-    """One value as the record shows it: the value, its status, its source, its rule, a note and its link."""
-    return {"value": value, "status": status, "source": source, "rule": rule, "note": note, "link": link}
-
-
-def stated(study: dict[str, Any], path: tuple[str | int, ...], link: str) -> dict[str, Any]:
-    """A field of a study record as the record holds it, with its status (pure — pinned).
-
-    known      — the record holds a value at `path` (an empty list among them): that value, exactly as held.
-    not_stated — it holds none: value None, the note the ledger's absence state (not_reported, not_applicable
-                 to this study type, or redacted for a withheld study), never read as zero, none or no.
-    The source is the value's location in the record; the rule is "" (read as stated).
+    "a.b[].c" gives "a.b[]"; "a.b[].c[].d" gives "a.b[]"; "a.b" gives "".
     """
-    held = get(study, *path)
-    if held is None:
-        return envelope(None, "not_stated", location(path), "", field_state(study, *path), link)
-    return envelope(held, "known", location(path), "", "", link)
+    head, mark, _rest = template.partition("[]")
+    return f"{head}[]" if mark else ""
 
 
-def coordinate_values(
-    row: dict[str, Any], source: str, link: str
-) -> tuple[dict[str, Any], dict[str, Any], list[dict[str, Any]]]:
-    """One design coordinate as the reading resolved it: its known value, its interpolated value and each
-    proposal's narrowing alone (pure — pinned).
+def below(template: str, prefix: str) -> str:
+    """A template relative to the list prefix that holds it: "" for the list's own entries (pure — pinned).
 
-    `row` is coherence.resolve's for the coordinate. Each value is the domain at its level, as a list, with
-    the status coherence.level_status gives it and a note naming the level's state and each removal it made:
-      known        — the known domain (the record's own criteria and the strict relations): known when one
-                     value remains, unresolved when several remain or none (a conflict);
-      interpolated — the domain the default relations leave: the known value's status when they leave it as
-                     it is (noted so); interpolated when they narrow it to one or more values, unresolved when
-                     to none;
-      proposed     — one value for each proposal that narrows the coordinate, alone, from the interpolated
-                     domain: proposed when it leaves one or more values, unresolved when none; none narrowing
-                     it, an empty list.
-    A default's conclusion is never known, and a proposal's narrowing never known or interpolated.
+    `prefix` is list_prefix's for `template`, or "" for a template not in a list. "a.b[].c" below "a.b[]" is
+    "c"; "a.b[]" below "a.b[]" is ""; any template below "" is itself.
     """
-    known, interpolated = row["domain"], row["interpolated"]
-    removals = [f"{'|'.join(removed)} removed by {cause}" for _, removed, cause in row["causes"]]
-    known_value = envelope(
-        list(known),
-        level_status("known", known, known),
-        source,
-        KNOWN_RULE,
-        "; ".join([row["state"], *removals]),
-        link,
-    )
-    added = [f"{'|'.join(removed)} removed by {cause}" for _, removed, cause in interpolated["causes"]]
-    unchanged = tuple(interpolated["domain"]) == tuple(known)
-    interpolated_value = envelope(
-        list(interpolated["domain"]),
-        level_status("interpolated", interpolated["domain"], known),
-        source,
-        INTERPOLATED_RULE,
-        "no default relation narrows it" if unchanged else "; ".join([interpolated["state"], *added]),
-        link,
-    )
-    proposed = [
-        envelope(
-            list(proposal["domain"]),
-            level_status("proposed", proposal["domain"], known),
-            source,
-            f"coherence.resolve, proposal {proposal['relation']} alone",
-            "; ".join(
-                [proposal["state"]]
-                + [f"{'|'.join(removed)} removed by {cause}" for _, removed, cause in proposal["causes"]]
-            ),
-            link,
-        )
-        for proposal in row["proposals"]
-    ]
-    return known_value, interpolated_value, proposed
+    if not prefix:
+        return template
+    return template.removeprefix(prefix).removeprefix(".")
 
 
-def results_value(state: str, link: str) -> dict[str, Any]:
+def leaf_value(node: Any, template: str, form: str, list_word: str) -> tuple[str, Any]:
+    """One plain field's value at a template of a registry node, by the field's form (pure — pinned).
+
+    Returns (held, value) or (absent, None):
+      which list — the word of the list that holds the entry (`list_word`), held when there is one;
+      count      — how many entries the template lists, held when it lists one or more;
+      distinct   — the distinct values, in the registry's order, held when there is one;
+      as held    — a template through a list ("[]"): every value, in order; otherwise the one value;
+                   held when contract.holds_value says so (zero and false are values; None, "" and empty
+                   lists and objects are not).
+    """
+    if form == "which list":
+        return ("held", list_word) if list_word else ("absent", None)
+    values = template_values(node, template) if template else []
+    if form == "count":
+        return ("held", len(values)) if values else ("absent", None)
+    if form == "distinct":
+        distinct = list(dict.fromkeys(value for value in values if holds_value(value)))
+        return ("held", distinct) if distinct else ("absent", None)
+    value = values if "[]" in template else (values[0] if values else None)
+    return ("held", value) if holds_value(value) else ("absent", None)
+
+
+def absent(status: str, note: str) -> dict[str, str]:
+    """A value the registry does not hold: its status and why."""
+    return {"status": status, "note": note}
+
+
+def value_object(status: str, rule: str, words: list[str], result: Any, note: str) -> dict[str, Any]:
+    """A rule's reading: its status, rule, the words it read, what it found and why."""
+    return {"status": status, "rule": rule, "words": words, "result": result, "note": note}
+
+
+def absence_note(study: dict[str, Any], template: str) -> str:
+    """The ledger's absence state for a study's field at an API path template."""
+    path = template.replace("[]", "")
+    return absence_state(
+        False,
+        path in REDACTED_WHEN_WITHHELD,
+        APPLIES_TO.get(path),
+        get(study, "protocolSection", "designModule", "studyType"),
+        get(study, "protocolSection", "statusModule", "overallStatus"),
+    )
+
+
+def assemble(
+    node: Any,
+    fields: Sequence[tuple[tuple[str, ...], tuple[str, ...], str]],
+    note: Callable[[str], str] | None,
+    list_word: str = "",
+) -> dict[str, Any]:
+    """The record's object for one registry node, every plain field the contract gives it.
+
+    `fields` are (the path below this object, the API templates relative to `node`, the form). A path of one
+    segment is a field: its value (leaf_value), or, where the registry holds none, `note`'s absence object
+    for a study's or a module's own field, nothing for an element of a list (`note` None). A segment ending
+    "[]" is a list: its elements, for each of the field's alternative registry lists in turn (the primary,
+    secondary and other outcomes; the serious and other events), each element assembled from its own node.
+    Any other segment is an object of this node.
+    """
+    held: dict[str, Any] = {}
+    grouped: dict[str, list[tuple[tuple[str, ...], tuple[str, ...], str]]] = {}
+    for path, templates, form in fields:
+        grouped.setdefault(path[0], []).append((path, templates, form))
+    for head, members in grouped.items():
+        path, templates, form = members[0]
+        if len(path) == 1:
+            outcome, value = leaf_value(node, templates[0], form, list_word)
+            if outcome == "held":
+                held[head] = value
+            elif note is not None:
+                held[head] = absent("not_stated", note(templates[0]))
+            continue
+        below_path = [(p[1:], t, f) for p, t, f in members]
+        if not head.endswith("[]"):
+            held[head] = assemble(node, below_path, note, list_word)
+            continue
+        prefixes = [list_prefix(template) for template in templates]
+        items = []
+        for index, prefix in enumerate(prefixes):
+            word = LIST_WORDS.get(prefix.removesuffix("[]").rpartition(".")[2], "")
+            for element in template_values(node, prefix):
+                inner = [(p, (below(t[index], prefix),), f) for p, t, f in below_path]
+                items.append(assemble(element, inner, None, word))
+        held[head.removesuffix("[]")] = items
+    return held
+
+
+# ── the readings of one study ─────────────────────────────────────────────────────────────────────────
+
+
+def results_reading(state: str) -> dict[str, Any]:
     """Whether a study's results are posted, from ledger.results_state's code (pure — pinned).
 
-    posted            — "results posted", known;
-    not_posted        — "no results posted", not_posted: nothing posted is reported, and a registered outcome
+    posted            — known, "results posted";
+    not_posted        — not_posted, "no results posted": nothing posted is reported, and a registered outcome
                         is never put in its place;
-    flag_not_reported — the words for it, not_stated (the registry's flag is absent), the code as its note;
-    any other code    — its words (the flag and the results section disagree), unresolved, the code its note.
+    flag_not_reported — not_stated (the registry's flag is absent), the code as its note;
+    any other code    — unresolved (the flag and the results section disagree), the code as its note.
     """
     rule = "ledger.results_state"
     if state == "posted":
-        return envelope(RESULTS_TEXT[state], "known", "hasResults", rule, "", link)
+        return value_object("known", rule, [], RESULTS_TEXT[state], "")
     if state == "not_posted":
-        return envelope(NO_RESULTS, "not_posted", "hasResults", rule, "", link)
+        return value_object("not_posted", rule, [], RESULTS_TEXT[state], "")
     status = "not_stated" if state == "flag_not_reported" else "unresolved"
-    return envelope(RESULTS_TEXT[state], status, "hasResults", rule, state, link)
+    return value_object(status, rule, [], RESULTS_TEXT.get(state, state), state)
 
 
-def standard_values(elements: list[str], tiers: dict[str, tuple], link: str) -> list[dict[str, Any]]:
-    """A criterion's elements with their standard tier across the cohort (pure — pinned).
+def module_absence(state: str) -> dict[str, str]:
+    """A results module the registry does not hold, from the study's results state (pure — pinned).
 
-    `elements` are the criterion's element keys (profile.element_key of each atom, in atom order; each counted
-    once); `tiers` maps an element to (statement rate, lower bound, upper bound, tier) from the cohort's
-    frequency rows over all trials. Each element's value: known when its tier is met or not_met, unresolved
-    when it is unresolved (the interval straddles the standard share) or the element is not in the profile. A
-    criterion no bank typed has no element: one unresolved value, None, saying so; never not_met.
+    not_posted — the study posted no results: not_posted;
+    otherwise  — results are posted (or the flag and the section disagree) but this module is not among
+                 them: not_stated, not_reported.
     """
-    rule = "profile.frequency_rows (all trials), keyed by profile.element_key"
-    if not elements:
-        return [envelope(None, "unresolved", ELIGIBILITY_TEXT, rule, UNTYPED, link)]
-    values = []
-    for element in dict.fromkeys(elements):
-        found = tiers.get(element)
-        if found is None:
-            unprofiled = {"element": element, "tier": None, "statement_rate": None, "lower_bound": None}
-            unprofiled["upper_bound"] = None
-            values.append(envelope(unprofiled, "unresolved", ELIGIBILITY_TEXT, rule, "not profiled", link))
-            continue
-        rate, lower, upper, tier = found
-        value = {
-            "element": element,
-            "tier": tier,
-            "statement_rate": rate,
-            "lower_bound": lower,
-            "upper_bound": upper,
-        }
-        status = "known" if tier in ("met", "not_met") else "unresolved"
-        values.append(
-            envelope(value, status, ELIGIBILITY_TEXT, rule, "" if status == "known" else tier, link)
+    if state == "not_posted":
+        return absent("not_posted", "no results are posted for the study")
+    return absent("not_stated", "not_reported")
+
+
+def coordinate_readings(row: dict[str, Any]) -> list[tuple[str, dict[str, Any]]]:
+    """One design coordinate as coherence.resolve gives it, at its three levels (pure — pinned).
+
+    `row` is resolve's row for the coordinate. Returns ("", known), ("_interpolated",
+    interpolated) and, when a proposal narrows it, ("_proposed", proposed), each a reading of
+    coherence.resolve whose result is the domain left at that level:
+      known        — known when one value remains, unresolved when several or none (a conflict); the note
+                     names the domain's state, each removal and the packs that own the coordinate;
+      interpolated — the known value's status when the default relations leave it as it is (noted so);
+                     interpolated when they narrow it to one or more values, unresolved when to none;
+      proposed     — each proposal's narrowing alone ({relation, domain}), proposed when every one leaves a
+                     value, unresolved when one leaves none; never built on.
+    """
+    rule = "coherence.resolve"
+    known = list(row["domain"])
+    removals = [f"{'|'.join(removed)} removed by {cause}" for _, removed, cause in row["causes"]]
+    packs = [f"pack {pack}" for pack in row.get("packs", [])]
+    note = "; ".join([row["state"], *removals, *packs])
+    found = [("", value_object(level_status("known", tuple(known), tuple(known)), rule, [], known, note))]
+    interpolated = list(row["interpolated"]["domain"])
+    if interpolated == known:
+        held = "no default relation narrows it"
+    else:
+        added = [f"{'|'.join(r)} removed by {cause}" for _, r, cause in row["interpolated"]["causes"]]
+        held = "; ".join([row["interpolated"]["state"], *added])
+    status = level_status("interpolated", tuple(interpolated), tuple(known))
+    found.append(("_interpolated", value_object(status, rule, [], interpolated, held)))
+    proposals = [
+        {"relation": proposal["relation"], "domain": list(proposal["domain"])}
+        for proposal in row["proposals"]
+    ]
+    if proposals:
+        status = "proposed" if all(p["domain"] for p in proposals) else "unresolved"
+        words = "each proposal alone, never built on"
+        found.append(("_proposed", value_object(status, rule, [], proposals, words)))
+    return found
+
+
+def selection_readings(rows: dict[str, dict[str, Any]]) -> list[tuple[str, dict[str, Any]]]:
+    """Gene selection, per gene, at its three levels (pure — pinned).
+
+    `rows` map each gene to coherence.resolve's row for its "selection:<gene>" coordinate. A level's result
+    names each gene whose domain that level narrows below every state (negative, positive, unknown):
+      known        — known when it names one or more genes each with one state, unresolved otherwise (no
+                     gene's state stated, several states left, or none: a conflict);
+      interpolated — the known value's status when no default narrows any gene further; else interpolated
+                     when every gene it names keeps a state, unresolved when one keeps none;
+      proposed     — present only when a proposal narrows a gene: each gene's narrowings, proposed when each
+                     leaves a state, unresolved when one leaves none.
+    """
+    rule = "coherence.resolve"
+    full = list(STATES)
+    known = {gene: list(row["domain"]) for gene, row in rows.items() if list(row["domain"]) != full}
+    single = bool(known) and all(len(domain) == 1 for domain in known.values())
+    note = "" if known else "no gene's state is stated"
+    found = [("", value_object("known" if single else "unresolved", rule, [], known, note))]
+    interpolated = {
+        gene: list(row["interpolated"]["domain"])
+        for gene, row in rows.items()
+        if list(row["interpolated"]["domain"]) != full
+    }
+    if interpolated == known:
+        found.append(
+            (
+                "_interpolated",
+                value_object(found[0][1]["status"], rule, [], known, "no default relation narrows it"),
+            )
         )
-    return values
+    else:
+        kept = all(interpolated.values())
+        status = "interpolated" if kept else "unresolved"
+        found.append(("_interpolated", value_object(status, rule, [], interpolated, "")))
+    proposals = {
+        gene: [{"relation": p["relation"], "domain": list(p["domain"])} for p in row["proposals"]]
+        for gene, row in rows.items()
+        if row["proposals"]
+    }
+    if proposals:
+        kept = all(p["domain"] for held in proposals.values() for p in held)
+        status = "proposed" if kept else "unresolved"
+        found.append(
+            ("_proposed", value_object(status, rule, [], proposals, "each proposal alone, never built on"))
+        )
+    return found
 
 
-def biomarker_values(
-    criteria: list[tuple], outcomes: list[tuple], link: str
-) -> dict[str, list[dict[str, Any]]]:
-    """A study's biomarkers by role, as the banks and the outcomes give them (pure — pinned).
+def coordinate_section(resolved: dict[str, dict[str, Any]]) -> dict[str, dict[str, Any]]:
+    """The study's domain readings: each coordinate resolve gives (only those the study's universe admits),
+    at its three levels; gene selection gathered into one reading per level."""
+    held: dict[str, dict[str, Any]] = {}
+    for name in ("setting", "prior_advanced_lines"):
+        if name in resolved:
+            for suffix, value in coordinate_readings(resolved[name]):
+                held[f"{name}{suffix}"] = value
+    genes = {name.partition(":")[2]: row for name, row in resolved.items() if name.startswith("selection:")}
+    if genes:
+        for suffix, value in selection_readings(genes):
+            held[f"selection{suffix}"] = value
+    return held
 
-    `criteria` are the reading's (piece, section, text, atoms); `outcomes` its (type, measure, time frame,
-    endpoint classes, time points), primary then secondary then other, each in record order.
-      eligibility — each biomarker atom a criterion states: the biomarker, the states it allows, its params,
-                    its span, its piece and its effective section (reading.effective_section: a permission is
-                    "permitted", a negated mention the other section);
-      outcome     — each primary or secondary outcome whose measure names a biomarker endpoint;
-      exploratory — each other pre-specified outcome whose measure names one.
-    Every value known, with the field it was read from and the bank that read it.
+
+def drug_class_reading(found: list[Any]) -> dict[str, Any]:
+    """An experimental drug's class as the reading found it (pure — pinned).
+
+    `found` is the reading's [drug, state, classes, resolved by]. classified (NLM RxClass's FDA established
+    pharmacologic class) and stated_by_record (the class its own entry states, known by the founder's decision
+    of 2026-10-31) are known; any other state is unresolved, its note saying why in words (CLASS_NOTES; a
+    state without words names itself).
     """
-    roles: dict[str, list[dict[str, Any]]] = {"eligibility": [], "outcome": [], "exploratory": []}
-    for piece, section, text, atoms in criteria:
-        for _bank, concept, values, params, start, end in atoms:
+    drug, state, classes, resolved_by = found
+    status = "known" if state in ("classified", "stated_by_record") else "unresolved"
+    result = {"state": state, "classes": list(classes), "resolved_by": resolved_by}
+    return value_object(status, "classes.drug_class", [drug], result, CLASS_NOTES.get(state, state))
+
+
+def axes_reading(axes: dict[str, Any]) -> dict[str, Any]:
+    """An experimental drug's axes as the reading gives them: known when its own name's RxNorm identity is
+    resolved, else unresolved with the identity code and its reason."""
+    status = "known" if axes["identity"] == "resolved" else "unresolved"
+    note = "" if status == "known" else f"{axes['identity']}: {axes['reason']}"
+    return value_object(status, "classes.drug_axes", [axes["drug"]], _axes(axes), note)
+
+
+def modality_reading(extractions: list[tuple]) -> dict[str, Any]:
+    """The modality facets and cell properties one intervention entry states, each with its own status and
+    where it was read: known when every extraction is, interpolated when one rests on a name's stem."""
+    result = [
+        {"property": e[1], "value": e[2], "polarity": e[3], "scope": e[4], "where": e[5], "status": e[7]}
+        for e in extractions
+    ]
+    status = "known" if all(e[7] == "known" for e in extractions) else "interpolated"
+    words = list(dict.fromkeys(e[5] for e in extractions))
+    return value_object(status, "modality.entry_properties", words, result, "")
+
+
+def criterion_entries(criteria: list[tuple]) -> list[dict[str, Any]]:
+    """A study's criteria as itemized, each with its role and its readings (pure — pinned).
+
+    `criteria` are the reading's (piece, section, text, atoms), in the text's order. Each criterion: its
+    heading (the section it sits under), its number within that section, its text as written, its role
+    (criteria.criterion_role: known when the wording and the heading settle it, unresolved otherwise, the
+    role words as its words) and one reading per atom a bank typed (banks.type_criterion: the span it rests on
+    as its words; the bank, concept, values, params, effective section and element key as its result). A
+    criterion no bank typed has no reading; that does not mean it carries no clinical information.
+    """
+    counts: dict[str, int] = {}
+    entries = []
+    for _piece, section, text, atoms in criteria:
+        counts[section] = counts.get(section, 0) + 1
+        role, words = criterion_role(text, section)
+        readings = []
+        for bank, concept, values, params, start, end in atoms:
+            effective = effective_section(section, params)
+            result = {
+                "bank": bank,
+                "concept": concept,
+                "values": list(values),
+                "params": dict(params),
+                "section": effective,
+                "element": element_key(effective, concept, values, params),
+            }
+            readings.append(value_object("known", "banks.type_criterion", [text[start:end]], result, ""))
+        entries.append(
+            {
+                "heading": section,
+                "number": counts[section],
+                "text": text,
+                "role": value_object(
+                    "unresolved" if role == "unresolved" else "known",
+                    "criteria.criterion_role",
+                    list(words),
+                    role,
+                    "the wording and the heading do not settle it" if role == "unresolved" else "",
+                ),
+                "readings": readings,
+            }
+        )
+    return entries
+
+
+def biomarker_mentions(
+    criteria: list[dict[str, Any]], outcomes: list[dict[str, Any]]
+) -> list[dict[str, Any]]:
+    """Each biomarker a criterion's reading names and each registered outcome whose measure names a biomarker
+    endpoint, as a mention: its words, role and the rule that read it (pure — pinned).
+
+    `criteria` are criterion_entries's, `outcomes` the study's registered outcomes, each with its category,
+    measure and endpoint-class reading. A criterion's mention: the biomarker, the states it allows, its role
+    (the atom's effective section) and the criterion's place among the study's criteria; an outcome's: no
+    biomarker named, its role "<category> outcome" and the outcome's place. Every mention known.
+    """
+    rule = "banks.biomarker_status"
+    found = []
+    for index, criterion in enumerate(criteria):
+        for reading in criterion["readings"]:
+            concept = reading["result"]["concept"]
             if not concept.startswith("biomarker:"):
                 continue
-            value = {
+            result = {
                 "biomarker": concept.removeprefix("biomarker:"),
-                "states": list(values),
-                "params": dict(params),
-                "span": text[start:end],
-                "piece": piece,
-                "section": effective_section(section, params),
+                "states": list(reading["result"]["values"]),
+                "role": reading["result"]["section"],
+                "at": f"criteria/{index}",
             }
-            roles["eligibility"].append(
-                envelope(value, "known", ELIGIBILITY_TEXT, "banks.biomarker_status", f"piece {piece}", link)
-            )
-    keys = dict(OUTCOME_KINDS)
-    seen = {kind: 0 for kind in keys}
-    for kind, measure, frame, classes, points in outcomes:
-        index = seen[kind]
-        seen[kind] = index + 1
+            found.append(value_object("known", rule, list(reading["words"]), result, ""))
+    for index, outcome in enumerate(outcomes):
+        classes = outcome.get("endpoint_classes", {}).get("result", [])
         if "biomarker_endpoint" not in classes:
             continue
-        value = {"outcome_type": kind, "measure": measure, "time_frame": frame, "time_points": list(points)}
-        source = f"{P}.outcomesModule.{keys[kind]}[{index}]"
-        role = "exploratory" if kind == "other" else "outcome"
-        roles[role].append(envelope(value, "known", source, "banks.endpoint_classes", "", link))
-    return roles
-
-
-def drug_class_value(found: tuple | None, source: str, link: str) -> dict[str, Any]:
-    """An intervention's drug class as the reading found it (pure — pinned).
-
-    `found` is the reading's (drug, state, classes, resolved by) for an experimental drug, None for any other
-    intervention. classified (NLM RxClass's FDA established pharmacologic class) and stated_by_record (the
-    class the intervention's own description states, which counts as known by the founder's decision of
-    2026-10-31) are known; unresolved and lookup_failed are unresolved, the state as the note; an intervention
-    that is not an experimental drug is unresolved, never classed.
-    """
-    if found is None:
-        return envelope(None, "unresolved", source, "classes.experimental_drugs", NOT_EXPERIMENTAL, link)
-    _drug, state, classes, resolved_by = found
-    value = {"state": state, "classes": list(classes), "resolved_by": resolved_by}
-    if state == "classified":
-        return envelope(value, "known", source, "classes.drug_class (NLM RxClass, has_epc)", "", link)
-    if state == "stated_by_record":
-        return envelope(
-            value, "known", source, "banks.stated_targets (the entry's own description)", "", link
+        result = {
+            "biomarker": None,
+            "states": [],
+            "role": f"{outcome.get('category')} outcome",
+            "at": f"registered_outcomes/{index}",
+        }
+        words = [outcome["measure"]] if isinstance(outcome.get("measure"), str) else []
+        found.append(
+            value_object("known", rule, words, result, "a biomarker endpoint (banks.endpoint_classes)")
         )
-    return envelope(value, "unresolved", source, "classes.drug_class (NLM RxClass, has_epc)", state, link)
+    return found
 
 
-def axes_value(axes: dict[str, Any] | None, source: str, link: str) -> dict[str, Any]:
-    """An intervention's drug axes as the reading gives them (pure — pinned).
+def key_category(concept: str, values: list[str]) -> str:
+    """The key-criterion category a typed reading falls in, "" for none (pure — pinned).
 
-    `axes` is the reading's drug_axes_view for an experimental drug, None for any other intervention. The
-    value is the axes as the resolve JSON renders them; known when its own name's RxNorm identity is
-    resolved, otherwise unresolved with the identity code and its reason as the note (not_looked_up, a
-    conflict, an unresolved own name, a failed lookup); an intervention that is not an experimental drug is
-    unresolved, never given axes.
+    The first of contract.KEY_CRITERION_CATEGORIES with a matcher (concept, values) whose concept is the
+    reading's (or, ending ":", begins it) and whose values are empty or share a value with the reading's.
     """
-    rule = "classes.drug_axes through reading.drug_axes_view"
-    if axes is None:
-        return envelope(None, "unresolved", source, "classes.experimental_drugs", NOT_EXPERIMENTAL, link)
-    if axes["identity"] == "resolved":
-        return envelope(_axes(axes), "known", source, rule, "", link)
-    return envelope(_axes(axes), "unresolved", source, rule, f"{axes['identity']}: {axes['reason']}", link)
+    for name, _label, matchers in contract.KEY_CRITERION_CATEGORIES:
+        for wanted, accepted in matchers:
+            same = concept.startswith(wanted) if wanted.endswith(":") else concept == wanted
+            if same and (not accepted or set(accepted) & set(values)):
+                return name
+    return ""
+
+
+def key_criteria(criteria: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    """The study's key criteria: each criterion with a reading in a key category, once a category
+    (pure — pinned).
+
+    `criteria` are criterion_entries's. For each criterion, in order, and each category its readings fall in
+    (key_category), in the order first met: a reading of landscape.key_criteria, known, its words the
+    criterion's text as written; its result the category, the criterion's role (its role reading's result),
+    its place among the study's criteria and the concepts and values of the readings in that category.
+    """
+    found = []
+    for index, criterion in enumerate(criteria):
+        held: dict[str, list[dict[str, Any]]] = {}
+        for reading in criterion["readings"]:
+            category = key_category(reading["result"]["concept"], reading["result"]["values"])
+            if category:
+                held.setdefault(category, []).append(
+                    {"concept": reading["result"]["concept"], "values": reading["result"]["values"]}
+                )
+        for category, readings in held.items():
+            result = {
+                "category": category,
+                "role": criterion["role"]["result"],
+                "at": f"criteria/{index}",
+                "readings": readings,
+            }
+            found.append(value_object("known", "landscape.key_criteria", [criterion["text"]], result, ""))
+    return found
+
+
+def standard_language(studies: list[dict[str, Any]]) -> dict[str, Any]:
+    """Standard protocol language: each criterion reading most trials of one universe state (pure — pinned).
+
+    `studies` are the record's studies (their nct, universe reading and criteria). A trial counts in each
+    universe its universe reading names ("unresolved scope" when it names none). Within a universe of at least
+    contract.STANDARD_LANGUAGE_MIN_TRIALS trials, a reading (its element key) is standard when the trials
+    stating it are at least that many and at least contract.STANDARD_LANGUAGE_SHARE of the universe's trials.
+    Each row: the universe, the element, its concept, values and role (effective section), how many trials
+    state it of how many, the representative wording (the shortest statement and the longest other one, each
+    with its trial, heading, number and address), and every trial stating it; rows ordered by universe, then
+    most trials, then element. A universe with too few trials is listed apart, with why.
+    """
+    groups: dict[str, list[dict[str, Any]]] = {}
+    for position, study in enumerate(studies):
+        names = study["universe"]["result"]["universes"] or ["unresolved scope"]
+        for name in names:
+            groups.setdefault(name, []).append({"position": position, "study": study})
+    least = contract.STANDARD_LANGUAGE_MIN_TRIALS
+    rows, not_assessed = [], []
+    for universe in sorted(groups):
+        members = groups[universe]
+        if len(members) < least:
+            reason = f"too few trials to assess ({len(members)}; at least {least} needed)"
+            not_assessed.append({"universe": universe, "trials": len(members), "reason": reason})
+            continue
+        stated: dict[str, dict[str, Any]] = {}
+        for member in members:
+            study = member["study"]
+            for index, criterion in enumerate(study["criteria"]):
+                for reading in criterion["readings"]:
+                    result = reading["result"]
+                    entry = stated.setdefault(
+                        result["element"],
+                        {"concept": result["concept"], "values": result["values"], "role": result["section"]},
+                    )
+                    entry.setdefault("wording", []).append(
+                        {
+                            "text": criterion["text"],
+                            "nct": study["nct"],
+                            "heading": criterion["heading"],
+                            "number": criterion["number"],
+                            "at": f"/studies/{member['position']}/criteria/{index}",
+                        }
+                    )
+        for element, entry in stated.items():
+            trials = sorted({wording["nct"] for wording in entry["wording"]})
+            if len(trials) < least or len(trials) < contract.STANDARD_LANGUAGE_SHARE * len(members):
+                continue
+            ordered = sorted(entry["wording"], key=lambda w: (len(w["text"]), w["nct"], w["number"], w["at"]))
+            shown = [ordered[0]] + ([ordered[-1]] if ordered[-1]["text"] != ordered[0]["text"] else [])
+            rows.append(
+                {
+                    "universe": universe,
+                    "element": element,
+                    "concept": entry["concept"],
+                    "values": entry["values"],
+                    "role": entry["role"],
+                    "stating": len(trials),
+                    "of": len(members),
+                    "wording": shown,
+                    "trials": trials,
+                }
+            )
+    rows.sort(key=lambda row: (row["universe"], -row["stating"], row["element"]))
+    return {
+        "share": contract.STANDARD_LANGUAGE_SHARE,
+        "minimum_trials": least,
+        "rows": rows,
+        "not_assessed": not_assessed,
+    }
+
+
+def open_questions(flags: list[tuple], admitted: set[str]) -> list[dict[str, Any]]:
+    """The study's review flags as closed questions for an expert, never answered here (pure — pinned).
+
+    `flags` are review.flags_for's (kind, element, why, priority, evidence, question, options); `admitted` the
+    coordinates the study's universe admits. A coordinate conflict on a coordinate the universe does not admit
+    is no question for this study and is left out. Each question: unresolved, its evidence as its words.
+    """
+    found = []
+    for kind, element, why, priority, evidence, question, options in flags:
+        if kind == "coordinate_conflict" and element not in admitted:
+            continue
+        result = dict(
+            zip(QUESTION_KEYS, (kind, element, why, int(priority), question, list(options)), strict=True)
+        )
+        found.append(value_object("unresolved", "review.flags_for", list(evidence), result, why))
+    return found
+
+
+def criteria_evidence(criteria: list[tuple]) -> list[tuple[str, str, tuple[str, ...], str, str]]:
+    """The evidence coherence.resolve narrows a study's coordinates by, from its criteria (pure — pinned).
+
+    For each atom, in order: its effective section (reading.effective_section), concept, values, its scope
+    param ("" when it has none) and "criterion <piece>", exactly as reading.study_view gathers it.
+    """
+    return [
+        (
+            effective_section(section, params),
+            concept,
+            tuple(values),
+            dict(params).get("scope", ""),
+            f"criterion {piece}",
+        )
+        for piece, section, _text, atoms in criteria
+        for _bank, concept, values, params, _start, _end in atoms
+    ]
+
+
+def domain_readings(
+    study: dict[str, Any], view: dict[str, Any], answers: dict[str, Any] | None
+) -> tuple[dict[str, Any], dict[str, Any]]:
+    """A study's universe reading and the coordinates its universe admits (unit B's interface).
+
+    universes.assign over the study and its drugs' ATC classes (universes.atc_classes of the RxNav
+    `answers`; None in relay mode, where nothing was looked up), its reading (universes.reading), then
+    coherence.resolve over the study's criteria evidence under that assignment: a coordinate no permitted
+    pack owns is absent, and each row names the packs that own it."""
+    from TrialLedger import coherence, universes
+
+    classes = None if answers is None else universes.atc_classes(answers)
+    assignment = universes.assign(study, classes)
+    resolved = coherence.resolve(criteria_evidence(view["criteria"]), assignment)
+    return universes.reading(assignment), resolved
+
+
+# ── the per-study extract ─────────────────────────────────────────────────────────────────────────────
+
+
+def study_extract(
+    study: dict[str, Any],
+    view: dict[str, Any],
+    flags: list[tuple],
+    universe: dict[str, Any],
+    resolved: dict[str, dict[str, Any]],
+) -> dict[str, Any]:
+    """One study as schema 3 holds it: every contract field the registry record holds, and the readings.
+
+    `view` is reading.study_view's for `study`; `flags` its review flags; `universe` its universe reading and
+    `resolved` the coordinates its universe admits (domain_readings). Plain fields by the contract's API
+    paths (assemble); the run's own fields (link, digest, a document's link); and the readings: the universe,
+    the domain coordinates, whether results are posted, the criteria, the biomarker mentions, each registered
+    and posted outcome's endpoint classes and time points, each experimental drug's class, axes and
+    modality, eligibility coverage where the criteria could not be itemized, and the open questions.
+    """
+    nct = view["nct"]
+    state = results_state(study.get("hasResults"), isinstance(study.get("resultsSection"), dict))
+    extract = assemble(study, list(PLAIN_FIELDS), lambda template: absence_note(study, template))
+    for name, module in RESULTS_MODULES.items():
+        if not isinstance(get(study, *module), dict):
+            extract[name] = module_absence(state)
+    for outcome in extract["registered_outcomes"]:
+        measure = outcome.get("measure") if isinstance(outcome.get("measure"), str) else ""
+        frame = outcome.get("time_frame") if isinstance(outcome.get("time_frame"), str) else ""
+        outcome["endpoint_classes"] = value_object(
+            "known", "banks.endpoint_classes", [measure], endpoint_classes(measure), ""
+        )
+        outcome["time_points"] = value_object("known", "banks.time_points", [frame], time_points(frame), "")
+    if isinstance(extract["posted_outcomes"], list):
+        for measure in extract["posted_outcomes"]:
+            title = measure.get("title") if isinstance(measure.get("title"), str) else ""
+            measure["endpoint_classes"] = value_object(
+                "known", "banks.endpoint_classes", [title], endpoint_classes(title), ""
+            )
+    names = [
+        item.get("name") if isinstance(item, dict) else None
+        for item in template_values(study, "protocolSection.armsInterventionsModule.interventions[]")
+    ]
+    drugs = {found[0]: found for found in view["drugs"]}
+    axes = {held["drug"]: held for held in view["drug_axes"]}
+    base = "protocolSection.armsInterventionsModule.interventions"
+    for index, (entry, name) in enumerate(zip(extract["interventions"], names, strict=True)):
+        if name in drugs:
+            entry["drug_class"] = drug_class_reading(list(drugs[name]))
+        if name in axes:
+            entry["axes"] = axes_reading(axes[name])
+        extractions = [e for e in view["properties"] if e[5].startswith(f"{base}[{index}].")]
+        if extractions:
+            entry["modality"] = modality_reading(extractions)
+    documents = template_values(study, "documentSection.largeDocumentModule.largeDocs[]")
+    for document, held in zip(extract["documents"], documents, strict=True):
+        code, url = document_link(nct, held.get("filename") if isinstance(held, dict) else None)
+        if code == "ok":
+            document["url"] = url
+    criteria = criterion_entries(view["criteria"])
+    eligibility = extract.pop("eligibility")
+    if view["itemize"] != "itemized":
+        result = {
+            "itemized": view["itemize"],
+            "content": view["coverage"]["content"],
+            "sectioning": view["coverage"]["sectioning"],
+        }
+        note = f"the criteria could not be itemized ({view['itemize']})"
+        eligibility["coverage"] = value_object(
+            "unresolved", "criteria.eligibility_coverage", [], result, note
+        )
+    coordinates = coordinate_section(resolved)
+    admitted = {name for name in resolved}
+    return {
+        "nct": extract.pop("nct"),
+        "link": study_link(nct)[1],
+        "digest": view["digest"],
+        **extract,
+        "eligibility": eligibility,
+        "criteria": criteria,
+        "key_criteria": key_criteria(criteria),
+        "biomarker_mentions": biomarker_mentions(criteria, extract["registered_outcomes"]),
+        "universe": universe,
+        **({"coordinates": coordinates} if coordinates else {}),
+        "results_posted": results_reading(state),
+        "open_questions": open_questions(flags, admitted),
+    }
+
+
+# ── the cohort, the record and its manifest ───────────────────────────────────────────────────────────
 
 
 def endpoint_profile(trials: list[tuple[str, list[tuple]]]) -> list[tuple]:
@@ -945,389 +902,44 @@ def endpoint_profile(trials: list[tuple[str, list[tuple]]]) -> list[tuple]:
     return [row for _, row in keyed]
 
 
-# ── the per-study extract ─────────────────────────────────────────────────────────────────────────────
+def kept_strata(members: dict[str, list[str]], everyone: list[str]) -> list[str]:
+    """The by-setting strata the cohort keeps: each whose trials are not exactly all trials (pure — pinned).
 
-
-def criterion_sections(criteria: list[tuple], link: str) -> dict[str, list[dict[str, Any]]]:
-    """A study's criteria as itemized, by section, each with the atoms the banks typed (pure — pinned).
-
-    `criteria` are the reading's (piece, section, text, atoms). Each criterion goes to its own section
-    (inclusion, exclusion or unsectioned), in order, as its piece number, its exact text and its atoms; each
-    atom with its bank, concept, values, params, the span it rests on, its effective section
-    (reading.effective_section) and its element key (profile.element_key), every value known.
+    `members` map each stratum to its trials' NCT numbers; `everyone` the NCT numbers of all trials. A stratum
+    holding every trial and no other repeats "all trials" and is dropped; the rest are kept, in the order of
+    `members`.
     """
-    sections: dict[str, list[dict[str, Any]]] = {"inclusion": [], "exclusion": [], "unsectioned": []}
-    for piece, section, text, atoms in criteria:
-        typed = []
-        for bank, concept, values, params, start, end in atoms:
-            effective = effective_section(section, params)
-            value = {
-                "bank": bank,
-                "concept": concept,
-                "values": list(values),
-                "params": dict(params),
-                "span": text[start:end],
-                "section": effective,
-                "element": element_key(effective, concept, values, params),
-            }
-            typed.append(envelope(value, "known", ELIGIBILITY_TEXT, f"banks.{bank}", f"piece {piece}", link))
-        sections[section].append(
-            {
-                "piece": piece,
-                "text": envelope(text, "known", ELIGIBILITY_TEXT, "criteria.itemize", f"piece {piece}", link),
-                "atoms": typed,
-            }
-        )
-    return sections
+    whole = sorted(everyone)
+    return [stratum for stratum, ncts in members.items() if sorted(ncts) != whole]
 
 
-def outcome_sections(
-    study: dict[str, Any], outcomes: list[tuple], link: str
-) -> dict[str, list[dict[str, Any]]]:
-    """A study's registered outcomes, primary, secondary and other apart: planned, never posted results
-    (pure — pinned).
+def cohort_section(reading: dict[str, Any], admitted: list[set[str]]) -> dict[str, Any]:
+    """The across-trial findings the evidence supports, as named rows; a table with no row is left out.
 
-    `outcomes` are the reading's (type, measure, time frame, endpoint classes, time points), each type's in
-    record order, so the i-th of a type is the record's i-th outcome of that section. Each outcome: its
-    measure, time frame and description as the record states them, and the endpoint classes and time points
-    the banks read from them (known; an empty list when they name none).
-    """
-    sections: dict[str, list[dict[str, Any]]] = {}
-    for kind, key in OUTCOME_KINDS:
-        planned = [outcome for outcome in outcomes if outcome[0] == kind]
-        entries = []
-        for index, (_kind, _measure, _frame, classes, points) in enumerate(planned):
-            base = (P, "outcomesModule", key, index)
-            entries.append(
-                {
-                    "measure": stated(study, (*base, "measure"), link),
-                    "time_frame": stated(study, (*base, "timeFrame"), link),
-                    "description": stated(study, (*base, "description"), link),
-                    "endpoint_classes": envelope(
-                        list(classes),
-                        "known",
-                        location((*base, "measure")),
-                        "banks.endpoint_classes",
-                        "",
-                        link,
-                    ),
-                    "time_points": envelope(
-                        list(points), "known", location((*base, "timeFrame")), "banks.time_points", "", link
-                    ),
-                }
-            )
-        sections[kind] = entries
-    return sections
-
-
-def posted_measurements(study: dict[str, Any], results: list[tuple], link: str) -> list[dict[str, Any]]:
-    """Each posted outcome measurement per arm, from the results section only (pure — pinned).
-
-    The record's outcome measures are walked in the reading's own order (measure, class, category,
-    measurement), so each measurement pairs with the reading's result row (`results`), whose endpoint classes
-    it takes; a different count raises ValueError rather than mislabel one. Each value: the measure's type,
-    title, time frame, unit, parameter and dispersion types, the arm (its group's title, None when the groups
-    do not name it), the group id, class and category titles, the value, spread and limits as stated, and
-    the endpoint classes; known, its source the measurement's place in the results section.
-    """
-    walked = []
-    for m, measure in enumerate(as_list(get(study, R, "outcomeMeasuresModule", "outcomeMeasures"))):
-        groups = {get(group, "id"): get(group, "title") for group in as_list(get(measure, "groups"))}
-        for c, klass in enumerate(as_list(get(measure, "classes"))):
-            for k, category in enumerate(as_list(get(klass, "categories"))):
-                for x, measurement in enumerate(as_list(get(category, "measurements"))):
-                    path = (R, "outcomeMeasuresModule", "outcomeMeasures", m, "classes", c, "categories", k)
-                    value = {
-                        "outcome_type": get(measure, "type"),
-                        "measure": get(measure, "title"),
-                        "time_frame": get(measure, "timeFrame"),
-                        "unit": get(measure, "unitOfMeasure"),
-                        "param_type": get(measure, "paramType"),
-                        "dispersion_type": get(measure, "dispersionType"),
-                        "arm": groups.get(get(measurement, "groupId")),
-                        "group_id": get(measurement, "groupId"),
-                        "class": get(klass, "title"),
-                        "category": get(category, "title"),
-                        "value": get(measurement, "value"),
-                        "spread": get(measurement, "spread"),
-                        "lower_limit": get(measurement, "lowerLimit"),
-                        "upper_limit": get(measurement, "upperLimit"),
-                    }
-                    walked.append((value, location((*path, "measurements", x))))
-    return [
-        envelope(
-            {**value, "endpoint_classes": list(row[1])},
-            "known",
-            source,
-            "landscape.posted_measurements",
-            "",
-            link,
-        )
-        for (value, source), row in zip(walked, results, strict=True)
-    ]
-
-
-def posted_events(study: dict[str, Any], link: str) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
-    """Each arm's posted adverse-event totals and each event per arm, from the results section only
-    (pure — pinned).
-
-    Groups: each event group's id, title, and deaths, serious and other events affected and at risk, as
-    stated. Events: each serious then other event's statistics per group: the table, term, organ system,
-    vocabulary, assessment type, group id, the arm (its group's title, None when the groups do not name it),
-    affected, at risk and events as stated (None where the record holds none; an event's blank at-risk count
-    is never filled from its group's total). Every value known, its source its place in the results section.
-    """
-    module = (R, "adverseEventsModule")
-    rule = "landscape.posted_events"
-    titles = {get(g, "id"): get(g, "title") for g in as_list(get(study, *module, "eventGroups"))}
-    groups = [
-        envelope(
-            {
-                "group_id": get(group, "id"),
-                "title": get(group, "title"),
-                **{
-                    f"{prefix}_{kind}": get(group, f"{prefix}Num{field}")
-                    for prefix in ("deaths", "serious", "other")
-                    for kind, field in (("affected", "Affected"), ("at_risk", "AtRisk"))
-                },
-            },
-            "known",
-            location((*module, "eventGroups", g)),
-            rule,
-            "",
-            link,
-        )
-        for g, group in enumerate(as_list(get(study, *module, "eventGroups")))
-    ]
-    events = [
-        envelope(
-            {
-                "table": table,
-                "term": get(event, "term"),
-                "organ_system": get(event, "organSystem"),
-                "source_vocabulary": get(event, "sourceVocabulary"),
-                "assessment_type": get(event, "assessmentType"),
-                "group_id": get(stats, "groupId"),
-                "arm": titles.get(get(stats, "groupId")),
-                "affected": get(stats, "numAffected"),
-                "at_risk": get(stats, "numAtRisk"),
-                "events": get(stats, "numEvents"),
-            },
-            "known",
-            location((*module, key, e, "stats", s)),
-            rule,
-            "",
-            link,
-        )
-        for table, key in EVENT_TABLES
-        for e, event in enumerate(as_list(get(study, *module, key)))
-        for s, stats in enumerate(as_list(get(event, "stats")))
-    ]
-    return groups, events
-
-
-def intervention_sections(study: dict[str, Any], view: dict[str, Any], link: str) -> list[dict[str, Any]]:
-    """Each intervention entry with its drug class, axes and modality as the reading gives them
-    (pure — pinned).
-
-    The entry as the record holds it; its drug class (drug_class_value) and axes (axes_value) when it is an
-    experimental drug of the reading (matched by its own name), else unresolved, never classed; and every
-    modality or cell extraction the reading read from that entry (its name, other names or description),
-    each with the extraction's own status (known, or interpolated from a name stem), location and rule.
-    """
-    drugs = {found[0]: found for found in view["drugs"]}
-    axes = {held["drug"]: held for held in view["drug_axes"]}
-    entries = []
-    for index, item in enumerate(as_list(get(study, P, "armsInterventionsModule", "interventions"))):
-        base = (P, "armsInterventionsModule", "interventions", index)
-        source = location(base)
-        name = get(item, "name")
-        name = name if isinstance(name, str) else None
-        modality = [
-            envelope(
-                {"property": e[1], "value": e[2], "polarity": e[3], "scope": e[4], "warrant": e[8]},
-                e[7],
-                e[5],
-                e[6],
-                "",
-                link,
-            )
-            for e in view["properties"]
-            if e[5].startswith(f"{source}.")
-        ]
-        entries.append(
-            {
-                "entry": stated(study, base, link),
-                "drug_class": drug_class_value(drugs.get(name), source, link),
-                "axes": axes_value(axes.get(name), source, link),
-                "modality": modality,
-            }
-        )
-    return entries
-
-
-def reference_values(study: dict[str, Any], nct: str, link: str) -> tuple[list, list]:
-    """A study's publications with their registry type and its role, and its posted documents with their
-    links (pure — pinned).
-
-    Publications: each reference's PMID, type, the type's role in the registry's terms (links.reference_role:
-    a DERIVED reference is never called a results publication), citation and PubMed link ("" for no PMID).
-    Documents: each posted document's type, label, protocol, SAP and consent flags, dates, file name and the
-    registry's copy (links.document_link: "" when it cannot be linked). Every value known.
-    """
-    references = []
-    for index, ref in enumerate(as_list(get(study, P, "referencesModule", "references"))):
-        value = {
-            "pmid": get(ref, "pmid"),
-            "type": get(ref, "type"),
-            "role": reference_role(get(ref, "type")),
-            "citation": get(ref, "citation"),
-            "pubmed": pubmed_link(get(ref, "pmid"))[1],
-        }
-        source = location((P, "referencesModule", "references", index))
-        references.append(envelope(value, "known", source, "links.reference_role", "", link))
-    documents = []
-    for index, doc in enumerate(as_list(get(study, "documentSection", "largeDocumentModule", "largeDocs"))):
-        value = {
-            "type": get(doc, "typeAbbrev"),
-            "label": get(doc, "label"),
-            "has_protocol": get(doc, "hasProtocol"),
-            "has_sap": get(doc, "hasSap"),
-            "has_icf": get(doc, "hasIcf"),
-            "date": get(doc, "date"),
-            "upload_date": get(doc, "uploadDate"),
-            "filename": get(doc, "filename"),
-            "url": document_link(nct, get(doc, "filename"))[1],
-        }
-        source = location(("documentSection", "largeDocumentModule", "largeDocs", index))
-        documents.append(envelope(value, "known", source, "links.document_link", "", link))
-    return references, documents
-
-
-def study_extract(study: dict[str, Any], view: dict[str, Any], tiers: dict[str, tuple]) -> dict[str, Any]:
-    """One study's ten-point extract and its extras, from its record and the reading's view of it
-    (pure — pinned).
-
-    `view` is reading.study_view's for `study`; `tiers` the cohort's standard tiers (standard_values). The ten
-    points: population; inclusion, exclusion (and unsectioned) criteria as itemized with their atoms; line of
-    therapy and setting as the design coordinates; planned outcomes; biomarkers by role; efficacy (posted
-    measurements, or "no results posted"); safety (posted adverse events, or "no results posted");
-    exploratory measures (the other pre-specified outcomes); standard protocol language (each criterion's
-    elements and tiers). The extras: sponsor, phases, status, type, conditions, dates, enrollment, arms,
-    interventions with their classes, axes and modality, publications and documents. Every value an envelope
-    with its status, source and the study's registry link.
-    """
-    nct = view["nct"]
-    link = study_link(nct)[1]
-    eligibility = (P, "eligibilityModule")
-    coverage = view["coverage"]
-    outcomes = outcome_sections(study, view["outcomes"], link)
-    state = results_state(study.get("hasResults"), isinstance(study.get(R), dict))
-    groups, events = posted_events(study, link)
-    references, documents = reference_values(study, nct, link)
-    coordinates = {}
-    for name in ("setting", "prior_advanced_lines"):
-        known, interpolated, proposed = coordinate_values(view["coordinates"][name], ELIGIBILITY_TEXT, link)
-        coordinates[name] = known
-        coordinates[f"{name}_interpolated"] = interpolated
-        coordinates[f"{name}_proposed"] = proposed
-    standard = []
-    for piece, section, _text, atoms in view["criteria"]:
-        elements = [element_key(effective_section(section, a[3]), a[1], a[2], a[3]) for a in atoms]
-        standard.append(
-            {"piece": piece, "section": section, "elements": standard_values(elements, tiers, link)}
-        )
-    return {
-        "nct": stated(study, (P, "identificationModule", "nctId"), link),
-        "digest": view["digest"],
-        "link": link,
-        "population": {
-            name: stated(study, (*eligibility, key), link)
-            for name, key in (
-                ("minimum_age", "minimumAge"),
-                ("maximum_age", "maximumAge"),
-                ("std_ages", "stdAges"),
-                ("sex", "sex"),
-                ("gender_based", "genderBased"),
-                ("gender_description", "genderDescription"),
-                ("healthy_volunteers", "healthyVolunteers"),
-            )
-        },
-        "eligibility": {
-            "text": stated(study, (*eligibility, "eligibilityCriteria"), link),
-            "itemized": envelope(view["itemize"], "known", ELIGIBILITY_TEXT, "criteria.itemize", "", link),
-            "coverage": envelope(
-                {
-                    "content": coverage["content"],
-                    "sectioning": coverage["sectioning"],
-                    **dict(coverage["evidence"]),
-                    "markers": [
-                        {"kind": k, "scope": sc, "piece": p, "start": s, "end": e, "text": t}
-                        for k, sc, p, s, e, t in coverage["markers"]
-                    ],
-                },
-                "known",
-                ELIGIBILITY_TEXT,
-                "criteria.eligibility_coverage",
-                "",
-                link,
-            ),
-        },
-        **criterion_sections(view["criteria"], link),
-        "line_of_therapy_and_setting": coordinates,
-        "outcomes": outcomes,
-        "biomarkers": biomarker_values(view["criteria"], view["outcomes"], link),
-        "efficacy": {
-            "results": results_value(state, link),
-            "measurements": posted_measurements(study, view["results"], link),
-        },
-        "safety": {
-            "results": results_value(state, link),
-            "time_frame": stated(study, (R, "adverseEventsModule", "timeFrame"), link),
-            "groups": groups,
-            "events": events,
-        },
-        "exploratory_measures": outcomes["other"],
-        "standard_language": standard,
-        "sponsor": stated(study, (P, "sponsorCollaboratorsModule", "leadSponsor", "name"), link),
-        "phases": stated(study, (P, "designModule", "phases"), link),
-        "overall_status": stated(study, (P, "statusModule", "overallStatus"), link),
-        "study_type": stated(study, (P, "designModule", "studyType"), link),
-        "conditions": stated(study, (P, "conditionsModule", "conditions"), link),
-        "start_date": stated(study, (P, "statusModule", "startDateStruct"), link),
-        "primary_completion_date": stated(study, (P, "statusModule", "primaryCompletionDateStruct"), link),
-        "completion_date": stated(study, (P, "statusModule", "completionDateStruct"), link),
-        "enrollment": stated(study, (P, "designModule", "enrollmentInfo"), link),
-        "arms": [
-            stated(study, (P, "armsInterventionsModule", "armGroups", index), link)
-            for index, _ in enumerate(as_list(get(study, P, "armsInterventionsModule", "armGroups")))
-        ],
-        "interventions": intervention_sections(study, view, link),
-        "publications": references,
-        "documents": documents,
-    }
-
-
-# ── the cohort, the record and its manifest ───────────────────────────────────────────────────────────
-
-
-def cohort_section(reading: dict[str, Any]) -> dict[str, Any]:
-    """The cohort profile as design.xlsx's sheets compute it, as named rows (pure — pinned).
-
-    The frequency and mechanism rows over every trial ("all trials") then by known setting, from the same
-    trials as design.xlsx's Profile and Mechanism Signals sheets (design._profile_trials); the occupancy of
-    every setting and observed class cell, as its Occupancy sheet computes it; the near-miss pairs as written
-    and aligned, each with the weakest status its two settings rest on (`rests_on`: the reading's
-    pair_status and aligned_pair_status, in the order of the pairs); the planned endpoints and time points by
-    class (endpoint_profile); the structure relations; and the thresholds the tiers and signals were read at.
-    Comparable posted results wait on the endpoint bank (add-coherence-engine 5.3) and are not here.
+    `reading` is reading.read_population's; `admitted` each view's coordinates its universe admits, in the
+    order of the views. The frequency and mechanism rows over every trial ("all trials"), then by known
+    setting over the trials whose universe admits a setting, each stratum kept only where it is not all
+    trials (kept_strata); a primary endpoint's element is the endpoints' table's, never a criterion's
+    frequency. The occupancy of each setting and observed class cell and the near-miss pairs, over the trials
+    whose universe admits a setting; the planned endpoints and time points by class; the structure relations;
+    and the thresholds the tiers and signals were read at.
     """
     views = reading["views"]
+    setting = [view for view, held in zip(views, admitted, strict=True) if "setting" in held]
+    everyone = [view["nct"] for view in views]
+    rows = _profile_trials(setting, True)
+    members: dict[str, list[str]] = {}
+    for row in rows:
+        members.setdefault(row[2], []).append(row[0])
+    kept = set(kept_strata(members, everyone))
+    by_setting = [row for row in rows if row[2] in kept]
     frequency, mechanism = [], []
-    for by_setting in (False, True):
-        trials = _profile_trials(views, by_setting)
-        frequency += frequency_rows(trials)
-        mechanism += mechanism_rows(trials)
+    for trials in (_profile_trials(views, False), by_setting):
+        if trials:
+            frequency += frequency_rows(trials)
+            mechanism += mechanism_rows(trials)
+    frequency = [row for row in frequency if not row[1].startswith(ENDPOINT_ELEMENT)]
+    mechanism = [row for row in mechanism if not row[2].startswith(ENDPOINT_ELEMENT)]
     occupancy_trials = [
         (
             v["nct"],
@@ -1336,37 +948,43 @@ def cohort_section(reading: dict[str, Any]) -> dict[str, Any]:
             if v["drugs"] and all(s == "classified" for _, s, _, _ in v["drugs"])
             else (),
         )
-        for v in views
+        for v in setting
     ]
     observed = sorted({c for _, _, classes in occupancy_trials for c in classes})
-    cells = [(setting, klass) for setting in SETTINGS for klass in observed]
-    endpoints = endpoint_profile([(v["nct"], v["outcomes"]) for v in views])
-    return {
-        "thresholds": {
-            "standard_share": STANDARD_SHARE,
-            "signal_min_trials": SIGNAL_MIN_TRIALS,
-            "signal_min_sponsors": SIGNAL_MIN_SPONSORS,
-        },
+    cells = [(name, klass) for name in SETTINGS for klass in observed]
+    placed = {view["nct"] for view in setting}
+    tables = {
         "frequency": [dict(zip(FREQUENCY_COLUMNS, row, strict=True)) for row in frequency],
         "mechanism_signals": [dict(zip(MECHANISM_COLUMNS, row, strict=True)) for row in mechanism],
         "occupancy": [
             dict(zip(OCCUPANCY_COLUMNS, row, strict=True)) for row in occupancy_rows(cells, occupancy_trials)
-        ],
+        ]
+        if occupancy_trials
+        else [],
         "near_misses": [
             dict(zip(NEAR_MISS_COLUMNS, (*pair, rests_on), strict=True))
             for pair, rests_on in zip(reading["pairs"], reading["pair_status"], strict=True)
+            if pair[0] in placed and pair[1] in placed
         ],
         "aligned_near_misses": [
             dict(zip(ALIGNED_COLUMNS, (*pair, rests_on), strict=True))
             for pair, rests_on in zip(reading["aligned_pairs"], reading["aligned_pair_status"], strict=True)
+            if pair[0] in placed and pair[1] in placed
         ],
         "endpoints": [
-            dict(zip(ENDPOINT_COLUMNS, (*row[:5], dict(row[5])), strict=True)) for row in endpoints
+            dict(zip(ENDPOINT_COLUMNS, (*row[:5], dict(row[5])), strict=True))
+            for row in endpoint_profile([(v["nct"], v["outcomes"]) for v in views])
         ],
         "structure_relations": [
             dict(zip(STRUCTURE_COLUMNS, row, strict=True)) for row in reading["structure_relations"]
         ],
     }
+    thresholds = {
+        "standard_share": STANDARD_SHARE,
+        "signal_min_trials": SIGNAL_MIN_TRIALS,
+        "signal_min_sponsors": SIGNAL_MIN_SPONSORS,
+    }
+    return {"thresholds": thresholds, **{name: rows for name, rows in tables.items() if rows}}
 
 
 def landscape_manifest(
@@ -1397,295 +1015,216 @@ def landscape_manifest(
     }
 
 
+def universes_table() -> list[dict[str, Any]]:
+    """The universes and their rule packs as run (contract.UNIVERSES), as JSON."""
+    return [
+        {
+            "name": universe.name,
+            "label": universe.label,
+            "version": universe.version,
+            "packs": [
+                {
+                    "name": pack.name,
+                    "label": pack.label,
+                    "coordinates": list(pack.coordinates),
+                    "relations": list(pack.relations),
+                    "requires": [{"kind": r.kind, "values": list(r.values)} for r in pack.requires],
+                }
+                for pack in universe.packs
+            ],
+        }
+        for universe in contract.UNIVERSES
+    ]
+
+
 def landscape_record(
     reading: dict[str, Any],
     studies: list[dict[str, Any]],
     request: Any,
     scope: Any,
     manifest: dict[str, Any],
+    answers: dict[str, Any] | None,
+    domains: Callable[..., tuple[dict[str, Any], dict[str, Any]]] = domain_readings,
 ) -> dict[str, Any]:
-    """landscape.json: the record of truth for one run, schema v2 (pure — pinned).
+    """landscape.json: the record of truth for one run, schema 3.
 
     `reading` is reading.read_population's over `studies`, in the same order: a reading whose views' digests
-    are not the studies' digests, in order (other studies, another order, another count), raises ValueError
-    and pairs nothing. `request` and `scope` are carried as given (request resolution's); `manifest` is
-    landscape_manifest's. The record: the schema version, the request, the scope, the manifest, each study's
-    extract (study_extract, its standard tiers those of the cohort's frequency rows over all trials), the
-    cohort (cohort_section), the review queue (every review flag of every study, its answer None: nothing in
-    it is answered here), coverage (v1's universe, every declared type's status, and each study's type
-    coordinates and universe status at the manifest's data timestamp, open-ended when it names none), and
-    the record's self-description: `statuses` (what each status means), `envelope` (what each key of a
-    value means) and `fields` (every field's meaning, type, statuses and source).
+    are not the studies' digests, in order, raises ValueError and pairs nothing. `request` and `scope` are
+    carried as given; `manifest` is landscape_manifest's; `answers` the RxNav answers the reading was made
+    with (None in relay mode, where nothing was looked up); `domains` gives each study's universe reading and
+    the coordinates its universe admits (domain_readings: universes.assign, then coherence.resolve). The
+    record: RECORD_KEYS in order, each study's extract (study_extract), the cohort (cohort_section), the
+    standard protocol language across the studies (standard_language) and the record's self-description.
     """
     views = reading["views"]
     if [view["digest"] for view in views] != [warrants.study_digest(study) for study in studies]:
         raise ValueError("the reading is not of these studies, in this order")
-    cohort = cohort_section(reading)
-    tiers = {
-        row["element"]: (row["statement_rate"], row["lower_bound"], row["upper_bound"], row["standard_tier"])
-        for row in cohort["frequency"]
-        if row["stratum"] == ALL_TRIALS
-    }
-    present = manifest.get("data_timestamp")
-    present = present if isinstance(present, str) and present else None
-    paired = list(zip(studies, views, strict=True))
+    found = [domains(study, view, answers) for study, view in zip(studies, views, strict=True)]
+    admitted = [set(resolved) for _universe, resolved in found]
+    extracts = [
+        study_extract(study, view, flags, universe, resolved)
+        for study, view, flags, (universe, resolved) in zip(
+            studies, views, reading["flags"], found, strict=True
+        )
+    ]
     return {
         "schema_version": SCHEMA_VERSION,
         "request": request,
         "scope": scope,
         "manifest": manifest,
-        "studies": [study_extract(study, view, tiers) for study, view in paired],
-        "cohort": cohort,
-        "review_queue": [
-            dict(zip(REVIEW_COLUMNS, (view["nct"], k, el, why, int(pr), ev, q, opts, None), strict=True))
-            for view, flags in zip(views, reading["flags"], strict=True)
-            for k, el, why, pr, ev, q, opts in flags
-        ],
-        "coverage": {
-            "universe": copy.deepcopy(UNIVERSE),
-            "types": declared_manifest()["rows"],
-            "studies": [
-                dict(
-                    zip(
-                        UNIVERSE_COLUMNS,
-                        (view["nct"], universe_status(study, present), study_coordinates(study)),
-                        strict=True,
-                    )
-                )
-                for study, view in paired
-            ],
-        },
+        "universes": universes_table(),
+        "coverage": {"universe": copy.deepcopy(UNIVERSE)},
+        "cohort": cohort_section(reading, admitted),
+        "standard_language": standard_language(extracts),
         "statuses": dict(STATUSES),
         "envelope": dict(ENVELOPE_MEANINGS),
-        "fields": copy.deepcopy(FIELDS),
+        "fields": copy.deepcopy(FIELD_DICTIONARY),
+        "studies": extracts,
     }
 
 
 # ── the validator ─────────────────────────────────────────────────────────────────────────────────────
 
 
-def type_holds(kind: str, value: Any) -> bool:
-    """Whether a value is of a field's described type (pure — pinned).
+def value_problem(node: Any, kind: str, rule: str) -> str:
+    """Whether one node is a well-formed value of a field of its kind (pure — pinned).
 
-      opaque                  — anything: carried as given;
-      string, boolean, object — a str, a bool, a dict;
-      integer                 — an int that is not a bool;
-      list of string          — a list of str;
-      object: <AS_HELD>       — a dict, shown as the record holds it;
-      object: k1, k2, ...     — a dict holding exactly those keys, in that order;
-      row: c1, c2, ...        — a table's row: likewise, exactly those columns, in that order;
-      list of row: c1, ...    — a list of such rows.
-    Any other kind (a section, a value envelope, a list of either: the walk checks those) holds nothing.
+    `kind` is the field's contract kind ("plain", "reading", "run", or "itemized" for a criterion's heading,
+    number and text, held plain), `rule` a reading field's rule. Codes:
+      ok              — a plain or run value that is not an object, or a well-formed absence object
+                        (status not_stated or not_posted, and a note); a reading: a value object whose status
+                        is one of STATUSES and whose rule is its field's, or a list of such objects;
+      malformed_value — an object that is neither an absence object nor, for a reading, a value object; a
+                        reading that is not a value object or a list of them;
+      unknown_status  — a value object or absence object whose status is not one of STATUSES (an absence
+                        object's, not not_stated or not_posted);
+      wrong_rule      — a reading's value object whose rule is not its field's.
     """
-    if kind == "opaque":
-        return True
-    if kind in ("string", "boolean", "object"):
-        return isinstance(value, {"string": str, "boolean": bool, "object": dict}[kind])
-    if kind == "integer":
-        return isinstance(value, int) and not isinstance(value, bool)
-    if kind == "list of string":
-        return isinstance(value, list) and all(isinstance(item, str) for item in value)
-    if kind == f"object: {AS_HELD}":
-        return isinstance(value, dict)
-    if kind.startswith(("object: ", "row: ")):
-        return isinstance(value, dict) and list(value) == kind.partition(": ")[2].split(", ")
-    if kind.startswith("list of row: "):
-        row = kind.removeprefix("list of ")
-        return isinstance(value, list) and all(type_holds(row, item) for item in value)
-    return False
+    if kind == "reading":
+        held = node if isinstance(node, list) else [node]
+        for item in held:
+            if not isinstance(item, dict) or tuple(item) != READING_KEYS:
+                return "malformed_value"
+            if item["status"] not in STATUSES:
+                return "unknown_status"
+            if item["rule"] != rule:
+                return "wrong_rule"
+        return "ok"
+    if not isinstance(node, dict):
+        return "ok"
+    if tuple(node) != ABSENT_KEYS or not isinstance(node["note"], str):
+        return "malformed_value"
+    return "ok" if node["status"] in ("not_stated", "not_posted") else "unknown_status"
 
 
-def envelope_problems(node: Any, field: str, where: str, link: str) -> list[tuple[str, str]]:
-    """Every way one value departs from its field's envelope, by code (pure — pinned).
+# Each described place below a study (its contract name), and what it is: a field's kind, or "object" or
+# "list" for a place that holds fields.
+PLACES: dict[str, str] = {}
+for _field in CONTRACT_FIELDS:
+    if not _field.name.startswith(f"{STUDY}."):
+        continue
+    _parts = _field.name.split(".")
+    for _depth in range(2, len(_parts)):
+        _place = ".".join(_parts[:_depth])
+        PLACES.setdefault(_place, "list" if _place.endswith("[]") else "object")
+    PLACES[_field.name] = "itemized" if _field.name in ITEMIZED else _field.kind
+RULES = {field.name: field.source[0] for field in CONTRACT_FIELDS if field.kind == "reading"}
+# A study's own places a record always holds: every place one step below the study but the readings that
+# apply only where their rule does.
+OPTIONAL = ("coordinates", "eligibility.coverage")
+REQUIRED = tuple(
+    name.removeprefix(f"{STUDY}.").removesuffix("[]")
+    for name in PLACES
+    if name.count(".") == 1 and name.removeprefix(f"{STUDY}.").removesuffix("[]") not in OPTIONAL
+)
+WALK_DEPTH = max(name.count(".") for name in PLACES) + 2
 
-    `node` is the value at `where`, `field` its described path (in FIELDS, as a value(T) or a list of them),
-    `link` its study's own registry page (links.study_link of the study's NCT number):
-      malformed_value         — not an envelope (exactly value, status, source, rule, note, link, in order):
-                                nothing else is read;
-      unknown_status          — a status outside STATUSES;
-      status_not_allowed      — a status its field does not admit (a posted measurement is never not_posted);
-      wrong_value_type        — a value not of the field's T (type_holds), or null with a status other than
-                                not_stated or unresolved;
-      no_source               — neither a source nor a rule;
-      no_link                 — no link; wrong_link: a link that is not the study's own;
-      posted_not_from_results — a posted measurement or event whose source is not in the results section.
+
+def study_problems(study: Any, where: str) -> list[tuple[str, str]]:
+    """Every way one study departs from schema 3, by code and where.
+
+    Walked level by level from the study (WALK_DEPTH levels reach every described place): a key that is no
+    described place (undescribed_field); a required place missing (missing_field); an object or list place
+    that is neither (wrong_type) unless a results module's absence object; each field's value (value_problem);
+    the study's link not its NCT number's page (wrong_link).
     """
-    if not isinstance(node, dict) or tuple(node) != ENVELOPE:
-        return [("malformed_value", where)]
-    found = []
-    status, value = node["status"], node["value"]
-    if not isinstance(status, str) or status not in STATUSES:
-        found.append(("unknown_status", where))
-    elif status not in FIELDS[field]["statuses"]:
-        found.append(("status_not_allowed", where))
-    inner = FIELDS[field]["type"].removeprefix("list of ").removeprefix("value(").removesuffix(")")
-    if (value is None and status not in ("not_stated", "unresolved")) or not (
-        value is None or type_holds(inner, value)
-    ):
-        found.append(("wrong_value_type", where))
-    if not node["source"] and not node["rule"]:
-        found.append(("no_source", where))
-    if not node["link"]:
-        found.append(("no_link", where))
-    elif node["link"] != link:
-        found.append(("wrong_link", where))
-    if field in POSTED_FIELDS and not str(node["source"]).startswith(f"{R}."):
-        found.append(("posted_not_from_results", where))
-    return found
-
-
-def results_problems(study: dict[str, Any], where: str) -> list[tuple[str, str]]:
-    """Whether a study's efficacy and safety say the same of its results, and post nothing when it has no
-    results section (pure — pinned).
-
-    `study` is one study section of a record, `where` its path ("studies[i]"); only the shapes the walk admits
-    are read (anything else the walk names):
-      results_differ         — efficacy.results is not safety.results;
-      results_inconsistent   — efficacy.results is not what results_value gives for the state its
-                               status names (known: posted; not_posted: not_posted; any other: the state
-                               in its note);
-      posted_without_results — a posted list (efficacy.measurements, safety.groups or safety.events) holding
-                               anything while the state is not_posted or flag_without_results (no results
-                               section).
-    """
-    efficacy, safety = study.get("efficacy"), study.get("safety")
-    if not (isinstance(efficacy, dict) and isinstance(safety, dict)):
-        return []
-    found = []
-    held = efficacy.get("results")
-    if held != safety.get("results"):
-        found.append(("results_differ", f"{where}.safety.results"))
-    if not (isinstance(held, dict) and tuple(held) == ENVELOPE):
-        return found
-    status = held["status"]
-    state = "posted" if status == "known" else "not_posted" if status == "not_posted" else held["note"]
-    if not isinstance(state, str) or state not in RESULTS_TEXT or held != results_value(state, held["link"]):
-        found.append(("results_inconsistent", f"{where}.efficacy.results"))
-        return found
-    if state in ("not_posted", "flag_without_results"):
-        posted = (
-            (efficacy, "efficacy", "measurements"),
-            (safety, "safety", "groups"),
-            (safety, "safety", "events"),
-        )
-        found += [
-            ("posted_without_results", f"{where}.{name}.{key}")
-            for section, name, key in posted
-            if section.get(key)
-        ]
-    return found
-
-
-def study_mismatches(record: dict[str, Any]) -> list[tuple[str, str]]:
-    """Whether the sections that name studies name the record's studies (pure — pinned).
-
-    The studies' NCT numbers are their `nct` values, in order (None where a study holds none):
-      study_mismatch at coverage.studies — its rows' NCT numbers are not the studies', in order;
-      study_mismatch at review_queue[i]  — a review question of a study the record does not hold.
-    A section not of its type is the walk's to name, so it is not read here.
-    """
-    studies = record.get("studies")
-    if not isinstance(studies, list):
-        return []
-    held = [study.get("nct") if isinstance(study, dict) else None for study in studies]
-    ncts = [nct.get("value") if isinstance(nct, dict) else None for nct in held]
-    found = []
-    coverage = record.get("coverage")
-    rows = coverage.get("studies") if isinstance(coverage, dict) else None
-    if isinstance(rows, list) and [row.get("nct") if isinstance(row, dict) else None for row in rows] != ncts:
-        found.append(("study_mismatch", "coverage.studies"))
-    queue = record.get("review_queue")
-    for index, row in enumerate(queue if isinstance(queue, list) else []):
-        if isinstance(row, dict) and row.get("nct") not in ncts:
-            found.append(("study_mismatch", f"review_queue[{index}]"))
+    if not isinstance(study, dict):
+        return [("wrong_type", where)]
+    found = [("missing_field", f"{where}.{key}") for key in REQUIRED if key not in study]
+    nct = study.get("nct")
+    if study.get("link") != study_link(nct if isinstance(nct, str) else None)[1]:
+        found.append(("wrong_link", f"{where}.link"))
+    frontier: list[tuple[str, str, Any]] = [(STUDY, where, study)]
+    for _level in range(WALK_DEPTH):
+        following: list[tuple[str, str, Any]] = []
+        for place, at, node in frontier:
+            for key, held in node.items():
+                child, here = f"{place}.{key}", f"{at}.{key}"
+                kind = PLACES.get(child) or PLACES.get(f"{child}[]")
+                if kind is None:
+                    found.append(("undescribed_field", here))
+                elif kind == "object" or kind == "list":
+                    listed = PLACES.get(f"{child}[]") == "list"
+                    if listed and isinstance(held, list):
+                        following += [
+                            (f"{child}[]", f"{here}[{i}]", item)
+                            for i, item in enumerate(held)
+                            if isinstance(item, dict)
+                        ]
+                        found += [
+                            ("wrong_type", f"{here}[{i}]")
+                            for i, item in enumerate(held)
+                            if not isinstance(item, dict)
+                        ]
+                    elif not listed and isinstance(held, dict) and tuple(held) != ABSENT_KEYS:
+                        following.append((child, here, held))
+                    elif not (
+                        key in RESULTS_MODULES
+                        and value_problem(held, "plain", "") == "ok"
+                        and isinstance(held, dict)
+                    ):
+                        found.append(("wrong_type", here))
+                else:
+                    code = value_problem(held, kind, RULES.get(child, ""))
+                    if code != "ok":
+                        found.append((code, here))
+        frontier = following
     return found
 
 
 def schema_problems(record: Any) -> tuple[tuple[str, str], ...]:
-    """Every way a record departs from schema v2 that the record itself shows, each by its code and where
-    (pure — pinned).
+    """Every way a record departs from schema 3 that the record itself shows, each by its code and where.
 
-    Walked from the root level by level (breadth first; WALK_DEPTH levels reach every node a described field
-    can hold, so the walk ends whatever it is given), every node against its field in FIELDS (its path with
-    list positions as "[]"; each problem names the concrete path, positions as "[i]"):
-      unknown_schema_version   — schema_version is not SCHEMA_VERSION;
-      statuses_differ, envelope_differ, fields_differ — the record's own description is not the schema's;
-      undescribed_field        — a key of a section that FIELDS does not describe;
-      missing_field            — a described key of a section that the section lacks;
-      wrong_type               — a section that is not an object, a list field that is not a list, or any
-                                 other field not of its type (type_holds: strings, integers, objects with
-                                 their keys, rows with their columns);
-      wrong_link (a study's)   — a study's link that is not links.study_link of its own NCT number (null too);
-      each value's problems    — envelope_problems, every value held to its study's own link;
-      each study's results     — results_problems: efficacy and safety agree, and nothing is posted without a
-                                 results section;
-      study_mismatch           — study_mismatches: coverage and the review queue name the record's studies;
-      digest_mismatch          — the manifest's study digests are not the studies' digests, in order;
-      root_mismatch            — the manifest's Merkle root is not the root of its study digests.
-    A record that is not an object: (("not_an_object", ""),). A record with no problem: ().
-    The record is checked against the schema and against itself, never against the study records it was read
-    from: a value changed alike everywhere it appears (both results states, or a study's NCT number with its
-    link and every value's) passes here; re-deriving the record from the studies its manifest names finds it.
+    unknown_schema_version, statuses_differ, envelope_differ, fields_differ, universes_differ (the record's
+    own description is not this schema's); undescribed_field and missing_field at the top (RECORD_KEYS); each
+    study's problems (study_problems); digest_mismatch (the manifest's study digests are not the studies',
+    in order) and root_mismatch (the Merkle root is not their root). A record that is not an object:
+    (("not_an_object", ""),). A record with no problem: (). The record is checked against the schema and
+    itself, never against the registry bodies: re-deriving it from the studies its manifest names does that.
     """
     if not isinstance(record, dict):
         return (("not_an_object", ""),)
     found: list[tuple[str, str]] = []
     if record.get("schema_version") != SCHEMA_VERSION:
         found.append(("unknown_schema_version", "schema_version"))
-    for name, described in (("statuses", STATUSES), ("envelope", ENVELOPE_MEANINGS), ("fields", FIELDS)):
-        if record.get(name) != described:
+    described = (
+        ("statuses", STATUSES),
+        ("envelope", ENVELOPE_MEANINGS),
+        ("fields", FIELD_DICTIONARY),
+        ("universes", universes_table()),
+    )
+    for name, held in described:
+        if record.get(name) != held:
             found.append((f"{name}_differ", name))
-    # (prefix of a section's children, the field described, the concrete path, the node, its type, the link),
-    # one level of the record at a time: every node is reached by the level of its depth, so WALK_DEPTH levels
-    # reach every node a described field can hold, and the walk ends whatever the record holds
-    frontier: list[tuple[str, str, str, Any, str, str]] = [("", "", "", record, "section", "")]
-    for _level in range(WALK_DEPTH):
-        following: list[tuple[str, str, str, Any, str, str]] = []
-        for prefix, field, where, node, kind, link in frontier:
-            if kind == "section":
-                if not isinstance(node, dict):
-                    found.append(("wrong_type", where))
-                    continue
-                if prefix == "studies[]":
-                    nct = node.get("nct")
-                    link = study_link(nct.get("value") if isinstance(nct, dict) else None)[1]
-                    found += results_problems(node, where)
-                children = CHILDREN.get(prefix, ())
-                found += [
-                    ("undescribed_field", f"{where}.{key}".lstrip(".")) for key in node if key not in children
-                ]
-                for key in children:
-                    path = f"{prefix}.{key}".lstrip(".")
-                    here = f"{where}.{key}".lstrip(".")
-                    if key not in node:
-                        found.append(("missing_field", here))
-                        continue
-                    described, held = FIELDS[path]["type"], node[key]
-                    walked = described in ("section", "list of section") or described.startswith(
-                        ("value", "list of value")
-                    )
-                    if path == "studies[].link":
-                        if held != link:
-                            found.append(("wrong_link", here))
-                    elif not walked:
-                        if not type_holds(described, held):
-                            found.append(("wrong_type", here))
-                    elif described.startswith("list of") and not isinstance(held, list):
-                        found.append(("wrong_type", here))
-                    else:
-                        following.append((path, path, here, held, described, link))
-            elif kind.startswith("list of"):
-                element = "section" if kind == "list of section" else kind.removeprefix("list of ")
-                following += [
-                    (f"{prefix}[]", field, f"{where}[{i}]", item, element, link)
-                    for i, item in enumerate(node)
-                ]
-            else:
-                found += envelope_problems(node, field, where, link)
-        frontier = following
-    found += study_mismatches(record)
-    manifest, studies = record.get("manifest"), record.get("studies")
-    if isinstance(manifest, dict) and isinstance(studies, list):
+    found += [("undescribed_field", key) for key in record if key not in RECORD_KEYS]
+    found += [("missing_field", key) for key in RECORD_KEYS if key not in record]
+    studies = record.get("studies")
+    if not isinstance(studies, list):
+        return (*found, ("wrong_type", "studies"))
+    for index, study in enumerate(studies):
+        found += study_problems(study, f"studies[{index}]")
+    manifest = record.get("manifest")
+    if isinstance(manifest, dict):
         digests = manifest.get("study_digests")
         if digests != [study.get("digest") if isinstance(study, dict) else None for study in studies]:
             found.append(("digest_mismatch", "manifest.study_digests"))
@@ -1695,4 +1234,6 @@ def schema_problems(record: Any) -> tuple[tuple[str, str], ...]:
             and manifest.get("merkle_root") == warrants.merkle_root(digests)
         ):
             found.append(("root_mismatch", "manifest.merkle_root"))
+    else:
+        found.append(("wrong_type", "manifest"))
     return tuple(found)

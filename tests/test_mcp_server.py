@@ -874,8 +874,8 @@ RECORD = {
     "scope": {"code": "resolved"},
     "manifest": {"retrieval": {"mode": "relay", "requested_ids": []}},
     "studies": [
-        {"nct": envelope("NCT00000001"), "link": "l1", "sponsor": envelope("A"), "efficacy": {"results": 1}},
-        {"nct": envelope("NCT00000002"), "link": "l2", "phases": envelope(["PHASE3"])},
+        {"nct": "NCT00000001", "link": "l1", "lead_sponsor": {"name": "A"}, "results_posted": 1},
+        {"nct": "NCT00000002", "link": "l2", "phases": ["PHASE3"]},
     ],
     "statuses": {"known": "k"},
     "envelope": {"value": "v"},
@@ -895,10 +895,10 @@ def test_record_view_returns_each_part_as_held():
     assert record_view(RECORD, "fields", "NCT00000001") == ("ok", {"studies": {}})
     code, lines = record_view(RECORD, "studies", None)
     assert code == "ok" and [line["link"] for line in lines] == ["l1", "l2"]
-    assert lines[0]["sponsor"] == envelope("A") and lines[0]["efficacy.results"] == 1
-    assert lines[1]["sponsor"] is None and lines[1]["phases"] == envelope(["PHASE3"])
-    assert lines[1]["efficacy.results"] is None
-    assert list(lines[0]) == ["nct", "link", *HEADLINE, "efficacy.results"]
+    assert lines[0]["lead_sponsor"] == {"name": "A"} and lines[0]["results_posted"] == 1
+    assert lines[1]["lead_sponsor"] is None and lines[1]["phases"] == ["PHASE3"]
+    assert lines[1]["results_posted"] is None
+    assert list(lines[0]) == ["nct", "link", *HEADLINE]
     assert record_view(RECORD, "study", "NCT00000002") == ("ok", RECORD["studies"][1])
     assert record_view({}, "manifest", None) == (
         "ok",
@@ -906,7 +906,7 @@ def test_record_view_returns_each_part_as_held():
     )
 
 
-NOTHING_HELD = {key: None for key in ("nct", "link", *HEADLINE, "efficacy.results")}
+NOTHING_HELD = {key: None for key in ("nct", "link", *HEADLINE)}
 
 
 @pytest.mark.parametrize(
@@ -915,8 +915,7 @@ NOTHING_HELD = {key: None for key in ("nct", "link", *HEADLINE, "efficacy.result
         ({"studies": []}, "studies", None, ("ok", [])),
         ({"studies": []}, "study", "NCT00000001", ("no_such_study", [])),
         ({"studies": [{}]}, "studies", None, ("ok", [NOTHING_HELD])),
-        ({"studies": [{"efficacy": {}}]}, "studies", None, ("ok", [NOTHING_HELD])),
-        ({"studies": [{"efficacy": "posted"}]}, "studies", None, ("ok", [NOTHING_HELD])),
+        ({"studies": [{"nct": {"value": "NCT00000001"}}]}, "study", "NCT00000001", ("no_such_study", [None])),
         ({"studies": [{"nct": {}}]}, "study", "NCT00000001", ("no_such_study", [None])),
         ({"studies": [{}]}, "study", "NCT00000001", ("no_such_study", [None])),
     ],
@@ -926,9 +925,9 @@ def test_record_view_reads_what_a_record_lacks_as_none(record, part, nct, expect
 
 
 def test_record_view_lists_every_study_with_its_headline():
-    first = {**NOTHING_HELD, "nct": envelope("NCT00000001"), "link": "l1", "sponsor": envelope("A")}
-    second = {**NOTHING_HELD, "nct": envelope("NCT00000002"), "link": "l2", "phases": envelope(["PHASE3"])}
-    assert record_view(RECORD, "studies", None) == ("ok", [{**first, "efficacy.results": 1}, second])
+    first = {**NOTHING_HELD, "nct": "NCT00000001", "link": "l1", "lead_sponsor": {"name": "A"}}
+    second = {**NOTHING_HELD, "nct": "NCT00000002", "link": "l2", "phases": ["PHASE3"]}
+    assert record_view(RECORD, "studies", None) == ("ok", [{**first, "results_posted": 1}, second])
 
 
 @pytest.mark.parametrize(
@@ -943,7 +942,7 @@ def test_record_view_lists_every_study_with_its_headline():
         ({"studies": {}}, "studies", None, ("not_a_record", None)),
         ({"studies": [1]}, "study", "NCT00000001", ("not_a_record", None)),
         ({}, "study", "NCT00000001", ("not_a_record", None)),
-        ({"studies": [{"nct": "NCT00000001"}]}, "study", "NCT00000001", ("no_such_study", [None])),
+        ({"studies": [{"nct": "NCT00000002"}]}, "study", "NCT00000001", ("no_such_study", ["NCT00000002"])),
     ],
 )
 def test_record_view_refuses_by_name(record, part, nct, expected):

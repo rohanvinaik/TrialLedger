@@ -129,6 +129,7 @@ BIOMARKERS = "Biomarkers"
 FINDINGS = "Across-trial findings"
 READINGS = "Readings"
 DICTIONARY = "Column dictionary"
+STANDARD = "Standard protocol language"
 
 # Consumers many fields share.
 DOSSIER = ("sheet", REVIEW, "Value")
@@ -673,19 +674,11 @@ _STUDY_FIELDS: tuple[Field, ...] = (
         (STUDY_VIEW,),
     ),
     Field(
-        "studies[].eligibility.itemized",
-        "How the criteria were itemized",
-        "reading",
-        ("criteria.itemize",),
-        (DOSSIER,),
-        reads=(f"{EL}.eligibilityCriteria",),
-    ),
-    Field(
         "studies[].eligibility.coverage",
-        "Whether the record says its criteria are abbreviated or complete",
+        "Why the criteria could not be itemized (held only where they could not be)",
         "reading",
         ("criteria.eligibility_coverage",),
-        (DOSSIER, *ON_READINGS),
+        ON_READINGS,
         reads=(f"{EL}.eligibilityCriteria",),
     ),
     Field(
@@ -726,6 +719,15 @@ _STUDY_FIELDS: tuple[Field, ...] = (
         "reading",
         ("banks.type_criterion",),
         (("sheet", ELIGIBILITY, "Readings"), *ON_READINGS),
+        reads=(f"{EL}.eligibilityCriteria",),
+    ),
+    Field(
+        "studies[].key_criteria",
+        "Key criteria: the criteria whose readings fall in a key category (KEY_CRITERION_CATEGORIES), each "
+        "with its words, role, reading and rule",
+        "reading",
+        ("landscape.key_criteria",),
+        (DOSSIER, *ON_READINGS),
         reads=(f"{EL}.eligibilityCriteria",),
     ),
     Field(
@@ -1477,21 +1479,6 @@ _STUDY_FIELDS: tuple[Field, ...] = (
         (f"{RF}.references[].retractions[].source",),
         (DOSSIER,),
     ),
-    Field(
-        "studies[].references[].role",
-        "The reference type's role, in the registry's terms",
-        "reading",
-        ("links.reference_role",),
-        (("sheet", INDEX, "Publications"), DOSSIER),
-        reads=(f"{RF}.references[].type",),
-    ),
-    Field(
-        "studies[].references[].pubmed",
-        "PubMed link",
-        "run",
-        ("links.pubmed_link",),
-        (("sheet", INDEX, "Publications"), DOSSIER),
-    ),
     Field("studies[].links[].label", "Related link", "plain", (f"{RF}.seeAlsoLinks[].label",), (DOSSIER,)),
     Field(
         "studies[].links[].url", "Related link address", "plain", (f"{RF}.seeAlsoLinks[].url",), (DOSSIER,)
@@ -1530,12 +1517,7 @@ _STUDY_FIELDS: tuple[Field, ...] = (
         for name, key, label, display in (
             ("type", "typeAbbrev", "Posted document", "LargeDocType"),
             ("label", "label", "Document label", ""),
-            ("has_protocol", "hasProtocol", "Holds the protocol", ""),
-            ("has_sap", "hasSap", "Holds the statistical analysis plan", ""),
-            ("has_icf", "hasIcf", "Holds the informed consent form", ""),
             ("date", "date", "Document date", ""),
-            ("upload_date", "uploadDate", "Uploaded", ""),
-            ("filename", "filename", "File name", ""),
         )
     ),
     Field(
@@ -1626,6 +1608,30 @@ _RECORD_FIELDS: tuple[Field, ...] = (
         )
     ),
     Field(
+        "standard_language",
+        "Standard protocol language: each criterion reading most trials of one universe state "
+        "(STANDARD_LANGUAGE_SHARE, STANDARD_LANGUAGE_MIN_TRIALS), with how many of how many trials, "
+        "representative wording and the trials stating it; a universe with too few trials, none, and why",
+        "reading",
+        ("landscape.standard_language",),
+        (
+            *(
+                ("sheet", STANDARD, column)
+                for column in (
+                    "Criterion",
+                    "Role",
+                    "Trials stating it",
+                    "Of comparable trials",
+                    "Representative wording",
+                    "Wording from",
+                    "Other trials",
+                )
+            ),
+            ("mcp", "findings"),
+        ),
+        reads=(f"{EL}.eligibilityCriteria",),
+    ),
+    Field(
         "statuses",
         "What each status means",
         "run",
@@ -1705,6 +1711,7 @@ READINGS_FIELDS = (
     "studies[].eligibility.coverage",
     "studies[].criteria[].role",
     "studies[].criteria[].readings",
+    "studies[].key_criteria",
     "studies[].biomarker_mentions",
     "studies[].universe",
     "studies[].coordinates.setting",
@@ -1762,8 +1769,6 @@ SHEETS: tuple[Sheet, ...] = (
                 (
                     "studies[].references[].pmid",
                     "studies[].references[].type",
-                    "studies[].references[].role",
-                    "studies[].references[].pubmed",
                 ),
             ),
             Column("Countries", ("studies[].countries",)),
@@ -1861,8 +1866,7 @@ SHEETS: tuple[Sheet, ...] = (
                     "studies[].population.healthy_volunteers",
                     "studies[].population.gender_based",
                     "studies[].population.gender_description",
-                    "studies[].eligibility.itemized",
-                    "studies[].eligibility.coverage",
+                    "studies[].key_criteria",
                     "studies[].universe",
                     "studies[].coordinates.setting",
                     "studies[].coordinates.setting_interpolated",
@@ -1889,8 +1893,6 @@ SHEETS: tuple[Sheet, ...] = (
                     "studies[].references[].citation",
                     "studies[].references[].retractions[].pmid",
                     "studies[].references[].retractions[].source",
-                    "studies[].references[].role",
-                    "studies[].references[].pubmed",
                     "studies[].links[].label",
                     "studies[].links[].url",
                     "studies[].ipd_documents[].type",
@@ -1899,12 +1901,7 @@ SHEETS: tuple[Sheet, ...] = (
                     "studies[].no_sap",
                     "studies[].documents[].type",
                     "studies[].documents[].label",
-                    "studies[].documents[].has_protocol",
-                    "studies[].documents[].has_sap",
-                    "studies[].documents[].has_icf",
                     "studies[].documents[].date",
-                    "studies[].documents[].upload_date",
-                    "studies[].documents[].filename",
                     "studies[].documents[].url",
                     "studies[].open_questions",
                 ),
@@ -2267,6 +2264,25 @@ SHEETS: tuple[Sheet, ...] = (
         ),
     ),
     Sheet(
+        STANDARD,
+        "criterion reading × universe (a universe with too few trials, one line saying so)",
+        (
+            Column(ADDRESS, (), "address"),
+            *(
+                Column(column, ("standard_language",))
+                for column in (
+                    "Criterion",
+                    "Role",
+                    "Trials stating it",
+                    "Of comparable trials",
+                    "Representative wording",
+                    "Wording from",
+                    "Other trials",
+                )
+            ),
+        ),
+    ),
+    Sheet(
         READINGS,
         "rule reading",
         (
@@ -2406,7 +2422,7 @@ DOSSIER_SECTIONS: tuple[tuple[str, str, tuple[str, ...]], ...] = (
     (
         "Population and eligibility",
         ELIGIBILITY,
-        ("studies[].population.", "studies[].eligibility."),
+        ("studies[].population.", "studies[].key_criteria"),
     ),
     (
         "Arms and interventions",
@@ -2435,6 +2451,30 @@ DOSSIER_SECTIONS: tuple[tuple[str, str, tuple[str, ...]], ...] = (
     ),
     ("Open questions", "", ("studies[].open_questions",)),
 )
+
+# ── key criteria and standard protocol language (refine-landscape-record design §4a, task 1.8) ────────
+# The categories of a key criterion: each its name, the words a reviewer reads, and the readings that fall in
+# it, as (concept, values): a concept ending ":" matches every concept it begins (biomarker:EGFR), an empty
+# values tuple any value, otherwise a reading falls in when one of its values is listed.
+KEY_CRITERION_CATEGORIES: tuple[tuple[str, str, tuple[tuple[str, tuple[str, ...]], ...]], ...] = (
+    ("performance_status", "Performance status", (("ecog_ps", ()),)),
+    ("biomarker_selection", "Biomarker selection", (("biomarker:", ()),)),
+    ("prior_therapy_and_line", "Prior therapy and line", (("prior_agent", ()), ("prior_lines", ()))),
+    ("measurable_disease", "Measurable disease", (("condition", ("measurable_disease",)),)),
+    ("organ_function", "Organ-function thresholds", (("lab", ()), ("condition", ("organ_impairment",)))),
+    ("cns_metastases", "CNS metastases", (("condition", ("cns_metastases",)),)),
+    (
+        "autoimmune_and_immunosuppression",
+        "Autoimmune disease and immunosuppression",
+        (("condition", ("autoimmune_disease", "immunosuppression_steroids")),),
+    ),
+    ("hiv_and_hepatitis", "HIV, hepatitis B and C", (("condition", ("hiv", "hepatitis")),)),
+    ("cardiac_history", "Cardiac history", (("condition", ("cardiac_disease", "qtc")),)),
+)
+# Standard protocol language: a criterion reading is standard within a universe when at least this share of
+# the universe's trials state it and at least this many trials do; a universe with fewer trials has none.
+STANDARD_LANGUAGE_SHARE = 0.5
+STANDARD_LANGUAGE_MIN_TRIALS = 3
 
 # ── what the record does not carry, and why ─────────────────────────────────────────────────────────────
 # Every field of the API's metadata is carried (a plain field's path, or a path a reading reads) or named
@@ -2499,6 +2539,11 @@ NOT_WANTED: dict[str, str] = {
     "annotationSection": "the registry's annotations of unposted results and violations (not wanted: QC and "
     "violation records)",
     f"{LD}.largeDocs[].size": "document file sizes (not wanted)",
+    f"{LD}.largeDocs[].hasProtocol": "restates the document's type, which is carried",
+    f"{LD}.largeDocs[].hasSap": "restates the document's type, which is carried",
+    f"{LD}.largeDocs[].hasIcf": "restates the document's type, which is carried",
+    f"{LD}.largeDocs[].uploadDate": "the upload's date (not wanted); the document's own date is carried",
+    f"{LD}.largeDocs[].filename": "the file's name; the document's link, built from it, is carried",
     "derivedSection.miscInfoModule": "the registry's version and submission tracking (not wanted: "
     "miscellaneous info)",
     f"{CB}.meshes[].id": "the MeSH descriptor's identifier; its term is carried and names it",

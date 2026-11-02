@@ -158,9 +158,10 @@ RECORD_WORDS = {
     "no_such_study": "The record holds no study of that NCT number (held lists those it does).",
     "unknown_part": "part must be manifest, studies, study, statuses or fields.",
 }
-# The headline values of a study in part studies: each the record's own envelope, as held.
+# The headline values of a study in part studies (landscape.json schema 3): each as the record holds it, a
+# plain registry value, a not-stated value object or a reading.
 HEADLINE = (
-    "sponsor",
+    "lead_sponsor",
     "phases",
     "overall_status",
     "study_type",
@@ -169,6 +170,8 @@ HEADLINE = (
     "start_date",
     "primary_completion_date",
     "completion_date",
+    "universe",
+    "results_posted",
 )
 RECORD_PARTS = ("manifest", "studies", "study", "statuses", "fields")
 
@@ -509,8 +512,8 @@ def record_view(record: Any, part: str, nct: str | None) -> tuple[str, Any]:
     `record` is landscape.json decoded. Parts (RECORD_PARTS):
       manifest — {schema_version, request, manifest}: the request, the snapshot, code and rule versions, and
                  the retrieval (with the requested-ID accounting when trials were asked for by number);
-      studies  — for each study, in order: its nct, link, the HEADLINE envelopes and efficacy.results;
-      study    — the study whose nct value is `nct`, its whole extract;
+      studies  — for each study, in order: its nct, link and the HEADLINE values;
+      study    — the study whose nct is `nct`, its whole extract;
       statuses — {statuses, envelope}: what each status, and each key of a value, means;
       fields   — the record's description of every field.
     Codes: ok (with the part); not_a_record (the record is not an object, or its studies not a list of
@@ -531,17 +534,10 @@ def record_view(record: Any, part: str, nct: str | None) -> tuple[str, Any]:
     if not isinstance(studies, list) or not all(isinstance(study, dict) for study in studies):
         return "not_a_record", None
     if part == "studies":
-        lines = []
-        for study in studies:
-            efficacy = study.get("efficacy")
-            line = {key: study.get(key) for key in ("nct", "link", *HEADLINE)}
-            line["efficacy.results"] = efficacy.get("results") if isinstance(efficacy, dict) else None
-            lines.append(line)
-        return "ok", lines
+        return "ok", [{key: study.get(key) for key in ("nct", "link", *HEADLINE)} for study in studies]
     if nct is None:
         return "nct_needed", None
-    numbers = [study.get("nct") for study in studies]
-    held = [number.get("value") if isinstance(number, dict) else None for number in numbers]
+    held = [study.get("nct") if isinstance(study.get("nct"), str) else None for study in studies]
     for number, study in zip(held, studies, strict=True):
         if number == nct:
             return "ok", study
