@@ -2219,29 +2219,59 @@ def written_safely(rows: list[tuple]) -> list[tuple]:
 EMPTY_WORDS = contract.EMPTY_LISTING_WORDS
 
 
-def linked_groups(record: dict[str, Any], posted: list[tuple], groups: list[tuple]) -> list[tuple]:
-    """Posted results rows whose Group cell links to the group's row in Groups: the row of the same trial and
-    the group's title and description, found through the measurement's address in the record."""
-    headers = sheet_headers(contract.POSTED, 0)
-    at_group = headers.index("Group")
+def group_target(record: dict[str, Any], sheet: str, address: str) -> str:
+    """The address of the Groups row a listing row's Group cell links to (contract.GROUP_LINKS): from the
+    row's address, its group ID within its own module; for a posted measure, the first occurrence of the
+    group's title and description in its trial (posted_groups); "" where the row names no group."""
+    parts = str(address).strip("/").split("/")
+    if len(parts) < 3 or parts[0] != "studies" or not parts[1].isdigit():
+        return ""
+    number = int(parts[1])
+    study = record["studies"][number]
+    found, node, _template, _indices = resolve_address(record, parts)
+    group_id = node.get("group") if found and isinstance(node, dict) else None
+    if sheet == contract.POSTED and len(parts) == 10:
+        outcome = study["posted_outcomes"][int(parts[3])]
+        group = next((g for g in outcome.get("groups") or [] if g.get("id") == group_id), None)
+        if group is None:
+            return ""
+        key = (json_key(group.get("title")), json_key(group.get("description")))
+        return next((at for held, at, _m in posted_groups(study, number) if held == key), "")
+    module = parts[2]
+    groups = study.get(module, {}).get("groups") if isinstance(study.get(module), dict) else None
+    for g, group in enumerate(groups or []):
+        if group.get("id") == group_id:
+            return f"/studies/{number}/{module}/groups/{g}"
+    return ""
+
+
+def resolve_address(record: Any, parts: list[str]) -> tuple[bool, Any, str, list[int]]:
+    """The node a JSON pointer's parts name in the record: (found, node, its template, its list indices)."""
+    node, template, indices = record, [], []
+    for part in parts:
+        if isinstance(node, list) and part.isdigit() and int(part) < len(node):
+            node = node[int(part)]
+            template[-1] += "[]"
+            indices.append(int(part))
+        elif isinstance(node, dict) and part in node:
+            node = node[part]
+            template.append(part)
+        else:
+            return False, None, "", []
+    return True, node, ".".join(template), indices
+
+
+def linked_groups(record: dict[str, Any], sheet: str, rows: list[tuple], groups: list[tuple]) -> list[tuple]:
+    """A listing's rows whose Group cell (the group's title) links to its group's row in the Groups sheet
+    (group_target); the group's ID stays bound in the row's address."""
+    at_group = sheet_headers(sheet, 0).index("Group")
     where = {}
     for index, row in enumerate(groups):
-        if row[2][0] == "Posted results":
-            sheet, number = place(index, CAPACITY, contract.GROUPS)
-            where[(row[0][0], row[5][0], row[6][0])] = f"#'{sheet}'!A{number}"
+        part, number = place(index, CAPACITY, contract.GROUPS)
+        where[row[1][0]] = f"#'{part}'!A{number}"
     linked = []
-    for row in posted:
-        parts = str(row[1][0]).strip("/").split("/")
-        link = ""
-        if len(parts) == 10 and parts[0] == "studies":
-            study = record["studies"][int(parts[1])]
-            outcome = study["posted_outcomes"][int(parts[3])]
-            group_id = outcome["classes"][int(parts[5])]["categories"][int(parts[7])]["measurements"][
-                int(parts[9])
-            ].get("group")
-            group = next((g for g in outcome.get("groups") or [] if g.get("id") == group_id), {})
-            key = (study["nct"], json_key(group.get("title")), json_key(group.get("description")))
-            link = where.get(key, "")
+    for row in rows:
+        link = where.get(group_target(record, sheet, row[1][0]), "")
         held = row[at_group]
         linked.append((*row[:at_group], (held[0], link, *held[2:]), *row[at_group + 1 :]))
     return linked
@@ -2305,7 +2335,8 @@ def book_plan(record: dict[str, Any]) -> list[tuple]:
         sheet, row_number = place(starts[-1], CAPACITY, contract.REVIEW)
         sheet_p, row_p = place(publications or starts[-1], CAPACITY, contract.REVIEW)
         links_.append((f"#'{sheet}'!A{row_number}", f"#'{sheet_p}'!A{row_p}"))
-    rows[contract.POSTED] = linked_groups(record, rows[contract.POSTED], rows[contract.GROUPS])
+    for linked_sheet in contract.GROUP_LINKS:
+        rows[linked_sheet] = linked_groups(record, linked_sheet, rows[linked_sheet], rows[contract.GROUPS])
     for name, words in EMPTY_WORDS.items():
         if not rows[name]:
             # the contract's one line: its words in the first column, no address, the rest blank

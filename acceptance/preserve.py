@@ -929,12 +929,26 @@ def _safety_expected(
 
 
 def _group_of(record: Any, template: str, indices: list[int], node: Any) -> dict[str, Any] | None:
-    """A measurement's group in its own measure's groups (the join by group ID within the measure)."""
-    if template != LISTING_GRAINS[contract.POSTED][0] or not isinstance(node, dict):
+    """A row's group in its own module, for the listings whose Group cell links to it (contract.GROUP_LINKS):
+    a measurement's in its own measure's groups, a baseline measurement's or a flow count's in its module's
+    groups (the join by group ID within the module)."""
+    if not isinstance(node, dict):
         return None
-    found, measure, _t, _i = resolve_pointer(record, _pointer(template, indices, "posted_outcomes[]"))
-    groups = measure.get("groups") if found and isinstance(measure, dict) else None
-    return next((g for g in groups or [] if isinstance(g, dict) and g.get("id") == node.get("group")), None)
+    for sheet, groups_template in contract.GROUP_LINKS.items():
+        if template not in LISTING_GRAINS.get(sheet, ()):
+            continue
+        holder = groups_template.removesuffix(".groups[]").split(".")[-1]
+        tokens = (
+            _pointer(template, indices, holder)
+            if holder.endswith("[]")
+            else ["studies", str(indices[0]), holder]
+        )
+        found, parent, _t, _i = resolve_pointer(record, tokens)
+        groups = parent.get("groups") if found and isinstance(parent, dict) else None
+        return next(
+            (g for g in groups or [] if isinstance(g, dict) and g.get("id") == node.get("group")), None
+        )
+    return None
 
 
 def _same_group(left: Any, right: Any) -> bool:
@@ -948,19 +962,24 @@ def _same_group(left: Any, right: Any) -> bool:
 
 
 def _link_findings(
-    record, sheets, cell: Linked, group, study_index: int, nct: str, where: str
+    record, sheets, cell: Linked, group, study_index: int, nct: str, where: str, sheet: str = contract.POSTED
 ) -> list[Finding]:
-    """A Group cell's link must point at the Groups row of the measurement's own group (same trial, title
-    and description)."""
+    """A Group cell's link must point at the Groups row of the row's own group (contract.GROUP_LINKS): of the
+    same trial and module; a posted measure's group by its title and description, any other by its ID."""
     rows = sheets.get(cell.sheet, ([], []))
     headers, cells = rows
+    field = f"{sheet}: Group"
     if cell.sheet != contract.GROUPS or not 0 < cell.row <= len(cells):
-        return [Finding("wrong_link", nct, f"{contract.POSTED}: Group", where, contract.GROUPS, cell)]
+        return [Finding("wrong_link", nct, field, where, contract.GROUPS, cell)]
     address = dict(zip(headers, cells[cell.row - 1], strict=False)).get(contract.ADDRESS)
     found, target, template, indices = _resolve(record, _plain(address))
-    if found and template == POSTED_GROUPS and indices[0] == study_index and _same_group(target, group):
-        return []
-    return [Finding("wrong_link", nct, f"{contract.POSTED}: Group", where, group, _plain(address))]
+    want = contract.GROUP_LINKS.get(sheet)
+    if found and template == want and indices[0] == study_index and isinstance(target, dict):
+        if want == POSTED_GROUPS and _same_group(target, group):
+            return []
+        if want != POSTED_GROUPS and target.get("id") == group.get("id") and _same_group(target, group):
+            return []
+    return [Finding("wrong_link", nct, field, where, group, _plain(address))]
 
 
 def _outcome_measures(record: Any, study_index: int, node: Any) -> Expected:
@@ -1016,7 +1035,9 @@ def row_findings(
         if want is None:
             continue
         if isinstance(cell, Linked) and column.header == "Group" and joined is not None:
-            findings += _link_findings(record, sheets or {}, cell, joined, indices[0], str(nct), where)
+            findings += _link_findings(
+                record, sheets or {}, cell, joined, indices[0], str(nct), where, sheet.name
+            )
             want = Expected([t for t in want.texts if t != group], want.counts, want.words)
         verdict = judge(cell, want, column.header in blank)
         if verdict not in ("shown", "blank_by_construction"):

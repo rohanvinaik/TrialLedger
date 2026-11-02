@@ -966,3 +966,48 @@ def test_an_absent_coordinate_inside_its_universe_reads_unresolved_outside_not_a
 
     assert found("Unresolved") == []
     assert found("Not applicable") == [("wrong_words", f"{contract.INDEX}: Prior lines for advanced disease")]
+
+
+def baseline_group_row(record, g):
+    group = record["studies"][0]["baseline"]["groups"][g]
+    address = f"/studies/0/baseline/groups/{g}"
+    return [
+        "NCT01030536",
+        address,
+        "Baseline",
+        group["id"],
+        None,
+        group["title"],
+        group.get("description"),
+        None,
+        None,
+    ]
+
+
+def baseline_link_findings(target_row):
+    """A Baseline row's Group cell linked to the given Groups row (1-based), the Groups sheet holding the
+    trial's first two baseline groups."""
+    record = posted_groups_record()
+    groups = [baseline_group_row(record, 0), baseline_group_row(record, 1)]
+    title = record["studies"][0]["baseline"]["groups"][0]["title"]
+    cells = {
+        "Trial ID": "NCT01030536",
+        contract.ADDRESS: "/studies/0/baseline/measures/0/classes/0/categories/0/measurements/0",
+        "Group": preserve.Linked(title, contract.GROUPS, target_row),
+    }
+    sheets = {
+        contract.GROUPS: (GROUP_HEADERS, groups),
+        contract.BASELINE: (list(cells), [list(cells.values())]),
+    }
+    found = cell_findings(record, sheets, complete=False)
+    return [f for f in found if f.field == f"{contract.BASELINE}: Group"]
+
+
+def test_a_baseline_group_link_to_its_own_group_carries_its_id():
+    assert contract.BASELINE in contract.GROUP_LINKS and contract.FLOW in contract.GROUP_LINKS
+    assert baseline_link_findings(1) == []
+
+
+def test_a_baseline_group_link_to_the_wrong_group_is_caught():
+    assert codes(baseline_link_findings(2)) == ["wrong_link"]
+    assert codes(baseline_link_findings(9)) == ["wrong_link"]

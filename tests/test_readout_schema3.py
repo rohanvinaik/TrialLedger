@@ -836,3 +836,57 @@ def test_no_cell_ever_holds_the_records_json(written):
                 assert not RECORD_JSON.search(str(value)), (name, value)
     assert not RECORD_JSON.search(str(readout.value_words([{"a": 1}, {"b": "c"}])))
     assert readout.value_words({"kind": "x_y"}) == "kind: x y"
+
+
+def group_link_problems(record, plan):
+    """Every Baseline and Participant flow row whose Group cell does not link to the Groups row of the
+    measurement's own group (the group of its ID in its module), checked through the addresses alone."""
+    groups_headers, groups_rows = plan[contract.GROUPS]
+    problems = []
+    for sheet in (contract.BASELINE, contract.FLOW):
+        headers, rows = plan[sheet]
+        at = headers.index("Group")
+        for row in rows:
+            pointer = row[1][0]
+            if not isinstance(pointer, str):
+                continue
+            parts = pointer.strip("/").split("/")
+            group_id = resolve(record, pointer).get("group")
+            module = record["studies"][int(parts[1])][parts[2]]
+            link = row[at][1]
+            if not link.startswith(f"#'{contract.GROUPS}'!A"):
+                problems.append((sheet, pointer, "no link"))
+                continue
+            target = dict(
+                zip(
+                    groups_headers,
+                    (held[0] for held in groups_rows[int(link.rsplit("A", 1)[1]) - 2]),
+                    strict=True,
+                )
+            )
+            group = resolve(record, target[contract.ADDRESS])
+            same_module = target[contract.ADDRESS].startswith(f"/studies/{parts[1]}/{parts[2]}/groups/")
+            if not same_module or group not in module["groups"] or group.get("id") != group_id:
+                problems.append((sheet, pointer, target[contract.ADDRESS]))
+            if row[at][0] != group.get("title") or str(group_id) in str(row[at][0]):
+                problems.append((sheet, pointer, "title"))
+    return problems
+
+
+def test_a_baseline_or_flow_group_cell_shows_the_title_and_links_to_its_group():
+    assert set(contract.GROUP_LINKS) == {contract.POSTED, contract.BASELINE, contract.FLOW}
+    assert group_link_problems(RECORD, PLAN) == []
+
+
+def test_a_link_to_the_wrong_group_is_caught(monkeypatch):
+    real = readout.group_target
+
+    def shifted(record, sheet, address):
+        target = real(record, sheet, address)
+        if sheet == contract.BASELINE and target.endswith("/groups/0"):
+            return target.removesuffix("0") + "1"
+        return target
+
+    monkeypatch.setattr(readout, "group_target", shifted)
+    plan = {name: (headers, rows) for name, headers, rows, _starts in readout.book_plan(RECORD)}
+    assert any(problem[0] == contract.BASELINE for problem in group_link_problems(RECORD, plan))

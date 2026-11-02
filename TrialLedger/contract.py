@@ -3178,6 +3178,14 @@ INDEX_COMPACT = {
     "Prior lines for advanced disease": "as Treatment setting",
     "Gene selection": "as Treatment setting",
 }
+# A Group cell of these listings shows the group's title alone and links to its row in the Groups sheet, of
+# this module's groups: the group of the row's group ID within its own module (a posted measure's: the first
+# occurrence of its title and description in its trial). The ID stays bound in the row's address.
+GROUP_LINKS = {
+    POSTED: "studies[].posted_outcomes[].groups[]",
+    BASELINE: "studies[].baseline.groups[]",
+    FLOW: "studies[].participant_flow.groups[]",
+}
 # The cells blank by construction: (sheet, the kind of row) to the columns that cannot apply to it. Any
 # other blank cell is a defect.
 BLANK_BY_CONSTRUCTION: dict[tuple[str, str], tuple[str, ...]] = {
