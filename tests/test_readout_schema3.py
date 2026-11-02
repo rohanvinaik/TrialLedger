@@ -427,7 +427,13 @@ def test_recurring_criteria_show_each_element_with_its_grouping_and_whole_criter
         entry = resolve(record, row[contract.ADDRESS])
         assert row["Element"] == entry["element"]["words"]
         assert row["Grouping"] == entry["grouping"]
-        assert row[contract.RECURRING_EXAMPLE].startswith("Example (whole criterion): “")
+        lines = row[contract.RECURRING_EXAMPLE].split("\n")
+        assert len(lines) == len(entry["examples"])
+        for line, example in zip(lines, entry["examples"], strict=True):
+            # each whole criterion on its own line, after its trial and criterion number
+            number = example["criterion"]["number"]
+            assert line.startswith(f"{example['trial']}, ") and f"criterion {number}: “" in line
+            assert line.endswith(f"“{example['text']}”")
         assert row["Trials stating it"] == entry["trials"] and entry["trials"] * 2 > entry["of_trials"]
 
 

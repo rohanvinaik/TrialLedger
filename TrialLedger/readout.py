@@ -1609,13 +1609,15 @@ def recurring_rows(record: dict[str, Any]) -> list[tuple]:
                 f"criterion {place.get('number')}"
                 for e, place in zip(examples, places, strict=True)
             ]
+            # each example a whole criterion on its own line, after its trial and criterion number
+            wordings = [f"{source}: “{e.get('text')}”" for source, e in zip(sources, examples, strict=True)]
             values = (
                 words,
                 HEADINGS.get(str(entry.get("role")), value_words(entry.get("role"))),
                 value_words(entry.get("trials")),
                 value_words(entry.get("of_trials")),
                 value_words(entry.get("grouping")),
-                "\n".join(f"Example (whole criterion): “{e.get('text')}”" for e in examples) or NOT_STATED,
+                "\n".join(wordings) or NOT_STATED,
                 "\n".join(sources) or NOT_STATED,
                 value_words(entry.get("other_trials"), "", ", "),
             )
@@ -1735,6 +1737,9 @@ HOW_TO_READ = "\n".join(
         "gives it), Statistical analyses, Baseline, Participant flow, Groups (the adverse-event groups named "
         "G1, G2, ...), Safety (one row per adverse-event term, then for each group G1, G2, ... the "
         "participants affected, at risk, and the events), Biomarkers, and the readings across trials.",
+        "Recurring criteria lists the readings more than half of a group of comparable trials state, each "
+        "with whole criteria as examples: it is starting material for standard protocol language, never "
+        "established reusable text, and each example may carry further requirements.",
         "Every listing row's Address in the record is where the assistant finds that row in landscape.json: "
         "ask about a row by its address. The Readings sheet lists every reading a rule made, with the words "
         "it read; the Column dictionary says where each column comes from.",
