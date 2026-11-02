@@ -180,7 +180,7 @@ def test_outside_its_universe_a_reading_is_not_applicable_on_the_index_with_its_
     assert index[0]["Prior lines for advanced disease"] == "Unresolved"
     facts = dossier(RECORD["studies"][0])
     assert facts["Prior lines for advanced disease"] == (
-        "Not settled: the eligibility criteria do not state the prior lines of therapy for advanced disease",
+        "Unresolved — the eligibility criteria do not state the prior lines of therapy for advanced disease",
         "Unresolved",
     )
     assert facts["Treatment setting"][0].startswith("Not read for haematologic cancer trials")
@@ -623,21 +623,11 @@ def test_every_sheet_holds_the_contracts_headers(written):
 
 
 INTERNAL = re.compile(r"\b(atoms?|packs?|rule pack|unnarrowed|coordinates?|interpolated_|not_stated)\b", re.I)
-BLANK_ALLOWED = {
-    contract.POSTED: {"Class", "Category"},
-    contract.BASELINE: {"Class", "Category"},
-    contract.GROUPS: {"Column", "Totals"},
-    # the record's one line below the signal minimum: no finding, so no counts or rule apply
-    contract.FINDINGS: {"Finding", "Trial IDs", "Numerator / denominator", "Rule"},
-    # a universe with too few trials for standard language: its counts and wordings cannot apply
-    contract.RECURRING: {
-        "Role",
-        "Trials stating it",
-        contract.RECURRING_EXAMPLE,
-        "Examples from",
-        "Other trials",
-    },
-}
+# The contract's blank-by-construction columns, by sheet (the Safety G columns and the empty listing's line
+# are checked apart).
+BLANK_ALLOWED: dict[str, set[str]] = {}
+for (_sheet, _kind), _columns in contract.BLANK_BY_CONSTRUCTION.items():
+    BLANK_ALLOWED.setdefault(_sheet, set()).update(_columns)
 
 
 def test_no_raw_code_no_internal_term_and_no_blank_but_by_construction(written):
@@ -705,3 +695,63 @@ def test_a_write_whose_read_back_differs_leaves_no_file(tmp_path, monkeypatch):
     with pytest.raises(readout.ReadoutError):
         readout.write_book(RECORD, path)
     assert not path.exists()
+
+
+# ── the contract's display data (negative tests) ─────────────────────────────────────────────────────────
+
+
+def test_every_cell_uses_the_contracts_words_and_never_another_word_for_unresolved(written):
+    book = load_workbook(written, read_only=True)
+    basis_words = set(contract.BASIS_WORDS.values()) | set(contract.STATUS_WORDS.values())
+    for name in book.sheetnames:
+        rows = list(book[name].iter_rows(values_only=True))
+        headers = rows[0]
+        for row in rows[1:]:
+            cells = dict(zip(headers, row, strict=True))
+            assert not any("Not settled" in str(value) for value in row), name
+            if name == contract.REVIEW:
+                assert cells["Basis"] in basis_words, cells
+            if name == contract.SAFETY:
+                assert cells["Table"] in contract.WHICH_LIST_WORDS.values(), cells["Table"]
+            if name == contract.REGISTERED:
+                assert cells["Category"] in contract.WHICH_LIST_WORDS.values(), cells["Category"]
+            if name == contract.ELIGIBILITY:
+                assert cells["Heading"] in contract.READING_CODE_WORDS.values(), cells["Heading"]
+
+
+def test_an_unresolved_value_reads_in_the_contracts_reason_form():
+    assert readout.unresolved_because("why") == contract.REASON_FORM.format(status="Unresolved", reason="why")
+    assert readout.unresolved_because("why") == "Unresolved — why"
+
+
+def test_a_count_is_in_the_general_format_and_a_registry_decimal_in_its_own(written):
+    book = load_workbook(written, read_only=True)
+    safety = list(book[contract.SAFETY].iter_rows(min_row=2, max_row=2))[0]
+    counts = [cell for cell in safety if isinstance(cell.value, int)]
+    assert counts and all(cell.number_format == contract.NUMBER_FORMATS["count"] for cell in counts)
+    assert readout.registry_number("63.40")[2] == "0.00" and readout.registry_number("7")[2] == "0"
+
+
+def test_an_empty_listing_is_one_line_without_an_address():
+    record = copy.deepcopy(RECORD)
+    for study in record["studies"]:
+        study["posted_outcomes"] = []
+    plan = {name: (headers, rows) for name, headers, rows, _starts in readout.book_plan(record)}
+    headers, rows = plan[contract.POSTED]
+    (row,) = rows
+    values = dict(zip(headers, (held[0] for held in row), strict=True))
+    assert values["Trial ID"] == contract.EMPTY_LISTING_WORDS[contract.POSTED]
+    assert values[contract.ADDRESS] is None
+    assert all(value is None for header, value in values.items() if header != "Trial ID")
+
+
+def test_the_contracts_display_tables_are_whole():
+    assert set(contract.ROW_GRAINS) == {sheet.name for sheet in contract.SHEETS}
+    index = {column.header for column in contract.SHEETS[1].columns}
+    assert set(contract.INDEX_COMPACT) <= index
+    for (sheet, _kind), columns in contract.BLANK_BY_CONSTRUCTION.items():
+        if sheet == "every listing":
+            continue
+        headers = {column.header for column in next(s for s in contract.SHEETS if s.name == sheet).columns}
+        assert all(column in headers or column.startswith("G{n}") for column in columns), sheet
+    assert set(contract.EMPTY_LISTING_WORDS) <= {sheet.name for sheet in contract.SHEETS}

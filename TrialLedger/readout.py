@@ -169,15 +169,8 @@ READING_KEYS = ("status", "rule", "words", "result", "note")
 NOT_REPORTED = "Not reported"
 NO_READING = "No reading produced"
 NO_GRADE = "The registry's adverse-event tables report no grade"
-STATUS_LABELS = {
-    "known": "Known",
-    "interpolated": "Interpolated",
-    "proposed": "Proposed",
-    "not_stated": "Not stated",
-    "not_posted": "Not posted",
-    "unresolved": "Unresolved",
-}
-REGISTRY, READING, NOTE = "Registry", "Reading", "Note"
+STATUS_LABELS = contract.STATUS_WORDS
+REGISTRY, READING, NOTE = (contract.BASIS_WORDS[key] for key in ("registry", "reading", "note"))
 SOURCE_WORDS = {
     "condition_mesh": "the condition MeSH terms",
     "free_text": "the conditions and titles",
@@ -278,7 +271,7 @@ ELEMENT_WORDS = {
     "documents": "Posted document",
 }
 RESULTS_MODULES = ("posted_outcomes", "baseline", "participant_flow", "adverse_events")
-HEADINGS = {"inclusion": "Inclusion", "exclusion": "Exclusion", "unsectioned": "No heading"}
+HEADINGS = contract.READING_CODE_WORDS
 # The clinical words of the typing banks' concepts (banks.type_criterion), a concept not listed shown with its
 # underscores as spaces.
 CONCEPT_WORDS = {
@@ -326,6 +319,11 @@ def stated(value: Any) -> bool:
     if kind == "plain":
         return contract.holds_value(value)
     return kind == "reading" and value["status"] in ("known", "interpolated", "proposed")
+
+
+def unresolved_because(reason: str) -> str:
+    """An unresolved value with its reason, in the contract's form: "Unresolved — <reason>"."""
+    return contract.REASON_FORM.format(status=STATUS_LABELS["unresolved"], reason=reason)
 
 
 def absence_words(status: Any, note: Any) -> str:
@@ -551,7 +549,7 @@ def universe_words(study: dict[str, Any]) -> tuple[str, str, str]:
         ]
         return (
             "Unresolved",
-            "Not settled: " + ("; ".join(sources) or "no source names a domain"),
+            unresolved_because("; ".join(sources) or "no source names a domain"),
             "Unresolved",
         )
     decided = SOURCE_WORDS.get(result.get("decided_by"), str(result.get("decided_by")))
@@ -606,9 +604,9 @@ def coordinate_words(name: str, value: Any) -> str:
     if status in ("interpolated", "proposed"):
         return f"{status.capitalize()}: {result_words(result)} (as registered)"
     if status == "unresolved" and isinstance(result, list) and not result:
-        return "Not settled: the eligibility criteria state values that conflict"
+        return unresolved_because("the eligibility criteria state values that conflict")
     if status == "unresolved":
-        return f"Not settled: {UNSETTLED_WORDS.get(name, 'the eligibility criteria do not state it')}"
+        return unresolved_because(UNSETTLED_WORDS.get(name, "the eligibility criteria do not state it"))
     return value_words(value)
 
 
@@ -676,7 +674,7 @@ def key_criterion_rows(study: dict[str, Any]) -> list[tuple[str, Any, str]]:
     held = study.get("key_criteria")
     for number, entry in enumerate(held if isinstance(held, list) else [], 1):
         role = entry.get("role")
-        role_line = HEADINGS.get(str(role), "Not settled" if role == "unresolved" else value_words(role))
+        role_line = HEADINGS.get(str(role), value_words(role))
         lines = (
             key_categories(entry.get("reading")),
             f"As written: {value_words(entry.get('text'))}",
@@ -708,7 +706,7 @@ def role_words(value: Any) -> str:
     if value["status"] != "known":
         words = ", ".join(f"“{word}”" for word in value.get("words") or [])
         reason = f"its own words {words} conflict with its heading" if words else "it is under no heading"
-        return f"Not settled: {reason}"
+        return unresolved_because(reason)
     role = HEADINGS.get(str(value["result"]), result_words(value["result"]))
     words = ", ".join(dict.fromkeys(f"“{word}”" for word in value.get("words") or []))
     return f"{role} (its own words: {words})" if words else role
@@ -966,7 +964,7 @@ def group_title(groups: Any, group: Any) -> str:
 
 PLAIN_DECIMAL = re.compile(r"-?(0|[1-9][0-9]*)(\.[0-9]+)?")
 MAX_PLACES = 30  # the most decimal places a spreadsheet number format shows
-COUNT_FORMAT = "#,##0"
+COUNT_FORMAT = contract.NUMBER_FORMATS["count"]
 
 
 def registry_number(text: Any) -> tuple[str, Any, str]:
@@ -1277,7 +1275,7 @@ def safety_rows(study: dict[str, Any], number: int, n: int) -> list[tuple]:
         values = (
             study["nct"],
             address,
-            str(event.get("table", "")).capitalize() or NOT_STATED,
+            contract.WHICH_LIST_WORDS.get(str(event.get("table")), value_words(event.get("table"))),
             value_words(event.get("organ_system")),
             value_words(event.get("term")),
             *cells,
@@ -1360,7 +1358,7 @@ def registered_rows(study: dict[str, Any], number: int) -> list[tuple]:
         values = (
             study["nct"],
             address,
-            str(outcome.get("category", NOT_STATED)).capitalize(),
+            contract.WHICH_LIST_WORDS.get(str(outcome.get("category")), value_words(outcome.get("category"))),
             value_words(outcome.get("measure")),
             value_words(outcome.get("description")),
             value_words(outcome.get("time_frame")),
@@ -1624,7 +1622,7 @@ def recurring_rows(record: dict[str, Any]) -> list[tuple]:
         rows.append(tuple(cell(value, "known", address) for value in (*values, address)))
     if not rows:
         line = "No criterion is stated by more than half of a group of comparable trials in this record"
-        rows.append((cell(line, "known"), *(cell(None, "known"),) * 7, cell("/recurring_criteria", "known")))
+        rows.append((cell(line, "known"), *(cell(None, "known"),) * 8))
     return rows
 
 
@@ -2081,15 +2079,7 @@ def written_safely(rows: list[tuple]) -> list[tuple]:
     return out
 
 
-# What a listing no trial of the workbook has a row in says, on its one line.
-EMPTY_WORDS = {
-    contract.BIOMARKERS: "No biomarker is named in these trials' eligibility criteria",
-    contract.POSTED: "None of these trials posted results",
-    contract.ANALYSES: "None of these trials posted a statistical analysis",
-    contract.BASELINE: "None of these trials posted baseline characteristics",
-    contract.FLOW: "None of these trials posted a participant flow",
-    contract.GROUPS: "None of these trials posted results by group",
-}
+EMPTY_WORDS = contract.EMPTY_LISTING_WORDS
 
 
 def book_plan(record: dict[str, Any]) -> list[tuple]:
@@ -2150,9 +2140,9 @@ def book_plan(record: dict[str, Any]) -> list[tuple]:
         sheet, row_number = place(starts[-1], CAPACITY, contract.REVIEW)
         sheet_p, row_p = place(publications or starts[-1], CAPACITY, contract.REVIEW)
         links_.append((f"#'{sheet}'!A{row_number}", f"#'{sheet_p}'!A{row_p}"))
-    for name in listings:
+    for name, words in EMPTY_WORDS.items():
         if not rows[name]:
-            words = EMPTY_WORDS.get(name, f"None of these trials has a row in {name}")
+            # the contract's one line: its words in the first column, no address, the rest blank
             width = len(sheet_headers(name, n))
             rows[name] = [(cell(words, LABEL), *(cell(None, LABEL),) * (width - 1))]
     rows[contract.READ_ME] = guide_rows(record)

@@ -3026,6 +3026,107 @@ DISPLAY_NOT_API_ENUMS = {
     "file",
 }
 
+# ── how the workbook shows a value (read by the workbook, readout.py, and by unit E1's checker) ─────────
+# Every word the workbook writes for a status, a list's name, a reading's code; the forms of dates and
+# numbers; what each sheet's row is; the one line of a listing no trial has a row in; the index's compact
+# columns; and the cells blank by construction, per sheet and kind of row. A cell holding anything not
+# derived by these is a defect.
+
+# A value's status in words; anything unresolved reads "Unresolved", never another word.
+STATUS_WORDS = {
+    "known": "Known",
+    "not_stated": "Not stated",
+    "not_posted": "Not posted",
+    "unresolved": "Unresolved",
+    "interpolated": "Interpolated",
+    "proposed": "Proposed",
+    "not_applicable": "Not applicable",
+}
+# A status with its reason: "<Status> — <reason>".
+REASON_FORM = "{status} — {reason}"
+# What a dossier value rests on (the Trial review's Basis column): a registry value, a rule's reading,
+# TrialLedger's own note, or the status words above.
+BASIS_WORDS = {"registry": "Registry", "reading": "Reading", "note": "Note"}
+# The registry list a value came from (contract FORMS "which list"), in words.
+WHICH_LIST_WORDS = {"primary": "Primary", "secondary": "Secondary", "other": "Other", "serious": "Serious"}
+# A reading's codes, in words (a criterion's heading and role).
+READING_CODE_WORDS = {
+    "inclusion": "Inclusion",
+    "exclusion": "Exclusion",
+    "unsectioned": "No heading",
+    "unresolved": "Unresolved",
+}
+# Dates keep the registry's precision: a day "DD-Mon-YYYY", a month "Mon-YYYY", a year "YYYY", a date with
+# a time the date so written then the time as written, anything else as written.
+DATE_FORMS = {
+    "day": "DD-Mon-YYYY",
+    "month": "Mon-YYYY",
+    "year": "YYYY",
+    "with time": "DD-Mon-YYYY then the time as written",
+    "other": "as written",
+}
+# Number cells: a count (a number the registry gives as a number: participants affected, at risk, events,
+# a site count) in the General format; a registry decimal written as a number in the format of its own
+# decimal places ("7" in 0, "63.40" in 0.00), only where that format shows back exactly the registry's
+# string; anything else is text.
+NUMBER_FORMATS = {"count": "General", "decimal": "0, or 0. and one 0 per decimal place the registry wrote"}
+# What one row of each sheet is.
+ROW_GRAINS = {sheet.name: sheet.row for sheet in SHEETS}
+# A listing no trial of the workbook has a row in is one row: these words in its first column, no address,
+# every other cell blank.
+EMPTY_LISTING_WORDS = {
+    ELIGIBILITY: "None of these trials lists its criteria",
+    REGISTERED: "None of these trials registered an outcome",
+    POSTED: "None of these trials posted results",
+    ANALYSES: "None of these trials posted a statistical analysis",
+    BASELINE: "None of these trials posted baseline characteristics",
+    FLOW: "None of these trials posted a participant flow",
+    GROUPS: "None of these trials posted results by group",
+    SAFETY: "None of these trials posted adverse events",
+    BIOMARKERS: "No biomarker is named in these trials' eligibility criteria",
+    READINGS: "No rule reading is held for these trials",
+}
+# The Trial index's compact columns: what each shows, in short words (the full value is in the dossier).
+INDEX_COMPACT = {
+    "Acronym or short title": "the acronym, else the brief title",
+    "Sponsor": "the lead sponsor, its class in brackets",
+    "Status": "the overall status; for an unknown status, the last known one in brackets",
+    "Design": "primary purpose; allocation; model; masking (who is masked)",
+    "Enrollment": "the count, actual or anticipated in brackets",
+    "Start": "the start date, actual or anticipated in brackets",
+    "Primary endpoint": "the first primary outcome's measure, and how many more",
+    "Results posted": "the date results were first posted, else Not posted",
+    "Publications": "the count of references, and how many the sponsor marked as results",
+    "Last update posted": "the date",
+    "Treatment setting": "the setting as registered; Not applicable outside the universe; else Unresolved",
+    "Prior lines for advanced disease": "as Treatment setting",
+    "Gene selection": "as Treatment setting",
+}
+# The cells blank by construction: (sheet, the kind of row) to the columns that cannot apply to it. Any
+# other blank cell is a defect.
+BLANK_BY_CONSTRUCTION: dict[tuple[str, str], tuple[str, ...]] = {
+    (SAFETY, "a term of a trial with fewer groups than the run's most"): (
+        "G{n} past the trial's own groups",
+    ),
+    (POSTED, "a measurement of an untitled class or category"): ("Class", "Category"),
+    (BASELINE, "a measurement of an untitled class or category"): ("Class", "Category"),
+    (GROUPS, "a group of any module but adverse events"): ("Column", "Totals"),
+    (FINDINGS, "the one line below the signal minimum"): (
+        "Finding",
+        "Trial IDs",
+        "Numerator / denominator",
+        "Rule",
+    ),
+    (RECURRING, "a group not assessed"): (
+        "Role",
+        "Trials stating it",
+        RECURRING_EXAMPLE,
+        "Examples from",
+        "Other trials",
+    ),
+    ("every listing", "the one line of a listing with no row"): ("every column but the first",),
+}
+
 # ── the helpers: a path template resolved in a study body, and a code's words ─────────────────────────
 
 
