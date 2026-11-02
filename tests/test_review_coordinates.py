@@ -78,14 +78,14 @@ def test_a_default_that_contradicts_the_evidence_is_a_conflict():
         ("inclusion", "prior_lines", ("1",), "advanced", "c1"),
         ("inclusion", "setting_word", ("x",), "", "c2"),
     ]
-    rows = resolve(evidence, no_prior_lines_default())
+    rows = resolve(evidence, relations=no_prior_lines_default())
     assert rows["prior_advanced_lines"]["domain"] == ("1",)
     assert review_coordinates(rows)["prior_advanced_lines"] == (
         [],
         "conflict",
         ["c1", "no_prior_lines_when_named"],
     )
-    quiet = review_coordinates(resolve(evidence[:1], no_prior_lines_default()))
+    quiet = review_coordinates(resolve(evidence[:1], relations=no_prior_lines_default()))
     assert quiet["prior_advanced_lines"] == (["1"], "resolved", ["c1"])
     assert not [name for name, (_, state, _) in quiet.items() if state == "conflict"]
 
@@ -113,7 +113,7 @@ def test_the_review_queue_raises_the_conflicts_of_the_levels_built_on():
         ("inclusion", "prior_lines", ("1",), "advanced", "c1"),
         ("inclusion", "setting_word", ("x",), "", "c2"),
     ]
-    assert flags(resolve(evidence, no_prior_lines_default())) == [
+    assert flags(resolve(evidence, relations=no_prior_lines_default())) == [
         ("coordinate_conflict", "prior_advanced_lines", ["c1", "no_prior_lines_when_named"])
     ]
     assert flags(resolve(CONTRADICTORY)) == [("coordinate_conflict", "prior_advanced_lines", ["c3", "c4"])]

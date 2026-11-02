@@ -29,7 +29,7 @@ from operator import attrgetter
 from pathlib import Path
 from typing import Any
 
-from TrialLedger import provenance
+from TrialLedger import contract, provenance
 from TrialLedger.semantics.contracts import ANNOTATIONS, SPAN_ROLES, Atom, Span
 from TrialLedger.semantics.parsers import read_comparator, read_number, read_unit
 
@@ -76,6 +76,7 @@ PROBLEM_CODES = (
     "missing_provenance",
     "unknown_exposure",
     "unresolved_requirement",
+    "unknown_universe",
     "invalid_concept_id",
     "unknown_family",
     "unknown_argument",
@@ -149,6 +150,9 @@ class Fragment:
     requires: tuple[str, ...]
     concepts: tuple[ConceptEntry, ...]
     references: tuple[Reference, ...]
+    # The universes (contract.UNIVERSES) whose trials the package's rules read (refine-landscape-record 2.3);
+    # empty for a package that declares none, which enters the canonical JSON only when it declares some.
+    universes: tuple[str, ...] = ()
 
 
 @dataclass(frozen=True)
@@ -189,13 +193,13 @@ def fragment_from_data(data: dict[str, Any]) -> Fragment:
     Keys: name, version, exposure (strings), requires (names), concepts (each: concept_id, family, arguments
     as [name, type] pairs, authority, and optionally code, definition, scale as [instrument, version],
     depends_on, defined_on, units as written, examples each {text, spans as [role, start, end]}), references
-    (each: concept_id, family, arguments). A missing key, a value of the wrong shape (a span offset that is
-    not an integer among them) or an unknown key raises RegistryError with one malformed_fragment problem
-    naming it; nothing is defaulted except the optional keys (code None, definition "", scale None,
-    depends_on, units and examples empty, defined_on None)."""
+    (each: concept_id, family, arguments), and optionally universes (names). A missing key, a value of the
+    wrong shape (a span offset that is not an integer among them) or an unknown key raises RegistryError with
+    one malformed_fragment problem naming it; nothing is defaulted except the optional keys (code None,
+    definition "", scale None, depends_on, units, examples and universes empty, defined_on None)."""
     subject = str(data.get("name", "?")) if isinstance(data, dict) else "?"
     try:
-        allowed = {"name", "version", "exposure", "requires", "concepts", "references"}
+        allowed = {"name", "version", "exposure", "requires", "concepts", "references", "universes"}
         unknown = set(data) - allowed
         if unknown:
             raise KeyError(f"unknown keys {sorted(unknown)}")
@@ -243,6 +247,7 @@ def fragment_from_data(data: dict[str, Any]) -> Fragment:
             tuple(str(r) for r in data["requires"]),
             tuple(concepts),
             references,
+            tuple(str(universe) for universe in data.get("universes", ())),
         )
     except (KeyError, TypeError, ValueError, IndexError, AttributeError) as error:
         raise RegistryError((("malformed_fragment", subject, str(error)),)) from error
@@ -476,6 +481,8 @@ def registry_flags(fragments: list[Fragment]) -> tuple[tuple[str, str, str], ...
 
 def _canonical(fragment: Fragment) -> dict[str, Any]:
     data = asdict(fragment)
+    if not data["universes"]:
+        del data["universes"]
     for concept in data["concepts"]:
         for added in ("units", "examples"):
             if not concept[added]:
@@ -483,13 +490,26 @@ def _canonical(fragment: Fragment) -> dict[str, Any]:
     return data
 
 
+def universe_problems(fragments: list[Fragment], known: list[str]) -> tuple[Problem, ...]:
+    """Every universe a fragment names that is not among `known` (pure — pinned): unknown_universe, subject
+    the fragment's name, detail the universe, in fragment and declaration order. None: an empty tuple."""
+    return tuple(
+        ("unknown_universe", fragment.name, universe)
+        for fragment in fragments
+        for universe in fragment.universes
+        if universe not in known
+    )
+
+
 def compile_registry(fragments: list[Fragment]) -> Registry:
     """The registry the fragments compile into, under the provenance tables, or RegistryError naming every
     problem. Its version is the SHA-256 of the fragments' canonical JSON in name order, so the same fragments
     give the same version whatever order they are given in; its flags are registry_flags of that order. The
-    units and examples task 3.1 added enter the canonical JSON only when a concept has them, so every registry
-    compiled before them keeps its version."""
+    units and examples task 3.1 added, and a fragment's universes (refine-landscape-record 2.3), enter the
+    canonical JSON only when present, so every registry compiled before them keeps its version. A fragment
+    naming a universe contract.UNIVERSES does not hold is refused (universe_problems)."""
     problems = registry_problems(fragments, provenance.CONCEPT_AUTHORITIES, provenance.RULE_EXPOSURE)
+    problems += universe_problems(fragments, [universe.name for universe in contract.UNIVERSES])
     if problems:
         raise RegistryError(problems)
     ordered = sorted(fragments, key=attrgetter("name"))

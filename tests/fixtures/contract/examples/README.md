@@ -46,7 +46,11 @@ for the purpose, on 2026-11-01:
   cause's wording is unit A's to settle), prior lines unnarrowed (no typed atom narrows them).
 - `universes.json`: each found term against the trial's condition MeSH terms and ancestors, its free-text
   conditions and titles; NCT01030536's ancestors hold Lymphoma, Leukemia and Neoplasms, NCT01827384 has no
-  condition MeSH term, and no trial's intervention ancestors hold an oncology anchor.
+  condition MeSH term. The third source is each treatment trial's drugs' ATC classes as the 3-trial baseline
+  run's `classes.json` records RxNav's answers (re-read 2026-11-01, unit B): NCT01827384's Carboplatin
+  (L01XA), Everolimus (L01EG, L04AH), Temozolomide (L01AX) and Trametinib (L01EE) fall under L01, Adavosertib
+  and Veliparib have no ATC class; NCT01030536's CAT-8015 names have none; NCT04852770's behavioural
+  interventions were never looked up. The notes are the Trial index words `universes.assign` writes.
 - `safety.json`: every count against the serious-event statistics of both trials (Lung infection, Blood
   creatinine increased; Anaemia, Disseminated intravascular coagulation), each group's G column against the
   order of its event groups.

@@ -757,9 +757,9 @@ _STUDY_FIELDS: tuple[Field, ...] = (
             f"{ID}.briefTitle",
             f"{ID}.officialTitle",
             f"{DI}.primaryPurpose",
-            f"{IB}.ancestors[].term",
+            f"{AI}.interventions[].name",
+            f"{AI}.interventions[].otherNames[]",
         ),
-        built_by="2.1",
     ),
     # Each coordinate at the levels coherence.resolve gives it (landscape.json schema 2, kept in schema 3):
     # known (the record's own criteria and the strict relations); interpolated (the default relations added);
@@ -2662,17 +2662,19 @@ ASSIGNMENT_SOURCES: tuple[tuple[str, str, tuple[str, ...]], ...] = (
         ("protocolSection.conditionsModule.conditions[]", f"{ID}.briefTitle", f"{ID}.officialTitle"),
     ),
     (
-        "intervention_mesh",
-        "for a treatment trial, its interventions' MeSH ancestors",
-        (f"{IB}.ancestors[].term",),
+        "drug_class",
+        "for a treatment trial, its drugs' ATC classes as RxNav gives them for the intervention's name and "
+        "other names (antineoplastic agents, L01; endocrine therapy, L02); in relay mode not looked up",
+        (f"{AI}.interventions[].name", f"{AI}.interventions[].otherNames[]", f"{DI}.primaryPurpose"),
     ),
 )
 # How the sources decide, in order (the rule unit B builds as universes.assign).
 ASSIGNMENT_CASES: tuple[tuple[str, str], ...] = (
     (
         "oncology",
-        "any source finds an oncology signal: each oncology universe a source names "
-        "(several: the union, each reading tagged with its pack)",
+        "a condition source (the condition MeSH terms or the free-text conditions) finds an oncology signal; "
+        "or only the titles or a drug's class do, and no condition is positively outside oncology: each "
+        "oncology universe a source names (several: the union, each reading tagged with its pack)",
     ),
     (
         "general",
@@ -2682,7 +2684,8 @@ ASSIGNMENT_CASES: tuple[tuple[str, str], ...] = (
     (
         "unresolved",
         "no usable condition (no condition MeSH term, and every free-text condition empty or in "
-        "NOT_DISEASE_CONDITIONS) and no oncology signal; or the sources disagree: "
+        "NOT_DISEASE_CONDITIONS) and no oncology signal; or the sources disagree (the conditions are "
+        "positively outside oncology while only the titles or a drug's class signal it): "
         "each source's finding shown",
     ),
 )
@@ -2726,8 +2729,12 @@ NOT_DISEASE_CONDITIONS: tuple[tuple[str, str], ...] = (
     ("EGFR-TKI Resistant Mutation", "a biomarker"),
     ("AZD9291", "a drug"),
 )
-# MeSH anchors: a term at or under which the source's terms fall. A solid-tumour anchor counts only where no
-# haematologic anchor holds.
+# Anchors: a condition MeSH term at or under which the source's terms fall, or the ATC class a drug's ATC
+# code begins with. The registry's intervention MeSH ancestors are the MeSH structure tree (Quinazolines,
+# Heterocyclic Compounds, ...); pharmacological action came in the browse branches, which API v2 did not
+# serve in the baseline runs nor when probed on 2026-11-01, so a drug's class is read from RxNav's ATC answer.
+# A solid-tumour anchor that names no kind of tumour (universes.UNSPECIFIC_ANCHORS: Neoplasms, an ATC class)
+# counts as haematologic where a haematologic anchor holds.
 MESH_ANCHORS: tuple[tuple[str, str, tuple[str, ...]], ...] = (
     (
         "oncology.heme",
@@ -2735,18 +2742,17 @@ MESH_ANCHORS: tuple[tuple[str, str, tuple[str, ...]], ...] = (
         ("Hematologic Neoplasms", "Lymphoma", "Leukemia", "Multiple Myeloma"),
     ),
     ("oncology.solid", "condition_mesh", ("Neoplasms",)),
-    ("oncology.solid", "intervention_mesh", ("Antineoplastic Agents",)),
+    ("oncology.solid", "drug_class", ("L01", "L02")),
 )
 # Anchors no saved baseline body holds, each with why; the gate holds this table to exactly those.
 UNOBSERVED_ANCHORS: dict[str, str] = {
     "Hematologic Neoplasms": "the baseline's lymphoma and leukaemia trial reaches Lymphoma and Leukemia, not "
     "this term",
     "Multiple Myeloma": "no baseline trial is in myeloma",
-    "Antineoplastic Agents": "the registry's intervention ancestors are the MeSH structure tree "
-    "(Quinazolines, Heterocyclic Compounds, ...); pharmacological action came in the browse branches, which "
-    "API v2 did not serve in the baseline runs nor when probed on 2026-11-01. The intervention source finds "
-    "nothing until "
-    "unit B names a source of pharmacological action",
+    "L01": "an ATC class (antineoplastic agents), held by RxNav's answer for a drug's name (the run's "
+    "classes.json), never by the registry's body",
+    "L02": "an ATC class (endocrine therapy for cancer), held by RxNav's answer for a drug's name, never by "
+    "the registry's body",
 }
 
 # ── the clinical words for the registry's codes ─────────────────────────────────────────────────────────

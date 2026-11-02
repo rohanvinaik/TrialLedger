@@ -275,7 +275,7 @@ def table():
 
 
 def test_a_strict_relation_narrows_the_known_domain():
-    row = resolve([("inclusion", "prior_lines", ("0",), "advanced", "c3")], table())["setting"]
+    row = resolve([("inclusion", "prior_lines", ("0",), "advanced", "c3")], relations=table())["setting"]
     assert (row["domain"], row["state"]) == (("advanced_first_line",), "resolved")
     assert row["causes"] == [
         (
@@ -290,7 +290,7 @@ def test_a_strict_relation_narrows_the_known_domain():
 def test_a_strict_relation_on_a_defaults_conclusion_is_interpolated():
     """Positive: a default narrows prior lines to none, then the strict relation gives first line, both at the
     interpolated level. Negative: neither reaches the known level."""
-    result = resolve([("inclusion", "setting_word", ("x",), "", "c0")], table())
+    result = resolve([("inclusion", "setting_word", ("x",), "", "c0")], relations=table())
     assert result["prior_advanced_lines"]["domain"] == ("0", "1", "2", "3+")
     assert result["setting"]["domain"] == SETTINGS
     assert result["prior_advanced_lines"]["interpolated"]["domain"] == ("0",)
@@ -300,7 +300,8 @@ def test_a_strict_relation_on_a_defaults_conclusion_is_interpolated():
 
 def test_a_relation_of_no_kind_is_refused():
     odd = Relation("odd", "s", "b", "approved", "approved", (), (), "setting", ("adjuvant",))
-    assert raised(resolve, [], (*RELATIONS, odd)) == ("ValueError", ("relations of no kind: ['odd']",))
+    refused = raised(lambda: resolve([], relations=(*RELATIONS, odd)))
+    assert refused == ("ValueError", ("relations of no kind: ['odd']",))
 
 
 @pytest.mark.parametrize(

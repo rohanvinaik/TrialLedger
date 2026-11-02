@@ -14,6 +14,7 @@
    "sources": [
     {
      "source": "condition_mesh",
+     "status": "read",
      "found": [],
      "non_oncology": [
       "Stress Disorders, Post-Traumatic",
@@ -22,6 +23,7 @@
     },
     {
      "source": "free_text",
+     "status": "read",
      "found": [],
      "non_oncology": [
       "Posttraumatic Stress Disorder",
@@ -29,13 +31,14 @@
      ]
     },
     {
-     "source": "intervention_mesh",
+     "source": "drug_class",
+     "status": "not_looked_up",
      "found": [],
      "non_oncology": []
     }
    ]
   },
-  "note": "General: no domain readings apply (the conditions are post-traumatic stress disorder and COVID-19; no source finds an oncology term)"
+  "note": "General: no domain readings apply (condition MeSH: Stress Disorders, Post-Traumatic; COVID-19)"
  },
  "NCT01030536": {
   "status": "known",
@@ -52,6 +55,7 @@
    "sources": [
     {
      "source": "condition_mesh",
+     "status": "read",
      "found": [
       {
        "term": "Lymphoma",
@@ -68,6 +72,7 @@
     },
     {
      "source": "free_text",
+     "status": "read",
      "found": [
       {
        "term": "Non-Hodgkin Lymphoma",
@@ -83,13 +88,14 @@
      "non_oncology": []
     },
     {
-     "source": "intervention_mesh",
+     "source": "drug_class",
+     "status": "read",
      "found": [],
      "non_oncology": []
     }
    ]
   },
-  "note": "Neoplasms is also an ancestor; a solid-tumour anchor counts only where no haematologic anchor holds"
+  "note": "Haematologic oncology (condition MeSH: Lymphoma, Non-Hodgkin; Leukemia, Lymphocytic, Chronic, B-Cell)"
  },
  "NCT01827384": {
   "status": "known",
@@ -105,11 +111,13 @@
    "sources": [
     {
      "source": "condition_mesh",
+     "status": "no_terms",
      "found": [],
      "non_oncology": []
     },
     {
      "source": "free_text",
+     "status": "read",
      "found": [
       {
        "term": "Advanced Malignant Solid Neoplasm",
@@ -125,12 +133,34 @@
      "non_oncology": []
     },
     {
-     "source": "intervention_mesh",
-     "found": [],
+     "source": "drug_class",
+     "status": "read",
+     "found": [
+      {
+       "term": "Carboplatin",
+       "anchor": "L01",
+       "universe": "oncology.solid"
+      },
+      {
+       "term": "Everolimus",
+       "anchor": "L01",
+       "universe": "oncology.solid"
+      },
+      {
+       "term": "Temozolomide",
+       "anchor": "L01",
+       "universe": "oncology.solid"
+      },
+      {
+       "term": "Trametinib",
+       "anchor": "L01",
+       "universe": "oncology.solid"
+      }
+     ],
      "non_oncology": []
     }
    ]
   },
-  "note": "the registry gives no condition MeSH term; the free-text condition decides"
+  "note": "Solid-tumour oncology (conditions: Advanced Malignant Solid Neoplasm)"
  }
 }

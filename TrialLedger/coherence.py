@@ -20,6 +20,8 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Any
 
+from TrialLedger import universes
+
 SETTINGS = (
     "neoadjuvant",
     "adjuvant",
@@ -284,12 +286,19 @@ def facts_of(evidence: list[tuple[str, str, tuple[str, ...], str, str]]) -> list
 
 
 def resolve(
-    evidence: list[tuple[str, str, tuple[str, ...], str, str]], relations: tuple[Relation, ...] = RELATIONS
+    evidence: list[tuple[str, str, tuple[str, ...], str, str]],
+    assignment: Any = None,
+    *,
+    relations: tuple[Relation, ...] = RELATIONS,
 ) -> dict[str, dict]:
-    """Every coordinate of one trial at each status: known, interpolated and each proposal on its own
-    (pure — pinned).
+    """The coordinates of one trial its universes permit, at each status: known, interpolated and each
+    proposal on its own (pure — pinned).
 
-    `evidence` is narrow_by_evidence's; `relations` the table of relations (RELATIONS unless a caller declares
+    `evidence` is narrow_by_evidence's. `assignment` is the trial's universes.Assignment: only the coordinates
+    and relations of its permitted packs (its `packs`) are computed, each coordinate's row naming the packs
+    that own it ("packs"); a coordinate no permitted pack owns is absent, so a general or unresolved trial has
+    none. With no assignment, every coordinate and relation applies, as for a solid-tumour treatment trial,
+    and no row names its packs. `relations` is the table of relations (RELATIONS unless a caller declares
     another), each applied by its kind, never by its approval:
       known        — the stated evidence (narrow_by_evidence), closed under the strict relations;
       interpolated — the known domains closed under the strict and default relations together (a strict rule
@@ -306,6 +315,10 @@ def resolve(
     unknown = [relation.id for relation in relations if relation.kind not in KINDS]
     if unknown:
         raise ValueError(f"relations of no kind: {unknown}")
+    owners: dict[str, list[str]] = {}
+    if assignment is not None:
+        owners, owned = universes.pack_scope(tuple(assignment.packs))
+        relations = tuple(relation for relation in relations if relation.id in owned)
     stated, stated_causes = narrow_by_evidence(evidence)
     facts = facts_of(evidence)
     ids = {kind: [r.id for r in relations if r.kind == kind] for kind in KINDS}
@@ -334,7 +347,9 @@ def resolve(
                 if closed[name] != interpolated[name]
             ],
         }
-    return result
+    if assignment is None:
+        return result
+    return {name: {**row, "packs": owners[name]} for name, row in result.items() if name in owners}
 
 
 def level_status(level: str, domain: tuple[str, ...], known: tuple[str, ...]) -> str:

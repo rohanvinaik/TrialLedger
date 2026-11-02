@@ -594,7 +594,7 @@ def test_a_level_the_defaults_empty_is_unresolved_in_the_json():
         ("inclusion", "prior_lines", ("1",), "advanced", "criterion 1"),
         ("inclusion", "setting_word", ("x",), "", "criterion 2"),
     ]
-    assert _coordinate(resolve(evidence, (default,))["prior_advanced_lines"]) == {
+    assert _coordinate(resolve(evidence, relations=(default,))["prior_advanced_lines"]) == {
         "known": {
             "domain": ["1"],
             "state": "resolved",

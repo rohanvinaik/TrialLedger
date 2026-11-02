@@ -99,6 +99,7 @@ FOUNDATIONS = {
             "registry_flags",
             "registry_problems",
             "unit_problems",
+            "universe_problems",
         ),
     ),
     "until add-bank-coverage 3.2-3.5 (each general package reads its numbers, comparators, units, durations, "
@@ -130,6 +131,30 @@ FOUNDATIONS = {
     "until add-bank-coverage 4.1 (the discovery wave's type balance) and 7.2 (the release manifest)": (
         "typematrix.py",
         ("manifest_problems",),
+    ),
+    "until refine-landscape-record 1.5 (unit A assigns each study's universes and resolves its coordinates "
+    "under them)": (
+        "universes.py",
+        (
+            "_anchors",
+            "_distinct",
+            "_drug_findings",
+            "_module",
+            "_source_words",
+            "_specific_only",
+            "_terms",
+            "_text_findings",
+            "_words",
+            "assign",
+            "atc_classes",
+            "counted_universe",
+            "drug_anchor",
+            "pack_scope",
+            "permitted_packs",
+            "reading",
+            "scope_case",
+            "term_hits",
+        ),
     ),
     "until refine-landscape-record units A-C consume the contract": (
         "contract.py",
