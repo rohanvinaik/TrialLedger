@@ -609,7 +609,8 @@ def test_a_name_no_experimental_drug_carries_is_never_asked_rxnav(tmp_path):
         tmp_path / "c.json", ["Placebo", "XB-1"], ["XB-1"], fill_axes=True, get=get, sleep=lambda _: None
     )
     assert "axes" not in answers["Placebo"] and "axes" in answers["XB-1"]
-    assert asked.count("version.json") == 1 and asked.count("rxcui.json") == 1
+    # the release is asked once by each lookup batch: EPC and MoA's (add-scoped-reasoning 1.2), then the axes'
+    assert asked.count("version.json") == 2 and asked.count("rxcui.json") == 1
 
 
 def test_the_axes_are_asked_only_when_filled_and_epc_moa_as_before(tmp_path):
@@ -631,7 +632,9 @@ def test_the_axes_are_asked_only_when_filled_and_epc_moa_as_before(tmp_path):
         return [a for a in asked if dict(a[1]).get("relas") in ("has_epc", "has_moa")]
 
     lazy, filled = run(tmp_path / "lazy.json", False), run(tmp_path / "filled.json", True)
-    assert lazy == classes_only(lazy) == classes_only(filled) and len(lazy) == 4
+    # EPC and MoA's batch asks the release once, first (its warrant, add-scoped-reasoning 1.2), then its four
+    assert lazy == [(rx.RXNAV_VERSION, ()), *classes_only(lazy)] and len(lazy) == 5
+    assert classes_only(lazy) == classes_only(filled) and filled[0] == lazy[0]
     assert len(filled) > len(lazy)
     before = tmp_path / "before.json"
     old = {"codes": {"DAILYMED:has_epc": "not_found"}, "classes": []}

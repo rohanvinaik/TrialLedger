@@ -1,20 +1,24 @@
 """The JSON form of `trialledger resolve`: a population reading rendered as plain data, each study's
-eligibility coverage, typed criteria, coordinates, drugs and their axes, its interventions' modality and cell
-extractions, its intervention MeSH, outcomes, near misses (as written and aligned), structure relations,
-review flags and expectation observations, each value with the record text or the request it rests on."""
+eligibility coverage, typed criteria, coordinates (known, interpolated and each proposal alone, each with its
+status), drugs (each RxClass answer with its requests and RxNav release) and their axes, its interventions'
+modality and cell extractions, its intervention MeSH, outcomes, near misses (as written and aligned, each with
+the weakest status it rests on), structure relations, review flags and expectation observations, each value
+with the record text or the request it rests on."""
 
 from __future__ import annotations
 
 from typing import Any
 
+from TrialLedger.coherence import level_status
 from TrialLedger.expectations import deviation_status
 
 
 def symbolic_output(reading: dict[str, Any]) -> list[dict[str, Any]]:
-    """Each study's symbolic reading as plain data: typed criteria, coordinates, drugs with their axes (each
-    class with its standing, request, retrieval time and RxNav release), modality and cell extractions with
-    their warrants, intervention MeSH at its level, outcomes, near misses as written and aligned (with each
-    trial's basis), the structure relations its drugs hold, and expectation observations, each value with the
+    """Each study's symbolic reading as plain data: typed criteria, coordinates at each status, drugs with
+    each name's RxClass warrant and their axes (each class with its standing, request, retrieval time and
+    RxNav release), modality and cell extractions with their warrants, intervention MeSH at its level,
+    outcomes, near misses as written and aligned (with each trial's basis and the weakest status the pair
+    rests on), the structure relations its drugs hold, and expectation observations, each value with the
     record text or the request it rests on. The JSON form of `resolve`."""
     pairs = reading["pairs"]
     aligned = reading["aligned_pairs"]
@@ -54,19 +58,25 @@ def symbolic_output(reading: dict[str, Any]) -> list[dict[str, Any]]:
                     }
                     for index, section, text, atoms in view["criteria"]
                 ],
-                "coordinates": {
-                    name: {
-                        "domain": list(row["domain"]),
-                        "state": row["state"],
-                        "with_proposed_relations": list(row["with_proposed"]),
-                        "removed_by": [
-                            [c[0], list(c[1]), c[2]] for c in row["causes"] + row["proposed_causes"]
+                "coordinates": {name: _coordinate(row) for name, row in view["coordinates"].items()},
+                "experimental_drugs": [
+                    {
+                        "name": d,
+                        "state": s,
+                        "classes": e,
+                        "resolved_by": r,
+                        "rxclass": [
+                            {
+                                "name": alias,
+                                "release_state": state,
+                                "release": release,
+                                "requests": [{"request": q, "retrieved": t} for q, t in requests],
+                            }
+                            for drug, alias, state, release, requests in view["class_warrants"]
+                            if drug == d
                         ],
                     }
-                    for name, row in view["coordinates"].items()
-                },
-                "experimental_drugs": [
-                    {"name": d, "state": s, "classes": e, "resolved_by": r} for d, s, e, r in view["drugs"]
+                    for d, s, e, r in view["drugs"]
                 ],
                 "drug_axes": [_axes(axes) for axes in view["drug_axes"]],
                 "extractions": [
@@ -113,8 +123,9 @@ def symbolic_output(reading: dict[str, Any]) -> list[dict[str, Any]]:
                         "other_sponsor": p[6 - side],
                         "other_start_year": p[8 - side],
                         "predicates_agreeing": p[9],
+                        "rests_on": rests_on,
                     }
-                    for p in pairs
+                    for p, rests_on in zip(pairs, reading["pair_status"], strict=True)
                     for side in (0, 1)
                     if p[side] == view["nct"]
                 ],
@@ -129,8 +140,9 @@ def symbolic_output(reading: dict[str, Any]) -> list[dict[str, Any]]:
                         "predicates_agreeing": p[9],
                         "basis": p[10 + side],
                         "other_basis": p[11 - side],
+                        "rests_on": rests_on,
                     }
-                    for p in aligned
+                    for p, rests_on in zip(aligned, reading["aligned_pair_status"], strict=True)
                     for side in (0, 1)
                     if p[side] == view["nct"]
                 ],
@@ -158,6 +170,27 @@ def symbolic_output(reading: dict[str, Any]) -> list[dict[str, Any]]:
             }
         )
     return output
+
+
+def _coordinate(row: dict[str, Any]) -> dict[str, Any]:
+    """One coordinate at each status, as plain data: its known domain, its interpolated domain and each
+    proposal's narrowing alone, each with its state, the status a reader is told (coherence.level_status) and
+    the removals made at that level."""
+    known = row["domain"]
+
+    def level(status: str, held: dict[str, Any]) -> dict[str, Any]:
+        return {
+            "domain": list(held["domain"]),
+            "state": held["state"],
+            "status": level_status(status, held["domain"], known),
+            "removed_by": [[c[0], list(c[1]), c[2]] for c in held["causes"]],
+        }
+
+    return {
+        "known": level("known", row),
+        "interpolated": level("interpolated", row["interpolated"]),
+        "proposed": [{"relation": p["relation"], **level("proposed", p)} for p in row["proposals"]],
+    }
 
 
 def _known_subjects(view: dict[str, Any]) -> set[str]:

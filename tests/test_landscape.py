@@ -1,10 +1,11 @@
-"""landscape.json — the record of truth: schema v1, the per-study extract, the cohort, and the validator.
+"""landscape.json — the record of truth: schema v2, the per-study extract, the cohort, and the validator.
 
 Positive: a record assembled from a reading of the test records (a study with posted results in every
 module, an observational one with none, production_path's near-miss pair and its audited trial) validates
-against schema v1, before and after a JSON round trip; every value read as stated is exactly the record's
-value at its source; a field the record holds is known, with its location; a resolved coordinate is known
-and a proposed relation's narrowing is proposed beside it; posted measurements and adverse events are read
+against schema v2, before and after a JSON round trip; every value read as stated is exactly the record's
+value at its source; a field the record holds is known, with its location; a coordinate's known value is
+known when resolved, a default's narrowing interpolated and each proposal's narrowing proposed, alone, beside
+it (add-scoped-reasoning 1.1); posted measurements and adverse events are read
 per arm from the results section; biomarkers come by role from the criteria's atoms and the outcomes'
 endpoint classes; each criterion's elements carry their standard tier from the cohort's frequency rows over
 all trials; the cohort's frequency, mechanism and occupancy rows are design.xlsx's, warrant aside; the
@@ -12,7 +13,8 @@ manifest names each study's digest and their Merkle root; every field of the rec
 record carries what each status and each key of a value means.
 Negative: a registered outcome is never efficacy (a study without results states "no results posted" and
 lists no measurement, its outcomes still planned); an absent field is not_stated with the ledger's absence
-state, never a value; a conflict or several values is unresolved, never known; an untyped criterion has no
+state, never a value; a conflict or several values is unresolved, never known, and a default's narrowing is
+never known; an untyped criterion has no
 tier and is never not_met; a proposed relation that leaves no value is unresolved, never proposed; an
 intervention that is not an experimental drug is never classed or given axes; a reading of other studies, or
 of the same studies in another order, raises; the validator names every departure the record itself shows by
@@ -37,7 +39,7 @@ from test_reading_axes import first_line, platinum_answers
 import TrialLedger
 from TrialLedger import landscape, warrants
 from TrialLedger.banks import endpoint_classes, time_points, type_criterion
-from TrialLedger.coherence import RELATIONS, resolve
+from TrialLedger.coherence import RELATIONS, SETTINGS, resolve
 from TrialLedger.design import sheets
 from TrialLedger.landscape import (
     ELIGIBILITY_TEXT,
@@ -200,6 +202,8 @@ def test_the_cohort_is_design_xlsx_s_profile_warrant_aside():
             "start_year_a": "2025",
             "start_year_b": "2025",
             "predicates_agreeing": 1,
+            # the first-line setting of both is the default's conclusion (add-scoped-reasoning 1.1)
+            "rests_on": "interpolated",
         }
     ]
     assert record["cohort"]["thresholds"] == {
@@ -297,9 +301,12 @@ def test_a_cohort_with_classes_aligned_pairs_and_structure_relations_is_design_x
         assert cohort[table], table
     assert {row["class"] for row in cohort["occupancy"]} == {PLACEBO_EPC[1], "Kinase Inhibitor"}
     mixed = [row for row in cohort["occupancy"] if row["setting"] == "advanced_first_line"]
+    # occupancy reads the known setting only (add-scoped-reasoning, Decision 7): no relation is strict, so
+    # every first-line trial's known setting is unnarrowed, none occupies a cell, and each one of a class (or
+    # with an unclassed drug) could fall in it, counted apart
     assert [(row["class"], row["occupying"], row["could_fall_here"], row["state"]) for row in mixed] == [
-        ("Kinase Inhibitor", 1, 5, "occupied"),
-        (PLACEBO_EPC[1], 2, 5, "occupied"),
+        ("Kinase Inhibitor", 0, 6, "unknown"),
+        (PLACEBO_EPC[1], 0, 7, "unknown"),
     ]
     assert cohort["aligned_near_misses"] == [
         {
@@ -315,6 +322,7 @@ def test_a_cohort_with_classes_aligned_pairs_and_structure_relations_is_design_x
             "predicates_agreeing": 0,
             "basis_a": "rxclass",
             "basis_b": "rxclass",
+            "rests_on": "interpolated",
         }
     ]
     assert cohort["structure_relations"] == [
@@ -349,7 +357,14 @@ def test_occupancy_lists_the_observed_classes_in_order_whatever_order_they_are_s
         }
         for index, klass in enumerate(classes)
     ]
-    reading = {"views": views, "pairs": [], "aligned_pairs": [], "structure_relations": []}
+    reading = {
+        "views": views,
+        "pairs": [],
+        "pair_status": [],
+        "aligned_pairs": [],
+        "aligned_pair_status": [],
+        "structure_relations": [],
+    }
     occupancy = landscape.cohort_section(reading)["occupancy"]
     for setting in ("adjuvant", "advanced_first_line"):
         assert [row["class"] for row in occupancy if row["setting"] == setting] == sorted(classes)
@@ -399,10 +414,14 @@ def test_the_rule_versions_name_the_schema_the_tool_the_design_the_code_root_and
     assert {
         "landscape_schema": landscape.SCHEMA_VERSION,
         "trialledger": TrialLedger.__version__,
-        "design": "design-1",
+        "design": "design-2",
         "derivation_code_root": CODE_ROOT,
         "relations": {relation.id: relation.approval for relation in RELATIONS},
+        "relation_kinds": {relation.id: relation.kind for relation in RELATIONS},
     } == landscape.RULE_VERSIONS
+    # schema 2: the coordinates' three statuses, the pairs' rests_on and the relation kinds
+    assert landscape.SCHEMA_VERSION == "2"
+    assert set(landscape.RULE_VERSIONS["relation_kinds"].values()) == {"default", "proposal"}
 
 
 def test_a_manifest_owns_its_rule_versions_and_an_empty_pull_has_the_empty_root():
@@ -577,10 +596,16 @@ def test_the_near_miss_trials_read_their_coordinates_and_standard_language():
     record = record_for()
     first = record["studies"][2]
     coordinates = first["line_of_therapy_and_setting"]
+    # the first-line setting is a default's conclusion: interpolated, never known (add-scoped-reasoning 1.1)
     assert (coordinates["setting"]["value"], coordinates["setting"]["status"]) == (
-        ["advanced_first_line"],
-        "known",
+        list(SETTINGS),
+        "unresolved",
     )
+    assert (coordinates["setting_interpolated"]["value"], coordinates["setting_interpolated"]["status"]) == (
+        ["advanced_first_line"],
+        "interpolated",
+    )
+    assert coordinates["setting_proposed"] == []
     assert coordinates["prior_advanced_lines"]["note"] == "resolved; 1|2|3+ removed by criterion 2"
     tiers = {
         e["value"]["element"]: e["value"]["tier"] for c in first["standard_language"] for e in c["elements"]
@@ -667,37 +692,58 @@ def test_an_absent_field_is_not_stated_with_its_absence_state_never_a_value():
     assert stated(withheld, ("protocolSection", "conditionsModule", "conditions"), LINK)["note"] == "redacted"
 
 
+KNOWN_RULE = "coherence.resolve, known: stated evidence and strict relations"
+INTERPOLATED_RULE = "coherence.resolve, interpolated: default relations added"
+RESECTION = "coherence.resolve, proposal adjuvant_or_perioperative_when_resection_required alone"
+NOT_ADJUVANT = (
+    "neoadjuvant|definitive_chemoradiation|consolidation_after_chemoradiation|advanced_first_line"
+    "|advanced_previously_treated|maintenance|local_consolidative_therapy"
+)
+
+
 def test_a_resolved_coordinate_is_known_and_a_proposed_narrowing_is_proposed():
     resolved = resolve([("inclusion", "prior_lines", ("0",), "advanced", "criterion 1")])
     assert coordinate_values(resolved["prior_advanced_lines"], "src", LINK) == (
-        env(
-            ["0"],
-            "known",
-            "src",
-            "coherence.resolve under approved relations",
-            "resolved; 1|2|3+ removed by criterion 1",
-        ),
-        env(
-            ["0"],
-            "known",
-            "src",
-            "coherence.resolve with proposed relations added",
-            "no proposed relation narrows it",
-        ),
+        env(["0"], "known", "src", KNOWN_RULE, "resolved; 1|2|3+ removed by criterion 1"),
+        env(["0"], "known", "src", INTERPOLATED_RULE, "no default relation narrows it"),
+        [],
     )
     resected = resolve([("inclusion", "resection", ("resected",), "", "criterion 0")])
-    approved, proposed = coordinate_values(resected["setting"], "src", LINK)
-    assert (approved["status"], approved["note"]) == ("unresolved", "unnarrowed")
-    assert approved["value"] == list(resected["setting"]["domain"])
-    assert proposed == env(
-        ["adjuvant", "perioperative"],
-        "proposed",
+    known, interpolated, proposed = coordinate_values(resected["setting"], "src", LINK)
+    assert (known["status"], known["note"]) == ("unresolved", "unnarrowed")
+    assert known["value"] == list(resected["setting"]["domain"])
+    assert (interpolated["status"], interpolated["note"]) == ("unresolved", "no default relation narrows it")
+    assert proposed == [
+        env(
+            ["adjuvant", "perioperative"],
+            "proposed",
+            "src",
+            RESECTION,
+            f"unresolved; {NOT_ADJUVANT} removed by adjuvant_or_perioperative_when_resection_required",
+        )
+    ]
+
+
+def test_a_defaults_narrowing_is_interpolated_never_known():
+    """Positive: stage IV and no prior advanced line: the first-line default narrows the setting to one value,
+    interpolated, with the removal it made. Negative: the known setting stays wide and unresolved."""
+    row = resolve(
+        [
+            ("inclusion", "stage", ("IV",), "", "criterion 0"),
+            ("inclusion", "prior_lines", ("0",), "advanced", "criterion 1"),
+        ]
+    )["setting"]
+    known, interpolated, proposed = coordinate_values(row, "src", LINK)
+    assert (known["value"], known["status"], known["note"]) == (list(SETTINGS), "unresolved", "unnarrowed")
+    others = "|".join(s for s in SETTINGS if s != "advanced_first_line")
+    assert interpolated == env(
+        ["advanced_first_line"],
+        "interpolated",
         "src",
-        "coherence.resolve with proposed relations added",
-        "unresolved; neoadjuvant|definitive_chemoradiation|consolidation_after_chemoradiation"
-        "|advanced_first_line|advanced_previously_treated|maintenance|local_consolidative_therapy removed by "
-        "adjuvant_or_perioperative_when_resection_required",
+        INTERPOLATED_RULE,
+        f"resolved; {others} removed by first_line_when_no_prior_advanced_therapy",
     )
+    assert proposed == []
 
 
 def test_a_conflict_or_several_values_is_unresolved_never_known():
@@ -707,42 +753,46 @@ def test_a_conflict_or_several_values_is_unresolved_never_known():
             ("exclusion", "prior_lines", ("0",), "advanced", "criterion 2"),
         ]
     )
-    approved, proposed = coordinate_values(conflict["prior_advanced_lines"], "src", LINK)
-    assert approved == env(
+    known, interpolated, proposed = coordinate_values(conflict["prior_advanced_lines"], "src", LINK)
+    assert known == env(
         [],
         "unresolved",
         "src",
-        "coherence.resolve under approved relations",
+        KNOWN_RULE,
         "conflict; 1|2|3+ removed by criterion 1; 0 removed by criterion 2",
     )
-    assert (proposed["status"], proposed["note"]) == ("unresolved", "no proposed relation narrows it")
+    assert (interpolated["status"], interpolated["note"]) == ("unresolved", "no default relation narrows it")
+    assert proposed == []
     several = resolve([("inclusion", "prior_lines", ("0", "1"), "advanced", "criterion 1")])
     assert coordinate_values(several["prior_advanced_lines"], "src", LINK)[0]["status"] == "unresolved"
 
 
 def test_a_proposed_relation_that_leaves_no_value_is_unresolved_never_proposed():
-    """A resection required (a proposed relation: adjuvant or perioperative) and a prior advanced line
-    required (an approved one: previously treated or maintenance): the proposed domain is empty, a
-    conflict."""
+    """A resection required (a proposal: adjuvant or perioperative) and a prior advanced line required (a
+    default: previously treated or maintenance): the proposal, alone on the interpolated domain, leaves
+    nothing, a conflict at its own level only."""
     row = resolve(
         [
             ("inclusion", "resection", ("resected",), "", "criterion 0"),
             ("inclusion", "prior_lines", ("1", "2", "3+"), "advanced", "criterion 1"),
         ]
     )["setting"]
-    approved, proposed = coordinate_values(row, "src", LINK)
-    assert (approved["value"], approved["status"]) == (
+    known, interpolated, proposed = coordinate_values(row, "src", LINK)
+    assert (known["value"], known["status"]) == (list(SETTINGS), "unresolved")
+    assert (interpolated["value"], interpolated["status"]) == (
         ["advanced_previously_treated", "maintenance"],
-        "unresolved",
+        "interpolated",
     )
-    assert proposed == env(
-        [],
-        "unresolved",
-        "src",
-        "coherence.resolve with proposed relations added",
-        "conflict; advanced_previously_treated|maintenance removed by "
-        "adjuvant_or_perioperative_when_resection_required",
-    )
+    assert proposed == [
+        env(
+            [],
+            "unresolved",
+            "src",
+            RESECTION,
+            "conflict; advanced_previously_treated|maintenance removed by "
+            "adjuvant_or_perioperative_when_resection_required",
+        )
+    ]
 
 
 @pytest.mark.parametrize(
@@ -1449,7 +1499,8 @@ def test_a_record_that_is_not_an_object_is_refused():
 
 
 def test_the_version_and_the_description_are_the_schemas(valid):
-    assert broken(valid, lambda r: r.update(schema_version="2")) == (
+    # a record of schema 1 (before the coordinates' statuses) is not read as schema 2
+    assert broken(valid, lambda r: r.update(schema_version="1")) == (
         ("unknown_schema_version", "schema_version"),
     )
     assert broken(valid, lambda r: r["fields"].pop("cohort")) == (("fields_differ", "fields"),)

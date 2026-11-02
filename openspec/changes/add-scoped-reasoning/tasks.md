@@ -2,11 +2,44 @@
 
 ## 1. Interim correctness
 
-- [ ] 1.1 Relations gain `kind` (strict / default / proposal) apart from approval; the four relations approved
+- [x] 1.1 Relations gain `kind` (strict / default / proposal) apart from approval; the four relations approved
       earlier become defaults; `resolve` reports the known domain (stated evidence and strict relations), the
       interpolated domain (defaults added) and each proposal's narrowing on its own; consumers read the status they
       declare (strata, cells, occupancy, results: known; near misses: known and interpolated, labelled)
-- [ ] 1.2 RxClass answers carry their warrant (request, release date, class ids) as known evidence
+- [x] 1.2 RxClass answers carry their warrant (request, release date, class ids) as known evidence
+
+  2026-11-01, done (design.md Decisions 1 and 8, "As built here"; transition report
+  `transition-relation-kinds.md`). 1.1: `Relation.kind`; the four approved relations are defaults, the three
+  proposed are proposals, none is strict; `coherence.resolve` gives each coordinate its known level,
+  `interpolated` level and `proposals` (each alone, from the interpolated domain); `accepted_value` is how a
+  consumer reads the statuses it declares (strata, expectation cells, occupancy and results: known; near
+  misses: known and interpolated), `weakest` labels each near-miss pair (design.xlsx, the `resolve` JSON and
+  landscape.json's `rests_on`), `level_status` is the status the `resolve` JSON and landscape.json give each
+  level, and the review queue raises the conflicts of the known and the interpolated levels
+  (`reading.review_coordinates`); design.xlsx's Trials, Coordinates, Relations and Near Misses sheets show the
+  levels, kinds and labels. On the frozen NSCLC records no trial has a known
+  setting any more (233 settings moved to the interpolated level, unchanged), so every by-setting stratum,
+  cell and results group is "setting unresolved" and occupancy has no occupant; the frozen expectation's
+  observations are unchanged. 1.2: each EPC and MoA answer keeps its requests (URL, parameters, retrieval
+  time) and the RxNav release (version.json, once per lookup batch); an answer cached earlier says
+  `not_recorded`, never an invented release (`reading.class_warrant`; the Classes sheet, the `resolve` JSON's
+  `rxclass`). The new and changed decisions are converged (`resolve`, `close` with `--deadline 0`,
+  `level_status`, `accepted_value`, `weakest`, `class_warrant`, `landscape.coordinate_values`,
+  `study_extract`, `landscape_record`).
+
+  2026-11-01, after review: `reading.near_miss_input`, changed by 1.1, re-converged (its first certificate
+  predated the change); the review queue reads each coordinate at its interpolated level
+  (`reading.review_coordinates`, new and converged), so a conflict a default makes is raised as before 1.1
+  (the known level alone would have dropped it; on the frozen records the queue is 25a9039's, value for
+  value); landscape.json is schema 2: each near-miss row, as written and aligned, carries `rests_on` and the
+  field definitions say so (`cohort_section`, `landscape_record` and `schema_problems` re-converged), and `rule_versions` gains
+  `relation_kinds`; design.xlsx's version is `design-2`, and every warrant of a rule that reads a coordinate
+  commits to the relations table (kinds included) and to `resolve`, `accepted_value` and the stratum rule,
+  each Relations row's to its relation, each Classes row's to its requests and release; end-to-end tests pin
+  the resolve JSON's levels and `rxclass` (found and not_recorded), and the Trials, Coordinates, Relations and
+  Classes columns. Left: the review queue showing proposals (Decision 7, review.py); landscape.json's
+  `drug_class` value carrying the RxClass warrant (add-agent-operation's fields); the setting's known level
+  stays wide until tasks 3-4 give strict relations over scoped premises.
 
 ## 2. Scoped assertions
 

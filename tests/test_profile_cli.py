@@ -3,10 +3,14 @@
 Positive: a written folder gets design.xlsx and classes.json, with every sheet the About sheet describes; the
 pull's own four files are byte for byte unchanged and the folder still verifies; a profile asks EPC and MoA
 and marks the axes it has not cached not_looked_up; `--fill-axes` asks them once, then they are read from the
-cache; resolve asks the axes its outputs read.
+cache; resolve asks the axes its outputs read; resolve's JSON and design.xlsx give each coordinate its known,
+interpolated and proposed levels with their statuses, each relation its kind, and each RxClass answer its
+requests and release (add-scoped-reasoning 1.1 and 1.2).
 Negative: a record that no longer matches its digests gets no design.xlsx (exit 1); a folder with no record
 gets nothing (exit 2); a profile without `--fill-axes` asks RxNav nothing about the axes, and with it, a
-record that does not verify is asked nothing.
+record that does not verify is asked nothing; a default's narrowing is never known and a proposal's never
+interpolated; an answer cached before answers carried a warrant is never asked again and its release is never
+invented.
 """
 
 import json
@@ -17,7 +21,11 @@ import pytest
 from conftest import FakeAPI, csv_page
 from records import ongoing_study, results_study
 
+from TrialLedger import classes as rx
 from TrialLedger import cli, warrants
+from TrialLedger.classes import RXCLASS
+from TrialLedger.coherence import RELATIONS, SETTINGS, Relation, resolve
+from TrialLedger.symbolic import _coordinate
 
 PULL_FILES = ("studies.json", "studies.csv", "review.xlsx", "record.xlsx")
 
@@ -173,8 +181,10 @@ def test_resolve_reports_a_near_miss_in_the_sheet_and_the_json(tmp_path, monkeyp
     argv = ["resolve", query, "--json", str(out), "--out", str(book)]
     assert cli.main(argv, http=api.client(), sleep=api.sleep, rxclass_get=rxclass) == 0
     header, *rows = openpyxl.load_workbook(book, read_only=True)["Near Misses"].iter_rows(values_only=True)
-    assert header[10].startswith("Representation (known for 2 of 3 trials")
+    # the first-line setting is a default's conclusion: interpolated, never known (add-scoped-reasoning 1.1)
+    assert header[10].startswith("Representation (known for 0 and interpolated for 2 of 3 trials")
     assert [row[:5] for row in rows] == [("NCT09000001", "NCT09000002", "ecog_ps", "0|1", "0|1|2")]
+    assert header[11].startswith("Rests On") and [row[11] for row in rows] == ["interpolated"]
     header, *trials = openpyxl.load_workbook(book, read_only=True)["Trials"].iter_rows(values_only=True)
     columns = [
         header.index(name) for name in ("Eligibility Content", "Inclusion Coverage", "Exclusion Coverage")
@@ -183,8 +193,8 @@ def test_resolve_reports_a_near_miss_in_the_sheet_and_the_json(tmp_path, monkeyp
         ("present", "unspecified", "unspecified")
     }
     reading = {s["nct"]: s["near_misses"] for s in json.loads(out.read_text())["studies"]}
-    assert [(m["other"], m["value"], m["other_value"]) for m in reading["NCT09000002"]] == [
-        ("NCT09000001", "0|1|2", "0|1")
+    assert [(m["other"], m["value"], m["other_value"], m["rests_on"]) for m in reading["NCT09000002"]] == [
+        ("NCT09000001", "0|1|2", "0|1", "interpolated")
     ]
     assert reading[results_study()["protocolSection"]["identificationModule"]["nctId"]] == []
 
@@ -255,11 +265,13 @@ def test_resolve_carries_an_abbreviated_record_to_the_sheets_and_the_json(tmp_pa
 
 
 def recording(asked):
-    """The `rxclass` fake, recording each request as EPC/MoA ("classes") or an axis request ("axes")."""
+    """The `rxclass` fake, recording each request as EPC/MoA ("classes"), the RxNav release ("release", asked
+    once by each lookup batch, EPC and MoA's or the axes') or an axis request ("axes")."""
 
     def get(url, params):
         epc = url.endswith("/byDrugName.json") and params.get("relas") in ("has_epc", "has_moa")
-        asked.append(("classes" if epc else "axes", url.rsplit("/", 1)[-1], params.get("drugName", "")))
+        kind = "classes" if epc else "release" if url.endswith("/version.json") else "axes"
+        asked.append((kind, url.rsplit("/", 1)[-1], params.get("drugName", "")))
         return rxclass(url, params)
 
     return get
@@ -276,8 +288,10 @@ def test_a_profile_asks_no_axes_and_marks_them_not_looked_up(folder, capsys):
     axes were never asked as not_looked_up. Negative: it asks RxNav nothing about the axes."""
     asked = []
     assert cli.main(["profile", str(folder)], rxclass_get=recording(asked)) == 0
-    assert asked and {kind for kind, *_ in asked} == {"classes"}
-    assert sorted({name for *_, name in asked}) == ["Placebo", "TM-1", "Testamab"]
+    # EPC and MoA, with the release their batch was read under asked once (its warrant), and nothing else
+    assert asked and {kind for kind, *_ in asked} == {"classes", "release"}
+    assert [kind for kind, *_ in asked].count("release") == 1 and asked[0][0] == "release"
+    assert sorted({name for kind, _, name in asked if kind == "classes"}) == ["Placebo", "TM-1", "Testamab"]
     assert axes_identities(folder) == {("Testamab", "not_looked_up", "own_name_not_looked_up")}
     assert "--fill-axes" in capsys.readouterr().err
     cache = json.loads((folder / "classes.json").read_text())["answers"]
@@ -328,3 +342,250 @@ def test_resolve_asks_the_axes_its_outputs_read(tmp_path, monkeypatch):
     assert {name for kind, _, name in asked if kind == "axes" and name} == {"Testamab", "TM-1"}
     [axes] = json.loads(out.read_text())["studies"][0]["drug_axes"]
     assert axes["drug"] == "Testamab" and axes["identity"] != "not_looked_up"
+
+
+# RxNav's own answer to version.json (read live 2026-11-01; tests/test_classes.py)
+RXNAV_VERSION = {"version": "05-Oct-2026", "apiVersion": "3.1.356"}
+EPC_REQUEST = f"{RXCLASS}?drugName=Pembrolizumab&relaSource=DAILYMED&relas=has_epc"
+MOA_REQUEST = f"{RXCLASS}?drugName=Pembrolizumab&relaSource=MEDRT&relas=has_moa"
+PD1 = "Programmed Death Receptor-1 Blocking Antibody"
+ALL_SETTINGS = list(SETTINGS)
+
+
+def released(asked):
+    """The `rxclass` fake with RxNav's release answered, recording every request."""
+
+    def get(url, params):
+        asked.append((url, dict(params)))
+        return (200, RXNAV_VERSION) if url.endswith("/version.json") else rxclass(url, params)
+
+    return get
+
+
+def resected_study(nct):
+    """A trial requiring a completed resection: only a proposal narrows its setting."""
+    study = near_miss_study(nct, "0-1")
+    study["protocolSection"]["eligibilityModule"]["eligibilityCriteria"] = (
+        "Inclusion Criteria:\n\n* Completely resected stage IB-IIIA non-small cell lung cancer\n"
+        "* ECOG performance status 0-1\n"
+    )
+    return study
+
+
+def sheet_rows(book, name):
+    header, *rows = openpyxl.load_workbook(book, read_only=True)[name].iter_rows(values_only=True)
+    return [dict(zip(header, row, strict=True)) for row in rows]
+
+
+def test_resolve_shows_each_status_each_kind_and_each_warrant(tmp_path, monkeypatch):
+    """Positive (add-scoped-reasoning 1.1 and 1.2, end to end): a first-line trial's setting is interpolated
+    by the default, with the default named, its prior lines known by its criterion; a resected trial's setting
+    is narrowed by the resection proposal alone, proposed; the Trials and Coordinates sheets show each level,
+    the Relations sheet each relation's kind beside its approval, and each RxClass answer its two requests and
+    the RxNav release, in the JSON and on the Classes sheet. Negative: the known setting never holds the
+    default's narrowing (all nine values, unresolved), a proposal never enters the interpolated level, and no
+    relation is strict."""
+    monkeypatch.setenv("TRIALLEDGER_CACHE", str(tmp_path / "cache" / "classes.json"))
+    studies = [near_miss_study("NCT09000001", "0-1"), resected_study("NCT09000005")]
+    api = FakeAPI(json_pages=[httpx.Response(200, json={"studies": studies, "totalCount": 2})])
+    out, book = tmp_path / "reading.json", tmp_path / "design.xlsx"
+    argv = ["resolve", "filter.ids=NCT09000001,NCT09000005", "--json", str(out), "--out", str(book)]
+    assert cli.main(argv, http=api.client(), sleep=api.sleep, rxclass_get=released([])) == 0
+    reading = {s["nct"]: s for s in json.loads(out.read_text())["studies"]}
+    wide = {"domain": ALL_SETTINGS, "state": "unnarrowed", "status": "unresolved", "removed_by": []}
+    first_line = [s for s in ALL_SETTINGS if s != "advanced_first_line"]
+    default = "first_line_when_no_prior_advanced_therapy"
+    assert reading["NCT09000001"]["coordinates"]["setting"] == {
+        "known": wide,
+        "interpolated": {
+            "domain": ["advanced_first_line"],
+            "state": "resolved",
+            "status": "interpolated",
+            "removed_by": [["setting", first_line, default]],
+        },
+        "proposed": [],
+    }
+    lines = {"domain": ["0"], "state": "resolved"}
+    assert reading["NCT09000001"]["coordinates"]["prior_advanced_lines"] == {
+        "known": {
+            **lines,
+            "status": "known",
+            "removed_by": [["prior_advanced_lines", ["1", "2", "3+"], "criterion 2"]],
+        },
+        "interpolated": {**lines, "status": "known", "removed_by": []},
+        "proposed": [],
+    }
+    proposal = "adjuvant_or_perioperative_when_resection_required"
+    kept = ["adjuvant", "perioperative"]
+    assert reading["NCT09000005"]["coordinates"]["setting"] == {
+        "known": wide,
+        "interpolated": wide,
+        "proposed": [
+            {
+                "relation": proposal,
+                "domain": kept,
+                "state": "unresolved",
+                "status": "proposed",
+                "removed_by": [["setting", [s for s in ALL_SETTINGS if s not in kept], proposal]],
+            }
+        ],
+    }
+    cache = json.loads((tmp_path / "cache" / "classes.json").read_text())["answers"]["Pembrolizumab"]
+    asked = [{"request": rx.request_text(w), "retrieved": w["retrieved"]} for w in cache["requests"]]
+    assert [a["request"] for a in asked] == [EPC_REQUEST, MOA_REQUEST]
+    for nct in ("NCT09000001", "NCT09000005"):
+        assert reading[nct]["experimental_drugs"] == [
+            {
+                "name": "Pembrolizumab",
+                "state": "classified",
+                "classes": [PD1],
+                "resolved_by": "Pembrolizumab",
+                "rxclass": [
+                    {
+                        "name": "Pembrolizumab",
+                        "release_state": "found",
+                        "release": "05-Oct-2026",
+                        "requests": asked,
+                    }
+                ],
+            }
+        ]
+
+    joined = " | ".join(ALL_SETTINGS)
+    trials = {row["NCT Number"]: row for row in sheet_rows(book, "Trials")}
+    levels = (
+        "Setting (known)",
+        "Setting (interpolated: default relations added)",
+        "Setting (each proposal alone)",
+    )
+    assert [trials["NCT09000001"][c] for c in (*levels, "Prior Advanced Lines (known)")] == [
+        joined,
+        "advanced_first_line",
+        None,
+        "0",
+    ]
+    assert [trials["NCT09000005"][c] for c in levels] == [
+        joined,
+        joined,
+        f"{proposal}: adjuvant | perioperative",
+    ]
+    coordinates = {(row["NCT Number"], row["Coordinate"]): row for row in sheet_rows(book, "Coordinates")}
+    columns = (
+        "Known Domain",
+        "Known State",
+        "Interpolated Domain (default relations added)",
+        "Interpolated State",
+        "Each Proposal Alone (never built on)",
+        "Removed By (status: values by criterion or relation)",
+    )
+    assert [coordinates["NCT09000001", "setting"][c] for c in columns] == [
+        joined,
+        "unnarrowed",
+        "advanced_first_line",
+        "resolved",
+        None,
+        f"interpolated: {'|'.join(first_line)} by {default}",
+    ]
+    assert [coordinates["NCT09000001", "prior_advanced_lines"][c] for c in columns] == [
+        "0",
+        "resolved",
+        "0",
+        "resolved",
+        None,
+        "known: 1|2|3+ by criterion 2",
+    ]
+    assert [coordinates["NCT09000005", "setting"][c] for c in columns] == [
+        joined,
+        "unnarrowed",
+        joined,
+        "unnarrowed",
+        f"{proposal}: adjuvant | perioperative",
+        f"proposed: {'|'.join(s for s in ALL_SETTINGS if s not in kept)} by {proposal}",
+    ]
+    kind = "Kind (strict: known; default: interpolated; proposal: shown alone, never built on)"
+    assert {row["Relation"]: (row[kind], row["Approval"]) for row in sheet_rows(book, "Relations")} == {
+        relation.id: (relation.kind, relation.approval) for relation in RELATIONS
+    }
+    assert {(relation.kind, relation.approval) for relation in RELATIONS} == {
+        ("default", "approved"),
+        ("proposal", "proposed"),
+    }
+    [classes] = sheet_rows(book, "Classes")
+    assert [classes[c] for c in ("Name Asked", "Class", CLASSES_REQUESTS, CLASSES_RELEASE)] == [
+        "Pembrolizumab",
+        PD1,
+        " | ".join(f"{a['request']} at {a['retrieved']}" for a in asked),
+        "05-Oct-2026",
+    ]
+
+
+CLASSES_REQUESTS = "Requests (each with its retrieval time)"
+CLASSES_RELEASE = "RxNav Release (not_recorded: cached before answers carried it)"
+
+
+def test_an_answer_cached_before_warrants_keeps_its_classes_and_records_no_release(tmp_path, monkeypatch):
+    """Positive: an EPC answer cached before answers carried their warrant still classes its drug, and says
+    its release was not recorded, in the JSON and on the Classes sheet. Negative: its EPC and MoA are never
+    asked again, no request is listed for it and no release is invented."""
+    cache = tmp_path / "cache" / "classes.json"
+    cache.parent.mkdir()
+    old = {
+        "codes": {"DAILYMED:has_epc": "found", "MEDRT:has_moa": "not_found"},
+        "classes": [["N0000191260", PD1, "has_epc", "DAILYMED"]],
+        "retrieved": "2026-10-31T00:00:00+00:00",
+    }
+    cache.write_text(json.dumps({"answers": {"Pembrolizumab": old}}))
+    monkeypatch.setenv("TRIALLEDGER_CACHE", str(cache))
+    api = FakeAPI(
+        json_pages=[
+            httpx.Response(200, json={"studies": [near_miss_study("NCT09000001", "0-1")], "totalCount": 1})
+        ]
+    )
+    out, book = tmp_path / "reading.json", tmp_path / "design.xlsx"
+    asked = []
+    argv = ["resolve", "filter.ids=NCT09000001", "--json", str(out), "--out", str(book)]
+    assert cli.main(argv, http=api.client(), sleep=api.sleep, rxclass_get=released(asked)) == 0
+    # the axes are asked (resolve reads them), EPC and MoA never again
+    assert not [p for url, p in asked if url == RXCLASS and p.get("relas") in ("has_epc", "has_moa")]
+    assert [p.get("relaSource") for url, p in asked if url == RXCLASS] == ["ATC", "DAILYMED", "FDASPL"]
+    [drug] = json.loads(out.read_text())["studies"][0]["experimental_drugs"]
+    assert (drug["state"], drug["classes"]) == ("classified", [PD1])
+    assert drug["rxclass"] == [
+        {"name": "Pembrolizumab", "release_state": "not_recorded", "release": "", "requests": []}
+    ]
+    [classes] = sheet_rows(book, "Classes")
+    assert [classes[c] for c in ("Name Asked", "Class", CLASSES_REQUESTS, CLASSES_RELEASE)] == [
+        "Pembrolizumab",
+        PD1,
+        None,
+        "(not_recorded)",
+    ]
+
+
+def test_a_level_the_defaults_empty_is_unresolved_in_the_json():
+    """Positive: a declared default contradicting a stated prior line leaves the known level known (one value)
+    and empties the interpolated one, which the JSON calls unresolved with the default named. Negative: an
+    emptied interpolated level is never called interpolated, and the known value is never changed by it."""
+    default = Relation(
+        "no_prior_lines_when_named", "a test default", "a test basis", "proposed", "default",
+        ("inclusion:setting_word:x",), (), "prior_advanced_lines", ("0",),
+    )  # fmt: skip
+    evidence = [
+        ("inclusion", "prior_lines", ("1",), "advanced", "criterion 1"),
+        ("inclusion", "setting_word", ("x",), "", "criterion 2"),
+    ]
+    assert _coordinate(resolve(evidence, (default,))["prior_advanced_lines"]) == {
+        "known": {
+            "domain": ["1"],
+            "state": "resolved",
+            "status": "known",
+            "removed_by": [["prior_advanced_lines", ["0", "2", "3+"], "criterion 1"]],
+        },
+        "interpolated": {
+            "domain": [],
+            "state": "conflict",
+            "status": "unresolved",
+            "removed_by": [["prior_advanced_lines", ["1"], "no_prior_lines_when_named"]],
+        },
+        "proposed": [],
+    }

@@ -3,13 +3,21 @@
 `read_population` is the one producer the outputs consume: `design.sheets` lays the reading out as
 design.xlsx and `symbolic.symbolic_output` renders it as the JSON of `trialledger resolve`. Each study's
 eligibility is itemized and typed and its coverage read (content, sectioning, what the record says of its own
-coverage in each section), its coordinates resolved, its experimental drugs classed (RxClass, or a
+coverage in each section), its coordinates resolved at each status (known, interpolated, each proposal alone:
+coherence.resolve), its experimental drugs classed (RxClass, each answer with its warrant, or a
 target its own record states) and given their axes (RxNorm identity by the own name, ATC and structure classes
 with their standing and warrants, the own entry's targets aligned to ATC; not_looked_up where the axes were
 never asked of RxNav), every intervention entry's modality
 and cell extractions read with their warrants, its intervention MeSH scoped, its outcomes and results typed
 and its frozen expectations observed; across the views, the classes known to the population, each view's
-review flags, the near-miss pairs as written, the aligned pairs (ATC) and the structure relations.
+review flags (the conflicts of the known and the interpolated levels), the near-miss pairs as written, the
+aligned pairs (ATC) and the structure relations, each pair labelled with the weakest status its
+representation rests on.
+
+Each consumer reads the statuses it declares (add-scoped-reasoning, Decision 7): near misses read known and
+interpolated (NEAR_MISS_ACCEPTS); design.py's strata, expectation cells, occupancy and results grouping the
+known coordinates only; the review flags raise a conflict at either level built on (review_coordinates); a
+proposal is never built on.
 """
 
 from __future__ import annotations
@@ -19,7 +27,7 @@ from typing import Any
 from TrialLedger import classes as rx
 from TrialLedger import warrants
 from TrialLedger.banks import endpoint_classes, stated_targets, time_points, type_criterion
-from TrialLedger.coherence import COORDINATES, resolve
+from TrialLedger.coherence import COORDINATES, accepted_value, resolve, weakest
 from TrialLedger.criteria import eligibility_coverage, itemize
 from TrialLedger.expectations import FROZEN, autoimmune_exclusion
 from TrialLedger.modality import entry_properties
@@ -27,26 +35,38 @@ from TrialLedger.nearmiss import near_misses
 from TrialLedger.profile import element_key
 from TrialLedger.review import flags_for
 
+# The statuses the near-miss representation accepts (Decision 7): its setting may be interpolated.
+NEAR_MISS_ACCEPTS = ("known", "interpolated")
+
 
 def read_population(studies: list[dict[str, Any]], answers: dict[str, Any]) -> dict[str, Any]:
     """Every study read once, with the RxClass `answers`, and what is computed across them: the views, the
     classes classified anywhere in the population, each view's review flags (in the order of the views), each
-    view as the near-miss decision reads it, and the near-miss pairs."""
+    view as the near-miss decision reads it with the status its setting rests on ("" when it has none), and
+    the near-miss pairs as written and aligned, each with its label: the weakest status of the two settings
+    it rests on (coherence.weakest; the classes and predicates are known), in `pair_status` and
+    `aligned_pair_status`, in the order of the pairs."""
     views = [study_view(study, answers) for study in studies]
     known_classes = sorted({c for v in views for _, s, e, _ in v["drugs"] if s == "classified" for c in e})
     near_miss_trials = [near_miss_input(view) for view in views]
+    rests_on = [accepted_value(view["coordinates"]["setting"], NEAR_MISS_ACCEPTS)[1] for view in views]
+    status = {trial[0]: held for trial, held in zip(near_miss_trials, rests_on, strict=True)}
     aligned = [
         aligned_near_miss_input(view, trial) for view, trial in zip(views, near_miss_trials, strict=True)
     ]
     basis = {trial[0]: b for trial, b in aligned}
     aligned_pairs = [(*pair, basis[pair[0]], basis[pair[1]]) for pair in near_misses([t for t, _ in aligned])]
+    pairs = near_misses(near_miss_trials)
     return {
         "views": views,
         "known_classes": known_classes,
         "flags": [review_flags(view, known_classes) for view in views],
         "near_miss_trials": near_miss_trials,
-        "pairs": near_misses(near_miss_trials),
+        "near_miss_status": rests_on,
+        "pairs": pairs,
+        "pair_status": [weakest([status[p[0]], status[p[1]]]) for p in pairs],
         "aligned_pairs": aligned_pairs,
+        "aligned_pair_status": [weakest([status[p[0]], status[p[1]]]) for p in aligned_pairs],
         "structure_relations": structure_relations(views),
     }
 
@@ -190,6 +210,10 @@ def study_view(study: dict[str, Any], answers: dict[str, Any]) -> dict[str, Any]
         "coordinates": resolve(evidence),
         "elements": elements,
         "drugs": drugs,
+        # each experimental drug's names, each with its EPC and MoA answer's warrant (class_warrant)
+        "class_warrants": [
+            (drug, alias, *class_warrant(answers.get(alias))) for drug, *_ in drugs for alias in names[drug]
+        ],
         "drug_axes": [
             drug_axes_view(drug, names[drug], descriptions.get(drug, ""), answers) for drug, *_ in drugs
         ],
@@ -216,15 +240,16 @@ def _observe(expectation, readable, code, coverage, drugs) -> tuple[str, str, li
 
 
 def near_miss_input(view: dict[str, Any]) -> tuple[str, dict[str, str], dict[str, str], str, str]:
-    """A study view as the near-miss decision reads it: its representation (its setting when the record and
-    the approved relations leave one value; its experimental drugs' classes when every drug's class is known,
-    from RxClass or stated by its own record), its design predicates (the ECOG values and histologies its
-    inclusion criteria state, the checkpoint expectation when present or admitted), its lead sponsor and its
-    start year. Anything not known is "". Known means read from the record or derived from it by an approved
-    rule; a proposed relation's narrowing is not known (the founder, 2026-10-31). Eligibility coverage needs
-    no handling here: every predicate is a stated value or "", and "" never matches, so a silent record
-    (empty, abbreviated or unspecified) is never read as differing."""
-    setting = view["coordinates"]["setting"]["domain"]
+    """A study view as the near-miss decision reads it: its representation (its setting when the known or the
+    interpolated domain is one value, NEAR_MISS_ACCEPTS through coherence.accepted_value; its experimental
+    drugs' classes when every drug's class is known, from RxClass or stated by its own record), its design
+    predicates (the ECOG values and histologies its inclusion criteria state, the checkpoint expectation when
+    present or admitted), its lead sponsor and its start year. Anything not known or interpolated is "". A
+    proposal's narrowing is never built on (the founder, 2026-10-31; add-scoped-reasoning, Decision 7), and
+    the status the setting rests on labels each pair (read_population). Eligibility coverage needs no handling
+    here: every predicate is a stated value or "", and "" never matches, so a silent record (empty,
+    abbreviated or unspecified) is never read as differing."""
+    setting, _status = accepted_value(view["coordinates"]["setting"], NEAR_MISS_ACCEPTS)
     drugs = view["drugs"]
     classified = drugs and all(state in ("classified", "stated_by_record") for _, state, _, _ in drugs)
     classes = " + ".join(sorted({c for _, _, epc, _ in drugs for c in epc})) if classified else ""
@@ -238,7 +263,7 @@ def near_miss_input(view: dict[str, Any]) -> tuple[str, dict[str, str], dict[str
     status = next(iter(view["observations"].values()), ("", "", [], []))[0]
     return (
         view["nct"],
-        {"setting": setting[0] if len(setting) == 1 else "", "classes": classes},
+        {"setting": setting, "classes": classes},
         {
             "ecog_ps": ecog,
             "histology": "|".join(sorted(histologies)),
@@ -359,15 +384,58 @@ def structure_relations(views: list[dict[str, Any]]) -> list[tuple[str, str, str
     ]
 
 
+def class_warrant(answer: Any) -> tuple[str, str, list[tuple[str, str]]]:
+    """What a name's EPC and MoA answer says of its own warrant: (release state, RxNav release, requests)
+    (pure — pinned).
+
+    `answer` is the RxClass answer cached for one name (classes.lookup's), None when the name was never asked.
+      not_asked     — no answer: ("not_asked", "", []);
+      not_recorded  — an answer cached before answers carried their requests and release (2026-11-01): its
+                      classes stand as answered, and its release was not recorded, never invented:
+                      ("not_recorded", "", []);
+      found         — the release read once for its lookup batch (RxNav's version.json): ("found", the
+                      release, its requests);
+      lookup_failed, malformed — the release could not be read (classes.rxnav_release's code): (that code, "",
+                      its requests).
+    Each request is (the URL with its parameters, as asked; its retrieval time).
+    """
+    if not isinstance(answer, dict):
+        return "not_asked", "", []
+    if "requests" not in answer or "release" not in answer:
+        return "not_recorded", "", []
+    code, release, _version_request = answer["release"]
+    return code, release, [(rx.request_text(w), w["retrieved"]) for w in answer["requests"]]
+
+
+def review_coordinates(coordinates: dict[str, dict[str, Any]]) -> dict[str, tuple[list[str], str, list]]:
+    """The coordinates the review queue asks about, as (domain, state, what removed values) (pure — pinned).
+
+    `coordinates` are coherence.resolve's for one trial. The queue shows the conflicts of the levels that
+    are built on (add-scoped-reasoning, Decision 7), the known and the interpolated, and each coordinate is
+    read at its interpolated level, which holds both: closure only removes values, so a known domain emptied
+    by stated evidence or a strict relation is empty there too, and a default that contradicts stated
+    evidence, or two defaults that disagree, empty it there alone. Its causes are the criteria and relations
+    that removed values at both levels, the known level's first. A proposal is never read here: its
+    narrowing, a conflict included, is shown with that proposal alone, never raised as the trial's.
+    """
+    return {
+        name: (
+            list(row["interpolated"]["domain"]),
+            row["interpolated"]["state"],
+            [cause[2] for cause in row["causes"] + row["interpolated"]["causes"]],
+        )
+        for name, row in coordinates.items()
+    }
+
+
 def review_flags(view: dict[str, Any], known_classes: list[str]) -> list[tuple]:
     """The review flags of one study view: what the symbolic reading leaves for an expert or a model, the
-    record's own abbreviation markers among them."""
+    record's own abbreviation markers among them. Its coordinates are review_coordinates': a conflict is
+    flagged where the stated evidence, a strict relation or a default leaves no value (Decision 7); a
+    proposal's narrowing is never flagged here."""
     return flags_for(
         [(drug, state) for drug, state, _, _ in view["drugs"]],
-        {
-            name: (list(row["domain"]), row["state"], [c[2] for c in row["causes"]])
-            for name, row in view["coordinates"].items()
-        },
+        review_coordinates(view["coordinates"]),
         {name: list(values) for name, values in COORDINATES.items()},
         {eid: (s, r, c) for eid, (s, r, c, _) in view["observations"].items()},
         known_classes,

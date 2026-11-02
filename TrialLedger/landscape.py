@@ -23,7 +23,7 @@ import copy
 from typing import Any
 
 from TrialLedger import __version__, warrants
-from TrialLedger.coherence import RELATIONS, SETTINGS
+from TrialLedger.coherence import RELATIONS, SETTINGS, level_status
 from TrialLedger.design import VERSION as DESIGN_VERSION
 from TrialLedger.design import _profile_trials
 from TrialLedger.ledger import as_list, field_state, get, location, results_state
@@ -42,7 +42,10 @@ from TrialLedger.symbolic import _axes
 from TrialLedger.typematrix import UNIVERSE, declared_manifest, study_coordinates, universe_status
 from TrialLedger.workbook import CODE_ROOT, NO_RESULTS, RESULTS_TEXT
 
-SCHEMA_VERSION = "1"
+# Schema 2 (add-scoped-reasoning 1.1): each coordinate at three statuses (<name>, <name>_interpolated,
+# <name>_proposed, replacing <name>_with_proposed_relations), the statuses' meanings with them, each near-miss
+# pair's `rests_on`, and the rule versions' `relation_kinds`.
+SCHEMA_VERSION = "2"
 JSON_NAME = "landscape.json"
 P = "protocolSection"
 R = "resultsSection"
@@ -61,9 +64,12 @@ ENVELOPE_MEANINGS = {
 }
 ENVELOPE = tuple(ENVELOPE_MEANINGS)
 STATUSES = {
-    "known": "read from the record as it holds it, or derived from it by a named rule the founder approved",
-    "interpolated": "a guess from a rule over the record's wording (a name's stem), never a reading",
-    "proposed": "derived through a relation that is proposed, not approved: shown, never reported as known",
+    "known": "read from the record as it holds it, or derived from it by a named rule that reads what it "
+    "states (a typed criterion, a class the record or RxClass states, a strict relation's conclusion); never "
+    "a default's",
+    "interpolated": "assumed until overruled: a default relation's conclusion, or a guess from a rule over "
+    "the record's wording (a name's stem); never a reading, and built on only where a consumer says so",
+    "proposed": "a proposal's narrowing, each on its own: shown, never built on and never reported as known",
     "not_stated": "the record holds no value; the note gives the ledger's absence state; never zero or no",
     "not_posted": "no results are posted for the study (the registry's own flag): nothing is reported",
     "unresolved": "the rules cannot settle it from the record; the note says why; it is not an absence",
@@ -118,7 +124,9 @@ MECHANISM_COLUMNS = (
     "status",
 )
 OCCUPANCY_COLUMNS = ("setting", "class", "occupying", "could_fall_here", "state")
-NEAR_MISS_COLUMNS = (
+# A pair's columns as nearmiss.near_misses gives them; each table adds what its reading adds, and `rests_on`
+# last: the weakest status the pair's two settings rest on (reading.read_population's pair statuses).
+PAIR_COLUMNS = (
     "a",
     "b",
     "difference",
@@ -130,7 +138,8 @@ NEAR_MISS_COLUMNS = (
     "start_year_b",
     "predicates_agreeing",
 )
-ALIGNED_COLUMNS = (*NEAR_MISS_COLUMNS, "basis_a", "basis_b")
+NEAR_MISS_COLUMNS = (*PAIR_COLUMNS, "rests_on")
+ALIGNED_COLUMNS = (*PAIR_COLUMNS, "basis_a", "basis_b", "rests_on")
 ENDPOINT_COLUMNS = ("outcome_type", "endpoint_class", "trials", "ncts", "outcomes", "time_points")
 STRUCTURE_COLUMNS = ("rxcui_a", "name_a", "rxcui_b", "name_b", "taxonomy", "class", "release")
 REVIEW_COLUMNS = ("nct", "kind", "element", "why", "priority", "evidence", "question", "options", "answer")
@@ -150,6 +159,8 @@ RULE_VERSIONS = {
     "design": DESIGN_VERSION,
     "derivation_code_root": CODE_ROOT,
     "relations": {relation.id: relation.approval for relation in RELATIONS},
+    # each relation's kind (add-scoped-reasoning, Decision 2): what its conclusion is, apart from its approval
+    "relation_kinds": {relation.id: relation.kind for relation in RELATIONS},
 }
 
 # The keys of each object value, in order: `fields` names them, and tests/test_landscape.py holds every value
@@ -220,10 +231,13 @@ DOCUMENT_KEYS = (
 STATED = ("known", "not_stated")
 KNOWN = ("known",)
 RESOLVED = ("known", "unresolved")
-WITH_PROPOSED = ("known", "proposed", "unresolved")
+INTERPOLATED = ("known", "interpolated", "unresolved")
+PROPOSED = ("proposed", "unresolved")
 RESULTS = ("known", "not_posted", "not_stated", "unresolved")
 MODALITY = ("known", "interpolated")
 ROWS = "list of row: "
+KNOWN_RULE = "coherence.resolve, known: stated evidence and strict relations"
+INTERPOLATED_RULE = "coherence.resolve, interpolated: default relations added"
 
 _CRITERION = (
     ("piece", "integer", (), "criteria.itemize", "the criterion's piece number in the eligibility text"),
@@ -271,7 +285,13 @@ FIELD_TABLE: tuple[tuple[str, str, tuple[str, ...], str, str], ...] = (
     ),
     ("manifest.merkle_root", "string", (), "warrants.merkle_root", "the Merkle root of the study digests"),
     ("manifest.code_commit", "string", (), "record.code_commit", "the code's git commit, marked when dirty"),
-    ("manifest.rule_versions", "object", (), "landscape.RULE_VERSIONS", "schema, tool, design, code root"),
+    (
+        "manifest.rule_versions",
+        "object",
+        (),
+        "landscape.RULE_VERSIONS",
+        "schema, tool, design, code root, each relation's approval (relations) and kind (relation_kinds)",
+    ),
     ("manifest.retrieval", "object", (), "the pull", "how many studies matched and how many were read"),
     ("studies", "list of section", (), "each study record", "every study read, in the pull's order"),
     ("studies[].nct", "value(string)", STATED, f"{P}.identificationModule.nctId", "the NCT number"),
@@ -323,7 +343,8 @@ FIELD_TABLE: tuple[tuple[str, str, tuple[str, ...], str, str], ...] = (
         "section",
         (),
         "coherence.resolve",
-        "point 4: the design coordinates, each a domain of still-possible values",
+        "point 4: the design coordinates, each a domain of still-possible values, known, interpolated and as "
+        "each proposal alone would narrow it",
     ),
     *(
         entry
@@ -336,16 +357,26 @@ FIELD_TABLE: tuple[tuple[str, str, tuple[str, ...], str, str], ...] = (
                 f"studies[].line_of_therapy_and_setting.{name}",
                 "value(list of string)",
                 RESOLVED,
-                "coherence.resolve under approved relations",
-                f"{meaning}: known when one value remains, unresolved when several or none (a conflict)",
+                KNOWN_RULE,
+                f"{meaning}, known (the record's own criteria and the strict relations): known when one "
+                "value remains, unresolved when several or none (a conflict)",
             ),
             (
-                f"studies[].line_of_therapy_and_setting.{name}_with_proposed_relations",
+                f"studies[].line_of_therapy_and_setting.{name}_interpolated",
                 "value(list of string)",
-                WITH_PROPOSED,
-                "coherence.resolve with proposed relations added",
-                f"{meaning} as proposed relations would narrow it: the approved value's status when they do "
-                "not narrow it, proposed when they narrow it, unresolved when they leave none (a conflict)",
+                INTERPOLATED,
+                INTERPOLATED_RULE,
+                f"{meaning} as the default relations narrow the known value: the known value's status when "
+                "they do not narrow it, interpolated when they leave one or more values, unresolved when "
+                "none (a conflict)",
+            ),
+            (
+                f"studies[].line_of_therapy_and_setting.{name}_proposed",
+                "list of value(list of string)",
+                PROPOSED,
+                "coherence.resolve, each proposal alone",
+                f"{meaning} as each proposal alone would narrow the interpolated value, one value for each "
+                "proposal that narrows it: proposed, or unresolved when it leaves none; never built on",
             ),
         )
     ),
@@ -592,14 +623,17 @@ FIELD_TABLE: tuple[tuple[str, str, tuple[str, ...], str, str], ...] = (
         ROWS + ", ".join(NEAR_MISS_COLUMNS),
         (),
         "nearmiss.near_misses",
-        "pairs whose representation is known and equal and that differ in one predicate",
+        "pairs whose representation (one setting, known or interpolated; every experimental drug's class) is "
+        "equal and that differ in one predicate known for both; rests_on: the weakest status the pair's two "
+        "settings rest on (known, or interpolated where a default relation decided either)",
     ),
     (
         "cohort.aligned_near_misses",
         ROWS + ", ".join(ALIGNED_COLUMNS),
         (),
         "nearmiss.near_misses over reading.aligned_near_miss_input",
-        "pairs aligned by ATC class, each with its basis",
+        "pairs aligned by ATC class, each with its basis and, in rests_on, the weakest status the pair's two "
+        "settings rest on (known or interpolated)",
     ),
     (
         "cohort.endpoints",
@@ -690,37 +724,59 @@ def stated(study: dict[str, Any], path: tuple[str | int, ...], link: str) -> dic
     return envelope(held, "known", location(path), "", "", link)
 
 
-def coordinate_values(row: dict[str, Any], source: str, link: str) -> tuple[dict[str, Any], dict[str, Any]]:
-    """One design coordinate as the reading resolved it, under approved relations and with proposed ones added
-    (pure — pinned).
+def coordinate_values(
+    row: dict[str, Any], source: str, link: str
+) -> tuple[dict[str, Any], dict[str, Any], list[dict[str, Any]]]:
+    """One design coordinate as the reading resolved it: its known value, its interpolated value and each
+    proposal's narrowing alone (pure — pinned).
 
-    `row` is coherence.resolve's for the coordinate. The approved value is its domain, as a list:
-      known      — one value remains (resolved);
-      unresolved — several remain (unnarrowed or unresolved), or none (a conflict); the note names the state
-                   and every removal's cause.
-    The value with proposed relations is the domain they leave, its note the proposed state and causes:
-      the approved value's status — no proposed relation narrows it (noted so);
-      proposed                    — they narrow it to one or more values;
-      unresolved                  — they narrow it to none (a conflict), as a conflict is under approved ones.
-    A proposed narrowing is never known.
+    `row` is coherence.resolve's for the coordinate. Each value is the domain at its level, as a list, with
+    the status coherence.level_status gives it and a note naming the level's state and each removal it made:
+      known        — the known domain (the record's own criteria and the strict relations): known when one
+                     value remains, unresolved when several remain or none (a conflict);
+      interpolated — the domain the default relations leave: the known value's status when they leave it as
+                     it is (noted so); interpolated when they narrow it to one or more values, unresolved when
+                     to none;
+      proposed     — one value for each proposal that narrows the coordinate, alone, from the interpolated
+                     domain: proposed when it leaves one or more values, unresolved when none; none narrowing
+                     it, an empty list.
+    A default's conclusion is never known, and a proposal's narrowing never known or interpolated.
     """
-    domain, narrower = list(row["domain"]), list(row["with_proposed"])
-    causes = [f"{'|'.join(removed)} removed by {cause}" for _, removed, cause in row["causes"]]
-    status = "known" if row["state"] == "resolved" else "unresolved"
-    approved = envelope(
-        domain,
-        status,
+    known, interpolated = row["domain"], row["interpolated"]
+    removals = [f"{'|'.join(removed)} removed by {cause}" for _, removed, cause in row["causes"]]
+    known_value = envelope(
+        list(known),
+        level_status("known", known, known),
         source,
-        "coherence.resolve under approved relations",
-        "; ".join([row["state"], *causes]),
+        KNOWN_RULE,
+        "; ".join([row["state"], *removals]),
         link,
     )
-    rule = "coherence.resolve with proposed relations added"
-    if narrower == domain:
-        return approved, envelope(narrower, status, source, rule, "no proposed relation narrows it", link)
-    proposed = [f"{'|'.join(removed)} removed by {cause}" for _, removed, cause in row["proposed_causes"]]
-    note = "; ".join([row["proposed_state"], *proposed])
-    return approved, envelope(narrower, "proposed" if narrower else "unresolved", source, rule, note, link)
+    added = [f"{'|'.join(removed)} removed by {cause}" for _, removed, cause in interpolated["causes"]]
+    unchanged = tuple(interpolated["domain"]) == tuple(known)
+    interpolated_value = envelope(
+        list(interpolated["domain"]),
+        level_status("interpolated", interpolated["domain"], known),
+        source,
+        INTERPOLATED_RULE,
+        "no default relation narrows it" if unchanged else "; ".join([interpolated["state"], *added]),
+        link,
+    )
+    proposed = [
+        envelope(
+            list(proposal["domain"]),
+            level_status("proposed", proposal["domain"], known),
+            source,
+            f"coherence.resolve, proposal {proposal['relation']} alone",
+            "; ".join(
+                [proposal["state"]]
+                + [f"{'|'.join(removed)} removed by {cause}" for _, removed, cause in proposal["causes"]]
+            ),
+            link,
+        )
+        for proposal in row["proposals"]
+    ]
+    return known_value, interpolated_value, proposed
 
 
 def results_value(state: str, link: str) -> dict[str, Any]:
@@ -1171,9 +1227,10 @@ def study_extract(study: dict[str, Any], view: dict[str, Any], tiers: dict[str, 
     references, documents = reference_values(study, nct, link)
     coordinates = {}
     for name in ("setting", "prior_advanced_lines"):
-        approved, proposed = coordinate_values(view["coordinates"][name], ELIGIBILITY_TEXT, link)
-        coordinates[name] = approved
-        coordinates[f"{name}_with_proposed_relations"] = proposed
+        known, interpolated, proposed = coordinate_values(view["coordinates"][name], ELIGIBILITY_TEXT, link)
+        coordinates[name] = known
+        coordinates[f"{name}_interpolated"] = interpolated
+        coordinates[f"{name}_proposed"] = proposed
     standard = []
     for piece, section, _text, atoms in view["criteria"]:
         elements = [element_key(effective_section(section, a[3]), a[1], a[2], a[3]) for a in atoms]
@@ -1260,9 +1317,10 @@ def cohort_section(reading: dict[str, Any]) -> dict[str, Any]:
     The frequency and mechanism rows over every trial ("all trials") then by known setting, from the same
     trials as design.xlsx's Profile and Mechanism Signals sheets (design._profile_trials); the occupancy of
     every setting and observed class cell, as its Occupancy sheet computes it; the near-miss pairs as written
-    and aligned; the planned endpoints and time points by class (endpoint_profile); the structure relations;
-    and the thresholds the tiers and signals were read at. Comparable posted results wait on the endpoint
-    bank (add-coherence-engine 5.3) and are not here.
+    and aligned, each with the weakest status its two settings rest on (`rests_on`: the reading's
+    pair_status and aligned_pair_status, in the order of the pairs); the planned endpoints and time points by
+    class (endpoint_profile); the structure relations; and the thresholds the tiers and signals were read at.
+    Comparable posted results wait on the endpoint bank (add-coherence-engine 5.3) and are not here.
     """
     views = reading["views"]
     frequency, mechanism = [], []
@@ -1294,9 +1352,13 @@ def cohort_section(reading: dict[str, Any]) -> dict[str, Any]:
         "occupancy": [
             dict(zip(OCCUPANCY_COLUMNS, row, strict=True)) for row in occupancy_rows(cells, occupancy_trials)
         ],
-        "near_misses": [dict(zip(NEAR_MISS_COLUMNS, pair, strict=True)) for pair in reading["pairs"]],
+        "near_misses": [
+            dict(zip(NEAR_MISS_COLUMNS, (*pair, rests_on), strict=True))
+            for pair, rests_on in zip(reading["pairs"], reading["pair_status"], strict=True)
+        ],
         "aligned_near_misses": [
-            dict(zip(ALIGNED_COLUMNS, pair, strict=True)) for pair in reading["aligned_pairs"]
+            dict(zip(ALIGNED_COLUMNS, (*pair, rests_on), strict=True))
+            for pair, rests_on in zip(reading["aligned_pairs"], reading["aligned_pair_status"], strict=True)
         ],
         "endpoints": [
             dict(zip(ENDPOINT_COLUMNS, (*row[:5], dict(row[5])), strict=True)) for row in endpoints
@@ -1342,7 +1404,7 @@ def landscape_record(
     scope: Any,
     manifest: dict[str, Any],
 ) -> dict[str, Any]:
-    """landscape.json: the record of truth for one run, schema v1 (pure — pinned).
+    """landscape.json: the record of truth for one run, schema v2 (pure — pinned).
 
     `reading` is reading.read_population's over `studies`, in the same order: a reading whose views' digests
     are not the studies' digests, in order (other studies, another order, another count), raises ValueError
@@ -1540,7 +1602,7 @@ def study_mismatches(record: dict[str, Any]) -> list[tuple[str, str]]:
 
 
 def schema_problems(record: Any) -> tuple[tuple[str, str], ...]:
-    """Every way a record departs from schema v1 that the record itself shows, each by its code and where
+    """Every way a record departs from schema v2 that the record itself shows, each by its code and where
     (pure — pinned).
 
     Walked from the root level by level (breadth first; WALK_DEPTH levels reach every node a described field

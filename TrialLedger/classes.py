@@ -8,7 +8,10 @@ Established Pharmacologic Class) and `has_moa` from MED-RT (mechanism of action)
 RxClass id and relation source. A name RxClass does not know is `not_found`; a failed request is
 `lookup_failed`; neither is ever read as "no class". The answers are cached beside the pull in classes.json,
 with the request and the retrieval time (of the cache's last extension, and of each answer since 2026-11-01;
-an answer cached before then has none), so a profile can be re-derived without the network.
+an answer cached before then has none), so a profile can be re-derived without the network; each answer
+looked up since add-scoped-reasoning 1.2 carries its warrant: every request it made (URL, parameters,
+retrieval time) and the RxNav release it was read under, asked once per lookup batch. An answer cached before
+then keeps its classes, and its release is not recorded, never invented.
 
 The axes (add-scoped-reasoning, Decision 11) are separate coordinates, never merged with the classes above or
 with each other: the ATC class (RxClass relaSource ATC) and the chemical-structure class
@@ -150,23 +153,33 @@ def lookup(
     spacing: float = 0.2,
     progress: Callable[[str], None] = _quiet,
 ) -> dict[str, dict[str, Any]]:
-    """Ask RxClass for each name, both queries, spaced; each name's code per query, its classes and when it
-    was retrieved. How far it has got is said through `progress` (progress_due)."""
+    """Ask RxClass for each name, both queries, spaced; each name's code per query, its classes, when it was
+    retrieved, and its warrant (add-scoped-reasoning 1.2): the requests it made (`requests`: each URL, its
+    parameters and its retrieval time) and the RxNav release it was read under (`release`: rxnav_release's
+    code and release beside the version.json request's warrant), the release asked once for the batch, as
+    lookup_axes asks it. No name, no request. How far it has got is said through `progress` (progress_due)."""
+    asked = list(dict.fromkeys(names))
+    if not asked:
+        return {}
+    warrant, status, body = _warranted(get, RXNAV_VERSION, {}, sleep, spacing)
+    release = [*rxnav_release(status, body), warrant]
     answers: dict[str, dict[str, Any]] = {}
-    unique = list(dict.fromkeys(names))
-    for done, name in enumerate(unique, 1):
-        per_query = {}
+    for done, name in enumerate(asked, 1):
+        per_query, requests = {}, []
         for source, rela in QUERIES:
-            status, body = get(RXCLASS, {"drugName": name, "relaSource": source, "relas": rela})
+            params = {"drugName": name, "relaSource": source, "relas": rela}
+            warrant, status, body = _warranted(get, RXCLASS, params, sleep, spacing)
+            requests.append(warrant)
             per_query[f"{source}:{rela}"] = rxclass_classes(status, body)
-            sleep(spacing)
         answers[name] = {
             "codes": {key: code for key, (code, _) in per_query.items()},
             "classes": sorted({c for _, classes in per_query.values() for c in classes}),
             "retrieved": datetime.now(UTC).isoformat(timespec="seconds"),
+            "requests": requests,
+            "release": list(release),
         }
-        if progress_due(done, len(unique)):
-            progress(f"drug classes asked of RxNav for {done} of {len(unique)} drug names")
+        if progress_due(done, len(asked)):
+            progress(f"drug classes asked of RxNav for {done} of {len(asked)} drug names")
     return answers
 
 
@@ -243,7 +256,10 @@ def load_or_lookup_at(
     `progress` hears, before each lookup, how many names it will ask about, and then how far it has got
     (progress_due), so a long one is never silent.
 
-    EPC and MoA are asked for every name of `names` and `axes_names` not yet cached. The axes (RxNorm
+    EPC and MoA are asked for every name of `names` and `axes_names` not yet cached, each answer with its
+    warrant (lookup: its requests and the RxNav release, read once for the batch); an answer cached before
+    answers carried one keeps its classes as answered and is never asked again or rewritten, so its release
+    stays not recorded (reading.class_warrant), never invented. The axes (RxNorm
     identity, ATC, structure: four to six spaced requests a name) are asked only when `fill_axes` is given,
     and only for `axes_names` (the experimental drugs' names, the only ones the reading reads) not yet holding
     them: a consumer that reads them (the `resolve` JSON and its design.xlsx) or the explicit fill
@@ -272,10 +288,12 @@ def load_or_lookup_at(
             answers[name]["axes"] = axes
     if missing or unasked:
         cache = {
-            "source": "NLM RxClass REST API, byDrugName; DAILYMED has_epc and MEDRT has_moa; per name under "
-            '"axes": RxNorm identity (rxcui by exact name, properties, related ingredients), ATC, and '
-            "has_chemical_structure from DAILYMED and FDASPL, each with its request, retrieval time and "
-            "release",
+            "source": "NLM RxClass REST API, byDrugName; DAILYMED has_epc and MEDRT has_moa, each name's "
+            'answer with its "requests" (URL, parameters, retrieval time) and the RxNav "release" it was '
+            "read under (version.json, asked once per lookup batch; an answer cached before 2026-11-01 holds "
+            'neither); per name under "axes": RxNorm identity (rxcui by exact name, properties, related '
+            "ingredients), ATC, and has_chemical_structure from DAILYMED and FDASPL, each with its request, "
+            "retrieval time and release",
             "endpoint": RXCLASS,
             "retrieved": datetime.now(UTC).isoformat(timespec="seconds"),
             "answers": answers,

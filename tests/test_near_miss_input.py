@@ -1,22 +1,30 @@
 """A study view as the near-miss decision reads it.
 
-Positive: one setting under approved relations and drugs whose classes are all known (RxClass or stated by
-the record) make a known representation; the first inclusion ECOG atom and every inclusion histology are
-predicates; a present or negated checkpoint expectation is a predicate.
-Negative: several candidate settings, a setting only proposed relations narrow, an unresolved drug or no drugs
-leave the representation unknown; exclusion atoms are not predicates; an expectation not documented,
-unresolved or not applicable is unknown.
+Positive: one setting, known or interpolated (the near-miss representation accepts both: add-scoped-reasoning,
+Decision 7), and drugs whose classes are all known (RxClass or stated by the record) make a representation;
+the first inclusion ECOG atom and every inclusion histology are predicates; a present or negated checkpoint
+expectation is a predicate; on real records, the setting the first-line default leaves.
+Negative: several candidate settings, a setting only a proposal narrows, an unresolved drug or no drugs leave
+the representation unknown; exclusion atoms are not predicates, and another concept's inclusion values are
+never the ECOG; an expectation not documented, unresolved or not applicable is unknown.
 """
 
-from TrialLedger.reading import near_miss_input
+from production_path import near_miss_study
+from records import results_study
+
+from TrialLedger.reading import near_miss_input, study_view
 
 PD1 = "Programmed Death Receptor-1 Blocking Antibody"
 
 
-def view(settings=("advanced_first_line",), drugs=None, criteria=(), status="present", proposed=None):
+def view(
+    settings=("advanced_first_line",), drugs=None, criteria=(), status="present", proposed=None, known=None
+):
+    row = {"domain": settings if known is None else known, "interpolated": {"domain": settings}}
+    row["proposals"] = [{"relation": "p", "domain": proposed}] if proposed else []
     return {
         "nct": "NCT1",
-        "coordinates": {"setting": {"domain": settings, "with_proposed": proposed or settings}},
+        "coordinates": {"setting": row},
         "drugs": [("pembrolizumab", "classified", [PD1], "dailymed")] if drugs is None else drugs,
         "criteria": list(criteria),
         "observations": {"checkpoint": (status, "", [], [])} if status else {},
@@ -71,6 +79,37 @@ def test_unknowns_stay_unknown():
     }
     for status in ("not_documented", "unresolved", "not_applicable", ""):
         assert near_miss_input(view(status=status))[2]["autoimmune_exclusion"] == ""
+
+
+def test_an_interpolated_setting_is_the_representation():
+    """Positive: a setting only a default narrows to one value (its known domain wide) is the representation.
+    Negative: none is invented from the interpolated level when it holds several values."""
+    wide = ("advanced_first_line", "maintenance", "adjuvant")
+    assert near_miss_input(view(settings=("maintenance",), known=wide))[1]["setting"] == "maintenance"
+    assert near_miss_input(view(settings=wide[:2], known=wide))[1]["setting"] == ""
+
+
+def test_real_records_read_their_own_atoms_and_the_setting_the_defaults_leave():
+    """Positive: production_path's first-line record (stage IV, no prior advanced therapy) reads the setting
+    the first-line default leaves, its known setting wide, and the ECOG its inclusion states. Negative: the
+    results record, whose inclusion types an age ("stated") and a stage but no ECOG, reads no ECOG (another
+    concept's values are never the ECOG) and, its setting unnarrowed at every level, no setting."""
+    first_line = study_view(near_miss_study("NCT09000001", "0-1"), {})
+    assert len(first_line["coordinates"]["setting"]["domain"]) == 9
+    assert near_miss_input(first_line) == (
+        "NCT09000001",
+        {"setting": "advanced_first_line", "classes": ""},
+        {"ecog_ps": "0|1", "histology": "", "autoimmune_exclusion": ""},
+        "",
+        "2025",
+    )
+    assert near_miss_input(study_view(results_study(), {})) == (
+        "NCT01234567",
+        {"setting": "", "classes": ""},
+        {"ecog_ps": "", "histology": "", "autoimmune_exclusion": ""},
+        "Example Pharma",
+        "2018",
+    )
 
 
 def test_the_class_key_is_sorted_whatever_order_the_drugs_name_them():

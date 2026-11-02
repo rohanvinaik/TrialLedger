@@ -1,18 +1,24 @@
-"""Coherence: each trial's design coordinates as domains of still-possible values.
+"""Coherence: each trial's design coordinates as domains of still-possible values, at each epistemic status.
 
 A domain starts as every value a coordinate can take. Evidence narrows it only where a typed atom states the
 coordinate's value (an inclusion criterion keeps the values it allows; an exclusion criterion removes the
 values it excludes); silence never narrows. Relations carry inference between coordinates and the trial's
-typed facts; every relation is proposed until the founder approves it by id (law 13), so the reported domains
-are those under approved relations, and the narrowing proposed relations would add is shown beside them.
-Closure intersects domains to a fixed point, so its result does not depend on the order relations are listed
-in. A domain emptied is a conflict, named with every cause that removed a value; nothing is chosen or voted.
-Two atoms from one criterion are one piece of evidence; agreement never assigns, only elimination does.
+typed facts, and each has a kind apart from its approval and its basis (add-scoped-reasoning, Decisions 1, 2
+and 8): strict (its positive premises and explicit definitions entail its conclusion), default (assumed until
+overruled) or proposal (shown, never built on). Each coordinate is reported at three statuses: known (stated
+evidence and strict relations), interpolated (default relations added, strict ones applied again to their
+conclusions) and each proposal's narrowing on its own, from the interpolated domain, one proposal at a time
+and never cumulative. Closure intersects domains to a fixed point, so its result does not depend on the order
+relations are listed in. A domain emptied is a conflict, named with every cause that removed a value; nothing
+is chosen or voted. Two atoms from one criterion are one piece of evidence; agreement never assigns, only
+elimination does. A consumer reads the statuses it declares (accepted_value), and a proposal is never built
+on.
 """
 
 from __future__ import annotations
 
 from dataclasses import dataclass
+from typing import Any
 
 SETTINGS = (
     "neoadjuvant",
@@ -56,12 +62,18 @@ ADVANCED_FACTS = (
 )
 
 
+KINDS = ("strict", "default", "proposal")
+# The statuses a reported value can rest on, strongest first (Decision 1).
+STATUSES = ("known", "interpolated", "proposed")
+
+
 @dataclass(frozen=True)
 class Relation:
     id: str
     statement: str
     basis: str
-    approval: str  # "approved" or "proposed"
+    approval: str  # "approved" or "proposed": metadata, never the relation's kind
+    kind: str  # one of KINDS: what its conclusion is (known, interpolated or proposed)
     needs: tuple[str, ...]  # facts all required ("inclusion:resection:resected")
     lines_within: tuple[str, ...]  # when non-empty, prior_advanced_lines must lie within these values
     narrows: str
@@ -70,10 +82,15 @@ class Relation:
     forbids: tuple[str, ...] = ()  # none of these facts may hold
 
 
-# Relations approved by the founder's instruction of 2026-10-31 (paraphrased: promote the relations that are
-# common-sense domain priors, unambiguous read literally and logically), each after its guards answered the
-# counterexamples of a Codex reading that day; the rest stay proposed, shown and never applied to a reported
-# value. Approval is by id and reversible by changing one word.
+# Four relations were approved by the founder's instruction of 2026-10-31 (paraphrased: promote the relations
+# that are common-sense domain priors, unambiguous read literally and logically), each after its guards
+# answered the counterexamples of a Codex reading that day. Approved is not strict (add-scoped-reasoning,
+# Decision 8): each of the four excludes a qualifying design (a locoregional recurrence treated with
+# chemoradiation; local consolidation after prior systemic therapy; palliative radiotherapy in stage IV
+# disease; a treatment-naive trial randomising at maintenance; Codex's counterexamples, which Claude holds
+# valid), so each is a default: its conclusion is interpolated, never known, until the scoped premises of task
+# 3 and the split setting of task 4 give strict relations. The other three are proposals, shown one at a
+# time and never built on. No relation is strict yet. Approval stays as it was given, by id.
 RELATIONS = (
     Relation(
         "first_line_when_no_prior_advanced_therapy",
@@ -82,6 +99,7 @@ RELATIONS = (
         "surgery around its treatment, is a first-line advanced trial.",
         "definition of line of therapy",
         "approved",
+        "default",
         (),
         ("0",),
         "setting",
@@ -95,6 +113,7 @@ RELATIONS = (
         "previously treated or maintenance advanced trial.",
         "definition of line of therapy; maintenance follows first-line induction",
         "approved",
+        "default",
         (),
         ("1", "2", "3+"),
         "setting",
@@ -107,6 +126,7 @@ RELATIONS = (
         "perioperative setting.",
         "the meaning of adjuvant therapy; ambiguous: advanced trials admit recurrence after resection",
         "proposed",
+        "proposal",
         ("inclusion:resection:resected",),
         (),
         "setting",
@@ -118,6 +138,7 @@ RELATIONS = (
         "perioperative setting.",
         "the meaning of neoadjuvant therapy; ambiguous: resectability is feasibility, not planned treatment",
         "proposed",
+        "proposal",
         ("inclusion:resection:resectable",),
         (),
         "setting",
@@ -129,6 +150,7 @@ RELATIONS = (
         "advanced setting.",
         "staging (AJCC 8th edition: stage IV is metastatic)",
         "approved",
+        "default",
         ("inclusion:extent:metastatic",),
         (),
         "setting",
@@ -141,6 +163,7 @@ RELATIONS = (
         "treatment, treats in an advanced setting.",
         "staging (AJCC 8th edition)",
         "approved",
+        "default",
         ("inclusion:stage:IV",),
         (),
         "setting",
@@ -153,6 +176,7 @@ RELATIONS = (
         "local consolidative therapy of metastatic disease.",
         "the trial's own words; ambiguous: a criterion may name earlier consolidation",
         "proposed",
+        "proposal",
         ("inclusion:setting_word:consolidation",),
         (),
         "setting",
@@ -195,20 +219,24 @@ def narrow_by_evidence(
 
 
 def close(
-    domains: dict[str, tuple[str, ...]], facts: list[str], relation_ids: list[str]
+    domains: dict[str, tuple[str, ...]],
+    facts: list[str],
+    relation_ids: list[str],
+    relations: tuple[Relation, ...] = RELATIONS,
 ) -> tuple[dict[str, tuple[str, ...]], list[tuple[str, tuple[str, ...], str]]]:
     """Apply the named relations to a fixed point (pure — pinned).
 
-    A relation applies when every fact it needs is among `facts`, at least one of its needs_any facts is
-    (when it names any), none of its forbids facts is, and, if it names prior lines, the
-    prior_advanced_lines domain is non-empty and lies within them; it then keeps only its allowed values of
-    the coordinate it narrows. Intersection is monotone, so the fixed point does not depend on the order of
-    `relation_ids`; and as each changing pass removes a value, closure ends within (number of values + 1)
-    passes, a bound declared in the loop. Returns the closed domains and the causes, each (coordinate,
-    values removed, relation id).
+    The ids name relations of `relations` (RELATIONS unless a caller declares another table). A relation
+    applies when every fact it needs is among `facts`, at least one of its needs_any facts is (when it names
+    any), none of its forbids facts is, and, if it names prior lines, the prior_advanced_lines domain is
+    non-empty and lies within them; it then keeps only its allowed values of the coordinate it narrows.
+    Intersection is monotone, so the fixed point does not depend on the order of `relation_ids`; and as each
+    changing pass removes a value, closure ends within (number of values + 1) passes, a bound declared in the
+    loop. Returns the closed domains and the causes, each (coordinate, values removed, relation id). A
+    relation's kind is not read here: which relations close a domain is the caller's (resolve's) decision.
     An unknown relation id raises KeyError: a relation that does not exist cannot be applied.
     """
-    table = {relation.id: relation for relation in RELATIONS}
+    table = {relation.id: relation for relation in relations}
     chosen = [table[relation_id] for relation_id in relation_ids]
     current = dict(domains)
     causes: list[tuple[str, tuple[str, ...], str]] = []
@@ -255,22 +283,105 @@ def facts_of(evidence: list[tuple[str, str, tuple[str, ...], str, str]]) -> list
     return list(seen)
 
 
-def resolve(evidence: list[tuple[str, str, tuple[str, ...], str, str]]) -> dict[str, dict]:
-    """Every coordinate of one trial: its domain under approved relations, its domain with proposed relations
-    added, each one's state, and the causes of every removal."""
+def resolve(
+    evidence: list[tuple[str, str, tuple[str, ...], str, str]], relations: tuple[Relation, ...] = RELATIONS
+) -> dict[str, dict]:
+    """Every coordinate of one trial at each status: known, interpolated and each proposal on its own
+    (pure — pinned).
+
+    `evidence` is narrow_by_evidence's; `relations` the table of relations (RELATIONS unless a caller declares
+    another), each applied by its kind, never by its approval:
+      known        — the stated evidence (narrow_by_evidence), closed under the strict relations;
+      interpolated — the known domains closed under the strict and default relations together (a strict rule
+                     applied to a default's conclusion yields an interpolated value);
+      proposals    — each proposal relation alone, in table order, closing the interpolated domains: one at a
+                     time, never cumulative, and never consumed by another level.
+    Returns, for every coordinate of COORDINATES, in order, {"domain", "state", "causes"} for the known level,
+    "interpolated": {"domain", "state", "causes"}, and "proposals": [{"relation", "domain", "state",
+    "causes"}] for each proposal that narrows that coordinate. Each level's causes are the removals made at
+    that level, each (coordinate, values removed, the criterion or relation): the known level's by evidence
+    and strict relations, the interpolated level's beyond the known, a proposal's beyond the interpolated.
+    A relation whose kind is not one of KINDS raises ValueError: a relation of no kind is applied at no level.
+    """
+    unknown = [relation.id for relation in relations if relation.kind not in KINDS]
+    if unknown:
+        raise ValueError(f"relations of no kind: {unknown}")
     stated, stated_causes = narrow_by_evidence(evidence)
     facts = facts_of(evidence)
-    approved_ids = [r.id for r in RELATIONS if r.approval == "approved"]
-    approved, approved_causes = close(stated, facts, approved_ids)
-    proposed, proposed_causes = close(approved, facts, [r.id for r in RELATIONS if r.approval == "proposed"])
+    ids = {kind: [r.id for r in relations if r.kind == kind] for kind in KINDS}
+    known, strict_causes = close(stated, facts, ids["strict"], relations)
+    interpolated, default_causes = close(known, facts, ids["strict"] + ids["default"], relations)
+    proposals = [(rid, *close(interpolated, facts, [rid], relations)) for rid in ids["proposal"]]
     result = {}
     for name, full in COORDINATES.items():
         result[name] = {
-            "domain": approved[name],
-            "state": domain_state(approved[name], full),
-            "with_proposed": proposed[name],
-            "proposed_state": domain_state(proposed[name], full),
-            "causes": [c for c in stated_causes + approved_causes if c[0] == name],
-            "proposed_causes": [c for c in proposed_causes if c[0] == name],
+            "domain": known[name],
+            "state": domain_state(known[name], full),
+            "causes": [c for c in stated_causes + strict_causes if c[0] == name],
+            "interpolated": {
+                "domain": interpolated[name],
+                "state": domain_state(interpolated[name], full),
+                "causes": [c for c in default_causes if c[0] == name],
+            },
+            "proposals": [
+                {
+                    "relation": rid,
+                    "domain": closed[name],
+                    "state": domain_state(closed[name], full),
+                    "causes": [c for c in causes if c[0] == name],
+                }
+                for rid, closed, causes in proposals
+                if closed[name] != interpolated[name]
+            ],
         }
     return result
+
+
+def level_status(level: str, domain: tuple[str, ...], known: tuple[str, ...]) -> str:
+    """The status a coordinate's domain carries at its level, as a reader is told it (pure — pinned).
+
+    `domain` is resolve's domain at `level`, `known` the coordinate's known domain.
+      known        — "known" when one value remains, "unresolved" when several or none (a conflict);
+      interpolated — the known level's status when the defaults leave the known domain as it is; otherwise
+                     "interpolated" when they leave one or more values, "unresolved" when none;
+      proposed     — "proposed" when the proposal leaves one or more values, "unresolved" when none.
+    Any other level raises ValueError: a level that is not one of the three has no status.
+    """
+    if level == "known" or (level == "interpolated" and tuple(domain) == tuple(known)):
+        return "known" if len(known) == 1 else "unresolved"
+    if level in ("interpolated", "proposed"):
+        return level if domain else "unresolved"
+    raise ValueError(f"no status for the level {level!r}")
+
+
+def accepted_value(row: dict[str, Any], accepts: tuple[str, ...]) -> tuple[str, str]:
+    """The one value of a coordinate a consumer may build on, and the status it rests on (pure — pinned).
+
+    `row` is resolve's for the coordinate; `accepts` the statuses the consumer declares (Decision 7):
+    ("known",) for the strata, expectation cells, occupancy and results grouping; ("known", "interpolated")
+    for near misses.
+      (value, "known")        — the known domain is one value, whatever else is accepted (a value with a known
+                                and an interpolated derivation is known);
+      (value, "interpolated") — interpolated is accepted and the interpolated domain is one value;
+      ("", "")                — otherwise: several values or none (a conflict) at every accepted status.
+    A proposal is never built on: `accepts` naming "proposed" or anything but known and interpolated, or not
+    naming "known", raises ValueError.
+    """
+    if "known" not in accepts or not set(accepts) <= {"known", "interpolated"}:
+        raise ValueError(f"a consumer accepts known, and interpolated at most, never {list(accepts)}")
+    if len(row["domain"]) == 1:
+        return row["domain"][0], "known"
+    held = row["interpolated"]["domain"] if "interpolated" in accepts else ()
+    return (held[0], "interpolated") if len(held) == 1 else ("", "")
+
+
+def weakest(statuses: list[str]) -> str:
+    """The weakest status a value derived from others rests on (pure — pinned).
+
+    Statuses rank as STATUSES: known, then interpolated, then proposed; the result is the lowest-ranked of
+    `statuses` (a near-miss pair of a known and an interpolated representation rests on an interpolated one).
+    No status, or one outside STATUSES, raises ValueError: a value resting on nothing named has no status.
+    """
+    if not statuses or any(status not in STATUSES for status in statuses):
+        raise ValueError(f"no status to weigh among {list(statuses)}")
+    return max(statuses, key=STATUSES.index)

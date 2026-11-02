@@ -11,6 +11,7 @@ typing is for the founder to judge on the Audit sheet, never scored against labe
 
 from __future__ import annotations
 
+import dataclasses
 import json
 from collections.abc import Callable
 from pathlib import Path
@@ -22,7 +23,7 @@ from TrialLedger import classes as rx
 from TrialLedger import warrants
 from TrialLedger.banks import type_criterion
 from TrialLedger.cells import cell_number_state, cell_text_state
-from TrialLedger.coherence import RELATIONS, SETTINGS, resolve
+from TrialLedger.coherence import RELATIONS, SETTINGS, accepted_value, resolve, weakest
 from TrialLedger.criteria import eligibility_coverage, itemize
 from TrialLedger.expectations import (
     FROZEN,
@@ -47,16 +48,29 @@ from TrialLedger.reading import (
     axes_aliases,
     axes_as_looked_up,
     axes_not_looked_up,
+    class_warrant,
     drug_aliases,
     drug_axes_view,
+    near_miss_input,
     read_population,
+    review_coordinates,
+    review_flags,
     study_view,
 )
 from TrialLedger.review import flags_for
 
 DESIGN_NAME = "design.xlsx"
-VERSION = "design-1"
+# design-2 (add-scoped-reasoning 1.1): the strata, expectation cells, occupancy and results read the known
+# setting only, near misses known and interpolated, and every rule that reads a coordinate commits to the
+# relations table (each relation's kind among its fields)
+VERSION = "design-2"
 AUDIT_EVERY = 25  # every 25th typed criterion goes to the Audit sheet for the founder's review
+# The statuses the strata, the expectation cells and the results grouping accept (add-scoped-reasoning,
+# Decision 7): known only, read through coherence.accepted_value (_stratum); a trial whose known setting is
+# not one value is in "setting unresolved". Occupancy also reads the known level only, but whole: it reads the
+# known domain itself, since a trial whose known setting holds several values could fall in each of their
+# cells, counted apart from the occupants, never as one.
+STRATA_ACCEPTS = ("known",)
 
 
 class DesignError(Exception):
@@ -78,15 +92,36 @@ def _cell(value: Any) -> Any:
     return value
 
 
-def _rule(name: str, *functions: Callable[..., Any]) -> str:
-    return warrants.rule(name, VERSION, "", warrants.code_digest(*functions))
+def _rule(name: str, *functions: Callable[..., Any], data: tuple[str, ...] = ()) -> str:
+    """A sheet rule's warrant: its name, the design version, the code of the functions that decide its rows
+    and the digests of the data tables they read (`data`: the relations, whose kinds decide each coordinate's
+    levels)."""
+    return warrants.rule(name, VERSION, "", warrants.code_digest(*functions), *data)
+
+
+def _relations_digest(relations: tuple[Any, ...]) -> str:
+    """The digest of a relations table as data: every field of every relation, in order, its kind and its
+    approval among them, so a relation made strict, a default or a proposal changes every warrant that reads
+    a coordinate."""
+    return warrants.digest("relations", warrants.canonical([dataclasses.asdict(r) for r in relations]))
 
 
 def _stratum(view: dict[str, Any]) -> str:
-    """A trial's setting stratum: its setting when known (the record and the approved relations leave one
-    value), else "setting unresolved". A proposed relation's narrowing is never built on."""
-    setting = view["coordinates"]["setting"]["domain"]
-    return setting[0] if len(setting) == 1 else "setting unresolved"
+    """A trial's setting stratum: its setting when known (stated evidence and strict relations leave one
+    value: STRATA_ACCEPTS through coherence.accepted_value), else "setting unresolved". A default's conclusion
+    is interpolated and a proposal's narrowing proposed: neither is built on here."""
+    setting, _status = accepted_value(view["coordinates"]["setting"], STRATA_ACCEPTS)
+    return setting or "setting unresolved"
+
+
+def _levels(row: dict[str, Any]) -> tuple[str, str]:
+    """A coordinate's interpolated domain and each proposal's narrowing, as two cells: the interpolated values
+    ("(conflict)" when none), and each proposal "<relation>: <values>" on its own."""
+    interpolated = " | ".join(row["interpolated"]["domain"]) or "(conflict)"
+    proposals = " ⏐ ".join(
+        f"{p['relation']}: {' | '.join(p['domain']) or '(conflict)'}" for p in row["proposals"]
+    )
+    return interpolated, proposals
 
 
 def _profile_trials(views: list[dict[str, Any]], by_setting: bool) -> list[tuple]:
@@ -151,7 +186,13 @@ def sheets(reading: dict[str, Any], answers: dict[str, Any]) -> dict[str, tuple[
     its warrant."""
     views = reading["views"]
     digests = {v["nct"]: v["digest"] for v in views}
-    trials_rule = _rule("trials", study_view, resolve, type_criterion, itemize, eligibility_coverage)
+    # every rule that reads a coordinate commits to the relations table and to the functions that decide a
+    # coordinate's levels and a trial's stratum
+    relations = _relations_digest(RELATIONS)
+    strata = (resolve, accepted_value, _stratum)
+    trials_rule = _rule(
+        "trials", study_view, *strata, type_criterion, itemize, eligibility_coverage, data=(relations,)
+    )
     axes_rule = _rule(
         "drug_axes",
         rx.drug_axes,
@@ -179,10 +220,11 @@ def sheets(reading: dict[str, Any], answers: dict[str, Any]) -> dict[str, tuple[
             "Criteria",
             "Typed",
             "Untyped",
-            "Setting",
-            "Setting with Proposed Relations",
-            "Prior Advanced Lines",
-            "Selections",
+            "Setting (known)",
+            "Setting (interpolated: default relations added)",
+            "Setting (each proposal alone)",
+            "Prior Advanced Lines (known)",
+            "Selections (known)",
             "Experimental Drugs",
             "Warrant",
         ],
@@ -203,8 +245,8 @@ def sheets(reading: dict[str, Any], answers: dict[str, Any]) -> dict[str, tuple[
                 len(v["criteria"]),
                 sum(1 for c in v["criteria"] if c[3]),
                 sum(1 for c in v["criteria"] if not c[3]),
-                " | ".join(v["coordinates"]["setting"]["domain"]),
-                " | ".join(v["coordinates"]["setting"]["with_proposed"]) or "(conflict)",
+                " | ".join(v["coordinates"]["setting"]["domain"]) or "(conflict)",
+                *_levels(v["coordinates"]["setting"]),
                 " | ".join(v["coordinates"]["prior_advanced_lines"]["domain"]) or "(conflict)",
                 "; ".join(
                     f"{name[10:]}: {' | '.join(row['domain']) or '(conflict)'}"
@@ -247,11 +289,12 @@ def sheets(reading: dict[str, Any], answers: dict[str, Any]) -> dict[str, tuple[
         [
             "NCT Number",
             "Coordinate",
-            "Domain",
-            "State",
-            "With Proposed Relations",
-            "State with Proposed",
-            "Removed By",
+            "Known Domain",
+            "Known State",
+            "Interpolated Domain (default relations added)",
+            "Interpolated State",
+            "Each Proposal Alone (never built on)",
+            "Removed By (status: values by criterion or relation)",
             "Warrant",
         ],
         [
@@ -260,17 +303,28 @@ def sheets(reading: dict[str, Any], answers: dict[str, Any]) -> dict[str, tuple[
                 name,
                 " | ".join(row["domain"]),
                 row["state"],
-                " | ".join(row["with_proposed"]),
-                row["proposed_state"],
+                _levels(row)[0],
+                row["interpolated"]["state"],
+                _levels(row)[1],
                 "; ".join(
-                    f"{'|'.join(removed)} by {cause}"
-                    for _, removed, cause in row["causes"] + row["proposed_causes"]
+                    [f"known: {'|'.join(removed)} by {cause}" for _, removed, cause in row["causes"]]
+                    + [
+                        f"interpolated: {'|'.join(removed)} by {cause}"
+                        for _, removed, cause in row["interpolated"]["causes"]
+                    ]
+                    + [
+                        f"proposed: {'|'.join(removed)} by {cause}"
+                        for p in row["proposals"]
+                        for _, removed, cause in p["causes"]
+                    ]
                 ),
                 warrants.computed(trials_rule, v["digest"]),
             ]
             for v in views
             for name, row in v["coordinates"].items()
-            if row["state"] != "unnarrowed" or row["proposed_state"] != "unnarrowed"
+            if row["state"] != "unnarrowed"
+            or row["interpolated"]["state"] != "unnarrowed"
+            or row["proposals"]
         ],
     )
     out["Outcomes"] = (
@@ -336,6 +390,14 @@ def sheets(reading: dict[str, Any], answers: dict[str, Any]) -> dict[str, tuple[
     )
     rows_exp = []
     for expectation in FROZEN:
+        expectation_rule = _rule(
+            expectation.id,
+            autoimmune_exclusion,
+            eligibility_coverage,
+            conditional_rarity,
+            *strata,
+            data=(relations,),
+        )
         observations = [(_stratum(v), v["observations"][expectation.id][0]) for v in views]
         for v in views:
             status, reason, cited, qualifiers = v["observations"][expectation.id]
@@ -358,10 +420,7 @@ def sheets(reading: dict[str, Any], answers: dict[str, Any]) -> dict[str, tuple[
                     n,
                     bits if known else None,
                     deviation_status(status, len(qualifiers), ""),
-                    warrants.computed(
-                        _rule(expectation.id, autoimmune_exclusion, eligibility_coverage, conditional_rarity),
-                        v["digest"],
-                    ),
+                    warrants.computed(expectation_rule, v["digest"]),
                 ]
             )
     out["Expectations"] = (
@@ -382,6 +441,15 @@ def sheets(reading: dict[str, Any], answers: dict[str, Any]) -> dict[str, tuple[
         ],
         rows_exp,
     )
+    review_rule = _rule(
+        "review",
+        flags_for,
+        eligibility_coverage,
+        review_flags,
+        review_coordinates,
+        resolve,
+        data=(relations,),
+    )
     review_rows = []
     for v, flags in zip(views, reading["flags"], strict=True):
         for kind, element, why, priority, evidence, question, options in flags:
@@ -397,7 +465,7 @@ def sheets(reading: dict[str, Any], answers: dict[str, Any]) -> dict[str, tuple[
                     " | ".join(options),
                     "",
                     "",
-                    warrants.computed(_rule("review", flags_for, eligibility_coverage), v["digest"]),
+                    warrants.computed(review_rule, v["digest"]),
                 ]
             )
     review_rows.sort(key=lambda row: (row[0], row[1], row[2]))
@@ -417,7 +485,14 @@ def sheets(reading: dict[str, Any], answers: dict[str, Any]) -> dict[str, tuple[
         ],
         review_rows,
     )
-    comparable = sum(all(t[1].values()) for t in reading["near_miss_trials"])
+    comparable = [
+        status
+        for t, status in zip(reading["near_miss_trials"], reading["near_miss_status"], strict=True)
+        if all(t[1].values())
+    ]
+    near_miss_rule = _rule(
+        "near_miss", near_misses, near_miss_input, accepted_value, weakest, resolve, data=(relations,)
+    )
     out["Near Misses"] = (
         [
             "NCT A",
@@ -430,16 +505,19 @@ def sheets(reading: dict[str, Any], answers: dict[str, Any]) -> dict[str, tuple[
             "Start Year A",
             "Start Year B",
             "Predicates Agreeing",
-            f"Representation (known for {comparable} of {len(views)} trials; an unknown never matches)",
+            f"Representation (known for {comparable.count('known')} and interpolated for "
+            f"{comparable.count('interpolated')} of {len(views)} trials; an unknown never matches)",
+            "Rests On (the weakest status of the two settings: known or interpolated)",
             "Warrant",
         ],
         [
             [
                 *pair,
                 PROVENANCE["representation:near_miss"][2],
-                warrants.computed(_rule("near_miss", near_misses), digests[pair[0]], digests[pair[1]]),
+                status,
+                warrants.computed(near_miss_rule, digests[pair[0]], digests[pair[1]]),
             ]
-            for pair in reading["pairs"]
+            for pair, status in zip(reading["pairs"], reading["pair_status"], strict=True)
         ],
     )
     out["Drug Axes"] = (
@@ -480,29 +558,68 @@ def sheets(reading: dict[str, Any], answers: dict[str, Any]) -> dict[str, tuple[
         ],
     )
     out["Relations"] = (
-        ["Relation", "Statement", "Basis", "Approval", "Narrows", "To", "Warrant"],
         [
-            [r.id, r.statement, r.basis, r.approval, r.narrows, " | ".join(r.allowed), _rule(r.id, resolve)]
+            "Relation",
+            "Statement",
+            "Basis",
+            "Kind (strict: known; default: interpolated; proposal: shown alone, never built on)",
+            "Approval",
+            "Narrows",
+            "To",
+            "Warrant",
+        ],
+        [
+            [
+                r.id,
+                r.statement,
+                r.basis,
+                r.kind,
+                r.approval,
+                r.narrows,
+                " | ".join(r.allowed),
+                _rule(r.id, resolve, data=(_relations_digest((r,)),)),
+            ]
             for r in RELATIONS
         ],
     )
+    classes_rows = []
+    for name, answer in sorted(answers.items()):
+        state, release, requests = class_warrant(answer)
+        asked = " | ".join(f"{request} at {retrieved}" for request, retrieved in requests)
+        held = release if state == "found" else f"({state})"
+        for klass in answer["classes"] or [("", "", "", "")]:
+            # the warrant commits to the row's answer: the class, and the requests and release it rests on
+            warrant = warrants.literal(json.dumps([name, klass, state, release, requests]))
+            classes_rows.append(
+                [name, json.dumps(answer["codes"], sort_keys=True), *klass, asked, held, warrant]
+            )
     out["Classes"] = (
-        ["Name Asked", "Codes", "Class Id", "Class", "Relation", "Source", "Warrant"],
         [
-            [
-                name,
-                json.dumps(answer["codes"], sort_keys=True),
-                *klass,
-                warrants.literal(json.dumps([name, klass])),
-            ]
-            for name, answer in sorted(answers.items())
-            for klass in (answer["classes"] or [("", "", "", "")])
+            "Name Asked",
+            "Codes",
+            "Class Id",
+            "Class",
+            "Relation",
+            "Source",
+            "Requests (each with its retrieval time)",
+            "RxNav Release (not_recorded: cached before answers carried it)",
+            "Warrant",
         ],
+        classes_rows,
     )
     profile_rule = _rule(
-        "profile", frequency_rows, element_key, element_silence, full_criteria_tier, eligibility_coverage
+        "profile",
+        frequency_rows,
+        element_key,
+        element_silence,
+        full_criteria_tier,
+        eligibility_coverage,
+        *strata,
+        data=(relations,),
     )
-    mechanism_rule = _rule("mechanism", mechanism_rows, element_silence, eligibility_coverage)
+    mechanism_rule = _rule(
+        "mechanism", mechanism_rows, element_silence, eligibility_coverage, *strata, data=(relations,)
+    )
     frequency, mechanism = [], []
     for by_setting in (False, True):
         trials = _profile_trials(views, by_setting)
@@ -569,6 +686,7 @@ def sheets(reading: dict[str, Any], answers: dict[str, Any]) -> dict[str, tuple[
     observed = sorted({c for _, _, classes in occupancy_trials for c in classes})
     cells = [(setting, klass) for setting in SETTINGS for klass in observed]
     root = warrants.merkle_root([v["digest"] for v in views])
+    occupancy_rule = _rule("occupancy", occupancy_rows, resolve, data=(relations,))
     out["Occupancy"] = (
         [
             "Setting (known)",
@@ -578,10 +696,7 @@ def sheets(reading: dict[str, Any], answers: dict[str, Any]) -> dict[str, tuple[
             "State",
             "Warrant",
         ],
-        [
-            [*row, warrants.computed(_rule("occupancy", occupancy_rows), root)]
-            for row in occupancy_rows(cells, occupancy_trials)
-        ],
+        [[*row, warrants.computed(occupancy_rule, root)] for row in occupancy_rows(cells, occupancy_trials)],
     )
     return out
 
@@ -613,7 +728,8 @@ ABOUT = [
         "One row per study: how its eligibility was itemized and typed; what the text says about itself, "
         "kept apart (content empty or present; sectioned or not; for the inclusion and the exclusion "
         "criteria, whether the record says its list is abbreviated, says it is complete, or says nothing, "
-        "each marker with its place and scope; no marker never means complete); its coordinates, and its "
+        "each marker with its place and scope; no marker never means complete); its setting known, "
+        "interpolated and as each proposal alone would narrow it (see Coordinates), and its "
         "experimental drugs with their RxClass state and FDA Established Pharmacologic Class.",
     ],
     [
@@ -624,20 +740,25 @@ ABOUT = [
     ["Audit", "A sample of typed criteria for the founder's review. Typing accuracy is judged here, by him."],
     [
         "Coordinates",
-        "Domains of still-possible values. 'Domain' is known: the record's own criteria and the relations "
-        "the founder approved (see Relations); 'With Proposed Relations' shows what the proposed relations "
-        "would add, which is proposed, not known. Conflict means the "
-        "record's "
-        "own criteria, or the relations, exclude every value; each cause is named.",
+        "Domains of still-possible values, at three statuses kept apart. Known: the record's own criteria "
+        "and the strict relations (none yet, so the setting is rarely known). Interpolated: the default "
+        "relations added, assumed until overruled. Each proposal alone: what one proposed relation would "
+        "narrow the interpolated domain to, shown and never built on. Strata, expectation cells, occupancy "
+        "and results read the known domain only; near misses read known and interpolated, each pair "
+        "labelled. Conflict means the record's own criteria, or the relations, exclude every value; each "
+        "cause is named with its status.",
     ],
     [
         "Relations",
-        "Every relation, its basis and approval. All are proposed until the founder approves them by id.",
+        "Every relation, its basis, its kind and its approval, kept apart: a strict relation's conclusion is "
+        "known, a default's interpolated, a proposal's shown alone and never built on. The four approved on "
+        "2026-10-31 are defaults (each excludes a qualifying design); none is strict yet.",
     ],
     [
         "Classes",
         "Every RxClass answer, with class ids and sources; not_found, malformed and lookup_failed are "
-        "named, never read as 'no class'.",
+        "named, never read as 'no class'. Each answer's requests, with their retrieval times, and the RxNav "
+        "release it was read under; an answer cached before answers carried them says not_recorded.",
     ],
     [
         "Profile",
@@ -651,8 +772,9 @@ ABOUT = [
         "the statement rate only, and says so. The surprisal of the statement rate (how unexpected, not how"
         " important), the sponsors, and the standard tier (the empirical source of reusable protocol "
         "language, not a verdict on clinical value): met when the lower bound reaches it, not_met when the "
-        "upper bound falls short, unresolved otherwise. Strata by setting use the known setting only; "
-        "proposed relations are never built on.",
+        "upper bound falls short, unresolved otherwise. Strata by setting use the known setting only (a "
+        "trial whose known setting is not one value is in 'setting unresolved'); interpolated and proposed "
+        "settings are never built on here.",
     ],
     [
         "Mechanism Signals",
@@ -668,7 +790,9 @@ ABOUT = [
     [
         "Occupancy",
         "Each setting and drug class: occupied, unknown (unresolved trials could fall here) or empty. "
-        "An empty cell is a lead for exploration, not proof of unmet need.",
+        "A trial occupies a cell only by its known setting; one whose known setting holds several values "
+        "could fall in each, counted apart. An empty cell is a lead for exploration, not proof of unmet "
+        "need.",
     ],
     [
         "Expectations",
@@ -678,10 +802,11 @@ ABOUT = [
     ],
     [
         "Near Misses",
-        "Pairs of trials whose representation (one setting; every experimental drug's class) is known "
-        "and equal and that differ in exactly one predicate known for both. The header gives how many trials "
-        "the representation is known for. Shared sponsors and eras confound; an outcome difference between a "
-        "pair is an association to investigate.",
+        "Pairs of trials whose representation (one setting, known or interpolated; every experimental "
+        "drug's class) is equal and that differ in exactly one predicate known for both. The header gives "
+        "how many trials the representation is known and interpolated for; each pair says the weakest status "
+        "it rests on. Shared sponsors and eras confound; an outcome difference between a pair is an "
+        "association to investigate.",
     ],
     [
         "Drug Axes",
@@ -701,7 +826,12 @@ ABOUT = [
         "external (a cited source), prior (domain knowledge declared before measuring) or derived (written "
         "while reading a named population, which therefore cannot confirm it).",
     ],
-    ["Warrant", "Each row's hash over the rule that derived it and the studies it rests on."],
+    [
+        "Warrant",
+        "Each row's hash over the rule that derived it (the code that decides its rows, and the relations "
+        "table, each relation's kind among its fields, wherever a coordinate is read) and the studies it "
+        "rests on.",
+    ],
 ]
 
 

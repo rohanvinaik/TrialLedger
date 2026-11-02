@@ -347,15 +347,17 @@
     "refusal": "",
     "standing": "complete"
   },
-  "TrialLedger/coherence.py::close": {
-    "cut_reasons": [
-      "budget_exhausted",
-      "coverage_truncated",
-      "invalid_verification"
-    ],
-    "function_digest": "4fd5cebdb0326da3",
+  "TrialLedger/coherence.py::accepted_value": {
+    "cut_reasons": [],
+    "function_digest": "d79467e734d5bac3",
     "refusal": "",
-    "standing": "ungateable"
+    "standing": "complete"
+  },
+  "TrialLedger/coherence.py::close": {
+    "cut_reasons": [],
+    "function_digest": "33623e3048096c9c",
+    "refusal": "",
+    "standing": "complete"
   },
   "TrialLedger/coherence.py::domain_state": {
     "cut_reasons": [],
@@ -363,9 +365,27 @@
     "refusal": "",
     "standing": "complete"
   },
+  "TrialLedger/coherence.py::level_status": {
+    "cut_reasons": [],
+    "function_digest": "eeb196383e845b99",
+    "refusal": "",
+    "standing": "complete"
+  },
   "TrialLedger/coherence.py::narrow_by_evidence": {
     "cut_reasons": [],
     "function_digest": "cdd7168b4e06b8b8",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/coherence.py::resolve": {
+    "cut_reasons": [],
+    "function_digest": "0f4f25d4fb80fc30",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/coherence.py::weakest": {
+    "cut_reasons": [],
+    "function_digest": "b4a88ff854b95a40",
     "refusal": "",
     "standing": "complete"
   },
@@ -629,13 +649,13 @@
   },
   "TrialLedger/landscape.py::cohort_section": {
     "cut_reasons": [],
-    "function_digest": "034d88fd1445b442",
+    "function_digest": "5548486dd2f391bb",
     "refusal": "",
     "standing": "complete"
   },
   "TrialLedger/landscape.py::coordinate_values": {
     "cut_reasons": [],
-    "function_digest": "db5c8f5a34c2ca21",
+    "function_digest": "9df1d26815716d56",
     "refusal": "",
     "standing": "complete"
   },
@@ -677,7 +697,7 @@
   },
   "TrialLedger/landscape.py::landscape_record": {
     "cut_reasons": [],
-    "function_digest": "aeddfdf79c37676c",
+    "function_digest": "f2c36ca33e3116aa",
     "refusal": "",
     "standing": "complete"
   },
@@ -719,7 +739,7 @@
   },
   "TrialLedger/landscape.py::schema_problems": {
     "cut_reasons": [],
-    "function_digest": "3126ebeef3f99084",
+    "function_digest": "93f59e144b3c8dab",
     "refusal": "",
     "standing": "complete"
   },
@@ -737,7 +757,7 @@
   },
   "TrialLedger/landscape.py::study_extract": {
     "cut_reasons": [],
-    "function_digest": "5acd7b142f37a47e",
+    "function_digest": "f06a47226e3cec6f",
     "refusal": "",
     "standing": "complete"
   },
@@ -1059,6 +1079,12 @@
     "refusal": "",
     "standing": "complete"
   },
+  "TrialLedger/reading.py::class_warrant": {
+    "cut_reasons": [],
+    "function_digest": "fe011f9a696c046b",
+    "refusal": "",
+    "standing": "complete"
+  },
   "TrialLedger/reading.py::classes_as_looked_up": {
     "cut_reasons": [],
     "function_digest": "09d22581ddee1f2e",
@@ -1073,7 +1099,13 @@
   },
   "TrialLedger/reading.py::near_miss_input": {
     "cut_reasons": [],
-    "function_digest": "8f6b29edf86ba623",
+    "function_digest": "1590043358a8fa64",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/reading.py::review_coordinates": {
+    "cut_reasons": [],
+    "function_digest": "eebab7ceb8c68630",
     "refusal": "",
     "standing": "complete"
   },

@@ -18,6 +18,17 @@ trials and establish nothing about other populations.
    value with a known and an interpolated derivation is known; overruling one default leaves another's support
    standing. Who answered a review question (an expert or a model, as the founder specified) is provenance, not a
    status; an answer can overrule a default, and a contradiction with known evidence stays visible.
+   As built here (2026-11-01, task 1.2, the RxClass warrant): `classes.lookup` asks RxNav's `version.json`
+   once per lookup batch (as `lookup_axes` does) and keeps, with each EPC and MoA answer, `requests` (each
+   request's URL, parameters and retrieval time) and `release` (`rxnav_release`'s code and release beside the
+   version.json request's warrant); the class ids were already kept. `reading.class_warrant` reads it back:
+   `found` with the release and the requests; `lookup_failed` or `malformed` when the release could not be
+   read; `not_recorded` for an answer cached before answers carried a warrant (its classes stand as answered;
+   it is never asked again, and no release is invented); `not_asked` for a name never asked. The Classes sheet
+   of design.xlsx gives each answer's requests and release, and the `resolve` JSON each experimental drug's
+   names with theirs (`rxclass`). The audit's kept copy (`audit.keep_rxclass`) copies whole answers, so it now
+   keeps the warrant too. landscape.json's `drug_class` value does not carry it yet (its fields are add-agent-
+   operation's).
 2. **Rule kind is not approval.** `kind ∈ {strict, default, proposal}`; approval and the basis are metadata. A
    strict rule is one whose positive premises and explicit definitions entail the conclusion; stating a defeater
    does not make a default strict, and failing to find one proves nothing.
@@ -58,6 +69,41 @@ trials and establish nothing about other populations.
 8. **Interim, until 5–6 land.** The four relations approved earlier are not strict (Codex's counterexamples, which
    Claude holds valid). They become defaults now, so the known setting rests on stated evidence alone and the
    interpolated setting carries them; the 34 disjunction misfires remain a premise-reading defect, closed by 3.
+   As built here (2026-11-01, task 1.1, Decisions 1, 2, 7 and 8): `coherence.Relation` has `kind` (`KINDS`:
+   strict, default, proposal) beside `approval` and `basis`, which are metadata and never decide a level; the
+   four approved relations are `default` (approval still `approved`), the three proposed are `proposal`, none
+   is `strict`. `coherence.resolve(evidence, relations=RELATIONS)` gives each coordinate its known level (the
+   evidence closed under the strict relations: `domain`, `state`, `causes`), its `interpolated` level (the
+   known domains closed under the strict and default relations together, so a strict rule on a default's
+   conclusion is interpolated) and `proposals`, each proposal applied alone to the interpolated domains and
+   listed where it narrows the coordinate, never cumulatively; each level's causes are the removals made at
+   that level. `close` takes the relations table as a parameter (a declared table reaches a strict relation in
+   the tests; production passes RELATIONS). Consumers read the statuses they declare through
+   `coherence.accepted_value(row, accepts)`, which refuses any consumer naming `proposed`: the strata, the
+   expectation cells and the results grouping (`design.STRATA_ACCEPTS`, known only; definite membership the
+   stratum, possible members in "setting unresolved"), occupancy (the known domain; occupants and trials that
+   could fall in a cell counted apart, as before); near misses read known and interpolated
+   (`reading.NEAR_MISS_ACCEPTS`) and each pair, as written and aligned, is labelled with the weakest status its
+   two settings rest on (`coherence.weakest`; `pair_status`, `aligned_pair_status`; landscape.json's near-miss
+   rows carry it as `rests_on`). The review queue shows the conflicts of both levels built on
+   (`reading.review_coordinates`: each coordinate at its interpolated level, which keeps every known conflict
+   and adds those a default makes, with the causes of both levels). `coherence.level_status` is the status a reader is told for a level's domain (known
+   or unresolved; interpolated, or the known status where the defaults leave the domain as it is; proposed or
+   unresolved), shared by the `resolve` JSON (`coordinates`: `known`, `interpolated`, `proposed`) and
+   `landscape.coordinate_values` (`<name>`, `<name>_interpolated`, `<name>_proposed`). design.xlsx: the Trials
+   sheet gives the known, interpolated and each-proposal setting, the Coordinates sheet the three levels with
+   each removal's status, the Relations sheet each relation's kind, the Near Misses sheet the known and
+   interpolated counts in its header and each pair's label. Every warrant of a rule that reads a coordinate
+   commits to the relations table (each relation's fields, its kind among them) and to `resolve`,
+   `accepted_value` and the stratum rule, so a relation made strict changes them; the design version is
+   `design-2`, landscape.json's schema `2`, and its `rule_versions` name each relation's kind
+   (`relation_kinds`) beside its approval. Measured on the frozen NSCLC records
+   (`transition-relation-kinds.md`): no trial has a known setting now (the setting is narrowed only by
+   relations), so every stratum, cell, results group and occupancy row reads "setting unresolved" or "could
+   fall here"; the frozen expectation's observations are unchanged, and so is the review queue (no default
+   empties a coordinate there). Not done here: the review queue does not yet show proposals (Decision 7;
+   review.py), and landscape.json's `drug_class` value does not carry the RxClass warrant (add-agent-operation's
+   fields).
 9. **Evaluation through the live path** (Codex's plan, adopted): populations in this order, each a different
    structural boundary: untouched later NSCLC Phase 3; NSCLC earlier phases; other thoracic malignancies; breast,
    prostate and colorectal; lymphoma, leukaemia and myeloma; selected non-oncology areas. Each run is a
