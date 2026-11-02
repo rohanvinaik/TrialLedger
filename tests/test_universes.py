@@ -348,14 +348,25 @@ def test_permitted_packs_need_every_requirement():
     assert permitted_packs([], "TREATMENT") == []
 
 
-def test_atc_classes_keeps_answered_names_only():
+def test_atc_classes_keeps_answered_names_and_marks_failed_ones():
     answers = {
         "Osimertinib": {"axes": {"ATC": {"code": "found", "assertions": [["L01EB", "EGFR TKIs"]]}}},
         "Placebo": {"axes": {"ATC": {"code": "not_found", "assertions": []}}},
         "Cisplatin injection": {"classes": [], "codes": {}},
-        "Pemetrexed": {"axes": {"ATC": {"code": "failed", "assertions": []}}},
+        "Pemetrexed": {"axes": {"ATC": {"code": "lookup_failed", "assertions": []}}},
     }
-    assert atc_classes(answers) == {"Osimertinib": ("L01EB",), "Placebo": ()}
+    assert atc_classes(answers) == {"Osimertinib": ("L01EB",), "Placebo": (), "Pemetrexed": None}
+
+
+def test_a_failed_drug_lookup_is_never_read_as_no_cancer_drug():
+    from TrialLedger.universes import _drug_findings
+
+    failed = {"Pemetrexed": None, "Placebo": ()}
+    assert _drug_findings([["Pemetrexed"], ["Placebo"]], failed, "TREATMENT") == ("lookup_failed", [])
+    answered = {"Pemetrexed": None, "Osimertinib": ("L01EB",)}
+    status, found = _drug_findings([["Pemetrexed"], ["Osimertinib"]], answered, "TREATMENT")
+    assert status == "read" and [f["term"] for f in found] == ["Osimertinib"]
+    assert _drug_findings([["Placebo"]], {"Placebo": ()}, "TREATMENT") == ("read", [])
 
 
 # ── resolve under a universe (2.2) ─────────────────────────────────────────────────────────────────────

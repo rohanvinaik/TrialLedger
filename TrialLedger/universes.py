@@ -69,6 +69,7 @@ SOURCE_STATUSES = {
     "no_text": "no condition names a disease and the record has no title",
     "does_not_apply": "not a treatment trial: a drug's class is not read",
     "not_looked_up": "the drugs' classes were not looked up (relay mode, or a name never asked of RxNav)",
+    "lookup_failed": "RxNav did not answer for a drug's class, so it cannot be read; the same run asks again",
 }
 # The outcomes scope_case names, each with its words.
 CASE_CODES = {
@@ -213,15 +214,20 @@ def pack_scope(packs: tuple[str, ...]) -> tuple[dict[str, list[str]], tuple[str,
     return coordinates, tuple(relations)
 
 
-def atc_classes(answers: dict[str, Any]) -> dict[str, tuple[str, ...]]:
+def atc_classes(answers: dict[str, Any]) -> dict[str, tuple[str, ...] | None]:
     """Each name's ATC codes from the run's RxNav answers (classes.json's "answers"): a name whose ATC was
-    asked and answered (found, or found to have none) maps to its codes, () for none. A name whose ATC was
-    never asked, or whose lookup failed, is left out, so it reads "not looked up", never "no class"."""
-    codes = {}
+    asked and answered (found, or found to have none) maps to its codes, () for none; a name whose ATC
+    lookup failed maps to None, so it reads "lookup failed", never "no class"; a name whose ATC was never
+    asked is left out, so it reads "not looked up"."""
+    codes: dict[str, tuple[str, ...] | None] = {}
     for name, answer in answers.items():
-        atc = answer.get("axes", {}).get("ATC", {})
-        if atc.get("code") in ("found", "not_found"):
+        atc = answer.get("axes", {}).get("ATC") if isinstance(answer, dict) else None
+        if not isinstance(atc, dict) or "code" not in atc:
+            continue
+        if atc["code"] in ("found", "not_found"):
             codes[name] = tuple(str(assertion[0]) for assertion in atc.get("assertions", []))
+        else:
+            codes[name] = None
     return codes
 
 
@@ -274,10 +280,11 @@ def _specific_only(found: list[dict[str, str]]) -> list[dict[str, str]]:
 
 
 def _drug_findings(
-    interventions: list[list[str]], drug_classes: dict[str, tuple[str, ...]] | None, purpose: str
+    interventions: list[list[str]], drug_classes: dict[str, tuple[str, ...] | None] | None, purpose: str
 ) -> tuple[str, list[dict[str, str]]]:
     """The drug source's status and findings: per intervention, its first name (the name, then its other
-    names) whose ATC codes fall under an anchor."""
+    names) whose ATC codes fall under an anchor. With no anchor found, a failed lookup of any of the
+    interventions' names makes the source "lookup_failed": a drug RxNav did not answer for might be one."""
     if purpose != TREATMENT:
         return "does_not_apply", []
     if drug_classes is None or not any(name in drug_classes for names in interventions for name in names):
@@ -285,10 +292,15 @@ def _drug_findings(
     found = []
     for names in interventions:
         for name in names:
-            anchor = drug_anchor(list(drug_classes.get(name, ())))
+            anchor = drug_anchor(list(drug_classes.get(name) or ()))
             if anchor:
                 found.append({"term": name, "anchor": anchor, "universe": SOLID})
                 break
+    failed = any(
+        name in drug_classes and drug_classes[name] is None for names in interventions for name in names
+    )
+    if not found and failed:
+        return "lookup_failed", []
     return "read", found
 
 
@@ -351,7 +363,9 @@ def _words(
     )
 
 
-def assign(study: dict[str, Any], drug_classes: dict[str, tuple[str, ...]] | None = None) -> Assignment:
+def assign(
+    study: dict[str, Any], drug_classes: dict[str, tuple[str, ...] | None] | None = None
+) -> Assignment:
     """A study's universe assignment from its registry record (API v2 shape) and its drugs' ATC classes.
 
     `drug_classes` maps an intervention's name or other name to its ATC codes, as RxNav gave them (see
