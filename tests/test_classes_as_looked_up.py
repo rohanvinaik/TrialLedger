@@ -1,8 +1,8 @@
 """reading.classes_as_looked_up — a drug RxClass was never asked about is not_looked_up, never "no class" and
 never "lookup failed" (add-agent-operation 4.2: a relay run asks RxNav nothing after the pull).
 
-The answers are classes.lookup's, over RxClass byDrugName bodies of the live service's shape (an EPC for
-pembrolizumab, nothing for an unknown name, a 503).
+The answers are classes._ask_rxnav's, over RxNorm and RxClass bodies of the live service's shape (an EPC for
+pembrolizumab and its brand, a name RxNorm does not hold, a 503).
 
 Positive: a drug none of whose names was asked is not_looked_up with no class and no resolving name, whatever
 classes.drug_class said of it (lookup_failed over an empty cache); the reading of a population with no answers
@@ -14,40 +14,42 @@ name says nothing of this drug.
 
 import pytest
 from records import results_study
+from rxnav_fake import FakeRxNav
 
 from TrialLedger import classes
 from TrialLedger.reading import classes_as_looked_up, read_population
 
-EPC = {
-    "rxclassDrugInfoList": {
-        "rxclassDrugInfo": [
-            {
-                "minConcept": {"rxcui": "1547545", "name": "pembrolizumab", "tty": "IN"},
-                "rxclassMinConceptItem": {
-                    "classId": "N0000191260",
-                    "className": "Programmed Death Receptor-1 Blocking Antibody",
-                    "classType": "EPC",
-                },
-                "rela": "has_epc",
-                "relaSource": "DAILYMED",
-            }
+# RxNorm holds pembrolizumab and its brand Keytruda (RxClass answers either about pembrolizumab); "flaky"
+# fails; anything else RxNorm does not hold.
+RXNAV = {
+    "names": {"pembrolizumab": ["1547545"], "Keytruda": ["1547550"], "flaky": ["9999"]},
+    "concepts": {"1547545": ("pembrolizumab", "IN"), "1547550": ("Keytruda", "BN"), "9999": ("flaky", "IN")},
+    "classes": {
+        rxcui: [
+            (
+                "N0000191260",
+                "Programmed Death Receptor-1 Blocking Antibody",
+                "EPC",
+                "has_epc",
+                "DAILYMED",
+                "1547545",
+            )
         ]
-    }
+        for rxcui in ("1547545", "1547550")
+    },
+    "failing": {"9999"},
 }
 
 
-def rxclass(url, params):
-    if url == classes.RXNAV_VERSION:  # the release, asked once a lookup batch (classes.lookup's warrant)
-        return 200, {"version": "05-Oct-2026", "apiVersion": "3.1.356"}
-    if params["drugName"] == "pembrolizumab" and params["relaSource"] == "DAILYMED":
-        return 200, EPC
-    if params["drugName"] == "flaky":
-        return 503, None
-    return 200, {}
-
-
 def answered(*names):
-    return classes.lookup(list(names), get=rxclass, sleep=lambda seconds: None)
+    return classes._ask_rxnav(
+        list(names),
+        set(),
+        get=FakeRxNav(**RXNAV),
+        sleep=lambda seconds: None,
+        monotonic=lambda: 0.0,
+        progress=lambda message: None,
+    )
 
 
 def test_a_drug_no_name_of_which_was_asked_is_not_looked_up():

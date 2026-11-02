@@ -4,10 +4,11 @@ them reached; tests/test_wiring.py holds that set to the declared one.
 
 The profiler starts before TrialLedger is imported, so the tables built at import are reached. The path is
 what production does: `trialledger pull` over two pages, with a retry and a value a cell cannot hold;
-`trialledger verify` of the folder written; `trialledger profile` of it, with RxClass answering for one source
-and failing for the other and the axes read as cached (none: not_looked_up), then `profile --fill-axes`, with
-RxNav resolving an ingredient, a brand and a combination and answering ATC and structure classes (asked only
-for the experimental drugs' names); `profile` of a folder that is no record; a
+`trialledger verify` of the folder written; `trialledger profile` of it, with RxClass, asked by concept,
+answering for some concepts and failing for one, and the axes read as cached (none: not_looked_up), then
+`profile --fill-axes`, with RxNav resolving an ingredient, a brand and a combination and answering ATC and
+structure classes (kept only for the experimental drugs' names), its requests asked from a pool of threads;
+`profile` of a folder that is no record; a
 live `resolve` with a near-miss pair, an aligned pair, a shared structure class, an own name RxNorm does not
 hold beside a combination alias, a target the drug's own entry states and a genetic CAR-T entry, rendered as
 the JSON and design.xlsx with its Drug Axes sheet; `landscape` in direct mode (a drug class in a condition
@@ -24,6 +25,7 @@ import os
 import shutil
 import sys
 import tempfile
+import threading
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
@@ -132,23 +134,30 @@ def rxnav(url: str, params: dict) -> tuple[int, dict]:
     return 200, {"relatedGroup": {"conceptGroup": [{"tty": "IN", "conceptProperties": parts}]}}
 
 
-def axis(params: dict) -> tuple[int, dict]:
-    """RxClass's ATC and structure answers: PD-1/PD-L1 inhibitors (ATC) and platinum-containing compounds
-    (structure) for the names RxNorm resolves, each about the ingredient, as RxClass answers a brand."""
-    subject = SUBJECTS.get(params["drugName"])
-    if subject is None:
-        return 200, {}
-    if params["relaSource"] == "ATC":
-        item = {"classId": "L01FF", "className": "PD-1/PD-L1 inhibitors", "classType": "ATC1-4"}
-    else:
-        item = {"classId": "N0000175073", "className": "Platinum-containing Compounds", "classType": "CHEM"}
-    entry = {
-        "minConcept": {"rxcui": subject[0], "name": subject[1], "tty": "IN"},
-        "rxclassMinConceptItem": item,
-        "rela": params.get("relas", ""),
-        "relaSource": params["relaSource"],
+def classes_of(rxcui: str) -> tuple[int, dict]:
+    """RxClass's answer by concept (byRxcui), every source in one answer: PD-1/PD-L1 inhibitors (ATC) and
+    platinum-containing compounds (structure, DailyMed's and FDASPL's) about testamab for Testamab and its
+    brand TM-1 (RxClass answers a brand about its ingredient) and about placebo for Placebo, beside Placebo's
+    one DailyMed class; the combination's concept fails (503)."""
+    if rxcui == "9004":
+        return 503, {}
+    subject = {"9001": ("9001", "testamab"), "9003": ("9001", "testamab"), "9002": ("9002", "placebo")}[rxcui]
+    atc = {"classId": "L01FF", "className": "PD-1/PD-L1 inhibitors", "classType": "ATC1-4"}
+    platinum = {"classId": "N0000175073", "className": "Platinum-containing Compounds", "classType": "CHEM"}
+    pd1 = {
+        "classId": "N0000191260",
+        "className": "Programmed Death Receptor-1 Blocking Antibody",
+        "classType": "EPC",
     }
-    return 200, {"rxclassDrugInfoList": {"rxclassDrugInfo": [entry]}}
+    stated = [(atc, "", "ATC"), (platinum, "has_chemical_structure", "DAILYMED")]
+    stated += [(platinum, "has_chemical_structure", "FDASPL")]
+    stated += [(pd1, "has_epc", "DAILYMED")] if rxcui == "9002" else []
+    concept = {"rxcui": subject[0], "name": subject[1], "tty": "IN"}
+    entries = [
+        {"minConcept": concept, "rxclassMinConceptItem": item, "rela": rela, "relaSource": source}
+        for item, rela, source in stated
+    ]
+    return 200, {"rxclassDrugInfoList": {"rxclassDrugInfo": entries}}
 
 
 def landscape_runs(scratch: Path, studies: list[dict], rxclass, sandbox) -> dict[str, int]:
@@ -462,6 +471,8 @@ def sample_and_audit(scratch: Path, studies: list[dict], rxclass) -> dict[str, i
 
 def main() -> None:
     sys.setprofile(record_call)
+    # RxNav's requests are asked from a pool of threads (classes.ask_all): each thread is recorded too
+    threading.setprofile(record_call)
     sys.path.insert(0, str(HERE))
     import httpx
     from conftest import FakeAPI, csv_page
@@ -516,25 +527,14 @@ def main() -> None:
     def rxclass(url, params):
         # RxNav: RxNorm resolves Testamab and Placebo as ingredients, TM-1 as Testamab's brand (an alias that
         # confirms its own name) and "XB-1 + carboplatin" as a combination (an alias that cannot resolve XB-1,
-        # which RxNorm does not hold); ATC and structure classes come back for the first three, so a known
-        # class, a shared structure class and an aligned pair are all reached.
-        if not url.endswith("/byDrugName.json"):
+        # which RxNorm does not hold); RxClass, asked by concept, answers ATC and structure classes for the
+        # first three, so a known class, a shared structure class and an aligned pair are all reached;
+        # DailyMed classes only Placebo, so the experimental drug falls back to what its record states, and
+        # the combination's concept fails: an answer, a concept without the class asked and a failure are
+        # all reached.
+        if not url.endswith("/byRxcui.json"):
             return rxnav(url, params)
-        if params.get("relas") == "has_chemical_structure" or params["relaSource"] == "ATC":
-            return axis(params)
-        # DailyMed knows only "Placebo" (one class), so the experimental drug falls back to what its record
-        # states; MED-RT fails: an answer, an unknown name and a failure are all reached.
-        if params["relaSource"] == "DAILYMED" and params["drugName"] == "Placebo":
-            item = {"classId": "N0000191260", "className": "Programmed Death Receptor-1 Blocking Antibody"}
-            body = {
-                "rxclassDrugInfoList": {
-                    "rxclassDrugInfo": [
-                        {"rxclassMinConceptItem": item, "rela": "has_epc", "relaSource": "DAILYMED"}
-                    ]
-                }
-            }
-            return 200, body
-        return (200, {}) if params["relaSource"] == "DAILYMED" else (503, None)
+        return classes_of(params["rxcui"])
 
     # a profile reads the axes as cached (none yet: not_looked_up), then --fill-axes asks RxNav for them
     codes["profile"] = cli.main(["profile", str(out)], rxclass_get=rxclass)

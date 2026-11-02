@@ -92,8 +92,9 @@ class Registry:
 
 
 class RxNav:
-    """RxNav as recorded: each request line's [status, body]; RxClass byDrugName knows no name. `override`
-    answers chosen lines otherwise, once each (a failure, another release)."""
+    """RxNav as recorded: each request line's [status, body]; RxNorm holds no other name, and RxClass knows
+    no class of any concept. `override` answers chosen lines otherwise, once each (a failure, another
+    release)."""
 
     def __init__(self, override=None):
         self.override = {key: list(answers) for key, answers in (override or {}).items()}
@@ -108,7 +109,7 @@ class RxNav:
             return tuple(ANSWERS[key])
         if url.endswith("/rxcui.json"):
             return 200, {"idGroup": {}}  # RxNorm's answer for a name it does not hold
-        assert url.endswith("/byDrugName.json"), key
+        assert url.endswith(("/byRxcui.json", "/properties.json", "/related.json")), key
         return 200, {}
 
     def body(self, url):
@@ -243,7 +244,7 @@ def test_a_relay_run_reads_every_experimental_drug_not_looked_up(tmp_path):
 def test_a_direct_run_asks_rxclass_about_the_studies_drugs(tmp_path):
     rxnav = RxNav()
     assert direct(tmp_path / "direct", PD1_IN_LUNG, Registry([results_study()]), rxnav).status == "complete"
-    asked = [key for key in rxnav.asked if "byDrugName" in key]
+    asked = [key for key in rxnav.asked if "rxcui.json?name=Testamab" in key]
     assert asked and (tmp_path / "direct" / "classes.json").is_file()
     testamab = record(tmp_path / "direct")["studies"][0]["interventions"][0]
     assert testamab["drug_class"]["value"]["state"] == "unresolved"
@@ -634,7 +635,8 @@ def test_the_command_ends_2_refused_or_stopped_by_name(tmp_path, capsys, words, 
 def test_the_command_says_how_far_its_rxnav_requests_have_got(tmp_path, capsys):
     """The release check (2026-11-01): never silence for minutes. Positive: each round of the request's
     resolution says how many of its RxNav requests are asked, and the drug lookups after the pull say how
-    many drug names; each line before the end. Negative: a run asking RxNav nothing says nothing of it."""
+    many drug names, then how many requests RxNav answered; each line before the end. Negative: a run asking
+    RxNav nothing says nothing of it."""
     studies = [results_study()]
     assert command(tmp_path / "run", *PD1_FLAGS, "--mode", "direct", registry=Registry(studies)) == 0
     err = capsys.readouterr().err.splitlines()
@@ -643,7 +645,10 @@ def test_the_command_says_how_far_its_rxnav_requests_have_got(tmp_path, capsys):
     assert any(
         line.startswith("asking RxNav, the National Library of Medicine's drug vocabulary") for line in err
     )
-    assert any(re.fullmatch(r"drug classes asked of RxNav for \d+ of \d+ drug names", line) for line in err)
+    assert any(
+        re.fullmatch(r"RxNorm identity asked of RxNav for \d+ of \d+ drug names", line) for line in err
+    )
+    assert any(re.fullmatch(r"RxNav answered \d+ requests about \d+ drug names .*", line) for line in err)
     drug_less = Registry([drug_free(results_study())])
     assert command(tmp_path / "ids", "--ids", "NCT01234567", "--mode", "direct", registry=drug_less) == 0
     assert not [line for line in capsys.readouterr().err.splitlines() if "RxNav" in line]

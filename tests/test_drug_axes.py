@@ -11,7 +11,7 @@ structure class under one taxonomy and release are related by shares_structure_c
 entry states aligns to ATC by the crosswalk, every row with its RxClass request and retrieval date, and
 equivalent_to and narrower_than entail membership; an intervention MeSH term that is literally one
 intervention's name is linked to it; a name cached before the axes existed is asked for the axes alone, its
-classes untouched.
+classes untouched, and the axes are read from the same RxClass answer by concept as the classes.
 Negative: a brand or a salt never inherits its ingredient's class by the API's answer (not_inherited); an
 alias never supplies a concept: an own name RxNorm does not hold is unresolved with a named reason whatever
 its aliases resolve to ("Carboplatin/Pemetrexed" with the alias "carboplatin", "XB-1" with the alias "XB-1 +
@@ -21,13 +21,14 @@ structure classes are never merged, a class under an unknown release relates not
 related to itself (no homology is ever claimed); a word naming another drug (carboplatin, paclitaxel,
 bevacizumab) or a target in the patient's history is no target of the drug, and no crosswalk row is keyed by a
 drug's name; broader_than, overlaps and unresolved never entail membership; a MeSH term matching no name, or
-two interventions' names, stays at trial level; a name outside the experimental drugs is never asked RxNav,
-and no name is asked about the axes unless the fill is asked for (EPC and MoA are asked as before).
+two interventions' names, stays at trial level; a name outside the experimental drugs is never given axes,
+and no name is asked about the axes alone unless the fill is asked for (EPC and MoA are asked as before).
 """
 
 import json
 
 import pytest
+from rxnav_fake import FakeRxNav
 
 from TrialLedger import classes as rx
 from TrialLedger.classes import (
@@ -555,92 +556,101 @@ def test_intervention_mesh_stays_at_trial_level_unless_literally_one_interventio
     assert mesh_scope(None, names) == []
 
 
+GEFITINIB = {
+    "names": {"gefitinib": ["328134"], "Placebo": ["8375"]},
+    "concepts": {"328134": ("gefitinib", "IN"), "8375": ("placebo", "IN")},
+    "classes": {
+        "328134": [
+            (
+                "L01EB",
+                "Epidermal growth factor receptor (EGFR) tyrosine kinase inhibitors",
+                "ATC1-4",
+                "",
+                "ATC",
+                "328134",
+            )
+        ]
+    },
+}
+
+
 def test_a_name_cached_before_the_axes_is_asked_for_them_alone(tmp_path):
     path = tmp_path / "classes.json"
     old = {"codes": {"DAILYMED:has_epc": "found"}, "classes": [["N1", "X", "has_epc", "DAILYMED"]]}
     path.write_text(json.dumps({"answers": {"gefitinib": old}}))
-    asked = []
-
-    def get(url, params):
-        asked.append((url.rsplit("/", 1)[-1], params.get("relaSource", params.get("name", ""))))
-        if url.endswith("version.json"):
-            return 200, {"version": "05-Oct-2026"}
-        if url.endswith("rxcui.json"):
-            return 200, {"idGroup": {"rxnormId": ["328134"]}}
-        if url.endswith("properties.json"):
-            return 200, {"properties": {"rxcui": "328134", "name": "gefitinib", "tty": "IN"}}
-        return (200, GEFITINIB_ATC) if params["relaSource"] == "ATC" else (200, {})
-
+    get = FakeRxNav(**GEFITINIB)
     answers = load_or_lookup_at(
         path, ["gefitinib"], ["gefitinib"], fill_axes=True, get=get, sleep=lambda _: None
     )
-    assert asked == [
-        ("version.json", ""),
-        ("rxcui.json", "gefitinib"),
-        ("properties.json", ""),
-        ("byDrugName.json", "ATC"),
-        ("byDrugName.json", "DAILYMED"),
-        ("byDrugName.json", "FDASPL"),
+    assert [url.rsplit("/", 1)[-1] for url, _ in get.asked] == [
+        "version.json",
+        "rxcui.json",
+        "properties.json",
+        "byRxcui.json",
+        "version.json",
     ]
     assert answers["gefitinib"]["classes"] == old["classes"]
     atc = answers["gefitinib"]["axes"]["ATC"]
     assert atc["code"] == "found" and atc["release"][:2] == ["found", "05-Oct-2026"]
-    assert (
-        atc["request"]["params"] == {"drugName": "gefitinib", "relaSource": "ATC"}
-        and atc["request"]["retrieved"]
-    )
+    assert atc["request"]["params"] == {"rxcui": "328134"} and atc["request"]["retrieved"]
+    assert [a[0] for a in atc["assertions"]] == ["L01EB"]
+    # the structure axes are read from the same answer: RxClass states none of gefitinib
+    assert answers["gefitinib"]["axes"]["FDASPL:has_chemical_structure"]["code"] == "not_found"
     assert json.loads(path.read_text())["answers"]["gefitinib"]["axes"]["identity"]["ids"] == [
         "found",
         ["328134"],
     ]
-    asked.clear()
+    get.asked.clear()
     load_or_lookup_at(path, ["gefitinib"], ["gefitinib"], fill_axes=True, get=get, sleep=lambda _: None)
-    assert asked == []
+    assert get.asked == []
 
 
-def test_a_name_no_experimental_drug_carries_is_never_asked_rxnav(tmp_path):
-    asked = []
-
-    def get(url, params):
-        asked.append(url.rsplit("/", 1)[-1])
-        return 200, {}
-
+def test_a_name_no_experimental_drug_carries_is_never_given_axes(tmp_path):
+    get = FakeRxNav(**GEFITINIB)
     answers = load_or_lookup_at(
         tmp_path / "c.json", ["Placebo", "XB-1"], ["XB-1"], fill_axes=True, get=get, sleep=lambda _: None
     )
     assert "axes" not in answers["Placebo"] and "axes" in answers["XB-1"]
-    # the release is asked once by each lookup batch: EPC and MoA's (add-scoped-reasoning 1.2), then the axes'
-    assert asked.count("version.json") == 2 and asked.count("rxcui.json") == 1
+    # one batch: the release before and after it, each name's identity once; Placebo's concept is classed
+    # but never described, XB-1 (not in RxNorm) neither
+    assert get.count(rx.RXNAV_VERSION) == 2 and get.count(rx.RXNORM_IDS) == 2
+    assert [p for url, p in get.asked if url == rx.RXCLASS_BY_RXCUI] == [{"rxcui": "8375"}]
+    assert not any(url.endswith("properties.json") for url, _ in get.asked)
+    assert answers["XB-1"]["axes"]["identity"]["ids"] == ["not_found", []]
+    assert answers["XB-1"]["axes"]["ATC"]["code"] == "not_in_rxnorm"
 
 
-def test_the_axes_are_asked_only_when_filled_and_epc_moa_as_before(tmp_path):
-    """Positive: with fill_axes the axes are asked, and EPC and MoA exactly as without it, request for
-    request. Negative: without it no RxNav request about the axes is made, on a cold cache or on one whose
-    names were cached before the axes, which is left as it was."""
+def test_the_axes_are_kept_only_when_filled_and_epc_moa_as_before(tmp_path):
+    """Positive: with fill_axes the axes are kept, and EPC and MoA asked exactly as without it, request for
+    request. Negative: without it no RxNav request about the axes alone is made (no concept's properties or
+    ingredients), on a cold cache or on one whose names were cached before the axes, which is left as it
+    was."""
 
     def run(path, fill):
-        asked = []
-
-        def get(url, params):
-            asked.append((url, tuple(sorted(params.items()))))
-            return 200, {}
-
-        load_or_lookup_at(path, ["Placebo", "XB-1"], ["XB-1"], fill_axes=fill, get=get, sleep=lambda _: None)
-        return asked
+        get = FakeRxNav(**GEFITINIB)
+        answers = load_or_lookup_at(
+            path, ["Placebo", "gefitinib"], ["gefitinib"], fill_axes=fill, get=get, sleep=lambda _: None
+        )
+        return [(url, tuple(sorted(params.items()))) for url, params in get.asked], answers
 
     def classes_only(asked):
-        return [a for a in asked if dict(a[1]).get("relas") in ("has_epc", "has_moa")]
+        return [a for a in asked if not a[0].endswith(("properties.json", "related.json"))]
 
-    lazy, filled = run(tmp_path / "lazy.json", False), run(tmp_path / "filled.json", True)
-    # EPC and MoA's batch asks the release once, first (its warrant, add-scoped-reasoning 1.2), then its four
-    assert lazy == [(rx.RXNAV_VERSION, ()), *classes_only(lazy)] and len(lazy) == 5
-    assert classes_only(lazy) == classes_only(filled) and filled[0] == lazy[0]
-    assert len(filled) > len(lazy)
+    (lazy, lazy_answers), (filled, filled_answers) = (
+        run(tmp_path / "lazy.json", False),
+        run(tmp_path / "f.json", True),
+    )
+    assert classes_only(lazy) == lazy and len(lazy) == 6
+    assert classes_only(filled) == lazy and len(filled) > len(lazy)
+    assert not any("axes" in answer for answer in lazy_answers.values())
+    assert {k: v["classes"] for k, v in lazy_answers.items()} == {
+        k: v["classes"] for k, v in filled_answers.items()
+    }
     before = tmp_path / "before.json"
     old = {"codes": {"DAILYMED:has_epc": "not_found"}, "classes": []}
-    before.write_text(json.dumps({"answers": {"Placebo": old, "XB-1": old}}))
+    before.write_text(json.dumps({"answers": {"Placebo": old, "gefitinib": old}}))
     text = before.read_text()
-    assert run(before, False) == [] and before.read_text() == text
+    assert run(before, False)[0] == [] and before.read_text() == text
 
 
 def test_a_partners_target_in_this_drugs_entry_is_not_this_drugs():

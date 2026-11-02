@@ -3,6 +3,7 @@
 import csv
 import io
 import json
+import time
 
 import httpx
 import pytest
@@ -48,7 +49,6 @@ def test_a_live_pull_writes_a_certified_folder_whose_links_resolve(tmp_path):
 def test_every_verified_query_form_still_returns_trials():
     """Each form in sample.VERIFIED_FORMS, asked as recorded in tests/live_query_forms.json (countTotal, one
     ID per page), still returns trials; a recount is not expected to equal the recorded one."""
-    import time
     from pathlib import Path
 
     from TrialLedger.ingest import API_BASE
@@ -65,10 +65,14 @@ def test_every_verified_query_form_still_returns_trials():
 def test_rxnav_resolves_identity_before_a_class_is_attributed():
     """Against RxNav (observed 2026-10-31 and 2026-11-01): gefitinib is its own ingredient and its ATC class
     L01EB is known; Keytruda is a brand that RxClass answers as pembrolizumab, so L01FF is not inherited."""
-    answers = {
-        name: {"axes": axes}
-        for name, axes in rx.lookup_axes(["gefitinib", "Keytruda"], get=rx.http_get).items()
-    }
+    answers = rx._ask_rxnav(
+        ["gefitinib", "Keytruda"],
+        {"gefitinib", "Keytruda"},
+        get=rx.http_get,
+        sleep=time.sleep,
+        monotonic=time.monotonic,
+        progress=lambda message: None,
+    )
     _, _, _, gefitinib = rx.drug_axes(["gefitinib"], answers)
     assert ("ATC", "L01EB", "known") in {(a[1], a[2], a[5]) for a in gefitinib}
     _, _, identities, keytruda = rx.drug_axes(["Keytruda"], answers)

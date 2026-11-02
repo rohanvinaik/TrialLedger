@@ -23,7 +23,6 @@ from records import ongoing_study, results_study
 
 from TrialLedger import classes as rx
 from TrialLedger import cli, warrants
-from TrialLedger.classes import RXCLASS
 from TrialLedger.coherence import RELATIONS, SETTINGS, Relation, resolve
 from TrialLedger.symbolic import _coordinate
 
@@ -31,14 +30,24 @@ PULL_FILES = ("studies.json", "studies.csv", "review.xlsx", "record.xlsx")
 
 
 def rxclass(url, params):
-    # RxNorm and the RxNav release know nothing here, and only DailyMed's EPC answers.
-    if not url.endswith("/byDrugName.json") or params.get("relas") != "has_epc":
+    # RxNorm holds every name as its own ingredient ("rx-<name>"), the RxNav release is not stated, and
+    # RxClass, asked by concept, answers only DailyMed's EPC.
+    if url.endswith("/rxcui.json"):
+        return 200, {"idGroup": {"rxnormId": [f"rx-{params['name']}"]}}
+    if url.endswith("/properties.json"):
+        rxcui = url.rsplit("/", 2)[-2]
+        return 200, {"properties": {"rxcui": rxcui, "name": rxcui.removeprefix("rx-"), "tty": "IN"}}
+    if not url.endswith("/byRxcui.json"):
         return 200, {}
-    if params["relaSource"] == "DAILYMED":
-        item = {"classId": "N0000191260", "className": "Programmed Death Receptor-1 Blocking Antibody"}
-        entry = {"rxclassMinConceptItem": item, "rela": "has_epc", "relaSource": "DAILYMED"}
-        return 200, {"rxclassDrugInfoList": {"rxclassDrugInfo": [entry]}}
-    return 200, {}
+    concept = {"rxcui": params["rxcui"], "name": params["rxcui"].removeprefix("rx-"), "tty": "IN"}
+    item = {"classId": "N0000191260", "className": "Programmed Death Receptor-1 Blocking Antibody"}
+    entry = {
+        "minConcept": concept,
+        "rxclassMinConceptItem": item,
+        "rela": "has_epc",
+        "relaSource": "DAILYMED",
+    }
+    return 200, {"rxclassDrugInfoList": {"rxclassDrugInfo": [entry]}}
 
 
 @pytest.fixture
@@ -265,13 +274,16 @@ def test_resolve_carries_an_abbreviated_record_to_the_sheets_and_the_json(tmp_pa
 
 
 def recording(asked):
-    """The `rxclass` fake, recording each request as EPC/MoA ("classes"), the RxNav release ("release", asked
-    once by each lookup batch, EPC and MoA's or the axes') or an axis request ("axes")."""
+    """The `rxclass` fake, recording each request as a name's RxNorm identity ("identity"), a concept's
+    classes ("classes"), the RxNav release ("release", asked before and after each lookup batch) or a request
+    the axes alone need ("axes": a concept's properties or ingredients), each with the name it is about."""
 
     def get(url, params):
-        epc = url.endswith("/byDrugName.json") and params.get("relas") in ("has_epc", "has_moa")
-        kind = "classes" if epc else "release" if url.endswith("/version.json") else "axes"
-        asked.append((kind, url.rsplit("/", 1)[-1], params.get("drugName", "")))
+        page = url.rsplit("/", 1)[-1]
+        kinds = {"rxcui.json": "identity", "byRxcui.json": "classes", "version.json": "release"}
+        name = params.get("name") or params.get("rxcui") or url.rsplit("/", 2)[-2]
+        about = "" if page == "version.json" else name.removeprefix("rx-")
+        asked.append((kinds.get(page, "axes"), page, about))
         return rxclass(url, params)
 
     return get
@@ -288,9 +300,11 @@ def test_a_profile_asks_no_axes_and_marks_them_not_looked_up(folder, capsys):
     axes were never asked as not_looked_up. Negative: it asks RxNav nothing about the axes."""
     asked = []
     assert cli.main(["profile", str(folder)], rxclass_get=recording(asked)) == 0
-    # EPC and MoA, with the release their batch was read under asked once (its warrant), and nothing else
-    assert asked and {kind for kind, *_ in asked} == {"classes", "release"}
-    assert [kind for kind, *_ in asked].count("release") == 1 and asked[0][0] == "release"
+    # each name's identity and its concept's classes, with the release their batch was read under asked
+    # before and after it (its warrant), and nothing the axes alone need
+    assert asked and {kind for kind, *_ in asked} == {"identity", "classes", "release"}
+    assert [kind for kind, *_ in asked].count("release") == 2
+    assert asked[0][0] == "release" and asked[-1][0] == "release"
     assert sorted({name for kind, _, name in asked if kind == "classes"}) == ["Placebo", "TM-1", "Testamab"]
     assert axes_identities(folder) == {("Testamab", "not_looked_up", "own_name_not_looked_up")}
     assert "--fill-axes" in capsys.readouterr().err
@@ -346,8 +360,8 @@ def test_resolve_asks_the_axes_its_outputs_read(tmp_path, monkeypatch):
 
 # RxNav's own answer to version.json (read live 2026-11-01; tests/test_classes.py)
 RXNAV_VERSION = {"version": "05-Oct-2026", "apiVersion": "3.1.356"}
-EPC_REQUEST = f"{RXCLASS}?drugName=Pembrolizumab&relaSource=DAILYMED&relas=has_epc"
-MOA_REQUEST = f"{RXCLASS}?drugName=Pembrolizumab&relaSource=MEDRT&relas=has_moa"
+IDENTITY_REQUEST = f"{rx.RXNORM_IDS}?name=Pembrolizumab&search=0"
+CLASS_REQUEST = f"{rx.RXCLASS_BY_RXCUI}?rxcui=rx-Pembrolizumab"
 PD1 = "Programmed Death Receptor-1 Blocking Antibody"
 ALL_SETTINGS = list(SETTINGS)
 
@@ -432,7 +446,7 @@ def test_resolve_shows_each_status_each_kind_and_each_warrant(tmp_path, monkeypa
     }
     cache = json.loads((tmp_path / "cache" / "classes.json").read_text())["answers"]["Pembrolizumab"]
     asked = [{"request": rx.request_text(w), "retrieved": w["retrieved"]} for w in cache["requests"]]
-    assert [a["request"] for a in asked] == [EPC_REQUEST, MOA_REQUEST]
+    assert [a["request"] for a in asked] == [IDENTITY_REQUEST, CLASS_REQUEST]
     for nct in ("NCT09000001", "NCT09000005"):
         assert reading[nct]["experimental_drugs"] == [
             {
@@ -545,9 +559,15 @@ def test_an_answer_cached_before_warrants_keeps_its_classes_and_records_no_relea
     asked = []
     argv = ["resolve", "filter.ids=NCT09000001", "--json", str(out), "--out", str(book)]
     assert cli.main(argv, http=api.client(), sleep=api.sleep, rxclass_get=released(asked)) == 0
-    # the axes are asked (resolve reads them), EPC and MoA never again
-    assert not [p for url, p in asked if url == RXCLASS and p.get("relas") in ("has_epc", "has_moa")]
-    assert [p.get("relaSource") for url, p in asked if url == RXCLASS] == ["ATC", "DAILYMED", "FDASPL"]
+    # the axes are asked (resolve reads them): the name's identity and its concept's classes, read for the
+    # axes alone; its EPC and MoA are kept as they were answered
+    assert [url.rsplit("/", 1)[-1] for url, _ in asked] == [
+        "version.json",
+        "rxcui.json",
+        "properties.json",
+        "byRxcui.json",
+        "version.json",
+    ]
     [drug] = json.loads(out.read_text())["studies"][0]["experimental_drugs"]
     assert (drug["state"], drug["classes"]) == ("classified", [PD1])
     assert drug["rxclass"] == [

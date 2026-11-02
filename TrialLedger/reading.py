@@ -448,17 +448,24 @@ def review_flags(view: dict[str, Any], known_classes: list[str]) -> list[tuple]:
 
 
 def drug_aliases(studies: list[dict[str, Any]]) -> list[str]:
-    """Every drug, biological or genetic intervention's name and other names of the studies, for RxClass's
-    EPC and MoA classes (the Classes sheet shows every answer)."""
-    return [alias for study in studies for aliases in rx.drug_names(study).values() for alias in aliases]
+    """Every drug, biological or genetic intervention's name and other names of the studies, as the
+    registry's structured intervention entries give them (never an arm's label), each once in the order
+    first given: the names RxNav is asked about for their RxNorm identity and their EPC and MoA classes (the
+    Classes sheet shows every answer; classes.lookup_name strips a dose written after a name before it is
+    asked)."""
+    return list(
+        dict.fromkeys(
+            alias for study in studies for aliases in rx.drug_names(study).values() for alias in aliases
+        )
+    )
 
 
 def axes_aliases(studies: list[dict[str, Any]]) -> list[str]:
-    """The names and other names of every experimental arm's drug, biological or genetic intervention: the
-    only names whose axes the reading reads, so the only ones RxNav is asked about (when the axes are filled:
-    classes.load_or_lookup_at's `fill_axes`)."""
-    out = []
+    """The names and other names of every experimental arm's drug, biological or genetic intervention, each
+    once in the order first given: the only names whose axes the reading reads, so the only ones whose axes
+    are kept (when the axes are filled: classes.load_or_lookup_at's `fill_axes`)."""
+    out: dict[str, None] = {}
     for study in studies:
         names = rx.drug_names(study)
-        out += [alias for drug in rx.experimental_drugs(study) for alias in names[drug]]
-    return out
+        out |= {alias: None for drug in rx.experimental_drugs(study) for alias in names[drug]}
+    return list(out)

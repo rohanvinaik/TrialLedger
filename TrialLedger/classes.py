@@ -2,28 +2,38 @@
 the drug-class axes beside them (ATC, chemical structure), each about an entity RxNorm resolves.
 
 The registry states no mechanism for an intervention (its MeSH ancestors are chemical-structure classes), so
-TrialLedger asks the U.S. National Library of Medicine's RxClass service, by each drug, biological or genetic
-intervention's name and then each other name the record gives it: `has_epc` from DailyMed (the FDA's
-Established Pharmacologic Class) and `has_moa` from MED-RT (mechanism of action). Every class keeps its
-RxClass id and relation source. A name RxClass does not know is `not_found`; a failed request is
-`lookup_failed`; neither is ever read as "no class". The answers are cached beside the pull in classes.json,
-with the request and the retrieval time (of the cache's last extension, and of each answer since 2026-11-01;
-an answer cached before then has none), so a profile can be re-derived without the network; each answer
-looked up since add-scoped-reasoning 1.2 carries its warrant: every request it made (URL, parameters,
-retrieval time) and the RxNav release it was read under, asked once per lookup batch. An answer cached before
-then keeps its classes, and its release is not recorded, never invented.
+TrialLedger asks the U.S. National Library of Medicine's RxNav service about each drug, biological or genetic
+intervention's name and then each other name the record gives it: first the name's RxNorm identity (the
+concept of exactly that name), then, once per RxNorm concept however many names reach it, RxClass's classes of
+that concept (`class/byRxcui`, one request), read as `has_epc` from DailyMed (the FDA's Established
+Pharmacologic Class), `has_moa` from MED-RT (mechanism of action) and the axes below. Asked by its concept,
+RxClass answers exactly as it answers the concept's own name by `byDrugName` (measured 2026-11-01:
+carboplatin, Paraplatin, Temodar, Afinitor, paclitaxel, osimertinib and its mesylate), and also answers a name
+RxNorm holds that `byDrugName` did not match (CBDCA, Mereletinib, Nab-paclitaxel). A dose or schedule written
+after a drug's name ("CAT-8015 20 mcg/kg") is stripped before the name is asked, only by the named rule of
+`lookup_name`. Every class keeps its RxClass id and relation source. A name RxNorm does not hold is
+`not_in_rxnorm`, a name of several concepts `ambiguous_in_rxnorm` (RxClass is asked about neither); a concept
+RxClass holds no class of is `not_found`; a failed request is `lookup_failed`; none is ever read as "no class"
+by a failure. The requests go out at most IN_FLIGHT at once and at most RATE a second (NLM allows 20 a second
+from one address), and every answer is assembled in the order of the names asked, never of the replies. The
+answers are cached beside the pull in classes.json, successful, ambiguous and negative alike, with the request
+and the retrieval time (of the cache's last extension, and of each answer since 2026-11-01; an answer cached
+before then has none), so a profile can be re-derived without the network; each answer looked up since
+add-scoped-reasoning 1.2 carries its warrant: every request it made (URL, parameters, retrieval time) and the
+RxNav release it was read under, asked before the first request of its batch and again after the last. An
+answer cached before then keeps its classes, and its release is not recorded, never invented.
 
 The axes (add-scoped-reasoning, Decision 11) are separate coordinates, never merged with the classes above or
 with each other: the ATC class (RxClass relaSource ATC) and the chemical-structure class
 (`has_chemical_structure` from DAILYMED and from FDASPL). RxClass answers a brand or a salt as its ingredient
 (asked "Keytruda" or "osimertinib mesylate", it answers about pembrolizumab or osimertinib, measured
-2026-10-31), so a class is read as a source assertion about the concept RxClass names, and each name is first
+2026-10-31), so a class is read as a source assertion about the concept RxClass names, and each name is
 resolved by RxNorm (its exact-name concept, the concept's term type, a non-ingredient's ingredients). The
 intervention's own name decides what it is; another name the record gives it may confirm that concept but
 never supplies one. A class counts as the intervention's own (`known`) only when it is asserted of the very
 concept its own name resolves to; a salt, brand or combination never inherits its ingredient's class by an API
 answer alone. Every axis answer keeps its warrant: the request, the retrieval time, the RxNav release and the
-ids, and the axes are asked only for the experimental drugs' names, the only ones read, and only when a
+ids, and the axes are kept only for the experimental drugs' names, the only ones read, and only when a
 consumer of them or the explicit fill asks (load_or_lookup_at's `fill_axes`). A target the drug's
 own entry states (anti-PD-1, EGFR inhibitor) aligns to ATC through a sourced crosswalk with named relations,
 membership only where the relation entails it; a word naming another drug (carboplatin, paclitaxel) is no
@@ -36,8 +46,10 @@ from __future__ import annotations
 import json
 import os
 import re
+import threading
 import time
 from collections.abc import Callable, Sequence
+from concurrent.futures import ThreadPoolExecutor
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
@@ -59,8 +71,15 @@ RXNAV_VERSION = f"{RXNAV}/version.json"
 RXNORM_IDS = f"{RXNAV}/rxcui.json"
 RXNORM_PROPERTIES = RXNAV + "/rxcui/{rxcui}/properties.json"
 RXNORM_RELATED = RXNAV + "/rxcui/{rxcui}/related.json"
+# Every class RxClass holds of one RxNorm concept, every source and relation in one answer; each query of
+# QUERIES and each axis of AXES is read from it by relation_body.
+RXCLASS_BY_RXCUI = f"{RXNAV}/rxclass/class/byRxcui.json"
 # The axes, each its own coordinate: (relation source, relation); ATC has no relation name in RxClass.
 AXES = (("ATC", ""), ("DAILYMED", "has_chemical_structure"), ("FDASPL", "has_chemical_structure"))
+# The bound on RxNav requests: at most IN_FLIGHT awaiting their answers at once, and at most RATE begun in any
+# second (each begun at least 1/RATE s after the one before), under NLM's published 20 a second per address.
+IN_FLIGHT = 8
+RATE = 15
 # (class id, class name, class type, relation, relation source, subject rxcui, subject name, subject tty)
 Assertion = tuple[str, str, str, str, str, str, str, str]
 Concept = tuple[str, str, str]  # (rxcui, name, term type)
@@ -145,42 +164,287 @@ def _quiet(_message: str) -> None:
     """Default progress sink: say nothing."""
 
 
-def lookup(
-    names: list[str],
+# The rule that strips a dose or a schedule written after a drug's name before RxNav is asked about it
+# (lookup_name). The registry's own intervention names carry them ("CAT-8015 20 mcg/kg", one intervention per
+# dose level; "AZD9291 80 mg/40 mg"), and RxNorm holds no concept of such a name. A dose is an amount with its
+# unit; a schedule word ("oral", "once daily", "QD") is stripped only after a dose. A bare number is never a
+# dose ("MEDI 4736", "VP 16"), a dose form ("tablet", "injection") is never stripped, and a dose followed by
+# anything else stays as written ("AZD9291 80 mg/40 mg + placebo").
+DOSE_RULE = "dose_or_schedule_suffix"
+_NUMBER = r"\d+(?:\.\d+)?"
+_UNIT = r"(?:mg|mcg|µg|ug|g|ml|iu|units?)(?:\s*/\s*(?:kg|m2|m²|day|d))?(?![a-z])"
+_DOSE = rf"{_NUMBER}(?:\s*/\s*{_NUMBER})*\s*{_UNIT}(?:\s*/\s*{_NUMBER}(?:\s*/\s*{_NUMBER})*\s*{_UNIT})*"
+_SCHEDULE = (
+    r"(?:(?:once|twice)\s+(?:a\s+)?daily|daily|each\s+day|every\s+day|qd|bid|tid|orally|oral|p\.o\.|po|iv"
+    r"|intravenously)(?![a-z])"
+)
+_DOSE_SUFFIX = re.compile(rf"[\s,]+{_DOSE}(?:[\s,]+(?:{_DOSE}|{_SCHEDULE}))*[\s,]*$", re.IGNORECASE)
+
+
+def lookup_name(name: str) -> tuple[str, str]:
+    """The name RxNav is asked about for one of a drug's names, and the rule that made it (pure — pinned).
+
+    dose_stripped — the name ends in a dose (an amount with its unit), then any further doses or schedule
+                    words: the name without them ("CAT-8015 20 mcg/kg" is asked as "CAT-8015", "AZD9291 80mg
+                    oral each day" as "AZD9291"), when what is left holds a letter.
+    as_given      — anything else, the name exactly as written: no dose ends it ("MEDI 4736", "Osimertinib
+                    tablet"), something other than a dose or schedule follows the dose ("AZD9291 80 mg/40 mg
+                    + placebo"), or nothing but a dose is written ("80 mg").
+    """
+    match = _DOSE_SUFFIX.search(name)
+    stem = name[: match.start()].strip(" ,") if match else ""
+    if not any(character.isalpha() for character in stem):
+        return "as_given", name
+    return "dose_stripped", stem
+
+
+def pace(now: float, free: float, interval: float) -> tuple[float, float]:
+    """How long one RxNav request waits before it begins, and when the next may begin (pure — pinned).
+
+    `now` is the clock, `free` the earliest moment the next request may begin (0.0 before the first), and
+    `interval` the least time between two beginnings (1/RATE). The request begins at the later of `now` and
+    `free`: returns (that moment less `now`, never negative; that moment plus `interval`).
+    """
+    begin = max(now, free)
+    return begin - now, begin + interval
+
+
+def relation_body(body: Any, source: str, rela: str) -> Any:
+    """One query's share of an RxClass byRxcui answer: the answer as RxClass gives it asked with that relation
+    source, and with that relation when `rela` is not "" (pure — pinned).
+
+    Each entry of rxclassDrugInfoList.rxclassDrugInfo stated under `source` (and `rela`) is kept, in order; an
+    entry that is not an object, or states no string relaSource, is kept too, so that the reading of the share
+    (rxclass_classes, rxclass_assertions) names the answer malformed rather than the class absent. A share
+    keeping no entry is {} (RxClass's answer when it holds no class: not_found). A body that is not an object,
+    or holds no non-empty list of entries, is its own share, read as it is.
+    """
+    listing = body.get("rxclassDrugInfoList") if isinstance(body, dict) else None
+    entries = listing.get("rxclassDrugInfo") if isinstance(listing, dict) else None
+    if not isinstance(entries, list) or not entries:
+        return body
+    kept = [
+        entry
+        for entry in entries
+        if not isinstance(entry, dict)
+        or not isinstance(entry.get("relaSource"), str)
+        or (entry["relaSource"] == source and (not rela or str(entry.get("rela", "")) == rela))
+    ]
+    return {"rxclassDrugInfoList": {"rxclassDrugInfo": kept}} if kept else {}
+
+
+def class_route(ids_code: str, count: int) -> str:
+    """Whether RxClass is asked about a name's concept, from its RxNorm identity answer (pure — pinned).
+
+    `ids_code` is rxnorm_ids' code for the name and `count` the number of concepts it found.
+    ask                 — exactly one concept: RxClass is asked for its classes (byRxcui).
+    not_in_rxnorm       — RxNorm holds no concept of exactly that name.
+    ambiguous_in_rxnorm — the name is exactly the name of several concepts.
+    lookup_failed       — the identity request failed, so whether a class exists is not established.
+    malformed           — anything else (an answer not of RxNorm's form).
+    Every code but `ask` is the name's code for each class query, so a failed lookup is never "no class".
+    """
+    if ids_code == "found" and count == 1:
+        return "ask"
+    if ids_code == "found" and count > 1:
+        return "ambiguous_in_rxnorm"
+    return {"not_found": "not_in_rxnorm", "lookup_failed": "lookup_failed"}.get(ids_code, "malformed")
+
+
+def batch_releases(answers: dict[str, Any]) -> list[tuple[tuple[str, str], tuple[str, str]]]:
+    """The RxNav releases each lookup batch held in `answers` was read under, before its first request and
+    after its last (pure — pinned).
+
+    Each answer, and each answer's axes identity, that carries both `release` and `release_end` gives one
+    pair ((code, release) before, (code, release) after), as rxnav_release reads version.json; each pair once,
+    sorted. An answer cached before releases were asked after the last request gives none.
+    """
+    pairs = set()
+    for answer in answers.values():
+        identity = ((answer.get("axes") or {}).get("identity") or {}) if isinstance(answer, dict) else {}
+        for held in (answer, identity):
+            if isinstance(held, dict) and "release" in held and "release_end" in held:
+                first, last = held["release"], held["release_end"]
+                pairs.add(((str(first[0]), str(first[1])), (str(last[0]), str(last[1]))))
+    return sorted(pairs)
+
+
+def _now() -> str:
+    """A retrieval time: now, in UTC, to the second."""
+    return datetime.now(UTC).isoformat(timespec="seconds")
+
+
+def ask_all(
+    requests: list[tuple[str, dict[str, str]]],
     *,
     get: Callable[[str, dict[str, str]], tuple[int, Any]],
-    sleep: Callable[[float], None] = time.sleep,
-    spacing: float = 0.2,
-    progress: Callable[[str], None] = _quiet,
+    sleep: Callable[[float], None],
+    monotonic: Callable[[], float],
+    progress: Callable[[int, int], None],
+) -> list[tuple[dict[str, Any], int, Any]]:
+    """Each request (URL, parameters) asked of RxNav: at most IN_FLIGHT at once (a pool of that many threads)
+    and each begun at least 1/RATE s after the one before (pace), so never more than RATE in a second.
+    Returns each request's warrant (URL, parameters, retrieval time), status and body in the order the
+    requests are given, whatever order the answers arrive in; `progress` hears (answers in hand, requests) as
+    each arrives in that order, from the caller's thread."""
+    lock = threading.Lock()
+    free = [0.0]
+
+    def one(request: tuple[str, dict[str, str]]) -> tuple[dict[str, Any], int, Any]:
+        url, params = request
+        with lock:
+            wait, free[0] = pace(monotonic(), free[0], 1 / RATE)
+        sleep(wait)
+        status, body = get(url, params)
+        return {"url": url, "params": params, "retrieved": _now()}, status, body
+
+    out: list[tuple[dict[str, Any], int, Any]] = []
+    with ThreadPoolExecutor(max_workers=IN_FLIGHT) as pool:
+        for answer in pool.map(one, requests):
+            out.append(answer)
+            progress(len(out), len(requests))
+    return out
+
+
+def _said(progress: Callable[[str], None], words: str, unit: str) -> Callable[[int, int], None]:
+    """A round's progress: "<words> for <done> of <total> <unit>" when progress_due; nothing for a round
+    without words (the release's single request)."""
+
+    def heard(done: int, total: int) -> None:
+        if words and progress_due(done, total):
+            progress(f"{words} for {done} of {total} {unit}")
+
+    return heard
+
+
+def _share(route: str, status: int, body: Any, source: str, rela: str, reader: Callable) -> tuple[str, list]:
+    """One query's reading of a name's classes: `reader` (rxclass_classes or rxclass_assertions) over the
+    query's share of its concept's RxClass answer (relation_body) when RxClass was asked (class_route "ask"),
+    else the route's code and nothing."""
+    return reader(status, relation_body(body, source, rela)) if route == "ask" else (route, [])
+
+
+def _ask_rxnav(
+    names: list[str],
+    with_axes: set[str],
+    *,
+    get: Callable[[str, dict[str, str]], tuple[int, Any]],
+    sleep: Callable[[float], None],
+    monotonic: Callable[[], float],
+    progress: Callable[[str], None],
 ) -> dict[str, dict[str, Any]]:
-    """Ask RxClass for each name, both queries, spaced; each name's code per query, its classes, when it was
-    retrieved, and its warrant (add-scoped-reasoning 1.2): the requests it made (`requests`: each URL, its
-    parameters and its retrieval time) and the RxNav release it was read under (`release`: rxnav_release's
-    code and release beside the version.json request's warrant), the release asked once for the batch, as
-    lookup_axes asks it. No name, no request. How far it has got is said through `progress` (progress_due)."""
-    asked = list(dict.fromkeys(names))
-    if not asked:
-        return {}
-    warrant, status, body = _warranted(get, RXNAV_VERSION, {}, sleep, spacing)
-    release = [*rxnav_release(status, body), warrant]
-    answers: dict[str, dict[str, Any]] = {}
-    for done, name in enumerate(asked, 1):
-        per_query, requests = {}, []
-        for source, rela in QUERIES:
-            params = {"drugName": name, "relaSource": source, "relas": rela}
-            warrant, status, body = _warranted(get, RXCLASS, params, sleep, spacing)
-            requests.append(warrant)
-            per_query[f"{source}:{rela}"] = rxclass_classes(status, body)
-        answers[name] = {
-            "codes": {key: code for key, (code, _) in per_query.items()},
-            "classes": sorted({c for _, classes in per_query.values() for c in classes}),
-            "retrieved": datetime.now(UTC).isoformat(timespec="seconds"),
-            "requests": requests,
-            "release": list(release),
+    """Each name's answer, asked of RxNav in rounds, each request once however many names need it.
+
+    RxNav's release first; each distinct name to ask (lookup_name) its RxNorm concepts by exact name; for the
+    names of `with_axes` that name one concept, that concept's properties, and a non-ingredient's ingredients,
+    each concept once; RxClass's classes of every concept a name names alone (class_route), each concept once;
+    the release again. Each name's answer holds the name asked and its rule (`asked_as`, `rule`), its code per
+    query of QUERIES and its classes (relation_body, rxclass_classes), its retrieval time, its warrant (the
+    requests that decided it, the release before and after), and for a name of `with_axes` its axes as
+    drug_axes reads them (identity, then each axis of AXES by rxclass_assertions, with both releases)."""
+
+    def ask(
+        keys: list[str], requests: list, words: str, unit: str
+    ) -> dict[str, tuple[dict[str, Any], int, Any]]:
+        heard = _said(progress, words, unit)
+        answered = ask_all(requests, get=get, sleep=sleep, monotonic=monotonic, progress=heard)
+        return dict(zip(keys, answered, strict=True))
+
+    def release_of(asked: tuple[dict[str, Any], int, Any]) -> list[Any]:
+        return [*rxnav_release(asked[1], asked[2]), asked[0]]
+
+    release = release_of(ask(["release"], [(RXNAV_VERSION, {})], "", "")["release"])
+    asked_as = {name: lookup_name(name) for name in names}
+    stems = sorted({stem for _rule, stem in asked_as.values()})
+    found = ask(
+        stems,
+        [(RXNORM_IDS, {"name": stem, "search": "0"}) for stem in stems],
+        "RxNorm identity asked of RxNav",
+        "drug names",
+    )
+    ids = {stem: (warrant, rxnorm_ids(status, body)) for stem, (warrant, status, body) in found.items()}
+    single = {
+        stem: held[1][0] for stem, (_, held) in ids.items() if class_route(held[0], len(held[1])) == "ask"
+    }
+    axes_stems = {asked_as[name][1] for name in with_axes}
+    described = sorted({rxcui for stem, rxcui in single.items() if stem in axes_stems})
+    properties = ask(
+        described,
+        [(RXNORM_PROPERTIES.format(rxcui=rxcui), {}) for rxcui in described],
+        "RxNorm term types asked of RxNav",
+        "concepts",
+    )
+    concepts = {rxcui: (w, rxnorm_concepts(status, body)) for rxcui, (w, status, body) in properties.items()}
+    combined = sorted(
+        rxcui
+        for rxcui, (_, (code, held)) in concepts.items()
+        if code == "found" and len(held) == 1 and held[0][2] != "IN"
+    )
+    related = ask(
+        combined,
+        [(RXNORM_RELATED.format(rxcui=rxcui), {"tty": "IN"}) for rxcui in combined],
+        "ingredients asked of RxNav",
+        "concepts",
+    )
+    parts = {rxcui: (w, rxnorm_concepts(status, body)) for rxcui, (w, status, body) in related.items()}
+    classed = sorted(set(single.values()))
+    classes = ask(
+        classed,
+        [(RXCLASS_BY_RXCUI, {"rxcui": rxcui}) for rxcui in classed],
+        "drug classes asked of RxNav",
+        "RxNorm concepts",
+    )
+    release_end = release_of(ask(["release"], [(RXNAV_VERSION, {})], "", "")["release"])
+    progress(
+        f"RxNav answered {2 + len(stems) + len(described) + len(combined) + len(classed)} requests about "
+        f"{len(names)} drug names ({len(stems)} names asked, {len(classed)} RxNorm concepts classed)"
+    )
+    out = {}
+    for name in names:
+        rule, stem = asked_as[name]
+        identity_warrant, held = ids[stem]
+        route = class_route(held[0], len(held[1]))
+        rxcui = single.get(stem, "")
+        class_warrant, status, body = classes[rxcui] if rxcui else (identity_warrant, 0, None)
+        per_query = {
+            f"{source}:{rela}": _share(route, status, body, source, rela, rxclass_classes)
+            for source, rela in QUERIES
         }
-        if progress_due(done, len(asked)):
-            progress(f"drug classes asked of RxNav for {done} of {len(asked)} drug names")
-    return answers
+        answer: dict[str, Any] = {
+            "asked_as": stem,
+            "rule": rule,
+            "codes": {key: code for key, (code, _) in per_query.items()},
+            "classes": sorted({c for _, found_classes in per_query.values() for c in found_classes}),
+            "retrieved": _now(),
+            "requests": [identity_warrant, *([class_warrant] if rxcui else [])],
+            "release": list(release),
+            "release_end": list(release_end),
+        }
+        if name in with_axes:
+            concept = concepts.get(rxcui, (None, ("not_asked", [])))
+            ingredients = parts.get(rxcui, (None, ("not_asked", [])))
+            asked = [identity_warrant, *(w for w, _ in (concept, ingredients) if w is not None)]
+            axes: dict[str, Any] = {
+                "identity": {
+                    "ids": list(held),
+                    "concept": list(concept[1]),
+                    "ingredients": list(ingredients[1]),
+                    "requests": asked,
+                    "release": list(release),
+                    "release_end": list(release_end),
+                }
+            }
+            for source, rela in AXES:
+                code, assertions = _share(route, status, body, source, rela, rxclass_assertions)
+                axes[axis_key(source, rela)] = {
+                    "code": code,
+                    "assertions": assertions,
+                    "request": class_warrant,
+                    "release": list(release),
+                }
+            answer["axes"] = axes
+        out[name] = answer
+    return out
 
 
 def http_get(url: str, params: dict[str, str]) -> tuple[int, Any]:
@@ -234,8 +498,8 @@ def load_or_lookup(
     get=http_get,
     sleep=time.sleep,
 ) -> dict[str, Any]:
-    """The folder's cached RxClass answers, extended by a lookup of any name not yet cached, and saved; the
-    axes of `axes_names` are asked only with `fill_axes` (load_or_lookup_at)."""
+    """The folder's cached RxNav answers, extended by a lookup of any name not yet cached, and saved; the
+    axes of `axes_names` are kept only with `fill_axes` (load_or_lookup_at)."""
     return load_or_lookup_at(
         folder / CACHE_NAME, names, axes_names, fill_axes=fill_axes, get=get, sleep=sleep
     )
@@ -249,53 +513,63 @@ def load_or_lookup_at(
     fill_axes: bool = False,
     get=http_get,
     sleep=time.sleep,
+    monotonic: Callable[[], float] = time.monotonic,
     progress: Callable[[str], None] = _quiet,
 ) -> dict[str, Any]:
-    """The RxClass answers cached at `path`, extended by a lookup of any name not yet cached, and saved.
+    """The RxNav answers cached at `path`, extended by a lookup of any name not yet cached, and saved.
 
-    `progress` hears, before each lookup, how many names it will ask about, and then how far it has got
-    (progress_due), so a long one is never silent.
+    `progress` hears, before a lookup, how many names it will ask about, then how far each round has got
+    (progress_due), and last how many requests RxNav answered, so a long one is never silent.
 
-    EPC and MoA are asked for every name of `names` and `axes_names` not yet cached, each answer with its
-    warrant (lookup: its requests and the RxNav release, read once for the batch); an answer cached before
-    answers carried one keeps its classes as answered and is never asked again or rewritten, so its release
-    stays not recorded (reading.class_warrant), never invented. The axes (RxNorm
-    identity, ATC, structure: four to six spaced requests a name) are asked only when `fill_axes` is given,
-    and only for `axes_names` (the experimental drugs' names, the only ones the reading reads) not yet holding
-    them: a consumer that reads them (the `resolve` JSON and its design.xlsx) or the explicit fill
-    (`trialledger profile --fill-axes`) asks; any other run reads the axes already cached, and the reading
-    names the rest not_looked_up (reading.axes_as_looked_up), never "no class". Asked on every profile, they
-    took a stored 487-trial folder from seconds to over an hour (2026-11-01), which a profile must not need.
+    Every name of `names` and `axes_names` not yet cached is asked (_ask_rxnav: its RxNorm identity, then its
+    concept's classes, each request once however many names need it, at most IN_FLIGHT at once and RATE a
+    second), its answer kept whatever it says (classes, no class, a name RxNorm does not hold or holds as
+    several concepts, a failure), with its warrant; an answer cached before answers carried one keeps its
+    classes as answered and is never asked again or rewritten, so its release stays not recorded
+    (reading.class_warrant), never invented. The axes (RxNorm identity with the concept's term type and
+    ingredients, ATC, structure) are kept only when `fill_axes` is given, and only for `axes_names` (the
+    experimental drugs' names, the only ones the reading reads) not yet holding them, a name cached before the
+    axes existed being asked for them alone, its classes left as they were answered: a consumer that reads
+    them (`landscape`, the `resolve` JSON and its design.xlsx) or the explicit fill (`trialledger profile
+    --fill-axes`) asks; any other run reads the axes already cached, and the reading names the rest
+    not_looked_up (reading.axes_as_looked_up), never "no class".
+
+    RxNav's release is asked before the batch's first request and after its last; when the two answers
+    differ (batch_releases) the cache is not extended, so the same command asks again, and the answers
+    returned carry both releases for the caller to refuse (operate.release_check). An answer resting on a
+    failed request is cached as it was answered (lookup_failed, never "no class"), so that a finished run run
+    again reads exactly what it read.
     """
     path.parent.mkdir(parents=True, exist_ok=True)
     cache = json.loads(path.read_text(encoding="utf-8")) if path.is_file() else {}
     answers = cache.get("answers", {})
     missing = [n for n in dict.fromkeys([*names, *axes_names]) if n not in answers]
-    if missing:
-        progress(
-            f"asking RxNav, the National Library of Medicine's drug vocabulary, for the drug classes of "
-            f"{len(missing)} drug names not yet cached (two requests a name, spaced)"
-        )
-        answers.update(lookup(missing, get=get, sleep=sleep, progress=progress))
-    # A name cached before the axes existed is asked for them alone; its classes stay as they were answered.
-    unasked = [n for n in dict.fromkeys(axes_names) if "axes" not in answers[n]] if fill_axes else []
-    if unasked:
-        progress(
-            f"asking RxNav for the identity and ATC and structure classes of {len(unasked)} experimental "
-            "drug names (four to six requests a name, spaced)"
-        )
-        for name, axes in lookup_axes(unasked, get=get, sleep=sleep, progress=progress).items():
-            answers[name]["axes"] = axes
-    if missing or unasked:
+    held = [n for n in dict.fromkeys(axes_names) if n in answers and "axes" not in answers[n]]
+    without_axes = held if fill_axes else []
+    asked = [*missing, *without_axes]
+    if not asked:
+        return answers
+    progress(
+        f"asking RxNav, the National Library of Medicine's drug vocabulary, about {len(asked)} drug names "
+        f"not yet cached: each name's RxNorm identity, then the drug classes of each RxNorm concept once "
+        f"(at most {IN_FLIGHT} requests at once and {RATE} a second)"
+    )
+    with_axes = set(axes_names) & set(asked) if fill_axes else set()
+    fresh = _ask_rxnav(asked, with_axes, get=get, sleep=sleep, monotonic=monotonic, progress=progress)
+    answers.update({name: fresh[name] for name in missing})
+    answers.update({name: {**answers[name], "axes": fresh[name]["axes"]} for name in without_axes})
+    if all(first == last for first, last in batch_releases(fresh)):
         cache = {
-            "source": "NLM RxClass REST API, byDrugName; DAILYMED has_epc and MEDRT has_moa, each name's "
-            'answer with its "requests" (URL, parameters, retrieval time) and the RxNav "release" it was '
-            "read under (version.json, asked once per lookup batch; an answer cached before 2026-11-01 holds "
-            'neither); per name under "axes": RxNorm identity (rxcui by exact name, properties, related '
-            "ingredients), ATC, and has_chemical_structure from DAILYMED and FDASPL, each with its request, "
-            "retrieval time and release",
-            "endpoint": RXCLASS,
-            "retrieved": datetime.now(UTC).isoformat(timespec="seconds"),
+            "source": "NLM RxNav REST API: each name's RxNorm identity (rxcui by exact name, the name "
+            "asked after the dose rule), then RxClass byRxcui for the one concept it names, read as "
+            'DAILYMED has_epc and MEDRT has_moa; each answer with its "requests" (URL, parameters, '
+            'retrieval time) and the RxNav "release" it was read under, asked before the batch and again '
+            'after it ("release_end"; an answer cached before 2026-11-01 holds neither, one cached before '
+            '2026-11-02 no release_end and was asked by byDrugName); per name under "axes": the identity '
+            "with its concept's properties and related ingredients, ATC, and has_chemical_structure from "
+            "DAILYMED and FDASPL, each with its request, retrieval time and release",
+            "endpoint": RXCLASS_BY_RXCUI,
+            "retrieved": _now(),
             "answers": answers,
         }
         path.write_text(json.dumps(cache, indent=1, sort_keys=True, ensure_ascii=False), encoding="utf-8")
@@ -429,79 +703,6 @@ def rxnav_release(status: int, body: Any) -> tuple[str, str]:
     if not isinstance(version, str) or not version:
         return "malformed", ""
     return "found", version
-
-
-def _warranted(
-    get, url: str, params: dict[str, str], sleep, spacing: float
-) -> tuple[dict[str, Any], int, Any]:
-    """One request with its warrant (url, parameters, retrieval time), spaced; the status and body beside
-    it."""
-    status, body = get(url, params)
-    sleep(spacing)
-    warrant = {"url": url, "params": params, "retrieved": datetime.now(UTC).isoformat(timespec="seconds")}
-    return warrant, status, body
-
-
-def lookup_axes(
-    names: list[str],
-    *,
-    get: Callable[[str, dict[str, str]], tuple[int, Any]],
-    sleep: Callable[[float], None] = time.sleep,
-    spacing: float = 0.2,
-    progress: Callable[[str], None] = _quiet,
-) -> dict[str, dict[str, Any]]:
-    """Each name's RxNorm identity and its ATC and structure answers, spaced, each with its warrant.
-
-    The RxNav release is asked once for the batch. Identity: the exact-name concepts; when there is exactly
-    one, its properties; when that is not an ingredient (IN), its related ingredients. Then each axis of AXES.
-    How far it has got is said through `progress` (progress_due).
-    """
-    warrant, status, body = _warranted(get, RXNAV_VERSION, {}, sleep, spacing)
-    release = [*rxnav_release(status, body), warrant]
-    out: dict[str, dict[str, Any]] = {}
-    unique = list(dict.fromkeys(names))
-    for done, name in enumerate(unique, 1):
-        requests = []
-        warrant, status, body = _warranted(get, RXNORM_IDS, {"name": name, "search": "0"}, sleep, spacing)
-        requests.append(warrant)
-        ids = rxnorm_ids(status, body)
-        concept: tuple[str, list[Concept]] = ("not_asked", [])
-        ingredients: tuple[str, list[Concept]] = ("not_asked", [])
-        if ids[0] == "found" and len(ids[1]) == 1:
-            url = RXNORM_PROPERTIES.format(rxcui=ids[1][0])
-            warrant, status, body = _warranted(get, url, {}, sleep, spacing)
-            requests.append(warrant)
-            concept = rxnorm_concepts(status, body)
-            if concept[0] == "found" and len(concept[1]) == 1 and concept[1][0][2] != "IN":
-                url = RXNORM_RELATED.format(rxcui=ids[1][0])
-                warrant, status, body = _warranted(get, url, {"tty": "IN"}, sleep, spacing)
-                requests.append(warrant)
-                ingredients = rxnorm_concepts(status, body)
-        answer: dict[str, Any] = {
-            "identity": {
-                "ids": list(ids),
-                "concept": list(concept),
-                "ingredients": list(ingredients),
-                "requests": requests,
-                "release": release,
-            }
-        }
-        for source, rela in AXES:
-            params = {"drugName": name, "relaSource": source} | ({"relas": rela} if rela else {})
-            warrant, status, body = _warranted(get, RXCLASS, params, sleep, spacing)
-            code, assertions = rxclass_assertions(status, body)
-            answer[axis_key(source, rela)] = {
-                "code": code,
-                "assertions": assertions,
-                "request": warrant,
-                "release": release,
-            }
-        out[name] = answer
-        if progress_due(done, len(unique)):
-            progress(
-                f"identity and ATC and structure classes asked of RxNav for {done} of {len(unique)} names"
-            )
-    return out
 
 
 # A drug class's members (add-agent-operation, Decision 5): RxClass classMembers, asked by class id under the
