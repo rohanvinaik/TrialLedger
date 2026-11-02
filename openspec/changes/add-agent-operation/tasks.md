@@ -68,6 +68,15 @@ The founder, 2026-11-01: the next priority, built to completion.
   names in `drug` (today it is searched by its ingredient's name too); whether it should reach a brand or
   another-form member, as built, beyond the ruling's salt and biosimilar; and a biosimilar member's identity
   code, `salt` (`classes.name_identity`'s). Production reaches it through `trialledger landscape` (4.2).
+
+  2026-11-01, ruling 4 corrected (a side reviewer's catch): as built it also kept a salt's ingredient out of the
+  search, and a salt is the same molecule: the EPC Kinase Inhibitor lists dasatinib only as "dasatinib
+  anhydrous", which 1 trial names, while 344 name "dasatinib", so the class's search lost them. A precise
+  ingredient whose name is its ingredient's name followed by a word (a salt, hydrate or ester) is now searched
+  by its ingredient too; a biosimilar ("bevacizumab-awwb", the ingredient's name joined by a hyphen to the FDA's
+  suffix), a brand or another form still shows its ingredient as a candidate, not searched, as Codex advised.
+  `request.member_names` re-converged `--two-sign` COMPLETE (85/90); the Kinase Inhibitor's search holds 82
+  names, 68 with its subclasses excluded.
 - [x] 2.3 The resolved scope written before any study is read; named codes for what cannot resolve
       (2026-11-01: the scope object, its named codes and the lookups it needs are built and converged,
       `request.resolve_scope` and `request.lookups_needed`; what is left is writing it into the run folder

@@ -652,13 +652,28 @@ def member_parts(member):
     return member_identity(member, ANSWERS)[1]
 
 
-def test_a_precise_ingredient_member_is_searched_alone_its_base_shown_as_a_candidate():
+def test_a_salt_member_is_searched_by_its_ingredient_too():
+    """The same molecule under a modifier the registry rarely writes: 1 trial names "dasatinib anhydrous", 344
+    name "dasatinib" (2026-11-01)."""
     dasatinib = ["1546019", "dasatinib anhydrous", "PIN", ["DIRECT"]]
     listed = [member[0] for member in KINASE_MEMBERS]
     assert member_names(dasatinib, member_parts(dasatinib), listed) == (
         "salt",
-        [["dasatinib anhydrous", "rxclass_member"]],
-        [["dasatinib", "rxnorm_ingredient", "the ingredient of dasatinib anhydrous (PIN)"]],
+        [["dasatinib anhydrous", "rxclass_member"], ["dasatinib", "rxnorm_ingredient"]],
+        [],
+    )
+
+
+def test_a_biosimilar_member_never_brings_in_its_reference_product():
+    moa = rxclass_members(
+        *ANSWERS[f"{REST}/rxclass/classMembers.json?classId=N0000175082&relaSource=MEDRT&rela=has_moa"]
+    )
+    listed = [member[0] for member in moa[1] if member[0] != "253337"]  # as if bevacizumab were not listed
+    awwb = ["2046138", "bevacizumab-awwb", "PIN", ["INDIRECT"]]
+    assert member_names(awwb, member_parts(awwb), listed) == (
+        "salt",
+        [["bevacizumab-awwb", "rxclass_member"]],
+        [["bevacizumab", "rxnorm_ingredient", "the ingredient of bevacizumab-awwb (PIN)"]],
     )
 
 
@@ -675,9 +690,11 @@ def test_a_base_ingredient_the_class_lists_is_searched_as_its_own_member():
         [],
     )
     netarsudil = ["1992863", "netarsudil mesylate", "PIN", ["INDIRECT"]]
-    assert member_names(netarsudil, member_parts(netarsudil), listed)[2] == [
-        ["netarsudil", "rxnorm_ingredient", "the ingredient of netarsudil mesylate (PIN)"]
-    ]
+    assert member_names(netarsudil, member_parts(netarsudil), listed) == (
+        "salt",
+        [["netarsudil mesylate", "rxclass_member"], ["netarsudil", "rxnorm_ingredient"]],
+        [],
+    )
 
 
 def test_an_ingredient_member_and_an_unfinished_identity_have_no_candidate():
@@ -879,27 +896,29 @@ def test_a_class_with_subclasses_resolves_with_each_member_attributed():
     attribution = next(e for e in scope["expansions"] if e["kind"] == "subclass_attribution")
     assert len(attribution["subclasses"]) == 8 and all(row[5] for row in attribution["members"])
     names = kinase_names(scope)
-    assert len(names) == 81 and "trastuzumab" in names and "deucravacitinib" in names
+    # 81 members, and dasatinib for the salt member dasatinib anhydrous
+    assert len(names) == 82 and "trastuzumab" in names and "deucravacitinib" in names
     assert scope["query"] == {"filter.advanced": name_clause(names)}
 
 
-def test_a_precise_ingredient_member_is_never_widened_to_its_base():
+def test_a_salt_member_is_searched_by_its_ingredient_in_the_query():
     scope = resolve_scope(KINASE_EPC, ANSWERS)
     dasatinib = next(e for e in scope["expansions"] if e.get("drug") == "dasatinib anhydrous")
     assert dasatinib["code"] == "salt"
-    assert dasatinib["names"] == [["dasatinib anhydrous", "rxclass_member"]]
-    assert dasatinib["candidates"] == [
-        ["dasatinib", "rxnorm_ingredient", "the ingredient of dasatinib anhydrous (PIN)"]
+    assert dasatinib["names"] == [
+        ["dasatinib anhydrous", "rxclass_member"],
+        ["dasatinib", "rxnorm_ingredient"],
     ]
+    assert dasatinib["candidates"] == []
     assert '"dasatinib anhydrous"' in scope["query"]["filter.advanced"]
-    assert '"dasatinib"' not in scope["query"]["filter.advanced"]
+    assert '"dasatinib"' in scope["query"]["filter.advanced"]
 
 
 def test_excluded_subclasses_leave_their_members_out_of_the_query_and_in_the_scope():
     excluded = resolve_scope({"drug_class": KINASE_EPC["drug_class"] | {"subclasses": "exclude"}}, ANSWERS)
     assert excluded["code"] == "resolved"
     names = kinase_names(excluded)
-    assert len(names) == 81 - 14 and "ruxolitinib" in names and "everolimus" in names
+    assert len(names) == 82 - 14 and "ruxolitinib" in names and "everolimus" in names
     assert not set(INDIRECT_ONLY) & set(names)
     attribution = next(e for e in excluded["expansions"] if e["kind"] == "subclass_attribution")
     assert attribution["rule"] == "exclude" and all(row[3] for row in attribution["subclasses"])

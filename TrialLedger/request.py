@@ -440,11 +440,14 @@ def member_names(
 
     `member` is rxclass_members' (rxcui, name, tty, relations); `parts` is member_identity's; `listed` are
     the rxcuis of the class's members that are searched. As drug_names reads them, with its codes, except that
-    the ingredient of a member that is not itself an ingredient (a salt or a biosimilar, PIN; a brand; another
-    form) is never searched for it, since that would widen the class to the ingredient's every form
-    (bevacizumab-awwb to bevacizumab admits the reference product's trials): an ingredient the class itself
-    lists as a member is searched as that member, and any other is a candidate, [name, "rxnorm_ingredient",
-    its relation to the member], shown and not searched. Returns (code, names, candidates).
+    the ingredient of a member that is not itself an ingredient (a biosimilar; a brand; another form) is not
+    searched for it, since that would widen the class to the ingredient's every product (bevacizumab-awwb to
+    bevacizumab admits the reference product's trials): an ingredient the class itself lists as a member is
+    searched as that member, and any other is a candidate, [name, "rxnorm_ingredient", its relation to the
+    member], shown and not searched. The exception is a precise ingredient whose name is its ingredient's name
+    followed by a word (a salt, hydrate or ester: "dasatinib anhydrous", "osimertinib mesylate"), the same
+    molecule under a modifier the registry rarely writes: its ingredient is searched (2026-11-01: 1 trial
+    names "dasatinib anhydrous", 344 "dasatinib"). Returns (code, names, candidates).
     """
     code, found = drug_names(member[1], "rxclass_member", parts)
     names = [name for name in found if name[1] != "rxnorm_ingredient"]
@@ -452,11 +455,15 @@ def member_names(
         return code, names, []
     held = {name[0].casefold() for name in names}
     relation = f"the ingredient of {member[1]} ({member[2]})"
-    candidates = [
-        [part[1], "rxnorm_ingredient", relation]
-        for part in parts[2][1]
-        if part[0] not in listed and part[1].casefold() not in held
-    ]
+    candidates = []
+    for part in parts[2][1]:
+        if part[0] in listed or part[1].casefold() in held:
+            continue
+        if code == "salt" and member[1].casefold().startswith(part[1].casefold() + " "):
+            names.append([part[1], "rxnorm_ingredient"])
+            held.add(part[1].casefold())
+        else:
+            candidates.append([part[1], "rxnorm_ingredient", relation])
     return code, names, candidates
 
 
