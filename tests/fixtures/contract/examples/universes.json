@@ -23,7 +23,7 @@
     },
     {
      "source": "free_text",
-     "status": "read",
+     "status": "conditions_and_titles",
      "found": [],
      "non_oncology": [
       "Posttraumatic Stress Disorder",

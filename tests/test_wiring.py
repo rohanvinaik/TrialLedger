@@ -144,6 +144,7 @@ FOUNDATIONS = {
             "_specific_only",
             "_terms",
             "_text_findings",
+            "_titled",
             "_words",
             "assign",
             "atc_classes",

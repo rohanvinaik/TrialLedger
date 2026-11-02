@@ -179,6 +179,28 @@ def test_no_usable_condition_is_unresolved_beside_an_identified_non_oncology_stu
     assert identified.words == "General: no domain readings apply (conditions: Asthma)"
 
 
+def test_a_condition_the_vocabulary_misses_is_no_evidence_of_another_domain():
+    """Negative: a biomarker condition no table names, in a trial without condition MeSH, is never general and
+    never a disagreement; the titles name the cancer. Without them, in relay mode, it is general only on the
+    unmatched condition, which the words name."""
+    body = copy.deepcopy(BODIES["NCT02296125"])
+    body["protocolSection"]["conditionsModule"]["conditions"] = ["EGFR T790M Mutation"]
+    for mapping in (CLASSES, None):
+        found = assign(body, mapping)
+        assert (found.case, found.decided_by) == ("oncology", "free_text"), mapping
+        assert source(found, "free_text")["status"] == "conditions_and_titles"
+        assert source(found, "free_text")["non_oncology"] == []
+        assert found.words.startswith("Solid-tumour oncology (title: AZD9291 Versus Gefitinib")
+
+
+def test_a_condition_beside_one_that_names_a_cancer_is_never_listed_outside_oncology():
+    """NCT05261399's conditions, as the 49-trial baseline holds them."""
+    found = assign(study(["Carcinoma", "Non-Small-Cell Lung"]), {})
+    text = source(found, "free_text")
+    assert [f["term"] for f in text["found"]] == ["Carcinoma"]
+    assert text["non_oncology"] == []
+
+
 def test_a_supportive_care_trial_in_cancer_patients_gets_no_setting():
     """Positive: solid oncology from its condition MeSH, gene selection permitted. Negative: no setting or
     line (the pack needs a treatment purpose), and its antiemetic is never read for a class."""

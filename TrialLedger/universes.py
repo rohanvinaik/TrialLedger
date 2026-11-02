@@ -9,8 +9,9 @@ for the setting and line-of-therapy pack, a treatment purpose) before its coordi
    (contract.MESH_ANCHORS);
 2. free_text: the free-text conditions, matched word by word against the declared vocabulary
    (contract.ONCOLOGY_TERMS); a condition that names no disease (contract.NOT_DISEASE_CONDITIONS, such as
-   "Progression Free Survival") is no evidence of any domain. The titles are read only where no condition is
-   usable, and then only as a signal of oncology, never as evidence of another domain;
+   "Progression Free Survival") is no evidence of any domain. The titles are read where no condition names a
+   cancer, only as a signal of oncology, never as evidence of another domain; a condition the vocabulary
+   misses counts as outside oncology only where neither the conditions nor the titles name a cancer;
 3. drug_class: for a treatment trial, each intervention's ATC class as RxNav gives it for the intervention's
    name or one of its other names (antineoplastic agents, L01; endocrine therapy for cancer, L02). The classes
    are an input, never looked up here; in relay mode they are not looked up at all and the source reads "not
@@ -64,6 +65,7 @@ SOURCE_STATUSES = {
     "read": "read",
     "no_terms": "the registry gives no condition MeSH term",
     "titles": "no condition names a disease; the titles were read",
+    "conditions_and_titles": "no condition names a cancer; the titles were read too",
     "no_text": "no condition names a disease and the record has no title",
     "does_not_apply": "not a treatment trial: a drug's class is not read",
     "not_looked_up": "the drugs' classes were not looked up (relay mode, or a name never asked of RxNav)",
@@ -290,8 +292,13 @@ def _drug_findings(
     return "read", found
 
 
-def _source_words(source: dict[str, Any], terms: list[str]) -> str:
-    name = "titles" if source["status"] == "titles" else source["source"]
+def _titled(source: dict[str, Any]) -> bool:
+    """Whether a source's findings are the titles' (free text, where no condition names a cancer)."""
+    return source["status"] in ("titles", "conditions_and_titles")
+
+
+def _source_words(source: dict[str, Any], terms: list[str], titles: bool = False) -> str:
+    name = "titles" if titles else source["source"]
     if source["source"] == "drug_class":
         terms = [f"{f['term']}, {DRUG_ANCHORS[f['anchor']]}" for f in source["found"]]
     return f"{SOURCE_WORDS[name]}: {'; '.join(_distinct(terms))}"
@@ -307,10 +314,10 @@ def _words(
         decided = next(source for source in sources if source["found"])
         terms = mesh if decided is mesh_source and mesh else [f["term"] for f in decided["found"]]
         # A title is long: the first that signals cancer (the brief title, where it does) stands for both.
-        terms = terms[:1] if decided["status"] == "titles" else terms
+        terms = terms[:1] if _titled(decided) else terms
         named = [labels[name] for name in universes]
         named = [named[0], *(f"{label[0].lower()}{label[1:]}" for label in named[1:])]
-        return f"{' and '.join(named)} ({_source_words(decided, terms)})"
+        return f"{' and '.join(named)} ({_source_words(decided, terms, _titled(decided))})"
     outside = [
         _source_words(source, source["non_oncology"])
         for source in (mesh_source, text_source)
@@ -320,7 +327,9 @@ def _words(
         return f"{CASE_CODES[code]} ({outside[0]})"
     if code == "unresolved_disagreement":
         signals = [
-            _source_words(source, [f["term"] for f in source["found"]])
+            _source_words(source, [f["term"] for f in source["found"]][:1], _titled(source))
+            if source is text_source
+            else _source_words(source, [])
             for source in (text_source, drug_source)
             if source["found"]
         ]
@@ -364,8 +373,15 @@ def assign(study: dict[str, Any], drug_classes: dict[str, tuple[str, ...]] | Non
     conditions = [str(c) for c in (protocol.get("conditionsModule") or {}).get("conditions") or []]
     usable = [c for c in conditions if c.strip() and c.strip().lower() not in not_disease]
     titles = [str(identification[key]) for key in ("briefTitle", "officialTitle") if identification.get(key)]
-    text_found, silent = _text_findings(usable or titles)
-    text_status = "read" if usable else ("titles" if titles else "no_text")
+    condition_found, silent = _text_findings(usable)
+    # A condition the vocabulary misses is no evidence either way: the titles are read too, and the unmatched
+    # conditions count as outside oncology only where neither the conditions nor the titles name a cancer.
+    title_found = [] if condition_found else _text_findings(titles)[0]
+    if condition_found or not titles:
+        text_status = "read" if usable else "no_text"
+    else:
+        text_status = "conditions_and_titles" if usable else "titles"
+    text_found = condition_found or title_found
     interventions = [
         [str(entry["name"]), *(str(other) for other in entry.get("otherNames") or [])]
         for entry in (protocol.get("armsInterventionsModule") or {}).get("interventions") or []
@@ -388,13 +404,13 @@ def assign(study: dict[str, Any], drug_classes: dict[str, tuple[str, ...]] | Non
             "source": "free_text",
             "status": text_status,
             "found": found[1],
-            "non_oncology": silent if usable else [],
+            "non_oncology": [] if text_found else silent,
         },
         {"source": "drug_class", "status": drug_status, "found": drug_found, "non_oncology": []},
     ]
     code = scope_case(
-        bool(mesh_found or (usable and found[1])),
-        bool((found[1] and not usable) or drug_found),
+        bool(mesh_found or condition_found),
+        bool(title_found or drug_found),
         bool(sources[0]["non_oncology"] or sources[1]["non_oncology"]),
     )
     counted = {finding["universe"] for findings in found for finding in findings}
