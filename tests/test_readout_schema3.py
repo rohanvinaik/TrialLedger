@@ -784,3 +784,45 @@ def test_a_denominator_names_any_unit_but_participants_and_never_drops_one():
     assert readout.denominator_words([other], "OG000") == "12 Eyes"
     assert readout.denominator_words([missing], "OG000") == "9 (units not stated)"
     assert "participants unless otherwise specified" in contract.DENOMINATOR
+
+
+def test_an_open_question_reads_in_words_with_its_status():
+    study = copy.deepcopy(RECORD["studies"][0])
+    study["open_questions"] = [
+        {
+            "status": "unresolved",
+            "rule": "review.flags_for",
+            "words": [],
+            "result": {
+                "kind": "drug_class_unresolved",
+                "element": "CAT-8015 20 mcg/kg",
+                "why": "RxClass and the record's own entry give no class (unresolved)",
+                "priority": 3,
+                "question": "What is the pharmacologic class (mechanism) of CAT-8015 20 mcg/kg?",
+                "options": ["Kinase Inhibitor", "none of these"],
+            },
+            "note": "RxClass and the record's own entry give no class (unresolved)",
+        }
+    ]
+    facts = dossier(study)
+    value, basis_word = facts["Open question 1"]
+    assert value.split("\n") == [
+        "What is the pharmacologic class (mechanism) of CAT-8015 20 mcg/kg?",
+        "Options: Kinase Inhibitor; none of these",
+        "Why it is asked: RxClass and the record's own entry give no class (unresolved)",
+    ]
+    assert basis_word == "Unresolved"
+    assert "Open questions (closed questions for an expert; never answered here)" not in facts
+
+
+RECORD_JSON = re.compile(r"[{\[]\s*['\"]")
+
+
+def test_no_cell_ever_holds_the_records_json(written):
+    book = load_workbook(written, read_only=True)
+    for name in book.sheetnames:
+        for row in book[name].iter_rows(min_row=2, values_only=True):
+            for value in row:
+                assert not RECORD_JSON.search(str(value)), (name, value)
+    assert not RECORD_JSON.search(str(readout.value_words([{"a": 1}, {"b": "c"}])))
+    assert readout.value_words({"kind": "x_y"}) == "kind: x y"

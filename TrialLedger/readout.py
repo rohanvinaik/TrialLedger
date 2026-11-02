@@ -367,7 +367,8 @@ def value_words(value: Any, dictionary: str = "", joiner: str = "; ") -> Any:
 
     missing — "Not stated"; absent — absence_words; a reading — "Reading: <its result>" when known, else its
     status in words (reading_words); a list — its items' words joined by `joiner`, an empty one "Not stated";
-    an integer a cell holds exactly — the integer; anything else — item_words.
+    an integer a cell holds exactly — the integer; an object, or an object in a list, its keys and values in
+    words (result_words), never its JSON; anything else — item_words.
     """
     kind = held_kind(value)
     if kind == "missing":
@@ -376,8 +377,16 @@ def value_words(value: Any, dictionary: str = "", joiner: str = "; ") -> Any:
         return absence_words(value["status"], value["note"])
     if kind == "reading":
         return reading_words(value, result_words(value["result"]))
+    if isinstance(value, dict):
+        return result_words(value)
     if isinstance(value, list):
-        return joiner.join(item_words(item, dictionary) for item in value) or NOT_STATED
+        return (
+            joiner.join(
+                str(value_words(item)) if isinstance(item, (dict, list)) else item_words(item, dictionary)
+                for item in value
+            )
+            or NOT_STATED
+        )
     if isinstance(value, int) and not isinstance(value, bool) and cell_number_state(value) == "ok":
         return value
     return item_words(value, dictionary)
@@ -906,6 +915,27 @@ def availability_rows(study: dict[str, Any], heading: str) -> list[tuple[str, An
     return rows
 
 
+def question_rows(study: dict[str, Any]) -> list[tuple[str, Any, str]]:
+    """The questions the rules leave open for this trial, one dossier row each: the question, its options and
+    why it is asked, in words; the Basis its status (each is unresolved: a question for an expert, never
+    answered here). None asked — no row."""
+    held = study.get("open_questions")
+    rows = []
+    for number, value in enumerate(held if isinstance(held, list) else [], 1):
+        if held_kind(value) != "reading" or not isinstance(value["result"], dict):
+            rows.append((f"Open question {number}", value_words(value), basis(value)))
+            continue
+        asked = value["result"]
+        options = "; ".join(str(option) for option in asked.get("options") or []) or NOT_STATED
+        lines = (
+            str(asked.get("question") or NOT_STATED),
+            f"Options: {options}",
+            f"Why it is asked: {asked.get('why') or value.get('note') or NOT_STATED}",
+        )
+        rows.append((f"Open question {number}", "\n".join(lines), basis(value)))
+    return rows
+
+
 def dossier_facts(study: dict[str, Any]) -> list[tuple[str, str, str, Any, str]]:
     """A trial's dossier, band by band (contract.DOSSIER_SECTIONS): (band, listing, fact, value, basis). An
     EXPECTED fact always; any other only when stated; a fact that cannot apply never."""
@@ -933,6 +963,9 @@ def dossier_facts(study: dict[str, Any]) -> list[tuple[str, str, str, Any, str]]
                 continue
             if field.name == "studies[].results_posted":
                 rows.append((field.label, *results_words(study)))
+                continue
+            if field.name == "studies[].open_questions":
+                rows += question_rows(study)
                 continue
             if field.name == "studies[].adverse_events.time_frame" and posted:
                 rows.append((field.label, *shown_field(study, field.name)))
@@ -1546,7 +1579,7 @@ def reading_rows(study: dict[str, Any], number: int, versions: dict[str, Any]) -
             pointer,
             READING_FIELD_WORDS.get(field.removesuffix("[]"), named.label if named else field),
             read or ("Its heading" if field.endswith("criteria[].role") else NOT_STATED),
-            f"{rule} ({version})",
+            f"{rule} ({version_words(version)})",
             reading_result(field, value),
             STATUS_LABELS.get(value["status"], STATUS_LABELS["unresolved"]),
         )
