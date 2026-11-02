@@ -20,37 +20,44 @@ repository's path or address, then `uv tool install` it, with uv's tool folder k
 directory. pip runs without a configuration file or cache, and uv without its configuration or cache, so
 nothing installed or set on this machine before is reused. A repository address is also cloned there, so
 that `AGENTS.md` and the package's file list are read from what the address serves. It then works from that
-directory with an empty TrialLedger cache. It runs `trialledger --help` and every subcommand's `--help`, then
-`doctor`. It pulls three trials by number, live; one of them, NCT01086644, is another trial's alias number,
-and the pull must name it. It runs `verify` on the pulled folder and a one-trial `resolve` with `--json` and
-`--out`, then opens every workbook written with the environment's own openpyxl.
+directory with an empty TrialLedger cache, named by a folder (`TRIALLEDGER_CACHE`, as a user may set it). It
+runs `trialledger --help` and every subcommand's `--help`, then `doctor`. It pulls three trials by number,
+live; one of them, NCT01086644, is another trial's alias number, and the pull must name it. It runs `verify`
+on the pulled folder, then `landscape --ids` of the same three trials, live, the run an assistant makes for a
+person who names trials by number (its mode as the doctor finds it), and a one-trial `resolve` with `--json`
+and `--out`, then opens every workbook written with the environment's own openpyxl.
 
 The report is `WORK/REPORT.md`, and each step's output is kept beside it under `WORK/captures/`. For each step
 the report gives the exit code against the expected one, the wall time, the files and folders the step wrote
-with their sizes, and every warning or traceback. Then five checks, each with its problems, or "not checked"
-and why:
+with their sizes, and every warning or traceback. It names the commit the installed copy records in what it
+writes (`code_commit` in `studies.json` and `landscape.json`: an installed copy names the commit it was built
+from). Then six checks, each with its problems, or "not checked" and why:
 
 - package files: the files git tracks under `TrialLedger/` that the installed distribution lacks;
 - outputs handed to the user: `studies.json`, `studies.csv`, `review.xlsx` and `record.xlsx` from the pull,
-  `reading.json` and `design.xlsx` from the resolve;
-- requested-ID accounting: every number asked for is accounted for, and the alias is named;
+  `landscape.json` and `landscape.xlsx` from the landscape, `reading.json` and `design.xlsx` from the resolve;
+- requested-ID accounting, for the pull and for the landscape: every number asked for is in the record, and
+  each one not found under its own number is said in plain words (the alias as "NCT01086644 is another
+  number of NCT01030536");
 - guide commands: the commands `AGENTS.md` names that the installed CLI lacks;
 - workbook conventions: each sheet of pull's `review.xlsx` and `record.xlsx` sets its column widths, and each
   listing has a filter and frozen panes, as `openspec/changes/add-agent-operation/workbook-design.md` requires
-  of them. The resolve's `design.xlsx` is inspected the same way; its departures are reported as leads.
+  of them. The resolve's `design.xlsx` and the landscape's `landscape.xlsx` are inspected the same way; their
+  departures are reported as leads.
 
 The report also lists each workbook's sheets (rows, columns, widths, filter, frozen panes, blank cells), what
 the script does not check (cell values against the registry, wrapping, fonts, print setup, date formats,
-clinical wording beyond its fixed list, the commands it does not run), and, for each help text, printed
-message and workbook, the words from a fixed list that a clinical reader would not know. These are leads for
-rewording, not faults.
+clinical wording beyond its fixed list, the commands it does not run, a landscape by drug or disease class,
+relay mode), and, for each help text, printed message and workbook, the words from a fixed list that a
+clinical reader would not know. These are leads for rewording, not faults.
 
 It ends 0 ("ready") only when every step ended as expected without a traceback and every check ran and found
 nothing. A check that could not run (an archive address, a failed install or clone) makes the verdict
 "not_ready", never "ready"; the script ends 1. It refuses, ending 2, a source that is neither a folder nor an
 https or git+ address (`not_a_source`), and a `--work` folder that already exists (`work_exists`) or lies
-inside the repository (`work_inside_repository`). The whole run takes about four to six minutes, most of it
-the resolve's RxNav lookups from an empty cache. A local checkout is installed from its working tree,
-untracked files included. The report states the commit and how many paths are uncommitted, so commit first
-if the report is meant to stand for what GitHub will serve. `git+file:///path/to/checkout` takes the address
-route on a local repository: it installs and reads the committed tree only, as GitHub would serve it.
+inside the repository (`work_inside_repository`). The whole run takes about six to ten minutes, most of it
+the landscape's and the resolve's RxNav lookups from an empty cache (each says how far it has got). A local
+checkout is installed from its working tree, untracked files included. The report states the commit and how
+many paths are uncommitted, so commit first if the report is meant to stand for what GitHub will serve.
+`git+file:///path/to/checkout` takes the address route on a local repository: it installs and reads the
+committed tree only, as GitHub would serve it.

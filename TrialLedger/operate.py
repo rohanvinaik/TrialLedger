@@ -46,7 +46,7 @@ import httpx
 
 from TrialLedger import classes as rx
 from TrialLedger.classes import RXNAV_VERSION, rxnav_release
-from TrialLedger.ingest import PullError, reconcile_ids
+from TrialLedger.ingest import PullError, reconcile_ids, requested_id_words
 from TrialLedger.landscape import (
     JSON_NAME,
     RULE_VERSIONS,
@@ -353,8 +353,8 @@ RUN_ADVICE = {
 BOOK_WORDS = {
     "written": "landscape.xlsx, the workbook to hand to the person, is written beside it.",
     "kept": "landscape.xlsx, the workbook to hand to the person, is beside it.",
-    "not_built": "landscape.xlsx is not built yet (add-agent-operation 4.3): there is no workbook to hand "
-    "over; tell the person so.",
+    "not_built": "This version of TrialLedger does not yet write landscape.xlsx, the spreadsheet for the "
+    "person: there is no spreadsheet to hand over; tell the person so.",
 }
 
 
@@ -455,12 +455,17 @@ def _await(folder: Path, entries: list[dict[str, Any]]) -> Outcome:
     return Outcome("awaiting_fetch", detail, RUN_ADVICE["awaiting_fetch"])
 
 
-def _fetch(folder: Path, entries: list[dict[str, Any]], get: Callable, sleep: Callable) -> None:
-    """Direct: ask RxNav for each request, spaced, and save its answer (a failure as its note)."""
-    for entry in entries:
+def _fetch(
+    folder: Path, entries: list[dict[str, Any]], get: Callable, sleep: Callable, progress: Callable
+) -> None:
+    """Direct: ask RxNav for each request, spaced, and save its answer (a failure as its note), saying how far
+    it has got (classes.progress_due)."""
+    for done, entry in enumerate(entries, 1):
         status, body = get(entry["url"], entry["params"])
         sleep(SPACING)
         _write(folder / LOOKUPS / entry["file"], answer_bytes(status, body))
+        if rx.progress_due(done, len(entries)):
+            progress(f"resolving the request: {done} of {len(entries)} RxNav lookups asked")
 
 
 def _drop_failed(folder: Path) -> list[str]:
@@ -483,7 +488,7 @@ def _drop_failed(folder: Path) -> list[str]:
 
 
 def _resolve(
-    folder: Path, request: Any, mode: str, get: Callable, sleep: Callable
+    folder: Path, request: Any, mode: str, get: Callable, sleep: Callable, progress: Callable
 ) -> tuple[Outcome | None, dict[str, Any]]:
     """The request's resolution, round by round, then RxNav's release asked again; the resolved scope, or how
     the run ends meanwhile. The scope is written into resolution.json whether or not it resolves."""
@@ -497,7 +502,7 @@ def _resolve(
         entries = _name(folder, named, needed, "rxnav_lookup")
         if mode == "relay":
             return _await(folder, entries), {}
-        _fetch(folder, entries, get, sleep)
+        _fetch(folder, entries, get, sleep, progress)
     scope = resolve_scope(request, answers)
     if scope["code"] != "resolved":
         _write(folder / RESOLUTION_NAME, _json_bytes(scope))
@@ -516,7 +521,7 @@ def _resolve(
         if not path.is_file():
             if mode == "relay":
                 return _await(folder, [entry]), {}
-            _fetch(folder, [entry], get, sleep)
+            _fetch(folder, [entry], get, sleep, progress)
         first = (scope["release"][0], scope["release"][1])
         last = rxnav_release(*saved_answer(path.read_bytes()))
         verdict = release_check(first, last)
@@ -590,7 +595,7 @@ def run(
     # Once its registry query is in scope.json the scope is fixed: resolution is never asked again.
     scope = _read_json(folder / RESOLUTION_NAME) if (folder / SCOPE_NAME).is_file() else None
     if scope is None:
-        outcome, scope = _resolve(folder, request, mode, get, sleep)
+        outcome, scope = _resolve(folder, request, mode, get, sleep, progress)
         if outcome is not None:
             return outcome
         code, concerned = open_run(folder, request, scope["query"])
@@ -620,6 +625,7 @@ def run(
             fill_axes=True,
             get=get,
             sleep=sleep,
+            progress=progress,
         )
     reading = read_population(studies, answers)
     retrieval = retrieval_coverage(reading_mode, _matched(folder), scope["query"], studies)
@@ -642,4 +648,12 @@ def run(
         # The workbook is written from the record exactly as landscape.json holds it.
         book = write_book(json.loads(text), folder)
     detail = f"{len(studies)} studies; {folder / JSON_NAME} {'written' if state == 'absent' else 'unchanged'}"
+    if "requested_ids" in retrieval:
+        # Trials asked for by number: how many, how many under their own number, and each other one in plain
+        # words (an alias reads "<number> is another number of <trial>"), as pull prints them.
+        asked = retrieval["requested_ids"]
+        found = sum(entry["status"] == "found" for entry in asked)
+        trials = "trial" if len(asked) == 1 else "trials"
+        detail += f"\n{len(asked)} {trials} asked for by number, {found} found under their own number"
+        detail += "".join(f"\n{requested_id_words(e)}" for e in asked if e["status"] != "found")
     return Outcome("complete", detail, f"{RUN_ADVICE['complete']} {BOOK_WORDS[book]}")

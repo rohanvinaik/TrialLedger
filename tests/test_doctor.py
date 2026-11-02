@@ -76,3 +76,29 @@ def test_an_unwritable_folder_is_reported_not_raised(tmp_path):
     blocker.write_text("x", encoding="utf-8")
     assert folder_writable(blocker / "run") is False
     assert folder_writable(tmp_path / "run") is True
+
+
+def test_the_folder_test_leaves_nothing_behind(tmp_path):
+    """The release check (2026-11-01): `doctor` created its run folder although its help said it changes
+    nothing. Positive: a run folder that did not exist, with the folders above it, is created for the test and
+    removed after it. Negative: a folder that existed stays, with what it holds, and nothing is added to it;
+    a folder that is not writable is not created and nothing above it is removed."""
+    assert folder_writable(tmp_path / "a" / "b" / "run") is True
+    assert list(tmp_path.iterdir()) == []
+    existing = tmp_path / "kept"
+    existing.mkdir()
+    (existing / "notes.txt").write_text("the person's", encoding="utf-8")
+    assert folder_writable(existing) is True
+    assert [p.name for p in existing.iterdir()] == ["notes.txt"]
+    assert folder_writable(existing / "new") is True
+    assert [p.name for p in existing.iterdir()] == ["notes.txt"]
+    blocker = tmp_path / "file"
+    blocker.write_text("x", encoding="utf-8")
+    assert folder_writable(blocker / "run") is False
+    assert sorted(p.name for p in tmp_path.iterdir()) == ["file", "kept"]
+
+
+def test_the_report_leaves_no_run_folder_behind(tmp_path):
+    found = report(tmp_path / "run", lambda url, **kwargs: _Answer(200))
+    assert found["run_folder"]["writable"] is True and found["mode"] == "direct"
+    assert list(tmp_path.iterdir()) == []

@@ -31,6 +31,7 @@ intervention is the term.
 from __future__ import annotations
 
 import json
+import os
 import re
 import time
 from collections.abc import Callable, Sequence
@@ -122,17 +123,38 @@ def experimental_drugs(study: dict[str, Any]) -> list[str]:
     return list(found)
 
 
+# A lookup of many names says how far it has got every PROGRESS_EVERY names, so a long one is never silent.
+PROGRESS_EVERY = 5
+
+
+def progress_due(done: int, total: int) -> bool:
+    """Whether a lookup says how far it has got after its `done`-th name of `total` (pure — pinned).
+
+    True after every PROGRESS_EVERY-th name and after the last; never before the first name or past the
+    total.
+    """
+    if done < 1 or done > total:
+        return False
+    return done == total or done % PROGRESS_EVERY == 0
+
+
+def _quiet(_message: str) -> None:
+    """Default progress sink: say nothing."""
+
+
 def lookup(
     names: list[str],
     *,
     get: Callable[[str, dict[str, str]], tuple[int, Any]],
     sleep: Callable[[float], None] = time.sleep,
     spacing: float = 0.2,
+    progress: Callable[[str], None] = _quiet,
 ) -> dict[str, dict[str, Any]]:
     """Ask RxClass for each name, both queries, spaced; each name's code per query, its classes and when it
-    was retrieved."""
+    was retrieved. How far it has got is said through `progress` (progress_due)."""
     answers: dict[str, dict[str, Any]] = {}
-    for name in dict.fromkeys(names):
+    unique = list(dict.fromkeys(names))
+    for done, name in enumerate(unique, 1):
         per_query = {}
         for source, rela in QUERIES:
             status, body = get(RXCLASS, {"drugName": name, "relaSource": source, "relas": rela})
@@ -143,6 +165,8 @@ def lookup(
             "classes": sorted({c for _, classes in per_query.values() for c in classes}),
             "retrieved": datetime.now(UTC).isoformat(timespec="seconds"),
         }
+        if progress_due(done, len(unique)):
+            progress(f"drug classes asked of RxNav for {done} of {len(unique)} drug names")
     return answers
 
 
@@ -160,6 +184,32 @@ def http_get(url: str, params: dict[str, str]) -> tuple[int, Any]:
 
 # A live query (`trialledger resolve`) holds no folder: its RxClass answers persist in the user's cache.
 USER_CACHE = Path.home() / ".cache" / "trialledger" / CACHE_NAME
+CACHE_SETTING = "TRIALLEDGER_CACHE"  # the environment variable that names another cache
+
+
+def cache_location(setting: str | None, is_folder: bool) -> tuple[str, str]:
+    """Where a live run keeps its RxClass and RxNav answers, from TRIALLEDGER_CACHE (pure — pinned).
+
+    `setting` is the variable's value (None when it is not set), `is_folder` whether it names a folder that
+    exists. Returns a code and the cache file's path:
+      default — not set, or blank: USER_CACHE;
+      folder  — a folder that exists, or a path written with a trailing "/": classes.json inside it;
+      file    — anything else: that file, as named (created with its folders when first written).
+    The cache's contents are the same wherever it is kept.
+    """
+    if setting is None or not setting.strip():
+        return "default", str(USER_CACHE)
+    if is_folder or setting.endswith("/"):
+        return "folder", str(Path(setting) / CACHE_NAME)
+    return "file", setting
+
+
+def cache_path() -> Path:
+    """The cache file a live run reads and extends: cache_location over TRIALLEDGER_CACHE as this
+    environment sets it, "~" expanded."""
+    setting = os.environ.get(CACHE_SETTING)
+    expanded = os.path.expanduser(setting) if setting is not None else None
+    return Path(cache_location(expanded, expanded is not None and Path(expanded).is_dir())[1])
 
 
 def load_or_lookup(
@@ -186,8 +236,12 @@ def load_or_lookup_at(
     fill_axes: bool = False,
     get=http_get,
     sleep=time.sleep,
+    progress: Callable[[str], None] = _quiet,
 ) -> dict[str, Any]:
     """The RxClass answers cached at `path`, extended by a lookup of any name not yet cached, and saved.
+
+    `progress` hears, before each lookup, how many names it will ask about, and then how far it has got
+    (progress_due), so a long one is never silent.
 
     EPC and MoA are asked for every name of `names` and `axes_names` not yet cached. The axes (RxNorm
     identity, ATC, structure: four to six spaced requests a name) are asked only when `fill_axes` is given,
@@ -202,11 +256,19 @@ def load_or_lookup_at(
     answers = cache.get("answers", {})
     missing = [n for n in dict.fromkeys([*names, *axes_names]) if n not in answers]
     if missing:
-        answers.update(lookup(missing, get=get, sleep=sleep))
+        progress(
+            f"asking RxNav, the National Library of Medicine's drug vocabulary, for the drug classes of "
+            f"{len(missing)} drug names not yet cached (two requests a name, spaced)"
+        )
+        answers.update(lookup(missing, get=get, sleep=sleep, progress=progress))
     # A name cached before the axes existed is asked for them alone; its classes stay as they were answered.
     unasked = [n for n in dict.fromkeys(axes_names) if "axes" not in answers[n]] if fill_axes else []
     if unasked:
-        for name, axes in lookup_axes(unasked, get=get, sleep=sleep).items():
+        progress(
+            f"asking RxNav for the identity and ATC and structure classes of {len(unasked)} experimental "
+            "drug names (four to six requests a name, spaced)"
+        )
+        for name, axes in lookup_axes(unasked, get=get, sleep=sleep, progress=progress).items():
             answers[name]["axes"] = axes
     if missing or unasked:
         cache = {
@@ -368,16 +430,19 @@ def lookup_axes(
     get: Callable[[str, dict[str, str]], tuple[int, Any]],
     sleep: Callable[[float], None] = time.sleep,
     spacing: float = 0.2,
+    progress: Callable[[str], None] = _quiet,
 ) -> dict[str, dict[str, Any]]:
     """Each name's RxNorm identity and its ATC and structure answers, spaced, each with its warrant.
 
     The RxNav release is asked once for the batch. Identity: the exact-name concepts; when there is exactly
     one, its properties; when that is not an ingredient (IN), its related ingredients. Then each axis of AXES.
+    How far it has got is said through `progress` (progress_due).
     """
     warrant, status, body = _warranted(get, RXNAV_VERSION, {}, sleep, spacing)
     release = [*rxnav_release(status, body), warrant]
     out: dict[str, dict[str, Any]] = {}
-    for name in dict.fromkeys(names):
+    unique = list(dict.fromkeys(names))
+    for done, name in enumerate(unique, 1):
         requests = []
         warrant, status, body = _warranted(get, RXNORM_IDS, {"name": name, "search": "0"}, sleep, spacing)
         requests.append(warrant)
@@ -414,6 +479,10 @@ def lookup_axes(
                 "release": release,
             }
         out[name] = answer
+        if progress_due(done, len(unique)):
+            progress(
+                f"identity and ATC and structure classes asked of RxNav for {done} of {len(unique)} names"
+            )
     return out
 
 

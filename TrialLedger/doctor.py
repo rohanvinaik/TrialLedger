@@ -5,8 +5,9 @@ this sandbox can do: the Python version and whether it is supported, each depend
 RxNav and GitHub answer from this process, and whether the run folder is writable. From those facts one pure
 decision names the mode a run will use: `direct` (TrialLedger fetches for itself), `relay` (the agent fetches
 the URLs TrialLedger names, because this process cannot reach the registry or RxNav), or the reason no run can
-start. It changes nothing: a probe is one small GET with a short timeout, and the folder test writes and
-removes one file.
+start. It changes nothing that stays: a probe is one small GET with a short timeout, and the folder test
+writes and removes one file, in a run folder it creates for the test and removes again when it did not
+exist.
 """
 
 from __future__ import annotations
@@ -36,17 +37,19 @@ MODES = ("direct", "relay", "unsupported_python", "missing_dependency", "folder_
 # relay through next.json).
 NEXT_STEP = {
     "direct": (
-        "Run `trialledger landscape --run <folder>` with the person's request (--request FILE, or the slot "
-        "flags: see `trialledger landscape --help`); TrialLedger fetches from the registry and RxNav itself "
-        "and writes the record, landscape.json, into the folder. Answer from that record."
+        "Run `trialledger landscape --run <folder>` with the person's request (--request FILE, or the "
+        "request's flags: see `trialledger landscape --help`; trials by number: --ids "
+        "NCT01234567,NCT07654321); TrialLedger fetches from the registry and RxNav itself and writes the "
+        "record, landscape.json, into the folder. Answer from that record."
     ),
     "relay": (
         "This process cannot reach the registry or RxNav, so you fetch for TrialLedger. Run `trialledger "
-        "landscape --run <folder> --mode relay` with the person's request (--request FILE, or the slot "
-        "flags: see `trialledger landscape --help`). It writes next.json in the folder: fetch each URL "
-        "next.json names into the file it names (save_as, inside the folder), exactly as fetched, then run "
-        "the same command again; repeat until it reports complete, then answer from landscape.json. Fetch "
-        "only the URLs next.json names: do not fetch registry records yourself in place of TrialLedger."
+        "landscape --run <folder> --mode relay` with the person's request (--request FILE, or the "
+        "request's flags: see `trialledger landscape --help`; trials by number: --ids "
+        "NCT01234567,NCT07654321). It writes next.json in the folder: fetch each URL next.json names into "
+        "the file it names (save_as, inside the folder), exactly as fetched, then run the same command "
+        "again; repeat until it reports complete, then answer from landscape.json. Fetch only the URLs "
+        "next.json names: do not fetch registry records yourself in place of TrialLedger."
     ),
     "unsupported_python": "Install Python 3.12 or later (with uv, for example), then TrialLedger again.",
     "missing_dependency": "Install TrialLedger with its dependencies: pip install the repository.",
@@ -90,7 +93,10 @@ def probe(url: str, get: Callable[..., Any] | None = None) -> str:
 
 
 def folder_writable(folder: Path) -> bool:
-    """Whether `folder` (created if absent) accepts a file: one temporary file written and removed."""
+    """Whether `folder` accepts a file: one temporary file written and removed. A folder that did not exist is
+    created for the test and removed after it, with every folder above it the test created, so the check
+    leaves nothing behind."""
+    created = [path for path in (folder, *folder.parents) if not path.exists()]
     try:
         folder.mkdir(parents=True, exist_ok=True)
         with tempfile.NamedTemporaryFile(dir=folder, prefix=".doctor-", delete=True) as handle:
@@ -98,6 +104,15 @@ def folder_writable(folder: Path) -> bool:
         return True
     except OSError:
         return False
+    finally:
+        # deepest first, each only if it is there and empty: a folder holding anything is never removed
+        for path in created:
+            if not path.exists():
+                continue
+            try:
+                path.rmdir()
+            except OSError:
+                break
 
 
 def dependency_versions() -> dict[str, str | None]:

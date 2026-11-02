@@ -227,6 +227,12 @@
     "refusal": "",
     "standing": "complete"
   },
+  "TrialLedger/classes.py::cache_location": {
+    "cut_reasons": [],
+    "function_digest": "624605bcb5b9b1aa",
+    "refusal": "",
+    "standing": "complete"
+  },
   "TrialLedger/classes.py::class_standing": {
     "cut_reasons": [],
     "function_digest": "6c83bab4db469490",
@@ -266,6 +272,12 @@
   "TrialLedger/classes.py::own_targets": {
     "cut_reasons": [],
     "function_digest": "f09d363482e1551f",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/classes.py::progress_due": {
+    "cut_reasons": [],
+    "function_digest": "344f9db20fef9548",
     "refusal": "",
     "standing": "complete"
   },
@@ -331,7 +343,7 @@
   },
   "TrialLedger/cli.py::request_from_flags": {
     "cut_reasons": [],
-    "function_digest": "c08c80eee089f970",
+    "function_digest": "d0efa18d3d0d30bf",
     "refusal": "",
     "standing": "complete"
   },
@@ -582,6 +594,12 @@
   "TrialLedger/ingest.py::reconcile_ids": {
     "cut_reasons": [],
     "function_digest": "80709cfa64595907",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/ingest.py::requested_id_words": {
+    "cut_reasons": [],
+    "function_digest": "27e238d27d54f5e0",
     "refusal": "",
     "standing": "complete"
   },
@@ -1053,6 +1071,12 @@
     "refusal": "",
     "standing": "complete"
   },
+  "TrialLedger/record.py::commit_named": {
+    "cut_reasons": [],
+    "function_digest": "6886d31e50cfd9d2",
+    "refusal": "",
+    "standing": "complete"
+  },
   "TrialLedger/record.py::record_problems": {
     "cut_reasons": [],
     "function_digest": "dedd5381416eaba7",
@@ -1421,7 +1445,7 @@
   },
   "scripts/release_check.py::accounting_problems": {
     "cut_reasons": [],
-    "function_digest": "48812ee4442c6caf",
+    "function_digest": "83fe3d368aab41a5",
     "refusal": "",
     "standing": "complete"
   },

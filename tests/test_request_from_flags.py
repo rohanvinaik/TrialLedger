@@ -21,7 +21,13 @@ from TrialLedger.request import request_problems
 
 DOC = json.loads((Path(__file__).parent / "rxnav_request_answers.json").read_text(encoding="utf-8"))
 PD1_IN_LUNG, BY_NAME, ALK_ATC = DOC["requests"][:3]
-NOTHING = {slot: None for slot in FLAG_SLOTS} | {"phase": [], "status": [], "drug": [], "param": []}
+NOTHING = {slot: None for slot in FLAG_SLOTS} | {
+    "phase": [],
+    "status": [],
+    "drug": [],
+    "param": [],
+    "ids": [],
+}
 NOTHING |= {"drug_class": None, "drug_class_id": None, "class_source": None}
 
 
@@ -103,3 +109,21 @@ def test_a_class_is_passed_on_as_given_never_completed():
 )
 def test_a_param_that_is_not_name_value_states_no_request(words, refused):
     assert request_from_flags(flags(drug=["Keytruda"], param=words)) == refused
+
+
+def test_trials_by_number_are_the_registrys_filter_ids():
+    """--ids (the release check, 2026-11-01: trials by number through landscape). Positive: the values are
+    filter.ids, joined by "," as given, beside any other --param and any slot; a request of numbers alone is
+    one request_problems accepts. Negative: no --ids, or an empty list, adds nothing; filter.ids given both as
+    --ids and as --param is refused, neither chosen; a malformed number is passed on, never dropped."""
+    numbers = flags(ids=["NCT04852770,NCT01827384", "NCT01086644"])
+    request = {"params": {"filter.ids": "NCT04852770,NCT01827384,NCT01086644"}}
+    assert request_from_flags(numbers) == ("ok", request, [])
+    assert request_problems(request) == ("ok", [])
+    code, both, _ = request_from_flags(flags(ids=["NCT1"], param=["query.term=x"], phase=["PHASE3"]))
+    assert (code, both) == ("ok", {"phase": ["PHASE3"], "params": {"query.term": "x", "filter.ids": "NCT1"}})
+    assert request_from_flags(flags(ids=[])) == ("ok", {}, [])
+    assert request_from_flags(flags(ids=None, drug=["a"])) == ("ok", {"drug": ["a"]}, [])
+    twice = flags(ids=["NCT04852770"], param=["filter.ids=NCT01827384"])
+    assert request_from_flags(twice) == ("params_duplicate", {}, ["filter.ids"])
+    assert request_from_flags(flags(ids=["NCT12x"]))[1] == {"params": {"filter.ids": "NCT12x"}}

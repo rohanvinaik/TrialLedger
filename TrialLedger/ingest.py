@@ -126,6 +126,31 @@ def reconcile_ids(requested: str, studies: list[dict[str, Any]]) -> list[dict[st
     return entries
 
 
+def requested_id_words(entry: dict[str, str]) -> str:
+    """What became of one number asked for, in plain words, as pull and landscape print it (pure — pinned).
+
+    `entry` is one of reconcile_ids'; the number is named as the person wrote it. By its status:
+      found     — "<number>: found under its own number";
+      aliased   — "<number> is another number of <study>: the registry gave that trial's record";
+      missing   — "<number>: no trial in the registry has this number, or lists it as another number";
+      duplicate — "<number>: asked for more than once, counted once";
+      malformed — "<number>: not a trial number (NCT followed by up to eight digits)";
+      any other — "<number>: <status>", as given.
+    """
+    number, status = entry.get("requested", ""), entry.get("status", "")
+    if status == "aliased":
+        return (
+            f"{number} is another number of {entry.get('study', '')}: the registry gave that trial's record"
+        )
+    words = {
+        "found": "found under its own number",
+        "missing": "no trial in the registry has this number, or lists it as another number",
+        "duplicate": "asked for more than once, counted once",
+        "malformed": "not a trial number (NCT followed by up to eight digits)",
+    }
+    return f"{number}: {words.get(status, status)}"
+
+
 def classify_response(
     status_code: int | None,
     content_type: str | None,

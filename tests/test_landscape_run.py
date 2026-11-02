@@ -22,6 +22,7 @@ a record the schema refuses is not written; a request given both as a file and a
 """
 
 import json
+import re
 import sys
 import types
 from pathlib import Path
@@ -260,6 +261,37 @@ def test_a_query_by_number_accounts_for_every_number_asked(tmp_path):
     retrieval = record(tmp_path / "ids")["manifest"]["retrieval"]
     assert [entry["status"] for entry in retrieval["requested_ids"]] == ["found", "found", "missing"]
     assert record(tmp_path / "ids")["scope"]["release_check"] == ["not_asked", "", ""]
+    # the run says so in plain words (the release check, 2026-11-01), as pull does
+    assert outcome.detail.split("\n")[1:] == [
+        "3 trials asked for by number, 2 found under their own number",
+        "NCT99999999: no trial in the registry has this number, or lists it as another number",
+    ]
+
+
+def test_an_alias_is_said_as_another_number_of_its_trial(tmp_path):
+    aliased = ongoing_study()
+    aliased["protocolSection"]["identificationModule"]["nctIdAliases"] = ["NCT01086644"]
+    own = aliased["protocolSection"]["identificationModule"]["nctId"]
+    request = {"params": {"filter.ids": f"NCT01086644,{own}"}}
+    outcome = direct(tmp_path / "ids", request, Registry([aliased]), RxNav())
+    assert outcome.status == "complete"
+    said = outcome.detail.split("\n")[1:]
+    assert said == [
+        "2 trials asked for by number, 1 found under their own number",
+        f"NCT01086644 is another number of {own}: the registry gave that trial's record",
+    ]
+    assert "aliased" not in outcome.detail
+    statuses = [e["status"] for e in record(tmp_path / "ids")["manifest"]["retrieval"]["requested_ids"]]
+    assert statuses == ["aliased", "found"]
+
+
+def test_one_trial_asked_for_by_number_is_said_in_the_singular(tmp_path):
+    study = ongoing_study()
+    own = study["protocolSection"]["identificationModule"]["nctId"]
+    outcome = direct(tmp_path / "one", {"params": {"filter.ids": own}}, Registry([study]), RxNav())
+    assert outcome.status == "complete"
+    assert outcome.detail.split("\n")[1:] == ["1 trial asked for by number, 1 found under their own number"]
+    assert "1 trials" not in outcome.detail
 
 
 # ── re-runs ─────────────────────────────────────────────────────────────────────────────────────────────
@@ -594,8 +626,52 @@ def test_a_finished_run_given_its_request_otherwise_writes_the_same_record(tmp_p
 )
 def test_the_command_ends_2_refused_or_stopped_by_name(tmp_path, capsys, words, detail):
     assert command(tmp_path / "run", *words, "--mode", "direct") == 2
-    err = capsys.readouterr().err
-    assert err.splitlines()[1] == detail
+    err = capsys.readouterr().err.splitlines()
+    ended = next(n for n, line in enumerate(err) if line.startswith("trialledger landscape: "))
+    assert err[ended + 1] == detail
+    # what came before the end is only the resolution saying how far its RxNav requests have got
+    assert all(line.startswith("resolving the request: ") for line in err[:ended])
+
+
+def test_the_command_says_how_far_its_rxnav_requests_have_got(tmp_path, capsys):
+    """The release check (2026-11-01): never silence for minutes. Positive: each round of the request's
+    resolution says how many of its RxNav requests are asked, and the drug lookups after the pull say how
+    many drug names; each line before the end. Negative: a run asking RxNav nothing says nothing of it."""
+    studies = [results_study()]
+    assert command(tmp_path / "run", *PD1_FLAGS, "--mode", "direct", registry=Registry(studies)) == 0
+    err = capsys.readouterr().err.splitlines()
+    assert any(re.fullmatch(r"resolving the request: \d+ of \d+ RxNav lookups asked", line) for line in err)
+    assert not [line for line in err if "round" in line]
+    assert any(
+        line.startswith("asking RxNav, the National Library of Medicine's drug vocabulary") for line in err
+    )
+    assert any(re.fullmatch(r"drug classes asked of RxNav for \d+ of \d+ drug names", line) for line in err)
+    drug_less = Registry([drug_free(results_study())])
+    assert command(tmp_path / "ids", "--ids", "NCT01234567", "--mode", "direct", registry=drug_less) == 0
+    assert not [line for line in capsys.readouterr().err.splitlines() if "RxNav" in line]
+
+
+def test_the_command_takes_trials_by_number_and_says_what_became_of_each(tmp_path, capsys):
+    """--ids (the release check, 2026-11-01). Positive: the numbers are the request's filter.ids, every one is
+    in the record's accounting, and the end says, in plain words, those not found under their own number.
+    Negative: --ids beside --param filter.ids is refused before anything is written."""
+    studies = [drug_free(results_study()), drug_free(ongoing_study())]
+    own = ids_of(studies)
+    folder = tmp_path / "ids"
+    words = ["--ids", f"{own[0]},NCT09999999", "--ids", own[1], "--mode", "direct"]
+    assert command(folder, *words, registry=Registry(studies)) == 0
+    out = capsys.readouterr().out
+    assert json.loads((folder / "request.json").read_text(encoding="utf-8")) == {
+        "params": {"filter.ids": f"{own[0]},NCT09999999,{own[1]}"}
+    }
+    assert "3 trials asked for by number, 2 found under their own number\n" in out
+    assert "NCT09999999: no trial in the registry has this number, or lists it as another number\n" in out
+    statuses = [e["status"] for e in record(folder)["manifest"]["retrieval"]["requested_ids"]]
+    assert statuses == ["found", "missing", "found"]
+    twice = ["--ids", own[0], "--param", f"filter.ids={own[1]}", "--mode", "direct"]
+    assert command(tmp_path / "twice", *twice) == 2
+    assert "params_duplicate: filter.ids" in capsys.readouterr().err
+    assert not (tmp_path / "twice").exists()
 
 
 def test_a_request_both_as_a_file_and_as_flags_is_refused(tmp_path, capsys):

@@ -8,6 +8,7 @@ import hashlib
 import json
 import shutil
 import subprocess
+import sys
 from collections import Counter
 from collections.abc import Callable
 from pathlib import Path
@@ -40,20 +41,61 @@ def _ignore(_message: str) -> None:
     """Default progress sink: say nothing."""
 
 
+# Written into an installed copy when it is built (hatch_build.py at the repository's root): the commit it was
+# built from. A git checkout has none; its commit is asked of git.
+BUILD_COMMIT_NAME = "build_commit.txt"
+NOT_A_CHECKOUT = "not a git checkout"
+
+
+def commit_named(stamp: str | None, head: str, dirty: bool) -> str:
+    """The commit a record names for the code that wrote it (pure — pinned).
+
+    `stamp` is the build stamp of an installed copy (BUILD_COMMIT_NAME's text; None when the package holds
+    none), `head` the commit git names for a checkout ("" when git cannot say), `dirty` whether the
+    derivation code has uncommitted changes there.
+      the stamp, stripped        — an installed copy: the commit it was built from, as stamped (a build from
+                                   uncommitted code says so); git is not asked;
+      NOT_A_CHECKOUT             — no stamp and no commit from git;
+      "<head> with uncommitted changes to the derivation code" — a checkout whose derivation code changed;
+      head                       — a clean checkout.
+    """
+    if stamp is not None and stamp.strip():
+        return stamp.strip()
+    if not head:
+        return NOT_A_CHECKOUT
+    return f"{head} with uncommitted changes to the derivation code" if dirty else head
+
+
+def _stamp(package: Path) -> str | None:
+    """The build stamp an installed copy carries, or None for a checkout (or an unreadable stamp)."""
+    try:
+        return (package / BUILD_COMMIT_NAME).read_text(encoding="utf-8")
+    except (OSError, UnicodeDecodeError):
+        return None
+
+
 def code_commit(package: Path = PACKAGE) -> str:
-    """The git commit the derivation code was checked out at, marked when that code has uncommitted changes;
-    "not a git checkout" when git cannot say. The code root, not the commit, is what a warrant commits to."""
+    """The commit of the code that writes a record (commit_named): an installed copy's build stamp, else the
+    git commit its checkout is at, marked when the derivation code has uncommitted changes; NOT_A_CHECKOUT
+    when neither can say. Git is asked only about a package it tracks, so a copy installed inside some other
+    repository is never named by that repository's commit. The code root, not the commit, is what a warrant
+    commits to."""
+    stamp = _stamp(package)
+    if stamp is not None:
+        return commit_named(stamp, "", False)
     files = [str(path) for path in warrants.derivation_files(package)]
     git = ["git", "-C", str(package)]
     try:
+        subprocess.run(
+            [*git, "ls-files", "--error-unmatch", "__init__.py"], capture_output=True, text=True, check=True
+        )
         head = subprocess.run([*git, "rev-parse", "HEAD"], capture_output=True, text=True, check=True)
         changes = subprocess.run(
             [*git, "status", "--porcelain", "--", *files], capture_output=True, text=True, check=True
         )
     except (OSError, subprocess.CalledProcessError):
-        return "not a git checkout"
-    commit = head.stdout.strip()
-    return f"{commit} with uncommitted changes to the derivation code" if changes.stdout.strip() else commit
+        return commit_named(None, "", False)
+    return commit_named(None, head.stdout.strip(), bool(changes.stdout.strip()))
 
 
 def record_root(provenance: dict[str, Any]) -> str:
@@ -215,10 +257,15 @@ def verify_folder(folder: Path, *, limit: int = 20) -> tuple[str, list[str]]:
     if missing:
         problems.extend(f"workbook.missing: {name} is not in the folder" for name in missing)
     elif provenance.get("code_root") != CODE_ROOT:
+        # The code's fingerprint is taken over its syntax as this Python reads it, so the same commit under
+        # another Python version has another one: the words say so.
+        python = ".".join(map(str, sys.version_info[:2]))
         problems.append(
-            f"record.code_root: written by TrialLedger derivation code {provenance.get('code_root')} (commit "
-            f"{provenance.get('code_commit')}), and this is {CODE_ROOT}; a warrant re-derives only under the "
-            "code that wrote it, so verify the folder with TrialLedger at that commit"
+            f"record.code_root: written by TrialLedger code {provenance.get('code_root')} (commit "
+            f"{provenance.get('code_commit')}), and this TrialLedger, under Python {python}, is {CODE_ROOT}; "
+            "a folder is checked only by the code that wrote it, so verify it with TrialLedger at that "
+            "commit, under the Python version that wrote it (the same commit under another Python version "
+            "reads as other code)"
         )
     elif provenance.get("writer") != WRITER:
         cells = [p for book in BOOKS for p in certify(record, folder / book.name, book=book, limit=limit)]

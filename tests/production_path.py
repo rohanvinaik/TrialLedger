@@ -11,11 +11,11 @@ for the experimental drugs' names); `profile` of a folder that is no record; a
 live `resolve` with a near-miss pair, an aligned pair, a shared structure class, an own name RxNorm does not
 hold beside a combination alias, a target the drug's own entry states and a genetic CAR-T entry, rendered as
 the JSON and design.xlsx with its Drug Axes sheet; `landscape` in direct mode (a drug class in a condition
-class with a named drug, a failed lookup asked again, a finished run run again, a mechanism stopped by name)
-and in relay mode through next.json; `mcp`, an MCP client's session (the handshake, tools/list, the errors a
-client can meet, a relay run through landscape and save_fetch, the record and the scope read back, a direct
-run); `sample`, `audit` and `pilot`; `verify` of a folder whose workbook is unreadable; and a pull the server
-keeps failing.
+class with a named drug, a failed lookup asked again, a finished run run again, a mechanism stopped by name,
+trials by number with one no trial holds) and in relay mode through next.json; `mcp`, an MCP client's session
+(the handshake, tools/list, the errors a client can meet, a relay run through landscape and save_fetch, the
+record and the scope read back, a direct run); `sample`, `audit` and `pilot`; `verify` of a folder whose
+workbook is unreadable; and a pull the server keeps failing.
 """
 
 import ast
@@ -216,6 +216,9 @@ def landscape_runs(scratch: Path, studies: list[dict], rxclass, sandbox) -> dict
     codes["landscape_subclasses"] = direct(
         "landscape-kinase", "--drug-class", "Kinase Inhibitor", "--class-source", "EPC", "--mode", "direct"
     )
+    # Trials by number (--ids), one of them no trial holds, so each number is accounted for and the one not
+    # found is said in plain words.
+    codes["landscape_ids"] = direct("landscape-ids", "--ids", "NCT09000001,NCT09999999", "--mode", "direct")
     held = scratch / "request.json"
     held.write_text(json.dumps(recorded["requests"][0]), encoding="utf-8")
     relayed = scratch / "landscape-relay"

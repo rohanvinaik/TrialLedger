@@ -61,7 +61,11 @@ def study(nct_id, aliases=()):
 # The three studies the live pull returns, as the registry answers PULL_IDS: the alias number answered by the
 # study that lists it (NCT01030536, as tests/test_requested_ids.py records).
 PULLED = [study("NCT04852770"), study("NCT01827384"), study("NCT01030536", ["NCT01086644"])]
-ALIAS_LINE = "trialledger: requested NCT01086644: aliased, answered by NCT01030536\n"
+ALIAS_LINE = (
+    "trialledger: NCT01086644 is another number of NCT01030536: the registry gave that trial's record\n"
+)
+# What the pull printed before 2026-11-01: the status's code, which a clinical reader does not know.
+OLD_ALIAS_LINE = "trialledger: requested NCT01086644: aliased, answered by NCT01030536\n"
 
 
 @pytest.mark.parametrize(
@@ -193,6 +197,8 @@ def test_outputs_missing():
         "pulled/studies.csv",
         "pulled/review.xlsx",
         "pulled/record.xlsx",
+        "landscape-run/landscape.json",
+        "landscape-run/landscape.xlsx",
         "reading.json",
     )
     assert release_check.outputs_missing((), ()) == ()
@@ -243,6 +249,34 @@ def test_accounting_problems_are_named():
     assert release_check.accounting_problems(("NCT04852770",), None, "", False) == (
         "not_accounted:NCT04852770",
     )
+
+
+def test_an_alias_printed_as_its_code_is_not_said():
+    entries = reconcile_ids(",".join(release_check.PULL_IDS), PULLED)
+    assert release_check.accounting_problems(release_check.PULL_IDS, entries, OLD_ALIAS_LINE, True) == (
+        "not_printed:NCT01086644",
+    )
+    wrong_trial = ALIAS_LINE.replace("NCT01030536", "NCT01030537")
+    assert release_check.accounting_problems(release_check.PULL_IDS, entries, wrong_trial, True) == (
+        "not_printed:NCT01086644",
+    )
+
+
+def test_a_number_not_found_is_said_by_number():
+    entries = reconcile_ids("NCT04852770,NCT09999999,NCT12x", PULLED[:1])
+    asked = ("NCT04852770", "NCT09999999", "NCT12x")
+    printed = (
+        "trialledger: NCT09999999: no trial in the registry has this number\nNCT12x: not a trial number\n"
+    )
+    assert release_check.accounting_problems(asked, entries, printed, False) == ()
+    assert release_check.accounting_problems(asked, entries, printed.split("\n")[0], False) == (
+        "not_printed:NCT12x",
+    )
+    assert release_check.accounting_problems(asked, entries, "NCT09999999 NCT12x", False) == (
+        "not_printed:NCT09999999",
+        "not_printed:NCT12x",
+    )
+    assert release_check.accounting_problems(asked, [*entries, "not an entry"], printed, False) == ()
 
 
 def test_unknown_commands():

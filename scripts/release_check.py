@@ -6,21 +6,25 @@ it makes a fresh Python 3.12 environment with uv, installs TrialLedger the way A
 (`pip install` the repository's address; also `uv tool install`), and then, from that directory, runs and
 captures to files `trialledger --help`, every subcommand's --help, `trialledger doctor`, a live `trialledger
 pull` of three trials by number (one of them an alias number, which the requested-ID accounting must name),
-`trialledger verify` of the pulled folder and a one-trial `trialledger resolve` with --json and --out. A
-repository address is also cloned, so that its AGENTS.md and its tracked package files are read from what the
-address serves.
+`trialledger verify` of the pulled folder, a live `trialledger landscape --ids` of the same three trials (the
+run an assistant makes for a person who names trials by number; its mode as the doctor finds it) and a
+one-trial `trialledger resolve` with --json and --out. TrialLedger's cache is named by a folder, as a user
+may set it. A repository address is also cloned, so that its AGENTS.md and its tracked package files are read
+from what the address serves.
 
 It reports, for each step, its exit code against the one expected, its wall time, the files it wrote and
-their sizes, and every warning or traceback it printed. Then five checks, each with its problems or, when it
-could not run, "not checked" and why (never read as passed): the package files the install left out (the
-tracked files under TrialLedger/ against the installed distribution's own file list); the outputs a first-time
-user is handed that are not there; the pull's requested-ID accounting; the commands AGENTS.md names that the
-installed CLI does not have; and the departures of pull's workbooks from the conventions workbook-design.md
-applies to them (column widths, a filter on each listing, frozen panes). The resolve's design.xlsx is
-inspected the same way and its departures reported as leads. Per help text, printed message and workbook, it
-lists the words of a fixed list that a clinical reader would not know. It changes nothing in the repository
-and writes only inside its work directory. The pull and the resolve are live: they call ClinicalTrials.gov
-and RxNav, so run it from a machine that reaches them.
+their sizes, and every warning or traceback it printed, and the commit the installed copy names in what it
+writes. Then six checks, each with its problems or, when it could not run, "not checked" and why (never read
+as passed): the package files the install left out (the tracked files under TrialLedger/ against the installed
+distribution's own file list); the outputs a first-time user is handed that are not there; the pull's and the
+landscape's requested-ID accounting (each number in the record, each one not found under its own number said
+in plain words); the commands AGENTS.md names that the installed CLI does not have; and the departures of
+pull's workbooks from the conventions workbook-design.md applies to them (column widths, a filter on each
+listing, frozen panes). The resolve's design.xlsx and the landscape's landscape.xlsx are inspected the same
+way and their departures reported as leads. Per help text, printed message and workbook, it lists the words of
+a fixed list that a clinical reader would not know. It changes nothing in the repository and writes only
+inside its work directory. The pull, the landscape and the resolve are live: they call ClinicalTrials.gov and
+RxNav, so run it from a machine that reaches them.
 
     python3 scripts/release_check.py                 # this checkout, as its working tree stands
     python3 scripts/release_check.py git+https://github.com/<owner>/TrialLedger
@@ -96,6 +100,8 @@ JARGON = (
     "coordinates",
     "typed",
     "spec/ctg-oas-v2.yaml",
+    # A status code, which the printed words say plainly ("<number> is another number of <trial>").
+    "aliased",
     # Column headings of the workbooks a first-time user is handed.
     "Warrant",
     "Atoms",
@@ -103,12 +109,16 @@ JARGON = (
 )
 # A step's verdicts that let the release go out: a warning is reported, never hidden, but blocks nothing.
 PASSING = ("as_expected", "warned")
-# What the pull and the resolve hand a first-time user, relative to the folder they ran in.
+# The landscape's run folder, relative to the folder the commands run in.
+LANDSCAPE_RUN = "landscape-run"
+# What the pull, the landscape and the resolve hand a first-time user, relative to the folder they ran in.
 EXPECTED_OUTPUTS = (
     "pulled/studies.json",
     "pulled/studies.csv",
     "pulled/review.xlsx",
     "pulled/record.xlsx",
+    f"{LANDSCAPE_RUN}/landscape.json",
+    f"{LANDSCAPE_RUN}/landscape.xlsx",
     "reading.json",
     "design.xlsx",
 )
@@ -287,15 +297,16 @@ def new_files(before: dict[str, int], after: dict[str, int]) -> tuple[tuple[str,
 
 
 def accounting_problems(
-    asked: tuple[str, ...], entries: Any, stderr: str, expect_alias: bool
+    asked: tuple[str, ...], entries: Any, printed: str, expect_alias: bool
 ) -> tuple[str, ...]:
-    """What the pull's requested-ID accounting leaves unsaid, by code and number (pure — pinned).
+    """What a run's requested-ID accounting leaves unsaid, by code and number (pure — pinned).
 
-    `entries` is studies.json's `provenance.requested_ids` (one object per requested number: requested, id,
-    status, study); `stderr` is what the pull printed. For each number asked, in order:
+    `entries` is the record's accounting (studies.json's `provenance.requested_ids`, landscape.json's
+    `manifest.retrieval.requested_ids`: one object per requested number: requested, id, status, study);
+    `printed` is what the command printed. For each number asked, in order:
       not_accounted:<number> — the record has no entry for it;
-      not_printed:<number>   — its status is not "found" and the pull did not print
-                               "requested <number>: <status>".
+      not_printed:<number>   — its status is not "found" and the command did not say so in plain words:
+                               "<number> is another number of <study>" for an alias, "<number>:" otherwise.
     Then, when `expect_alias`, no_alias_named — no entry's status is "aliased". Accounted: ().
     """
     rows = entries if isinstance(entries, list) else []
@@ -305,7 +316,10 @@ def accounting_problems(
         row = by_number.get(number)
         if row is None:
             problems.append(f"not_accounted:{number}")
-        elif row.get("status") != "found" and f"requested {number}: {row.get('status')}" not in stderr:
+            continue
+        status = row.get("status")
+        said = f"{number} is another number of {row.get('study')}" if status == "aliased" else f"{number}:"
+        if status != "found" and said not in printed:
             problems.append(f"not_printed:{number}")
     if expect_alias and not any(row.get("status") == "aliased" for row in by_number.values()):
         problems.append("no_alias_named")
@@ -447,10 +461,9 @@ def _clean_env(work: Path, venv: Path) -> dict[str, str]:
     env["PIP_CONFIG_FILE"] = os.devnull
     # The tool folder is on PATH as a user's ~/.local/bin is, after the environment, which the steps use.
     env["PATH"] = os.pathsep.join([str(venv / "bin"), str(work / "uv-tools" / "bin"), env.get("PATH", "")])
-    # The variable names the cache FILE (classes.load_or_lookup_at; by default
-    # ~/.cache/trialledger/classes.json), though `resolve --help` reads as if it named a folder: a folder
-    # there fails the resolve after its lookups.
-    env["TRIALLEDGER_CACHE"] = str(work / "cache" / "classes.json")
+    # The variable names a folder (classes.json is kept inside it) or a file (classes.cache_location); a
+    # first-time user names a folder, as here.
+    env["TRIALLEDGER_CACHE"] = str(work / "cache")
     env["UV_TOOL_DIR"] = str(work / "uv-tools")
     env["UV_TOOL_BIN_DIR"] = str(work / "uv-tools" / "bin")
     return env
@@ -477,8 +490,9 @@ NOT_CHECKED = (
     "labels (workbook-design.md, 'Formatting and print'): only whether widths, filters and frozen panes "
     "are set",
     "the clinical wording of the workbooks beyond the fixed list of words below",
-    "the commands AGENTS.md names beyond doctor, pull, verify and resolve: none is run, and 'guide "
-    "commands' names those the installed CLI lacks",
+    "the commands AGENTS.md names beyond doctor, landscape, pull, verify and resolve: none is run, and "
+    "'guide commands' names those the installed CLI lacks",
+    "a landscape run by drug class or disease class (the run here asks for trials by number), and relay mode",
     "anything a step wrote outside home/ and cache/ of the work directory (HOME is this machine's)",
 )
 
@@ -493,7 +507,9 @@ def _report(facts: dict[str, Any], steps: list[dict[str, Any]], verdict: str) ->
         + (f"; working tree has {facts['dirty']} changed or untracked paths" if facts["dirty"] else ""),
         f"- Work directory (the user's folder is home/): `{facts['work']}`",
         f"- Started {facts['started']} UTC; Python {PYTHON} made by uv; pip without configuration file or "
-        "cache; TRIALLEDGER_CACHE empty at the start",
+        "cache; TRIALLEDGER_CACHE an empty folder at the start",
+        "- The commit the installed copy names in what it writes: "
+        + (", ".join(f"{where}: `{named}`" for where, named in facts["named_commits"]) or "nothing written"),
         "",
         "## Checks",
         "",
@@ -560,11 +576,15 @@ def _report(facts: dict[str, Any], steps: list[dict[str, Any]], verdict: str) ->
             + (", ".join(f"`{p}`" for p in sorted(facts["data_files"])) or "none")
             + "."
         )
-    out += ["", "## Requested-ID accounting (the pull)", ""]
-    for row in facts["requested_ids"]:
-        answered = f", answered by {row.get('study')}" if row.get("study") != row.get("requested") else ""
-        out.append(f"- {row.get('requested')}: {row.get('status')}{answered}")
-    out += ["", "Problems: " + _check_words(*facts["checks"]["requested-ID accounting"]) + "."]
+    for command, check in (
+        ("pull", "requested-ID accounting"),
+        ("landscape", "requested-ID accounting (landscape)"),
+    ):
+        out += ["", f"## Requested-ID accounting (the {command})", ""]
+        for row in facts["requested_ids"][command]:
+            answered = f", answered by {row.get('study')}" if row.get("study") != row.get("requested") else ""
+            out.append(f"- {row.get('requested')}: {row.get('status')}{answered}")
+        out += ["", "Problems: " + _check_words(*facts["checks"][check]) + "."]
     out += ["", "## Commands the guide names", ""]
     out.append(
         f"Available: {', '.join(facts['subcommands']) or 'none read'}. Named by AGENTS.md but not available: "
@@ -689,9 +709,11 @@ def main(argv: list[str] | None = None) -> int:
     help_texts: dict[str, str] = {}
     subcommands: tuple[str, ...] = ()
     accounting: tuple[tuple[str, ...] | None, str] = (None, "the install failed")
+    landscape_accounting: tuple[tuple[str, ...] | None, str] = (None, "the install failed")
     outputs: tuple[tuple[str, ...] | None, str] = (None, "the install failed")
     workbooks: tuple[tuple[str, ...] | None, str] = (None, "the install failed")
-    entries: Any = []
+    entries: dict[str, Any] = {"pull": [], "landscape": []}
+    named_commits: list[tuple[str, str]] = []
     sheets: list[tuple[str, dict[str, Any]]] = []
     leads: list[str] = []
     if installed_ok:
@@ -705,14 +727,32 @@ def main(argv: list[str] | None = None) -> int:
         pulled = steps.run("pull", [tl, "pull", "filter.ids=" + ",".join(PULL_IDS), "--out", "pulled"])
         record = steps.home / "pulled" / "studies.json"
         if pulled["exit"] == 0 and record.is_file():
-            entries = (
-                json.loads(record.read_text(encoding="utf-8")).get("provenance", {}).get("requested_ids")
+            provenance = json.loads(record.read_text(encoding="utf-8")).get("provenance", {})
+            entries["pull"] = provenance.get("requested_ids")
+            named_commits.append(("pulled/studies.json", str(provenance.get("code_commit"))))
+            printed_words = pulled["stdout"] + pulled["stderr"]
+            accounting = (
+                accounting_problems(PULL_IDS, entries["pull"], printed_words, expect_alias=True),
+                "",
             )
-            accounting = (accounting_problems(PULL_IDS, entries, pulled["stderr"], expect_alias=True), "")
             steps.run("verify", [tl, "verify", "pulled"])
         else:
             accounting = (None, "the pull wrote no record")
             steps.skip("verify", "the pull wrote no folder")
+        # The same trials through the run an assistant makes for a person who names trials by number.
+        ran = steps.run("landscape", [tl, "landscape", "--run", LANDSCAPE_RUN, "--ids", ",".join(PULL_IDS)])
+        landscape = steps.home / LANDSCAPE_RUN / "landscape.json"
+        if ran["exit"] == 0 and landscape.is_file():
+            manifest = json.loads(landscape.read_text(encoding="utf-8")).get("manifest", {})
+            entries["landscape"] = manifest.get("retrieval", {}).get("requested_ids")
+            named_commits.append((f"{LANDSCAPE_RUN}/landscape.json", str(manifest.get("code_commit"))))
+            printed_words = ran["stdout"] + ran["stderr"]
+            landscape_accounting = (
+                accounting_problems(PULL_IDS, entries["landscape"], printed_words, expect_alias=True),
+                "",
+            )
+        else:
+            landscape_accounting = (None, "the landscape wrote no record")
         steps.run(
             "resolve",
             [tl, "resolve", f"filter.ids={RESOLVE_ID}", "--json", "reading.json", "--out", "design.xlsx"],
@@ -760,7 +800,11 @@ def main(argv: list[str] | None = None) -> int:
     printed = {f"{s['name']} (printed)": s["stdout"] + s["stderr"] for s in steps.done if "argv" in s}
     texts = {
         **help_texts,
-        **{k: v for k, v in printed.items() if k.split(" ")[0] in ("doctor", "pull", "verify", "resolve")},
+        **{
+            k: v
+            for k, v in printed.items()
+            if k.split(" ")[0] in ("doctor", "pull", "verify", "landscape", "resolve")
+        },
     }
     guide: tuple[tuple[str, ...] | None, str]
     if root is None:
@@ -775,6 +819,7 @@ def main(argv: list[str] | None = None) -> int:
         "package files": package,
         "outputs handed to the user": outputs,
         "requested-ID accounting": accounting,
+        "requested-ID accounting (landscape)": landscape_accounting,
         "guide commands": guide,
         "workbook conventions (pull's workbooks)": workbooks,
     }
@@ -791,13 +836,14 @@ def main(argv: list[str] | None = None) -> int:
         "tracked": tracked if package[0] is not None else None,
         "installed": installed,
         "data_files": [path for path in installed if not path.endswith((".py", ".pyc"))],
-        "requested_ids": entries if isinstance(entries, list) else [],
+        "requested_ids": {key: rows if isinstance(rows, list) else [] for key, rows in entries.items()},
+        "named_commits": named_commits,
         "checks": checks,
         "subcommands": subcommands,
         "sheets": sheets,
         "leads": leads,
         "jargon": {name: jargon_found(text) for name, text in texts.items()},
-        "show_output": ("pip-install", "doctor", "pull", "verify", "resolve", "uv-tool-install"),
+        "show_output": ("pip-install", "doctor", "pull", "verify", "landscape", "resolve", "uv-tool-install"),
     }
     report = work / "REPORT.md"
     report.write_text(_report(facts, steps.done, verdict), encoding="utf-8")

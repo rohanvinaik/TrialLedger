@@ -135,7 +135,28 @@ def test_api_version_drift_is_reported(tmp_path, capsys):
         )
         == 0
     )
-    assert "the API reports version 2.1.0" in capsys.readouterr().err
+    err = capsys.readouterr().err
+    assert "the registry reports its interface version 2.1.0" in err
+    assert "spec/ctg-oas-v2.yaml" not in err
+
+
+def test_a_pull_says_what_became_of_each_number_in_plain_words(tmp_path, capsys):
+    """The release check (2026-11-01). Positive: an alias reads "<number> is another number of <trial>", a
+    number no trial holds says so. Negative: a status is never printed as its code ("aliased"), and a number
+    found under its own number is not printed."""
+    aliased = {
+        "protocolSection": {"identificationModule": {"nctId": A, "nctIdAliases": ["NCT01086644"]}},
+    }
+    fake = FakeAPI(
+        json_pages=[httpx.Response(200, json={"studies": [aliased], "totalCount": 1})],
+        csv_pages=[csv_page([A], total=1, header=True)],
+    )
+    argv = ["pull", f"filter.ids=NCT01086644,{A},NCT09999999", "--out", str(tmp_path / "run")]
+    assert main(argv, http=fake.client(), sleep=lambda s: None) == 0
+    err = capsys.readouterr().err
+    assert f"trialledger: NCT01086644 is another number of {A}: the registry gave that trial's record" in err
+    assert "trialledger: NCT09999999: no trial in the registry has this number" in err
+    assert "aliased" not in err and f"trialledger: {A}:" not in err
 
 
 def test_an_audit_stops_on_a_snapshot_change_and_only_on_that(tmp_path, monkeypatch, capsys):

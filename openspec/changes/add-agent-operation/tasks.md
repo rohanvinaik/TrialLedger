@@ -220,19 +220,74 @@ The founder, 2026-11-01: the next priority, built to completion.
   69/69 and subcommand_names 21/21 with such residuals besides).
 
   Run after the review's fixes, from this checkout and through `git+file://` (the address route, committed
-  tree only), on this commit's code before this note was added: both not_ready, for one reason. Every step ended as expected; no package file
-  was missing (48 tracked, all installed), so pyproject.toml is unchanged; the pull named NCT01086644 as
-  aliased, answered by NCT01030536; `verify` certified the folder; the resolve of NCT01827384 from an empty
-  cache took 169 s. pull's review.xlsx (17 sheets, Studies 50 columns) and record.xlsx set no column width
-  and no filter on any sheet (their listings do freeze panes); design.xlsx sets none of the three and has
-  blank cells (Classes 180, Results 186, Drug Axes 70) and an Audit sheet with "Founder: correct?" columns.
-  Found and left for their owners: `TRIALLEDGER_CACHE` names the cache file, but `resolve --help` reads as if
-  it named a folder, and a folder there fails the resolve with a traceback after all its RxNav lookups.
-  `resolve` prints nothing during those lookups. `doctor` creates its run folder although its help says it
-  changes nothing. `pull --help` cites `spec/ctg-oas-v2.yaml`, which an install does not have. An installed
-  copy records `code_commit` "not a git checkout". main's AGENTS.md now names `landscape`, `design`, `edits`
-  and `mcp`, which this CLI lacks: the guide check will name them until they land. The GitHub address itself
-  waits on the public repository.
+  tree only), on this commit's code before this note was added: both not_ready, for one reason. Every step
+  ended as expected; no package file was missing (48 tracked, all installed), so pyproject.toml is unchanged;
+  the pull named NCT01086644 as aliased, answered by NCT01030536; `verify` certified the folder; the resolve
+  of NCT01827384 from an empty cache took 169 s. pull's review.xlsx (17 sheets, Studies 50 columns) and
+  record.xlsx set no column width and no filter on any sheet (their listings do freeze panes); design.xlsx
+  sets none of the three and has blank cells (Classes 180, Results 186, Drug Axes 70) and an Audit sheet with
+  "Founder: correct?" columns. Found and left for their owners: `TRIALLEDGER_CACHE` names the cache file, but
+  `resolve --help` reads as if it named a folder, and a folder there fails the resolve with a traceback after
+  all its RxNav lookups. `resolve` prints nothing during those lookups. `doctor` creates its run folder
+  although its help says it changes nothing. `pull --help` cites `spec/ctg-oas-v2.yaml`, which an install does
+  not have. An installed copy records `code_commit` "not a git checkout". main's AGENTS.md now names
+  `landscape`, `design`, `edits` and `mcp`, which this CLI lacks: the guide check will name them until they
+  land. The GitHub address itself waits on the public repository.
+
+  2026-11-01, what that run found a first-time user trips on, fixed, and trials by number through `landscape`
+  (no reading, record value or warrant changes; the code root is unchanged: 4370b5bf… under Python 3.14,
+  f6092f35… under 3.12, the same as before this change under each): `trialledger landscape
+  --ids NCT…,NCT…` (repeatable) is the request's `params` with `filter.ids`, joined by "," as given
+  (`cli.request_from_flags`; `--ids` beside `--param filter.ids` is refused as `params_duplicate`), so the
+  person gets landscape.json, its workbook and the requested-ID accounting
+  (`manifest.retrieval.requested_ids`). Pull and landscape print each number not found under its own number in
+  plain words (`ingest.requested_id_words`): "NCT01086644 is another number of NCT01030536: the registry gave
+  that trial's record", never "aliased"; landscape also prints how many were asked and found.
+  `TRIALLEDGER_CACHE` names a folder (classes.json inside it: one that exists, or a path ending in "/") or a
+  file (`classes.cache_location`, `classes.cache_path`); the cache's contents are unchanged. `resolve` and
+  `landscape` say how far their RxNav lookups have got: how many names they will ask about, then a line every
+  five names and after the last (`classes.progress_due`; landscape's resolution rounds likewise, by request).
+  `doctor` removes a run folder it created for its write test, with every folder above it it created; its help
+  says what it changes, and its next step names `--ids`. `trialledger --help` says what TrialLedger does and
+  lists the user commands first (doctor, landscape, pull, verify; `cli.USER_COMMANDS`), each in plain words
+  with an example and its exit codes; the developer tools (resolve, profile, sample, audit, pilot; named by
+  neither AGENTS.md nor README.md) have no help line, are named under "for developers" and still run; no user
+  command's help says "symbolic", "digest", "warranted", "re-derive", "Merkle" or "code root" or cites
+  spec/ctg-oas-v2.yaml (neither does pull's version note), and release_check's word list finds nothing in them
+  but "relay", the mode the guides define (`tests/test_help_words.py`); "30%" reads as written; the default
+  folders are `./trialledger_run` (doctor) and `./trialledger_<UTC time>` (pull). An installed copy records
+  the commit it was built from: `hatch_build.py`, a hatchling build hook (no new dependency), writes
+  `TrialLedger/build_commit.txt` into a wheel or sdist built from a checkout ("<commit> with uncommitted
+  changes" when TrialLedger/ is not clean; an editable install is stamped nothing; the source tree is never
+  written), and `record.code_commit` names it (`record.commit_named`) before asking git, which it asks only
+  about a package git tracks, so a copy inside another repository is not named by that one's commit. The
+  release check now runs `landscape --ids` of its three trials (no `--mode`: the doctor's), checks its
+  accounting, sets `TRIALLEDGER_CACHE` to a folder, and reports the commit the install records; it adds
+  "aliased" to its word list and expects landscape.json and landscape.xlsx. Converged `--two-sign` COMPLETE:
+  `requested_id_words`, `cache_location`, `progress_due`, `commit_named`, `request_from_flags` and
+  `release_check.accounting_problems` (now: an alias said as "<number> is another number of <study>", any
+  other number not found as "<number>:"). Left: landscape.xlsx (4.3) and `design`, `edits` and `mcp`, which
+  keep the release check not_ready until they land; whether `pull` gets the landscape's readable workbook (the
+  founder's decision).
+
+  2026-11-01, the review of that change, fixed (no reading, record value or warrant changes; both code roots
+  as above). The code root is taken over the code's syntax as the running Python reads it, so the same commit
+  has one root under 3.12 and another under 3.14, and a folder verifies only under the Python version that
+  wrote it: `verify --help` and verify's words for another code now say so, in plain words (no "derivation
+  code", no "warrant re-derives"), and name the Python this verify runs under. The record does not name the
+  Python that wrote it, and making the root the same across Python versions changes the derivation code: both
+  are the founder's call. `resolve --help` says when `TRIALLEDGER_CACHE` names a folder (one that already
+  exists, or a path ending in "/") and that any other path is the cache file itself. Since landscape.xlsx is
+  not built yet (4.3), `trialledger --help` and landscape's line no longer promise a spreadsheet, and a run's
+  last words say so without the task's number. Landscape says "1 trial asked for by number"; its resolution
+  progress reads "RxNav lookups asked"; doctor's next step and landscape's refusal say "the request's flags";
+  verify's help says a repeated field ends 1 (not certified); landscape's exit 2 names a run folder holding
+  another request and a sandbox where no run can start; doctor's `--run` is the folder to test, the one given
+  to landscape. `hatch_build.built_from` asks git only about a checkout that tracks the package, so an
+  unpacked sdist inside another repository keeps its own stamp (`tests/test_build_stamp.py`, with a stand-in
+  for hatchling). The plain-words check of the help now runs over every `cli.USER_COMMANDS`, so `mcp` is held
+  to it once it joins them. The `{doctor,...,pilot}` line of `trialledger --help` stays: the release check
+  reads the commands from it (`release_check.subcommand_names`).
 - [ ] 5.3 End to end with a real agent per vendor, in its app, relay mode where its sandbox needs it
 
 ## 6. Edits and the MCP adapter
