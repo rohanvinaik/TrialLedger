@@ -1163,9 +1163,21 @@
     "refusal": "",
     "standing": "complete"
   },
+  "TrialLedger/readout.py::absence_words": {
+    "cut_reasons": [],
+    "function_digest": "712ee55fc5ce4a58",
+    "refusal": "",
+    "standing": "complete"
+  },
   "TrialLedger/readout.py::arm_entries": {
     "cut_reasons": [],
     "function_digest": "394bf0db96562e33",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/readout.py::assigned": {
+    "cut_reasons": [],
+    "function_digest": "88aa3deaabfbc86f",
     "refusal": "",
     "standing": "complete"
   },
@@ -1253,15 +1265,33 @@
     "refusal": "",
     "standing": "complete"
   },
+  "TrialLedger/readout.py::held_kind": {
+    "cut_reasons": [],
+    "function_digest": "da178396cc3035bd",
+    "refusal": "",
+    "standing": "complete"
+  },
   "TrialLedger/readout.py::identification_entries": {
     "cut_reasons": [],
     "function_digest": "b07a7ca1ad5ca8b1",
     "refusal": "",
     "standing": "complete"
   },
+  "TrialLedger/readout.py::item_words": {
+    "cut_reasons": [],
+    "function_digest": "a4664d531509d922",
+    "refusal": "",
+    "standing": "complete"
+  },
   "TrialLedger/readout.py::joined": {
     "cut_reasons": [],
     "function_digest": "bec55747142265ee",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/readout.py::least_settled": {
+    "cut_reasons": [],
+    "function_digest": "7f2a0140463d097b",
     "refusal": "",
     "standing": "complete"
   },
@@ -1286,6 +1316,12 @@
   "TrialLedger/readout.py::outcome_entries": {
     "cut_reasons": [],
     "function_digest": "136b6f0a6d65a297",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/readout.py::pack_applies": {
+    "cut_reasons": [],
+    "function_digest": "f38c0f702e4d3947",
     "refusal": "",
     "standing": "complete"
   },
@@ -1358,6 +1394,12 @@
   "TrialLedger/readout.py::shown": {
     "cut_reasons": [],
     "function_digest": "70bfcf985b31d5cb",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/readout.py::stat_cell": {
+    "cut_reasons": [],
+    "function_digest": "2724ace3fd478d62",
     "refusal": "",
     "standing": "complete"
   },

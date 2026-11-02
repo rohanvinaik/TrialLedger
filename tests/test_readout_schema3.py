@@ -387,6 +387,15 @@ def test_an_empty_listing_and_the_across_trial_sheets_say_so_on_one_line():
     assert standard["Criterion"].startswith("Too few comparable trials to assess")
 
 
+def test_at_the_signal_minimum_an_empty_section_never_reads_as_too_few():
+    record = copy.deepcopy(RECORD)
+    record["studies"] = record["studies"] * 2
+    (row,) = readout.standard_rows(record)
+    assert row[0][0].startswith("No criterion is stated by most comparable trials")
+    (row,) = readout.findings_rows(record)
+    assert row[1][0] == "The record holds no across-trial finding for these trials"
+
+
 def test_standard_protocol_language_shows_each_criterion_with_its_counts_and_wording():
     record = copy.deepcopy(RECORD)
     record["standard_language"] = [

@@ -2162,7 +2162,11 @@ SOURCE_WORDS = {
     "intervention_mesh": "the interventions' MeSH terms",
 }
 UNIVERSE_LABELS = {universe.name: universe.label for universe in contract.UNIVERSES}
-UNIVERSE_SHORT = {"oncology.solid": "Solid tumour", "oncology.heme": "Haematologic", "general": "General"}
+UNIVERSE_SHORT = {
+    "oncology.solid": "Solid tumour",
+    "oncology.heme": "Haematologic",
+    "general": "Outside oncology",
+}
 # How a universe's trials are named, and what a reading defined for it is defined for.
 TRIAL_WORDS = {
     "oncology.solid": "solid-tumour trials",
@@ -2330,7 +2334,7 @@ def item_words(item: Any, dictionary: str) -> str:
 
 
 def value_words(value: Any, dictionary: str = "", joiner: str = "; ") -> Any:
-    """A plain registry value or a value object as one cell's content (pure — pinned).
+    """A plain registry value or a value object as one cell's content.
 
     missing — "Not stated"; absent — absence_words; a reading — "Reading: <its result>" when known, else its
     status in words (reading_words); a list — its items' words joined by `joiner`, an empty one "Not stated";
@@ -2351,7 +2355,7 @@ def value_words(value: Any, dictionary: str = "", joiner: str = "; ") -> Any:
 
 
 def result_words(result: Any) -> str:
-    """A reading's result as words (pure — pinned): text with its underscores as spaces; a list's items so
+    """A reading's result as words: text with its underscores as spaces; a list's items so
     written, joined by " or "; an object's keys and values, "key: value" joined by "; "; nothing —
     "nothing"."""
     if isinstance(result, list):
@@ -2364,7 +2368,7 @@ def result_words(result: Any) -> str:
 
 
 def reading_words(value: dict[str, Any], words: str) -> str:
-    """A rule's reading, labelled, its result already in words (pure — pinned).
+    """A rule's reading, labelled, its result already in words.
 
     known — "Reading: <words>"; interpolated — "Interpolated: <words>"; proposed — "Proposed: <words>";
     not_posted, not_stated or unresolved — absence_words of its status and note.
@@ -2930,7 +2934,7 @@ def denominator_words(scopes: list[Any], group: Any) -> Any:
 
 
 def spread_words(kind: Any, measurement: dict[str, Any], dictionary: str = "") -> str:
-    """A measurement's spread or limits (pure — pinned): "<dispersion>: <spread>" or "<dispersion>: <lower> to
+    """A measurement's spread or limits: "<dispersion>: <spread>" or "<dispersion>: <lower> to
     <upper>"; neither posted — "Not applicable" when the registry's dispersion is "NA", else "Not stated"."""
     spread, lower, upper = (measurement.get(key) for key in ("spread", "lower_limit", "upper_limit"))
     named = value_words(kind, dictionary) if held_kind(kind) == "plain" else "Spread"
@@ -3361,15 +3365,19 @@ def reading_rows(study: dict[str, Any], number: int, versions: dict[str, Any]) -
     return rows
 
 
-def too_few(record: dict[str, Any], what: str) -> str:
-    """The one line of an across-trial sheet below the signal minimum."""
+def too_few(record: dict[str, Any], what: str, none: str) -> str:
+    """The one line of an across-trial sheet the record holds no row of: below the signal minimum, "Too few
+    comparable trials to assess" with the counts; at or above it, `none` (the record's section holds no row
+    for these trials)."""
     cohort = record.get("cohort")
     thresholds = cohort.get("thresholds") if isinstance(cohort, dict) else None
     minimum = thresholds.get("signal_min_trials") if isinstance(thresholds, dict) else None
     sponsors = thresholds.get("signal_min_sponsors") if isinstance(thresholds, dict) else None
+    trials = len(record["studies"])
+    if isinstance(minimum, int) and trials >= minimum:
+        return none
     need = f"; {what} need at least {minimum} comparable trials" if minimum else ""
     need += f" from {sponsors} sponsors" if minimum and sponsors else ""
-    trials = len(record["studies"])
     return f"Too few comparable trials to assess: {trials} trial{'s' if trials != 1 else ''} here{need}."
 
 
@@ -3423,7 +3431,14 @@ def findings_rows(record: dict[str, Any]) -> list[tuple]:
         rows.append(
             (
                 cell("/cohort", "known"),
-                cell(too_few(record, "across-trial findings"), "known"),
+                cell(
+                    too_few(
+                        record,
+                        "across-trial findings",
+                        "The record holds no across-trial finding for these trials",
+                    ),
+                    "known",
+                ),
                 *(cell(None, "known"),) * 5,
             )
         )
@@ -3449,7 +3464,11 @@ def standard_rows(record: dict[str, Any]) -> list[tuple]:
         )
         rows.append(tuple(cell(value, "known", address) for value in values))
     if not rows:
-        line = too_few(record, "standard protocol language")
+        line = too_few(
+            record,
+            "standard protocol language",
+            "No criterion is stated by most comparable trials (the same universe) in this record",
+        )
         rows.append((cell(line, "known"), *(cell(None, "known"),) * 6, cell("/standard_language", "known")))
     return rows
 
@@ -3507,7 +3526,7 @@ SLOT_WORDS = {
 
 
 def search_plain_words(request: Any) -> str:
-    """The search as the person asked it, in words (pure — pinned): trials by number; each slot named in
+    """The search as the person asked it, in words: trials by number; each slot named in
     words, its codes through DISPLAY (Phase, Status, StudyType); any other registry setting as "<name>
     <value>"; nothing — "Not stated"."""
     if not isinstance(request, dict) or not request:
@@ -3985,7 +4004,7 @@ def book_plan(record: dict[str, Any]) -> list[tuple]:
 
 
 def row_lines(row: tuple, widths: list[int]) -> int:
-    """How many lines a wrapped row needs at the given column widths (pure — pinned): for each text cell, the
+    """How many lines a wrapped row needs at the given column widths: for each text cell, the
     sum over its lines of the line's length divided by the column's width, rounded up (at least one line);
     the most of any cell."""
     most = 1
