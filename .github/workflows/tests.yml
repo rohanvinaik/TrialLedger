@@ -1,0 +1,28 @@
+# Lint and the whole test suite on every push and pull request. This workflow's status is the README's
+# "tests" badge, kept separate from the slower quality measurement so it reflects only lint and tests.
+name: tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - name: Install the locked environment
+        run: uv sync --locked
+      - name: Lint and format
+        run: |
+          .venv/bin/ruff check .
+          .venv/bin/ruff format --check .
+      - name: Tests
+        run: .venv/bin/pytest -q

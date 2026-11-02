@@ -1,0 +1,66 @@
+# On every push to main: run the suite under coverage, re-measure mutants only for functions changed since
+# the last published measurement, and publish the badge data to GitHub Pages.
+#
+# The baseline rolls forward: each run compares against the metrics the previous run published, falling back
+# to the committed baseline (quality/metrics.json) when there is none or its commit is not an ancestor. A
+# 30-minute census budget keeps the run bounded; functions not reached keep their previous result, marked
+# stale, and are re-measured on the next run. The tests badge comes from tests.yml, not from this workflow.
+name: quality
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: quality
+  cancel-in-progress: true
+
+env:
+  PAGES_URL: https://rohanvinaik.github.io/TrialLedger
+
+jobs:
+  measure:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # the commit diff against the baseline needs history
+      - uses: astral-sh/setup-uv@v6
+      - name: Install the locked environment
+        run: uv sync --locked
+      - name: Choose the baseline
+        run: |
+          if curl -fsSL "$PAGES_URL/metrics.json" -o "$RUNNER_TEMP/published.json" \
+            && git merge-base --is-ancestor "$(jq -r .commit "$RUNNER_TEMP/published.json")" HEAD; then
+            echo "BASELINE=$RUNNER_TEMP/published.json" >> "$GITHUB_ENV"
+            echo "baseline: last published measurement"
+          else
+            echo "BASELINE=quality/metrics.json" >> "$GITHUB_ENV"
+            echo "baseline: committed quality/metrics.json"
+          fi
+      - name: Coverage and the changed-function mutation census
+        run: >-
+          uv run --no-sync --with coverage --with pytest-cov
+          python scripts/quality_metrics.py --incremental "$BASELINE" --out _site
+          --workers 4 --budget-minutes 30
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  publish:
+    needs: measure
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
