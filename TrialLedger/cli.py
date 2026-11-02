@@ -44,8 +44,8 @@ DEVELOPER_COMMANDS = ("resolve", "profile", "sample", "audit", "pilot")
 
 DESCRIPTION = """\
 TrialLedger gathers every ClinicalTrials.gov study that matches a question about clinical trials (a drug, a
-drug class, a disease, or trials by number) into a record an AI assistant answers from; a spreadsheet for
-the person who asked is not built yet in this version (each run's last words say whether one was written).
+drug class, a disease, or trials by number) into a record an AI assistant answers from and a spreadsheet
+for the person who asked, every trial's dossier and the listings that compare them.
 Every value is a field of the registry's own record, or the result of a named, fixed rule over such fields,
 and says which; no language model reads a trial. Start with `trialledger doctor`, then
 `trialledger landscape`.
@@ -134,13 +134,14 @@ folder TrialLedger wrote (no readable studies.json)
 
 LANDSCAPE_HELP = """\
 Gather every ClinicalTrials.gov study that matches a request, in one run, into a run folder (--run DIR):
-landscape.json, the record an assistant answers from (every value with its status, its source and the
-trial's registry link), with manifest.json beside it; and landscape.xlsx, the spreadsheet for the person
-(the words printed at the end say whether it is there). Before any trial is read, the request's terms are
-expanded through named sources and the expansion written to scope.json and resolution.json: a drug class into
-its member drugs and every subclass it includes, each drug into every name RxNorm (the National Library of
-Medicine's drug vocabulary) gives it, a disease class into the registry's own disease terms below it. A term
-that cannot be expanded stops the run by name, with what to change; nothing is searched.
+landscape.json, the record an assistant answers from (every value with its status, its source and the trial's
+registry link), with manifest.json beside it; and landscape.xlsx, the spreadsheet for the person (every
+trial's dossier and the listings that compare them, checked cell by cell against the record). Before any trial
+is read, the request's terms are expanded through named sources and the expansion written to scope.json and
+resolution.json: a drug class into its member drugs and every subclass it includes, each drug into every name
+RxNorm (the National Library of Medicine's drug vocabulary) gives it, a disease class into the registry's own
+disease terms below it. A term that cannot be expanded stops the run by name, with what to change; nothing is
+searched.
 
 The request is the flags below, or a file (--request request.json) holding one object of the same fields:
   {"drug_class": {"name": "Kinase Inhibitor", "source": "EPC", "subclasses": "include"},
@@ -304,7 +305,7 @@ def main(
     )
     landscape_parser = commands.add_parser(
         "landscape",
-        help="gather every trial matching a request, or trials by number, into a record to answer from",
+        help="gather every trial matching a request, or trials by number, into a record and a spreadsheet",
         description=LANDSCAPE_HELP,
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )

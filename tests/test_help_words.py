@@ -105,15 +105,16 @@ def test_the_cache_setting_says_a_folder_or_a_file(capsys):
     assert 'already exists or the path ends in "/"' in text and "any other path is the cache file" in text
 
 
-def test_the_help_promises_no_spreadsheet_landscape_does_not_write(capsys):
-    """The review: landscape.xlsx is not built yet, so neither the top-level help nor landscape's line says
-    landscape writes a spreadsheet, and the words a run ends with say so without the task's number."""
+def test_the_help_says_landscape_writes_a_record_and_a_spreadsheet(capsys):
+    """landscape.xlsx is written by every complete run, so the top-level help and landscape's line say so, and
+    neither the help nor the words a run ends with promise anything unbuilt or name a task's number."""
     from TrialLedger.operate import BOOK_WORDS
 
     text = " ".join(help_text(capsys).split())
-    assert "a record and a spreadsheet" not in text and "is not built yet in this version" in text
-    assert "spreadsheet" not in text.split("landscape ", 1)[1].split("pull ", 1)[0]
-    assert "add-agent-operation" not in BOOK_WORDS["not_built"] and "4.3" not in BOOK_WORDS["not_built"]
+    assert "not built" not in text and "a record an AI assistant answers from and a spreadsheet" in text
+    assert "a record and a spreadsheet" in text.split("landscape ", 1)[1].split("pull ", 1)[0]
+    assert set(BOOK_WORDS) == {"written", "kept"}
+    assert not [words for words in BOOK_WORDS.values() if "add-agent-operation" in words or "4.3" in words]
 
 
 def test_the_printed_next_steps_use_no_internal_words():

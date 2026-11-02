@@ -13,7 +13,7 @@ changes nothing, a run interrupted resumes, and a finished run re-run, in either
 its record byte for byte; failed lookups are set aside and asked again on the next run; a query by number
 accounts for every number asked; the command ends 0 complete, 3 awaiting fetch, 2 refused or stopped and 1
 failed, each with its words, its mode the doctor's when none is given; the workbook's call site writes
-landscape.xlsx, staged then renamed, once its module exists.
+landscape.xlsx, the record's readout, certified by reading it back, staged then renamed, and kept on a re-run.
 Negative: a request that cannot resolve (an empty request, an unknown class, a query too long) stops by name
 with its advice and no registry query is written or sent, and a failed lookup beside such a stop is never
 promised again in that folder; a release changed between the rounds is refused; a registry that keeps
@@ -23,8 +23,6 @@ a record the schema refuses is not written; a request given both as a file and a
 
 import json
 import re
-import sys
-import types
 from pathlib import Path
 
 import httpx
@@ -32,7 +30,7 @@ import pytest
 from conftest import version
 from records import ongoing_study, results_study
 
-from TrialLedger import cli, operate
+from TrialLedger import cli, operate, readout
 from TrialLedger.ingest import API_BASE
 from TrialLedger.operate import (
     CLASSES_NOT_LOOKED_UP,
@@ -518,24 +516,24 @@ def test_an_unknown_mode_is_refused(tmp_path):
 # ── the workbook's call site ────────────────────────────────────────────────────────────────────────────
 
 
-def test_until_its_module_lands_the_workbook_is_said_not_built(tmp_path):
-    outcome = direct(tmp_path / "direct", PD1_IN_LUNG, Registry([drug_free(results_study())]), RxNav())
-    assert outcome.advice.endswith(operate.BOOK_WORDS["not_built"])
-    assert not (tmp_path / "direct" / "landscape.xlsx").exists()
+def test_the_workbook_is_the_readout_of_the_record_and_certified(tmp_path):
+    folder = tmp_path / "direct"
+    outcome = direct(folder, PD1_IN_LUNG, Registry([drug_free(results_study())]), RxNav())
+    assert outcome.advice.endswith(operate.BOOK_WORDS["written"])
+    assert readout.readout_problems(record(folder), folder / "landscape.xlsx") == []
+    assert not (folder / ".landscape.partial.xlsx").exists()
 
 
-def test_the_workbook_is_written_from_the_record_once_its_module_exists(tmp_path, monkeypatch):
+def test_the_workbook_is_staged_then_renamed_and_kept_on_a_rerun(tmp_path, monkeypatch):
     written = []
 
-    def write_landscape_book(held, path):
+    def write_readout(held, path):
         written.append((held, path))
         assert not (path.parent / "landscape.xlsx").exists()  # staged: never in place until whole
         path.write_bytes(b"xlsx")
         return 1
 
-    book = types.ModuleType("TrialLedger.landscape_book")
-    book.write_landscape_book = write_landscape_book
-    monkeypatch.setitem(sys.modules, "TrialLedger.landscape_book", book)
+    monkeypatch.setattr(readout, "write_readout", write_readout)
     folder = tmp_path / "direct"
     outcome = direct(folder, PD1_IN_LUNG, Registry([drug_free(results_study())]), RxNav())
     assert outcome.advice.endswith(operate.BOOK_WORDS["written"])

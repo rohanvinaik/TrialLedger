@@ -353,8 +353,6 @@ RUN_ADVICE = {
 BOOK_WORDS = {
     "written": "landscape.xlsx, the workbook to hand to the person, is written beside it.",
     "kept": "landscape.xlsx, the workbook to hand to the person, is beside it.",
-    "not_built": "This version of TrialLedger does not yet write landscape.xlsx, the spreadsheet for the "
-    "person: there is no spreadsheet to hand over; tell the person so.",
 }
 
 
@@ -546,19 +544,14 @@ def _matched(folder: Path) -> int:
 
 
 def write_book(record: dict[str, Any], folder: Path) -> str:
-    """The one call site of landscape.xlsx: add-agent-operation 4.3 builds TrialLedger/landscape_book.py,
-    `write_landscape_book(record, path) -> int`, which writes the workbook from the record. Until that module
-    lands nothing is written and the run says so ("not_built"); once it does, "written". The workbook is
+    """The one call site of landscape.xlsx, the clinical readout (`readout.write_readout`,
+    add-agent-operation 4.3), written from the record alone and certified by reading it back. The workbook is
     written whole or not at all: staged beside it (BOOK_STAGING), then renamed into place, so a run cut short
     never leaves a partial landscape.xlsx that a re-run would report as kept."""
-    try:
-        from TrialLedger.landscape_book import write_landscape_book
-    except ModuleNotFoundError as error:
-        if error.name != "TrialLedger.landscape_book":
-            raise
-        return "not_built"
+    from TrialLedger.readout import write_readout
+
     staging = folder / BOOK_STAGING
-    write_landscape_book(record, staging)
+    write_readout(record, staging)
     os.replace(staging, folder / BOOK_NAME)
     return "written"
 

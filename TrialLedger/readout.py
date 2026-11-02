@@ -1669,13 +1669,31 @@ def search_words(request: Any, scope: Any) -> str:
     return json.dumps(request, ensure_ascii=False, sort_keys=True)
 
 
+RETRIEVAL_MODE_WORDS = {
+    "direct": "Direct: TrialLedger fetched every page from ClinicalTrials.gov itself and checked each "
+    "against the registry's own counts, page order and export.",
+    "relay": "Relayed: an assistant fetched each page and saved it for TrialLedger. TrialLedger checked "
+    "each relayed page's form, its counts, the order of the pages and the exact trials it holds, but not "
+    "each value against the registry: a page altered in transit would not be noticed. The trials' drug "
+    "classes were not looked up.",
+}
+
+
+def retrieval_mode_words(retrieval: Any) -> str:
+    """How the record's pages reached TrialLedger, in words (pure — pinned): RETRIEVAL_MODE_WORDS for the
+    manifest retrieval's mode, direct or relay; "Not stated" for a retrieval without one."""
+    mode = retrieval.get("mode") if isinstance(retrieval, dict) else None
+    return RETRIEVAL_MODE_WORDS.get(mode, NOT_STATED) if isinstance(mode, str) else NOT_STATED
+
+
 def read_me_rows(record: dict[str, Any]) -> list[tuple]:
     """The Read me: one row per topic (pure — pinned).
 
     What the workbook is; the search as run; the request; the retrieval date and the registry version; the
-    trials read and the record's code; scope surprises (combined phases, trials outside the supported
-    universe); what each status and statement type means; how to read a dossier; each sheet; the design's
-    fields the record does not carry. Each (topic, content, row key "M<nn>").
+    trials read and the record's code; the retrieval's coverage and its mode (retrieval_mode_words); scope
+    surprises (combined phases, trials outside the supported universe); what each status and statement type
+    means; how to read a dossier; each sheet; the design's fields the record does not carry.
+    Each (topic, content, row key "M<nn>").
     """
     manifest = record["manifest"]
     studies = record["studies"]
@@ -1707,6 +1725,7 @@ def read_me_rows(record: dict[str, Any]) -> list[tuple]:
         ("Trials", f"{len(studies):,} trials, one row each in the Trial index"),
         ("Record", f"landscape.json schema {SCHEMA_VERSION}; code commit {manifest['code_commit']}"),
         ("Retrieval coverage", plain(manifest["retrieval"]) if manifest["retrieval"] else NOT_STATED),
+        ("Retrieval mode", retrieval_mode_words(manifest["retrieval"])),
         (
             "Scope surprise: combined phases",
             "\n".join(combined) or "No trial here registers more than one phase",

@@ -1878,3 +1878,16 @@ def test_readout_and_criteria_are_outside_the_derivation_code_root():
     package = Path(readout.__file__).parent
     names = {path.name for path in warrants.derivation_files(package)}
     assert "readout.py" not in names and "criteria.py" not in names
+
+
+def test_the_read_me_says_how_the_pages_reached_trialledger():
+    from TrialLedger.readout import RETRIEVAL_MODE_WORDS, retrieval_mode_words
+
+    relay = retrieval_mode_words({"mode": "relay", "matched": 2, "read": 2})
+    assert relay == RETRIEVAL_MODE_WORDS["relay"]
+    assert "form, its counts, the order of the pages and the exact trials" in relay
+    assert "not each value against the registry" in relay
+    assert retrieval_mode_words({"mode": "direct"}) == RETRIEVAL_MODE_WORDS["direct"]
+    assert retrieval_mode_words({"mode": "carrier pigeon"}) == "Not stated"
+    assert retrieval_mode_words({"mode": ["relay"]}) == "Not stated"
+    assert retrieval_mode_words(None) == "Not stated"

@@ -53,6 +53,10 @@ DECLARED = {
     "mcp_server.py: stdio_streams": "the process's own standard input and output; production_path gives "
     "`trialledger mcp` its streams, as it gives the registry and RxNav",
     "mcp_server.py: stdio_streams.<locals>.write": "the writer of stdio_streams, likewise",
+    "readout.py: ReadoutError.__init__": "raised only when landscape.xlsx read back differs from its "
+    "derivation, which tests/test_readout.py simulates",
+    "readout.py: mechanism_finding": "a mechanism-linked exclusion needs a cohort of trials sharing a drug's "
+    "mechanism, which production_path's few trials do not form; tests/test_readout.py reaches it",
 }
 # The frozen contracts of add-bank-coverage group 1, which the parallel packages are written against: nothing
 # in production consumes them yet. Each name is declared with the task that will put it on the path; that task
