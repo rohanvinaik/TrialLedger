@@ -27,8 +27,13 @@ must occur in the API metadata or the contract). The test (`tests/test_conforman
 - every lexical collection in a reading module has an entry, and every entry names a collection that exists;
 - a `decision` entry cites a decision id present in a design document of an open or archived change (the ids are
   read from the documents' headings and numbered decisions, so a citation to nothing fails);
-- a `decision` entry names at least one independent source in `eliminates` (a decision taken from the collection
-  alone is refused);
+- a `decision` entry names its warrant, one of a closed set: (a) a structured registry field states the value;
+  (b) an unambiguous grammatical construction, two-sign tested and confirmed on data it was not written on,
+  establishes a scoped assertion (add-scoped-assertions A3); (c) an ontology relation supports a declared
+  entailment; (d) several observations of distinct provenance jointly eliminate the alternatives of an ambiguous
+  reading (it names them in `eliminates`); (e) a default supplies a conclusion that is shown as interpolated, with
+  its defeaters. A word match alone is none of these, and "two sources agree" is not a warrant by itself: (d)
+  requires that the observations eliminate alternatives, not that they coincide;
 - recognition entries are free of decision words in their purpose ("decides", "assigns", "is") — a wording check
   only, the substance being the review of §4.
 
@@ -45,8 +50,13 @@ that each change may lower and none may raise.
 docstrings stripped before and after), the commit message must contain a line `Trace: <path>`; the path must
 exist in that commit's tree under `openspec/changes/*/traces/`; the file must hold the sections of the trace
 template (`openspec/changes/add-design-conformance/trace-template.md`) and a `Review:` section with a verdict
-from the closed set {conforms, conforms with named limits, does not conform} and the reviewer named. A missing
-or malformed trace, or a verdict of "does not conform", refuses the push with the reason. The check is pure over
+from the closed set {conforms, conforms with named limits, does not conform} and the reviewer named. The trace
+records the content hash of each reading module and data resource the review read (`Reviewed:` lines, path and
+hash); the check refuses the commit when any reading module or resource the commit changes has a hash in the
+commit's tree different from the one reviewed, so a valid-looking trace cannot be attached to code it did not
+review. The conformance inputs themselves (`TrialLedger/conformance.py`, its test, the push check, the trace
+template) count as reading modules for this requirement. A missing or malformed trace, a stale review, or a
+verdict of "does not conform" refuses the push with the reason. The check is pure over
 the diff and the tree (a function of literal inputs, two-sign tested and converged).
 
 ## 4. The review
@@ -78,14 +88,18 @@ decision in an unlisted module or loaded from a data file, a decision over codes
 ATC gate), a rubber-stamp review, an edit to the conformance inputs themselves, or a local hook skipped. The
 additions that make the guarantee real:
 
-1. **Enforcement off the builder's machine.** A GitHub Actions workflow runs the gate, the conformance test and
-   the trace check on every push and pull request to main; branch protection makes it a required status check
-   and forbids force-pushes and direct pushes to main, with the founder as the only administrator who can change
-   that. A local hook is a convenience; `--no-verify` then reaches nothing that matters.
-2. **The conformance inputs are protected.** Changes to `TrialLedger/conformance.py`, its exemptions, its test,
-   the push check and the trace template need the founder's approval (a CODEOWNERS entry on those paths with
-   required review), and never authorize the same change that edits them. LEGACY is frozen by identity and by
-   behaviour (each legacy decision's inputs and outputs pinned), not by count alone.
+1. **Enforcement off the builder's machine, within the founder's workflow.** The founder works by direct push to
+   main (ruled 2026-11-02); branch protection and required pull requests are not used. A GitHub Actions workflow
+   runs the gate, the conformance test and the trace check on every push to main, so a push made with the local
+   hook skipped is still checked, and a failure is visible on the commit and notified. The bound: a bad push can
+   land; it cannot land unseen. The local push gate also refuses any push while the latest GitHub run on main for
+   these checks has failed (when the run's state can be read; when it cannot, it says so and does not refuse), so
+   a failure is fixed before more work lands on it.
+2. **The conformance inputs are protected by the same trace.** Changes to `TrialLedger/conformance.py`, its
+   exemptions, its test, the push check and the trace template need a reviewed trace like any reading change
+   (§3), and a trace never authorizes a change to the inputs that judge it in the same commit. LEGACY is frozen by
+   identity and by behaviour (each legacy decision's name, its literal set's hash, and its pinned inputs and
+   outputs), not by count alone: replacing one legacy shortcut with another at the same count fails.
 3. **Data is inventoried like code.** Any vocabulary, table or resource a reading module loads at run time (JSON,
    YAML, CSV, a generated file) is declared, versioned and hashed in the inventory; an undeclared runtime load in a
    reading module fails the test.
@@ -102,4 +116,18 @@ additions that make the guarantee real:
    decision operations, is add-scoped-assertions' compiler and consumer contracts (its groups 2 and 6). Until then
    this change gives detection and accountability, and the claim it makes is bounded so: no unregistered lexical
    or data-driven decision, no reading change without a reviewed trace, and the four known shortcut kinds pinned
-   by counterexamples — under protected enforcement on main.
+   by counterexamples, checked on every push to main.
+
+## 8. What the compiler must carry, so independence is computed, not declared
+
+The trace's independence section is prose; the computation must hold the same facts. The first structural slice
+of add-scoped-assertions (MVP_PATH step 3) therefore carries, for every observation: its identity, its source
+location (field and span), its derivation ancestry (a derived index term, such as the registry's condition MeSH
+derived from the trial's own words, descends from those words and is not independent of them; differently named
+API fields are not independent for that reason alone), its scope, and the constraint it supplies. One sentence
+counts once means no duplicated evidential force: the same observation reached twice supports nothing twice; it
+does not stop one sentence stating several distinct constraints, each kept as its own proposition with the shared
+provenance recorded. Consumers accept readings only as checked derivations (premises and evidence references,
+bindings and scope, the statuses the consumer accepts, and named failures when the proof does not check), and a
+legacy reading has its own type, which a consumer requiring a structurally established assertion refuses; the
+workbook label (task 1.3) shows it, the type enforces it.
