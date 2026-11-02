@@ -30,7 +30,8 @@
       fixture bodies (nested populations, category-level denominators, comments, precision), failing on planted
       defects (a measurement under the wrong group, a dropped nested field).
 
-## 2. Unit B: universes (`universes.py`, `coherence.py`, `semantics/loader.py`)
+## 2. Unit B: universes (`universes.py`, `coherence.py`, `semantics/loader.py`) — the assignment of 2.1 and
+the fixtures of 2.4 are superseded by 7.2 (design §9.1); build 7.2, not these
 
 - [ ] 2.1 The universe table and `assign(study)`: the three sources of design §3, each finding recorded; one,
       several, none, undecidable.
@@ -86,7 +87,10 @@
 - [ ] 7.4 The workbook corrections of §9.3, each with a negative test.
 - [ ] 7.5 Sources and warrants (§9.4): law 12 checked for landscape output and built where missing; AGENTS.md,
       README and SKILL.md as built.
-- [ ] 7.6 Acceptance by §9.5.
+- [ ] 7.6 Acceptance by §9.5, including one reviewer task per item of design §4a's list (a cohort's restriction
+      told from the whole trial's; a follow-up horizon told from an assessment time; the eligible, enrolled and
+      analysed populations told apart), and a mixed-trial workbook holding one trial with many adverse-event
+      groups that stays readable.
 
 ## 6. Unit F: the search preview and the assistant's interface (design §5a)
 

@@ -35,25 +35,25 @@ the registry gives them, and the registry's listed zeros kept.
 - **WHEN** an outcome group and an adverse-event group have the same title
 - **THEN** they remain distinct groups of their own modules unless a named rule links them
 
-### Requirement: Domain readings apply only within their universe
-Each study SHALL be assigned universes by a named rule over its condition MeSH terms and ancestors, its free-text
-conditions and titles, and, for a treatment study, its interventions' MeSH; the assignment and each source's
-finding SHALL be recorded and shown on the Trial index. A domain reading SHALL be computed only where its pack's
-requirements hold; an explicit mention SHALL still be recognized in every universe.
+### Requirement: A disease-specific rule applies only within the indications it declares
+Each study's record SHALL carry its disease as the registry states it, with no category assigned in its place,
+and each disease-specific rule pack SHALL declare its indications and apply by add-scoped-reasoning Decision 4
+(conditions first, the study's own disease statements next, the registry's MeSH last; a disagreement is a named
+conflict; unresolved is never a negative).
 
-#### Scenario: a psychotherapy trial carries no oncology setting
-- **WHEN** a study's conditions are post-traumatic stress disorder and COVID-19 and its intervention is
-  behavioural
-- **THEN** it is in the general universe, its record carries no setting or line-of-therapy reading, and its index
-  row says why
+#### Scenario: a psychotherapy trial carries no NSCLC setting
+- **WHEN** a study's conditions are post-traumatic stress disorder and COVID-19
+- **THEN** the NSCLC setting and line rules are inapplicable, and its record carries no setting or line reading
 
-#### Scenario: a cancer trial without condition MeSH is still oncology
-- **WHEN** a study's only condition is "Advanced Malignant Solid Neoplasm" and the registry gives no condition MeSH
-- **THEN** it is assigned to solid-tumour oncology from its free-text condition, and the index names that source
+#### Scenario: a mis-derived MeSH term switches nothing on
+- **WHEN** a study's conditions establish Alzheimer disease and its registry MeSH also carries "Lymphoma,
+  Follicular"
+- **THEN** its indication is Alzheimer disease, the MeSH term is shown as a named conflict, and no lymphoma rule
+  applies
 
 #### Scenario: undecidable scope is visible
-- **WHEN** the sources disagree or none decides
-- **THEN** the study's scope reads unresolved with each source's finding, never a silent absence
+- **WHEN** no source establishes the indication
+- **THEN** each disease-specific pack reads scope unresolved with each source's finding, never a silent absence
 
 ### Requirement: The workbook is the reviewer's
 landscape.xlsx SHALL show codes in clinical words through versioned display dictionaries, SHALL hold one row per
@@ -91,12 +91,20 @@ return the value at that address.
 - **THEN** the assistant reads that row's address and returns the same measurement, group, population and
   denominator the row shows
 
-### Requirement: A study with no identifiable domain is never treated as general
-A study SHALL be assigned the general universe only on positive evidence of a non-oncology domain; a study whose
-sources identify no domain SHALL be scope unresolved.
+### Requirement: A condition that names no disease establishes nothing
+A condition that is not a disease's declared name or an NLM MeSH entry term of a disease SHALL establish no
+indication.
 
 #### Scenario: conditions that are not diseases
-- **WHEN** a study has no condition MeSH and its only condition is "Progression Free Survival", and its
-  interventions identify no domain
-- **THEN** its scope is unresolved with each source's finding, and no domain reading is computed or denied
-  silently
+- **WHEN** a study has no condition MeSH and its only condition is "Progression Free Survival"
+- **THEN** its indication is unresolved with each source's finding, and no disease-specific reading is computed
+  or denied silently
+
+### Requirement: The workbook answers the reviewer's questions
+The acceptance SHALL include, for each item of the reviewer's list (design §4a), a task a clinical reviewer
+performs on the workbook with its expected sheet, evidence and unresolved cases, including telling a cohort's
+restriction from the whole trial's and telling a follow-up horizon from an assessment time.
+
+#### Scenario: a cohort restriction is not read as the trial's
+- **WHEN** a criterion applies only to one cohort
+- **THEN** the workbook does not show it as the whole trial's requirement

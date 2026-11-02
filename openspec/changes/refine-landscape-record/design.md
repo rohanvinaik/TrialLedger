@@ -314,6 +314,19 @@ purpose gate is added: the founder's design has none (the conform branch's treat
 The Trial index shows each trial's conditions as stated (and a named conflict where there is one), not a
 category; §4's "universe" column and the Risks' universe assignment are replaced by this.
 
+Build choices Decision 4 does not name (Claude's rulings of 2026-11-02, each a named constant, for the founder's
+review): a "disease" is a MeSH descriptor in tree C (Diseases), excluding C23 (conditions and processes such as
+recurrence or metastasis), or in F03 (Mental Disorders); a title establishes a disease only when it is whole a name
+or entry term (a disease named inside a longer title is "not yet read", for the compiler); a run that has not
+looked conditions up (relay mode) reads scope unresolved; a pack applies when any established descriptor is within
+its declared indications; an established descriptor broader than the pack's in NLM's tree reads scope unresolved,
+never inapplicable (a broader term is no evidence of another disease); a conflict is a registry MeSH descriptor
+(never an ancestor) the higher-priority source did not establish; the NSCLC gene-selection rules declare NSCLC as
+their indication; the haematologic prior-line pack, which existed only through the removed classifier, is dropped;
+recurring criteria group the whole run as one; an indication NLM's lookup establishes is known, with the lookup's
+request and retrieval time as its warrant. The registry's API defines condition browse leaves but returned none to
+any request on 2026-11-02 (probed four ways); the record says so.
+
 **9.2 Readings say only what the text says.** A reading names the words it read and states only what they
 establish: "steroid" is a mention of steroids, not immunosuppression; "must have negative serology for HIV" under
 Inclusion is an inclusion requirement of negative HIV serology, not "exclusion: HIV" (polarity and the heading's

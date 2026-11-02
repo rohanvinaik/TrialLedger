@@ -131,7 +131,13 @@ against the retained registry prose (a rule not yet reading it is step 6 or 8 wo
 design-surprise 2.1, 3.1-3.2; targeted-questions 3.1, 4.2 (Codex's second read of the pilot), 5.x.
 
 ### Step 11. add-design-synthesis — the designer (entry: steps 6-8 and coherence's comparable results)
-Founder rulings first (below); then 1.1-1.2, 2.1-2.5, 3.1-3.4 (3.3 needs step 4's edits). Acceptance per its
+Founder rulings first (below); then 1.1-1.2, 2.1-2.5, 3.1-3.4 (3.3 needs step 4's edits). Before it is built,
+two corrections to its design, raised by a review on 2026-11-02 and for the founder: Decision 6 treats a
+mechanism-linked exclusion as inherited from its signal, but those signals are proposals, which are never
+premises (it may be offered as an option, or inherited only by a warranted default or the person's choice); and
+Decision 8b costs omitting a common criterion at −log(P), which falls as the criterion grows more common, the
+opposite of its intent (the surprise of an absence is −log(1−P)). The designer also reads the same landscape
+record the workbook shows and names its evidence and interpretation versions, so the two never disagree unseen. Acceptance per its
 design. Claims: each design element marked deduced, recommended (with its trials and numbers) or chosen.
 
 ## Founder decisions on the critical path (each named in its change)
