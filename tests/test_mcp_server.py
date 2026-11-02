@@ -987,10 +987,10 @@ def test_record_serves_the_findings_and_the_questions_each_with_its_address(tmp_
         ("frequency", "/cohort/frequency/0"),
         ("frequency", "/cohort/frequency/1"),
         ("near_misses", "/cohort/near_misses/0"),
-        ("standard_language", "/standard_language/0"),
+        ("recurring_criteria", "/recurring_criteria/0"),
     ]
     assert findings["findings"][2]["finding"] == held["cohort"]["near_misses"][0]
-    assert findings["findings"][3]["finding"] == held["standard_language"][0]
+    assert findings["findings"][3]["finding"] == held["recurring_criteria"][0]
     assert findings["page"]["total"] == 4
     questions, _ = client.call("record", run="r", part="questions", offset=1, limit=1)
     assert questions["questions"] == [
@@ -1007,7 +1007,7 @@ def test_record_serves_the_findings_and_the_questions_each_with_its_address(tmp_
     # below the signal minimum the cohort holds its reason, given beside the (empty) findings
     reason = {"status": "unresolved", "note": "2 trials, fewer than 3"}
     (tmp_path / "runs" / "r" / "landscape.json").write_text(
-        json.dumps({**held, "cohort": {"thresholds": {}, "reason": reason}, "standard_language": []}),
+        json.dumps({**held, "cohort": {"thresholds": {}, "reason": reason}, "recurring_criteria": []}),
         encoding="utf-8",
     )
     few, is_error = client.call("record", run="r", part="findings")
@@ -1077,7 +1077,7 @@ def test_every_part_serves_what_the_contract_names_it_for():
     assert MANIFEST_KEYS == ("schema_version", "request", "manifest", "universes")
     assert STATUS_KEYS == ("statuses", "envelope")
     tables = tuple(tuple(name.split(".")) for name in contract.ACROSS_TRIAL_FINDINGS_FIELDS)
-    assert (("cohort", "reason"), *tables, ("standard_language",)) == FINDING_SECTIONS
+    assert (("cohort", "reason"), *tables, ("recurring_criteria",)) == FINDING_SECTIONS
     assert QUESTION_KEY == "open_questions"
 
 

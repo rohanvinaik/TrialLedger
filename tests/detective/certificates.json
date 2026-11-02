@@ -916,7 +916,7 @@
   },
   "TrialLedger/mcp_server.py::record_view": {
     "cut_reasons": [],
-    "function_digest": "65a28824bff96249",
+    "function_digest": "424e9571a8b05580",
     "refusal": "",
     "standing": "complete"
   },

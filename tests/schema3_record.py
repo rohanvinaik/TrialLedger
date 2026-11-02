@@ -6,7 +6,7 @@ the registry bodies), unchanged, and a third study made from the first by changi
 part studies has a page past its first. The record-level sections are made here in the shapes the record
 unit gives them (refine-landscape-record unit A, 2026-11-01): `cohort` holds each kind of across-trial
 finding as a list of row objects (a kind with no rows absent) and `thresholds` as an object, and
-`standard_language` the criteria a universe's trials share; each study's
+`recurring_criteria` the criteria a universe's trials share; each study's
 `open_questions` is a list of reading value objects ({status, rule, words, result, note}, the result the
 review flag); `fields` is an object keyed by contract field name. Every value here is a test value; none is
 read from the registry.
@@ -70,7 +70,9 @@ def schema3_record() -> dict:
             ],
             "near_misses": [{"first": "NCT04852770", "second": THIRD, "differs_in": "ecog"}],
         },
-        "standard_language": [{"criterion": "age", "role": "inclusion", "trials": 3, "of_trials": 3}],
+        "recurring_criteria": [
+            {"element": "age", "role": "inclusion", "trials": 3, "of_trials": 3, "grouping": "universe"}
+        ],
         "statuses": {"known": "the record states it", "not_stated": "the record says nothing"},
         "envelope": {"status": "what is known of the value"},
         "fields": {field.name: {"label": field.label, "kind": field.kind} for field in FIELDS},

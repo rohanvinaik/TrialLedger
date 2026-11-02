@@ -197,7 +197,7 @@ def _served(part: str) -> tuple[str, ...]:
 # What each part serves, from the contract: the study fields of a line of part studies (each a top-level key
 # of the study, or a key within one); the record's top-level sections of parts manifest and statuses; the
 # sections of part findings, each as its path in the record (a list of rows, such as cohort.frequency or
-# standard_language, or one value, such as cohort.reason); and the study field of part questions.
+# recurring_criteria, or one value, such as cohort.reason); and the study field of part questions.
 STUDY_LINE = tuple(name.removeprefix("studies[].") for name in _served("studies"))
 MANIFEST_KEYS = tuple(dict.fromkeys(name.split(".")[0] for name in _served("manifest")))
 STATUS_KEYS = tuple(dict.fromkeys(name.split(".")[0] for name in _served("statuses")))
@@ -652,8 +652,8 @@ def record_view(record: Any, arguments: dict[str, Any]) -> tuple[str, dict[str, 
       studies   — each study's study_line, paged;
       study     — the study whose NCT number is `nct`, its whole extract, paged by its fields (a long list
                   within it is read by its address);
-      findings  — every row of the FINDING_SECTIONS that are lists (the cohort's tables, the standard
-                  language), in that order, each with its kind and its address, paged; a section that is one
+      findings  — every row of the FINDING_SECTIONS that are lists (the cohort's tables, the recurring
+                  criteria), in that order, each with its kind and its address, paged; a section that is one
                   value (the cohort's reason, when too few trials are compared) beside them, under its name;
       questions — every study's open questions (QUESTION_KEY), each with its study and address, paged;
       address   — the value at a workbook row's address (pointer_value).
