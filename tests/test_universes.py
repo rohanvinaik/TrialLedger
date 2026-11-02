@@ -181,8 +181,7 @@ def test_no_usable_condition_is_unresolved_beside_an_identified_non_oncology_stu
 
 def test_a_condition_the_vocabulary_misses_is_no_evidence_of_another_domain():
     """Negative: a biomarker condition no table names, in a trial without condition MeSH, is never general and
-    never a disagreement; the titles name the cancer. Without them, in relay mode, it is general only on the
-    unmatched condition, which the words name."""
+    never a disagreement; the titles name the cancer. Without them it is scope unresolved, never general."""
     body = copy.deepcopy(BODIES["NCT02296125"])
     body["protocolSection"]["conditionsModule"]["conditions"] = ["EGFR T790M Mutation"]
     for mapping in (CLASSES, None):
@@ -191,6 +190,31 @@ def test_a_condition_the_vocabulary_misses_is_no_evidence_of_another_domain():
         assert source(found, "free_text")["status"] == "conditions_and_titles"
         assert source(found, "free_text")["non_oncology"] == []
         assert found.words.startswith("Solid-tumour oncology (title: AZD9291 Versus Gefitinib")
+    body["protocolSection"]["identificationModule"].update(briefTitle="Study A", officialTitle="Study A")
+    assert assign(body, None).code == "unresolved_no_domain"
+
+
+def test_an_unmapped_condition_is_scope_unresolved_never_general():
+    """The external review's case, exactly: no MeSH, no vocabulary term, nothing in the titles."""
+    for mapping in ({}, None):
+        found = assign(study(conditions=["Unmapped condition ZYX-123"], titles=("Study A", "")), mapping)
+        assert (found.case, found.code, found.universes, found.packs) == (
+            "unresolved",
+            "unresolved_no_domain",
+            (),
+            (),
+        )
+        assert source(found, "free_text")["non_oncology"] == []
+        assert "no condition names a term of the declared vocabularies (Unmapped condition ZYX-123)" in (
+            found.words
+        )
+        assert reading(found)["status"] == "unresolved"
+
+
+def test_a_declared_non_oncology_term_is_general_unless_a_title_names_a_cancer():
+    assert assign(study(conditions=["Major Depressive Disorder"]), {}).case == "general"
+    titled = study(conditions=["Major Depressive Disorder"], titles=("Sertraline in Breast Cancer", ""))
+    assert assign(titled, {}).case == "oncology"
 
 
 def test_a_condition_beside_one_that_names_a_cancer_is_never_listed_outside_oncology():

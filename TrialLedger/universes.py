@@ -10,8 +10,9 @@ for the setting and line-of-therapy pack, a treatment purpose) before its coordi
 2. free_text: the free-text conditions, matched word by word against the declared vocabulary
    (contract.ONCOLOGY_TERMS); a condition that names no disease (contract.NOT_DISEASE_CONDITIONS, such as
    "Progression Free Survival") is no evidence of any domain. The titles are read where no condition names a
-   cancer, only as a signal of oncology, never as evidence of another domain; a condition the vocabulary
-   misses counts as outside oncology only where neither the conditions nor the titles name a cancer;
+   cancer, only as a signal of oncology, never as evidence of another domain. A condition naming a term of
+   the declared non-oncology vocabulary (contract.NON_ONCOLOGY_TERMS) counts as outside oncology only where
+   neither the conditions nor the titles name a cancer; a condition naming neither vocabulary is no evidence;
 3. drug_class: for a treatment trial, each intervention's ATC class as RxNav gives it for the intervention's
    name or one of its other names (antineoplastic agents, L01; endocrine therapy for cancer, L02). The classes
    are an input, never looked up here; in relay mode they are not looked up at all and the source reads "not
@@ -25,10 +26,11 @@ How they decide (scope_case):
   haematologic anchor (rituximab is L01, and a lymphoma's MeSH ancestors include Neoplasms); within one
   source, such an anchor is not listed beside a specific one.
 - general: the conditions are positively outside oncology (a condition MeSH term, or a free-text condition
-  that names a disease) and no source signals oncology.
+  naming a non-oncology term) and no source signals oncology.
 - unresolved, sources disagree: the conditions are positively outside oncology while the titles or a drug's
   class signal it (methotrexate, L01, in a rheumatoid arthritis trial).
-- unresolved, no domain: no usable condition and no oncology signal; never general.
+- unresolved, no domain: no positive evidence of any domain and no oncology signal (no usable condition, or
+  conditions naming neither vocabulary: "Unmapped condition ZYX-123"); never general.
 
 The decisions are pure and pinned (term_hits, drug_anchor, counted_universe, scope_case, permitted_packs);
 `assign` gathers their inputs from the study record and assembles the Assignment and its words.
@@ -258,18 +260,19 @@ def _anchors(source: str) -> dict[str, str]:
     }
 
 
-def _text_findings(texts: list[str]) -> tuple[list[dict[str, str]], list[str]]:
-    """The free-text findings of each text, and the texts with none."""
+def _text_findings(texts: list[str]) -> tuple[list[dict[str, str]], list[str], list[str]]:
+    """The free-text findings of each text; the texts naming a non-oncology term and none of oncology; and the
+    texts naming a term of neither vocabulary, which are no evidence of any domain."""
     haematologic = set(contract.HAEMATOLOGIC_TERMS)
-    found, silent = [], []
+    found, outside, unmatched = [], [], []
     for text in texts:
         hits = term_hits(text, list(contract.ONCOLOGY_TERMS))
         found += [
             {"term": text, "anchor": hit, "universe": HEME if hit in haematologic else SOLID} for hit in hits
         ]
         if not hits:
-            silent.append(text)
-    return found, silent
+            (outside if term_hits(text, list(contract.NON_ONCOLOGY_TERMS)) else unmatched).append(text)
+    return found, outside, unmatched
 
 
 def _specific_only(found: list[dict[str, str]]) -> list[dict[str, str]]:
@@ -317,7 +320,12 @@ def _source_words(source: dict[str, Any], terms: list[str], titles: bool = False
 
 
 def _words(
-    code: str, universes: list[str], sources: list[dict[str, Any]], mesh: list[str], conditions: list[str]
+    code: str,
+    universes: list[str],
+    sources: list[dict[str, Any]],
+    mesh: list[str],
+    conditions: list[str],
+    unmatched: list[str],
 ) -> str:
     """The Trial index words for an assignment: the universe and the source that decided it, or why none."""
     labels = {universe.name: universe.label for universe in contract.UNIVERSES}
@@ -353,14 +361,16 @@ def _words(
     named = [f"{c} ({why[c.strip().lower()]})" for c in conditions if c.strip().lower() in why]
     drug = drug_source["status"]
     drug_words = "no drug of an antineoplastic class" if drug == "read" else SOURCE_STATUSES[drug]
-    return "; ".join(
-        (
-            f"{CASE_CODES[code]}: no condition MeSH term",
-            f"the conditions name no disease ({'; '.join(named)})" if named else "no condition is stated",
-            "no title names a cancer" if text_source["status"] == "titles" else "the record has no title",
-            f"drug class: {drug_words}",
-        )
-    )
+    parts = [f"{CASE_CODES[code]}: no condition MeSH term"]
+    if named:
+        parts.append(f"the conditions name no disease ({'; '.join(named)})")
+    if unmatched:
+        parts.append(f"no condition names a term of the declared vocabularies ({'; '.join(unmatched)})")
+    if not conditions:
+        parts.append("no condition is stated")
+    parts.append("no title names a cancer" if _titled(text_source) else "the record has no title")
+    parts.append(f"drug class: {drug_words}")
+    return "; ".join(parts)
 
 
 def assign(
@@ -387,9 +397,10 @@ def assign(
     conditions = [str(c) for c in (protocol.get("conditionsModule") or {}).get("conditions") or []]
     usable = [c for c in conditions if c.strip() and c.strip().lower() not in not_disease]
     titles = [str(identification[key]) for key in ("briefTitle", "officialTitle") if identification.get(key)]
-    condition_found, silent = _text_findings(usable)
-    # A condition the vocabulary misses is no evidence either way: the titles are read too, and the unmatched
-    # conditions count as outside oncology only where neither the conditions nor the titles name a cancer.
+    condition_found, outside, unmatched = _text_findings(usable)
+    # A condition naming no cancer leaves the titles to read; a condition naming a non-oncology term counts
+    # as outside oncology only where neither the conditions nor the titles name a cancer, and a condition
+    # naming neither vocabulary is no evidence at all.
     title_found = [] if condition_found else _text_findings(titles)[0]
     if condition_found or not titles:
         text_status = "read" if usable else "no_text"
@@ -418,7 +429,7 @@ def assign(
             "source": "free_text",
             "status": text_status,
             "found": found[1],
-            "non_oncology": [] if text_found else silent,
+            "non_oncology": [] if text_found else outside,
         },
         {"source": "drug_class", "status": drug_status, "found": drug_found, "non_oncology": []},
     ]
@@ -445,7 +456,7 @@ def assign(
         purpose,
         tuple(sources),
         tuple(permitted_packs(universes, purpose)),
-        _words(code, universes, sources, mesh, conditions),
+        _words(code, universes, sources, mesh, conditions, unmatched),
         tuple(conditions),
     )
 

@@ -2758,15 +2758,15 @@ ASSIGNMENT_CASES: tuple[tuple[str, str], ...] = (
     ),
     (
         "general",
-        "positive evidence of a non-oncology domain (a condition MeSH term, or a free-text condition that is "
-        "a disease) and no oncology signal from any source",
+        "positive evidence of a non-oncology domain (a condition MeSH term, none an oncology anchor; or a "
+        "free-text condition naming a term of NON_ONCOLOGY_TERMS) and no oncology signal from any source",
     ),
     (
         "unresolved",
-        "no usable condition (no condition MeSH term, and every free-text condition empty or in "
-        "NOT_DISEASE_CONDITIONS) and no oncology signal; or the sources disagree (the conditions are "
-        "positively outside oncology while only the titles or a drug's class signal it): "
-        "each source's finding shown",
+        "no positive evidence of any domain (no condition MeSH term, and every free-text condition empty, in "
+        "NOT_DISEASE_CONDITIONS, or naming no term of either vocabulary: unmatched words are no evidence) "
+        "and no oncology signal; or the sources disagree (the conditions are positively outside oncology "
+        "while only the titles or a drug's class signal it): each source's finding shown",
     ),
 )
 # Words of the oncology vocabulary, each with how it matches a word of the text (TERM_MATCHES),
@@ -2796,6 +2796,38 @@ ONCOLOGY_TERMS: tuple[tuple[str, str], ...] = (
     ("mesothelioma", "within"),
 )
 HAEMATOLOGIC_TERMS = ("lymphoma", "leukaemia", "leukemia", "myeloma")
+# Words that name a disease or condition outside oncology, matched as ONCOLOGY_TERMS are: a free-text
+# condition naming one (and no oncology term) is positive evidence of a non-oncology domain. A condition
+# naming neither vocabulary is no evidence of any domain.
+NON_ONCOLOGY_TERMS: tuple[tuple[str, str], ...] = (
+    ("disorder", "prefix"),
+    ("disease", "prefix"),
+    ("syndrome", "prefix"),
+    ("infection", "prefix"),
+    ("covid", "prefix"),
+    ("arthritis", "within"),
+    ("hepatitis", "within"),
+    ("asthma", "word"),
+    ("diabetes", "word"),
+    ("depression", "word"),
+    ("depressive", "word"),
+    ("anxiety", "word"),
+    ("schizophrenia", "word"),
+    ("dementia", "word"),
+    ("hypertension", "word"),
+    ("stroke", "word"),
+    ("obesity", "word"),
+    ("pain", "word"),
+    ("insomnia", "word"),
+    ("pneumonia", "word"),
+    ("sepsis", "word"),
+    ("influenza", "word"),
+    ("HIV", "word"),
+    ("failure", "word"),
+    ("injury", "prefix"),
+    ("fracture", "prefix"),
+    ("pregnancy", "word"),
+)
 # Free-text conditions that name no disease (an outcome, a treatment, a biomarker, a drug), as the baseline
 # trials write them; matched whole, case-insensitively. Such a condition is no evidence of any domain.
 NOT_DISEASE_CONDITIONS: tuple[tuple[str, str], ...] = (
