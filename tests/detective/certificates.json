@@ -1168,6 +1168,21 @@
     "refusal": "",
     "standing": "complete"
   },
+  "TrialLedger/record_access.py::bounded_view": {
+    "cut_reasons": [],
+    "function_digest": "99e93d3e95ec9c5c",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/record_access.py::text_window": {
+    "cut_reasons": [
+      "step_budget_exceeded",
+      "mutant_wall_undetermined"
+    ],
+    "function_digest": "41ff400bc5db6aed",
+    "refusal": "",
+    "standing": "ungateable"
+  },
   "TrialLedger/request.py::_iso_date": {
     "cut_reasons": [],
     "function_digest": "2dd89913cc16e329",

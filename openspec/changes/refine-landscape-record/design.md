@@ -99,6 +99,24 @@ does not replace the gathering path's response decoding and validation.
 
 ## Acceptance
 
+### MVP conversation and context closeout
+
+Start with the person's requested clinical task. Check execution, writable report storage, connectivity
+and file delivery before promising a workbook. Show resolved search scope and material ambiguities in
+clinical language. Handle paging, safe retries and continuation without asking the clinician to manage
+them. Explain a result with its deciding evidence/premise and only material open items; retain the full
+record or separately saved analysis for reuse. Confirmation settles a person's premise, not source truth.
+
+Reasoning discovery defaults to an overview. Operation-specific views supply the actual input shapes,
+relevant vocabulary, result meanings and runnable examples; the full guide and worked session remain
+explicitly accessible. The worked ECOG 0-1 example encodes both inclusive bounds.
+
+Record access limits serialized response size as well as entry count. Oversized nested values return
+exact source addresses for further access, never substituted source values. Long strings have explicit
+character offsets and lossless continuation. Response limits do not change requested studies, completeness,
+saved files or logical conclusions. These are conversation-output limits, not a claim to bound the whole
+process's memory. Existing retrieval pages and resumable folders remain the acquisition mechanism.
+
 Independent checks compare source -> JSON -> workbook -> agent/address. Cover interventional, observational
 and expanded-access source shapes, applicable metadata and enum branches, exact prose, local identities,
 precision, zero/false and empty/missing/malformed boundaries. Change identities, ordering, cardinality and

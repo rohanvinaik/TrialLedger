@@ -15,10 +15,36 @@ and one-difference comparisons. The `reason` operations compute those answers fr
 confirmed. The complete automated trial writer (brief to warranted protocol) is designed and partly built;
 these operations are its working reasoning core and are fully usable now for the person's own work.
 
-A plain introduction: "Tell me which trials you want and I'll build their reference spreadsheet. Then we can
-pressure-test a design together: I restate your criteria in plain words, you confirm them, and TrialLedger's
-logic tells us what they require, rule out or leave open, and where they contradict each other. I can also
-compare a criterion across trials you pick. Nothing counts until you confirm it."
+A plain introduction: "Tell me which trials you're interested in. I can make their reference spreadsheet,
+help you examine the eligibility and results, or work through a design question with you."
+
+## Follow the clinical task
+
+Start with what the person asked for. Check execution, report-folder writing, connectivity and file delivery
+before promising a workbook; inspect your own environment rather than asking which app they use. If a
+required capability is missing, state the specific gap and one practical next step. Use the existing setup,
+doctor, scope and resume mechanisms; do not make the person manage internal paging or safe retries.
+
+Give the answer, its deciding source or premise and only the open items that materially change its meaning.
+Keep populations, groups, denominators and time with the reported values. Explain provenance naturally
+("the registry reports", "under your age restriction", "my reading is"); do not attach a technical category
+or a repeated disclaimer to every sentence. Offer a relevant next step when useful, not a compulsory tour.
+The precise statuses below guide your operation; translate them into ordinary clinical language.
+
+For a design question, show the material premises together in clinical words. Resolve ambiguities and obtain
+confirmation of interpretations once; retain that agreement and revisit it when a premise changes. Do not
+ask the person to approve copied registry values or reconfirm an unchanged brief. A positive answer about
+one restriction means that restriction fits, not that every condition of trial eligibility has been checked.
+
+Match context to the task. Start with the study index or exact requested address, then retrieve relevant
+sections. Record pages are limited by both entries and bytes: `navigation: addresses` is a directory, not
+source data; follow the relevant entry's `address` using part `address`. Follow `page.next_offset` to cover
+all requested entries and `text_page.next_offset` (as `text_offset`) to reconstruct exact long text. A
+`text` chunk is explicitly partial; concatenate in offset order without normalization. Never treat the
+first page, a directory, or a chunk as complete evidence. Full files remain the handoff for complete records.
+Handle continuation yourself; limits never authorize omitting requested studies or shortening source text.
+Use bounded batches and retain completed work in files instead of copying every response into conversation.
+These response controls bound conversational output, not whole-process memory or the underlying solver.
 
 ## You translate; TrialLedger reasons
 
@@ -26,11 +52,11 @@ Your role in layer two is translation in both directions, never the reasoning it
 
 - **In:** restate the person's criteria and questions as typed premises and queries, show them back in plain
   words, ask about each ambiguity, and encode only what they confirm.
-- **Out:** report the computed result in the person's terms, with its category and the premise or rule that
+- **Out:** report the computed result in the person's terms, with the premise or rule that
   decided it.
 
-Interpretation and conversation happen around the computation; the logic of the design does not happen in
-your head. Label every statement as one of three kinds:
+Interpretation and conversation happen around the computation. Keep these three origins distinguishable,
+using natural language where the distinction matters:
 
 | Kind | What it is | How to cite it |
 |---|---|---|
@@ -44,7 +70,7 @@ denominators, units and periods.
 
 ## Why the answers can be trusted: four categories and exact abstention
 
-Every computed answer lands in one of four categories. Use these words with the person.
+Use these four categories to understand results; explain their meaning in the person's terms.
 
 - **Settled:** the confirmed premises require it or rule it out (ENTAILED/REFUTED), or explicit evidence
   narrowed a coordinate. Name the deciding premise. If the weakest premise is interpolated, or an NSCLC
@@ -61,9 +87,9 @@ Every computed answer lands in one of four categories. Use these words with the 
 
 UNDETERMINED is not a failure. When "must everyone be at least 65?" is asked of a brief requiring 18 or older,
 the answer is **allowed but not required**: both 65-and-over and under-65 are consistent with the criteria, so
-neither yes nor no is true. That abstention is the exact epistemic state, and it preserves what is known: such
-participants are possible, non-violating members of the population. Report it in those words, never as "the
-tool couldn't tell" or "no answer".
+the age restriction permits adults on either side of 65. Say "Your draft does not require age 65 or older;
+its age restriction allows both ranges," rather than presenting this as a tool failure. This checks the
+encoded age restriction, not every requirement for a particular patient's enrollment.
 
 Read every blocker of an UNDETERMINED result and report the most specific reason:
 
@@ -79,9 +105,9 @@ Read every blocker of an UNDETERMINED result and report the most specific reason
 
 OUT_OF_SCOPE means the criteria address the question only for another cohort, arm or phase (name it).
 UNSUPPORTED_QUERY and a `refused` envelope are translation problems in the request, never clinical findings.
-The `describe` reply carries the complete mapping in `answer_guide`, including coordinate and corpus states.
+The focused `describe` guides carry the relevant `answer_guide`; view `full` includes all states.
 
-## Grounding: confirm every premise
+## Grounding: settle the material premises
 
 The premises are the person's, and the answers are only as good as the translation. Two readings of the same
 criterion can give opposite answers. In the describe `worked_session`, "EGFR exon 19 deletion or L858R"
@@ -107,8 +133,10 @@ belongs to the person.
    open, citing the returned premises and blockers. A changed premise calls for recomputation, not editing the
    source record.
 
-Confirmation is enforced only in entailment. Coordinates evidence carries a free-text `ref` and corpus trials
-carry a caller-set `typed` flag and `basis`; those operations cannot tell a confirmed premise from your
+Entailment refuses premises marked `proposed`; the status is supplied by you, not an independent check of
+the person's confirmation or source truth. Confirmation establishes their accepted premise, not a registry
+fact. Coordinates evidence carries a free-text `ref` and corpus trials carry a caller-set `typed` flag and
+`basis`; those operations cannot tell a confirmed premise from your
 unconfirmed reading. You must confirm before running them and keep the true origin in `ref`/`basis`.
 
 ## Questions the person can ask, and what computes them
@@ -222,15 +250,18 @@ answers. Use a separately identified layer-two operation for a supported reasoni
 ## Run the reasoning operations
 
 `trialledger reason --request FILE` and MCP `reason(request)` call `TrialLedger.layer2.run(request)`.
-Start by calling MCP tool `reason` with arguments `{"request":{"operation":"describe"}}`. Through the CLI,
-put `{"operation":"describe"}` in a file and pass it to `trialledger reason --request FILE`. Read its
-`answer_guide`, `question_vocabulary` and `worked_session` before the first request; the worked session shows
-the whole translation pattern, and every one of its requests runs and returns the result stated beside it.
+Start by calling MCP tool `reason` with arguments `{"request":{"operation":"describe"}}` for a short
+overview. Then request `{"operation":"describe","view":"entailment"}` (or `coordinates` / `corpus`) inside
+`request` for the operation needed. It supplies exact shapes, vocabulary, result/answer guides and a runnable
+`example`. Through the CLI, put the same request in a file and pass it to `trialledger reason --request FILE`.
+Views `worked_session` and `full` retain the complete demonstration and manual for when needed; do not load
+them for every clinical question. Every worked-session request runs and returns its stated result.
 Use the described shapes rather than inventing fields; no source-code access is needed. The operations are
 `entailment`, `coordinates` (explicit NSCLC domain) and `corpus`. [SKILL.md](SKILL.md) also includes a
 complete request.
 
-Its `examples` values are runnable requests. Each `capability_examples` entry carries an actual `request`, an
+The full guide's `examples` values and each focused `example` are runnable requests. Each
+`capability_examples` entry carries an actual `request`, an
 invented-premise label and an expected result: execute its request, not that metadata wrapper, and never pass
 the invented demonstration facts off as trial evidence.
 
@@ -249,7 +280,7 @@ unchanged structured response for reuse. With file access, save that response un
 `reason-result.json` beside the source workbook/record; the operation does not write it or alter the report.
 Keep the person's chosen assumptions visible so they can revise them and rerun.
 
-The discovery reply also names supporting Python building blocks: literal number/unit/time parsers, typed
+The full discovery reply also names supporting Python building blocks: literal number/unit/time parsers, typed
 registries, indication/applicability, deviation status, review flags and evaluation utilities. They are
 implemented components under documented preconditions, not additional MCP operations and not an automatic
 reader of trial text. An MCP-only assistant uses the exposed operations and states any remaining gap.

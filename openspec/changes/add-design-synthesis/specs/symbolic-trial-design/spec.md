@@ -23,6 +23,14 @@ protocol orchestration, with their input contracts, domains and limitations.
 - **WHEN** the person chooses an available reasoning or comparison question independently of a complete protocol
 - **THEN** the assistant explains the operation and limits, helps confirm material premises, runs it and presents its basis, assumptions, unresolved items and reusable structured result beside the separate source record
 
+#### Scenario: The assistant discovers an operation for one question
+- **WHEN** discovery is requested
+- **THEN** an overview and operation-specific formats, vocabulary, result guides and runnable examples are available, with the complete guide and worked session explicitly accessible
+
+#### Scenario: The person revises an accepted premise
+- **WHEN** a material premise changes
+- **THEN** the operation recomputes from the revised input without changing the source record or treating confirmation as source truth
+
 ### Requirement: Assertions preserve logical structure
 The system SHALL preserve subject, predicate, value, force, alternatives, qualifiers, condition, cohort,
 branch, time and provenance. Recognized words SHALL be candidates only; unresolved binding SHALL block the

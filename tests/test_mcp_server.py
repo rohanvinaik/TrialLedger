@@ -962,8 +962,14 @@ def test_record_serves_the_manifest_statuses_and_a_study_by_its_plain_nct(tmp_pa
     while following is not None:
         rest, failed = client.call("record", run="r", part="study", nct="NCT01030536", offset=following)
         assert failed is False
-        assert not complete.keys() & rest["study"].keys()
-        complete.update(rest["study"])
+        if rest.get("navigation") == "addresses":
+            for entry in rest["entries"]:
+                code, exact = pointer_value(held, entry["address"])
+                assert code == "ok" and entry["key"] not in complete
+                complete[entry["key"]] = exact
+        else:
+            assert not complete.keys() & rest["study"].keys()
+            complete.update(rest["study"])
         following = rest["page"]["next_offset"]
     assert complete == held["studies"][1]
     # a study is paged by its fields, each page a part of its keys
@@ -1017,7 +1023,10 @@ def test_record_resolves_a_workbook_rows_address_to_its_value(tmp_path):
     one, _ = client.call("record", run="r", part="address", address="/studies/1/enrollment/count")
     assert one["value"] == 23 and "page" not in one
     listed, _ = client.call("record", run="r", part="address", address="/studies", limit=1, offset=1)
-    assert listed["value"] == [held["studies"][1]] and listed["page"]["next_offset"] == 2
+    assert listed["navigation"] == "addresses" and "value" not in listed
+    assert listed["entries"] == [{"address": "/studies/1", "index": 1, "kind": "object"}]
+    assert listed["page"]["next_offset"] == 2
+    assert pointer_value(held, listed["entries"][0]["address"]) == ("ok", held["studies"][1])
 
 
 def test_record_pages_the_fields_by_field(tmp_path):

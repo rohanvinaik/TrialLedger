@@ -578,10 +578,14 @@ def mcp_ask(root: Path, run_name: str) -> Callable[[str], tuple[str, Any]]:
     def ask(address: str) -> tuple[str, Any]:
         value: Any = None
         offset: Any = 0
+        text_offset: Any = None
         for page_number in range(PAGE_BOUND):
             arguments = {"run": run_name, "part": ADDRESS_PART, "address": address}
             if page_number:
-                arguments["offset"] = offset
+                if text_offset is not None:
+                    arguments["text_offset"] = text_offset
+                else:
+                    arguments["offset"] = offset
             call = {
                 "jsonrpc": "2.0",
                 "id": page_number + 1,
@@ -595,7 +599,25 @@ def mcp_ask(root: Path, run_name: str) -> Callable[[str], tuple[str, Any]]:
             document = json.loads(result["content"][0]["text"])
             if result.get("isError"):
                 return "refused", document
-            piece = document.get("value")
+            if "text_page" in document:
+                value = (value or "") + document["text"]
+                text_offset = document["text_page"]["next_offset"]
+                if text_offset is None:
+                    return "ok", value
+                continue
+            if document.get("navigation") == "addresses":
+                entries = document["entries"]
+                piece = {} if "key" in entries[0] else []
+                for entry in entries:
+                    code, exact = ask(entry["address"])
+                    if code != "ok":
+                        return code, exact
+                    if isinstance(piece, dict):
+                        piece[entry["key"]] = exact
+                    else:
+                        piece.append(exact)
+            else:
+                piece = document.get("value")
             if isinstance(piece, list) and isinstance(value, list):
                 value = value + piece
             elif isinstance(piece, dict) and isinstance(value, dict):

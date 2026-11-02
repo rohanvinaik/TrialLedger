@@ -60,20 +60,33 @@ closure and protocol output are specified in openspec/changes/add-design-synthes
 separates current implemented components from missing integration; do not infer missing logic from missing
 pipeline wiring or claim an integrated writer from unit tests.
 
-The public discovery request is `{"operation":"describe"}` through reason. Its input descriptions and
+The public discovery request is `{"operation":"describe"}` through reason; it returns an overview. Add
+`"view":"entailment"`, `coordinates` or `corpus` for focused formats, vocabulary, result meanings and an
+example; `worked_session` and `full` retain the complete demonstration and manual. Its input descriptions and
 examples must stay tied to actual validators, and its capability/result descriptions must reflect what an
 agent can invoke. User-facing surfaces should explain clinical explorations as well as operation names:
 population/temporal consequences, possible NSCLC settings, documented patterns and uncertainty, gaps and
 one-feature comparisons. Do not expose only a research-pipeline status summary when useful logic is callable.
 
-The assistant translates and the operations reason. Every surface (README, AGENTS.md, SKILL.md, MCP and CLI
-text, describe) presents computed answers in four categories (settled, something wrong, your call, not
-knowable from this evidence) with the deciding premise, treats undetermined as exact abstention with named
-reasons, and distinguishes record facts, computed results and the assistant's reading. The describe
+The assistant translates and the operations reason. The result guide maps outcomes to four categories
+(settled, something wrong, your call, not knowable from this evidence). User-facing wording answers the
+clinical question naturally with the deciding basis and material open items; it does not require repeated
+category labels or qualifications. Keep record facts, computed results and the assistant's reading
+distinguishable. Confirmation accepts a person's premise without certifying source truth; entailment's
+proposed-premise guard consumes caller-supplied status, not independently verified consent. The describe
 `answer_guide`, `question_vocabulary` and `worked_session` live in `layer2/guide.py`; tests/test_layer2_guide.py
 ties them to the engine's decisions, blockers and states, so a new outcome needs a guide entry. "Notable" means
 corpus rarity and/or a verified unexplained deviation from a declared expectation; "significance" is reserved
 for the founder's derivational significance (design.md section 7, task 8).
+
+`record_access` owns response-size controls, consumed by MCP `record_view`: entry paging plus a conservative
+serialized-JSON budget, address directories for oversized containers and exact character continuation for
+long strings. Navigation/chunks are explicitly different from complete source values. Response limits never
+alter saved evidence, requested scope, retrieval completion or solver outcomes. They bound conversation
+output, not whole-process memory: record loading and some corpus calculations still materialize their
+inputs. Reuse retained files and retrieval checkpoints; do not add a resource scheduler to solve a display
+budget. Reasoning replies remain complete; large analyses are best run through the file-based CLI and saved
+separately rather than repeatedly echoed into a conversation.
 
 | Existing component | Current access and boundary |
 |---|---|

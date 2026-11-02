@@ -63,6 +63,14 @@ from TrialLedger.doctor import NEXT_STEP, report
 from TrialLedger.landscape import JSON_NAME
 from TrialLedger.operate import BOOK_NAME, RESOLUTION_NAME, Outcome, run, run_exit
 from TrialLedger.preview import PREVIEWED, preview, scope_words
+from TrialLedger.record_access import (
+    DEFAULT_BYTES,
+    MAX_BYTES,
+    MIN_BYTES,
+    TEXT_LIMIT,
+    bounded_view,
+    response_bytes,
+)
 from TrialLedger.request import PHASES, STATUSES, STUDY_TYPES
 from TrialLedger.steps import MODES, NEXT_NAME
 
@@ -87,39 +95,29 @@ ERRORS = {
 # The methods served once initialized, by their route code.
 METHODS = {"tools/list": "tools_list", "tools/call": "tools_call"}
 INSTRUCTIONS = (
-    "TrialLedger has two layers. Layer one is available: the user names specific trial numbers or requests "
-    "a subset by drug/class, condition, phase, status, study type or date. Return landscape.xlsx, a clean "
-    "clinical reference spreadsheet with a dossier per study and shared listings, and landscape.json, "
-    "the matching evidence record you answer from. Layer one contains registry facts and strictly warranted "
-    "direct derivations only; no language model supplies source facts. The assistant answers from the saved "
-    "record. Layer two is symbolic reasoning about trial design that you operate in conversation. You "
-    "translate; the reason tool reasons. Restate the person's criteria and questions as typed premises, "
-    "show them back in plain words, ask about each ambiguity and encode only what they confirm. Every answer "
-    "is computed and lands in one of four categories, with the premise that decided it: settled (required "
-    "or ruled out, or settled by default), something wrong (a contradiction), your call (allowed but not "
-    "required, a proposal, comparable trials that chose differently, which cohort is meant) or not "
-    "knowable from this evidence (silence, too little support). The tool abstains exactly where the "
-    "premises do not settle a question: 'must everyone be at least 65?' against a brief requiring 18 or "
-    "older is allowed but not required. Offer, in clinical terms: whether a patient type is in or out "
-    "under draft criteria and which criterion decides it; whether criteria contradict each other; which "
-    "NSCLC setting criteria imply; and, across trials the person chooses, how common a criterion is, class "
-    "patterns, unusual or notable features, gaps and trials differing in one feature. First call reason "
-    'with {"request":{"operation":"describe"}} and read its answer_guide, question_vocabulary and '
-    "worked_session. Label every statement as from the record, computed, or your own reading; a question "
-    "no operation computes is answered as your reading of the record. The complete automated trial writer "
-    "is designed and partly built; do not present these answers as a generated protocol. "
-    "Call doctor first; then scope with a run name and "
-    "the person's request, in the mode doctor reports; show the person the resolved search before gathering. "
-    "If a class name has catalogue choices, confirm the intended class, then preview its ID and source in a "
-    "new run. No candidate is automatically selected. Then call landscape with the fixed request. "
-    "In relay mode, fetch what scope or landscape lists, save each body with save_fetch, and "
-    "call landscape again until it reports complete (use relay only when doctor reports it: each body then "
-    "passes through you, so save it exactly as received, never retyped, shortened or corrected); then answer "
-    "only from record, keeping its sources and any stated status. A fetch tool must provide the complete "
-    "unchanged response; excerpts or reconstructed JSON are not a relay transport. Search terminology "
-    "lookups work through relay, but drug enrichment after gathering is not performed in relay mode. "
-    "Not stated is never none; not posted is never no effect; a registered outcome is a "
-    "plan, not a result."
+    "Help the person with their clinical task. TrialLedger gathers named or searched trials into "
+    "landscape.xlsx and its matching landscape.json; answer from that saved evidence. First call doctor, "
+    "then scope with its mode. Show the resolved drugs/class, condition and filters before gathering. "
+    "Resolve source-backed class choices explicitly, even a sole suggestion; preview the selected ID in a "
+    "new run. Call landscape with the fixed request until complete. Repeating the same run resumes safely. "
+    "In relay mode fetch only the exact named responses, save each complete body unchanged with save_fetch, "
+    "and continue. Excerpts or reconstructed JSON cannot substitute. Relay does not enrich gathered drugs. "
+    "Deliver the workbook and record; account for missing requested IDs. Use record's study index or an "
+    "exact address for questions. Follow page.next_offset; an addresses directory is navigation, not facts. "
+    "Follow text_page.next_offset as text_offset for complete long text. Keep groups, denominators, units "
+    "and periods with values. Not stated is not none; not posted is not no effect; planned outcomes are "
+    "not observed results. Handle paging and retries yourself, keeping complete evidence in files. "
+    "The separate reason tool supports design restrictions, contradictions, NSCLC settings and patterns "
+    'across a comparison set. Start with {"request":{"operation":"describe"}} for the overview, then '
+    "describe view entailment, coordinates or corpus for relevant formats, guides and an example; "
+    "worked_session and full remain available on demand. Show material premises together in clinical "
+    "words, settle ambiguities once and rerun when they change. Confirmation establishes the person's "
+    "premise, not a registry fact. Give the answer, deciding basis and material open items naturally; "
+    "distinguish from the record, computed and your own reading without repetitive labels. The four "
+    "answer categories guide translation: settled, something wrong, your call, not knowable here. "
+    "A check of one restriction does not establish complete patient eligibility. Save full analyses "
+    "separately when useful. The complete automated trial writer is designed and partly built; these "
+    "working reasoning operations do not generate a complete protocol."
 )
 # What each exit code of a run means, in plain words (operate.run_exit).
 EXIT_MEANINGS = {
@@ -200,7 +198,8 @@ RECORD_WORDS = {
     "schema_version is not 4), which these tools do not read. Call landscape with a new run name and the "
     "same request to gather it again.",
     "nct_needed": "part study needs nct, the study's NCT number (part studies lists them).",
-    "no_such_study": "The record holds no study of that NCT number (held lists those it does).",
+    "no_such_study": "The record holds no study of that NCT number. held lists available IDs when small; "
+    "otherwise follow next for the paged study index.",
     "address_needed": "part address needs address, a row's address in the record as the workbook gives it "
     "(a JSON pointer such as /studies/0/adverse_events/events/3).",
     "not_a_pointer": "address must be a JSON pointer starting with '/', each step a key or a list position "
@@ -213,6 +212,12 @@ RECORD_WORDS = {
     "its length).",
     "limit_out_of_range": f"limit must be between 1 and {RECORD_PAGE_LIMIT}.",
     "unknown_part": "part must be one of " + ", ".join(RECORD_PARTS) + ".",
+    "max_bytes_out_of_range": f"max_bytes must be an integer from {MIN_BYTES} to {MAX_BYTES}.",
+    "text_offset_out_of_range": "text_offset must be 0 or a character position before the end of the text.",
+    "text_limit_out_of_range": f"text_limit must be an integer from 1 to {TEXT_LIMIT}.",
+    "not_text": "Text offsets apply only to a string. Follow the returned addresses for nested values.",
+    "value_too_large": "The address or scalar cannot fit this response budget. Increase max_bytes up to "
+    f"{MAX_BYTES}, or use the complete landscape.json in this run folder; no source value was shortened.",
 }
 
 
@@ -396,7 +401,10 @@ TOOLS: dict[str, dict[str, Any]] = {
         "are defined once in fields. Direct derivations and missing values retain their status and source. "
         "Parts: manifest (request, snapshot, code and requested-ID accounting), studies (study index), study "
         "(one NCT record), fields (source dictionary), statuses, and address (the exact JSON pointer from a "
-        "workbook row). Lists and objects are paged at most 50 entries per call; use page.next_offset. "
+        "workbook row). Lists and objects are paged at most 50 entries and default 24,576 JSON bytes per "
+        "call; use page.next_offset. Large values return navigation: addresses with exact entry addresses "
+        "to read next, never replacement source values. Long strings return text and text_page; follow "
+        "text_page.next_offset as text_offset to read all text exactly. Saved files remain complete. "
         "Use it to explain a study's source eligibility, planned outcomes, group-specific results and "
         "safety, canonical drug identity/class evidence and registry consistency checks. Those checks "
         "describe source consistency, not clinical suitability. "
@@ -428,6 +436,27 @@ TOOLS: dict[str, dict[str, Any]] = {
                     "maximum": RECORD_PAGE_LIMIT,
                     "description": f"the most entries returned (default and at most {RECORD_PAGE_LIMIT})",
                 },
+                "max_bytes": {
+                    "type": "integer",
+                    "minimum": MIN_BYTES,
+                    "maximum": MAX_BYTES,
+                    "description": f"Evidence JSON budget, default {DEFAULT_BYTES}; tool/run metadata adds "
+                    "a small overhead. Large values return "
+                    "exact addresses to follow; saved evidence is unchanged.",
+                },
+                "text_offset": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "description": "Character offset for an exact string, default 0; "
+                    "follow text_page.next_offset.",
+                },
+                "text_limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": TEXT_LIMIT,
+                    "description": f"Most characters per text chunk, default {TEXT_LIMIT}; "
+                    "bytes may reduce it.",
+                },
             },
             "required": ["run", "part"],
             "additionalProperties": False,
@@ -441,8 +470,10 @@ TOOLS: dict[str, dict[str, Any]] = {
         "entailed, refuted, inconsistent or undetermined with named reasons; undetermined is exact "
         "abstention, not failure. You translate: prepare the structured premises from what the person "
         "confirms; they need not know the format. First call with "
-        '{"request":{"operation":"describe"}} for input formats, the answer guide and a runnable worked '
-        "session. Reasoning requests name operation entailment, coordinates or corpus. Premises retain their "
+        '{"request":{"operation":"describe"}} for a short overview, then describe with view entailment, '
+        "coordinates or corpus for exact formats, a focused answer guide and runnable example. Views "
+        "worked_session and full provide the complete demonstration and manual on demand. Reasoning "
+        "requests name operation entailment, coordinates or corpus. Premises retain their "
         "source/user status; an assistant's interpretation is never a registry fact. No trial text is "
         "interpreted, no source is fetched and no report is changed. The complete trial writer is designed "
         "and partly built; these results are not a generated protocol.",
@@ -455,11 +486,24 @@ TOOLS: dict[str, dict[str, Any]] = {
                         "operation": {
                             "type": "string",
                             "enum": ["describe", "entailment", "coordinates", "corpus"],
-                        }
+                        },
+                        "view": {
+                            "type": "string",
+                            "enum": [
+                                "overview",
+                                "entailment",
+                                "coordinates",
+                                "corpus",
+                                "worked_session",
+                                "full",
+                            ],
+                            "description": "For describe only; default overview.",
+                        },
                     },
                     "required": ["operation"],
-                    "description": "Start with operation describe for exact request formats and runnable "
-                    "examples; other operations require the typed premises it describes.",
+                    "description": "Start with operation describe for the overview; view entailment, "
+                    "coordinates or corpus gives the relevant formats and example. Views worked_session "
+                    "and full give the complete demonstration/manual. Other operations need typed premises.",
                 }
             },
             "required": ["request"],
@@ -697,44 +741,64 @@ def record_view(record: Any, arguments: dict[str, Any]) -> tuple[str, dict[str, 
         return "not_a_record", {}
     if record.get("schema_version") != SCHEMA_VERSION:
         return "schema_not_4", {}
+    budget = arguments.get("max_bytes", DEFAULT_BYTES)
+    if type(budget) is not int or not MIN_BYTES <= budget <= MAX_BYTES:
+        return "max_bytes_out_of_range", {}
     part = arguments.get("part")
-    if part == "manifest":
-        return "ok", {part: {key: record.get(key) for key in MANIFEST_KEYS}}
-    if part == "statuses":
-        return "ok", {part: {key: record.get(key) for key in STATUS_KEYS}}
     if part == "study":
         nct = arguments.get("nct")
         if nct is None:
             return "nct_needed", {}
         held = [study.get("nct") for study in studies]
         if nct not in held:
+            if response_bytes({"held": held}) > budget:
+                return "no_such_study", {"held_count": len(held), "next": {"part": "studies", "offset": 0}}
             return "no_such_study", {"held": held}
     whole: Any
-    if part == "study":
+    address = ""
+    if part == "manifest":
+        whole = {key: record.get(key) for key in MANIFEST_KEYS}
+    elif part == "statuses":
+        whole = {key: record.get(key) for key in STATUS_KEYS}
+    elif part == "study":
         whole = studies[held.index(nct)]
+        address = f"/studies/{held.index(nct)}"
     elif part == "studies":
         whole = [study_line(study) for study in studies]
+        address = "/studies"
     elif part == "fields":
         whole = record.get("fields")
+        address = "/fields"
     elif part == "address":
         if "address" not in arguments:
             return "address_needed", {}
         code, whole = pointer_value(record, arguments["address"])
         if code != "ok":
             return code, {}
+        address = arguments["address"]
     else:
         return "unknown_part", {}
-    reply: dict[str, Any] = {"address": arguments["address"]} if part == "address" else {}
+    key = "value" if part == "address" else part
     if not isinstance(whole, list | dict):
-        return "ok", reply | {"value" if part == "address" else part: whole}
+        return bounded_view(whole, address, key, None, arguments)
+    if "text_offset" in arguments or "text_limit" in arguments:
+        return "not_text", {}
     code, page = page_window(
         len(whole), arguments.get("offset", 0), arguments.get("limit", RECORD_PAGE_LIMIT)
     )
     if code != "ok":
         return code, {}
-    window = list(whole)[page["offset"] : page["offset"] + page["returned"]]
-    shown = {key: whole[key] for key in window} if isinstance(whole, dict) else window
-    return "ok", reply | {"value" if part == "address" else part: shown, "page": page}
+    code, view = bounded_view(whole, address, key, page, arguments)
+    if (
+        part in {"manifest", "statuses"}
+        and code == "ok"
+        and "navigation" not in view
+        and page["next_offset"] is None
+        and page["offset"] == 0
+    ):
+        # Preserve these existing compact reply shapes when the complete part fits.
+        view.pop("page", None)
+    return code, view
 
 
 # ── the shell: it reads messages, asks the decisions what they mean, runs the tools and answers ────────────

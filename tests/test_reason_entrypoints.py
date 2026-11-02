@@ -228,7 +228,7 @@ def test_cli_refuses_ambiguous_json_without_touching_reports(reports, tmp_path, 
 
 
 def test_cli_discovery_delivers_every_worked_request_ready_to_run(reports, tmp_path, capsys):
-    code, reply = invoke_cli({"operation": "describe"}, reports, tmp_path, capsys)
+    code, reply = invoke_cli({"operation": "describe", "view": "full"}, reports, tmp_path, capsys)
     assert code == 0 and reply["code"] == "complete"
     description = reply["result"]
     assert description["clinical_use"] and description["use_cases"] and description["result_guides"]
@@ -244,7 +244,7 @@ def test_cli_discovery_delivers_every_worked_request_ready_to_run(reports, tmp_p
 
 
 def test_mcp_discovery_delivers_every_worked_request_ready_to_run(reports, forbid_network):
-    error, reply = invoke_mcp({"operation": "describe"}, reports, forbid_network)
+    error, reply = invoke_mcp({"operation": "describe", "view": "full"}, reports, forbid_network)
     assert not error and reply["code"] == "complete"
     description = reply["result"]
     assert description["clinical_use"] and description["use_cases"] and description["result_guides"]

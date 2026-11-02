@@ -433,7 +433,9 @@ def main(
             "or a typed trial corpus. "
             "No trial text is interpreted. This is working symbolic logic; the complete trial writer is "
             'designed but its integration is unfinished. First put {"operation":"describe"} in the '
-            "request file to get the exact input formats, answer guide and runnable examples.\n\n"
+            "request file for an overview. Add view entailment, coordinates or corpus for that operation's "
+            "exact formats, answer guide and runnable example; view worked_session or full gives the "
+            "complete demonstration or manual.\n\n"
             "example: trialledger reason --request premises.json\n\n"
             "exit status: 0 evaluated (the logical result may be undetermined); 2 request refused"
         ),

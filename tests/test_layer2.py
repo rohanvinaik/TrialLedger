@@ -202,7 +202,7 @@ def test_scoped_contexts_and_resource_bound_pass_through_the_entry():
 
 
 def test_describe_returns_runnable_examples_for_every_working_operation():
-    described = run({"operation": "describe"})
+    described = run({"operation": "describe", "view": "full"})
     assert described["code"] == "complete"
     description = described["result"]
     assert set(description["examples"]) == {"entailment", "coordinates", "corpus"}
@@ -222,7 +222,7 @@ def test_describe_returns_runnable_examples_for_every_working_operation():
 
 
 def test_description_field_sets_match_actual_unknown_and_missing_field_refusals():
-    description = run({"operation": "describe"})["result"]
+    description = run({"operation": "describe", "view": "full"})["result"]
     for operation, payload in description["examples"].items():
         assert set(payload) <= {"operation", *description["input_shapes"][operation]["fields"]}
         assert run({**payload, "raw_registry_text": "not a typed premise"})["code"] == "refused"
@@ -233,7 +233,7 @@ def test_description_field_sets_match_actual_unknown_and_missing_field_refusals(
 
 
 def test_described_array_types_are_enforced():
-    examples = run({"operation": "describe"})["result"]["examples"]
+    examples = run({"operation": "describe", "view": "full"})["result"]["examples"]
     for operation, key in (("entailment", "assertions"), ("coordinates", "evidence"), ("corpus", "trials")):
         assert run({**examples[operation], key: "raw prose"})["code"] == "refused"
 
@@ -252,22 +252,23 @@ def test_describe_has_no_network_or_filesystem_mutation(monkeypatch):
     monkeypatch.setattr(Path, "write_text", forbidden)
     monkeypatch.setattr(Path, "write_bytes", forbidden)
     monkeypatch.setattr(Path, "mkdir", forbidden)
-    assert run({"operation": "describe"})["code"] == "complete"
+    assert run({"operation": "describe", "view": "full"})["code"] == "complete"
 
 
 def test_modifying_a_description_cannot_rewrite_the_validator():
-    description = run({"operation": "describe"})["result"]
+    description = run({"operation": "describe", "view": "full"})["result"]
     description["input_shapes"]["coordinates"]["fields"]["raw_text"] = "string"
     description["vocabularies"]["coordinate_values"]["prior_lines"] = ("anything",)
     assert (
         run({"operation": "coordinates", "domain": "nsclc", "evidence": [], "raw_text": "x"})["code"]
         == "refused"
     )
-    assert "raw_text" not in run({"operation": "describe"})["result"]["input_shapes"]["coordinates"]["fields"]
+    fresh = run({"operation": "describe", "view": "full"})["result"]
+    assert "raw_text" not in fresh["input_shapes"]["coordinates"]["fields"]
 
 
 def test_described_corpus_capabilities_have_runnable_examples_with_the_stated_results():
-    description = run({"operation": "describe"})["result"]
+    description = run({"operation": "describe", "view": "full"})["result"]
     examples = description["capability_examples"]
     assert set(examples) == {"associations", "near_misses", "occupancy", "expectations"}
     replies = {name: run(example["request"]) for name, example in examples.items()}
@@ -306,7 +307,7 @@ def test_described_corpus_capabilities_have_runnable_examples_with_the_stated_re
 
 
 def test_described_result_fields_match_the_actual_operation_responses():
-    described = run({"operation": "describe"})
+    described = run({"operation": "describe", "view": "full"})
     description = described["result"]
     guides = description["result_guides"]
     assert set(guides["envelope"]) == set(described)
@@ -330,7 +331,7 @@ def test_described_result_fields_match_the_actual_operation_responses():
 def test_described_developer_blocks_exist_without_becoming_public_operations():
     import importlib
 
-    description = run({"operation": "describe"})["result"]
+    description = run({"operation": "describe", "view": "full"})["result"]
     assert set(description["operation_field"]["values"]) == {
         "describe",
         "entailment",

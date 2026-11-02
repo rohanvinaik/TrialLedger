@@ -12,8 +12,13 @@ typed premises, show them back in plain words, ask about each ambiguity, encode 
 report the computed result in the person's terms with the premise that decided it. Do not reason about the
 design yourself or apply an operation's rules by hand and call the outcome computed.
 
-Label every statement: **from the record** (with its address), **computed** (with its deciding premise or
-counts) or **your reading** (said plainly). A question no operation computes, such as whether efficacy results
+Start with the requested clinical task, check capabilities before promising delivery, and handle internal
+paging and retries yourself. Show material reasoning premises together, confirm interpretations once and
+reuse them until changed. Give the answer, its deciding basis and material open items. Offer a relevant next
+step when useful; do not require a tour of software or repeated correctness disclaimers.
+
+Distinguish **from the record** (with its address), **computed** (with its deciding premise or
+counts) and **your reading** through natural language. A question no operation computes, such as whether efficacy results
 are impressive, is answered as your reading of the record.
 
 ## The four answers
@@ -97,9 +102,13 @@ standards while producing the report. Those are separately identified reasoning 
 ## Typed symbolic reasoning
 
 First discover the actual interface: call MCP tool `reason` with arguments
-`{"request":{"operation":"describe"}}`, or put `{"operation":"describe"}` in a file and run
-`trialledger reason --request FILE`. Read `answer_guide`, `question_vocabulary` and `worked_session`; every
-worked-session request runs and returns its stated result. Use the described shapes rather than inventing
+`{"request":{"operation":"describe"}}` for the overview, then
+`{"request":{"operation":"describe","view":"entailment"}}` (or `coordinates` / `corpus`) for the relevant
+input shapes, guides and runnable `example`. For the CLI, save the inner object (for example
+`{"operation":"describe","view":"entailment"}`) in a file and use `trialledger reason --request FILE`.
+Views `worked_session` and `full` retain the complete
+demonstration and manual on demand; every worked-session request returns its stated result.
+Use the described shapes rather than inventing
 fields; this works for an MCP-only agent without source-file access. `examples` contains direct requests;
 `capability_examples` entries wrap a runnable `request` with invented premise/expected-result notes.
 
@@ -110,7 +119,9 @@ Ground every premise. Ask about the clinical distinction: all participants or on
 permitted; prior therapy for advanced disease or any treatment; one qualifying mutation or compound; inclusive
 limit or not; exposure versus follow-up time. Two readings can give opposite answers (the worked session's
 exon 20 steps); that choice is the person's. Mark an unconfirmed reading `"status": "proposed"`, which
-entailment refuses to conclude from. Coordinates and corpus do not enforce confirmation: confirm before
+entailment refuses to conclude from. This is a caller-supplied status, not independent verification of
+confirmation. An agreed interpretation is the person's premise, never a registry fact. Coordinates and
+corpus do not enforce confirmation: confirm before
 running and keep the true origin in `ref`/`basis`; never mark a trial `typed` just to pass. For corpus work,
 confirm the comparison set and represented features.
 
@@ -164,7 +175,13 @@ and actual component state are in openspec/changes/add-design-synthesis/design.m
 ## MCP and verification
 
 `trialledger mcp` serves doctor, scope, landscape, save_fetch, record and reason. Preview with scope, gather
-with landscape and answer with record/address. Follow page.next_offset; pages hold at most 50 entries.
+with landscape and answer with record/address. Follow page.next_offset; pages hold at most 50 entries and
+default to 24,576 serialized bytes (`max_bytes`, 2,048–65,536). Large nested values return an explicit address
+directory: follow the relevant address; it is navigation, not source data. Exact strings may return `text`
+with `text_page`; follow `text_page.next_offset` as `text_offset` and concatenate unchanged to cover the
+requested text. Neither first pages nor chunks are complete evidence. Use saved files for complete records
+and separate full analyses; keep conversation focused on the question. These limits do not change scope,
+retrieval completeness or logical outcomes, and do not bound the entire process's memory.
 `reason` is a separate typed request. `verify FOLDER` replays saved reporting/archival inputs under their
 writing version; it establishes reproduction rather than clinical truth. `pull` preserves complete source
 JSON/CSV and archival workbooks.

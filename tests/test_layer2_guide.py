@@ -16,7 +16,7 @@ ENTAIL_SOURCE = Path(entail.__file__).read_text(encoding="utf-8")
 
 
 def describe():
-    reply = run({"operation": "describe"})
+    reply = run({"operation": "describe", "view": "full"})
     assert reply["code"] == "complete"
     return reply["result"]
 

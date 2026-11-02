@@ -19,7 +19,10 @@ MAX_ITEMS = 1000
 BASIS = "Conditional on the supplied typed premises; their source meaning is not certified by this operation."
 # The same closed field sets drive request validation and the agent-facing description.
 INPUTS = {
-    "describe": {"required": (), "fields": {}},
+    "describe": {
+        "required": (),
+        "fields": {"view": "overview (default), entailment, coordinates, corpus, worked_session or full"},
+    },
     "entailment": {
         "required": ("assertions", "query"),
         "fields": {
@@ -431,9 +434,8 @@ def _examples() -> dict[str, dict[str, Any]]:
     }
 
 
-def _describe(request: dict[str, Any]) -> dict[str, Any]:
+def _full_description() -> dict[str, Any]:
     """Describe this actual boundary, not a promise of the unfinished automated writer."""
-    _input(request, "describe", "request")
     example_basis = ["user:invented-demonstration-premises-not-registry-facts"]
     comparison = {
         "operation": "corpus",
@@ -545,8 +547,8 @@ def _describe(request: dict[str, Any]) -> dict[str, Any]:
             "every answer is computed and lands in one of four categories (settled, something wrong, your "
             "call, not knowable from this evidence) with the premise that decided it. They abstain exactly "
             "where the premises do not settle a question: 'must everyone be at least 65?' against a brief "
-            "requiring 18 or older is allowed but not required, neither yes nor no. Read answer_guide, "
-            "question_vocabulary and worked_session before the first request."
+            "requiring 18 or older allows both age ranges. Read the relevant operation guide; the full "
+            "worked session is available when useful."
         ),
         "answer_guide": guide.answer_guide(),
         "question_vocabulary": deepcopy(guide.QUESTION_VOCABULARY),
@@ -1059,6 +1061,64 @@ def _describe(request: dict[str, Any]) -> dict[str, Any]:
             "corpus": "statement rate 0.5; full-criteria interval [0.5, 1.0]",
         },
     }
+
+
+def _describe(request: dict[str, Any]) -> dict[str, Any]:
+    """Discover just the next operation, or explicitly request the complete reference guide."""
+    _input(request, "describe", "request")
+    view = request.get("view", "overview")
+    views = ("overview", "entailment", "coordinates", "corpus", "worked_session", "full")
+    if not isinstance(view, str) or view not in views:
+        raise RequestError("request.view:unsupported_view")
+    full = _full_description()
+    if view == "full":
+        return full
+    common = {key: full[key] for key in ("basis", "availability", "limits", "premise_status")}
+    common["discovery"] = {name: {"operation": "describe", "view": name} for name in views}
+    if view == "overview":
+        return common | {
+            "clinical_use": (
+                "Help the person examine trial-design restrictions and patterns. Choose the operation "
+                "for their question, read its focused guide, settle material premises together, then run "
+                "it. Answer with the result, deciding basis and material open items; keep full analyses "
+                "in a separate file when useful. These tools do not generate a complete protocol."
+            ),
+            "use_cases": full["use_cases"],
+            "input_shapes": {"describe": full["input_shapes"]["describe"]},
+        }
+    if view == "worked_session":
+        return common | {"worked_session": full["worked_session"]}
+    shapes = {
+        "entailment": ("entailment", "context"),
+        "coordinates": ("coordinates", "evidence"),
+        "corpus": ("corpus", "trial", "coverage", "expectation"),
+    }[view]
+    vocabulary = {
+        "entailment": tuple(
+            key
+            for key in full["vocabularies"]
+            if key not in {"sections", "scopes", "coordinate_values", "coverage_states", "observation_states"}
+        ),
+        "coordinates": ("sections", "scopes", "coordinate_values"),
+        "corpus": ("coverage_states", "observation_states"),
+    }[view]
+    result = common | {
+        "operation": view,
+        "input_shapes": {key: full["input_shapes"][key] for key in shapes},
+        "vocabularies": {key: full["vocabularies"][key] for key in vocabulary},
+        "result_guide": full["result_guides"][view],
+        "answer_guide": {
+            key: full["answer_guide"][key] for key in ("roles", "categories", view, "confirmation")
+        },
+        "example": full["examples"][view],
+        "example_result": full["example_results"][view],
+    }
+    if view == "entailment":
+        result["tagged_model"] = full["tagged_model"]
+    if view == "corpus":
+        result["capability_examples"] = full["capability_examples"]
+        result["answer_guide"]["notable"] = full["answer_guide"]["notable"]
+    return result
 
 
 def run(request: object) -> dict[str, Any]:

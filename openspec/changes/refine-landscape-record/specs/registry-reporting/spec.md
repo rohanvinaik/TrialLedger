@@ -151,6 +151,31 @@ cohort conclusions or synthesis. The assistant SHALL answer from the record.
 
 ## ADDED Requirements
 
+### Requirement: Assistant access stays usable at larger record sizes
+The assistant SHALL retrieve relevant saved evidence with bounded entry and serialized-size pages. Larger
+nested values SHALL expose exact-address navigation, and long text SHALL have lossless continuation.
+Navigation metadata and text chunks SHALL NOT be represented as complete source values. Limits SHALL NOT
+change requested studies, saved evidence or retrieval completeness.
+
+#### Scenario: One study contains a large results table
+- **WHEN** a selected page exceeds the response-size budget
+- **THEN** the reply provides exact addresses and continuation accounting rather than silently dropping results
+
+#### Scenario: Eligibility exceeds a conversational response
+- **WHEN** the exact string is returned in chunks
+- **THEN** offsets and next-offset accounting permit exact reconstruction without normalization or omission
+
+### Requirement: The assistant follows the clinical task
+The assistant SHALL check execution, storage, connectivity and file delivery before promising a workbook,
+show material search choices, handle internal paging/retries, and answer in clinical language with deciding
+evidence and material open items. Complete records SHALL remain available as files.
+
+#### Scenario: A capability is missing
+- **WHEN** the environment cannot complete or deliver the requested reference sheet
+- **THEN** the assistant states the specific gap and a practical next step rather than promising an unavailable output
+
+## ADDED Requirements
+
 ### Requirement: Safety listings preserve event-by-group identity
 The system SHALL keep each safety event attached to its exact source title and local group, with the reported
 affected and at-risk counts and their populations, units and periods where supplied. It SHALL NOT join rows

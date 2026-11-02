@@ -25,8 +25,8 @@ ROLES = {
     ),
     "translation": (
         "The assistant's restatement of the person's words as typed premises, and of results as plain "
-        "language. Show every encoding in plain words; a reading the person has not confirmed stays "
-        "proposed and is never presented as a fact or a computed result."
+        "language. Show material premises together in plain words; an unconfirmed reading stays proposed "
+        "and is never presented as a fact or a computed result."
     ),
 }
 
@@ -335,7 +335,7 @@ def worked_session() -> dict[str, Any]:
     """A clinician's draft brief, the assistant's confirmed encoding and the questions it answers."""
     brief = [
         _premise("age", _age("ge", 18)),
-        _premise("ecog", _ecog("le", 1)),
+        _premise("ecog", {"class": "AllOf", "parts": [_ecog("ge", 0), _ecog("le", 1)]}),
         _premise("egfr", _mutation("in", ["exon19_deletion", "L858R"])),
         _premise("prior_osimertinib", _holds("treatment_history", "prior_osimertinib")),
         _premise(
@@ -357,7 +357,12 @@ def worked_session() -> dict[str, Any]:
             ],
         },
     )
-    cohorts = [_premise("ecog_A", _ecog("le", 1), cohort="A"), _premise("ecog_B", _ecog("le", 2), cohort="B")]
+    cohorts = [
+        _premise(
+            f"ecog_{cohort}", {"class": "AllOf", "parts": [_ecog("ge", 0), _ecog("le", upper)]}, cohort=cohort
+        )
+        for cohort, upper in (("A", 1), ("B", 2))
+    ]
 
     def ask(request: dict[str, Any], **fields: Any) -> dict[str, Any]:
         return {"request": {"operation": "entailment", **request}, **fields}
@@ -373,10 +378,7 @@ def worked_session() -> dict[str, Any]:
             {"assertions": brief, "query": _age("ge", 65)},
             ask_plain="Must everyone be at least 65?",
             expect={"result": "UNDETERMINED", "proof": ["age"], "blockers": ["undecided_by_constraints"]},
-            say=(
-                "Allowed but not required: the age criterion admits people 65 and older without requiring "
-                "it. Neither yes nor no is true; this is the exact answer."
-            ),
+            say=("No minimum of 65 is required: the age criterion allows adults both below and above 65."),
         ),
         ask(
             {"assertions": brief, "query": _ecog("eq", 2)},
@@ -500,7 +502,9 @@ def answer_guide() -> dict[str, Any]:
         "corpus": {name: list(value) for name, value in CORPUS_RESULTS.items()},
         "notable": NOTABLE,
         "confirmation": (
-            "Entailment refuses a proposed premise. Coordinates evidence and corpus trials carry only a "
+            "Entailment refuses a proposed premise, based on the caller-supplied status flag; it does not "
+            "independently verify confirmation or source truth. Confirming a reading makes it the person's "
+            "accepted premise, never a registry fact. Coordinates evidence and corpus trials carry only a "
             "reference and a caller-set typed flag, so the operation cannot tell a confirmed premise from "
             "an unconfirmed reading there: confirm with the person before running, and keep the origin in "
             "ref/basis."
