@@ -721,14 +721,22 @@ _STUDY_FIELDS: tuple[Field, ...] = (
         (("sheet", ELIGIBILITY, "Readings"), *ON_READINGS),
         reads=(f"{EL}.eligibilityCriteria",),
     ),
-    Field(
-        "studies[].key_criteria",
-        "Key criteria: the criteria whose readings fall in a key category (KEY_CRITERION_CATEGORIES), each "
-        "with its words, role, reading and rule",
-        "reading",
-        ("landscape.key_criteria",),
-        (DOSSIER, *ON_READINGS),
-        reads=(f"{EL}.eligibilityCriteria",),
+    # key criteria: the criteria whose readings fall in a key category (KEY_CRITERION_CATEGORIES)
+    *(
+        Field(
+            f"studies[].key_criteria[].{name}",
+            label,
+            "reading",
+            ("landscape.key_criteria",),
+            (DOSSIER,),
+            reads=(f"{EL}.eligibilityCriteria",),
+        )
+        for name, label in (
+            ("text", "Key criterion, as written"),
+            ("role", "Its role (inclusion or exclusion)"),
+            ("reading", "Its reading: the key category and the readings in it"),
+            ("rule", "The rule that read it"),
+        )
     ),
     Field(
         "studies[].biomarker_mentions",
@@ -1607,29 +1615,31 @@ _RECORD_FIELDS: tuple[Field, ...] = (
             ("structure_relations", "Drugs sharing a structure class", "reading.structure_relations"),
         )
     ),
-    Field(
-        "standard_language",
-        "Standard protocol language: each criterion reading most trials of one universe state "
-        "(STANDARD_LANGUAGE_SHARE, STANDARD_LANGUAGE_MIN_TRIALS), with how many of how many trials, "
-        "representative wording and the trials stating it; a universe with too few trials, none, and why",
-        "reading",
-        ("landscape.standard_language",),
-        (
-            *(
-                ("sheet", STANDARD, column)
-                for column in (
-                    "Criterion",
-                    "Role",
-                    "Trials stating it",
-                    "Of comparable trials",
-                    "Representative wording",
-                    "Wording from",
-                    "Other trials",
-                )
+    # standard protocol language: each criterion reading most trials of one universe state
+    # (STANDARD_LANGUAGE_SHARE, STANDARD_LANGUAGE_MIN_TRIALS); a universe with too few trials, one row
+    # saying so
+    *(
+        Field(
+            f"standard_language[].{name}",
+            label,
+            "reading",
+            ("landscape.standard_language",),
+            (("sheet", STANDARD, column), ("mcp", "findings")),
+            reads=(f"{EL}.eligibilityCriteria",),
+        )
+        for name, label, column in (
+            ("criterion", "The criterion reading, and the universe its trials share", "Criterion"),
+            ("role", "Its role (inclusion or exclusion)", "Role"),
+            ("trials", "Trials stating it", "Trials stating it"),
+            ("of_trials", "Of comparable trials (the universe's)", "Of comparable trials"),
+            (
+                "wording",
+                "Representative wording: the shortest statement and a longer one",
+                "Representative wording",
             ),
-            ("mcp", "findings"),
-        ),
-        reads=(f"{EL}.eligibilityCriteria",),
+            ("wording_from", "Each wording's trial and criterion", "Wording from"),
+            ("other_trials", "The other trials stating it", "Other trials"),
+        )
     ),
     Field(
         "statuses",
@@ -1711,7 +1721,6 @@ READINGS_FIELDS = (
     "studies[].eligibility.coverage",
     "studies[].criteria[].role",
     "studies[].criteria[].readings",
-    "studies[].key_criteria",
     "studies[].biomarker_mentions",
     "studies[].universe",
     "studies[].coordinates.setting",
@@ -1866,7 +1875,10 @@ SHEETS: tuple[Sheet, ...] = (
                     "studies[].population.healthy_volunteers",
                     "studies[].population.gender_based",
                     "studies[].population.gender_description",
-                    "studies[].key_criteria",
+                    "studies[].key_criteria[].text",
+                    "studies[].key_criteria[].role",
+                    "studies[].key_criteria[].reading",
+                    "studies[].key_criteria[].rule",
                     "studies[].universe",
                     "studies[].coordinates.setting",
                     "studies[].coordinates.setting_interpolated",
@@ -2269,15 +2281,15 @@ SHEETS: tuple[Sheet, ...] = (
         (
             Column(ADDRESS, (), "address"),
             *(
-                Column(column, ("standard_language",))
-                for column in (
-                    "Criterion",
-                    "Role",
-                    "Trials stating it",
-                    "Of comparable trials",
-                    "Representative wording",
-                    "Wording from",
-                    "Other trials",
+                Column(column, (f"standard_language[].{name}",))
+                for name, column in (
+                    ("criterion", "Criterion"),
+                    ("role", "Role"),
+                    ("trials", "Trials stating it"),
+                    ("of_trials", "Of comparable trials"),
+                    ("wording", "Representative wording"),
+                    ("wording_from", "Wording from"),
+                    ("other_trials", "Other trials"),
                 )
             ),
         ),
@@ -2422,7 +2434,7 @@ DOSSIER_SECTIONS: tuple[tuple[str, str, tuple[str, ...]], ...] = (
     (
         "Population and eligibility",
         ELIGIBILITY,
-        ("studies[].population.", "studies[].key_criteria"),
+        ("studies[].population.", "studies[].key_criteria[]."),
     ),
     (
         "Arms and interventions",

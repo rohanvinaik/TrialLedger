@@ -580,6 +580,7 @@ def test_criteria_evidence_is_what_the_view_narrows_by():
         ),
         ("x", "reading", "r", "malformed_value"),
         (3, "itemized", "", "ok"),
+        ({"category": "x"}, "itemized", "", "ok"),
     ],
 )
 def test_value_problem(node, kind, rule, expected):
@@ -618,10 +619,13 @@ def test_a_criterion_with_a_key_reading_is_a_key_criterion_once_a_category():
     criteria = landscape.criterion_entries([(1, "inclusion", "EGFR mutation, MET negative", atoms)])
     found = landscape.key_criteria(criteria)
     assert len(found) == 1
-    assert found[0]["words"] == ["EGFR mutation, MET negative"]
-    assert found[0]["result"]["category"] == "biomarker_selection"
-    assert found[0]["result"]["role"] == "inclusion" and found[0]["result"]["at"] == "criteria/0"
-    assert [r["concept"] for r in found[0]["result"]["readings"]] == ["biomarker:EGFR", "biomarker:MET"]
+    assert list(found[0]) == ["text", "role", "reading", "rule"]
+    assert found[0]["text"] == "EGFR mutation, MET negative"
+    assert found[0]["role"] == "inclusion" and found[0]["rule"] == "landscape.key_criteria"
+    assert (
+        found[0]["reading"]["category"] == "biomarker_selection" and found[0]["reading"]["at"] == "criteria/0"
+    )
+    assert [r["concept"] for r in found[0]["reading"]["readings"]] == ["biomarker:EGFR", "biomarker:MET"]
     assert landscape.key_criteria(landscape.criterion_entries([(1, "inclusion", "Age 18", [atoms[2]])])) == []
 
 
@@ -638,32 +642,43 @@ def test_a_reading_most_trials_of_a_universe_state_is_standard_with_its_wording(
         trial("NCT2", ["oncology.solid"], ["ECOG 0 or 1"]),
         trial("NCT4", ["oncology.solid"], []),
     ]
-    found = landscape.standard_language(studies)
-    assert found["not_assessed"] == []
-    [row] = found["rows"]
-    assert (row["stating"], row["of"], row["trials"]) == (3, 4, ["NCT1", "NCT2", "NCT3"])
-    assert [w["text"] for w in row["wording"]] == [
-        "ECOG 0-1",
-        "ECOG performance status of 0 or 1 at screening",
+    [row] = landscape.standard_language(studies)
+    assert list(row) == [
+        "criterion",
+        "role",
+        "trials",
+        "of_trials",
+        "wording",
+        "wording_from",
+        "other_trials",
     ]
-    assert row["wording"][0]["nct"] == "NCT3" and row["wording"][0]["at"] == "/studies/0/criteria/0"
-    assert row["role"] == "inclusion" and row["universe"] == "oncology.solid"
+    assert (row["trials"], row["of_trials"], row["other_trials"]) == (3, 4, ["NCT2"])
+    assert row["wording"] == ["ECOG 0-1", "ECOG performance status of 0 or 1 at screening"]
+    assert row["wording_from"][0] == {
+        "nct": "NCT3",
+        "heading": "inclusion",
+        "number": 1,
+        "at": "/studies/0/criteria/0",
+    }
+    assert row["role"] == "inclusion" and row["criterion"]["universe"] == "oncology.solid"
 
 
-def test_a_reading_too_few_trials_state_is_not_standard_and_a_small_universe_is_not_assessed():
+def test_a_reading_too_few_trials_state_is_not_standard_and_a_small_universe_says_why():
     studies = [trial(f"NCT{i}", ["oncology.solid"], ["ECOG 0-1"] if i < 2 else []) for i in range(5)]
     studies.append(trial("NCT9", ["general"], ["ECOG 0-1"]))
-    found = landscape.standard_language(studies)
-    assert found["rows"] == []
-    assert found["not_assessed"] == [
-        {"universe": "general", "trials": 1, "reason": "too few trials to assess (1; at least 3 needed)"}
-    ]
+    [row] = landscape.standard_language(studies)
+    assert row["criterion"] == {
+        "universe": "general",
+        "element": None,
+        "reason": "too few trials to assess (1; at least 3 needed)",
+    }
+    assert (row["trials"], row["of_trials"], row["wording"]) == (0, 1, [])
 
 
 def test_the_record_holds_key_criteria_and_standard_language(record):
-    assert set(record["standard_language"]) == {"share", "minimum_trials", "rows", "not_assessed"}
+    assert isinstance(record["standard_language"], list) and record["standard_language"]
     for study in record["studies"]:
         for key in study["key_criteria"]:
-            criterion = study["criteria"][int(key["result"]["at"].rpartition("/")[2])]
-            assert key["words"] == [criterion["text"]]
+            criterion = study["criteria"][int(key["reading"]["at"].rpartition("/")[2])]
+            assert key["text"] == criterion["text"]
     assert any(study["key_criteria"] for study in record["studies"])

@@ -115,12 +115,16 @@ RESULTS_MODULES = {
     "participant_flow": ("resultsSection", "participantFlowModule"),
     "adverse_events": ("resultsSection", "adverseEventsModule"),
 }
-# Criterion readings carry the itemizer's own words: heading, number and text are the registry's text as
-# itemized, held plain.
+# Reading fields held plain: a criterion's heading, number and text (the registry's text as itemized) and a
+# key criterion's text, role, reading and rule (the parts of one reading, each its own field).
 ITEMIZED = (
     "studies[].criteria[].heading",
     "studies[].criteria[].number",
     "studies[].criteria[].text",
+    "studies[].key_criteria[].text",
+    "studies[].key_criteria[].role",
+    "studies[].key_criteria[].reading",
+    "studies[].key_criteria[].rule",
 )
 ALL_TRIALS = "all trials"  # the stratum design.xlsx's profile names the whole cohort by
 ENDPOINT_ELEMENT = "primary:endpoint:"  # an element the cohort's endpoints hold, never a criterion's
@@ -631,9 +635,9 @@ def key_criteria(criteria: list[dict[str, Any]]) -> list[dict[str, Any]]:
     (pure — pinned).
 
     `criteria` are criterion_entries's. For each criterion, in order, and each category its readings fall in
-    (key_category), in the order first met: a reading of landscape.key_criteria, known, its words the
-    criterion's text as written; its result the category, the criterion's role (its role reading's result),
-    its place among the study's criteria and the concepts and values of the readings in that category.
+    (key_category), in the order first met: its text as written, its role (its role reading's result), the
+    reading (the category, the criterion's place among the study's criteria and the concepts and values of
+    its readings in that category) and the rule, landscape.key_criteria.
     """
     found = []
     for index, criterion in enumerate(criteria):
@@ -645,44 +649,55 @@ def key_criteria(criteria: list[dict[str, Any]]) -> list[dict[str, Any]]:
                     {"concept": reading["result"]["concept"], "values": reading["result"]["values"]}
                 )
         for category, readings in held.items():
-            result = {
-                "category": category,
-                "role": criterion["role"]["result"],
-                "at": f"criteria/{index}",
-                "readings": readings,
-            }
-            found.append(value_object("known", "landscape.key_criteria", [criterion["text"]], result, ""))
+            found.append(
+                {
+                    "text": criterion["text"],
+                    "role": criterion["role"]["result"],
+                    "reading": {"category": category, "at": f"criteria/{index}", "readings": readings},
+                    "rule": "landscape.key_criteria",
+                }
+            )
     return found
 
 
-def standard_language(studies: list[dict[str, Any]]) -> dict[str, Any]:
+def standard_language(studies: list[dict[str, Any]]) -> list[dict[str, Any]]:
     """Standard protocol language: each criterion reading most trials of one universe state (pure — pinned).
 
     `studies` are the record's studies (their nct, universe reading and criteria). A trial counts in each
     universe its universe reading names ("unresolved scope" when it names none). Within a universe of at least
     contract.STANDARD_LANGUAGE_MIN_TRIALS trials, a reading (its element key) is standard when the trials
     stating it are at least that many and at least contract.STANDARD_LANGUAGE_SHARE of the universe's trials.
-    Each row: the universe, the element, its concept, values and role (effective section), how many trials
-    state it of how many, the representative wording (the shortest statement and the longest other one, each
-    with its trial, heading, number and address), and every trial stating it; rows ordered by universe, then
-    most trials, then element. A universe with too few trials is listed apart, with why.
+    Each row: the criterion (the universe, the element, its concept and values), its role (the effective
+    section), the trials stating it of the universe's trials, the representative wording (the shortest
+    statement and the longest other one) with where each is from (trial, heading, number, address) and the
+    other trials stating it; rows by universe, then most trials, then element. A universe with too few trials
+    is one row: its criterion names the universe and why, and it states no wording.
     """
-    groups: dict[str, list[dict[str, Any]]] = {}
+    groups: dict[str, list[tuple[int, dict[str, Any]]]] = {}
     for position, study in enumerate(studies):
-        names = study["universe"]["result"]["universes"] or ["unresolved scope"]
-        for name in names:
-            groups.setdefault(name, []).append({"position": position, "study": study})
+        for name in study["universe"]["result"]["universes"] or ["unresolved scope"]:
+            groups.setdefault(name, []).append((position, study))
     least = contract.STANDARD_LANGUAGE_MIN_TRIALS
-    rows, not_assessed = [], []
+    rows = []
     for universe in sorted(groups):
         members = groups[universe]
         if len(members) < least:
             reason = f"too few trials to assess ({len(members)}; at least {least} needed)"
-            not_assessed.append({"universe": universe, "trials": len(members), "reason": reason})
+            criterion = {"universe": universe, "element": None, "reason": reason}
+            rows.append(
+                {
+                    "criterion": criterion,
+                    "role": "",
+                    "trials": 0,
+                    "of_trials": len(members),
+                    "wording": [],
+                    "wording_from": [],
+                    "other_trials": [],
+                }
+            )
             continue
         stated: dict[str, dict[str, Any]] = {}
-        for member in members:
-            study = member["study"]
+        for position, study in members:
             for index, criterion in enumerate(study["criteria"]):
                 for reading in criterion["readings"]:
                     result = reading["result"]
@@ -696,35 +711,37 @@ def standard_language(studies: list[dict[str, Any]]) -> dict[str, Any]:
                             "nct": study["nct"],
                             "heading": criterion["heading"],
                             "number": criterion["number"],
-                            "at": f"/studies/{member['position']}/criteria/{index}",
+                            "at": f"/studies/{position}/criteria/{index}",
                         }
                     )
+        found = []
         for element, entry in stated.items():
             trials = sorted({wording["nct"] for wording in entry["wording"]})
             if len(trials) < least or len(trials) < contract.STANDARD_LANGUAGE_SHARE * len(members):
                 continue
             ordered = sorted(entry["wording"], key=lambda w: (len(w["text"]), w["nct"], w["number"], w["at"]))
             shown = [ordered[0]] + ([ordered[-1]] if ordered[-1]["text"] != ordered[0]["text"] else [])
-            rows.append(
+            sources = {wording["nct"] for wording in shown}
+            criterion = {
+                "universe": universe,
+                "element": element,
+                "concept": entry["concept"],
+                "values": entry["values"],
+            }
+            found.append(
                 {
-                    "universe": universe,
-                    "element": element,
-                    "concept": entry["concept"],
-                    "values": entry["values"],
+                    "criterion": criterion,
                     "role": entry["role"],
-                    "stating": len(trials),
-                    "of": len(members),
-                    "wording": shown,
-                    "trials": trials,
+                    "trials": len(trials),
+                    "of_trials": len(members),
+                    "wording": [wording["text"] for wording in shown],
+                    "wording_from": [{k: w[k] for k in ("nct", "heading", "number", "at")} for w in shown],
+                    "other_trials": [nct for nct in trials if nct not in sources],
                 }
             )
-    rows.sort(key=lambda row: (row["universe"], -row["stating"], row["element"]))
-    return {
-        "share": contract.STANDARD_LANGUAGE_SHARE,
-        "minimum_trials": least,
-        "rows": rows,
-        "not_assessed": not_assessed,
-    }
+        found.sort(key=lambda row: (-row["trials"], row["criterion"]["element"]))
+        rows += found
+    return rows
 
 
 def open_questions(flags: list[tuple], admitted: set[str]) -> list[dict[str, Any]]:
@@ -1089,9 +1106,10 @@ def landscape_record(
 def value_problem(node: Any, kind: str, rule: str) -> str:
     """Whether one node is a well-formed value of a field of its kind (pure — pinned).
 
-    `kind` is the field's contract kind ("plain", "reading", "run", or "itemized" for a criterion's heading,
-    number and text, held plain), `rule` a reading field's rule. Codes:
-      ok              — a plain or run value that is not an object, or a well-formed absence object
+    `kind` is the field's contract kind ("plain", "reading", "run", or "itemized" for a reading's part held
+    plain: ITEMIZED), `rule` a reading field's rule. Codes:
+      ok              — an itemized value (a reading's part held plain), whatever it holds; a plain or run
+                        value that is not an object, or a well-formed absence object
                         (status not_stated or not_posted, and a note); a reading: a value object whose status
                         is one of STATUSES and whose rule is its field's, or a list of such objects;
       malformed_value — an object that is neither an absence object nor, for a reading, a value object; a
@@ -1110,7 +1128,7 @@ def value_problem(node: Any, kind: str, rule: str) -> str:
             if item["rule"] != rule:
                 return "wrong_rule"
         return "ok"
-    if not isinstance(node, dict):
+    if kind == "itemized" or not isinstance(node, dict):
         return "ok"
     if tuple(node) != ABSENT_KEYS or not isinstance(node["note"], str):
         return "malformed_value"
