@@ -1011,3 +1011,75 @@ def test_a_baseline_group_link_to_its_own_group_carries_its_id():
 def test_a_baseline_group_link_to_the_wrong_group_is_caught():
     assert codes(baseline_link_findings(2)) == ["wrong_link"]
     assert codes(baseline_link_findings(9)) == ["wrong_link"]
+
+
+def module_group_row(record, module, label, g):
+    group = record["studies"][0][module]["groups"][g]
+    address = f"/studies/0/{module}/groups/{g}"
+    return [
+        "NCT01030536",
+        address,
+        label,
+        group["id"],
+        None,
+        group["title"],
+        group.get("description"),
+        None,
+        None,
+    ]
+
+
+FLOW_COUNT = "/studies/0/participant_flow/periods/0/milestones/0/counts/0"
+BASELINE_VALUE = "/studies/0/baseline/measures/0/classes/0/categories/0/measurements/0"
+
+
+def linked_findings(sheet, address, title_of, groups, target):
+    """A listing row's Group cell linked to `target`: (the sheet, the data row from 1) among `groups`."""
+    record = posted_groups_record()
+    cells = {
+        "Trial ID": "NCT01030536",
+        contract.ADDRESS: address,
+        "Group": preserve.Linked(title_of(record), target[0], target[1]),
+    }
+    sheets = {contract.GROUPS: (GROUP_HEADERS, groups(record)), sheet: (list(cells), [list(cells.values())])}
+    return [f for f in cell_findings(record, sheets, complete=False) if f.field == f"{sheet}: Group"]
+
+
+def both_modules(record):
+    return [
+        module_group_row(record, "baseline", "Baseline", 0),
+        module_group_row(record, "participant_flow", "Participant flow", 0),
+    ]
+
+
+def test_a_flow_group_link_to_its_own_group_carries_its_id():
+    title = lambda record: record["studies"][0]["participant_flow"]["groups"][0]["title"]  # noqa: E731
+    assert linked_findings(contract.FLOW, FLOW_COUNT, title, both_modules, (contract.GROUPS, 2)) == []
+
+
+def test_a_group_link_to_the_same_titled_group_of_another_module_is_caught():
+    record = posted_groups_record()
+    baseline = record["studies"][0]["baseline"]["groups"][0]
+    flow = record["studies"][0]["participant_flow"]["groups"][0]
+    assert (baseline["title"], baseline.get("description")) == (flow["title"], flow.get("description"))
+    title = lambda record: record["studies"][0]["baseline"]["groups"][0]["title"]  # noqa: E731
+    found = linked_findings(contract.BASELINE, BASELINE_VALUE, title, both_modules, (contract.GROUPS, 2))
+    assert codes(found) == ["wrong_link"]
+    assert linked_findings(contract.BASELINE, BASELINE_VALUE, title, both_modules, (contract.GROUPS, 1)) == []
+
+
+def test_a_group_link_to_a_missing_row_or_another_sheet_is_caught():
+    title = lambda record: record["studies"][0]["baseline"]["groups"][0]["title"]  # noqa: E731
+    for target in ((contract.GROUPS, 3), (contract.GROUPS, 0), (contract.SAFETY, 1)):
+        found = linked_findings(contract.BASELINE, BASELINE_VALUE, title, both_modules, target)
+        assert codes(found) == ["wrong_link"], target
+
+
+def test_an_unlinked_baseline_group_cell_must_still_show_the_groups_id():
+    record = posted_groups_record()
+    title = record["studies"][0]["baseline"]["groups"][0]["title"]
+    cells = {"Trial ID": "NCT01030536", contract.ADDRESS: BASELINE_VALUE, "Group": title}
+    found = cell_findings(record, {contract.BASELINE: (list(cells), [list(cells.values())])}, complete=False)
+    assert [(f.code, f.field) for f in found if f.field == f"{contract.BASELINE}: Group"] == [
+        ("not_shown", f"{contract.BASELINE}: Group")
+    ]
