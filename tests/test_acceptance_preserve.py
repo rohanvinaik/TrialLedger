@@ -377,6 +377,58 @@ def test_shows_text_reads_numbers_whole():
     assert preserve.shows_text("7.", "7") and not preserve.shows_text("7.5", "7")
 
 
+# ── record → cell: the Groups sheet's G1 ... Gn, from the Safety example's hand-checked names ───────────
+
+GROUP_HEADERS = [
+    "Trial ID",
+    contract.ADDRESS,
+    "Module",
+    "Group ID",
+    "Column",
+    "Title",
+    "Description",
+    "Totals",
+]
+TOTALS = ("deaths_affected", "deaths_at_risk", "serious_affected", "serious_at_risk", "other_affected")
+
+
+def group_rows():
+    """One Groups row for each adverse-event group the Safety example names, its description and totals
+    written from the record of its two trials."""
+    record = safety_record()
+    rows = []
+    for named in SAFETY["group_columns"]:
+        i = SAFETY["trials"].index(named["trial"])
+        g = int(named["column"][1:]) - 1
+        group = record["studies"][i]["adverse_events"]["groups"][g]
+        totals = "; ".join(f"{key}: {group[key]}" for key in (*TOTALS, "other_at_risk") if key in group)
+        address = f"/studies/{i}/adverse_events/groups/{g}"
+        cells = [named["trial"], address, "Adverse events", named["group"], named["column"], named["title"]]
+        rows.append([*cells, group["description"], totals])
+    return rows
+
+
+def groups_findings(rows):
+    return cell_findings(safety_record(), {contract.GROUPS: (GROUP_HEADERS, rows)}, complete=False)
+
+
+def test_the_groups_rows_name_each_adverse_event_groups_safety_columns():
+    assert groups_findings(group_rows()) == []
+
+
+def test_a_groups_row_naming_the_wrong_safety_column_or_no_module_is_caught():
+    rows = group_rows()
+    rows[0][GROUP_HEADERS.index("Column")] = "G2"
+    rows[1][GROUP_HEADERS.index("Module")] = None
+    rows[2][GROUP_HEADERS.index("Title")] = SAFETY["group_columns"][3]["title"]
+    found = groups_findings(rows)
+    assert sorted((f.code, f.field) for f in found) == [
+        ("not_shown", "Groups: Column"),
+        ("not_shown", "Groups: Title"),
+        ("unexplained_blank", "Groups: Module"),
+    ]
+
+
 # ── the shells: a workbook read back and a run's files ──────────────────────────────────────────────────
 
 

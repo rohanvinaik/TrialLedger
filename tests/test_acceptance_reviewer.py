@@ -309,7 +309,9 @@ def test_the_rows_asked_are_the_workbooks_when_there_is_one():
 
 
 @pytest.mark.xfail(
-    strict=True, reason="until unit F 6.2: the record tool's address part on a schema-3 record"
+    strict=True,
+    raises=AssertionError,
+    reason="until unit F 6.2: the record tool's address part on a schema-3 record",
 )
 def test_the_real_record_tool_answers_each_address(tmp_path):
     folder = tmp_path / "example"

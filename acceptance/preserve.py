@@ -78,6 +78,8 @@ LISTING_GRAINS: dict[str, tuple[str, ...]] = {
 # Listings whose rows show a reading or a finding: their address must resolve and name the row's trial; their
 # columns are a reading's own parts, which the Readings and Biomarkers checks of acceptance/reviewer.py read.
 ADDRESSED_ONLY = (contract.BIOMARKERS, contract.READINGS, contract.FINDINGS)
+# The Groups sheet's columns read by their own rule (_groups_column), not from the fields they name.
+GROUPS_OWN = ("Module", "Column")
 SAFETY_CELL = re.compile(r"G(\d+) (affected|at risk|events)")
 SAFETY_STAT = {"affected": "affected", "at risk": "at_risk", "events": "events"}
 
@@ -665,9 +667,12 @@ def row_findings(record: dict[str, Any], sheet: contract.Sheet, row: Row) -> tup
         if column.header not in row.cells:
             findings.append(Finding("column_missing", str(nct), sheet.name, column.header, None, None))
             continue
-        texts: list[str] = []
-        worded = False
-        for name in column.fields:
+        texts, worded = (
+            _groups_column(column.header, template, indices) if sheet.name == contract.GROUPS else ([], False)
+        )
+        if texts is None:
+            continue
+        for name in column.fields if sheet.name != contract.GROUPS or column.header not in GROUPS_OWN else ():
             if name == "studies[].nct" or not _applies(name, template, grains) or _joins(name, template):
                 continue
             for value in _row_values(record, name, template, indices, group):
@@ -686,6 +691,19 @@ def row_findings(record: dict[str, Any], sheet: contract.Sheet, row: Row) -> tup
                 )
             )
     return findings, address
+
+
+def _groups_column(header: str, template: str, indices: list[int]) -> tuple[list[str] | None, bool]:
+    """The Groups sheet's own columns: Module shows the module in words the contract does not fix (any words);
+    Column names an adverse-event group's Safety columns, G1 ... Gn by its place, and is not fixed for the
+    other modules (not checked: None). Other columns: their fields, as for any listing."""
+    if header == "Module":
+        return [], True
+    if header == "Column":
+        if template == "studies[].adverse_events.groups[]":
+            return [f"G{indices[-1] + 1}"], False
+        return None, False
+    return [], False
 
 
 def _safety_findings(study, event, row: Row, column: contract.Column, nct: str, where: str) -> list[Finding]:
