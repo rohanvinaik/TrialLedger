@@ -679,7 +679,7 @@ def test_record_returns_each_part_as_the_record_holds_it(tmp_path):
     studies, _ = client.call("record", run="r", part="studies")
     assert [line["nct"] for line in studies["studies"]] == [study["nct"] for study in held["studies"]]
     assert studies["studies"][0]["overall_status"] == held["studies"][0]["overall_status"]
-    assert studies["studies"][0]["efficacy.results"] == held["studies"][0]["efficacy"]["results"]
+    assert studies["studies"][0]["results_posted"] == held["studies"][0]["results_posted"]
     nct = ids_of(STUDIES)[1]
     study, is_error = client.call("record", run="r", part="study", nct=nct)
     assert is_error is False and study["study"] == held["studies"][1]

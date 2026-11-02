@@ -544,14 +544,14 @@ def _matched(folder: Path) -> int:
 
 
 def write_book(record: dict[str, Any], folder: Path) -> str:
-    """The one call site of landscape.xlsx, the clinical readout (`readout.write_readout`,
-    add-agent-operation 4.3), written from the record alone and certified by reading it back. The workbook is
-    written whole or not at all: staged beside it (BOOK_STAGING), then renamed into place, so a run cut short
-    never leaves a partial landscape.xlsx that a re-run would report as kept."""
-    from TrialLedger.readout import write_readout
+    """The one call site of landscape.xlsx, the reviewer's workbook (`readout.write_book`,
+    refine-landscape-record unit C), written from the record alone and certified by reading it back. The
+    workbook is written whole or not at all: staged beside it (BOOK_STAGING), then renamed into place, so a
+    run cut short never leaves a partial landscape.xlsx that a re-run would report as kept."""
+    from TrialLedger.readout import write_book as write_workbook
 
     staging = folder / BOOK_STAGING
-    write_readout(record, staging)
+    write_workbook(record, staging)
     os.replace(staging, folder / BOOK_NAME)
     return "written"
 

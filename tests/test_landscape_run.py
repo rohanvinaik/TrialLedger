@@ -187,7 +187,7 @@ def test_a_relay_run_writes_the_record_a_direct_run_writes(tmp_path):
     }
     relayed["manifest"]["retrieval"] = retrieval
     assert relayed == held
-    assert ids_of(studies) == [study["nct"]["value"] for study in held["studies"]]
+    assert ids_of(studies) == [study["nct"] for study in held["studies"]]
     # the scope: written before any study was read, and the record's
     scope = json.loads((tmp_path / "relay" / "resolution.json").read_text(encoding="utf-8"))
     assert held["scope"] == scope and scope["code"] == "resolved"
@@ -232,10 +232,10 @@ def test_a_relay_run_reads_every_experimental_drug_not_looked_up(tmp_path):
     assert statuses[-1] == "complete"
     assert not any("byDrugName" in key for key in rxnav.asked)
     testamab = record(tmp_path / "relay")["studies"][0]["interventions"][0]
-    assert testamab["drug_class"]["value"] == {"state": "not_looked_up", "classes": [], "resolved_by": ""}
+    assert testamab["drug_class"]["result"] == {"state": "not_looked_up", "classes": [], "resolved_by": ""}
     assert (testamab["drug_class"]["status"], testamab["drug_class"]["note"]) == (
         "unresolved",
-        "not_looked_up",
+        "not looked up (in relay mode the gathered trials' drug classes are not looked up)",
     )
     assert testamab["axes"]["note"] == "not_looked_up: own_name_not_looked_up"
     assert not (tmp_path / "relay" / "classes.json").exists()
@@ -247,7 +247,7 @@ def test_a_direct_run_asks_rxclass_about_the_studies_drugs(tmp_path):
     asked = [key for key in rxnav.asked if "rxcui.json?name=Testamab" in key]
     assert asked and (tmp_path / "direct" / "classes.json").is_file()
     testamab = record(tmp_path / "direct")["studies"][0]["interventions"][0]
-    assert testamab["drug_class"]["value"]["state"] == "unresolved"
+    assert testamab["drug_class"]["result"]["state"] == "unresolved"
 
 
 def test_a_query_by_number_accounts_for_every_number_asked(tmp_path):
@@ -484,7 +484,7 @@ def test_a_record_that_differs_is_never_overwritten(tmp_path):
     studies = [drug_free(results_study())]
     direct(folder, PD1_IN_LUNG, Registry(studies), RxNav())
     tampered = record(folder)
-    tampered["studies"][0]["sponsor"]["value"] = "Someone Else"
+    tampered["studies"][0]["lead_sponsor"]["name"] = "Someone Else"
     (folder / "landscape.json").write_text(json.dumps(tampered), encoding="utf-8")
     held = (folder / "landscape.json").read_bytes()
     outcome = direct(folder, PD1_IN_LUNG, Registry(studies), RxNav())
@@ -521,7 +521,7 @@ def test_the_workbook_is_the_readout_of_the_record_and_certified(tmp_path):
     folder = tmp_path / "direct"
     outcome = direct(folder, PD1_IN_LUNG, Registry([drug_free(results_study())]), RxNav())
     assert outcome.advice.endswith(operate.BOOK_WORDS["written"])
-    assert readout.readout_problems(record(folder), folder / "landscape.xlsx") == []
+    assert readout.book_problems(record(folder), folder / "landscape.xlsx") == []
     assert not (folder / ".landscape.partial.xlsx").exists()
 
 
@@ -534,7 +534,7 @@ def test_the_workbook_is_staged_then_renamed_and_kept_on_a_rerun(tmp_path, monke
         path.write_bytes(b"xlsx")
         return 1
 
-    monkeypatch.setattr(readout, "write_readout", write_readout)
+    monkeypatch.setattr(readout, "write_book", write_readout)
     folder = tmp_path / "direct"
     outcome = direct(folder, PD1_IN_LUNG, Registry([drug_free(results_study())]), RxNav())
     assert outcome.advice.endswith(operate.BOOK_WORDS["written"])

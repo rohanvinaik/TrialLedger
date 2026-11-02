@@ -79,6 +79,10 @@ def near_miss_study(nct: str, ecog: str) -> dict:
         "armGroups": [{"label": "A", "type": "EXPERIMENTAL", "interventionNames": ["Drug: Placebo"]}],
         "interventions": [{"type": "DRUG", "name": "Placebo"}],
     }
+    # a lung-cancer treatment trial: its universe (solid-tumour oncology, from the free-text condition) admits
+    # the setting, prior lines and gene selection, so the record reads them and the workbook shows them
+    protocol["conditionsModule"] = {"conditions": ["Non-Small Cell Lung Cancer"]}
+    protocol.setdefault("designModule", {}).setdefault("designInfo", {})["primaryPurpose"] = "TREATMENT"
     return study
 
 
@@ -317,7 +321,7 @@ def mcp_session(root: Path, request: dict, rxnav_answer, registry, sandbox) -> d
             ident += 1
             yield tool(ident, "record", run="relayed", part=part)
             if part == "studies":
-                nct = document()["studies"][0]["nct"]["value"]
+                nct = document()["studies"][0]["nct"]
         yield tool(ident + 1, "record", run="relayed", part="study", nct=nct)
         yield tool(ident + 2, "record", run="relayed", part="study", nct="NCT99999999")
         yield tool(ident + 3, "scope", run="relayed")

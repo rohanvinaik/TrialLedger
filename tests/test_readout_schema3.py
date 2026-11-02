@@ -1,11 +1,12 @@
-"""The reviewer's workbook of a schema-3 record (refine-landscape-record unit C), against the fixture records
-of tests/schema3_records.py and the contract's hand-checked examples.
+"""The reviewer's workbook of a schema-3 record (refine-landscape-record unit C), against records made by
+the record's own assembly (tests/schema3_records.py) from the contract's saved bodies, and the contract's
+hand-checked examples.
 
-Positive: the fixture agrees with the example record; the Safety rows are the example's, cell for cell; every
-sheet's headers are contract.SHEETS'; the dossier shows its expected facts always and any other only when
-stated; the Basis column names what each value rests on; codes and readings read in clinical words; every
-listing row's address leads back to the record value the row shows (an independent check, which planted
-defects fail); the same record writes the same bytes; a long listing continues on numbered sheets.
+Positive: the Safety rows are the example's, cell for cell; every sheet's headers are contract.SHEETS'; the
+dossier shows its expected facts always and any other only when stated; the Basis column names what each value
+rests on; codes and readings read in clinical words; every listing row's address leads back to the record
+value the row shows (an independent check, which planted defects fail); the same record writes the same bytes;
+a long listing continues on numbered sheets.
 Negative: no raw registry code, no internal term, no cell blank except where its column cannot apply, a
 tampered file refused, a stat the registry does not give never read as zero.
 """
@@ -17,7 +18,7 @@ import zipfile
 
 import pytest
 from openpyxl import load_workbook
-from schema3_records import EXAMPLE_RECORD, EXAMPLES, NOT_STATED, indexed, record_of
+from schema3_records import BODIES, EXAMPLES, NOT_STATED, record_of
 
 from TrialLedger import contract, readout
 from TrialLedger.readout import (
@@ -42,27 +43,6 @@ RECORD = record_of()
 PLAN = {name: (headers, rows) for name, headers, rows, _starts in readout.book_plan(RECORD)}
 
 
-def example_leaves(node, path="", positions=()):
-    """Every leaf of the example record: (dotted path with list markers, positions, value)."""
-    if path in contract.FIELD_NAMES or not isinstance(node, (dict, list)):
-        yield path, positions, node
-    elif isinstance(node, dict):
-        for key, value in node.items():
-            yield from example_leaves(value, f"{path}.{key}".lstrip("."), positions)
-    else:
-        for i, value in enumerate(node):
-            yield from example_leaves(value, f"{path}[]", (*positions, i))
-
-
-def at_position(record, name, positions):
-    node, remaining = record, list(positions)
-    for segment in name.split("."):
-        node = node[segment.removesuffix("[]")]
-        if segment.endswith("[]"):
-            node = node[remaining.pop(0)]
-    return node
-
-
 def resolve(record, pointer):
     """The node a JSON pointer names in the record, read without the workbook's code."""
     node = record
@@ -80,25 +60,12 @@ def dossier(study):
     return {fact: (value, label_) for _h, _l, fact, value, label_ in readout.dossier_facts(study)}
 
 
-# ── the fixture is the contract's example ───────────────────────────────────────────────────────────────
-
-
-def test_the_fixture_holds_every_value_of_the_example_record_at_its_place():
-    built = record_of(tuple(study["nct"] for study in EXAMPLE_RECORD["studies"]))
-    checked = 0
-    for name, positions, value in example_leaves(EXAMPLE_RECORD):
-        if name == "schema_version":
-            continue
-        assert at_position(built, name, positions) == value, name
-        checked += 1
-    assert checked > 60
-
-
-def test_the_fixture_marks_a_value_the_registry_does_not_hold():
+def test_the_records_are_the_assemblys_own():
+    assert RECORD["schema_version"] == contract.SCHEMA_VERSION
     ptsd = RECORD["studies"][2]
     assert ptsd["acronym"] == NOT_STATED
-    assert "adverse_events" not in ptsd and "posted_outcomes" not in ptsd
-    assert indexed({"a": [{"b": 1}]}, "a[].b") == [((0,), 1)]
+    assert ptsd["results_posted"]["status"] == "not_posted"
+    assert not isinstance(ptsd["adverse_events"], dict) or "events" not in ptsd["adverse_events"]
 
 
 # ── the value dispatch ──────────────────────────────────────────────────────────────────────────────────
@@ -181,7 +148,8 @@ def test_why_a_reading_is_not_made_is_said_in_clinical_words():
 
 def test_the_universe_reading_names_its_universes():
     assert assigned(RECORD["studies"][0]) == ("known", ("oncology.heme",))
-    assert assigned(RECORD["studies"][1]) == ("missing", ())
+    assert assigned(RECORD["studies"][1]) == ("known", ("oncology.solid",))
+    assert assigned({}) == ("missing", ())
     assert assigned({"universe": {"status": "not_stated", "note": "x"}}) == ("unresolved", ())
 
 
@@ -381,46 +349,46 @@ def test_a_number_cell_keeps_the_registrys_decimal_places_in_the_file(written):
 def test_an_empty_listing_and_the_across_trial_sheets_say_so_on_one_line():
     (biomarkers,) = sheet_rows(contract.BIOMARKERS)
     assert biomarkers["Trial ID"].startswith("No biomarker is named")
+    # three trials, below the signal minimum: the cohort's rows are not findings
+    assert RECORD["cohort"]["frequency"]
     (findings,) = sheet_rows(contract.FINDINGS)
     assert findings["Type"].startswith("Too few comparable trials to assess: 3 trials here")
-    (standard,) = sheet_rows(contract.STANDARD)
-    assert standard["Criterion"].startswith("Too few comparable trials to assess")
+    record = copy.deepcopy(RECORD)
+    record["standard_language"] = []
+    (standard,) = readout.standard_rows(record)
+    assert standard[1][0].startswith("Too few comparable trials to assess")
 
 
 def test_at_the_signal_minimum_an_empty_section_never_reads_as_too_few():
     record = copy.deepcopy(RECORD)
     record["studies"] = record["studies"] * 2
+    record["standard_language"] = []
+    record["cohort"] = {"thresholds": RECORD["cohort"]["thresholds"]}
     (row,) = readout.standard_rows(record)
-    assert row[0][0].startswith("No criterion is stated by most comparable trials")
+    assert row[1][0].startswith("No criterion is stated by most comparable trials")
     (row,) = readout.findings_rows(record)
     assert row[1][0] == "The record holds no across-trial finding for these trials"
 
 
 def test_standard_protocol_language_shows_each_criterion_with_its_counts_and_wording():
-    record = copy.deepcopy(RECORD)
-    record["standard_language"] = [
-        {
-            "criterion": "Performance status 0 or 1",
-            "role": "inclusion",
-            "trials": 6,
-            "of_trials": 7,
-            "wording": "ECOG performance status 0-1",
-            "wording_from": "NCT02151981",
-            "other_trials": ["NCT01", "NCT02"],
-        }
-    ]
-    (row,) = readout.standard_rows(record)
-    values = [held[0] for held in row]
-    assert values == [
-        "Performance status 0 or 1",
+    record = record_of(tuple(BODIES))
+    rows = [[held[0] for held in row] for row in readout.standard_rows(record)]
+    headers = readout.sheet_headers(contract.STANDARD, 0)
+    named = [dict(zip(headers, row, strict=True)) for row in rows]
+    too_few = [row for row in named if row["Role"] is None]
+    assert too_few and all(row["Criterion"].endswith("needed)") for row in too_few)
+    confirmed = next(
+        row for row in named if row["Criterion"] == "Solid tumour: Condition: diagnosis confirmed"
+    )
+    assert (confirmed["Role"], confirmed["Trials stating it"], confirmed["Of comparable trials"]) == (
         "Inclusion",
         6,
-        7,
-        "“ECOG performance status 0-1”",
-        "NCT02151981",
-        "NCT01, NCT02",
-        "/standard_language/0",
-    ]
+        8,
+    )
+    assert confirmed["Representative wording"].startswith("“2. Pathologically confirmed adenocarcinoma")
+    assert confirmed["Wording from"].startswith("NCT02296125, inclusion criterion 2")
+    entry = resolve(record, confirmed[contract.ADDRESS])
+    assert entry["trials"] == 6 and entry["other_trials"][0] in confirmed["Other trials"]
 
 
 def test_every_reading_has_its_row_in_the_readings_sheet():
@@ -595,6 +563,14 @@ BLANK_ALLOWED = {
     contract.POSTED: {"Class", "Category"},
     contract.BASELINE: {"Class", "Category"},
     contract.GROUPS: {"Column", "Totals"},
+    # a universe with too few trials for standard language: its counts and wordings cannot apply
+    contract.STANDARD: {
+        "Role",
+        "Trials stating it",
+        "Representative wording",
+        "Wording from",
+        "Other trials",
+    },
 }
 
 
