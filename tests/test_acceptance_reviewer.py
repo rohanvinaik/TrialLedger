@@ -227,7 +227,7 @@ def test_a_biomarker_mention_is_traced_and_one_the_registry_does_not_hold_is_fou
     record["studies"][1]["biomarker_mentions"][0]["words"] = ["EGFR exon 19 deletion"]
     result = reviewer.biomarker_trace(run(record), ["NCT01030536"])
     assert [(f.address, f.value) for f in result.findings] == [
-        ("/studies/1/biomarker_mentions/0", ["EGFR exon 19 deletion"])
+        ("/studies/1/biomarker_mentions/0", ["quotation", "untraced", ["EGFR exon 19 deletion"]])
     ]
 
 
@@ -238,7 +238,9 @@ def test_a_reading_with_altered_words_is_found_and_one_without_a_body_is_unresol
     assert result.findings == []  # a word within a registry term is traced
     record["studies"][0]["universe"]["words"][0] = "Depressive Disorder"
     result = reviewer.biomarker_trace(run(record))
-    assert [(f.nct, f.value) for f in result.findings] == [("NCT04852770", ["Depressive Disorder"])]
+    assert [(f.nct, f.value) for f in result.findings] == [
+        ("NCT04852770", ["quotation", "untraced", ["Depressive Disorder"]])
+    ]
     result = reviewer.biomarker_trace(run(bodies={}))
     assert "registry body not given: readings not traced" in whats(result.unresolved)
 
@@ -362,3 +364,88 @@ def test_a_module_the_record_says_is_not_posted_is_unresolved_not_read():
     )
     assert any(u.what.startswith("no adverse events posted (not_posted") for u in safety.unresolved)
     assert not any(e.address.endswith("time_frame") for e in safety.evidence)
+
+
+# ── each reading by the kind of warrant it rests on ─────────────────────────────────────────────────────
+
+
+@pytest.mark.parametrize(
+    ("arguments", "expected"),
+    [
+        (("inclusion", "inclusion", [], "* Age 18 or over"), "heading"),
+        (("inclusion", "exclusion", [], "* Age 18 or over"), "unwarranted"),
+        (
+            ("inclusion", "exclusion", ["ineligible"], "* Patients who are ineligible for surgery"),
+            "own_words",
+        ),
+        (("inclusion", "exclusion", ["Ineligible"], "* patients who are ineligible"), "own_words"),
+        (("exclusion", "unresolved", ["are permitted"], "* Steroids are permitted"), "own_words"),
+        (("inclusion", "exclusion", ["not eligible"], "* Age 18 or over"), "untraced"),
+    ],
+)
+def test_role_warrant(arguments, expected):
+    assert reviewer.role_warrant(*arguments) == expected
+
+
+@pytest.mark.parametrize(
+    ("has_results", "status", "expected"),
+    [
+        (True, "known", "flag_agrees"),
+        (False, "not_posted", "flag_agrees"),
+        (True, "not_posted", "flag_disagrees"),
+        (False, "known", "flag_disagrees"),
+        (None, "known", "no_flag"),
+        ("true", "known", "no_flag"),
+    ],
+)
+def test_results_warrant(has_results, status, expected):
+    assert reviewer.results_warrant(has_results, status) == expected
+
+
+@pytest.mark.parametrize(
+    ("known", "interpolated", "expected"),
+    [
+        (["0", "1", "2", "3+"], ["0", "1", "2", "3+"], "narrows"),
+        (["adjuvant", "advanced_first_line"], ["advanced_first_line"], "narrows"),
+        (["advanced_first_line"], ["adjuvant", "advanced_first_line"], "widens"),
+        ({"EGFR": ["mutated"]}, {"EGFR": ["mutated"]}, "narrows"),
+        ({}, {"ALK": ["rearranged"]}, "widens"),
+        (None, ["0"], "not_comparable"),
+        (["0"], {"EGFR": []}, "not_comparable"),
+    ],
+)
+def test_narrowing_warrant(known, interpolated, expected):
+    assert reviewer.narrowing_warrant(known, interpolated) == expected
+
+
+def test_each_reading_is_checked_by_its_own_kind_of_warrant():
+    record = with_criteria([])
+    role = {
+        "status": "known",
+        "rule": "criteria.criterion_role",
+        "words": [],
+        "result": "inclusion",
+        "note": "",
+    }
+    record["studies"][1]["criteria"][0] |= {"heading": "inclusion", "role": role}
+    record["studies"][1]["results_posted"] = {
+        "status": "known",
+        "rule": "ledger.results_state",
+        "words": [],
+        "result": "results posted",
+        "note": "",
+    }
+    lines = {"status": "unresolved", "rule": "coherence.resolve", "words": [], "note": "no default relation"}
+    record["studies"][1]["coordinates"]["prior_advanced_lines_interpolated"] = lines | {"result": ["0", "1"]}
+    result = reviewer.biomarker_trace(run(record), ["NCT01030536"])
+    kinds = {e.what.split(":")[0] for e in result.evidence}
+    assert kinds == {"quotation", "structural", "derivation"}
+    assert any(
+        u.what.startswith("derivation: studies[].coordinates.prior_advanced_lines: unnarrowed")
+        for u in result.unresolved
+    )
+    assert result.findings == []
+    record["studies"][1]["coordinates"]["prior_advanced_lines_interpolated"]["result"] = ["0", "1", "4+"]
+    record["studies"][1]["criteria"][0]["role"]["result"] = "exclusion"
+    result = reviewer.biomarker_trace(run(record), ["NCT01030536"])
+    assert sorted(f.value[1] for f in result.findings) == ["unwarranted", "widens"]

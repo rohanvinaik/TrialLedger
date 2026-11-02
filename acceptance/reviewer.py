@@ -42,6 +42,7 @@ FINDING_WORDS = {
     "not_in_destination": "the reviewer's destination sheet has no row for what the record holds",
     "affected_exceeds_at_risk": "more participants affected than at risk, as the record holds them",
     "untraced": "a reading's words are not in the registry text it read",
+    "unwarranted": "a reading's warrant does not hold (its words, its heading or flag, or its derivation)",
     "key_criterion_differs": "a key criterion's text or role is not that of the criterion its reading names",
     "not_answered": "the record tool did not answer the address",
     "answered_differently": "the record tool's answer is not the record's value at the address",
@@ -477,11 +478,22 @@ def _readings(study: dict[str, Any], i: int) -> list[tuple[str, str, dict[str, A
 
 
 def biomarker_trace(run: Run, ncts: list[str] | None = None) -> TaskResult:
-    """Trace each biomarker mention, and every other reading, to its source words: the words a reading names
-    must be in the registry text at the paths its field reads (contract.FIELDS' `reads`).
+    """Trace each biomarker mention, and every other reading, to what warrants it, by the kind of warrant its
+    field rests on (WARRANT_KINDS):
 
-    Unresolved: a trial with no biomarker mention; a reading that names no words; a trial whose registry body
-    was not given. Findings: words the registry text does not hold."""
+    - quotation: the words a reading cites must occur, exactly, in the registry text at the paths its field
+      reads (contract.FIELDS' `reads`). "Traced" means only that the cited words occur there, never that the
+      clinical interpretation of them is right;
+    - structural: a criterion's role rests on its heading, or on its own words where they overrule it (each
+      in the criterion's text); results posted rests on the registry's hasResults flag;
+    - derivation: a coordinate's known level is derived from typed readings (their cited words in the
+      eligibility text; none, and it is unnarrowed), its interpolated level within its known level; an open
+      question is derived from an unresolved reading it names (an intervention of the trial).
+
+    Unresolved: a trial with no biomarker mention; a quotation reading that cites no words; a coordinate no
+    typed reading narrows; a trial whose registry body was not given. Findings: each warrant that does not
+    hold, and (with a workbook) a reading with no row in its destination. Evidence names its warrant kind and
+    what holds it."""
     destination = (contract.BIOMARKERS, contract.READINGS)
     evidence, unresolved, findings = [], _no_workbook(run, destination), []
     readings_listed = _addressed(run, contract.READINGS)
@@ -498,25 +510,105 @@ def biomarker_trace(run: Run, ncts: list[str] | None = None) -> TaskResult:
             unresolved.append(Item(nct, f"/studies/{i}", "registry body not given: readings not traced"))
             continue
         for name, address, value in readings:
-            texts = [
-                t
-                for path in contract.FIELD_NAMES[name].reads
-                for t in _strings(contract.template_values(body, path))
-            ]
-            words = value.get("words") if isinstance(value.get("words"), list) else []
-            code, missing = words_traced([w for w in words if isinstance(w, str)], texts)
-            if code == "traced":
-                evidence.append(Item(nct, address, f"{name}: words traced", words))
-            elif code == "no_words":
-                unresolved.append(Item(nct, address, f"{name}: names no words", _words(value)))
+            kind = warrant_kind(name)
+            code, detail = _warrant(kind, name, address, value, study, body)
+            what = f"{kind}: {name}: {code}"
+            if code in WARRANTED:
+                evidence.append(Item(nct, address, what, detail))
+            elif code in ("no_words", "unnarrowed"):
+                unresolved.append(Item(nct, address, what, _words(value)))
             else:
-                findings.append(Item(nct, address, FINDING_WORDS["untraced"], missing))
+                findings.append(Item(nct, address, FINDING_WORDS["unwarranted"], [kind, code, detail]))
             if run.sheets is not None:
                 sheet = contract.BIOMARKERS if name == "studies[].biomarker_mentions" else contract.READINGS
                 listed = biomarkers_listed if sheet == contract.BIOMARKERS else readings_listed
                 if address not in listed and not any(str(a).startswith(address + "/") for a in listed):
                     findings.append(Item(nct, address, FINDING_WORDS["not_in_destination"], sheet))
     return TaskResult("trace a biomarker to its source words", destination, evidence, unresolved, findings)
+
+
+# The kind of warrant each reading's field rests on; a field not named rests on quotation.
+WARRANT_KINDS = {
+    "studies[].criteria[].role": "structural",
+    "studies[].results_posted": "structural",
+    "studies[].open_questions": "derivation",
+}
+WARRANTED = ("traced", "heading", "own_words", "flag_agrees", "narrows", "derived")
+
+
+def warrant_kind(field_name: str) -> str:
+    """quotation, structural or derivation (a coordinate is derived from typed readings)."""
+    if field_name.startswith("studies[].coordinates."):
+        return "derivation"
+    return WARRANT_KINDS.get(field_name, "quotation")
+
+
+def role_warrant(heading: str, result: str, words: list[str], text: str) -> str:
+    """A criterion's role against what warrants it (pure — pinned): heading (no words cited, the role is
+    its heading's); own_words (its own cited words, each in the criterion's text, overrule the heading or
+    leave it unresolved); untraced (a cited word not in the text); unwarranted (no words cited, yet the role
+    is not its heading's)."""
+    if words:
+        return "own_words" if all(word.lower() in text.lower() for word in words) else "untraced"
+    return "heading" if result == heading else "unwarranted"
+
+
+def results_warrant(has_results: object, status: str) -> str:
+    """Results posted against the registry's own flag (pure — pinned): flag_agrees (hasResults true and the
+    reading known, or false and not posted); flag_disagrees; no_flag (the body holds no boolean flag)."""
+    if not isinstance(has_results, bool):
+        return "no_flag"
+    return "flag_agrees" if (status == "known") == has_results else "flag_disagrees"
+
+
+def narrowing_warrant(known: object, interpolated: object) -> str:
+    """A coordinate's interpolated level against its known level (pure — pinned): narrows (every value the
+    interpolated level leaves is one the known level leaves: a default relation only removes values);
+    widens (it leaves a value the known level had removed); not_comparable (the levels are not lists of
+    values, or not maps of genes to values)."""
+    if isinstance(known, list) and isinstance(interpolated, list):
+        return "narrows" if set(map(str, interpolated)) <= set(map(str, known)) else "widens"
+    if isinstance(known, dict) and isinstance(interpolated, dict):
+        return "narrows" if set(interpolated) <= set(known) else "widens"
+    return "not_comparable"
+
+
+def _warrant(kind: str, name: str, address: str, value: dict, study: dict, body: dict) -> tuple[str, Any]:
+    """A reading's warrant checked by its kind: (its code, what holds it)."""
+    words = [w for w in value.get("words") or [] if isinstance(w, str)]
+    if kind == "quotation":
+        texts = [
+            t
+            for path in contract.FIELD_NAMES[name].reads
+            for t in _strings(contract.template_values(body, path))
+        ]
+        code, missing = words_traced(words, texts)
+        return code, missing or words
+    if name == "studies[].criteria[].role":
+        place = address.rsplit("/", 2)[-2]
+        criterion = (study.get("criteria") or [])[int(place)] if place.isdigit() else {}
+        heading, text = criterion.get("heading"), criterion.get("text")
+        code = role_warrant(str(heading), str(value.get("result")), words, str(text))
+        return code, [heading, value.get("result"), words]
+    if name == "studies[].results_posted":
+        return results_warrant(body.get("hasResults"), str(value.get("status"))), body.get("hasResults")
+    if name == "studies[].open_questions":
+        element = (
+            (value.get("result") or {}).get("element") if isinstance(value.get("result"), dict) else None
+        )
+        names = _strings(contract.template_values(body, f"{contract.AI}.interventions[].name"))
+        return ("derived" if element in names else "underived"), element
+    coordinate = name.removeprefix("studies[].coordinates.")
+    base = coordinate.removesuffix("_interpolated").removesuffix("_proposed")
+    if coordinate == base:
+        if not words:
+            return "unnarrowed", value.get("note")
+        texts = _strings(contract.template_values(body, f"{contract.EL}.eligibilityCriteria"))
+        code, missing = words_traced(words, texts)
+        return ("derived" if code == "traced" else code), missing or words
+    known = (study.get("coordinates") or {}).get(base)
+    known_result = known.get("result") if is_value_object(known) else None
+    return narrowing_warrant(known_result, value.get("result")), [known_result, value.get("result")]
 
 
 def _strings(values: list[Any]) -> list[str]:

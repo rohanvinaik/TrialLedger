@@ -121,7 +121,12 @@ FINDING_WORDS = {
     "not_shown": "the cell does not show the record's value exactly",
     "raw_record": "the cell shows a piece of the record's JSON instead of words",
     "fact_missing": "a dossier fact the record holds has no row",
+    "format_differs": "the number cell's format is not the contract's (a count in General, a registry "
+    "decimal in the format of its own decimal places)",
+    "wrong_link": "the cell's link points at another row than the record's own group",
 }
+# What follows a status's words before its reason (contract.REASON_FORM: "<Status> — <reason>").
+REASON_SEPARATOR = contract.REASON_FORM.format(status="", reason="")
 
 
 class Finding(NamedTuple):
@@ -305,7 +310,9 @@ def cell_verdict(
         return "not_shown"
     if status_words and not texts:
         said = cell.strip()
-        if said in status_words or any(said.startswith(f"{words} — ") for words in status_words):
+        if said in status_words or any(
+            said.startswith(f"{words}{REASON_SEPARATOR}") for words in status_words
+        ):
             return "shown"
         return "wrong_words"
     return "shown"
@@ -594,18 +601,31 @@ def _put(node: dict[str, Any], segments: list[str], places: list[int], value: An
 
 
 # ── record → cell ───────────────────────────────────────────────────────────────────────────────────────
+# The words, forms and blanks are the contract's declared display policy (contract.STATUS_WORDS, REASON_FORM,
+# BASIS_WORDS, WHICH_LIST_WORDS, READING_CODE_WORDS, DATE_FORMS, NUMBER_FORMATS, EMPTY_LISTING_WORDS,
+# INDEX_COMPACT, BLANK_BY_CONSTRUCTION, DENOMINATOR); which record values a cell must show, the joins of
+# groups and denominators at their scope, the rows a listing must have and the numeric comparison are this
+# module's own.
 
 # A criterion the banks typed nothing in reads in words (design §2); the record holds its readings as [].
 EMPTY_READING_WORDS = {"studies[].criteria[].readings": "No reading produced"}
-# The statuses a cell shows in their own words, alone: an absence, and a value the rules leave unresolved.
-WORDED_STATUSES = ("not_stated", "not_posted", "unresolved")
-# A reading's code (a slug: inclusion, prior_agent) is shown in words: its underscores as spaces, capitalized.
-SLUG = re.compile(r"[a-z][a-z0-9_]*")
-ISO_DATE = re.compile(r"(\d{4})-(\d{2})(?:-(\d{2}))?")
+# The statuses a cell shows in their own words where the record holds no value: an absence, a value the
+# rules leave unresolved, a reading its universe does not apply.
+WORDED_STATUSES = ("not_stated", "not_posted", "unresolved", "not_applicable")
+ISO_DATE = re.compile(r"(\d{4})(?:-(\d{2})(?:-(\d{2}))?)?(?:[T ](.+))?")
 MONTHS = ("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
-# The sheet a top-level listing's rows come from, beyond LISTING_GRAINS: a listing whose fields are all under
-# one list of the record (standard_language[], recurring_criteria[]) has that list as its grain.
+# Listings the contract gives an empty line but whose rows are readings (no row grain of their own here).
 EMPTY_GRAINS = {contract.BIOMARKERS: ("studies[].biomarker_mentions[]",)}
+# The units a denominator column implies in its header (contract.DENOMINATOR): a count of these is a number.
+IMPLIED_UNITS = "Participants"
+DENOMINATOR_UNITS = (
+    "studies[].posted_outcomes[].denominators[].units",
+    "studies[].posted_outcomes[].classes[].denominators[].units",
+    "studies[].baseline.denominators[].units",
+    "studies[].baseline.measures[].denominators[].units",
+    "studies[].baseline.measures[].classes[].denominators[].units",
+)
+POSTED_GROUPS = "studies[].posted_outcomes[].groups[]"
 
 
 class Row(NamedTuple):
@@ -623,19 +643,39 @@ class Number(NamedTuple):
     number_format: str
 
 
+class Linked(NamedTuple):
+    """A text cell read back with an internal hyperlink: its text, and the sheet and data row it points to
+    (the row's number among the sheet's rows below its header, from 1)."""
+
+    value: Any
+    sheet: str
+    row: int
+
+
 def status_words(status: str) -> str:
-    """The words a status is shown in: not_stated → "Not stated"."""
-    return status.replace("_", " ").capitalize()
+    """A status in the contract's words (contract.STATUS_WORDS)."""
+    return contract.STATUS_WORDS.get(status, status)
 
 
 def date_words(text: str) -> str:
-    """A registry date (2010-02-15, 2010-02) as the workbook shows it (15-Feb-2010, Feb-2010)."""
+    """A registry date as contract.DATE_FORMS writes it: a day DD-Mon-YYYY, a month Mon-YYYY, a year YYYY, a
+    date with a time the date so written then the time as written; anything else as written."""
     found = ISO_DATE.fullmatch(text)
-    if found is None or not 1 <= int(found.group(2)) <= 12:
+    if found is None:
         return text
-    year, month, day = found.groups()
-    words = f"{MONTHS[int(month) - 1]}-{year}"
-    return f"{day}-{words}" if day else words
+    year, month, day, time = found.groups()
+    if month is not None and not 1 <= int(month) <= 12:
+        return text
+    words = year if month is None else f"{MONTHS[int(month) - 1]}-{year}"
+    words = f"{day}-{words}" if day else words
+    return f"{words} {time}" if time else words
+
+
+def decimal_format(text: str) -> str:
+    """The number format contract.NUMBER_FORMATS gives a registry decimal: 0, or 0. and one 0 per decimal
+    place the registry wrote."""
+    places = len(text.partition(".")[2]) if "." in text else 0
+    return "0" if not places else "0." + "0" * places
 
 
 def resolve_pointer(record: Any, tokens: list[str]) -> tuple[bool, Any, str, list[int]]:
@@ -654,6 +694,11 @@ def resolve_pointer(record: Any, tokens: list[str]) -> tuple[bool, Any, str, lis
         else:
             return False, None, "", []
     return True, node, ".".join(template), indices
+
+
+def _resolve(record: Any, address: Any) -> tuple[bool, Any, str, list[int]]:
+    code, tokens = pointer_steps(address) if isinstance(address, str) else ("not_a_pointer", [])
+    return resolve_pointer(record, tokens) if code == "ok" else (False, None, "", [])
 
 
 def _first_list(segments: list[str]) -> int:
@@ -681,7 +726,7 @@ def _applies(field_name: str, row_template: str, grains: tuple[str, ...]) -> boo
     return True
 
 
-def _row_values(record: dict[str, Any], field_name: str, row_template: str, indices: list[int], group: Any):
+def _row_values(record: Any, field_name: str, row_template: str, indices: list[int], group: Any):
     """The values of a field for a row: the row's own entries along its path, every entry below it (only the
     row's group's, where entries name a group)."""
     nodes = [record]
@@ -731,54 +776,81 @@ def _in_group(item: Any, group: Any) -> bool:
     return True
 
 
-def expected(field: contract.Field, value: Any) -> tuple[list[str], list[str]]:
-    """A record value as a cell must show it: (the texts, codes in their words; the status words an absence,
-    an unresolved value or a criterion with no reading is shown in). A reading the cell shows in its own words
-    (a known reading's labels) gives neither, and the cell must only not be blank."""
+class Expected(NamedTuple):
+    """What a cell must show: texts (codes in their words, dates in their form), counts (numbers the
+    registry gives as numbers, shown as numbers), and status words (where the record holds no value)."""
+
+    texts: list[str]
+    counts: list[Any]
+    words: list[str]
+
+    def plus(self, other: Expected) -> Expected:
+        return Expected(self.texts + other.texts, self.counts + other.counts, self.words + other.words)
+
+
+NOTHING = Expected([], [], [])
+
+
+def expected(field: contract.Field, value: Any) -> Expected:
+    """A record value as a cell must show it. A reading the cell shows in its own words (a known reading's
+    labels) gives nothing, and the cell must only not be blank."""
     if is_value_object(value):
         status = value.get("status")
-        return ([], [status_words(status)]) if status in WORDED_STATUSES else ([], [])
+        return Expected([], [], [status_words(status)]) if status in WORDED_STATUSES else NOTHING
     if isinstance(value, list):
         if not value and field.name in EMPTY_READING_WORDS:
-            return [], [EMPTY_READING_WORDS[field.name]]
-        texts: list[str] = []
-        words: list[str] = []
+            return Expected([], [], [EMPTY_READING_WORDS[field.name]])
+        total = NOTHING
         for item in value:
-            more, worded = expected(field, item)
-            texts += more
-            words += worded
-        return texts, words
+            total = total.plus(expected(field, item))
+        return total
     if isinstance(value, str) and field.form == "which list":
-        return [WHICH_LIST_WORDS.get(value, value)], []
+        return Expected([contract.WHICH_LIST_WORDS.get(value, value)], [], [])
     if isinstance(value, str) and field.display:
-        return [contract.display_words(field.display, value)[1]], []
-    if isinstance(value, str) and field.kind == "reading" and SLUG.fullmatch(value):
-        return [value.replace("_", " ").capitalize()], []
+        return Expected([contract.display_words(field.display, value)[1]], [], [])
+    if isinstance(value, str) and field.kind == "reading" and value in contract.READING_CODE_WORDS:
+        return Expected([contract.READING_CODE_WORDS[value]], [], [])
     if isinstance(value, bool):
-        return ["Yes" if value else "No"], []
-    if isinstance(value, (str, int, float)) and contract.holds_value(value):
-        return [str(value)], []
-    return [], []
+        return Expected(["Yes" if value else "No"], [], [])
+    if isinstance(value, int):
+        return Expected([str(value)], [value], [])
+    if isinstance(value, str) and contract.holds_value(value):
+        return Expected([date_words(value) if ISO_DATE.fullmatch(value) else value], [], [])
+    if isinstance(value, float):
+        return Expected([repr(value)], [], [])
+    return NOTHING
 
 
-def _dated(texts: list[str], cell: Any) -> list[str]:
-    """A registry date is shown as written or in the workbook's day-month-year form, whichever the cell
-    holds."""
-    if not isinstance(cell, str):
-        return texts
-    return [date_words(text) if ISO_DATE.fullmatch(text) and text not in cell else text for text in texts]
+def judge(cell: Any, want: Expected, by_construction: bool) -> str:
+    """cell_verdict over a cell as read back, with the contract's number formats: a count shown as a number
+    in General, a registry decimal in the format of its own decimal places (format_differs otherwise)."""
+    texts = list(dict.fromkeys(want.texts))
+    words = list(dict.fromkeys(want.words))
+    value = cell.value if isinstance(cell, (Number, Linked)) else cell
+    if not isinstance(cell, Number):
+        return cell_verdict(value, texts, [], words, by_construction)
+    counts = list(dict.fromkeys(want.counts))
+    if counts and len(texts) == len(counts):
+        return _count_verdict(cell, counts, by_construction)
+    else:
+        verdict = cell_verdict(value, texts, [], words, by_construction, cell.number_format)
+        wanted_format = decimal_format(texts[0]) if len(texts) == 1 else cell.number_format
+    if verdict == "shown" and cell.number_format != wanted_format:
+        return "format_differs"
+    return verdict
 
 
-def judge(cell: Any, texts: list[str], numbers: list[Any], words: list[str], by_construction: bool) -> str:
-    """cell_verdict over a cell as read back (a Number carries its format), its texts' dates in either
-    form."""
-    if isinstance(cell, Number):
-        return cell_verdict(cell.value, texts, numbers, words, by_construction, cell.number_format)
-    return cell_verdict(cell, _dated(texts, cell), numbers, words, by_construction)
+def _count_verdict(cell: Any, counts: list[Any], by_construction: bool) -> str:
+    """A count (a number the registry gives as a number): the cell holds it as a number, in General."""
+    verdict = cell_verdict(_plain(cell), [], counts, [], by_construction)
+    general = contract.NUMBER_FORMATS["count"]
+    if verdict == "shown" and isinstance(cell, Number) and cell.number_format != general:
+        return "format_differs"
+    return verdict
 
 
 def _plain(cell: Any) -> Any:
-    return cell.value if isinstance(cell, Number) else cell
+    return cell.value if isinstance(cell, (Number, Linked)) else cell
 
 
 def sheet_grains(sheet: contract.Sheet) -> tuple[str, ...]:
@@ -793,10 +865,53 @@ def sheet_grains(sheet: contract.Sheet) -> tuple[str, ...]:
 
 def _raw_findings(row: Row, nct: str, where: str) -> list[Finding]:
     return [
-        Finding("raw_record", nct, f"{row.sheet}: {header}", where, None, cell)
+        Finding("raw_record", nct, f"{row.sheet}: {header}", where, None, _plain(cell))
         for header, cell in row.cells.items()
-        if raw_record(cell)
+        if raw_record(_plain(cell))
     ]
+
+
+def _declared_blank(sheet: str, kind: str) -> tuple[str, ...]:
+    """The columns contract.BLANK_BY_CONSTRUCTION declares blank for a sheet's kind of row."""
+    return contract.BLANK_BY_CONSTRUCTION.get((sheet, kind), ())
+
+
+def blank_columns(sheet: str, template: str, node: Any, record: Any, indices: list[int]) -> set[str]:
+    """The columns of a row blank by construction: the kinds of row contract.BLANK_BY_CONSTRUCTION names,
+    each recognised here from the record."""
+    blank: set[str] = set()
+    if sheet in (contract.POSTED, contract.BASELINE):
+        kind = "a measurement of an untitled class or category"
+        found, klass, _t, _i = resolve_pointer(record, _pointer(template, indices, "classes[]"))
+        found_c, category, _t, _i = resolve_pointer(record, _pointer(template, indices, "categories[]"))
+        if found and isinstance(klass, dict) and not contract.holds_value(klass.get("title")):
+            blank |= {"Class"} & set(_declared_blank(sheet, kind))
+        if found_c and isinstance(category, dict) and not contract.holds_value(category.get("title")):
+            blank |= {"Category"} & set(_declared_blank(sheet, kind))
+    if sheet == contract.GROUPS:
+        if template != "studies[].adverse_events.groups[]":
+            blank |= set(_declared_blank(sheet, "a group of any module but adverse events"))
+        if template != POSTED_GROUPS:
+            blank |= set(_declared_blank(sheet, "a group of any module but posted results"))
+    if sheet == contract.RECURRING and isinstance(node, dict):
+        element = node.get("element") if isinstance(node.get("element"), dict) else {}
+        if not contract.holds_value(element.get("key")):
+            blank |= set(_declared_blank(sheet, "a group not assessed"))
+    return blank
+
+
+def _pointer(template: str, indices: list[int], down_to: str) -> list[str]:
+    """The tokens of the pointer to a row's ancestor at a list segment of its template."""
+    tokens: list[str] = []
+    used = 0
+    for segment in template.split("."):
+        tokens.append(segment.removesuffix("[]"))
+        if segment.endswith("[]"):
+            tokens.append(str(indices[used]))
+            used += 1
+            if segment == down_to:
+                return tokens
+    return []
 
 
 def _safety_expected(
@@ -813,28 +928,80 @@ def _safety_expected(
     return False, []
 
 
-def row_findings(record: dict[str, Any], sheet: contract.Sheet, row: Row) -> tuple[list[Finding], str]:
+def _group_of(record: Any, template: str, indices: list[int], node: Any) -> dict[str, Any] | None:
+    """A measurement's group in its own measure's groups (the join by group ID within the measure)."""
+    if template != LISTING_GRAINS[contract.POSTED][0] or not isinstance(node, dict):
+        return None
+    found, measure, _t, _i = resolve_pointer(record, _pointer(template, indices, "posted_outcomes[]"))
+    groups = measure.get("groups") if found and isinstance(measure, dict) else None
+    return next((g for g in groups or [] if isinstance(g, dict) and g.get("id") == node.get("group")), None)
+
+
+def _same_group(left: Any, right: Any) -> bool:
+    """Two posted-outcome groups of one trial are the same group where their title and description are."""
+    return (
+        isinstance(left, dict)
+        and isinstance(right, dict)
+        and same_value(left.get("title"), right.get("title"))
+        and same_value(left.get("description"), right.get("description"))
+    )
+
+
+def _link_findings(
+    record, sheets, cell: Linked, group, study_index: int, nct: str, where: str
+) -> list[Finding]:
+    """A Group cell's link must point at the Groups row of the measurement's own group (same trial, title
+    and description)."""
+    rows = sheets.get(cell.sheet, ([], []))
+    headers, cells = rows
+    if cell.sheet != contract.GROUPS or not 0 < cell.row <= len(cells):
+        return [Finding("wrong_link", nct, f"{contract.POSTED}: Group", where, contract.GROUPS, cell)]
+    address = dict(zip(headers, cells[cell.row - 1], strict=False)).get(contract.ADDRESS)
+    found, target, template, indices = _resolve(record, _plain(address))
+    if found and template == POSTED_GROUPS and indices[0] == study_index and _same_group(target, group):
+        return []
+    return [Finding("wrong_link", nct, f"{contract.POSTED}: Group", where, group, _plain(address))]
+
+
+def _outcome_measures(record: Any, study_index: int, node: Any) -> Expected:
+    """A posted-outcome group's Outcome measures cell: the title of every measure of its trial that holds the
+    same group (title and description)."""
+    studies = record.get("studies") or []
+    study = studies[study_index] if study_index < len(studies) else {}
+    titles = [
+        m.get("title")
+        for m in study.get("posted_outcomes") or []
+        if isinstance(m, dict) and any(_same_group(g, node) for g in m.get("groups") or [])
+    ]
+    return Expected([t for t in titles if isinstance(t, str)], [], [])
+
+
+def row_findings(
+    record: dict[str, Any], sheet: contract.Sheet, row: Row, sheets: dict | None = None
+) -> tuple[list[Finding], str]:
     """One listing row against the record: its address, its trial and every column; and the node it shows."""
     where = f"{sheet.name} row {row.number}"
-    address = row.cells.get(contract.ADDRESS)
-    code, tokens = pointer_steps(address) if isinstance(address, str) else ("not_a_pointer", [])
-    if code != "ok":
+    address = _plain(row.cells.get(contract.ADDRESS))
+    found, node, template, indices = _resolve(record, address)
+    if not isinstance(address, str) or pointer_steps(address)[0] != "ok":
         return [Finding("address_unreadable", "", sheet.name, where, None, address)], ""
-    found, node, template, indices = resolve_pointer(record, tokens)
     if not found:
         return [Finding("address_unresolved", "", sheet.name, where, None, address)], ""
     studies = record.get("studies") or []
     study = studies[indices[0]] if template.startswith("studies[]") and indices else {}
     nct = study.get("nct") if isinstance(study, dict) else None
     findings = _raw_findings(row, str(nct), where)
-    if "Trial ID" in row.cells and not (isinstance(nct, str) and shows_text(str(row.cells["Trial ID"]), nct)):
-        findings.append(Finding("trial_differs", str(nct), sheet.name, where, nct, row.cells.get("Trial ID")))
+    trial = _plain(row.cells.get("Trial ID"))
+    if "Trial ID" in row.cells and not (isinstance(nct, str) and shows_text(str(trial), nct)):
+        findings.append(Finding("trial_differs", str(nct), sheet.name, where, nct, trial))
     if sheet.name in ADDRESSED_ONLY:
         return findings, address
     grains = sheet_grains(sheet)
     if template not in grains:
         return [*findings, Finding("wrong_grain", str(nct), sheet.name, where, grains, address)], address
     group = node.get("group") if isinstance(node, dict) else None
+    blank = blank_columns(sheet.name, template, node, record, indices)
+    joined = _group_of(record, template, indices, node)
     for column in sheet.columns:
         if column.shows == "address" or column.header == "Trial ID":
             continue
@@ -844,39 +1011,44 @@ def row_findings(record: dict[str, Any], sheet: contract.Sheet, row: Row) -> tup
         if column.header not in row.cells:
             findings.append(Finding("column_missing", str(nct), sheet.name, column.header, None, None))
             continue
-        own = sheet.name == contract.GROUPS and column.header in GROUPS_OWN
-        texts, words = _groups_column(column.header, template, indices) if own else ([], [])
-        if texts is None:
-            continue
-        names = [
-            name
-            for name in (() if own else column.fields)
-            if name != "studies[].nct" and _applies(name, template, grains) and not _joins(name, template)
-        ]
-        by_construction = not own and bool(column.fields) and not names
-        for name in names:
-            for value in _row_values(record, name, template, indices, group):
-                more, worded = expected(contract.FIELD_NAMES[name], value)
-                texts += more
-                words += worded
         cell = row.cells[column.header]
-        texts = list(dict.fromkeys(texts))
-        verdict = judge(cell, texts, [], list(dict.fromkeys(words)), by_construction)
+        want, names = _column_expected(record, sheet, column, template, indices, node, group, grains)
+        if want is None:
+            continue
+        if isinstance(cell, Linked) and column.header == "Group" and joined is not None:
+            findings += _link_findings(record, sheets or {}, cell, joined, indices[0], str(nct), where)
+            want = Expected([t for t in want.texts if t != group], want.counts, want.words)
+        verdict = judge(cell, want, column.header in blank)
         if verdict not in ("shown", "blank_by_construction"):
             field = f"{sheet.name}: {column.header}"
-            findings.append(Finding(verdict, str(nct), field, where, texts or words, _plain(cell)))
+            findings.append(Finding(verdict, str(nct), field, where, want.texts or want.words, _plain(cell)))
     return findings, address
 
 
-def _groups_column(header: str, template: str, indices: list[int]) -> tuple[list[str] | None, list[str]]:
-    """The Groups sheet's own columns: Module shows the module in words the contract does not fix (any words);
-    Column names an adverse-event group's Safety columns, G1 ... Gn by its place, and is not fixed for the
-    other modules (not checked: None)."""
-    if header == "Column":
+def _column_expected(record, sheet, column, template, indices, node, group, grains):
+    """What a listing cell must show (None where it is not checked): the Groups sheet's own columns by
+    their rule, the denominator without the participants its header implies, every other column the values
+    of its fields that belong to the row."""
+    if sheet.name == contract.GROUPS and column.header == "Module":
+        return NOTHING, ()
+    if sheet.name == contract.GROUPS and column.header == "Column":
         if template == "studies[].adverse_events.groups[]":
-            return [f"G{indices[-1] + 1}"], []
-        return None, []
-    return [], []
+            return Expected([f"G{indices[-1] + 1}"], [], []), ()
+        return NOTHING, ()
+    if sheet.name == contract.GROUPS and column.header == "Outcome measures" and template == POSTED_GROUPS:
+        return _outcome_measures(record, indices[0], node), ()
+    names = [
+        name
+        for name in column.fields
+        if name != "studies[].nct" and _applies(name, template, grains) and not _joins(name, template)
+    ]
+    want = NOTHING
+    for name in names:
+        for value in _row_values(record, name, template, indices, group):
+            if name in DENOMINATOR_UNITS and value == IMPLIED_UNITS:
+                continue
+            want = want.plus(expected(contract.FIELD_NAMES[name], value))
+    return want, names
 
 
 def _safety_findings(study, event, row: Row, column: contract.Column, nct: str, where: str) -> list[Finding]:
@@ -888,11 +1060,14 @@ def _safety_findings(study, event, row: Row, column: contract.Column, nct: str, 
             continue
         by_construction, numbers = _safety_expected(study, event, int(n), SAFETY_STAT[stat])
         words = [] if by_construction or numbers else [NOT_REPORTED]
-        cell = _plain(row.cells[header])
-        verdict = cell_verdict(cell, [], numbers, words, by_construction)
+        cell = row.cells[header]
+        if numbers:
+            verdict = _count_verdict(cell, numbers, by_construction)
+        else:
+            verdict = cell_verdict(_plain(cell), [], [], words, by_construction)
         if verdict not in ("shown", "blank_by_construction"):
             field = f"{contract.SAFETY}: {header}"
-            findings.append(Finding(verdict, nct, field, where, numbers or words, cell))
+            findings.append(Finding(verdict, nct, field, where, numbers or words, _plain(cell)))
     return findings
 
 
@@ -915,14 +1090,30 @@ def grain_nodes(record: dict[str, Any], grain: str) -> list[str]:
     return [pointer for pointer, _node in pointers]
 
 
-def _empty_line(record: dict[str, Any], sheet: contract.Sheet, rows: list[Row]) -> bool:
-    """Whether a listing is the one line saying it is empty: one row, no address, words in its first cell, and
-    no node of the record at its grain."""
+def _empty_line(record: dict[str, Any], sheet: contract.Sheet, rows: list[Row]) -> list[Finding] | None:
+    """A listing no trial has a row in is one row: the contract's words (contract.EMPTY_LISTING_WORDS) in its
+    first column, every other cell blank. None where the listing is not such a line."""
     grains = sheet_grains(sheet) or EMPTY_GRAINS.get(sheet.name, ())
-    if len(rows) != 1 or rows[0].cells.get(contract.ADDRESS) is not None or not grains:
-        return False
-    first = next((cell for cell in rows[0].cells.values() if cell is not None), None)
-    return isinstance(first, str) and not any(grain_nodes(record, grain) for grain in grains)
+    if len(rows) != 1 or _plain(rows[0].cells.get(contract.ADDRESS)) is not None or not grains:
+        return None
+    if any(grain_nodes(record, grain) for grain in grains):
+        return None
+    cells = list(rows[0].cells.values())
+    words = contract.EMPTY_LISTING_WORDS.get(sheet.name)
+    where = f"{sheet.name} row 1"
+    found = []
+    if words is None or _plain(cells[0]) != words:
+        found.append(Finding("wrong_words", "", f"{sheet.name}: empty line", where, words, _plain(cells[0])))
+    if any(_plain(cell) is not None for cell in cells[1:]):
+        found.append(Finding("not_blank", "", f"{sheet.name}: empty line", where, None, cells[1:]))
+    return found
+
+
+def _posted_group_key(record: Any, address: Any) -> tuple | None:
+    found, node, template, indices = _resolve(record, address)
+    if not found or template != POSTED_GROUPS or not isinstance(node, dict):
+        return None
+    return (indices[0], json.dumps(node.get("title")), json.dumps(node.get("description")))
 
 
 def cell_findings(
@@ -935,17 +1126,14 @@ def cell_findings(
     listings row by row through their addresses, the Trial index trial by trial and the Trial review fact by
     fact.
 
-    complete: every node of a listing's row grain has exactly one row; whole_workbook: every listing the
-    contract names is present (a workbook read back, not listings given one by one).
+    complete: every node of a listing's row grain has exactly one row (a posted-outcome group, one row per
+    trial, title and description); whole_workbook: every listing the contract names is present.
     """
     findings = []
     for sheet in SHEETS:
+        rows = _rows_of(sheets, sheet.name)
         if sheet.name in (contract.INDEX, contract.REVIEW):
-            if sheet.name in sheets:
-                headers, cells = sheets[sheet.name]
-                rows = [
-                    Row(sheet.name, n, dict(zip(headers, c, strict=False))) for n, c in enumerate(cells, 1)
-                ]
+            if rows is not None:
                 check = index_findings if sheet.name == contract.INDEX else dossier_findings
                 findings += check(record, sheet, rows)
             elif whole_workbook:
@@ -954,23 +1142,24 @@ def cell_findings(
         grains = sheet_grains(sheet)
         if not grains and sheet.name not in ADDRESSED_ONLY:
             continue
-        if sheet.name not in sheets:
+        if rows is None:
             if whole_workbook:
                 findings.append(Finding("sheet_missing", "", sheet.name, "", sheet.name, None))
             continue
-        headers, cells = sheets[sheet.name]
-        rows = [Row(sheet.name, n, dict(zip(headers, c, strict=False))) for n, c in enumerate(cells, 1)]
-        if _empty_line(record, sheet, rows):
+        empty = _empty_line(record, sheet, rows)
+        if empty is not None:
+            findings += empty
             continue
-        addressed: dict[str, int] = {}
+        addressed: dict[Any, int] = {}
         for row in rows:
-            found, address = row_findings(record, sheet, row)
+            found, address = row_findings(record, sheet, row, sheets)
             findings += found
             if address:
-                addressed[address] = addressed.get(address, 0) + 1
+                key = _posted_group_key(record, address) or address
+                addressed[key] = addressed.get(key, 0) + 1
         findings += [
-            Finding("row_repeated", "", sheet.name, address, 1, count)
-            for address, count in addressed.items()
+            Finding("row_repeated", "", sheet.name, str(key), 1, count)
+            for key, count in addressed.items()
             if count > 1
         ]
         if complete:
@@ -978,9 +1167,17 @@ def cell_findings(
                 findings += [
                     Finding("row_missing", "", sheet.name, pointer, pointer, None)
                     for pointer in grain_nodes(record, grain)
-                    if pointer not in addressed
+                    if (_posted_group_key(record, pointer) or pointer) not in addressed
                 ]
     return findings
+
+
+def _rows_of(sheets: dict[str, tuple[list[str], list[list[Any]]]], name: str) -> list[Row] | None:
+    if name not in sheets:
+        return None
+    headers, cells = sheets[name]
+    rows = [Row(name, n, dict(zip(headers, c, strict=False))) for n, c in enumerate(cells, 1)]
+    return [row for row in rows if any(_plain(cell) is not None for cell in row.cells.values())]
 
 
 # ── the Trial index and the Trial review ────────────────────────────────────────────────────────────────
@@ -995,44 +1192,58 @@ def _study_values(record: dict[str, Any], i: int, name: str) -> list[Any]:
     return _row_values(record, name, "studies[]", [i], None)
 
 
-def _index_expected(record: dict[str, Any], i: int, study: dict[str, Any], column: contract.Column):
-    """What an index cell must show (texts, status words), or None where the column is not checked here.
+def _field_expected(record: dict[str, Any], i: int, name: str) -> Expected:
+    want = NOTHING
+    for value in _study_values(record, i, name):
+        want = want.plus(expected(contract.FIELD_NAMES[name], value))
+    return want
 
-    The index is compact (design §4): the short title is the acronym where the record holds one, else the
-    brief title; the primary endpoint is the first registered primary outcome's measure; results posted is
-    the date results were first posted, else the results state; publications is the number of references;
-    the dossier column is a link. Every other column shows each value of the fields it names."""
+
+def _as_text(want: Expected) -> Expected:
+    """Values shown inside a text cell: counts are then text too."""
+    return Expected(want.texts, [], want.words)
+
+
+def _index_expected(record: dict[str, Any], i: int, study: dict[str, Any], column: contract.Column):
+    """What an index cell must show (contract.INDEX_COMPACT), or None where the column is not checked here."""
     header = column.header
     if header == "Trial ID":
         return None
     if header == "Dossier":
-        return [], []
+        return NOTHING
     if header == "Acronym or short title":
         name = "acronym" if isinstance(study.get("acronym"), str) else "brief_title"
-        return expected(contract.FIELD_NAMES[f"studies[].{name}"], study.get(name))
+        return _field_expected(record, i, f"studies[].{name}")
+    if header == "Status":
+        want = _field_expected(record, i, "studies[].overall_status")
+        if study.get("overall_status") == "UNKNOWN":
+            want = want.plus(_field_expected(record, i, "studies[].last_known_status"))
+        return want
     if header == "Primary endpoint":
-        outcomes = study.get("registered_outcomes")
-        primary = [o for o in outcomes or [] if isinstance(o, dict) and o.get("category") == "primary"]
+        primary = [o for o in study.get("registered_outcomes") or [] if isinstance(o, dict)]
+        primary = [o for o in primary if o.get("category") == "primary"]
         measure = primary[0].get("measure") if primary else None
-        return ([measure], []) if isinstance(measure, str) else ([], [])
+        texts = [measure] if isinstance(measure, str) else []
+        return Expected(texts + ([str(len(primary) - 1)] if len(primary) > 1 else []), [], [])
     if header == "Results posted":
         first = study.get("results_first_posted")
         if isinstance(first, str):
-            return [first], []
-        return expected(contract.FIELD_NAMES["studies[].results_posted"], study.get("results_posted"))
+            return Expected([date_words(first)], [], [])
+        return Expected([], [], [status_words("not_posted")])
     if header == "Publications":
-        references = study.get("references")
-        if isinstance(references, list) and references:
-            return [str(len(references))], []
-        return [], [status_words("not_stated")]
-    texts: list[str] = []
-    words: list[str] = []
+        references = [r for r in study.get("references") or [] if isinstance(r, dict)]
+        if not references:
+            return Expected([], [], [status_words("not_stated")])
+        results = sum(1 for r in references if r.get("type") == "RESULT")
+        return Expected([str(len(references)), str(results)], [], [])
+    if header in ("Treatment setting", "Prior lines for advanced disease", "Gene selection"):
+        held = [v for name in column.fields for v in _study_values(record, i, name)]
+        if not held:
+            return Expected([], [], [status_words("not_applicable")])
+    want = NOTHING
     for name in column.fields:
-        for value in _study_values(record, i, name):
-            more, worded = expected(contract.FIELD_NAMES[name], value)
-            texts += more
-            words += worded
-    return list(dict.fromkeys(texts)), list(dict.fromkeys(words))
+        want = want.plus(_field_expected(record, i, name))
+    return _as_text(want)
 
 
 def index_findings(record: dict[str, Any], sheet: contract.Sheet, rows: list[Row]) -> list[Finding]:
@@ -1041,7 +1252,7 @@ def index_findings(record: dict[str, Any], sheet: contract.Sheet, rows: list[Row
     studies = _study_by_nct(record)
     seen = set()
     for row in rows:
-        nct = row.cells.get("Trial ID")
+        nct = _plain(row.cells.get("Trial ID"))
         where = f"{sheet.name} row {row.number}"
         findings += _raw_findings(row, str(nct), where)
         if nct not in studies:
@@ -1050,18 +1261,17 @@ def index_findings(record: dict[str, Any], sheet: contract.Sheet, rows: list[Row
         seen.add(nct)
         i, study = studies[nct]
         for column in sheet.columns:
-            wanted = _index_expected(record, i, study, column)
-            if wanted is None:
+            want = _index_expected(record, i, study, column)
+            if want is None:
                 continue
             if column.header not in row.cells:
                 findings.append(Finding("column_missing", nct, sheet.name, column.header, None, None))
                 continue
-            texts, words = wanted
             cell = row.cells[column.header]
-            verdict = judge(cell, texts, [], words, False)
+            verdict = judge(cell, want, False)
             if verdict != "shown":
                 field = f"{sheet.name}: {column.header}"
-                findings.append(Finding(verdict, nct, field, where, texts or words, _plain(cell)))
+                findings.append(Finding(verdict, nct, field, where, want.texts or want.words, _plain(cell)))
     findings += [
         Finding("row_missing", nct, sheet.name, nct, nct, None) for nct in studies if nct not in seen
     ]
@@ -1088,15 +1298,23 @@ def _list_fields(label: str) -> dict[str, contract.Field]:
     return found
 
 
-def _fact_check(cell: Any, field: contract.Field, values: list[Any]) -> tuple[str, list[str], list[str]]:
-    texts: list[str] = []
-    words: list[str] = []
+def _values_expected(field: contract.Field, values: list[Any]) -> Expected:
+    want = NOTHING
     for value in values:
-        more, worded = expected(field, value)
-        texts += more
-        words += worded
-    texts, words = list(dict.fromkeys(texts)), list(dict.fromkeys(words))
-    return judge(cell, texts, [], words, False), texts, words
+        want = want.plus(expected(field, value))
+    return want
+
+
+def _basis(field: contract.Field, values: list[Any]) -> list[str]:
+    """The words the Trial review's Basis must hold for a fact (contract.BASIS_WORDS, else a status's
+    words)."""
+    objects = [v for v in values if is_value_object(v)]
+    worded = [status_words(v.get("status")) for v in objects if v.get("status") in WORDED_STATUSES]
+    if worded:
+        return worded
+    if objects or field.kind == "reading":
+        return [contract.BASIS_WORDS["reading"]]
+    return [contract.BASIS_WORDS["registry"]] if any(contract.holds_value(v) for v in values) else []
 
 
 def _numbered_element(study: dict[str, Any], fact: str, labels: list[str]) -> tuple[str, Any] | None:
@@ -1110,7 +1328,7 @@ def _numbered_element(study: dict[str, Any], fact: str, labels: list[str]) -> tu
     for label in labels:
         named = set(_list_fields(label))
         lists = named if lists is None else lists & named
-    category = next((c for c in WHICH_LIST_WORDS if prefix.lower() == f"{c} outcome"), None)
+    category = next((c for c in contract.WHICH_LIST_WORDS if prefix.lower() == f"{c} outcome"), None)
     if category is not None:
         lists = {"registered_outcomes"}
     if not lists or len(lists) != 1:
@@ -1126,57 +1344,60 @@ def _numbered_element(study: dict[str, Any], fact: str, labels: list[str]) -> tu
 
 def dossier_findings(record: dict[str, Any], sheet: contract.Sheet, rows: list[Row]) -> list[Finding]:
     """The Trial review, one row a fact: a fact of one value against the record's value of its label, its
-    basis in the status's words where the record holds a status; a numbered fact's every "Label: value" line
-    against its list entry; and every fact of one value the registry holds has its row."""
+    Basis in the contract's words; a numbered fact's every "Label: value" line against its list entry; and
+    every fact of one value the registry holds has its row."""
     findings = []
     studies = _study_by_nct(record)
     scalars = _scalar_fields()
     shown: dict[str, set[str]] = {}
     for row in rows:
-        nct = row.cells.get("Trial ID")
+        nct = _plain(row.cells.get("Trial ID"))
         where = f"{sheet.name} row {row.number}"
         findings += _raw_findings(row, str(nct), where)
         if nct not in studies:
             findings.append(Finding("trial_differs", str(nct), sheet.name, where, sorted(studies), nct))
             continue
         i, study = studies[nct]
-        fact, value = row.cells.get("Fact"), row.cells.get("Value")
+        fact, value = _plain(row.cells.get("Fact")), row.cells.get("Value")
         shown.setdefault(nct, set()).add(fact)
-        if not isinstance(fact, str) or row.cells.get("Basis") == "Note":
+        basis = _plain(row.cells.get("Basis"))
+        if not isinstance(fact, str) or basis == contract.BASIS_WORDS["note"]:
             continue
         if fact in scalars:
             field = scalars[fact]
             values = _study_values(record, i, field.name)
-            verdict, texts, words = _fact_check(value, field, values)
+            want = _values_expected(field, values)
+            verdict = judge(value, want, False)
             if verdict != "shown":
+                field_name = f"{sheet.name}: {fact}"
                 findings.append(
-                    Finding(verdict, nct, f"{sheet.name}: {fact}", where, texts or words, _plain(value))
+                    Finding(verdict, nct, field_name, where, want.texts or want.words, _plain(value))
                 )
-            if words and not texts and judge(row.cells.get("Basis"), [], [], words, False) != "shown":
-                basis = row.cells.get("Basis")
+            wanted = _basis(field, values)
+            if wanted and basis not in wanted:
                 findings.append(
-                    Finding("wrong_words", nct, f"{sheet.name}: {fact} (basis)", where, words, basis)
+                    Finding("wrong_words", nct, f"{sheet.name}: {fact} (basis)", where, wanted, basis)
                 )
             continue
-        if not isinstance(value, str):
+        text = _plain(value)
+        if not isinstance(text, str):
             continue
-        lines = [LINE.fullmatch(line) for line in value.split("\n")]
+        lines = [LINE.fullmatch(line) for line in text.split("\n")]
         labelled = [(m.group(1), m.group(2)) for m in lines if m is not None]
         entry = _numbered_element(study, fact, [label for label, _text in labelled if _list_fields(label)])
         if entry is None:
             continue
         name, element = entry
-        for label, text in labelled:
+        for label, line in labelled:
             field = _list_fields(label).get(name)
             if field is None or element is None:
                 continue
             rest = field.name.removeprefix(f"studies[].{name}[].")
-            held = _row_values(element, rest, "", [], None)
-            verdict, texts, words = _fact_check(text, field, held)
+            want = _values_expected(field, _row_values(element, rest, "", [], None))
+            verdict = judge(line, _as_text(want), False)
             if verdict != "shown":
-                findings.append(
-                    Finding(verdict, nct, f"{sheet.name}: {fact}: {label}", where, texts or words, text)
-                )
+                field_name = f"{sheet.name}: {fact}: {label}"
+                findings.append(Finding(verdict, nct, field_name, where, want.texts or want.words, line))
     for nct, (i, _study) in studies.items():
         composites: set[str] = set()
         for label, field in scalars.items():
@@ -1197,36 +1418,59 @@ def dossier_findings(record: dict[str, Any], sheet: contract.Sheet, rows: list[R
 
 # ── the shells: a workbook read back, a run folder's files ─────────────────────────────────────────────
 
+LOCATION = re.compile(r"#?'?(?P<sheet>[^'!]+)'?!\$?[A-Z]+\$?(?P<row>\d+)")
+
 
 def workbook_sheets(path: Path) -> dict[str, tuple[list[str], list[list[Any]]]]:
-    """A workbook's sheets as (headers, rows), a number cell as a Number with its format: the header row is
-    the first that names the address column or begins with the Trial ID, and a listing's continuation sheets
-    ("Safety (2)", "Safety 2") are read on after it."""
+    """A workbook's sheets as (headers, rows): a number cell as a Number with its format, a cell linking
+    inside the workbook as a Linked to the sheet and data row it points at. The header row is the first that
+    names the address column or begins with the Trial ID; a listing's continuation sheets ("Safety (2)",
+    "Safety 2") are read on after it."""
     from openpyxl import load_workbook
 
-    book = load_workbook(path, read_only=True, data_only=True)
-    sheets: dict[str, tuple[list[str], list[list[Any]]]] = {}
+    book = load_workbook(path, data_only=True)
+    raw: dict[str, list[tuple[str, int, list[Any]]]] = {}
     names = {sheet.name for sheet in SHEETS}
     for worksheet in book.worksheets:
         base = re.sub(r"\s*(\(\d+\)|\d+)$", "", worksheet.title)
         if base not in names:
             continue
-        rows = [[_read_cell(cell) for cell in row] for row in worksheet.iter_rows()]
+        rows = [list(row) for row in worksheet.iter_rows()]
+        values = [[cell.value for cell in row] for row in rows]
         start = next(
-            (i for i, row in enumerate(rows) if contract.ADDRESS in row or (row and row[0] == "Trial ID")),
+            (i for i, row in enumerate(values) if contract.ADDRESS in row or (row and row[0] == "Trial ID")),
             None,
         )
         if start is None:
             continue
-        headers = [str(cell) if cell is not None else "" for cell in rows[start]]
-        held = sheets.setdefault(base, (headers, []))
-        held[1].extend(rows[start + 1 :])
+        raw.setdefault(base, []).append((worksheet.title, start, rows))
+    # a sheet's data rows numbered across its continuation sheets, to read each link's target row
+    offsets: dict[str, tuple[str, int]] = {}
+    for base, parts in raw.items():
+        count = 0
+        for title, start, rows in parts:
+            offsets[title] = (base, count - (start + 1))
+            count += len(rows) - start - 1
+    sheets: dict[str, tuple[list[str], list[list[Any]]]] = {}
+    for base, parts in raw.items():
+        for _title, start, rows in parts:
+            headers = [str(cell.value) if cell.value is not None else "" for cell in rows[start]]
+            held = sheets.setdefault(base, (headers, []))
+            held[1].extend([[_read_cell(cell, offsets) for cell in row] for row in rows[start + 1 :]])
     book.close()
     return sheets
 
 
-def _read_cell(cell: Any) -> Any:
+def _read_cell(cell: Any, offsets: dict[str, tuple[str, int]]) -> Any:
     value = getattr(cell, "value", None)
+    link = getattr(cell, "hyperlink", None)
+    location = getattr(link, "location", None) if link is not None else None
+    if isinstance(location, str):
+        found = LOCATION.fullmatch(location)
+        if found is not None and found.group("sheet") in offsets:
+            base, offset = offsets[found.group("sheet")]
+            return Linked(value, base, int(found.group("row")) + offset)
+        return Linked(value, location, 0)
     if isinstance(value, (int, float)) and not isinstance(value, bool):
         return Number(value, getattr(cell, "number_format", "General") or "General")
     return value

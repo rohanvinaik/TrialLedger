@@ -1,0 +1,36 @@
+RUN /tmp/tl_int3b studies ['NCT01030536', 'NCT01827384', 'NCT04852770']
+RECORD 0 findings in 0 kinds
+CELLS 573 findings in 2 kinds
+  [393] not_shown | Baseline: Group
+      NCT01030536 Baseline row 1 | expected ['CAT-8015 20 Microgram Per Kilogram (mcg/kg)', 'BG000'] | held 'CAT-8015 20 Microgram Per Kilogram (mcg/kg)'
+      NCT01030536 Baseline row 2 | expected ['CAT-8015 30 Microgram Per Kilogram (mcg/kg)', 'BG001'] | held 'CAT-8015 30 Microgram Per Kilogram (mcg/kg)'
+  [180] not_shown | Participant flow: Group
+      NCT01030536 Participant flow row 1 | expected ['CAT-8015 20 Microgram Per Kilogram (mcg/kg)', 'FG000'] | held 'CAT-8015 20 Microgram Per Kilogram (mcg/kg)'
+      NCT01030536 Participant flow row 2 | expected ['CAT-8015 30 Microgram Per Kilogram (mcg/kg)', 'FG001'] | held 'CAT-8015 30 Microgram Per Kilogram (mcg/kg)'
+TASK compare eligibility across the selected trials | evidence 86 | unresolved 20 | findings 0
+   UNRESOLVED [20] No reading produced
+TASK tell the eligible from the enrolled population | evidence 38 | unresolved 1 | findings 0
+   UNRESOLVED [1] no baseline characteristics posted (not_posted
+TASK find a result's analysis population and denominator | evidence 343 | unresolved 1 | findings 0
+   UNRESOLVED [1] no results posted
+TASK read safety within its reporting period | evidence 23 | unresolved 1 | findings 0
+   UNRESOLVED [1] no adverse events posted (not_posted
+TASK trace a biomarker to its source words | evidence 357 | unresolved 7 | findings 0
+   WARRANTED [2] derivation: studies[].coordinates.prior_advanced_lines_interpolated: narrows
+   WARRANTED [1] derivation: studies[].coordinates.selection_interpolated: narrows
+   WARRANTED [1] derivation: studies[].coordinates.setting_interpolated: narrows
+   WARRANTED [7] derivation: studies[].open_questions: derived
+   WARRANTED [100] quotation: studies[].criteria[].readings: traced
+   WARRANTED [11] quotation: studies[].interventions[].axes: traced
+   WARRANTED [11] quotation: studies[].interventions[].drug_class: traced
+   WARRANTED [24] quotation: studies[].posted_outcomes[].endpoint_classes: traced
+   WARRANTED [54] quotation: studies[].registered_outcomes[].endpoint_classes: traced
+   WARRANTED [54] quotation: studies[].registered_outcomes[].time_points: traced
+   WARRANTED [3] quotation: studies[].universe: traced
+   WARRANTED [68] structural: studies[].criteria[].role: heading
+   WARRANTED [18] structural: studies[].criteria[].role: own_words
+   WARRANTED [3] structural: studies[].results_posted: flag_agrees
+   UNRESOLVED [2] derivation: studies[].coordinates.prior_advanced_lines: unnarrowed
+   UNRESOLVED [1] derivation: studies[].coordinates.selection: unnarrowed
+   UNRESOLVED [1] derivation: studies[].coordinates.setting: unnarrowed
+   UNRESOLVED [3] no biomarker mention in the record

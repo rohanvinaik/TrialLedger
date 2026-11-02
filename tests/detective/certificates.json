@@ -1900,7 +1900,7 @@
   },
   "acceptance/preserve.py::cell_verdict": {
     "cut_reasons": [],
-    "function_digest": "bb421a6e35c9fceb",
+    "function_digest": "319d199798ff21c3",
     "refusal": "",
     "standing": "complete"
   },

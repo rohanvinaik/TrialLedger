@@ -1,0 +1,77 @@
+RECORD 0 findings in 0 kinds
+CELLS 2592 findings in 19 kinds
+  [3] blank | Standard protocol language: Trials stating it
+      None Standard protocol language row 1 | expected ['0'] | held None
+      None Standard protocol language row 2 | expected ['0'] | held None
+  [393] not_shown | Baseline: Denominator
+      NCT01030536 Baseline row 1 | expected ['Participants', '7'] | held 7
+      NCT01030536 Baseline row 2 | expected ['Participants', '6'] | held 6
+  [393] not_shown | Baseline: Group
+      NCT01030536 Baseline row 1 | expected ['CAT-8015 20 Microgram Per Kilogram (mcg/kg)', 'BG000'] | held 'CAT-8015 20 Microgram Per Kilogram (mcg/kg)'
+      NCT01030536 Baseline row 2 | expected ['CAT-8015 30 Microgram Per Kilogram (mcg/kg)', 'BG001'] | held 'CAT-8015 30 Microgram Per Kilogram (mcg/kg)'
+  [180] not_shown | Participant flow: Group
+      NCT01030536 Participant flow row 1 | expected ['CAT-8015 20 Microgram Per Kilogram (mcg/kg)', 'FG000'] | held 'CAT-8015 20 Microgram Per Kilogram (mcg/kg)'
+      NCT01030536 Participant flow row 2 | expected ['CAT-8015 30 Microgram Per Kilogram (mcg/kg)', 'FG001'] | held 'CAT-8015 30 Microgram Per Kilogram (mcg/kg)'
+  [319] not_shown | Posted results: Denominator
+      NCT01030536 Posted results row 1 | expected ['Participants', '7'] | held 7
+      NCT01030536 Posted results row 2 | expected ['Participants', '6'] | held 6
+  [319] not_shown | Posted results: Group
+      NCT01030536 Posted results row 1 | expected ['CAT-8015 20 Microgram Per Kilogram (mcg/kg)', 'OG000'] | held 'CAT-8015 20 Microgram Per Kilogram (mcg/kg)'
+      NCT01030536 Posted results row 2 | expected ['CAT-8015 30 Microgram Per Kilogram (mcg/kg)', 'OG001'] | held 'CAT-8015 30 Microgram Per Kilogram (mcg/kg)'
+  [2] raw_record | Trial review: Value
+      NCT01030536 Trial review row 102 | expected None | held '{\'status\': \'unresolved\', \'rule\': \'review.flags_for\', \'words\': [], \'result\': {\'kind\': \'drug_class_unresolved\', \'element\': \'CAT-8015 20 mcg/kg...
+      NCT01827384 Trial review row 217 | expected None | held '{\'status\': \'unresolved\', \'rule\': \'review.flags_for\', \'words\': [], \'result\': {\'kind\': \'drug_class_unresolved\', \'element\': \'Veliparib\', \'why...
+  [136] row_missing | Groups
+       /studies/0/posted_outcomes/0/groups/0 | expected '/studies/0/posted_outcomes/0/groups/0' | held None
+       /studies/0/posted_outcomes/0/groups/1 | expected '/studies/0/posted_outcomes/0/groups/1' | held None
+  [156] unexplained_blank | Baseline: Category
+      NCT01030536 Baseline row 1 | expected [] | held None
+      NCT01030536 Baseline row 2 | expected [] | held None
+  [252] unexplained_blank | Baseline: Class
+      NCT01030536 Baseline row 7 | expected [] | held None
+      NCT01030536 Baseline row 8 | expected [] | held None
+  [319] unexplained_blank | Posted results: Category
+      NCT01030536 Posted results row 1 | expected [] | held None
+      NCT01030536 Posted results row 2 | expected [] | held None
+  [103] unexplained_blank | Posted results: Class
+      NCT01030536 Posted results row 1 | expected [] | held None
+      NCT01030536 Posted results row 2 | expected [] | held None
+  [3] unexplained_blank | Standard protocol language: Other trials
+      None Standard protocol language row 1 | expected [] | held None
+      None Standard protocol language row 2 | expected [] | held None
+  [3] unexplained_blank | Standard protocol language: Representative wording
+      None Standard protocol language row 1 | expected [] | held None
+      None Standard protocol language row 2 | expected [] | held None
+  [3] unexplained_blank | Standard protocol language: Role
+      None Standard protocol language row 1 | expected [] | held None
+      None Standard protocol language row 2 | expected [] | held None
+  [3] unexplained_blank | Standard protocol language: Wording from
+      None Standard protocol language row 1 | expected [] | held None
+      None Standard protocol language row 2 | expected [] | held None
+  [1] wrong_words | Eligibility: Role
+      NCT01030536 Eligibility row 24 | expected ['Unresolved'] | held 'Not settled: its own words “are permitted” conflict with its heading'
+  [2] wrong_words | Trial review: Open questions (closed questions for an expert; never answered here)
+      NCT01030536 Trial review row 102 | expected ['Unresolved'] | held '{\'status\': \'unresolved\', \'rule\': \'review.flags_for\', \'words\': [], \'result\': {\'kind\': \'drug_class_unresolved\', \'element\': \'CAT-8015 20 mcg/kg...
+      NCT01827384 Trial review row 217 | expected ['Unresolved'] | held '{\'status\': \'unresolved\', \'rule\': \'review.flags_for\', \'words\': [], \'result\': {\'kind\': \'drug_class_unresolved\', \'element\': \'Veliparib\', \'why...
+  [2] wrong_words | Trial review: Open questions (closed questions for an expert; never answered here) (basis)
+      NCT01030536 Trial review row 102 | expected ['Unresolved'] | held 'Registry'
+      NCT01827384 Trial review row 217 | expected ['Unresolved'] | held 'Registry'
+TASK compare eligibility across the selected trials evidence 86 unresolved 20
+   UNRESOLVED [20] No reading produced
+TASK tell the eligible from the enrolled population evidence 38 unresolved 1
+   UNRESOLVED [1] no baseline characteristics posted (not_posted
+TASK find a result's analysis population and denominator evidence 343 unresolved 1
+   UNRESOLVED [1] no results posted
+TASK read safety within its reporting period evidence 23 unresolved 1
+   UNRESOLVED [1] no adverse events posted (not_posted
+TASK trace a biomarker to its source words evidence 275 unresolved 89
+   UNRESOLVED [3] no biomarker mention in the record
+   UNRESOLVED [2] studies[].coordinates.prior_advanced_lines
+   UNRESOLVED [2] studies[].coordinates.prior_advanced_lines_interpolated
+   UNRESOLVED [1] studies[].coordinates.selection
+   UNRESOLVED [1] studies[].coordinates.selection_interpolated
+   UNRESOLVED [1] studies[].coordinates.setting
+   UNRESOLVED [1] studies[].coordinates.setting_interpolated
+   UNRESOLVED [68] studies[].criteria[].role
+   UNRESOLVED [7] studies[].open_questions
+   UNRESOLVED [3] studies[].results_posted

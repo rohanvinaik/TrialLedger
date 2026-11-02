@@ -1,0 +1,196 @@
+RUN /tmp/tl_int3 studies ['NCT01030536', 'NCT01827384', 'NCT04852770']
+RECORD 0 findings in 0 kinds
+CELLS 12972 findings in 56 kinds
+  [393] column_missing | Baseline
+      NCT01030536 Denominator (participants unless otherwise specified) | expected None | held None
+      NCT01030536 Denominator (participants unless otherwise specified) | expected None | held None
+  [59] column_missing | Groups
+      NCT01030536 Outcome measures | expected None | held None
+      NCT01030536 Outcome measures | expected None | held None
+  [319] column_missing | Posted results
+      NCT01030536 Denominator (participants unless otherwise specified) | expected None | held None
+      NCT01030536 Denominator (participants unless otherwise specified) | expected None | held None
+  [86] format_differs | Eligibility: Criterion number
+      NCT01030536 Eligibility row 1 | expected ['1'] | held 1
+      NCT01030536 Eligibility row 2 | expected ['2'] | held 2
+  [301] format_differs | Safety: G1 affected
+      NCT01030536 Safety row 1 | expected [0] | held 0
+      NCT01030536 Safety row 2 | expected [0] | held 0
+  [301] format_differs | Safety: G1 at risk
+      NCT01030536 Safety row 1 | expected [7] | held 7
+      NCT01030536 Safety row 2 | expected [7] | held 7
+  [301] format_differs | Safety: G1 events
+      NCT01030536 Safety row 1 | expected [0] | held 0
+      NCT01030536 Safety row 2 | expected [0] | held 0
+  [243] format_differs | Safety: G10 affected
+      NCT01827384 Safety row 59 | expected [0] | held 0
+      NCT01827384 Safety row 60 | expected [1] | held 1
+  [243] format_differs | Safety: G10 at risk
+      NCT01827384 Safety row 59 | expected [15] | held 15
+      NCT01827384 Safety row 60 | expected [15] | held 15
+  [243] format_differs | Safety: G10 events
+      NCT01827384 Safety row 59 | expected [0] | held 0
+      NCT01827384 Safety row 60 | expected [1] | held 1
+  [243] format_differs | Safety: G11 affected
+      NCT01827384 Safety row 59 | expected [0] | held 0
+      NCT01827384 Safety row 60 | expected [1] | held 1
+  [243] format_differs | Safety: G11 at risk
+      NCT01827384 Safety row 59 | expected [7] | held 7
+      NCT01827384 Safety row 60 | expected [7] | held 7
+  [243] format_differs | Safety: G11 events
+      NCT01827384 Safety row 59 | expected [0] | held 0
+      NCT01827384 Safety row 60 | expected [1] | held 1
+  [243] format_differs | Safety: G12 affected
+      NCT01827384 Safety row 59 | expected [1] | held 1
+      NCT01827384 Safety row 60 | expected [0] | held 0
+  [243] format_differs | Safety: G12 at risk
+      NCT01827384 Safety row 59 | expected [1] | held 1
+      NCT01827384 Safety row 60 | expected [1] | held 1
+  [243] format_differs | Safety: G12 events
+      NCT01827384 Safety row 59 | expected [1] | held 1
+      NCT01827384 Safety row 60 | expected [0] | held 0
+  [243] format_differs | Safety: G13 affected
+      NCT01827384 Safety row 59 | expected [0] | held 0
+      NCT01827384 Safety row 60 | expected [0] | held 0
+  [243] format_differs | Safety: G13 at risk
+      NCT01827384 Safety row 59 | expected [2] | held 2
+      NCT01827384 Safety row 60 | expected [2] | held 2
+  [243] format_differs | Safety: G13 events
+      NCT01827384 Safety row 59 | expected [0] | held 0
+      NCT01827384 Safety row 60 | expected [0] | held 0
+  [243] format_differs | Safety: G14 affected
+      NCT01827384 Safety row 59 | expected [1] | held 1
+      NCT01827384 Safety row 60 | expected [0] | held 0
+  [243] format_differs | Safety: G14 at risk
+      NCT01827384 Safety row 59 | expected [131] | held 131
+      NCT01827384 Safety row 60 | expected [131] | held 131
+  [243] format_differs | Safety: G14 events
+      NCT01827384 Safety row 59 | expected [1] | held 1
+      NCT01827384 Safety row 60 | expected [0] | held 0
+  [301] format_differs | Safety: G2 affected
+      NCT01030536 Safety row 1 | expected [0] | held 0
+      NCT01030536 Safety row 2 | expected [0] | held 0
+  [301] format_differs | Safety: G2 at risk
+      NCT01030536 Safety row 1 | expected [6] | held 6
+      NCT01030536 Safety row 2 | expected [6] | held 6
+  [301] format_differs | Safety: G2 events
+      NCT01030536 Safety row 1 | expected [0] | held 0
+      NCT01030536 Safety row 2 | expected [0] | held 0
+  [301] format_differs | Safety: G3 affected
+      NCT01030536 Safety row 1 | expected [1] | held 1
+      NCT01030536 Safety row 2 | expected [0] | held 0
+  [301] format_differs | Safety: G3 at risk
+      NCT01030536 Safety row 1 | expected [6] | held 6
+      NCT01030536 Safety row 2 | expected [6] | held 6
+  [301] format_differs | Safety: G3 events
+      NCT01030536 Safety row 1 | expected [1] | held 1
+      NCT01030536 Safety row 2 | expected [0] | held 0
+  [301] format_differs | Safety: G4 affected
+      NCT01030536 Safety row 1 | expected [0] | held 0
+      NCT01030536 Safety row 2 | expected [0] | held 0
+  [301] format_differs | Safety: G4 at risk
+      NCT01030536 Safety row 1 | expected [3] | held 3
+      NCT01030536 Safety row 2 | expected [3] | held 3
+  [301] format_differs | Safety: G4 events
+      NCT01030536 Safety row 1 | expected [0] | held 0
+      NCT01030536 Safety row 2 | expected [0] | held 0
+  [301] format_differs | Safety: G5 affected
+      NCT01030536 Safety row 1 | expected [0] | held 0
+      NCT01030536 Safety row 2 | expected [1] | held 1
+  [301] format_differs | Safety: G5 at risk
+      NCT01030536 Safety row 1 | expected [1] | held 1
+      NCT01030536 Safety row 2 | expected [1] | held 1
+  [301] format_differs | Safety: G5 events
+      NCT01030536 Safety row 1 | expected [0] | held 0
+      NCT01030536 Safety row 2 | expected [1] | held 1
+  [243] format_differs | Safety: G6 affected
+      NCT01827384 Safety row 59 | expected [1] | held 1
+      NCT01827384 Safety row 60 | expected [0] | held 0
+  [243] format_differs | Safety: G6 at risk
+      NCT01827384 Safety row 59 | expected [22] | held 22
+      NCT01827384 Safety row 60 | expected [22] | held 22
+  [243] format_differs | Safety: G6 events
+      NCT01827384 Safety row 59 | expected [1] | held 1
+      NCT01827384 Safety row 60 | expected [0] | held 0
+  [243] format_differs | Safety: G7 affected
+      NCT01827384 Safety row 59 | expected [0] | held 0
+      NCT01827384 Safety row 60 | expected [0] | held 0
+  [243] format_differs | Safety: G7 at risk
+      NCT01827384 Safety row 59 | expected [2] | held 2
+      NCT01827384 Safety row 60 | expected [2] | held 2
+  [243] format_differs | Safety: G7 events
+      NCT01827384 Safety row 59 | expected [0] | held 0
+      NCT01827384 Safety row 60 | expected [0] | held 0
+  [243] format_differs | Safety: G8 affected
+      NCT01827384 Safety row 59 | expected [0] | held 0
+      NCT01827384 Safety row 60 | expected [1] | held 1
+  [243] format_differs | Safety: G8 at risk
+      NCT01827384 Safety row 59 | expected [1] | held 1
+      NCT01827384 Safety row 60 | expected [1] | held 1
+  [243] format_differs | Safety: G8 events
+      NCT01827384 Safety row 59 | expected [0] | held 0
+      NCT01827384 Safety row 60 | expected [1] | held 1
+  [243] format_differs | Safety: G9 affected
+      NCT01827384 Safety row 59 | expected [0] | held 0
+      NCT01827384 Safety row 60 | expected [0] | held 0
+  [243] format_differs | Safety: G9 at risk
+      NCT01827384 Safety row 59 | expected [2] | held 2
+      NCT01827384 Safety row 60 | expected [2] | held 2
+  [243] format_differs | Safety: G9 events
+      NCT01827384 Safety row 59 | expected [0] | held 0
+      NCT01827384 Safety row 60 | expected [0] | held 0
+  [3] format_differs | Trial review: Sites
+      NCT01030536 Trial review row 18 | expected ['8'] | held 8
+      NCT01827384 Trial review row 126 | expected ['8'] | held 8
+  [393] not_shown | Baseline: Group
+      NCT01030536 Baseline row 1 | expected ['CAT-8015 20 Microgram Per Kilogram (mcg/kg)', 'BG000'] | held 'CAT-8015 20 Microgram Per Kilogram (mcg/kg)'
+      NCT01030536 Baseline row 2 | expected ['CAT-8015 30 Microgram Per Kilogram (mcg/kg)', 'BG001'] | held 'CAT-8015 30 Microgram Per Kilogram (mcg/kg)'
+  [180] not_shown | Participant flow: Group
+      NCT01030536 Participant flow row 1 | expected ['CAT-8015 20 Microgram Per Kilogram (mcg/kg)', 'FG000'] | held 'CAT-8015 20 Microgram Per Kilogram (mcg/kg)'
+      NCT01030536 Participant flow row 2 | expected ['CAT-8015 30 Microgram Per Kilogram (mcg/kg)', 'FG001'] | held 'CAT-8015 30 Microgram Per Kilogram (mcg/kg)'
+  [319] not_shown | Posted results: Group
+      NCT01030536 Posted results row 1 | expected ['CAT-8015 20 Microgram Per Kilogram (mcg/kg)', 'OG000'] | held 'CAT-8015 20 Microgram Per Kilogram (mcg/kg)'
+      NCT01030536 Posted results row 2 | expected ['CAT-8015 30 Microgram Per Kilogram (mcg/kg)', 'OG001'] | held 'CAT-8015 30 Microgram Per Kilogram (mcg/kg)'
+  [2] raw_record | Trial review: Value
+      NCT01030536 Trial review row 102 | expected None | held '{\'status\': \'unresolved\', \'rule\': \'review.flags_for\', \'words\': [], \'result\': {\'kind\': \'drug_class_unresolved\', \'element\': \'CAT-8015 20 mcg/kg...
+      NCT01827384 Trial review row 217 | expected None | held '{\'status\': \'unresolved\', \'rule\': \'review.flags_for\', \'words\': [], \'result\': {\'kind\': \'drug_class_unresolved\', \'element\': \'Veliparib\', \'why...
+  [136] row_missing | Groups
+       /studies/0/posted_outcomes/0/groups/0 | expected '/studies/0/posted_outcomes/0/groups/0' | held None
+       /studies/0/posted_outcomes/0/groups/1 | expected '/studies/0/posted_outcomes/0/groups/1' | held None
+  [1] sheet_missing | Recurring criteria
+        | expected 'Recurring criteria' | held None
+  [1] wrong_words | Eligibility: Role
+      NCT01030536 Eligibility row 24 | expected ['Unresolved'] | held 'Not settled: its own words “are permitted” conflict with its heading'
+  [2] wrong_words | Trial review: Open questions (closed questions for an expert; never answered here)
+      NCT01030536 Trial review row 102 | expected ['Unresolved', 'Unresolved', 'Unresolved', 'Unresolved', 'Unresolved'] | held '{\'status\': \'unresolved\', \'rule\': \'review.flags_for\', \'words\': [], \'result\': {\'kind\': \'drug_class_unresolved\', \'element\': \'CAT-8015 20 mcg/kg...
+      NCT01827384 Trial review row 217 | expected ['Unresolved', 'Unresolved'] | held '{\'status\': \'unresolved\', \'rule\': \'review.flags_for\', \'words\': [], \'result\': {\'kind\': \'drug_class_unresolved\', \'element\': \'Veliparib\', \'why...
+  [2] wrong_words | Trial review: Open questions (closed questions for an expert; never answered here) (basis)
+      NCT01030536 Trial review row 102 | expected ['Reading'] | held 'Registry'
+      NCT01827384 Trial review row 217 | expected ['Reading'] | held 'Registry'
+TASK compare eligibility across the selected trials | evidence 86 | unresolved 20 | findings 0
+   UNRESOLVED [20] No reading produced
+TASK tell the eligible from the enrolled population | evidence 38 | unresolved 1 | findings 0
+   UNRESOLVED [1] no baseline characteristics posted (not_posted
+TASK find a result's analysis population and denominator | evidence 343 | unresolved 1 | findings 0
+   UNRESOLVED [1] no results posted
+TASK read safety within its reporting period | evidence 23 | unresolved 1 | findings 0
+   UNRESOLVED [1] no adverse events posted (not_posted
+TASK trace a biomarker to its source words | evidence 357 | unresolved 7 | findings 0
+   WARRANTED [2] derivation: studies[].coordinates.prior_advanced_lines_interpolated: narrows
+   WARRANTED [1] derivation: studies[].coordinates.selection_interpolated: narrows
+   WARRANTED [1] derivation: studies[].coordinates.setting_interpolated: narrows
+   WARRANTED [7] derivation: studies[].open_questions: derived
+   WARRANTED [100] quotation: studies[].criteria[].readings: traced
+   WARRANTED [11] quotation: studies[].interventions[].axes: traced
+   WARRANTED [11] quotation: studies[].interventions[].drug_class: traced
+   WARRANTED [24] quotation: studies[].posted_outcomes[].endpoint_classes: traced
+   WARRANTED [54] quotation: studies[].registered_outcomes[].endpoint_classes: traced
+   WARRANTED [54] quotation: studies[].registered_outcomes[].time_points: traced
+   WARRANTED [3] quotation: studies[].universe: traced
+   WARRANTED [68] structural: studies[].criteria[].role: heading
+   WARRANTED [18] structural: studies[].criteria[].role: own_words
+   WARRANTED [3] structural: studies[].results_posted: flag_agrees
+   UNRESOLVED [2] derivation: studies[].coordinates.prior_advanced_lines: unnarrowed
+   UNRESOLVED [1] derivation: studies[].coordinates.selection: unnarrowed
+   UNRESOLVED [1] derivation: studies[].coordinates.setting: unnarrowed
+   UNRESOLVED [3] no biomarker mention in the record

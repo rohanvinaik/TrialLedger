@@ -17,8 +17,11 @@ complete; in the workbook, a wrong row address, a wrong trial, a changed count, 
 such group, a count written as text, a raw code, a rounded denominator, a missing row and a repeated one; a
 wrong absence label (in a listing and in the dossier, value and basis), an omitted "No reading produced", a
 wrong index fact, a wrong dossier fact, a dossier fact without its row, the record's JSON in a cell, a
-recurring criterion's wordings presented as one representative text, a registry decimal shown with other
-decimals, and a value a number cannot hold (1e-400) written as one.
+recurring criterion's examples presented as one text, a registry decimal shown with other decimals or in
+another format, a value a number cannot hold (1e-400) written as one, a participant denominator changed to
+eyes without its shown unit changing, a posted-outcome group's row with another description, a Group link
+to the wrong group, an empty listing in other words, and a value in a cell the contract declares blank.
+The words, forms and blanks are the contract's declared display policy; the comparisons are the checker's.
 """
 
 import copy
@@ -275,10 +278,10 @@ POSTED_ROW = {
     "Analysis population": RECORD["studies"][1]["posted_outcomes"][0]["population"],
     "Reporting status": "Posted",
     "Time frame": "Day 1 to end of Cycle 1 (approximately 28 days)",
-    "Class": "Not stated",
-    "Category": "Not stated",
+    "Class": None,
+    "Category": None,
     "Group": "CAT-8015 20 Microgram Per Kilogram (mcg/kg) (OG000)",
-    "Denominator": "7 Participants",
+    contract.DENOMINATOR: preserve.Number(7, "0"),
     "Parameter": "Number",
     "Value": "NA",
     "Spread or limits": "Not stated",
@@ -300,7 +303,9 @@ def test_a_hand_written_posted_results_row_agrees_with_the_example():
 @pytest.mark.parametrize(
     ("column", "cell", "code"),
     [
-        ("Denominator", "6 Participants", "not_shown"),
+        (contract.DENOMINATOR, preserve.Number(6, "0"), "number_differs"),
+        (contract.DENOMINATOR, preserve.Number(7, "General"), "format_differs"),
+        ("Class", "Not stated", "not_blank"),
         ("Value", "N/A", "not_shown"),
         ("Group", "CAT-8015 30 Microgram Per Kilogram (mcg/kg) (OG001)", "not_shown"),
         ("Parameter", "NUMBER", "not_shown"),
@@ -315,7 +320,10 @@ def test_a_posted_results_cell_off_its_record_is_caught(column, cell, code):
 
 def test_a_posted_row_addressing_the_other_group_shows_the_other_denominator():
     found = posted_findings(**{contract.ADDRESS: MEASURE[:-1] + "1"})
-    assert {f.field for f in found} == {f"{contract.POSTED}: Group", f"{contract.POSTED}: Denominator"}
+    assert {f.field for f in found} == {
+        f"{contract.POSTED}: Group",
+        f"{contract.POSTED}: {contract.DENOMINATOR}",
+    }
 
 
 # ── the pure decisions, both signs ──────────────────────────────────────────────────────────────────────
@@ -407,6 +415,7 @@ GROUP_HEADERS = [
     "Column",
     "Title",
     "Description",
+    "Outcome measures",
     "Totals",
 ]
 TOTALS = ("deaths_affected", "deaths_at_risk", "serious_affected", "serious_at_risk", "other_affected")
@@ -424,7 +433,7 @@ def group_rows():
         totals = "; ".join(f"{key}: {group[key]}" for key in (*TOTALS, "other_at_risk") if key in group)
         address = f"/studies/{i}/adverse_events/groups/{g}"
         cells = [named["trial"], address, "Adverse events", named["group"], named["column"], named["title"]]
-        rows.append([*cells, group["description"], totals])
+        rows.append([*cells, group["description"], None, totals])
     return rows
 
 
@@ -541,9 +550,9 @@ def baseline_row(value_cell):
         "Characteristic": "Age, Continuous",
         "Population": "Not stated",
         "Class": "Age",
-        "Category": "Not stated",
+        "Category": None,
         "Group": "CAT-8015 20 Microgram Per Kilogram (mcg/kg) (BG000)",
-        "Denominator": "7 Participants",
+        contract.DENOMINATOR: preserve.Number(7, "0"),
         "Parameter": "Mean",
         "Value": value_cell,
         "Spread or limits": "Standard deviation 8.7",
@@ -559,10 +568,11 @@ def baseline_findings(value_cell, record=None):
 
 
 def test_a_registry_decimal_as_a_number_cell_must_keep_its_value_and_decimals():
-    assert baseline_findings(preserve.Number(63.4, "General")) == []
+    assert baseline_findings(preserve.Number(63.4, "0.0")) == []
     assert baseline_findings("63.4") == []
     found = baseline_findings(preserve.Number(63.4, "0"))
     assert [(f.code, f.field) for f in found] == [("decimals_differ", "Baseline: Value")]
+    assert codes(baseline_findings(preserve.Number(63.4, "General"))) == ["format_differs"]
     assert codes(baseline_findings(preserve.Number(63.0, "0.0"))) == ["number_differs"]
 
 
@@ -577,9 +587,12 @@ def test_a_value_a_cell_cannot_hold_exactly_must_be_text():
 
 
 def test_a_wrong_absence_label_is_caught():
-    found = posted_findings(Class="Not posted")
-    assert [(f.code, f.field) for f in found] == [("wrong_words", f"{contract.POSTED}: Class")]
-    assert codes(posted_findings(Category="Invented statement")) == ["wrong_words"]
+    row = baseline_row(preserve.Number(63.4, "0.0")) | {"Population": "Not posted"}
+    found = cell_findings(RECORD, {contract.BASELINE: (list(row), [list(row.values())])}, complete=False)
+    assert [(f.code, f.field) for f in found] == [("wrong_words", f"{contract.BASELINE}: Population")]
+    row["Population"] = "Invented statement"
+    found = cell_findings(RECORD, {contract.BASELINE: (list(row), [list(row.values())])}, complete=False)
+    assert codes(found) == ["wrong_words"]
 
 
 ELIGIBILITY_HEADERS = [
@@ -775,55 +788,168 @@ CRITERIA_SHEET = next(
     if preserve.sheet_grains(sheet) and not preserve.sheet_grains(sheet)[0].startswith("studies")
 )
 CRITERIA_LIST = preserve.sheet_grains(CRITERIA_SHEET)[0].removesuffix("[]")
-SHORT = "ECOG performance status 0-1"
-LONG = "Eastern Cooperative Oncology Group (ECOG) performance status of 0 or 1 at screening"
+SHORT = "* ECOG performance status 0-1"
+LONG = "* Eastern Cooperative Oncology Group (ECOG) performance status of 0 or 1 at screening"
 
 
-def criteria_findings(wording_cell):
-    entry = {
-        "criterion": {"universe": "oncology.solid", "element": "inclusion:ecog_ps=0-1"},
+def recurring_entry():
+    return {
+        "element": {"key": "inclusion:ecog_ps=0-1", "concept": "ecog_ps", "values": ["0", "1"], "words": ""},
         "role": "inclusion",
         "trials": 3,
         "of_trials": 4,
-        "wording": [SHORT, LONG],
-        "wording_from": ["NCT02151981 criterion 4", "NCT02296125 criterion 6"],
+        "grouping": "among the 4 trials in solid-tumour oncology whose condition MeSH term is Lung Neoplasms",
+        "examples": [
+            {"text": SHORT, "trial": "NCT02151981", "criterion": "Inclusion 4"},
+            {"text": LONG, "trial": "NCT02296125", "criterion": "Inclusion 6"},
+        ],
         "other_trials": ["NCT04487080"],
     }
+
+
+def criteria_findings(examples_cell, entry=None):
     cells = {
         contract.ADDRESS: f"/{CRITERIA_LIST}/0",
-        "Criterion": "Performance status (ECOG 0-1), solid tumour trials",
+        "Element": "Performance status: ECOG 0, 1",
         "Role": "Inclusion",
         "Trials stating it": preserve.Number(3, "General"),
         "Of comparable trials": preserve.Number(4, "General"),
-        "Representative wording": wording_cell,
-        "Wording from": "NCT02151981 criterion 4; NCT02296125 criterion 6",
+        "Grouping": "among the 4 trials in solid-tumour oncology whose condition MeSH term is Lung Neoplasms",
+        contract.RECURRING_EXAMPLE: examples_cell,
+        "Examples from": "NCT02151981 Inclusion 4\nNCT02296125 Inclusion 6",
         "Other trials": "NCT04487080",
     }
     headers = [column.header for column in CRITERIA_SHEET.columns]
     sheets = {CRITERIA_SHEET.name: (headers, [[cells[h] for h in headers]])}
-    return cell_findings({CRITERIA_LIST: [entry]}, sheets)
+    return cell_findings({CRITERIA_LIST: [entry or recurring_entry()]}, sheets)
 
 
-def test_the_recurring_criteria_row_shows_each_representative_wording():
+def test_the_recurring_criteria_row_shows_each_whole_example():
     assert criteria_findings(f"{SHORT}\n{LONG}") == []
 
 
-def test_wording_presented_as_one_representative_text_is_caught():
+def test_examples_presented_as_one_representative_text_are_caught():
     found = criteria_findings(SHORT)
     assert [(f.code, f.field) for f in found] == [
-        ("not_shown", f"{CRITERIA_SHEET.name}: Representative wording")
+        ("not_shown", f"{CRITERIA_SHEET.name}: {contract.RECURRING_EXAMPLE}")
     ]
+
+
+def test_a_group_not_assessed_leaves_its_counts_and_examples_blank():
+    entry = recurring_entry() | {"role": "", "trials": 0, "examples": [], "other_trials": []}
+    entry["element"] = {"key": None, "concept": None, "values": [], "words": "too few comparable trials"}
+    found = criteria_findings(None, entry)
+    columns = {f.field.split(": ", 1)[1] for f in found}
+    assert columns == {"Role", "Trials stating it", "Examples from", "Other trials"}
+    assert {f.code for f in found} == {"not_blank"}
 
 
 # ── an empty listing's one line ─────────────────────────────────────────────────────────────────────────
 
 
-def test_an_empty_listing_may_say_so_in_one_line():
+def test_an_empty_listing_says_so_in_the_contracts_words():
     sheet = next(sheet for sheet in contract.SHEETS if sheet.name == contract.ANALYSES)
     headers = [column.header for column in sheet.columns]
-    line = ["None of these trials posted a statistical analysis"] + [None] * (len(headers) - 1)
+    line = [contract.EMPTY_LISTING_WORDS[contract.ANALYSES]] + [None] * (len(headers) - 1)
     assert cell_findings(RECORD, {contract.ANALYSES: (headers, [line])}) == []
+    other = ["No analyses here"] + [None] * (len(headers) - 1)
+    assert codes(cell_findings(RECORD, {contract.ANALYSES: (headers, [other])})) == ["wrong_words"]
     record = excerpt()
     record["studies"][1]["posted_outcomes"][0]["analyses"] = [{"method": "Log Rank"}]
     found = cell_findings(record, {contract.ANALYSES: (headers, [line])})
     assert sorted(codes(found)) == ["address_unreadable", "row_missing"]
+
+
+# ── posted-outcome groups: one Groups row per group, and the Posted results Group cell's link ───────────
+
+
+def posted_groups_record():
+    return {"studies": [project_study(BODIES["NCT01030536"])]}
+
+
+def posted_group_row(record, g):
+    group = record["studies"][0]["posted_outcomes"][0]["groups"][g]
+    measures = [
+        m["title"]
+        for m in record["studies"][0]["posted_outcomes"]
+        if any(
+            other.get("title") == group["title"] and other.get("description") == group.get("description")
+            for other in m.get("groups") or []
+        )
+    ]
+    address = f"/studies/0/posted_outcomes/0/groups/{g}"
+    return [
+        "NCT01030536",
+        address,
+        "Posted results",
+        group["id"],
+        None,
+        group["title"],
+        group["description"],
+        "\n".join(measures),
+        None,
+    ]
+
+
+def posted_group_findings(rows, record=None):
+    record = record or posted_groups_record()
+    found = cell_findings(record, {contract.GROUPS: (GROUP_HEADERS, rows)}, complete=False)
+    return [f for f in found if f.field.startswith(contract.GROUPS)]
+
+
+def test_a_posted_outcome_group_row_shows_its_description_and_measures():
+    record = posted_groups_record()
+    assert posted_group_findings([posted_group_row(record, 0), posted_group_row(record, 1)], record) == []
+
+
+def test_a_posted_outcome_group_row_whose_description_differs_is_caught():
+    record = posted_groups_record()
+    row = posted_group_row(record, 0)
+    row[GROUP_HEADERS.index("Description")] = posted_group_row(record, 1)[GROUP_HEADERS.index("Description")]
+    found = posted_group_findings([row], record)
+    assert [(f.code, f.field) for f in found] == [("not_shown", f"{contract.GROUPS}: Description")]
+
+
+def linked_posted_row(record, target_row):
+    title = record["studies"][0]["posted_outcomes"][0]["groups"][0]["title"]
+    cells = {
+        "Trial ID": "NCT01030536",
+        contract.ADDRESS: "/studies/0/posted_outcomes/0/classes/0/categories/0/measurements/0",
+        "Group": preserve.Linked(title, contract.GROUPS, target_row),
+    }
+    return cells
+
+
+def link_findings(target_row):
+    record = posted_groups_record()
+    groups = [posted_group_row(record, 0), posted_group_row(record, 1)]
+    cells = linked_posted_row(record, target_row)
+    sheets = {
+        contract.GROUPS: (GROUP_HEADERS, groups),
+        contract.POSTED: (list(cells), [list(cells.values())]),
+    }
+    found = cell_findings(record, sheets, complete=False)
+    return [f for f in found if f.field == f"{contract.POSTED}: Group"]
+
+
+def test_a_group_link_to_its_own_group_carries_its_id():
+    assert link_findings(1) == []
+
+
+def test_a_group_link_pointing_at_the_wrong_group_is_caught():
+    assert codes(link_findings(2)) == ["wrong_link"]
+    assert codes(link_findings(9)) == ["wrong_link"]
+
+
+# ── a denominator in other units than participants ──────────────────────────────────────────────────────
+
+
+def test_a_participant_denominator_changed_to_eyes_without_its_unit_shown_is_caught():
+    record = excerpt()
+    record["studies"][1]["posted_outcomes"][0]["denominators"][0]["units"] = "Eyes"
+    cells = POSTED_ROW
+    found = cell_findings(record, {contract.POSTED: (list(cells), [list(cells.values())])}, complete=False)
+    assert [(f.code, f.field) for f in found] == [("not_shown", f"{contract.POSTED}: {contract.DENOMINATOR}")]
+    shown = POSTED_ROW | {contract.DENOMINATOR: "7 Eyes"}
+    found = cell_findings(record, {contract.POSTED: (list(shown), [list(shown.values())])}, complete=False)
+    assert found == []
