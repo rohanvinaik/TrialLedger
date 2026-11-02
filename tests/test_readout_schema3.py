@@ -416,9 +416,27 @@ def test_every_reading_has_its_row_in_the_readings_sheet():
 def test_the_column_dictionary_names_each_columns_source_once():
     rows = sheet_rows(contract.DICTIONARY)
     pairs = [(row["Sheet"], row["Column"]) for row in rows]
-    assert len(pairs) == len(set(pairs)) == sum(len(sheet.columns) for sheet in contract.SHEETS)
+    columns = sum(len(sheet.columns) for sheet in contract.SHEETS if sheet.name != contract.READ_ME)
+    assert len(pairs) == len(set(pairs)) == columns
+    assert not any(sheet == contract.READ_ME for sheet, _column in pairs)
     phase = next(row for row in rows if (row["Sheet"], row["Column"]) == (contract.INDEX, "Phase"))
     assert phase["Registry field or rule"] == "protocolSection.designModule.phases[]"
+
+
+def test_the_readings_sheet_names_each_field_plainly():
+    fields = {row["Field"] for row in sheet_rows(contract.READINGS)}
+    assert {"Criterion reading", "Criterion role", "Endpoint reading", "Time-point reading"} <= fields
+    assert not any(field.startswith("Readings (each labelled") for field in fields)
+
+
+def test_a_reading_the_default_relations_leave_as_it_is_is_one_dossier_row():
+    facts = dossier(RECORD["studies"][0])
+    assert "Prior lines for advanced disease" in facts
+    assert "Prior lines for advanced disease (with the default relations)" not in facts
+    study = copy.deepcopy(RECORD["studies"][0])
+    narrowed = {**study["coordinates"]["prior_advanced_lines"], "status": "interpolated", "result": ["0"]}
+    study["coordinates"]["prior_advanced_lines_interpolated"] = narrowed
+    assert "Prior lines for advanced disease (with the default relations)" in dossier(study)
 
 
 # ── the independent record → cell check (task 3.6) ──────────────────────────────────────────────────────

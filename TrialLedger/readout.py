@@ -579,6 +579,11 @@ def coordinate_levels(study: dict[str, Any], name: str) -> list[tuple[str, Any]]
         ("", coordinates.get(name)),
         (" (with the default relations)", coordinates.get(f"{name}_interpolated")),
     ]
+    known, interpolated = levels[0][1], levels[1][1]
+    same = held_kind(known) == "reading" and held_kind(interpolated) == "reading"
+    if same and (known["status"], known["result"]) == (interpolated["status"], interpolated["result"]):
+        # the default relations change nothing: one row
+        levels = levels[:1]
     proposed = coordinates.get(f"{name}_proposed")
     levels += [(" (one proposed relation alone, never relied on)", item) for item in proposed or []]
     return [(words, value) for words, value in levels if value is not None]
@@ -1409,6 +1414,36 @@ def reading_result(field: str, value: dict[str, Any]) -> str:
     return result_words(value["result"])
 
 
+# The Readings sheet's plain names of the fields a rule reads; the record's long definitions stay in the
+# Column dictionary. A field not listed shows its contract label.
+READING_FIELD_WORDS = {
+    "studies[].interventions[].drug_class": "Drug class",
+    "studies[].interventions[].axes": "Drug identity and classes",
+    "studies[].interventions[].modality": "Modality",
+    "studies[].eligibility.coverage": "Criteria abbreviated or complete",
+    "studies[].criteria[].role": "Criterion role",
+    "studies[].criteria[].readings": "Criterion reading",
+    "studies[].biomarker_mentions": "Biomarker mention",
+    "studies[].universe": "Universe",
+    "studies[].coordinates.setting": "Treatment setting",
+    "studies[].coordinates.setting_interpolated": "Treatment setting, with the default relations",
+    "studies[].coordinates.setting_proposed": "Treatment setting, one proposed relation alone",
+    "studies[].coordinates.prior_advanced_lines": "Prior lines for advanced disease",
+    "studies[].coordinates.prior_advanced_lines_interpolated": "Prior lines for advanced disease, with the "
+    "default relations",
+    "studies[].coordinates.prior_advanced_lines_proposed": "Prior lines for advanced disease, one proposed "
+    "relation alone",
+    "studies[].coordinates.selection": "Gene selection",
+    "studies[].coordinates.selection_interpolated": "Gene selection, with the default relations",
+    "studies[].coordinates.selection_proposed": "Gene selection, one proposed relation alone",
+    "studies[].registered_outcomes[].endpoint_classes": "Endpoint reading",
+    "studies[].registered_outcomes[].time_points": "Time-point reading",
+    "studies[].posted_outcomes[].endpoint_classes": "Posted measure's endpoint reading",
+    "studies[].references[].role": "Reference role",
+    "studies[].results_posted": "Results posted",
+}
+
+
 def reading_rows(study: dict[str, Any], number: int, versions: dict[str, Any]) -> list[tuple]:
     """A trial's Readings rows: one per rule reading the record holds (the field, the words read, the rule
     and its version, the result, the status)."""
@@ -1423,7 +1458,7 @@ def reading_rows(study: dict[str, Any], number: int, versions: dict[str, Any]) -
         values = (
             study["nct"],
             pointer,
-            named.label if named else field,
+            READING_FIELD_WORDS.get(field.removesuffix("[]"), named.label if named else field),
             read or ("Its heading" if field.endswith("criteria[].role") else NOT_STATED),
             f"{rule} ({version})",
             reading_result(field, value),
@@ -1567,7 +1602,8 @@ def dictionary_rows(n: int) -> list[tuple]:
     what they hold."""
     rows = []
     for sheet in contract.SHEETS:
-        if sheet.name not in BUILT:
+        # the Read me's topics are not columns of record fields
+        if sheet.name not in BUILT or sheet.name == contract.READ_ME:
             continue
         for column in sheet.columns:
             if column.shows == "address":
