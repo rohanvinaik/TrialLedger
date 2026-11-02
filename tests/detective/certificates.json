@@ -1598,6 +1598,12 @@
     "refusal": "",
     "standing": "complete"
   },
+  "TrialLedger/universes.py::pack_applicability": {
+    "cut_reasons": [],
+    "function_digest": "f185ec3353f44519",
+    "refusal": "",
+    "standing": "complete"
+  },
   "TrialLedger/universes.py::permitted_packs": {
     "cut_reasons": [],
     "function_digest": "18db6478e9fad3fa",
@@ -1613,6 +1619,12 @@
   "TrialLedger/universes.py::term_hits": {
     "cut_reasons": [],
     "function_digest": "cc578049e461e58a",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/universes.py::treated_target": {
+    "cut_reasons": [],
+    "function_digest": "584bfd6930bf7225",
     "refusal": "",
     "standing": "complete"
   },
