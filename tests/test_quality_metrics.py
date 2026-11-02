@@ -81,7 +81,7 @@ def test_render_writes_scoped_badges_report_and_every_survivor(tmp_path):
     mutation = json.loads((tmp_path / "site" / "badges" / "mutation.json").read_text())
     assert mutation == {
         "schemaVersion": 1,
-        "label": "mutation · pinned decisions",
+        "label": "mutation score (decision logic)",
         "message": "90.0%",
         "color": "green",
     }

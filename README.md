@@ -1,5 +1,14 @@
 # TrialLedger
 
+[![tests](https://img.shields.io/github/actions/workflow/status/rohanvinaik/TrialLedger/tests.yml?branch=main&label=tests&logo=github)](https://github.com/rohanvinaik/TrialLedger/actions/workflows/tests.yml)
+[![test suite](https://img.shields.io/endpoint?url=https%3A%2F%2Frohanvinaik.github.io%2FTrialLedger%2Fbadges%2Ftests.json)](QUALITY.md)
+[![coverage](https://img.shields.io/endpoint?url=https%3A%2F%2Frohanvinaik.github.io%2FTrialLedger%2Fbadges%2Fcoverage.json)](QUALITY.md)
+[![branch coverage](https://img.shields.io/endpoint?url=https%3A%2F%2Frohanvinaik.github.io%2FTrialLedger%2Fbadges%2Fbranches.json)](QUALITY.md)
+[![mutation score](https://img.shields.io/endpoint?url=https%3A%2F%2Frohanvinaik.github.io%2FTrialLedger%2Fbadges%2Fmutation.json)](QUALITY.md)
+[![runtime dependencies](https://img.shields.io/endpoint?url=https%3A%2F%2Frohanvinaik.github.io%2FTrialLedger%2Fbadges%2Fdependencies.json)](pyproject.toml)
+[![python](https://img.shields.io/badge/python-3.12%2B-blue?logo=python&logoColor=white)](pyproject.toml)
+[![license](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
+
 **TrialLedger doesn't make your clinical decisions. It finds them.**
 
 Much of designing a trial is documentary and logical work: finding what comparable trials did, copying it out

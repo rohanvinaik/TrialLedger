@@ -381,13 +381,13 @@ def render(metrics: dict, out: Path, quality: Path | None = None) -> None:
     badges.mkdir(exist_ok=True)
     pin = metrics["mutation_pinned"]
     for name, data in {
-        "tests": badge("tests", f"{metrics['tests_passed']:,} passing", "brightgreen"),
-        "coverage": badge("line coverage", f"{metrics['line_coverage']}%", color(metrics["line_coverage"])),
+        "tests": badge("test suite", f"{metrics['tests_passed']:,} tests", "blue"),
+        "coverage": badge("coverage", f"{metrics['line_coverage']}%", color(metrics["line_coverage"])),
         "branches": badge(
             "branch coverage", f"{metrics['branch_coverage']}%", color(metrics["branch_coverage"])
         ),
-        "mutation": badge("mutation · pinned decisions", rate(pin), color(pin["kill_rate"] or 0)),
-        "dependencies": badge("runtime dependencies", str(len(metrics["runtime_dependencies"])), "blue"),
+        "mutation": badge("mutation score (decision logic)", rate(pin), color(pin["kill_rate"] or 0)),
+        "dependencies": badge("runtime deps", str(len(metrics["runtime_dependencies"])), "brightgreen"),
     }.items():
         (badges / f"{name}.json").write_text(json.dumps(data) + "\n", encoding="utf-8")
     (out / "index.html").write_text(
