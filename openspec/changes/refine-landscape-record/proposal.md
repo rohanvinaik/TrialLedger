@@ -30,7 +30,7 @@ they could need; build it fast and wide.
   and detailed description, condition and intervention MeSH, participant flow, baseline characteristics,
   results with their populations, denominators, comments and statistical analyses, adverse-event reporting
   details); copies and internal bookkeeping are removed (exploratory measures, per-criterion frequency tiers,
-  per-alias lookup histories, the declared type matrix, study type). Results, baseline, flow and adverse events
+  per-alias lookup histories, the declared type matrix). Results, baseline, flow and adverse events
   keep the registry's own nesting, each module's groups keyed within the module.
 - **Universes.** Each trial is assigned to universes (solid-tumour oncology, haematologic oncology, general)
   by a named rule over its condition MeSH terms, its free-text conditions and titles, and, for a treatment

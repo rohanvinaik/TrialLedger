@@ -187,18 +187,28 @@ interface on a schema-3 fixture.
 ## 6. Code shape and units
 
 The record unit owns every call site in `landscape.py`; the universe unit exposes pure functions only.
+`operate.py` (the run's control, record assembly and lookup scheduling) has one owner, the integrator: units A,
+D and F expose functions and the integrator wires them (a second review, 2026-11-01). The contract commit
+carries executable examples, not only names: schema-3 fixture records with hand-checked expected values
+(ordinary, missing, conflicting and nested results), the exact shapes of a universe assignment, an MCP paging
+response and the safety columns for trials with different group counts, so a producer and a consumer cannot
+agree on the same mistake.
 
 | Unit | Owns | Interface it provides or consumes |
 |---|---|---|
-| A. Record | `landscape.py` (study_extract, results/baseline/flow/AE shaping, cohort section, fields, schema), `operate.py` record assembly | consumes `contract.FIELDS`, `universes.assign`, `coherence.resolve(evidence, universe)` |
+| A. Record | `landscape.py` (study_extract, results/baseline/flow/AE shaping, cohort section, fields, schema) | consumes `contract.FIELDS`, `universes.assign`, `coherence.resolve(evidence, universe)` |
 | B. Universes | `universes.py` (new: the universe table, `assign(study) -> Assignment`), `coherence.py` (per-universe coordinates and relations), `semantics/loader.py` (the `universes` key) | provides pure functions; edits no call site in landscape.py |
 | C. Workbook | `readout.py` | consumes schema-3 records; built against fixture records made from the baseline bodies by the contract's shapes |
 | D. Lookups | `classes.py`, the lookup lists in `request.py` / `reading.py` | provides the same answers, fewer requests |
-| F. Preview and MCP (review) | `operate.py`'s run control (the preview stop; not record assembly or lookup scheduling), `cli.py`'s landscape flags, `mcp_server.py` | consumes schema-3 records (fixture records until A lands) |
-| E. Documents and acceptance | README, AGENTS.md, SKILL.md, MCP tool descriptions, `acceptance/` | each promise the new contract changes rewritten as built (AGENTS's "every value is an envelope", the README's evidence register line); the acceptance runs |
+| F. Preview and MCP (review) | a preview function the integrator wires into `operate.py`, `cli.py`'s landscape flags, `mcp_server.py` | consumes schema-3 records (fixture records until A lands) |
+| E1. Independent checks (built from the start) | `acceptance/` and its tests: the registry → record → cell preservation checks and the reviewer's tasks, written from the contract's examples, never from the producers' code | the target units A, C and F must meet |
+| E2. Documents (last) | README, AGENTS.md, SKILL.md, MCP tool descriptions, CLI help | each promise the new contract changes rewritten as built (AGENTS's "every value is an envelope", the README's evidence register line) |
 
 Each unit: Detective converges every new pure decision; the gate before each commit; an independent review
-before merge. Integration order: B and D, then A, then C and F, then E.
+before merge. Integration order: B and D, then A, then C and F (each switched from fixture records to A's real
+output before it merges), then E2; E1's checks run at every integration. The workbook unit first renders a
+sample (Read me, compact index, one full dossier, Posted results, mixed-group safety) for the integrator's
+inspection before it builds the remaining sheets.
 
 Acceptance (review), each with its expected destination, evidence and unresolved cases: compare eligibility
 across selected trials (Eligibility); tell the eligible from the enrolled population (Trial review, Baseline);
