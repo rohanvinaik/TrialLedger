@@ -771,6 +771,42 @@
     "refusal": "",
     "standing": "complete"
   },
+  "TrialLedger/mcp_server.py::argument_problems": {
+    "cut_reasons": [],
+    "function_digest": "40fed601ab7f5bec",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/mcp_server.py::call_target": {
+    "cut_reasons": [],
+    "function_digest": "552359bb67aeda94",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/mcp_server.py::negotiate": {
+    "cut_reasons": [],
+    "function_digest": "20373972792d5e56",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/mcp_server.py::record_view": {
+    "cut_reasons": [],
+    "function_digest": "14150b20fbf82850",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/mcp_server.py::route": {
+    "cut_reasons": [],
+    "function_digest": "941094136391ba7d",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/mcp_server.py::save_target": {
+    "cut_reasons": [],
+    "function_digest": "6aa0c3182742df5a",
+    "refusal": "",
+    "standing": "complete"
+  },
   "TrialLedger/modality.py::entry_properties": {
     "cut_reasons": [],
     "function_digest": "8ab2d17796aec446",

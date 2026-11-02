@@ -364,6 +364,18 @@ may not reach ClinicalTrials.gov or RxNav. Desktop and CLI agents (Claude Code, 
   an answer now reads that drug `not_looked_up` where it read `lookup_failed` (no existing command reads one
   so: `resolve`, `profile` and `audit` ask every name), so such a drug is no longer a
   `drug_class_unresolved` review question.
+- **The MCP adapter, 2026-11-01 (task 6.2; `TrialLedger/mcp_server.py`, `trialledger mcp` in `cli.py`).**
+  Decision 10 as built, over MCP revision 2025-11-25 on stdio with no new dependency (tasks.md 6.2 has the
+  messages, the tools and the decisions). Beyond the decision's three tools: `save_fetch`, so an assistant
+  without a shell can relay (it writes a body only where next.json names it, inside the run folder), and
+  `scope`, the resolved search to show the person. Every run folder is a name inside one root (`--root`,
+  default `~/trialledger-runs`), since a desktop client starts the server in a working directory of its own.
+  `landscape` without a mode asks `doctor.report` at every call, as the command does; its result says the
+  mode used, to pass on. Not served: `design`, which does not exist yet. A client of revision 2026-07-28
+  (which drops the handshake) probing with `server/discover` gets a handshake-era error and falls back to
+  `initialize`, per that revision's stdio backward-compatibility rule. A relayed body passes through the
+  assistant through these tools as through the shell; the descriptions say to run direct whenever `doctor`
+  reports it, and marking the channel in the record is left to the founder.
 
 ## Risks / Trade-offs
 

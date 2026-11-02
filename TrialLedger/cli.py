@@ -10,7 +10,7 @@ import os
 import subprocess
 import sys
 import time
-from collections.abc import Callable
+from collections.abc import Callable, Iterable
 from datetime import UTC, date, datetime
 from pathlib import Path
 from typing import Any
@@ -86,6 +86,24 @@ run the same command again) · 2 refused or stopped by name (the request, a scop
 or query_too_long, a body or the record refused; the words printed say what to do) · 1 failed (RxNav or the
 registry did not answer, RxNav's release or the registry's data changed during the run; nothing written as
 the record; the words printed say whether to run the same command again or start a new run folder)
+"""
+
+MCP_HELP = """\
+Serve TrialLedger to an assistant over the Model Context Protocol (revision 2025-11-25, stdio transport):
+the client launches this command and speaks JSON-RPC on its standard input and output. Tools: doctor (what
+this computer can do), landscape (run or continue a search), save_fetch (save a body the assistant fetched in
+relay mode, only where the run's next.json names it), scope (the resolved search) and record (the finished
+record, part by part, every value as the record holds it). Every run folder is a name inside DIR, the root,
+and the server reads and writes only inside the run folders it is given. Standard output carries protocol
+messages only; progress goes to standard error.
+
+client configuration:
+  Claude Code: claude mcp add --scope user trialledger -- trialledger mcp --root ~/trialledger-runs
+  Claude Desktop, in claude_desktop_config.json (macOS: ~/Library/Application Support/Claude/):
+    {"mcpServers": {"trialledger": {"command": "/absolute/path/to/trialledger",
+                    "args": ["mcp", "--root", "/absolute/path/to/trialledger-runs"]}}}
+
+exit status: 0 the client closed the connection
 """
 
 
@@ -165,6 +183,7 @@ def main(
     git: Callable[..., str] | None = None,
     ledger: Path | None = None,
     probe_get: Callable[..., Any] | None = None,
+    mcp_streams: tuple[Iterable[bytes], Callable[[str], None]] | None = None,
 ) -> int:
     parser = argparse.ArgumentParser(
         prog="trialledger",
@@ -232,6 +251,19 @@ def main(
         "--mode",
         choices=("direct", "relay"),
         help="direct or relay (default: what `trialledger doctor` finds)",
+    )
+    mcp_parser = commands.add_parser(
+        "mcp",
+        help="serve doctor, landscape, save_fetch, scope and record to an assistant over MCP (stdio)",
+        description=MCP_HELP,
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+    )
+    mcp_parser.add_argument(
+        "--root",
+        type=Path,
+        default=None,
+        metavar="DIR",
+        help="the folder the run folders are made in (default ~/trialledger-runs)",
     )
     resolve_parser = commands.add_parser(
         "resolve",
@@ -389,6 +421,15 @@ def main(
         return _doctor(args.run, probe_get)
     if args.command == "landscape":
         return _landscape(args, http=http, sleep=sleep, rxclass_get=rxclass_get, probe_get=probe_get)
+    if args.command == "mcp":
+        return _mcp(
+            args.root,
+            http=http,
+            sleep=sleep,
+            rxclass_get=rxclass_get,
+            probe_get=probe_get,
+            streams=mcp_streams,
+        )
     if args.command == "pilot":
         return _pilot(args, model_http=model_http)
     if args.command == "sample":
@@ -516,6 +557,19 @@ def _landscape(args, *, http, sleep, rxclass_get, probe_get) -> int:
         print(outcome.detail, file=stream)
     print(outcome.advice, file=stream)
     return code_
+
+
+def _mcp(root: Path | None, *, http, sleep, rxclass_get, probe_get, streams) -> int:
+    """`trialledger mcp`: the MCP server over the process's standard input and output (or the streams
+    given), every run folder inside `root`, until the client closes the connection."""
+    from TrialLedger.mcp_server import DEFAULT_ROOT, Context, serve, stdio_streams
+
+    lines, write = streams or stdio_streams()
+    context = Context(
+        root or DEFAULT_ROOT, get=rxclass_get or rx.http_get, http=http, sleep=sleep, probe_get=probe_get
+    )
+    serve(lines, write, context)
+    return 0
 
 
 def _sample(args, *, http, sleep, git, ledger) -> int:

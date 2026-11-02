@@ -3,8 +3,9 @@
 Vulture counts a function named in a table as used, so it cannot see a table entry nothing ever calls; these
 tests can. The production path (tests/production_path.py, run in its own process with every call recorded
 from before import) is a two-page pull with a retry and a value a cell cannot hold, `verify` of the folder
-written, `verify` of an unreadable workbook, a pull the server keeps failing, and `landscape` run in direct
-and in relay mode (its module docstring lists every command it runs).
+written, `verify` of an unreadable workbook, a pull the server keeps failing, `landscape` run in direct
+and in relay mode, and `mcp` serving an MCP client's session (its module docstring lists every command it
+runs).
 
 Positive: the check tables agree with each other; production gathers exactly the approved checks; every
 function of the package runs on the production path except the declared ones; every sheet fills every column
@@ -49,6 +50,9 @@ DECLARED = {
     "transport.py: urllib_http": "the local model's network call; production_path injects a fake, as it does "
     "the registry and RxClass",
     "operate.py: _ignore": "operate.run's default progress sink; the CLI passes its own",
+    "mcp_server.py: stdio_streams": "the process's own standard input and output; production_path gives "
+    "`trialledger mcp` its streams, as it gives the registry and RxNav",
+    "mcp_server.py: stdio_streams.<locals>.write": "the writer of stdio_streams, likewise",
 }
 # The frozen contracts of add-bank-coverage group 1, which the parallel packages are written against: nothing
 # in production consumes them yet. Each name is declared with the task that will put it on the path; that task
@@ -245,6 +249,9 @@ def test_the_production_path_ends_as_production_does(production):
         "landscape_stopped": 2,
         "landscape_subclasses": 0,
         "landscape_relay": 0,
+        "mcp_relay": 0,
+        "mcp_direct": 0,
+        "mcp": 0,
         "sample": 0,
         "sample_confirmation": 0,
         "sample_confirmation_refused": 2,

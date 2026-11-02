@@ -229,7 +229,54 @@ The founder, 2026-11-01: the next priority, built to completion.
 ## 6. Edits and the MCP adapter
 
 - [ ] 6.1 `trialledger edits`: workbook edits as user assertions
-- [ ] 6.2 The stdio MCP adapter over `doctor`, `landscape`, `record`
+- [x] 6.2 The stdio MCP adapter over `doctor`, `landscape`, `record`
+
+  2026-11-01: `TrialLedger/mcp_server.py` and `trialledger mcp [--root DIR]` in `cli.py`. MCP revision
+  2025-11-25 (the last revision opened by an `initialize` handshake; 2026-07-28 dropped it), stdio transport,
+  JSON-RPC 2.0 written with the standard library only: `initialize` (the client's version when it is one of
+  2025-11-25, 2025-06-18, 2025-03-26, 2024-11-05, else 2025-11-25), `notifications/initialized`, `ping`,
+  `tools/list`, `tools/call`; parse error, invalid request (a batch among them), method not found
+  (`server/discover` among them once initialized; before, "not initialized": either way an error of the
+  handshake era, on which a dual-era client of 2026-07-28 falls back to `initialize`, as that revision's
+  versioning page, "Backward Compatibility with Initialization-Based Versions", says for stdio, checked
+  2026-11-01) and invalid params (an unknown tool) as JSON-RPC errors; a tool's refusal as a result with
+  `isError: true` and plain words. Standard
+  output carries protocol lines only (descriptor 1 is pointed at standard error once the protocol's copy is
+  taken). Tools: `doctor`; `landscape` (the request object `--request` takes, its slots in the schema; the
+  outcome's status, exit code and its meaning, detail and advice; for awaiting_fetch next.json's fetches, its
+  instructions and the steps through `save_fetch`; isError exactly when the exit is 1 or 2); `save_fetch` (the
+  body written exactly as given, as UTF-8, staged then renamed, only to a save_as the run's next.json names and
+  only inside the run folder, a link carrying it out refused too); `scope` (resolution.json, resolved or
+  stopped); `record` (manifest with the retrieval and requested-ID accounting, studies with their headline
+  envelopes, one study's extract by NCT number, statuses with the envelope's meanings, fields; every value as
+  the record holds it). Every run folder is a name (letters, digits, `.`, `_`, `-`) inside the root, by
+  default `~/trialledger-runs`. Six pure decisions, each converged `--two-sign` COMPLETE: `route` (194/194),
+  `negotiate` (40/40), `call_target` (72/72), `argument_problems` (134/136; the two survivors drop the `^` or
+  the `$` of an anchored pattern before `re.fullmatch`, which anchors both ends already), `save_target`
+  (75/75), `record_view` (199/200; the survivor makes a `zip` of two lists of one length non-strict). The
+  production path drives an MCP session (a relay run through `save_fetch` and a direct run); only
+  `stdio_streams` is declared in `tests/test_wiring.py`. Left: `design` is not served (it does not exist yet,
+  `add-design-synthesis`), though AGENTS.md, README.md and documented-interface.md say `mcp` serves it; a body
+  next.json no longer names (one refused as not_json or not_a_registry_page, whose advice is to delete it and
+  fetch again) cannot be replaced through the tools, so through MCP such a run is started again in a new run
+  folder; the relay through MCP passes every fetched body through the assistant's context (a batch of 100
+  studies is megabytes), so an MCP client on a computer that reaches the registry should run direct.
+
+  2026-11-01, after review: rebased on main's subclass work, so the request schema's `drug_class` takes
+  `subclasses` (include, exclude or ids), held to `request.slot_value_ok` by a test. No line ends a session:
+  JSON nested past the parser is a parse error, any other defect in answering a line an internal error with
+  the next line read, and an answer echoing a lone surrogate the client sent is written with JSON's `\u`
+  escapes (tested over the encoded stream). A run folder that is a link out of the root is refused
+  (`run_outside_root`); `save_fetch` removes anything at its staging name and creates it afresh, never
+  following a link. Statuses whose advice names the command line (`--run`, `--help`, "the same command")
+  carry `with_these_tools`, saying what each means with the tools; a folder that cannot be written points to
+  `--root` in the client's configuration. The descriptions and instructions say to run direct whenever doctor
+  reports it and that a relayed body passes through the assistant, so it is saved exactly as received. Left
+  for the founder: a relayed body passes through the assistant whether relayed by the shell (AGENTS.md: the
+  assistant fetches "with your own fetch tool") or by `save_fetch`, and the step protocol checks its form,
+  counts, page tokens and IDs, not its values; whether the record should mark that channel (it reads
+  retrieval mode `relay` for both) is a change to the record's schema, not made here. `record` part studies
+  is one result however many studies (about 2.4 KB each); not paged.
 
 ## 7. Layer-one acceptance
 

@@ -12,8 +12,10 @@ live `resolve` with a near-miss pair, an aligned pair, a shared structure class,
 hold beside a combination alias, a target the drug's own entry states and a genetic CAR-T entry, rendered as
 the JSON and design.xlsx with its Drug Axes sheet; `landscape` in direct mode (a drug class in a condition
 class with a named drug, a failed lookup asked again, a finished run run again, a mechanism stopped by name)
-and in relay mode through next.json; `sample`, `audit` and `pilot`; `verify` of a folder whose workbook is
-unreadable; and a pull the server keeps failing.
+and in relay mode through next.json; `mcp`, an MCP client's session (the handshake, tools/list, the errors a
+client can meet, a relay run through landscape and save_fetch, the record and the scope read back, a direct
+run); `sample`, `audit` and `pilot`; `verify` of a folder whose workbook is unreadable; and a pull the server
+keeps failing.
 """
 
 import ast
@@ -233,7 +235,94 @@ def landscape_runs(scratch: Path, studies: list[dict], rxclass, sandbox) -> dict
                 )
             else:
                 (relayed / fetch["save_as"]).write_bytes(client.get(fetch["url"]).content)
-    return codes
+    return codes | mcp_session(scratch / "mcp", recorded["requests"][0], rxnav_answer, registry, sandbox)
+
+
+MCP_ROUNDS = 20  # the relay through the tools ends within this many landscape calls, or the path fails
+
+
+def mcp_session(root: Path, request: dict, rxnav_answer, registry, sandbox) -> dict[str, int]:
+    """`trialledger mcp` as an assistant's MCP client drives it (add-agent-operation 6.2): a ping before the
+    handshake, initialize and its notification, tools/list, a line that is not JSON, server/discover (not
+    found), doctor in a sandbox RxNav is blocked from (relay), a scope not there yet, a save_fetch outside the
+    run refused, a request refused; then the request in relay mode, the mode doctor's: landscape, every fetch
+    it lists saved through save_fetch as fetched, landscape again, until complete; the record's every part and
+    the scope read back, a study it does not hold and an unknown tool refused; and the request in direct mode
+    in another run folder. Each line is written after the answer to the one before it, so the client reads
+    what the server answered, as a client does."""
+    import httpx
+
+    from TrialLedger import cli
+
+    written: list[str] = []
+    finished: dict[str, int] = {}
+
+    def line(ident, method, params=None):
+        message = {"jsonrpc": "2.0", "id": ident, "method": method}
+        return json.dumps(message | ({"params": params} if params is not None else {})).encode()
+
+    def tool(ident, name, **arguments):
+        return line(ident, "tools/call", {"name": name, "arguments": arguments})
+
+    def document():
+        return json.loads(json.loads(written[-1])["result"]["content"][0]["text"])
+
+    def body(fetch):
+        url = httpx.URL(fetch["url"])
+        if url.host == "rxnav.nlm.nih.gov":
+            status, answer = rxnav_answer(str(url.copy_with(query=None)), dict(url.params))
+            return json.dumps(answer) if status == 200 else f"failed: HTTP {status}"
+        return client.get(fetch["url"]).content.decode("utf-8")
+
+    def session():
+        yield line(0, "ping")
+        hello = {
+            "protocolVersion": "2025-11-25",
+            "capabilities": {},
+            "clientInfo": {"name": "path", "version": "1"},
+        }
+        yield line(1, "initialize", hello)
+        yield json.dumps({"jsonrpc": "2.0", "method": "notifications/initialized"}).encode()
+        yield line(2, "tools/list")
+        yield b"not json\n"
+        yield line(3, "server/discover")
+        yield tool(4, "doctor", run="relayed")
+        yield tool(5, "scope", run="relayed")
+        yield tool(6, "save_fetch", run="relayed", save_as="../outside.json", body="{}")
+        yield tool(7, "landscape", run="refused", request={}, mode="relay")
+        ident = 10
+        for _round in range(MCP_ROUNDS):
+            ident += 1
+            yield tool(ident, "landscape", run="relayed", request=request)
+            reply = document()
+            if reply["status"] != "awaiting_fetch":
+                finished["mcp_relay"] = reply["exit"]
+                break
+            for fetch in reply["fetches"]:
+                ident += 1
+                yield tool(ident, "save_fetch", run="relayed", save_as=fetch["save_as"], body=body(fetch))
+        for part in ("manifest", "studies", "statuses", "fields"):
+            ident += 1
+            yield tool(ident, "record", run="relayed", part=part)
+            if part == "studies":
+                nct = document()["studies"][0]["nct"]["value"]
+        yield tool(ident + 1, "record", run="relayed", part="study", nct=nct)
+        yield tool(ident + 2, "record", run="relayed", part="study", nct="NCT99999999")
+        yield tool(ident + 3, "scope", run="relayed")
+        yield tool(ident + 4, "design", run="relayed")
+        yield tool(ident + 5, "landscape", run="direct", request=request, mode="direct")
+        finished["mcp_direct"] = document()["exit"]
+
+    client = registry()
+    finished["mcp"] = cli.main(
+        ["mcp", "--root", str(root)],
+        http=registry(),
+        sleep=lambda s: None,
+        rxclass_get=rxnav_answer,
+        probe_get=sandbox,
+        mcp_streams=(session(), written.append),
+    )
+    return finished
 
 
 RXNAV = "https://rxnav.nlm.nih.gov/REST"
