@@ -269,6 +269,18 @@ Acceptance, in order: the fixes of the third review; units A, C, F and E1 integr
 passing through the integrated interface; preservation and the reviewer's tasks on real run folders; the
 workbook read visually (long criteria, mixed groups, unresolved cases); the deep gate on the exact release
 candidate; the committed package installed locally, then from the public repository; the fresh-sandbox test.
+Every finding of the independent checks gets one disposition, recorded in a findings ledger kept beside the
+first report so a falling count can be read (a fourth review, 2026-11-02): a workbook or record defect is fixed
+and the check re-run; a reviewed display-policy change updates the contract, its examples and a negative test,
+then the check re-runs; missing or contradictory source evidence is kept and shown unresolved; a deferred software
+defect names the capability it affects, which the completion claim then excludes. Naming a defect does not
+discharge it: the target is zero unexplained conformance failures, with source uncertainty reported apart. The
+checks share only the contract's declarative display policy with the workbook, never its rendering or selection
+code, and keep their own hand-checked examples and planted defects. A reading "traced" means its cited words
+occur in the registry text, not that its clinical interpretation is right; readings resting on a heading or a
+derivation are checked by that warrant, not by quotation. Posted-outcome group descriptions stay reachable: once
+per trial and distinct group in the Groups sheet, linked from each result row.
+
 Performance is measured twice, on frozen inputs (the saved bodies and caches) apart from live retrieval, with
 the cache state, runtime and versions recorded, and memory traced to the stage that uses it, not only its peak.
 
