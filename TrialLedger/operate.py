@@ -652,8 +652,8 @@ def run(
         answers = rx.load_or_lookup_at(
             folder / rx.CACHE_NAME,
             drug_aliases(studies),
-            [],
-            fill_axes=False,
+            drug_aliases(studies),
+            fill_axes=True,
             get=get,
             sleep=sleep,
             monotonic=monotonic,

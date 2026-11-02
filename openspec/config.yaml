@@ -1,32 +1,17 @@
 schema: spec-driven
-
-# Project context (optional)
-# Add only constraints that should guide OpenSpec artifacts and workflows.
-# Include constraints an agent cannot infer by reading the code.
-# Keep general project documentation and discoverable codebase facts out.
-# Example:
-#   context: |
-#     Designs and tasks must cover Windows, macOS, and Linux
-#     Write all artifacts in Spanish
-
-# Per-artifact rules (optional)
-# Add custom rules for specific artifacts.
-# Example:
-#   rules:
-#     proposal:
-#       - Keep proposals under 500 words
-#       - Always state what is out of scope
-#     tasks:
-#       - Break tasks into chunks of max 2 hours
-
-# Per-operation guidance (optional)
-# Add advisory guidance for how apply and archive work should be conducted.
-# This is separate from artifact rules above.
-# Example:
-#   operations:
-#     apply:
-#       guidance:
-#         - Keep test summaries concise
-#     archive:
-#       guidance:
-#         - Summarize the archive outcome before finishing
+context: |
+  Follow docs/THEORY_OF_THE_CASE.md and the founder's instructions; do not revise theory to justify code.
+  Layer one is source evidence -> clinical JSON/workbook -> chatbot answers from that record.
+  Layer two is the separate symbolic automated trial writer, fully designed and partly implemented.
+  Preserve correct partial logic; incomplete integration is not a reason to discard a useful component.
+  Word recognition never establishes clinical meaning by itself. Preserve scope and alternatives; abstain on unresolved binding.
+  Known requires a direct warrant or strict derivation; defaults, proposals and user choices remain distinct.
+  Clinical compilers, vocabulary campaigns and governance frameworks are not layer-one completion gates.
+rules:
+  proposal:
+    - Name the layer and concrete useful behavior. Do not expand scope to explain implementation difficulty.
+  design:
+    - State input/output contracts, consumers, independent evidence and unresolved bindings.
+    - Distinguish a designed capability, a working component and an integrated workflow.
+  tasks:
+    - Mark completion only from current entry-point evidence, including positive and negative intent cases.

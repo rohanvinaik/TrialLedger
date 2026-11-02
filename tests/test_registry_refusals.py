@@ -24,9 +24,9 @@ from dataclasses import replace
 
 import pytest
 
-from TrialLedger import provenance
-from TrialLedger.semantics.contracts import Span
-from TrialLedger.semantics.loader import (
+from TrialLedger.layer2 import provenance
+from TrialLedger.layer2.semantics.contracts import Span
+from TrialLedger.layer2.semantics.loader import (
     PROBLEM_CODES,
     ConceptEntry,
     Example,

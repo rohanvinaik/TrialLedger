@@ -132,14 +132,17 @@ def test_dossier_source_links_are_clickable_and_invalid_or_absent_targets_stay_u
 def test_empty_listing_words_describe_the_record_without_claiming_unposted_source_data():
     words = readout.contract.EMPTY_LISTING_WORDS
     assert words[readout.contract.ANALYSES] == "No statistical-analysis rows listed in these records"
-    assert all("listed in these records" in message for message in words.values())
+    assert all(
+        "listed in these records" in message for sheet, message in words.items() if sheet != "Registry checks"
+    )
+    assert words["Registry checks"] == "No registry checks in these records"
     assert all("None of these trials" not in message for message in words.values())
 
 
 def test_declared_rxnav_class_members_stay_attached_without_alternative_language():
     reading = {
         "status": "known",
-        "rule": "classes.drug_class",
+        "rule": "classes.class_evidence",
         "words": ["Source drug"],
         "result": {
             "state": "classified",
@@ -154,10 +157,11 @@ def test_declared_rxnav_class_members_stay_attached_without_alternative_language
     words, label = readout.drug_class_words(reading)
     assert (words.splitlines(), label) == (
         [
+            "Classes attributed to the exact RxNorm concept",
             "First source class [ID: class-1; relation: has_epc; source: FDASPL]",
             "Second source class [ID: class-2; relation: has_moa; source: MEDRT]",
         ],
-        "Reading",
+        "Direct rule",
     )
     assert " or " not in words
     unresolved = {**reading, "status": "unresolved", "note": "lookup unavailable"}
@@ -195,7 +199,8 @@ def test_registry_report_excludes_clinical_inference_but_preserves_exact_eligibi
     }
     assert not forbidden & study.keys()
     direct_rules = {
-        "classes.drug_class",
+        "classes.class_evidence",
+        "checks.run_checks",
         "landscape.criterion_entries",
         "ledger.results_state",
         "landscape.collection_presence",

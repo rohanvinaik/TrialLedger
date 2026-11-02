@@ -1,9 +1,10 @@
-"""`trialledger mcp`: TrialLedger over the Model Context Protocol (add-agent-operation 6.2, Decision 10).
+"""`trialledger mcp`: reference reporting and separate typed reasoning over the Model Context Protocol.
 
 An assistant that speaks MCP (Claude Desktop, Claude Code, and the ChatGPT and Gemini clients that launch a
 local server) runs TrialLedger through tools instead of a shell. The server is a thin adapter over the same
 functions the command line calls (`doctor.report`, `operate.run`, the run folder's own files); it adds no
-reading of its own, and no language model is involved anywhere.
+clinical reading of its own. The chatbot operates the tools and answers from the saved evidence;
+TrialLedger does not use a model to invent or extract trial facts.
 
 The protocol is MCP revision 2025-11-25 (https://modelcontextprotocol.io/specification/2025-11-25), the last
 revision opened by an `initialize` handshake, over its stdio transport, with no dependency beyond the standard
@@ -27,7 +28,9 @@ The tools: `doctor` (the capability report), `landscape` (start or continue a ru
 body the assistant fetched, in relay mode, only where the run's next.json names it), `scope` (the resolved
 search; given the request, the search previewed: resolved and fixed, no trial read, `preview.preview`) and
 `record` (the finished schema-4 record, part by part, every value as the record holds it, a list or object
-paged, a workbook row's address resolved to its value). Each run folder
+paged, a workbook row's address resolved to its value), and `reason` (separate typed symbolic operations;
+operation `describe` returns accepted input shapes and executable examples, without reading a report).
+Each reporting run folder
 is a name inside one root folder (`--root`), and the server reads and writes only inside the run folders it is
 given.
 
@@ -88,11 +91,20 @@ INSTRUCTIONS = (
     "a subset by drug/class, condition, phase, status, study type or date. Return landscape.xlsx, a clean "
     "clinical reference spreadsheet with a dossier per study and shared listings, and landscape.json, "
     "the matching evidence record you answer from. Layer one contains registry facts and strictly warranted "
-    "direct derivations only; no language model reads a trial. Layer two is a partially built new-trial "
-    "designer, intended to construct a new trial from scratch from the user's brief and layer-one evidence "
+    "direct derivations only; no language model supplies source facts. The assistant answers from the saved "
+    "record. Layer two is a fully designed, partly built automated trial writer, to construct a new trial "
+    "from scratch from the user's brief and layer-one evidence "
     "through symbolic reasoning, distinguishing deductions, proposals and human choices. Reasoning and "
     "existing-trial analysis foundations exist; the complete design workflow is not yet available, and "
-    "these tools do not offer trial design. Explain that status; do not promise a completed new trial. "
+    "reason exposes the working symbolic components over explicitly typed premises. It does not compile "
+    "registry prose or deliver the complete trial-writing workflow. Explain that status. "
+    "Offer these useful partial operations in clinical terms: check whether a choice follows from or "
+    "conflicts with a person's stated requirements; narrow remaining NSCLC design choices; explore "
+    "criterion frequencies with uncertainty, proposed class associations, possible design gaps and "
+    "trials differing in one declared feature. First call reason with "
+    '{"request":{"operation":"describe"}} for accepted inputs and worked examples. Prepare inputs for '
+    "the person, preserve their premise/source basis, and explain the conclusions without asking them "
+    "to write JSON. Do not present a partial operation as a completed protocol. "
     "Call doctor first; then landscape with a run name and "
     "the person's request, in the mode doctor reports; show the person the resolved search (scope) before "
     "relying on the results; in relay mode, fetch what landscape lists, save each body with save_fetch, and "
@@ -227,7 +239,8 @@ REQUEST = {
             "type": "array",
             "items": {"type": "string"},
             "minItems": 1,
-            "description": "Drug names; each is searched by every name RxNorm gives it.",
+            "description": "Drug names; canonical RxNorm names and source-backed product relationships "
+            "are shown in the preview.",
         },
         "drug_class": {
             "type": "object",
@@ -297,7 +310,8 @@ TOOLS: dict[str, dict[str, Any]] = {
     "landscape": {
         "description": "Run, or continue, one search of ClinicalTrials.gov for the person's request: every "
         "matching study is gathered, checked for completeness and read into a record by fixed rules; no "
-        "language model reads a trial. The request's terms are resolved first (a drug class into its member "
+        "language model supplies the trial facts. The request's terms are resolved first (a drug class "
+        "into its member "
         "drugs, each drug into its names, a disease class through the registry's MeSH tree): show the person "
         "that resolved search (the scope tool) before relying on the results. Returns a status. complete: "
         "the record is ready (read it with the record tool; landscape.xlsx, when written, is the workbook to "
@@ -374,6 +388,9 @@ TOOLS: dict[str, dict[str, Any]] = {
         "Parts: manifest (request, snapshot, code and requested-ID accounting), studies (study index), study "
         "(one NCT record), fields (source dictionary), statuses, and address (the exact JSON pointer from a "
         "workbook row). Lists and objects are paged at most 50 entries per call; use page.next_offset. "
+        "Use it to explain a study's source eligibility, planned outcomes, group-specific results and "
+        "safety, canonical drug identity/class evidence and registry consistency checks. Those checks "
+        "describe source consistency, not clinical suitability. "
         "Not stated is never none; not posted is never no effect; planned outcomes are not observed results. "
         "Layer one supplies no inferred setting, clinical recommendation or trial-design proposal.",
         "inputSchema": {
@@ -404,6 +421,39 @@ TOOLS: dict[str, dict[str, Any]] = {
                 },
             },
             "required": ["run", "part"],
+            "additionalProperties": False,
+        },
+    },
+    "reason": {
+        "description": "Layer two: help a person check what follows from or conflicts with their design "
+        "requirements, narrow NSCLC design choices, or explore comparable-trial patterns. Available corpus "
+        "calculations include criterion frequencies with silence bounds, proposed class associations, "
+        "design-space occupancy, conditional rarity and pairs differing in one declared feature. "
+        "You prepare the structured premises; the person need not know the input format. "
+        "Evaluate supplied scoped assertions, explicit NSCLC coordinates or a typed trial corpus with "
+        "the existing symbolic engines. First call with "
+        '{"request":{"operation":"describe"}} to get accepted input formats, vocabularies and runnable '
+        "examples. Reasoning requests name operation entailment, coordinates or corpus. Premises must be "
+        "explicitly structured and retain their source/user status; an assistant's "
+        "interpretation is never a registry fact. No trial text is interpreted, no source is fetched, and no "
+        "report is changed. This is useful partial symbolic logic, not the complete new-trial writer.",
+        "inputSchema": {
+            "type": "object",
+            "properties": {
+                "request": {
+                    "type": "object",
+                    "properties": {
+                        "operation": {
+                            "type": "string",
+                            "enum": ["describe", "entailment", "coordinates", "corpus"],
+                        }
+                    },
+                    "required": ["operation"],
+                    "description": "Start with operation describe for exact request formats and runnable "
+                    "examples; other operations require the typed premises it describes.",
+                }
+            },
+            "required": ["request"],
             "additionalProperties": False,
         },
     },
@@ -818,7 +868,16 @@ def _record(_context: Context, folder: Path, arguments: dict[str, Any]) -> tuple
     return {"part": arguments["part"], **view}, False
 
 
+def _reason(_context: Context, _folder: Path, arguments: dict[str, Any]) -> tuple[dict[str, Any], bool]:
+    """A separate symbolic operation; no report, network or file mutation."""
+    from TrialLedger.layer2 import run
+
+    reply = run(arguments["request"])
+    return reply, reply["code"] != "complete"
+
+
 HANDLERS: dict[str, Callable[[Context, Path, dict[str, Any]], tuple[dict[str, Any], bool]]] = {
+    "reason": _reason,
     "doctor": _doctor,
     "landscape": _landscape,
     "save_fetch": _save_fetch,
@@ -842,12 +901,15 @@ def call_tool(context: Context, params: Any) -> tuple[str, Any]:
     if verdict != "ok":
         refusal = {"tool": name, "refused": verdict, "arguments": concerned, "why": ARGUMENT_WORDS[verdict]}
         return "ok", _text(refusal, True)
-    folder = context.root / arguments["run"]
-    if folder.resolve().parent != context.root.resolve():
+    folder = context.root if name == "reason" else context.root / arguments["run"]
+    if name != "reason" and folder.resolve().parent != context.root.resolve():
         refusal = {"tool": name, "refused": "run_outside_root", "why": SAVE_REFUSALS["run_outside_root"]}
         return "ok", _text(refusal, True)
     reply, is_error = HANDLERS[name](context, folder, arguments)
-    return "ok", _text({"tool": name, "run_folder": str(folder.resolve()), **reply}, is_error)
+    result = {"tool": name, **reply}
+    if name != "reason":
+        result["run_folder"] = str(folder.resolve())
+    return "ok", _text(result, is_error)
 
 
 def _error(ident: Any, code: str, data: Any = None) -> dict[str, Any]:

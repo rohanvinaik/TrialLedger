@@ -15,14 +15,13 @@ and NO_TRIGGER, says nothing, or emits an atom no IDENTIFIED finding names is re
 concept is never turned into a legacy atom.
 """
 
-import ast
+import json
 from dataclasses import replace
 from pathlib import Path
 
 import pytest
 
-from TrialLedger.banks import BANKS
-from TrialLedger.semantics.contracts import (
+from TrialLedger.layer2.semantics.contracts import (
     Atom,
     BankResult,
     Finding,
@@ -37,35 +36,23 @@ from TrialLedger.semantics.contracts import (
     to_legacy,
 )
 
-HERE = Path(__file__).resolve().parent
 
-
-def real_criteria() -> list[str]:
-    """Every criterion text quoted in tests/test_banks.py (string constants over 25 characters)."""
-    tree = ast.parse((HERE / "test_banks.py").read_text(encoding="utf-8"))
-    found = {
-        node.value
-        for node in ast.walk(tree)
-        if isinstance(node, ast.Constant) and isinstance(node.value, str) and len(node.value) > 25
-    }
-    return sorted(found)
-
-
-def test_every_real_legacy_atom_comes_through_the_contract_unchanged():
-    seen = 0
-    for text in real_criteria():
-        for bank, function in BANKS.items():
-            atoms = function(text)
-            result = legacy_result(bank, text, atoms)
-            assert result_problems(result, text) == (), (bank, text)
-            assert [to_legacy(atom) for atom in result.atoms] == atoms
-            seen += len(atoms)
-    assert seen > 100  # the fixture is the whole of test_banks.py's criteria, not a handful
+def test_explicit_typed_atoms_round_trip_without_interpreting_source_text():
+    text = "Age 18; EGFR positive; platelets 100"
+    examples = [
+        ("age", ("age", ("stated",), (("minimum", "18"),), 0, 6)),
+        ("biomarker", ("biomarker:EGFR", ("positive",), (), 8, 21)),
+        ("organ_function", ("lab", ("platelets",), (("value", "100"),), 23, len(text))),
+    ]
+    for name, explicit in examples:
+        result = legacy_result(name, text, [explicit])
+        assert result_problems(result, text) == ()
+        assert [to_legacy(atom) for atom in result.atoms] == [explicit]
 
 
 def test_a_legacy_atom_keeps_its_span_whole_and_its_params_as_written():
     text = "ii. Alanine aminotransferase (ALT) and aspartate aminotransferase (AST)≤2.5×ULN."
-    legacy = BANKS["organ_function"](text)[0]
+    legacy = ("lab", ("ALT",), (("comparator", "≤"), ("value", "2.5"), ("unit", "×ULN")), 4, len(text))
     atom = from_legacy("organ_function", legacy)
     assert atom.spans == (Span("whole", legacy[3], legacy[4]),)  # one span, its parts not re-searched
     assert atom.params == legacy[2] and atom.values == legacy[1]
@@ -140,7 +127,7 @@ def test_an_atom_id_is_its_contents_digest():
 
 def test_nothing_recognized_is_no_trigger_never_an_absence():
     text = "* Other inclusion criteria may apply."
-    result = legacy_result("conditions", text, BANKS["conditions"](text))
+    result = legacy_result("conditions", text, [])
     assert result.atoms == () and [f.code for f in result.findings] == ["NO_TRIGGER"]
     assert result_problems(result, text) == ()
     assert "ABSTAINED" not in {f.code for f in result.findings}
@@ -206,3 +193,10 @@ def test_inconsistent_results_are_refused():
 def test_a_native_atom_has_no_legacy_form():
     with pytest.raises(ValueError):
         to_legacy(replace(good_atom(), legacy_concept=None))
+
+
+def real_criteria():
+    """Literal historical examples only; no removed reader or clinical meaning is reconstructed."""
+    return json.loads((Path(__file__).parent / "fixtures" / "literal_source_examples.json").read_text())[
+        "examples"
+    ]

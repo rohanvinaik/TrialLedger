@@ -23,7 +23,7 @@ import math
 
 import pytest
 
-from TrialLedger.profile import (
+from TrialLedger.layer2.profile import (
     element_key,
     element_silence,
     frequency_rows,

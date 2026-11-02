@@ -20,7 +20,7 @@ import math
 
 import pytest
 
-from TrialLedger.assertions import (
+from TrialLedger.layer2.assertions import (
     ALWAYS,
     BRANCH_NODES,
     MODALITIES,

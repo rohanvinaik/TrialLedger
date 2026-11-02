@@ -405,7 +405,8 @@ def test_reporting_contains_only_source_fields_and_direct_state_readings(record)
                 assert value["rule"] in {
                     "ledger.results_state",
                     "landscape.collection_presence",
-                    "classes.drug_class",
+                    "classes.class_evidence",
+                    "checks.run_checks",
                 }
             for child in value.values():
                 inspect(child)

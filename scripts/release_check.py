@@ -1,38 +1,25 @@
-"""The release check: TrialLedger as a first-time user meets it, run before the repository is published.
+"""Install and exercise the current TrialLedger candidate in a fresh user environment.
 
-add-agent-operation 5.2 left two things open: the install from GitHub and a run in a fresh sandbox. This
-script does what an assistant does on its first contact, in a new temporary directory outside the repository:
-it makes a fresh Python 3.12 environment with uv, installs TrialLedger the way AGENTS.md tells an assistant to
-(`pip install` the repository's address; also `uv tool install`), and then, from that directory, runs and
-captures to files `trialledger --help`, every subcommand's --help, `trialledger doctor`, a live `trialledger
-pull` of three trials by number (one of them an alias number, which the requested-ID accounting must name),
-`trialledger verify` of the pulled folder, a live `trialledger landscape --ids` of the same three trials (the
-run an assistant makes for a person who names trials by number; its mode as the doctor finds it) and a
-one-trial `trialledger resolve` with --json and --out. TrialLedger's cache is named by a folder, as a user
-may set it. A repository address is also cloned, so that its AGENTS.md and its tracked package files are read
-from what the address serves.
+The default source is this checkout as it stands, including uncommitted package changes; a repository or
+archive address can also be supplied. A fresh Python 3.12 environment installs the source with pip and uv.
+The script reads public help, checks doctor, gathers and verifies the archival and ordinary reference
+outputs for requested identifiers, and runs a separately supplied typed symbolic premise through reason.
+It never calls the retired raw clinical readers or claims a complete new protocol was produced.
 
-It reports, for each step, its exit code against the one expected, its wall time, the files it wrote and
-their sizes, and every warning or traceback it printed, and the commit the installed copy names in what it
-writes. Then six checks, each with its problems or, when it could not run, "not checked" and why (never read
-as passed): the package files the install left out (the tracked files under TrialLedger/ against the installed
-distribution's own file list); the outputs a first-time user is handed that are not there; the pull's and the
-landscape's requested-ID accounting (each number in the record, each one not found under its own number said
-in plain words); the commands AGENTS.md names that the installed CLI does not have; and the departures of
-pull's workbooks from the conventions workbook-design.md applies to them (column widths, a filter on each
-listing, frozen panes). The resolve's design.xlsx and the landscape's landscape.xlsx are inspected the same
-way and their departures reported as leads. Per help text, printed message and workbook, it lists the words of
-a fixed list that a clinical reader would not know. It changes nothing in the repository and writes only
-inside its work directory. The pull, the landscape and the resolve are live: they call ClinicalTrials.gov and
-RxNav, so run it from a machine that reaches them.
+Each step retains its complete output, exit, timing, warnings and written files. Checks compare installed
+package files against the current source candidate, expected report artifacts, requested-ID accounting,
+guide commands, basic workbook conventions and the conditional reasoning result. Missing checks are not
+passes. Full clinical readability and independent source-to-cell fidelity remain separate acceptance work.
 
-    python3 scripts/release_check.py                 # this checkout, as its working tree stands
+It writes only inside the chosen work directory, outside the repository. Registry and vocabulary calls are
+live; run it on a machine that reaches those services. No push or publication is requested.
+
+    python3 scripts/release_check.py
     python3 scripts/release_check.py git+https://github.com/<owner>/TrialLedger
-    python3 scripts/release_check.py --work /tmp/tl-release   # a work directory of your choice, not existing
+    python3 scripts/release_check.py --work /tmp/tl-release
 
-Ends with 0 ("ready") when every step did what it should and every check ran and found nothing, 1
-("not_ready") otherwise, 2 when refused (not_a_source, work_exists, work_inside_repository); the report is
-WORK/REPORT.md, every step's output beside it under WORK/captures.
+Exit 0 means ready for the checks actually performed, 1 not ready, 2 a refused source/work directory.
+Read WORK/REPORT.md and the complete captures beside it; readiness is not clinical certification.
 """
 
 from __future__ import annotations
@@ -56,9 +43,6 @@ PYTHON = "3.12"
 # with the trial that lists it among its aliases (NCT01030536 when last checked), so the accounting must name
 # it.
 PULL_IDS = ("NCT04852770", "NCT01827384", "NCT01086644")
-# The resolve reads one trial with six named drugs (MPACT), so that RxNav is asked from an empty cache, as on
-# a first run; NCT04852770's interventions are behavioral and would ask RxNav nothing.
-RESOLVE_ID = "NCT01827384"
 STEP_TIMEOUT_S = 1800
 FOLDER = -1  # the size a folder is listed with among the files a step wrote
 ARCHIVE_SUFFIXES = (".zip", ".tar.gz", ".tgz", ".whl")
@@ -111,7 +95,7 @@ JARGON = (
 PASSING = ("as_expected", "warned")
 # The landscape's run folder, relative to the folder the commands run in.
 LANDSCAPE_RUN = "landscape-run"
-# What the pull, the landscape and the resolve hand a first-time user, relative to the folder they ran in.
+# What the archival pull and ordinary reference report hand the user.
 EXPECTED_OUTPUTS = (
     "pulled/studies.json",
     "pulled/studies.csv",
@@ -119,12 +103,9 @@ EXPECTED_OUTPUTS = (
     "pulled/record.xlsx",
     f"{LANDSCAPE_RUN}/landscape.json",
     f"{LANDSCAPE_RUN}/landscape.xlsx",
-    "reading.json",
-    "design.xlsx",
 )
-# The workbooks workbook-design.md holds to its formatting conventions ("The formatting conventions (widths,
-# wrapping, filters, frozen panes, print setup, dates) also apply to `pull`'s review.xlsx and record.xlsx").
-# The resolve's design.xlsx is not governed by it: its departures are leads, not problems.
+# Original archival listing conventions; ordinary report formatting is checked by its own verifier and
+# inspected below as presentation evidence, without treating a dossier as a filtered listing.
 HELD_WORKBOOKS = ("pulled/review.xlsx", "pulled/record.xlsx")
 # Run by the fresh environment's own Python (openpyxl is a TrialLedger dependency): for each workbook named,
 # each sheet's size, whether any column width is set, its filter and frozen panes, the blank cells below its
@@ -270,8 +251,31 @@ def outputs_missing(expected: tuple[str, ...], present: tuple[str, ...]) -> tupl
     return tuple(path for path in expected if path not in present)
 
 
+def reason_problems(answer: Any) -> tuple[str, ...]:
+    """Check the supplied population example through the installed public reasoning operation.
+
+    A completed entailment must refute male membership under the explicit female-only premise and name
+    that premise. This checks conditional logic, never a registry finding. Malformed, refused or unsupported
+    responses, a different decision, or a lost proof each have a distinct named problem.
+    """
+    if not isinstance(answer, dict):
+        return ("reason_response_not_an_object",)
+    if answer.get("code") != "complete" or answer.get("operation") != "entailment":
+        return ("reason_operation_incomplete",)
+    result = answer.get("result")
+    decision = result.get("decision") if isinstance(result, dict) else None
+    if not isinstance(decision, dict):
+        return ("reason_decision_missing",)
+    if decision.get("result") != "REFUTED":
+        return ("reason_wrong_decision",)
+    proof = decision.get("proof")
+    if not isinstance(proof, list) or "population" not in proof:
+        return ("reason_premise_missing",)
+    return ()
+
+
 def sheet_departures(place: str, first: bool, widths: bool, filtered: bool, frozen: bool) -> tuple[str, ...]:
-    """Where one sheet departs from workbook-design.md's formatting conventions, by code (pure — pinned).
+    """Where one sheet departs from the original listing conventions, by code (pure — pinned).
 
     `place` is "<workbook>/<sheet>". Every sheet sets its column widths (no_widths); every sheet but the
     first, the read-me, is a listing and also filters its header row (no_filter) and freezes its panes
@@ -469,14 +473,6 @@ def _clean_env(work: Path, venv: Path) -> dict[str, str]:
     return env
 
 
-def _lines(text: str, most: int) -> list[str]:
-    """A text's lines, the last `most` of them when it has more, with a note of how many were left out."""
-    lines = text.splitlines()
-    if len(lines) <= most:
-        return lines
-    return [f"... ({len(lines) - most} earlier lines in the capture file)", *lines[-most:]]
-
-
 def _check_words(problems: tuple[str, ...] | None, why: str) -> str:
     if problems is None:
         return f"not checked: {why}"
@@ -487,10 +483,10 @@ NOT_CHECKED = (
     "whether each cell's value is right: `verify` certifies that each value derives from the saved record by "
     "the code that wrote it, and nothing here reads a value against the registry",
     "wrapping, fonts, alignment, column widths' sizes, date and number formats, print setup and hyperlink "
-    "labels (workbook-design.md, 'Formatting and print'): only whether widths, filters and frozen panes "
+    "labels: only whether widths, filters and frozen panes "
     "are set",
     "the clinical wording of the workbooks beyond the fixed list of words below",
-    "the commands AGENTS.md names beyond doctor, landscape, pull, verify and resolve: none is run, and "
+    "a live MCP client session: MCP help is read, but its application integration is tested separately; "
     "'guide commands' names those the installed CLI lacks",
     "a landscape run by drug class or disease class (the run here asks for trials by number), and relay mode",
     "anything a step wrote outside home/ and cache/ of the work directory (HOME is this machine's)",
@@ -559,14 +555,15 @@ def _report(facts: dict[str, Any], steps: list[dict[str, Any]], verdict: str) ->
         if step["name"] in facts["show_output"]:
             for stream in ("stdout", "stderr"):
                 if step[stream].strip():
-                    out += ["", f"{stream}:", "", "```", *_lines(step[stream], 40), "```"]
+                    out += ["", f"{stream}:", "", "```", *step[stream].splitlines(), "```"]
         out.append("")
     out += ["## Package files", ""]
     if facts["tracked"] is None:
         out.append("Not checked: " + facts["checks"]["package files"][1] + ".")
     else:
         out.append(
-            f"{len(facts['tracked'])} files tracked under TrialLedger/; {len(facts['installed'])} files "
+            f"{len(facts['tracked'])} current package source files under TrialLedger/; "
+            f"{len(facts['installed'])} files "
             "installed (the distribution's own list); missing from the install: "
             + (", ".join(f"`{path}`" for path in facts["checks"]["package files"][0] or ()) or "none")
             + "."
@@ -597,7 +594,7 @@ def _report(facts: dict[str, Any], steps: list[dict[str, Any]], verdict: str) ->
     else:
         out += [
             "Blank cells are counted below each sheet's header row. pull's review.xlsx and record.xlsx are "
-            "held to workbook-design.md's formatting conventions; departures elsewhere are leads.",
+            "held to their listing conventions; ordinary-report presentation is checked by its verifier.",
             "",
             "| workbook | sheet | rows | columns | widths set | filter | frozen panes | blank cells |",
             "|----------|-------|------|---------|------------|--------|--------------|-------------|",
@@ -698,9 +695,22 @@ def main(argv: list[str] | None = None) -> int:
     tracked: tuple[str, ...] | None = None
     package: tuple[tuple[str, ...] | None, str] = (None, no_root)
     if root is not None:
-        tracked = tuple(_git(root, "ls-files", "TrialLedger").splitlines()) or None
+        # A local candidate includes added files and excludes deleted tracked paths. Comparing Git's old
+        # index alone would miss the rescued package and falsely require retired modules in the install.
+        tracked = (
+            tuple(
+                path.relative_to(root).as_posix()
+                for path in sorted((root / "TrialLedger").rglob("*"))
+                if path.is_file()
+                and not any(
+                    part.startswith(".") or part == "__pycache__" for part in path.relative_to(root).parts
+                )
+                and path.suffix not in (".pyc", ".pyo")
+            )
+            or None
+        )
         if tracked is None:
-            package = (None, "git lists no tracked file under TrialLedger/ in the source")
+            package = (None, "the source has no package file under TrialLedger/")
         elif not installed:
             package = (None, "the install failed or lists no installed file")
         else:
@@ -712,6 +722,7 @@ def main(argv: list[str] | None = None) -> int:
     landscape_accounting: tuple[tuple[str, ...] | None, str] = (None, "the install failed")
     outputs: tuple[tuple[str, ...] | None, str] = (None, "the install failed")
     workbooks: tuple[tuple[str, ...] | None, str] = (None, "the install failed")
+    reasoning: tuple[tuple[str, ...] | None, str] = (None, "the install failed")
     entries: dict[str, Any] = {"pull": [], "landscape": []}
     named_commits: list[tuple[str, str]] = []
     sheets: list[tuple[str, dict[str, Any]]] = []
@@ -724,6 +735,39 @@ def main(argv: list[str] | None = None) -> int:
             sub = steps.run(f"help-{name}", [tl, name, "--help"])
             help_texts[f"trialledger {name} --help"] = sub["stdout"]
         steps.run("doctor", [tl, "doctor", "--run", "doctor-run"])
+        premise = {
+            "class": "Literal",
+            "subject": {"class": "Subject", "kind": "participant"},
+            "predicate": {"class": "Predicate", "kind": "demographic", "key": "eligible_sex"},
+            "value": {"class": "Value", "kind": "enum", "members": ["female"]},
+        }
+        reason_request = {
+            "operation": "entailment",
+            "assertions": [
+                {
+                    "class": "ScopedAssertion",
+                    "id": "population",
+                    "criterion_ref": "user:brief",
+                    "modality": "required",
+                    "body": premise,
+                    "rule": {
+                        "class": "Rule",
+                        "id": "user-choice",
+                        "version": "1",
+                        "warrants": ["user:brief"],
+                    },
+                    "status": "known",
+                    "resolution": "resolved",
+                }
+            ],
+            "query": {**premise, "value": {"class": "Value", "kind": "enum", "members": ["male"]}},
+        }
+        (steps.home / "premises.json").write_text(json.dumps(reason_request), encoding="utf-8")
+        reasoned = steps.run("reason", [tl, "reason", "--request", "premises.json"])
+        try:
+            reasoning = (reason_problems(json.loads(reasoned["stdout"])), "")
+        except ValueError:
+            reasoning = (("reason_response_unreadable",), "")
         pulled = steps.run("pull", [tl, "pull", "filter.ids=" + ",".join(PULL_IDS), "--out", "pulled"])
         record = steps.home / "pulled" / "studies.json"
         if pulled["exit"] == 0 and record.is_file():
@@ -751,12 +795,10 @@ def main(argv: list[str] | None = None) -> int:
                 accounting_problems(PULL_IDS, entries["landscape"], printed_words, expect_alias=True),
                 "",
             )
+            steps.run("verify-landscape", [tl, "verify", LANDSCAPE_RUN])
         else:
             landscape_accounting = (None, "the landscape wrote no record")
-        steps.run(
-            "resolve",
-            [tl, "resolve", f"filter.ids={RESOLVE_ID}", "--json", "reading.json", "--out", "design.xlsx"],
-        )
+            steps.skip("verify-landscape", "the landscape wrote no record")
         present = tuple(path for path in EXPECTED_OUTPUTS if (steps.home / path).is_file())
         outputs = (outputs_missing(EXPECTED_OUTPUTS, present), "")
         books = [path for path in present if path.endswith(".xlsx")]
@@ -803,7 +845,7 @@ def main(argv: list[str] | None = None) -> int:
         **{
             k: v
             for k, v in printed.items()
-            if k.split(" ")[0] in ("doctor", "pull", "verify", "landscape", "resolve")
+            if k.split(" ")[0] in ("doctor", "pull", "verify", "landscape", "reason")
         },
     }
     guide: tuple[tuple[str, ...] | None, str]
@@ -822,6 +864,7 @@ def main(argv: list[str] | None = None) -> int:
         "requested-ID accounting (landscape)": landscape_accounting,
         "guide commands": guide,
         "workbook conventions (pull's workbooks)": workbooks,
+        "typed reasoning": reasoning,
     }
     verdicts = tuple(step["verdict"] for step in steps.done)
     verdict = overall_verdict(verdicts, tuple(problems for problems, _ in checks.values()))
@@ -843,7 +886,16 @@ def main(argv: list[str] | None = None) -> int:
         "sheets": sheets,
         "leads": leads,
         "jargon": {name: jargon_found(text) for name, text in texts.items()},
-        "show_output": ("pip-install", "doctor", "pull", "verify", "landscape", "resolve", "uv-tool-install"),
+        "show_output": (
+            "pip-install",
+            "doctor",
+            "pull",
+            "verify",
+            "landscape",
+            "verify-landscape",
+            "reason",
+            "uv-tool-install",
+        ),
     }
     report = work / "REPORT.md"
     report.write_text(_report(facts, steps.done, verdict), encoding="utf-8")

@@ -449,7 +449,7 @@ def test_a_member_is_its_own_concept():
     assert member_identity(member, {})[1][2] == ("pending", [])
 
 
-def test_a_brand_or_a_salt_is_searched_by_its_ingredient_too():
+def test_brand_relation_is_shown_but_precise_ingredient_is_not_silently_equated():
     _, parts = identity_chain("Keytruda", ANSWERS)
     assert drug_names("Keytruda", "request", parts) == (
         "brand",
@@ -457,8 +457,8 @@ def test_a_brand_or_a_salt_is_searched_by_its_ingredient_too():
     )
     _, parts = identity_chain("osimertinib mesylate", ANSWERS)
     assert drug_names("osimertinib mesylate", "request", parts) == (
-        "salt",
-        [["osimertinib mesylate", "request"], ["osimertinib", "rxnorm_ingredient"]],
+        "precise_ingredient",
+        [["osimertinib mesylate", "request"]],
     )
 
 
@@ -652,15 +652,14 @@ def member_parts(member):
     return member_identity(member, ANSWERS)[1]
 
 
-def test_a_salt_member_is_searched_by_its_ingredient_too():
-    """The same molecule under a modifier the registry rarely writes: 1 trial names "dasatinib anhydrous", 344
-    name "dasatinib" (2026-11-01)."""
+def test_a_name_prefix_never_proves_precise_ingredient_equivalence():
+    """A PIN relation and a name prefix do not establish salt rather than biosimilar identity."""
     dasatinib = ["1546019", "dasatinib anhydrous", "PIN", ["DIRECT"]]
     listed = [member[0] for member in KINASE_MEMBERS]
     assert member_names(dasatinib, member_parts(dasatinib), listed) == (
-        "salt",
-        [["dasatinib anhydrous", "rxclass_member"], ["dasatinib", "rxnorm_ingredient"]],
-        [],
+        "precise_ingredient",
+        [["dasatinib anhydrous", "rxclass_member"]],
+        [["dasatinib", "rxnorm_ingredient", "the ingredient of dasatinib anhydrous (PIN)"]],
     )
 
 
@@ -671,7 +670,7 @@ def test_a_biosimilar_member_never_brings_in_its_reference_product():
     listed = [member[0] for member in moa[1] if member[0] != "253337"]  # as if bevacizumab were not listed
     awwb = ["2046138", "bevacizumab-awwb", "PIN", ["INDIRECT"]]
     assert member_names(awwb, member_parts(awwb), listed) == (
-        "salt",
+        "precise_ingredient",
         [["bevacizumab-awwb", "rxclass_member"]],
         [["bevacizumab", "rxnorm_ingredient", "the ingredient of bevacizumab-awwb (PIN)"]],
     )
@@ -685,15 +684,15 @@ def test_a_base_ingredient_the_class_lists_is_searched_as_its_own_member():
     awwb = ["2046138", "bevacizumab-awwb", "PIN", ["INDIRECT"]]
     assert "253337" in listed
     assert member_names(awwb, member_parts(awwb), listed) == (
-        "salt",
+        "precise_ingredient",
         [["bevacizumab-awwb", "rxclass_member"]],
         [],
     )
     netarsudil = ["1992863", "netarsudil mesylate", "PIN", ["INDIRECT"]]
     assert member_names(netarsudil, member_parts(netarsudil), listed) == (
-        "salt",
-        [["netarsudil mesylate", "rxclass_member"], ["netarsudil", "rxnorm_ingredient"]],
-        [],
+        "precise_ingredient",
+        [["netarsudil mesylate", "rxclass_member"]],
+        [["netarsudil", "rxnorm_ingredient", "the ingredient of netarsudil mesylate (PIN)"]],
     )
 
 
@@ -830,7 +829,7 @@ def test_named_drugs_resolve_with_their_ingredients_and_a_start_bound():
     assert [(e["drug"], e["code"]) for e in scope["expansions"]] == [
         ("Keytruda", "brand"),
         ("osimertinib", "ingredient"),
-        ("osimertinib mesylate", "salt"),
+        ("osimertinib mesylate", "precise_ingredient"),
         ("XB-1 zzq", "not_in_rxnorm"),
     ]
     assert scope["expansions"][0]["requests"] == KEYTRUDA
@@ -896,29 +895,34 @@ def test_a_class_with_subclasses_resolves_with_each_member_attributed():
     attribution = next(e for e in scope["expansions"] if e["kind"] == "subclass_attribution")
     assert len(attribution["subclasses"]) == 8 and all(row[5] for row in attribution["members"])
     names = kinase_names(scope)
-    # 81 members, and dasatinib for the salt member dasatinib anhydrous
-    assert len(names) == 82 and "trastuzumab" in names and "deucravacitinib" in names
+    # Every source member is searched; a related ingredient is not silently added by a name-prefix rule.
+    assert len(names) == len(KINASE_MEMBERS)
+    assert "trastuzumab" in names and "deucravacitinib" in names
+    assert "dasatinib anhydrous" in names and "dasatinib" not in names
+    precise = next(e for e in scope["expansions"] if e.get("drug") == "dasatinib anhydrous")
+    assert precise["candidates"] == [
+        ["dasatinib", "rxnorm_ingredient", "the ingredient of dasatinib anhydrous (PIN)"]
+    ]
     assert scope["query"] == {"filter.advanced": name_clause(names)}
 
 
-def test_a_salt_member_is_searched_by_its_ingredient_in_the_query():
+def test_a_related_ingredient_is_a_candidate_without_an_identity_warrant():
     scope = resolve_scope(KINASE_EPC, ANSWERS)
     dasatinib = next(e for e in scope["expansions"] if e.get("drug") == "dasatinib anhydrous")
-    assert dasatinib["code"] == "salt"
-    assert dasatinib["names"] == [
-        ["dasatinib anhydrous", "rxclass_member"],
-        ["dasatinib", "rxnorm_ingredient"],
+    assert dasatinib["code"] == "precise_ingredient"
+    assert dasatinib["names"] == [["dasatinib anhydrous", "rxclass_member"]]
+    assert dasatinib["candidates"] == [
+        ["dasatinib", "rxnorm_ingredient", "the ingredient of dasatinib anhydrous (PIN)"]
     ]
-    assert dasatinib["candidates"] == []
     assert '"dasatinib anhydrous"' in scope["query"]["filter.advanced"]
-    assert '"dasatinib"' in scope["query"]["filter.advanced"]
+    assert '"dasatinib"' not in scope["query"]["filter.advanced"]
 
 
 def test_excluded_subclasses_leave_their_members_out_of_the_query_and_in_the_scope():
     excluded = resolve_scope({"drug_class": KINASE_EPC["drug_class"] | {"subclasses": "exclude"}}, ANSWERS)
     assert excluded["code"] == "resolved"
     names = kinase_names(excluded)
-    assert len(names) == 82 - 14 and "ruxolitinib" in names and "everolimus" in names
+    assert len(names) == len(KINASE_MEMBERS) - 14 and "ruxolitinib" in names and "everolimus" in names
     assert not set(INDIRECT_ONLY) & set(names)
     attribution = next(e for e in excluded["expansions"] if e["kind"] == "subclass_attribution")
     assert attribution["rule"] == "exclude" and all(row[3] for row in attribution["subclasses"])

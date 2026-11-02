@@ -1,63 +1,68 @@
-# scripts/
+# Project scripts
 
-- `ci_local.sh`: the gate, run before every commit (see `DEVELOPING.md`, "Gate").
-- `push_checks.py`: the pre-push hook the gate stamps for.
-- `release_check.py`: TrialLedger as a first-time user meets it. Run it before publishing.
+- `ci_local.sh`: relevant local code/test gate; see DEVELOPING.md, Verification.
+- `push_checks.py`: pre-push checks and the local gate stamp.
+- `release_check.py`: installation and first-use walk in a fresh directory, using the current candidate.
 
-## Before publishing: the release check
+## Installation and first-use check
 
-Run it from a machine that reaches ClinicalTrials.gov and RxNav, with `uv` on the PATH. It needs no
-environment of its own (the standard library only):
+Run from a machine that reaches ClinicalTrials.gov and RxNav, with `uv` on PATH. The script uses the standard
+library to create a fresh Python 3.12 environment and install TrialLedger and its runtime dependencies:
 
 ```bash
-python3 scripts/release_check.py                     # this checkout, as its working tree stands
-python3 scripts/release_check.py git+https://github.com/<owner>/TrialLedger   # once the repository is public
+python3 scripts/release_check.py
+python3 scripts/release_check.py /absolute/path/to/TrialLedger
+python3 scripts/release_check.py git+https://github.com/rohanvinaik/TrialLedger
 ```
 
-It creates a new temporary directory outside the repository, makes a fresh Python 3.12 environment there with
-`uv venv --seed`, and installs TrialLedger the way `AGENTS.md` tells an assistant to: `pip install` the
-repository's path or address, then `uv tool install` it, with uv's tool folder kept inside the temporary
-directory. pip runs without a configuration file or cache, and uv without its configuration or cache, so
-nothing installed or set on this machine before is reused. A repository address is also cloned there, so
-that `AGENTS.md` and the package's file list are read from what the address serves. It then works from that
-directory with an empty TrialLedger cache, named by a folder (`TRIALLEDGER_CACHE`, as a user may set it). It
-runs `trialledger --help` and every subcommand's `--help`, then `doctor`. It pulls three trials by number,
-live; one of them, NCT01086644, is another trial's alias number, and the pull must name it. It runs `verify`
-on the pulled folder, then `landscape --ids` of the same three trials, live, the run an assistant makes for a
-person who names trials by number (its mode as the doctor finds it), and a one-trial `resolve` with `--json`
-and `--out`, then opens every workbook written with the environment's own openpyxl.
+The default is this checkout's current working tree, including added package files and excluding deleted
+ones. A Git address tests its committed source, not local edits. A repository address is cloned so the
+script can compare the source package and guide with what was installed. An archive can be installed, but
+checks requiring its absent source/guide remain not checked.
 
-The report is `WORK/REPORT.md`, and each step's output is kept beside it under `WORK/captures/`. For each step
-the report gives the exit code against the expected one, the wall time, the files and folders the step wrote
-with their sizes, and every warning or traceback. It names the commit the installed copy records in what it
-writes (`code_commit` in `studies.json` and `landscape.json`: an installed copy names the commit it was built
-from). Then six checks, each with its problems, or "not checked" and why:
+The work directory is outside the repository. The script creates its environment and uv-tool folder there,
+clears inherited Python/pip/uv/TrialLedger settings, disables installer configuration/caches and gives the
+run an empty TrialLedger cache. It retains this machine's HOME and installed Python/tool infrastructure;
+this is not a claim to reproduce every other machine or chat sandbox. It does not publish or push anything.
 
-- package files: the files git tracks under `TrialLedger/` that the installed distribution lacks;
-- outputs handed to the user: `studies.json`, `studies.csv`, `review.xlsx` and `record.xlsx` from the pull,
-  `landscape.json` and `landscape.xlsx` from the landscape, `reading.json` and `design.xlsx` from the resolve;
-- requested-ID accounting, for the pull and for the landscape: every number asked for is in the record, and
-  each one not found under its own number is said in plain words (the alias as "NCT01086644 is another
-  number of NCT01030536");
-- guide commands: the commands `AGENTS.md` names that the installed CLI lacks;
-- workbook conventions: each sheet of pull's `review.xlsx` and `record.xlsx` sets its column widths, and each
-  listing has a filter and frozen panes, as `openspec/changes/add-agent-operation/workbook-design.md` requires
-  of them. The resolve's `design.xlsx` and the landscape's `landscape.xlsx` are inspected the same way; their
-  departures are reported as leads.
+The installed program is exercised through its actual command line:
 
-The report also lists each workbook's sheets (rows, columns, widths, filter, frozen panes, blank cells), what
-the script does not check (cell values against the registry, wrapping, fonts, print setup, date formats,
-clinical wording beyond its fixed list, the commands it does not run, a landscape by drug or disease class,
-relay mode), and, for each help text, printed message and workbook, the words from a fixed list that a
-clinical reader would not know. These are leads for rewording, not faults.
+1. Read top-level and every public command's help, then run doctor.
+2. Run a separately supplied typed population premise through `reason`, checking the expected conditional
+   refutation and its premise id. This checks useful symbolic logic, not extraction from a trial or a
+   complete generated protocol.
+3. `pull` three identifiers, including an alias, and `verify` the archival folder.
+4. `landscape --ids` for the same identifiers and `verify` the ordinary reference-report folder.
+5. Open written workbooks using the installed environment, then install with `uv tool install` and read
+   that command's help too.
 
-It ends 0 ("ready") only when every step ended as expected without a traceback and every check ran and found
-nothing. A check that could not run (an archive address, a failed install or clone) makes the verdict
-"not_ready", never "ready"; the script ends 1. It refuses, ending 2, a source that is neither a folder nor an
-https or git+ address (`not_a_source`), and a `--work` folder that already exists (`work_exists`) or lies
-inside the repository (`work_inside_repository`). The whole run takes about six to ten minutes, most of it
-the landscape's and the resolve's RxNav lookups from an empty cache (each says how far it has got). A local
-checkout is installed from its working tree, untracked files included. The report states the commit and how
-many paths are uncommitted, so commit first if the report is meant to stand for what GitHub will serve.
-`git+file:///path/to/checkout` takes the address route on a local repository: it installs and reads the
-committed tree only, as GitHub would serve it.
+It never invokes the retired raw clinical readers. Expected user artifacts are the pull's `studies.json`,
+`studies.csv`, `review.xlsx` and `record.xlsx`, and the reference run's `landscape.json` and `landscape.xlsx`.
+It does not require a new-trial design workbook.
+
+## Read the evidence
+
+`WORK/REPORT.md` records the source/commit and uncommitted state, each step's exit against its expected exit,
+wall time, warnings/tracebacks and written paths/sizes. Complete stdout and stderr are retained under
+`WORK/captures/`; the report does not replace those captures.
+
+The checks cover missing installed package files, expected artifacts, requested-ID accounting for both
+retrieval paths, commands named by AGENTS.md, the original archival listing conventions and the typed
+reasoning consequence. Workbook inspection records widths, filters, frozen panes, sheet sizes and blank
+cells. Presentation departures in the ordinary report are leads alongside its own replay verifier, not a
+claim that every dossier should behave as a filtered listing. The fixed jargon list is a wording-review
+lead, not a rule deciding clinical meaning.
+
+Exit 0 means ready for the checks actually performed: steps ended as expected without traceback and every
+required check ran without a problem. Exit 1 means not ready; missing checks never become passes. Exit 2
+names a refused source or unsafe/existing work-directory choice. Warnings remain visible. Runtime is
+measured for each execution rather than promised from a past run.
+
+## Limits
+
+This walk does not independently adjudicate source truth, clinical interpretation or every source-to-cell
+value. Replay establishes derivation from retained inputs. Full readability review, exact formatting and
+source-preservation acceptance remain separate checks. This walk uses identifiers; it does not establish
+class-search or relay coverage, every study type, or a live MCP client's application integration. It does not
+exercise the complete automated trial writer. Current requirements are in
+[the two-layer contract](../openspec/README.md), not a superseded workbook-design change.

@@ -1,51 +1,16 @@
-"""Intervention classes from a cited source: NLM RxClass, FDA Established Pharmacologic Class and MED-RT, and
-the drug-class axes beside them (ATC, chemical structure), each about an entity RxNorm resolves.
+"""Source-backed drug identities and classes from the National Library of Medicine.
 
-The registry states no mechanism for an intervention (its MeSH ancestors are chemical-structure classes), so
-TrialLedger asks the U.S. National Library of Medicine's RxNav service about each drug, biological or genetic
-intervention's name and then each other name the record gives it: first the name's RxNorm identity (the
-concept of exactly that name), then, once per RxNorm concept however many names reach it, RxClass's classes of
-that concept (`class/byRxcui`, one request), read as `has_epc` from DailyMed (the FDA's Established
-Pharmacologic Class), `has_moa` from MED-RT (mechanism of action) and the axes below. Asked by its concept,
-RxClass answers exactly as it answers the concept's own name by `byDrugName` (measured 2026-11-01:
-carboplatin, Paraplatin, Temodar, Afinitor, paclitaxel, osimertinib and its mesylate), and also answers a name
-RxNorm holds that `byDrugName` did not match (CBDCA, Mereletinib, Nab-paclitaxel). A dose or schedule written
-after a drug's name ("CAT-8015 20 mcg/kg") is stripped before the name is asked, only by the named rule of
-`lookup_name`. Every class keeps its RxClass id and relation source. A name RxNorm does not hold is
-`not_in_rxnorm`, a name of several concepts `ambiguous_in_rxnorm` (RxClass is asked about neither); a concept
-RxClass holds no class of is `not_found`; a failed request is `lookup_failed`; none is ever read as "no class"
-by a failure. The requests go out at most IN_FLIGHT at once and at most RATE a second (NLM allows 20 a second
-from one address), and every answer is assembled in the order of the names asked, never of the replies. The
-answers are cached beside the pull in classes.json, successful, ambiguous and negative alike, with the request
-and the retrieval time (of the cache's last extension, and of each answer since 2026-11-01; an answer cached
-before then has none), so a profile can be re-derived without the network; each answer looked up since
-add-scoped-reasoning 1.2 carries its warrant: every request it made (URL, parameters, retrieval time) and the
-RxNav release it was read under, asked before the first request of its batch and again after the last. An
-answer cached before then keeps its classes, and its release is not recorded, never invented.
-
-The axes (add-scoped-reasoning, Decision 11) are separate coordinates, never merged with the classes above or
-with each other: the ATC class (RxClass relaSource ATC) and the chemical-structure class
-(`has_chemical_structure` from DAILYMED and from FDASPL). RxClass answers a brand or a salt as its ingredient
-(asked "Keytruda" or "osimertinib mesylate", it answers about pembrolizumab or osimertinib, measured
-2026-10-31), so a class is read as a source assertion about the concept RxClass names, and each name is
-resolved by RxNorm (its exact-name concept, the concept's term type, a non-ingredient's ingredients). The
-intervention's own name decides what it is; another name the record gives it may confirm that concept but
-never supplies one. A class counts as the intervention's own (`known`) only when it is asserted of the very
-concept its own name resolves to; a salt, brand or combination never inherits its ingredient's class by an API
-answer alone. Every axis answer keeps its warrant: the request, the retrieval time, the RxNav release and the
-ids, and the axes are kept only for the experimental drugs' names, the only ones read, and only when a
-consumer of them or the explicit fill asks (load_or_lookup_at's `fill_axes`). A target the drug's
-own entry states (anti-PD-1, EGFR inhibitor) aligns to ATC through a sourced crosswalk with named relations,
-membership only where the relation entails it; a word naming another drug (carboplatin, paclitaxel) is no
-target of this one. Registry intervention MeSH stays at trial level unless the record's own name of one
-intervention is the term.
+Each recorded name is looked up exactly in RxNorm. Its canonical concept, term type and related ingredients
+remain separate from the classes RxClass asserts about a named subject. Reporting keeps the requests,
+release and every source assertion; aliases cannot supply a missing identity or transfer a component's class
+to a brand, precise ingredient, biosimilar or combination. Related entities are not silently made identical.
+The same source parsers support search resolution and the separate symbolic design layer.
 """
 
 from __future__ import annotations
 
 import json
 import os
-import re
 import threading
 import time
 from collections.abc import Callable, Sequence
@@ -56,8 +21,6 @@ from typing import Any
 from urllib.parse import urlencode
 
 import httpx
-
-from TrialLedger.modality import history_clause
 
 RXCLASS = "https://rxnav.nlm.nih.gov/REST/rxclass/class/byDrugName.json"
 QUERIES = (("DAILYMED", "has_epc"), ("MEDRT", "has_moa"))
@@ -83,7 +46,7 @@ RATE = 15
 # (class id, class name, class type, relation, relation source, subject rxcui, subject name, subject tty)
 Assertion = tuple[str, str, str, str, str, str, str, str]
 Concept = tuple[str, str, str]  # (rxcui, name, term type)
-RESOLVED = ("ingredient", "salt", "brand", "combination", "other_form")
+RESOLVED = ("ingredient", "precise_ingredient", "brand", "combination", "other_form")
 
 
 def rxclass_classes(status: int, body: Any) -> tuple[str, list[Class]]:
@@ -170,32 +133,6 @@ def _quiet(_message: str) -> None:
 # unit; a schedule word ("oral", "once daily", "QD") is stripped only after a dose. A bare number is never a
 # dose ("MEDI 4736", "VP 16"), a dose form ("tablet", "injection") is never stripped, and a dose followed by
 # anything else stays as written ("AZD9291 80 mg/40 mg + placebo").
-DOSE_RULE = "dose_or_schedule_suffix"
-_NUMBER = r"\d+(?:\.\d+)?"
-_UNIT = r"(?:mg|mcg|µg|ug|g|ml|iu|units?)(?:\s*/\s*(?:kg|m2|m²|day|d))?(?![a-z])"
-_DOSE = rf"{_NUMBER}(?:\s*/\s*{_NUMBER})*\s*{_UNIT}(?:\s*/\s*{_NUMBER}(?:\s*/\s*{_NUMBER})*\s*{_UNIT})*"
-_SCHEDULE = (
-    r"(?:(?:once|twice)\s+(?:a\s+)?daily|daily|each\s+day|every\s+day|qd|bid|tid|orally|oral|p\.o\.|po|iv"
-    r"|intravenously)(?![a-z])"
-)
-_DOSE_SUFFIX = re.compile(rf"[\s,]+{_DOSE}(?:[\s,]+(?:{_DOSE}|{_SCHEDULE}))*[\s,]*$", re.IGNORECASE)
-
-
-def lookup_name(name: str) -> tuple[str, str]:
-    """The name RxNav is asked about for one of a drug's names, and the rule that made it (pure — pinned).
-
-    dose_stripped — the name ends in a dose (an amount with its unit), then any further doses or schedule
-                    words: the name without them ("CAT-8015 20 mcg/kg" is asked as "CAT-8015", "AZD9291 80mg
-                    oral each day" as "AZD9291"), when what is left holds a letter.
-    as_given      — anything else, the name exactly as written: no dose ends it ("MEDI 4736", "Osimertinib
-                    tablet"), something other than a dose or schedule follows the dose ("AZD9291 80 mg/40 mg
-                    + placebo"), or nothing but a dose is written ("80 mg").
-    """
-    match = _DOSE_SUFFIX.search(name)
-    stem = name[: match.start()].strip(" ,") if match else ""
-    if not any(character.isalpha() for character in stem):
-        return "as_given", name
-    return "dose_stripped", stem
 
 
 def pace(now: float, free: float, interval: float) -> tuple[float, float]:
@@ -333,15 +270,13 @@ def _ask_rxnav(
     monotonic: Callable[[], float],
     progress: Callable[[str], None],
 ) -> dict[str, dict[str, Any]]:
-    """Each name's answer, asked of RxNav in rounds, each request once however many names need it.
+    """Each recorded name's RxNorm and RxClass answers, fetched once per distinct request.
 
-    RxNav's release first; each distinct name to ask (lookup_name) its RxNorm concepts by exact name; for the
-    names of `with_axes` that name one concept, that concept's properties, and a non-ingredient's ingredients,
-    each concept once; RxClass's classes of every concept a name names alone (class_route), each concept once;
-    the release again. Each name's answer holds the name asked and its rule (`asked_as`, `rule`), its code per
-    query of QUERIES and its classes (relation_body, rxclass_classes), its retrieval time, its warrant (the
-    requests that decided it, the release before and after), and for a name of `with_axes` its axes as
-    drug_axes reads them (identity, then each axis of AXES by rxclass_assertions, with both releases)."""
+    Exact RxNorm identity is asked for every complete recorded name, without normalization or word stripping.
+    Names of with_axes also retain concept properties and related ingredients. The same RxClass byRxcui
+    response supplies EPC, MoA, ATC and chemical-structure assertions with their source subjects. Requests,
+    retrieval times and the releases before and after the batch remain with their evidence.
+    """
 
     def ask(
         keys: list[str], requests: list, words: str, unit: str
@@ -354,7 +289,7 @@ def _ask_rxnav(
         return [*rxnav_release(asked[1], asked[2]), asked[0]]
 
     release = release_of(ask(["release"], [(RXNAV_VERSION, {})], "", "")["release"])
-    asked_as = {name: lookup_name(name) for name in names}
+    asked_as = {name: ("as_given", name) for name in names}
     stems = sorted({stem for _rule, stem in asked_as.values()})
     found = ask(
         stems,
@@ -434,7 +369,7 @@ def _ask_rxnav(
                     "release_end": list(release_end),
                 }
             }
-            for source, rela in AXES:
+            for source, rela in (*QUERIES, *AXES):
                 code, assertions = _share(route, status, body, source, rela, rxclass_assertions)
                 axes[axis_key(source, rela)] = {
                     "code": code,
@@ -516,35 +451,26 @@ def load_or_lookup_at(
     monotonic: Callable[[], float] = time.monotonic,
     progress: Callable[[str], None] = _quiet,
 ) -> dict[str, Any]:
-    """The RxNav answers cached at `path`, extended by a lookup of any name not yet cached, and saved.
+    """Retain RxNav answers at path, extending missing names and explicitly requested identity evidence.
 
-    `progress` hears, before a lookup, how many names it will ask about, then how far each round has got
-    (progress_due), and last how many requests RxNav answered, so a long one is never silent.
-
-    Every name of `names` and `axes_names` not yet cached is asked (_ask_rxnav: its RxNorm identity, then its
-    concept's classes, each request once however many names need it, at most IN_FLIGHT at once and RATE a
-    second), its answer kept whatever it says (classes, no class, a name RxNorm does not hold or holds as
-    several concepts, a failure), with its warrant; an answer cached before answers carried one keeps its
-    classes as answered and is never asked again or rewritten, so its release stays not recorded
-    (reading.class_warrant), never invented. The axes (RxNorm identity with the concept's term type and
-    ingredients, ATC, structure) are kept only when `fill_axes` is given, and only for `axes_names` (the
-    experimental drugs' names, the only ones the reading reads) not yet holding them, a name cached before the
-    axes existed being asked for them alone, its classes left as they were answered: a consumer that reads
-    them (`landscape`, the `resolve` JSON and its design.xlsx) or the explicit fill (`trialledger profile
-    --fill-axes`) asks; any other run reads the axes already cached, and the reading names the rest
-    not_looked_up (reading.axes_as_looked_up), never "no class".
-
-    RxNav's release is asked before the batch's first request and after its last; when the two answers
-    differ (batch_releases) the cache is not extended, so the same command asks again, and the answers
-    returned carry both releases for the caller to refuse (operate.release_check). An answer resting on a
-    failed request is cached as it was answered (lookup_failed, never "no class"), so that a finished run run
-    again reads exactly what it read.
+    Every name is resolved by exact RxNorm lookup, then its single concept is queried in RxClass. fill_axes
+    requests properties, related ingredients and subject-bearing class assertions for axes_names. Cached older
+    answers retain their original flattened class values; missing identity/subject evidence is fetched
+    separately and retained under axes, never invented from an alias. Failed and negative responses
+    stay distinct. Newly saved answers are read back from the retained file, so first use and reuse have
+    the same JSON representation, including nested source request objects.
+    A changed release prevents extending the on-disk cache; the caller receives both releases to refuse it.
     """
     path.parent.mkdir(parents=True, exist_ok=True)
     cache = json.loads(path.read_text(encoding="utf-8")) if path.is_file() else {}
     answers = cache.get("answers", {})
     missing = [n for n in dict.fromkeys([*names, *axes_names]) if n not in answers]
-    held = [n for n in dict.fromkeys(axes_names) if n in answers and "axes" not in answers[n]]
+    held = [
+        n
+        for n in dict.fromkeys(axes_names)
+        if n in answers
+        and any(axis_key(source, rela) not in (answers[n].get("axes") or {}) for source, rela in QUERIES)
+    ]
     without_axes = held if fill_axes else []
     asked = [*missing, *without_axes]
     if not asked:
@@ -561,7 +487,7 @@ def load_or_lookup_at(
     if all(first == last for first, last in batch_releases(fresh)):
         cache = {
             "source": "NLM RxNav REST API: each name's RxNorm identity (rxcui by exact name, the name "
-            "asked after the dose rule), then RxClass byRxcui for the one concept it names, read as "
+            "asked exactly as recorded), then RxClass byRxcui for the one concept it names, read as "
             'DAILYMED has_epc and MEDRT has_moa; each answer with its "requests" (URL, parameters, '
             'retrieval time) and the RxNav "release" it was read under, asked before the batch and again '
             'after it ("release_end"; an answer cached before 2026-11-01 holds neither, one cached before '
@@ -573,25 +499,8 @@ def load_or_lookup_at(
             "answers": answers,
         }
         path.write_text(json.dumps(cache, indent=1, sort_keys=True, ensure_ascii=False), encoding="utf-8")
+        return json.loads(path.read_text(encoding="utf-8"))["answers"]
     return answers
-
-
-def drug_class(answers: dict[str, Any], aliases: list[str]) -> tuple[str, list[Class], str]:
-    """A drug's classes by the first of its names RxClass classifies: (code, classes, the name that resolved).
-
-    classified — some name has classes; unresolved — every name was not_found or malformed; lookup_failed —
-    no name has classes and at least one lookup failed, so absence is not established.
-    """
-    failed = False
-    for alias in aliases:
-        answer = answers.get(alias)
-        if answer is None:
-            failed = True
-            continue
-        if answer["classes"]:
-            return "classified", [tuple(c) for c in answer["classes"]], alias
-        failed = failed or "lookup_failed" in answer["codes"].values()
-    return ("lookup_failed" if failed else "unresolved"), [], ""
 
 
 def rxclass_assertions(status: int, body: Any) -> tuple[str, list[Assertion]]:
@@ -854,7 +763,8 @@ def name_identity(ids: list, concept: list, ingredients: list) -> tuple[str, str
     unresolved    — an answer was malformed, or the one concept's type or ingredients could not be read.
     ingredient    — one concept, of term type IN: its own ingredient.
     combination   — one MIN, or a concept of another type with more than one ingredient.
-    salt          — one PIN (a precise ingredient: a salt or an ester) with one ingredient.
+    precise_ingredient — one PIN with one ingredient; PIN alone does not distinguish a salt, ester or
+                         biologic variant, and never establishes equivalence to its related ingredient.
     brand         — one BN with one ingredient.
     other_form    — one concept of any other type (a clinical drug, a dose form group) with one ingredient.
     """
@@ -863,9 +773,9 @@ def name_identity(ids: list, concept: list, ingredients: list) -> tuple[str, str
         return "lookup_failed", "", []
     if ids_code == "not_found":
         return "not_in_rxnorm", "", []
-    if ids_code != "found" or len(id_list) > 1:
-        return ("ambiguous" if ids_code == "found" else "unresolved"), "", []
-    if concept_code != "found" or len(concepts) != 1:
+    if ids_code != "found" or len(id_list) != 1:
+        return ("ambiguous" if ids_code == "found" and len(id_list) > 1 else "unresolved"), "", []
+    if concept_code != "found" or len(concepts) != 1 or concepts[0][0] != id_list[0]:
         return "unresolved", "", []
     rxcui, _name, tty = concepts[0]
     if tty == "IN":
@@ -875,7 +785,7 @@ def name_identity(ids: list, concept: list, ingredients: list) -> tuple[str, str
         return "combination", rxcui, rxcuis
     if not rxcuis:
         return "unresolved", "", []
-    return {"PIN": "salt", "BN": "brand"}.get(tty, "other_form"), rxcui, rxcuis
+    return {"PIN": "precise_ingredient", "BN": "brand"}.get(tty, "other_form"), rxcui, rxcuis
 
 
 def class_standing(identity: str, entity: str, ingredients: list[str], subject: str) -> str:
@@ -903,35 +813,246 @@ def request_text(warrant: dict[str, Any]) -> str:
 
 # An alias resolving to a concept other than the own name's; the own name still decides.
 ALIAS_CONFLICTS = ("alias_is_combination", "alias_is_one_ingredient", "alias_other_concept")
-_COMBINATION_WORDING = re.compile(r"/|\+|,|\band\b|\bplus\b", re.IGNORECASE)
 
 
-def alias_role(own_name: str, own: tuple[str, str, list[str]], alias: tuple[str, str, list[str]]) -> str:
+def alias_role(own: tuple[str, str, list[str]], alias: tuple[str, str, list[str]]) -> str:
     """What another name the record gives an intervention says beside its own name (pure — pinned).
 
     `own` and `alias` are name_identity's (code, rxcui, ingredients). An alias never supplies a concept:
     alias_not_resolved   — RxNorm does not resolve the alias to one concept: it says nothing.
-    confirms             — the own name resolves and the alias is that concept, or names the same ingredients
-                           (a brand or a salt of the same single ingredient).
+    confirms             — the own name resolves and the alias is that exact RxNorm concept.
+    related_form         — distinct concepts whose source-listed ingredient sets agree; related is not
+                           identical, so this never carries a class from one entity to another.
     alias_is_combination — the alias is a combination and the own name is not that combination (or does not
                            resolve).
-    alias_is_one_ingredient — the alias is a single ingredient of the own name: of its resolved combination,
-                           or, when RxNorm does not hold the own name, of the combination its own wording
-                           names ("Carboplatin/Pemetrexed", "X + Y", "X, Y", "X and Y", "X plus Y").
+    alias_is_one_ingredient — the alias names a source-listed component of the own resolved combination.
     alias_other_concept  — any other concept.
     """
     own_code, own_rxcui, own_parts = own
     code, rxcui, parts = alias
     if code not in RESOLVED:
         return "alias_not_resolved"
-    if own_code in RESOLVED and (rxcui == own_rxcui or sorted(parts) == sorted(own_parts)):
+    if own_code in RESOLVED and rxcui == own_rxcui:
         return "confirms"
+    if own_code in RESOLVED and parts and sorted(parts) == sorted(own_parts):
+        return "related_form"
     if len(parts) > 1:
         return "alias_is_combination"
-    combination = len(own_parts) > 1 if own_code in RESOLVED else bool(_COMBINATION_WORDING.search(own_name))
-    if combination and (own_code not in RESOLVED or set(parts) <= set(own_parts)):
+    if own_code in RESOLVED and len(own_parts) > 1 and set(parts) <= set(own_parts):
         return "alias_is_one_ingredient"
     return "alias_other_concept"
+
+
+def identity_evidence(name: str, answer: Any) -> dict[str, Any]:
+    """One recorded name's retained RxNorm evidence, with no substitution from another name.
+
+    The concept and ingredient rows are the parsed source response, not names interpreted locally.
+    An absent answer is not_looked_up; evidence missing from an existing answer is not_recorded;
+    an invalid response shape is malformed. A PIN is a precise
+    ingredient; its term type alone never establishes salt versus biosimilar or identity with a base.
+    """
+    evidence: dict[str, Any] = {
+        "name": name,
+        "asked_as": "",
+        "name_rule": "",
+        "code": "not_looked_up",
+        "rxcui": "",
+        "canonical_name": "",
+        "term_type": "",
+        "ingredients": [],
+        "ingredient_concepts": [],
+        "role": "",
+        "requests": [],
+        "release": [],
+        "release_end": [],
+    }
+    if answer is None:
+        return evidence
+    if not isinstance(answer, dict):
+        return {**evidence, "code": "malformed"}
+    evidence.update(asked_as=answer.get("asked_as", ""), name_rule=answer.get("rule", ""))
+    axes = answer.get("axes")
+    held = axes.get("identity") if isinstance(axes, dict) else None
+    if held is None:
+        return {**evidence, "code": "not_recorded"}
+    if not isinstance(held, dict):
+        return {**evidence, "code": "malformed"}
+    evidence.update({key: held.get(key, []) for key in ("requests", "release", "release_end")})
+    parsed = []
+    for key, width in (("ids", 1), ("concept", 3), ("ingredients", 3)):
+        part = held.get(key)
+        if not isinstance(part, (tuple, list)) or len(part) != 2:
+            return {**evidence, "code": "malformed"}
+        code, rows = part
+        if not isinstance(code, str) or not isinstance(rows, (tuple, list)):
+            return {**evidence, "code": "malformed"}
+        if width == 1:
+            valid = all(isinstance(row, str) and row for row in rows)
+        else:
+            valid = all(
+                isinstance(row, (tuple, list))
+                and len(row) == width
+                and all(isinstance(value, str) and value for value in row)
+                for row in rows
+            )
+        if not valid:
+            return {**evidence, "code": "malformed"}
+        parsed.append([code, list(rows)])
+    code, rxcui, ingredients = name_identity(*parsed)
+    evidence.update(code=code, rxcui=rxcui, ingredients=ingredients, ingredient_concepts=list(parsed[2][1]))
+    if code in RESOLVED:
+        _rxcui, canonical, tty = parsed[1][1][0]
+        evidence.update(canonical_name=canonical, term_type=tty)
+    requests = held.get("requests")
+    queries = (
+        [
+            request.get("params", {}).get("name")
+            for request in requests
+            if isinstance(request, dict)
+            and request.get("url") == RXNORM_IDS
+            and isinstance(request.get("params"), dict)
+            and str(request["params"].get("search")) == "0"
+        ]
+        if isinstance(requests, list)
+        else []
+    )
+    if name not in queries:
+        evidence.update(identity_kind=code, code="lookup_candidate" if queries else "not_recorded")
+        evidence["asked_as"] = queries[0] if queries else ""
+    return evidence
+
+
+def class_evidence(aliases: list[str], answers: dict[str, Any] | None) -> dict[str, Any]:
+    """Source identities and EPC/MoA assertions for one recorded intervention (pure).
+
+    Only an assertion whose subject is the own name's exact established RxCUI can be known. An alias
+    never supplies a missing own identity; related ingredients/forms remain distinct entities. Every
+    source assertion is retained with its subject and standing. An unrelated alias identity makes the
+    intervention unresolved, never whichever name happened to be visited first. Class sets from different
+    sources/relations are not competing identities and are retained separately.
+    """
+    out: dict[str, Any] = {
+        "state": "unresolved",
+        "reason": "no_recorded_name",
+        "classes": [],
+        "resolved_by": "",
+        "identities": [],
+        "assertions": [],
+        "queries": [],
+    }
+    if not isinstance(aliases, list) or any(not isinstance(name, str) or not name for name in aliases):
+        return {**out, "reason": "malformed_recorded_names"}
+    if not aliases:
+        return out
+    if answers is not None and not isinstance(answers, dict):
+        return {**out, "reason": "malformed_answers"}
+    names = [aliases[0], *sorted(set(aliases[1:]) - {aliases[0]})]
+    supplied = answers if isinstance(answers, dict) else {}
+    identities = [identity_evidence(name, supplied.get(name)) for name in names]
+    own = (identities[0]["code"], identities[0]["rxcui"], identities[0]["ingredients"])
+    for index, identity in enumerate(identities):
+        identity["role"] = (
+            "own"
+            if index == 0
+            else alias_role(own, (identity["code"], identity["rxcui"], identity["ingredients"]))
+        )
+    conflict = any(identity["role"] in ALIAS_CONFLICTS for identity in identities[1:])
+    out["identities"] = identities
+    for name in names:
+        answer = supplied.get(name)
+        axes = answer.get("axes", {}) if isinstance(answer, dict) else {}
+        for source, relation in QUERIES:
+            axis = axes.get(axis_key(source, relation)) if isinstance(axes, dict) else None
+            query = {
+                "queried_name": name,
+                "source": source,
+                "relation": relation,
+                "code": "not_recorded" if isinstance(answer, dict) else "not_looked_up",
+                "request": None,
+                "release": [],
+            }
+            if axis is None and isinstance(answer, dict):
+                recorded = answer.get("codes")
+                if isinstance(recorded, dict) and axis_key(source, relation) in recorded:
+                    query.update(
+                        code=recorded[axis_key(source, relation)],
+                        requests=answer.get("requests", []),
+                        release=answer.get("release", []),
+                    )
+            if isinstance(axis, dict):
+                query.update({key: axis.get(key, query[key]) for key in ("code", "request", "release")})
+                rows = axis.get("assertions")
+                if (
+                    query["code"]
+                    not in (
+                        "found",
+                        "not_found",
+                        "lookup_failed",
+                        "malformed",
+                        "not_in_rxnorm",
+                        "ambiguous_in_rxnorm",
+                    )
+                    or not isinstance(rows, list)
+                    or bool(rows) != (query["code"] == "found")
+                    or any(
+                        not isinstance(row, (tuple, list))
+                        or len(row) != 8
+                        or not all(isinstance(value, str) for value in row)
+                        or not all(row[index] for index in (0, 1, 5, 6, 7))
+                        or row[3:5] not in ((relation, source), [relation, source])
+                        for row in rows
+                    )
+                ):
+                    query["code"] = "malformed"
+                    rows = []
+                for cid, label, kind, rela, origin, subject, subject_name, tty in rows:
+                    standing = class_standing(*own, subject)
+                    if conflict and standing == "known":
+                        standing = "identity_conflict"
+                    out["assertions"].append(
+                        {
+                            "queried_name": name,
+                            "class_id": cid,
+                            "class_name": label,
+                            "class_type": kind,
+                            "relation": rela,
+                            "source": origin,
+                            "subject_rxcui": subject,
+                            "subject_name": subject_name,
+                            "subject_type": tty,
+                            "standing": standing,
+                            "request": query["request"],
+                            "release": query["release"],
+                        }
+                    )
+            elif axis is not None:
+                query["code"] = "malformed"
+            out["queries"].append(query)
+    classes = sorted(
+        {
+            (a["class_id"], a["class_name"], a["relation"], a["source"])
+            for a in out["assertions"]
+            if a["standing"] == "known"
+        }
+    )
+    out["classes"] = [list(row) for row in classes]
+    if answers is None or own[0] == "not_looked_up":
+        out.update(state="not_looked_up", reason="own_identity_not_looked_up")
+    elif own[0] == "lookup_failed":
+        out.update(state="lookup_failed", reason="own_identity_lookup_failed")
+    elif own[0] not in RESOLVED:
+        out["reason"] = f"own_identity_{own[0]}"
+    elif conflict:
+        out.update(state="conflict", reason="alias_identity_conflict")
+    elif classes:
+        out.update(state="classified", reason="exact_source_subject", resolved_by=names[0])
+    elif any(query["code"] == "lookup_failed" for query in out["queries"]):
+        out.update(state="lookup_failed", reason="class_lookup_failed")
+    elif any(query["code"] == "malformed" for query in out["queries"]):
+        out["reason"] = "class_response_malformed"
+    else:
+        out["reason"] = "no_direct_class_assertion"
+    return out
 
 
 def drug_axes(aliases: list[str], answers: dict[str, Any]) -> tuple[str, str, list[tuple], list[tuple]]:
@@ -965,10 +1086,11 @@ def drug_axes(aliases: list[str], answers: dict[str, Any]) -> tuple[str, str, li
         if not axes:
             continue
         held = axes["identity"]
-        identity = name_identity(held["ids"], held["concept"], held["ingredients"])
+        evidence = identity_evidence(alias, answers.get(alias))
+        identity = (evidence["code"], evidence["rxcui"], evidence["ingredients"])
         if not identities:
             own = identity
-        role = "own" if not identities else alias_role(aliases[0], own, identity)
+        role = "own" if not identities else alias_role(own, identity)
         requests = tuple((request_text(w), w["retrieved"]) for w in held.get("requests", []))
         release = held["release"][1] if held["release"][0] == "found" else ""
         identities.append((alias, *identity, role, requests, release))
@@ -1133,48 +1255,6 @@ CROSSWALK = (
 )
 
 # The words that name a drug's own target, never another drug: each a target of the crosswalk.
-TARGET_WORDS = {
-    "PD-1": r"anti[- ]?PD[- ]?1\b|\bPD[- ]?1 (?:inhibitor|antibod|blockade|blocking)",
-    "PD-L1": r"anti[- ]?PD[- ]?L1\b|\bPD[- ]?L1 (?:inhibitor|antibod|blockade|blocking)",
-    "CTLA-4": r"anti[- ]?CTLA[- ]?4\b|\bCTLA[- ]?4 (?:inhibitor|antibod|blockade|blocking)",
-    "immune checkpoint": r"immune[- ]checkpoint inhibitor|\bcheckpoint inhibitor",
-    "EGFR inhibitor": r"\bEGFR[- ](?:TKI|tyrosine kinase inhibitor|inhibitor|directed|targeted)",
-    "ALK inhibitor": r"\bALK[- ](?:TKI|tyrosine kinase inhibitor|inhibitor|directed|targeted)",
-    "MET inhibitor": r"\bc?-?MET[- ](?:TKI|inhibitor|targeted|directed)",
-    "VEGF inhibitor": r"anti[- ]?VEGF\b|\bVEGFR? (?:inhibitor|antibod)",
-}
-
-
-_OTHER_DRUG = re.compile(
-    r"\b[A-Za-z][\w-]*(?:mab|nib|ciclib|parib|platin|taxel|mustine|rubicin|trexed|citabine)\b"
-    r"|\b(?:cisplatin|carboplatin|oxaliplatin|paclitaxel|docetaxel|pemetrexed|gemcitabine|etoposide)\b",
-    re.IGNORECASE,
-)
-
-
-def own_targets(entry: str, own_name: str = "") -> list[str]:
-    """The targets a drug's own entry states of the drug itself (pure — pinned).
-
-    Each TARGET_WORDS target named in `entry` (the intervention's own name and description), each once, in the
-    order first named, except a mention whose clause states the patient's history or eligibility
-    (modality.history_clause: "patients previously treated with an anti-PD-1"), which is about the patient,
-    and a mention whose clause names another drug before it ("XB-1 given with pembrolizumab, an anti-PD-1
-    antibody"), which may be that drug's: a drug-name stem other than `own_name` makes the reading abstain,
-    never assert. A word naming another drug is no target ("XB-1 given after carboplatin and paclitaxel"
-    states none). None stated: an empty list."""
-    own = own_name.strip().lower()
-    found: dict[str, int] = {}
-    for target, pattern in TARGET_WORDS.items():
-        for match in re.finditer(pattern, entry, re.IGNORECASE):
-            clause_start = max(entry.rfind(mark, 0, match.start()) for mark in (". ", ";", "\n")) + 1
-            others = [
-                m
-                for m in _OTHER_DRUG.finditer(entry, clause_start, match.start())
-                if m.group(0).lower() != own
-            ]
-            if not history_clause(entry[: match.start()]) and not others:
-                found[target] = min(found.get(target, match.start()), match.start())
-    return sorted(found, key=lambda target: found[target])
 
 
 def entails_membership(relation: str) -> bool:

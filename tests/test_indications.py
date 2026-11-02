@@ -6,7 +6,7 @@ from dataclasses import asdict
 
 import pytest
 
-from TrialLedger.indications import (
+from TrialLedger.layer2.indications import (
     LookupResult,
     MeshIdentity,
     MeshLookup,

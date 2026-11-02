@@ -121,6 +121,7 @@ FINDING_WORDS = {
     "not_shown": "the cell does not show the record's value exactly",
     "raw_record": "the cell shows a piece of the record's JSON instead of words",
     "fact_missing": "a dossier fact the record holds has no row",
+    "continuation_invalid": "a dossier continuation has missing, repeated, reordered or inconsistent parts",
     "format_differs": "the number cell's format is not the contract's (a count in General, a registry "
     "decimal in the format of its own decimal places)",
     "wrong_link": "the cell's link points at another row than the record's own group",
@@ -286,10 +287,21 @@ def cell_verdict(
     Codes: shown; blank_by_construction; not_blank; blank (a value to show, none shown); unexplained_blank
     (nothing to show, yet an absence must be worded); retyped; number_differs; decimals_differ;
     wrong_words (other words than the status's); not_shown.
+
+    A nonempty whitespace-only source text copied identically is shown, not a missing cell.
     """
     blank = cell is None or (isinstance(cell, str) and not cell.strip())
     if by_construction:
         return "blank_by_construction" if blank else "not_blank"
+    if (
+        blank
+        and isinstance(cell, str)
+        and cell
+        and texts
+        and not numbers
+        and all(cell == text for text in texts)
+    ):
+        return "shown"
     if blank:
         return "blank" if texts or numbers or status_words else "unexplained_blank"
     is_number = isinstance(cell, (int, float)) and not isinstance(cell, bool)
@@ -809,9 +821,14 @@ def expected(field: contract.Field, value: Any) -> Expected:
         status = value.get("status")
         if status == "not_stated" and value.get("note") == "not_applicable":
             return Expected([], [], [status_words("not_applicable")])
-        if status == "known" and value.get("rule") == "classes.drug_class":
+        class_rule = contract.FIELD_NAMES["studies[].interventions[].drug_class"].source[0]
+        if status == "known" and value.get("rule") == class_rule:
             result = value.get("result")
-            classes = result.get("classes") if isinstance(result, dict) else None
+            classes = (
+                result.get("classes")
+                if isinstance(result, dict) and result.get("state") == "classified"
+                else None
+            )
             if isinstance(classes, list) and classes:
                 lines = [
                     contract.RXNAV_CLASS_DISPLAY_FORM.format(
@@ -822,6 +839,7 @@ def expected(field: contract.Field, value: Any) -> Expected:
                 ]
                 if len(lines) == len(classes):
                     return Expected(["\n".join(lines)], [], [])
+            return Expected([], [], [status_words("unresolved")])
         return Expected([], [], [status_words(status)]) if status in WORDED_STATUSES else NOTHING
     if isinstance(value, list):
         if not value and field.name in EMPTY_READING_WORDS:
@@ -1567,6 +1585,12 @@ def index_findings(record: dict[str, Any], sheet: contract.Sheet, rows: list[Row
 DOSSIER_FIELDS = tuple(field for field in FIELDS if contract.DOSSIER in field.consumers)
 NUMBERED = re.compile(r"(.+?) (\d+)")
 LINE = re.compile(r"([^:\n]+): (.*)")
+DOSSIER_PART = re.compile(
+    re.escape(contract.DOSSIER_PART_FORM)
+    .replace(re.escape("{fact}"), r"(?P<fact>.+)")
+    .replace(re.escape("{part}"), r"(?P<part>\d+)")
+    .replace(re.escape("{count}"), r"(?P<count>\d+)")
+)
 
 
 def _scalar_fields() -> dict[str, contract.Field]:
@@ -1631,11 +1655,82 @@ def _numbered_element(study: dict[str, Any], fact: str, labels: list[str]) -> tu
     return (name, items[n - 1]) if 0 < n <= len(items) else (name, None)
 
 
+def dossier_part_rows(rows: list[Row]) -> tuple[list[Row], list[Finding], set[int]]:
+    """Join actual adjacent dossier parts in their written order, validating their declared sequence.
+
+    This reads the workbook's labels and contents, not the writer's splitting algorithm. No whitespace is
+    inserted or removed. Broken groups remain findings even if their joined text happens to contain a fact.
+    """
+    joined, findings, continued = [], [], set()
+    seen: set[tuple[str, str, str]] = set()
+    position = 0
+    while position < len(rows):
+        first = rows[position]
+        fact = _plain(first.cells.get("Fact"))
+        match = DOSSIER_PART.fullmatch(fact) if isinstance(fact, str) else None
+        if match is None:
+            joined.append(first)
+            position += 1
+            continue
+        base = match["fact"]
+        nct = str(_plain(first.cells.get("Trial ID")))
+        section = str(_plain(first.cells.get("Section")))
+        key = (nct, section, base)
+        count = int(match["count"])
+        group = []
+        while position < len(rows):
+            row = rows[position]
+            named = _plain(row.cells.get("Fact"))
+            part = DOSSIER_PART.fullmatch(named) if isinstance(named, str) else None
+            if (
+                part is None
+                or (
+                    str(_plain(row.cells.get("Trial ID"))),
+                    str(_plain(row.cells.get("Section"))),
+                    part["fact"],
+                )
+                != key
+            ):
+                break
+            group.append((row, int(part["part"]), int(part["count"])))
+            position += 1
+        texts = [_plain(row.cells.get("Value")) for row, _, _ in group]
+        first_basis = _plain(first.cells.get("Basis"))
+        valid = (
+            count >= 2
+            and len(group) == count
+            and key not in seen
+            and all(
+                part == i and total == count and _plain(row.cells.get("Basis")) == first_basis
+                for i, (row, part, total) in enumerate(group, 1)
+            )
+            and all(isinstance(text, str) for text in texts)
+        )
+        if not valid:
+            findings.append(
+                Finding(
+                    "continuation_invalid",
+                    nct,
+                    f"{first.sheet}: {base}",
+                    f"{first.sheet} row {first.number}",
+                    {"parts": count, "order": "1 through the declared count", "basis": first_basis},
+                    [(part, total, _plain(row.cells.get("Basis"))) for row, part, total in group],
+                )
+            )
+        seen.add(key)
+        cells = dict(first.cells)
+        cells["Fact"] = base
+        cells["Value"] = "".join(text for text in texts if isinstance(text, str))
+        joined.append(Row(first.sheet, first.number, cells))
+        continued.add(first.number)
+    return joined, findings, continued
+
+
 def dossier_findings(record: dict[str, Any], sheet: contract.Sheet, rows: list[Row]) -> list[Finding]:
     """The Trial review, one row a fact: a fact of one value against the record's value of its label, its
     Basis in the contract's words; a numbered fact's every "Label: value" line against its list entry; and
     every fact of one value the registry holds has its row."""
-    findings = []
+    rows, findings, continued = dossier_part_rows(rows)
     studies = _study_by_nct(record)
     scalars = _scalar_fields()
     shown: dict[str, set[str]] = {}
@@ -1657,6 +1752,17 @@ def dossier_findings(record: dict[str, Any], sheet: contract.Sheet, rows: list[R
             values = _study_values(record, i, field.name)
             want = _values_expected(field, values)
             verdict = judge(value, want, False)
+            if (
+                row.number in continued
+                and field.kind == "plain"
+                and not field.display
+                and field.name not in DATE_FIELDS | {"studies[].lead_sponsor.name"}
+                and len(values) == 1
+                and isinstance(values[0], str)
+            ):
+                exact = values[0] + ("\n[End of field]" if "\n\n" in values[0] else "")
+                if _plain(value) != exact:
+                    verdict = "not_shown"
             if verdict != "shown":
                 field_name = f"{sheet.name}: {fact}"
                 findings.append(
@@ -1688,8 +1794,19 @@ def dossier_findings(record: dict[str, Any], sheet: contract.Sheet, rows: list[R
             if field is None or element is None:
                 continue
             rest = field.name.removeprefix(f"studies[].{name}[].")
-            want = _values_expected(field, _row_values(element, rest, "", [], None))
+            values = _row_values(element, rest, "", [], None)
+            want = _values_expected(field, values)
             verdict = judge(line, _as_text(want), False)
+            if (
+                row.number in continued
+                and field.kind == "plain"
+                and not field.display
+                and field.name not in DATE_FIELDS
+                and len(values) == 1
+                and isinstance(values[0], str)
+                and line != values[0]
+            ):
+                verdict = "not_shown"
             if verdict != "shown":
                 field_name = f"{sheet.name}: {fact}: {label}"
                 findings.append(Finding(verdict, nct, field_name, where, want.texts or want.words, line))

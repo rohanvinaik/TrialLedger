@@ -6,7 +6,7 @@ Negative: an unknown representation value never matches; different representatio
 differences, or none, never pair; a predicate unknown in either trial is never a difference.
 """
 
-from TrialLedger.nearmiss import near_misses
+from TrialLedger.layer2.nearmiss import near_misses
 
 REP = {"setting": "advanced_first_line", "classes": "PD-1"}
 

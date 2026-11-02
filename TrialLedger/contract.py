@@ -10,12 +10,14 @@ from __future__ import annotations
 
 from typing import Any, NamedTuple
 
-CONTRACT_VERSION = "4.0"
+from TrialLedger import checks, registry
+
+CONTRACT_VERSION = "4.1"
 SCHEMA_VERSION = 4
 
 
 class Field(NamedTuple):
-    """One field of landscape.json schema 3.
+    """One field of the source-only landscape.json schema 4.
 
     name      — its dotted path in landscape.json, list items as "[]";
     label     — what a reviewer calls it;
@@ -69,7 +71,6 @@ SHOWS = {
 }
 # The parts of the MCP record tool not served yet, each with the unit that builds it: none (unit F serves the
 # across-trial findings and the review questions).
-MCP_PARTS_TO_BUILD: dict[str, str] = {}
 
 # ── where the registry keeps each value ─────────────────────────────────────────────────────────────────
 
@@ -107,14 +108,9 @@ BASELINE = "Baseline"
 FLOW = "Participant flow"
 GROUPS = "Groups"
 SAFETY = "Safety"
-BIOMARKERS = "Biomarkers"
-FINDINGS = "Across-trial findings"
-RECURRING = "Recurring wording"
-RECURRING_EXAMPLE = "Example wording (whole criteria; may carry further requirements)"
 # The denominator column of Posted results and Baseline: a count of participants as a number; any other unit
 # written out with its count, a unit the registry does not give said so.
 DENOMINATOR = "Denominator (participants unless otherwise specified)"
-READINGS = "Readings"
 DICTIONARY = "Column dictionary"
 
 # Consumers many fields share.
@@ -123,7 +119,6 @@ ON_README = (("sheet", READ_ME, "Topic"), ("sheet", READ_ME, "Content"))
 STUDY = ("mcp", "study")
 STUDIES = ("mcp", "studies")
 MANIFEST = ("mcp", "manifest")
-STUDY_VIEW = ("design", "reading.study_view")
 # A rule's reading is one row of the Readings sheet: the field, the words read, the rule, the result and the
 # status of its value object.
 
@@ -155,7 +150,7 @@ _STUDY_FIELDS: tuple[Field, ...] = (
             ("sheet", "Groups", "Trial ID"),
             ("sheet", "Safety", "Trial ID"),
             ("mcp", "studies"),
-            ("design", "reading.study_view"),
+            ("sheet", "Registry checks", "Trial ID"),
         ),
         display="",
         form="as held",
@@ -281,7 +276,6 @@ _STUDY_FIELDS: tuple[Field, ...] = (
             ("sheet", "Trial index", "Status"),
             ("sheet", "Trial review", "Value"),
             ("mcp", "studies"),
-            ("design", "reading.study_view"),
         ),
         display="Status",
         form="as held",
@@ -315,12 +309,7 @@ _STUDY_FIELDS: tuple[Field, ...] = (
         label="Start date",
         kind="plain",
         source=("protocolSection.statusModule.startDateStruct.date",),
-        consumers=(
-            ("sheet", "Trial index", "Start"),
-            ("sheet", "Trial review", "Value"),
-            ("mcp", "studies"),
-            ("design", "reading.study_view"),
-        ),
+        consumers=(("sheet", "Trial index", "Start"), ("sheet", "Trial review", "Value"), ("mcp", "studies")),
         display="",
         form="as held",
         reads=(),
@@ -423,7 +412,6 @@ _STUDY_FIELDS: tuple[Field, ...] = (
             ("sheet", "Trial index", "Sponsor"),
             ("sheet", "Trial review", "Value"),
             ("mcp", "studies"),
-            ("design", "reading.study_view"),
         ),
         display="",
         form="as held",
@@ -650,7 +638,7 @@ _STUDY_FIELDS: tuple[Field, ...] = (
         label="Intervention MeSH terms (the registry's terms, never a drug class)",
         kind="plain",
         source=("derivedSection.interventionBrowseModule.meshes[].term",),
-        consumers=(("sheet", "Trial review", "Value"), ("design", "reading.study_view")),
+        consumers=(("sheet", "Trial review", "Value"),),
         display="",
         form="as held",
         reads=(),
@@ -672,7 +660,7 @@ _STUDY_FIELDS: tuple[Field, ...] = (
         label="Observational study model",
         kind="plain",
         source=("protocolSection.designModule.designInfo.observationalModel",),
-        consumers=(("sheet", "Trial review", "Value"), ("design", "reading.study_view")),
+        consumers=(("sheet", "Trial review", "Value"),),
         display="ObservationalModel",
         form="as held",
         reads=(),
@@ -683,7 +671,7 @@ _STUDY_FIELDS: tuple[Field, ...] = (
         label="Time perspective",
         kind="plain",
         source=("protocolSection.designModule.designInfo.timePerspective",),
-        consumers=(("sheet", "Trial review", "Value"), ("design", "reading.study_view")),
+        consumers=(("sheet", "Trial review", "Value"),),
         display="DesignTimePerspective",
         form="as held",
         reads=(),
@@ -694,7 +682,7 @@ _STUDY_FIELDS: tuple[Field, ...] = (
         label="Patient registry",
         kind="plain",
         source=("protocolSection.designModule.patientRegistry",),
-        consumers=(("sheet", "Trial review", "Value"), ("design", "reading.study_view")),
+        consumers=(("sheet", "Trial review", "Value"),),
         display="",
         form="as held",
         reads=(),
@@ -705,7 +693,7 @@ _STUDY_FIELDS: tuple[Field, ...] = (
         label="Target follow-up duration",
         kind="plain",
         source=("protocolSection.designModule.targetDuration",),
-        consumers=(("sheet", "Trial review", "Value"), ("design", "reading.study_view")),
+        consumers=(("sheet", "Trial review", "Value"),),
         display="",
         form="as held",
         reads=(),
@@ -716,7 +704,7 @@ _STUDY_FIELDS: tuple[Field, ...] = (
         label="Biospecimen retention",
         kind="plain",
         source=("protocolSection.designModule.bioSpec.retention",),
-        consumers=(("sheet", "Trial review", "Value"), ("design", "reading.study_view")),
+        consumers=(("sheet", "Trial review", "Value"),),
         display="BioSpecRetention",
         form="as held",
         reads=(),
@@ -727,7 +715,7 @@ _STUDY_FIELDS: tuple[Field, ...] = (
         label="Biospecimen description",
         kind="plain",
         source=("protocolSection.designModule.bioSpec.description",),
-        consumers=(("sheet", "Trial review", "Value"), ("design", "reading.study_view")),
+        consumers=(("sheet", "Trial review", "Value"),),
         display="",
         form="as held",
         reads=(),
@@ -738,7 +726,7 @@ _STUDY_FIELDS: tuple[Field, ...] = (
         label="Study population description",
         kind="plain",
         source=("protocolSection.eligibilityModule.studyPopulation",),
-        consumers=(("sheet", "Trial review", "Value"), ("design", "reading.study_view")),
+        consumers=(("sheet", "Trial review", "Value"),),
         display="",
         form="as held",
         reads=(),
@@ -749,7 +737,7 @@ _STUDY_FIELDS: tuple[Field, ...] = (
         label="Sampling method",
         kind="plain",
         source=("protocolSection.eligibilityModule.samplingMethod",),
-        consumers=(("sheet", "Trial review", "Value"), ("design", "reading.study_view")),
+        consumers=(("sheet", "Trial review", "Value"),),
         display="SamplingMethod",
         form="as held",
         reads=(),
@@ -760,7 +748,7 @@ _STUDY_FIELDS: tuple[Field, ...] = (
         label="Expanded access: individual patients",
         kind="plain",
         source=("protocolSection.designModule.expandedAccessTypes.individual",),
-        consumers=(("sheet", "Trial review", "Value"), ("design", "reading.study_view")),
+        consumers=(("sheet", "Trial review", "Value"),),
         display="",
         form="as held",
         reads=(),
@@ -771,7 +759,7 @@ _STUDY_FIELDS: tuple[Field, ...] = (
         label="Expanded access: intermediate-size population",
         kind="plain",
         source=("protocolSection.designModule.expandedAccessTypes.intermediate",),
-        consumers=(("sheet", "Trial review", "Value"), ("design", "reading.study_view")),
+        consumers=(("sheet", "Trial review", "Value"),),
         display="",
         form="as held",
         reads=(),
@@ -782,7 +770,7 @@ _STUDY_FIELDS: tuple[Field, ...] = (
         label="Expanded access: treatment IND/protocol",
         kind="plain",
         source=("protocolSection.designModule.expandedAccessTypes.treatment",),
-        consumers=(("sheet", "Trial review", "Value"), ("design", "reading.study_view")),
+        consumers=(("sheet", "Trial review", "Value"),),
         display="",
         form="as held",
         reads=(),
@@ -793,7 +781,7 @@ _STUDY_FIELDS: tuple[Field, ...] = (
         label="Has expanded access",
         kind="plain",
         source=("protocolSection.statusModule.expandedAccessInfo.hasExpandedAccess",),
-        consumers=(("sheet", "Trial review", "Value"), ("design", "reading.study_view")),
+        consumers=(("sheet", "Trial review", "Value"),),
         display="",
         form="as held",
         reads=(),
@@ -804,7 +792,7 @@ _STUDY_FIELDS: tuple[Field, ...] = (
         label="Linked expanded-access record",
         kind="plain",
         source=("protocolSection.statusModule.expandedAccessInfo.nctId",),
-        consumers=(("sheet", "Trial review", "Value"), ("design", "reading.study_view")),
+        consumers=(("sheet", "Trial review", "Value"),),
         display="",
         form="as held",
         reads=(),
@@ -815,7 +803,7 @@ _STUDY_FIELDS: tuple[Field, ...] = (
         label="Linked expanded-access recruitment status",
         kind="plain",
         source=("protocolSection.statusModule.expandedAccessInfo.statusForNctId",),
-        consumers=(("sheet", "Trial review", "Value"), ("design", "reading.study_view")),
+        consumers=(("sheet", "Trial review", "Value"),),
         display="ExpandedAccessStatus",
         form="as held",
         reads=(),
@@ -826,7 +814,7 @@ _STUDY_FIELDS: tuple[Field, ...] = (
         label="Studies referencing this expanded-access record",
         kind="plain",
         source=("protocolSection.designModule.nPtrsToThisExpAccNctId",),
-        consumers=(("sheet", "Trial review", "Value"), ("design", "reading.study_view")),
+        consumers=(("sheet", "Trial review", "Value"),),
         display="",
         form="as held",
         reads=(),
@@ -977,7 +965,7 @@ _STUDY_FIELDS: tuple[Field, ...] = (
         label="Arm type",
         kind="plain",
         source=("protocolSection.armsInterventionsModule.armGroups[].type",),
-        consumers=(("sheet", "Trial review", "Value"), ("design", "classes.experimental_drugs")),
+        consumers=(("sheet", "Trial review", "Value"),),
         display="ArmGroupType",
         form="as held",
         reads=(),
@@ -999,7 +987,7 @@ _STUDY_FIELDS: tuple[Field, ...] = (
         label="The arm's interventions",
         kind="plain",
         source=("protocolSection.armsInterventionsModule.armGroups[].interventionNames[]",),
-        consumers=(("sheet", "Trial review", "Value"), ("design", "classes.experimental_drugs")),
+        consumers=(("sheet", "Trial review", "Value"),),
         display="",
         form="as held",
         reads=(),
@@ -1010,7 +998,7 @@ _STUDY_FIELDS: tuple[Field, ...] = (
         label="Intervention type",
         kind="plain",
         source=("protocolSection.armsInterventionsModule.interventions[].type",),
-        consumers=(("sheet", "Trial review", "Value"), ("design", "classes.experimental_drugs")),
+        consumers=(("sheet", "Trial review", "Value"),),
         display="InterventionType",
         form="as held",
         reads=(),
@@ -1021,7 +1009,7 @@ _STUDY_FIELDS: tuple[Field, ...] = (
         label="Intervention",
         kind="plain",
         source=("protocolSection.armsInterventionsModule.interventions[].name",),
-        consumers=(("sheet", "Trial review", "Value"), ("design", "reading.study_view")),
+        consumers=(("sheet", "Trial review", "Value"),),
         display="",
         form="as held",
         reads=(),
@@ -1032,7 +1020,7 @@ _STUDY_FIELDS: tuple[Field, ...] = (
         label="Intervention description",
         kind="plain",
         source=("protocolSection.armsInterventionsModule.interventions[].description",),
-        consumers=(("sheet", "Trial review", "Value"), ("design", "reading.study_view")),
+        consumers=(("sheet", "Trial review", "Value"),),
         display="",
         form="as held",
         reads=(),
@@ -1054,7 +1042,7 @@ _STUDY_FIELDS: tuple[Field, ...] = (
         label="Other names",
         kind="plain",
         source=("protocolSection.armsInterventionsModule.interventions[].otherNames[]",),
-        consumers=(("sheet", "Trial review", "Value"), ("design", "reading.study_view")),
+        consumers=(("sheet", "Trial review", "Value"),),
         display="",
         form="as held",
         reads=(),
@@ -1064,7 +1052,7 @@ _STUDY_FIELDS: tuple[Field, ...] = (
         name="studies[].interventions[].drug_class",
         label="Drug classes reported by RxNav",
         kind="reading",
-        source=("classes.drug_class",),
+        source=("classes.class_evidence",),
         consumers=(("sheet", "Trial review", "Value"), ("mcp", "study")),
         display="",
         form="as held",
@@ -1156,7 +1144,7 @@ _STUDY_FIELDS: tuple[Field, ...] = (
         label="Eligibility criteria, as written",
         kind="plain",
         source=("protocolSection.eligibilityModule.eligibilityCriteria",),
-        consumers=(("design", "reading.study_view"), ("sheet", "Trial review", "Value")),
+        consumers=(("sheet", "Trial review", "Value"),),
         display="",
         form="as held",
         reads=(),
@@ -1200,7 +1188,7 @@ _STUDY_FIELDS: tuple[Field, ...] = (
         label="Source passage start offset (characters)",
         kind="reading",
         source=("landscape.criterion_entries",),
-        consumers=(("design", "reading.study_view"), ("mcp", "fields")),
+        consumers=(("mcp", "fields"),),
         display="",
         form="as held",
         reads=("protocolSection.eligibilityModule.eligibilityCriteria",),
@@ -1211,7 +1199,7 @@ _STUDY_FIELDS: tuple[Field, ...] = (
         label="Source passage end offset (characters, exclusive)",
         kind="reading",
         source=("landscape.criterion_entries",),
-        consumers=(("design", "reading.study_view"), ("mcp", "fields")),
+        consumers=(("mcp", "fields"),),
         display="",
         form="as held",
         reads=("protocolSection.eligibilityModule.eligibilityCriteria",),
@@ -1249,7 +1237,6 @@ _STUDY_FIELDS: tuple[Field, ...] = (
             ("sheet", "Registered outcomes", "Measure"),
             ("sheet", "Trial index", "Primary endpoint"),
             ("sheet", "Trial review", "Value"),
-            ("design", "reading.study_view"),
         ),
         display="",
         form="as held",
@@ -1280,11 +1267,7 @@ _STUDY_FIELDS: tuple[Field, ...] = (
             "protocolSection.outcomesModule.secondaryOutcomes[].timeFrame",
             "protocolSection.outcomesModule.otherOutcomes[].timeFrame",
         ),
-        consumers=(
-            ("sheet", "Registered outcomes", "Time frame"),
-            ("sheet", "Trial review", "Value"),
-            ("design", "reading.study_view"),
-        ),
+        consumers=(("sheet", "Registered outcomes", "Time frame"), ("sheet", "Trial review", "Value")),
         display="",
         form="as held",
         reads=(),
@@ -1310,7 +1293,7 @@ _STUDY_FIELDS: tuple[Field, ...] = (
         label="Registry collection reporting",
         kind="reading",
         source=("landscape.collection_presence",),
-        consumers=(("sheet", "Trial review", "Value"), ("design", "reading.study_view")),
+        consumers=(("sheet", "Trial review", "Value"),),
         display="",
         form="as held",
         reads=("protocolSection", "resultsSection", "derivedSection", "documentSection"),
@@ -1321,7 +1304,7 @@ _STUDY_FIELDS: tuple[Field, ...] = (
         label="Outcome type",
         kind="plain",
         source=("resultsSection.outcomeMeasuresModule.outcomeMeasures[].type",),
-        consumers=(("sheet", "Posted results", "Outcome type"), ("design", "reading.study_view")),
+        consumers=(("sheet", "Posted results", "Outcome type"),),
         display="OutcomeMeasureType",
         form="as held",
         reads=(),
@@ -1336,7 +1319,6 @@ _STUDY_FIELDS: tuple[Field, ...] = (
             ("sheet", "Posted results", "Measure"),
             ("sheet", "Statistical analyses", "Measure"),
             ("sheet", "Groups", "Outcome measures"),
-            ("design", "reading.study_view"),
         ),
         display="",
         form="as held",
@@ -1392,7 +1374,7 @@ _STUDY_FIELDS: tuple[Field, ...] = (
         label="Parameter",
         kind="plain",
         source=("resultsSection.outcomeMeasuresModule.outcomeMeasures[].paramType",),
-        consumers=(("sheet", "Posted results", "Parameter"), ("design", "reading.study_view")),
+        consumers=(("sheet", "Posted results", "Parameter"),),
         display="MeasureParam",
         form="as held",
         reads=(),
@@ -1414,7 +1396,7 @@ _STUDY_FIELDS: tuple[Field, ...] = (
         label="Unit",
         kind="plain",
         source=("resultsSection.outcomeMeasuresModule.outcomeMeasures[].unitOfMeasure",),
-        consumers=(("sheet", "Posted results", "Unit"), ("design", "reading.study_view")),
+        consumers=(("sheet", "Posted results", "Unit"),),
         display="",
         form="as held",
         reads=(),
@@ -1425,7 +1407,7 @@ _STUDY_FIELDS: tuple[Field, ...] = (
         label="Time frame",
         kind="plain",
         source=("resultsSection.outcomeMeasuresModule.outcomeMeasures[].timeFrame",),
-        consumers=(("sheet", "Posted results", "Time frame"), ("design", "reading.study_view")),
+        consumers=(("sheet", "Posted results", "Time frame"),),
         display="",
         form="as held",
         reads=(),
@@ -1473,11 +1455,7 @@ _STUDY_FIELDS: tuple[Field, ...] = (
         label="Group",
         kind="plain",
         source=("resultsSection.outcomeMeasuresModule.outcomeMeasures[].groups[].title",),
-        consumers=(
-            ("sheet", "Posted results", "Group"),
-            ("sheet", "Groups", "Title"),
-            ("design", "reading.study_view"),
-        ),
+        consumers=(("sheet", "Posted results", "Group"), ("sheet", "Groups", "Title")),
         display="",
         form="as held",
         reads=(),
@@ -1532,7 +1510,7 @@ _STUDY_FIELDS: tuple[Field, ...] = (
         label="Class",
         kind="plain",
         source=("resultsSection.outcomeMeasuresModule.outcomeMeasures[].classes[].title",),
-        consumers=(("sheet", "Posted results", "Class"), ("design", "reading.study_view")),
+        consumers=(("sheet", "Posted results", "Class"),),
         display="",
         form="as held",
         reads=(),
@@ -1578,7 +1556,7 @@ _STUDY_FIELDS: tuple[Field, ...] = (
         label="Category",
         kind="plain",
         source=("resultsSection.outcomeMeasuresModule.outcomeMeasures[].classes[].categories[].title",),
-        consumers=(("sheet", "Posted results", "Category"), ("design", "reading.study_view")),
+        consumers=(("sheet", "Posted results", "Category"),),
         display="",
         form="as held",
         reads=(),
@@ -1591,7 +1569,7 @@ _STUDY_FIELDS: tuple[Field, ...] = (
         source=(
             "resultsSection.outcomeMeasuresModule.outcomeMeasures[].classes[].categories[].measurements[].groupId",
         ),
-        consumers=(("sheet", "Posted results", "Group"), ("design", "reading.study_view")),
+        consumers=(("sheet", "Posted results", "Group"),),
         display="",
         form="as held",
         reads=(),
@@ -1604,7 +1582,7 @@ _STUDY_FIELDS: tuple[Field, ...] = (
         source=(
             "resultsSection.outcomeMeasuresModule.outcomeMeasures[].classes[].categories[].measurements[].value",
         ),
-        consumers=(("sheet", "Posted results", "Value"), ("design", "reading.study_view")),
+        consumers=(("sheet", "Posted results", "Value"),),
         display="",
         form="as held",
         reads=(),
@@ -1617,7 +1595,7 @@ _STUDY_FIELDS: tuple[Field, ...] = (
         source=(
             "resultsSection.outcomeMeasuresModule.outcomeMeasures[].classes[].categories[].measurements[].spread",
         ),
-        consumers=(("sheet", "Posted results", "Spread or limits"), ("design", "reading.study_view")),
+        consumers=(("sheet", "Posted results", "Spread or limits"),),
         display="",
         form="as held",
         reads=(),
@@ -1630,7 +1608,7 @@ _STUDY_FIELDS: tuple[Field, ...] = (
         source=(
             "resultsSection.outcomeMeasuresModule.outcomeMeasures[].classes[].categories[].measurements[].lowerLimit",
         ),
-        consumers=(("sheet", "Posted results", "Spread or limits"), ("design", "reading.study_view")),
+        consumers=(("sheet", "Posted results", "Spread or limits"),),
         display="",
         form="as held",
         reads=(),
@@ -1643,7 +1621,7 @@ _STUDY_FIELDS: tuple[Field, ...] = (
         source=(
             "resultsSection.outcomeMeasuresModule.outcomeMeasures[].classes[].categories[].measurements[].upperLimit",
         ),
-        consumers=(("sheet", "Posted results", "Spread or limits"), ("design", "reading.study_view")),
+        consumers=(("sheet", "Posted results", "Spread or limits"),),
         display="",
         form="as held",
         reads=(),
@@ -2890,6 +2868,70 @@ _STUDY_FIELDS: tuple[Field, ...] = (
         reads=(),
         built_by="",
     ),
+    Field(
+        "studies[].results_waived",
+        "Results submission waived",
+        "plain",
+        (f"{ST}.resultsWaived",),
+        (("sheet", REVIEW, "Value"),),
+    ),
+    Field(
+        "studies[].results_first_submitted",
+        "Results first submitted",
+        "plain",
+        (f"{ST}.resultsFirstSubmitDate",),
+        (("sheet", REVIEW, "Value"),),
+    ),
+    Field(
+        "studies[].disposition_first_submitted",
+        "Results delay disposition first submitted",
+        "plain",
+        (f"{ST}.dispFirstSubmitDate",),
+        (("sheet", REVIEW, "Value"),),
+    ),
+    Field(
+        "studies[].estimated_results_first_submitted",
+        "Results submitted, not yet posted",
+        "plain",
+        ("derivedSection.miscInfoModule.submissionTracking.estimatedResultsFirstSubmitDate",),
+        (("sheet", REVIEW, "Value"),),
+    ),
+    Field(
+        "studies[].condition_mesh_ids",
+        "Condition MeSH identifiers",
+        "plain",
+        (f"{CB}.meshes[].id",),
+        (("sheet", REVIEW, "Value"),),
+    ),
+    Field(
+        "studies[].condition_mesh_ancestor_ids",
+        "Condition MeSH ancestor identifiers",
+        "plain",
+        (f"{CB}.ancestors[].id",),
+        (("sheet", REVIEW, "Value"),),
+    ),
+    Field(
+        "studies[].registry_checks",
+        "Approved registry consistency checks",
+        "reading",
+        ("checks.run_checks",),
+        (
+            ("sheet", REVIEW, "Value"),
+            ("sheet", "Registry checks", "Check"),
+            ("sheet", "Registry checks", "Outcome"),
+            ("sheet", "Registry checks", "Detail"),
+            ("sheet", "Registry checks", "Source fields"),
+            ("sheet", "Registry checks", "Rule basis"),
+        ),
+        reads=tuple(
+            dict.fromkeys(
+                path + ("[]" if registry.FIELDS.get(path, {}).get("type", "").endswith("[]") else "")
+                for check in checks.CHECKS
+                if check.approval == "approved"
+                for path in checks.READS[check.id]
+            )
+        ),
+    ),
 )
 
 _RECORD_FIELDS: tuple[Field, ...] = (
@@ -3192,128 +3234,17 @@ SHEETS: tuple[Sheet, ...] = (
     ),
     Sheet(
         name="Trial review",
-        row="trial × fact, in section bands (DOSSIER_SECTIONS)",
+        row=(
+            "trial × fact, with ordered continuation parts for long values, "
+            "in section bands (DOSSIER_SECTIONS)"
+        ),
         columns=(
             Column(header="Trial ID", fields=("studies[].nct",), shows="fields"),
             Column(header="Section", fields=("fields",), shows="fields"),
             Column(header="Fact", fields=("fields",), shows="fields"),
             Column(
                 header="Value",
-                fields=(
-                    "studies[].brief_title",
-                    "studies[].acronym",
-                    "studies[].official_title",
-                    "studies[].org_study_id",
-                    "studies[].secondary_ids[].id",
-                    "studies[].secondary_ids[].type",
-                    "studies[].secondary_ids[].domain",
-                    "studies[].nct_aliases",
-                    "studies[].overall_status",
-                    "studies[].last_known_status",
-                    "studies[].why_stopped",
-                    "studies[].start_date.date",
-                    "studies[].start_date.type",
-                    "studies[].primary_completion_date.date",
-                    "studies[].primary_completion_date.type",
-                    "studies[].completion_date.date",
-                    "studies[].completion_date.type",
-                    "studies[].first_posted",
-                    "studies[].results_first_posted",
-                    "studies[].last_update_posted",
-                    "studies[].lead_sponsor.name",
-                    "studies[].lead_sponsor.class",
-                    "studies[].collaborators[].name",
-                    "studies[].collaborators[].class",
-                    "studies[].dmc",
-                    "studies[].officials[].name",
-                    "studies[].officials[].affiliation",
-                    "studies[].officials[].role",
-                    "studies[].countries",
-                    "studies[].site_count",
-                    "studies[].brief_summary",
-                    "studies[].detailed_description",
-                    "studies[].conditions",
-                    "studies[].keywords",
-                    "studies[].condition_browse_leaves[].id",
-                    "studies[].condition_browse_leaves[].name",
-                    "studies[].condition_browse_leaves[].as_found",
-                    "studies[].condition_browse_leaves[].relevance",
-                    "studies[].condition_mesh",
-                    "studies[].condition_mesh_ancestors",
-                    "studies[].intervention_mesh",
-                    "studies[].intervention_mesh_ancestors",
-                    "studies[].observational_model",
-                    "studies[].time_perspective",
-                    "studies[].patient_registry",
-                    "studies[].target_duration",
-                    "studies[].biospecimen_retention",
-                    "studies[].biospecimen_description",
-                    "studies[].study_population",
-                    "studies[].sampling_method",
-                    "studies[].expanded_access_types.individual",
-                    "studies[].expanded_access_types.intermediate",
-                    "studies[].expanded_access_types.treatment",
-                    "studies[].expanded_access_info.hasExpandedAccess",
-                    "studies[].expanded_access_info.nctId",
-                    "studies[].expanded_access_info.statusForNctId",
-                    "studies[].expanded_access_referencing_studies",
-                    "studies[].phases",
-                    "studies[].primary_purpose",
-                    "studies[].allocation",
-                    "studies[].intervention_model",
-                    "studies[].intervention_model_description",
-                    "studies[].masking",
-                    "studies[].who_masked",
-                    "studies[].masking_description",
-                    "studies[].study_type",
-                    "studies[].enrollment.count",
-                    "studies[].enrollment.type",
-                    "studies[].arms[].label",
-                    "studies[].arms[].type",
-                    "studies[].arms[].description",
-                    "studies[].arms[].interventions",
-                    "studies[].interventions[].type",
-                    "studies[].interventions[].name",
-                    "studies[].interventions[].description",
-                    "studies[].interventions[].arms",
-                    "studies[].interventions[].other_names",
-                    "studies[].interventions[].drug_class",
-                    "studies[].population.minimum_age",
-                    "studies[].population.maximum_age",
-                    "studies[].population.sex",
-                    "studies[].population.age_groups",
-                    "studies[].population.healthy_volunteers",
-                    "studies[].population.gender_based",
-                    "studies[].population.gender_description",
-                    "studies[].eligibility.text",
-                    "studies[].registered_outcomes[].category",
-                    "studies[].registered_outcomes[].measure",
-                    "studies[].registered_outcomes[].time_frame",
-                    "studies[].results_posted",
-                    "studies[].collection_presence",
-                    "studies[].participant_flow.recruitment_details",
-                    "studies[].participant_flow.pre_assignment_details",
-                    "studies[].adverse_events.time_frame",
-                    "studies[].adverse_events.frequency_threshold",
-                    "studies[].adverse_events.description",
-                    "studies[].adverse_events.all_cause_mortality_comment",
-                    "studies[].limitations",
-                    "studies[].references[].pmid",
-                    "studies[].references[].type",
-                    "studies[].references[].citation",
-                    "studies[].references[].retractions[].pmid",
-                    "studies[].references[].retractions[].source",
-                    "studies[].links[].label",
-                    "studies[].links[].url",
-                    "studies[].ipd_documents[].type",
-                    "studies[].ipd_documents[].url",
-                    "studies[].ipd_documents[].comment",
-                    "studies[].no_sap",
-                    "studies[].documents[].type",
-                    "studies[].documents[].label",
-                    "studies[].documents[].date",
-                    "studies[].documents[].url",
-                ),
+                fields=tuple(field.name for field in FIELDS if DOSSIER in field.consumers),
                 shows="fields",
             ),
             Column(header="Basis", fields=("statuses",), shows="fields"),
@@ -3740,6 +3671,19 @@ SHEETS: tuple[Sheet, ...] = (
         ),
     ),
     Sheet(
+        "Registry checks",
+        "trial × approved structured registry check",
+        (
+            Column("Trial ID", ("studies[].nct",)),
+            Column(ADDRESS, (), "address"),
+            Column("Check", ("studies[].registry_checks",)),
+            Column("Outcome", ("studies[].registry_checks",)),
+            Column("Detail", ("studies[].registry_checks",)),
+            Column("Source fields", ("studies[].registry_checks",)),
+            Column("Rule basis", ("studies[].registry_checks",)),
+        ),
+    ),
+    Sheet(
         name="Column dictionary",
         row="sheet × column",
         columns=(
@@ -3861,6 +3805,8 @@ DOSSIER_SECTIONS = (
             "studies[].condition_browse_leaves[].",
             "studies[].condition_mesh",
             "studies[].condition_mesh_ancestors",
+            "studies[].condition_mesh_ids",
+            "studies[].condition_mesh_ancestor_ids",
         ),
     ),
     (
@@ -3887,10 +3833,19 @@ DOSSIER_SECTIONS = (
     (
         "Results",
         "Posted results",
-        ("studies[].results_posted", "studies[].collection_presence", "studies[].limitations"),
+        (
+            "studies[].results_posted",
+            "studies[].collection_presence",
+            "studies[].results_waived",
+            "studies[].results_first_submitted",
+            "studies[].disposition_first_submitted",
+            "studies[].estimated_results_first_submitted",
+            "studies[].limitations",
+        ),
     ),
     ("Participant flow", "Participant flow", ("studies[].participant_flow.",)),
     ("Safety", "Safety", ("studies[].adverse_events.",)),
+    ("Registry consistency", "Registry checks", ("studies[].registry_checks",)),
     (
         "Publications and documents",
         "",
@@ -3908,27 +3863,9 @@ DOSSIER_SECTIONS = (
 # The categories of a key criterion: each its name, the words a reviewer reads, and the readings that fall in
 # it, as (concept, values): a concept ending ":" matches every concept it begins (biomarker:EGFR), an empty
 # values tuple any value, otherwise a reading falls in when one of its values is listed.
-KEY_CRITERION_CATEGORIES: tuple[tuple[str, str, tuple[tuple[str, tuple[str, ...]], ...]], ...] = (
-    ("performance_status", "Performance status", (("ecog_ps", ()),)),
-    ("biomarker_selection", "Biomarker selection", (("biomarker:", ()),)),
-    ("prior_therapy_and_line", "Prior therapy and line", (("prior_agent", ()), ("prior_lines", ()))),
-    ("measurable_disease", "Measurable disease", (("condition", ("measurable_disease",)),)),
-    ("organ_function", "Organ-function thresholds", (("lab", ()), ("condition", ("organ_impairment",)))),
-    ("cns_metastases", "CNS metastases", (("condition", ("cns_metastases",)),)),
-    (
-        "autoimmune_and_immunosuppression",
-        "Autoimmune disease and immunosuppression",
-        (("condition", ("autoimmune_disease", "immunosuppression_steroids")),),
-    ),
-    ("hiv_and_hepatitis", "HIV, hepatitis B and C", (("condition", ("hiv", "hepatitis")),)),
-    ("cardiac_history", "Cardiac history", (("condition", ("cardiac_disease", "qtc")),)),
-)
 # Recurring criteria: an element recurs within a group of comparable trials when MORE than this share of the
 # group's trials state it and at least RECURRING_MIN_TRIALS do; a smaller group has none. Each recurring
 # element shows at most RECURRING_EXAMPLES whole criteria as examples.
-RECURRING_SHARE = 0.5
-RECURRING_MIN_TRIALS = 3
-RECURRING_EXAMPLES = 5
 
 # ── what the record does not carry, and why ─────────────────────────────────────────────────────────────
 # Every field of the API's metadata is carried (a plain field's path, or a path a reading reads) or named
@@ -3944,11 +3881,8 @@ NOT_WANTED: dict[str, str] = {
     f"{ST}.studyFirstSubmitDate": "a submission date (not wanted)",
     f"{ST}.studyFirstSubmitQcDate": "a quality-control date (not wanted)",
     f"{ST}.studyFirstPostDateStruct.type": "the type of a date the registry posted; the date is carried",
-    f"{ST}.resultsWaived": "a waiver flag of the results submission process",
-    f"{ST}.resultsFirstSubmitDate": "a submission date (not wanted)",
     f"{ST}.resultsFirstSubmitQcDate": "a quality-control date (not wanted)",
     f"{ST}.resultsFirstPostDateStruct.type": "the type of a date the registry posted; the date is carried",
-    f"{ST}.dispFirstSubmitDate": "a disposition date (not wanted)",
     f"{ST}.dispFirstSubmitQcDate": "a disposition date (not wanted)",
     f"{ST}.dispFirstPostDateStruct": "a disposition date (not wanted)",
     f"{ST}.lastUpdateSubmitDate": "a submission date; the last update posted is carried",
@@ -3986,8 +3920,10 @@ NOT_WANTED: dict[str, str] = {
     f"{LD}.largeDocs[].hasIcf": "restates the document's type, which is carried",
     f"{LD}.largeDocs[].uploadDate": "the upload's date (not wanted); the document's own date is carried",
     f"{LD}.largeDocs[].filename": "the file's name; the document's link, built from it, is carried",
-    "derivedSection.miscInfoModule": "the registry's version and submission tracking (not wanted: "
-    "miscellaneous info)",
+    "derivedSection.miscInfoModule.versionHolder": "ingestion bookkeeping; the run retains its snapshot",
+    "derivedSection.miscInfoModule.removedCountries[]": "removed sites; listed countries are carried",
+    "derivedSection.miscInfoModule.submissionTracking.firstMcpInfo": "quality-control comment posting dates",
+    "derivedSection.miscInfoModule.submissionTracking.submissionInfos[]": "QC submission cycle bookkeeping",
     f"{CB}.browseBranches[]": "the registry's browse branches; API v2 served none in the baseline runs",
     f"{IB}.meshes[].id": "the MeSH descriptor's identifier; its term is carried and names it",
     f"{IB}.ancestors[].id": "the MeSH descriptor's identifier; its term is carried and names it",
@@ -4058,6 +3994,12 @@ UNEXERCISED: dict[str, str] = {
     "reference is retracted, and a reviewer must see one",
     f"{LD}.noSap": "the sponsor's statement that there is no statistical analysis plan; no baseline trial "
     "makes it",
+    f"{ST}.resultsWaived": "not held in the saved baseline records; source-present false preservation is "
+    "exercised by test_results_submission_context_is_source_bound_and_visible_in_the_dossier",
+    "derivedSection.miscInfoModule.submissionTracking.estimatedResultsFirstSubmitDate": (
+        "not held in saved baseline records; source-present context is exercised by "
+        "test_results_submission_context_is_source_bound_and_visible_in_the_dossier"
+    ),
 }
 
 # ── universes (the Regenesis port: a universe names the rule packs it owns; no rule outside it applies) ──
@@ -4065,276 +4007,31 @@ UNEXERCISED: dict[str, str] = {
 
 # Layer-two foundations only. These existing interpretation tables have no reporting authority:
 # they are not selected by FIELDS, exported in landscape.json, or consumed by the registry workbook.
-class Requirement(NamedTuple):
-    """What a pack requires of a trial before its coordinates are computed: a kind (REQUIREMENT_KINDS) and
-    the values that satisfy it."""
-
-    kind: str
-    values: tuple[str, ...]
 
 
-class Pack(NamedTuple):
-    """A rule pack: its name, label, the coherence coordinates it computes, the coherence relations it owns,
-    and its requirements, all of which must hold."""
-
-    name: str
-    label: str
-    coordinates: tuple[str, ...]
-    relations: tuple[str, ...]
-    requires: tuple[Requirement, ...]
-
-
-class Universe(NamedTuple):
-    """A universe: its name, label, version and the packs it owns."""
-
-    name: str
-    label: str
-    version: str
-    packs: tuple[Pack, ...]
-
-
-UNIVERSE_TABLE_VERSION = "universes-2"
-REQUIREMENT_KINDS = {
-    "universe": "the trial is assigned to one of these universes (membership is not permission: each pack "
-    "states the rest)",
-    "primary_purpose": "the registry's primary purpose is one of these codes (the PrimaryPurpose enum)",
-    "treated_target": "what the trial's interventions treat is one of these (TREATED_TARGETS): a trial of "
-    "cancer patients treating their depression treats no cancer",
-}
 # What universes.treated_target reads the trial's interventions to treat, each in words. Only "cancer" holds a
 # treated_target requirement; "unresolved" leaves the pack's applicability unresolved, never denied silently.
-TREATED_TARGETS = {
-    "cancer": "an intervention treats the cancer: a drug of an antineoplastic ATC class (L01, L02), or "
-    "radiation",
-    "not_cancer": "every drug was read and none is of an antineoplastic class, and no intervention is "
-    "radiation",
-    "unresolved": "what the interventions treat cannot be read: a drug's class not looked up, its lookup "
-    "failed or RxNav gives it no ATC class, or no intervention is a drug or radiation",
-}
-TREATS_CANCER = Requirement("treated_target", ("cancer",))
 # The whole intervention names (case-folded, punctuation read as spaces) that name a placebo or a sham and no
 # drug: such an intervention treats nothing. A name naming a drug and a placebo ("AZD9291 80 mg/40 mg +
 # placebo") is a drug.
-PLACEBO_FORMS = (
-    "placebo",
-    "placebos",
-    "matching placebo",
-    "placebo tablet",
-    "placebo tablets",
-    "placebo capsule",
-    "placebo capsules",
-    "placebo injection",
-    "sham",
-    "sham procedure",
-    "vehicle",
-    "saline placebo",
-)
-SELECTED_GENES = ("EGFR", "ALK", "ROS1", "KRAS", "BRAF", "MET", "RET", "NTRK", "HER2")
-NSCLC_RELATIONS = (
-    "first_line_when_no_prior_advanced_therapy",
-    "previously_treated_when_prior_advanced_therapy_required",
-    "adjuvant_or_perioperative_when_resection_required",
-    "neoadjuvant_or_perioperative_when_resectable_required",
-    "advanced_when_metastatic_disease_required",
-    "advanced_when_stage_iv_required",
-    "consolidation_when_named",
-)
-TREATMENT = Requirement("primary_purpose", ("TREATMENT",))
-UNIVERSES: tuple[Universe, ...] = (
-    Universe(
-        "oncology.solid",
-        "Solid-tumour oncology",
-        "2",
-        (
-            Pack(
-                "setting_and_line",
-                "Treatment setting and prior lines for advanced disease",
-                ("setting", "prior_advanced_lines"),
-                (),
-                (Requirement("universe", ("oncology.solid",)), TREATMENT, TREATS_CANCER),
-            ),
-            Pack(
-                "gene_selection",
-                "Selection by a gene's state",
-                tuple(f"selection:{gene}" for gene in SELECTED_GENES),
-                (),
-                (Requirement("universe", ("oncology.solid",)),),
-            ),
-            Pack(
-                "nsclc_relations",
-                "The setting relations of non-small cell lung cancer",
-                (),
-                NSCLC_RELATIONS,
-                (Requirement("universe", ("oncology.solid",)), TREATMENT, TREATS_CANCER),
-            ),
-        ),
-    ),
-    Universe(
-        "oncology.heme",
-        "Haematologic oncology",
-        "2",
-        (
-            Pack(
-                "prior_lines",
-                "Prior lines of therapy",
-                ("prior_advanced_lines",),
-                (),
-                (Requirement("universe", ("oncology.heme",)), TREATMENT, TREATS_CANCER),
-            ),
-        ),
-    ),
-    Universe("general", "General: no domain readings apply", "1", ()),
-)
 # Coordinates a pack computes that coherence.py does not hold yet: none in this version.
-NEW_COORDINATES: tuple[str, ...] = ()
 
 # The three sources the assignment reads, in order, each recorded with what it found.
-ASSIGNMENT_SOURCES: tuple[tuple[str, str, tuple[str, ...]], ...] = (
-    (
-        "conditions",
-        "registered conditions resolved through sourced MeSH identities; "
-        "sponsor keywords retained as context, never an identity rule",
-        ("protocolSection.conditionsModule.conditions[]", "protocolSection.conditionsModule.keywords[]"),
-    ),
-    (
-        "titles",
-        "whole disease names in titles when their supplied MeSH lookup resolves; fragments are not read",
-        (f"{ID}.briefTitle", f"{ID}.officialTitle"),
-    ),
-    (
-        "registry_mesh",
-        "secondary registry MeSH descriptors with their ancestor and browse metadata; "
-        "no inherited rule permission",
-        (
-            f"{CB}.meshes[].id",
-            f"{CB}.meshes[].term",
-            f"{CB}.ancestors[].id",
-            f"{CB}.ancestors[].term",
-            f"{CB}.browseLeaves[].id",
-            f"{CB}.browseLeaves[].name",
-            f"{CB}.browseLeaves[].asFound",
-            f"{CB}.browseLeaves[].relevance",
-        ),
-    ),
-)
 # How the sources decide, in order (the rule unit B builds as universes.assign).
-ASSIGNMENT_CASES: tuple[tuple[str, str], ...] = (
-    (
-        "oncology",
-        "a condition source (the condition MeSH terms or the free-text conditions) finds an oncology signal; "
-        "or only the titles or a drug's class do, and no condition is positively outside oncology: each "
-        "oncology universe a source names (several: the union, each reading tagged with its pack)",
-    ),
-    (
-        "general",
-        "positive evidence of a non-oncology domain (a condition MeSH term, none an oncology anchor; or a "
-        "free-text condition naming a term of NON_ONCOLOGY_TERMS) and no oncology signal from any source",
-    ),
-    (
-        "unresolved",
-        "no positive evidence of any domain (no condition MeSH term, and every free-text condition empty, in "
-        "NOT_DISEASE_CONDITIONS, or naming no term of either vocabulary: unmatched words are no evidence) "
-        "and no oncology signal; or the sources disagree (the conditions are positively outside oncology "
-        "while only the titles or a drug's class signal it): each source's finding shown",
-    ),
-)
 # Words of the oncology vocabulary, each with how it matches a word of the text (TERM_MATCHES),
 # case-insensitively; HAEMATOLOGIC_TERMS name the haematologic universe, the rest solid tumours.
-TERM_MATCHES = {
-    "word": "the whole word",
-    "prefix": "a word beginning with it",
-    "within": "anywhere within a word",
-}
-ONCOLOGY_TERMS: tuple[tuple[str, str], ...] = (
-    ("neoplasm", "prefix"),
-    ("cancer", "prefix"),
-    ("carcinoma", "within"),
-    ("tumour", "prefix"),
-    ("tumor", "prefix"),
-    ("lymphoma", "within"),
-    ("leukaemia", "within"),
-    ("leukemia", "within"),
-    ("myeloma", "within"),
-    ("sarcoma", "within"),
-    ("malignan", "prefix"),
-    ("NSCLC", "word"),
-    ("SCLC", "word"),
-    ("melanoma", "within"),
-    ("glioma", "within"),
-    ("blastoma", "within"),
-    ("mesothelioma", "within"),
-)
-HAEMATOLOGIC_TERMS = ("lymphoma", "leukaemia", "leukemia", "myeloma")
 # Words that name a disease or condition outside oncology, matched as ONCOLOGY_TERMS are: a free-text
 # condition naming one (and no oncology term) is positive evidence of a non-oncology domain. A condition
 # naming neither vocabulary is no evidence of any domain.
-NON_ONCOLOGY_TERMS: tuple[tuple[str, str], ...] = (
-    ("disorder", "prefix"),
-    ("disease", "prefix"),
-    ("syndrome", "prefix"),
-    ("infection", "prefix"),
-    ("covid", "prefix"),
-    ("arthritis", "within"),
-    ("hepatitis", "within"),
-    ("asthma", "word"),
-    ("diabetes", "word"),
-    ("depression", "word"),
-    ("depressive", "word"),
-    ("anxiety", "word"),
-    ("schizophrenia", "word"),
-    ("dementia", "word"),
-    ("hypertension", "word"),
-    ("stroke", "word"),
-    ("obesity", "word"),
-    ("pain", "word"),
-    ("insomnia", "word"),
-    ("pneumonia", "word"),
-    ("sepsis", "word"),
-    ("influenza", "word"),
-    ("HIV", "word"),
-    ("failure", "word"),
-    ("injury", "prefix"),
-    ("fracture", "prefix"),
-    ("pregnancy", "word"),
-)
 # Free-text conditions that name no disease (an outcome, a treatment, a biomarker, a drug), as the baseline
 # trials write them; matched whole, case-insensitively. Such a condition is no evidence of any domain.
-NOT_DISEASE_CONDITIONS: tuple[tuple[str, str], ...] = (
-    ("Progression Free Survival", "an outcome"),
-    ("Overall Survival", "an outcome"),
-    ("Anticancer Treatment", "a treatment"),
-    ("c-MET", "a biomarker"),
-    ("MET Positive", "a biomarker"),
-    ("EGFR Activating Mutation", "a biomarker"),
-    ("EGFR Gene Mutation", "a biomarker"),
-    ("EGFR-TKI Resistant Mutation", "a biomarker"),
-    ("AZD9291", "a drug"),
-)
 # Anchors: a condition MeSH term at or under which the source's terms fall, or the ATC class a drug's ATC
 # code begins with. The registry's intervention MeSH ancestors are the MeSH structure tree (Quinazolines,
 # Heterocyclic Compounds, ...); pharmacological action came in the browse branches, which API v2 did not
 # serve in the baseline runs nor when probed on 2026-11-01, so a drug's class is read from RxNav's ATC answer.
 # A solid-tumour anchor that names no kind of tumour (universes.UNSPECIFIC_ANCHORS: Neoplasms, an ATC class)
 # counts as haematologic where a haematologic anchor holds.
-MESH_ANCHORS: tuple[tuple[str, str, tuple[str, ...]], ...] = (
-    (
-        "oncology.heme",
-        "condition_mesh",
-        ("Hematologic Neoplasms", "Lymphoma", "Leukemia", "Multiple Myeloma"),
-    ),
-    ("oncology.solid", "condition_mesh", ("Neoplasms",)),
-    ("oncology.solid", "drug_class", ("L01", "L02")),
-)
 # Anchors no saved baseline body holds, each with why; the gate holds this table to exactly those.
-UNOBSERVED_ANCHORS: dict[str, str] = {
-    "Hematologic Neoplasms": "the baseline's lymphoma and leukaemia trial reaches Lymphoma and Leukemia, not "
-    "this term",
-    "Multiple Myeloma": "no baseline trial is in myeloma",
-    "L01": "an ATC class (antineoplastic agents), held by RxNav's answer for a drug's name (the run's "
-    "classes.json), never by the registry's body",
-    "L02": "an ATC class (endocrine therapy for cancer), held by RxNav's answer for a drug's name, never by "
-    "the registry's body",
-}
 
 # ── the clinical words for the registry's codes ─────────────────────────────────────────────────────────
 # From the API's enum table (GET /api/v2/studies/enums, fetched 2026-11-01, the same bytes as
@@ -4588,7 +4285,7 @@ STATUS_WORDS = {
 REASON_FORM = "{status} — {reason}"
 # What a dossier value rests on (the Trial review's Basis column): a registry value, a rule's reading,
 # TrialLedger's own note, or the status words above.
-BASIS_WORDS = {"registry": "Registry", "reading": "Reading", "note": "Note"}
+BASIS_WORDS = {"registry": "Registry", "reading": "Direct rule", "note": "Note"}
 # The registry list a value came from (contract FORMS "which list"), in words.
 WHICH_LIST_WORDS = {"primary": "Primary", "secondary": "Secondary", "other": "Other", "serious": "Serious"}
 # A reading's codes, in words (a criterion's heading and role).
@@ -4649,6 +4346,8 @@ CONFIDENCE_COMPONENT_POLICY = {
 }
 # Excel's maximum row height, in points: longer text remains in its cell and the JSON record.
 MAX_ROW_HEIGHT_POINTS = 409.5
+DOSSIER_LINES_PER_ROW = 24
+DOSSIER_PART_FORM = "{fact} (part {part} of {count})"
 
 NUMBER_FORMATS = {"count": "General", "decimal": "0, or 0. and one 0 per decimal place the registry wrote"}
 # What one row of each sheet is.
@@ -4664,6 +4363,7 @@ EMPTY_LISTING_WORDS = {
     "Participant flow": "No participant-flow counts listed in these records",
     "Groups": "No results group definitions listed in these records",
     "Safety": "No adverse-event terms listed in these records",
+    "Registry checks": "No registry checks in these records",
 }
 # The Trial index's compact columns: what each shows, in short words (the full value is in the dossier).
 INDEX_SILENT_DESIGN_FIELDS = ("primary_purpose", "allocation", "intervention_model", "masking", "who_masked")

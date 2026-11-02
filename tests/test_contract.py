@@ -1,25 +1,22 @@
-"""The contract of landscape.json schema 3 (TrialLedger/contract.py), held to the registry and its consumers.
+"""The direct reporting contract, held independently to registry metadata and real consumers.
 
-The founder's two principles, as gates (refine-landscape-record design §0):
+Two direct-reporting invariants:
 - no false silence: every API path the contract copies or reads exists in the API's field metadata and holds
   a value in at least one saved baseline body, except the paths UNEXERCISED names (exactly those); and every
   field of the metadata is carried or named in NOT_WANTED with its reason, so nothing is dropped silently;
-- nothing nobody uses: every field names a consumer, and every consumer it names exists (a sheet and column of
-  SHEETS, which names the same fields back; a part the MCP record tool serves, or one declared to be built;
-  a layer-two function, by import).
-Beside them: every rule resolves by import or names the task that builds it; the display dictionaries cover
-every value the API defines for each code the workbook shows; the universe table names the coherence
-coordinates and relations that exist; and the helpers, both signs.
+- nothing nobody uses: every field names an existing sheet/column or MCP part, and the sheet names the same
+  fields back. Planned consumers and removed clinical readers cannot make an otherwise unused field pass.
+Every direct rule resolves now; display dictionaries cover every API enum they expose. Clinical domain
+contracts are tested separately with layer two rather than imported into reporting.
 """
 
 import importlib
 import json
-import re
 from pathlib import Path
 
 import pytest
 
-from TrialLedger import coherence, contract, mcp_server
+from TrialLedger import contract, mcp_server
 from TrialLedger.contract import (
     DISPLAY,
     DISPLAY_NOT_API_ENUMS,
@@ -35,7 +32,6 @@ from TrialLedger.contract import (
 
 ROOT = Path(__file__).resolve().parents[1]
 FIXTURES = ROOT / "tests" / "fixtures" / "contract"
-TASKS = ROOT / "openspec" / "changes" / "refine-landscape-record" / "tasks.md"
 METADATA = json.loads((FIXTURES / "metadata.json").read_text(encoding="utf-8"))
 ENUMS = {entry["type"]: entry for entry in json.loads((FIXTURES / "enums.json").read_text(encoding="utf-8"))}
 BODIES = [
@@ -66,8 +62,6 @@ def carried():
     found = set()
     for field in FIELDS:
         found.update(field.source if field.kind == "plain" else field.reads)
-    for _name, _words, paths in contract.ASSIGNMENT_SOURCES:
-        found.update(paths)
     return found
 
 
@@ -162,7 +156,6 @@ def test_what_is_not_wanted_is_listed_for_information(capsys):
 def test_every_field_has_a_consumer_and_every_consumer_exists():
     sheets = {sheet.name: {column.header for column in sheet.columns} for sheet in SHEETS}
     parts = set(mcp_server.RECORD_PARTS)
-    assert not parts & set(contract.MCP_PARTS_TO_BUILD)
     for field in FIELDS:
         assert field.consumers, field.name
         for consumer in field.consumers:
@@ -171,9 +164,9 @@ def test_every_field_has_a_consumer_and_every_consumer_exists():
                 sheet, column = rest
                 assert column in sheets.get(sheet, ()), (field.name, consumer)
             elif kind == "mcp":
-                assert rest[0] in parts or rest[0] in contract.MCP_PARTS_TO_BUILD, (field.name, consumer)
+                assert rest[0] in parts, (field.name, consumer)
             else:
-                assert kind == "design" and callable(resolve_name(rest[0])), (field.name, consumer)
+                pytest.fail(f"non-reporting or unimplemented consumer: {field.name}: {consumer}")
 
 
 def test_every_column_shows_the_fields_that_name_it():
@@ -216,16 +209,14 @@ def test_fields_served_only_through_the_study_part_are_listed_for_information(ca
 # ── the rules ───────────────────────────────────────────────────────────────────────────────────────────
 
 
-def test_every_rule_exists_or_names_the_task_that_builds_it():
-    tasks = TASKS.read_text(encoding="utf-8")
-    open_tasks = set(re.findall(r"^- \[[ x]\] (\d+\.\d+[a-z]?)", tasks, flags=re.MULTILINE))
+def test_every_direct_rule_exists_now():
     for field in FIELDS:
         if field.kind == "plain":
             continue
-        if field.built_by:
-            assert field.built_by in open_tasks, field.name
-        else:
-            resolve_name(field.source[0])
+        assert not field.built_by, field.name
+        implementation = resolve_name(field.source[0])
+        if field.kind == "reading":
+            assert callable(implementation), field.name
 
 
 # ── the dossier and the Read me ─────────────────────────────────────────────────────────────────────────
@@ -302,58 +293,11 @@ def test_the_registry_text_codes_shown_have_words():
 # ── the universes ───────────────────────────────────────────────────────────────────────────────────────
 
 
-def test_the_universes_name_what_coherence_holds():
-    names = [universe.name for universe in contract.UNIVERSES]
-    assert names == ["oncology.solid", "oncology.heme", "general"]
-    relations = {relation.id for relation in coherence.RELATIONS}
-    assert set(contract.NSCLC_RELATIONS) == relations
-    assert contract.SELECTED_GENES == coherence.SELECTED_GENES
-    purposes = set(DISPLAY["PrimaryPurpose"])
-    for universe in contract.UNIVERSES:
-        assert universe.version and universe.label
-        for pack in universe.packs:
-            for coordinate in pack.coordinates:
-                assert coordinate in coherence.COORDINATES or coordinate in contract.NEW_COORDINATES
-            assert set(pack.relations) <= relations
-            assert pack.requires
-            for requirement in pack.requires:
-                assert requirement.kind in contract.REQUIREMENT_KINDS
-                allowed = {
-                    "universe": set(names),
-                    "primary_purpose": purposes,
-                    "treated_target": {"cancer"},
-                }[requirement.kind]
-                assert set(requirement.values) <= allowed, (pack.name, requirement)
-    assert set(contract.TREATED_TARGETS) == {"cancer", "not_cancer", "unresolved"}
-    assert contract.UNIVERSES[-1].packs == ()
-
-
 def test_reporting_fields_do_not_authorize_inferred_clinical_categories():
     assert "studies[].universe" not in contract.FIELD_NAMES
     assert not any(name.startswith("studies[].coordinates.") for name in contract.FIELD_NAMES)
     assert not any(name.startswith("cohort.") for name in contract.FIELD_NAMES)
     assert "studies[].scoped_assertions" not in contract.FIELD_NAMES
-
-
-def test_assignment_preserves_registry_sources_without_lookups_or_category_guessing():
-    from TrialLedger.universes import assign, reading
-
-    for body in BODIES:
-        result = reading(assign(body))
-        assert result["status"] == "unresolved"
-        assert result["result"]["universes"] == []
-        assert result["result"]["indications"] == []
-        assert all(row["status"] == "scope_unresolved" for row in result["result"]["applicability"])
-        sources = {row["source"]: row for row in result["result"]["sources"] if "source" in row}
-        conditions = body["protocolSection"].get("conditionsModule", {})
-        browse = body.get("derivedSection", {}).get("conditionBrowseModule", {})
-        assert sources["registry_conditions"]["conditions"] == conditions.get("conditions", [])
-        assert sources["registry_conditions"]["keywords"] == conditions.get("keywords", [])
-        assert sources["registry_mesh"]["meshes"] == browse.get("meshes", [])
-        assert sources["registry_mesh"]["ancestors"] == browse.get("ancestors", [])
-        assert sources["registry_mesh"]["browse_leaves"] == browse.get("browseLeaves", [])
-        assert sources["mesh_lookups"]["lookups"] == []
-        assert sources["titles"]["code"] == "not_looked_up"
 
 
 # ── the helpers ─────────────────────────────────────────────────────────────────────────────────────────

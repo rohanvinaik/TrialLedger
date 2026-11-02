@@ -1,39 +1,25 @@
-# Proposal: a faithful registry record and a readable workbook
+# Faithful clinical reference reporting
 
 ## Why
 
-A clinical development professional needs the registry's information in one readable place, including
-eligibility and posted safety, without manually transcribing hundreds of pages. The report must preserve what
-the source says and make missing information visible. It must not mix reporting with clinical interpretation.
+The requested MVP is a source-faithful clinical record and readable workbook operated through a chatbot.
+Agent-written clinical readers and overlapping plans had breached that boundary. The repair restores the
+original operation, reuses canonical drug identity evidence and keeps the separate symbolic designer usable.
 
 ## What changes
 
-- Build schema-4 `landscape.json` directly from retained registry records, with source paths defined once in `fields`.
-- Present the same evidence in `landscape.xlsx` and through MCP row addresses: identity, design, population,
-  exact eligibility, interventions, registered outcomes, posted results, analyses, baseline, flow, safety and links.
-- Keep only strictly warranted direct derivations, such as exact eligibility segmentation, source collection
-  states, results availability, source-defined labels, document links and directly returned RxNav evidence.
-- Preserve observational and expanded-access context as well as interventional fields. Keep groups, populations,
-  units, denominators, time frames, precision, explicit zeros and missing values at their source scope.
-- Remove inferred setting, indication assignment, criterion ranking, biomarker recognition, compiler output and
-  across-trial findings from the ordinary reporting path. Ordinary reports perform no MeSH enrichment.
-- Verify retrieval and offline reproducibility; independently check source → record → workbook/MCP across
-  study types, including sparse, malformed and mixed-type cases.
-
-## Scope
-
-Layer one contains registry facts and strictly warranted direct derivations only. Clinical inference, defaults,
-proposals, comparative judgments and trial design belong to layer two. Existing layer-two designs remain separate;
-this change neither redesigns them nor makes their completion a reporting prerequisite. Publications and posted
-documents are linked, not interpreted. No language model processes trial content.
+- Bind drug classes to canonical source identities rather than first-success aliases.
+- Preserve exact values, declared types, source scope and explicit missing/malformed states.
+- Expose original direct consistency checks and results-submission, delay and waiver context.
+- Limit replay fingerprints to actual reporting dependencies and preserve the layer boundary.
+- Remove unsafe interpretation paths and obsolete instructions; expose correct typed reasoning separately.
+- Verify the record, readable workbook and agent interface across source structures and study types.
 
 ## Capabilities
 
-### Modified Capabilities
-
-- `landscape-record`: source-preserving reporting with a compact field dictionary and readable workbook/MCP.
+- `registry-reporting`: source acquisition, direct record writing, clinical presentation and agent access.
 
 ## Impact
 
-The report assembles fields directly rather than passing through clinical analysis machinery. The workbook and
-MCP consume the same record. Existing archival pull/verify behavior remains a separate preservation operation.
+This is a bounded repair to the reporting operation and its instructions. A clinical compiler, expanded
+vocabulary, publication parser, semantic-conformance framework or complete designer is not a prerequisite.

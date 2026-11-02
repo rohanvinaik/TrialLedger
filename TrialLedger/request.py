@@ -411,9 +411,9 @@ def drug_names(asked: str, source: str, parts: list[tuple[str, list]]) -> tuple[
     lookup_failed — a request failed; malformed — an answer was malformed: no names, never the name alone,
                     since the scope would then be silently short.
     otherwise the identity code of classes.name_identity, with the names: the name asked; when RxNorm resolves
-    it, its concept's name ("rxnorm_concept"); and when it is a salt, a brand or another form of one
-    ingredient, that ingredient's name ("rxnorm_ingredient"). A name already listed, apart from case, is not
-    listed again. A combination is searched by its own names, never by one of its ingredients.
+    it, its concept's name ("rxnorm_concept"); and for a brand or another product form of one ingredient,
+    that ingredient's name ("rxnorm_ingredient"). A precise ingredient (PIN) is not widened: RxNorm's type
+    alone does not distinguish a salt from a biosimilar. A combination is never searched by one ingredient.
     """
     codes = [part[0] for part in parts]
     for code in ("pending", "lookup_failed", "malformed"):
@@ -424,7 +424,7 @@ def drug_names(asked: str, source: str, parts: list[tuple[str, list]]) -> tuple[
     named = [(asked, source)]
     if code in RESOLVED:
         named.append((concept[1][0][1], "rxnorm_concept"))
-    if code in ("salt", "brand", "other_form"):
+    if code in ("brand", "other_form"):
         named += [(part[1], "rxnorm_ingredient") for part in ingredients[1]]
     names: list[list[str]] = []
     for name, origin in named:
@@ -444,14 +444,13 @@ def member_names(
     searched for it, since that would widen the class to the ingredient's every product (bevacizumab-awwb to
     bevacizumab admits the reference product's trials): an ingredient the class itself lists as a member is
     searched as that member, and any other is a candidate, [name, "rxnorm_ingredient", its relation to the
-    member], shown and not searched. The exception is a precise ingredient whose name is its ingredient's name
-    followed by a word (a salt, hydrate or ester: "dasatinib anhydrous", "osimertinib mesylate"), the same
-    molecule under a modifier the registry rarely writes: its ingredient is searched (2026-11-01: 1 trial
-    names "dasatinib anhydrous", 344 "dasatinib"). Returns (code, names, candidates).
+    member], shown and not searched. A name prefix does not establish chemical identity: a precise ingredient
+    is kept distinct from its related ingredient unless the class itself lists the latter.
+    Returns (code, names, candidates).
     """
     code, found = drug_names(member[1], "rxclass_member", parts)
     names = [name for name in found if name[1] != "rxnorm_ingredient"]
-    if code not in ("salt", "brand", "other_form"):
+    if code not in ("precise_ingredient", "brand", "other_form"):
         return code, names, []
     held = {name[0].casefold() for name in names}
     relation = f"the ingredient of {member[1]} ({member[2]})"
@@ -459,11 +458,7 @@ def member_names(
     for part in parts[2][1]:
         if part[0] in listed or part[1].casefold() in held:
             continue
-        if code == "salt" and member[1].casefold().startswith(part[1].casefold() + " "):
-            names.append([part[1], "rxnorm_ingredient"])
-            held.add(part[1].casefold())
-        else:
-            candidates.append([part[1], "rxnorm_ingredient", relation])
+        candidates.append([part[1], "rxnorm_ingredient", relation])
     return code, names, candidates
 
 

@@ -223,7 +223,7 @@
   },
   "TrialLedger/classes.py::alias_role": {
     "cut_reasons": [],
-    "function_digest": "472750e9d831a5cd",
+    "function_digest": "aa6895d5ae8af459",
     "refusal": "",
     "standing": "complete"
   },
@@ -283,7 +283,7 @@
   },
   "TrialLedger/classes.py::name_identity": {
     "cut_reasons": [],
-    "function_digest": "f0d2b7ae0af68b40",
+    "function_digest": "69522a08b1f893ee",
     "refusal": "",
     "standing": "complete"
   },
@@ -745,6 +745,12 @@
   "TrialLedger/landscape.py::study_extract": {
     "cut_reasons": [],
     "function_digest": "f06a47226e3cec6f",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/entail.py::_satisfiable": {
+    "cut_reasons": [],
+    "function_digest": "5796f636fe9aa497",
     "refusal": "",
     "standing": "complete"
   },

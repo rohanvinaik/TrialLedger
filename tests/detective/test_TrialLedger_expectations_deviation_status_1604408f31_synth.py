@@ -7,7 +7,7 @@ overwritten. Witness lines carry full fidelity on purpose."""
 
 import pytest
 
-from TrialLedger.expectations import deviation_status
+from TrialLedger.layer2.expectations import deviation_status
 
 
 @pytest.mark.detective

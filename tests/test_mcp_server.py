@@ -261,13 +261,24 @@ def test_a_request_before_initialize_is_refused_and_initialize_twice_too(tmp_pat
 def test_tools_list_names_every_tool_with_its_description_and_schema(tmp_path):
     reply = Client(tmp_path).send({"jsonrpc": "2.0", "id": 9, "method": "tools/list", "params": {}})
     tools = reply["result"]["tools"]
-    assert [tool["name"] for tool in tools] == ["doctor", "landscape", "save_fetch", "scope", "record"]
+    assert [tool["name"] for tool in tools] == [
+        "doctor",
+        "landscape",
+        "save_fetch",
+        "scope",
+        "record",
+        "reason",
+    ]
     for tool in tools:
         assert set(tool) == {"name", "description", "inputSchema"}
         assert len(tool["description"]) > 200
         schema = tool["inputSchema"]
         assert schema["type"] == "object" and schema["additionalProperties"] is False
-        assert "run" in schema["required"] and set(schema["required"]) <= set(schema["properties"])
+        assert set(schema["required"]) <= set(schema["properties"])
+        if tool["name"] == "reason":
+            assert schema["required"] == ["request"] and "run" not in schema["properties"]
+        else:
+            assert "run" in schema["required"]
 
 
 @pytest.mark.parametrize("line", [b"{not json", b'{"jsonrpc": "2.0", "id": 1,', b"\xff\xfe{}", b"\x00"])
@@ -1055,7 +1066,7 @@ def test_record_refuses_a_record_of_another_schema_and_one_not_there(tmp_path):
 
 def test_every_part_serves_what_the_contract_names_it_for():
     named = {rest[0] for f in FIELDS for kind, *rest in f.consumers if kind == "mcp"}
-    assert named <= set(RECORD_PARTS) and contract.MCP_PARTS_TO_BUILD == {}
+    assert named <= set(RECORD_PARTS)
     assert RECORD_PARTS == ("manifest", "studies", "study", "statuses", "fields", "address")
     assert MANIFEST_KEYS == ("schema_version", "request", "manifest")
     assert STATUS_KEYS == ("statuses", "envelope")

@@ -1,9 +1,0 @@
-{
- "rule": [
-  "add-bank-coverage B8: each confirmation batch (sha256(NCT ID) mod 10 equal to 0, 1, 2) confirms one",
-  "version of the code, named by the source digest of TrialLedger/ and tests/ and its commit.",
-  "`trialledger sample --confirmation-batch N` reads only this file, refuses a batch given here to other",
-  "code, records the batch it drew for, and commits this file alone."
- ],
- "batches": {}
-}

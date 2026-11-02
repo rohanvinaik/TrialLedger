@@ -21,7 +21,7 @@ never resolved, and a conflict or several values is never a value to build on.
 
 import pytest
 
-from TrialLedger.coherence import (
+from TrialLedger.layer2.coherence import (
     COORDINATES,
     KINDS,
     RELATIONS,

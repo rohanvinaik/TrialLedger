@@ -13,7 +13,7 @@ from collections.abc import Callable, Sequence
 from pathlib import Path
 from typing import Any
 
-from TrialLedger import __version__, contract, warrants
+from TrialLedger import __version__, checks, contract, registry, warrants
 from TrialLedger import classes as rx
 from TrialLedger.contract import FIELDS as CONTRACT_FIELDS
 from TrialLedger.contract import holds_value, template_values
@@ -80,6 +80,7 @@ RULE_VERSIONS = {
     "derivation_code_root": derivation_root(Path(__file__).parent),
     "display": contract.DISPLAY_VERSION,
     "eligibility_sections": "registry-headings-source-passages/1",
+    "registry_checks": checks.CHECKS_VERSION,
 }
 RECORD_KEYS = ("schema_version", "request", "scope", "manifest", "statuses", "envelope", "fields", "studies")
 
@@ -342,17 +343,65 @@ def criterion_entries(text: str) -> list[dict[str, Any]]:
 
 
 def drug_class_reading(name: str, aliases: list[str], answers: dict[str, Any] | None) -> dict[str, Any]:
-    """Copy NLM's declared classes for this intervention's own names, with no text fallback."""
-    if answers is None:
-        state, classes, resolved_by = "not_looked_up", [], ""
-    else:
-        state, classes, resolved_by = rx.drug_class(answers, aliases)
+    """Attribute classes to an established RxNorm subject; retain every alias answer and disagreement."""
+    evidence = rx.class_evidence(aliases, answers)
     return value_object(
-        "known" if state == "classified" else "unresolved",
-        "classes.drug_class",
+        "known" if evidence["state"] == "classified" else "unresolved",
+        "classes.class_evidence",
         [name],
-        {"state": state, "classes": [list(row) for row in classes], "resolved_by": resolved_by},
-        CLASS_NOTES[state],
+        evidence,
+        evidence["reason"],
+    )
+
+
+def registry_check_inputs(study: dict[str, Any], paths: list[str]) -> dict[str, Any]:
+    """Each distinct declared check input once, retaining absence, null and malformed parents."""
+    inputs = {}
+    for path in dict.fromkeys(paths):
+        node: Any = study
+        walked: list[str] = []
+        for token in path.split("."):
+            if not isinstance(node, dict):
+                inputs[path] = {
+                    "state": "malformed_parent",
+                    "at": ".".join(walked),
+                    "value": copy.deepcopy(node),
+                }
+                break
+            if token not in node:
+                inputs[path] = {"state": "not_stated"}
+                break
+            node = node[token]
+            walked.append(token)
+        else:
+            inputs[path] = {"state": "stated", "value": copy.deepcopy(node)}
+    return inputs
+
+
+def registry_check_reading(study: dict[str, Any]) -> dict[str, Any]:
+    """Run the existing approved structural checks without changing any source value."""
+    definitions = {check.id: check for check in checks.CHECKS}
+    rows = [
+        {
+            "id": result.check_id,
+            "label": definitions[result.check_id].relation,
+            "outcome": result.outcome,
+            "detail": result.detail,
+            "source": list(checks.READS[result.check_id]),
+            "rule": definitions[result.check_id].rule,
+            "basis": definitions[result.check_id].basis,
+        }
+        for result in checks.run_checks(study)
+    ]
+    return value_object(
+        "known",
+        "checks.run_checks",
+        [],
+        {
+            "inputs": registry_check_inputs(study, [path for row in rows for path in row["source"]]),
+            "checks": rows,
+        },
+        "Approved registry checks; findings do not alter source facts or establish clinical meaning",
     )
 
 
@@ -383,6 +432,7 @@ def study_extract(study: dict[str, Any], answers: dict[str, Any] | None = None) 
             "digest": warrants.study_digest(study),
             "criteria": criterion_entries(text) if isinstance(text, str) else [],
             "results_posted": results_reading(state),
+            "registry_checks": registry_check_reading(study),
             "collection_presence": value_object(
                 "known",
                 "landscape.collection_presence",
@@ -486,8 +536,49 @@ for _field in CONTRACT_FIELDS:
         PLACES.setdefault(_place, "list" if _place.endswith("[]") else "object")
     PLACES[_field.name] = "itemized" if _field.name in ITEMIZED else _field.kind
 RULES = {field.name: field.source[0] for field in CONTRACT_FIELDS if field.kind == "reading"}
+PLAIN_TYPES = {
+    field.name: (
+        "integer"
+        if field.form == "count"
+        else "text"
+        if field.form == "which list"
+        else registry.FIELDS.get(field.source[0].replace("[]", ""), {}).get("type", "").removesuffix("[]"),
+        1
+        if field.form == "distinct"
+        else 0
+        if field.form in ("count", "which list")
+        else max(0, field.source[0].count("[]") - field.name.count("[]") + 1),
+    )
+    for field in CONTRACT_FIELDS
+    if field.kind == "plain"
+}
 REQUIRED = tuple(name.removeprefix(f"{STUDY}.").removesuffix("[]") for name in PLACES if name.count(".") == 1)
 WALK_DEPTH = max(name.count(".") for name in PLACES) + 2
+
+
+def scalar_problem(value: Any, source_type: str, list_depth: int = 0) -> str:
+    """Check the registry's declared primitive shape without conversion (pure).
+
+    A malformed value is retained in the raw response and refuses a typed report by name. It is never
+    coerced, rounded or passed as a clinical number. A boolean is not an integer. Registry numeric strings
+    (outcome values, confidence limits) are text by the source schema and remain exact strings.
+    """
+    if list_depth:
+        if not isinstance(value, list):
+            return "wrong_type"
+        return next(
+            (
+                problem
+                for item in value
+                if (problem := scalar_problem(item, source_type, list_depth - 1)) != "ok"
+            ),
+            "ok",
+        )
+    if source_type in ("integer", "long"):
+        return "ok" if type(value) is int else "wrong_type"
+    if source_type == "boolean":
+        return "ok" if type(value) is bool else "wrong_type"
+    return "ok" if isinstance(value, str) else "wrong_type"
 
 
 def study_problems(study: Any, where: str) -> list[tuple[str, str]]:
@@ -536,6 +627,8 @@ def study_problems(study: Any, where: str) -> list[tuple[str, str]]:
                         found.append(("wrong_type", here))
                 else:
                     code = value_problem(held, kind, RULES.get(child, ""))
+                    if code == "ok" and kind == "plain" and not isinstance(held, dict):
+                        code = scalar_problem(held, *PLAIN_TYPES.get(child, ("text", 0)))
                     if code != "ok":
                         found.append((code, here))
         frontier = following

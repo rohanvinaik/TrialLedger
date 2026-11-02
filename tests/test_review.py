@@ -10,7 +10,7 @@ flag carries an answer.
 
 import pytest
 
-from TrialLedger.review import flags_for
+from TrialLedger.layer2.review import flags_for
 
 FULL = {"setting": ["adjuvant", "advanced_first_line"], "prior_advanced_lines": ["0", "1"]}
 

@@ -1197,6 +1197,7 @@ def test_compact_silent_design_must_not_hide_any_supplied_design_field(field, va
 @pytest.mark.parametrize(
     "wrong",
     [
+        "Class one [ID: id-one; relation: rel-one; source: source-one]",
         "Class one\nClass two",
         (
             "Class one [ID: id-two; relation: rel-one; source: source-one]\n"
@@ -1206,13 +1207,17 @@ def test_compact_silent_design_must_not_hide_any_supplied_design_field(field, va
             "Class one [ID: id-one; relation: rel-one; source: source-one] or "
             "Class two [ID: id-two; relation: rel-two; source: source-two]"
         ),
+        (
+            "Class one [ID: id-one; relation: rel-one; source: source-two]\n"
+            "Class two [ID: id-two; relation: rel-two; source: source-one]"
+        ),
     ],
 )
 def test_direct_class_display_must_keep_each_source_tuple_and_line(wrong):
     field = contract.FIELD_NAMES["studies[].interventions[].drug_class"]
     value = {
         "status": "known",
-        "rule": "classes.drug_class",
+        "rule": field.source[0],
         "words": ["Source intervention"],
         "note": "",
         "result": {
@@ -1231,6 +1236,26 @@ def test_direct_class_display_must_keep_each_source_tuple_and_line(wrong):
     )
     assert preserve.judge(correct, expected, False) == "shown"
     assert preserve.judge(wrong, expected, False) != "shown"
+
+
+@pytest.mark.parametrize(
+    "status, state",
+    (("unresolved", "classified"), ("unresolved", "conflict"), ("known", "conflict")),
+)
+def test_class_source_display_does_not_promote_unresolved_or_conflicting_payloads(status, state):
+    field = contract.FIELD_NAMES["studies[].interventions[].drug_class"]
+    value = {
+        "status": status,
+        "rule": field.source[0],
+        "words": ["Source intervention"],
+        "note": "identity unresolved",
+        "result": {"state": state, "classes": [["id", "Source class", "relation", "source"]]},
+    }
+    wanted = preserve.expected(field, value)
+    assert preserve.judge("Unresolved — identity unresolved", wanted, False) == "shown"
+    assert (
+        preserve.judge("Source class [ID: id; relation: relation; source: source]", wanted, False) != "shown"
+    )
 
 
 @pytest.mark.parametrize(

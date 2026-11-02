@@ -22,26 +22,11 @@ named once; a word inside a longer word is not jargon; no step, a failing step, 
 check that did not run is not ready.
 """
 
-import importlib.util
-import sys
-from pathlib import Path
-
 import pytest
 
+from scripts import release_check
 from TrialLedger.cli import main
 from TrialLedger.ingest import reconcile_ids
-
-# Loaded under its repository name and kept in sys.modules, so the module the tests call is the one a mutation
-# tool patches when it imports scripts/release_check.py itself.
-NAME = "scripts.release_check"
-release_check = sys.modules.get(NAME)
-if release_check is None:
-    SPEC = importlib.util.spec_from_file_location(
-        NAME, Path(__file__).resolve().parents[1] / "scripts" / "release_check.py"
-    )
-    release_check = importlib.util.module_from_spec(SPEC)
-    sys.modules[NAME] = release_check
-    SPEC.loader.exec_module(release_check)
 
 
 def help_text(capsys, *argv):
@@ -123,25 +108,25 @@ def test_captured_text_of_no_bytes_is_text():
     assert release_check.captured_text(b"") == ""
 
 
-# The top of `trialledger --help` as it stood on 2026-11-01.
+# The current two-layer public command surface, including a wrapped argparse usage line.
 USAGE = """usage: trialledger [-h]
-                   {doctor,resolve,pull,verify,profile,sample,audit,pilot} ...
+                   {doctor,landscape,pull,verify,mcp,reason} ...
 
 positional arguments:
-  {doctor,resolve,pull,verify,profile,sample,audit,pilot}
+  {doctor,landscape,pull,verify,mcp,reason}
     doctor              check what this sandbox can do before a run
 """
 
 
 def test_subcommand_names_reads_the_usage_line():
     names = release_check.subcommand_names(USAGE)
-    assert names == ("doctor", "resolve", "pull", "verify", "profile", "sample", "audit", "pilot")
+    assert names == ("doctor", "landscape", "pull", "verify", "mcp", "reason")
     assert release_check.subcommand_names("usage: x {a-b,c2} y {d}") == ("a-b", "c2")
 
 
 def test_subcommand_names_reads_the_real_help(capsys):
     names = release_check.subcommand_names(help_text(capsys))
-    assert {"doctor", "pull", "verify", "resolve"} <= set(names)
+    assert {"doctor", "pull", "verify", "reason", "landscape", "mcp"} <= set(names)
 
 
 def test_subcommand_names_of_a_text_with_none():
@@ -181,27 +166,72 @@ def test_step_verdict(expected, actual, kinds, verdict):
 
 
 def test_missing_package_files():
-    tracked = ("TrialLedger/cli.py", "TrialLedger/registry/ctg-enums.json", "TrialLedger/semantics/x.py")
+    tracked = (
+        "TrialLedger/cli.py",
+        "TrialLedger/registry/ctg-enums.json",
+        "TrialLedger/layer2/semantics/x.py",
+    )
     installed = (*tracked, "TrialLedger/__pycache__/cli.cpython-312.pyc")
     assert release_check.missing_package_files(tracked, installed) == ()
     assert release_check.missing_package_files(tracked, installed[:1]) == (
+        "TrialLedger/layer2/semantics/x.py",
         "TrialLedger/registry/ctg-enums.json",
-        "TrialLedger/semantics/x.py",
     )
 
 
 def test_outputs_missing():
     expected = release_check.EXPECTED_OUTPUTS
     assert release_check.outputs_missing(expected, (*expected, "pulled/extra.txt")) == ()
-    assert release_check.outputs_missing(expected, ("design.xlsx", "pulled/studies.json")) == (
+    assert release_check.outputs_missing(expected, ("unexpected.xlsx", "pulled/studies.json")) == (
         "pulled/studies.csv",
         "pulled/review.xlsx",
         "pulled/record.xlsx",
         "landscape-run/landscape.json",
         "landscape-run/landscape.xlsx",
-        "reading.json",
     )
     assert release_check.outputs_missing((), ()) == ()
+
+
+def test_reason_problems_accepts_the_population_consequence_with_its_premise():
+    answer = {
+        "code": "complete",
+        "operation": "entailment",
+        "result": {"decision": {"result": "REFUTED", "proof": ["population"]}},
+    }
+    assert release_check.reason_problems(answer) == ()
+
+
+@pytest.mark.parametrize(
+    "answer,expected",
+    [
+        (None, ("reason_response_not_an_object",)),
+        ({"code": "refused"}, ("reason_operation_incomplete",)),
+        ({"code": "complete", "operation": "corpus"}, ("reason_operation_incomplete",)),
+        ({"code": "complete", "operation": "entailment", "result": None}, ("reason_decision_missing",)),
+        (
+            {"code": "complete", "operation": "entailment", "result": {"decision": {"result": "ENTAILED"}}},
+            ("reason_wrong_decision",),
+        ),
+        (
+            {
+                "code": "complete",
+                "operation": "entailment",
+                "result": {"decision": {"result": "REFUTED", "proof": []}},
+            },
+            ("reason_premise_missing",),
+        ),
+        (
+            {
+                "code": "complete",
+                "operation": "entailment",
+                "result": {"decision": {"result": "REFUTED", "proof": "population"}},
+            },
+            ("reason_premise_missing",),
+        ),
+    ],
+)
+def test_reason_problems_never_passes_refusal_wrong_consequence_or_missing_proof(answer, expected):
+    assert release_check.reason_problems(answer) == expected
 
 
 @pytest.mark.parametrize(
@@ -280,7 +310,7 @@ def test_a_number_not_found_is_said_by_number():
 
 
 def test_unknown_commands():
-    available = ("doctor", "resolve", "pull", "verify")
+    available = ("doctor", "reason", "pull", "verify")
     guide = (
         "Run `trialledger doctor`, then `trialledger landscape`, `trialledger <command> --help` and again "
     )

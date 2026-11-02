@@ -1,32 +1,22 @@
-# Tasks — add-design-synthesis
+# Tasks — automated clinical trial writing
 
-Built after `add-agent-operation` (the founder's next priority) and on `add-scoped-assertions` group 2.
+This design is complete. Checkboxes record implementation/integration, not design validity or usefulness of
+partial components. Reporting completion does not require finishing these tasks.
 
-## 1. The brief and the variables
+## Existing symbolic components and public access
 
-- [ ] 1.1 The design brief and its refusals
-- [ ] 1.2 The typed design variables, their domains and statuses
+- [x] 1. Preserve and validate the scoped assertion objects and exact finite entailment through the public typed operation, with source/user-premise provenance and distinct refusal/undetermined outcomes.
+- [x] 2. Preserve and validate explicit NSCLC coordinate/domain closure, known/default/proposal standing and applicable relation evidence, without a free-text reader fallback.
+- [x] 3. Preserve and validate statement-rate/silence-bound profiles, proposed associations, occupancy, expectations and near misses as typed corpus operations.
+- [x] 4. Expose supported typed operations through CLI/MCP with examples and accurate domain/pipeline limits; prove layer-one isolation.
 
-## 2. The rules
+## Complete the existing source-to-protocol pipeline
 
-- [ ] 2.1 Definitions (class, targets, indication hierarchy, phase purpose)
-- [ ] 2.2 Definitional rules as scoped assertions; deductions through entailment with premises
-- [ ] 2.3 Sourced design rules, each with its applicability and citation in `provenance.py`
-- [ ] 2.4 Corpus observations from a landscape run (standard criteria, mechanism-linked exclusions, endpoints and
-      time points, occupancy, near misses, comparable results)
-- [ ] 2.5 Choice rules from the brief's priorities and closed answers
-
-## 3. The solver and the output
-
-- [ ] 3.1 The exact, bounded solver over the design variables
-- [ ] 3.1a The recommendation stage (design Decision 8b): admissibility apart from ranking; signed hierarchical
-      positions; comparable trials by two-layer spreading activation; IDF and PMI weighting; standards with
-      conspicuous-absence cost; precedent PageRank; attenuated class inheritance; submodular combination and
-      MMR diversity; source agreement by the order parameter; tie clusters with their discriminating axis
-- [ ] 3.1b Closing the remainder (design Decision 9): each open variable scored by how evenly it splits the
-      admissible designs and what its answers fix downstream; the suggested answer by warrant, then closure;
-      question templates with ids; options carrying their brief amendments; one question at a time, and
-      accept-all
-- [ ] 3.2 `design.json` and `design.xlsx`; `trialledger design`
-- [ ] 3.3 Edits read back as the user's assertions, the design re-checked
-- [ ] 3.4 The entry point's procedure extended to `design`
+- [ ] 5. Integrate versioned concept/measurement registries and independent identity/ontology sources, with resolved bindings, scope, editions, licenses and explicit ambiguity.
+- [ ] 6. Implement source-to-scoped-assertion compilation, preserving alternatives, referents, qualifiers, local force, conditions, definitions, cohorts and time; refuse unresolved projections and remove every flat-atom fallback.
+- [ ] 7. Integrate domain applicability and full strict/default strata semantics, conflict suspension, user override/recomputation and explicit consumer projections.
+- [ ] 8. Integrate compatible corpus results and conditional expectations, complete design-space geometry and the founder's derivational significance with a declared alternative space; keep rarity and relevance separate.
+- [ ] 9. Implement gap-directed terminology, label and publication adapters with typed differential parsers, study/cohort/arm/outcome/time resolvers and source censors; keep conflicts and source versions.
+- [ ] 10. Integrate the typed brief, finite design variables and constraints, admissible recommendations and deterministic user questions/choices that close the remaining space.
+- [ ] 11. Emit complete warranted design JSON and readable protocol/workbook outputs, including eligibility, interventions, endpoints/schedules, safety, exploratory procedures, sample-size inputs and open decisions.
+- [ ] 12. Validate each semantic claim and its real consumer across scope/logic/source perturbations and applicable domains; report identified/abstained/wrong separately and publish unsupported cases without reusing development examples as confirmation.

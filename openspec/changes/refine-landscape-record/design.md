@@ -1,122 +1,103 @@
-# Design: source → record → readable workbook and MCP
+# Design — faithful clinical reference reporting
 
-## 1. Reporting boundary
+## Context
 
-Layer one gathers registry facts and strictly warranted direct derivations. It does not infer clinical meaning,
-rank criteria, select biomarkers, assign indication or setting, propose mechanisms, compare trials or design a
-protocol. Those operations belong to the existing layer-two work. A clinical interpretation compiler, external
-source parser or semantic-conformance framework is not a prerequisite for this report.
+The source writer and clinical workbook exist. This repair brings the whole project into one coherent
+structure without importing the separate designer into reporting. The authoritative behavior is
+`openspec/specs/registry-reporting/spec.md`; the full layer-two design is `add-design-synthesis/design.md`.
 
-The reporting path assembles retained API fields directly. `landscape_record(studies, request, scope,
-manifest, answers=None)` takes source studies, not an analysis view. Schema 4 has only `schema_version`,
-`request`, `scope`, `manifest`, `statuses`, `envelope`, `fields` and `studies`; there is no legacy compatibility
-scaffold. It does not invoke `read_population`, coherence,
-universe/indication assignment or the assertion compiler. Ordinary reports do not fetch MeSH enrichment.
-Search resolution may use named vocabulary sources to construct the requested query; this does not authorize
-clinical interpretation of the studies it retrieves. Direct RxNav response evidence may be retained as sourced
-lookup evidence, without inferred memberships or automatic clinical conclusions.
+## Goals / Non-Goals
 
-## 2. Record and source contract
+**Goals:** query or name studies; retain their source evidence; write matching selected clinical JSON and a
+readable workbook; let the assistant retrieve and quote the same evidence. Preserve original structured
+checks and warrants, canonical drug source identities, and appropriate fields for every declared study type.
 
-Registry copies are plain values in schema 4. `fields` defines each selected field's source path, label, type and
-consumer once. Each study has its ID, registry link and digest. A direct derivation names its rule, version and
-source inputs. Missing or malformed inputs have named states; neither becomes false, zero, none or a successful
-reading. Proposed and interpolated clinical readings are absent from ordinary reporting output.
+**Non-goals:** interpreting eligibility, choosing key criteria, inferring treatment setting, selecting
+biomarker roles, ranking comparability, proposing thresholds or constructing a protocol in this operation.
 
-Preserve clinically useful structured fields and exact prose: identity/status/dates, design, population,
-eligibility, arms/cohorts and interventions, registered outcomes, posted results/statistical analyses, baseline,
-participant flow, adverse events, limitations, publications and documents. Results keep the registry's nesting;
-group identities are local to their module. Keep actual/anticipated enrollment separate, and keep every population,
-denominator, unit, time frame, reporting threshold, NA reason, precision and explicit zero with its value.
-Registered outcomes remain plans, not observations. Linked publications are not asserted to contain findings the
-report has not read.
+## Decisions
 
-Cross-type context includes observational model, time perspective, patient-registry flag, target follow-up,
-specimen retention/description, study population and sampling method; and expanded-access type flags, availability,
-linked record/status and the source-defined count of studies referencing an access record. Multiple boolean flags,
-false and missing remain distinct. Preserve a present historical field even if it is optional or unusual for the
-study type. Inapplicability is source/metadata-bound, never inferred merely from a missing key.
+### 1. One reporting path
 
-Eligible direct derivations are limited to source-defined labels, exact links and counts, results/source-presence
-states, and lossless eligibility segmentation under unambiguous source headings/bullets. Segmentation retains
-literal wording, ordering, bullets and source locations and reconstructs the original text; ambiguous headings leave passages unsectioned. Physical source lines and bounded continuations remain
-exact substrings with offsets; joining them reconstructs every character. A heading is a source label, not a clinical polarity or cohort inference.
-An empty source list establishes only an empty listing, not zero harms or an absent clinical condition. A missing
-or malformed collection is distinguished from an explicit empty list at its exact source pointer.
+Preview resolves the request and fixes the query before retrieving studies. Direct/relay retrieval uses the
+same request plan, pages, counts and identities and records its mode. Explicit identifiers are reconciled
+individually. Failed or incomplete runs are named and resumable where safe; completion means the record and
+workbook have been produced, not that every requested identifier was found.
 
-## 3. Workbook and assistant
+Raw responses are retained. The clinical JSON is a selected projection, with a field dictionary identifying
+sources and direct transformations. The archival pull remains available when every raw field and the
+registry's own CSV/workbooks are required. It uses the same source-preservation principles, not another
+clinical interpretation path.
 
-The workbook starts with Read me, Trial index and Trial review, then Eligibility, Registered outcomes, Posted
-results, Statistical analyses, Baseline, Participant flow, Groups, Safety and Column dictionary. Any direct-rule
-listing states its source and purpose. Do not expose inference sheets, key-criterion rankings, inferred setting,
-biomarker recognition or cross-trial findings as reporting. Clinical text remains available in the source fields
-and exact eligibility/outcome listings rather than being selectively recognized.
+### 2. Canonical drug evidence
 
-Use readable registry labels, filters, stable row identities, wrapped prose and links. Keep the index compact;
-long text belongs in the dossier/listings. Present observational cohorts and access programs in their own terms,
-without forcing experimental-arm or interventional design labels. Avoid irrelevant columns where a field cannot
-apply; informative absence is stated in words. Mixed-type workbooks must remain readable.
+Use the existing RxNorm identity and RxClass-by-concept machinery. Preserve own name, canonical concept,
+related ingredients and alias roles. Attribute class assertions only to the entity their responses name;
+never widen a salt, brand, biosimilar or combination by convenience. Missing identity, failed lookup,
+negative lookup and conflict remain different. Retain responses and versions; ordering aliases must not
+choose a clinical fact. Search expansion is explicit and separate from interpreting retrieved studies.
 
-Every listing row has a JSON-pointer address into the record. MCP returns the same source-scoped value, with
-bounded paging. Workbook cells must preserve type and value; text beginning with `=` remains text. Values Excel
-cannot hold exactly name the reason and their record location rather than being truncated or rounded. Continue
-oversized listings on numbered sheets; never drop rows. Read back the workbook before release.
+### 3. Source assembly and checks
 
-## 4. Retrieval and reproducibility
+The field table owns source paths and registry types. Assembly copies values and their nesting without a
+clinical reader. A malformed scalar refuses the typed report at a named source location; its original raw
+response remains retained and is never coerced. Collections distinguish stated, stated empty, absent and
+malformed. Zero and false remain values.
 
-Preview resolves and fixes the search before studies are fetched. Retrieval accounts for every page and requested
-ID, checks counts, duplicates and snapshot consistency, and resumes direct or exact-body relay fetches. A failed
-or incomplete retrieval does not become a completed evidence record. Relay verifies shape/counts/identities, not
-values against the live service; retain response bodies unchanged.
+Eligibility may be divided only by unambiguous source headings and physical passages with exact offsets;
+joining the passages reproduces the original. These display divisions do not decide a criterion's referent,
+force or clinical meaning. No candidate atom is a requirement.
 
-`verify` replays retained inputs offline under the writing derivation code and checks the record and workbook,
-including formatting and links. Missing/changed evidence and incompatible code are named, never repaired by the
-verifier. Reproducibility proves derivation from retained sources, not registry truth or clinical correctness.
+The original approved structured checks run on source fields, not interpreted text. Their named results do
+not overwrite sources. Results state remains separate from planned outcomes; supplied submission-under-
+review, delay and waiver facts are presented beside it. Publication roles and documents are copied/linked,
+not treated as findings read from those documents.
 
-## 5. Acceptance across study types
+### 4. Clinical workbook and agent access
 
-Acceptance verifies literal encoding, readable presentation and access to the clinical-development source fields.
-It does not require a clinical interpretation, external-source synthesis, or an answer beyond what the registry
-states. Existing fixed baselines and inspected failures are regressions, not coverage claims.
+One Trial index row per study leads to the full Trial review dossier. Shared listings hold exact eligibility,
+planned and posted outcomes, statistical analyses, baseline, participant flow, local groups and safety, with
+sources and record addresses. Observational population/sampling/follow-up/specimen fields and expanded-access
+availability/type fields are kept alongside applicable interventional design fields.
 
-Acceptance follows the registry schema and the declared field/display contract, not an arbitrary set of trial
-numbers. Exercise each selected field shape, relevant enum and study-type applicability branch, with independent
-source expectations and source-preserving perturbations. The record writer must not depend on trial ID,
-diagnosis vocabulary or recognized clinical phrases. A source-present value wins over a generic type policy.
+Population, group, denominator, unit, time frame and reporting period remain attached to each number. Do not
+merge local group identifiers across modules. Source text is text even when it resembles a formula. Numbers
+are numeric only when preserved exactly; long/unrepresentable values point to their retained record location.
+Continuation sheets preserve all rows. Actual sparse, long and mixed-type workbooks are visually reviewed.
 
-Use actual interventional, observational and expanded-access records to check readable population/design context,
-including a mixed workbook; retain their source versions and the findings. Synthetic boundary cases establish
-specified encoding/display behavior, not clinical interpretation accuracy. An interpretation-accuracy study,
-population sampling campaign or comprehensive combination ledger is not a reporting-delivery prerequisite.
-State the tested source shapes and any unsupported fields honestly; finite examples do not establish every
-clinical situation. Source inspection is for direct value comparison, not fitting clinical readings.
+Long dossier values continue across visibly labelled, ordered rows without losing any character. The
+independent checker reconstructs each complete value and detects omitted, reordered or duplicated parts.
+Index title, sponsor and design cells wrap with row heights that expose all text. This is a bounded
+readability/fidelity check, not permission to shorten source content or add an interpretation layer.
 
-Required checklist:
+The assistant previews, gathers and answers from the same saved record, with bounded paging and exact workbook
+addresses. It speaks in clinical terms and supplies the workbook. Layer-two requests are separate calls; the
+LLM does not supply missing source facts, rewrite responses or perform a hidden interpretation during gathering.
 
-- [ ] Map complete relevant metadata modules to record fields/consumers or reviewed exclusions, including paths
-  outside the original contract. Check observational and access fields, not only oncology/interventional examples.
-- [ ] Independently compare exact source → record → displayed workbook → MCP/address values and source scopes,
-  including homogeneous-type and mixed-type workbooks. A present selected value lost anywhere fails.
-- [ ] Exercise actual/anticipated and child/adult populations, cohort descriptions, one/many groups, posted/partly
-  posted/no results, explicit empty/absent/malformed collections, zeros/false/NA, precision and nested denominators.
-- [ ] Check identity-preserving reordering/renaming with local references updated, unrelated-study insertion,
-  varying cardinality and one-field perturbations. Only affected evidence/presentation changes.
-- [ ] Pair intact cases with planted omissions, wrong group/population, false-as-missing, precision/text loss,
-  misleading zero/absence, bad labels and broken addresses; accept intact and reject each defect.
-- [ ] Visually review sparse/long/mixed-type/many-group workbooks. Publish per-type/combination encoding,
-  presentation and access findings, source limits, unexercised cases and unsupported fields separately.
-- [ ] Run the relevant local tests, two-sign verification for changed pure decisions, offline verify, release
-  installation and fresh-sandbox assistant procedure on the exact candidate. Record performance on frozen inputs.
+### 5. Verification and separation
 
-The colleague's questions guide which evidence is easy to find: population/eligibility, registered treatment
-history as prose, outcomes/timing, biomarker/imaging/biopsy text as written, protocol/statistical statements if
-registered, observed results, safety and verbatim wording. The report does not determine current care, select
-key criteria, interpret biomarker roles, infer grades, set planning targets or authorize language reuse. Those
-are layer-two questions. Reporting acceptance asks whether their available source material was preserved and is
-readable/retrievable, not whether an interpretation engine can answer them.
+Replay uses retained inputs and the writing derivation version, checks evidence identities and reconstructs
+JSON/workbook. Fingerprints include actual dependency code and resources, not unrelated layer-two modules or
+help text. Import/call boundaries prevent reporting from invoking interpretation, including shadow output.
+The separately callable reasoning layer accepts explicit typed premises and preserves their origin; it does
+not confer registry standing on an agent's assertions.
 
-## 6. Completion claim
+## Acceptance
 
-Completion means the declared registry fields and direct derivations are preserved and readable across the
-declared source-field contract, with source addresses and reproducibility. It does not establish superior manual
-abstraction accuracy, clinical correctness, comparative validity or readiness of the layer-two designer.
+Independent checks compare source -> JSON -> workbook -> agent/address. Cover interventional, observational
+and expanded-access source shapes, applicable metadata and enum branches, exact prose, local identities,
+precision, zero/false and empty/missing/malformed boundaries. Change identities, ordering, cardinality and
+optional values and plant paired losses; expectations do not call the producer's selector or formatter.
+Clinical examples aid review but no trial id or phrase list may select extraction behavior.
+
+Run current ordinary tests, type/lint checks, relevant Detective/two-sign behavior checks, retained-input
+replay and installation/entry-point checks. Report incomplete or ungateable checks as such. Record the actual
+proof basis and remaining limits; a test count does not establish clinical correctness. No new campaign of
+clinical interpretation is needed to complete the generic source writer.
+
+## Migration and risks
+
+Keep original evidence and archival outputs verifiable under their writing versions. Remove wrong readers
+and their public routes rather than leave compatibility fallbacks. Reconcile CLI, MCP, agent guide and
+OpenSpec together. Preserve useful symbolic components in their separate layer; missing integration is not
+a reason to delete correct logic. Any input the writer cannot represent is named, never silently dropped.

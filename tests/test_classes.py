@@ -1,17 +1,7 @@
-"""classes — intervention classes from NLM RxClass, each with its source id, or a named reason for none.
+"""NLM source parsing, exact lookup requests, cache preservation and source warrants.
 
-Positive: a 200 response with classes gives them once each, sorted, with id, name, relation and source; an
-unknown name (200 without a listing) is not_found; a drug resolves by the first alias RxClass classifies,
-naming it; experimental drugs are read through the arms' "<type label>: <name>" references; the lookup asks
-each name's RxNorm identity once, then RxClass once for the concept it names, and stamps each answer with its
-own retrieval time and its warrant: the requests that decided it (URL, parameters, retrieval time) and the
-RxNav release, asked before the batch and after it (add-scoped-reasoning 1.2), read back by
-reading.class_warrant; a name RxNorm does not hold is not_in_rxnorm and RxClass is never asked about it.
-Negative: a failed request is never "no class" (lookup_failed, and a drug whose only answers failed is
-lookup_failed, never unresolved); a malformed body is never a class; a placebo or a procedure is never a
-drug; an answer cached before answers carried a retrieval time is never given one, and one cached before they
-carried a warrant keeps its classes, is never asked again, and says its release was not recorded, never
-invented; a release RxNav did not give is named, never filled in.
+A failed or absent source answer never becomes a negative clinical finding. Identity and alias
+interpretation are covered independently in test_identity_evidence.py.
 """
 
 import json
@@ -21,18 +11,15 @@ import pytest
 from rxnav_fake import FakeRxNav
 
 from TrialLedger.classes import (
-    RXCLASS,
     RXCLASS_BY_RXCUI,
     RXNAV_VERSION,
     RXNORM_IDS,
     _ask_rxnav,
-    drug_class,
     drug_names,
     experimental_drugs,
     load_or_lookup_at,
     rxclass_classes,
 )
-from TrialLedger.reading import class_warrant
 
 PEMBRO = {
     "rxclassDrugInfoList": {
@@ -155,21 +142,6 @@ def test_each_answer_carries_its_requests_and_the_releases_of_its_batch():
     assert odd["X"]["release"][:2] == ["malformed", ""]
 
 
-def test_a_drug_resolves_by_its_first_classified_alias():
-    answers = {
-        "SHR-1316": {"codes": {"a": "not_found"}, "classes": []},
-        "adebrelimab": {"codes": {"a": "found"}, "classes": [PEMBRO_CLASS]},
-    }
-    assert drug_class(answers, ["SHR-1316", "adebrelimab"]) == ("classified", [PEMBRO_CLASS], "adebrelimab")
-    assert drug_class(answers, ["SHR-1316"]) == ("unresolved", [], "")
-
-
-def test_a_failed_lookup_is_never_unresolved():
-    answers = {"X": {"codes": {"a": "lookup_failed", "b": "not_found"}, "classes": []}}
-    assert drug_class(answers, ["X"]) == ("lookup_failed", [], "")
-    assert drug_class({}, ["never asked"]) == ("lookup_failed", [], "")
-
-
 STUDY = {
     "protocolSection": {
         "armsInterventionsModule": {
@@ -208,64 +180,3 @@ def test_each_answer_keeps_its_own_retrieval_time(tmp_path):
     kept = json.loads(path.read_text())["answers"]
     assert "retrieved" not in kept["Old"]
     assert datetime.fromisoformat(kept["New"]["retrieved"]).utcoffset() == timedelta(0)
-
-
-def test_an_answer_cached_before_warrants_says_its_release_was_not_recorded(tmp_path):
-    """Positive: an answer looked up now carries its warrant, read back as the release and its requests.
-    Negative: an answer cached before answers carried one keeps its classes, is never asked again or
-    rewritten, and says its release was not recorded, never one invented from the cache or another answer."""
-    path = tmp_path / "classes.json"
-    legacy = {"codes": {"DAILYMED:has_epc": "found", "MEDRT:has_moa": "not_found"}, "classes": [PEMBRO_CLASS]}
-    path.write_text(json.dumps({"answers": {"Old": legacy}}))
-    get = FakeRxNav(names={"New": ["9001"]}, concepts={"9001": ("new", "IN")})
-    answers = load_or_lookup_at(path, ["Old", "New"], get=get, sleep=lambda _: None)
-    assert [params.get("name") or params.get("rxcui") or url for url, params in get.asked] == [
-        RXNAV_VERSION,
-        "New",
-        "9001",
-        RXNAV_VERSION,
-    ]
-    kept = json.loads(path.read_text())["answers"]
-    assert kept["Old"] == {**legacy, "classes": [list(PEMBRO_CLASS)]}
-    assert class_warrant(answers["Old"]) == ("not_recorded", "", [])
-    state, release, requests = class_warrant(kept["New"])
-    assert (state, release) == ("found", "05-Oct-2026")
-    assert [request for request, _ in requests] == [
-        f"{RXNORM_IDS}?name=New&search=0",
-        f"{RXCLASS_BY_RXCUI}?rxcui=9001",
-    ]
-    assert [retrieved for _, retrieved in requests] == [r["retrieved"] for r in kept["New"]["requests"]]
-
-
-@pytest.mark.parametrize(
-    "answer, warrant",
-    [
-        (None, ("not_asked", "", [])),
-        ("not an answer", ("not_asked", "", [])),
-        ({"codes": {}, "classes": []}, ("not_recorded", "", [])),
-        ({"codes": {}, "classes": [], "requests": []}, ("not_recorded", "", [])),
-        ({"codes": {}, "classes": [], "release": ["found", "05-Oct-2026", {}]}, ("not_recorded", "", [])),
-        (
-            {
-                "codes": {},
-                "classes": [],
-                "requests": [
-                    {"url": RXCLASS, "params": {"drugName": "X"}, "retrieved": "2026-11-01T00:00:00+00:00"}
-                ],
-                "release": ["lookup_failed", "", {"url": RXNAV_VERSION, "params": {}, "retrieved": "t"}],
-            },
-            ("lookup_failed", "", [(f"{RXCLASS}?drugName=X", "2026-11-01T00:00:00+00:00")]),
-        ),
-        (
-            {
-                "codes": {},
-                "classes": [],
-                "requests": [],
-                "release": ["found", "05-Oct-2026", {"url": RXNAV_VERSION, "params": {}, "retrieved": "t"}],
-            },
-            ("found", "05-Oct-2026", []),
-        ),
-    ],
-)
-def test_an_answers_warrant_is_read_as_held(answer, warrant):
-    assert class_warrant(answer) == warrant

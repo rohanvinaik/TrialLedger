@@ -27,11 +27,9 @@ outside the vocabularies and an atom without an id are refused.
 from dataclasses import replace
 
 import pytest
-from test_semantic_contracts import real_criteria
 
-from TrialLedger.assertions import Evidence, Literal, Predicate, Subject, Value
-from TrialLedger.banks import BANKS
-from TrialLedger.predicates import (
+from TrialLedger.layer2.assertions import Evidence, Literal, Predicate, Subject, Value
+from TrialLedger.layer2.predicates import (
     FAMILY_VALUE_KINDS,
     MAPPING_BY_CONCEPT,
     MAPPINGS,
@@ -45,8 +43,8 @@ from TrialLedger.predicates import (
     mapping_problems,
     predicate_registry,
 )
-from TrialLedger.semantics.contracts import Atom, Span, from_legacy, legacy_result
-from TrialLedger.semantics.loader import FAMILIES, compile_registry, load_fragments
+from TrialLedger.layer2.semantics.contracts import Atom, Span, from_legacy
+from TrialLedger.layer2.semantics.loader import FAMILIES, compile_registry, load_fragments
 
 REGISTRY = compile_registry(load_fragments())
 SEED_FAMILIES = {concept: entry.family for concept, entry in REGISTRY.concepts.items()}
@@ -309,47 +307,25 @@ def test_a_registry_that_disagrees_is_refused_naming_every_problem():
 # Each test calls atom_literal itself and compares its whole outcome, so every reading is pinned directly.
 
 
-def atoms_of(text):
-    return [
-        atom for bank, function in BANKS.items() for atom in legacy_result(bank, text, function(text)).atoms
-    ]
-
-
-def atom_of(text, concept):
-    return next(atom for atom in atoms_of(text) if atom.concept_id == concept)
-
-
 def fact(atom, kind, value, subject="participant"):
     """The literal atom_literal should give: positive, timeless, unqualified, the atom its evidence."""
     evidence = (Evidence("atom_ref", atom.atom_id),)
     return Literal(Subject(subject), Predicate(kind, atom.concept_id), value, evidence=evidence)
 
 
-def test_every_real_atom_becomes_a_literal_of_its_own_concept():
-    codes = set()
-    for text in real_criteria():
-        for atom in atoms_of(text):
-            code, literal, unread = atom_literal(MAPPING_BY_CONCEPT.get(atom.concept_id), atom)
-            codes.add(code)
-            assert literal.predicate == Predicate(MAPPING_BY_CONCEPT[atom.concept_id].kind, atom.concept_id)
-            assert literal.polarity == "positive" and literal.evidence == (
-                Evidence("atom_ref", atom.atom_id),
-            )
-            assert not {"text_polarity", "modality"} & set(unread)
-    # operand_not_read: life expectancy, a named measurement whose value is unresolved
-    assert codes == {"mapped", "predicate_unresolved", "operand_not_kept", "operand_not_read"}
-
-
 def test_a_lab_threshold_is_a_typed_quantity_with_its_unit_as_written():
-    text = "* Platelets ≥ 100 × 10^9/L; Hemoglobin ≥ 9 g/dL; Creatinine ≤ 1.5 mg/dL"
-    creatinine = atom_of(text, "nsclc.lab.creatinine")
+    creatinine = from_legacy(
+        "organ_function",
+        ("lab", ("creatinine",), (("comparator", "≤"), ("value", "1.5"), ("unit", "mg/dL")), 0, 3),
+    )
     assert atom_literal(MAPPING_BY_CONCEPT["nsclc.lab.creatinine"], creatinine) == (
         "mapped",
         fact(creatinine, "measurement", Value("quantity", "le", number=1.5, unit="mg/dL")),
         (),
     )
-    text = "* Documented ALK-positive disease, stage IV, after progression on platinum; AST ≤ 2.5 × ULN"
-    ast = atom_of(text, "nsclc.lab.ast")
+    ast = from_legacy(
+        "organ_function", ("lab", ("AST",), (("comparator", "≤"), ("value", "2.5"), ("unit", "× ULN")), 0, 3)
+    )
     assert atom_literal(MAPPING_BY_CONCEPT["nsclc.lab.ast"], ast) == (
         "mapped",
         fact(ast, "measurement", Value("quantity", "le", number=2.5, unit="× ULN")),
@@ -358,31 +334,31 @@ def test_a_lab_threshold_is_a_typed_quantity_with_its_unit_as_written():
 
 
 def test_scores_states_and_counts_are_members():
-    ecog = atom_of("5. World Health Organization (WHO) performance status 0-2", "nsclc.ecog_ps")
+    ecog = from_legacy("performance_status", ("ecog_ps", ("0", "1", "2"), (), 0, 3))
     assert atom_literal(MAPPING_BY_CONCEPT["nsclc.ecog_ps"], ecog) == (
         "mapped",
         fact(ecog, "measurement", Value("enum", "in", ("0", "1", "2"))),
         (),
     )
-    egfr = atom_of("* Positive EGFR gene mutation (19/21)", "nsclc.biomarker.egfr")
+    egfr = from_legacy("biomarker", ("biomarker:EGFR", ("positive",), (), 0, 3))
     assert atom_literal(MAPPING_BY_CONCEPT["nsclc.biomarker.egfr"], egfr) == (
         "mapped",
         fact(egfr, "disease_attribute", Value("enum", "eq", ("positive",))),
         (),
     )
-    lines = atom_of("* Untreated advanced NSCLC", "nsclc.prior_lines")
+    lines = from_legacy("prior_therapy", ("prior_lines", ("0",), (("scope", "advanced"),), 0, 3))
     assert atom_literal(MAPPING_BY_CONCEPT["nsclc.prior_lines"], lines) == (
         "mapped",
         fact(lines, "treatment_history", Value("enum", "eq", ("0",))),
         ("scope",),
     )
-    extent = atom_of("* Untreated advanced NSCLC", "nsclc.extent")
+    extent = from_legacy("setting", ("extent", ("advanced",), (), 0, 3))
     assert atom_literal(MAPPING_BY_CONCEPT["nsclc.extent"], extent) == (
         "mapped",
         fact(extent, "disease_attribute", Value("enum_set", "in", ("advanced",))),  # "in" even of one
         (),
     )
-    stage = atom_of("* Stage IB-IIIA NSCLC, excluding stage IV", "nsclc.stage")
+    stage = from_legacy("setting", ("stage", ("I", "II", "III"), (("expression", "IB-IIIA"),), 0, 3))
     assert atom_literal(MAPPING_BY_CONCEPT["nsclc.stage"], stage) == (
         "mapped",
         fact(stage, "disease_attribute", Value("enum", "in", ("I", "II", "III"))),
@@ -391,14 +367,14 @@ def test_scores_states_and_counts_are_members():
 
 
 def test_a_stated_age_range_is_an_interval_and_a_lower_bound_alone_is_unresolved():
-    ranged = atom_of("8. Aged 18 to 75 years, ECOG PS: 0-1", "nsclc.age")
+    ranged = from_legacy("age", ("age", ("stated",), (("minimum", "18"), ("maximum", "75")), 0, 3))
     assert atom_literal(MAPPING_BY_CONCEPT["nsclc.age"], ranged) == (
         "mapped",
         fact(ranged, "demographic", Value("interval", "in", number=18.0, upper=75.0, unit="years")),
         (),
     )
     # "≥ 18 years": the bank keeps no comparator ("older than 18" is another), so never "at least 18"
-    alone = atom_of("1. Male or female ≥ 18 years.", "nsclc.age")
+    alone = from_legacy("age", ("age", ("stated",), (("minimum", "18"),), 0, 3))
     assert atom_literal(MAPPING_BY_CONCEPT["nsclc.age"], alone) == (
         "operand_not_kept",
         fact(alone, "demographic", Value("unresolved")),
@@ -407,21 +383,22 @@ def test_a_stated_age_range_is_an_interval_and_a_lower_bound_alone_is_unresolved
 
 
 def test_a_named_condition_is_its_status_and_its_window_is_left_unread():
-    text = "7. Receipt of live attenuated vaccine within 30 days prior to the first dose of IP."
-    vaccine = atom_of(text, "nsclc.condition.live_vaccine")
+    vaccine = from_legacy(
+        "conditions", ("condition", ("live_vaccine",), (("window", "30 days prior"),), 0, 3)
+    )
     assert atom_literal(MAPPING_BY_CONCEPT["nsclc.condition.live_vaccine"], vaccine) == (
         "mapped",
         fact(vaccine, "exposure", Value("boolean")),
         ("window",),
     )
     # a named measurement's value is unresolved: the concept declares no number, so none is read
-    life = atom_of("Life expectancy ≥ 12 weeks", "nsclc.condition.life_expectancy")
+    life = from_legacy("conditions", ("condition", ("life_expectancy",), (("window", "12 weeks"),), 0, 3))
     assert atom_literal(MAPPING_BY_CONCEPT["nsclc.condition.life_expectancy"], life) == (
         "operand_not_read",
         fact(life, "measurement", Value("unresolved")),
         ("window",),
     )
-    sex = atom_of("2. Age ≥ 18 years and \\<75 years male or females;", "nsclc.condition.sex")
+    sex = from_legacy("conditions", ("condition", ("sex",), (), 0, 3))
     assert atom_literal(MAPPING_BY_CONCEPT["nsclc.condition.sex"], sex) == (
         "operand_not_kept",  # either sex: no member named
         fact(sex, "demographic", Value("unresolved")),
@@ -431,8 +408,7 @@ def test_a_named_condition_is_its_status_and_its_window_is_left_unread():
 
 def test_an_annotation_is_never_read():
     # an inclusion criterion of test_banks.py whose sentence says the EGFR-mutated "are excluded"
-    text = next(t for t in real_criteria() if t.startswith("* No prior treatment for Stage IV NSCLC."))
-    egfr = atom_of(text, "nsclc.biomarker.egfr")
+    egfr = from_legacy("biomarker", ("biomarker:EGFR", ("positive",), (("text_polarity", "excluded"),), 0, 3))
     assert ("text_polarity", "excluded") in egfr.params
     egfr_mapping = MAPPING_BY_CONCEPT["nsclc.biomarker.egfr"]
     stated = fact(egfr, "disease_attribute", Value("enum", "eq", ("positive",)))
@@ -443,14 +419,13 @@ def test_an_annotation_is_never_read():
 
 
 def test_an_unsettled_concept_keeps_its_value():
-    text = "* Complete resection of histologically confirmed Stage IB to IIIA NSCLC, eligible for adjuvant "
-    setting = atom_of(text + "therapy", "nsclc.setting_word")
+    setting = from_legacy("setting", ("setting_word", ("adjuvant",), (), 0, 3))
     assert atom_literal(MAPPING_BY_CONCEPT["nsclc.setting_word"], setting) == (
         "predicate_unresolved",
         fact(setting, "unresolved", Value("enum_set", "in", ("adjuvant",))),
         (),
     )
-    organ = atom_of("* Adequate hematologic and renal function", "nsclc.organ_function_unspecified")
+    organ = from_legacy("organ_function", ("organ_function_unspecified", ("adequate",), (), 0, 3))
     assert atom_literal(MAPPING_BY_CONCEPT["nsclc.organ_function_unspecified"], organ) == (
         "predicate_unresolved",
         fact(organ, "unresolved", Value("enum", "eq", ("adequate",))),

@@ -21,12 +21,10 @@ import json
 from dataclasses import replace
 
 import pytest
-from test_semantic_contracts import real_criteria
 
-from TrialLedger import provenance
-from TrialLedger.banks import BANKS
-from TrialLedger.semantics.contracts import from_legacy, legacy_result
-from TrialLedger.semantics.loader import (
+from TrialLedger.layer2 import provenance
+from TrialLedger.layer2.semantics.contracts import from_legacy
+from TrialLedger.layer2.semantics.loader import (
     LEGACY_FRAGMENTS,
     UNVERSIONED,
     ConceptEntry,
@@ -68,14 +66,9 @@ def test_the_seed_compiles_and_owns_every_legacy_concept():
     registry = compile_registry(load_fragments())
     assert registry.fragments == (("nsclc_legacy", "nsclc-legacy 2026-10-31"),)
     assert set(registry.owners.values()) == {"nsclc_legacy"}
-    problems = []
-    for text in real_criteria():
-        for bank, function in BANKS.items():
-            for atom in legacy_result(bank, text, function(text)).atoms:
-                problems += [(atom.concept_id, p, text) for p in atom_registry_problems(atom, registry)]
-    # none: the one disagreement kept for 2.1 ("≥ 18 years" read as a window of `sex`, which an Attribute
-    # does not take) is resolved there, the age being the age bank's
-    assert problems == []
+    assert len(registry.concepts) == 91
+    supplied = from_legacy("age", ("age", ("stated",), (("minimum", "18"),), 0, 6))
+    assert atom_registry_problems(supplied, registry) == ()
 
 
 def test_the_version_is_the_fragments_digest_in_any_order():

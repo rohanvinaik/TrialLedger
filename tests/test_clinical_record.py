@@ -3,8 +3,9 @@
 import copy
 
 from records import ongoing_study
+from rxnav_fake import FakeRxNav
 
-from TrialLedger import landscape
+from TrialLedger import classes, landscape
 
 
 def test_unmapped_outcome_and_time_frame_stay_literal_without_a_clinical_recognizer():
@@ -24,16 +25,29 @@ def test_comparator_and_experimental_interventions_keep_their_own_source_class_a
     study["protocolSection"]["armsInterventionsModule"] = {
         "interventions": [{"type": "DRUG", "name": "Alpha"}, {"type": "DRUG", "name": "Beta"}]
     }
-    answers = {
-        "Alpha": {"classes": [["A", "Alpha class", "has_epc", "FDA"]], "codes": {"EPC": "classified"}},
-        "Beta": {"classes": [["B", "Beta class", "has_epc", "FDA"]], "codes": {"EPC": "classified"}},
-    }
+    answers = classes._ask_rxnav(
+        ["Alpha", "Beta"],
+        {"Alpha", "Beta"},
+        get=FakeRxNav(
+            names={"Alpha": ["100"], "Beta": ["200"]},
+            concepts={"100": ("Canonical Alpha", "IN"), "200": ("Canonical Beta", "IN")},
+            classes={
+                "100": [("A", "Alpha class", "EPC", "has_epc", "DAILYMED", "100")],
+                "200": [("B", "Beta class", "EPC", "has_epc", "DAILYMED", "200")],
+            },
+        ),
+        sleep=lambda _: None,
+        monotonic=lambda: 0.0,
+        progress=lambda _: None,
+    )
     interventions = landscape.study_extract(study, answers)["interventions"]
     for intervention, letter in zip(interventions, ("A", "B"), strict=True):
         reading = intervention["drug_class"]
         assert reading["status"] == "known"
-        assert reading["result"]["classes"] == answers[intervention["name"]]["classes"]
         assert reading["result"]["classes"][0][0] == letter
+        identity = reading["result"]["identities"][0]
+        assert identity["name"] == intervention["name"]
+        assert {row["subject_rxcui"] for row in reading["result"]["assertions"]} == {identity["rxcui"]}
 
 
 def test_intervention_prose_cannot_supply_a_drug_class_when_no_source_lookup_does():

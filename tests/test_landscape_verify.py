@@ -234,70 +234,52 @@ def test_absent_query_codes_cannot_document_an_empty_class_answer(tmp_path):
     assert code == "invalid_source" and "per-query codes" in details[0]
 
 
-@pytest.mark.parametrize(
-    "name",
-    [
-        "landscape.py",
-        "readout.py",
-        "classes.py",
-        "eligibility.py",
-        "registry/source_rules.py",
-    ],
-)
-def test_landscape_root_binds_python_modules_including_nested_source_modules(tmp_path, name):
+def test_landscape_root_binds_transitive_reporting_dependencies(tmp_path):
     from TrialLedger.landscape_warrants import derivation_root
 
     package = tmp_path / "package"
-    module = package / name
-    module.parent.mkdir(parents=True)
-    module.write_text('"""Documentation."""\nVALUE = 1\n', encoding="utf-8")
+    package.mkdir()
+    (package / "landscape.py").write_text("from TrialLedger import projection\n")
+    module = package / "projection.py"
+    module.write_text("VALUE = 1\n")
     before = derivation_root(package)
-    module.write_text('"""Documentation."""\nVALUE = 2\n', encoding="utf-8")
+    module.write_text("VALUE = 2\n")
     assert derivation_root(package) != before
 
 
-@pytest.mark.parametrize(
-    "name",
-    [
-        "registry/ctg-metadata.json",
-        "registry/ctg-enums.json",
-        "registry/retained-source.json",
-        "registry/runtime.bin",
-    ],
-)
-def test_landscape_root_binds_runtime_resource_bytes(tmp_path, name):
+def test_landscape_root_binds_registry_schema_bytes(tmp_path):
     from TrialLedger.landscape_warrants import derivation_root
 
     package = tmp_path / "package"
-    resource = package / name
-    resource.parent.mkdir(parents=True)
-    resource.write_bytes(b"first runtime resource")
+    (package / "registry").mkdir(parents=True)
+    resource = package / "registry" / "ctg-metadata.json"
+    resource.write_bytes(b"first schema")
     before = derivation_root(package)
-    resource.write_bytes(b"changed runtime resource")
+    resource.write_bytes(b"changed schema")
     assert derivation_root(package) != before
 
 
-def test_landscape_root_ignores_comments_and_docstrings_but_binds_new_modules_and_paths(tmp_path):
+def test_landscape_root_ignores_unrelated_layer_two_but_binds_changed_imports(tmp_path):
     from TrialLedger.landscape_warrants import derivation_root
 
     package = tmp_path / "package"
     package.mkdir()
     module = package / "landscape.py"
-    module.write_text(
-        '"""First documentation."""\n# comment\ndef read():\n    """First detail."""\n    return 1\n'
-    )
+    module.write_text('"""First documentation."""\nVALUE = 1\n')
     before = derivation_root(package)
-    module.write_text(
-        '"""Changed documentation."""\n# changed comment\n'
-        'def read():\n    """Other detail."""\n    return 1\n'
-    )
+    module.write_text('"""Changed documentation."""\n# comment\nVALUE = 1\n')
     assert derivation_root(package) == before
-    new_module = package / "new_runtime_rule.py"
-    new_module.write_text("VALUE = 1\n")
+    other = package / "layer2" / "entail.py"
+    other.parent.mkdir()
+    other.write_text("VALUE = 1\n")
+    assert derivation_root(package) == before
+    other.write_text("VALUE = 2\n")
+    assert derivation_root(package) == before
+    dependency = package / "projection.py"
+    dependency.write_text("VALUE = 1\n")
+    assert derivation_root(package) == before
+    module.write_text("from TrialLedger import projection\nVALUE = 1\n")
     assert derivation_root(package) != before
-    with_new_module = derivation_root(package)
-    new_module.rename(package / "renamed_runtime_rule.py")
-    assert derivation_root(package) != with_new_module
 
 
 def test_development_inventory_and_caches_do_not_enter_landscape_root(tmp_path):
@@ -321,25 +303,28 @@ def test_development_inventory_and_caches_do_not_enter_landscape_root(tmp_path):
     assert [path.relative_to(package).as_posix() for path in derivation_files(package)] == ["landscape.py"]
 
 
-def test_actual_landscape_source_inventory_includes_the_verifier_and_root_implementation():
+def test_actual_report_source_inventory_excludes_interfaces_and_layer_two():
     from pathlib import Path
 
     from TrialLedger.landscape_warrants import derivation_files
 
-    package = Path(landscape.__file__).parent
-    names = {path.relative_to(package).as_posix() for path in derivation_files(package)}
+    names = {
+        p.relative_to(Path(landscape.__file__).parent).as_posix()
+        for p in derivation_files(Path(landscape.__file__).parent)
+    }
     assert {
         "landscape.py",
         "readout.py",
         "classes.py",
         "eligibility.py",
         "links.py",
-        "landscape_verify.py",
+        "checks.py",
         "landscape_warrants.py",
         "registry/ctg-metadata.json",
         "registry/ctg-enums.json",
     } <= names
-    assert "semantics/conformance-inventory.json" not in names
+    assert not names.intersection({"cli.py", "operate.py", "mcp_server.py", "landscape_verify.py"})
+    assert not any(name.startswith("layer2/") for name in names)
 
 
 @pytest.mark.parametrize("name", ["request.json", "resolution.json", "scope.json"])

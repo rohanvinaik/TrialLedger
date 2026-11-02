@@ -1,28 +1,7 @@
-"""classes — the drug-class axes (add-scoped-reasoning, Decision 11): RxNorm identity, ATC and structure.
+"""Source RxNorm identities and RxClass axes keep distinct entities and source subjects.
 
-The bodies below are RxNav's own answers, read live 2026-10-31 and 2026-11-01: gefitinib and Keytruda by
-RxClass ATC, cisplatin by `has_chemical_structure`, Keytruda and osimertinib mesylate by RxNorm.
-
-Positive: an RxClass answer keeps the concept each class is asserted of; RxNorm resolves an ingredient, a salt
-(PIN), a brand (BN) and a combination (MIN, or a brand of two ingredients); a class asserted of the own name's
-concept is known, whichever of its names RxClass was asked by, and every class keeps its request, retrieval
-time and release; an alias of the same concept or ingredient confirms the own name; two drugs sharing a
-structure class under one taxonomy and release are related by shares_structure_class; a target the drug's own
-entry states aligns to ATC by the crosswalk, every row with its RxClass request and retrieval date, and
-equivalent_to and narrower_than entail membership; an intervention MeSH term that is literally one
-intervention's name is linked to it; a name cached before the axes existed is asked for the axes alone, its
-classes untouched, and the axes are read from the same RxClass answer by concept as the classes.
-Negative: a brand or a salt never inherits its ingredient's class by the API's answer (not_inherited); an
-alias never supplies a concept: an own name RxNorm does not hold is unresolved with a named reason whatever
-its aliases resolve to ("Carboplatin/Pemetrexed" with the alias "carboplatin", "XB-1" with the alias "XB-1 +
-carboplatin"), and an alias naming another concept is a conflict in which nothing is known; a name RxNorm
-holds as several concepts attributes nothing; a failed request is never "no identity"; DAILYMED and FDASPL
-structure classes are never merged, a class under an unknown release relates nothing, and a drug is never
-related to itself (no homology is ever claimed); a word naming another drug (carboplatin, paclitaxel,
-bevacizumab) or a target in the patient's history is no target of the drug, and no crosswalk row is keyed by a
-drug's name; broader_than, overlaps and unresolved never entail membership; a MeSH term matching no name, or
-two interventions' names, stays at trial level; a name outside the experimental drugs is never given axes,
-and no name is asked about the axes alone unless the fill is asked for (EPC and MoA are asked as before).
+Exact concept equality can confirm identity; shared ingredients establish related forms only. No
+combination, target or drug identity is inferred from clinical wording.
 """
 
 import json
@@ -40,7 +19,6 @@ from TrialLedger.classes import (
     load_or_lookup_at,
     mesh_scope,
     name_identity,
-    own_targets,
     rxclass_assertions,
     rxnav_release,
     rxnorm_concepts,
@@ -223,7 +201,7 @@ NOT_ASKED = ("not_asked", [])
             ("found", ["1721559"]),
             ("found", [("1721559", "osimertinib mesylate", "PIN")]),
             ("found", [("1721560", "osimertinib", "IN")]),
-            ("salt", "1721559"),
+            ("precise_ingredient", "1721559"),
         ),
         (
             ("found", ["1547550"]),
@@ -273,10 +251,10 @@ def test_an_unresolved_identity_has_a_named_reason(ids, concept, ingredients, co
 
 def test_a_class_is_the_names_own_only_when_asserted_of_its_own_concept():
     assert class_standing("ingredient", "328134", ["328134"], "328134") == "known"
-    assert class_standing("salt", "1721559", ["1721560"], "1721559") == "known"
+    assert class_standing("precise_ingredient", "1721559", ["1721560"], "1721559") == "known"
     # RxClass answers Keytruda as pembrolizumab: the brand does not inherit the ingredient's class
     assert class_standing("brand", "1547550", ["1547545"], "1547545") == "not_inherited"
-    assert class_standing("salt", "1721559", ["1721560"], "1721560") == "not_inherited"
+    assert class_standing("precise_ingredient", "1721559", ["1721560"], "1721560") == "not_inherited"
     assert class_standing("combination", "2693894", ["1792776", "5464"], "1792776") == "not_inherited"
     assert class_standing("ingredient", "328134", ["328134"], "1721560") == "other_entity"
     assert class_standing("not_in_rxnorm", "", [], "1547545") == "identity_unresolved"
@@ -372,13 +350,17 @@ ANSWERS = {
     "Failing": axes_answer(("lookup_failed", []), NOT_ASKED, NOT_ASKED, atc=PEMBRO_ATC),
 }
 
+# Every hand-built identity response records the exact name whose answer it represents.
+for recorded_name, answer in ANSWERS.items():
+    answer["axes"]["identity"]["requests"][0]["params"]["name"] = recorded_name
+
 
 def test_the_own_name_decides_and_an_alias_of_its_concept_confirms_it():
     code, reason, identities, assertions = drug_axes(["pembrolizumab", "Keytruda", "never asked"], ANSWERS)
     assert (code, reason) == ("resolved", "own_name")
     assert [(i[0], i[1], i[4]) for i in identities] == [
         ("pembrolizumab", "ingredient", "own"),
-        ("Keytruda", "brand", "confirms"),
+        ("Keytruda", "brand", "related_form"),
     ]
     # RxClass answers Keytruda as pembrolizumab: asked by either name, the class is the own concept's
     assert [(a[0], a[2], a[5]) for a in assertions] == [
@@ -395,16 +377,16 @@ def test_the_own_name_decides_and_an_alias_of_its_concept_confirms_it():
 def test_a_brand_own_name_never_takes_its_ingredients_class_from_an_alias():
     code, reason, identities, assertions = drug_axes(["Keytruda", "pembrolizumab"], ANSWERS)
     assert (code, reason) == ("resolved", "own_name")
-    assert identities[1][4] == "confirms"
+    assert identities[1][4] == "related_form"
     assert {a[5] for a in assertions} == {"not_inherited"}
 
 
 def test_an_unheld_own_name_is_unresolved_whatever_its_alias_resolves_to():
     code, reason, identities, assertions = drug_axes(["Carboplatin/Pemetrexed", "carboplatin"], ANSWERS)
-    assert (code, reason) == ("unresolved", "alias_is_one_ingredient")
+    assert (code, reason) == ("unresolved", "alias_other_concept")
     assert [(i[0], i[1], i[4]) for i in identities] == [
         ("Carboplatin/Pemetrexed", "not_in_rxnorm", "own"),
-        ("carboplatin", "ingredient", "alias_is_one_ingredient"),
+        ("carboplatin", "ingredient", "alias_other_concept"),
     ]
     assert {a[5] for a in assertions} == {"identity_unresolved"}
     code, reason, identities, assertions = drug_axes(["XB-1", "XB-1 + carboplatin"], ANSWERS)
@@ -435,15 +417,15 @@ def test_an_alias_role_never_supplies_a_concept():
     single = ("ingredient", "40048", ["40048"])
     combination = ("combination", "9004", ["40048", "9005"])
     unheld = ("not_in_rxnorm", "", [])
-    assert alias_role("carboplatin", single, ("brand", "1", ["40048"])) == "confirms"
-    assert alias_role("XB-1 + carboplatin", combination, single) == "alias_is_one_ingredient"
-    assert alias_role("Carboplatin/Pemetrexed", unheld, single) == "alias_is_one_ingredient"
-    assert alias_role("carboplatin", single, combination) == "alias_is_combination"
-    assert alias_role("XB-1", unheld, combination) == "alias_is_combination"
-    assert alias_role("XB-1", unheld, single) == "alias_other_concept"
-    assert alias_role("gefitinib", ("ingredient", "328134", ["328134"]), single) == "alias_other_concept"
-    assert alias_role("XB-1 + carboplatin", combination, ("ingredient", "7", ["7"])) == "alias_other_concept"
-    assert alias_role("carboplatin", single, unheld) == "alias_not_resolved"
+    assert alias_role(single, ("brand", "1", ["40048"])) == "related_form"
+    assert alias_role(combination, single) == "alias_is_one_ingredient"
+    assert alias_role(unheld, single) == "alias_other_concept"
+    assert alias_role(single, combination) == "alias_is_combination"
+    assert alias_role(unheld, combination) == "alias_is_combination"
+    assert alias_role(unheld, single) == "alias_other_concept"
+    assert alias_role(("ingredient", "328134", ["328134"]), single) == "alias_other_concept"
+    assert alias_role(combination, ("ingredient", "7", ["7"])) == "alias_other_concept"
+    assert alias_role(single, unheld) == "alias_not_resolved"
 
 
 PLATINUM = ("FDASPL:has_chemical_structure", "N0000175073", "Platinum-containing Compounds", "05-Oct-2026")
@@ -502,28 +484,11 @@ def test_every_crosswalk_row_names_a_relation_cites_its_source_and_its_request()
     for target, atc, name, relation, citation, request, read in rx.CROSSWALK:
         assert target and atc and name and citation and relation in relations
         assert request == rx.RXCLASS_BY_ID + atc and read == "2026-11-01"
-        assert target in rx.TARGET_WORDS
 
 
 def test_no_crosswalk_row_is_keyed_by_a_drug_name():
     named = {"platinum", "cisplatin", "carboplatin", "taxane", "paclitaxel", "docetaxel", "pemetrexed"}
     assert not named & {row[0] for row in rx.CROSSWALK}
-    assert not named & set(rx.TARGET_WORDS)
-
-
-def test_an_entry_states_the_drugs_own_target_only():
-    assert own_targets("XB-1 XB-1 is an anti-PD-1 antibody") == ["PD-1"]
-    assert own_targets("XB-1, an EGFR TKI and anti-PD-L1 bispecific antibody") == ["EGFR inhibitor", "PD-L1"]
-    assert own_targets("For patients previously treated with an anti-PD-1. XB-1 is an EGFR inhibitor") == [
-        "EGFR inhibitor"
-    ]
-
-
-def test_another_drugs_name_or_the_patients_history_is_no_target():
-    assert own_targets("XB-1 given after carboplatin and paclitaxel") == []
-    assert own_targets("XB-1 with bevacizumab, docetaxel or pemetrexed") == []
-    assert own_targets("XB-1 for patients who received an anti-PD-1 antibody") == []
-    assert own_targets("") == []
 
 
 def test_a_drug_has_atc_classes_by_rxclass_first_then_by_entailed_membership_only():
@@ -651,11 +616,3 @@ def test_the_axes_are_kept_only_when_filled_and_epc_moa_as_before(tmp_path):
     before.write_text(json.dumps({"answers": {"Placebo": old, "gefitinib": old}}))
     text = before.read_text()
     assert run(before, False)[0] == [] and before.read_text() == text
-
-
-def test_a_partners_target_in_this_drugs_entry_is_not_this_drugs():
-    """Positive: a drug's own stated target counts, even when its own name has a drug-name stem. Negative: a
-    target stated after another drug is named in the same clause is that drug's, so this one abstains."""
-    assert own_targets("XB-1 given with pembrolizumab, an anti-PD-1 antibody", "XB-1") == []
-    assert own_targets("Pembrolizumab is an anti-PD-1 antibody", "Pembrolizumab") == ["PD-1"]
-    assert own_targets("XB-1 is an anti-PD-1 antibody; given with carboplatin", "XB-1") == ["PD-1"]

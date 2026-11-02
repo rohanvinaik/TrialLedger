@@ -30,9 +30,9 @@ units; a start outside the text is abstained by every reader.
 import pytest
 from test_semantic_contracts import real_criteria
 
-from TrialLedger.semantics import parsers
-from TrialLedger.semantics.contracts import Span
-from TrialLedger.semantics.parsers import (
+from TrialLedger.layer2.semantics import parsers
+from TrialLedger.layer2.semantics.contracts import Span
+from TrialLedger.layer2.semantics.parsers import (
     Parse,
     read_comparator,
     read_duration,

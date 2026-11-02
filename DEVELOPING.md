@@ -1,90 +1,121 @@
 # Developing TrialLedger
 
-Read this when changing the project; AGENTS.md is the usage guide. The founding requirements are retained in
-docs/conversations/2026-10-31-the-case.md; the first reporting plan is the archived add-review-workbook change.
-Read docs/THEORY_OF_THE_CASE.md before proposing architecture. Do not change that theory to match an
-implementation shortcut. TrialLedger is classical AI; no language model processes trial content or supplies facts.
+Read docs/THEORY_OF_THE_CASE.md and openspec/README.md before changing behavior. The founding conversation
+remains local in docs/conversations/2026-10-31-the-case.md. The founder's instructions govern the design;
+passing tests or an implementation shortcut do not amend it. AGENTS.md and SKILL.md guide the assistant
+using the product.
 
-## The layer boundary
+## One project, two isolated operations
 
-Layer one is a small, auditable reporting operation: source → record → readable workbook/MCP. Its content is
-registry facts and strictly warranted direct derivations. Exact structural segmentation, source-presence and
-results states, labels, counts, links and direct source-backed RxNav responses are appropriate. Clinical inference,
-defaults, proposals, rankings, comparability and trial design belong to layer two.
+Layer one: request -> fixed scope -> retained government source -> direct clinical JSON -> readable
+workbook/MCP. The assistant is its chatbot/operator. It does not improvise source facts or run interpretation
+while gathering. Layer two: explicit typed premises/evidence -> scoped symbolic reasoning and corpus geometry
+-> the separately designed automated trial writer. Correct partial logic is preserved independently of
+missing source compilation or final orchestration.
 
-The schema-4 report has schema_version, request, scope, manifest, statuses, envelope, fields and studies.
-`landscape_record(studies, request, scope, manifest, answers=None)` accepts raw source studies, not a clinical
-analysis view. The ordinary reporting path must not call read_population, coherence, universes, indications or
-the assertion compiler, including shadow output. Do not replace those calls with another interpretation path.
-There is no compatibility scaffold, key-criterion ranking, biomarker recognition, inferred setting, cohort finding
-or ordinary-report MeSH enrichment. Source text remains intact and available without recognition.
+The current public commands are doctor, landscape, pull, verify, mcp and reason. MCP serves doctor, scope,
+landscape, save_fetch, record and reason. `reason --request FILE`/`reason(request)` is separate and does not
+mutate a report. There is no complete design/edits command or automatic annotation import. Retired raw-reader,
+model-audit, sample and pilot routes are not compatibility fallbacks.
 
-Search resolution and retained direct RxNav answers remain sourced operations. A service response is attributed
-as returned; it does not authorize an inferred class/indication or default. Failed/not-looked-up/negative answers
-remain distinct. Ordinary registry reports link publications and documents; they do not interpret them.
+## Reporting ownership and invariants
 
-## Reporting code and contracts
+- `request`, `preview`, `steps`, `operate`: resolve/preview scope, retrieve/resume, account for every requested
+  identity and release matching record/workbook. Failure cannot appear complete.
+- `classes`: shared canonical source lookup infrastructure. Retain exact identities, related ingredients,
+  class subjects, releases and conflicts. PIN is precise ingredient, not universally salt. Never widen a
+  biosimilar/product from a name prefix or choose a fact by alias order.
+- `contract`, `landscape`: declared selected source paths/types, direct assembly, exact eligibility passages,
+  collection/results states, links, approved direct checks and supplied results-submission/delay/waiver
+  context. Malformed scalar types refuse the typed report at a named location; raw evidence remains retained.
+- `readout`: projection of the same record, types/precision/scope, exact-text fallback, continuation, source
+  links and row addresses. It does not rank clinical significance.
+- `mcp_server`: bounded access to preview, gather, save and read, plus the separate symbolic operation.
+- `landscape_verify`, `landscape_warrants`: retained-input replay and actual derivation dependencies.
+- `ingest`, `registry`, `ledger`, `checks`, `eligibility`, `links`, `cells`, `warrants`, `record`, `workbook`:
+  source preservation, original direct consistency checks and archival certified outputs.
 
-- `operate.py`, `preview.py` and `steps.py`: fixed preview, resumable direct/relay retrieval, complete accounting
-  and delivery. Incomplete or failed retrieval must not look complete.
-- `contract.py`: selected field paths, types, labels, source-bound applicability and consumers; brief dictionaries
-  and presentation policy. Include relevant observational/access fields rather than adopting interventional defaults.
-- `landscape.py`: direct field assembly, lossless eligibility segmentation, named results/source collection states,
-  links and sourced evidence. Every direct derivation has exact inputs and a rule/version.
-- `readout.py`: workbook projection of that same record, exact value/type and scope preservation, readable source
-  labels and row addresses. It must not decide clinical significance or hide an atypical source-present value.
-- `mcp_server.py`: preview/gather/save/read interface, bounded paging and address access to the same evidence.
-- `landscape_verify.py` and `landscape_warrants.py`: retained-input replay and derivation identity. Keep their
-  source/code roots limited to what reporting actually consumes; do not pull clinical-analysis dependencies back in.
-- `ingest.py`, `ledger.py`, `record.py`, `workbook.py`, `checks.py` and `warrants.py`: archival pull, source ledger,
-  approved direct consistency checks and certified archival workbooks. Preserve their distinct contract.
+Schema 4 keeps copied fields plain, sources once in the field dictionary and direct transformation inputs
+explicit. The clinical record is selected; complete raw responses are retained. Keep population and denominator
+nesting, local group identity, units, time, precision, zero/false and source comments. Do not join groups by
+similar titles. Missing, empty and malformed differ; an empty event list does not mean zero harms. Structural
+eligibility segmentation must reconstruct the exact source and never decide polarity, referent or force.
 
-Groups are local to each source module. Preserve population and denominator nesting, units, periods, precision,
-zeros, false and NA/comments. Missing and malformed collections are not empty lists; an explicit empty event list
-is not zero harms. Eligibility segmentation preserves literal text/order/bullets/offsets and reconstructs the
-original; ambiguous headings leave source passages unsectioned. Headings are labels, not inferred polarity or cohort authority.
+The report path cannot import or invoke clinical recognizers, the layer-two compiler/solver, defaults,
+comparability or synthesis, including shadow output. Bound fingerprints to actual derivation dependencies;
+unrelated symbolic changes and help text do not alter a report's derivation identity.
 
-## Acceptance and engineering
+## Layer two ownership and standing
 
-`refine-landscape-record` contains the reporting tasks and checklist. Test source → record → workbook → MCP,
-independently of producer selection/rendering code. Cover INTERVENTIONAL, OBSERVATIONAL and EXPANDED_ACCESS with
-applicable design/population/results states and therapeutic/intervention breadth. Inventory the relevant metadata
-complement, including fields missing from the original table. Source-present optional/historical fields remain
-visible; unsupported/unexercised valid reporting combinations remain unmet.
+This is a current nontechnical user workflow as well as a set of components: the clinician chooses a
+question for their own work, the assistant elicits/encodes confirmed premises and explains the resulting
+proof, default, proposal or unresolved item. The structured analysis is reusable beside the unchanged source
+record. Discovery and result descriptions must enable that interaction without source-code access or a
+complete future trial-writing pipeline.
 
-Acceptance is schema-derived: test relevant field/enum/type branches, structural identity/order/cardinality
-changes and intact/seeded defects, with independent source expectations. Visually review actual long/sparse and
-mixed-type workbooks. The writer has no trial-ID or clinical-phrase decisions to fit. Keep source versions and
-findings, and state unsupported fields; do not require a clinical-interpretation sampling campaign to deliver
-this direct record writer. Reporting acceptance requires faithful access to evidence, not inferred answers to
-the ten-question clinical wishlist.
+`TrialLedger.layer2.run(request)` owns the public typed operation. Scoped assertion objects/finite entailment,
+explicit NSCLC coordinate closure and corpus calculations are reusable components. Full design, source binding,
+default semantics, information geometry/significance, differential evidence parsing, recommendation, user
+closure and protocol output are specified in openspec/changes/add-design-synthesis/design.md. Its task file
+separates current implemented components from missing integration; do not infer missing logic from missing
+pipeline wiring or claim an integrated writer from unit tests.
 
-Trace production consumers and duplicate paths before changing behavior. Keep decisions pure with named outcomes;
-write positive and negative intent tests, verify the actual entry point and null/empty/malformed boundaries, and
-converge changed pure decisions using Detective by its current protocol, one target at a time. Do not mark a
-changed function pinned from an old measurement. Temporary helpers use SquishOS owned-run. Work on main with
-no worktrees or feature branches. Do not commit without authorization.
+The public discovery request is `{"operation":"describe"}` through reason. Its input descriptions and
+examples must stay tied to actual validators, and its capability/result descriptions must reflect what an
+agent can invoke. User-facing surfaces should explain clinical explorations as well as operation names:
+population/temporal consequences, possible NSCLC settings, documented patterns and uncertainty, gaps and
+one-feature comparisons. Do not expose only a research-pipeline status summary when useful logic is callable.
 
-Run scripts/ci_local.sh and read its complete output for the relevant local gate; the pre-push hook uses
-scripts/push_checks.py. Read those files before altering their behavior. Detective/Wesker use the founder's local
-checkouts, per SquishOS instructions. Run the final deep gate only when the candidate and proof basis are stable,
-not concurrently with source/test edits. Live calls are opt-in. Report actual checks and unresolved failures;
-never turn a past count into a current result.
+| Existing component | Current access and boundary |
+|---|---|
+| `service.run`, scoped `assertions` and `entail.decide` | CLI/MCP entailment over supplied, validated assertions with proof/status/blockers; no automatic source interpretation. |
+| `coherence.resolve` and its finite NSCLC domains/relations | CLI/MCP coordinates with explicit applicable typed premises; direct narrowing, defaults and proposals remain separate. |
+| `profile.frequency_rows`, `mechanism_rows`, `occupancy_rows`, `nearmiss.near_misses`, `expectations.conditional_rarity` | CLI/MCP corpus over a declared typed set; statement/silence bounds, proposed associations, occupancy, pairs and observation rarity. |
+| `expectations.deviation_status`, `review.flags_for` | Python utilities over supplied observations/review states, not automatic clinical extraction or explanation. |
+| `indications.MeshLookup.lookup`, `resolve_indication`, `universes.assign`, `pack_scope` | Python source/indication/applicability components; not an ordinary-report interpretation stage or a complete automatic assertion compiler. |
+| `predicates.predicate_registry`, `atom_literal` and semantic contracts/loader | Python typed vocabulary, mapping and validation components; a candidate literal does not settle clinical force, referent or scope. |
+| `semantics.parsers.read_number`, `read_comparator`, `read_unit`, `read_reference`, `read_duration`, `read_window`, `read_interval` | Python literal-expression readers with spans and parsed/ambiguous/abstained outcomes; they do not decide what a number measures. |
+| `evaluation` and `typematrix` | Python claim/evaluation and declared-domain coverage utilities; no automatic adjudication of clinical truth. |
 
-A semantic-conformance inventory, clinical compiler, expanded vocabulary, external-source parser or new design
-framework is not a layer-one completion gate. Simplicity and auditability are requirements. Verification shows
-reproduction from saved sources, not that a clinical interpretation is correct.
+Keep these building blocks available even when a composed path is unfinished. Their library entry points
+and preconditions can be discovered/described without pretending each is a public clinical operation.
+Corpus observation rarity is not derivational significance or clinical absence frequency. A near miss is
+one known difference under its declared representation, not proof that complete trials match in every other
+respect. The full source compiler, general clinical bindings, significance/recommendation integration and
+protocol orchestration remain distinct implementation work under the existing design.
 
-## Layer two
+A recognised word is a candidate, not meaning. No flat token/pattern path may establish clinical requirements.
+Preserve scope, alternatives, qualifiers, actors, local force, conditionality, definitions and time. Ontology
+relations need sources; grammar needs resolved bindings. Unknown is not false or orthogonal. Proposed
+material is not a premise; defaults remain interpolated through strict consequences. Sources constrain
+alternatives, not a vote; duplicate encodings are not independent evidence. Every result remains conditional
+on its supplied premises and retains their source/user/agent origin.
 
-Layer two is the partially built new-trial designer: its purpose is to construct a new trial from scratch
-from a user brief and layer-one evidence through symbolic reasoning. Reasoning and existing-trial analysis
-foundations exist; the integrated brief-to-new-trial workflow is unfinished. Keep that distinction explicit
-in agent-facing descriptions rather than describing layer two only as a list of reporting exclusions.
+## Verification
 
-The existing coherence, reasoning/assertion, bank, surprise, targeted-question, evidence-source and synthesis
-changes retain their own designs. They are separate work and may consume the reporting evidence when their
-interfaces are built. This reporting cleanup neither redesigns them nor claims completion. Developer resolve/
-profile outputs, including design.xlsx, are analysis tools, not ordinary reports or synthesized new protocols.
-There is no current public design/edits operation or automatic workbook-edit import. Keep documents as built;
-future behavior belongs in the corresponding existing change.
+Trace production consumers and duplicate paths before behavior edits. Use symbolic/AST inspection, read
+whole units and keep decisions pure with named outcomes. Write positive and negative intent tests, exercise
+null/empty/malformed/boundary inputs through the actual entry point and trace signals to consumers. Converge
+changed pure decisions with Detective by its current SquishOS protocol, one target at a time. A generated
+characterization is not a clinical warrant. Never turn an incomplete/ungateable result or stale measurement
+into a pass.
+
+Run scripts/ci_local.sh, read its full output and keep relevant local/type/lint checks current. Detective and
+Wesker use the founder's local checkouts. Run the final deep gate only after code and proof inputs are stable.
+Follow current machine instructions for temporary processes, Git and verification tools; do not restate or
+weaken them in this repository.
+
+The dated [rescue verification record](acceptance/rescue-2026-11-02.md) retains the completed checks,
+individual mutation-check limitation and founder-approved boundary for the extended deep audit. Read the
+actual receipts before reusing a validation claim; a skipped or incomplete check is not a pass.
+
+Reporting acceptance independently checks source -> record -> workbook -> MCP/address across interventional,
+observational and expanded-access structures and metadata branches, atypical supplied values, exact prose and
+empty/missing/malformed states. Perturb identities, ordering, cardinality and valid optional fields; plant
+paired defects. Review actual sparse/long/mixed workbooks visually. A fixed trial list is not generality.
+
+Layer-two recognition, scoped representation, entailment and consumer conclusions are evaluated separately,
+with logical and source perturbations and explicit applicability. Preserve identified/abstained/wrong counts
+and source-grounded counterexamples. A broad clinical campaign is not a prerequisite for the generic record
+writer. No semantic inventory, conformance bureaucracy or new framework is a substitute for implementing the
+stated contracts simply and correctly.

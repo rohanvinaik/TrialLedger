@@ -25,16 +25,16 @@ deep=0
 gate_tree="$(.venv/bin/python scripts/push_checks.py tree 2>/dev/null || true)"
 
 echo "== the locked environment"
-uv sync --locked --quiet || fail=1
+uv sync --locked || fail=1
 
 echo "== ruff check"
-.venv/bin/ruff check --quiet . || fail=1
+.venv/bin/ruff check . || fail=1
 
 echo "== ruff format --check"
-.venv/bin/ruff format --check --quiet . || fail=1
+.venv/bin/ruff format --check . || fail=1
 
 echo "== pytest (live calls deselected; uv run pytest -m live runs them)"
-.venv/bin/pytest -q || fail=1
+.venv/bin/pytest || fail=1
 
 echo "== ty (advisory)"
 uvx ty check --python .venv TrialLedger || echo "ty: the findings above are leads, not a gate"

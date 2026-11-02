@@ -37,12 +37,6 @@ def test_the_commit_a_record_names(stamp, head, dirty, expected):
     assert commit_named(stamp, head, dirty) == expected
 
 
-def test_not_a_checkout_is_the_words_sample_reads():
-    from TrialLedger.sample import NOT_A_CHECKOUT as SAMPLE_WORDS
-
-    assert NOT_A_CHECKOUT == SAMPLE_WORDS == "not a git checkout"
-
-
 def git(repository, *args):
     command = ["git", "-C", str(repository), "-c", "user.name=t", "-c", "user.email=t@example.org"]
     command += ["-c", "commit.gpgsign=false", *args]

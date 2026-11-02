@@ -1,18 +1,8 @@
-"""Every table entry is wired: the production path reaches it, or it is declared dormant with its reason.
+"""Persistent layer boundaries and real production behavior.
 
-Vulture counts a function named in a table as used, so it cannot see a table entry nothing ever calls; these
-tests can. The production path (tests/production_path.py, run in its own process with every call recorded
-from before import) is a two-page pull with a retry and a value a cell cannot hold, `verify` of the folder
-written, `verify` of an unreadable workbook, a pull the server keeps failing, `landscape` run in direct
-and in relay mode, and `mcp` serving an MCP client's session (its module docstring lists every command it
-runs).
-
-Positive: the check tables agree with each other; production gathers exactly the approved checks; every
-function of the package runs on the production path except the declared ones; every sheet fills every column
-of every row; every rule of the RULE table is looked up; every code a decision returns has its words; every
-role the structure states and every field the definitions limit to a study type is reached.
-Negative: no function goes unreached without a declared reason; a dormant decision belongs to proposed checks
-only, and a dormant helper is called only from their code.
+Partial symbolic foundations need not masquerade as a complete pipeline. These tests
+instead enforce report isolation, absence of the retired raw readers, actual entry-point
+outcomes, and the original approved-check and archival workbook invariants.
 """
 
 import ast
@@ -26,212 +16,116 @@ from pathlib import Path
 import pytest
 from records import ongoing_study, results_study
 
-from TrialLedger import cells, checks, ledger, workbook
+from TrialLedger import cells, checks, cli, ledger, mcp_server, workbook
 from TrialLedger.checks import APPROVED, BASIS, CHECKS, DECISIONS, GATHERERS
 
 HERE = Path(__file__).resolve().parent
-PROPOSED = [check.id for check in CHECKS if check.id not in APPROVED]
-# Code that runs only once the founder approves a proposed check (law 13: a rule TrialLedger's reading entails
-# is proposed for his approval, never self-approved). Approving a check moves its code onto the path.
-# Every check is approved since version 2 (2026-11-01), so none is dormant; the tests below keep the rule for
-# any check proposed later.
-DORMANT_DECISIONS: set[str] = set()
-DORMANT_HELPERS: set[str] = set()
-# Reached by no production path, each for its reason.
-DECLARED = {
-    "record.py: _ignore": "write_record's default progress sink, likewise",
-    "workbook.py: WorkbookError.__init__": "raised only when the read-back differs from the "
-    "derivation, which tests/test_workbook.py simulates",
-    "classes.py: http_get": "RxClass's network transport; production_path injects a fake, as it does the API",
-    "profile.py: mechanism_rows.<locals>.<lambda>": "sorts mechanism rows, and two studies make none; "
-    "tests/test_profile.py reaches it",
-    "audit.py: run_audit.<locals>.<lambda>": "run_audit's default progress sink; the CLI passes its own",
-    "sample.py: draw_sample.<locals>.<lambda>": "draw_sample's default progress sink; the CLI passes its own",
-    "transport.py: urllib_http": "the local model's network call; production_path injects a fake, as "
-    "it does the registry and RxClass",
-    "operate.py: _ignore": "operate.run's default progress sink; the CLI passes its own",
-    "mcp_server.py: stdio_streams": "the process's own standard input and output; production_path "
-    "gives `trialledger mcp` its streams, as it gives the registry "
-    "and RxNav",
-    "mcp_server.py: stdio_streams.<locals>.write": "the writer of stdio_streams, likewise",
-    "readout.py: ReadoutError.__init__": "raised only when landscape.xlsx read back differs from its "
-    "derivation, which tests/test_readout_schema3.py simulates",
+PACKAGE = HERE.parent / "TrialLedger"
+RETIRED = {
+    "banks",
+    "criteria",
+    "reading",
+    "design",
+    "symbolic",
+    "modality",
+    "audit",
+    "sample",
+    "pilot",
+    "questions",
+    "transport",
+    "gates",
 }
-# The frozen contracts of add-bank-coverage group 1, which the parallel packages are written against: nothing
-# in production consumes them yet. Each name is declared with the task that will put it on the path; that task
-# removes its names from here.
-FOUNDATIONS = {
-    "until add-bank-coverage 2.1 (each existing bank audited through the contract and reporting by it)": (
-        "semantics/contracts.py",
-        (
-            "_span_problems",
-            "atom_digest",
-            "atom_problems",
-            "from_legacy",
-            "legacy_concept_id",
-            "legacy_result",
-            "result_problems",
-            "slug",
-            "to_legacy",
-        ),
-    ),
-    "until add-bank-coverage 2.1 and 3.x (the banks read under the compiled registry's version; each package "
-    "compiles its fragment)": (
-        "semantics/loader.py",
-        (
-            "RegistryError.__init__",
-            "_alike",
-            "_canonical",
-            "_entry_problems",
-            "_example",
-            "_fragment_data",
-            "_is_date",
-            "_offset",
-            "_pairs",
-            "_unstable",
-            "atom_registry_problems",
-            "compile_registry",
-            "example_problems",
-            "fragment_from_data",
-            "load_fragments",
-            "nondeterminism_problems",
-            "registry_flags",
-            "registry_problems",
-            "unit_problems",
-            "universe_problems",
-        ),
-    ),
-    "until add-bank-coverage 3.2-3.5 (each general package reads its numbers, comparators, units, durations, "
-    "windows, intervals and references through the shared parsers; the registry build reads them already)": (
-        "semantics/parsers.py",
-        (
-            "_abstained",
-            "_bound",
-            "_form_pattern",
-            "_grouping",
-            "_inside",
-            "_interval",
-            "_number_values",
-            "_orientation",
-            "_parse",
-            "_range_unit",
-            "_skip",
-            "read_comparator",
-            "read_duration",
-            "read_interval",
-            "read_number",
-            "read_reference",
-            "read_unit",
-            "read_window",
-        ),
-    ),
-    # landscape.json schema 3 (refine-landscape-record unit A) carries no per-study coverage, which reached
-    # _module, declared_manifest, study_coordinates and universe_status; tests/test_typematrix.py reaches them
-    "until add-bank-coverage 4.1 (the discovery wave's type balance) and 7.2 (the release manifest)": (
-        "typematrix.py",
-        ("_module", "declared_manifest", "manifest_problems", "study_coordinates", "universe_status"),
-    ),
-    "until refine-landscape-record unit E1's preservation checks read registry paths through the contract": (
-        "contract.py",
-        ("resolves",),
-    ),
-    "until add-bank-coverage 7.1 (the confirmation evaluated through the real entry point)": (
-        "evaluation.py",
-        (
-            "_key",
-            "_known_level",
-            "_single_level",
-            "agreement_kind",
-            "at_level",
-            "bounds",
-            "clustered_lower_bound",
-            "complete_representation",
-            "gold_problems",
-            "judge",
-            "match",
-            "miss_rate",
-            "parameter_accuracy",
-            "precision",
-            "precision_group",
-            "rate",
-            "recall",
-            "threshold_verdict",
-            "unit_rates",
-        ),
-    ),
+REPORT_ROOTS = {
+    "operate",
+    "landscape",
+    "readout",
+    "landscape_verify",
+    "landscape_warrants",
+    "request",
+    "preview",
+    "steps",
+    "classes",
+    "doctor",
+    "record",
+    "workbook",
+    "checks",
+    "ledger",
+    "registry",
+    "eligibility",
+    "links",
+    "cells",
+    "warrants",
 }
-DECLARED |= {f"{file}: {name}": reason for reason, (file, names) in FOUNDATIONS.items() for name in names}
-# The scoped-assertion object model and its decision procedure (add-scoped-assertions 1.1, 3.1, 3.2): a
-# foundation nothing in production builds assertions for yet; the shadow-mode run reaches it, until
-# add-scoped-assertions 5.1. tests/test_assertions.py and tests/test_entail.py reach every one.
-UNTIL_SHADOW_MODE = (
-    "Layer-two scoped-assertion foundations, tested in test_assertions/test_entail; registry reporting "
-    "does not compile or consume eligibility assertions (add-scoped-assertions integration remains pending)"
-)
-SCOPED_ASSERTIONS_DORMANT = {
-    f"{module}: {name}": UNTIL_SHADOW_MODE
-    for module, names in (
-        (
-            "assertions.py",
-            (
-                "_Validated.__post_init__",
-                "_assertion_problem",
-                "_build",
-                "_evidence_problem",
-                "_finite",
-                "_plain",
-                "_scope_problem",
-                "_time_problem",
-                "_value_problem",
-                "_whole",
-                "canonical",
-                "from_canonical",
-                "model_problem",
-            ),
-        ),
-        (
-            "entail.py",
-            (
-                "_atoms",
-                "_components",
-                "_fold",
-                "_holds",
-                "_literal_formula",
-                "_measured",
-                "_negate",
-                "_proof",
-                "_satisfiable",
-                "_scope_formula",
-                "assertion_formula",
-                "decide",
-                "proposition_formula",
-                "weakest_status",
-            ),
-        ),
-    )
-    for name in names
-}
-DECLARED |= SCOPED_ASSERTIONS_DORMANT
-# The first predicate registry (add-scoped-assertions 1.2): the compiler of task group 2 reads it, starting
-# with D1 structure and D2 alternatives (2.1), and nothing in production builds literals before then.
-# tests/test_predicates.py reaches every one.
-UNTIL_THE_COMPILER = (
-    "Layer-two predicate foundations, tested in test_predicates; registry reporting does not map "
-    "clinical predicates (add-scoped-assertions integration remains pending)"
-)
-DECLARED |= {
-    f"predicates.py: {name}": UNTIL_THE_COMPILER
-    for name in ("_digest", "atom_literal", "mapping_problems", "predicate_registry")
-}
-# The run folder's shell beyond what `trialledger landscape` (add-agent-operation 4.2) reaches:
-# tests/test_steps.py reaches every one.
-DECLARED |= {
-    "steps.py: StepError.__init__": "raised by records and rxnav_answers on a folder not complete, which "
-    "operate.run never asks them of",
-    "steps.py: _ignore": "advance's default progress sink; the CLI passes its own",
-    "steps.py: rxnav_answers": "until add-agent-operation 3.1 (the RxNav requests the step decision relays "
-    "beside the registry's; operate.run asks none of it)",
-}
+
+
+def package_imports(path):
+    """Python package dependencies from whole-module ASTs, including lazy imports."""
+    found = set()
+    for node in ast.walk(ast.parse(path.read_text())):
+        if isinstance(node, ast.Import):
+            found.update(alias.name for alias in node.names if alias.name.startswith("TrialLedger."))
+        elif isinstance(node, ast.ImportFrom) and node.module:
+            if node.module == "TrialLedger":
+                found.update(
+                    "TrialLedger." + alias.name
+                    for alias in node.names
+                    if (PACKAGE / (alias.name + ".py")).is_file()
+                    or (PACKAGE / alias.name / "__init__.py").is_file()
+                )
+            elif node.module.startswith("TrialLedger."):
+                found.add(node.module)
+    return found
+
+
+def test_report_dependency_closure_cannot_reach_layer_two_or_retired_readers():
+    waiting = {"TrialLedger." + name for name in REPORT_ROOTS}
+    visited = set()
+    while waiting:
+        module = waiting.pop()
+        if module in visited:
+            continue
+        visited.add(module)
+        assert not module.startswith("TrialLedger.layer2"), module
+        relative = module.removeprefix("TrialLedger.")
+        assert relative.split(".")[0] not in RETIRED, module
+        path = PACKAGE.joinpath(*relative.split(".")).with_suffix(".py")
+        if not path.is_file():
+            path = PACKAGE.joinpath(*relative.split("."), "__init__.py")
+        assert path.is_file(), module
+        waiting |= package_imports(path) - visited
+
+
+def test_only_explicit_reason_handlers_may_import_layer_two_in_dispatchers():
+    for filename in ("cli.py", "mcp_server.py"):
+        tree = ast.parse((PACKAGE / filename).read_text())
+        for unit in tree.body:
+            for node in ast.walk(unit):
+                names = (
+                    [node.module]
+                    if isinstance(node, ast.ImportFrom)
+                    else [alias.name for alias in node.names]
+                    if isinstance(node, ast.Import)
+                    else []
+                )
+                if any(name and name.startswith("TrialLedger.layer2") for name in names):
+                    assert isinstance(unit, ast.FunctionDef) and unit.name == "_reason", filename
+
+
+def test_retired_raw_reader_modules_and_commands_are_absent():
+    assert not any((PACKAGE / (name + ".py")).exists() for name in RETIRED)
+    tree = ast.parse(Path(cli.__file__).read_text())
+    commands = {
+        node.args[0].value
+        for node in ast.walk(tree)
+        if isinstance(node, ast.Call)
+        and isinstance(node.func, ast.Attribute)
+        and node.func.attr == "add_parser"
+        and node.args
+        and isinstance(node.args[0], ast.Constant)
+    }
+    assert not commands & {"resolve", "profile", "audit", "sample", "pilot"}
+    assert "reason" in commands and "reason" in mcp_server.TOOLS
+    assert not set(mcp_server.TOOLS) & {"resolve", "profile", "audit", "sample", "pilot"}
 
 
 @pytest.fixture(scope="module")
@@ -243,19 +137,18 @@ def production():
         check=True,
         cwd=HERE.parent,
     )
-    report = next(line for line in done.stdout.splitlines() if line.startswith("WIRING "))
-    return json.loads(report.removeprefix("WIRING "))
+    reports = [
+        line.removeprefix("WIRING ") for line in done.stdout.splitlines() if line.startswith("WIRING ")
+    ]
+    assert len(reports) == 1, done.stdout
+    return json.loads(reports[0])
 
 
-def test_the_production_path_ends_as_production_does(production):
+def test_real_reporting_archival_and_reasoning_scenarios_end_as_specified(production):
     assert production["codes"] == {
         "doctor": 0,
         "pull": 0,
         "verify": 0,
-        "profile": 0,
-        "profile_fill_axes": 0,
-        "profile_not_a_record": 2,
-        "resolve": 0,
         "landscape_lookup_failed": 1,
         "landscape": 0,
         "landscape_again": 0,
@@ -270,16 +163,16 @@ def test_the_production_path_ends_as_production_does(production):
         "mcp_preview": 0,
         "mcp_direct": 0,
         "mcp": 0,
-        "sample": 0,
-        "sample_confirmation": 0,
-        "sample_confirmation_refused": 2,
-        "audit": 0,
-        "pilot": 0,
-        "audit_no_budget": 2,
-        "audit_refused": 2,
+        "reason": 0,
         "verify_unreadable": 1,
         "failed_pull": 1,
     }
+
+
+def test_production_gathers_exactly_the_approved_checks(production):
+    called = set(production["called"])
+    for check_id, gatherer in GATHERERS.items():
+        assert (f"checks.py: {gatherer.__qualname__}" in called) == (check_id in APPROVED), check_id
 
 
 def test_the_check_tables_agree():
@@ -289,42 +182,6 @@ def test_the_check_tables_agree():
     assert set(DECISIONS) == set(BASIS) == set(checks.READS) == set(ids)
     assert set(APPROVED) <= set(ids)
     assert len({gatherer.__name__ for gatherer in GATHERERS.values()}) == len(ids)
-
-
-def test_production_gathers_exactly_the_approved_checks(production):
-    unreached = set(production["unreached"])
-    for check_id, gatherer in GATHERERS.items():
-        assert (f"checks.py: {gatherer.__name__}" not in unreached) == (check_id in APPROVED), check_id
-
-
-def test_only_declared_code_goes_unreached(production):
-    dormant = {f"checks.py: {GATHERERS[check_id].__name__}" for check_id in PROPOSED}
-    dormant |= {f"checks.py: {name}" for name in DORMANT_DECISIONS | DORMANT_HELPERS}
-    actual, expected = set(production["unreached"]), dormant | set(DECLARED)
-    assert actual == expected, {
-        "unexpected_unreached": sorted(actual - expected),
-        "declared_but_reached": sorted(expected - actual),
-    }
-
-
-def test_a_dormant_decision_belongs_to_proposed_checks_only():
-    approved = {decision.__name__ for check_id in APPROVED for decision in DECISIONS[check_id]}
-    proposed = {decision.__name__ for check_id in PROPOSED for decision in DECISIONS[check_id]}
-    assert proposed >= DORMANT_DECISIONS
-    assert not DORMANT_DECISIONS & approved
-
-
-def test_a_dormant_helper_is_called_only_from_proposed_checks():
-    tree = ast.parse(Path(checks.__file__).read_text(encoding="utf-8"))
-    functions = {node.name: node for node in tree.body if isinstance(node, ast.FunctionDef)}
-    dormant = {GATHERERS[check_id].__name__ for check_id in PROPOSED} | DORMANT_HELPERS
-    for helper in DORMANT_HELPERS:
-        callers = {
-            name
-            for name, node in functions.items()
-            if name != helper and any(isinstance(n, ast.Name) and n.id == helper for n in ast.walk(node))
-        }
-        assert callers and callers <= dormant, (helper, callers)
 
 
 def test_every_sheet_fills_every_column_of_every_row():
@@ -385,27 +242,3 @@ def test_every_field_the_definitions_limit_is_shown():
     sources = [column.source for sheet in workbook.SHEETS for column in sheet.columns]
     for field in ledger.APPLIES_TO:
         assert any(source.startswith(field) for source in sources), field
-
-
-DECLARED |= {
-    f"indications.py: {name}": "Layer-two indication lookup foundation; tested in test_indications, "
-    "not a registry reporting operation"
-    for name in (
-        "MeshLookup.__init__",
-        "MeshLookup._fetch",
-        "MeshLookup.lookup",
-        "is_disease",
-        "lookup_url",
-        "parse_response",
-        "relation",
-        "resolve_indication",
-    )
-}
-DECLARED |= {
-    f"universes.py: {name}": "Layer-two applicability foundation; tested in test_universes, "
-    "not a registry reporting interpretation"
-    for name in ("_module", "_source_identities", "assign", "pack_scope", "reading")
-}
-DECLARED["criteria.py: criterion_role"] = (
-    "Layer-two criterion-role interpretation; tested separately, registry reporting keeps source headings"
-)

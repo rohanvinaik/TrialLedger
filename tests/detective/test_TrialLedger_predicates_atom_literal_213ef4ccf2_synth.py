@@ -7,8 +7,8 @@ overwritten. Witness lines carry full fidelity on purpose."""
 
 import pytest
 
-from TrialLedger.predicates import PredicateMapping, atom_literal
-from TrialLedger.semantics.contracts import Atom, Span
+from TrialLedger.layer2.predicates import PredicateMapping, atom_literal
+from TrialLedger.layer2.semantics.contracts import Atom, Span
 
 
 @pytest.mark.detective

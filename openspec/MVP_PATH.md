@@ -1,42 +1,18 @@
-# TrialLedger delivery boundary
+# Delivery boundary
 
-## Layer one: registry reporting
+Layer one is the available registry record writer: query/identifiers -> retained source -> matching clinical
+JSON and readable workbook -> assistant answers from that evidence. Its bounded repair and proof checklist
+are [refine-landscape-record](changes/refine-landscape-record/tasks.md). It uses direct source warrants,
+canonical drug evidence, exact text, original structured checks and presentation fidelity across study types.
+A clinical compiler, vocabulary expansion, publication parser or new governance framework is not its gate.
 
-The reporting objective is simple: query the registry, retain its evidence, assemble selected fields directly,
-and deliver the same readable information through a workbook and MCP. Layer one contains registry facts and
-strictly warranted direct derivations only. Clinical inference, defaults, proposals, comparative judgments and
-trial-design architecture belong to layer two.
+Layer two is the separately designed automated clinical trial writer. Its full existing design and component
+state are [add-design-synthesis](changes/add-design-synthesis/design.md). Correct scoped entailment, explicit
+NSCLC coordinate reasoning and typed corpus geometry are useful operations independently of the unfinished
+source compiler and complete brief-to-protocol orchestration. The agent must name which operation it used and
+which supplied premises support its answer, without claiming it generated a complete protocol.
 
-`refine-landscape-record` owns the compact reporting contract and remaining acceptance checklist. Finish its
-direct assembly and readable sheets; remove clinical analysis, indication/compiler machinery, rankings and
-cross-trial findings from ordinary reports. Keep exact eligibility segmentation, source collection/results
-states, links, source-defined labels and direct RxNav evidence with their inputs. Ordinary reports do not
-enrich indications through MeSH. Search resolution is distinct from interpreting retrieved studies.
-
-Acceptance checks source → record → readable workbook → MCP/address across INTERVENTIONAL, OBSERVATIONAL and
-EXPANDED_ACCESS, with applicable design/population/results/source states and clinical/intervention breadth.
-Preserve observational/access fields, source scope, exact prose, denominators, precision, zeros/false and
-explicit empty/absent/malformed distinctions. Relevant metadata paths outside the original field table must
-be accounted for rather than silently excluded.
-
-Acceptance follows the API schema, field map and display contract, with independent source comparisons,
-structural perturbations, paired planted defects and actual mixed-type visual review. No trial IDs or clinical
-phrase lists may decide extraction. Keep source versions and findings. Test source-present atypical values and
-missing/empty/malformed boundaries; name unsupported fields. A clinical-interpretation sampling campaign or
-comprehensive combination ledger is not a prerequisite for this record writer.
-
-Complete the reporting checklist, relevant local/two-sign verification, offline replay, release installation,
-fresh-sandbox assistant procedure and frozen-input performance measurement. A semantic-conformance inventory,
-clinical compiler or external-source parser is not a reporting-completion gate. Do not tick completion from a
-past measurement or from these plan edits.
-
-## Layer two: existing work remains separate
-
-The existing changes for coherence, scoped reasoning/assertions, bank coverage, design surprise, targeted
-questions, evidence sources and design synthesis retain their own designs and acceptance. They are not new
-reporting stages and are not prerequisites for delivering registry facts. This cleanup does not redesign them
-or claim they are complete. Clinical interpretation, defaults/proposals, external-source interpretation,
-comparison and trial design are addressed there when requested, from the reporting evidence with its sources.
-
-`docs/THEORY_OF_THE_CASE.md` and the archived initial workbook plan remain unchanged. This file records the
-current layer boundary and points to existing work; it introduces no new framework or milestone hierarchy.
+The source boundaries are [registry-reporting](specs/registry-reporting/spec.md) and
+[symbolic-trial-design](specs/symbolic-trial-design/spec.md), under the [theory](../docs/THEORY_OF_THE_CASE.md).
+These are the current contract. The archived first workbook plan is historical. Superseded active plans,
+word-matching clinical readers and conformance bureaucracy are not alternative routes or additional gates.

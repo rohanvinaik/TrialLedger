@@ -7,8 +7,10 @@ is read back cell by cell, including numeric formats, and identical records prod
 
 from __future__ import annotations
 
+import ast
 import io
 import re
+import tokenize
 import zipfile
 from copy import copy
 from pathlib import Path
@@ -473,25 +475,112 @@ def band_fields(prefixes: tuple[str, ...]) -> list[contract.Field]:
 
 
 def drug_class_words(value: Any) -> tuple[str, str]:
-    """One directly declared RxNav class per line, retaining its own identifier, relation and source."""
+    """Readable canonical identities and class assertions; unresolved attribution stays explicit."""
     reading = as_reading(value)
-    if reading is None or reading["status"] != "known":
-        return str(value_words(value)), basis(value)
-    result = reading["result"]
-    classes = result.get("classes") if isinstance(result, dict) else None
+    result = reading["result"] if reading is not None else None
+    if not isinstance(result, dict):
+        return f"{UNRESOLVED}RxNav identity/class evidence is not available", STATUS_LABELS["unresolved"]
+    state = result.get("state", "unresolved")
+    if (
+        reading is not None
+        and reading["status"] != "known"
+        and (state == "classified" or reading["status"] != "unresolved")
+    ):
+        return absence_words(reading["status"], reading["note"]), basis(reading)
+    classes = result.get("classes", [])
     if (
         not isinstance(classes, list)
-        or not classes
-        or any(not isinstance(row, (list, tuple)) or len(row) != 4 for row in classes)
+        or (state == "classified" and not classes)
+        or any(
+            not isinstance(row, (list, tuple))
+            or len(row) != 4
+            or not all(isinstance(part, str) for part in row)
+            for row in classes
+        )
     ):
         return f"{UNRESOLVED}RxNav class result has an unsupported shape", STATUS_LABELS["unresolved"]
-    return (
-        "\n".join(
-            contract.RXNAV_CLASS_DISPLAY_FORM.format(id=row[0], name=row[1], relation=row[2], source=row[3])
-            for row in classes
-        ),
-        READING,
-    )
+    settled = reading is not None and reading["status"] == "known" and state == "classified"
+    lines = [
+        {
+            "classified": "Classes attributed to the exact RxNorm concept",
+            "conflict": "Unresolved — recorded names resolve to conflicting concepts",
+            "lookup_failed": "Unresolved — a required lookup failed",
+            "not_looked_up": "Unresolved — drug identities and classes were not looked up",
+        }.get(state, "Unresolved — no class assertion is established for the recorded intervention")
+    ]
+    roles = {
+        "own": "Recorded name",
+        "confirms": "Same RxNorm concept",
+        "related_form": "Related form, distinct concept",
+        "alias_is_combination": "Different combination concept",
+        "alias_is_one_ingredient": "Component only, not the combination",
+        "alias_other_concept": "Different concept",
+        "alias_not_resolved": "Alias identity unresolved",
+    }
+    for identity in result.get("identities", []):
+        name = identity["name"]
+        role = roles.get(identity.get("role"), "Identity")
+        canonical = identity.get("canonical_name")
+        if canonical and identity.get("code") in ("lookup_candidate", "not_recorded"):
+            lines.append(
+                f"Lookup candidate for {name}: {canonical} (RxNorm {identity['rxcui']}); "
+                "recorded-name identity is not established"
+            )
+        elif canonical:
+            kind = str(identity.get("code", "")).replace("_", " ")
+            lines.append(f"{role}: {name} → {canonical} ({kind}; RxNorm {identity['rxcui']})")
+        else:
+            code = str(identity.get("code", "unresolved")).replace("_", " ")
+            lines.append(f"{role}: {name} — {code}")
+    for row in classes:
+        words = contract.RXNAV_CLASS_DISPLAY_FORM.format(
+            id=row[0], name=row[1], relation=row[2], source=row[3]
+        )
+        lines.append(words if settled else f"Source class candidate: {words} — attribution unresolved")
+    shown = set()
+    standings = {
+        "not_inherited": "asserted of a related ingredient, not inherited by this intervention",
+        "other_entity": "asserted of another entity",
+        "identity_unresolved": "intervention identity unresolved",
+        "identity_lookup_failed": "intervention identity lookup failed",
+        "identity_conflict": "recorded identities conflict",
+    }
+    for assertion in result.get("assertions", []):
+        key = tuple(
+            assertion.get(part) for part in ("class_id", "relation", "source", "subject_rxcui", "standing")
+        )
+        if assertion.get("standing") == "known" or key in shown:
+            continue
+        shown.add(key)
+        words = standings.get(assertion.get("standing"), "attribution unresolved")
+        lines.append(
+            f"Source assertion: {assertion['class_name']} for {assertion['subject_name']} "
+            f"(RxNorm {assertion['subject_rxcui']}; {assertion['source']}, {assertion['relation']}) — {words}"
+        )
+    for query in result.get("queries", []):
+        if query.get("code") in ("lookup_failed", "malformed"):
+            words = str(query["code"]).replace("_", " ")
+            lines.append(f"{query['queried_name']} / {query['source']}: {words}")
+    label_ = READING if settled else STATUS_LABELS["unresolved"]
+    if reading is not None and reading["status"] != "known":
+        label_ = basis(reading)
+    return "\n".join(lines), label_
+
+
+def registry_check_summary(value: Any) -> tuple[str, str]:
+    """Keep the four check outcomes distinct; uncheckable is never consistent."""
+    reading = as_reading(value)
+    result = reading["result"] if reading is not None else None
+    rows = result.get("checks") if isinstance(result, dict) else None
+    if not isinstance(rows, list):
+        return f"{UNRESOLVED}Registry checks are not available", STATUS_LABELS["unresolved"]
+    outcomes = ("conflict", "not_checkable", "consistent", "not_applicable")
+    words = [f"{len(rows)} approved structured checks"]
+    words += [
+        f"{sum(row['outcome'] == outcome for row in rows)} {outcome.replace('_', ' ')}"
+        for outcome in outcomes
+    ]
+    return "; ".join(words), READING
 
 
 def element_rows(study: dict[str, Any], key: str, fields: list[contract.Field]) -> list[tuple[str, Any, str]]:
@@ -742,6 +831,9 @@ def dossier_facts(study: dict[str, Any]) -> list[tuple[str, str, str, Any, str]]
                 continue
             if field.name == "studies[].results_posted":
                 rows.append((field.label, *results_words(study)))
+                continue
+            if field.name == "studies[].registry_checks":
+                rows.append((field.label, *registry_check_summary(study.get("registry_checks"))))
                 continue
             if field.name == "studies[].adverse_events.time_frame" and posted:
                 rows.append((field.label, *shown_field(study, field.name)))
@@ -1265,6 +1357,73 @@ def criterion_rows(study: dict[str, Any], number: int) -> list[tuple]:
     return rows
 
 
+def check_detail_words(detail: str) -> str:
+    """Render literal containers inside a check diagnostic as prose; retain all scalar values.
+
+    This is presentation of Python literal syntax emitted by the existing checks, never clinical parsing.
+    Exact diagnostic text and structured source inputs remain in the record.
+    """
+
+    def words(value: Any) -> str:
+        if isinstance(value, dict):
+            return (
+                "; ".join(f"{key}: {words(item)}" for key, item in value.items()) or "explicitly empty object"
+            )
+        if isinstance(value, set):
+            value = sorted(value, key=repr)
+        if isinstance(value, (list, tuple, set)):
+            return "; ".join(words(item) for item in value) or "explicitly empty list"
+        return "null" if value is None else str(value)
+
+    starts, edits = [], []
+    offsets = [0]
+    for line in detail.splitlines(keepends=True):
+        offsets.append(offsets[-1] + len(line))
+    try:
+        for token in tokenize.generate_tokens(io.StringIO(detail).readline):
+            if token.type != tokenize.OP:
+                continue
+            if token.string in ("[", "{", "("):
+                starts.append(offsets[token.start[0] - 1] + token.start[1])
+            elif token.string in ("]", "}", ")") and starts:
+                start = starts.pop()
+                if starts:
+                    continue
+                end = offsets[token.end[0] - 1] + token.end[1]
+                try:
+                    value = ast.literal_eval(detail[start:end])
+                except (ValueError, SyntaxError):
+                    continue
+                if isinstance(value, (dict, list, tuple, set)):
+                    edits.append((start, end, words(value)))
+    except (tokenize.TokenError, IndentationError):
+        return detail
+    for start, end, text in reversed(edits):
+        detail = detail[:start] + text + detail[end:]
+    return detail
+
+
+def registry_check_rows(study: dict[str, Any], i: int) -> list[tuple]:
+    """One approved registry check per row, with its source-input addresses and cited rule."""
+    reading = as_reading(study.get("registry_checks"))
+    result = reading["result"] if reading is not None else None
+    checks_ = result.get("checks") if isinstance(result, dict) else None
+    if not isinstance(checks_, list):
+        return []
+    return [
+        (
+            label(study["nct"]),
+            label(f"/studies/{i}/registry_checks/result/checks/{j}"),
+            label(check["label"]),
+            label(check["outcome"].replace("_", " ").capitalize()),
+            cell(check_detail_words(check["detail"]), "known"),
+            label("\n".join(check["source"])),
+            label(f"{check['basis']}\n{check['rule']}"),
+        )
+        for j, check in enumerate(checks_)
+    ]
+
+
 def registered_rows(study: dict[str, Any], number: int) -> list[tuple]:
     """Source outcomes the study planned to measure, without clinical endpoint classification."""
     rows = []
@@ -1392,23 +1551,20 @@ def found_words(record: dict[str, Any]) -> str:
 
 
 HOW_TO_READ = (
-    "Start with the Trial index, then follow each Dossier link to the complete T"
-    "rial review. The dossier includes the full eligibility criteria and narrati"
-    "ve descriptions verbatim. Eligibility lists structural source pieces withou"
-    "t clinical interpretation; headings describe only the source section. Regis"
-    "tered outcomes are planned measurements, never results. Posted results, Sta"
-    "tistical analyses, Baseline, Participant flow, Groups and Safety retain the"
-    " posted measurements, denominators, groups and source comments. Each Safety"
-    " group count links to its trial-specific group definition. G numbers are lo"
-    "cal to that trial. Every listing row has an address in landscape.json. The "
-    "Column dictionary names its registry fields or direct derivation. A direct "
-    "derivation records its named rule and source in the JSON. Source collection"
-    " reporting distinguishes absent, malformed and explicitly empty arrays; an "
-    "empty list is not evidence of no harm or efficacy. This registry report con"
-    "tains no inferred eligibility requirements, biomarker roles, treatment sett"
-    "ings, clinical selections or across-trial recommendations. Not stated is ne"
-    "ver none; Not posted is never no effect. Long text remains in its cell; exp"
-    "and the formula bar or retrieve the complete value by its record address."
+    "Start with the Trial index, then follow each Dossier link to the complete Trial review. "
+    "The dossier includes the full eligibility criteria and narrative descriptions verbatim; "
+    "long values continue across numbered parts in order. Eligibility lists structural source pieces "
+    "without clinical interpretation; headings describe only the source section. Registered outcomes "
+    "are planned measurements, never results. Posted results, Statistical analyses, Baseline, Participant "
+    "flow, Groups and Safety retain the posted measurements, denominators, groups and source comments. "
+    "Each Safety group count links to its trial-specific group definition. G numbers are local to that "
+    "trial. Every listing row has an address in landscape.json. The Column dictionary names its registry "
+    "fields or direct derivation. A direct derivation records its named rule and source in the JSON. "
+    "Source collection reporting distinguishes absent, malformed and explicitly empty arrays; an empty "
+    "list is not evidence of no harm or efficacy. This registry report contains no inferred eligibility "
+    "requirements, biomarker roles, treatment settings, clinical selections or across-trial recommendations. "
+    "Not stated is never none; Not posted is never no effect. For a long listing cell, expand the formula "
+    "bar or retrieve the complete value by its record address."
 )
 
 
@@ -1501,8 +1657,8 @@ def design_words(study: dict[str, Any]) -> str:
 
 
 def index_cells(study: dict[str, Any], dossier: str, publications: str) -> tuple:
-    """One trial's Trial index row, short fields only (no cell sized by prose): `dossier` and `publications`
-    are the in-workbook links to its dossier and its dossier's publications band."""
+    """One trial's compact index row, with full displayed text allowed to wrap: `dossier` and
+    `publications` link to its dossier and its dossier's publications band."""
     acronym = study.get("acronym")
     short = acronym if held_kind(acronym) == "plain" else study.get("brief_title")
     status = value_words(study.get("overall_status"), "Status")
@@ -1590,7 +1746,7 @@ LAYOUT: dict[str, tuple[str, dict[str, int], bool, int]] = {
             "Last update posted": 14,
             "Dossier": 9,
         },
-        False,
+        True,
         1,
     ),
     "Trial review": ("D2", {"Trial ID": 13, "Section": 22, "Fact": 30, "Value": 100, "Basis": 12}, True, 20),
@@ -1697,6 +1853,20 @@ LAYOUT: dict[str, tuple[str, dict[str, int], bool, int]] = {
         True,
         3,
     ),
+    "Registry checks": (
+        "C2",
+        {
+            "Trial ID": 13,
+            "Address in the record": 24,
+            "Check": 55,
+            "Outcome": 18,
+            "Detail": 70,
+            "Source fields": 60,
+            "Rule basis": 90,
+        },
+        True,
+        8,
+    ),
     "Column dictionary": (
         "C2",
         {"Sheet": 20, "Column": 28, "Registry field or rule": 60, "Definition": 50},
@@ -1726,6 +1896,37 @@ def written_safely(rows: list[tuple]) -> list[tuple]:
             fixed.append(held)
         out.append(tuple(fixed))
     return out
+
+
+def dossier_value_parts(value: Any) -> list[Any]:
+    """Exact contiguous display slices of a dossier value, each within its readable row budget.
+
+    Text a cell cannot preserve follows written_safely's existing refusal, never a bypass by splitting.
+    Prefer a whitespace boundary near the fitting end; keep that whitespace in the preceding slice.
+    """
+    if not isinstance(value, str) or cell_text_state(value) != "ok":
+        return [value]
+    width = LAYOUT[contract.REVIEW][1]["Value"]
+    parts = []
+    start = 0
+    while start < len(value):
+        low, high = 1, min(len(value) - start, width * contract.DOSSIER_LINES_PER_ROW)
+        while low < high:
+            end = (low + high + 1) // 2
+            if row_lines(((value[start : start + end],),), [width]) <= contract.DOSSIER_LINES_PER_ROW:
+                low = end
+            else:
+                high = end - 1
+        end = start + low
+        if end < len(value):
+            boundary = next(
+                (i + 1 for i in range(end - 1, start + low // 2 - 1, -1) if value[i].isspace()),
+                end,
+            )
+            end = boundary
+        parts.append(value[start:end])
+        start = end
+    return parts or [value]
 
 
 EMPTY_WORDS = contract.EMPTY_LISTING_WORDS
@@ -1848,6 +2049,7 @@ def book_plan(record: dict[str, Any]) -> list[tuple]:
         contract.BASELINE: baseline_rows,
         contract.FLOW: flow_rows,
         contract.GROUPS: group_rows,
+        "Registry checks": registry_check_rows,
     }
     rows: dict[str, list[tuple]] = {name: [] for name in BUILT}
     first: dict[tuple[str, int], int] = {}
@@ -1882,15 +2084,22 @@ def book_plan(record: dict[str, Any]) -> list[tuple]:
             shown_band = heading
             if heading == "Publications and documents" and publications is None:
                 publications = len(review)
-            review.append(
-                (
-                    label(study["nct"]),
-                    label(heading),
-                    label(fact),
-                    cell(value, "known", link=source_links.get(fact, "")),
-                    label(label_),
+            parts = dossier_value_parts(value)
+            for part_number, part_value in enumerate(parts, 1):
+                part_fact = (
+                    contract.DOSSIER_PART_FORM.format(fact=fact, part=part_number, count=len(parts))
+                    if len(parts) > 1
+                    else fact
                 )
-            )
+                review.append(
+                    (
+                        label(study["nct"]),
+                        label(heading),
+                        label(part_fact),
+                        cell(part_value, "known", link=source_links.get(fact, "")),
+                        label(label_),
+                    )
+                )
         sheet, row_number = place(starts[-1], CAPACITY, contract.REVIEW)
         sheet_p, row_p = place(publications or starts[-1], CAPACITY, contract.REVIEW)
         links_.append((f"#'{sheet}'!A{row_number}", f"#'{sheet_p}'!A{row_p}"))

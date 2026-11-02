@@ -1,4 +1,7 @@
-# Reporting recovery — 2026-11-02
+# Historical reporting recovery — 2026-11-02, earlier candidate
+
+This records an earlier candidate, before the subsequent purge and component rescue. Current changes and
+measured validation are in [rescue-2026-11-02.md](rescue-2026-11-02.md); the results below are historical.
 
 Layer one now projects registry fields directly into schema4 and the workbook. It does not
 import or run the clinical reading, coherence, indication or assertion-compiler paths.

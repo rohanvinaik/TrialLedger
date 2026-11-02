@@ -25,7 +25,7 @@ from dataclasses import replace
 
 import pytest
 
-from TrialLedger.evaluation import (
+from TrialLedger.layer2.evaluation import (
     BOOTSTRAP,
     LEVELS,
     MINIMUM_DENOMINATOR,

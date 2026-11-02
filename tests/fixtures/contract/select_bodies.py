@@ -1,11 +1,10 @@
 """Choose the saved baseline bodies the contract's gates read, deterministically.
 
 The three trials named by number (ids-3) are kept whole, as saved. From the 49 osimertinib phase-3 trials the
-fewest are kept that, with the three, hold every API path template the contract reads (each plain field's
-paths, each reading's inputs and the universe assignment's sources), together with the two trials whose only
-condition names no disease ("Progression Free Survival", "Anticancer Treatment"): greedily, the trial adding
-the most templates not yet held first, the smaller body first on a tie, then the NCT number. Each study object
-is written exactly as the registry sent it, in the page's order.
+fewest are kept that, with the three, hold every source template the direct reporting contract reads:
+greedily, the trial adding the most not-yet-held templates first, the smaller body first on a tie, then
+the NCT number. These are source-coverage fixtures, not clinical truth labels or evidence of generality.
+Each study object is written exactly as the registry sent it, in the page's order.
 
 Run from the repository root:
     .venv/bin/python tests/fixtures/contract/select_bodies.py ~/tools/TrialLedger-runs/baseline-2026-11-01
@@ -18,7 +17,6 @@ from pathlib import Path
 from TrialLedger import contract
 
 HERE = Path(__file__).resolve().parent
-NAMED = ("NCT02959749", "NCT02151981")
 
 
 def templates() -> set[str]:
@@ -26,8 +24,6 @@ def templates() -> set[str]:
     found: set[str] = set()
     for field in contract.FIELDS:
         found.update(field.source if field.kind == "plain" else field.reads)
-    for _name, _words, paths in contract.ASSIGNMENT_SOURCES:
-        found.update(paths)
     return found
 
 
@@ -44,9 +40,7 @@ def main(baseline: Path) -> None:
     for study in json.loads(ids_bytes)["studies"]:
         covered |= held(study, wanted)
     pool = {study["protocolSection"]["identificationModule"]["nctId"]: study for study in page["studies"]}
-    chosen = set(NAMED)
-    for nct in NAMED:
-        covered |= held(pool[nct], wanted)
+    chosen: set[str] = set()
     for _ in range(len(pool)):
         gains = sorted(
             (-len(held(study, wanted) - covered), len(json.dumps(study)), nct)

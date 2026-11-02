@@ -216,10 +216,15 @@ def test_a_relay_run_reads_every_experimental_drug_not_looked_up(tmp_path):
     assert statuses[-1] == "complete"
     assert not any("byDrugName" in key for key in rxnav.asked)
     testamab = record(tmp_path / "relay")["studies"][0]["interventions"][0]
-    assert testamab["drug_class"]["result"] == {"state": "not_looked_up", "classes": [], "resolved_by": ""}
+    evidence = testamab["drug_class"]["result"]
+    assert (evidence["state"], evidence["classes"], evidence["resolved_by"]) == ("not_looked_up", [], "")
+    assert evidence["assertions"] == []
+    assert evidence["queries"] and all(item["code"] == "not_looked_up" for item in evidence["queries"])
+    assert all(item["code"] == "not_looked_up" for item in evidence["identities"])
+    assert testamab["name"] in {item["name"] for item in evidence["identities"]}
     assert (testamab["drug_class"]["status"], testamab["drug_class"]["note"]) == (
         "unresolved",
-        "Drug classes were not looked up for this run",
+        "own_identity_not_looked_up",
     )
     assert "axes" not in testamab and "modality" not in testamab
     assert not (tmp_path / "relay" / "classes.json").exists()
@@ -753,11 +758,11 @@ def test_cli_and_mcp_preserve_literal_source_without_interpretation(tmp_path, mo
         raise AssertionError("An interpretation function executed during registry reporting")
 
     for module_name, names in {
-        "TrialLedger.reading": ("read_population", "study_view"),
-        "TrialLedger.coherence": ("resolve",),
-        "TrialLedger.universes": ("assign",),
-        "TrialLedger.indications": ("resolve_indication",),
-        "TrialLedger.assertion_compiler": ("compile_criteria",),
+        "TrialLedger.layer2.service": ("run",),
+        "TrialLedger.layer2.coherence": ("resolve",),
+        "TrialLedger.layer2.universes": ("assign",),
+        "TrialLedger.layer2.indications": ("resolve_indication",),
+        "TrialLedger.layer2.entail": ("decide",),
     }.items():
         module = sys.modules.get(module_name)
         if module is not None:

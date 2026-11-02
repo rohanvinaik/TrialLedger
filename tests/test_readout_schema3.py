@@ -12,6 +12,7 @@ tampered file refused, a stat the registry does not give never read as zero.
 """
 
 import copy
+import io
 import json
 import re
 import zipfile
@@ -124,13 +125,13 @@ def test_a_reading_is_labelled_and_never_reads_as_the_registrys():
 
 def test_the_basis_names_what_a_value_rests_on():
     known = {"status": "known", "rule": "r", "words": [], "result": "x", "note": ""}
-    assert basis("x") == "Registry" and basis(known) == "Reading" and basis(None) == "Not stated"
+    assert basis("x") == "Registry" and basis(known) == "Direct rule" and basis(None) == "Not stated"
     assert basis({**known, "status": "interpolated"}) == "Unresolved"
     assert basis({"status": "not_posted", "note": ""}) == "Not posted"
     assert basis({"status": "odd", "note": ""}) == "Unresolved"
     assert least_settled(["Registry", "Interpolated"]) == "Unresolved"
-    assert least_settled(["Reading", "Registry"]) == "Registry"
-    assert least_settled(["Reading", "Not stated"]) == "Reading"
+    assert least_settled(["Direct rule", "Registry"]) == "Registry"
+    assert least_settled(["Direct rule", "Not stated"]) == "Direct rule"
     assert least_settled(["Not posted", "Not stated"]) == "Not posted"
     assert least_settled(["Not stated"]) == "Not stated"
 
@@ -144,7 +145,7 @@ def test_the_basis_names_what_a_value_rests_on():
 def test_the_dossier_shows_expected_facts_always_and_others_only_when_stated():
     heme, ptsd = dossier(RECORD["studies"][0]), dossier(RECORD["studies"][2])
     assert ptsd["Results posted"] == ("Not posted", "Not posted")
-    assert heme["Results posted"] == ("Yes, first posted 09-Apr-2018", "Reading")
+    assert heme["Results posted"] == ("Yes, first posted 09-Apr-2018", "Direct rule")
     assert "Acronym" not in heme and "Collaborators" not in heme and "Why stopped" not in heme
     assert ptsd["Why stopped"][0].startswith("The study was interrupted")
     assert "Who is masked" not in heme and ptsd["Who is masked"] == (
@@ -495,7 +496,7 @@ def test_no_raw_code_no_internal_term_and_no_blank_but_by_construction(written):
             for header, value in zip(headers, row, strict=True):
                 assert value not in codes, (name, header, value)
                 assert "without clinical words" not in str(value), (name, header)
-                if name not in (contract.READINGS, contract.DICTIONARY):
+                if name != contract.DICTIONARY:
                     assert not INTERNAL.search(str(value)), (name, header, value)
                 if value is None and not one_line:
                     allowed = BLANK_ALLOWED.get(name, set())
@@ -505,15 +506,61 @@ def test_no_raw_code_no_internal_term_and_no_blank_but_by_construction(written):
                     )
 
 
-def test_the_index_row_is_one_line_and_the_dossier_link_lands_on_the_trial(written):
+def test_the_index_wraps_full_text_and_the_dossier_link_lands_on_the_trial(written):
     book = load_workbook(written)
     index = book[contract.INDEX]
     review = book[contract.REVIEW]
+    widths = [index.column_dimensions[column.column_letter].width for column in index[1]]
     for row in index.iter_rows(min_row=2):
         link = row[-1].hyperlink.location
         target = link.split("!")[1]
         assert review[target].value == row[0].value
-        assert index.row_dimensions[row[0].row].height == readout.LINE_POINTS
+        needed = row_lines(tuple((held.value,) for held in row), widths)
+        assert index.row_dimensions[row[0].row].height == min(
+            contract.MAX_ROW_HEIGHT_POINTS, round(needed * readout.LINE_POINTS, 2)
+        )
+        assert all(held.alignment.wrap_text for held in row if isinstance(held.value, str))
+
+
+@pytest.mark.parametrize(
+    ("header", "text"),
+    (
+        (
+            "Acronym or short title",
+            "A Randomized Multicenter Study of Treatment in Participants With Previously Treated Disease "
+            "With Long Term Assessment of Safety, Clinical Outcomes, and Patient Reported Function " * 2,
+        ),
+        (
+            "Sponsor",
+            "Department of Clinical Research, University Medical Center and Affiliated Research Hospitals "
+            * 3,
+        ),
+        (
+            "Design",
+            "Treatment; Randomized; Parallel assignment; masking Quadruple "
+            "(Participant, Care provider, Investigator, Outcomes assessor)",
+        ),
+    ),
+)
+def test_long_index_fields_get_wrapped_height_and_short_rows_stay_compact(header, text):
+    headers = readout.sheet_headers(contract.INDEX, 0)
+    column = headers.index(header)
+    short = tuple(readout.cell("Short", "known") for _ in headers)
+    long = list(short)
+    long[column] = readout.cell(text, "known")
+    data, _ = readout._write_book([(contract.INDEX, headers, [short, tuple(long)], [])], ("", "", ""))
+    book = load_workbook(io.BytesIO(data))
+    index = book[contract.INDEX]
+    expected_widths = readout.LAYOUT[contract.INDEX][1]
+    for held in index[1]:
+        assert index.column_dimensions[held.column_letter].width == expected_widths[held.value]
+    assert index.row_dimensions[2].height == readout.LINE_POINTS
+    width = index.column_dimensions[index.cell(1, column + 1).column_letter].width
+    needed = -(-len(text) // width)
+    assert needed > 1
+    assert index.row_dimensions[3].height >= needed * readout.LINE_POINTS
+    assert index.cell(3, column + 1).value == text
+    assert index.cell(3, column + 1).alignment.wrap_text is True
 
 
 def test_the_same_record_writes_the_same_bytes(tmp_path):

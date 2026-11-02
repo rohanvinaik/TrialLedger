@@ -1,125 +1,257 @@
-# Design — add-design-synthesis
+# Design — symbolic automated trial writing
 
 ## Context
 
-Proposed 2026-11-01, after `add-agent-operation`, on which it builds. The landscape record supplies the corpus;
-the scoped-assertion layer supplies the representation and entailment; this change adds the design variables,
-the rule tables and the solver.
+This consolidates the existing layer-two designs. The founder's intended system is fully designed; its
+components and pipeline have different implementation states. The reporting record remains an independent
+source-preserving product. A useful finite solver or corpus calculation is retained even before automatic
+source compilation and complete brief-to-protocol orchestration are connected.
+
+## Goals / Non-Goals
+
+**Goals:** construct a clinical trial from explicit premises and warranted evidence; preserve the distinction
+between deductions, interpolated defaults, proposals and human choices; keep correct partial symbolic tools
+usable by an agent; provide the complete existing design and an honest component/integration map.
+
+**Non-goals:** word matching as a substitute for meaning; a model extracting source facts or inventing a
+protocol; clinical interpretation in the layer-one writer; new governance frameworks; using a narrow
+historical demonstration as proof of broad clinical correctness.
 
 ## Decisions
 
-1. **The brief.** A JSON object: the investigational intervention (drug, class or modality), the indication, the
-   phase, the question the trial is to answer (efficacy against a comparator, safety and dose, an outcome in a
-   named population), and optional priorities and constraints (a comparator required, a population excluded, a
-   duration limit). The agent writes it from the user's request; TrialLedger refuses an empty or unresolvable
-   brief by name.
+### 1. One evidence substrate, two separate operations
 
-2. **Design variables are typed and closed.** Each variable has a domain from the existing vocabularies
-   (setting coordinates, the assertion layer's predicates and value kinds, the endpoint classes, the time-point
-   roles) and a value with a status: known when a definition or deduction fixes it, interpolated when a sourced
-   design rule or a corpus standard sets it as a default the rules may build on, proposed when it is an
-   admissible alternative the user's choice must settle.
+Layer two consumes retained layer-one evidence, additional attributed evidence and explicit user premises.
+It never changes a registry assertion in place. Its output is a separate reasoning or design result. Source
+identity, record version, locations, raw text and rule versions accompany each use. User/agent-supplied typed
+premises are labelled as such: syntactically valid JSON is not proof that they are facts about a trial.
 
-3. **Definitions.** Identities and memberships: the drug's class and targets (RxClass, RxNorm, the crosswalk),
-   the indication's place in the condition hierarchy, a phase's purpose. Warrant: the source and its release.
+The assistant operates the system in clinical language. It can call a partial symbolic operation without
+claiming that the complete designer has run. Reporting and its verifier do not import or invoke this layer.
 
-4. **Deductions.** The brief and every fixed variable are scoped assertions; definitional rules (reproductive
-   capacity follows from sex and age as the population states them; a first-line setting entails no prior
-   therapy for advanced disease; a pediatric population bounds age) are assertions too, and the entailment
-   procedure derives each consequence with the premises it used. A contradiction among them is INCONSISTENT, named
-   before any design is written.
+### 2. The brief and design space
 
-5. **Sourced design rules.** Conditional rules with an applicability condition and a citation (a regulatory or
-   methodological source, with its version), recorded in `provenance.py` as every rule is: e.g. a randomized
-   comparison names its comparator; a time-to-event primary endpoint needs its assessment schedule. They set
-   defaults (interpolated), never facts.
+The brief names intervention, indication, population, phase, clinical question and optional comparator,
+duration, priority or other constraints. Empty or structurally invalid briefs are refused by name.
+Variables have declared domains and semantics: participant population, condition and extent, prior treatment,
+intervention roles, comparator, eligibility constraints, endpoints, schedules, safety, exploratory measures
+and sample-size inputs. Missing values remain domains of possibilities rather than arbitrary defaults.
 
-6. **Corpus observations.** From the landscape run: a criterion at the standard tier among comparable trials is
-   inherited, citing the trials and the tier; a mechanism-linked exclusion of the drug's class is inherited,
-   citing the signal; the primary endpoint class and time point most comparable trials use are proposed with
-   their frequency; occupancy and near misses position the design; comparable posted results give effect-size
-   and event-rate inputs, like for like only. Each carries the statistic it rests on and its silence bounds.
+Conditional reasoning operates on that structure. Restricting a declared population domain eliminates its
+other values. A bound on an exposure interval constrains that interval; it does not silently bind the trial's
+follow-up or enrollment window instead. Clinical facts relating these variables require sourced or explicitly
+chosen premises. No new medical rule is created merely because it sounds plausible to an agent.
 
-7. **Choice rules.** Where several designs are admissible, the user's priorities choose (stated in the brief or
-   answered as closed questions); the result records that the choice was the user's.
+### 3. Source identities and domain knowledge
 
-8. **The solver.** Exact and deterministic over the typed variables (the entailment procedure's finite-domain
-   enumeration, extended to design variables), with a declared resource bound returning UNDETERMINED rather than
-   a guess. Output: the admissible designs, the one the priorities select, and the open questions.
+RxNorm resolves the named entity and its ingredient/product relationships. RxClass supplies its separate
+pharmacologic, mechanism, ATC or structure assertions. Aliases confirm or conflict with identity; an ingredient
+is not a whole combination, a salt is not automatically every base-product record, and a biosimilar is not
+silently the reference product. Trial-level MeSH remains trial-level unless a warranted link binds it.
 
-8b. **The recommendation stage (classical, from the founder's ModelAtlas and sparse-wiki).** Between the rules
-   and the closing step, TrialLedger ranks what the rules admit with the pre-LLM recommendation methods
-   ModelAtlas's navigator uses (`query_navigate.navigate`, `spreading_activation`, `pagerank`, `hierarchy`,
-   `bank_coherence`), applied to trials and design elements:
-   - **Admissibility and order are separate questions.** Hard constraints (definitions, deductions, sourced
-     rules, the brief) decide which designs, comparable trials and elements are admissible, as a set
-     intersection; a separate scalar decides what comes first. A ranking never admits or excludes anything, and a
-     filter never orders (ModelAtlas `docs/navigation.md`: "navigation decides who is admissible; the scalar
-     decides what comes first").
-   - **Signed hierarchical positions.** Design coordinates are positions in hierarchies with a direction and a
-     depth: a condition in the MeSH tree (more specific or more general than the brief's indication), a drug in
-     its class hierarchy (ATC level, EPC, MoA), treatment line and disease extent as ordered scales. "Comparable"
-     is a constraint on direction and depth ("the same indication or one level more specific"), never a vague
-     similarity; an unknown position is absent and costs something, never written as the zero state.
-   - **Comparable trials by spreading activation.** From the brief's coordinates, activation spreads over two
-     layers (Collins and Loftus, as ModelAtlas's `spread`): direct links between trials (the same drug, a
-     near-miss pair, the same sponsor's program) and shared anchors (the same typed criteria, drug class,
-     endpoint class), scoped by facet so unrelated dimensions do not bleed; each comparable trial carries the
-     decomposition of why it was reached.
-   - **Rarity weighting.** A shared criterion or class is weighted by its rarity in the registry (IDF) and its
-     association with the comparable set relative to the corpus (PMI): a rare shared exclusion says more about
-     comparability, and about a mechanism, than a universal one.
-   - **Standards and conspicuous absence.** A criterion present in more than the standard share of comparable
-     trials is a standard with its probability P; a design lacking it carries the surprise -log P as a cost the
-     design must justify, the absence bonus of ModelAtlas read the other way.
-   - **Precedent as a graph property.** Trials whose criteria and endpoint language later trials reuse (shared
-     typed criteria in time order) form a precedence graph; its PageRank, as a rank percentile, weighs precedent:
-     a template many trials inherit is stronger evidence of practice than one trial's choice.
-   - **Attenuated inheritance.** What is established for a drug class is inherited by a member without its own
-     trials, attenuated by distance in the hierarchy and kept interpolated, never known.
-   - **Combining signals.** Independent supports for one element combine with diminishing returns
-     (submodular: the strongest counts fully, the next by a decay), never as a product that compounds; the
-     alternatives shown to the user are re-ranked for diversity (maximal marginal relevance), so near-duplicate
-     designs are not listed as choices.
-   - **Agreement among sources.** Where independent sources imply one coordinate (a registry field, a typed
-     criterion, a stated class, a publication), their agreement is measured (the order parameter of
-     `bank_coherence`); dissent is reported, never resolved by picking a winner.
-   - **Ties feed the closing step.** Runs of designs whose scores tie within a declared epsilon are marked as tie
-     clusters with the axis that discriminates them; those axes are what Decision 9 asks about.
+MeSH, NCI Thesaurus and other declared vocabularies supply versioned concepts and relations. Equivalent,
+broader, narrower and associated are distinct. A relation transfers membership only when its direction and
+scope entail it. UCUM governs exact unit relations; measurement identity also retains analyte, specimen,
+method and reference basis. Absolute values and multiples of a reference limit remain different objects.
+Licensing and editions are explicit; no unsupported code or scale edition is invented.
 
-9. **Closing the remainder ("Jeeves mode", the founder's term, from his ModelAtlas project).** After the
-   definitions, deductions, design rules and corpus observations have narrowed the space, what remains is a set
-   of admissible designs differing on some variables. TrialLedger does not leave the user a list of open
-   questions to work through: it surfaces the remainder and suggests the decision that closes it most
-   effectively, by symbolic logic, as ModelAtlas's refinement guidance does (`build_refinement_guidance`):
-   - **Which question.** Each open variable is scored by how much its answer would close: how evenly its values
-     split the remaining admissible designs (the balance `k * (n - k)`, zero for a value every design shares,
-     which closes nothing), plus what each answer would fix downstream through entailment (a choice of setting
-     that settles the line, the prior-therapy criteria and the comparator closes more than one that settles
-     only itself). The question asked first is the one whose answer leaves the fewest admissible designs in the
-     worst case; ties break on a declared order, deterministically.
-   - **Which answer to suggest.** Among that question's options, the suggestion is the one with the strongest
-     warrant (a deduction over a design rule over a corpus standard over a corpus majority), and, among equally
-     warranted options, the one that closes the most of the remaining space. The suggestion is shown with its
-     warrant and with what accepting it would close ("this also fixes the comparator and three criteria"); the
-     user accepts it, picks another option, or answers freely, and whichever they choose is recorded as theirs.
-   - **Representation choices are questions too.** Where a design depends on how a concept is represented
-     (an interpretation the predicate registry fixes as an interpolated default: smoking as an exposure, stage
-     as a single value, and the others add-scoped-assertions 1.2 lists), that interpretation is surfaced among
-     these questions with the default as its suggestion (the founder, 2026-11-01).
-   - **The form.** Questions are declarative templates with typed slots and a stable `question_id`, never
-     phrased ad hoc, so the agent can switch on the id; every option carries the brief amendment it applies, so
-     the agent merges it and re-runs `design` mechanically until nothing is open. One question at a time, the
-     highest-value first; "accept every suggestion" closes the design in one step, every acceptance recorded.
+Recognition is literal encoding: candidate entity, number, comparator, unit and original span. Its output is
+not a clinical assertion. A concept hit alone cannot decide a condition versus exposure, current disease
+versus history, participant versus partner, or a planned procedure versus prior treatment.
 
-10. **The output.** `design.json` (the brief, every variable with value, status and warrant, the eligibility as
-   scoped assertions and as text, the endpoint and schedule tables, the sample-size inputs, the open questions)
-   and `design.xlsx` (a synopsis sheet, eligibility, endpoints, schedule, warrants), in the same run folder as the
-   landscape, delivered by the same entry point.
+### 4. Scoped assertions and compilation
 
-## Risks / Trade-offs
+The representation keeps assertion id, source/criterion reference, subject, predicate, typed value, modality,
+body, applicability, cohort/arm/phase, branch, temporal scope, evidence spans, rule and epistemic status.
+Bodies preserve literal, conjunction, disjunction, negation and opaque unresolved parts. Modalities distinguish
+required, excluded, permitted, definitional, descriptive and unresolved. Scope and time are semantic content,
+not annotations to discard after recognition.
 
-- [Thin comparable results for sample size] → inputs named with their basis and count; none invented; the
-  publication parser (designed in the theory doc) raises coverage.
-- [Indications outside the banks' coverage] → the type matrix's manifest marks them; corpus rules there return
-  fewer defaults and more open questions, said so in the record.
+Compilation consists of bounded decisions over structure: item/list boundaries; coordination and alternatives;
+referents; predicate identity; qualifier and measurement attachment; temporal attachment; local normative
+force; conditional applicability; cohort scope and resets; definition/reference binding; consumer projection.
+Each retains all supported alternatives, names ambiguity and emits no bare projection while its binding is
+unresolved. A grammar rule can support known only when its construction and bindings actually warrant that
+conclusion; test accuracy alone does not supply the warrant.
+
+Required(A or B) entails neither A nor B separately. Excluded(A and Q) does not exclude every A. Required
+(stability if used) does not require use. A definition alone imposes nothing. A negative assay is not an absent
+condition without a relation that establishes it. A caregiver's or partner's attribute does not transfer to
+the participant. Cohort labels are not an exhaustive partition unless the source says so. Event-relative time
+stays attached to its event; unspecified boundaries and anchors remain unspecified.
+
+### 5. Strict reasoning, defaults and proposals
+
+For a context, a requirement constrains scope and applicability to imply its body; an exclusion implies the
+negation of the whole body. Permissions do not impose presence. Definitions expand only through resolved
+references. Known premises must be satisfiable before entailment: a query holds only if every admissible
+assignment satisfies it. An inconsistent premise set returns INCONSISTENT rather than entailment by explosion.
+Unsupported queries, out-of-scope queries, unresolved support and resource exhaustion remain distinct outcomes.
+The existing exact finite-domain solver provides a bounded implementation of this operation.
+
+Coordinate closure begins from declared finite domains and explicit typed evidence. Relations eliminate
+values with a recorded cause until a fixed point; relation order does not decide the answer. NSCLC coordinates
+are a domain-specific space, not a default space for every study. Disease extent, treatment history at
+entry and the role of the tested treatment are separate variables. Applying staging or other specialised
+relations requires their indication, site and edition.
+
+Rule kind is strict, default or proposal, independently of approval. Strict conclusions retain their
+premises. Defaults have explicit applicability/defeaters and declared strata; their joint consequences are
+checked, implicated conflicts suspend them and trigger recomputation, and unsupported cycles are named.
+Anything depending on a default remains interpolated. Proposals are shown independently and never used as
+premises. A user override retains provenance and recomputes dependants; it does not change source evidence.
+
+Independent sources constrain the admissible space. Their identities and dependencies are retained, so the
+same underlying evidence cannot be counted twice. Concurrence is not majority voting; disagreement is kept
+rather than resolved by choosing a preferred token, source or first answer.
+
+### 6. Corpus descriptions and comparability
+
+A declared corpus and strata define every denominator. Known definite members and possible members remain
+separate. Statement rate is S/N over all records in the declared stratum; for eligibility, full-criteria
+frequency has identification interval [S/N, (S+U)/N], with unresolved silences counted and no rule match never
+read as absence. A standard threshold is met only when its lower bound reaches it, fails only when the upper
+bound falls below it, and is otherwise unresolved. Endpoint statement rates are not eligibility intervals.
+
+Mechanism association is a statement-rate comparison, with class uncertainty, sponsor/program and era context.
+A proposed signal must survive the declared adverse reading of unresolved records; otherwise it remains
+unresolved. Association is not a causal clinical rule or a recommendation until its separate warrant holds.
+
+Observed outcome comparisons require compatible population/cohort, endpoint, measure type, unit, time and
+analysis context. The source protocol's success criterion, actual results and a new planning target are
+three objects. A threshold for the new trial requires its explicit decision rule. Safety keeps affected,
+at-risk and event counts, ascertainment, period and grades under their stated terminology version; seriousness
+alone supplies no grade.
+
+### 7. Information geometry, expectations and significance
+
+Logical state, frequency, association, rarity and question-specific relevance remain separate. The geometry
+records the declared design coordinates and feasible alternatives. Cells are occupied, unknown or empty;
+failed and withdrawn trials still occupy cells, and a cell is empty only when no unresolved trial could fit.
+Infeasibility requires a constraint. Calling an empty region underserved additionally requires evidence of need.
+
+For a predicate Y and declared context C, corpus rarity is -log2 P(Y=1|C) for presence and
+-log2 P(Y=0|C) for absence, with support counts. C excludes Y and consequences inferred from Y. A parent
+hierarchy can provide broader support, explicitly labelled; it cannot invent subgroup evidence. If P denotes
+presence probability, absence uses 1-P. This fixes the earlier plan's inverted absence-event expression; it
+is a definition of this corpus statistic, not a replacement for the founder's significance framework.
+
+The founder's derivational significance refers to what the admissible alternatives of a derivation afforded.
+It must retain that alternative space and its relation to the question. It is not claimed merely by applying
+corpus rarity, an arbitrary scalar or a frequency cut-off. A common protocol element can be essential while
+rare information can be irrelevant. A genuine zero or orthogonality needs evidence; unknown is not zero.
+
+Observations distinguish present, explicitly negated, not documented, unresolved and not applicable. A
+mismatch is classified as invalid extraction, unresolved scope, verified deviation or explanation supported.
+A valid unexplained deviation is retained; replication is a separate count, not an explanation. Predicate
+granularity is checked before declaring deviation. Near misses require a declared representation whose
+coordinates are known and equal except for one verified difference; any permitted interpolation, sponsor
+lineage, era or cohort difference is shown. Outcome differences are associations to investigate, not causality.
+
+### 8. Gap-directed evidence
+
+An unresolved design fact becomes a typed evidence request before external retrieval. Existing registry
+prose is retained; a reader's inability to interpret it is not mislabelled as absent evidence.
+
+The designed adapters are terminology/measurement sources (MeSH, NCI Thesaurus, UCUM and declared specialist
+vocabularies), product labels (DailyMed bound to the resolved product/version), and PubMed/PMC publications
+where accessible. Other data dictionaries or protocol templates enter with the same source contract. NCI PDQ
+or labels can supply dated treatment context, but discussing an option is not being a clinical guideline.
+Current care and historical care remain separate, and source availability/permissions are verified when an
+adapter is implemented. Optional licensed resources are not silent prerequisites.
+
+The publication pipeline is differential and symbolic: the gap fixes the fact type and study vocabulary;
+typed sections/tables select admissible parsers; parsers locate explicit statements; identity resolvers bind
+study, cohort, arm, intervention, outcome and time; censors reject wrong-section or unresolved evidence. Each
+value retains document/version, section or table cell, exact text, spans, parser and resolver versions. A paper
+citing an NCT number is only a candidate until the required bindings hold. Background, result and derived
+registry references retain their source-defined roles. Missing, unavailable, ambiguous, not found and found
+are distinct outcomes. Publication evidence never overwrites the registry.
+
+### 9. Admissible recommendations
+
+Hard constraints decide membership of the feasible set. A separate recommendation stage orders only what is
+admissible; it cannot change truth or admit a forbidden design. The existing design uses hierarchical positions
+and direction/depth, scoped spreading activation over trial and shared-anchor links, conditional rarity and
+association, graph precedent, attenuated class inheritance and diversity among alternatives. Unknown positions
+remain unknown rather than the zero coordinate.
+
+Each suggestion carries the reason it was reached and its source, trials, counts or conditional rule. Corpus
+standards are empirical practice, not a proof of clinical necessity. A mechanism-linked exclusion remains a
+proposal. Inheritance by class remains interpolated with distance and assumptions. Combining recommendation
+supports does not manufacture independent evidence or resolve a source conflict. Tie clusters retain their
+discriminating axes and feed the closing step.
+
+### 10. Closing the remainder and writing the protocol
+
+After definitions, constraints, defaults and corpus observations narrow the space, the system chooses the
+question whose answer leaves the smallest worst-case admissible remainder, including downstream consequences;
+ties follow a declared deterministic order. It suggests the best-supported answer, shows its warrant and what
+it would settle, and records the person's acceptance or alternative as their choice. Representation choices
+are questions too when a default interpretation is material. One consequential question is presented at a time;
+accept-all records every acceptance. Closed templates carry stable ids and amendments to the brief.
+
+The complete outputs are design JSON and a readable design workbook/protocol synopsis: brief, population,
+inclusion/exclusion, interventions/comparator, clinical endpoints and time points, biomarkers and assays,
+assessment and procedure schedule, efficacy decision criterion and sample-size inputs, safety plan,
+exploratory imaging/biopsies, reusable language and open decisions. Each element is deduced, interpolated,
+proposed or chosen with its basis. Standard templates and recurring corpus language remain distinguishable.
+An unresolved field stays visible or drives an evidence request; the requested output does not authorise a
+fabricated answer. Corrections and user annotations remain assertions beside source facts and recompute the
+design; automatic workbook-edit import is designed, not claimed available today.
+
+## Current component and integration state
+
+The separate public operation is `TrialLedger.layer2.run(request)`, served by `trialledger reason --request
+FILE` and MCP `reason`. Requests select `entailment`, `coordinates` or `corpus`; responses distinguish complete
+from refused and return results/problems. These operations answer from supplied typed premises; they do not
+automatically interpret eligibility or claim a newly written protocol. Exact supported request shapes and
+examples live with the public operation.
+
+- Scoped assertion objects and exact finite entailment are implemented logic.
+- Literal number/unit/comparator/window parsers, span contracts, versioned concept/predicate registries and
+  typed applicability/evaluation utilities are retained under `layer2`; they encode candidates and do not
+  constitute an automatic clinical text reader.
+- Finite coordinate closure and NSCLC rule/domain machinery are retained for explicitly typed, applicable
+  premises; their status is conditional on those inputs.
+- Corpus statement rates, silence bounds, proposed association, occupancy and near-miss calculations are
+  retained as separate operations over explicitly represented inputs.
+- The canonical drug lookup machinery is shared source infrastructure; it is not a clinical reader.
+- Automatic source-to-scoped-assertion compilation is not integrated. The faulty flat word-matching path is
+  removed rather than kept as a fallback.
+- General clinical ontology bindings, full default-stratum semantics, gap-directed publication/label
+  adapters, derivational-significance integration, recommendation/closing orchestration and complete
+  brief-to-protocol outputs remain implementation work under this design.
+
+The earlier NSCLC development work is evidence of component behavior on its declared inputs, not broad
+clinical validation. Incomplete integration does not negate correct logic. A component's tests also do not
+certify the clinical truth of agent-supplied premises. The task list records verified build status separately
+from this completed design.
+
+## Acceptance
+
+Test each claimed layer separately: recognition, complete scoped representation, reasoning and consumer
+projection. Keep source-grounded expected claims and omissions; identified, abstained and wrong per class,
+including over-narrowing, are distinct. Positive/negative cases cover alternatives, qualified exclusions,
+nonparticipant referents, definitions, conditional obligations, event-relative time, cohort scope, explicit
+absence, missing units, default conflict, status propagation and bounded-resource refusal. Changing AND to OR,
+dropping a qualifier or antecedent, moving a negation, changing an actor/time anchor or promoting interpolation
+must change or block the affected conclusion through the actual public operation.
+
+Validation varies the logical/source structure and applicable study domains. Development populations remain
+labelled; inspected examples do not confirm a rule written against them. A bounded reviewer may answer a
+specific closed question only when explicitly authorised, with complete local context and all candidates plus
+unresolved; review provenance remains distinct from facts, and model agreement is not a clinical warrant.
+Detective behavior checks and ordinary tests complement these intent checks without substituting for meaning.
+
+## Migration and risks
+
+The reference writer stays independent throughout. Rescue correct components into the layer-two package,
+remove unsafe raw readers and their public routes, wire the typed operation and validate its real entry point.
+No compatibility adapter may quietly reintroduce flat atoms as clinical conclusions. Old retained outputs
+remain reproducible at their writing code version, not relabelled as current truth.
+
+Costly or unsupported reasoning returns a named partial/refused result. Thin evidence yields unresolved
+choices rather than defaults hidden as facts. Domain coverage grows by warranted concepts and bindings, not
+by fitting phrase lists to a set of trials. Existing designs constrain future implementation; finishing a
+missing pipeline component is not permission to redesign the thesis.

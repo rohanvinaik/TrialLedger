@@ -28,7 +28,7 @@ import itertools
 
 import pytest
 
-from TrialLedger.assertions import (
+from TrialLedger.layer2.assertions import (
     UNRESOLVED_RULE,
     AllOf,
     AnyOf,
@@ -44,7 +44,7 @@ from TrialLedger.assertions import (
     TemporalScope,
     Value,
 )
-from TrialLedger.entail import (
+from TrialLedger.layer2.entail import (
     ENTAILED,
     EVERYONE,
     INCONSISTENT,
@@ -189,7 +189,7 @@ def test_another_persons_attribute_never_transfers():
 
 
 def test_evidence_never_splits_a_variable_but_time_does():
-    from TrialLedger.assertions import Evidence
+    from TrialLedger.layer2.assertions import Evidence
 
     cited = dataclasses.replace(HIV, evidence=(Evidence("text_span", "4-7"),))
     assert decide((rule("x1", "excluded", cited),), Not(HIV)).result == ENTAILED

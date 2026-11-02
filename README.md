@@ -1,67 +1,79 @@
 # TrialLedger
 
-**ClinicalTrials.gov records in a readable workbook, with every reported value traceable to its source.**
+**A clinical-trial reference workbook backed by its source record, and a separate symbolic trial designer.**
 
-Give TrialLedger a search or a list of study numbers. It gathers the registry records and presents their design,
-population, eligibility, interventions, planned outcomes, posted results and safety in one workbook. Your
-assistant runs it, answers from the saved record and gives you the spreadsheet. No language model abstracts the
-studies or supplies trial facts.
+Give your assistant trial numbers or a description of the trials you want. TrialLedger gathers their
+ClinicalTrials.gov records and returns one readable workbook with a dossier for each study and shared
+listings, plus matching JSON. The assistant answers from that evidence rather than inventing trial facts.
 
-- **Layer one — trial reference sheets (available).** Ask for specific trial numbers or a subset by drug,
-  drug class, condition, phase, status, study type or date. Receive one formatted spreadsheet and matching
-  JSON, with a dossier per study and shared listings. The content is registry facts and strictly warranted
-  direct derivations; your assistant answers from that evidence record.
-- **Layer two — new-trial designer (partially built).** Intended to construct a new trial from scratch from
-  your brief and layer-one evidence through symbolic reasoning, distinguishing deductions, proposals and
-  choices that require your judgment. Some foundations exist; the complete design workflow is not available.
+That is **layer one**, the available reference-sheet operation. **Layer two** is the separately designed
+automated clinical trial writer: use a brief, warranted evidence and symbolic constraints to construct a new
+trial, suggest supported choices and ask the person to settle the remaining judgments. Its scoped reasoning,
+NSCLC coordinate and corpus-analysis operations are available; automatic source interpretation and the
+complete brief-to-protocol workflow are not yet integrated. Incomplete integration does not make those
+working symbolic components unusable.
 
-## What you receive
+You can use those working analyses for your own clinical-development work now, independently of asking for
+a complete new trial. Choose the question; your assistant explains the applicable operation, helps you
+structure and confirm material premises, runs it and returns the reasoning with assumptions and open items.
+You decide how to use the result. Keep its reusable structured response beside the separate source record.
 
-`landscape.xlsx` is the review workbook; `landscape.json` is the corresponding evidence record. Start with the
-Trial index and study-by-study Trial review, then use the eligibility, outcome, results, statistical-analysis,
-baseline, participant-flow, group and safety listings. A brief field dictionary identifies the source of the
-reported fields. Listing addresses let your assistant retrieve the same evidence you see.
+## Questions you can explore now
 
-The report preserves the registry's wording and values. It keeps observational study populations, sampling,
-follow-up and specimen information, and expanded-access types and availability, alongside interventional study
-design. Enrollment count and actual/anticipated type remain separate. Results retain their group, analysis
-population, denominator, unit and time frame. Safety retains affected participants, participants at risk and
-event counts, with reporting period and threshold.
+Your assistant can help you start with the study evidence, then use the separate reasoning tools when you
+have design premises or a comparison set to examine.
 
-Eligibility text may be divided at unambiguous headings and bullets for readability; the original wording and
-source locations remain available. That division does not interpret the criteria or decide whom they apply to.
-Other direct operations include registry labels, source-presence and results states, counts and source links.
-Drug lookup evidence, where available, names its source; a lookup failure is distinct from a negative response.
+| Ask in clinical terms | What is available |
+|---|---|
+| “Give me a reference sheet for these trials.” | Search or named-study retrieval, a dossier per study, shared listings and the matching source-backed record. |
+| “Show me who could enroll, what was measured when, and the reported benefits and harms.” | Exact criteria and population details, planned versus posted outcomes, and group-specific results/safety with denominators, units and periods. |
+| “Do these drug names resolve to the same thing, and which classes does NLM give them?” | Retained canonical identities, related ingredients, class assertions and alias conflicts; unresolved identity is shown. |
+| “Does this record disagree with itself?” | Direct registry checks such as ordered dates, declared arm/intervention links and affected-versus-at-risk counts, with both values retained. |
+| “Given our population restrictions, does this option still fit?” | Scoped logical entailment, refutation or an undetermined result, with the supplied premises that support it. |
+| “Given this NSCLC treatment history, which settings remain possible?” | The existing coordinate rules, showing what follows from the inputs separately from defaults, proposals and conflicts. |
+| “How often is this criterion documented, and what does missing detail leave open?” | Counts, statement rates and silence bounds in a supplied, explicitly represented comparison set. |
+| “Is this documented pattern more frequent in one drug class, or unusual in this subgroup?” | Proposed class associations and conditional observation rarity with support counts; these do not establish a mechanism or clinical absence. |
+| “Where are the gaps, or which studies differ on one chosen design feature?” | Setting-by-class occupancy and near-miss pairs under the declared comparison; unknown membership stays unknown and a pair is not proof that two trials are otherwise identical. |
 
-## How far the report goes
+The last five questions use confirmed, structured premises. The assistant first agrees with you what a
+restriction means and which studies/features to compare. It does not silently turn free-text criteria into
+facts. For example: is “no prior therapy” about advanced disease, and does the restriction apply to every
+participant or one cohort? A result can then say “this follows from your brief,” “this uses an assumption,”
+or “this remains open,” with its basis.
 
-Layer one reports registry facts and strictly warranted direct derivations. It does not rank key criteria, infer
-treatment setting, identify biomarker roles, decide which trials are comparable or make clinical recommendations.
-There is no ordinary-report MeSH enrichment or disease classification. Exact eligibility, descriptions and
-outcomes remain available for a professional to read; publications and documents are linked.
+The complete automated trial writer is the designed next integration of these parts: population and
+eligibility, interventions/comparator, endpoints and biomarkers, assessments/schedules, efficacy targets and
+sample-size inputs, safety, exploratory procedures and warranted protocol language. The current tools can
+explore supported parts of that design; they do not yet generate the complete protocol automatically.
 
-A registered outcome is a plan; a posted result is an observation. Eligible, enrolled and analysed populations
-are different. An explicit empty event list is not proof of zero harms. **Not stated** is not none; **not
-posted** is not no effect; **unresolved** or malformed input is not a negative finding. Seriousness does not
-establish adverse-event grade. Current care, comparative benchmarks and new planning targets require more than
-transcription of a registry record.
+## The reference sheet
 
-TrialLedger checks retrieval completeness and spreadsheet fidelity, and can replay a saved report offline.
-Those checks establish preservation and reproducibility, not that the registry is correct or that a clinical
-interpretation is correct. Coverage is checked across study types and source shapes; a passing collection of
-examples does not establish every clinical situation.
+`landscape.xlsx` and `landscape.json` present the same selected clinical evidence. Start with the Trial index
+and each study's Trial review, then use eligibility, planned and posted outcomes, statistical analyses,
+baseline, participant-flow, group and safety listings. Source links and record addresses connect the sheet
+to the evidence used for an answer. Complete registry responses are retained separately; the clinical JSON
+is a described selection, not a claim to contain every raw registry field.
+
+The output preserves exact eligibility and description text, population, interventions, measures and time
+frames, and posted efficacy and safety data with their own groups, denominators, units and periods.
+Observational populations, sampling, follow-up and specimens and expanded-access details keep their own
+structure. Supplied results-submission, delay and waiver information and direct consistency checks accompany
+the relevant source facts. Drug lookups use canonical source identities and retain conflicts rather than
+select the first successful alias.
+
+A registered outcome is a plan, not a result. Not stated is not none; not posted is not no effect; an empty
+event list does not establish zero harms. Seriousness does not establish grade. The sheet makes the evidence
+available for clinical interpretation; it does not silently rank key criteria, assign biomarker roles,
+infer current care or propose a new efficacy target. Those belong to a separately identified reasoning task.
 
 ## Use it through your assistant
 
-Point your assistant at this repository and ask, for example:
+Ask, for example:
 
 > Using TrialLedger, find completed Phase 3 trials of EGFR tyrosine kinase inhibitors in non-small cell lung
-> cancer. Show me the search before gathering the records, then give me the workbook.
+> cancer. Show me the search, then give me the reference workbook.
 
-The assistant previews the resolved drugs, class members/subclasses, disease search and filters before gathering
-studies. A shared search does not establish that the resulting studies are clinically comparable.
-
-For a local installation, Python 3.12 or later is required:
+For local use, install on Python 3.12 or later:
 
 ```bash
 pip install "git+https://github.com/rohanvinaik/TrialLedger"
@@ -70,32 +82,63 @@ trialledger landscape --run egfr-nsclc --drug-class "EGFR tyrosine kinase inhibi
     --condition-class "Carcinoma, Non-Small-Cell Lung" --phase PHASE3 --status COMPLETED --preview
 ```
 
-Read the preview and `resolution.json`, then repeat without `--preview` to gather that fixed search. For study
-numbers, use `trialledger landscape --run my-trials --ids NCT04852770,NCT01827384`. `landscape --help` lists the
-request fields. A request file can exclude class subclasses through `drug_class.subclasses`: `"exclude"` or a
-list of subclass IDs, rather than the default `"include"`. A changed request uses a new run folder.
+Read the preview and `resolution.json`, then repeat without `--preview`. Specific trials use
+`trialledger landscape --run my-trials --ids NCT04852770,NCT01827384`. `landscape --help` lists every request
+field. A changed request needs a new run folder; a repeated request resumes. Class requests can explicitly
+exclude subclasses through request JSON. Search expansion is shown, never hidden.
 
-`doctor` checks ClinicalTrials.gov and RxNav reachability. In **direct** mode the program fetches for itself.
-In **relay** mode the assistant fetches each exact address in `next.json`, saves its unchanged response to the
-named file and repeats the command. Relay checks form, counts, order and study identities, not every value
-against the live registry. Never retype, shorten or correct a body. Gathered-study drug enrichment is not
-performed in relay mode; that means not looked up, not no class.
+`doctor` chooses **direct** mode when the program can fetch, or **relay** when the assistant must fetch each
+exact response in `next.json` unchanged. Relay checks form, counts, order and identities, not every value
+against the live registry; never retype, shorten or correct a response. Gathered-study drug enrichment is not
+performed in relay mode: not looked up is not no class.
 
-Exit **0** means complete, or previewed when requested; **3** means relay fetches awaited; **2** names a refusal
-or stop; **1** names a failure and retry advice. Repeating the same request resumes safely. When studies were
-requested by number, inspect the requested-ID accounting: a completed retrieval can still include missing IDs.
+Exit 0 means complete or previewed; 3 awaits relay responses; 2 names a refusal/stop; 1 gives failure/retry
+advice. Requested-ID accounting still needs review: successful retrieval can include missing trial numbers.
+Malformed source types produce a named refusal rather than a fabricated typed report; original evidence stays
+retained.
 
-`trialledger verify FOLDER` replays a saved landscape offline from retained inputs under its writing code and
-compares the record and workbook, including formatting and links. Missing or changed evidence is named, never
-repaired. Older folders require their writing version. `trialledger pull` separately saves the registry's raw
-records/CSV with certified archival `review.xlsx` and `record.xlsx`.
+`trialledger verify FOLDER` replays retained inputs and compares the report and workbook, including formatting
+and links, under the writing version. It proves reproducibility, not registry truth or clinical interpretation.
+`trialledger pull` separately preserves complete registry JSON/CSV and certified archival workbooks.
+
+## The symbolic designer
+
+The current separate operation is `trialledger reason --request FILE`, or MCP `reason`.
+
+First ask it for its input instructions and worked examples: call MCP `reason` with
+`{"request":{"operation":"describe"}}`, or put `{"operation":"describe"}` in a file and run
+`trialledger reason --request FILE`. The reply gives accepted fields, model vocabulary, complete examples
+and what is built versus not integrated. It also explains results and lists clinical use cases and the
+separate supporting library components. The three reasoning operations are:
+
+- **Entailment:** what follows, is refuted or remains undetermined from explicitly supplied scoped premises.
+- **Coordinates:** the retained NSCLC finite-domain reasoning from explicit applicable evidence and rules.
+- **Corpus:** statement rates and silence bounds, proposed associations, occupancy and near misses over a
+  declared typed population.
+
+For example, a brief that admits only female participants can make admitting male participants logically
+incompatible with that brief. The tool cites the population premise. It does not claim that an agent's typed
+premise was automatically extracted from a trial or certified as a registry fact. [SKILL.md](SKILL.md) gives
+a complete runnable request; `reason --help` describes use.
+
+A typical interaction is: “I want to check whether this proposed enrollment restriction conflicts with our
+population.” The assistant identifies the relevant scope, confirms the premises with you, runs the logical
+question and explains which premise supports the result. Or you can ask to examine documented patterns in
+a comparison set you have chosen. These are usable analyses for your judgment, not merely demonstrations
+of a future pipeline. The source workbook remains unchanged; the analysis can be kept and rerun when you
+change a premise.
+
+The complete design goes further: bind source evidence, preserve clinical scope and alternatives, derive
+conditional constraints, compare compatible trials, use information geometry and significance, retrieve
+specific missing evidence, recommend admissible choices and produce eligibility, endpoints, schedules,
+safety and protocol outputs with their warrants. See the [full design](openspec/changes/add-design-synthesis/design.md)
+and [theory](docs/THEORY_OF_THE_CASE.md) for what is built and what remains to integrate. There is no current
+`design` or `edits` command, complete protocol generator or automatic workbook-edit import.
 
 ## MCP
 
 `trialledger mcp --root /absolute/path/to/trialledger-runs` serves **doctor**, **scope**, **landscape**,
-**save_fetch** and **record** over standard input/output. Preview with `scope`, gather with `landscape`, follow
-relay requests exactly, and answer with `record`, including a workbook row's address. Lists and objects are
-paged, at most 50 entries per call.
+**save_fetch**, **record** and the separate **reason** operation over standard input/output.
 
 ```json
 {
@@ -108,20 +151,10 @@ paged, at most 50 entries per call.
 }
 ```
 
-Use absolute paths; the client launches without a shell and does not expand `~`. Assistants follow
-[AGENTS.md](AGENTS.md) or [SKILL.md](SKILL.md); contributors read [DEVELOPING.md](DEVELOPING.md).
-
-## Layer two
-
-Layer two's purpose is to construct a new trial from scratch using your design brief and the gathered evidence.
-It is partially built: reasoning and existing-trial analysis foundations are present, but the integrated
-brief-to-new-trial designer is unfinished. Its intended output distinguishes deductions with their premises,
-proposals with their evidence, and decisions made by the person. This is symbolic reasoning, not LLM-generated
-trial design. The design is documented in [add-design-synthesis](openspec/changes/add-design-synthesis/proposal.md)
-and [THEORY_OF_THE_CASE.md](docs/THEORY_OF_THE_CASE.md).
-
-These operations remain separate from layer-one reporting. The current CLI/MCP has no `design` or `edits`
-operation or automatic workbook-edit import. A developer tool's `design.xlsx` analyses existing trials; it is
-not a newly designed protocol.
+Use absolute paths; a desktop client does not expand `~`. Preview with `scope`, gather with `landscape`,
+follow relay requests exactly and answer with `record`, including workbook addresses. Follow returned page
+offsets; lists and objects are paged at up to 50 entries. `reason(request)` is separate and does not mutate a
+report. Assistants read [AGENTS.md](AGENTS.md) or [SKILL.md](SKILL.md); developers read
+[DEVELOPING.md](DEVELOPING.md) and the [current contract](openspec/README.md).
 
 MIT; see [LICENSE](LICENSE).

@@ -9,10 +9,10 @@ from pathlib import Path
 
 import pytest
 
-from TrialLedger import coherence
-from TrialLedger.indications import LookupResult, MeshIdentity
-from TrialLedger.semantics import loader
-from TrialLedger.universes import NSCLC_PACKS, assign, pack_scope, reading
+from TrialLedger.layer2 import coherence
+from TrialLedger.layer2.indications import LookupResult, MeshIdentity
+from TrialLedger.layer2.semantics import loader
+from TrialLedger.layer2.universes import NSCLC_PACKS, assign, pack_scope, reading
 
 NSCLC = MeshIdentity("D002289", "Carcinoma, Non-Small-Cell Lung", ("C04.100.200",), "2026")
 LUNG = MeshIdentity("D008175", "Lung Neoplasms", ("C04.100",), "2026")

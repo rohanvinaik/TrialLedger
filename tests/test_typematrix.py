@@ -16,16 +16,17 @@ import copy
 
 import pytest
 
-from TrialLedger.registry import enum_labels
-from TrialLedger.sample import NO_MESH, NONE
-from TrialLedger.typematrix import (
+from TrialLedger.layer2.typematrix import (
     AXIS_VALUES,
+    NO_MESH,
+    NONE,
     NOT_IN_REGISTRY,
     declared_manifest,
     manifest_problems,
     study_coordinates,
     universe_status,
 )
+from TrialLedger.registry import enum_labels
 
 
 def study(study_type="INTERVENTIONAL", start="2015-03-01", **extra):

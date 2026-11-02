@@ -21,11 +21,12 @@
     "code_commit": "fixture (no run)",
     "rule_versions": {
       "landscape_schema": 4,
-      "contract": "4.0",
+      "contract": "4.1",
       "trialledger": "0.1.0",
-      "derivation_code_root": "1bee2e8bfcfb3222edcf86b8178ac7673209a0e99601ae5925bc54691fb5e1d5",
+      "derivation_code_root": "38dbeeb6c72fbe2a61604b1014e2d4db025d682dfe465a1dde6f60435a3e3686",
       "display": "display-1",
-      "eligibility_sections": "registry-headings-source-passages/1"
+      "eligibility_sections": "registry-headings-source-passages/1",
+      "registry_checks": 2
     },
     "retrieval": {
       "mode": "relay",
@@ -33,7 +34,7 @@
       "read": 2,
       "drug_classes": {
         "state": "not_looked_up",
-        "source": "relay mode: RxClass and RxNav were not asked about the studies read (hundreds to thousands of requests the agent would fetch), so every experimental drug's EPC and MoA classes and its axes are not_looked_up: never no class and never a failed lookup. A class an intervention's own entry states is read as such (stated_by_record)."
+        "source": "Fixture relay retrieval: gathered-study identities and classes were not looked up; never a negative class finding."
       },
       "requested_ids": [
         {
@@ -869,7 +870,7 @@
       "label": "Drug classes reported by RxNav",
       "kind": "reading",
       "source": [
-        "classes.drug_class"
+        "classes.class_evidence"
       ],
       "form": "as held",
       "display": "",
@@ -2453,6 +2454,94 @@
       "display": "",
       "reads": []
     },
+    "studies[].results_waived": {
+      "label": "Results submission waived",
+      "kind": "plain",
+      "source": [
+        "protocolSection.statusModule.resultsWaived"
+      ],
+      "form": "as held",
+      "display": "",
+      "reads": []
+    },
+    "studies[].results_first_submitted": {
+      "label": "Results first submitted",
+      "kind": "plain",
+      "source": [
+        "protocolSection.statusModule.resultsFirstSubmitDate"
+      ],
+      "form": "as held",
+      "display": "",
+      "reads": []
+    },
+    "studies[].disposition_first_submitted": {
+      "label": "Results delay disposition first submitted",
+      "kind": "plain",
+      "source": [
+        "protocolSection.statusModule.dispFirstSubmitDate"
+      ],
+      "form": "as held",
+      "display": "",
+      "reads": []
+    },
+    "studies[].estimated_results_first_submitted": {
+      "label": "Results submitted, not yet posted",
+      "kind": "plain",
+      "source": [
+        "derivedSection.miscInfoModule.submissionTracking.estimatedResultsFirstSubmitDate"
+      ],
+      "form": "as held",
+      "display": "",
+      "reads": []
+    },
+    "studies[].condition_mesh_ids": {
+      "label": "Condition MeSH identifiers",
+      "kind": "plain",
+      "source": [
+        "derivedSection.conditionBrowseModule.meshes[].id"
+      ],
+      "form": "as held",
+      "display": "",
+      "reads": []
+    },
+    "studies[].condition_mesh_ancestor_ids": {
+      "label": "Condition MeSH ancestor identifiers",
+      "kind": "plain",
+      "source": [
+        "derivedSection.conditionBrowseModule.ancestors[].id"
+      ],
+      "form": "as held",
+      "display": "",
+      "reads": []
+    },
+    "studies[].registry_checks": {
+      "label": "Approved registry consistency checks",
+      "kind": "reading",
+      "source": [
+        "checks.run_checks"
+      ],
+      "form": "as held",
+      "display": "",
+      "reads": [
+        "protocolSection.statusModule.overallStatus",
+        "protocolSection.statusModule.primaryCompletionDateStruct",
+        "protocolSection.statusModule.completionDateStruct",
+        "protocolSection.designModule.enrollmentInfo",
+        "protocolSection.designModule.studyType",
+        "protocolSection.designModule.phases[]",
+        "hasResults",
+        "protocolSection.statusModule.resultsFirstSubmitDate",
+        "protocolSection.contactsLocationsModule.locations[]",
+        "protocolSection.armsInterventionsModule.armGroups[]",
+        "protocolSection.armsInterventionsModule.interventions[]",
+        "resultsSection.adverseEventsModule",
+        "resultsSection.adverseEventsModule.eventGroups[]",
+        "resultsSection.participantFlowModule.periods[]",
+        "protocolSection.eligibilityModule.minimumAge",
+        "protocolSection.eligibilityModule.maximumAge",
+        "protocolSection.statusModule.startDateStruct"
+      ]
+    },
     "schema_version": {
       "label": "Schema version",
       "kind": "run",
@@ -3153,6 +3242,42 @@
         "note": "not_reported"
       },
       "documents": [],
+      "results_waived": {
+        "status": "not_stated",
+        "note": "not_reported"
+      },
+      "results_first_submitted": {
+        "status": "not_stated",
+        "note": "not_reported"
+      },
+      "disposition_first_submitted": {
+        "status": "not_stated",
+        "note": "not_reported"
+      },
+      "estimated_results_first_submitted": {
+        "status": "not_stated",
+        "note": "not_reported"
+      },
+      "condition_mesh_ids": [
+        "D013313",
+        "D000086382"
+      ],
+      "condition_mesh_ancestor_ids": [
+        "D040921",
+        "D000068099",
+        "D001523",
+        "D011024",
+        "D011014",
+        "D012141",
+        "D007239",
+        "D014777",
+        "D018352",
+        "D003333",
+        "D030341",
+        "D012327",
+        "D008171",
+        "D012140"
+      ],
       "link": "https://clinicaltrials.gov/study/NCT04852770",
       "digest": "0630c88071b86c633f110362ccabf373cffeb95b3d1c0bc339c9856173f22523",
       "criteria": [
@@ -3247,6 +3372,387 @@
         "words": [],
         "result": "no results posted",
         "note": ""
+      },
+      "registry_checks": {
+        "status": "known",
+        "rule": "checks.run_checks",
+        "words": [],
+        "result": {
+          "inputs": {
+            "protocolSection.statusModule.overallStatus": {
+              "state": "stated",
+              "value": "TERMINATED"
+            },
+            "protocolSection.statusModule.primaryCompletionDateStruct": {
+              "state": "stated",
+              "value": {
+                "date": "2023-06-21",
+                "type": "ACTUAL"
+              }
+            },
+            "protocolSection.statusModule.completionDateStruct": {
+              "state": "stated",
+              "value": {
+                "date": "2023-07-18",
+                "type": "ACTUAL"
+              }
+            },
+            "protocolSection.designModule.enrollmentInfo": {
+              "state": "stated",
+              "value": {
+                "count": 135,
+                "type": "ACTUAL"
+              }
+            },
+            "protocolSection.designModule.studyType": {
+              "state": "stated",
+              "value": "INTERVENTIONAL"
+            },
+            "protocolSection.designModule.phases": {
+              "state": "stated",
+              "value": [
+                "NA"
+              ]
+            },
+            "hasResults": {
+              "state": "stated",
+              "value": false
+            },
+            "protocolSection.statusModule.resultsFirstSubmitDate": {
+              "state": "not_stated"
+            },
+            "protocolSection.contactsLocationsModule.locations": {
+              "state": "stated",
+              "value": [
+                {
+                  "facility": "Universidade Federal da Bahia",
+                  "city": "Salvador",
+                  "state": "Estado de Bahia",
+                  "zip": "40110-906",
+                  "country": "Brazil",
+                  "geoPoint": {
+                    "lat": -12.97563,
+                    "lon": -38.49096
+                  }
+                },
+                {
+                  "facility": "Universidade Federal de Pernambuco",
+                  "city": "Recife",
+                  "state": "Pernambuco",
+                  "zip": "50670-901",
+                  "country": "Brazil",
+                  "geoPoint": {
+                    "lat": -8.05389,
+                    "lon": -34.88111
+                  }
+                },
+                {
+                  "facility": "Universidade Federal de São Paulo",
+                  "city": "São Paulo",
+                  "state": "São Paulo",
+                  "zip": "04021-001",
+                  "country": "Brazil",
+                  "geoPoint": {
+                    "lat": -23.5475,
+                    "lon": -46.63611
+                  }
+                }
+              ]
+            },
+            "protocolSection.armsInterventionsModule.armGroups": {
+              "state": "stated",
+              "value": [
+                {
+                  "label": "Trial-Based Cognitive Therapy",
+                  "type": "EXPERIMENTAL",
+                  "description": "TBCT (de Oliveira, 2008) is a novel transdiagnostic approach (Wenzel, 2017). It has been shown to be effective for depression (Hemanny et al., 2019), social anxiety disorder (Neufeld et al., 2020; Caetano et al., 2018; de Oliveira et al., 2011; Powell et al., 2013), and PTSD (Duran et al., 2020). TBCT differs from other CBT approaches in that it introduces a new, organized, and systematic approach to change dysfunctional negative core beliefs, and allows cognitive, emotional, and experiential work to be done simultaneously (de Oliveira, 2016). Interestingly, it incorporates a courtroom metaphor to challenge dysfunctional core beliefs conceptualized as self-accusations (de Oliveira, 2016). TBCT is an example of assimilative psychotherapy integration that relies on Beckian CBT (de Oliveira, 2016). It incorporates and integrates components of other psychotherapies (Delavechia et al., 2016).",
+                  "interventionNames": [
+                    "Behavioral: Trial-Based Cognitive Therapy"
+                  ]
+                },
+                {
+                  "label": "Mindfulness-Based Health Promotion",
+                  "type": "ACTIVE_COMPARATOR",
+                  "description": "The Mindfulness-Based Stress Reduction (MBSR) program was created by Jon Kabat-Zinn and colleagues at the University of Massachusetts Medical Center in 1979, and it is an intervention whose effects on mental health and quality of life has produced several studies worldwide, both in clinical and non-clinical populations. Several protocols have been developed based on the MBSR aimed at specific publics, such as the Mindfulness-Based Health Promotion (MBHP) program developed by the Mente Aberta - Brazilian Center for Mindfulness and Health Promotion. The MBHP program was inspired by the original MBSR model but adapted to the context of the Brazilian Health Care (SUS) system, addressing chronic conditions and mental disorders as well (TROMBKA et al., 2018; LOPES et al., 2019; SALVO et al., 2018).",
+                  "interventionNames": [
+                    "Behavioral: Mindfulness-Based Health Promotion"
+                  ]
+                },
+                {
+                  "label": "Positive psychotherapy",
+                  "type": "ACTIVE_COMPARATOR",
+                  "description": "Positive psychotherapy (PPT) seeks to understand positive emotions, psychological potentialities and healthy human / social / institutional functioning, and to apply this knowledge to help people and institutions, with a focus on prevention and promotion of mental health (SELIGMAN et al., 2005). Originally, PP focused on happiness and subjective well-being (SELIGMAN, 2010; SELIGMAN; CSIKSZENTMIHALYI, 2000). Then, the studies gained a broader view of psychological well-being and another similar proposal entitled PERMA, which is composed of the following five spheres: positive emotions - P; engagement - E; relationships - R; meaning - M; and achievement - A. (RYFF, 2013; SELIGMAN, 2012). Although positive psychology aims to be a way of looking at life, some psychotherapeutic proposals, such as positive psychotherapy (PPT), have been developed, and clinical studies have been replicated in different clinical and cultural contexts (RASHID; SELIGMAN, 2019; RICHES et al., 2016).",
+                  "interventionNames": [
+                    "Behavioral: Positive psychotherapy"
+                  ]
+                }
+              ]
+            },
+            "protocolSection.armsInterventionsModule.interventions": {
+              "state": "stated",
+              "value": [
+                {
+                  "type": "BEHAVIORAL",
+                  "name": "Trial-Based Cognitive Therapy",
+                  "description": "TBCT is an approach that includes psychoeducation and cognitive restructuring techniques concerning automatic thoughts, underlying assumptions and core beliefs related to the traumatic events. It is conducted in a therapeutic setting that makes use of experiential techniques, allowing the patient to refer to him/herself in the third person and thus taking distance from him or herself. One of TBCT techniques for dealing with guilt and shame, emotions that provoke great limitation to patients with PTSD, is the participation grid (PG). Another important technique is the consensual role-play (CRP), designed to help patients resolve ambivalence and make decisions. In addition, the most important TBCT technique, the Trial, was developed to help patients change dysfunctional negative core beliefs. Therapists who will conduct this approach have a specialization level in CBT. In this study, this treatment will be delivered in 14 sessions, weekly, individualy, one session by week and on line.",
+                  "armGroupLabels": [
+                    "Trial-Based Cognitive Therapy"
+                  ],
+                  "otherNames": [
+                    "TBCT"
+                  ]
+                },
+                {
+                  "type": "BEHAVIORAL",
+                  "name": "Mindfulness-Based Health Promotion",
+                  "description": "The MBHP protocol is a structured program developed over 8 sessions, in group, where participants (8-15 people) meet every week for 2 hours (standard duration of one session), to experience the concepts and techniques of mindfulness. Participants are also given suggestions of daily activities to be implemented at home or in the workplace, that last in average 15-20 minutes, but may last up to 45 minutes in the case of more motivated and compliant participants. They are also encouraged to incorporate the idea of Mindfulness in their daily lives (the so-called \"informal practice\"), so that all daily activities somehow become opportunities to practice Mindfulness. In this study, this treatment will be delivered in 14 sessions, weekly, individualy, one session by week and on line.",
+                  "armGroupLabels": [
+                    "Mindfulness-Based Health Promotion"
+                  ],
+                  "otherNames": [
+                    "MBHP"
+                  ]
+                },
+                {
+                  "type": "BEHAVIORAL",
+                  "name": "Positive psychotherapy",
+                  "description": "PPT is the clinical and therapeutic work derived from PP. PPT consists of 15 specific practices that have been empirically validated, either separately, or in conjunction with two or three practices. After empirical validation, these practices were organized in a cohesive protocol of 15 sessions called PPT. Many of these practices have been studied through online interventions. In the present study, the protocol will be reduced to 14 sessions, with sessions called positive relationships, positive communication, and practical wisdom removed. It was understood that the other 12 would be more easily adapted to the moment of the study. (DUCKWORTH; STEEN; SELIGMAN, 2005; MONGRAIN; ANSELMO-MATTHEWS, 2012; RASHID; SELIGMAN, 2019). In this study, this treatment will be delivered in 14 sessions, weekly, individualy, one session by week and on line.",
+                  "armGroupLabels": [
+                    "Positive psychotherapy"
+                  ],
+                  "otherNames": [
+                    "PPT"
+                  ]
+                }
+              ]
+            },
+            "resultsSection.adverseEventsModule": {
+              "state": "not_stated"
+            },
+            "resultsSection.adverseEventsModule.eventGroups": {
+              "state": "not_stated"
+            },
+            "resultsSection.participantFlowModule.periods": {
+              "state": "not_stated"
+            },
+            "protocolSection.eligibilityModule.minimumAge": {
+              "state": "stated",
+              "value": "18 Years"
+            },
+            "protocolSection.eligibilityModule.maximumAge": {
+              "state": "stated",
+              "value": "60 Years"
+            },
+            "protocolSection.statusModule.startDateStruct": {
+              "state": "stated",
+              "value": {
+                "date": "2020-04-06",
+                "type": "ACTUAL"
+              }
+            }
+          },
+          "checks": [
+            {
+              "id": "closed_primary_completion_actual",
+              "label": "Overall status COMPLETED or TERMINATED → primary completion date typed ACTUAL",
+              "outcome": "consistent",
+              "detail": "overallStatus=TERMINATED; primaryCompletionDateStruct.type=ACTUAL; primaryCompletionDateStruct.date=2023-06-21",
+              "source": [
+                "protocolSection.statusModule.overallStatus",
+                "protocolSection.statusModule.primaryCompletionDateStruct"
+              ],
+              "rule": "P#OverallStatus «Completed: The study has concluded normally; participants are no longer receiving an intervention or being examined (that is, last participant’s last visit has occurred)»; «Terminated: Study halted prematurely and will not resume; participants are no longer being examined or receiving intervention». P#LastFollowUpDate «Once the clinical study has reached the primary completion date, the responsible party must update the Primary Completion Date to reflect the actual primary completion date.»",
+              "basis": "stated rule"
+            },
+            {
+              "id": "closed_completion_actual",
+              "label": "Overall status COMPLETED or TERMINATED → study completion date typed ACTUAL",
+              "outcome": "consistent",
+              "detail": "overallStatus=TERMINATED; completionDateStruct.type=ACTUAL; completionDateStruct.date=2023-07-18",
+              "source": [
+                "protocolSection.statusModule.overallStatus",
+                "protocolSection.statusModule.completionDateStruct"
+              ],
+              "rule": "The status definitions above. P#LastFollowUpDate «Once the clinical study has reached the study completion date, the responsible party must update the Study Completion Date to reflect the actual study completion date.»",
+              "basis": "stated rule"
+            },
+            {
+              "id": "withdrawn_actual_enrollment_zero",
+              "label": "Overall status WITHDRAWN and enrollment typed ACTUAL → enrollment 0",
+              "outcome": "not_applicable",
+              "detail": "overallStatus=TERMINATED; enrollmentInfo.type=ACTUAL; enrollmentInfo.count=135",
+              "source": [
+                "protocolSection.statusModule.overallStatus",
+                "protocolSection.designModule.enrollmentInfo"
+              ],
+              "rule": "P#OverallStatus «Withdrawn: Study halted prematurely, prior to enrollment of first participant»; P#IntEnrollment «the actual total number of participants that are enrolled in the clinical study»",
+              "basis": "entailed by definitions"
+            },
+            {
+              "id": "phase_interventional_only",
+              "label": "Study type other than INTERVENTIONAL → no phase other than NA",
+              "outcome": "not_applicable",
+              "detail": "studyType=INTERVENTIONAL; phases=['NA']",
+              "source": [
+                "protocolSection.designModule.studyType",
+                "protocolSection.designModule.phases"
+              ],
+              "rule": "P#IntStudyDesign «Interventional Study Design (For interventional studies only)», containing P#StudyPhase «For a clinical trial of a drug product (including a biological product), the numerical phase of such clinical trial»",
+              "basis": "stated scope"
+            },
+            {
+              "id": "results_flag_first_submit",
+              "label": "hasResults true exactly when resultsFirstSubmitDate is present",
+              "outcome": "consistent",
+              "detail": "hasResults=False; statusModule.resultsFirstSubmitDate=None",
+              "source": [
+                "hasResults",
+                "protocolSection.statusModule.resultsFirstSubmitDate"
+              ],
+              "rule": "API metadata, hasResults: «FUNC Present(ResultsFirstSubmitDate)»; «Flag that indicates if a study has posted results on public site»",
+              "basis": "registry function"
+            },
+            {
+              "id": "recruiting_site_recruiting_study",
+              "label": "Two or more locations, one RECRUITING → overall status RECRUITING",
+              "outcome": "not_checkable",
+              "detail": "overallStatus=TERMINATED; 3 locations, 0 RECRUITING",
+              "source": [
+                "protocolSection.statusModule.overallStatus",
+                "protocolSection.contactsLocationsModule.locations"
+              ],
+              "rule": "P#OverallStatus «If at least one facility in a multi-site clinical study has an Individual Site Status of \"Recruiting,\" then the Overall Recruitment Status for the study must be \"Recruiting.\"» An overall UNKNOWN is the registry's own assignment (glossary, «Last verified»).",
+              "basis": "stated rule"
+            },
+            {
+              "id": "arm_interventions_declared",
+              "label": "Every intervention an arm names is '<type label>: <name>' of a declared intervention",
+              "outcome": "consistent",
+              "detail": "3 consistent",
+              "source": [
+                "protocolSection.armsInterventionsModule.armGroups",
+                "protocolSection.armsInterventionsModule.interventions"
+              ],
+              "rule": "P#InterventionName «If multiple Arms or Groups have been specified, indicate which Interventions (or exposures) are in each Arm or Group of the study, using the Cross-Reference check boxes.» The label is the registry's enum table's legacyValue for the intervention's type.",
+              "basis": "entailed by definitions"
+            },
+            {
+              "id": "intervention_arms_defined",
+              "label": "Every arm label an intervention names is the label of a defined arm",
+              "outcome": "consistent",
+              "detail": "3 consistent",
+              "source": [
+                "protocolSection.armsInterventionsModule.armGroups",
+                "protocolSection.armsInterventionsModule.interventions"
+              ],
+              "rule": "P#InterventionName, as above (Arm or Group/Interventional Cross-Reference).",
+              "basis": "entailed by definitions"
+            },
+            {
+              "id": "ae_counts_name_groups",
+              "label": "Every adverse-event count names one of the module's event groups",
+              "outcome": "not_applicable",
+              "detail": "no entries",
+              "source": [
+                "resultsSection.adverseEventsModule"
+              ],
+              "rule": "API metadata: stats.groupId «Internal Arm/Group ID»; eventGroups.id «Internal group id». R#AdverseEventAffected «Number of participants, in each arm/group».",
+              "basis": "entailed by definitions"
+            },
+            {
+              "id": "ae_affected_within_at_risk",
+              "label": "Per event and group: participants affected ≤ participants at risk",
+              "outcome": "not_applicable",
+              "detail": "no entries",
+              "source": [
+                "resultsSection.adverseEventsModule"
+              ],
+              "rule": "R#AdverseEventAffected «Number of participants, in each arm/group, experiencing at least one event being reported.» R#AdverseEventAtRisk «Number of participants assessed, in each arm/group, for adverse events (that is, the denominator for calculating frequency of adverse events). Leave blank to indicate that the value specified as the total at risk in the arm/group for the table should be used.»",
+              "basis": "entailed by definitions"
+            },
+            {
+              "id": "ae_event_within_group_total",
+              "label": "Per event and group: participants affected ≤ the group's total affected in that table",
+              "outcome": "not_applicable",
+              "detail": "no entries",
+              "source": [
+                "resultsSection.adverseEventsModule"
+              ],
+              "rule": "R#SeriousTotalAffected «Overall number of participants affected by one or more Serious Adverse Events, for each arm/group.» R#OtherAE_Affected «Overall number of participants affected, for each arm/group, by at least one Other (Not Including Serious) Adverse Event(s) reported in the table.»",
+              "basis": "entailed by definitions"
+            },
+            {
+              "id": "ae_events_at_least_affected",
+              "label": "Per event and group, where events are reported: events ≥ participants affected",
+              "outcome": "not_applicable",
+              "detail": "no entries",
+              "source": [
+                "resultsSection.adverseEventsModule"
+              ],
+              "rule": "R#OtherAEEvents «Number of occurrences, in each arm/group, of the adverse event being reported.» R#AdverseEventAffected «experiencing at least one event being reported».",
+              "basis": "entailed by definitions"
+            },
+            {
+              "id": "ae_group_totals_within_at_risk",
+              "label": "Per group: deaths, serious and other totals affected ≤ the matching total at risk",
+              "outcome": "not_applicable",
+              "detail": "no entries",
+              "source": [
+                "resultsSection.adverseEventsModule.eventGroups"
+              ],
+              "rule": "R#Mortality_Affected «Overall number of participants, in each arm/group, who died due to any cause»; R#Mortality_AtRisk «included in the assessment of deaths due to any cause (that is, the denominator for calculating frequency of all-cause mortality)»; R#SeriousTotalAffected / R#SeriousAE_AtRisk and R#OtherAE_Affected / R#OtherAE_AtRisk likewise, each «(that is, the denominator for calculating frequency [...])».",
+              "basis": "entailed by definitions"
+            },
+            {
+              "id": "flow_reasons_account",
+              "label": "Per period and group, where reasons are given: their participants sum to those not completed",
+              "outcome": "not_applicable",
+              "detail": "no entries",
+              "source": [
+                "resultsSection.participantFlowModule.periods"
+              ],
+              "rule": "R#DWReason «If reasons are provided, the total number of participants listed as Not Completed must be accounted for by all reasons for non-completion.» R: Not Completed is «calculated automatically by subtracting Completed from Started».",
+              "basis": "stated rule"
+            },
+            {
+              "id": "age_limits_ordered",
+              "label": "Minimum age ≤ maximum age, where the units convert exactly",
+              "outcome": "consistent",
+              "detail": "minimumAge=18 Years; maximumAge=60 Years",
+              "source": [
+                "protocolSection.eligibilityModule.minimumAge",
+                "protocolSection.eligibilityModule.maximumAge"
+              ],
+              "rule": "P#EligibilityMinAge «The numerical value, if any, for the minimum age a potential participant must meet to be eligible for the clinical study.» P#EligibilityMaxAge «The numerical value, if any, for the maximum age a potential participant can be to be eligible for the clinical study.»",
+              "basis": "entailed by definitions"
+            },
+            {
+              "id": "start_before_primary_completion",
+              "label": "Study start date ≤ primary completion date, both typed ACTUAL, partial dates read as intervals",
+              "outcome": "consistent",
+              "detail": "startDateStruct.date=2020-04-06; startDateStruct.type=ACTUAL; primaryCompletionDateStruct.date=2023-06-21; primaryCompletionDateStruct.type=ACTUAL",
+              "source": [
+                "protocolSection.statusModule.startDateStruct",
+                "protocolSection.statusModule.primaryCompletionDateStruct"
+              ],
+              "rule": "P#StartDate «the actual date on which the first participant was enrolled»; P#LastFollowUpDate «The date that the final participant was examined or received an intervention for the purposes of final collection of data for the primary outcome»",
+              "basis": "entailed by definitions"
+            },
+            {
+              "id": "primary_completion_before_completion",
+              "label": "Primary completion date ≤ study completion date, both typed ACTUAL, partial dates read as intervals",
+              "outcome": "consistent",
+              "detail": "primaryCompletionDateStruct.date=2023-06-21; primaryCompletionDateStruct.type=ACTUAL; completionDateStruct.date=2023-07-18; completionDateStruct.type=ACTUAL",
+              "source": [
+                "protocolSection.statusModule.primaryCompletionDateStruct",
+                "protocolSection.statusModule.completionDateStruct"
+              ],
+              "rule": "P#LastFollowUpDate: primary completion is final collection of data «for the primary outcome»; study completion is final collection «for the primary and secondary outcome measures and adverse events».",
+              "basis": "entailed by definitions"
+            }
+          ]
+        },
+        "note": "Approved registry checks; findings do not alter source facts or establish clinical meaning"
       },
       "collection_presence": {
         "status": "known",
@@ -3546,16 +4052,53 @@
           ],
           "drug_class": {
             "status": "unresolved",
-            "rule": "classes.drug_class",
+            "rule": "classes.class_evidence",
             "words": [
               "CAT-8015 20 mcg/kg"
             ],
             "result": {
               "state": "not_looked_up",
+              "reason": "own_identity_not_looked_up",
               "classes": [],
-              "resolved_by": ""
+              "resolved_by": "",
+              "identities": [
+                {
+                  "name": "CAT-8015 20 mcg/kg",
+                  "asked_as": "",
+                  "name_rule": "",
+                  "code": "not_looked_up",
+                  "rxcui": "",
+                  "canonical_name": "",
+                  "term_type": "",
+                  "ingredients": [],
+                  "ingredient_concepts": [],
+                  "role": "own",
+                  "requests": [],
+                  "release": [],
+                  "release_end": []
+                }
+              ],
+              "assertions": [],
+              "queries": [
+                {
+                  "queried_name": "CAT-8015 20 mcg/kg",
+                  "source": "DAILYMED",
+                  "relation": "has_epc",
+                  "code": "not_looked_up",
+                  "request": null,
+                  "release": []
+                },
+                {
+                  "queried_name": "CAT-8015 20 mcg/kg",
+                  "source": "MEDRT",
+                  "relation": "has_moa",
+                  "code": "not_looked_up",
+                  "request": null,
+                  "release": []
+                }
+              ]
             },
-            "note": "Drug classes were not looked up for this run"
+            "note": "own_identity_not_looked_up"
           }
         },
         {
@@ -3567,16 +4110,53 @@
           ],
           "drug_class": {
             "status": "unresolved",
-            "rule": "classes.drug_class",
+            "rule": "classes.class_evidence",
             "words": [
               "CAT-8015 30 mcg/kg"
             ],
             "result": {
               "state": "not_looked_up",
+              "reason": "own_identity_not_looked_up",
               "classes": [],
-              "resolved_by": ""
+              "resolved_by": "",
+              "identities": [
+                {
+                  "name": "CAT-8015 30 mcg/kg",
+                  "asked_as": "",
+                  "name_rule": "",
+                  "code": "not_looked_up",
+                  "rxcui": "",
+                  "canonical_name": "",
+                  "term_type": "",
+                  "ingredients": [],
+                  "ingredient_concepts": [],
+                  "role": "own",
+                  "requests": [],
+                  "release": [],
+                  "release_end": []
+                }
+              ],
+              "assertions": [],
+              "queries": [
+                {
+                  "queried_name": "CAT-8015 30 mcg/kg",
+                  "source": "DAILYMED",
+                  "relation": "has_epc",
+                  "code": "not_looked_up",
+                  "request": null,
+                  "release": []
+                },
+                {
+                  "queried_name": "CAT-8015 30 mcg/kg",
+                  "source": "MEDRT",
+                  "relation": "has_moa",
+                  "code": "not_looked_up",
+                  "request": null,
+                  "release": []
+                }
+              ]
             },
-            "note": "Drug classes were not looked up for this run"
+            "note": "own_identity_not_looked_up"
           }
         },
         {
@@ -3588,16 +4168,53 @@
           ],
           "drug_class": {
             "status": "unresolved",
-            "rule": "classes.drug_class",
+            "rule": "classes.class_evidence",
             "words": [
               "CAT-8015 40 mcg/kg"
             ],
             "result": {
               "state": "not_looked_up",
+              "reason": "own_identity_not_looked_up",
               "classes": [],
-              "resolved_by": ""
+              "resolved_by": "",
+              "identities": [
+                {
+                  "name": "CAT-8015 40 mcg/kg",
+                  "asked_as": "",
+                  "name_rule": "",
+                  "code": "not_looked_up",
+                  "rxcui": "",
+                  "canonical_name": "",
+                  "term_type": "",
+                  "ingredients": [],
+                  "ingredient_concepts": [],
+                  "role": "own",
+                  "requests": [],
+                  "release": [],
+                  "release_end": []
+                }
+              ],
+              "assertions": [],
+              "queries": [
+                {
+                  "queried_name": "CAT-8015 40 mcg/kg",
+                  "source": "DAILYMED",
+                  "relation": "has_epc",
+                  "code": "not_looked_up",
+                  "request": null,
+                  "release": []
+                },
+                {
+                  "queried_name": "CAT-8015 40 mcg/kg",
+                  "source": "MEDRT",
+                  "relation": "has_moa",
+                  "code": "not_looked_up",
+                  "request": null,
+                  "release": []
+                }
+              ]
             },
-            "note": "Drug classes were not looked up for this run"
+            "note": "own_identity_not_looked_up"
           }
         },
         {
@@ -3609,16 +4226,53 @@
           ],
           "drug_class": {
             "status": "unresolved",
-            "rule": "classes.drug_class",
+            "rule": "classes.class_evidence",
             "words": [
               "CAT-8015 50 mcg/kg"
             ],
             "result": {
               "state": "not_looked_up",
+              "reason": "own_identity_not_looked_up",
               "classes": [],
-              "resolved_by": ""
+              "resolved_by": "",
+              "identities": [
+                {
+                  "name": "CAT-8015 50 mcg/kg",
+                  "asked_as": "",
+                  "name_rule": "",
+                  "code": "not_looked_up",
+                  "rxcui": "",
+                  "canonical_name": "",
+                  "term_type": "",
+                  "ingredients": [],
+                  "ingredient_concepts": [],
+                  "role": "own",
+                  "requests": [],
+                  "release": [],
+                  "release_end": []
+                }
+              ],
+              "assertions": [],
+              "queries": [
+                {
+                  "queried_name": "CAT-8015 50 mcg/kg",
+                  "source": "DAILYMED",
+                  "relation": "has_epc",
+                  "code": "not_looked_up",
+                  "request": null,
+                  "release": []
+                },
+                {
+                  "queried_name": "CAT-8015 50 mcg/kg",
+                  "source": "MEDRT",
+                  "relation": "has_moa",
+                  "code": "not_looked_up",
+                  "request": null,
+                  "release": []
+                }
+              ]
             },
-            "note": "Drug classes were not looked up for this run"
+            "note": "own_identity_not_looked_up"
           }
         },
         {
@@ -3630,16 +4284,53 @@
           ],
           "drug_class": {
             "status": "unresolved",
-            "rule": "classes.drug_class",
+            "rule": "classes.class_evidence",
             "words": [
               "CAT-8015 60 mcg/kg"
             ],
             "result": {
               "state": "not_looked_up",
+              "reason": "own_identity_not_looked_up",
               "classes": [],
-              "resolved_by": ""
+              "resolved_by": "",
+              "identities": [
+                {
+                  "name": "CAT-8015 60 mcg/kg",
+                  "asked_as": "",
+                  "name_rule": "",
+                  "code": "not_looked_up",
+                  "rxcui": "",
+                  "canonical_name": "",
+                  "term_type": "",
+                  "ingredients": [],
+                  "ingredient_concepts": [],
+                  "role": "own",
+                  "requests": [],
+                  "release": [],
+                  "release_end": []
+                }
+              ],
+              "assertions": [],
+              "queries": [
+                {
+                  "queried_name": "CAT-8015 60 mcg/kg",
+                  "source": "DAILYMED",
+                  "relation": "has_epc",
+                  "code": "not_looked_up",
+                  "request": null,
+                  "release": []
+                },
+                {
+                  "queried_name": "CAT-8015 60 mcg/kg",
+                  "source": "MEDRT",
+                  "relation": "has_moa",
+                  "code": "not_looked_up",
+                  "request": null,
+                  "release": []
+                }
+              ]
             },
-            "note": "Drug classes were not looked up for this run"
+            "note": "own_identity_not_looked_up"
           }
         }
       ],
@@ -9568,6 +10259,38 @@
         "note": "not_reported"
       },
       "documents": [],
+      "results_waived": {
+        "status": "not_stated",
+        "note": "not_reported"
+      },
+      "results_first_submitted": "2017-02-27",
+      "disposition_first_submitted": "2016-05-23",
+      "estimated_results_first_submitted": {
+        "status": "not_stated",
+        "note": "not_reported"
+      },
+      "condition_mesh_ids": [
+        "D008228",
+        "D015451"
+      ],
+      "condition_mesh_ancestor_ids": [
+        "D008223",
+        "D009370",
+        "D009369",
+        "D008232",
+        "D008206",
+        "D006425",
+        "D007160",
+        "D007154",
+        "D015448",
+        "D007945",
+        "D007938",
+        "D006402",
+        "D002908",
+        "D020969",
+        "D010335",
+        "D013568"
+      ],
       "link": "https://clinicaltrials.gov/study/NCT01030536",
       "digest": "21f280a4300b88950e178361f7012246aeaf313883a24fbe24cc1b7a135ad184",
       "criteria": [
@@ -9781,6 +10504,2980 @@
         "words": [],
         "result": "results posted",
         "note": ""
+      },
+      "registry_checks": {
+        "status": "known",
+        "rule": "checks.run_checks",
+        "words": [],
+        "result": {
+          "inputs": {
+            "protocolSection.statusModule.overallStatus": {
+              "state": "stated",
+              "value": "COMPLETED"
+            },
+            "protocolSection.statusModule.primaryCompletionDateStruct": {
+              "state": "stated",
+              "value": {
+                "date": "2013-03-04",
+                "type": "ACTUAL"
+              }
+            },
+            "protocolSection.statusModule.completionDateStruct": {
+              "state": "stated",
+              "value": {
+                "date": "2013-03-04",
+                "type": "ACTUAL"
+              }
+            },
+            "protocolSection.designModule.enrollmentInfo": {
+              "state": "stated",
+              "value": {
+                "count": 23,
+                "type": "ACTUAL"
+              }
+            },
+            "protocolSection.designModule.studyType": {
+              "state": "stated",
+              "value": "INTERVENTIONAL"
+            },
+            "protocolSection.designModule.phases": {
+              "state": "stated",
+              "value": [
+                "PHASE1",
+                "PHASE2"
+              ]
+            },
+            "hasResults": {
+              "state": "stated",
+              "value": true
+            },
+            "protocolSection.statusModule.resultsFirstSubmitDate": {
+              "state": "stated",
+              "value": "2017-02-27"
+            },
+            "protocolSection.contactsLocationsModule.locations": {
+              "state": "stated",
+              "value": [
+                {
+                  "facility": "Research Site",
+                  "city": "Los Angeles",
+                  "state": "California",
+                  "country": "United States",
+                  "geoPoint": {
+                    "lat": 34.05223,
+                    "lon": -118.24368
+                  }
+                },
+                {
+                  "facility": "Research Site",
+                  "city": "Indianapolis",
+                  "state": "Indiana",
+                  "zip": "46202",
+                  "country": "United States",
+                  "geoPoint": {
+                    "lat": 39.76838,
+                    "lon": -86.15804
+                  }
+                },
+                {
+                  "facility": "Research Site",
+                  "city": "Bethesda",
+                  "state": "Maryland",
+                  "zip": "20892",
+                  "country": "United States",
+                  "geoPoint": {
+                    "lat": 38.98067,
+                    "lon": -77.10026
+                  }
+                },
+                {
+                  "facility": "Research Site",
+                  "city": "Las Vegas",
+                  "state": "Nevada",
+                  "zip": "89169",
+                  "country": "United States",
+                  "geoPoint": {
+                    "lat": 36.17497,
+                    "lon": -115.13722
+                  }
+                },
+                {
+                  "facility": "Research Site",
+                  "city": "Charleston",
+                  "state": "South Carolina",
+                  "zip": "29424",
+                  "country": "United States",
+                  "geoPoint": {
+                    "lat": 32.77632,
+                    "lon": -79.93275
+                  }
+                },
+                {
+                  "facility": "Research Site",
+                  "city": "Nashville",
+                  "state": "Tennessee",
+                  "zip": "37203",
+                  "country": "United States",
+                  "geoPoint": {
+                    "lat": 36.16589,
+                    "lon": -86.78444
+                  }
+                },
+                {
+                  "facility": "Research Site",
+                  "city": "Temple",
+                  "state": "Texas",
+                  "zip": "76508",
+                  "country": "United States",
+                  "geoPoint": {
+                    "lat": 31.09823,
+                    "lon": -97.34278
+                  }
+                },
+                {
+                  "facility": "Research Site",
+                  "city": "Lodz",
+                  "zip": "93-510",
+                  "country": "Poland",
+                  "geoPoint": {
+                    "lat": 51.77058,
+                    "lon": 19.47395
+                  }
+                }
+              ]
+            },
+            "protocolSection.armsInterventionsModule.armGroups": {
+              "state": "stated",
+              "value": [
+                {
+                  "label": "CAT-8015 20 microgram per kilogram (mcg/kg)",
+                  "type": "EXPERIMENTAL",
+                  "description": "Participants will receive 20 mcg/kg Moxetumomab pasudotox (CAT-8015) as an intravenous (IV) infusion over 30 minutes on Days 1, 3, and 5 of every 28-day cycle. Dose escalation is to be continued to the Maximum tolerated dose (MTD) or Optimal biologic dose (OBD). Subsequent dose levels with a 10 mcg/kg increase from the previous dose level are possible if an MTD or OBD is not reached by 60 mcg/kg.",
+                  "interventionNames": [
+                    "Drug: CAT-8015 20 mcg/kg"
+                  ]
+                },
+                {
+                  "label": "CAT-8015 30 mcg/kg",
+                  "type": "EXPERIMENTAL",
+                  "description": "Participants will receive 30 mcg/kg Moxetumomab pasudotox (CAT-8015) as an intravenous (IV) infusion over 30 minutes on Days 1, 3, and 5 of every 28-day cycle. Dose escalation is to be continued to the Maximum tolerated dose (MTD) or Optimal biologic dose (OBD). Subsequent dose levels with a 10 mcg/kg increase from the previous dose level are possible if an MTD or OBD is not reached by 60 mcg/kg.",
+                  "interventionNames": [
+                    "Drug: CAT-8015 30 mcg/kg"
+                  ]
+                },
+                {
+                  "label": "CAT-8015 40 mcg/kg",
+                  "type": "EXPERIMENTAL",
+                  "description": "Participants will receive 40 mcg/kg Moxetumomab pasudotox (CAT-8015) as an intravenous (IV) infusion over 30 minutes on Days 1, 3, and 5 of every 28-day cycle. Dose escalation is to be continued to the Maximum tolerated dose (MTD) or Optimal biologic dose (OBD). Subsequent dose levels with a 10 mcg/kg increase from the previous dose level are possible if an MTD or OBD is not reached by 60 mcg/kg.",
+                  "interventionNames": [
+                    "Drug: CAT-8015 40 mcg/kg"
+                  ]
+                },
+                {
+                  "label": "CAT-8015 50 mcg/kg",
+                  "type": "EXPERIMENTAL",
+                  "description": "Participants will receive 50 mcg/kg Moxetumomab pasudotox (CAT-8015) as an intravenous (IV) infusion over 30 minutes on Days 1, 3, and 5 of every 28-day cycle. Dose escalation is to be continued to the Maximum tolerated dose (MTD) or Optimal biologic dose (OBD). Subsequent dose levels with a 10 mcg/kg increase from the previous dose level are possible if an MTD or OBD is not reached by 60 mcg/kg.",
+                  "interventionNames": [
+                    "Drug: CAT-8015 50 mcg/kg"
+                  ]
+                },
+                {
+                  "label": "CAT-8015 60 mcg/kg",
+                  "type": "EXPERIMENTAL",
+                  "description": "Participants will receive 60 mcg/kg Moxetumomab pasudotox (CAT-8015) as an intravenous (IV) infusion over 30 minutes on Days 1, 3, and 5 of every 28-day cycle. Dose escalation is to be continued to the Maximum tolerated dose (MTD) or Optimal biologic dose (OBD). Subsequent dose levels with a 10 mcg/kg increase from the previous dose level are possible if an MTD or OBD is not reached by 60 mcg/kg.",
+                  "interventionNames": [
+                    "Drug: CAT-8015 60 mcg/kg"
+                  ]
+                }
+              ]
+            },
+            "protocolSection.armsInterventionsModule.interventions": {
+              "state": "stated",
+              "value": [
+                {
+                  "type": "DRUG",
+                  "name": "CAT-8015 20 mcg/kg",
+                  "description": "Participants will receive 20 mcg/kg Moxetumomab pasudotox (CAT-8015) as an intravenous (IV) infusion over 30 minutes on Days 1, 3, and 5 of every 28-day cycle.",
+                  "armGroupLabels": [
+                    "CAT-8015 20 microgram per kilogram (mcg/kg)"
+                  ]
+                },
+                {
+                  "type": "DRUG",
+                  "name": "CAT-8015 30 mcg/kg",
+                  "description": "Participants will receive 30 mcg/kg Moxetumomab pasudotox (CAT-8015) as an intravenous (IV) infusion over 30 minutes on Days 1, 3, and 5 of every 28-day cycle.",
+                  "armGroupLabels": [
+                    "CAT-8015 30 mcg/kg"
+                  ]
+                },
+                {
+                  "type": "DRUG",
+                  "name": "CAT-8015 40 mcg/kg",
+                  "description": "Participants will receive 40 mcg/kg Moxetumomab pasudotox (CAT-8015) as an intravenous (IV) infusion over 30 minutes on Days 1, 3, and 5 of every 28-day cycle.",
+                  "armGroupLabels": [
+                    "CAT-8015 40 mcg/kg"
+                  ]
+                },
+                {
+                  "type": "DRUG",
+                  "name": "CAT-8015 50 mcg/kg",
+                  "description": "Participants will receive 50 mcg/kg Moxetumomab pasudotox (CAT-8015) as an intravenous (IV) infusion over 30 minutes on Days 1, 3, and 5 of every 28-day cycle.",
+                  "armGroupLabels": [
+                    "CAT-8015 50 mcg/kg"
+                  ]
+                },
+                {
+                  "type": "DRUG",
+                  "name": "CAT-8015 60 mcg/kg",
+                  "description": "Participants will receive 60 mcg/kg Moxetumomab pasudotox (CAT-8015) as an intravenous (IV) infusion over 30 minutes on Days 1, 3, and 5 of every 28-day cycle.",
+                  "armGroupLabels": [
+                    "CAT-8015 60 mcg/kg"
+                  ]
+                }
+              ]
+            },
+            "resultsSection.adverseEventsModule": {
+              "state": "stated",
+              "value": {
+                "frequencyThreshold": "5",
+                "timeFrame": "From Screening (Day -28) to Post Therapy Day 30",
+                "eventGroups": [
+                  {
+                    "id": "EG000",
+                    "title": "CAT-8015 20 Microgram Per Kilogram (mcg/kg)",
+                    "description": "Participants received 20 mcg/kg Moxetumomab pasudotox (CAT-8015) as an intravenous (IV) infusion over 30 minutes on Days 1, 3, and 5 of every 28-day cycle. Dose escalation was to be continued to the Maximum tolerated dose (MTD) or Optimal biologic dose (OBD). Subsequent dose levels with a 10 mcg/kg increase from the previous dose level were possible if an MTD or OBD was not reached by 60 mcg/kg.",
+                    "seriousNumAffected": 0,
+                    "seriousNumAtRisk": 7,
+                    "otherNumAffected": 7,
+                    "otherNumAtRisk": 7
+                  },
+                  {
+                    "id": "EG001",
+                    "title": "CAT-8015 30 Microgram Per Kilogram (mcg/kg)",
+                    "description": "Participants received 30 mcg/kg Moxetumomab pasudotox (CAT-8015) as an intravenous (IV) infusion over 30 minutes on Days 1, 3, and 5 of every 28-day cycle. Dose escalation was to be continued to the Maximum tolerated dose (MTD) or Optimal biologic dose (OBD). Subsequent dose levels with a 10 mcg/kg increase from the previous dose level were possible if an MTD or OBD was not reached by 60 mcg/kg.",
+                    "seriousNumAffected": 3,
+                    "seriousNumAtRisk": 6,
+                    "otherNumAffected": 6,
+                    "otherNumAtRisk": 6
+                  },
+                  {
+                    "id": "EG002",
+                    "title": "CAT-8015 40 Microgram Per Kilogram (mcg/kg)",
+                    "description": "Participants received 40 mcg/kg Moxetumomab pasudotox (CAT-8015) as an intravenous (IV) infusion over 30 minutes on Days 1, 3, and 5 of every 28-day cycle. Dose escalation was to be continued to the Maximum tolerated dose (MTD) or Optimal biologic dose (OBD). Subsequent dose levels with a 10 mcg/kg increase from the previous dose level were possible if an MTD or OBD was not reached by 60 mcg/kg.",
+                    "seriousNumAffected": 2,
+                    "seriousNumAtRisk": 6,
+                    "otherNumAffected": 6,
+                    "otherNumAtRisk": 6
+                  },
+                  {
+                    "id": "EG003",
+                    "title": "CAT-8015 50 Microgram Per Kilogram (mcg/kg)",
+                    "description": "Participants received 50 mcg/kg Moxetumomab pasudotox (CAT-8015) as an intravenous (IV) infusion over 30 minutes on Days 1, 3, and 5 of every 28-day cycle. Dose escalation was to be continued to the Maximum tolerated dose (MTD) or Optimal biologic dose (OBD). Subsequent dose levels with a 10 mcg/kg increase from the previous dose level were possible if an MTD or OBD was not reached by 60 mcg/kg.",
+                    "seriousNumAffected": 0,
+                    "seriousNumAtRisk": 3,
+                    "otherNumAffected": 3,
+                    "otherNumAtRisk": 3
+                  },
+                  {
+                    "id": "EG004",
+                    "title": "CAT-8015 60 Microgram Per Kilogram (mcg/kg)",
+                    "description": "Participants received 60 mcg/kg Moxetumomab pasudotox (CAT-8015) as an intravenous (IV) infusion over 30 minutes on Days 1, 3, and 5 of every 28-day cycle. Dose escalation was to be continued to the Maximum tolerated dose (MTD) or Optimal biologic dose (OBD). Subsequent dose levels with a 10 mcg/kg increase from the previous dose level were possible if an MTD or OBD was not reached by 60 mcg/kg.",
+                    "seriousNumAffected": 1,
+                    "seriousNumAtRisk": 1,
+                    "otherNumAffected": 1,
+                    "otherNumAtRisk": 1
+                  }
+                ],
+                "seriousEvents": [
+                  {
+                    "term": "Lung infection",
+                    "organSystem": "Infections and infestations",
+                    "sourceVocabulary": "MedDRA 15.1",
+                    "assessmentType": "SYSTEMATIC_ASSESSMENT",
+                    "stats": [
+                      {
+                        "groupId": "EG000",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 7
+                      },
+                      {
+                        "groupId": "EG001",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG002",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG003",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 3
+                      },
+                      {
+                        "groupId": "EG004",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 1
+                      }
+                    ]
+                  },
+                  {
+                    "term": "Blood creatinine increased",
+                    "organSystem": "Investigations",
+                    "sourceVocabulary": "MedDRA 15.1",
+                    "assessmentType": "SYSTEMATIC_ASSESSMENT",
+                    "stats": [
+                      {
+                        "groupId": "EG000",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 7
+                      },
+                      {
+                        "groupId": "EG001",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG002",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG003",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 3
+                      },
+                      {
+                        "groupId": "EG004",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 1
+                      }
+                    ]
+                  },
+                  {
+                    "term": "Diffuse large b-cell lymphoma",
+                    "organSystem": "Neoplasms benign, malignant and unspecified (incl cysts and polyps)",
+                    "sourceVocabulary": "MedDRA 15.1",
+                    "assessmentType": "SYSTEMATIC_ASSESSMENT",
+                    "stats": [
+                      {
+                        "groupId": "EG000",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 7
+                      },
+                      {
+                        "groupId": "EG001",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG002",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG003",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 3
+                      },
+                      {
+                        "groupId": "EG004",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 1
+                      }
+                    ]
+                  },
+                  {
+                    "term": "Tumour associated fever",
+                    "organSystem": "Neoplasms benign, malignant and unspecified (incl cysts and polyps)",
+                    "sourceVocabulary": "MedDRA 15.1",
+                    "assessmentType": "SYSTEMATIC_ASSESSMENT",
+                    "stats": [
+                      {
+                        "groupId": "EG000",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 7
+                      },
+                      {
+                        "groupId": "EG001",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG002",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG003",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 3
+                      },
+                      {
+                        "groupId": "EG004",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 1
+                      }
+                    ]
+                  },
+                  {
+                    "term": "Renal failure acute",
+                    "organSystem": "Renal and urinary disorders",
+                    "sourceVocabulary": "MedDRA 15.1",
+                    "assessmentType": "SYSTEMATIC_ASSESSMENT",
+                    "stats": [
+                      {
+                        "groupId": "EG000",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 7
+                      },
+                      {
+                        "groupId": "EG001",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG002",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG003",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 3
+                      },
+                      {
+                        "groupId": "EG004",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 1
+                      }
+                    ]
+                  },
+                  {
+                    "term": "Acute respiratory distress syndrome",
+                    "organSystem": "Respiratory, thoracic and mediastinal disorders",
+                    "sourceVocabulary": "MedDRA 15.1",
+                    "assessmentType": "SYSTEMATIC_ASSESSMENT",
+                    "stats": [
+                      {
+                        "groupId": "EG000",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 7
+                      },
+                      {
+                        "groupId": "EG001",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG002",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG003",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 3
+                      },
+                      {
+                        "groupId": "EG004",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 1
+                      }
+                    ]
+                  },
+                  {
+                    "term": "Capillary leak syndrome",
+                    "organSystem": "Vascular disorders",
+                    "sourceVocabulary": "MedDRA 15.1",
+                    "assessmentType": "SYSTEMATIC_ASSESSMENT",
+                    "stats": [
+                      {
+                        "groupId": "EG000",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 7
+                      },
+                      {
+                        "groupId": "EG001",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG002",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG003",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 3
+                      },
+                      {
+                        "groupId": "EG004",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 1
+                      }
+                    ]
+                  }
+                ],
+                "otherEvents": [
+                  {
+                    "term": "Anaemia",
+                    "organSystem": "Blood and lymphatic system disorders",
+                    "sourceVocabulary": "MedDRA 15.1",
+                    "assessmentType": "SYSTEMATIC_ASSESSMENT",
+                    "stats": [
+                      {
+                        "groupId": "EG000",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 7
+                      },
+                      {
+                        "groupId": "EG001",
+                        "numEvents": 6,
+                        "numAffected": 3,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG002",
+                        "numEvents": 4,
+                        "numAffected": 3,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG003",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 3
+                      },
+                      {
+                        "groupId": "EG004",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 1
+                      }
+                    ]
+                  },
+                  {
+                    "term": "Neutropenia",
+                    "organSystem": "Blood and lymphatic system disorders",
+                    "sourceVocabulary": "MedDRA 15.1",
+                    "assessmentType": "SYSTEMATIC_ASSESSMENT",
+                    "stats": [
+                      {
+                        "groupId": "EG000",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 7
+                      },
+                      {
+                        "groupId": "EG001",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG002",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG003",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 3
+                      },
+                      {
+                        "groupId": "EG004",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 1
+                      }
+                    ]
+                  },
+                  {
+                    "term": "Thrombocytopenia",
+                    "organSystem": "Blood and lymphatic system disorders",
+                    "sourceVocabulary": "MedDRA 15.1",
+                    "assessmentType": "SYSTEMATIC_ASSESSMENT",
+                    "stats": [
+                      {
+                        "groupId": "EG000",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 7
+                      },
+                      {
+                        "groupId": "EG001",
+                        "numEvents": 5,
+                        "numAffected": 2,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG002",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG003",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 3
+                      },
+                      {
+                        "groupId": "EG004",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 1
+                      }
+                    ]
+                  },
+                  {
+                    "term": "Vision blurred",
+                    "organSystem": "Eye disorders",
+                    "sourceVocabulary": "MedDRA 15.1",
+                    "assessmentType": "SYSTEMATIC_ASSESSMENT",
+                    "stats": [
+                      {
+                        "groupId": "EG000",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 7
+                      },
+                      {
+                        "groupId": "EG001",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG002",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG003",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 3
+                      },
+                      {
+                        "groupId": "EG004",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 1
+                      }
+                    ]
+                  },
+                  {
+                    "term": "Abdominal pain",
+                    "organSystem": "Gastrointestinal disorders",
+                    "sourceVocabulary": "MedDRA 15.1",
+                    "assessmentType": "SYSTEMATIC_ASSESSMENT",
+                    "stats": [
+                      {
+                        "groupId": "EG000",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 7
+                      },
+                      {
+                        "groupId": "EG001",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG002",
+                        "numEvents": 2,
+                        "numAffected": 1,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG003",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 3
+                      },
+                      {
+                        "groupId": "EG004",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 1
+                      }
+                    ]
+                  },
+                  {
+                    "term": "Constipation",
+                    "organSystem": "Gastrointestinal disorders",
+                    "sourceVocabulary": "MedDRA 15.1",
+                    "assessmentType": "SYSTEMATIC_ASSESSMENT",
+                    "stats": [
+                      {
+                        "groupId": "EG000",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 7
+                      },
+                      {
+                        "groupId": "EG001",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG002",
+                        "numEvents": 2,
+                        "numAffected": 2,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG003",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 3
+                      },
+                      {
+                        "groupId": "EG004",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 1
+                      }
+                    ]
+                  },
+                  {
+                    "term": "Diarrhoea",
+                    "organSystem": "Gastrointestinal disorders",
+                    "sourceVocabulary": "MedDRA 15.1",
+                    "assessmentType": "SYSTEMATIC_ASSESSMENT",
+                    "stats": [
+                      {
+                        "groupId": "EG000",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 7
+                      },
+                      {
+                        "groupId": "EG001",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG002",
+                        "numEvents": 4,
+                        "numAffected": 3,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG003",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 3
+                      },
+                      {
+                        "groupId": "EG004",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 1
+                      }
+                    ]
+                  },
+                  {
+                    "term": "Dyspepsia",
+                    "organSystem": "Gastrointestinal disorders",
+                    "sourceVocabulary": "MedDRA 15.1",
+                    "assessmentType": "SYSTEMATIC_ASSESSMENT",
+                    "stats": [
+                      {
+                        "groupId": "EG000",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 7
+                      },
+                      {
+                        "groupId": "EG001",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG002",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG003",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 3
+                      },
+                      {
+                        "groupId": "EG004",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 1
+                      }
+                    ]
+                  },
+                  {
+                    "term": "Flatulence",
+                    "organSystem": "Gastrointestinal disorders",
+                    "sourceVocabulary": "MedDRA 15.1",
+                    "assessmentType": "SYSTEMATIC_ASSESSMENT",
+                    "stats": [
+                      {
+                        "groupId": "EG000",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 7
+                      },
+                      {
+                        "groupId": "EG001",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG002",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG003",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 3
+                      },
+                      {
+                        "groupId": "EG004",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 1
+                      }
+                    ]
+                  },
+                  {
+                    "term": "Nausea",
+                    "organSystem": "Gastrointestinal disorders",
+                    "sourceVocabulary": "MedDRA 15.1",
+                    "assessmentType": "SYSTEMATIC_ASSESSMENT",
+                    "stats": [
+                      {
+                        "groupId": "EG000",
+                        "numEvents": 2,
+                        "numAffected": 2,
+                        "numAtRisk": 7
+                      },
+                      {
+                        "groupId": "EG001",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG002",
+                        "numEvents": 3,
+                        "numAffected": 2,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG003",
+                        "numEvents": 2,
+                        "numAffected": 2,
+                        "numAtRisk": 3
+                      },
+                      {
+                        "groupId": "EG004",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 1
+                      }
+                    ]
+                  },
+                  {
+                    "term": "Vomiting",
+                    "organSystem": "Gastrointestinal disorders",
+                    "sourceVocabulary": "MedDRA 15.1",
+                    "assessmentType": "SYSTEMATIC_ASSESSMENT",
+                    "stats": [
+                      {
+                        "groupId": "EG000",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 7
+                      },
+                      {
+                        "groupId": "EG001",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG002",
+                        "numEvents": 3,
+                        "numAffected": 2,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG003",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 3
+                      },
+                      {
+                        "groupId": "EG004",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 1
+                      }
+                    ]
+                  },
+                  {
+                    "term": "Chills",
+                    "organSystem": "General disorders",
+                    "sourceVocabulary": "MedDRA 15.1",
+                    "assessmentType": "SYSTEMATIC_ASSESSMENT",
+                    "stats": [
+                      {
+                        "groupId": "EG000",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 7
+                      },
+                      {
+                        "groupId": "EG001",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG002",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG003",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 3
+                      },
+                      {
+                        "groupId": "EG004",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 1
+                      }
+                    ]
+                  },
+                  {
+                    "term": "Face oedema",
+                    "organSystem": "General disorders",
+                    "sourceVocabulary": "MedDRA 15.1",
+                    "assessmentType": "SYSTEMATIC_ASSESSMENT",
+                    "stats": [
+                      {
+                        "groupId": "EG000",
+                        "numEvents": 2,
+                        "numAffected": 2,
+                        "numAtRisk": 7
+                      },
+                      {
+                        "groupId": "EG001",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG002",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG003",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 3
+                      },
+                      {
+                        "groupId": "EG004",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 1
+                      }
+                    ]
+                  },
+                  {
+                    "term": "Fatigue",
+                    "organSystem": "General disorders",
+                    "sourceVocabulary": "MedDRA 15.1",
+                    "assessmentType": "SYSTEMATIC_ASSESSMENT",
+                    "stats": [
+                      {
+                        "groupId": "EG000",
+                        "numEvents": 6,
+                        "numAffected": 5,
+                        "numAtRisk": 7
+                      },
+                      {
+                        "groupId": "EG001",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG002",
+                        "numEvents": 4,
+                        "numAffected": 4,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG003",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 3
+                      },
+                      {
+                        "groupId": "EG004",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 1
+                      }
+                    ]
+                  },
+                  {
+                    "term": "Oedema peripheral",
+                    "organSystem": "General disorders",
+                    "sourceVocabulary": "MedDRA 15.1",
+                    "assessmentType": "SYSTEMATIC_ASSESSMENT",
+                    "stats": [
+                      {
+                        "groupId": "EG000",
+                        "numEvents": 5,
+                        "numAffected": 4,
+                        "numAtRisk": 7
+                      },
+                      {
+                        "groupId": "EG001",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG002",
+                        "numEvents": 11,
+                        "numAffected": 3,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG003",
+                        "numEvents": 3,
+                        "numAffected": 2,
+                        "numAtRisk": 3
+                      },
+                      {
+                        "groupId": "EG004",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 1
+                      }
+                    ]
+                  },
+                  {
+                    "term": "Pain",
+                    "organSystem": "General disorders",
+                    "sourceVocabulary": "MedDRA 15.1",
+                    "assessmentType": "SYSTEMATIC_ASSESSMENT",
+                    "stats": [
+                      {
+                        "groupId": "EG000",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 7
+                      },
+                      {
+                        "groupId": "EG001",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG002",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG003",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 3
+                      },
+                      {
+                        "groupId": "EG004",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 1
+                      }
+                    ]
+                  },
+                  {
+                    "term": "Pyrexia",
+                    "organSystem": "General disorders",
+                    "sourceVocabulary": "MedDRA 15.1",
+                    "assessmentType": "SYSTEMATIC_ASSESSMENT",
+                    "stats": [
+                      {
+                        "groupId": "EG000",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 7
+                      },
+                      {
+                        "groupId": "EG001",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG002",
+                        "numEvents": 2,
+                        "numAffected": 1,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG003",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 3
+                      },
+                      {
+                        "groupId": "EG004",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 1
+                      }
+                    ]
+                  },
+                  {
+                    "term": "Urinary tract infection",
+                    "organSystem": "Infections and infestations",
+                    "sourceVocabulary": "MedDRA 15.1",
+                    "assessmentType": "SYSTEMATIC_ASSESSMENT",
+                    "stats": [
+                      {
+                        "groupId": "EG000",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 7
+                      },
+                      {
+                        "groupId": "EG001",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG002",
+                        "numEvents": 2,
+                        "numAffected": 1,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG003",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 3
+                      },
+                      {
+                        "groupId": "EG004",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 1
+                      }
+                    ]
+                  },
+                  {
+                    "term": "Alanine aminotransferase increased",
+                    "organSystem": "Investigations",
+                    "sourceVocabulary": "MedDRA 15.1",
+                    "assessmentType": "SYSTEMATIC_ASSESSMENT",
+                    "stats": [
+                      {
+                        "groupId": "EG000",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 7
+                      },
+                      {
+                        "groupId": "EG001",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG002",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG003",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 3
+                      },
+                      {
+                        "groupId": "EG004",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 1
+                      }
+                    ]
+                  },
+                  {
+                    "term": "Aspartate aminotransferase increased",
+                    "organSystem": "Investigations",
+                    "sourceVocabulary": "MedDRA 15.1",
+                    "assessmentType": "SYSTEMATIC_ASSESSMENT",
+                    "stats": [
+                      {
+                        "groupId": "EG000",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 7
+                      },
+                      {
+                        "groupId": "EG001",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG002",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG003",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 3
+                      },
+                      {
+                        "groupId": "EG004",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 1
+                      }
+                    ]
+                  },
+                  {
+                    "term": "Blood alkaline phosphatase increased",
+                    "organSystem": "Investigations",
+                    "sourceVocabulary": "MedDRA 15.1",
+                    "assessmentType": "SYSTEMATIC_ASSESSMENT",
+                    "stats": [
+                      {
+                        "groupId": "EG000",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 7
+                      },
+                      {
+                        "groupId": "EG001",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG002",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG003",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 3
+                      },
+                      {
+                        "groupId": "EG004",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 1
+                      }
+                    ]
+                  },
+                  {
+                    "term": "Blood creatinine increased",
+                    "organSystem": "Investigations",
+                    "sourceVocabulary": "MedDRA 15.1",
+                    "assessmentType": "SYSTEMATIC_ASSESSMENT",
+                    "stats": [
+                      {
+                        "groupId": "EG000",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 7
+                      },
+                      {
+                        "groupId": "EG001",
+                        "numEvents": 8,
+                        "numAffected": 2,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG002",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG003",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 3
+                      },
+                      {
+                        "groupId": "EG004",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 1
+                      }
+                    ]
+                  },
+                  {
+                    "term": "Electrocardiogram qt prolonged",
+                    "organSystem": "Investigations",
+                    "sourceVocabulary": "MedDRA 15.1",
+                    "assessmentType": "SYSTEMATIC_ASSESSMENT",
+                    "stats": [
+                      {
+                        "groupId": "EG000",
+                        "numEvents": 2,
+                        "numAffected": 2,
+                        "numAtRisk": 7
+                      },
+                      {
+                        "groupId": "EG001",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG002",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG003",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 3
+                      },
+                      {
+                        "groupId": "EG004",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 1
+                      }
+                    ]
+                  },
+                  {
+                    "term": "Neutrophil count decreased",
+                    "organSystem": "Investigations",
+                    "sourceVocabulary": "MedDRA 15.1",
+                    "assessmentType": "SYSTEMATIC_ASSESSMENT",
+                    "stats": [
+                      {
+                        "groupId": "EG000",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 7
+                      },
+                      {
+                        "groupId": "EG001",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG002",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG003",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 3
+                      },
+                      {
+                        "groupId": "EG004",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 1
+                      }
+                    ]
+                  },
+                  {
+                    "term": "Platelet count decreased",
+                    "organSystem": "Investigations",
+                    "sourceVocabulary": "MedDRA 15.1",
+                    "assessmentType": "SYSTEMATIC_ASSESSMENT",
+                    "stats": [
+                      {
+                        "groupId": "EG000",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 7
+                      },
+                      {
+                        "groupId": "EG001",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG002",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG003",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 3
+                      },
+                      {
+                        "groupId": "EG004",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 1
+                      }
+                    ]
+                  },
+                  {
+                    "term": "Decreased appetite",
+                    "organSystem": "Metabolism and nutrition disorders",
+                    "sourceVocabulary": "MedDRA 15.1",
+                    "assessmentType": "SYSTEMATIC_ASSESSMENT",
+                    "stats": [
+                      {
+                        "groupId": "EG000",
+                        "numEvents": 2,
+                        "numAffected": 2,
+                        "numAtRisk": 7
+                      },
+                      {
+                        "groupId": "EG001",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG002",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG003",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 3
+                      },
+                      {
+                        "groupId": "EG004",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 1
+                      }
+                    ]
+                  },
+                  {
+                    "term": "Hypercalcaemia",
+                    "organSystem": "Metabolism and nutrition disorders",
+                    "sourceVocabulary": "MedDRA 15.1",
+                    "assessmentType": "SYSTEMATIC_ASSESSMENT",
+                    "stats": [
+                      {
+                        "groupId": "EG000",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 7
+                      },
+                      {
+                        "groupId": "EG001",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG002",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG003",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 3
+                      },
+                      {
+                        "groupId": "EG004",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 1
+                      }
+                    ]
+                  },
+                  {
+                    "term": "Hyperglycaemia",
+                    "organSystem": "Metabolism and nutrition disorders",
+                    "sourceVocabulary": "MedDRA 15.1",
+                    "assessmentType": "SYSTEMATIC_ASSESSMENT",
+                    "stats": [
+                      {
+                        "groupId": "EG000",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 7
+                      },
+                      {
+                        "groupId": "EG001",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG002",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG003",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 3
+                      },
+                      {
+                        "groupId": "EG004",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 1
+                      }
+                    ]
+                  },
+                  {
+                    "term": "Hyperkalaemia",
+                    "organSystem": "Metabolism and nutrition disorders",
+                    "sourceVocabulary": "MedDRA 15.1",
+                    "assessmentType": "SYSTEMATIC_ASSESSMENT",
+                    "stats": [
+                      {
+                        "groupId": "EG000",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 7
+                      },
+                      {
+                        "groupId": "EG001",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG002",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG003",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 3
+                      },
+                      {
+                        "groupId": "EG004",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 1
+                      }
+                    ]
+                  },
+                  {
+                    "term": "Hypernatraemia",
+                    "organSystem": "Metabolism and nutrition disorders",
+                    "sourceVocabulary": "MedDRA 15.1",
+                    "assessmentType": "SYSTEMATIC_ASSESSMENT",
+                    "stats": [
+                      {
+                        "groupId": "EG000",
+                        "numEvents": 2,
+                        "numAffected": 2,
+                        "numAtRisk": 7
+                      },
+                      {
+                        "groupId": "EG001",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG002",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG003",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 3
+                      },
+                      {
+                        "groupId": "EG004",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 1
+                      }
+                    ]
+                  },
+                  {
+                    "term": "Hypertriglyceridaemia",
+                    "organSystem": "Metabolism and nutrition disorders",
+                    "sourceVocabulary": "MedDRA 15.1",
+                    "assessmentType": "SYSTEMATIC_ASSESSMENT",
+                    "stats": [
+                      {
+                        "groupId": "EG000",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 7
+                      },
+                      {
+                        "groupId": "EG001",
+                        "numEvents": 9,
+                        "numAffected": 3,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG002",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG003",
+                        "numEvents": 2,
+                        "numAffected": 1,
+                        "numAtRisk": 3
+                      },
+                      {
+                        "groupId": "EG004",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 1
+                      }
+                    ]
+                  },
+                  {
+                    "term": "Hyperuricaemia",
+                    "organSystem": "Metabolism and nutrition disorders",
+                    "sourceVocabulary": "MedDRA 15.1",
+                    "assessmentType": "SYSTEMATIC_ASSESSMENT",
+                    "stats": [
+                      {
+                        "groupId": "EG000",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 7
+                      },
+                      {
+                        "groupId": "EG001",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG002",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG003",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 3
+                      },
+                      {
+                        "groupId": "EG004",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 1
+                      }
+                    ]
+                  },
+                  {
+                    "term": "Hypoalbuminaemia",
+                    "organSystem": "Metabolism and nutrition disorders",
+                    "sourceVocabulary": "MedDRA 15.1",
+                    "assessmentType": "SYSTEMATIC_ASSESSMENT",
+                    "stats": [
+                      {
+                        "groupId": "EG000",
+                        "numEvents": 2,
+                        "numAffected": 2,
+                        "numAtRisk": 7
+                      },
+                      {
+                        "groupId": "EG001",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG002",
+                        "numEvents": 2,
+                        "numAffected": 2,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG003",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 3
+                      },
+                      {
+                        "groupId": "EG004",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 1
+                      }
+                    ]
+                  },
+                  {
+                    "term": "Hypocalcaemia",
+                    "organSystem": "Metabolism and nutrition disorders",
+                    "sourceVocabulary": "MedDRA 15.1",
+                    "assessmentType": "SYSTEMATIC_ASSESSMENT",
+                    "stats": [
+                      {
+                        "groupId": "EG000",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 7
+                      },
+                      {
+                        "groupId": "EG001",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG002",
+                        "numEvents": 3,
+                        "numAffected": 2,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG003",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 3
+                      },
+                      {
+                        "groupId": "EG004",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 1
+                      }
+                    ]
+                  },
+                  {
+                    "term": "Hypokalaemia",
+                    "organSystem": "Metabolism and nutrition disorders",
+                    "sourceVocabulary": "MedDRA 15.1",
+                    "assessmentType": "SYSTEMATIC_ASSESSMENT",
+                    "stats": [
+                      {
+                        "groupId": "EG000",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 7
+                      },
+                      {
+                        "groupId": "EG001",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG002",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG003",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 3
+                      },
+                      {
+                        "groupId": "EG004",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 1
+                      }
+                    ]
+                  },
+                  {
+                    "term": "Hyponatraemia",
+                    "organSystem": "Metabolism and nutrition disorders",
+                    "sourceVocabulary": "MedDRA 15.1",
+                    "assessmentType": "SYSTEMATIC_ASSESSMENT",
+                    "stats": [
+                      {
+                        "groupId": "EG000",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 7
+                      },
+                      {
+                        "groupId": "EG001",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG002",
+                        "numEvents": 3,
+                        "numAffected": 3,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG003",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 3
+                      },
+                      {
+                        "groupId": "EG004",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 1
+                      }
+                    ]
+                  },
+                  {
+                    "term": "Hypophosphataemia",
+                    "organSystem": "Metabolism and nutrition disorders",
+                    "sourceVocabulary": "MedDRA 15.1",
+                    "assessmentType": "SYSTEMATIC_ASSESSMENT",
+                    "stats": [
+                      {
+                        "groupId": "EG000",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 7
+                      },
+                      {
+                        "groupId": "EG001",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG002",
+                        "numEvents": 2,
+                        "numAffected": 1,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG003",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 3
+                      },
+                      {
+                        "groupId": "EG004",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 1
+                      }
+                    ]
+                  },
+                  {
+                    "term": "Back pain",
+                    "organSystem": "Musculoskeletal and connective tissue disorders",
+                    "sourceVocabulary": "MedDRA 15.1",
+                    "assessmentType": "SYSTEMATIC_ASSESSMENT",
+                    "stats": [
+                      {
+                        "groupId": "EG000",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 7
+                      },
+                      {
+                        "groupId": "EG001",
+                        "numEvents": 2,
+                        "numAffected": 2,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG002",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG003",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 3
+                      },
+                      {
+                        "groupId": "EG004",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 1
+                      }
+                    ]
+                  },
+                  {
+                    "term": "Musculoskeletal chest pain",
+                    "organSystem": "Musculoskeletal and connective tissue disorders",
+                    "sourceVocabulary": "MedDRA 15.1",
+                    "assessmentType": "SYSTEMATIC_ASSESSMENT",
+                    "stats": [
+                      {
+                        "groupId": "EG000",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 7
+                      },
+                      {
+                        "groupId": "EG001",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG002",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG003",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 3
+                      },
+                      {
+                        "groupId": "EG004",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 1
+                      }
+                    ]
+                  },
+                  {
+                    "term": "Myalgia",
+                    "organSystem": "Musculoskeletal and connective tissue disorders",
+                    "sourceVocabulary": "MedDRA 15.1",
+                    "assessmentType": "SYSTEMATIC_ASSESSMENT",
+                    "stats": [
+                      {
+                        "groupId": "EG000",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 7
+                      },
+                      {
+                        "groupId": "EG001",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG002",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG003",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 3
+                      },
+                      {
+                        "groupId": "EG004",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 1
+                      }
+                    ]
+                  },
+                  {
+                    "term": "Pain in extremity",
+                    "organSystem": "Musculoskeletal and connective tissue disorders",
+                    "sourceVocabulary": "MedDRA 15.1",
+                    "assessmentType": "SYSTEMATIC_ASSESSMENT",
+                    "stats": [
+                      {
+                        "groupId": "EG000",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 7
+                      },
+                      {
+                        "groupId": "EG001",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG002",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG003",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 3
+                      },
+                      {
+                        "groupId": "EG004",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 1
+                      }
+                    ]
+                  },
+                  {
+                    "term": "Dizziness",
+                    "organSystem": "Nervous system disorders",
+                    "sourceVocabulary": "MedDRA 15.1",
+                    "assessmentType": "SYSTEMATIC_ASSESSMENT",
+                    "stats": [
+                      {
+                        "groupId": "EG000",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 7
+                      },
+                      {
+                        "groupId": "EG001",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG002",
+                        "numEvents": 2,
+                        "numAffected": 2,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG003",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 3
+                      },
+                      {
+                        "groupId": "EG004",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 1
+                      }
+                    ]
+                  },
+                  {
+                    "term": "Headache",
+                    "organSystem": "Nervous system disorders",
+                    "sourceVocabulary": "MedDRA 15.1",
+                    "assessmentType": "SYSTEMATIC_ASSESSMENT",
+                    "stats": [
+                      {
+                        "groupId": "EG000",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 7
+                      },
+                      {
+                        "groupId": "EG001",
+                        "numEvents": 4,
+                        "numAffected": 2,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG002",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG003",
+                        "numEvents": 2,
+                        "numAffected": 2,
+                        "numAtRisk": 3
+                      },
+                      {
+                        "groupId": "EG004",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 1
+                      }
+                    ]
+                  },
+                  {
+                    "term": "Insomnia",
+                    "organSystem": "Psychiatric disorders",
+                    "sourceVocabulary": "MedDRA 15.1",
+                    "assessmentType": "SYSTEMATIC_ASSESSMENT",
+                    "stats": [
+                      {
+                        "groupId": "EG000",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 7
+                      },
+                      {
+                        "groupId": "EG001",
+                        "numEvents": 3,
+                        "numAffected": 2,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG002",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG003",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 3
+                      },
+                      {
+                        "groupId": "EG004",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 1
+                      }
+                    ]
+                  },
+                  {
+                    "term": "Haematuria",
+                    "organSystem": "Renal and urinary disorders",
+                    "sourceVocabulary": "MedDRA 15.1",
+                    "assessmentType": "SYSTEMATIC_ASSESSMENT",
+                    "stats": [
+                      {
+                        "groupId": "EG000",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 7
+                      },
+                      {
+                        "groupId": "EG001",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG002",
+                        "numEvents": 5,
+                        "numAffected": 1,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG003",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 3
+                      },
+                      {
+                        "groupId": "EG004",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 1
+                      }
+                    ]
+                  },
+                  {
+                    "term": "Cough",
+                    "organSystem": "Respiratory, thoracic and mediastinal disorders",
+                    "sourceVocabulary": "MedDRA 15.1",
+                    "assessmentType": "SYSTEMATIC_ASSESSMENT",
+                    "stats": [
+                      {
+                        "groupId": "EG000",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 7
+                      },
+                      {
+                        "groupId": "EG001",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG002",
+                        "numEvents": 4,
+                        "numAffected": 3,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG003",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 3
+                      },
+                      {
+                        "groupId": "EG004",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 1
+                      }
+                    ]
+                  },
+                  {
+                    "term": "Dyspnoea",
+                    "organSystem": "Respiratory, thoracic and mediastinal disorders",
+                    "sourceVocabulary": "MedDRA 15.1",
+                    "assessmentType": "SYSTEMATIC_ASSESSMENT",
+                    "stats": [
+                      {
+                        "groupId": "EG000",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 7
+                      },
+                      {
+                        "groupId": "EG001",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG002",
+                        "numEvents": 2,
+                        "numAffected": 2,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG003",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 3
+                      },
+                      {
+                        "groupId": "EG004",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 1
+                      }
+                    ]
+                  },
+                  {
+                    "term": "Capillary leak syndrome",
+                    "organSystem": "Vascular disorders",
+                    "sourceVocabulary": "MedDRA 15.1",
+                    "assessmentType": "SYSTEMATIC_ASSESSMENT",
+                    "stats": [
+                      {
+                        "groupId": "EG000",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 7
+                      },
+                      {
+                        "groupId": "EG001",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG002",
+                        "numEvents": 3,
+                        "numAffected": 1,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG003",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 3
+                      },
+                      {
+                        "groupId": "EG004",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 1
+                      }
+                    ]
+                  },
+                  {
+                    "term": "Haematoma",
+                    "organSystem": "Vascular disorders",
+                    "sourceVocabulary": "MedDRA 15.1",
+                    "assessmentType": "SYSTEMATIC_ASSESSMENT",
+                    "stats": [
+                      {
+                        "groupId": "EG000",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 7
+                      },
+                      {
+                        "groupId": "EG001",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG002",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG003",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 3
+                      },
+                      {
+                        "groupId": "EG004",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 1
+                      }
+                    ]
+                  },
+                  {
+                    "term": "Hypertension",
+                    "organSystem": "Vascular disorders",
+                    "sourceVocabulary": "MedDRA 15.1",
+                    "assessmentType": "SYSTEMATIC_ASSESSMENT",
+                    "stats": [
+                      {
+                        "groupId": "EG000",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 7
+                      },
+                      {
+                        "groupId": "EG001",
+                        "numEvents": 2,
+                        "numAffected": 2,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG002",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG003",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 3
+                      },
+                      {
+                        "groupId": "EG004",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 1
+                      }
+                    ]
+                  },
+                  {
+                    "term": "Hypotension",
+                    "organSystem": "Vascular disorders",
+                    "sourceVocabulary": "MedDRA 15.1",
+                    "assessmentType": "SYSTEMATIC_ASSESSMENT",
+                    "stats": [
+                      {
+                        "groupId": "EG000",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 7
+                      },
+                      {
+                        "groupId": "EG001",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG002",
+                        "numEvents": 7,
+                        "numAffected": 1,
+                        "numAtRisk": 6
+                      },
+                      {
+                        "groupId": "EG003",
+                        "numEvents": 0,
+                        "numAffected": 0,
+                        "numAtRisk": 3
+                      },
+                      {
+                        "groupId": "EG004",
+                        "numEvents": 1,
+                        "numAffected": 1,
+                        "numAtRisk": 1
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            "resultsSection.adverseEventsModule.eventGroups": {
+              "state": "stated",
+              "value": [
+                {
+                  "id": "EG000",
+                  "title": "CAT-8015 20 Microgram Per Kilogram (mcg/kg)",
+                  "description": "Participants received 20 mcg/kg Moxetumomab pasudotox (CAT-8015) as an intravenous (IV) infusion over 30 minutes on Days 1, 3, and 5 of every 28-day cycle. Dose escalation was to be continued to the Maximum tolerated dose (MTD) or Optimal biologic dose (OBD). Subsequent dose levels with a 10 mcg/kg increase from the previous dose level were possible if an MTD or OBD was not reached by 60 mcg/kg.",
+                  "seriousNumAffected": 0,
+                  "seriousNumAtRisk": 7,
+                  "otherNumAffected": 7,
+                  "otherNumAtRisk": 7
+                },
+                {
+                  "id": "EG001",
+                  "title": "CAT-8015 30 Microgram Per Kilogram (mcg/kg)",
+                  "description": "Participants received 30 mcg/kg Moxetumomab pasudotox (CAT-8015) as an intravenous (IV) infusion over 30 minutes on Days 1, 3, and 5 of every 28-day cycle. Dose escalation was to be continued to the Maximum tolerated dose (MTD) or Optimal biologic dose (OBD). Subsequent dose levels with a 10 mcg/kg increase from the previous dose level were possible if an MTD or OBD was not reached by 60 mcg/kg.",
+                  "seriousNumAffected": 3,
+                  "seriousNumAtRisk": 6,
+                  "otherNumAffected": 6,
+                  "otherNumAtRisk": 6
+                },
+                {
+                  "id": "EG002",
+                  "title": "CAT-8015 40 Microgram Per Kilogram (mcg/kg)",
+                  "description": "Participants received 40 mcg/kg Moxetumomab pasudotox (CAT-8015) as an intravenous (IV) infusion over 30 minutes on Days 1, 3, and 5 of every 28-day cycle. Dose escalation was to be continued to the Maximum tolerated dose (MTD) or Optimal biologic dose (OBD). Subsequent dose levels with a 10 mcg/kg increase from the previous dose level were possible if an MTD or OBD was not reached by 60 mcg/kg.",
+                  "seriousNumAffected": 2,
+                  "seriousNumAtRisk": 6,
+                  "otherNumAffected": 6,
+                  "otherNumAtRisk": 6
+                },
+                {
+                  "id": "EG003",
+                  "title": "CAT-8015 50 Microgram Per Kilogram (mcg/kg)",
+                  "description": "Participants received 50 mcg/kg Moxetumomab pasudotox (CAT-8015) as an intravenous (IV) infusion over 30 minutes on Days 1, 3, and 5 of every 28-day cycle. Dose escalation was to be continued to the Maximum tolerated dose (MTD) or Optimal biologic dose (OBD). Subsequent dose levels with a 10 mcg/kg increase from the previous dose level were possible if an MTD or OBD was not reached by 60 mcg/kg.",
+                  "seriousNumAffected": 0,
+                  "seriousNumAtRisk": 3,
+                  "otherNumAffected": 3,
+                  "otherNumAtRisk": 3
+                },
+                {
+                  "id": "EG004",
+                  "title": "CAT-8015 60 Microgram Per Kilogram (mcg/kg)",
+                  "description": "Participants received 60 mcg/kg Moxetumomab pasudotox (CAT-8015) as an intravenous (IV) infusion over 30 minutes on Days 1, 3, and 5 of every 28-day cycle. Dose escalation was to be continued to the Maximum tolerated dose (MTD) or Optimal biologic dose (OBD). Subsequent dose levels with a 10 mcg/kg increase from the previous dose level were possible if an MTD or OBD was not reached by 60 mcg/kg.",
+                  "seriousNumAffected": 1,
+                  "seriousNumAtRisk": 1,
+                  "otherNumAffected": 1,
+                  "otherNumAtRisk": 1
+                }
+              ]
+            },
+            "resultsSection.participantFlowModule.periods": {
+              "state": "stated",
+              "value": [
+                {
+                  "title": "Overall Study",
+                  "milestones": [
+                    {
+                      "type": "STARTED",
+                      "achievements": [
+                        {
+                          "groupId": "FG000",
+                          "numSubjects": "7"
+                        },
+                        {
+                          "groupId": "FG001",
+                          "numSubjects": "6"
+                        },
+                        {
+                          "groupId": "FG002",
+                          "numSubjects": "6"
+                        },
+                        {
+                          "groupId": "FG003",
+                          "numSubjects": "3"
+                        },
+                        {
+                          "groupId": "FG004",
+                          "numSubjects": "1"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "COMPLETED",
+                      "achievements": [
+                        {
+                          "groupId": "FG000",
+                          "numSubjects": "0"
+                        },
+                        {
+                          "groupId": "FG001",
+                          "numSubjects": "0"
+                        },
+                        {
+                          "groupId": "FG002",
+                          "numSubjects": "0"
+                        },
+                        {
+                          "groupId": "FG003",
+                          "numSubjects": "0"
+                        },
+                        {
+                          "groupId": "FG004",
+                          "numSubjects": "0"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "NOT COMPLETED",
+                      "achievements": [
+                        {
+                          "groupId": "FG000",
+                          "numSubjects": "7"
+                        },
+                        {
+                          "groupId": "FG001",
+                          "numSubjects": "6"
+                        },
+                        {
+                          "groupId": "FG002",
+                          "numSubjects": "6"
+                        },
+                        {
+                          "groupId": "FG003",
+                          "numSubjects": "3"
+                        },
+                        {
+                          "groupId": "FG004",
+                          "numSubjects": "1"
+                        }
+                      ]
+                    }
+                  ],
+                  "dropWithdraws": [
+                    {
+                      "type": "Withdrawal by Subject",
+                      "reasons": [
+                        {
+                          "groupId": "FG000",
+                          "numSubjects": "0"
+                        },
+                        {
+                          "groupId": "FG001",
+                          "numSubjects": "0"
+                        },
+                        {
+                          "groupId": "FG002",
+                          "numSubjects": "1"
+                        },
+                        {
+                          "groupId": "FG003",
+                          "numSubjects": "0"
+                        },
+                        {
+                          "groupId": "FG004",
+                          "numSubjects": "0"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "undefined",
+                      "reasons": [
+                        {
+                          "groupId": "FG000",
+                          "numSubjects": "1"
+                        },
+                        {
+                          "groupId": "FG001",
+                          "numSubjects": "0"
+                        },
+                        {
+                          "groupId": "FG002",
+                          "numSubjects": "1"
+                        },
+                        {
+                          "groupId": "FG003",
+                          "numSubjects": "1"
+                        },
+                        {
+                          "groupId": "FG004",
+                          "numSubjects": "0"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "Adverse Event",
+                      "reasons": [
+                        {
+                          "groupId": "FG000",
+                          "numSubjects": "0"
+                        },
+                        {
+                          "groupId": "FG001",
+                          "numSubjects": "3"
+                        },
+                        {
+                          "groupId": "FG002",
+                          "numSubjects": "1"
+                        },
+                        {
+                          "groupId": "FG003",
+                          "numSubjects": "0"
+                        },
+                        {
+                          "groupId": "FG004",
+                          "numSubjects": "1"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "Progressive disease",
+                      "reasons": [
+                        {
+                          "groupId": "FG000",
+                          "numSubjects": "6"
+                        },
+                        {
+                          "groupId": "FG001",
+                          "numSubjects": "2"
+                        },
+                        {
+                          "groupId": "FG002",
+                          "numSubjects": "3"
+                        },
+                        {
+                          "groupId": "FG003",
+                          "numSubjects": "2"
+                        },
+                        {
+                          "groupId": "FG004",
+                          "numSubjects": "0"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "Death",
+                      "reasons": [
+                        {
+                          "groupId": "FG000",
+                          "numSubjects": "0"
+                        },
+                        {
+                          "groupId": "FG001",
+                          "numSubjects": "1"
+                        },
+                        {
+                          "groupId": "FG002",
+                          "numSubjects": "0"
+                        },
+                        {
+                          "groupId": "FG003",
+                          "numSubjects": "0"
+                        },
+                        {
+                          "groupId": "FG004",
+                          "numSubjects": "0"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            "protocolSection.eligibilityModule.minimumAge": {
+              "state": "stated",
+              "value": "18 Years"
+            },
+            "protocolSection.eligibilityModule.maximumAge": {
+              "state": "stated",
+              "value": "99 Years"
+            },
+            "protocolSection.statusModule.startDateStruct": {
+              "state": "stated",
+              "value": {
+                "date": "2010-02-15",
+                "type": "ACTUAL"
+              }
+            }
+          },
+          "checks": [
+            {
+              "id": "closed_primary_completion_actual",
+              "label": "Overall status COMPLETED or TERMINATED → primary completion date typed ACTUAL",
+              "outcome": "consistent",
+              "detail": "overallStatus=COMPLETED; primaryCompletionDateStruct.type=ACTUAL; primaryCompletionDateStruct.date=2013-03-04",
+              "source": [
+                "protocolSection.statusModule.overallStatus",
+                "protocolSection.statusModule.primaryCompletionDateStruct"
+              ],
+              "rule": "P#OverallStatus «Completed: The study has concluded normally; participants are no longer receiving an intervention or being examined (that is, last participant’s last visit has occurred)»; «Terminated: Study halted prematurely and will not resume; participants are no longer being examined or receiving intervention». P#LastFollowUpDate «Once the clinical study has reached the primary completion date, the responsible party must update the Primary Completion Date to reflect the actual primary completion date.»",
+              "basis": "stated rule"
+            },
+            {
+              "id": "closed_completion_actual",
+              "label": "Overall status COMPLETED or TERMINATED → study completion date typed ACTUAL",
+              "outcome": "consistent",
+              "detail": "overallStatus=COMPLETED; completionDateStruct.type=ACTUAL; completionDateStruct.date=2013-03-04",
+              "source": [
+                "protocolSection.statusModule.overallStatus",
+                "protocolSection.statusModule.completionDateStruct"
+              ],
+              "rule": "The status definitions above. P#LastFollowUpDate «Once the clinical study has reached the study completion date, the responsible party must update the Study Completion Date to reflect the actual study completion date.»",
+              "basis": "stated rule"
+            },
+            {
+              "id": "withdrawn_actual_enrollment_zero",
+              "label": "Overall status WITHDRAWN and enrollment typed ACTUAL → enrollment 0",
+              "outcome": "not_applicable",
+              "detail": "overallStatus=COMPLETED; enrollmentInfo.type=ACTUAL; enrollmentInfo.count=23",
+              "source": [
+                "protocolSection.statusModule.overallStatus",
+                "protocolSection.designModule.enrollmentInfo"
+              ],
+              "rule": "P#OverallStatus «Withdrawn: Study halted prematurely, prior to enrollment of first participant»; P#IntEnrollment «the actual total number of participants that are enrolled in the clinical study»",
+              "basis": "entailed by definitions"
+            },
+            {
+              "id": "phase_interventional_only",
+              "label": "Study type other than INTERVENTIONAL → no phase other than NA",
+              "outcome": "not_applicable",
+              "detail": "studyType=INTERVENTIONAL; phases=['PHASE1', 'PHASE2']",
+              "source": [
+                "protocolSection.designModule.studyType",
+                "protocolSection.designModule.phases"
+              ],
+              "rule": "P#IntStudyDesign «Interventional Study Design (For interventional studies only)», containing P#StudyPhase «For a clinical trial of a drug product (including a biological product), the numerical phase of such clinical trial»",
+              "basis": "stated scope"
+            },
+            {
+              "id": "results_flag_first_submit",
+              "label": "hasResults true exactly when resultsFirstSubmitDate is present",
+              "outcome": "consistent",
+              "detail": "hasResults=True; statusModule.resultsFirstSubmitDate=2017-02-27",
+              "source": [
+                "hasResults",
+                "protocolSection.statusModule.resultsFirstSubmitDate"
+              ],
+              "rule": "API metadata, hasResults: «FUNC Present(ResultsFirstSubmitDate)»; «Flag that indicates if a study has posted results on public site»",
+              "basis": "registry function"
+            },
+            {
+              "id": "recruiting_site_recruiting_study",
+              "label": "Two or more locations, one RECRUITING → overall status RECRUITING",
+              "outcome": "not_checkable",
+              "detail": "overallStatus=COMPLETED; 8 locations, 0 RECRUITING",
+              "source": [
+                "protocolSection.statusModule.overallStatus",
+                "protocolSection.contactsLocationsModule.locations"
+              ],
+              "rule": "P#OverallStatus «If at least one facility in a multi-site clinical study has an Individual Site Status of \"Recruiting,\" then the Overall Recruitment Status for the study must be \"Recruiting.\"» An overall UNKNOWN is the registry's own assignment (glossary, «Last verified»).",
+              "basis": "stated rule"
+            },
+            {
+              "id": "arm_interventions_declared",
+              "label": "Every intervention an arm names is '<type label>: <name>' of a declared intervention",
+              "outcome": "consistent",
+              "detail": "5 consistent",
+              "source": [
+                "protocolSection.armsInterventionsModule.armGroups",
+                "protocolSection.armsInterventionsModule.interventions"
+              ],
+              "rule": "P#InterventionName «If multiple Arms or Groups have been specified, indicate which Interventions (or exposures) are in each Arm or Group of the study, using the Cross-Reference check boxes.» The label is the registry's enum table's legacyValue for the intervention's type.",
+              "basis": "entailed by definitions"
+            },
+            {
+              "id": "intervention_arms_defined",
+              "label": "Every arm label an intervention names is the label of a defined arm",
+              "outcome": "consistent",
+              "detail": "5 consistent",
+              "source": [
+                "protocolSection.armsInterventionsModule.armGroups",
+                "protocolSection.armsInterventionsModule.interventions"
+              ],
+              "rule": "P#InterventionName, as above (Arm or Group/Interventional Cross-Reference).",
+              "basis": "entailed by definitions"
+            },
+            {
+              "id": "ae_counts_name_groups",
+              "label": "Every adverse-event count names one of the module's event groups",
+              "outcome": "consistent",
+              "detail": "290 consistent",
+              "source": [
+                "resultsSection.adverseEventsModule"
+              ],
+              "rule": "API metadata: stats.groupId «Internal Arm/Group ID»; eventGroups.id «Internal group id». R#AdverseEventAffected «Number of participants, in each arm/group».",
+              "basis": "entailed by definitions"
+            },
+            {
+              "id": "ae_affected_within_at_risk",
+              "label": "Per event and group: participants affected ≤ participants at risk",
+              "outcome": "consistent",
+              "detail": "290 consistent",
+              "source": [
+                "resultsSection.adverseEventsModule"
+              ],
+              "rule": "R#AdverseEventAffected «Number of participants, in each arm/group, experiencing at least one event being reported.» R#AdverseEventAtRisk «Number of participants assessed, in each arm/group, for adverse events (that is, the denominator for calculating frequency of adverse events). Leave blank to indicate that the value specified as the total at risk in the arm/group for the table should be used.»",
+              "basis": "entailed by definitions"
+            },
+            {
+              "id": "ae_event_within_group_total",
+              "label": "Per event and group: participants affected ≤ the group's total affected in that table",
+              "outcome": "consistent",
+              "detail": "290 consistent",
+              "source": [
+                "resultsSection.adverseEventsModule"
+              ],
+              "rule": "R#SeriousTotalAffected «Overall number of participants affected by one or more Serious Adverse Events, for each arm/group.» R#OtherAE_Affected «Overall number of participants affected, for each arm/group, by at least one Other (Not Including Serious) Adverse Event(s) reported in the table.»",
+              "basis": "entailed by definitions"
+            },
+            {
+              "id": "ae_events_at_least_affected",
+              "label": "Per event and group, where events are reported: events ≥ participants affected",
+              "outcome": "consistent",
+              "detail": "290 consistent",
+              "source": [
+                "resultsSection.adverseEventsModule"
+              ],
+              "rule": "R#OtherAEEvents «Number of occurrences, in each arm/group, of the adverse event being reported.» R#AdverseEventAffected «experiencing at least one event being reported».",
+              "basis": "entailed by definitions"
+            },
+            {
+              "id": "ae_group_totals_within_at_risk",
+              "label": "Per group: deaths, serious and other totals affected ≤ the matching total at risk",
+              "outcome": "consistent",
+              "detail": "10 consistent",
+              "source": [
+                "resultsSection.adverseEventsModule.eventGroups"
+              ],
+              "rule": "R#Mortality_Affected «Overall number of participants, in each arm/group, who died due to any cause»; R#Mortality_AtRisk «included in the assessment of deaths due to any cause (that is, the denominator for calculating frequency of all-cause mortality)»; R#SeriousTotalAffected / R#SeriousAE_AtRisk and R#OtherAE_Affected / R#OtherAE_AtRisk likewise, each «(that is, the denominator for calculating frequency [...])».",
+              "basis": "entailed by definitions"
+            },
+            {
+              "id": "flow_reasons_account",
+              "label": "Per period and group, where reasons are given: their participants sum to those not completed",
+              "outcome": "consistent",
+              "detail": "5 consistent",
+              "source": [
+                "resultsSection.participantFlowModule.periods"
+              ],
+              "rule": "R#DWReason «If reasons are provided, the total number of participants listed as Not Completed must be accounted for by all reasons for non-completion.» R: Not Completed is «calculated automatically by subtracting Completed from Started».",
+              "basis": "stated rule"
+            },
+            {
+              "id": "age_limits_ordered",
+              "label": "Minimum age ≤ maximum age, where the units convert exactly",
+              "outcome": "consistent",
+              "detail": "minimumAge=18 Years; maximumAge=99 Years",
+              "source": [
+                "protocolSection.eligibilityModule.minimumAge",
+                "protocolSection.eligibilityModule.maximumAge"
+              ],
+              "rule": "P#EligibilityMinAge «The numerical value, if any, for the minimum age a potential participant must meet to be eligible for the clinical study.» P#EligibilityMaxAge «The numerical value, if any, for the maximum age a potential participant can be to be eligible for the clinical study.»",
+              "basis": "entailed by definitions"
+            },
+            {
+              "id": "start_before_primary_completion",
+              "label": "Study start date ≤ primary completion date, both typed ACTUAL, partial dates read as intervals",
+              "outcome": "consistent",
+              "detail": "startDateStruct.date=2010-02-15; startDateStruct.type=ACTUAL; primaryCompletionDateStruct.date=2013-03-04; primaryCompletionDateStruct.type=ACTUAL",
+              "source": [
+                "protocolSection.statusModule.startDateStruct",
+                "protocolSection.statusModule.primaryCompletionDateStruct"
+              ],
+              "rule": "P#StartDate «the actual date on which the first participant was enrolled»; P#LastFollowUpDate «The date that the final participant was examined or received an intervention for the purposes of final collection of data for the primary outcome»",
+              "basis": "entailed by definitions"
+            },
+            {
+              "id": "primary_completion_before_completion",
+              "label": "Primary completion date ≤ study completion date, both typed ACTUAL, partial dates read as intervals",
+              "outcome": "consistent",
+              "detail": "primaryCompletionDateStruct.date=2013-03-04; primaryCompletionDateStruct.type=ACTUAL; completionDateStruct.date=2013-03-04; completionDateStruct.type=ACTUAL",
+              "source": [
+                "protocolSection.statusModule.primaryCompletionDateStruct",
+                "protocolSection.statusModule.completionDateStruct"
+              ],
+              "rule": "P#LastFollowUpDate: primary completion is final collection of data «for the primary outcome»; study completion is final collection «for the primary and secondary outcome measures and adverse events».",
+              "basis": "entailed by definitions"
+            }
+          ]
+        },
+        "note": "Approved registry checks; findings do not alter source facts or establish clinical meaning"
       },
       "collection_presence": {
         "status": "known",
