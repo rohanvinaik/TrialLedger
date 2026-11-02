@@ -129,6 +129,9 @@ BIOMARKERS = "Biomarkers"
 FINDINGS = "Across-trial findings"
 RECURRING = "Recurring criteria"
 RECURRING_EXAMPLE = "Example wording (whole criteria; may carry further requirements)"
+# The denominator column of Posted results and Baseline: a count of participants as a number; any other unit
+# written out with its count, a unit the registry does not give said so.
+DENOMINATOR = "Denominator (participants unless otherwise specified)"
 READINGS = "Readings"
 DICTIONARY = "Column dictionary"
 
@@ -865,7 +868,12 @@ _STUDY_FIELDS: tuple[Field, ...] = (
         "Measure",
         "plain",
         (f"{OM}.title",),
-        (("sheet", POSTED, "Measure"), ("sheet", ANALYSES, "Measure"), STUDY_VIEW),
+        (
+            ("sheet", POSTED, "Measure"),
+            ("sheet", ANALYSES, "Measure"),
+            ("sheet", GROUPS, "Outcome measures"),
+            STUDY_VIEW,
+        ),
     ),
     Field(
         "studies[].posted_outcomes[].description",
@@ -930,14 +938,14 @@ _STUDY_FIELDS: tuple[Field, ...] = (
         "Units analyzed (other than participants)",
         "plain",
         (f"{OM}.typeUnitsAnalyzed",),
-        (("sheet", POSTED, "Denominator"),),
+        (("sheet", POSTED, DENOMINATOR),),
     ),
     Field(
         "studies[].posted_outcomes[].denominator_units",
         "Units of the measure's denominator",
         "plain",
         (f"{OM}.denomUnitsSelected",),
-        (("sheet", POSTED, "Denominator"),),
+        (("sheet", POSTED, DENOMINATOR),),
     ),
     Field(
         "studies[].posted_outcomes[].groups[].id",
@@ -965,21 +973,21 @@ _STUDY_FIELDS: tuple[Field, ...] = (
         "Denominator units (measure)",
         "plain",
         (f"{OM}.denoms[].units",),
-        (("sheet", POSTED, "Denominator"),),
+        (("sheet", POSTED, DENOMINATOR),),
     ),
     Field(
         "studies[].posted_outcomes[].denominators[].counts[].group",
         "Denominator group (measure)",
         "plain",
         (f"{OM}.denoms[].counts[].groupId",),
-        (("sheet", POSTED, "Denominator"),),
+        (("sheet", POSTED, DENOMINATOR),),
     ),
     Field(
         "studies[].posted_outcomes[].denominators[].counts[].value",
         "Denominator (measure)",
         "plain",
         (f"{OM}.denoms[].counts[].value",),
-        (("sheet", POSTED, "Denominator"),),
+        (("sheet", POSTED, DENOMINATOR),),
     ),
     Field(
         "studies[].posted_outcomes[].classes[].title",
@@ -993,21 +1001,21 @@ _STUDY_FIELDS: tuple[Field, ...] = (
         "Denominator units (class)",
         "plain",
         (f"{OM}.classes[].denoms[].units",),
-        (("sheet", POSTED, "Denominator"),),
+        (("sheet", POSTED, DENOMINATOR),),
     ),
     Field(
         "studies[].posted_outcomes[].classes[].denominators[].counts[].group",
         "Denominator group (class)",
         "plain",
         (f"{OM}.classes[].denoms[].counts[].groupId",),
-        (("sheet", POSTED, "Denominator"),),
+        (("sheet", POSTED, DENOMINATOR),),
     ),
     Field(
         "studies[].posted_outcomes[].classes[].denominators[].counts[].value",
         "Denominator (class)",
         "plain",
         (f"{OM}.classes[].denoms[].counts[].value",),
-        (("sheet", POSTED, "Denominator"),),
+        (("sheet", POSTED, DENOMINATOR),),
     ),
     Field(
         "studies[].posted_outcomes[].classes[].categories[].title",
@@ -1099,7 +1107,7 @@ _STUDY_FIELDS: tuple[Field, ...] = (
         "Units analyzed (other than participants)",
         "plain",
         (f"{BL}.typeUnitsAnalyzed",),
-        (("sheet", BASELINE, "Denominator"),),
+        (("sheet", BASELINE, DENOMINATOR),),
     ),
     Field(
         "studies[].baseline.groups[].id",
@@ -1128,7 +1136,7 @@ _STUDY_FIELDS: tuple[Field, ...] = (
             f"{label} ({where})",
             "plain",
             (f"{BL}.{path}denoms[].{key}",),
-            (("sheet", BASELINE, "Denominator"),),
+            (("sheet", BASELINE, DENOMINATOR),),
         )
         for scope, path, where in (
             ("", "", "baseline"),
@@ -1190,7 +1198,7 @@ _STUDY_FIELDS: tuple[Field, ...] = (
         "Units of the characteristic's denominator",
         "plain",
         (f"{BL}.measures[].denomUnitsSelected",),
-        (("sheet", BASELINE, "Denominator"),),
+        (("sheet", BASELINE, DENOMINATOR),),
     ),
     Field(
         "studies[].baseline.measures[].classes[].title",
@@ -1986,7 +1994,7 @@ SHEETS: tuple[Sheet, ...] = (
                 ),
             ),
             Column(
-                "Denominator",
+                DENOMINATOR,
                 (
                     "studies[].posted_outcomes[].units_analyzed",
                     "studies[].posted_outcomes[].denominator_units",
@@ -2095,7 +2103,7 @@ SHEETS: tuple[Sheet, ...] = (
                 ),
             ),
             Column(
-                "Denominator",
+                DENOMINATOR,
                 (
                     "studies[].baseline.units_analyzed",
                     "studies[].baseline.denominators[].units",
@@ -2171,7 +2179,8 @@ SHEETS: tuple[Sheet, ...] = (
     ),
     Sheet(
         GROUPS,
-        "trial × module × group",
+        "trial × module × group (a posted-outcome group once per trial per title and description, with the "
+        "measures it appears in)",
         (
             Column("Trial ID", ("studies[].nct",)),
             Column(ADDRESS, (), "address"),
@@ -2196,6 +2205,7 @@ SHEETS: tuple[Sheet, ...] = (
                     "studies[].adverse_events.groups[].description",
                 ),
             ),
+            Column("Outcome measures", ("studies[].posted_outcomes[].title",)),
             Column(
                 "Totals",
                 (
@@ -3111,6 +3121,7 @@ BLANK_BY_CONSTRUCTION: dict[tuple[str, str], tuple[str, ...]] = {
     (POSTED, "a measurement of an untitled class or category"): ("Class", "Category"),
     (BASELINE, "a measurement of an untitled class or category"): ("Class", "Category"),
     (GROUPS, "a group of any module but adverse events"): ("Column", "Totals"),
+    (GROUPS, "a group of any module but posted results"): ("Outcome measures",),
     (FINDINGS, "the one line below the signal minimum"): (
         "Finding",
         "Trial IDs",

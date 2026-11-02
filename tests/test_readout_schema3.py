@@ -259,12 +259,11 @@ def test_the_safety_rows_are_the_contract_examples_cell_for_cell():
         assert tuple(expected) in rows, expected
 
 
-def test_the_groups_sheet_names_the_adverse_event_groups_and_holds_no_posted_measure_groups():
+def test_the_groups_sheet_names_the_adverse_event_groups_g1_to_gn():
     record = record_of(tuple(SAFETY["trials"]))
     named = []
     for i, study in enumerate(record["studies"]):
         for row in readout.group_rows(study, i):
-            assert "posted_outcomes" not in row[1][0]
             if row[2][0] == "Adverse events":
                 values = [held[0] for held in row]
                 named.append(
@@ -314,7 +313,7 @@ def test_a_count_the_registry_does_not_give_is_not_reported_and_a_listed_zero_st
 def test_a_measurement_names_its_group_within_its_measure_and_its_denominator_at_its_scope():
     first = sheet_rows(contract.POSTED)[0]
     assert first["Group"] == "CAT-8015 20 Microgram Per Kilogram (mcg/kg)"
-    assert first["Denominator"] == 7 and first["Value"] == "NA"
+    assert first[contract.DENOMINATOR] == 7 and first["Value"] == "NA"
     assert first["Class"] is None and first["Category"] is None
     assert first["Comment"].startswith("Data was not reported")
     outcome = {"denominators": [{"units": "Participants", "counts": [{"group": "OG000", "value": "7"}]}]}
@@ -521,11 +520,11 @@ def preservation_problems(record):
                 ),
                 "Not stated",
             )
-            denominator = cells["Denominator"]
+            denominator = cells[contract.DENOMINATOR]
             if isinstance(denominator, int):
                 denominator = f"{denominator} Participants"
             if denominator.split(";")[0] != expected:
-                problems.append((pointer, "denominator", cells["Denominator"], expected))
+                problems.append((pointer, "denominator", cells[contract.DENOMINATOR], expected))
     headers, rows = plan[contract.SAFETY]
     for row in rows:
         cells = dict(zip(headers, (held[0] for held in row), strict=True))
@@ -755,3 +754,33 @@ def test_the_contracts_display_tables_are_whole():
         headers = {column.header for column in next(s for s in contract.SHEETS if s.name == sheet).columns}
         assert all(column in headers or column.startswith("G{n}") for column in columns), sheet
     assert set(contract.EMPTY_LISTING_WORDS) <= {sheet.name for sheet in contract.SHEETS}
+
+
+def test_a_posted_group_is_one_groups_row_per_title_and_description_and_each_measurement_links_to_it():
+    groups = sheet_rows(contract.GROUPS)
+    posted = [row for row in groups if row["Module"] == "Posted results"]
+    keys = [(row["Trial ID"], row["Title"], row["Description"]) for row in posted]
+    assert posted and len(keys) == len(set(keys))
+    first = posted[0]
+    assert first[contract.ADDRESS] == "/studies/0/posted_outcomes/0/groups/0"
+    assert first["Outcome measures"].startswith("Maximum Tolerated Dose (MTD) (/studies/0/posted_outcomes/0/")
+    assert first["Column"] is None and first["Totals"] is None
+    others = [row for row in groups if row["Module"] != "Posted results"]
+    assert all(row["Outcome measures"] is None for row in others)
+    headers, rows = PLAN[contract.POSTED]
+    at = headers.index("Group")
+    link = rows[0][at][1]
+    target = int(link.rsplit("A", 1)[1]) - 2
+    group_row = dict(
+        zip(PLAN[contract.GROUPS][0], (held[0] for held in PLAN[contract.GROUPS][1][target]), strict=True)
+    )
+    assert group_row["Title"] == rows[0][at][0] and group_row["Module"] == "Posted results"
+    assert not any("OG0" in str(row[at][0]) for row in rows)
+
+
+def test_a_denominator_names_any_unit_but_participants_and_never_drops_one():
+    other = {"denominators": [{"units": "Eyes", "counts": [{"group": "OG000", "value": "12"}]}]}
+    missing = {"denominators": [{"counts": [{"group": "OG000", "value": "9"}]}]}
+    assert readout.denominator_words([other], "OG000") == "12 Eyes"
+    assert readout.denominator_words([missing], "OG000") == "9 (units not stated)"
+    assert "participants unless otherwise specified" in contract.DENOMINATOR

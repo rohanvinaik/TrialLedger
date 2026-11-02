@@ -1011,7 +1011,8 @@ def numbered(values: tuple, address: str, positions: tuple[int, ...]) -> tuple:
 def denominator_words(scopes: list[Any], group: Any) -> Any:
     """A measurement's denominator: the innermost scope that gives one for its group (class, measure, module);
     a count of participants alone — the count as the registry writes it (a number cell); otherwise "<count>
-    <units>", several units joined by "; "; none — "Not stated"."""
+    <units>" (a unit the registry does not give: "<count> (units not stated)"), several joined by "; ";
+    none — "Not stated"."""
     for scope in scopes:
         found = [
             (value_words(count.get("value")), value_words(denominator.get("units")))
@@ -1022,7 +1023,11 @@ def denominator_words(scopes: list[Any], group: Any) -> Any:
         if len(found) == 1 and found[0][1] == "Participants":
             return found[0][0]
         if found:
-            return "; ".join(f"{count} {units}" for count, units in found)
+            # any other unit written out with its count; a unit the registry does not give, said so
+            return "; ".join(
+                f"{count} {units}" if units != NOT_STATED else f"{count} (units not stated)"
+                for count, units in found
+            )
     return NOT_STATED
 
 
@@ -1287,11 +1292,56 @@ def safety_rows(study: dict[str, Any], number: int, n: int) -> list[tuple]:
     return rows
 
 
+def posted_groups(study: dict[str, Any], number: int) -> list[tuple[tuple[Any, Any], str, list[str]]]:
+    """A trial's posted-outcome groups once per distinct (title, description): each with the address of its
+    first occurrence and every measure it appears in ("<measure title> (<address>)"), in the record's
+    order."""
+    found: dict[tuple[Any, Any], tuple[str, list[str]]] = {}
+    held = study.get("posted_outcomes")
+    for o, outcome in enumerate(held if isinstance(held, list) else []):
+        for g, group in enumerate(outcome.get("groups") or []):
+            key = (json_key(group.get("title")), json_key(group.get("description")))
+            address = f"/studies/{number}/posted_outcomes/{o}/groups/{g}"
+            measure = f"{value_words(outcome.get('title'))} ({address})"
+            if key not in found:
+                found[key] = (address, [])
+            if measure not in found[key][1]:
+                found[key][1].append(measure)
+    return [(key, address, measures) for key, (address, measures) in found.items()]
+
+
+def json_key(value: Any) -> Any:
+    """A value as a hashable key: text as it is, anything else its words."""
+    return value if isinstance(value, str) else str(value_words(value))
+
+
 def group_rows(study: dict[str, Any], number: int) -> list[tuple]:
-    """A trial's Groups rows: the groups of its baseline, participant flow and adverse events, each keyed
-    within its module (never matched across modules); the adverse-event groups named G1 ... with their totals.
-    A posted measure's groups are named on each Posted results row instead."""
+    """A trial's Groups rows: each posted-outcome group once per distinct title and description
+    (posted_groups), with the measures it appears in; then the groups of its baseline, participant flow and
+    adverse events, each keyed within its module (never matched across modules); the adverse-event groups
+    named G1 ... with their totals."""
     rows = []
+    held = study.get("posted_outcomes")
+    outcomes = held if isinstance(held, list) else []
+    for (title, description), address, measures in posted_groups(study, number):
+        ids = [
+            str(group.get("id"))
+            for outcome in outcomes
+            for group in outcome.get("groups") or []
+            if (json_key(group.get("title")), json_key(group.get("description"))) == (title, description)
+        ]
+        values = (
+            study["nct"],
+            address,
+            "Posted results",
+            ", ".join(dict.fromkeys(ids)),
+            None,
+            title,
+            description,
+            "\n".join(measures),
+            None,
+        )
+        rows.append(tuple(cell(value, "known", address) for value in values))
     for key, words in (
         ("baseline", "Baseline"),
         ("participant_flow", "Participant flow"),
@@ -1311,6 +1361,7 @@ def group_rows(study: dict[str, Any], number: int) -> list[tuple]:
                 f"G{g + 1}" if events else None,
                 value_words(group.get("title")),
                 value_words(group.get("description")),
+                None,
                 group_totals(group) if events else None,
             )
             rows.append(tuple(cell(value, "known", address) for value in values))
@@ -1741,6 +1792,9 @@ HOW_TO_READ = "\n".join(
         "Every listing row's Address in the record is where the assistant finds that row in landscape.json: "
         "ask about a row by its address. The Readings sheet lists every reading a rule made, with the words "
         "it read; the Column dictionary says where each column comes from.",
+        "A blank Class or Category in Posted results or Baseline is the registry's single unnamed level (the "
+        "measurement under it is still there; a measurement the registry does not give reads Not stated). A "
+        "Denominator is a count of participants unless it is written with another unit.",
         "A cell says in words what the registry does not give (Not stated, Not posted, Not reported, No "
         "reading produced). A blank cell is one whose column cannot apply to its row: a Safety group column "
         "past the trial's own groups, the unnamed class or category of a posted measure.",
@@ -1970,7 +2024,7 @@ LAYOUT: dict[str, tuple[str, dict[str, int], bool, int]] = {
             "Analysis population": 36,
             "Time frame": 26,
             "Group": 28,
-            "Denominator": 18,
+            contract.DENOMINATOR: 18,
             "Comment": 30,
         },
         True,
@@ -1991,7 +2045,14 @@ LAYOUT: dict[str, tuple[str, dict[str, int], bool, int]] = {
     ),
     contract.BASELINE: (
         "C2",
-        {**LISTING, "Characteristic": 30, "Population": 30, "Group": 28, "Denominator": 18, "Comment": 24},
+        {
+            **LISTING,
+            "Characteristic": 30,
+            "Population": 30,
+            "Group": 28,
+            contract.DENOMINATOR: 18,
+            "Comment": 24,
+        },
         True,
         6,
     ),
@@ -2082,6 +2143,34 @@ def written_safely(rows: list[tuple]) -> list[tuple]:
 EMPTY_WORDS = contract.EMPTY_LISTING_WORDS
 
 
+def linked_groups(record: dict[str, Any], posted: list[tuple], groups: list[tuple]) -> list[tuple]:
+    """Posted results rows whose Group cell links to the group's row in Groups: the row of the same trial and
+    the group's title and description, found through the measurement's address in the record."""
+    headers = sheet_headers(contract.POSTED, 0)
+    at_group = headers.index("Group")
+    where = {}
+    for index, row in enumerate(groups):
+        if row[2][0] == "Posted results":
+            sheet, number = place(index, CAPACITY, contract.GROUPS)
+            where[(row[0][0], row[5][0], row[6][0])] = f"#'{sheet}'!A{number}"
+    linked = []
+    for row in posted:
+        parts = str(row[1][0]).strip("/").split("/")
+        link = ""
+        if len(parts) == 10 and parts[0] == "studies":
+            study = record["studies"][int(parts[1])]
+            outcome = study["posted_outcomes"][int(parts[3])]
+            group_id = outcome["classes"][int(parts[5])]["categories"][int(parts[7])]["measurements"][
+                int(parts[9])
+            ].get("group")
+            group = next((g for g in outcome.get("groups") or [] if g.get("id") == group_id), {})
+            key = (study["nct"], json_key(group.get("title")), json_key(group.get("description")))
+            link = where.get(key, "")
+        held = row[at_group]
+        linked.append((*row[:at_group], (held[0], link, *held[2:]), *row[at_group + 1 :]))
+    return linked
+
+
 def book_plan(record: dict[str, Any]) -> list[tuple]:
     """Every sheet, in contract.SHEETS' order, as (name, headers, rows, page starts): the dossier first, so
     the index links to each trial's dossier and its publications band, and each band with a listing to the
@@ -2140,6 +2229,7 @@ def book_plan(record: dict[str, Any]) -> list[tuple]:
         sheet, row_number = place(starts[-1], CAPACITY, contract.REVIEW)
         sheet_p, row_p = place(publications or starts[-1], CAPACITY, contract.REVIEW)
         links_.append((f"#'{sheet}'!A{row_number}", f"#'{sheet_p}'!A{row_p}"))
+    rows[contract.POSTED] = linked_groups(record, rows[contract.POSTED], rows[contract.GROUPS])
     for name, words in EMPTY_WORDS.items():
         if not rows[name]:
             # the contract's one line: its words in the first column, no address, the rest blank

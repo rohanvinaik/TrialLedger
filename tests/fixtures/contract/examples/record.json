@@ -163,16 +163,8 @@
      ],
      "classes": [
       {
-       "title": {
-        "status": "not_stated",
-        "note": "not_reported"
-       },
        "categories": [
         {
-         "title": {
-          "status": "not_stated",
-          "note": "not_reported"
-         },
          "measurements": [
           {
            "group": "OG000",
@@ -232,10 +224,6 @@
         "title": "Age",
         "categories": [
          {
-          "title": {
-           "status": "not_stated",
-           "note": "not_reported"
-          },
           "measurements": [
            {
             "group": "BG000",
