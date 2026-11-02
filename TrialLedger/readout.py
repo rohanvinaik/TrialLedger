@@ -300,16 +300,22 @@ def held_kind(value: Any) -> str:
     """What a value of a schema-3 record is (pure — pinned).
 
     missing — None: the record holds no such key;
-    absent  — a value object of exactly (status, note): a value the registry does not hold;
-    reading — a value object of exactly (status, rule, words, result, note): a rule's reading;
-    plain   — anything else: a registry value as the registry holds it.
+    absent  — a value object of exactly the keys status and note, in any order, both text: a value the
+              registry does not hold;
+    reading — a value object of exactly the keys status, rule, words, result and note, in any order, its
+              status, rule and note text and its words a list: a rule's reading;
+    plain   — anything else (an object of other keys, or of these keys in another shape): a registry value as
+              the registry holds it.
     """
     if value is None:
         return "missing"
-    if isinstance(value, dict) and tuple(value) == ABSENT_KEYS:
+    if not isinstance(value, dict):
+        return "plain"
+    texts = all(isinstance(value.get(key), str) for key in ("status", "note"))
+    if set(value) == set(ABSENT_KEYS) and texts:
         return "absent"
-    if isinstance(value, dict) and tuple(value) == READING_KEYS:
-        return "reading"
+    if set(value) == set(READING_KEYS) and texts and isinstance(value["rule"], str):
+        return "reading" if isinstance(value["words"], list) else "plain"
     return "plain"
 
 
@@ -959,6 +965,7 @@ def group_title(groups: Any, group: Any) -> str:
 
 
 PLAIN_DECIMAL = re.compile(r"-?(0|[1-9][0-9]*)(\.[0-9]+)?")
+MAX_PLACES = 30  # the most decimal places a spreadsheet number format shows
 COUNT_FORMAT = "#,##0"
 
 
@@ -967,17 +974,22 @@ def registry_number(text: Any) -> tuple[str, Any, str]:
 
     number — the text is a plain decimal ("63.4", "63.40", "7", "-0.5": digits, an optional sign and point,
              no leading zero, no grouping comma), a negative zero excepted, with at most 15 significant
-             digits: (number, the int or float, the format that shows exactly the registry's decimal places:
-             "0" for none, "0.00" for two);
+             digits and at most MAX_PLACES decimal places, whose number written with the text's own decimal
+             places gives back exactly the text: (number, the int or float, the format that shows exactly the
+             registry's decimal places: "0" for none, "0.00" for two);
     text   — anything else ("NA", "<0.001", "1,500", "0.1-0.3", a number with more digits than a cell holds
-             exactly): (text, the value as given, "").
+             exactly, one a float underflows to zero or overflows, more decimal places than a format shows):
+             (text, the value as given, "").
     """
     if not isinstance(text, str) or not PLAIN_DECIMAL.fullmatch(text):
         return "text", text, ""
     whole, _point, places = text.lstrip("-").partition(".")
     digits = (whole + places).lstrip("0")
+    if len(digits) > 15 or len(places) > MAX_PLACES:
+        return "text", text, ""
     value: Any = float(text) if places else int(text)
-    if len(digits) > 15 or (text.startswith("-") and value == 0):
+    shown = f"{value:.{len(places)}f}" if places else str(value)
+    if shown != text or (text.startswith("-") and value == 0):
         return "text", text, ""
     return "number", value, "0." + "0" * len(places) if places else "0"
 

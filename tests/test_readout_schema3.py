@@ -77,7 +77,14 @@ def test_a_value_is_plain_absent_a_reading_or_missing():
     reading = {"status": "known", "rule": "r", "words": [], "result": "x", "note": ""}
     assert held_kind(reading) == "reading"
     assert held_kind({"date": "2020", "type": "ACTUAL"}) == "plain"
-    assert held_kind({"note": "x", "status": "not_stated"}) == "plain"  # the key order is the shape's
+    # recognised by their fields and shape, never by the order of their keys
+    assert held_kind({"note": "x", "status": "not_stated"}) == "absent"
+    assert held_kind({"note": "", "result": 1, "words": [], "rule": "r", "status": "known"}) == "reading"
+    assert held_kind({"status": "not_stated", "note": None}) == "plain"
+    assert held_kind({"status": "known", "rule": "r", "words": "w", "result": 1, "note": ""}) == "plain"
+    assert held_kind({"status": "known", "rule": None, "words": [], "result": 1, "note": ""}) == "plain"
+    assert held_kind({"status": "x", "note": "y", "extra": 1}) == "plain"
+    assert held_kind("text") == "plain" and held_kind(0) == "plain"
 
 
 @pytest.mark.parametrize(
@@ -359,6 +366,14 @@ def test_eligibility_registered_outcomes_and_flow_read_in_clinical_words():
         ("007", ("text", "007", "")),
         ("-0", ("text", "-0", "")),
         ("1234567890123456", ("text", "1234567890123456", "")),
+        # a float that underflows to zero, or overflows, is never written as a number
+        ("0." + "0" * 399 + "1", ("text", "0." + "0" * 399 + "1", "")),
+        ("1" + "0" * 400 + ".5", ("text", "1" + "0" * 400 + ".5", "")),
+        # more decimal places than a number format shows
+        ("0." + "0" * 30 + "1", ("text", "0." + "0" * 30 + "1", "")),
+        ("0." + "0" * 29 + "1", ("number", 1e-30, "0." + "0" * 30)),
+        # many decimal places the float gives back exactly at its own places
+        ("0.300000000000000", ("number", 0.3, "0." + "0" * 15)),
         (7, ("text", 7, "")),
     ],
 )
