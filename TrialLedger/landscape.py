@@ -3,7 +3,8 @@
 One record per run, laid out by the contract (`contract.FIELDS`): the request; the resolved scope; the
 manifest (the registry snapshot read, each study's digest and their Merkle root, the code commit, the rule
 versions, the retrieval coverage); the universes and their rule packs as run; per study, every contract field
-the registry record holds; across the cohort, the findings the evidence supports; and the record's own
+the registry record holds, its key criteria among them; across the cohort, the findings the evidence supports
+and the standard protocol language of each universe's trials; and the record's own
 description: `statuses`, `envelope` (what each key of a value object means) and `fields`, the field dictionary
 that states each field's label, kind and API path or rule once.
 
@@ -254,7 +255,7 @@ PLAIN_FIELDS: tuple[tuple[tuple[str, ...], tuple[str, ...], str], ...] = tuple(
 
 
 def list_prefix(template: str) -> str:
-    """The API path of the list a template's first "[]" segment names, "" when it names none (pure — pinned).
+    """The API path of the list a template's first "[]" segment names, "" when it names none (pure).
 
     "a.b[].c" gives "a.b[]"; "a.b[].c[].d" gives "a.b[]"; "a.b" gives "".
     """
@@ -263,7 +264,7 @@ def list_prefix(template: str) -> str:
 
 
 def below(template: str, prefix: str) -> str:
-    """A template relative to the list prefix that holds it: "" for the list's own entries (pure — pinned).
+    """A template relative to the list prefix that holds it: "" for the list's own entries (pure).
 
     `prefix` is list_prefix's for `template`, or "" for a template not in a list. "a.b[].c" below "a.b[]" is
     "c"; "a.b[]" below "a.b[]" is ""; any template below "" is itself.
@@ -433,7 +434,7 @@ def coordinate_readings(row: dict[str, Any]) -> list[tuple[str, dict[str, Any]]]
 
 
 def selection_readings(rows: dict[str, dict[str, Any]]) -> list[tuple[str, dict[str, Any]]]:
-    """Gene selection, per gene, at its three levels (pure — pinned).
+    """Gene selection, per gene, at its three levels (pure).
 
     `rows` map each gene to coherence.resolve's row for its "selection:<gene>" coordinate. A level's result
     names each gene whose domain that level narrows below every state (negative, positive, unknown):
@@ -496,7 +497,7 @@ def coordinate_section(resolved: dict[str, dict[str, Any]]) -> dict[str, dict[st
 
 
 def drug_class_reading(found: list[Any]) -> dict[str, Any]:
-    """An experimental drug's class as the reading found it (pure — pinned).
+    """An experimental drug's class as the reading found it (pure).
 
     `found` is the reading's [drug, state, classes, resolved by]. classified (NLM RxClass's FDA established
     pharmacologic class) and stated_by_record (the class its own entry states, known by the founder's decision
@@ -530,7 +531,7 @@ def modality_reading(extractions: list[tuple]) -> dict[str, Any]:
 
 
 def criterion_entries(criteria: list[tuple]) -> list[dict[str, Any]]:
-    """A study's criteria as itemized, each with its role and its readings (pure — pinned).
+    """A study's criteria as itemized, each with its role and its readings (pure).
 
     `criteria` are the reading's (piece, section, text, atoms), in the text's order. Each criterion: its
     heading (the section it sits under), its number within that section, its text as written, its role
@@ -578,7 +579,7 @@ def biomarker_mentions(
     criteria: list[dict[str, Any]], outcomes: list[dict[str, Any]]
 ) -> list[dict[str, Any]]:
     """Each biomarker a criterion's reading names and each registered outcome whose measure names a biomarker
-    endpoint, as a mention: its words, role and the rule that read it (pure — pinned).
+    endpoint, as a mention: its words, role and the rule that read it (pure).
 
     `criteria` are criterion_entries's, `outcomes` the study's registered outcomes, each with its category,
     measure and endpoint-class reading. A criterion's mention: the biomarker, the states it allows, its role
@@ -632,7 +633,7 @@ def key_category(concept: str, values: list[str]) -> str:
 
 def key_criteria(criteria: list[dict[str, Any]]) -> list[dict[str, Any]]:
     """The study's key criteria: each criterion with a reading in a key category, once a category
-    (pure — pinned).
+    (pure).
 
     `criteria` are criterion_entries's. For each criterion, in order, and each category its readings fall in
     (key_category), in the order first met: its text as written, its role (its role reading's result), the
@@ -745,7 +746,7 @@ def standard_language(studies: list[dict[str, Any]]) -> list[dict[str, Any]]:
 
 
 def open_questions(flags: list[tuple], admitted: set[str]) -> list[dict[str, Any]]:
-    """The study's review flags as closed questions for an expert, never answered here (pure — pinned).
+    """The study's review flags as closed questions for an expert, never answered here (pure).
 
     `flags` are review.flags_for's (kind, element, why, priority, evidence, question, options); `admitted` the
     coordinates the study's universe admits. A coordinate conflict on a coordinate the universe does not admit
@@ -763,7 +764,7 @@ def open_questions(flags: list[tuple], admitted: set[str]) -> list[dict[str, Any
 
 
 def criteria_evidence(criteria: list[tuple]) -> list[tuple[str, str, tuple[str, ...], str, str]]:
-    """The evidence coherence.resolve narrows a study's coordinates by, from its criteria (pure — pinned).
+    """The evidence coherence.resolve narrows a study's coordinates by, from its criteria (pure).
 
     For each atom, in order: its effective section (reading.effective_section), concept, values, its scope
     param ("" when it has none) and "criterion <piece>", exactly as reading.study_view gathers it.
