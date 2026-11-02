@@ -202,6 +202,22 @@ def test_the_dossier_shows_expected_facts_always_and_others_only_when_stated():
     assert not any(fact.startswith(("How the criteria", "Whether the record says")) for fact in heme)
 
 
+def test_a_key_criterion_is_one_row_its_categories_first():
+    rows = readout.key_criterion_rows(RECORD["studies"][1])
+    fact, value, label_ = rows[0]
+    assert (fact, label_) == ("Key criterion 1", "Reading")
+    lines = value.split("\n")
+    assert lines[0] == "Prior therapy and line"
+    assert lines[1].startswith("As written: * Radiological documentation of disease progression")
+    assert lines[2] == "Role: Inclusion"
+    assert lines[3] == "Reading: Prior lines of therapy: 1 or 2 or 3+; Prior treatment: EGFR inhibitor"
+    texts = [row[1].split("\n")[1] for row in rows]
+    assert len(texts) == len(set(texts))
+    two = {"categories": ["Performance status", "CNS metastases"], "readings": []}
+    assert readout.key_categories(two) == "Performance status; CNS metastases"
+    assert readout.key_categories({}) == "Not stated"
+
+
 def test_the_dossier_has_key_criteria_and_each_band_links_to_its_listing():
     rows = sheet_rows(contract.REVIEW)
     key = [row for row in rows if row["Section"] == "Key criteria" and row["Trial ID"] == "NCT02151981"]
@@ -364,11 +380,12 @@ def test_an_empty_listing_and_the_across_trial_sheets_say_so_on_one_line():
     # three trials, below the signal minimum: the cohort holds its thresholds and why, and no row
     assert set(RECORD["cohort"]) == {"thresholds", "reason"}
     (findings,) = sheet_rows(contract.FINDINGS)
-    assert findings["Type"].startswith("Too few comparable trials to assess: 3 trials here")
+    assert findings["Type"] == "Too few comparable trials to assess"
+    assert findings["Population and limits"] == "Too few comparable trials to assess (3; at least 5 needed)"
     record = copy.deepcopy(RECORD)
     record["standard_language"] = []
     (standard,) = readout.standard_rows(record)
-    assert standard[1][0].startswith("Too few comparable trials to assess")
+    assert standard[1][0].startswith("No criterion is stated by most comparable trials")
 
 
 def test_at_the_signal_minimum_an_empty_section_never_reads_as_too_few():
@@ -593,6 +610,8 @@ BLANK_ALLOWED = {
     contract.POSTED: {"Class", "Category"},
     contract.BASELINE: {"Class", "Category"},
     contract.GROUPS: {"Column", "Totals"},
+    # the record's one line below the signal minimum: no finding, so no counts or rule apply
+    contract.FINDINGS: {"Finding", "Trial IDs", "Numerator / denominator", "Rule"},
     # a universe with too few trials for standard language: its counts and wordings cannot apply
     contract.STANDARD: {
         "Role",

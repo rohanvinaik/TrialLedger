@@ -648,14 +648,37 @@ def atom_words(atom: Any) -> str:
     return f"{named}: {values}" + (f" ({extra})" if extra else "")
 
 
+def key_categories(value: Any) -> str:
+    """A key criterion's categories in words, in the order first met, joined by "; " ("Performance status;
+    CNS metastases"); none — "Not stated"."""
+    held = value.get("categories") if isinstance(value, dict) else None
+    named = [KEY_CATEGORY_WORDS.get(str(item), str(item)) for item in held or []]
+    return "; ".join(dict.fromkeys(named)) or NOT_STATED
+
+
 def key_reading_words(value: Any) -> str:
-    """A key criterion's reading: its category in words, then each typed reading in it."""
+    """A key criterion's typed readings, each "<concept>: <values>", joined by "; "."""
     if not isinstance(value, dict):
         return value_words(value)
-    category = str(value.get("category", ""))
-    named = KEY_CATEGORY_WORDS.get(category, category.replace("_", " ").capitalize())
-    readings = "; ".join(atom_words(item) for item in value.get("readings") or [])
-    return f"{named}: {readings}" if readings else named
+    return "; ".join(atom_words(item) for item in value.get("readings") or []) or NO_READING
+
+
+def key_criterion_rows(study: dict[str, Any]) -> list[tuple[str, Any, str]]:
+    """The dossier's Key criteria band: one row per key criterion, its categories first, then its words as
+    written, its role and the readings that made it key; every criterion stays in the Eligibility listing."""
+    rows = []
+    held = study.get("key_criteria")
+    for number, entry in enumerate(held if isinstance(held, list) else [], 1):
+        role = entry.get("role")
+        role_line = HEADINGS.get(str(role), "Not settled" if role == "unresolved" else value_words(role))
+        lines = (
+            key_categories(entry.get("reading")),
+            f"As written: {value_words(entry.get('text'))}",
+            f"Role: {role_line}",
+            f"Reading: {key_reading_words(entry.get('reading'))}",
+        )
+        rows.append((f"Key criterion {number}", "\n".join(lines), READING))
+    return rows
 
 
 def criterion_readings(value: Any) -> str:
@@ -706,6 +729,8 @@ def element_rows(study: dict[str, Any], key: str, fields: list[contract.Field]) 
     """A registry list as dossier rows: one per element, each field "<label>: <words>" per line (a field the
     element does not state left out); a nested list one line per item; no element — one "Not stated" row when
     the list is expected, else none."""
+    if key == "key_criteria":
+        return key_criterion_rows(study)
     elements = study.get(key)
     plural = ELEMENT_WORDS[key]
     if not isinstance(elements, list) or not elements:
@@ -1468,22 +1493,6 @@ def reading_rows(study: dict[str, Any], number: int, versions: dict[str, Any]) -
     return rows
 
 
-def too_few(record: dict[str, Any], what: str, none: str) -> str:
-    """The one line of an across-trial sheet the record holds no row of: below the signal minimum, "Too few
-    comparable trials to assess" with the counts; at or above it, `none` (the record's section holds no row
-    for these trials)."""
-    cohort = record.get("cohort")
-    thresholds = cohort.get("thresholds") if isinstance(cohort, dict) else None
-    minimum = thresholds.get("signal_min_trials") if isinstance(thresholds, dict) else None
-    sponsors = thresholds.get("signal_min_sponsors") if isinstance(thresholds, dict) else None
-    trials = len(record["studies"])
-    if isinstance(minimum, int) and trials >= minimum:
-        return none
-    need = f"; {what} need at least {minimum} comparable trials" if minimum else ""
-    need += f" from {sponsors} sponsors" if minimum and sponsors else ""
-    return f"Too few comparable trials to assess: {trials} trial{'s' if trials != 1 else ''} here{need}."
-
-
 FINDING_TYPES = {
     "frequency": "Criteria most trials share",
     "mechanism_signals": "Exclusions that follow a drug's mechanism",
@@ -1534,22 +1543,34 @@ def findings_rows(record: dict[str, Any]) -> list[tuple]:
                 FINDING_RULES.get(kind, kind),
             )
             rows.append(tuple(cell(value, "known", address) for value in values))
+    if not rows and isinstance(cohort_reason(record), str):
+        # the record's own reason (below the signal minimum), in the Population and limits column
+        reason = cohort_reason(record)
+        line = (
+            "/cohort",
+            "Too few comparable trials to assess",
+            None,
+            None,
+            None,
+            f"{reason[:1].upper()}{reason[1:]}",
+            None,
+        )
+        rows.append(tuple(cell(value, "known", "/cohort") for value in line))
     if not rows:
         rows.append(
             (
                 cell("/cohort", "known"),
-                cell(
-                    too_few(
-                        record,
-                        "across-trial findings",
-                        "The record holds no across-trial finding for these trials",
-                    ),
-                    "known",
-                ),
+                cell("The record holds no across-trial finding for these trials", "known"),
                 *(cell(None, "known"),) * 5,
             )
         )
     return rows
+
+
+def cohort_reason(record: dict[str, Any]) -> Any:
+    """The record's reason the cohort holds no finding (cohort.reason), None where it gives none."""
+    cohort = record.get("cohort")
+    return cohort.get("reason") if isinstance(cohort, dict) else None
 
 
 def standard_rows(record: dict[str, Any]) -> list[tuple]:
@@ -1585,11 +1606,7 @@ def standard_rows(record: dict[str, Any]) -> list[tuple]:
             )
         rows.append(tuple(cell(value, "known", address) for value in values))
     if not rows:
-        line = too_few(
-            record,
-            "standard protocol language",
-            "No criterion is stated by most comparable trials (the same universe) in this record",
-        )
+        line = "No criterion is stated by most comparable trials (the same universe) in this record"
         rows.append((cell("/standard_language", "known"), cell(line, "known"), *(cell(None, "known"),) * 6))
     return rows
 
