@@ -1922,6 +1922,24 @@
     "refusal": "",
     "standing": "complete"
   },
+  "acceptance/reviewer.py::narrowing_warrant": {
+    "cut_reasons": [],
+    "function_digest": "7b665cbfb82f0e60",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "acceptance/reviewer.py::results_warrant": {
+    "cut_reasons": [],
+    "function_digest": "33b3a3a1aad692d0",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "acceptance/reviewer.py::role_warrant": {
+    "cut_reasons": [],
+    "function_digest": "6b6ad8bfc6522215",
+    "refusal": "",
+    "standing": "complete"
+  },
   "acceptance/reviewer.py::words_traced": {
     "cut_reasons": [],
     "function_digest": "91b820d860cff156",

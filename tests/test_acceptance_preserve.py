@@ -953,3 +953,16 @@ def test_a_participant_denominator_changed_to_eyes_without_its_unit_shown_is_cau
     shown = POSTED_ROW | {contract.DENOMINATOR: "7 Eyes"}
     found = cell_findings(record, {contract.POSTED: (list(shown), [list(shown.values())])}, complete=False)
     assert found == []
+
+
+def test_an_absent_coordinate_inside_its_universe_reads_unresolved_outside_not_applicable():
+    record = {"studies": [copy.deepcopy(RECORD["studies"][1])]}
+    row = {"Trial ID": "NCT01030536", "Treatment setting": "Not applicable"}
+
+    def found(prior_lines):
+        cells = row | {"Prior lines for advanced disease": prior_lines}
+        every = cell_findings(record, {contract.INDEX: (list(cells), [list(cells.values())])})
+        return [(f.code, f.field) for f in every if f.field.endswith(("setting", "disease"))]
+
+    assert found("Unresolved") == []
+    assert found("Not applicable") == [("wrong_words", f"{contract.INDEX}: Prior lines for advanced disease")]

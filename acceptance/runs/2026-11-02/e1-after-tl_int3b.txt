@@ -34,3 +34,4 @@ TASK trace a biomarker to its source words | evidence 357 | unresolved 7 | findi
    UNRESOLVED [1] derivation: studies[].coordinates.selection: unnarrowed
    UNRESOLVED [1] derivation: studies[].coordinates.setting: unnarrowed
    UNRESOLVED [3] no biomarker mention in the record
+TASK ask the assistant about a workbook row by its address | evidence 200 | unresolved 0 | findings 0

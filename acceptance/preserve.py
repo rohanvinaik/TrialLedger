@@ -1239,11 +1239,32 @@ def _index_expected(record: dict[str, Any], i: int, study: dict[str, Any], colum
     if header in ("Treatment setting", "Prior lines for advanced disease", "Gene selection"):
         held = [v for name in column.fields for v in _study_values(record, i, name)]
         if not held:
-            return Expected([], [], [status_words("not_applicable")])
+            inside = _pack_applies(study, column.fields[0].removeprefix("studies[].coordinates."))
+            return Expected([], [], [status_words("unresolved" if inside else "not_applicable")])
     want = NOTHING
     for name in column.fields:
         want = want.plus(_field_expected(record, i, name))
     return _as_text(want)
+
+
+def _pack_applies(study: dict[str, Any], coordinate: str) -> bool:
+    """Whether a universe the trial is assigned to owns a pack computing a coordinate (contract.UNIVERSES):
+    inside it, a coordinate the record does not hold is unresolved; outside every such universe, it is not
+    applicable (contract.INDEX_COMPACT)."""
+    universe = study.get("universe")
+    result = (
+        universe.get("result")
+        if is_value_object(universe) and isinstance(universe.get("result"), dict)
+        else {}
+    )
+    names = set(result.get("universes") or [])
+    return any(
+        held == coordinate or held.startswith(f"{coordinate}:")
+        for entry in contract.UNIVERSES
+        if entry.name in names
+        for pack in entry.packs
+        for held in pack.coordinates
+    )
 
 
 def index_findings(record: dict[str, Any], sheet: contract.Sheet, rows: list[Row]) -> list[Finding]:

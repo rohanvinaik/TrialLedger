@@ -1,9 +1,9 @@
 """The reviewer's tasks (acceptance/reviewer.py), exercised on the contract's examples.
 
-Until the record (unit A), the workbook (unit C) and the record tool's address part (unit F) land, the tasks
-run on tests/fixtures/contract/examples/record.json as a run folder's landscape.json, with no workbook, beside
-the registry bodies it was cut from; the address task asks a stand-in record tool, and the real one is held to
-the target as an expected failure until unit F 6.2.
+The tasks run on tests/fixtures/contract/examples/record.json as a run folder's landscape.json, with no
+workbook, beside the registry bodies it was cut from (real run folders are checked in acceptance/runs); the
+address task asks a stand-in record tool, and the real one (`trialledger mcp`'s record tool, part address)
+through the Model Context Protocol.
 
 Positive: each task names its destination, finds its evidence at the record's addresses (the eligibility
 criteria and their roles, the enrolled and analysed populations, a result's population and denominator per
@@ -211,9 +211,6 @@ def test_every_reading_of_the_examples_is_traced_to_the_registrys_words():
         ("NCT01030536", "/studies/1/universe"),
         ("NCT01030536", "/studies/1/interventions/0/drug_class"),
     }
-    assert ("NCT01030536", "/studies/1/coordinates/prior_advanced_lines") in {
-        (u.nct, u.address) for u in result.unresolved
-    }
     assert "no biomarker mention in the record" in whats(result.unresolved)
     assert result.findings == []
 
@@ -256,7 +253,6 @@ def test_a_reading_with_no_readings_row_is_found():
     assert {f.address for f in result.findings} == {
         "/studies/1/universe",
         "/studies/1/interventions/0/drug_class",
-        "/studies/1/coordinates/prior_advanced_lines",
     }
 
 
@@ -310,11 +306,6 @@ def test_the_rows_asked_are_the_workbooks_when_there_is_one():
     assert [e.address for e in result.evidence] == ["/studies/1/adverse_events/events/0"]
 
 
-@pytest.mark.xfail(
-    strict=True,
-    raises=AssertionError,
-    reason="until unit F 6.2: the record tool's address part on a schema-3 record",
-)
 def test_the_real_record_tool_answers_each_address(tmp_path):
     folder = tmp_path / "example"
     folder.mkdir()
@@ -436,7 +427,10 @@ def test_each_reading_is_checked_by_its_own_kind_of_warrant():
         "note": "",
     }
     lines = {"status": "unresolved", "rule": "coherence.resolve", "words": [], "note": "no default relation"}
-    record["studies"][1]["coordinates"]["prior_advanced_lines_interpolated"] = lines | {"result": ["0", "1"]}
+    record["studies"][1]["coordinates"] = {
+        "prior_advanced_lines": lines | {"result": ["0", "1", "2", "3+"], "note": "unnarrowed"},
+        "prior_advanced_lines_interpolated": lines | {"result": ["0", "1"]},
+    }
     result = reviewer.biomarker_trace(run(record), ["NCT01030536"])
     kinds = {e.what.split(":")[0] for e in result.evidence}
     assert kinds == {"quotation", "structural", "derivation"}
