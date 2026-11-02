@@ -312,6 +312,11 @@ def held_kind(value: Any) -> str:
     return "plain"
 
 
+def as_reading(value: Any) -> dict[str, Any] | None:
+    """The value as a rule's reading (held_kind's shape), None where it is not one."""
+    return value if held_kind(value) == "reading" and isinstance(value, dict) else None
+
+
 def stated(value: Any) -> bool:
     """Whether the record states a value: a plain value with something in it, or a known, interpolated or
     proposed reading."""
@@ -491,13 +496,13 @@ def assigned(study: dict[str, Any]) -> tuple[str, tuple[str, ...]]:
     """A trial's universe reading as (its status, the universes it names) (pure — pinned): missing —
     ("missing", ()); a reading — its status and its result's universes; anything else — ("unresolved", ())."""
     value = study.get("universe")
-    kind = held_kind(value)
-    if kind == "missing":
+    if held_kind(value) == "missing":
         return "missing", ()
-    if kind != "reading" or not isinstance(value["result"], dict):
+    reading = as_reading(value)
+    if reading is None or not isinstance(reading["result"], dict):
         return "unresolved", ()
-    universes = value["result"].get("universes") or []
-    return value["status"], tuple(str(name) for name in universes)
+    universes = reading["result"].get("universes") or []
+    return reading["status"], tuple(str(name) for name in universes)
 
 
 def pack_applies(coordinate: str, universes: tuple[str, ...], purpose: Any) -> str:
@@ -621,8 +626,8 @@ def coordinate_levels(study: dict[str, Any], name: str) -> list[tuple[str, Any]]
         ("", coordinates.get(name)),
         (" (with the default relations)", coordinates.get(f"{name}_interpolated")),
     ]
-    known, interpolated = levels[0][1], levels[1][1]
-    same = held_kind(known) == "reading" and held_kind(interpolated) == "reading"
+    known, interpolated = as_reading(levels[0][1]), as_reading(levels[1][1])
+    same = known is not None and interpolated is not None
     if same and (known["status"], known["result"]) == (interpolated["status"], interpolated["result"]):
         # the default relations change nothing: one row
         levels = levels[:1]
@@ -662,12 +667,12 @@ def coordinate_short(study: dict[str, Any], name: str) -> Any:
     if pack_applies(name, universes, study.get("primary_purpose")) != "applies":
         return NOT_APPLICABLE
     levels = dict(coordinate_levels(study, name)[:2])
-    known, interpolated = levels.get(""), levels.get(" (with the default relations)")
-    if known is None:
+    if levels.get("") is None:
         return NO_READING
-    if held_kind(known) == "reading" and known["status"] == "known":
+    known, interpolated = as_reading(levels.get("")), as_reading(levels.get(" (with the default relations)"))
+    if known is not None and known["status"] == "known":
         return coordinate_words(name, known)
-    settled = held_kind(interpolated) == "reading" and interpolated["status"] == "interpolated"
+    settled = interpolated is not None and interpolated["status"] == "interpolated"
     if settled and not (isinstance(interpolated["result"], list) and len(interpolated["result"]) > 1):
         return coordinate_words(name, interpolated)
     return "Unresolved"
@@ -894,8 +899,8 @@ POSTED_WORDS = ("posted", "results posted")
 
 def results_posted(study: dict[str, Any]) -> bool:
     """Whether the record's results reading says the trial posted results."""
-    value = study.get("results_posted")
-    return held_kind(value) == "reading" and value["status"] == "known" and value["result"] in POSTED_WORDS
+    reading = as_reading(study.get("results_posted"))
+    return reading is not None and reading["status"] == "known" and reading["result"] in POSTED_WORDS
 
 
 def results_words(study: dict[str, Any]) -> tuple[str, str]:
@@ -906,7 +911,8 @@ def results_words(study: dict[str, Any]) -> tuple[str, str]:
         first = study.get("results_first_posted")
         when = f", first posted {date_text(first)}" if held_kind(first) == "plain" else ""
         return f"Yes{when}", READING
-    if held_kind(value) == "reading" and value["status"] in ("not_posted", "known"):
+    reading = as_reading(value)
+    if reading is not None and reading["status"] in ("not_posted", "known"):
         return NOT_POSTED, STATUS_LABELS["not_posted"]
     return value_words(value), basis(value)
 
@@ -1649,8 +1655,10 @@ FINDING_RULES = {
 def findings_rows(record: dict[str, Any]) -> list[tuple]:
     """The Across-trial findings: one row per supported finding of the record's cohort section, its counts in
     words; below the signal minimum, or with none, one line saying so."""
-    cohort = record.get("cohort") if isinstance(record.get("cohort"), dict) else {}
-    thresholds = cohort.get("thresholds") if isinstance(cohort.get("thresholds"), dict) else {}
+    held = record.get("cohort")
+    cohort: dict[str, Any] = held if isinstance(held, dict) else {}
+    held = cohort.get("thresholds")
+    thresholds: dict[str, Any] = held if isinstance(held, dict) else {}
     minimum = thresholds.get("signal_min_trials")
     if isinstance(minimum, int) and len(record["studies"]) < minimum:
         # below the signal minimum the section's rows are not findings: one line says so

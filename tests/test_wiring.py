@@ -202,6 +202,7 @@ SCOPED_ASSERTIONS_DORMANT = {
                 "_fold",
                 "_holds",
                 "_literal_formula",
+                "_measured",
                 "_negate",
                 "_proof",
                 "_satisfiable",

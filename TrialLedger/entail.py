@@ -141,6 +141,14 @@ def proposition_formula(item: object) -> tuple[tuple, tuple[str, ...]]:
     raise ModelError("not_a_proposition")
 
 
+def _measured(number: float | None) -> float:
+    """A quantity's or an interval's bound as a float. The model's validation gives a quantity its number and
+    an interval both bounds; a bound that is None fails as float() of None fails, with TypeError."""
+    if number is None:
+        raise TypeError("float() argument must be a string or a real number, not 'NoneType'")
+    return float(number)
+
+
 def _literal_formula(item: Literal) -> tuple[tuple, tuple[str, ...]]:
     value = item.value
     time = canonical(dataclasses.replace(item.time, certainty="unresolved", evidence=())) if item.time else ""
@@ -152,9 +160,9 @@ def _literal_formula(item: Literal) -> tuple[tuple, tuple[str, ...]]:
     if value.kind in ("quantity", "interval"):
         key = json.dumps(["measure", *head, value.unit])
         if value.kind == "quantity":
-            base = ("cmp", key, value.comparison, float(value.number))
+            base = ("cmp", key, value.comparison, _measured(value.number))
         else:
-            low, high = float(value.number), float(value.upper)
+            low, high = _measured(value.number), _measured(value.upper)
             if value.inclusivity == "inclusive":
                 base = ("and", (("cmp", key, "ge", low), ("cmp", key, "le", high)))
             else:

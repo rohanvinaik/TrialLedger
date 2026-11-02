@@ -868,7 +868,10 @@ def write_design(folder: Path, *, get=rx.http_get, sleep=None) -> tuple[Path, di
     problems = record_problems(record, csv_path.read_bytes() if csv_path.is_file() else None)
     if problems:
         raise DesignError("not_verified", "the record does not verify: " + "; ".join(problems[:5]))
-    kwargs = {"get": get} if sleep is None else {"get": get, "sleep": sleep}
-    answers = rx.load_or_lookup(folder, drug_aliases(studies), axes_aliases(studies), **kwargs)
+    names, axes = drug_aliases(studies), axes_aliases(studies)
+    if sleep is None:
+        answers = rx.load_or_lookup(folder, names, axes, get=get)
+    else:
+        answers = rx.load_or_lookup(folder, names, axes, get=get, sleep=sleep)
     target = folder / DESIGN_NAME
     return target, write_book(target, read_population(studies, answers), answers)
