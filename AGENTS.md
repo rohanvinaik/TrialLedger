@@ -50,12 +50,16 @@ the workbook; answer their questions from the record.
        --condition-class "Carcinoma, Non-Small-Cell Lung" --phase PHASE3 --status COMPLETED
    ```
 
-   `trialledger landscape --help` gives every field and its accepted values.
+   `trialledger landscape --help` gives every field and its accepted values. When the person names trials by
+   number, pass them as `--ids NCT01234567,NCT07654321`: the same run, the same record and workbook, and the
+   record accounts for every number asked (found, found under another number, or missing).
 4. **Read the resolved search before anything is gathered.** TrialLedger resolves the request through named
-   sources and writes the result to `scope.json` in the run folder before it reads a single study: each drug
-   class expanded into its member drugs, with every subclass it includes named and each member attributed to its
-   subclass; each drug searched by every name RxNorm gives it, in both the registry's intervention name and its
-   other names; each disease class searched through the registry's MeSH terms and their descendants. Show the
+   sources and writes the result to `resolution.json` in the run folder (the record carries it as `scope`)
+   before it reads a single study: each drug class expanded into its member drugs, with every subclass it
+   includes named and each member attributed to its subclass; each member searched by its own name, its base
+   ingredient searched only when the class itself lists it (otherwise shown as a candidate); each drug the
+   person names searched by every name RxNorm gives it; every name in both the registry's intervention name and
+   its other names; each disease class searched through the registry's MeSH terms and their descendants. Show the
    person what was included. A broad class may bring in subclasses they do not expect (the FDA's "Kinase
    Inhibitor" class includes HER2 and EGFR antibodies through its subclasses); the request can exclude a subclass,
    or all of them. If the request cannot be resolved (a class the source does not hold, a lookup that failed, a
@@ -64,11 +68,17 @@ the workbook; answer their questions from the record.
    - **0**: complete. The run folder holds `landscape.json` and `landscape.xlsx`.
    - **3**: waiting for you (relay mode). `next.json` lists each web address to fetch and the file to save it
      as. Fetch each one exactly as named, save the body unmodified into the named file, and run the same command
-     again. Repeat until it ends with 0. Fetch nothing else, and never edit a saved body.
-   - **2**: refused or stopped, with the reason and what to change.
-   - **1**: failed (the registry could not be reached, or changed while it was being read); nothing was written
-     as the record. Run it again.
-   Re-running the same command is always safe; it resumes where it stopped.
+     again. Repeat until it ends with 0. Fetch nothing else, and never edit a saved body. In relay mode
+     TrialLedger does not look up the gathered trials' drug classes (that would be hundreds of addresses): each
+     reads "not looked up", never "no class", and the record says so. Tell the person, and prefer a sandbox that
+     reaches the internet when drug classes matter.
+   - **2**: refused or stopped, with the reason and what to change; usually a changed request in a new run
+     folder.
+   - **1**: failed; nothing was written as the record. The printed words say which kind: if a service did not
+     answer, run the same command again later and it resumes; if the registry or RxNav changed while being
+     read, start a new run folder with the same request.
+   Re-running the same command is always safe: it resumes where it stopped, and a finished run run again changes
+   nothing.
 6. **Answer from `landscape.json`, and hand over `landscape.xlsx`.** The workbook is the person's: a Read me, a
    Trial index (one row per trial), a Trial review (each trial's complete dossier, top to bottom), listings for
    eligibility, outcomes and efficacy, biomarkers and safety, the across-trial findings, and an evidence
@@ -118,11 +128,12 @@ The statuses you will meet: **known**; **interpolated** (follows from a default 
 never "none"); **not posted** (the trial posted no results; many trials never do); **unresolved** (TrialLedger
 could not settle it, and says why).
 
-`trialledger pull` is the certified transcription: it saves the registry's records exactly as sent, the
-registry's own spreadsheet byte for byte, and two certified workbooks, and `trialledger verify` later re-derives
-every value and names anything that no longer matches. Use it when the person needs the registry's content itself,
-a value they will cite or copy into a protocol. `verify` proves that each value derives from the saved record by
-the code that wrote it; it does not prove that a rule reads a criterion correctly.
+`trialledger pull` is the archival copy: it saves the registry's records exactly as sent, the registry's own
+spreadsheet byte for byte, and two certified workbooks laid out field by field, and `trialledger verify` later
+re-derives every value and names anything that no longer matches. Run it beside `landscape` when the person
+needs the registry's records preserved and re-checkable, for instance values they will cite or copy into a
+protocol; the workbook you hand them to read is still `landscape.xlsx`. `verify` proves that each value derives
+from the saved record by the code that wrote it; it does not prove that a rule reads a criterion correctly.
 
 ## How to answer
 

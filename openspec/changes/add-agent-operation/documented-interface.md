@@ -19,12 +19,15 @@ together, never left standing.
       drug class's subclasses) or `--request FILE.json`; `--help` lists every field and its accepted values.
 - [ ] The README example runs: `--drug-class "EGFR tyrosine kinase inhibitors" --class-source ATC
       --condition-class "Carcinoma, Non-Small-Cell Lung" --phase PHASE3 --status COMPLETED`.
-- [ ] `scope.json` is written before any study is read: each class's members with every subclass named and each
+- [ ] `--ids NCT...,NCT...`: trials by number through the same run, the requested-ID accounting in the record.
+- [ ] `resolution.json` (the record's `scope`) is written before any study is read: each class's members with every subclass named and each
       member attributed to its subclass; each drug by every RxNorm name, searched in intervention name and other
       names; each disease class by MeSH term and descendants; stops named with what to change.
-- [ ] Exit codes 0 complete, 3 waiting for relay fetches (`next.json`), 2 refused or stopped with advice, 1 failed
-      with nothing written as the record; each printed with plain words; re-running resumes and is safe.
-- [ ] Relay: fetch each address in `next.json` into the file it names, body unmodified; nothing else fetched.
+- [x] Exit codes 0 complete, 3 waiting for relay fetches (`next.json`), 2 refused or stopped with advice, 1 failed
+      with nothing written as the record (the words saying whether to run again or start a new run folder);
+      each printed with plain words; re-running resumes and is safe. (2026-11-01, `operate.run_exit`.)
+- [x] Relay: fetch each address in `next.json` into the file it names, body unmodified; nothing else fetched;
+      drug classes read "not looked up" and the record says so. (2026-11-01, `operate.py`.)
 - [ ] `landscape.json`: every value an envelope (value, status, source, rule, note, link); `statuses`,
       `envelope` and `fields` sections; requested-ID accounting when trials are requested by number.
 - [ ] `landscape.xlsx` as workbook-design.md specifies: Read me, Trial index, Trial review, Eligibility,

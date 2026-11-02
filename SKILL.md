@@ -16,10 +16,12 @@ trials. `AGENTS.md` explains each step and what to trust in depth.
 3. Turn the question into a request (drug, drug class with its source EPC, MoA or ATC, mechanism, condition or
    MeSH disease class, phase, status, study type, start dates) and run
    `trialledger landscape --run <folder> <request flags or --request file.json>`; `--help` lists the fields.
-4. Show the person the resolved search in `<folder>/scope.json` (every class member, subclass and name searched)
-   before relying on the results; narrow or exclude subclasses if they ask.
+   Trials named by number: `--ids NCT...,NCT...`.
+4. Show the person the resolved search in `<folder>/resolution.json` (every class member, subclass and name
+   searched) before relying on the results; narrow or exclude subclasses if they ask.
 5. Exit 3 means relay: fetch each address in `<folder>/next.json` into the file it names, body unmodified, and
-   run the same command again until exit 0. Exit 2 names what to change. Exit 1: run again.
+   run the same command again until exit 0 (drug classes then read "not looked up"; say so). Exit 2 names what to
+   change. Exit 1: the printed words say whether to run again or start a new run folder.
 6. Answer from `<folder>/landscape.json`, keeping each value's status (known, interpolated, proposed, not stated,
    not posted, unresolved) and source; hand over `<folder>/landscape.xlsx`, whose Trial review sheet holds each
    trial's dossier.
@@ -32,4 +34,5 @@ trials. `AGENTS.md` explains each step and what to trust in depth.
 - A reading of eligibility text names the words it read: show them; it is evidence, not fact.
 - When trials were requested by number, check the requested-ID accounting before saying the set is complete.
 - Fetch only the addresses TrialLedger names, and never edit a fetched body.
-- For a certified transcription of the registry's own records: `trialledger pull`, then `trialledger verify`.
+- For an archival, re-checkable copy of the registry's own records: `trialledger pull`, later `trialledger
+  verify`; the workbook the person reads is still `landscape.xlsx`.

@@ -160,10 +160,11 @@ trialledger landscape --run egfr-nsclc --drug-class "EGFR tyrosine kinase inhibi
 ```
 
 The run folder then holds `landscape.json` (the record) and `landscape.xlsx` (the workbook), with the resolved
-search in `scope.json`. `trialledger design --run <folder>` designs a trial from it. For a certified transcription
-of the registry's own records, `trialledger pull` saves them with their spreadsheets, and `trialledger verify`
-re-derives every value in a saved copy and names anything that no longer matches. Each command explains itself
-with `--help`.
+search in `resolution.json`. Trials you already know by number go through the same command:
+`trialledger landscape --run my-trials --ids NCT01234567,NCT07654321`. `trialledger design --run <folder>`
+designs a trial from a run. For an archival copy of the registry's own records, `trialledger pull` saves them
+exactly as sent with certified spreadsheets, and `trialledger verify` later re-checks every value in the saved
+copy and names anything that no longer matches. Each command explains itself with `--help`.
 
 An assistant using TrialLedger reads [`AGENTS.md`](AGENTS.md) (or [`SKILL.md`](SKILL.md)); `trialledger mcp` serves
 the same operations to any assistant that speaks the Model Context Protocol. Contributors start with
