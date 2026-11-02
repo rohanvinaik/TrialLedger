@@ -9,6 +9,7 @@ partial components. Reporting completion does not require finishing these tasks.
 - [x] 2. Preserve and validate explicit NSCLC coordinate/domain closure, known/default/proposal standing and applicable relation evidence, without a free-text reader fallback.
 - [x] 3. Preserve and validate statement-rate/silence-bound profiles, proposed associations, occupancy, expectations and near misses as typed corpus operations.
 - [x] 4. Expose supported typed operations through CLI/MCP with examples and accurate domain/pipeline limits; prove layer-one isolation.
+- [x] 4a. Describe the operations as a clinician-facing translation workflow: an answer guide mapping every entailment decision/blocker and coordinate/corpus state to settled, something wrong, your call or not knowable from this evidence; the clinical words each operation answers, with "notable" defined as rarity and/or verified deviation and "significance" reserved; and a worked session whose requests are tested to return their stated results.
 
 ## Complete the existing source-to-protocol pipeline
 
@@ -16,6 +17,8 @@ partial components. Reporting completion does not require finishing these tasks.
 - [ ] 6. Implement source-to-scoped-assertion compilation, preserving alternatives, referents, qualifiers, local force, conditions, definitions, cohorts and time; refuse unresolved projections and remove every flat-atom fallback.
 - [ ] 7. Integrate domain applicability and full strict/default strata semantics, conflict suspension, user override/recomputation and explicit consumer projections.
 - [ ] 8. Integrate compatible corpus results and conditional expectations, complete design-space geometry and the founder's derivational significance with a declared alternative space; keep rarity and relevance separate.
+  - [ ] 8a. Build derivational significance per design section 7a: declared per-hop alternative space (NSCLC coordinates first), path-local log-branching, the log-space [b^N, C^N*N!] bracket with its depth-growing error bar, kappa refinement and recomputation after each confirmed choice; abstain without a declared alternative space. Settle the open definitions (hop, b and C, the null, corpus alternatives) with the founder first.
+  - [ ] 8b. Expose deviation status through `reason` corpus expectations, with typed qualifier and audit inputs, so "notable" is fully computable for an MCP-only assistant.
 - [ ] 9. Implement gap-directed terminology, label and publication adapters with typed differential parsers, study/cohort/arm/outcome/time resolvers and source censors; keep conflicts and source versions.
 - [ ] 10. Integrate the typed brief, finite design variables and constraints, admissible recommendations and deterministic user questions/choices that close the remaining space.
 - [ ] 11. Emit complete warranted design JSON and readable protocol/workbook outputs, including eligibility, interventions, endpoints/schedules, safety, exploratory procedures, sample-size inputs and open decisions.

@@ -37,14 +37,15 @@ and says which; no language model supplies the trial facts. Your assistant answe
 Start with `trialledger doctor`, then
 `trialledger landscape`.
 
-Layer one is available: request specific trials or a subset, and receive a clinical reference spreadsheet
+Layer one is mechanical: request specific trials or a subset, and receive a clinical reference spreadsheet
 and matching evidence record for your assistant, containing registry facts and direct derivations only.
-Layer two's automated trial writer is fully designed and partly built. The separate reason operation
-can check whether a proposed choice follows from or conflicts with your stated requirements, narrow
-remaining NSCLC design choices, and explore patterns and gaps among explicitly represented comparable
-trials. Your assistant prepares the inputs and explains each answer with its premises. Ask reason for its
-describe operation to discover the supported inputs and examples. The complete brief-to-protocol workflow
-is not yet integrated.
+Layer two is symbolic reasoning about trial design. Your assistant restates your criteria and questions as
+premises you confirm; the reason operation then computes whether something is required, ruled out,
+contradictory, or allowed but not required, with the criterion that decides it. It also narrows NSCLC
+settings and computes how common, unusual or patterned criteria are across trials you choose. Ask reason
+for its describe operation to discover the supported inputs, answer guide and a worked session. The
+complete automated trial writer is designed and partly built; its brief-to-protocol workflow is not yet
+integrated.
 """
 
 DEVELOPER_EPILOG = "Each command explains itself: trialledger <command> --help."
@@ -422,15 +423,17 @@ def main(
         "reason",
         help="layer two: check design requirements and explore comparable-trial patterns",
         description=(
-            "Check what follows from your stated design requirements, what conflicts, and what remains "
-            "undecided; narrow explicit NSCLC design choices; or explore how often represented criteria "
-            "occur, possible gaps and pairs of trials differing in one declared feature. Your assistant "
-            "prepares the structured premises and explains their sources and limits. "
+            "Check what your confirmed design premises require, rule out or leave as your call, and "
+            "whether they contradict each other; narrow explicit NSCLC design choices; or compute how often "
+            "represented criteria occur, how unusual they are, possible gaps and pairs of trials differing "
+            "in one declared feature. Undetermined is an exact answer (allowed but not required, or a named "
+            "reason), not a failure. Your assistant prepares the structured premises and explains their "
+            "sources and limits. "
             "The operations evaluate supplied scoped assertions, explicit NSCLC design coordinates "
             "or a typed trial corpus. "
             "No trial text is interpreted. This is working symbolic logic; the complete trial writer is "
             'designed but its integration is unfinished. First put {"operation":"describe"} in the '
-            "request file to get the exact input formats and runnable examples.\n\n"
+            "request file to get the exact input formats, answer guide and runnable examples.\n\n"
             "example: trialledger reason --request premises.json\n\n"
             "exit status: 0 evaluated (the logical result may be undetermined); 2 request refused"
         ),

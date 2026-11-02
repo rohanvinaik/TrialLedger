@@ -66,6 +66,15 @@ agent can invoke. User-facing surfaces should explain clinical explorations as w
 population/temporal consequences, possible NSCLC settings, documented patterns and uncertainty, gaps and
 one-feature comparisons. Do not expose only a research-pipeline status summary when useful logic is callable.
 
+The assistant translates and the operations reason. Every surface (README, AGENTS.md, SKILL.md, MCP and CLI
+text, describe) presents computed answers in four categories (settled, something wrong, your call, not
+knowable from this evidence) with the deciding premise, treats undetermined as exact abstention with named
+reasons, and distinguishes record facts, computed results and the assistant's reading. The describe
+`answer_guide`, `question_vocabulary` and `worked_session` live in `layer2/guide.py`; tests/test_layer2_guide.py
+ties them to the engine's decisions, blockers and states, so a new outcome needs a guide entry. "Notable" means
+corpus rarity and/or a verified unexplained deviation from a declared expectation; "significance" is reserved
+for the founder's derivational significance (design.md section 7, task 8).
+
 | Existing component | Current access and boundary |
 |---|---|
 | `service.run`, scoped `assertions` and `entail.decide` | CLI/MCP entailment over supplied, validated assertions with proof/status/blockers; no automatic source interpretation. |

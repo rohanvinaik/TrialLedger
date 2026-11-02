@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "TrialLedger"
 dynamic = ["version"]
-description = "ClinicalTrials.gov reference spreadsheets and matching JSON. A separate, fully designed automated trial writer has working symbolic reasoning components; its complete pipeline is partly built."
+description = "Source-backed ClinicalTrials.gov reference workbooks, and symbolic reasoning about trial design that an assistant operates with a clinician: computed answers with their deciding premises, and exact abstention where the premises do not settle a question."
 readme = "README.md"
 requires-python = ">=3.12"
 license = "MIT"

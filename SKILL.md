@@ -1,36 +1,59 @@
 ---
 name: trialledger
-description: Give a clinician a clean reference workbook and matching source-backed JSON for named or searched clinical trials. Operate the registry harness and answer from its record. A separate layer-two reason operation exposes typed symbolic logic; the complete automated trial-writing design is partly implemented.
+description: Give a clinical-development person a source-backed reference workbook for named or searched ClinicalTrials.gov trials, then help them think through trial design with TrialLedger's symbolic reasoning. You translate their criteria and questions into confirmed premises and report computed answers (settled, something wrong, your call, not knowable from this evidence) with the deciding premise. The complete automated trial writer is designed and partly built.
 ---
 
 # TrialLedger
 
-Read AGENTS.md for the complete procedure. Explain both layers: the available source-faithful reference-sheet
-operation, and the fully designed automated clinical trial writer whose useful partial symbolic operations
-are available separately. Do not promise a finished new protocol.
+Read AGENTS.md for the complete procedure. Layer one is mechanical: registry facts and fixed direct rules in
+`landscape.xlsx` and `landscape.json`, answered from the saved record. Layer two is symbolic reasoning about
+trial design: you translate, the `reason` operations reason. Restate the person's criteria and questions as
+typed premises, show them back in plain words, ask about each ambiguity, encode only what they confirm, and
+report the computed result in the person's terms with the premise that decided it. Do not reason about the
+design yourself or apply an operation's rules by hand and call the outcome computed.
 
-Use the working layer-two tools for the clinician's own work now, independently of the full future writer.
-Let them choose a question; explain the relevant operation/premises/limits, help confirm material assumptions,
-run it and present proof, defaults, proposals and open items in clinical terms. The person exercises judgment
-over the result. Do not reduce these capabilities to developer demonstrations or a roadmap.
+Label every statement: **from the record** (with its address), **computed** (with its deciding premise or
+counts) or **your reading** (said plainly). A question no operation computes, such as whether efficacy results
+are impressive, is answered as your reading of the record.
+
+## The four answers
+
+- **Settled:** required or ruled out (ENTAILED/REFUTED), or explicitly narrowed; "settled by default" when the
+  basis is interpolated or an NSCLC default leaves a single value (a default leaving several is your call).
+- **Something's wrong:** INCONSISTENT criteria (blocks every answer until resolved), a coordinate `conflict` or a
+  `registry_checks` conflict. Name both sides.
+- **Your call:** allowed but not required, proposals, comparable trials that chose differently, which cohort,
+  confirming a reading, or whether criteria silent on something should address it.
+- **Not knowable from this evidence:** silence, too little support, unknown membership, abstention, a
+  computation limit.
+
+UNDETERMINED is exact abstention, not failure. "Must everyone be at least 65?" against a brief requiring 18 or
+older is **allowed but not required**. Read every blocker and report the most specific: `proposed_refused`
+(confirm the reading), `open_scope` (which cohort), `unresolved_*`/`unspecified_boundary`/`opaque` (settle the
+wording), `resource_bound` (narrow the question), `no_constraint_mentions_query` (check units and time windows,
+then ask whether the criteria should address it), and `undecided_by_constraints` alone (allowed but not
+required). The describe `answer_guide` holds the complete mapping.
 
 ## What the person can explore
 
 - Gather a clean reference sheet, then drill into exact population/eligibility, outcomes and time points,
   group-specific efficacy/safety, source drug identities/classes and direct registry consistency findings.
-- Ask what follows from confirmed population, cohort, numeric or temporal restrictions. Use entailment;
-  show the premise and separate a deduction from an assumption or unresolved result.
-- Explore supported NSCLC setting/prior-line/biomarker-selection domains from explicit premises, with
-  defaults and proposals shown separately.
-- In a declared, explicitly represented comparison set, inspect statement rates and silence bounds,
-  proposed class associations, setting/class occupancy, near-miss pairs and conditional observation rarity.
-  Neither missing detail nor rare/common wording establishes clinical absence, relevance or causation.
-- Explore the complete automated trial-writing design and its remaining integration work: source binding,
-  compatible evidence, geometry/significance, recommendations, choices and warranted protocol outputs.
+- Whether a patient type is in or out under confirmed criteria and which criterion decides it; whether the
+  criteria contradict each other (entailment).
+- Which NSCLC settings, prior lines and biomarker selections the criteria imply (coordinates; defaults shown
+  as defaults).
+- Across a declared comparison set: how common a criterion is (rate with silence bounds), class patterns,
+  what is unusual, what is notable, gaps (occupancy) and pairs differing in one feature (corpus).
 
-Use natural starting points: “Show me the trial evidence,” “What follows from these enrollment restrictions?”
-or “Which documented design features are shared or different in this comparison set?” Do not require the
-person to know internal names. A complete protocol generator is not currently callable.
+"Notable" is computed: rare within a declared cell (corpus `expectations` rarity, abstaining without support)
+and/or a `verified_deviation` from a declared expectation (`TrialLedger.layer2.expectations.deviation_status`,
+Python only; through MCP alone only the rarity half is computed). Confirm expectations and observation states
+with the person. "Significance" is reserved for the founder's derivational significance, designed but not yet
+built; rarity is not significance.
+
+Use natural starting points: "Show me the trial evidence," "Does our draft rule out ECOG 2 patients?" or "How
+common is this exclusion in these trials?" Do not require the person to know internal names. A complete
+protocol generator is not currently callable.
 
 ## Reference sheet
 
@@ -75,38 +98,32 @@ standards while producing the report. Those are separately identified reasoning 
 
 First discover the actual interface: call MCP tool `reason` with arguments
 `{"request":{"operation":"describe"}}`, or put `{"operation":"describe"}` in a file and run
-`trialledger reason --request FILE`. The response gives accepted/required fields, nested model vocabulary,
-complete runnable examples, limits and current availability. Use those shapes rather than inventing fields;
-this works for an MCP-only agent without source-file access.
-
-The reply also provides clinical use cases, result interpretation and supporting Python entry points.
-`examples` contains direct requests; `capability_examples` entries wrap a runnable `request` with invented
-premise/expected-result notes. Execute that request and retain its demonstration label when illustrating it.
+`trialledger reason --request FILE`. Read `answer_guide`, `question_vocabulary` and `worked_session`; every
+worked-session request runs and returns its stated result. Use the described shapes rather than inventing
+fields; this works for an MCP-only agent without source-file access. `examples` contains direct requests;
+`capability_examples` entries wrap a runnable `request` with invented premise/expected-result notes.
 
 Then use `trialledger reason --request FILE`, or MCP `reason(request)`, with an `operation` of `entailment`,
 `coordinates` or `corpus`. The same public contract is `TrialLedger.layer2.run(request)`.
-State the origin of supplied premises; an agent-authored assertion is not a registry fact merely because a
-solver can reason from it. The operation does not mutate the report. NSCLC coordinate rules require that
-explicit domain; corpus inputs require declared typed evidence and denominators.
 
-If a premise is missing, ask about its clinical distinction: all participants or one cohort; required versus
-permitted; prior therapy for advanced disease or any treatment; exposure versus follow-up time. Show your
-proposed encoding in plain words, retain its user/source origin and keep unknowns. Do not invent an
-interpretation of eligibility or label an agent-created premise as a known registry assertion. For corpus
-work, confirm the set and represented features instead of assuming trials sharing a query are comparable.
+Ground every premise. Ask about the clinical distinction: all participants or one cohort; required versus
+permitted; prior therapy for advanced disease or any treatment; one qualifying mutation or compound; inclusive
+limit or not; exposure versus follow-up time. Two readings can give opposite answers (the worked session's
+exon 20 steps); that choice is the person's. Mark an unconfirmed reading `"status": "proposed"`, which
+entailment refuses to conclude from. Coordinates and corpus do not enforce confirmation: confirm before
+running and keep the true origin in `ref`/`basis`; never mark a trial `typed` just to pass. For corpus work,
+confirm the comparison set and represented features.
 
-Deliver the chosen clinical question, confirmed premises/origins, result, proof or assumption basis and open
-items, plus the unchanged structured response for reuse. With file access, save it separately (for example
-`reason-result.json`) beside the source workbook/record; reason itself does not write that file or alter the
-report. Help the person revise a premise and rerun when they choose, without inventing missing source facts.
+Encoding obligations: a boolean literal takes no `members` or `number`; units are never converted; time scopes
+match only when identical; convert Python tuples to lists before reusing a result in a request.
 
-Supporting literal parsers, registries, applicability and evaluation utilities remain implemented Python
-building blocks. The discovery reply names their entry points/preconditions. They are not extra MCP clinical
-operations and do not supply the missing automatic source compiler.
+Deliver the clinical question, confirmed premises and origins, the result in its category with its basis,
+open items and the unchanged structured response, saved separately (for example `reason-result.json`) beside
+the source workbook/record. Help the person revise a premise and rerun.
 
 This complete entailment request asks whether male participants fit a brief requiring female participants.
-It returns a complete operation with decision REFUTED and premise `population`. That is a conditional
-consequence of the supplied brief, not an extracted study finding or a universal clinical sex ontology.
+It returns decision REFUTED with premise `population`: settled, as a consequence of the supplied brief, not an
+extracted study finding or a universal clinical sex ontology.
 
 ```json
 {
@@ -140,8 +157,8 @@ does not require either alone. A proposed premise is not usable as fact; an inte
 known conclusion. Preserve named undetermined/inconsistent/unsupported outcomes and blockers.
 
 The full automated writer additionally needs source-to-assertion compilation, general bindings, evidence
-adapters, geometry/significance integration, recommendations, user closure and protocol outputs. Its complete
-design and actual component state are in openspec/changes/add-design-synthesis/design.md. No current
+adapters, derivational significance, recommendations, user closure and protocol outputs. Its complete design
+and actual component state are in openspec/changes/add-design-synthesis/design.md. No current
 `design`/`edits` operation, automatic annotation import or old raw-reader fallback is available.
 
 ## MCP and verification

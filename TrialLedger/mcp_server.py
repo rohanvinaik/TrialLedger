@@ -92,19 +92,22 @@ INSTRUCTIONS = (
     "clinical reference spreadsheet with a dossier per study and shared listings, and landscape.json, "
     "the matching evidence record you answer from. Layer one contains registry facts and strictly warranted "
     "direct derivations only; no language model supplies source facts. The assistant answers from the saved "
-    "record. Layer two is a fully designed, partly built automated trial writer, to construct a new trial "
-    "from scratch from the user's brief and layer-one evidence "
-    "through symbolic reasoning, distinguishing deductions, proposals and human choices. Reasoning and "
-    "existing-trial analysis foundations exist; the complete design workflow is not yet available, and "
-    "reason exposes the working symbolic components over explicitly typed premises. It does not compile "
-    "registry prose or deliver the complete trial-writing workflow. Explain that status. "
-    "Offer these useful partial operations in clinical terms: check whether a choice follows from or "
-    "conflicts with a person's stated requirements; narrow remaining NSCLC design choices; explore "
-    "criterion frequencies with uncertainty, proposed class associations, possible design gaps and "
-    "trials differing in one declared feature. First call reason with "
-    '{"request":{"operation":"describe"}} for accepted inputs and worked examples. Prepare inputs for '
-    "the person, preserve their premise/source basis, and explain the conclusions without asking them "
-    "to write JSON. Do not present a partial operation as a completed protocol. "
+    "record. Layer two is symbolic reasoning about trial design that you operate in conversation. You "
+    "translate; the reason tool reasons. Restate the person's criteria and questions as typed premises, "
+    "show them back in plain words, ask about each ambiguity and encode only what they confirm. Every answer "
+    "is computed and lands in one of four categories, with the premise that decided it: settled (required "
+    "or ruled out, or settled by default), something wrong (a contradiction), your call (allowed but not "
+    "required, a proposal, comparable trials that chose differently, which cohort is meant) or not "
+    "knowable from this evidence (silence, too little support). The tool abstains exactly where the "
+    "premises do not settle a question: 'must everyone be at least 65?' against a brief requiring 18 or "
+    "older is allowed but not required. Offer, in clinical terms: whether a patient type is in or out "
+    "under draft criteria and which criterion decides it; whether criteria contradict each other; which "
+    "NSCLC setting criteria imply; and, across trials the person chooses, how common a criterion is, class "
+    "patterns, unusual or notable features, gaps and trials differing in one feature. First call reason "
+    'with {"request":{"operation":"describe"}} and read its answer_guide, question_vocabulary and '
+    "worked_session. Label every statement as from the record, computed, or your own reading; a question "
+    "no operation computes is answered as your reading of the record. The complete automated trial writer "
+    "is designed and partly built; do not present these answers as a generated protocol. "
     "Call doctor first; then scope with a run name and "
     "the person's request, in the mode doctor reports; show the person the resolved search before gathering. "
     "If a class name has catalogue choices, confirm the intended class, then preview its ID and source in a "
@@ -431,18 +434,18 @@ TOOLS: dict[str, dict[str, Any]] = {
         },
     },
     "reason": {
-        "description": "Layer two: help a person check what follows from or conflicts with their design "
-        "requirements, narrow NSCLC design choices, or explore comparable-trial patterns. Available corpus "
-        "calculations include criterion frequencies with silence bounds, proposed class associations, "
-        "design-space occupancy, conditional rarity and pairs differing in one declared feature. "
-        "You prepare the structured premises; the person need not know the input format. "
-        "Evaluate supplied scoped assertions, explicit NSCLC coordinates or a typed trial corpus with "
-        "the existing symbolic engines. First call with "
-        '{"request":{"operation":"describe"}} to get accepted input formats, vocabularies and runnable '
-        "examples. Reasoning requests name operation entailment, coordinates or corpus. Premises must be "
-        "explicitly structured and retain their source/user status; an assistant's "
-        "interpretation is never a registry fact. No trial text is interpreted, no source is fetched, and no "
-        "report is changed. This is useful partial symbolic logic, not the complete new-trial writer.",
+        "description": "Layer two: symbolic reasoning about a trial design. Check whether a patient type "
+        "is in or out under a person's criteria and which criterion decides it, find contradictions, narrow "
+        "NSCLC settings, or compute criterion frequencies with silence bounds, class associations, rarity, "
+        "occupancy and pairs differing in one declared feature across trials the person chooses. Answers are "
+        "entailed, refuted, inconsistent or undetermined with named reasons; undetermined is exact "
+        "abstention, not failure. You translate: prepare the structured premises from what the person "
+        "confirms; they need not know the format. First call with "
+        '{"request":{"operation":"describe"}} for input formats, the answer guide and a runnable worked '
+        "session. Reasoning requests name operation entailment, coordinates or corpus. Premises retain their "
+        "source/user status; an assistant's interpretation is never a registry fact. No trial text is "
+        "interpreted, no source is fetched and no report is changed. The complete trial writer is designed "
+        "and partly built; these results are not a generated protocol.",
         "inputSchema": {
             "type": "object",
             "properties": {

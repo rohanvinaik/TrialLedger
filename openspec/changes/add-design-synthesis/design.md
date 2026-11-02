@@ -148,6 +148,42 @@ granularity is checked before declaring deviation. Near misses require a declare
 coordinates are known and equal except for one verified difference; any permitted interpolation, sponsor
 lineage, era or cohort difference is shown. Outcome differences are associations to investigate, not causality.
 
+#### 7a. "Notable" now; derivational significance as a planned build
+
+Until derivational significance is built, user-facing "notable" names a computed object for design features:
+an observation that is rare within a declared comparison cell (conditional rarity with cell/parent/abstain
+standing) and/or a verified unexplained deviation from a declared expectation (`deviation_status`). Both
+inputs, the expectation and each observation state, are declared and confirmed before use. Deviation status
+is currently a Python building block; exposing it through `reason` (with its qualifier and audit inputs) is
+separate work. "Significance" is not used for either quantity.
+
+The planned build brings the founder's SIGNIFICANCE_WEIGHTING method to trial-design derivations. Its
+quantity is the improbability, by coincidence, of a coherent derivation chain given the branching the
+admissible design space afforded at each step: depth weighted by branching freedom, not depth alone.
+
+- The alternative space is declared, never assumed: each hop's admissible alternatives come from finite
+  design domains (the NSCLC coordinate domains are the natural first host, since their causes already record
+  which premise or relation removed which values), and a derivation without a declared alternative space
+  abstains rather than emitting a number.
+- The per-conclusion weight is path-local: the sum of log out-degree over the branching the conclusion's own
+  chain navigated, so a globally shallow rule graph does not flatten a real chain through a high-branching
+  choice.
+- The emitted value is a log-space bracket, not a point: floor from mean branching (b^N), ceiling from maximum
+  per-hop branching with free ordering (C^N * N!), both read from the actual rule graph, with an error bar that
+  grows with depth N and is reported with the value.
+- Marginal coverage (kappa: a node's downstream reach) refines the raw bracket: a chain that resolves a whole
+  cluster of downstream choices is significant; a chain of independent hops is not. Kappa re-flows when a rule
+  or confirmed choice is added, so significance is recomputed after every user decision.
+- Significance remains separate from logical state, frequency, rarity and relevance, and never promotes a
+  default or proposal. It ranks and explains within the admissible space; it never changes admissibility.
+
+Open definitions, settled with the founder before implementation: what counts as a hop in a trial-design
+derivation (a relation firing, a confirmed choice or a domain narrowing); how b and C are measured over the
+design rule graph; the coincidence baseline (the null) against which improbability is scored; and how
+corpus-observed alternatives (what comparable trials chose) enter the branching alongside logical
+alternatives. Regenesis's `significance.py` is the reference implementation of the per-read method on its own
+rule frames; it is not wired to trial data and is not a TrialLedger dependency.
+
 ### 8. Gap-directed evidence
 
 An unresolved design fact becomes a typed evidence request before external retrieval. Existing registry
@@ -220,8 +256,11 @@ examples live with the public operation.
 - Automatic source-to-scoped-assertion compilation is not integrated. The faulty flat word-matching path is
   removed rather than kept as a fallback.
 - General clinical ontology bindings, full default-stratum semantics, gap-directed publication/label
-  adapters, derivational-significance integration, recommendation/closing orchestration and complete
-  brief-to-protocol outputs remain implementation work under this design.
+  adapters, derivational-significance integration (section 7a), recommendation/closing orchestration and
+  complete brief-to-protocol outputs remain implementation work under this design.
+- The `describe` reply carries an answer guide (four categories: settled, something wrong, your call, not
+  knowable from this evidence; every entailment decision and blocker; coordinate and corpus states), the
+  clinical words each operation answers and a runnable worked session. Tests tie each to the engine.
 
 The earlier NSCLC development work is evidence of component behavior on its declared inputs, not broad
 clinical validation. Incomplete integration does not negate correct logic. A component's tests also do not

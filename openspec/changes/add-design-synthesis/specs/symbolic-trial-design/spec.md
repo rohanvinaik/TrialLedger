@@ -153,3 +153,37 @@ SHALL NOT replace a warrant of meaning.
 #### Scenario: Scope is wrong despite old tests
 - **WHEN** a counterexample shows an incorrect referent or logical structure
 - **THEN** the conclusion is refused or repaired structurally rather than legitimised by old tests
+
+## ADDED Requirements
+
+### Requirement: Answers are reported by epistemic category
+The discovery reply SHALL map every entailment decision and blocker, coordinate state and corpus status to
+one of settled, something wrong, your call or not knowable from this evidence, or mark it as a translation
+problem in the request. Undetermined results SHALL be explained by their named reasons, and the guide SHALL
+remain tied to the outcomes the operations actually emit.
+
+#### Scenario: The premises admit a value without requiring it
+- **WHEN** a brief requires age 18 or older and the question is whether everyone is at least 65
+- **THEN** the result is undetermined with the sole reason undecided_by_constraints, reported as allowed but not required
+
+#### Scenario: A premise is an unconfirmed reading
+- **WHEN** the only premise that speaks to a question is marked proposed
+- **THEN** it is set aside with a named proposed_refused reason and the person is asked to confirm the reading
+
+#### Scenario: The criteria contradict each other
+- **WHEN** accepted premises admit no feasible assignment
+- **THEN** every question returns inconsistent with the contradicting premises, reported as something wrong
+
+### Requirement: Notable is computed and significance is reserved
+User-facing "notable" SHALL denote declared-cell rarity with support and abstention and/or a verified
+unexplained deviation from a declared, confirmed expectation, naming which part was computed. "Significance"
+SHALL denote only derivational significance over a declared alternative space, which SHALL abstain when no
+alternative space is declared.
+
+#### Scenario: Only rarity is callable
+- **WHEN** an assistant can reach the corpus operation but not the deviation-status building block
+- **THEN** it reports the rarity as computed and does not present a hand-applied deviation status as computed
+
+#### Scenario: No alternative space is declared
+- **WHEN** significance is requested for a derivation whose admissible alternatives are not declared
+- **THEN** no significance value is emitted and rarity is not substituted for it

@@ -12,7 +12,7 @@ import json
 from copy import deepcopy
 from typing import Any
 
-from TrialLedger.layer2 import assertions, coherence, entail, expectations, nearmiss, profile
+from TrialLedger.layer2 import assertions, coherence, entail, expectations, guide, nearmiss, profile
 
 OPERATIONS = ("describe", "entailment", "coordinates", "corpus")
 MAX_ITEMS = 1000
@@ -539,11 +539,18 @@ def _describe(request: dict[str, Any]) -> dict[str, Any]:
     return {
         "basis": BASIS,
         "clinical_use": (
-            "Use these working operations for your own exploratory trial-design and comparison work from "
-            "confirmed, explicitly represented premises. You decide which premises, comparison population "
-            "and clinical question apply, inspect the returned warrants and unresolved choices, and decide "
-            "how to use the analysis. The assistant can operate the interface in clinical language."
+            "Symbolic reasoning about trial design, operated by the assistant in conversation. The "
+            "assistant translates: it restates the person's criteria and questions as typed premises, shows "
+            "them back in plain words and encodes only what the person confirms. The operations reason: "
+            "every answer is computed and lands in one of four categories (settled, something wrong, your "
+            "call, not knowable from this evidence) with the premise that decided it. They abstain exactly "
+            "where the premises do not settle a question: 'must everyone be at least 65?' against a brief "
+            "requiring 18 or older is allowed but not required, neither yes nor no. Read answer_guide, "
+            "question_vocabulary and worked_session before the first request."
         ),
+        "answer_guide": guide.answer_guide(),
+        "question_vocabulary": deepcopy(guide.QUESTION_VOCABULARY),
+        "worked_session": guide.worked_session(),
         "operation_field": {"type": "string", "required": True, "values": list(OPERATIONS)},
         "input_shapes": deepcopy(INPUTS),
         "limits": {
@@ -580,7 +587,10 @@ def _describe(request: dict[str, Any]) -> dict[str, Any]:
                 "An object has a class tag from this table; JSON arrays become immutable tuples. "
                 "Model defaults apply to omitted optional fields, then all values are validated. "
                 "Quantities need finite numbers; intervals need ordered bounds; enumerations need "
-                "members fitting the comparison."
+                "members fitting the comparison. A boolean literal states that its predicate holds: give "
+                "no members or number (otherwise boolean_with_operand); use polarity negative or Not for "
+                "'does not hold'. Units are compared as written, never converted; time scopes match only "
+                "when identical."
             ),
             "classes": model,
         },
@@ -705,7 +715,13 @@ def _describe(request: dict[str, Any]) -> dict[str, Any]:
                             "assertion ids used, or considered for an undetermined query; not a "
                             "reconstructed source quote"
                         ),
-                        "blockers": "named obstacles: resource_bound, opaque content or unresolved scope",
+                        "blockers": (
+                            "named reasons, read together (answer_guide.entailment.blockers): "
+                            "undecided_by_constraints, no_constraint_mentions_query, resource_bound, "
+                            "query_not_proposition, and per item proposed_refused, unresolved_rule, "
+                            "unresolved_assertion, conflicting, open_scope, unresolved_scope, "
+                            "unresolved_literal, unspecified_boundary, opaque"
+                        ),
                     },
                 },
                 "semantics": (
