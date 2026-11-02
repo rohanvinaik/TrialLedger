@@ -94,6 +94,23 @@ When the person edits the workbook (correcting a reading, answering an open ques
 <folder>` reads their edits back as their own assertions, never as registry facts, and re-checks what depends on
 them.
 
+**Through the Model Context Protocol.** If your app runs local MCP servers (Claude Desktop, Claude Code, and the
+ChatGPT and Gemini clients that launch one), the person can add TrialLedger as a server (`trialledger mcp`; the
+README shows how), and you run the same procedure through its tools instead of a shell: `doctor` with a run name;
+`landscape` with the run name, the request (the same slots as `--request`, `drug_class.subclasses` among them)
+and the mode `doctor` reports; `scope` to show the person the resolved search; in relay mode, for each fetch
+`landscape` lists, fetch its address and pass the body to `save_fetch` with its `save_as`, then call `landscape`
+again until it reports complete; `record` to answer from (its parts: `manifest` with the requested-ID accounting,
+`studies`, `study` with an NCT number, `statuses`, `fields`; every value as the record holds it); and `design`
+for layer two. A result marked as an error says in plain words what to change. Run folders are names inside the
+server's root folder (`--root`, by default `~/trialledger-runs`).
+
+**Relay and the record's integrity.** In relay mode every page passes through you on its way to TrialLedger.
+TrialLedger checks each page's form, its counts, the order of its pages and the exact trials it holds, but it
+cannot check each value against the registry, so a page retyped, shortened or "corrected" in transit would
+change the record unnoticed. Save every body exactly as you received it, byte for byte, and run direct whenever
+`doctor` reports direct. A relayed run's record says so (`manifest.retrieval.mode`), and so does its workbook.
+
 ## What you can trust, and why
 
 Every value in `landscape.json` is an envelope: the value, its **status**, its **source** (the registry field or
@@ -153,7 +170,8 @@ from the saved record by the code that wrote it; it does not prove that a rule r
 - `trialledger <command> --help`: what each command does, its options, and what each exit code means.
 - `landscape.json`'s `statuses`, `envelope` and `fields` sections: what every status and field means.
 - `README.md`: the project explained for clinical readers.
-- `trialledger mcp` serves `doctor`, `landscape`, the record and `design` over the Model Context Protocol.
+- `trialledger mcp` serves TrialLedger over the Model Context Protocol (see "Through the Model Context Protocol"
+  above).
 - `openspec/changes/`: the design of each part, in plain language.
 
 If you are changing TrialLedger's own code rather than using it, read `DEVELOPING.md`.

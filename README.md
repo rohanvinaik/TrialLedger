@@ -166,9 +166,32 @@ designs a trial from a run. For an archival copy of the registry's own records, 
 exactly as sent with certified spreadsheets, and `trialledger verify` later re-checks every value in the saved
 copy and names anything that no longer matches. Each command explains itself with `--help`.
 
-An assistant using TrialLedger reads [`AGENTS.md`](AGENTS.md) (or [`SKILL.md`](SKILL.md)); `trialledger mcp` serves
-the same operations to any assistant that speaks the Model Context Protocol. Contributors start with
-[`DEVELOPING.md`](DEVELOPING.md).
+An assistant using TrialLedger reads [`AGENTS.md`](AGENTS.md) (or [`SKILL.md`](SKILL.md)). An assistant app that
+runs local Model Context Protocol servers (Claude Desktop, Claude Code, and the ChatGPT and Gemini clients that
+launch one) can use TrialLedger as one: `trialledger mcp` serves the same operations as tools, each run folder a
+name inside one root folder. To add it to Claude Code:
+
+```bash
+claude mcp add --scope user trialledger -- trialledger mcp --root ~/trialledger-runs
+```
+
+To add it to Claude Desktop, put it in `claude_desktop_config.json` (on macOS in
+`~/Library/Application Support/Claude/`, on Windows in `%APPDATA%\Claude\`, on Linux in `~/.config/Claude/`) and
+restart the app. Both paths must be absolute: the app starts the command without a shell, so `~` is not expanded,
+and `command` is the full path `which trialledger` prints.
+
+```json
+{
+  "mcpServers": {
+    "trialledger": {
+      "command": "/absolute/path/to/trialledger",
+      "args": ["mcp", "--root", "/absolute/path/to/trialledger-runs"]
+    }
+  }
+}
+```
+
+Contributors start with [`DEVELOPING.md`](DEVELOPING.md).
 
 ## Background
 

@@ -41,7 +41,11 @@ together, never left standing.
       deduced (with premises), recommended (with trials and numbers) or chosen (add-design-synthesis).
 - [ ] `trialledger edits --run <folder>`: the person's workbook edits read back as their assertions, never as
       registry facts, and what depends on them re-checked (6.1).
-- [ ] `trialledger mcp`: doctor, landscape, the record and design over the Model Context Protocol (6.2).
+- [ ] `trialledger mcp`: doctor, landscape, save_fetch, scope, record and design as Model Context Protocol tools
+      over stdio, run folders named inside `--root` (6.2). Built 2026-11-01 but for `design`, which comes with
+      add-design-synthesis; tick then.
+- [ ] A relayed run's workbook says, on its Read me, that relayed pages were checked for form, counts and trials,
+      not value by value (with the readout's wiring).
 - [ ] `trialledger pull` and `trialledger verify` as described (built).
 - [ ] The README's checks: a completed study with an estimated completion date, an adverse event affecting more
       people than were at risk, raised as queries (built: checks version 2).

@@ -33,6 +33,9 @@ trials. `AGENTS.md` explains each step and what to trust in depth.
 - "Not stated" is not "none"; "not posted" is not "no effect"; a registered outcome is a plan, not a result.
 - A reading of eligibility text names the words it read: show them; it is evidence, not fact.
 - When trials were requested by number, check the requested-ID accounting before saying the set is complete.
-- Fetch only the addresses TrialLedger names, and never edit a fetched body.
+- Fetch only the addresses TrialLedger names, and save each body exactly as received, byte for byte: in relay
+  TrialLedger checks pages' form, counts and trials, not each value. Run direct whenever `doctor` allows.
+- Through MCP (`trialledger mcp`), take the same steps with its tools: `doctor`, `landscape`, `scope`,
+  `save_fetch` (relay), `record`, `design`.
 - For an archival, re-checkable copy of the registry's own records: `trialledger pull`, later `trialledger
   verify`; the workbook the person reads is still `landscape.xlsx`.
