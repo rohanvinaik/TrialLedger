@@ -154,10 +154,20 @@ def test_a_group_without_a_denominator_and_an_na_without_its_reason_are_unresolv
 
 def test_safety_is_read_within_its_period():
     result = reviewer.safety_in_period(run())
-    values = {e.what: e.value for e in result.evidence}
-    assert values["reporting period"] == "From Screening (Day -28) to Post Therapy Day 30"
-    assert values["threshold for other events (%)"] == "5"
-    assert values["G2: CAT-8015 30 Microgram Per Kilogram (mcg/kg)"][:2] == [3, 6]
+    values = {(e.address, e.what): e.value for e in result.evidence}
+    assert values[("/studies/1/adverse_events/time_frame", "reporting period")] == (
+        "From Screening (Day -28) to Post Therapy Day 30"
+    )
+    assert values[("/studies/1/adverse_events/frequency_threshold", "threshold for other events (%)")] == "5"
+    group = RECORD["studies"][1]["adverse_events"]["groups"][1]
+    assert values[("/studies/1/adverse_events/groups/1", group["title"])][:2] == [3, 6]
+    count = RECORD["studies"][1]["adverse_events"]["events"][0]["counts"][1]
+    assert values[
+        (
+            "/studies/1/adverse_events/events/0/counts/1",
+            f"{group['title']}: Lung infection",
+        )
+    ] == [count["affected"], count["at_risk"], count["events"]]
     assert result.findings == []
 
 
@@ -169,23 +179,66 @@ def test_more_affected_than_at_risk_and_a_count_not_reported_are_named():
     del events["time_frame"]
     result = reviewer.safety_in_period(run(record))
     assert whats(result.findings) == [reviewer.FINDING_WORDS["affected_exceeds_at_risk"]]
-    assert "G2 events: Not reported" in whats(result.unresolved)
+    assert "CAT-8015 30 Microgram Per Kilogram (mcg/kg): Lung infection — events: Not reported" in whats(
+        result.unresolved
+    )
     assert any(w.startswith("reporting period not stated") for w in whats(result.unresolved))
 
 
 def test_a_safety_row_and_a_group_row_missing_from_the_workbook_are_found():
     events = RECORD["studies"][1]["adverse_events"]
-    event_addresses = [f"/studies/1/adverse_events/events/{i}" for i in range(len(events["events"]))]
+    safety_addresses = [
+        f"/studies/1/adverse_events/events/{event_index}/counts/{count_index}"
+        for event_index, event in enumerate(events["events"])
+        for count_index, _count in enumerate(event.get("counts") or [])
+    ]
     group_addresses = [f"/studies/1/adverse_events/groups/{i}" for i in range(len(events["groups"]))]
     sheets = {
-        contract.SAFETY: ([contract.ADDRESS], [[a] for a in event_addresses[:-1]]),
+        contract.SAFETY: ([contract.ADDRESS], [[a] for a in safety_addresses[:-1]]),
         contract.GROUPS: ([contract.ADDRESS], [[a] for a in group_addresses[:-1]]),
     }
     result = reviewer.safety_in_period(run(sheets=sheets), ["NCT01030536"])
     assert {(f.address, f.value) for f in result.findings} == {
-        (event_addresses[-1], contract.SAFETY),
+        (safety_addresses[-1], contract.SAFETY),
         (group_addresses[-1], contract.GROUPS),
     }
+
+
+def test_safety_keeps_orphan_and_duplicate_count_addresses_and_reports_a_missing_count_row():
+    record = copy.deepcopy(RECORD)
+    trial_index = next(i for i, study in enumerate(record["studies"]) if study["nct"] == "NCT01030536")
+    events = record["studies"][trial_index]["adverse_events"]
+    target = events["events"][0]
+    target["counts"].insert(1, copy.deepcopy(target["counts"][0]))
+    target["counts"].append({"group": "orphan-group", "affected": 0, "at_risk": 2, "events": 0})
+    safety_rows = []
+    for event_index, event in enumerate(events["events"]):
+        for count_index, count in enumerate(event.get("counts") or []):
+            safety_rows.append(
+                [
+                    f"/studies/{trial_index}/adverse_events/events/{event_index}/counts/{count_index}",
+                    count.get("group", "Not stated"),
+                ]
+            )
+    missing_address = safety_rows[1][0]
+    sheets = {
+        contract.SAFETY: (
+            [contract.ADDRESS, "Group ID"],
+            [row for row in safety_rows if row[0] != missing_address],
+        )
+    }
+    result = reviewer.safety_in_period(run(record=record, sheets=sheets), ["NCT01030536"])
+    count_evidence = [item for item in result.evidence if "/counts/" in item.address]
+    target_evidence = [item for item in count_evidence if "/events/0/counts/" in item.address]
+    assert [item.address for item in target_evidence] == [
+        f"/studies/{trial_index}/adverse_events/events/0/counts/{index}"
+        for index in range(len(target["counts"]))
+    ]
+    orphan = next(item for item in target_evidence if item.value == [0, 2, 0])
+    assert orphan.what.startswith("Unresolved — no unique adverse-event source group")
+    assert [(item.address, item.value) for item in result.findings if item.value == contract.SAFETY] == [
+        (missing_address, contract.SAFETY)
+    ]
 
 
 def faithful(record):

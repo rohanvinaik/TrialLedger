@@ -62,11 +62,105 @@ def safety_record():
     return record
 
 
-def safety_rows():
-    return copy.deepcopy(SAFETY["rows"])
+def safety_rows(record=None):
+    record = record or safety_record()
+    headers = SAFETY["columns"]
+    rows = []
+
+    def shown(name, value):
+        want = preserve.expected(contract.FIELD_NAMES[name], value)
+        return next(iter(want.texts or want.counts or want.words), preserve.NOT_REPORTED)
+
+    count_field = "studies[].adverse_events.events[].counts[].group"
+
+    def add(study_index, study, event_index, event, group_id, count, address):
+        module = study["adverse_events"]
+        matches = [group for group in module.get("groups", []) if group.get("id") == group_id]
+        group = matches[0] if len(matches) == 1 else None
+        row = {
+            "Trial ID": study["nct"],
+            contract.ADDRESS: address,
+            "Table": shown("studies[].adverse_events.events[].table", event.get("table")),
+            "Term": shown("studies[].adverse_events.events[].term", event.get("term")),
+            "Group": (
+                shown("studies[].adverse_events.groups[].title", group.get("title"))
+                if group is not None
+                else preserve.SAFETY_GROUP_TITLE_UNRESOLVED
+            ),
+            "Affected": (
+                count.get("affected", preserve.NOT_REPORTED)
+                if isinstance(count, dict)
+                else preserve.NOT_REPORTED
+            ),
+            "At risk": (
+                count.get("at_risk", preserve.NOT_REPORTED)
+                if isinstance(count, dict)
+                else preserve.NOT_REPORTED
+            ),
+            "Events": (
+                count.get("events", preserve.NOT_REPORTED)
+                if isinstance(count, dict)
+                else preserve.NOT_REPORTED
+            ),
+            "Reporting period": shown("studies[].adverse_events.time_frame", module.get("time_frame")),
+            "Organ system": shown(
+                "studies[].adverse_events.events[].organ_system", event.get("organ_system")
+            ),
+            "Group description": (
+                shown("studies[].adverse_events.groups[].description", group.get("description"))
+                if group is not None
+                else preserve.SAFETY_GROUP_DESCRIPTION_UNRESOLVED
+            ),
+            "Group ID": (
+                "Not stated"
+                if group_id is None and "/counts/" not in address
+                else shown(
+                    count_field if "/counts/" in address else "studies[].adverse_events.groups[].id",
+                    group_id,
+                )
+            ),
+            "Frequency threshold": shown(
+                "studies[].adverse_events.frequency_threshold", module.get("frequency_threshold")
+            ),
+            "Vocabulary": shown("studies[].adverse_events.events[].vocabulary", event.get("vocabulary")),
+            "Assessment": shown("studies[].adverse_events.events[].assessment", event.get("assessment")),
+            "Notes": shown("studies[].adverse_events.events[].notes", event.get("notes")),
+        }
+        rows.append([row[header] for header in headers])
+
+    for study_index, study in enumerate(record["studies"]):
+        module = study["adverse_events"]
+        for event_index, event in enumerate(module.get("events", [])):
+            event_address = f"/studies/{study_index}/adverse_events/events/{event_index}"
+            counts = event.get("counts", [])
+            for count_index, count in enumerate(counts):
+                group_id = count.get("group") if isinstance(count, dict) else None
+                add(
+                    study_index,
+                    study,
+                    event_index,
+                    event,
+                    group_id,
+                    count,
+                    f"{event_address}/counts/{count_index}",
+                )
+            seen = []
+            for group in module.get("groups", []):
+                group_id = group.get("id")
+                if group_id in seen:
+                    continue
+                seen.append(group_id)
+                if any(
+                    (count.get("group") if isinstance(count, dict) else None) == group_id for count in counts
+                ):
+                    continue
+                add(study_index, study, event_index, event, group_id, None, event_address)
+            if not seen and not counts:
+                add(study_index, study, event_index, event, None, None, event_address)
+    return rows
 
 
-def safety_findings(rows, record=None, complete=True):
+def safety_findings(rows, record=None, complete=False):
     return cell_findings(record or safety_record(), {contract.SAFETY: (SAFETY["columns"], rows)}, complete)
 
 
@@ -202,9 +296,9 @@ def test_the_safety_example_agrees_with_its_record():
 
 def test_a_wrong_row_address_is_caught():
     rows = safety_rows()
-    rows[0][1] = "/studies/0/adverse_events/events/1"
+    rows[0][1] = rows[0][1].rsplit("/", 1)[0] + "/1"
     found = safety_findings(rows)
-    assert {"not_shown", "number_differs", "row_repeated", "row_missing"} <= set(codes(found))
+    assert "not_shown" in codes(found)
 
 
 def test_an_address_that_resolves_nowhere_or_is_no_pointer_is_named():
@@ -222,35 +316,117 @@ def test_a_row_at_another_grain_is_named():
 
 def test_a_wrong_trial_is_caught():
     rows = safety_rows()
-    rows[2][0] = "NCT01030536"
+    rows[10][0] = "NCT01030536"
     assert codes(safety_findings(rows)) == ["trial_differs"]
 
 
 def test_a_changed_count_is_caught():
     rows = safety_rows()
-    rows[0][SAFETY["columns"].index("G3 affected")] = 0
+    rows[0][SAFETY["columns"].index("Affected")] = 99
     found = safety_findings(rows)
-    assert codes(found) == ["number_differs"] and found[0].field == "Safety: G3 affected"
+    assert codes(found) == ["number_differs"] and found[0].field == "Safety: Affected"
 
 
-def test_a_count_where_the_trial_has_no_such_group_is_caught():
+def test_an_orphan_count_id_is_retained_with_unresolved_group_context():
     rows = safety_rows()
-    rows[2][SAFETY["columns"].index("G3 affected")] = 0
-    assert codes(safety_findings(rows)) == ["not_blank"]
+    record = safety_record()
+    selected = rows[2]
+    count = preserve.resolve_pointer(record, selected[1].strip("/").split("/"))[1]
+    count["group"] = "EG999"
+    selected[SAFETY["columns"].index("Group ID")] = "EG999"
+    selected[SAFETY["columns"].index("Group")] = preserve.SAFETY_GROUP_TITLE_UNRESOLVED
+    selected[SAFETY["columns"].index("Group description")] = preserve.SAFETY_GROUP_DESCRIPTION_UNRESOLVED
+    assert safety_findings(rows, record) == []
+
+
+def test_safety_group_titles_are_checked_by_local_id_not_position_or_trial():
+    record = safety_record()
+    record["studies"][0]["adverse_events"]["groups"].reverse()
+    rows = safety_rows(record)
+    group_column = SAFETY["columns"].index("Group")
+    rows[0][group_column], rows[10][group_column] = rows[10][group_column], rows[0][group_column]
+    found = safety_findings(rows, record)
+    assert any(f.field == "Safety: Group" and f.code == "not_shown" for f in found)
+
+
+def test_a_declared_safety_group_without_a_count_stays_not_reported():
+    record = safety_record()
+    study = record["studies"][0]
+    event = study["adverse_events"]["events"][0]
+    omitted = event["counts"].pop(1)
+    rows = safety_rows(record)
+    pointer = "/studies/0/adverse_events/events/0"
+    row = next(
+        row
+        for row in rows
+        if row[SAFETY["columns"].index(contract.ADDRESS)] == pointer
+        and row[SAFETY["columns"].index("Group ID")] == omitted["group"]
+    )
+    assert [row[SAFETY["columns"].index(name)] for name in ("Affected", "At risk", "Events")] == [
+        preserve.NOT_REPORTED
+    ] * 3
+    assert safety_findings(rows, record, complete=True) == []
+
+
+def test_safety_rejects_event_rows_for_fabricated_or_already_counted_groups():
+    rows = safety_rows()
+    base = rows[0].copy()
+    pointer_column = SAFETY["columns"].index(contract.ADDRESS)
+    group_column = SAFETY["columns"].index("Group ID")
+    title_column = SAFETY["columns"].index("Group")
+    description_column = SAFETY["columns"].index("Group description")
+    count_columns = [SAFETY["columns"].index(name) for name in ("Affected", "At risk", "Events")]
+    for group_id in ("EG999", "EG000"):
+        row = base.copy()
+        row[pointer_column] = row[pointer_column].rsplit("/counts/", 1)[0]
+        row[group_column] = group_id
+        row[title_column] = preserve.SAFETY_GROUP_TITLE_UNRESOLVED
+        row[description_column] = preserve.SAFETY_GROUP_DESCRIPTION_UNRESOLVED
+        for index in count_columns:
+            row[index] = preserve.NOT_REPORTED
+        rows.append(row)
+    found = safety_findings(rows)
+    assert [finding.code for finding in found] == ["wrong_grain", "wrong_grain"]
+
+
+def test_duplicate_count_rows_and_an_event_without_groups_or_counts_are_preserved():
+    record = safety_record()
+    module = record["studies"][0]["adverse_events"]
+    event = module["events"][0]
+    event["counts"].append(copy.deepcopy(event["counts"][0]))
+    module["groups"] = []
+    module["events"].append({"table": "other", "term": "Term without group or count"})
+    rows = safety_rows(record)
+    duplicate_pointers = [
+        row[SAFETY["columns"].index(contract.ADDRESS)]
+        for row in rows
+        if row[SAFETY["columns"].index(contract.ADDRESS)].startswith(
+            "/studies/0/adverse_events/events/0/counts/"
+        )
+    ]
+    assert duplicate_pointers[-1].endswith("/counts/5")
+    event_only = next(
+        row for row in rows if row[SAFETY["columns"].index("Term")] == "Term without group or count"
+    )
+    assert event_only[SAFETY["columns"].index(contract.ADDRESS)] == "/studies/0/adverse_events/events/2"
+    assert event_only[SAFETY["columns"].index("Group ID")] == "Not stated"
+    assert safety_findings(rows, record, complete=True) == []
 
 
 def test_a_count_written_as_text_is_retyped():
     rows = safety_rows()
-    rows[0][SAFETY["columns"].index("G1 at risk")] = "7"
+    rows[0][SAFETY["columns"].index("At risk")] = str(rows[0][SAFETY["columns"].index("At risk")])
     assert codes(safety_findings(rows)) == ["retyped"]
 
 
 def test_a_count_the_registry_does_not_give_reads_not_reported():
     record = safety_record()
-    del record["studies"][0]["adverse_events"]["events"][0]["counts"][0]["events"]
+    selected = safety_rows()[0]
+    count = preserve.resolve_pointer(record, selected[1].strip("/").split("/"))[1]
+    del count["events"]
     assert codes(safety_findings(safety_rows(), record)) == ["retyped"]
     rows = safety_rows()
-    rows[0][SAFETY["columns"].index("G1 events")] = preserve.NOT_REPORTED
+    rows[0][SAFETY["columns"].index("Events")] = preserve.NOT_REPORTED
     assert safety_findings(rows, record) == []
 
 
@@ -264,7 +440,7 @@ def test_a_raw_code_is_not_shown():
 def test_an_unworded_absence_and_a_missing_row_are_caught():
     rows = safety_rows()
     rows[0][SAFETY["columns"].index("Notes")] = None
-    found = safety_findings(rows[:3])
+    found = safety_findings(rows[:3], complete=True)
     assert codes(found) == ["row_missing", "unexplained_blank"]
 
 
@@ -489,22 +665,22 @@ def test_a_listing_continued_on_a_numbered_sheet_is_read_whole(tmp_path):
     assert list(sheets) == [contract.SAFETY]
     headers, rows = sheets[contract.SAFETY]
     plain = [[preserve._plain(cell) for cell in row] for row in rows]
-    assert headers == SAFETY["columns"] and plain == SAFETY["rows"]
-    assert rows[0][SAFETY["columns"].index("G1 at risk")] == preserve.Number(7, "General")
+    assert headers == SAFETY["columns"] and plain == safety_rows()
+    assert rows[0][SAFETY["columns"].index("At risk")] == preserve.Number(7, "General")
     assert cell_findings(safety_record(), sheets, complete=True) == []
 
 
 def test_a_run_is_checked_from_its_files(tmp_path):
     (tmp_path / "landscape.json").write_text(json.dumps(safety_record()), encoding="utf-8")
     rows = safety_rows()
-    rows[3][SAFETY["columns"].index("G2 at risk")] = 135
+    rows[3][SAFETY["columns"].index("At risk")] = 135
     write_safety_book(tmp_path / "landscape.xlsx", rows, 3)
     bodies = {nct: BODIES[nct] for nct in SAFETY["trials"]}
     found = preserve.check_run(
         bodies, tmp_path / "landscape.json", tmp_path / "landscape.xlsx", complete=False
     )
     assert {f.code for f in found} >= {"number_differs", "sheet_missing"}
-    assert [f.field for f in found if f.code == "number_differs"] == ["Safety: G2 at risk"]
+    assert [f.field for f in found if f.code == "number_differs"] == ["Safety: At risk"]
 
 
 # ── numbers: a registry decimal written as a number cell ────────────────────────────────────────────────

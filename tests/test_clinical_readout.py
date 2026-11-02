@@ -520,12 +520,17 @@ def test_many_group_safety_keeps_every_count_and_fixed_identifiers(tmp_path):
     book = load_workbook(path)
     sheet = book[readout.contract.SAFETY]
     headers = [cell.value for cell in sheet[1]]
-    cells = dict(zip(headers, [cell.value for cell in sheet[2]], strict=True))
     assert sheet.freeze_panes == "F2"
-    assert sheet.column_dimensions["E"].width == 28
-    assert cells["G1 affected"] == 0 and cells["G24 affected"] == 23
-    assert cells["G24 at risk"] == 100 and cells["G24 events"] == 46
-    assert len([name for name in headers if name.startswith("G")]) == 72
+    assert headers[4:8] == ["Group", "Affected", "At risk", "Events"]
+    assert sheet.column_dimensions["E"].width == 38
+    assert sheet.max_column == len(headers)
+    safety_rows = [
+        dict(zip(headers, (cell.value for cell in row), strict=True)) for row in sheet.iter_rows(min_row=2)
+    ]
+    assert len(safety_rows) == 24
+    assert safety_rows[0]["Affected"] == 0 and safety_rows[-1]["Affected"] == 23
+    assert safety_rows[-1]["At risk"] == 100 and safety_rows[-1]["Events"] == 46
+    assert [row["Group ID"] for row in safety_rows] == [f"g{i}" for i in range(24)]
     assert len(book[readout.contract.GROUPS]["A"]) >= 25
     assert readout.book_problems(record, path) == []
     book.close()
@@ -670,18 +675,24 @@ def test_safety_counts_link_to_their_own_group_definition_without_changing_count
     readout.write_book(record, path)
     book = load_workbook(path)
     safety = book[readout.contract.SAFETY]
-    for column, group in ((6, "G1"), (9, "G2")):
-        held = safety.cell(2, column)
-        assert isinstance(held.value, int)
+    headers = [cell.value for cell in safety[1]]
+    source_groups = record["studies"][0]["adverse_events"]["groups"]
+    group_index = headers.index("Group") + 1
+    group_id_index = headers.index("Group ID") + 1
+    count_indices = [headers.index(header) + 1 for header in readout.contract.SAFETY_COUNT_HEADERS]
+    for row in range(2, safety.max_row + 1):
+        held = safety.cell(row, group_index)
+        group_id = safety.cell(row, group_id_index).value
         assert held.hyperlink and held.hyperlink.tooltip.startswith("Groups:")
         sheet, address = held.hyperlink.location.split("!")
         groups = book[sheet.strip("'")]
         target = groups[address].row
-        assert groups.cell(target, 1).value == safety.cell(2, 1).value
+        assert groups.cell(target, 1).value == safety.cell(row, 1).value
         assert groups.cell(target, 3).value == "Adverse events"
-        assert groups.cell(target, 5).value == group
+        group_number = next(i for i, group in enumerate(source_groups, 1) if group["id"] == group_id)
+        assert groups.cell(target, 5).value == f"G{group_number}"
         assert held.font.underline == "single"
-        assert safety.cell(2, column + 1).hyperlink.location == held.hyperlink.location
-        assert safety.cell(2, column + 2).hyperlink.location == held.hyperlink.location
+        assert all(isinstance(safety.cell(row, column).value, int) for column in count_indices)
+        assert all(safety.cell(row, column).hyperlink is None for column in count_indices)
     assert readout.book_problems(record, path) == []
     book.close()

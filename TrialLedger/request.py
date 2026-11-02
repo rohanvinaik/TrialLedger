@@ -108,6 +108,7 @@ QUERY_LIMIT = 7000
 RELEASE_BASIS = "version.json asked once, in the first round; assumed, not re-read, for the later rounds"
 RXCLASS_BY_NAME = f"{RXNAV}/rxclass/class/byName.json"
 RXCLASS_BY_CLASS_ID = f"{RXNAV}/rxclass/class/byId.json"
+RXCLASS_ALL_CLASSES = f"{RXNAV}/rxclass/allClasses.json"
 
 
 def lookup_url(url: str, params: dict[str, str]) -> str:
@@ -229,6 +230,12 @@ def class_request(drug_class: dict[str, str]) -> str:
     return lookup_url(RXCLASS_BY_NAME, {"className": drug_class["name"], "classTypes": kind})
 
 
+def class_catalog_request(source: str) -> str:
+    """The RxClass source catalog, requested only to navigate after a class-name miss."""
+    kind = CLASS_SOURCES[source][0]
+    return lookup_url(RXCLASS_ALL_CLASSES, {"classTypes": kind})
+
+
 def class_matches(status: int, body: Any) -> tuple[str, list[list[str]]]:
     """The classes in one RxClass byName or byId response (pure — pinned).
 
@@ -282,6 +289,46 @@ def class_resolution(source: str, code: str, matches: list[list[str]]) -> tuple[
     if not fitting:
         return "class_source_mismatch", sorted(matches)
     return ("found" if len(fitting) == 1 else "class_ambiguous"), fitting
+
+
+def class_candidate_selection(
+    source: str, query: str, code: str, matches: list[list[str]]
+) -> tuple[str, list[list[str]]]:
+    """Select source-catalog entries for explicit user navigation, never a class resolution (pure — pinned).
+
+    candidate_options — every same-source catalog label containing all query words,
+                        sorted; no entry is chosen.
+    no_candidates     — a valid catalog has no same-source label containing every query word.
+    catalog_lookup_failed / catalog_malformed — the catalog response cannot support candidate navigation.
+
+    Word inclusion only narrows the choices shown to the person. It does not establish that a label is
+    equivalent to the requested class, and none of these candidates may be expanded into a registry query.
+    """
+    if code == "lookup_failed":
+        return "catalog_lookup_failed", []
+    if code in ("malformed", "not_found"):
+        return "catalog_malformed", []
+    if code != "found":
+        return "catalog_malformed", []
+    if source not in CLASS_SOURCES or not isinstance(query, str) or not isinstance(matches, list):
+        return "catalog_malformed", []
+    kind = CLASS_SOURCES[source][0]
+
+    def words(value: str) -> set[str]:
+        return set("".join(char.casefold() if char.isalnum() else " " for char in value).split())
+
+    wanted = words(query)
+    if (
+        not wanted
+        or not matches
+        or any(
+            not isinstance(row, list) or len(row) != 3 or not all(isinstance(item, str) for item in row)
+            for row in matches
+        )
+    ):
+        return "catalog_malformed", []
+    candidates = sorted({tuple(row) for row in matches if row[2] == kind and wanted <= words(row[1])})
+    return ("candidate_options" if candidates else "no_candidates"), [list(row) for row in candidates]
 
 
 def mechanism_rows(mechanism: str) -> tuple[str, list[tuple[str, str, str, str, bool, str, str]]]:
@@ -626,6 +673,30 @@ def resolve_scope(request: Any, answers: dict[str, Any]) -> dict[str, Any]:
     for slot, drug_class in wanted:
         expansion, code, matches = _class_expansion(slot, drug_class, answers)
         lookups.append(expansion["request"])
+        if code == "class_not_found" and "name" in drug_class:
+            catalog_url = class_catalog_request(drug_class["source"])
+            lookups.append(catalog_url)
+            expansion["requested_class_code"] = code
+            expansion["candidate_request"] = catalog_url
+            if catalog_url not in answers:
+                code, candidates, candidate_code = "pending", [], "pending"
+            else:
+                catalog_code, catalog_matches = class_matches(*answers[catalog_url])
+                candidate_code, candidates = class_candidate_selection(
+                    drug_class["source"], drug_class["name"], catalog_code, catalog_matches
+                )
+                if candidate_code == "candidate_options":
+                    code, matches = "class_candidates", candidates
+                elif candidate_code == "catalog_lookup_failed":
+                    code, matches = "class_lookup_failed", []
+                elif candidate_code == "catalog_malformed":
+                    code, matches = "class_malformed", []
+                else:
+                    code, matches = "class_not_found", []
+            expansion["candidate_code"] = candidate_code
+            expansion["candidates"] = candidates
+        expansion["code"] = code
+        expansion["classes"] = matches
         expansions.append(expansion)
         rule = json.loads(json.dumps(drug_class.get("subclasses", "include")))
         if code == "found":

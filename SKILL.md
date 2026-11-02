@@ -34,14 +34,30 @@ person to know internal names. A complete protocol generator is not currently ca
 
 ## Reference sheet
 
+For an assistant-operated local run, first inspect whether this environment has local execution, network,
+report-folder read/write and workbook-delivery capability. If Python execution and report-folder writing are
+available, install TrialLedger in the assistant's own Python 3.12+ environment and run `doctor`; a repository
+URL alone does not establish installation or access. Relay bridges missing network access only: it still
+requires Python execution and report-folder writing, plus the ability to fetch each complete response body.
+Without execution or report writing, relay cannot make a local run possible; explain the specific gap and use
+a compatible environment.
+
+Translate an ordinary drug/class phrase to source-backed identity candidates and confirm the intended source
+identity before searching. If multiple class candidates match, show their names and IDs for resolution; after
+one is selected, expand only that class in preview. For example, “EGFR inhibitors” may be checked against ATC
+class `L01EB`; show the selected class's members and filters before gathering. Do not expand every candidate
+or ask the clinician to select an app when the assistant can inspect its own capabilities.
+
 1. Install on Python 3.12+: `pip install "git+https://github.com/rohanvinaik/TrialLedger"`.
-2. Run `trialledger doctor --run FOLDER`; prefer direct mode.
+2. Run `trialledger doctor --run FOLDER`; use direct mode when available.
 3. Form flags or `--request FILE`, or `--ids NCT...,NCT...`. Preview with
    `trialledger landscape --run FOLDER <request flags> --preview` and show `resolution.json`.
-4. Repeat without preview to gather. Exit 3 awaits named responses in next.json; fetch each exactly and save
-   unchanged. Exit 0 is complete/previewed, 2 names refusal/stop, 1 gives retry advice. Repetition resumes;
-   changed requests use new folders. Never retype, reformat, shorten or correct a relay body.
-5. Check requested-ID accounting and deliver landscape.xlsx. Answer from landscape.json, not your own
+4. Repeat without preview to gather. Exit 3 awaits named responses in `next.json`; fetch each full response
+   body and save it byte-for-byte unchanged. Search terminology is still required to resolve the requested
+   scope, but relay skips post-retrieval drug enrichment. Browser excerpts and copied tables are not complete
+   response bodies. Exit 0 is complete/previewed, 2 names refusal/stop, 1 gives retry advice. Repetition
+   resumes; changed requests use new folders.
+5. Check requested-ID accounting and deliver `landscape.xlsx`. Answer from `landscape.json`, not your own
    reconstruction of a registry page. The JSON is a declared clinical selection; complete source responses
    are retained separately.
 

@@ -166,7 +166,7 @@ not looked up for their classes, and the record says so. Registry conditions and
 Unless --mode is given, the mode is what `trialledger doctor` finds.
 
 examples:
-  trialledger landscape --run egfr-nsclc --drug-class "EGFR tyrosine kinase inhibitors" --class-source ATC \\
+  trialledger landscape --run egfr-nsclc --drug-class-id L01EB --class-source ATC \\
       --condition-class "Carcinoma, Non-Small-Cell Lung" --phase PHASE3 --status COMPLETED
   trialledger landscape --run my-trials --ids NCT04852770,NCT01827384,NCT01086644
   trialledger landscape --run asthma --request request.json --mode relay
@@ -334,7 +334,9 @@ def main(
         help="a drug name, with its canonical RxNorm name and sourced product names (repeat)",
     )
     landscape_parser.add_argument(
-        "--drug-class", help="a drug class by name, with every subclass it includes (with --class-source)"
+        "--drug-class",
+        help="a drug class by name (use --drug-class-id for an ID); "
+        "unresolved names offer source-catalogue choices",
     )
     landscape_parser.add_argument("--drug-class-id", help="a drug class by its id (with --class-source)")
     landscape_parser.add_argument(

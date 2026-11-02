@@ -110,6 +110,42 @@ def _listed(run: Run, sheet: str, nct: str, addresses: list[str]) -> list[Item]:
     return [Item(nct, a, FINDING_WORDS["not_in_destination"], sheet) for a in addresses if a not in held]
 
 
+def _safety_listed(run: Run, nct: str, base: str, events: dict[str, Any]) -> list[Item]:
+    """Check every source count row and each event-level safety placeholder against its workbook row."""
+    if run.sheets is None:
+        return []
+    rows = _rows(run, contract.SAFETY)
+    expected: list[tuple[str, str | None]] = []
+    groups = events.get("groups") or []
+    for event_index, event in enumerate(events.get("events") or []):
+        address = f"{base}/events/{event_index}"
+        counts = event.get("counts") or []
+        expected.extend(
+            (f"{address}/counts/{count_index}", None) for count_index, _count in enumerate(counts)
+        )
+        count_ids = [count.get("group") if isinstance(count, dict) else None for count in counts]
+        missing_groups = []
+        for group in groups:
+            if not isinstance(group, dict):
+                continue
+            group_id = group.get("id")
+            if group_id in count_ids or group_id in missing_groups:
+                continue
+            missing_groups.append(group_id)
+            expected.append((address, "Not stated" if group_id is None else str(group_id)))
+        if not groups and not counts:
+            expected.append((address, "Not stated"))
+    missing = []
+    for address, group_id in expected:
+        if any(
+            row.get(contract.ADDRESS) == address and (group_id is None or row.get("Group ID") == group_id)
+            for row in rows
+        ):
+            continue
+        missing.append(Item(nct, address, FINDING_WORDS["not_in_destination"], contract.SAFETY))
+    return missing
+
+
 def _nodes(i: int, study: dict[str, Any], sheet: str) -> list[str]:
     """The addresses of a study's nodes a listing shows a row for."""
     prefix = len("/studies/0")
@@ -422,7 +458,7 @@ def safety_in_period(run: Run, ncts: list[str] | None = None) -> TaskResult:
                 Item(
                     nct,
                     address,
-                    f"G{g + 1}: {group.get('title')}",
+                    str(group.get("title") or "Unresolved — group title not stated"),
                     [
                         group.get(k)
                         for k in ("serious_affected", "serious_at_risk", "other_affected", "other_at_risk")
@@ -433,17 +469,49 @@ def safety_in_period(run: Run, ncts: list[str] | None = None) -> TaskResult:
                 findings += _exceeds(
                     nct, address, group.get(f"{kind}_affected"), group.get(f"{kind}_at_risk")
                 )
-        ids = [group.get("id") for group in groups]
         for e, event in enumerate(events.get("events") or []):
             address = f"{base}/events/{e}"
-            counts = {c.get("group"): c for c in event.get("counts") or [] if isinstance(c, dict)}
-            for n, group_id in enumerate(ids, start=1):
-                held = counts.get(group_id, {})
+            counts = event.get("counts") or []
+            for c, held in enumerate(counts):
+                count_address = f"{address}/counts/{c}"
+                count = held if isinstance(held, dict) else {}
+                group_id = count.get("group")
+                matches = [
+                    group for group in groups if isinstance(group, dict) and group.get("id") == group_id
+                ]
+                title = (
+                    str(matches[0].get("title") or "Unresolved — group title not stated")
+                    if len(matches) == 1
+                    else "Unresolved — no unique adverse-event source group is available"
+                )
+                what = f"{title}: {event.get('term') or 'Unresolved — event term not stated'}"
+                evidence.append(
+                    Item(
+                        nct,
+                        count_address,
+                        what,
+                        [count.get("affected"), count.get("at_risk"), count.get("events")],
+                    )
+                )
                 for stat in ("affected", "at_risk", "events"):
-                    if not isinstance(held.get(stat), int):
-                        unresolved.append(Item(nct, address, f"G{n} {stat}: {preserve.NOT_REPORTED}"))
-                findings += _exceeds(nct, address, held.get("affected"), held.get("at_risk"))
-        findings += _listed(run, contract.SAFETY, nct, _nodes(i, study, contract.SAFETY))
+                    if not isinstance(count.get(stat), int):
+                        unresolved.append(
+                            Item(nct, count_address, f"{what} — {stat}: {preserve.NOT_REPORTED}")
+                        )
+                findings += _exceeds(nct, count_address, count.get("affected"), count.get("at_risk"))
+            count_ids = [count.get("group") if isinstance(count, dict) else None for count in counts]
+            missing_group_ids = []
+            for group in groups:
+                if not isinstance(group, dict):
+                    continue
+                group_id = group.get("id")
+                if group_id in count_ids or group_id in missing_group_ids:
+                    continue
+                missing_group_ids.append(group_id)
+                title = str(group.get("title") or "Unresolved — group title not stated")
+                for stat in ("affected", "at_risk", "events"):
+                    unresolved.append(Item(nct, address, f"{title} — {stat}: {preserve.NOT_REPORTED}"))
+        findings += _safety_listed(run, nct, base, events)
         findings += _listed(run, contract.GROUPS, nct, [f"{base}/groups/{g}" for g in range(len(groups))])
     return TaskResult("read safety within its reporting period", destination, evidence, unresolved, findings)
 

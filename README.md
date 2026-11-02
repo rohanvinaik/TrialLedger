@@ -1,17 +1,20 @@
 # TrialLedger
 
-**A clinical-trial reference workbook backed by its source record, and a separate symbolic trial designer.**
+**Get a source-backed clinical trial workbook, or use symbolic reasoning to examine a design question.**
 
-Give your assistant trial numbers or a description of the trials you want. TrialLedger gathers their
-ClinicalTrials.gov records and returns one readable workbook with a dossier for each study and shared
-listings, plus matching JSON. The assistant answers from that evidence rather than inventing trial facts.
+Tell your assistant which trials you want, or describe the drug/class, condition and filters. TrialLedger
+gathers the ClinicalTrials.gov records and returns one formatted workbook (`landscape.xlsx`) with a dossier
+for each study and shared listings, plus matching JSON (`landscape.json`). The workbook is the clinical
+reference sheet; the JSON is its matching source-backed record. The assistant operates the registry search
+and answers from that record rather than improvising facts from registry pages.
 
-That is **layer one**, the available reference-sheet operation. **Layer two** is the separately designed
-automated clinical trial writer: use a brief, warranted evidence and symbolic constraints to construct a new
-trial, suggest supported choices and ask the person to settle the remaining judgments. Its scoped reasoning,
-NSCLC coordinate and corpus-analysis operations are available; automatic source interpretation and the
-complete brief-to-protocol workflow are not yet integrated. Incomplete integration does not make those
-working symbolic components unusable.
+That is **layer one**, the available reference-sheet operation. **Layer two** is a designed automated
+trial-writing workflow. It is intended to start from your brief and evidence, work out the resulting
+constraints, compare relevant trials, propose choices for your review and write a protocol with its basis.
+The full workflow is partly built. Separate reasoning operations already let you check what follows from
+explicit requirements, explore supported NSCLC design options and compare stated features in a defined set.
+These operations are useful on their own, even though automatic reading of trial text and complete
+brief-to-protocol writing are not yet integrated.
 
 You can use those working analyses for your own clinical-development work now, independently of asking for
 a complete new trial. Choose the question; your assistant explains the applicable operation, helps you
@@ -66,19 +69,43 @@ event list does not establish zero harms. Seriousness does not establish grade. 
 available for clinical interpretation; it does not silently rank key criteria, assign biomarker roles,
 infer current care or propose a new efficacy target. Those belong to a separately identified reasoning task.
 
-## Use it through your assistant
+## A clinical-development example
 
-Ask, for example:
+For example, ask: “I’m reviewing completed Phase 3 EGFR inhibitor studies in non-small cell lung cancer.
+Gather the reference workbook, then show me the exact eligibility and the reported safety by study group.”
+The assistant checks for Python execution, report-folder file access, network access and the ability to deliver
+the workbook. If Python execution and report-folder writing are available, it installs TrialLedger into its
+own Python 3.12+ environment, runs `doctor`, previews the resolved search and gathers that fixed scope. A
+repository link alone does not establish that the assistant can install software or reach ClinicalTrials.gov.
+Relay bridges missing network access only: it still requires Python execution and report-folder writing,
+plus the ability to fetch each complete response. If execution or report writing is unavailable, relay cannot
+make a local run possible.
 
-> Using TrialLedger, find completed Phase 3 trials of EGFR tyrosine kinase inhibitors in non-small cell lung
-> cancer. Show me the search, then give me the reference workbook.
+For the class search, the assistant translates “EGFR inhibitors” to a source-backed candidate and checks its
+ATC class name and ID. If the wording is unresolved, it shows source candidate names and IDs for you to
+confirm, even when there is only one suggestion. It expands only the selected class in the next preview,
+where you can inspect the member drugs and
+filters. The example uses ATC class `L01EB`; it describes a search, not a claim that particular matching
+studies were retrieved. No study IDs are assumed.
 
-For local use, install on Python 3.12 or later:
+In direct mode, the assistant can fetch from the resolved scope itself. In relay mode, TrialLedger still
+needs the search terminology to resolve the requested scope, but it skips post-retrieval drug enrichment.
+Each relay fetch must be the complete response body saved byte-for-byte as requested; a browser excerpt,
+copied table or shortened response cannot substitute. Relay validates structure and identity, not every live
+registry value.
+
+If the evidence raises a design question, the assistant can then use a separate symbolic operation for your
+own work—for example, “Given these population restrictions, does this proposed cohort still fit?” It first
+confirms which source passage or user premise applies to which participants, then reports what follows, what
+depends on a chosen assumption and what remains unresolved. This does not change the reference workbook or
+turn free text into an automatically extracted fact.
+
+The local commands, for an assistant environment with those capabilities, are:
 
 ```bash
 pip install "git+https://github.com/rohanvinaik/TrialLedger"
 trialledger doctor --run egfr-nsclc
-trialledger landscape --run egfr-nsclc --drug-class "EGFR tyrosine kinase inhibitors" --class-source ATC \
+trialledger landscape --run egfr-nsclc --drug-class-id L01EB --class-source ATC \
     --condition-class "Carcinoma, Non-Small-Cell Lung" --phase PHASE3 --status COMPLETED --preview
 ```
 
@@ -87,10 +114,10 @@ Read the preview and `resolution.json`, then repeat without `--preview`. Specifi
 field. A changed request needs a new run folder; a repeated request resumes. Class requests can explicitly
 exclude subclasses through request JSON. Search expansion is shown, never hidden.
 
-`doctor` chooses **direct** mode when the program can fetch, or **relay** when the assistant must fetch each
-exact response in `next.json` unchanged. Relay checks form, counts, order and identities, not every value
-against the live registry; never retype, shorten or correct a response. Gathered-study drug enrichment is not
-performed in relay mode: not looked up is not no class.
+`doctor` chooses **direct** mode when the program can fetch, or **relay** when each exact response in
+`next.json` must be fetched and saved unchanged. Relay checks form, counts, order and identities, not every
+value against the live registry; never retype, shorten or correct a response. Gathered-study drug enrichment
+is not performed in relay mode: not looked up is not no class.
 
 Exit 0 means complete or previewed; 3 awaits relay responses; 2 names a refusal/stop; 1 gives failure/retry
 advice. Requested-ID accounting still needs review: successful retrieval can include missing trial numbers.

@@ -29,7 +29,7 @@ from typing import Any
 
 from TrialLedger import classes as rx
 from TrialLedger.contract import DISPLAY
-from TrialLedger.operate import Outcome, fix_scope, stop_advice
+from TrialLedger.operate import RESOLUTION_NAME, Outcome, fix_scope, stop_advice
 from TrialLedger.steps import NEXT_NAME
 
 PREVIEWED = "previewed"
@@ -75,6 +75,12 @@ def _class_lines(slot: str, expansions: list[dict[str, Any]]) -> list[str]:
         elif expansion["kind"] == "class" and expansion["code"] == "found":
             class_id, label, _kind = expansion["classes"][0]
             lines.append(f"  Class: {label} ({expansion['source']}, {class_id})")
+        elif expansion["kind"] == "class" and expansion["code"] == "class_candidates":
+            lines.append("  Source-catalog candidates (navigation only; none selected):")
+            for class_id, label, class_type in expansion["candidates"]:
+                lines.append(
+                    f"    {label} — ID {class_id}, source {expansion['source']} (RxClass type {class_type})"
+                )
         elif expansion["kind"] == "subclass_attribution" and expansion["code"] == "found":
             subclasses = expansion["subclasses"]
             if subclasses:
@@ -174,6 +180,11 @@ def scope_words(scope: Any) -> list[str]:
         for slot, stop, detail in scope.get("stops", []):
             said = f" ({json.dumps(detail, ensure_ascii=False)})" if detail else ""
             lines.append(f"  {slot}: {stop}{said} — {stop_advice(stop)}")
+        if any(stop == "class_candidates" for _slot, stop, _detail in scope.get("stops", [])):
+            lines.append(
+                "To search a candidate, start a new run and pass its ID with "
+                "--drug-class-id <ID> and the same --class-source. No candidate was selected."
+            )
     return lines
 
 
@@ -211,6 +222,11 @@ def preview(
     given = {} if progress is None else {"progress": progress}
     outcome, _request, scope = fix_scope(folder, request, mode, get=get, sleep=sleep, **given)
     if outcome is not None:
+        resolution = folder / RESOLUTION_NAME
+        if outcome.status == "scope_stopped" and resolution.is_file():
+            saved_scope = json.loads(resolution.read_text(encoding="utf-8"))
+            if any(stop == "class_candidates" for _slot, stop, _detail in saved_scope.get("stops", [])):
+                return Outcome(outcome.status, "\n".join(scope_words(saved_scope)), outcome.advice)
         return outcome
     detail = "\n".join(scope_words(scope))
     _note(folder, mode, detail)

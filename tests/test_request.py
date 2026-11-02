@@ -39,6 +39,7 @@ from TrialLedger.classes import rxclass_members, rxclass_tree
 from TrialLedger.request import (
     QUERY_LIMIT,
     _subclass_expansions,
+    class_candidate_selection,
     class_matches,
     class_resolution,
     drug_names,
@@ -340,6 +341,56 @@ def test_no_class_answer_has_a_named_reason(status, body, code):
 )
 def test_a_requested_class_is_one_class_of_its_source(source, found, resolution):
     assert class_resolution(source, *found) == resolution
+
+
+def test_class_catalog_candidates_are_source_filtered_and_never_auto_selected():
+    catalog = [
+        ["E3", "Epidermal growth factor receptor (EGFR) tyrosine kinase inhibitors", "EPC"],
+        ["OTHER", "EGFR tyrosine kinase inhibitors", "MOA"],
+        ["E2", "EGFR tyrosine kinase inhibitors", "EPC"],
+        ["E1", "EGFR tyrosine kinase inhibitors", "EPC"],
+        ["E4", "EGFR kinase inhibitors", "EPC"],
+    ]
+    assert class_candidate_selection("EPC", "EGFR tyrosine kinase inhibitors", "found", catalog) == (
+        "candidate_options",
+        [catalog[3], catalog[2], catalog[0]],
+    )
+    assert class_candidate_selection("EPC", "EGFR kinase inhibitors", "found", catalog) == (
+        "candidate_options",
+        [catalog[3], catalog[2], catalog[0], catalog[4]],
+    )
+
+
+def test_a_sole_class_catalog_candidate_is_still_only_an_option():
+    candidate = ["L01EB", "Epidermal growth factor receptor (EGFR) tyrosine kinase inhibitors", "ATC1-4"]
+    assert class_candidate_selection("ATC", "EGFR tyrosine kinase inhibitors", "found", [candidate]) == (
+        "candidate_options",
+        [candidate],
+    )
+
+
+def test_a_malformed_catalog_code_never_yields_candidate_options():
+    candidate = ["L01EB", "Epidermal growth factor receptor (EGFR) tyrosine kinase inhibitors", "ATC1-4"]
+    assert class_candidate_selection("ATC", "EGFR tyrosine kinase inhibitors", "malformed", [candidate]) == (
+        "catalog_malformed",
+        [],
+    )
+
+
+@pytest.mark.parametrize(
+    "source, query, code, matches, expected",
+    [
+        ("EPC", "No Such Class Zzq", "found", [["N1", "Kinase Inhibitor", "EPC"]], ("no_candidates", [])),
+        ("EPC", "Kinase Inhibitor", "lookup_failed", [], ("catalog_lookup_failed", [])),
+        ("EPC", "Kinase Inhibitor", "malformed", [], ("catalog_malformed", [])),
+        ("EPC", "Kinase Inhibitor", "not_found", [], ("catalog_malformed", [])),
+        ("EPC", "Kinase Inhibitor", "found", [], ("catalog_malformed", [])),
+        ("EPC", "Kinase Inhibitor", "found", [["N1", "Kinase Inhibitor"]], ("catalog_malformed", [])),
+        ("EPC", "   ", "found", [["N1", "Kinase Inhibitor", "EPC"]], ("catalog_malformed", [])),
+    ],
+)
+def test_class_catalog_candidate_failures_keep_named_codes(source, query, code, matches, expected):
+    assert class_candidate_selection(source, query, code, matches) == expected
 
 
 def test_a_mechanism_without_an_entailed_row_is_listed_unexpanded():
@@ -1108,9 +1159,96 @@ def test_what_rxclass_does_not_hold_as_asked_stops_the_scope():
             [["L01ED", "Anaplastic lymphoma kinase (ALK) inhibitors", "ATC1-4"]],
         ]
     ]
-    missing = resolve_scope(NO_CLASS, ANSWERS)
+    missing_request = NO_CLASS["drug_class"]
+    missing_catalog = request.class_catalog_request(missing_request["source"])
+    missing_answers = ANSWERS | {
+        missing_catalog: [
+            200,
+            {
+                "rxclassMinConceptList": {
+                    "rxclassMinConcept": [{"classId": "N1", "className": "Other class", "classType": "EPC"}]
+                }
+            },
+        ]
+    }
+    missing = resolve_scope(NO_CLASS, missing_answers)
     assert missing["code"] == "unresolved" and missing["query"] == {}
     assert missing["stops"] == [["drug_class", "class_not_found", []]]
+
+
+def test_a_missed_class_name_waits_for_the_source_catalog_and_returns_choices_only():
+    asked = {"drug_class": {"name": "EGFR tyrosine kinase inhibitors", "source": "ATC"}}
+    by_name = request.class_request(asked["drug_class"])
+    catalog = request.class_catalog_request("ATC")
+    body = {
+        "rxclassMinConceptList": {
+            "rxclassMinConcept": [
+                {
+                    "classId": "L01EB",
+                    "className": "Epidermal growth factor receptor (EGFR) tyrosine kinase inhibitors",
+                    "classType": "ATC1-4",
+                },
+                {
+                    "classId": "N0000175605",
+                    "className": "EGFR tyrosine kinase inhibitors",
+                    "classType": "EPC",
+                },
+            ]
+        }
+    }
+    assert request.RXCLASS_ALL_CLASSES in catalog
+    assert lookups_needed(asked, {}) == [VERSION, by_name]
+    by_name_answer = {VERSION: ANSWERS[VERSION], by_name: [200, {}]}
+    waiting = resolve_scope(asked, by_name_answer)
+    assert waiting["code"] == "awaiting_lookups" and waiting["query"] == {}
+    assert waiting["pending"] == [catalog]
+    assert lookups_needed(asked, by_name_answer) == [catalog]
+
+    scope = resolve_scope(asked, by_name_answer | {catalog: [200, body]})
+    assert scope["code"] == "unresolved" and scope["query"] == {}
+    assert scope["stops"] == [
+        [
+            "drug_class",
+            "class_candidates",
+            [
+                ["L01EB", "Epidermal growth factor receptor (EGFR) tyrosine kinase inhibitors", "ATC1-4"],
+            ],
+        ]
+    ]
+    expansion = next(item for item in scope["expansions"] if item["kind"] == "class")
+    assert expansion["requested_class_code"] == "class_not_found"
+    assert expansion["candidate_code"] == "candidate_options"
+    assert expansion["candidate_request"] == catalog
+    assert not any(item["kind"] == "class_members" for item in scope["expansions"])
+
+
+@pytest.mark.parametrize(
+    "status, body, stop",
+    [
+        (503, None, "class_lookup_failed"),
+        (200, [], "class_malformed"),
+    ],
+)
+def test_a_failed_or_malformed_source_catalog_is_not_read_as_no_class(status, body, stop):
+    asked = {"drug_class": {"name": "Kinase Inhibitor", "source": "ATC"}}
+    by_name = request.class_request(asked["drug_class"])
+    catalog = request.class_catalog_request("ATC")
+    answers = {VERSION: ANSWERS[VERSION], by_name: [200, {}], catalog: [status, body]}
+    scope = resolve_scope(asked, answers)
+    assert scope["code"] == "unresolved" and scope["query"] == {}
+    assert scope["stops"][0][:2] == ["drug_class", stop]
+    expansion = next(item for item in scope["expansions"] if item["kind"] == "class")
+    assert expansion["requested_class_code"] == "class_not_found"
+    assert expansion["candidate_code"] in ("catalog_lookup_failed", "catalog_malformed")
+
+
+def test_an_id_class_miss_does_not_open_name_catalog_recovery():
+    asked = {"drug_class": {"id": "UNKNOWN", "source": "ATC"}}
+    by_id = request.class_request(asked["drug_class"])
+    scope = resolve_scope(asked, {VERSION: ANSWERS[VERSION], by_id: [200, {}]})
+    assert scope["code"] == "unresolved" and scope["query"] == {}
+    assert scope["stops"] == [["drug_class", "class_not_found", []]]
+    assert request.RXCLASS_ALL_CLASSES not in " ".join(scope["lookups"])
 
 
 def test_a_query_the_registry_would_refuse_for_its_length_is_not_written():

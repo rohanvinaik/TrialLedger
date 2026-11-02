@@ -33,6 +33,20 @@ PROBES = {
 }
 PROBE_TIMEOUT_S = 8.0
 MODES = ("direct", "relay", "unsupported_python", "missing_dependency", "folder_not_writable")
+CONNECTION_RECOVERY = {
+    "reachable": "Connection check succeeded; gathering will validate the source response.",
+    "access_blocked": (
+        "Access was refused. Use an authorised connection or a permitted exact-response fetch route."
+    ),
+    "rate_limited": "The service is limiting requests. Wait as the service directs, then retry the check.",
+    "service_unavailable": "The service is unavailable. Retry later; this is not a missing clinical record.",
+    "unexpected_response": (
+        "The endpoint returned an unexpected status. Check the address and connection before retrying."
+    ),
+    "unreachable": (
+        "This process could not connect. Use another permitted connection or an exact-response fetch route."
+    ),
+}
 # Each step names only commands that exist today (add-agent-operation 4.2: `trialledger landscape` and its
 # relay through next.json).
 NEXT_STEP = {
@@ -81,15 +95,36 @@ def run_mode(python_ok: bool, missing: list[str], registry: str, rxnav: str, wri
     return "relay"
 
 
+def http_probe_status(status: int) -> str:
+    """Classify a connection check's HTTP response (pure — pinned).
+
+    Only a successful HTTP response permits direct mode. Access restrictions, throttling,
+    service failures and unexpected responses require different recovery; none means success.
+    Source consumers still validate the actual response bodies when gathering evidence.
+    """
+    if 200 <= status < 300:
+        return "reachable"
+    if status in (401, 403):
+        return "access_blocked"
+    if status == 429:
+        return "rate_limited"
+    if 500 <= status < 600:
+        return "service_unavailable"
+    return "unexpected_response"
+
+
 def probe(url: str, get: Callable[..., Any] | None = None) -> str:
-    """Whether one URL answers from this process: "reachable" on any HTTP answer below 500, else the reason
-    (an HTTP status, or the error's class name: a sandbox that blocks egress raises, it does not answer)."""
+    """Report a successful HTTP response, or the named failure and HTTP status/exception.
+
+    A response from a blocked or throttled service must never select direct mode.
+    """
     try:
         response = (get or httpx.get)(url, timeout=PROBE_TIMEOUT_S, follow_redirects=True)
     except Exception as error:  # every failure is reported by name, never raised past the check
         return f"unreachable: {type(error).__name__}"
     status = getattr(response, "status_code", 0)
-    return "reachable" if 0 < status < 500 else f"unreachable: HTTP {status}"
+    code = http_probe_status(status)
+    return code if code == "reachable" else f"{code}: HTTP {status}"
 
 
 def folder_writable(folder: Path) -> bool:
@@ -139,6 +174,9 @@ def report(folder: Path, get: Callable[..., Any] | None = None) -> dict[str, Any
         "python": {"version": ".".join(map(str, version)), "supported": python_ok},
         "dependencies": dependencies,
         "reachable": reach,
+        "connection_advice": {
+            host: CONNECTION_RECOVERY[result.split(":", 1)[0]] for host, result in reach.items()
+        },
         "run_folder": {"path": str(folder), "writable": writable},
         "platform": {"os": os.name, "executable": sys.executable},
         "mode": mode,

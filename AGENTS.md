@@ -49,19 +49,30 @@ consistency of the registry's own fields, not an assessment that a study is clin
 
 ## Give the person the reference sheet
 
-1. Install on Python 3.12+: `pip install "git+https://github.com/rohanvinaik/TrialLedger"`.
-2. Run `trialledger doctor --run FOLDER`. Prefer direct mode. Relay is for fetching named responses unchanged.
-3. Translate their request into flags or `--request FILE`; identifiers use `--ids NCT...,NCT...`.
+1. For an assistant-operated local route, inspect this environment's execution, network, file and download
+   capabilities. When Python execution and report-folder writing are available, install TrialLedger in the
+   assistant's Python 3.12+ environment and run `doctor`; do not infer capability from the repository URL.
+   Relay bridges missing network access only: it still needs Python execution and report-folder writing, plus
+   the ability to fetch each complete response body. If execution or report writing is unavailable, relay
+   cannot make a local run possible; use a compatible environment or state the specific gap.
+2. Translate their request into flags or `--request FILE`; identifiers use `--ids NCT...,NCT...`.
    `landscape --help` defines accepted drugs/classes and EPC/MoA/ATC sources, conditions/MeSH search classes,
    mechanisms, phases, statuses, study types and dates. A slot the sources cannot resolve is not guessed.
-4. Preview with `trialledger landscape --run FOLDER <request flags> --preview`. Show the resolved names,
+   Translate ordinary drug/class language to source-backed identity candidates, confirm the source identity
+   before searching and present ambiguity for resolution. If several class candidates match, show their
+   source names and IDs and resolve which is intended before expanding members. For example, check an EGFR
+   inhibitor class phrase against ATC `L01EB`; the next preview shows the selected class's members. Do not
+   expand every candidate or ask which app to use when the assistant can inspect its own capabilities.
+3. Preview with `trialledger landscape --run FOLDER <request flags> --preview`. Show the resolved names,
    class members/subclasses, disease search and filters in `resolution.json`. Class subclasses can be excluded
    explicitly in request JSON. Preview reads no studies; repeat without preview to gather the fixed scope.
-5. Continue until complete. Exit 0 is complete/previewed, 3 awaits relay fetches, 2 names a refusal/stop, and
-   1 gives failure/retry advice. Repetition resumes; a changed request needs a new folder. In relay mode fetch
-   only each exact address in `next.json` and save its unchanged body at `save_as`; never retype, reformat,
-   shorten or correct a response. Relay checks structure/counts/identity, not live truth of every value.
-6. Inspect requested-ID accounting when applicable: found, aliased, missing, repeated and malformed are
+4. Continue until complete. Exit 0 is complete/previewed, 3 awaits relay fetches, 2 names a refusal/stop, and
+   1 gives failure/retry advice. Repetition resumes; a changed request needs a new folder. Relay still needs
+   terminology to resolve SEARCH scope, but skips post-retrieval drug enrichment. Fetch each exact address
+   in `next.json` and save the complete response bytes unchanged at `save_as`; browser excerpts, retyped,
+   reformatted, shortened or corrected bodies cannot substitute. Relay checks structure/counts/identity, not
+   live truth of every value.
+5. Inspect requested-ID accounting when applicable: found, aliased, missing, repeated and malformed are
    separate. Completion does not mean every requested identifier was found. Answer from `landscape.json`
    and hand over `landscape.xlsx`.
 

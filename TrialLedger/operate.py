@@ -102,7 +102,11 @@ _REFETCH = (
 # What the agent does about each stop of request.resolve_scope, in plain words: one remedy a code.
 STOP_ADVICE = {
     "class_not_found": "RxClass holds no class of that name or id under that source. Check the class's "
-    f"name (RxClass's own spelling) and its source, or name the drugs themselves. {_NEW_FOLDER}.",
+    "name (RxClass's own spelling) and its source, or name the drugs themselves. For a class ID use "
+    f"--drug-class-id, not --drug-class. {_NEW_FOLDER}.",
+    "class_candidates": "The phrase has source-catalogue choices, not a settled class. Show their names, "
+    "IDs and source to the person and confirm the intended class. Use --drug-class-id with --class-source "
+    f"for the selected class. {_NEW_FOLDER}; preview it before gathering.",
     "class_ambiguous": "RxClass holds more than one class of that name under that source (the candidates "
     f"are in the detail). Name one of them by its id (drug_class: id and source). {_NEW_FOLDER}.",
     "class_source_mismatch": "RxClass holds that class, but not under the source named (the classes it "

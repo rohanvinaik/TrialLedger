@@ -122,9 +122,8 @@ MANIFEST = ("mcp", "manifest")
 # A rule's reading is one row of the Readings sheet: the field, the words read, the rule, the result and the
 # status of its value object.
 
-# Safety lays out each trial's adverse-event groups G1 ... Gn across the row, three numeric cells a group, n
-# the most adverse-event groups any trial of the run has; the Groups sheet names each trial's G1 ... Gn.
-SAFETY_GROUP_HEADERS = ("G{n} affected", "G{n} at risk", "G{n} events")
+# Safety retains one row per event × its declared adverse-event group. Group IDs are local to that module.
+SAFETY_COUNT_HEADERS = ("Affected", "At risk", "Events")
 
 
 # ── the fields ──────────────────────────────────────────────────────────────────────────────────────────
@@ -2406,7 +2405,7 @@ _STUDY_FIELDS: tuple[Field, ...] = (
         label="Adverse-event reporting period",
         kind="plain",
         source=("resultsSection.adverseEventsModule.timeFrame",),
-        consumers=(("sheet", "Trial review", "Value"),),
+        consumers=(("sheet", "Trial review", "Value"), ("sheet", "Safety", "Reporting period")),
         display="",
         form="as held",
         reads=(),
@@ -2417,7 +2416,10 @@ _STUDY_FIELDS: tuple[Field, ...] = (
         label="Threshold for reporting other adverse events (%)",
         kind="plain",
         source=("resultsSection.adverseEventsModule.frequencyThreshold",),
-        consumers=(("sheet", "Trial review", "Value"),),
+        consumers=(
+            ("sheet", "Trial review", "Value"),
+            ("sheet", "Safety", "Frequency threshold"),
+        ),
         display="",
         form="as held",
         reads=(),
@@ -2454,6 +2456,7 @@ _STUDY_FIELDS: tuple[Field, ...] = (
             ("sheet", "Groups", "Group ID"),
             ("sheet", "Groups", "Module"),
             ("sheet", "Groups", "Column"),
+            ("sheet", "Safety", "Group ID"),
         ),
         display="",
         form="as held",
@@ -2465,7 +2468,7 @@ _STUDY_FIELDS: tuple[Field, ...] = (
         label="Group",
         kind="plain",
         source=("resultsSection.adverseEventsModule.eventGroups[].title",),
-        consumers=(("sheet", "Groups", "Title"),),
+        consumers=(("sheet", "Groups", "Title"), ("sheet", "Safety", "Group")),
         display="",
         form="as held",
         reads=(),
@@ -2476,7 +2479,10 @@ _STUDY_FIELDS: tuple[Field, ...] = (
         label="Group description",
         kind="plain",
         source=("resultsSection.adverseEventsModule.eventGroups[].description",),
-        consumers=(("sheet", "Groups", "Description"),),
+        consumers=(
+            ("sheet", "Groups", "Description"),
+            ("sheet", "Safety", "Group description"),
+        ),
         display="",
         form="as held",
         reads=(),
@@ -2634,17 +2640,13 @@ _STUDY_FIELDS: tuple[Field, ...] = (
     ),
     Field(
         name="studies[].adverse_events.events[].counts[].group",
-        label="Group ID: which group's columns (G1 ... Gn) the counts fill",
+        label="Group ID retained on this adverse-event count record",
         kind="plain",
         source=(
             "resultsSection.adverseEventsModule.seriousEvents[].stats[].groupId",
             "resultsSection.adverseEventsModule.otherEvents[].stats[].groupId",
         ),
-        consumers=(
-            ("sheet", "Safety", "G{n} affected"),
-            ("sheet", "Safety", "G{n} at risk"),
-            ("sheet", "Safety", "G{n} events"),
-        ),
+        consumers=(("sheet", "Safety", "Group ID"),),
         display="",
         form="as held",
         reads=(),
@@ -2658,7 +2660,7 @@ _STUDY_FIELDS: tuple[Field, ...] = (
             "resultsSection.adverseEventsModule.seriousEvents[].stats[].numAffected",
             "resultsSection.adverseEventsModule.otherEvents[].stats[].numAffected",
         ),
-        consumers=(("sheet", "Safety", "G{n} affected"),),
+        consumers=(("sheet", "Safety", "Affected"),),
         display="",
         form="as held",
         reads=(),
@@ -2672,7 +2674,7 @@ _STUDY_FIELDS: tuple[Field, ...] = (
             "resultsSection.adverseEventsModule.seriousEvents[].stats[].numAtRisk",
             "resultsSection.adverseEventsModule.otherEvents[].stats[].numAtRisk",
         ),
-        consumers=(("sheet", "Safety", "G{n} at risk"),),
+        consumers=(("sheet", "Safety", "At risk"),),
         display="",
         form="as held",
         reads=(),
@@ -2686,7 +2688,7 @@ _STUDY_FIELDS: tuple[Field, ...] = (
             "resultsSection.adverseEventsModule.seriousEvents[].stats[].numEvents",
             "resultsSection.adverseEventsModule.otherEvents[].stats[].numEvents",
         ),
-        consumers=(("sheet", "Safety", "G{n} events"),),
+        consumers=(("sheet", "Safety", "Events"),),
         display="",
         form="as held",
         reads=(),
@@ -3626,41 +3628,37 @@ SHEETS: tuple[Sheet, ...] = (
     ),
     Sheet(
         name="Safety",
-        row="trial × table × term",
+        row="trial × event × adverse-event source group",
         columns=(
             Column(header="Trial ID", fields=("studies[].nct",), shows="fields"),
             Column(header=ADDRESS, fields=(), shows="address"),
             Column(header="Table", fields=("studies[].adverse_events.events[].table",), shows="fields"),
+            Column(header="Term", fields=("studies[].adverse_events.events[].term",), shows="fields"),
+            Column(
+                header="Group",
+                fields=("studies[].adverse_events.groups[].title",),
+            ),
+            Column(header="Affected", fields=("studies[].adverse_events.events[].counts[].affected",)),
+            Column(header="At risk", fields=("studies[].adverse_events.events[].counts[].at_risk",)),
+            Column(header="Events", fields=("studies[].adverse_events.events[].counts[].events",)),
+            Column(header="Reporting period", fields=("studies[].adverse_events.time_frame",)),
             Column(
                 header="Organ system",
                 fields=("studies[].adverse_events.events[].organ_system",),
                 shows="fields",
             ),
-            Column(header="Term", fields=("studies[].adverse_events.events[].term",), shows="fields"),
             Column(
-                header="G{n} affected",
-                fields=(
-                    "studies[].adverse_events.events[].counts[].group",
-                    "studies[].adverse_events.events[].counts[].affected",
-                ),
-                shows="per group",
+                header="Group description",
+                fields=("studies[].adverse_events.groups[].description",),
             ),
             Column(
-                header="G{n} at risk",
+                header="Group ID",
                 fields=(
+                    "studies[].adverse_events.groups[].id",
                     "studies[].adverse_events.events[].counts[].group",
-                    "studies[].adverse_events.events[].counts[].at_risk",
                 ),
-                shows="per group",
             ),
-            Column(
-                header="G{n} events",
-                fields=(
-                    "studies[].adverse_events.events[].counts[].group",
-                    "studies[].adverse_events.events[].counts[].events",
-                ),
-                shows="per group",
-            ),
+            Column(header="Frequency threshold", fields=("studies[].adverse_events.frequency_threshold",)),
             Column(
                 header="Vocabulary", fields=("studies[].adverse_events.events[].vocabulary",), shows="fields"
             ),
@@ -4395,13 +4393,11 @@ GROUP_LINKS = {
     POSTED: "studies[].posted_outcomes[].groups[]",
     BASELINE: "studies[].baseline.groups[]",
     FLOW: "studies[].participant_flow.groups[]",
+    SAFETY: "studies[].adverse_events.groups[]",
 }
 # The cells blank by construction: (sheet, the kind of row) to the columns that cannot apply to it. Any
 # other blank cell is a defect.
 BLANK_BY_CONSTRUCTION = {
-    (SAFETY, "a term of a trial with fewer groups than the run's most"): (
-        "G{n} past the trial's own groups",
-    ),
     (POSTED, "a measurement of an untitled class or category"): ("Class", "Category"),
     (BASELINE, "a measurement of an untitled class or category"): ("Class", "Category"),
     (GROUPS, "a group of any module but adverse events"): ("Column", "Totals"),

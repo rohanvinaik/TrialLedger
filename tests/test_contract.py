@@ -194,10 +194,26 @@ def test_every_listing_carries_its_rows_address():
         assert len(addresses) == (0 if sheet.name in summaries else 1), sheet.name
 
 
-def test_safety_repeats_three_numeric_cells_for_each_group():
+def test_safety_has_event_and_source_group_columns_on_each_row():
     safety = next(sheet for sheet in SHEETS if sheet.name == contract.SAFETY)
-    repeated = [column.header for column in safety.columns if column.shows == "per group"]
-    assert tuple(repeated) == contract.SAFETY_GROUP_HEADERS
+    assert safety.row == "trial × event × adverse-event source group"
+    assert tuple(column.header for column in safety.columns) == (
+        "Trial ID",
+        "Address in the record",
+        "Table",
+        "Term",
+        "Group",
+        *contract.SAFETY_COUNT_HEADERS,
+        "Reporting period",
+        "Organ system",
+        "Group description",
+        "Group ID",
+        "Frequency threshold",
+        "Vocabulary",
+        "Assessment",
+        "Notes",
+    )
+    assert all(column.shows != "per group" for column in safety.columns)
 
 
 def test_fields_served_only_through_the_study_part_are_listed_for_information(capsys):

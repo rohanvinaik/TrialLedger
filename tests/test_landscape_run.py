@@ -91,6 +91,15 @@ class RxNav:
             return tuple(self.override[key].pop(0))
         if key in ANSWERS:
             return tuple(ANSWERS[key])
+        if url.endswith("/rxclass/allClasses.json"):
+            class_type = params["classTypes"]
+            return 200, {
+                "rxclassMinConceptList": {
+                    "rxclassMinConcept": [
+                        {"classId": "OTHER", "className": "Unrelated class", "classType": class_type}
+                    ]
+                }
+            }
         if url.endswith("/rxcui.json"):
             return 200, {"idGroup": {}}  # RxNorm's answer for a name it does not hold
         assert url.endswith(("/byRxcui.json", "/properties.json", "/related.json")), key
@@ -440,21 +449,30 @@ def test_a_stop_names_its_advice_and_sends_no_query(tmp_path, request_, code):
     )
 
 
-def test_a_failed_lookup_beside_another_stop_is_not_promised_again_here(tmp_path):
-    # An unknown class beside a drug whose RxNorm lookup fails: the request must change, so a new folder.
+def test_a_failed_lookup_retries_before_the_class_catalog_can_settle_the_scope(tmp_path):
+    # The failed RxNorm lookup stops first; the class miss stays unresolved until the catalog is answered.
     request = {"drug_class": {"name": "No Such Class Zzq", "source": "EPC"}, "drug": ["Keytruda"]}
     keytruda = "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=Keytruda&search=0"
     folder = tmp_path / "direct"
     rxnav = RxNav({keytruda: [(503, None)]})
+    first = direct(folder, request, Registry([]), rxnav)
+    assert (first.status, run_exit(first.status)) == ("lookup_failed", 1)
+    first_scope = json.loads((folder / "resolution.json").read_text(encoding="utf-8"))
+    catalog = "https://rxnav.nlm.nih.gov/REST/rxclass/allClasses.json?classTypes=EPC"
+    assert first_scope["expansions"][0]["candidate_code"] == "pending"
+    assert catalog in first_scope["pending"] and catalog not in rxnav.asked
+
     outcome = direct(folder, request, Registry([]), rxnav)
     assert (outcome.status, run_exit(outcome.status)) == ("scope_stopped", 2)
-    assert outcome.detail == 'drug_class: class_not_found []; drug: name_lookup_failed ["Keytruda"]'
-    assert outcome.advice == f"{STOP_ADVICE['class_not_found']} {operate.LOOKUPS_IN_NEW_FOLDER}"
-    assert "Running the same command again" not in outcome.advice
+    assert outcome.detail == "drug_class: class_not_found []"
+    assert outcome.advice == STOP_ADVICE["class_not_found"]
+    settled = json.loads((folder / "resolution.json").read_text(encoding="utf-8"))
+    assert settled["expansions"][0]["candidate_code"] == "no_candidates"
+    assert catalog in rxnav.asked
+    assert (folder / "lookups" / "dropped" / "lookup-003.json.1").read_bytes() == b"failed: HTTP 503\n"
     before = files(folder)
-    assert not (folder / "lookups" / "dropped").exists()
     assert direct(folder, request, Registry([]), rxnav) == outcome
-    assert files(folder) == before and rxnav.asked.count(keytruda) == 1
+    assert files(folder) == before and rxnav.asked.count(keytruda) == 2
 
 
 def test_query_too_long_advises_narrowing_the_request(tmp_path):

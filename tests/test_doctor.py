@@ -2,7 +2,7 @@
 
 Positive: a supported Python, every dependency and a writable run folder give `direct` when the registry and
 RxNav both answer, and `relay` when either does not; the report carries the facts, the mode and the agent's
-next step; a probe that gets any HTTP answer below 500 is reachable.
+next step; only a successful HTTP response is reachable.
 Negative: an old Python, a missing dependency and an unwritable folder each stop a run by name, reported in
 that order whatever else holds; one unreachable host is enough for `relay`, never `direct`; a probe that
 raises or gets a server error is unreachable with its reason, never raised past the check.
@@ -44,8 +44,8 @@ class _Answer:
 
 def test_a_probe_reports_an_answer_or_the_reason():
     assert probe("https://x", lambda url, **kwargs: _Answer(200)) == "reachable"
-    assert probe("https://x", lambda url, **kwargs: _Answer(404)) == "reachable"
-    assert probe("https://x", lambda url, **kwargs: _Answer(503)) == "unreachable: HTTP 503"
+    assert probe("https://x", lambda url, **kwargs: _Answer(404)) == "unexpected_response: HTTP 404"
+    assert probe("https://x", lambda url, **kwargs: _Answer(503)) == "service_unavailable: HTTP 503"
 
     def blocked(url, **kwargs):
         raise ConnectionRefusedError("egress blocked")

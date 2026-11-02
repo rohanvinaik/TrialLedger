@@ -455,6 +455,12 @@
     "refusal": "",
     "standing": "complete"
   },
+  "TrialLedger/doctor.py::http_probe_status": {
+    "cut_reasons": [],
+    "function_digest": "8d1f5ded93b7cbc0",
+    "refusal": "",
+    "standing": "complete"
+  },
   "TrialLedger/doctor.py::run_mode": {
     "cut_reasons": [],
     "function_digest": "95ab449240e2dd15",
@@ -1171,6 +1177,12 @@
   "TrialLedger/request.py::_subclass_expansions": {
     "cut_reasons": [],
     "function_digest": "70f5d7aa6dcd6343",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/request.py::class_candidate_selection": {
+    "cut_reasons": [],
+    "function_digest": "4c1abc224bf736d6",
     "refusal": "",
     "standing": "complete"
   },

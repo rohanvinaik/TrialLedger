@@ -7,7 +7,9 @@ Independent path traversal, source spans and fixed manual anchors provide checks
 import json
 from pathlib import Path
 
-from TrialLedger import contract, landscape, mcp_server
+from schema3_records import record_of
+
+from TrialLedger import contract, landscape, mcp_server, readout
 from TrialLedger.contract import FIELD_NAMES, SHEETS
 
 FIXTURES = Path(__file__).resolve().parent / "fixtures" / "contract"
@@ -122,36 +124,45 @@ def test_every_reading_is_a_value_object_of_its_rule():
 def test_the_safety_example_is_the_sheets_layout_and_the_registrys_counts():
     safety = example("safety.json")
     sheet = next(sheet for sheet in SHEETS if sheet.name == contract.SAFETY)
-    n = max(
-        len(BODIES[nct]["resultsSection"]["adverseEventsModule"]["eventGroups"]) for nct in safety["trials"]
-    )
-    assert safety["groups"] == n == 5
-    columns = []
-    for column in sheet.columns:
-        if column.shows == "per group":
-            continue
-        columns.append(column.header)
-        if column.header == "Term":
-            columns += [h.format(n=g) for g in range(1, n + 1) for h in contract.SAFETY_GROUP_HEADERS]
+    columns = [column.header for column in sheet.columns]
     assert safety["columns"] == columns
-    first = columns.index("G1 affected")
-    for row in safety["rows"]:
-        nct = row[0]
+    record = record_of(tuple(safety["trials"]))
+    plan = {name: (headers, rows) for name, headers, rows, _starts in readout.book_plan(record)}
+    headers, rows = plan[contract.SAFETY]
+    values = [dict(zip(headers, (held[0] for held in row), strict=True)) for row in rows]
+    for case in safety["rows"]:
+        nct, event_index, group_id = case["trial"], case["event"], case["group_id"]
+        study_index = safety["trials"].index(nct)
         module = BODIES[nct]["resultsSection"]["adverseEventsModule"]
-        event = module["seriousEvents"][int(row[1].rsplit("/", 1)[1])]
-        assert (
-            row[1]
-            == f"/studies/{safety['trials'].index(nct)}/adverse_events/events/{row[1].rsplit('/', 1)[1]}"
+        serious = module.get("seriousEvents") or []
+        other = module.get("otherEvents") or []
+        events = [("Serious", event) for event in serious] + [("Other", event) for event in other]
+        table, event = events[event_index]
+        group = next(group for group in module["eventGroups"] if group["id"] == group_id)
+        count_index = next(
+            index for index, stat in enumerate(event.get("stats", [])) if stat.get("groupId") == group_id
         )
-        assert (row[3], row[4]) == (event["organSystem"], event["term"])
-        stats = {s["groupId"]: s for s in event["stats"]}
-        for g in range(n):
-            cells = row[first + 3 * g : first + 3 * g + 3]
-            if g >= len(module["eventGroups"]):
-                assert cells == [None, None, None]
-                continue
-            s = stats[module["eventGroups"][g]["id"]]
-            assert cells == [s["numAffected"], s["numAtRisk"], s["numEvents"]]
+        pointer = f"/studies/{study_index}/adverse_events/events/{event_index}"
+        count_pointer = f"{pointer}/counts/{count_index}"
+        row = next(
+            row
+            for row in values
+            if row["Trial ID"] == nct
+            and row["Address in the record"] == count_pointer
+            and row["Group ID"] == group_id
+        )
+        stats = next((stat for stat in event.get("stats", []) if stat["groupId"] == group_id), None)
+        assert row["Table"] == table
+        assert (row["Organ system"], row["Term"]) == (event["organSystem"], event["term"])
+        assert (row["Group"], row["Group description"]) == (
+            group["title"],
+            group.get("description", "Not stated"),
+        )
+        assert [row[name] for name in contract.SAFETY_COUNT_HEADERS] == (
+            [stats["numAffected"], stats["numAtRisk"], stats["numEvents"]] if stats else ["Not reported"] * 3
+        )
+        assert row["Reporting period"] == module["timeFrame"]
+        assert row["Frequency threshold"] == module.get("frequencyThreshold", "Not stated")
     for named in safety["group_columns"]:
         groups = BODIES[named["trial"]]["resultsSection"]["adverseEventsModule"]["eventGroups"]
         group = groups[int(named["column"][1:]) - 1]

@@ -105,12 +105,16 @@ INSTRUCTIONS = (
     '{"request":{"operation":"describe"}} for accepted inputs and worked examples. Prepare inputs for '
     "the person, preserve their premise/source basis, and explain the conclusions without asking them "
     "to write JSON. Do not present a partial operation as a completed protocol. "
-    "Call doctor first; then landscape with a run name and "
-    "the person's request, in the mode doctor reports; show the person the resolved search (scope) before "
-    "relying on the results; in relay mode, fetch what landscape lists, save each body with save_fetch, and "
+    "Call doctor first; then scope with a run name and "
+    "the person's request, in the mode doctor reports; show the person the resolved search before gathering. "
+    "If a class name has catalogue choices, confirm the intended class, then preview its ID and source in a "
+    "new run. No candidate is automatically selected. Then call landscape with the fixed request. "
+    "In relay mode, fetch what scope or landscape lists, save each body with save_fetch, and "
     "call landscape again until it reports complete (use relay only when doctor reports it: each body then "
     "passes through you, so save it exactly as received, never retyped, shortened or corrected); then answer "
-    "only from record, keeping its sources and any stated status. "
+    "only from record, keeping its sources and any stated status. A fetch tool must provide the complete "
+    "unchanged response; excerpts or reconstructed JSON are not a relay transport. Search terminology "
+    "lookups work through relay, but drug enrichment after gathering is not performed in relay mode. "
     "Not stated is never none; not posted is never no effect; a registered outcome is a "
     "plan, not a result."
 )
@@ -299,7 +303,9 @@ TOOLS: dict[str, dict[str, Any]] = {
         "the run folder can be written. Returns the mode a search will use: direct (TrialLedger fetches for "
         "itself) or relay (you fetch the web addresses it names and save each with save_fetch), or why no "
         "search can start. Call it once, first, and pass its mode to landscape: direct whenever it reports "
-        "direct, since in relay every registry page passes through you. It only creates the run folder.",
+        "direct, since in relay every registry page passes through you. Per-host connection_advice explains "
+        "blocked access, rate limits, service failures and unexpected HTTP responses. Its temporary "
+        "write check leaves no new run folder behind.",
         "inputSchema": {
             "type": "object",
             "properties": {"run": RUN},
@@ -845,8 +851,9 @@ def _scope(context: Context, folder: Path, arguments: dict[str, Any]) -> tuple[d
             outcome = Outcome("mode_unavailable", mode, NEXT_STEP[mode])
         code = run_exit(outcome.status)
         reply = _outcome_reply(folder, mode, outcome, code)
-        if outcome.status == PREVIEWED:
-            reply |= {"scope": _read_json(folder / RESOLUTION_NAME), "in_words": outcome.detail.splitlines()}
+        scope = _read_json(folder / RESOLUTION_NAME)
+        if scope is not None and outcome.status in (PREVIEWED, "scope_stopped"):
+            reply |= {"scope": scope, "in_words": scope_words(scope)}
         return reply, code in (1, 2)
     scope = _read_json(folder / RESOLUTION_NAME)
     if scope is None:

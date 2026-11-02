@@ -81,6 +81,15 @@ class RxNav:
         self.asked.append(key)
         if key in ANSWERS:
             return tuple(ANSWERS[key])
+        if url.endswith("/rxclass/allClasses.json"):
+            class_type = params["classTypes"]
+            return 200, {
+                "rxclassMinConceptList": {
+                    "rxclassMinConcept": [
+                        {"classId": "OTHER", "className": "Unrelated class", "classType": class_type}
+                    ]
+                }
+            }
         return (200, {"idGroup": {}}) if url.endswith("/rxcui.json") else (200, {})
 
 
@@ -236,13 +245,66 @@ def test_landscape_preview_of_a_class_not_found_ends_2(tmp_path, capsys):
     assert code == 2 and "scope_stopped" in capsys.readouterr().err
 
 
+def test_preview_of_a_missed_class_name_shows_explicit_catalog_choices(tmp_path):
+    class CatalogRxNav(RxNav):
+        def get(self, url, params):
+            if url.endswith("/rxclass/allClasses.json"):
+                return 200, {
+                    "rxclassMinConceptList": {
+                        "rxclassMinConcept": [
+                            {
+                                "classId": "L01EB",
+                                "className": (
+                                    "Epidermal growth factor receptor (EGFR) tyrosine kinase inhibitors"
+                                ),
+                                "classType": "ATC1-4",
+                            },
+                        ]
+                    }
+                }
+            return super().get(url, params)
+
+    asked = {"drug_class": {"name": "EGFR tyrosine kinase inhibitors", "source": "ATC"}}
+    outcome = previewed(tmp_path / "candidate", asked, CatalogRxNav())
+    scope = read(tmp_path / "candidate", "resolution.json")
+    assert outcome.status == "scope_stopped"
+    assert scope["code"] == "unresolved" and scope["query"] == {}
+    assert "L01EB" in outcome.detail and "source ATC" in outcome.detail
+    assert scope["stops"] == [
+        [
+            "drug_class",
+            "class_candidates",
+            [["L01EB", "Epidermal growth factor receptor (EGFR) tyrosine kinase inhibitors", "ATC1-4"]],
+        ]
+    ]
+    assert "--drug-class-id <ID>" in outcome.detail and "--class-source" in outcome.detail
+    assert "No candidate was selected." in outcome.detail
+    assert "The exact search sent to the registry:" not in outcome.detail
+
+
 # ── the words, directly ─────────────────────────────────────────────────────────────────────────────────
 
 
 def resolved(request):
-    from TrialLedger.request import resolve_scope
+    from TrialLedger.request import class_catalog_request, resolve_scope
 
-    return resolve_scope(request, dict(ANSWERS))
+    answers = dict(ANSWERS)
+    drug_class = request.get("drug_class") if isinstance(request, dict) else None
+    if isinstance(drug_class, dict) and "name" in drug_class:
+        answers.setdefault(
+            class_catalog_request(drug_class["source"]),
+            [
+                200,
+                {
+                    "rxclassMinConceptList": {
+                        "rxclassMinConcept": [
+                            {"classId": "N1", "className": "Other class", "classType": "EPC"}
+                        ]
+                    }
+                },
+            ],
+        )
+    return resolve_scope(request, answers)
 
 
 def test_scope_words_name_each_filter_in_clinical_words_and_the_exact_search():

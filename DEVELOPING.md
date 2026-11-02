@@ -109,6 +109,9 @@ The dated [rescue verification record](acceptance/rescue-2026-11-02.md) retains 
 individual mutation-check limitation and founder-approved boundary for the extended deep audit. Read the
 actual receipts before reusing a validation claim; a skipped or incomplete check is not a pass.
 
+The subsequent [clinical usability follow-up](acceptance/ux-followup-2026-11-02.md) records class-search
+recovery, named safety-group rows and presentation checks, including the explicit waiver of remaining pins.
+
 Reporting acceptance independently checks source -> record -> workbook -> MCP/address across interventional,
 observational and expanded-access structures and metadata branches, atypical supplied values, exact prose and
 empty/missing/malformed states. Perturb identities, ordering, cardinality and valid optional fields; plant

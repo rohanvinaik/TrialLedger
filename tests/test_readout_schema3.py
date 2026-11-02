@@ -163,18 +163,41 @@ def test_the_dossier_shows_expected_facts_always_and_others_only_when_stated():
 # ── the listings ────────────────────────────────────────────────────────────────────────────────────────
 
 
-def test_the_safety_rows_are_the_contract_examples_cell_for_cell():
+def test_safety_rows_are_one_per_event_and_local_source_group():
     record = record_of(tuple(SAFETY["trials"]))
-    n = readout.safety_groups(record)
-    assert n == SAFETY["groups"]
-    assert list(readout.sheet_headers(contract.SAFETY, n)) == SAFETY["columns"]
-    rows = [
-        tuple(held[0] for held in row)
-        for i, study in enumerate(record["studies"])
-        for row in readout.safety_rows(study, i, n)
-    ]
+    plan = {name: (headers, rows) for name, headers, rows, _starts in readout.book_plan(record)}
+    headers, rows = plan[contract.SAFETY]
+    assert list(headers) == SAFETY["columns"]
+    values = [dict(zip(headers, (held[0] for held in row), strict=True)) for row in rows]
+    assert len(values) == sum(
+        len(study["adverse_events"].get("events") or []) * len(study["adverse_events"].get("groups") or [])
+        for study in record["studies"]
+    )
     for expected in SAFETY["rows"]:
-        assert tuple(expected) in rows, expected
+        row = next(
+            row
+            for row in values
+            if row["Trial ID"] == expected["trial"]
+            and f"/events/{expected['event']}/counts/" in row["Address in the record"]
+            and row["Group ID"] == expected["group_id"]
+        )
+        study = next(study for study in record["studies"] if study["nct"] == expected["trial"])
+        event_index = expected["event"]
+        event = study["adverse_events"]["events"][event_index]
+        group = next(
+            group for group in study["adverse_events"]["groups"] if group["id"] == expected["group_id"]
+        )
+        count = next(
+            (item for item in event.get("counts", []) if item.get("group") == expected["group_id"]),
+            None,
+        )
+        assert row["Group"] == group["title"]
+        assert row["Group description"] == group["description"]
+        assert row["Reporting period"] == study["adverse_events"]["time_frame"]
+        assert row["Frequency threshold"] == study["adverse_events"]["frequency_threshold"]
+        assert [row[name] for name in ("Affected", "At risk", "Events")] == [
+            readout.stat_cell(count, key) for key in ("affected", "at_risk", "events")
+        ]
 
 
 def test_the_groups_sheet_names_the_adverse_event_groups_g1_to_gn():
@@ -213,19 +236,113 @@ def test_a_count_the_registry_does_not_give_is_not_reported_and_a_listed_zero_st
             ],
         },
     }
-    (row,) = readout.safety_rows(study, 0, 3)
+    rows = readout.safety_rows(study, 0, 3)
+    row = rows[0]
     values = [held[0] for held in row]
-    assert values[5:14] == [
+    headers = readout.sheet_headers(contract.SAFETY, 3)
+    by_header = dict(zip(headers, values, strict=True))
+    assert [by_header[name] for name in ("Affected", "At risk", "Events")] == [
         0,
         10,
         "Not reported",
-        "Not reported",
-        "Not reported",
-        "Not reported",
-        None,
-        None,
-        None,
     ]
+    assert by_header["Group ID"] == "EG000"
+    assert by_header["Reporting period"] == "Not stated"
+
+
+def test_safety_group_ids_do_not_cross_trials_or_follow_group_order():
+    record = copy.deepcopy(record_of(tuple(SAFETY["trials"])))
+    first, second = record["studies"]
+    second_event = second["adverse_events"]["events"][0]
+    second_count_by_id = {item["group"]: item for item in second_event["counts"]}
+    second["adverse_events"]["groups"].reverse()
+    second_event["counts"].reverse()
+    rows = [
+        dict(zip(headers, (held[0] for held in row), strict=True))
+        for name, headers, rows, _starts in readout.book_plan(record)
+        if name == contract.SAFETY
+        for row in rows
+    ]
+    first_row = next(row for row in rows if row["Trial ID"] == first["nct"] and row["Group ID"] == "EG000")
+    second_rows = [
+        row
+        for row in rows
+        if row["Trial ID"] == second["nct"] and "/events/0/counts/" in row["Address in the record"]
+    ]
+    assert first_row["Group"] != second_rows[0]["Group"]
+    for row in second_rows:
+        count = second_count_by_id[row["Group ID"]]
+        assert row["Group"] == next(
+            group["title"] for group in second["adverse_events"]["groups"] if group["id"] == row["Group ID"]
+        )
+        assert [row[name] for name in ("Affected", "At risk", "Events")] == [
+            count[key] for key in ("affected", "at_risk", "events")
+        ]
+
+
+def test_safety_omits_counts_for_undeclared_groups_and_does_not_call_them_zero():
+    study = {
+        "nct": "NCT00000001",
+        "adverse_events": {
+            "groups": [{"id": "EG000", "title": "Only declared", "description": "Source description"}],
+            "events": [
+                {
+                    "table": "other",
+                    "term": "Nausea",
+                    "counts": [{"group": "EG999", "affected": 0, "at_risk": 10, "events": 0}],
+                }
+            ],
+        },
+    }
+    rows = readout.safety_rows(study, 0, 0)
+    headers = readout.sheet_headers(contract.SAFETY, 0)
+    values = [dict(zip(headers, (held[0] for held in row), strict=True)) for row in rows]
+    orphan = next(row for row in values if row["Group ID"] == "EG999")
+    assert orphan["Group"] == "Unresolved — no unique adverse-event source group is available"
+    unresolved_description = "Unresolved — no unique adverse-event source group description is available"
+    assert orphan["Group description"] == unresolved_description
+    assert [orphan[name] for name in ("Affected", "At risk", "Events")] == [0, 10, 0]
+    missing = next(row for row in values if row["Group ID"] == "EG000")
+    assert missing["Group"] == "Only declared"
+    assert [missing[name] for name in ("Affected", "At risk", "Events")] == [
+        "Not reported",
+        "Not reported",
+        "Not reported",
+    ]
+
+
+def test_safety_keeps_duplicate_count_rows_and_events_without_groups_or_counts():
+    study = {
+        "nct": "NCT00000002",
+        "adverse_events": {
+            "events": [
+                {
+                    "table": "other",
+                    "term": "Headache",
+                    "counts": [
+                        {"group": "EG404", "affected": 1, "at_risk": 5, "events": 2},
+                        {"group": "EG404", "affected": 2, "at_risk": 5, "events": 3},
+                    ],
+                },
+                {"table": "serious", "term": "Source term without groups or counts"},
+            ]
+        },
+    }
+    rows = readout.safety_rows(study, 0, 0)
+    headers = readout.sheet_headers(contract.SAFETY, 0)
+    values = [dict(zip(headers, (held[0] for held in row), strict=True)) for row in rows]
+    duplicates = [
+        row
+        for row in values
+        if row["Address in the record"].startswith("/studies/0/adverse_events/events/0/counts/")
+    ]
+    assert [row["Events"] for row in duplicates] == [2, 3]
+    assert [row["Group ID"] for row in duplicates] == ["EG404", "EG404"]
+    assert all(row["Group"].startswith("Unresolved") for row in duplicates)
+    (term_only,) = [row for row in values if row["Term"] == "Source term without groups or counts"]
+    assert term_only["Address in the record"] == "/studies/0/adverse_events/events/1"
+    assert term_only["Group ID"] == "Not stated"
+    assert [term_only[name] for name in ("Affected", "At risk", "Events")] == ["Not reported"] * 3
 
 
 def test_a_measurement_names_its_group_within_its_measure_and_its_denominator_at_its_scope():
@@ -380,15 +497,31 @@ def preservation_problems(record):
     for row in rows:
         cells = dict(zip(headers, (held[0] for held in row), strict=True))
         pointer = cells[contract.ADDRESS]
-        study = resolve(record, "/".join(pointer.strip("/").split("/")[:2]))
-        event = resolve(record, pointer)
-        for g, group in enumerate(study["adverse_events"]["groups"], 1):
-            count = next((c for c in event["counts"] if c["group"] == group["id"]), {})
-            for key, column in (("affected", "affected"), ("at_risk", "at risk"), ("events", "events")):
-                held = count.get(key)
-                expected = held if isinstance(held, int) else "Not reported"
-                if cells[f"G{g} {column}"] != expected:
-                    problems.append((pointer, f"G{g} {column}", cells[f"G{g} {column}"], expected))
+        parts = pointer.strip("/").split("/")
+        study = resolve(record, "/".join(parts[:2]))
+        event_pointer = "/".join(parts[:5]) if "counts" in parts else pointer
+        event = resolve(record, event_pointer)
+        group_id = cells["Group ID"]
+        count = (
+            resolve(record, pointer)
+            if "counts" in parts
+            else next((c for c in event.get("counts", []) if c.get("group") == group_id), {})
+        )
+        group = next(
+            (g for g in study["adverse_events"].get("groups", []) if g.get("id") == group_id),
+            None,
+        )
+        if group is not None and (
+            cells["Group"] != group.get("title") or cells["Group description"] != group.get("description")
+        ):
+            problems.append((pointer, "group", cells["Group"], group.get("title")))
+        if group is None and not cells["Group"].startswith("Unresolved"):
+            problems.append((pointer, "group", cells["Group"], "Unresolved"))
+        for key, column in (("affected", "Affected"), ("at_risk", "At risk"), ("events", "Events")):
+            held = count.get(key) if isinstance(count, dict) else None
+            expected = held if isinstance(held, int) else "Not reported"
+            if cells[column] != expected:
+                problems.append((pointer, column, cells[column], expected))
     return problems
 
 
@@ -477,6 +610,32 @@ def test_every_sheet_holds_the_contracts_headers(written):
         assert fixed == expected, name
 
 
+def test_record_addresses_are_hidden_by_default_but_remain_navigable(written):
+    book = load_workbook(written)
+    for sheet in contract.SHEETS:
+        if not any(column.shows == "address" for column in sheet.columns):
+            continue
+        worksheet = book[sheet.name]
+        headers = [cell.value for cell in worksheet[1]]
+        position = headers.index(contract.ADDRESS) + 1
+        letter = worksheet.cell(1, position).column_letter
+        assert worksheet.column_dimensions[letter].hidden is True
+        assert any(worksheet.cell(row, position).value for row in range(2, worksheet.max_row + 1))
+        assert worksheet.row_dimensions[1].height is not None
+
+
+def test_hidden_record_pointer_does_not_inflate_the_visible_row_height():
+    headers = readout.sheet_headers(contract.ELIGIBILITY, 0)
+    values = {header: readout.cell("Short", "known") for header in headers}
+    values[contract.ADDRESS] = readout.cell("/" + "x" * 1000, "known")
+    data, _ = readout._write_book(
+        [(contract.ELIGIBILITY, headers, [tuple(values[header] for header in headers)], [])],
+        ("", "", ""),
+    )
+    sheet = load_workbook(io.BytesIO(data))[contract.ELIGIBILITY]
+    assert sheet.row_dimensions[2].height == readout.LINE_POINTS
+
+
 INTERNAL = re.compile(r"\b(atoms?|packs?|rule pack|unnarrowed|coordinates?|interpolated_|not_stated)\b", re.I)
 # The contract's blank-by-construction columns, by sheet (the Safety G columns and the empty listing's line
 # are checked apart).
@@ -561,6 +720,27 @@ def test_long_index_fields_get_wrapped_height_and_short_rows_stay_compact(header
     assert index.row_dimensions[3].height >= needed * readout.LINE_POINTS
     assert index.cell(3, column + 1).value == text
     assert index.cell(3, column + 1).alignment.wrap_text is True
+
+
+def test_posted_rows_get_a_separator_at_a_new_exact_outcome_address():
+    headers = readout.sheet_headers(contract.POSTED, 0)
+
+    def row(address):
+        values = {header: readout.cell("Same source title", "known") for header in headers}
+        values[contract.ADDRESS] = readout.cell(address, "known")
+        return tuple(values[header] for header in headers)
+
+    rows = [
+        row("/studies/0/posted_outcomes/0/classes/0/categories/0/measurements/0"),
+        row("/studies/0/posted_outcomes/0/classes/0/categories/0/measurements/1"),
+        row("/studies/0/posted_outcomes/1/classes/0/categories/0/measurements/0"),
+    ]
+    data, _ = readout._write_book([(contract.POSTED, headers, rows, [])], ("", "", ""))
+    posted = load_workbook(io.BytesIO(data))[contract.POSTED]
+    assert posted["D2"].value == posted["D4"].value == "Same source title"
+    assert posted["A2"].border.top.style == "medium"
+    assert posted["A3"].border.top.style == "thin"
+    assert posted["A4"].border.top.style == "medium"
 
 
 def test_the_same_record_writes_the_same_bytes(tmp_path):
@@ -732,7 +912,12 @@ def group_link_problems(record, plan):
 
 
 def test_a_baseline_or_flow_group_cell_shows_the_title_and_links_to_its_group():
-    assert set(contract.GROUP_LINKS) == {contract.POSTED, contract.BASELINE, contract.FLOW}
+    assert set(contract.GROUP_LINKS) == {
+        contract.POSTED,
+        contract.BASELINE,
+        contract.FLOW,
+        contract.SAFETY,
+    }
     assert group_link_problems(RECORD, PLAN) == []
 
 

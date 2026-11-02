@@ -76,6 +76,10 @@ or biosimilars with other entities.
 - **WHEN** the source relates a precise ingredient to a base ingredient
 - **THEN** that relationship does not silently widen product identity or search membership
 
+#### Scenario: A class phrase has multiple source candidates
+- **WHEN** a requested class phrase resolves to more than one source-backed class candidate
+- **THEN** candidate source names and IDs are shown for selection, and only the selected class is expanded in the subsequent preview
+
 ### Requirement: Direct checks expose without correcting
 The system SHALL expose approved structured-field checks as consistent, conflict, not applicable or not
 checkable. Missing, malformed or imprecise input SHALL NOT pass; conflicting values SHALL remain.
@@ -144,3 +148,50 @@ cohort conclusions or synthesis. The assistant SHALL answer from the record.
 #### Scenario: A report is produced
 - **WHEN** the assistant gathers a reference sheet
 - **THEN** clinical interpretation is not needed to write or verify it
+
+## ADDED Requirements
+
+### Requirement: Safety listings preserve event-by-group identity
+The system SHALL keep each safety event attached to its exact source title and local group, with the reported
+affected and at-risk counts and their populations, units and periods where supplied. It SHALL NOT join rows
+by similar event or group titles.
+
+#### Scenario: One event is reported for multiple groups
+- **WHEN** the same event title appears for more than one local group
+- **THEN** each event-by-group row retains its source title, group identity and counts independently
+
+### Requirement: Record addresses remain discoverable and exact
+The workbook and record interface SHALL retain complete record addresses. When an address is collapsed for
+display, a clear visible action SHALL reveal the full exact value so the person can identify which saved value
+it selects.
+
+#### Scenario: An address is collapsed
+- **WHEN** a record address is collapsed for display
+- **THEN** a clear visible action reveals the complete exact address
+
+### Requirement: API probe outcomes distinguish reachability and HTTP access
+The availability probe SHALL distinguish transport failure from HTTP status outcomes: 2xx `reachable`,
+401/403 `access_blocked`, 429 `rate_limited`, 5xx `service_unavailable`, and other statuses
+`unexpected_response`. The report SHALL give per-host `connection_advice` consistent with the observed
+outcome. Probe outcomes SHALL NOT be presented as clinical search results; response decoding and shape
+validation remain part of gathering.
+
+#### Scenario: The probe receives an access-blocked response
+- **WHEN** the probe receives HTTP 401 or 403
+- **THEN** it reports `access_blocked` and does not recommend bypassing access controls
+
+#### Scenario: The probe is rate limited or unavailable
+- **WHEN** the probe receives HTTP 429 or a 5xx response
+- **THEN** it reports `rate_limited` or `service_unavailable` respectively, with permitted wait/retry guidance
+
+#### Scenario: The probe receives another HTTP status
+- **WHEN** the probe receives a non-2xx status not covered above
+- **THEN** it reports `unexpected_response`, distinct from a successful empty search
+
+#### Scenario: The probe cannot connect
+- **WHEN** the probe fails before receiving an HTTP response
+- **THEN** it reports a transport failure separately from all HTTP status outcomes
+
+#### Scenario: The probe reports per-host recovery guidance
+- **WHEN** the probe records an HTTP or transport outcome for a host
+- **THEN** its `connection_advice` reflects that outcome: wait before retrying rate limits, retry service outages later, do not bypass blocked access, and review an unexpected endpoint response

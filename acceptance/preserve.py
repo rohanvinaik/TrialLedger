@@ -82,15 +82,21 @@ LISTING_GRAINS: dict[str, tuple[str, ...]] = {
         "studies[].participant_flow.groups[]",
         "studies[].adverse_events.groups[]",
     ),
-    contract.SAFETY: ("studies[].adverse_events.events[]",),
+    contract.SAFETY: (
+        "studies[].adverse_events.events[]",
+        "studies[].adverse_events.events[].counts[]",
+    ),
 }
 # Listings whose rows show a reading or a finding: their address must resolve and name the row's trial; their
 # columns are a reading's own parts, which the Readings and Biomarkers checks of acceptance/reviewer.py read.
 ADDRESSED_ONLY = ()
 # The Groups sheet's columns read by their own rule (_groups_column), not from the fields they name.
 GROUPS_OWN = ("Module", "Column")
-SAFETY_CELL = re.compile(r"G(\d+) (affected|at risk|events)")
-SAFETY_STAT = {"affected": "affected", "at risk": "at_risk", "events": "events"}
+SAFETY_STAT = {"Affected": "affected", "At risk": "at_risk", "Events": "events"}
+SAFETY_GROUP_TITLE_UNRESOLVED = "Unresolved — no unique adverse-event source group is available"
+SAFETY_GROUP_DESCRIPTION_UNRESOLVED = (
+    "Unresolved — no unique adverse-event source group description is available"
+)
 
 FINDING_WORDS = {
     # registry → record
@@ -955,14 +961,13 @@ def _pointer(template: str, indices: list[int], down_to: str) -> list[str]:
 
 
 def _safety_expected(
-    study: dict[str, Any], event: dict[str, Any], n: int, stat: str
+    study: dict[str, Any], event: dict[str, Any], group_id: Any, stat: str
 ) -> tuple[bool, list[Any]]:
     """A Safety cell's expectation: (blank by construction, the number or the words it must show)."""
-    groups = (study.get("adverse_events") or {}).get("groups") or []
-    if n > len(groups):
-        return True, []
-    group = groups[n - 1].get("id") if isinstance(groups[n - 1], dict) else None
-    counts = [c for c in event.get("counts") or [] if isinstance(c, dict) and c.get("group") == group]
+    if stat in event and event.get("group") == group_id:
+        counts = [event]
+    else:
+        counts = [c for c in event.get("counts") or [] if isinstance(c, dict) and c.get("group") == group_id]
     if counts and stat in counts[0] and not is_value_object(counts[0][stat]):
         return False, [counts[0][stat]]
     return False, []
@@ -1055,19 +1060,58 @@ def row_findings(
         findings.append(Finding("trial_differs", str(nct), sheet.name, where, nct, trial))
     if sheet.name in ADDRESSED_ONLY:
         return findings, address
+    if sheet.name == contract.SAFETY and template == LISTING_GRAINS[contract.SAFETY][0]:
+        module = study.get("adverse_events") if isinstance(study, dict) else None
+        groups = module.get("groups") if isinstance(module, dict) else []
+        counts = node.get("counts") if isinstance(node, dict) else []
+        group_id = _plain(row.cells.get("Group ID"))
+        if not groups and not counts:
+            valid_event_only = group_id == "Not stated"
+        else:
+            matches = [
+                item
+                for item in groups or []
+                if isinstance(item, dict)
+                and (item.get("id") if isinstance(item.get("id"), str) else "Not stated") == group_id
+            ]
+            already_counted = any(
+                isinstance(item, dict)
+                and (item.get("group") if isinstance(item.get("group"), str) else "Not stated") == group_id
+                for item in counts or []
+            )
+            valid_event_only = bool(matches) and not already_counted
+        if not valid_event_only:
+            findings.append(
+                Finding(
+                    "wrong_grain",
+                    str(nct),
+                    sheet.name,
+                    where,
+                    "a declared group without a count, or an event with no groups or counts",
+                    address,
+                )
+            )
+            return findings, address
     grains = sheet_grains(sheet)
     placeholder = template in contract.MEASUREMENT_PLACEHOLDER_GRAINS.get(sheet.name, {})
     placeholder = placeholder and address in listing_nodes(record, sheet)
     if template not in grains and not placeholder:
         return [*findings, Finding("wrong_grain", str(nct), sheet.name, where, grains, address)], address
-    group = node.get("group") if isinstance(node, dict) else None
+    if sheet.name == contract.SAFETY:
+        group = _plain(row.cells.get("Group ID"))
+        module = study.get("adverse_events") if isinstance(study, dict) else None
+        definitions = module.get("groups") if isinstance(module, dict) else []
+        matches = [item for item in definitions or [] if isinstance(item, dict) and item.get("id") == group]
+        joined = matches[0] if len(matches) == 1 else None
+    else:
+        group = node.get("group") if isinstance(node, dict) else None
+        joined = _group_of(record, template, indices, node)
     blank = blank_columns(sheet.name, template, node, record, indices)
-    joined = _group_of(record, template, indices, node)
     for column in sheet.columns:
         if column.shows == "address" or column.header == "Trial ID":
             continue
-        if column.shows == "per group":
-            findings += _safety_findings(study, node, row, column, str(nct), where)
+        if sheet.name == contract.SAFETY and column.header in SAFETY_STAT:
+            findings += _safety_findings(study, node, row, column, group, str(nct), where)
             continue
         if column.header not in row.cells:
             findings.append(Finding("column_missing", str(nct), sheet.name, column.header, None, None))
@@ -1206,6 +1250,38 @@ def _column_expected(record, sheet, column, template, indices, node, group, grai
     """What a listing cell must show (None where it is not checked): the Groups sheet's own columns by
     their rule, the denominator without the participants its header implies, every other column the values
     of its fields that belong to the row."""
+    if sheet.name == contract.SAFETY and column.header in (
+        "Group ID",
+        "Group",
+        "Group description",
+    ):
+        module_found, module, _t, _i = resolve_pointer(record, ["studies", str(indices[0]), "adverse_events"])
+        definitions = module.get("groups") if module_found and isinstance(module, dict) else []
+        group_id = node.get("group") if template.endswith("counts[]") and isinstance(node, dict) else group
+        if column.header == "Group ID":
+            if template.endswith("counts[]"):
+                field_name = "studies[].adverse_events.events[].counts[].group"
+                value = node.get("group") if isinstance(node, dict) else None
+            else:
+                field_name = "studies[].adverse_events.groups[].id"
+                value = group_id
+        else:
+            matches = [
+                item for item in definitions or [] if isinstance(item, dict) and item.get("id") == group_id
+            ]
+            key = "title" if column.header == "Group" else "description"
+            field_name = (
+                "studies[].adverse_events.groups[].title"
+                if key == "title"
+                else "studies[].adverse_events.groups[].description"
+            )
+            if len(matches) != 1:
+                message = (
+                    SAFETY_GROUP_TITLE_UNRESOLVED if key == "title" else SAFETY_GROUP_DESCRIPTION_UNRESOLVED
+                )
+                return Expected([message], [], []), column.fields
+            value = matches[0].get(key)
+        return expected(contract.FIELD_NAMES[field_name], value), column.fields
     if sheet.name in (contract.POSTED, contract.BASELINE) and column.header == "Spread or limits":
         parent = "posted_outcomes[]" if sheet.name == contract.POSTED else "measures[]"
         found, measure, _t, _i = resolve_pointer(record, _pointer(template, indices, parent))
@@ -1291,23 +1367,23 @@ def _column_expected(record, sheet, column, template, indices, node, group, grai
     return want, names
 
 
-def _safety_findings(study, event, row: Row, column: contract.Column, nct: str, where: str) -> list[Finding]:
+def _safety_findings(
+    study, event, row: Row, column: contract.Column, group_id: Any, nct: str, where: str
+) -> list[Finding]:
     findings = []
-    headers = [header for header in row.cells if SAFETY_CELL.fullmatch(header)]
-    for header in headers:
-        n, stat = SAFETY_CELL.fullmatch(header).groups()
-        if column.header != f"G{{n}} {stat}":
-            continue
-        by_construction, numbers = _safety_expected(study, event, int(n), SAFETY_STAT[stat])
-        words = [] if by_construction or numbers else [NOT_REPORTED]
-        cell = row.cells[header]
-        if numbers:
-            verdict = _count_verdict(cell, numbers, by_construction)
-        else:
-            verdict = cell_verdict(_plain(cell), [], [], words, by_construction)
-        if verdict not in ("shown", "blank_by_construction"):
-            field = f"{contract.SAFETY}: {header}"
-            findings.append(Finding(verdict, nct, field, where, numbers or words, _plain(cell)))
+    stat = SAFETY_STAT.get(column.header)
+    if stat is None:
+        return findings
+    by_construction, numbers = _safety_expected(study, event, group_id, stat)
+    words = [] if by_construction or numbers else [NOT_REPORTED]
+    cell = row.cells.get(column.header)
+    if numbers:
+        verdict = _count_verdict(cell, numbers, by_construction)
+    else:
+        verdict = cell_verdict(_plain(cell), [], [], words, by_construction)
+    if verdict not in ("shown", "blank_by_construction"):
+        field = f"{contract.SAFETY}: {column.header}"
+        findings.append(Finding(verdict, nct, field, where, numbers or words, _plain(cell)))
     return findings
 
 
@@ -1337,6 +1413,31 @@ def listing_nodes(record: dict[str, Any], sheet: contract.Sheet) -> list[str]:
     measurement cannot stand in for one. This is an independent traversal of the record, not the renderer.
     """
     nodes = [pointer for grain in sheet_grains(sheet) for pointer in grain_nodes(record, grain)]
+    if sheet.name == contract.SAFETY:
+        expected = []
+        for pointer in grain_nodes(record, LISTING_GRAINS[contract.SAFETY][0]):
+            found, event, _template, indices = _resolve(record, pointer)
+            if not found or not isinstance(event, dict) or not indices:
+                continue
+            studies = record.get("studies") or []
+            study = studies[indices[0]] if indices[0] < len(studies) else None
+            module = study.get("adverse_events") if isinstance(study, dict) else None
+            groups = module.get("groups") if isinstance(module, dict) else []
+            counts = event.get("counts") or []
+            expected.extend(f"{pointer}/counts/{index}" for index, _count in enumerate(counts))
+            count_ids = [count.get("group") if isinstance(count, dict) else None for count in counts]
+            unique_ids = []
+            for group in groups or []:
+                if not isinstance(group, dict):
+                    continue
+                group_id = group.get("id")
+                if group_id in count_ids or group_id in unique_ids:
+                    continue
+                unique_ids.append(group_id)
+                expected.append(f"{pointer}#group={'Not stated' if group_id is None else group_id}")
+            if not groups and not counts:
+                expected.append(f"{pointer}#group=Not stated")
+        return expected
     for grain, descendants in contract.MEASUREMENT_PLACEHOLDER_GRAINS.get(sheet.name, {}).items():
         for pointer in grain_nodes(record, grain):
             found, node, _template, _indices = _resolve(record, pointer)
@@ -1414,7 +1515,14 @@ def cell_findings(
             found, address = row_findings(record, sheet, row, sheets)
             findings += found
             if address:
-                key = _posted_group_key(record, address) or address
+                if sheet.name == contract.SAFETY:
+                    key = (
+                        address
+                        if "/counts/" in address
+                        else f"{address}#group={_plain(row.cells.get('Group ID'))}"
+                    )
+                else:
+                    key = _posted_group_key(record, address) or address
                 addressed[key] = addressed.get(key, 0) + 1
         findings += [
             Finding("row_repeated", "", sheet.name, str(key), 1, count)
@@ -1425,7 +1533,12 @@ def cell_findings(
             findings += [
                 Finding("row_missing", "", sheet.name, pointer, pointer, None)
                 for pointer in listing_nodes(record, sheet)
-                if (_posted_group_key(record, pointer) or pointer) not in addressed
+                if (
+                    pointer
+                    if sheet.name == contract.SAFETY
+                    else (_posted_group_key(record, pointer) or pointer)
+                )
+                not in addressed
             ]
     return findings
 

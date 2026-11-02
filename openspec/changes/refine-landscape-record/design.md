@@ -37,6 +37,12 @@ never widen a salt, brand, biosimilar or combination by convenience. Missing ide
 negative lookup and conflict remain different. Retain responses and versions; ordering aliases must not
 choose a clinical fact. Search expansion is explicit and separate from interpreting retrieved studies.
 
+Class search begins from a source-backed class identity, not an assistant's unverified paraphrase. If the
+requested wording has multiple candidates, show their source names and IDs for selection; do not expand
+every candidate's member drugs. Retain the chosen identity with the resolved query, then show that class's
+members in the subsequent preview. Do not silently choose the first match. In relay mode, resolve the search
+vocabulary before fetching studies; the relay path does not perform gathered-study drug enrichment.
+
 ### 3. Source assembly and checks
 
 The field table owns source paths and registry types. Assembly copies values and their nesting without a
@@ -65,6 +71,10 @@ merge local group identifiers across modules. Source text is text even when it r
 are numeric only when preserved exactly; long/unrepresentable values point to their retained record location.
 Continuation sheets preserve all rows. Actual sparse, long and mixed-type workbooks are visually reviewed.
 
+Safety is presented at event-by-local-group granularity. Preserve the exact event title, group identity and
+reported counts with their population, denominator and period. Similar titles do not authorize joining rows.
+Record addresses may be collapsed for display when a clear visible action reveals the complete exact address.
+
 Long dossier values continue across visibly labelled, ordered rows without losing any character. The
 independent checker reconstructs each complete value and detects omitted, reordered or duplicated parts.
 Index title, sponsor and design cells wrap with row heights that expose all text. This is a bounded
@@ -80,7 +90,12 @@ Replay uses retained inputs and the writing derivation version, checks evidence 
 JSON/workbook. Fingerprints include actual dependency code and resources, not unrelated layer-two modules or
 help text. Import/call boundaries prevent reporting from invoking interpretation, including shadow output.
 The separately callable reasoning layer accepts explicit typed premises and preserves their origin; it does
-not confer registry standing on an agent's assertions.
+not confer registry standing on an agent's assertions. The availability probe reports transport failures and
+HTTP status categories: `reachable` for 2xx, `access_blocked` for 401/403, `rate_limited` for 429,
+`service_unavailable` for 5xx and `unexpected_response` for other HTTP statuses. Its per-host
+`connection_advice` gives only the permitted next step for that outcome: wait before retrying throttling,
+retry service outages later, do not bypass blocked access and review unexpected endpoint responses. The probe
+does not replace the gathering path's response decoding and validation.
 
 ## Acceptance
 
@@ -88,7 +103,9 @@ Independent checks compare source -> JSON -> workbook -> agent/address. Cover in
 and expanded-access source shapes, applicable metadata and enum branches, exact prose, local identities,
 precision, zero/false and empty/missing/malformed boundaries. Change identities, ordering, cardinality and
 optional values and plant paired losses; expectations do not call the producer's selector or formatter.
-Clinical examples aid review but no trial id or phrase list may select extraction behavior.
+Check source-backed class candidate ambiguity, safety event-by-group titles and counts, complete record-address
+visibility/reveal, and distinct probe transport/HTTP outcomes. Clinical examples aid review but no trial id
+or phrase list may select extraction behavior.
 
 Run current ordinary tests, type/lint checks, relevant Detective/two-sign behavior checks, retained-input
 replay and installation/entry-point checks. Report incomplete or ungateable checks as such. Record the actual

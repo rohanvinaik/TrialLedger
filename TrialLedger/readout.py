@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import ast
 import io
+import posixpath
 import re
 import tokenize
 import zipfile
@@ -16,6 +17,7 @@ from copy import copy
 from pathlib import Path
 from typing import Any
 from urllib.parse import urlsplit
+from xml.etree import ElementTree as ET
 
 from openpyxl import Workbook, load_workbook
 from openpyxl.cell import WriteOnlyCell
@@ -146,6 +148,8 @@ EDGE = Side(style="thin", color="BFBFBF")
 BORDER = Border(left=EDGE, right=EDGE, top=EDGE, bottom=EDGE)
 
 HEADER_BORDER = Border(left=EDGE, right=EDGE, top=EDGE, bottom=Side(style="thin", color="000000"))
+
+SECTION_EDGE = Side(style="medium", color="647B8C")
 
 TEXT = Alignment(horizontal="left", vertical="top", wrap_text=True)
 
@@ -1224,35 +1228,86 @@ def stat_cell(count: Any, key: str) -> Any:
 
 
 def safety_rows(study: dict[str, Any], number: int, n: int) -> list[tuple]:
-    """A trial's Safety rows: one per table × term, then for each of its adverse-event groups G1 ... (in the
-    module's order) affected, at risk and events; G columns past its own groups blank (None) by construction.
-    Unlisted events are never zeros: a trial posts only the terms its tables list."""
+    """One Safety row per event and source count or group in this trial's adverse-events module.
+
+    Group IDs are resolved within that module; no group is matched across studies or results modules. A
+    missing count stays "Not reported", while a listed zero stays zero. `n` is retained for callers that
+    also build workbook sheets with run-wide layout parameters.
+    """
     held = study.get("adverse_events")
     events = held if isinstance(held, dict) else {}
-    groups = [group.get("id") for group in events.get("groups") or []]
+    groups = [group for group in events.get("groups") or [] if isinstance(group, dict)]
     rows = []
     for e, event in enumerate(events.get("events") or []):
-        address = f"/studies/{number}/adverse_events/events/{e}"
-        counts = {count.get("group"): count for count in event.get("counts") or []}
-        cells: list[Any] = []
-        for g in range(n):
-            if g >= len(groups):
-                cells += [None, None, None]
+        event_address = f"/studies/{number}/adverse_events/events/{e}"
+        counts = event.get("counts") or []
+
+        def append_row(
+            group_id: Any,
+            group: dict[str, Any] | None,
+            count: Any,
+            address: str,
+            event: dict[str, Any] = event,
+        ) -> None:
+            if group is None:
+                group_title = "Unresolved — no unique adverse-event source group is available"
+                group_description = (
+                    "Unresolved — no unique adverse-event source group description is available"
+                )
+            else:
+                group_title = value_words(group.get("title"))
+                group_description = value_words(group.get("description"))
+            values = (
+                study["nct"],
+                address,
+                contract.WHICH_LIST_WORDS.get(str(event.get("table")), value_words(event.get("table"))),
+                value_words(event.get("term")),
+                group_title,
+                stat_cell(count if isinstance(count, dict) else None, "affected"),
+                stat_cell(count if isinstance(count, dict) else None, "at_risk"),
+                stat_cell(count if isinstance(count, dict) else None, "events"),
+                value_words(events.get("time_frame")),
+                value_words(event.get("organ_system")),
+                group_description,
+                value_words(group_id),
+                value_words(events.get("frequency_threshold")),
+                value_words(event.get("vocabulary")),
+                value_words(event.get("assessment"), "EventAssessment"),
+                value_words(event.get("notes")),
+            )
+            rows.append(tuple(cell(value, "known", address) for value in values))
+
+        for c, count in enumerate(counts):
+            count_group = count.get("group") if isinstance(count, dict) else None
+            matches = [group for group in groups if group.get("id") == count_group]
+            group = matches[0] if len(matches) == 1 else None
+            count_address = f"{event_address}/counts/{c}"
+            append_row(count_group, group, count, count_address)
+
+        for group_index, group in enumerate(groups):
+            group_id = group.get("id")
+            has_count = any(
+                (count.get("group") if isinstance(count, dict) else None) == group_id for count in counts
+            )
+            if has_count:
                 continue
-            count = counts.get(groups[g])
-            cells += [stat_cell(count, key) for key in ("affected", "at_risk", "events")]
-        values = (
-            study["nct"],
-            address,
-            contract.WHICH_LIST_WORDS.get(str(event.get("table")), value_words(event.get("table"))),
-            value_words(event.get("organ_system")),
-            value_words(event.get("term")),
-            *cells,
-            value_words(event.get("vocabulary")),
-            value_words(event.get("assessment"), "EventAssessment"),
-            value_words(event.get("notes")),
-        )
-        rows.append(tuple(cell(value, "known", address) for value in values))
+            duplicate = sum(1 for other in groups if other.get("id") == group_id) > 1
+            if duplicate and any(prior.get("id") == group_id for prior in groups[:group_index]):
+                continue
+            append_row(
+                group_id,
+                None if duplicate else group,
+                None,
+                event_address,
+            )
+
+        if not groups and not counts:
+            append_row(
+                None,
+                None,
+                None,
+                event_address,
+            )
     return rows
 
 
@@ -1557,8 +1612,10 @@ HOW_TO_READ = (
     "without clinical interpretation; headings describe only the source section. Registered outcomes "
     "are planned measurements, never results. Posted results, Statistical analyses, Baseline, Participant "
     "flow, Groups and Safety retain the posted measurements, denominators, groups and source comments. "
-    "Each Safety group count links to its trial-specific group definition. G numbers are local to that "
-    "trial. Every listing row has an address in landscape.json. The Column dictionary names its registry "
+    "Safety has one row for each event and its declared source group; the group title links to that "
+    "trial's definition. Every listing row has an address in landscape.json. Address columns are hidden "
+    "by default; unhide a column to inspect its exact record pointer. The Column dictionary names "
+    "its registry "
     "fields or direct derivation. A direct derivation records its named rule and source in the JSON. "
     "Source collection reporting distinguishes absent, malformed and explicitly empty arrays; an empty "
     "list is not evidence of no harm or efficacy. This registry report contains no inferred eligibility "
@@ -1706,7 +1763,7 @@ def index_cells(study: dict[str, Any], dossier: str, publications: str) -> tuple
 
 
 def sheet_headers(name: str, n: int, record: dict[str, Any] | None = None) -> tuple[str, ...]:
-    """Declared headers, with local safety-group columns repeated."""
+    """Declared headers; each safety source group is represented by a row rather than repeated columns."""
     sheet = next(held for held in contract.SHEETS if held.name == name)
     headers = []
     per_group = [column.header for column in sheet.columns if column.shows == "per group"]
@@ -1849,9 +1906,26 @@ LAYOUT: dict[str, tuple[str, dict[str, int], bool, int]] = {
     ),
     "Safety": (
         "F2",
-        {"Trial ID": 13, "Address in the record": 22, "Table": 9, "Organ system": 28, "Term": 28},
+        {
+            "Trial ID": 13,
+            "Address in the record": 28,
+            "Table": 12,
+            "Organ system": 32,
+            "Term": 30,
+            "Group ID": 14,
+            "Group": 38,
+            "Group description": 60,
+            "Affected": 12,
+            "At risk": 12,
+            "Events": 12,
+            "Reporting period": 36,
+            "Frequency threshold": 20,
+            "Vocabulary": 18,
+            "Assessment": 24,
+            "Notes": 36,
+        },
         True,
-        3,
+        4,
     ),
     "Registry checks": (
         "C2",
@@ -1982,17 +2056,16 @@ def linked_groups(record: dict[str, Any], sheet: str, rows: list[tuple], groups:
         for index, row in enumerate(groups):
             if row[2][0] == "Adverse events":
                 part, number = place(index, CAPACITY, contract.GROUPS)
-                definitions[(row[0][0], row[4][0])] = f"#'{part}'!A{number}"
+                definitions.setdefault((row[0][0], row[3][0]), []).append(f"#'{part}'!A{number}")
+        group_id = sheet_headers(sheet, 0).index("Group ID")
+        group_title = sheet_headers(sheet, 0).index("Group")
         linked = []
         for row in rows:
             fixed = list(row)
-            for group in range(safety_groups(record)):
-                target = definitions.get((row[0][0], f"G{group + 1}"))
-                if target:
-                    for position in range(5 + group * 3, 8 + group * 3):
-                        held = fixed[position]
-                        if held[0] is not None:
-                            fixed[position] = (held[0], target, *held[2:])
+            targets = definitions.get((row[0][0], row[group_id][0]), [])
+            if len(targets) == 1:
+                held = fixed[group_title]
+                fixed[group_title] = (held[0], targets[0], *held[2:])
             linked.append(tuple(fixed))
         return linked
     at_group = sheet_headers(sheet, 0).index("Group")
@@ -2105,9 +2178,6 @@ def book_plan(record: dict[str, Any]) -> list[tuple]:
         links_.append((f"#'{sheet}'!A{row_number}", f"#'{sheet_p}'!A{row_p}"))
     for linked_sheet in contract.GROUP_LINKS:
         rows[linked_sheet] = linked_groups(record, linked_sheet, rows[linked_sheet], rows[contract.GROUPS])
-    rows[contract.SAFETY] = linked_groups(
-        record, contract.SAFETY, rows[contract.SAFETY], rows[contract.GROUPS]
-    )
     for name, words in EMPTY_WORDS.items():
         if not rows[name]:
             # the contract's one line: its words in the first column, no address, the rest blank
@@ -2208,7 +2278,9 @@ def _write_book(plan: list[tuple], footer: tuple[str, str, str]) -> tuple[bytes,
             last = get_column_letter(len(headers))
             sheet.freeze_panes = freeze
             for number, width in enumerate(width_of, 1):
-                sheet.column_dimensions[get_column_letter(number)].width = width
+                column = sheet.column_dimensions[get_column_letter(number)]
+                column.width = width
+                column.hidden = headers[number - 1] == contract.ADDRESS
             sheet.auto_filter.ref = f"A1:{last}{len(part) + 1}"
             sheet.print_title_rows = "1:1"
             sheet.print_area = f"A1:{last}{len(part) + 1}"
@@ -2222,16 +2294,64 @@ def _write_book(plan: list[tuple], footer: tuple[str, str, str]) -> tuple[bytes,
                     sheet.row_breaks.append(Break(id=begin - start + 1))
             for number, row in enumerate(part, 2):
                 summary = len(row) > 1 and all(held[0] is None for held in row[1:])
-                row_widths = [sum(width_of), *width_of[1:]] if summary else width_of
                 if summary:
                     sheet.merged_cells.add(f"A{number}:{last}{number}")
-                lines = row_lines(row, row_widths) if wrap else 1
+                    row_for_height = (row[0],)
+                    row_widths = [
+                        sum(
+                            width
+                            for header, width in zip(headers, width_of, strict=True)
+                            if header != contract.ADDRESS
+                        )
+                    ]
+                else:
+                    visible = [
+                        (held, width)
+                        for header, held, width in zip(headers, row, width_of, strict=True)
+                        if header != contract.ADDRESS
+                    ]
+                    row_for_height = tuple(held for held, _width in visible)
+                    row_widths = [width for _held, width in visible]
+                lines = row_lines(row_for_height, row_widths) if wrap else 1
                 sheet.row_dimensions[number].height = min(
                     contract.MAX_ROW_HEIGHT_POINTS, round(lines * LINE_POINTS, 2)
                 )
+            visible_headers = [
+                (label(header), width)
+                for header, width in zip(headers, width_of, strict=True)
+                if header != contract.ADDRESS
+            ]
+            header_lines = row_lines(
+                tuple(held for held, _width in visible_headers),
+                [width for _held, width in visible_headers],
+            )
+            sheet.row_dimensions[1].height = min(
+                contract.MAX_ROW_HEIGHT_POINTS, round(header_lines * LINE_POINTS, 2)
+            )
             sheet.append([_book_cell(sheet, label(header), True, True, styles) for header in headers])
+            previous_outcome = None
+            address_index = headers.index(contract.ADDRESS) if contract.ADDRESS in headers else None
             for row in part:
-                sheet.append([_book_cell(sheet, held, False, wrap, styles) for held in row])
+                written_row = [_book_cell(sheet, held, False, wrap, styles) for held in row]
+                if name == contract.POSTED and address_index is not None:
+                    address = row[address_index][0]
+                    parts = address.strip("/").split("/") if isinstance(address, str) else []
+                    outcome = (
+                        tuple(parts[:4])
+                        if len(parts) >= 4
+                        and parts[0] == "studies"
+                        and parts[1].isdigit()
+                        and parts[2] == "posted_outcomes"
+                        and parts[3].isdigit()
+                        else None
+                    )
+                    if outcome is not None and outcome != previous_outcome:
+                        for written_cell in written_row:
+                            edge = copy(written_cell.border)
+                            edge.top = SECTION_EDGE
+                            written_cell.border = edge
+                    previous_outcome = outcome
+                sheet.append(written_row)
             written += len(headers) * (len(part) + 1)
     book.properties.creator = "TrialLedger"
     raw = io.BytesIO()
@@ -2254,6 +2374,43 @@ def held_type(value: Any) -> str:
     return "blank" if value is None else type(value).__name__
 
 
+def _column_hidden(path: Path, sheet: str, number: int) -> bool:
+    """Whether a workbook column is hidden, reading only the target sheet's XML header."""
+    with zipfile.ZipFile(path) as archive:
+        workbook = ET.fromstring(archive.read("xl/workbook.xml"))
+        sheet_node = next(
+            (
+                node
+                for node in workbook.iter()
+                if node.tag.rsplit("}", 1)[-1] == "sheet" and node.get("name") == sheet
+            ),
+            None,
+        )
+        if sheet_node is None:
+            return False
+        relationship = next((value for key, value in sheet_node.attrib.items() if key.endswith("}id")), None)
+        relationships = ET.fromstring(archive.read("xl/_rels/workbook.xml.rels"))
+        target = next(
+            (node.get("Target") for node in relationships if node.get("Id") == relationship),
+            None,
+        )
+        if not isinstance(target, str):
+            return False
+        target = (
+            target.lstrip("/") if target.startswith("/") else posixpath.normpath(posixpath.join("xl", target))
+        )
+        with archive.open(target) as source:
+            for _event, node in ET.iterparse(source, events=("start",)):
+                if node.tag.rsplit("}", 1)[-1] == "sheetData":
+                    break
+                if node.tag.rsplit("}", 1)[-1] != "col":
+                    continue
+                start, end = int(node.get("min", "0")), int(node.get("max", "0"))
+                if start <= number <= end:
+                    return node.get("hidden") in {"1", "true", "True"}
+    return False
+
+
 def book_problems(record: dict[str, Any], path: Path, limit: int = 20) -> list[str]:
     """Every way the file at `path` differs from the book `record` derives, cell by cell (values and their
     types, blanks as None); an empty list certifies the file."""
@@ -2271,6 +2428,10 @@ def book_problems(record: dict[str, Any], path: Path, limit: int = 20) -> list[s
                 if part not in opened.sheetnames:
                     problems.append(f"sheet {part!r} is missing")
                     continue
+                if contract.ADDRESS in headers:
+                    address_column = headers.index(contract.ADDRESS) + 1
+                    if not _column_hidden(path, part, address_column):
+                        problems.append(f"{part}: address column is not hidden")
                 # each cell as (value, number format or "" for anything not a number)
                 want = [tuple((header, "") for header in headers)] + [
                     tuple(
