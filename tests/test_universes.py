@@ -416,6 +416,16 @@ def test_declared_universes_enter_the_version_and_an_unknown_one_is_refused():
     assert loader.universe_problems(declared, ["oncology.solid"]) == ()
 
 
+def test_unknown_universes_are_named_in_fragment_and_declaration_order():
+    first = loader.fragment_from_data(fragment(universes=["lung", "oncology.solid", "breast"]))
+    second = loader.fragment_from_data({**fragment(universes=["skin"]), "name": "second"})
+    assert loader.universe_problems([first, second], ["oncology.solid"]) == (
+        ("unknown_universe", "pack", "lung"),
+        ("unknown_universe", "pack", "breast"),
+        ("unknown_universe", "second", "skin"),
+    )
+
+
 # ── acceptance: the 49 osimertinib trials (2.4; design §3) ─────────────────────────────────────────────
 
 

@@ -1637,6 +1637,12 @@
     "refusal": "",
     "standing": "complete"
   },
+  "TrialLedger/semantics/loader.py::universe_problems": {
+    "cut_reasons": [],
+    "function_digest": "7ed1ee27f7e10746",
+    "refusal": "",
+    "standing": "complete"
+  },
   "TrialLedger/semantics/parsers.py::read_comparator": {
     "cut_reasons": [],
     "function_digest": "290729b1d05bdb98",
@@ -1724,6 +1730,36 @@
   "TrialLedger/typematrix.py::universe_status": {
     "cut_reasons": [],
     "function_digest": "28127ae8950f3b6b",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/universes.py::counted_universe": {
+    "cut_reasons": [],
+    "function_digest": "cc4259b92909c97b",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/universes.py::drug_anchor": {
+    "cut_reasons": [],
+    "function_digest": "d667051fe7f6c860",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/universes.py::permitted_packs": {
+    "cut_reasons": [],
+    "function_digest": "18db6478e9fad3fa",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/universes.py::scope_case": {
+    "cut_reasons": [],
+    "function_digest": "444293e66b80afd5",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/universes.py::term_hits": {
+    "cut_reasons": [],
+    "function_digest": "cc578049e461e58a",
     "refusal": "",
     "standing": "complete"
   },
