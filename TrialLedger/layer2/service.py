@@ -545,8 +545,10 @@ def _full_description() -> dict[str, Any]:
             "should we choose, and what happens if we change it? The assistant reads saved evidence, "
             "settles material interpretations with the person and prepares typed comparison features or "
             "design premises. These operations compute the supported counts, consequences, contradictions "
-            "and open choices, retaining their basis. The assistant maintains the working brief and reruns "
-            "checks when choices change; it can save request/result pairs separately from the source record. "
+            "and open choices, retaining their basis. TrialLedger does not make the person's clinical "
+            "decisions; it finds them: the assistant keeps a decision list (answer_guide.decision_list) of "
+            "each choice with its evidence and computed consequences, reruns checks when choices change, and "
+            "can save the list and request/result pairs separately from the source record. "
             "The person makes the clinical judgments. Automatic source-to-premise compilation and complete "
             "protocol generation remain unintegrated. Read the relevant operation guide; the worked session "
             "shows runnable examples of the translation and checking steps."
@@ -1079,14 +1081,17 @@ def _describe(request: dict[str, Any]) -> dict[str, Any]:
     if view == "overview":
         return common | {
             "clinical_use": (
-                "Help the person explore what other trials documented, make a design choice precise, "
-                "check its consequences and revise it. You read the saved evidence and prepare agreed "
-                "comparison features or premises; the operations compute over them. Read the focused "
+                "TrialLedger does not make the person's clinical decisions; it finds them. Help the person "
+                "explore what other trials documented, make each design choice precise, check its "
+                "consequences and revise it, keeping a decision list of each choice with its evidence and "
+                "computed consequences (decision_list below). You read the saved evidence and prepare "
+                "agreed comparison features or premises; the operations compute over them. Read the focused "
                 "guide, run the appropriate operation and explain the deciding basis and open choices. "
-                "Update the working premises and rerun when a choice changes; save the brief and "
-                "request/result pairs separately when file access permits. The person makes the clinical "
-                "judgments. Automatic text compilation and complete protocol generation are not integrated."
+                "Update the premises and rerun when a choice changes; save the list and request/result "
+                "pairs separately when file access permits. The person makes the clinical judgments. "
+                "Automatic text compilation and complete protocol generation are not integrated."
             ),
+            "decision_list": full["answer_guide"]["decision_list"],
             "use_cases": full["use_cases"],
             "input_shapes": {"describe": full["input_shapes"]["describe"]},
         }
@@ -1112,7 +1117,8 @@ def _describe(request: dict[str, Any]) -> dict[str, Any]:
         "vocabularies": {key: full["vocabularies"][key] for key in vocabulary},
         "result_guide": full["result_guides"][view],
         "answer_guide": {
-            key: full["answer_guide"][key] for key in ("roles", "categories", view, "confirmation")
+            key: full["answer_guide"][key]
+            for key in ("roles", "categories", view, "decision_list", "confirmation")
         },
         "example": full["examples"][view],
         "example_result": full["example_results"][view],

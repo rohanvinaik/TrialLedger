@@ -68,8 +68,10 @@ agent can invoke. User-facing surfaces should explain clinical explorations as w
 population/temporal consequences, possible NSCLC settings, documented patterns and uncertainty, gaps and
 one-feature comparisons. Do not expose only a research-pipeline status summary when useful logic is callable.
 
-The assistant translates and the operations reason. The result guide maps outcomes to four categories
-(settled, something wrong, your call, not knowable from this evidence). User-facing wording answers the
+The value proposition is that TrialLedger does not make the person's clinical decisions; it finds them,
+each with its evidence and computed consequences, in a decision list the assistant keeps and hands over. The
+assistant translates and the operations reason. The result guide maps outcomes to four categories (settled,
+something wrong, your call, not knowable from this evidence), which route into that list. User-facing wording answers the
 clinical question naturally with the deciding basis and material open items; it does not require repeated
 category labels or qualifications. Keep record facts, computed results and the assistant's reading
 distinguishable. Confirmation accepts a person's premise without certifying source truth; entailment's

@@ -197,6 +197,33 @@ CORPUS_RESULTS = {
     ),
 }
 
+DECISION_LIST = {
+    "purpose": (
+        "TrialLedger does not make the person's clinical decisions; it finds them. The decision list is a "
+        "design session's main deliverable: each choice that needs clinical judgment, with its evidence "
+        "assembled and its consequences computed. Keep it as the session proceeds; hand it over at the end."
+    ),
+    "entry": {
+        "decision": "The choice in clinical words, e.g. 'What ECOG range do we intend?'",
+        "evidence": (
+            "What the compared trials document, with record addresses, and where the registry is silent."
+        ),
+        "consequence": (
+            "The computed result for each option under consideration, with its deciding premises."
+        ),
+        "status": "Open, or chosen by the person (their premise, with its origin).",
+    },
+    "routing": {
+        "something_wrong": "Listed first, as a blocker to resolve before other answers are relied on.",
+        "your_call": "Becomes an entry.",
+        "not_knowable_here": "Recorded as an evidence gap on the entry it affects.",
+        "settled": "Cited as context from the entry it informs.",
+    },
+    "revision": (
+        "When the person settles a decision, record it as their premise and recompute what depends on it."
+    ),
+}
+
 NOTABLE = (
     "'Notable' is computed for design features: an observation is notable when it is rare within a "
     "declared comparison cell (reason corpus expectations: rarity from the cell or its labelled parent, "
@@ -472,7 +499,8 @@ def worked_session() -> dict[str, Any]:
         "pattern": (
             "Restate the criteria in plain words; ask about each ambiguity (one mutation or compound? which "
             "cohort? is the limit inclusive?); encode only what the person confirms; run; answer in the "
-            "person's terms with the deciding premise and category; rerun when a premise changes."
+            "person's terms with the deciding premise and category; add each open choice to the decision "
+            "list; rerun when a premise changes."
         ),
         "steps": steps,
     }
@@ -500,6 +528,7 @@ def answer_guide() -> dict[str, Any]:
         ),
         "coordinates": {name: list(value) for name, value in COORDINATE_STATES.items()},
         "corpus": {name: list(value) for name, value in CORPUS_RESULTS.items()},
+        "decision_list": DECISION_LIST,
         "notable": NOTABLE,
         "confirmation": (
             "Entailment refuses a proposed premise, based on the caller-supplied status flag; it does not "

@@ -1,11 +1,24 @@
 # TrialLedger
 
-**Explore clinical trials and work through a trial concept with your assistant, with evidence and decisions
-you can inspect.**
+**TrialLedger doesn't make your clinical decisions. It finds them.**
 
-Start with the studies you care about. TrialLedger gathers their ClinicalTrials.gov records into a readable
-reference workbook and a matching evidence record. You can examine who could enroll, what was measured,
-when it was assessed, and what results and safety information were reported.
+Much of designing a trial is documentary and logical work: finding what comparable trials did, copying it out
+accurately, and working out what a draft restriction does and doesn't allow. TrialLedger, run by your
+assistant, does that work and hands you the choices that genuinely need your clinical judgment, each with its
+evidence and its consequences worked out.
+
+For a draft lung cancer trial compared with IPASS and ARCHER 1050, one decision looks like this:
+
+- **Evidence:** ARCHER 1050 requires ECOG performance status 0–1. IPASS's registry entry doesn't say; its
+  linked publications are the place to check.
+- **Your decision:** What performance-status range do you intend?
+- **Consequence:** Widening your draft from ECOG 0–1 to 0–2 moves ECOG 2 patients from excluded to allowed.
+- **Still open:** Your draft says nothing about brain metastases. ARCHER 1050 excludes any history of them.
+
+Your attention goes to the decisions, with the evidence assembled and the consequences computed rather than
+guessed. The evidence comes from the studies you care about: TrialLedger gathers their ClinicalTrials.gov
+records into a readable reference workbook and a matching evidence record, so you can examine who could
+enroll, what was measured, when it was assessed, and what results and safety information were reported.
 
 Then ask: “What have these studies done here—and what would happen if we chose something different?”
 
@@ -14,8 +27,8 @@ explicit, and runs TrialLedger's comparison and reasoning tools. You can examine
 whether your draft restrictions conflict, explore alternatives, and revise a choice with its consequences
 in view.
 
-You make the clinical judgments. The evidence, agreed choices and computed checks give you something you
-can inspect, question and return to as the design develops. The reference workbook is useful on its own,
+You make the clinical judgments. TrialLedger's job is to make them visible: what is already settled by your
+choices, what contradicts itself, what is genuinely yours to decide, and what the evidence cannot tell you. The reference workbook is useful on its own,
 and it provides the evidence base for a continuing design conversation.
 
 ## A design session in practice
@@ -49,9 +62,9 @@ a result uses a default or leaves you a choice.
 updates the working choices and reruns the relevant checks. You can see what follows from the revised
 choices, what remains open and which evidence informed them. The original registry record stays intact.
 
-The session can leave you with the source workbook and record, a working brief of your agreed choices and
-open questions, and the structured checks behind the answers. Your assistant can save the brief and the
-analysis inputs and results separately so you can revisit a decision and rerun it.
+The session leaves you with a **decision list**: each choice you made or still face, the evidence behind it
+and what it changes, alongside the source workbook and record. Your assistant can save the list and the
+structured checks behind it, so you can revisit a decision, change it and see its consequences again.
 
 Today, your assistant reads trial text with you, makes the agreed choices explicit and runs the checks;
 TrialLedger computes the supported comparisons and logical consequences. The complete automated trial

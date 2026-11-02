@@ -1,13 +1,15 @@
 ---
 name: trialledger
-description: Help a clinical-development person examine what other trials did, make design choices and explore their consequences in conversation. Gather a source-backed reference workbook, prepare agreed comparison features and premises, run TrialLedger's symbolic tools, and help revise the working design with traceable evidence and computed checks. The reference sheet is useful independently; complete automated protocol writing is designed and partly built.
+description: Help a clinical-development person find the trial-design decisions that need their clinical judgment, each with evidence from comparable trials and computed consequences, and examine what other trials did. Gather a source-backed reference workbook, prepare agreed comparison features and premises, run TrialLedger's symbolic tools, and help revise the working design with traceable evidence and computed checks. The reference sheet is useful independently; complete automated protocol writing is designed and partly built.
 ---
 
 # TrialLedger
 
-The clinical question is: "What have these trials done, what should we choose, and what happens if we change
-it?" Gather the evidence, make the person's choice precise, check its consequences and help them revise it.
-They make the clinical judgments; you keep the evidence, accepted choices and computed checks connected.
+TrialLedger doesn't make the person's clinical decisions; it finds them, each with its evidence and computed
+consequences. The clinical question is: "What have these trials done, what should we choose, and what happens
+if we change it?" Gather the evidence, make the person's choice precise, check its consequences and help them
+revise it. They make the clinical judgments; you keep the evidence, accepted choices and computed checks
+connected in the decision list.
 The reference workbook is both a standalone deliverable and a base for continuing design work.
 
 Read AGENTS.md for the complete procedure. Layer one is mechanical: registry facts and fixed direct rules in
@@ -34,11 +36,15 @@ deciding basis and rerun when a choice changes. Free-text interpretation and pre
 your work with the person; `corpus` and `entailment` do not automatically ingest eligibility paragraphs from
 `landscape.json`. A documented class pattern is descriptive, and a near miss compares the declared features.
 
-Keep a concise working brief of the question, comparison set, accepted choices and origins, open questions
-and latest checks. With file-writing access, save `working-brief.md` and the actual request/result pairs
-separately from the source record. Brief notes are not extra fields in the validated reasoning request.
-Those files are maintained by you, not automatically by `reason`; without file access, return the premises
-and results for reuse. A revised premise needs a fresh computation, not a relabelled previous answer.
+Keep a **decision list** as the session's main deliverable. Each entry holds the decision in clinical words,
+the evidence (record addresses, or registry silence), the computed consequence of each option with its
+deciding premises, and its status (open, or chosen by the person). Something's wrong goes first as a blocker;
+your call becomes an entry; not knowable becomes an evidence gap; settled results are cited as context. When
+the person settles a decision, record it as their premise and recompute what depends on it, and hand over the
+list at the end. Alongside it keep the question, comparison set and latest checks. With file-writing access,
+save the list in `working-brief.md` and the actual request/result pairs separately from the source record.
+Brief notes are not extra fields in the validated reasoning request. Those files are maintained by you, not
+automatically by `reason`; without file access, return the decision list and results for reuse. A revised premise needs a fresh computation, not a relabelled previous answer.
 
 Explain the current hand-off once in clinical terms: you read and structure the text with the person, the
 program computes the supported comparisons and consequences, and complete automated protocol generation

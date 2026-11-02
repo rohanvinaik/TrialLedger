@@ -123,3 +123,14 @@ def test_the_described_boolean_rule_matches_the_validator():
     assert reply["code"] == "refused" and any(
         "boolean_with_operand" in problem for problem in reply["problems"]
     )
+
+
+def test_the_decision_list_routes_every_category_and_reaches_every_operation_view():
+    full = run({"operation": "describe", "view": "full"})["result"]["answer_guide"]["decision_list"]
+    assert set(full["routing"]) == set(guide.CATEGORIES)
+    assert set(full["entry"]) == {"decision", "evidence", "consequence", "status"}
+    assert "finds them" in full["purpose"]
+    for view in ("overview", "entailment", "coordinates", "corpus"):
+        result = run({"operation": "describe", "view": view})["result"]
+        found = result.get("decision_list") or result["answer_guide"]["decision_list"]
+        assert found == full, view
