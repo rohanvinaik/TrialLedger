@@ -445,7 +445,7 @@
   },
   "TrialLedger/criteria.py::criterion_role": {
     "cut_reasons": [],
-    "function_digest": "784cb2ed56266204",
+    "function_digest": "ac5b8a70fb40c597",
     "refusal": "",
     "standing": "complete"
   },
