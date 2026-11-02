@@ -1898,6 +1898,24 @@
     "refusal": "",
     "standing": "complete"
   },
+  "acceptance/preserve.py::cell_verdict": {
+    "cut_reasons": [],
+    "function_digest": "d6a82a35a22f7457",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "acceptance/preserve.py::pointer_steps": {
+    "cut_reasons": [],
+    "function_digest": "790737d535625e08",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "acceptance/reviewer.py::words_traced": {
+    "cut_reasons": [],
+    "function_digest": "91b820d860cff156",
+    "refusal": "",
+    "standing": "complete"
+  },
   "acceptance/select.py::choose": {
     "cut_reasons": [],
     "function_digest": "4e2c6de5b5e5d3d6",

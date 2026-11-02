@@ -143,7 +143,8 @@ def value_verdict(
     siblings: list[Any],
     required: bool,
 ) -> str:
-    """One registry value against the record's value at the same place (pure — pinned).
+    """One registry value against the record's value at the same place (pure; its two-sign tests are in
+    tests/test_acceptance_preserve.py, and Detective's converge ends INCOMPLETE on it, harvest_cut).
 
     registry_held  — whether the registry holds a value there (contract.holds_value);
     record_holds   — "value" (a plain value), "value_object" (a status object: not stated, unresolved, ...)
