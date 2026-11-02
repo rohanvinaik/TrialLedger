@@ -197,12 +197,28 @@ def scope_case(condition_oncology: bool, other_oncology: bool, non_oncology: boo
     return "general" if non_oncology else "unresolved_no_domain"
 
 
+def intervention_kind(name: str, forms: list[str]) -> str:
+    """Whether an intervention's name names a placebo or sham and no drug (pure — pinned).
+
+    The whole name, case-folded, every run of characters other than letters and digits read as one space
+    and the ends trimmed, is compared with `forms` (contract.PLACEBO_FORMS), each read the same way:
+      "placebo" — the whole name is one of the forms ("Placebo", "Matching placebo", "Placebo tablets");
+      "drug"    — anything else, a name naming a drug and a placebo among them ("AZD9291 + placebo").
+    """
+
+    def plain(text: str) -> str:
+        return " ".join(_WORD.findall(text.casefold()))
+
+    return "placebo" if plain(name) in {plain(form) for form in forms} else "drug"
+
+
 def treated_target(drugs: list[str], radiation: bool) -> str:
     """What the trial's interventions treat, as contract.TREATED_TARGETS names it (pure — pinned).
 
     `drugs` holds each drug or biological intervention's state, as the drug source read it: "anchored" (a
     name's ATC class is antineoplastic, L01 or L02), "classed" (an ATC class, none antineoplastic), "placebo"
-    (its name says placebo), "unclassed" (RxNav gives no ATC class), "lookup_failed" or "not_looked_up";
+    (its whole name is a placebo or sham form: intervention_kind), "unclassed" (RxNav gives no ATC class),
+    "lookup_failed" or "not_looked_up";
     `radiation`: an intervention is of type RADIATION.
       "cancer"     — radiation, or an antineoplastic drug;
       "not_cancer" — a drug of another class, and every drug classed or a placebo;
@@ -367,7 +383,7 @@ def _drug_state(names: list[str], drug_classes: dict[str, tuple[str, ...] | None
     codes = [code for held in answers.values() for code in held or ()]
     if drug_anchor(codes):
         return "anchored"
-    if any(term_hits(name, [("placebo", "word")]) for name in names):
+    if intervention_kind(names[0], list(contract.PLACEBO_FORMS)) == "placebo":
         return "placebo"
     if codes:
         return "classed"

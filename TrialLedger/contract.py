@@ -2684,6 +2684,23 @@ TREATED_TARGETS = {
     "failed or RxNav gives it no ATC class, or no intervention is a drug or radiation",
 }
 TREATS_CANCER = Requirement("treated_target", ("cancer",))
+# The whole intervention names (case-folded, punctuation read as spaces) that name a placebo or a sham and no
+# drug: such an intervention treats nothing. A name naming a drug and a placebo ("AZD9291 80 mg/40 mg +
+# placebo") is a drug.
+PLACEBO_FORMS = (
+    "placebo",
+    "placebos",
+    "matching placebo",
+    "placebo tablet",
+    "placebo tablets",
+    "placebo capsule",
+    "placebo capsules",
+    "placebo injection",
+    "sham",
+    "sham procedure",
+    "vehicle",
+    "saline placebo",
+)
 SELECTED_GENES = ("EGFR", "ALK", "ROS1", "KRAS", "BRAF", "MET", "RET", "NTRK", "HER2")
 NSCLC_RELATIONS = (
     "first_line_when_no_prior_advanced_therapy",

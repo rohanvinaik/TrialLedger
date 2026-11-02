@@ -28,6 +28,7 @@ from TrialLedger.universes import (
     atc_classes,
     counted_universe,
     drug_anchor,
+    intervention_kind,
     pack_applicability,
     reading,
     scope_case,
@@ -493,6 +494,45 @@ def test_pack_applicability_names_the_requirement_that_fails_or_leaves_it_open()
     assert pack_applicability(["general"], "TREATMENT", "cancer") == []
     for _pack, code in pack_applicability(["oncology.solid", "oncology.heme"], "", "unresolved"):
         assert code in universes.APPLICABILITY_CODES
+
+
+@pytest.mark.parametrize(
+    "name, kind",
+    [
+        ("Placebo", "placebo"),
+        ("  placebo. ", "placebo"),
+        ("Matching Placebo", "placebo"),
+        ("Placebo Tablets", "placebo"),
+        ("placebo-capsule", "placebo"),
+        ("Placebo injection", "placebo"),
+        ("SHAM", "placebo"),
+        ("Sham procedure", "placebo"),
+        ("Vehicle", "placebo"),
+        ("Saline placebo", "placebo"),
+        # a combination naming a drug and a placebo is a drug
+        ("AZD9291 80 mg/40 mg + placebo", "drug"),
+        ("Placebo Gefitinib 250 mg", "drug"),
+        ("Osimertinib placebo", "drug"),
+        ("Placebo-controlled sertraline", "drug"),
+        ("Shampoo", "drug"),
+        ("", "drug"),
+    ],
+)
+def test_only_a_whole_placebo_or_sham_name_is_a_placebo(name, kind):
+    assert intervention_kind(name, list(contract.PLACEBO_FORMS)) == kind
+
+
+def test_a_trial_whose_only_drug_combines_a_drug_and_a_placebo_is_unresolved_never_denied():
+    """Negative: "AZD9291 + placebo" is a drug RxNav gives no class, never a placebo: beside an
+    antidepressant, what the trial treats stays unresolved and the setting is never denied. Positive: a bare
+    placebo beside the antidepressant still reads not cancer."""
+    combined = study(**BREAST, interventions=[("AZD9291 80 mg/40 mg + placebo",), ("Sertraline",)])
+    mapping = {"AZD9291 80 mg/40 mg + placebo": (), "Sertraline": ("N06AB",)}
+    found = assign(combined, mapping)
+    assert found.target["status"] == "unresolved"
+    assert found.applicability[0]["status"] == "unresolved_treated_target"
+    bare = study(**BREAST, interventions=[("Matching placebo",), ("Sertraline",)])
+    assert assign(bare, {"Matching placebo": (), "Sertraline": ("N06AB",)}).target["status"] == "not_cancer"
 
 
 @pytest.mark.parametrize(
