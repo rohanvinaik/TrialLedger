@@ -245,6 +245,33 @@ number, the workbook written and checked in 14 s at 347 MB; the 49 osimertinib p
 trials are measured the same way; each change is reported with its behaviour (the new contract's tests) and its
 resource result (wall time, CPU, peak memory, rows per sheet, record size).
 
+## 8. What completion claims (a third review, 2026-11-02)
+
+This change is complete when, and claims only that: the selected registry fields are preserved through the
+record and the workbook (checked independently, registry value to record value to displayed cell, on real run
+folders); derived readings are labelled and bounded, each applied only where its requirements hold (membership
+in a universe is not permission: the setting and line pack also needs an anticancer intervention, else its
+applicability reads unresolved; unknown condition text is no evidence of any domain); missing or unsupported
+readings stay visible ("No reading produced", "applicability unresolved", "not looked up", "lookup failed"); and
+the assistant retrieves, by a row's address, the same evidence the clinician sees. It does not claim a
+comprehensive clinical interpretation: the recurring-criteria sheet is example wording around shared elements
+within a stated grouping, the starting material for standard protocol language, never established reusable
+text; and three further changes carry the rest of the reviewer's list:
+
+- add-evidence-sources: the content the registry does not hold (today's standard of care, grades, assays and
+  schedules, success criteria), each field first assessed as "not yet read by a rule" or "not in the retrieved
+  registry content" before a publication or label is asked;
+- add-bank-coverage: the readings the rules miss (a Karnofsky performance status read as no reading);
+- add-scoped-assertions: referents, normative force, temporal attachment and cohort scope (what a person is
+  "ineligible for", which cohort a criterion binds); adding recognized terms does not settle these.
+
+Acceptance, in order: the fixes of the third review; units A, C, F and E1 integrated; the MCP address task
+passing through the integrated interface; preservation and the reviewer's tasks on real run folders; the
+workbook read visually (long criteria, mixed groups, unresolved cases); the deep gate on the exact release
+candidate; the committed package installed locally, then from the public repository; the fresh-sandbox test.
+Performance is measured twice, on frozen inputs (the saved bodies and caches) apart from live retrieval, with
+the cache state, runtime and versions recorded, and memory traced to the stage that uses it, not only its peak.
+
 ## Risks
 
 A misassigned trial loses a domain reading: the index shows each universe and its reason, and the acceptance

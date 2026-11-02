@@ -33,6 +33,10 @@ by fixed rules, never by a model; the person still receives one study-by-study r
 CDE and CDISC terminology and the NIH protocol templates (template language kept apart from language recurring
 across trials) develop alongside.
 
+Before any source is asked for a field, the field is assessed against the retained registry prose (descriptions,
+outcome descriptions, criteria): content a rule does not yet read is bank coverage or scoped-assertion work
+(add-bank-coverage, add-scoped-assertions), not missing evidence.
+
 ## How
 
 Source adapters return the source, its release or document version, the retrieval time, the response and its
