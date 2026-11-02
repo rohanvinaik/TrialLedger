@@ -1,6 +1,6 @@
 """The production path, driven end to end with every function call recorded. Run as a script, it prints, as
-one JSON line after "WIRING ", the exit codes of its commands and every function of the package that none of
-them reached; tests/test_wiring.py holds that set to the declared one.
+one JSON line after "WIRING ", the exit codes of its commands and every function of the package that none
+of them reached; tests/test_wiring.py holds that set to the declared one.
 
 The profiler starts before TrialLedger is imported, so the tables built at import are reached. The path is
 what production does: `trialledger pull` over two pages, with a retry and a value a cell cannot hold;
@@ -8,15 +8,15 @@ what production does: `trialledger pull` over two pages, with a retry and a valu
 answering for some concepts and failing for one, and the axes read as cached (none: not_looked_up), then
 `profile --fill-axes`, with RxNav resolving an ingredient, a brand and a combination and answering ATC and
 structure classes (kept only for the experimental drugs' names), its requests asked from a pool of threads;
-`profile` of a folder that is no record; a
-live `resolve` with a near-miss pair, an aligned pair, a shared structure class, an own name RxNorm does not
-hold beside a combination alias, a target the drug's own entry states and a genetic CAR-T entry, rendered as
-the JSON and design.xlsx with its Drug Axes sheet; `landscape` in direct mode (a drug class in a condition
-class with a named drug, a failed lookup asked again, a finished run run again, a mechanism stopped by name,
-trials by number with one no trial holds) and in relay mode through next.json; `mcp`, an MCP client's session
-(the handshake, tools/list, the errors a client can meet, a relay run through landscape and save_fetch, the
-record and the scope read back, a direct run); `sample`, `audit` and `pilot`; `verify` of a folder whose
-workbook is unreadable; and a pull the server keeps failing.
+`profile` of a folder that is no record; a live `resolve` with a near-miss pair, an aligned pair, a shared
+structure class, an own name RxNorm does not hold beside a combination alias, a target the drug's own entry
+states and a genetic CAR-T entry, rendered as the JSON and design.xlsx with its Drug Axes sheet;
+`landscape` in direct mode (a drug class in a condition class with a named drug, a failed lookup asked
+again, a finished run run again, a mechanism stopped by name, trials by number with one no trial holds) and
+in relay mode through next.json; `mcp`, an MCP client's session (the handshake, tools/list, the errors a
+client can meet, a relay run through landscape and save_fetch, the record's every part and the scope read
+back, a search previewed through scope and then gathered directly); `sample`, `audit` and `pilot`; `verify`
+of a folder whose workbook is unreadable; and a pull the server keeps failing.
 """
 
 import ast
@@ -232,6 +232,9 @@ def landscape_runs(scratch: Path, studies: list[dict], rxclass, sandbox) -> dict
     # Trials by number (--ids), one of them no trial holds, so each number is accounted for and the one not
     # found is said in plain words.
     codes["landscape_ids"] = direct("landscape-ids", "--ids", "NCT09000001,NCT09999999", "--mode", "direct")
+    # The search previewed: resolved and fixed, no trial read; the same command without --preview gathers it.
+    kinase = ["--drug-class", "Kinase Inhibitor", "--class-source", "EPC", "--mode", "direct"]
+    codes["landscape_preview"] = direct("landscape-preview", *kinase, "--preview")
     held = scratch / "request.json"
     held.write_text(json.dumps(recorded["requests"][0]), encoding="utf-8")
     relayed = scratch / "landscape-relay"
@@ -255,6 +258,19 @@ def landscape_runs(scratch: Path, studies: list[dict], rxclass, sandbox) -> dict
 
 
 MCP_ROUNDS = 20  # the relay through the tools ends within this many landscape calls, or the path fails
+# The record tool's calls on the relayed run's record, beside its first study by NCT number.
+RECORD_CALLS = (
+    {"part": "manifest"},
+    {"part": "statuses"},
+    {"part": "fields", "offset": 50},
+    {"part": "studies", "offset": 1},
+    {"part": "study", "nct": "NCT99999999"},
+    {"part": "findings"},
+    {"part": "questions"},
+    {"part": "address", "address": "/studies/0"},
+    {"part": "address", "address": "/studies/99"},
+    {"part": "studies", "offset": 99},
+)
 
 
 def mcp_session(root: Path, request: dict, rxnav_answer, registry, sandbox) -> dict[str, int]:
@@ -262,10 +278,11 @@ def mcp_session(root: Path, request: dict, rxnav_answer, registry, sandbox) -> d
     handshake, initialize and its notification, tools/list, a line that is not JSON, server/discover (not
     found), doctor in a sandbox RxNav is blocked from (relay), a scope not there yet, a save_fetch outside the
     run refused, a request refused; then the request in relay mode, the mode doctor's: landscape, every fetch
-    it lists saved through save_fetch as fetched, landscape again, until complete; the record's every part and
-    the scope read back, a study it does not hold and an unknown tool refused; and the request in direct mode
-    in another run folder. Each line is written after the answer to the one before it, so the client reads
-    what the server answered, as a client does."""
+    it lists saved through save_fetch as fetched, landscape again, until complete; the record's every part,
+    paged, and the scope read back, a study it does not hold, an address outside the record, a page past the
+    end and an unknown tool refused; and the request previewed through scope in another run folder, then
+    gathered there in direct mode. Each line is written after the answer to the one before it, so the client
+    reads what the server answered, as a client does."""
     import httpx
 
     from TrialLedger import cli
@@ -317,16 +334,19 @@ def mcp_session(root: Path, request: dict, rxnav_answer, registry, sandbox) -> d
             for fetch in reply["fetches"]:
                 ident += 1
                 yield tool(ident, "save_fetch", run="relayed", save_as=fetch["save_as"], body=body(fetch))
-        for part in ("manifest", "studies", "statuses", "fields"):
+        ident += 1
+        yield tool(ident, "record", run="relayed", part="studies", limit=1)
+        nct = document()["studies"][0]["nct"]
+        # the relayed run's record: every part read, paged, and refused by name
+        for arguments in (*RECORD_CALLS, {"part": "study", "nct": nct}):
             ident += 1
-            yield tool(ident, "record", run="relayed", part=part)
-            if part == "studies":
-                nct = document()["studies"][0]["nct"]
-        yield tool(ident + 1, "record", run="relayed", part="study", nct=nct)
-        yield tool(ident + 2, "record", run="relayed", part="study", nct="NCT99999999")
-        yield tool(ident + 3, "scope", run="relayed")
-        yield tool(ident + 4, "design", run="relayed")
-        yield tool(ident + 5, "landscape", run="direct", request=request, mode="direct")
+            yield tool(ident, "record", run="relayed", **arguments)
+        yield tool(ident + 1, "scope", run="relayed")
+        yield tool(ident + 2, "design", run="relayed")
+        # the search previewed through scope, then gathered through landscape
+        yield tool(ident + 3, "scope", run="direct", request=request, mode="direct")
+        finished["mcp_preview"] = document()["exit"]
+        yield tool(ident + 4, "landscape", run="direct", request=request, mode="direct")
         finished["mcp_direct"] = document()["exit"]
 
     client = registry()

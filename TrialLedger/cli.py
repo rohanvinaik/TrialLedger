@@ -7,6 +7,7 @@ and `verify` (a pulled folder re-derived from its record). The developer tools (
 from __future__ import annotations
 
 import argparse
+import functools
 import hashlib
 import json
 import subprocess
@@ -143,6 +144,12 @@ RxNorm (the National Library of Medicine's drug vocabulary) gives it, a disease 
 disease terms below it. A term that cannot be expanded stops the run by name, with what to change; nothing is
 searched.
 
+To see the search before anything is gathered, add --preview: the request is resolved and the search written
+to the run folder exactly as above, then it is shown in plain words (each drug class with its subclasses and
+the member drugs searched, each drug with the names it is searched by, each disease class, the other filters
+and the exact search sent to the registry), and no trial is read. Show it to the person. Running the same
+command again without --preview then gathers exactly that search; a changed request needs a new run folder.
+
 The request is the flags below, or a file (--request request.json) holding one object of the same fields:
   {"drug_class": {"name": "Kinase Inhibitor", "source": "EPC", "subclasses": "include"},
    "condition_class": "Lung Neoplasms", "phase": ["PHASE3"], "status": ["COMPLETED"]}
@@ -168,9 +175,10 @@ examples:
       --condition-class "Carcinoma, Non-Small-Cell Lung" --phase PHASE3 --status COMPLETED
   trialledger landscape --run my-trials --ids NCT04852770,NCT01827384,NCT01086644
   trialledger landscape --run asthma --request request.json --mode relay
+  trialledger landscape --run kinase --drug-class "Kinase Inhibitor" --class-source EPC --preview
 
 exit status:
-  0  complete: landscape.json is written
+  0  complete: landscape.json is written (with --preview: the search is resolved and shown; nothing gathered)
   3  waiting for the assistant (relay mode): fetch what next.json names, then run the same command again
   2  refused or stopped: the request, a term that cannot be expanded, a run folder that already holds
      another request, a fetched page that is not what it should be, or a computer or sandbox where no run
@@ -371,6 +379,12 @@ def main(
         choices=("direct", "relay"),
         help="direct, or relay for a sandbox that cannot reach the registry (default: what `trialledger "
         "doctor` finds)",
+    )
+    landscape_parser.add_argument(
+        "--preview",
+        action="store_true",
+        help="resolve the request and show the search in plain words, reading no trial; run again without "
+        "it to gather",
     )
     pull_parser = commands.add_parser(
         "pull",
@@ -643,6 +657,7 @@ def _landscape(args, *, http, sleep, rxclass_get, probe_get) -> int:
     doctor, the run (operate.run), and its end in plain words."""
     from TrialLedger.doctor import NEXT_STEP, report
     from TrialLedger.operate import Outcome, run, run_exit
+    from TrialLedger.preview import preview
 
     code, request, offending = request_from_flags(vars(args))
     outcome: Outcome | None = None
@@ -666,15 +681,12 @@ def _landscape(args, *, http, sleep, rxclass_get, probe_get) -> int:
         mode = report(args.run, probe_get)["mode"]
         if mode not in ("direct", "relay"):
             outcome = Outcome("mode_unavailable", mode, NEXT_STEP[mode])
-    if outcome is None:
+    say = functools.partial(print, file=sys.stderr)
+    if outcome is None and args.preview:
+        outcome = preview(args.run, request, mode, get=rxclass_get or rx.http_get, sleep=sleep, progress=say)
+    elif outcome is None:
         outcome = run(
-            args.run,
-            request,
-            mode,
-            get=rxclass_get or rx.http_get,
-            http=http,
-            sleep=sleep,
-            progress=lambda message: print(message, file=sys.stderr),
+            args.run, request, mode, get=rxclass_get or rx.http_get, http=http, sleep=sleep, progress=say
         )
     code_ = run_exit(outcome.status)
     stream = sys.stdout if code_ in (0, 3) else sys.stderr

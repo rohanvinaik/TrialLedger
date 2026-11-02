@@ -26,17 +26,26 @@ import httpx
 import pytest
 from conftest import version
 from records import ongoing_study, results_study
+from schema3_record import THIRD, schema3_record
 
-from TrialLedger import cli, mcp_server
+from TrialLedger import cli, contract, mcp_server
+from TrialLedger.contract import FIELDS
 from TrialLedger.ingest import API_BASE
 from TrialLedger.mcp_server import (
     ERRORS,
-    HEADLINE,
+    FINDING_SECTIONS,
     INSTRUCTIONS,
+    MANIFEST_KEYS,
     NOT_WRITABLE_WORDS,
+    PREVIEW_MEANING,
     PROTOCOL_VERSIONS,
+    QUESTION_KEY,
+    RECORD_PAGE_LIMIT,
+    RECORD_PARTS,
+    RECORD_WORDS,
     REQUEST,
     SERVER_INFO,
+    STATUS_KEYS,
     TOOL_NEXT,
     TOOL_TERMS,
     TOOLS,
@@ -45,16 +54,21 @@ from TrialLedger.mcp_server import (
     argument_problems,
     call_target,
     negotiate,
+    page_window,
+    pointer_value,
     record_view,
     route,
     save_target,
     serve,
+    study_line,
 )
+from TrialLedger.preview import PREVIEWED, scope_words
 from TrialLedger.request import lookup_url, slot_value_ok
 
 DOC = json.loads((Path(__file__).parent / "rxnav_request_answers.json").read_text(encoding="utf-8"))
 ANSWERS = DOC["answers"]
 PD1_IN_LUNG = DOC["requests"][0]
+EXAMPLES = Path(__file__).parent / "fixtures" / "contract" / "examples"
 INIT = {
     "jsonrpc": "2.0",
     "id": 1,
@@ -667,41 +681,6 @@ def test_scope_returns_the_resolved_search_once_there_is_one(tmp_path):
     assert is_error is False and document["scope"] == held and held["code"] == "resolved"
 
 
-def test_record_returns_each_part_as_the_record_holds_it(tmp_path):
-    client = Client(tmp_path / "runs", probe_get=sandbox)
-    document, is_error = client.call("record", run="r", part="manifest")
-    assert is_error is True and document["error"] == "no_record"
-    relay_through_the_tools(client, "r", PD1_IN_LUNG)
-    held = json.loads((tmp_path / "runs" / "r" / "landscape.json").read_text(encoding="utf-8"))
-    manifest, is_error = client.call("record", run="r", part="manifest")
-    assert is_error is False and manifest["manifest"]["manifest"] == held["manifest"]
-    assert manifest["manifest"]["request"] == held["request"] == PD1_IN_LUNG
-    studies, _ = client.call("record", run="r", part="studies")
-    assert [line["nct"] for line in studies["studies"]] == [study["nct"] for study in held["studies"]]
-    assert studies["studies"][0]["overall_status"] == held["studies"][0]["overall_status"]
-    assert studies["studies"][0]["results_posted"] == held["studies"][0]["results_posted"]
-    nct = ids_of(STUDIES)[1]
-    study, is_error = client.call("record", run="r", part="study", nct=nct)
-    assert is_error is False and study["study"] == held["studies"][1]
-    statuses, _ = client.call("record", run="r", part="statuses")
-    assert statuses["statuses"] == {"statuses": held["statuses"], "envelope": held["envelope"]}
-    fields, _ = client.call("record", run="r", part="fields")
-    assert fields["fields"] == held["fields"]
-
-
-def test_record_refuses_a_study_it_does_not_hold_by_name(tmp_path):
-    client = Client(tmp_path / "runs", probe_get=sandbox)
-    relay_through_the_tools(client, "r", PD1_IN_LUNG)
-    document, is_error = client.call("record", run="r", part="study", nct="NCT99999999")
-    assert is_error is True and document["error"] == "no_such_study" and document["held"] == ids_of(STUDIES)
-    document, is_error = client.call("record", run="r", part="study")
-    assert is_error is True and document["error"] == "nct_needed"
-    document, is_error = client.call("record", run="r", part="study", nct="nct01234567")
-    assert is_error is True and document["refused"] == "not_allowed"
-    document, is_error = client.call("record", run="r", part="cohort")
-    assert is_error is True and document["refused"] == "not_allowed"
-
-
 # ── the decisions, directly ─────────────────────────────────────────────────────────────────────────────
 
 
@@ -864,86 +843,391 @@ def test_save_target_admits_only_a_named_path_inside_the_run(save_as, named, exp
     assert save_target(save_as, named) == expected
 
 
-def envelope(value):
-    return {"value": value, "status": "known", "source": "s", "rule": "", "note": "", "link": "l"}
+# ── the search preview through scope ────────────────────────────────────────────────────────────────────
 
 
-RECORD = {
-    "schema_version": "1",
-    "request": {"drug": ["x"]},
-    "scope": {"code": "resolved"},
-    "manifest": {"retrieval": {"mode": "relay", "requested_ids": []}},
-    "studies": [
-        {"nct": "NCT00000001", "link": "l1", "lead_sponsor": {"name": "A"}, "results_posted": 1},
-        {"nct": "NCT00000002", "link": "l2", "phases": ["PHASE3"]},
-    ],
-    "statuses": {"known": "k"},
-    "envelope": {"value": "v"},
-    "fields": {"studies": {}},
-}
+def test_scope_with_the_request_previews_the_search_and_reads_no_trial(tmp_path):
+    requests = []
+
+    def registry(request):
+        requests.append(request)
+        return httpx.Response(500)
+
+    http = httpx.Client(base_url=API_BASE, transport=httpx.MockTransport(registry))
+    client = Client(tmp_path / "runs", get=rxnav_get, http=http, sleep=lambda s: None)
+    document, is_error = client.call("scope", run="r", request=PD1_IN_LUNG, mode="direct")
+    folder = tmp_path / "runs" / "r"
+    held = json.loads((folder / "resolution.json").read_text(encoding="utf-8"))
+    assert is_error is False and requests == []
+    assert document["status"] == PREVIEWED and document["exit"] == 0
+    assert document["meaning"] == PREVIEW_MEANING
+    assert document["scope"] == held and document["in_words"] == scope_words(held)
+    assert "Phase: Phase 3" in document["in_words"] and "with_these_tools" not in document
+    assert not (folder / "landscape.json").exists() and not (folder / "fetches.json").exists()
+    # read back without the request; then landscape gathers exactly that search
+    again, is_error = client.call("scope", run="r")
+    assert is_error is False and again == {
+        "tool": "scope",
+        "run_folder": str(folder.resolve()),
+        "scope": held,
+        "in_words": scope_words(held),
+    }
+    direct = Client(tmp_path / "runs", get=rxnav_get, http=registry_client(), sleep=lambda s: None)
+    done, failed = direct.call("landscape", run="r", request=PD1_IN_LUNG, mode="direct")
+    assert failed is False and done["status"] == "complete"
+    record = json.loads((folder / "landscape.json").read_text(encoding="utf-8"))
+    assert record["scope"] == held
 
 
-def test_record_view_returns_each_part_as_held():
-    assert record_view(RECORD, "manifest", None) == (
-        "ok",
-        {"schema_version": "1", "request": {"drug": ["x"]}, "manifest": RECORD["manifest"]},
+def test_scope_previews_in_relay_mode_through_save_fetch(tmp_path):
+    client = Client(tmp_path / "runs", probe_get=sandbox)
+    for _round in range(20):
+        document, is_error = client.call("scope", run="r", request=PD1_IN_LUNG)
+        if document["status"] != "awaiting_fetch":
+            break
+        assert is_error is False and document["exit"] == 3 and document["mode"] == "relay"
+        for fetch in document["fetches"]:
+            url = httpx.URL(fetch["url"])
+            assert url.host == "rxnav.nlm.nih.gov"
+            status, body = rxnav_get(str(url.copy_with(query=None)), dict(url.params))
+            client.call("save_fetch", run="r", save_as=fetch["save_as"], body=json.dumps(body))
+    assert is_error is False and document["status"] == PREVIEWED and document["in_words"]
+    assert not (tmp_path / "runs" / "r" / "bodies" / "version-start.json").exists()
+
+
+def test_scope_refuses_a_changed_request_and_a_request_by_name(tmp_path):
+    client = Client(tmp_path / "runs", get=rxnav_get, sleep=lambda s: None)
+    client.call("scope", run="r", request=PD1_IN_LUNG, mode="direct")
+    changed = {**PD1_IN_LUNG, "phase": ["PHASE2"]}
+    document, is_error = client.call("scope", run="r", request=changed, mode="direct")
+    assert is_error is True and document["status"] == "request_differs" and document["exit"] == 2
+    assert document["with_these_tools"] == TOOL_TERMS
+    document, is_error = client.call("scope", run="e", request={}, mode="direct")
+    assert is_error is True and document["status"] == "request_refused"
+    (tmp_path / "runs" / "taken").write_text("a file", encoding="utf-8")
+    sandboxed = Client(tmp_path / "runs", probe_get=sandbox)
+    document, is_error = sandboxed.call("scope", run="taken", request=PD1_IN_LUNG)
+    assert is_error is True and document["status"] == "mode_unavailable"
+    assert document["with_these_tools"] == NOT_WRITABLE_WORDS
+
+
+# ── the record, schema 3, through the tool ──────────────────────────────────────────────────────────────
+
+
+def placed(tmp_path, record=None):
+    """A client whose run folder r holds the schema-3 fixture record (tests/schema3_record.py)."""
+    folder = tmp_path / "runs" / "r"
+    folder.mkdir(parents=True)
+    held = schema3_record() if record is None else record
+    (folder / "landscape.json").write_text(json.dumps(held), encoding="utf-8")
+    return Client(tmp_path / "runs"), held
+
+
+def test_record_serves_the_manifest_statuses_and_a_study_by_its_plain_nct(tmp_path):
+    client, held = placed(tmp_path)
+    manifest, is_error = client.call("record", run="r", part="manifest")
+    assert is_error is False and manifest["manifest"] == {
+        key: held[key] for key in ("schema_version", "request", "manifest", "universes")
+    }
+    statuses, _ = client.call("record", run="r", part="statuses")
+    assert statuses["statuses"] == {"statuses": held["statuses"], "envelope": held["envelope"]}
+    study, is_error = client.call("record", run="r", part="study", nct="NCT01030536")
+    assert is_error is False and study == {
+        "tool": "record",
+        "run_folder": str((tmp_path / "runs" / "r").resolve()),
+        "part": "study",
+        "study": held["studies"][1],
+        "page": {
+            "offset": 0,
+            "limit": 50,
+            "returned": len(held["studies"][1]),
+            "total": len(held["studies"][1]),
+        }
+        | {"next_offset": None},
+    }
+    # a study is paged by its fields, each page a part of its keys
+    first, _ = client.call("record", run="r", part="study", nct="NCT01030536", limit=3)
+    keys = list(held["studies"][1])
+    assert list(first["study"]) == keys[:3] and first["page"]["next_offset"] == 3
+
+
+def test_record_pages_the_studies_as_the_contracts_example_shows(tmp_path):
+    client, _held = placed(tmp_path)
+    first, is_error = client.call("record", run="r", part="studies", limit=2)
+    assert is_error is False
+    assert first["page"] == {"offset": 0, "limit": 2, "returned": 2, "total": 3, "next_offset": 2}
+    assert [line["nct"] for line in first["studies"]] == ["NCT04852770", "NCT01030536"]
+    rest, _ = client.call("record", run="r", part="studies", offset=2, limit=2)
+    assert rest["page"] == {"offset": 2, "limit": 2, "returned": 1, "total": 3, "next_offset": None}
+    assert rest["studies"][0]["nct"] == THIRD
+    # the contract's own example page: its page, and every value it shows, are the ones served
+    example = json.loads((EXAMPLES / "mcp_paging.json").read_text(encoding="utf-8"))
+    assert example["page"] == first["page"]
+    for shown, line in zip(example["studies"], first["studies"], strict=True):
+        assert {key: line[key] for key in shown} == shown
+
+
+def test_record_serves_only_the_studies_part_fields_on_a_line(tmp_path):
+    client, _held = placed(tmp_path)
+    page, _ = client.call("record", run="r", part="studies")
+    line = page["studies"][1]
+    served = [f.name.removeprefix("studies[].") for f in FIELDS if ("mcp", "studies") in f.consumers]
+    assert list(line) == list(dict.fromkeys(name.split(".")[0] for name in served))
+    assert line["lead_sponsor"] == {"name": "MedImmune LLC"}  # the name, never the class
+    assert line["start_date"] == {"date": "2010-02-15", "type": "ACTUAL"}
+    assert line["universe"] == ["oncology.heme"]
+    assert line["results_posted"] is None  # a key the record lacks is None, never filled
+
+
+def test_record_serves_the_findings_and_the_questions_each_with_its_address(tmp_path):
+    client, held = placed(tmp_path)
+    findings, is_error = client.call("record", run="r", part="findings")
+    assert is_error is False and "thresholds" not in findings and "reason" not in findings
+    assert [(f["kind"], f["address"]) for f in findings["findings"]] == [
+        ("frequency", "/cohort/frequency/0"),
+        ("frequency", "/cohort/frequency/1"),
+        ("near_misses", "/cohort/near_misses/0"),
+        ("standard_language", "/standard_language/0"),
+    ]
+    assert findings["findings"][2]["finding"] == held["cohort"]["near_misses"][0]
+    assert findings["findings"][3]["finding"] == held["standard_language"][0]
+    assert findings["page"]["total"] == 4
+    questions, _ = client.call("record", run="r", part="questions", offset=1, limit=1)
+    assert questions["questions"] == [
+        {
+            "nct": "NCT01030536",
+            "address": "/studies/1/open_questions/1",
+            "question": held["studies"][1]["open_questions"][1],
+        }
+    ]
+    assert questions["page"] == {"offset": 1, "limit": 1, "returned": 1, "total": 3, "next_offset": 2}
+    for item in findings["findings"]:
+        value, _ = client.call("record", run="r", part="address", address=item["address"])
+        assert value["value"] == item["finding"]
+    # below the signal minimum the cohort holds its reason, given beside the (empty) findings
+    reason = {"status": "unresolved", "note": "2 trials, fewer than 3"}
+    (tmp_path / "runs" / "r" / "landscape.json").write_text(
+        json.dumps({**held, "cohort": {"thresholds": {}, "reason": reason}, "standard_language": []}),
+        encoding="utf-8",
     )
-    assert record_view(RECORD, "statuses", None) == (
-        "ok",
-        {"statuses": {"known": "k"}, "envelope": {"value": "v"}},
-    )
-    assert record_view(RECORD, "fields", "NCT00000001") == ("ok", {"studies": {}})
-    code, lines = record_view(RECORD, "studies", None)
-    assert code == "ok" and [line["link"] for line in lines] == ["l1", "l2"]
-    assert lines[0]["lead_sponsor"] == {"name": "A"} and lines[0]["results_posted"] == 1
-    assert lines[1]["lead_sponsor"] is None and lines[1]["phases"] == ["PHASE3"]
-    assert lines[1]["results_posted"] is None
-    assert list(lines[0]) == ["nct", "link", *HEADLINE]
-    assert record_view(RECORD, "study", "NCT00000002") == ("ok", RECORD["studies"][1])
-    assert record_view({}, "manifest", None) == (
-        "ok",
-        {"schema_version": None, "request": None, "manifest": None},
-    )
+    few, is_error = client.call("record", run="r", part="findings")
+    assert is_error is False and few["reason"] == reason and few["findings"] == []
 
 
-NOTHING_HELD = {key: None for key in ("nct", "link", *HEADLINE)}
+def test_record_resolves_a_workbook_rows_address_to_its_value(tmp_path):
+    client, held = placed(tmp_path)
+    address = "/studies/1/adverse_events/events/0"
+    document, is_error = client.call("record", run="r", part="address", address=address)
+    assert is_error is False and document["address"] == address
+    assert document["value"] == held["studies"][1]["adverse_events"]["events"][0]
+    assert document["page"]["total"] == len(document["value"])  # an object is paged by its keys
+    one, _ = client.call("record", run="r", part="address", address="/studies/1/enrollment/count")
+    assert one["value"] == 23 and "page" not in one
+    listed, _ = client.call("record", run="r", part="address", address="/studies", limit=1, offset=1)
+    assert listed["value"] == [held["studies"][1]] and listed["page"]["next_offset"] == 2
+
+
+def test_record_pages_the_fields_by_field(tmp_path):
+    client, held = placed(tmp_path)
+    page, _ = client.call("record", run="r", part="fields")
+    names = list(held["fields"])
+    assert list(page["fields"]) == names[:RECORD_PAGE_LIMIT]
+    assert page["page"]["total"] == len(names) > RECORD_PAGE_LIMIT
 
 
 @pytest.mark.parametrize(
-    ("record", "part", "nct", "expected"),
+    ("arguments", "error"),
     [
-        ({"studies": []}, "studies", None, ("ok", [])),
-        ({"studies": []}, "study", "NCT00000001", ("no_such_study", [])),
-        ({"studies": [{}]}, "studies", None, ("ok", [NOTHING_HELD])),
-        ({"studies": [{"nct": {"value": "NCT00000001"}}]}, "study", "NCT00000001", ("no_such_study", [None])),
-        ({"studies": [{"nct": {}}]}, "study", "NCT00000001", ("no_such_study", [None])),
-        ({"studies": [{}]}, "study", "NCT00000001", ("no_such_study", [None])),
+        ({"part": "study"}, "nct_needed"),
+        ({"part": "study", "nct": "NCT99999999"}, "no_such_study"),
+        ({"part": "address"}, "address_needed"),
+        ({"part": "address", "address": "studies/0"}, "not_a_pointer"),
+        ({"part": "address", "address": "/studies/3"}, "outside_record"),
+        ({"part": "address", "address": "/studies/01"}, "outside_record"),
+        ({"part": "address", "address": "/nothing"}, "outside_record"),
+        ({"part": "studies", "offset": 3}, "offset_out_of_range"),
+        ({"part": "studies", "offset": -1}, "offset_out_of_range"),
+        ({"part": "studies", "limit": 0}, "limit_out_of_range"),
+        ({"part": "findings", "limit": RECORD_PAGE_LIMIT + 1}, "limit_out_of_range"),
     ],
 )
-def test_record_view_reads_what_a_record_lacks_as_none(record, part, nct, expected):
-    assert record_view(record, part, nct) == expected
+def test_record_refuses_by_name_in_plain_words(tmp_path, arguments, error):
+    client, held = placed(tmp_path)
+    document, is_error = client.call("record", run="r", **arguments)
+    assert is_error is True and document["error"] == error and document["why"] == RECORD_WORDS[error]
+    if error == "no_such_study":
+        assert document["held"] == [study["nct"] for study in held["studies"]]
 
 
-def test_record_view_lists_every_study_with_its_headline():
-    first = {**NOTHING_HELD, "nct": "NCT00000001", "link": "l1", "lead_sponsor": {"name": "A"}}
-    second = {**NOTHING_HELD, "nct": "NCT00000002", "link": "l2", "phases": ["PHASE3"]}
-    assert record_view(RECORD, "studies", None) == ("ok", [{**first, "results_posted": 1}, second])
+def test_record_refuses_a_record_of_another_schema_and_one_not_there(tmp_path):
+    client, _ = placed(tmp_path, {**schema3_record(), "schema_version": "2"})
+    document, is_error = client.call("record", run="r", part="manifest")
+    assert is_error is True and document["error"] == "schema_not_3" and "new run name" in document["why"]
+    document, is_error = client.call("record", run="nothing", part="manifest")
+    assert is_error is True and document["error"] == "no_record"
+    document, is_error = client.call("record", run="r", part="cohort")
+    assert is_error is True and document["refused"] == "not_allowed"
+    document, is_error = client.call("record", run="r", part="study", nct="nct01234567")
+    assert is_error is True and document["refused"] == "not_allowed"
+
+
+def test_every_part_serves_what_the_contract_names_it_for():
+    named = {rest[0] for f in FIELDS for kind, *rest in f.consumers if kind == "mcp"}
+    assert named <= set(RECORD_PARTS) and contract.MCP_PARTS_TO_BUILD == {}
+    assert MANIFEST_KEYS == ("schema_version", "request", "manifest", "universes")
+    assert STATUS_KEYS == ("statuses", "envelope")
+    tables = tuple(tuple(name.split(".")) for name in contract.ACROSS_TRIAL_FINDINGS_FIELDS)
+    assert (("cohort", "reason"), *tables, ("standard_language",)) == FINDING_SECTIONS
+    assert QUESTION_KEY == "open_questions"
+
+
+def test_every_part_answers_on_a_real_record(tmp_path):
+    client = Client(tmp_path / "runs", get=rxnav_get, http=registry_client(), sleep=lambda s: None)
+    done, failed = client.call("landscape", run="r", request=PD1_IN_LUNG, mode="direct")
+    assert failed is False and done["status"] == "complete"
+    held = json.loads((tmp_path / "runs" / "r" / "landscape.json").read_text(encoding="utf-8"))
+    assert held["schema_version"] == contract.SCHEMA_VERSION
+    nct = held["studies"][1]["nct"]
+    for arguments in (
+        {"part": "manifest"},
+        {"part": "statuses"},
+        {"part": "fields"},
+        {"part": "studies"},
+        {"part": "study", "nct": nct},
+        {"part": "findings"},
+        {"part": "questions"},
+        {"part": "address", "address": "/studies/1"},
+    ):
+        document, is_error = client.call("record", run="r", **arguments)
+        assert is_error is False, (arguments, document)
+    manifest, _ = client.call("record", run="r", part="manifest")
+    assert manifest["manifest"] == {key: held.get(key) for key in MANIFEST_KEYS}
+    studies, _ = client.call("record", run="r", part="studies")
+    assert [line["nct"] for line in studies["studies"]] == [study["nct"] for study in held["studies"]]
+    assert [line["overall_status"] for line in studies["studies"]] == [
+        study["overall_status"] for study in held["studies"]
+    ]
+    study, _ = client.call("record", run="r", part="study", nct=nct)
+    assert study["study"] == {
+        key: held["studies"][1][key] for key in list(held["studies"][1])[:RECORD_PAGE_LIMIT]
+    }
+    fields, _ = client.call("record", run="r", part="fields", limit=RECORD_PAGE_LIMIT)
+    assert fields["page"]["total"] == len(held["fields"])
+    findings, _ = client.call("record", run="r", part="findings")
+    assert findings.get("reason") == held["cohort"].get("reason")
+    questions, _ = client.call("record", run="r", part="questions")
+    asked = [question for item in held["studies"] for question in item.get("open_questions", [])]
+    assert [item["question"] for item in questions["questions"]] == asked[:RECORD_PAGE_LIMIT]
+
+
+# ── the record's decisions, directly ────────────────────────────────────────────────────────────────────
+
+
+def window(offset, limit, returned, total, following):
+    return {"offset": offset, "limit": limit, "returned": returned, "total": total, "next_offset": following}
 
 
 @pytest.mark.parametrize(
-    ("record", "part", "nct", "expected"),
+    ("total", "offset", "limit", "expected"),
     [
-        (RECORD, "study", "NCT00000003", ("no_such_study", ["NCT00000001", "NCT00000002"])),
-        ({"studies": [{}, 1]}, "studies", None, ("not_a_record", None)),
-        (RECORD, "study", None, ("nct_needed", None)),
-        (RECORD, "cohort", None, ("unknown_part", None)),
-        ([], "manifest", None, ("not_a_record", None)),
-        (None, "fields", None, ("not_a_record", None)),
-        ({"studies": {}}, "studies", None, ("not_a_record", None)),
-        ({"studies": [1]}, "study", "NCT00000001", ("not_a_record", None)),
-        ({}, "study", "NCT00000001", ("not_a_record", None)),
-        ({"studies": [{"nct": "NCT00000002"}]}, "study", "NCT00000001", ("no_such_study", ["NCT00000002"])),
+        (3, 0, 2, ("ok", window(0, 2, 2, 3, 2))),
+        (3, 2, 2, ("ok", window(2, 2, 1, 3, None))),
+        (3, 0, 3, ("ok", window(0, 3, 3, 3, None))),
+        (0, 0, 1, ("ok", window(0, 1, 0, 0, None))),
+        (60, 0, RECORD_PAGE_LIMIT, ("ok", window(0, 50, 50, 60, 50))),
+        (3, 3, 2, ("offset_out_of_range", {})),
+        (0, 1, 2, ("offset_out_of_range", {})),
+        (3, -1, 2, ("offset_out_of_range", {})),
+        (3, 0, 0, ("limit_out_of_range", {})),
+        (3, 0, RECORD_PAGE_LIMIT + 1, ("limit_out_of_range", {})),
     ],
 )
-def test_record_view_refuses_by_name(record, part, nct, expected):
-    assert record_view(record, part, nct) == expected
+def test_page_window(total, offset, limit, expected):
+    assert page_window(total, offset, limit) == expected
+
+
+DOCUMENT = {"a": [{"b/c": 1, "d~e": 2, "": 3}, [10, 20]], "n": None, "s": "text"}
+
+
+@pytest.mark.parametrize(
+    ("pointer", "expected"),
+    [
+        ("/a/0/b~1c", ("ok", 1)),
+        ("/a/0/d~0e", ("ok", 2)),
+        ("/a/0/", ("ok", 3)),
+        ("/a/1/1", ("ok", 20)),
+        ("/n", ("ok", None)),
+        ("/a", ("ok", DOCUMENT["a"])),
+        ("/a/2", ("outside_record", None)),
+        ("/a/01", ("outside_record", None)),
+        ("/a/-", ("outside_record", None)),
+        ("/a/x", ("outside_record", None)),
+        ("/s/0", ("outside_record", None)),
+        ("/n/x", ("outside_record", None)),
+        ("/b", ("outside_record", None)),
+        ("/a/0/b~2c", ("not_a_pointer", None)),
+        ("/a/0/b~", ("not_a_pointer", None)),
+        ("a/0", ("not_a_pointer", None)),
+        ("", ("not_a_pointer", None)),
+        (["a"], ("not_a_pointer", None)),
+        (None, ("not_a_pointer", None)),
+    ],
+)
+def test_pointer_value(pointer, expected):
+    assert pointer_value(DOCUMENT, pointer) == expected
+
+
+def test_study_line_keeps_a_value_object_whole_and_an_unresolved_universe_whole():
+    unresolved = {"status": "unresolved", "rule": "universes.assign", "words": [], "result": {}, "note": "x"}
+    absent = {"status": "not_stated", "note": "not_reported"}
+    line = study_line(
+        {"nct": "N", "lead_sponsor": absent, "universe": unresolved, "start_date": {"date": "x"}}
+    )
+    assert line["lead_sponsor"] == absent and line["universe"] == unresolved
+    assert line["start_date"] == {"date": "x", "type": None}
+    assert list(line) == list(dict.fromkeys(name.split(".")[0] for name in mcp_server.STUDY_LINE))
+    odd = {"status": "known", "result": {"universes": "general"}}
+    assert study_line({"universe": odd})["universe"] == odd
+    assert study_line({"universe": {"status": "known", "result": None}})["universe"]["result"] is None
+
+
+EMPTY = window(0, RECORD_PAGE_LIMIT, 0, 0, None)
+
+
+@pytest.mark.parametrize(
+    ("record", "arguments", "expected"),
+    [
+        (None, {"part": "manifest"}, ("not_a_record", {})),
+        ({"studies": {}}, {"part": "manifest"}, ("not_a_record", {})),
+        ({"studies": [1]}, {"part": "manifest"}, ("not_a_record", {})),
+        ({"schema_version": "2", "studies": []}, {"part": "manifest"}, ("schema_not_3", {})),
+        ({"schema_version": "3", "studies": []}, {"part": "cohort"}, ("unknown_part", {})),
+        ({"schema_version": "3", "studies": []}, {"part": "fields"}, ("ok", {"fields": None})),
+        (
+            {"schema_version": "3", "studies": [], "fields": []},
+            {"part": "fields"},
+            ("ok", {"fields": [], "page": EMPTY}),
+        ),
+        (
+            {"schema_version": "3", "studies": []},
+            {"part": "findings"},
+            ("ok", {"findings": [], "page": EMPTY}),
+        ),
+        (
+            {
+                "schema_version": "3",
+                "studies": [{"nct": "N", "open_questions": "x"}],
+                "cohort": {"frequency": 1},
+            },
+            {"part": "questions"},
+            ("ok", {"questions": [], "page": EMPTY}),
+        ),
+        (
+            {"schema_version": "3", "studies": [{"nct": "N"}]},
+            {"part": "address", "address": "/studies/0/nct"},
+            ("ok", {"address": "/studies/0/nct", "value": "N"}),
+        ),
+    ],
+)
+def test_record_view_reads_what_a_record_holds_and_refuses_by_name(record, arguments, expected):
+    assert record_view(record, arguments) == expected

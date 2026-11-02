@@ -902,9 +902,21 @@
     "refusal": "",
     "standing": "complete"
   },
+  "TrialLedger/mcp_server.py::page_window": {
+    "cut_reasons": [],
+    "function_digest": "8ed7fc6711c4aab9",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/mcp_server.py::pointer_value": {
+    "cut_reasons": [],
+    "function_digest": "eddb302e32aee197",
+    "refusal": "",
+    "standing": "complete"
+  },
   "TrialLedger/mcp_server.py::record_view": {
     "cut_reasons": [],
-    "function_digest": "14150b20fbf82850",
+    "function_digest": "65a28824bff96249",
     "refusal": "",
     "standing": "complete"
   },
@@ -917,6 +929,12 @@
   "TrialLedger/mcp_server.py::save_target": {
     "cut_reasons": [],
     "function_digest": "6aa0c3182742df5a",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/mcp_server.py::study_line": {
+    "cut_reasons": [],
+    "function_digest": "dd723720b5efac2c",
     "refusal": "",
     "standing": "complete"
   },
@@ -982,7 +1000,7 @@
   },
   "TrialLedger/operate.py::run_exit": {
     "cut_reasons": [],
-    "function_digest": "f84a412517d1d3da",
+    "function_digest": "07314b52cde25fa1",
     "refusal": "",
     "standing": "complete"
   },
@@ -1043,6 +1061,18 @@
   "TrialLedger/predicates.py::mapping_problems": {
     "cut_reasons": [],
     "function_digest": "aff76e4a08f909dd",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/preview.py::preview_exit": {
+    "cut_reasons": [],
+    "function_digest": "4113947c929b12d6",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/preview.py::scope_words": {
+    "cut_reasons": [],
+    "function_digest": "c79b647402691f31",
     "refusal": "",
     "standing": "complete"
   },

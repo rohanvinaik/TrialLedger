@@ -83,11 +83,9 @@ SHOWS = {
     "address": "the row's address in landscape.json, a JSON pointer to the node the row shows (its key)",
     "per group": "repeated for each group G1 ... Gn of the trial's module, n the most any trial has",
 }
-# The parts of the MCP record tool not served yet, each with the unit that builds it.
-MCP_PARTS_TO_BUILD = {
-    "findings": "unit F: the across-trial findings",
-    "questions": "unit F: the review questions",
-}
+# The parts of the MCP record tool not served yet, each with the unit that builds it: none (unit F serves the
+# across-trial findings and the review questions).
+MCP_PARTS_TO_BUILD: dict[str, str] = {}
 
 # ── where the registry keeps each value ─────────────────────────────────────────────────────────────────
 

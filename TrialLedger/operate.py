@@ -14,7 +14,7 @@ the same command resumes it and, once finished, changes nothing. In order:
    (scope_advice: a failed lookup beside it is asked again in the new run folder, not in this one). The
    resolved scope (`resolution.json`: `request.resolve_scope`'s, with the release check) and its registry
    query (`scope.json`, through `steps.open_run`) are written before any study is read, and are never
-   resolved again.
+   resolved again. Steps 1 and 2 are `fix_scope`, where the search preview (`preview.preview`) stops.
 3. The registry pull: `steps.advance` in the run's mode.
 4. The reading: direct mode asks RxClass and RxNav about the pulled studies' drugs exactly as
    `trialledger resolve` does, with the run folder's own classes.json; relay mode asks nothing after the
@@ -260,12 +260,13 @@ def scope_advice(codes: list[str]) -> str:
 def run_exit(status: str) -> int:
     """The exit code a run ends with, from its status (pure — pinned).
 
-    0 complete (landscape.json written); 3 awaiting_fetch (relay: the agent fetches what next.json names and
+    0 complete (landscape.json written), or previewed (preview.preview: the search resolved, fixed and shown,
+    nothing gathered); 3 awaiting_fetch (relay: the agent fetches what next.json names and
     runs the same command again); 1 a failure (FAILED: a lookup or the registry did not answer, RxNav's
     release or the registry's snapshot changed, the registry's pages cannot be followed to their count;
     nothing written as the record); 2 any other status: refused or stopped by name.
     """
-    if status == "complete":
+    if status in ("complete", "previewed"):
         return 0
     if status == "awaiting_fetch":
         return 3
@@ -556,6 +557,54 @@ def write_book(record: dict[str, Any], folder: Path) -> str:
     return "written"
 
 
+def fix_scope(
+    folder: Path,
+    request: Any,
+    mode: str,
+    *,
+    get: Callable[[str, dict[str, str]], tuple[int, Any]] = rx.http_get,
+    sleep: Callable[[float], None] = time.sleep,
+    progress: Callable[[str], None] = _ignore,
+) -> tuple[Outcome | None, Any, dict[str, Any]]:
+    """A run's opening, before the registry is read: the request checked and kept, its scope resolved and
+    fixed (module docstring, steps 1 and 2). `run` and `preview.preview` both begin here.
+
+    The request is refused, or kept in request.json (a folder holding another request is refused); the scope
+    is read when scope.json already fixes it, else resolved round by round (in relay mode the RxNav requests
+    are named in next.json) and its registry query fixed by steps.open_run. Returns (None, the request as the
+    folder keeps it, the fixed scope), or (the Outcome the run ends with at this step, the request, {}).
+    """
+    if mode not in MODES:
+        raise ValueError(f"mode must be one of {MODES}, not {mode!r}")
+    code, concerned = request_problems(request)
+    if code != "ok":
+        refused = Outcome("request_refused", f"{code}: {', '.join(concerned)}", RUN_ADVICE["request_refused"])
+        return refused, request, {}
+    folder.mkdir(parents=True, exist_ok=True)
+    if not (folder / REQUEST_NAME).is_file():
+        _write(folder / REQUEST_NAME, _json_bytes(request))
+    elif _read_json(folder / REQUEST_NAME) != request:
+        differs = Outcome("request_differs", str(folder / REQUEST_NAME), RUN_ADVICE["request_differs"])
+        return differs, request, {}
+    # The request as the folder keeps it, so a re-run given it otherwise (a file's key order, flags) writes
+    # the same record.
+    request = _read_json(folder / REQUEST_NAME)
+    # Once its registry query is in scope.json the scope is fixed: resolution is never asked again.
+    scope = _read_json(folder / RESOLUTION_NAME) if (folder / SCOPE_NAME).is_file() else None
+    if scope is None:
+        outcome, scope = _resolve(folder, request, mode, get, sleep, progress)
+        if outcome is not None:
+            return outcome, request, {}
+        code, concerned = open_run(folder, request, scope["query"])
+        if code == "scope_differs":
+            return Outcome(code, ", ".join(concerned), RUN_ADVICE["scope_differs"]), request, {}
+        if code != "ok":
+            stop = "query_" + code.removeprefix("query.")
+            words = stop_advice(stop)
+            return _stop(folder, mode, "scope_stopped", f"query: {stop} {concerned}", words), request, {}
+    return None, request, scope
+
+
 def run(
     folder: Path,
     request: Any,
@@ -572,31 +621,9 @@ def run(
     `get` asks RxNav (classes.http_get's shape); `http`, `sleep`, `monotonic` and `progress` reach the
     registry's Session (steps.advance). Re-running resumes; a finished run re-run changes nothing.
     """
-    if mode not in MODES:
-        raise ValueError(f"mode must be one of {MODES}, not {mode!r}")
-    code, concerned = request_problems(request)
-    if code != "ok":
-        return Outcome("request_refused", f"{code}: {', '.join(concerned)}", RUN_ADVICE["request_refused"])
-    folder.mkdir(parents=True, exist_ok=True)
-    if not (folder / REQUEST_NAME).is_file():
-        _write(folder / REQUEST_NAME, _json_bytes(request))
-    elif _read_json(folder / REQUEST_NAME) != request:
-        return Outcome("request_differs", str(folder / REQUEST_NAME), RUN_ADVICE["request_differs"])
-    # The request as the folder keeps it, so a re-run given it otherwise (a file's key order, flags) writes
-    # the same record.
-    request = _read_json(folder / REQUEST_NAME)
-    # Once its registry query is in scope.json the scope is fixed: resolution is never asked again.
-    scope = _read_json(folder / RESOLUTION_NAME) if (folder / SCOPE_NAME).is_file() else None
-    if scope is None:
-        outcome, scope = _resolve(folder, request, mode, get, sleep, progress)
-        if outcome is not None:
-            return outcome
-        code, concerned = open_run(folder, request, scope["query"])
-        if code == "scope_differs":
-            return Outcome(code, ", ".join(concerned), RUN_ADVICE["scope_differs"])
-        if code != "ok":
-            stop = "query_" + code.removeprefix("query.")
-            return _stop(folder, mode, "scope_stopped", f"query: {stop} {concerned}", stop_advice(stop))
+    outcome, request, scope = fix_scope(folder, request, mode, get=get, sleep=sleep, progress=progress)
+    if outcome is not None:
+        return outcome
     try:
         step = advance(folder, mode, http=http, sleep=sleep, monotonic=monotonic, progress=progress)
     except PullError as error:

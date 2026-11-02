@@ -25,13 +25,17 @@ with `isError: true` and plain words, as the specification asks for input the to
 
 The tools: `doctor` (the capability report), `landscape` (start or continue a run), `save_fetch` (write one
 body the assistant fetched, in relay mode, only where the run's next.json names it), `scope` (the resolved
-search) and `record` (the finished record, part by part, every value as the record holds it). Each run folder
+search; given the request, the search previewed: resolved and fixed, no trial read, `preview.preview`) and
+`record` (the finished schema-3 record, part by part, every value as the record holds it, a list or object
+paged, a workbook row's address resolved to its value). Each run folder
 is a name inside one root folder (`--root`), and the server reads and writes only inside the run folders it is
 given.
 
 The decisions are pure functions returning named codes: `route` (what a message is), `negotiate` (the
 version), `call_target` (which tool a call names), `argument_problems` (a call's arguments against the tool's
-schema), `save_target` (the save_fetch path check) and `record_view` (a part of the record).
+schema), `save_target` (the save_fetch path check), `record_view` (a part of the record), `page_window`
+(a page of a part), `pointer_value` (the value at a row's address) and `study_line` (a study's line in part
+studies).
 """
 
 from __future__ import annotations
@@ -51,9 +55,11 @@ import httpx
 from TrialLedger import __version__
 from TrialLedger import classes as rx
 from TrialLedger.classes import CLASS_SOURCES
+from TrialLedger.contract import FIELDS, SCHEMA_VERSION
 from TrialLedger.doctor import NEXT_STEP, report
 from TrialLedger.landscape import JSON_NAME
 from TrialLedger.operate import BOOK_NAME, RESOLUTION_NAME, Outcome, run, run_exit
+from TrialLedger.preview import PREVIEWED, preview, scope_words
 from TrialLedger.request import PHASES, STATUSES, STUDY_TYPES
 from TrialLedger.steps import MODES, NEXT_NAME
 
@@ -97,6 +103,11 @@ EXIT_MEANINGS = {
     1: "failed: nothing was written as the record; the advice says whether calling again resumes or a new "
     "run folder is needed",
 }
+# What a preview that ends resolved means (operate.run_exit's words are for a run).
+PREVIEW_MEANING = (
+    "previewed: the search is resolved and fixed in the run folder, and nothing is gathered; show the person "
+    "in_words, then call landscape with the same run and request to gather exactly this search"
+)
 RELAY_STEPS = (
     "For each entry of fetches: GET its url with your web fetch tool, exactly as written, and call "
     "save_fetch with this run, its save_as and the body exactly as received (for an HTTP error or no answer "
@@ -151,29 +162,47 @@ ARGUMENT_WORDS = {
     "name: letters, digits, '.', '_' or '-', starting with a letter or digit; an NCT number: NCT and eight "
     "digits).",
 }
+RECORD_PARTS = ("manifest", "studies", "study", "statuses", "fields", "findings", "questions", "address")
+# The most entries one call returns of a part that is a list or an object (studies, fields, findings,
+# questions, and a list or object an address names): the rest is read page by page, with offset.
+RECORD_PAGE_LIMIT = 50
 RECORD_WORDS = {
     "not_a_record": "landscape.json in this run folder is not a record of TrialLedger's form; do not answer "
     "from it.",
+    "schema_not_3": "landscape.json in this run folder was written under another form of the record (its "
+    "schema_version is not 3), which these tools do not read. Call landscape with a new run name and the "
+    "same request to gather it again.",
     "nct_needed": "part study needs nct, the study's NCT number (part studies lists them).",
     "no_such_study": "The record holds no study of that NCT number (held lists those it does).",
-    "unknown_part": "part must be manifest, studies, study, statuses or fields.",
+    "address_needed": "part address needs address, a row's address in the record as the workbook gives it "
+    "(a JSON pointer such as /studies/0/adverse_events/events/3).",
+    "not_a_pointer": "address must be a JSON pointer starting with '/', each step a key or a list position "
+    "written without leading zeros (for example /studies/1/posted_outcomes/0), as the workbook's 'Address in "
+    "the record' column gives it.",
+    "outside_record": "The record holds nothing at that address (a step names a key it does not have, a list "
+    "position past its end, or steps into a single value). Check the address against the workbook's 'Address "
+    "in the record' column.",
+    "offset_out_of_range": "offset must be 0, or a position before the end of the part (page.total gives "
+    "its length).",
+    "limit_out_of_range": f"limit must be between 1 and {RECORD_PAGE_LIMIT}.",
+    "unknown_part": "part must be one of " + ", ".join(RECORD_PARTS) + ".",
 }
-# The headline values of a study in part studies (landscape.json schema 3): each as the record holds it, a
-# plain registry value, a not-stated value object or a reading.
-HEADLINE = (
-    "lead_sponsor",
-    "phases",
-    "overall_status",
-    "study_type",
-    "conditions",
-    "enrollment",
-    "start_date",
-    "primary_completion_date",
-    "completion_date",
-    "universe",
-    "results_posted",
-)
-RECORD_PARTS = ("manifest", "studies", "study", "statuses", "fields")
+
+
+def _served(part: str) -> tuple[str, ...]:
+    """The names of the contract fields the record tool serves in `part` (contract.FIELDS' consumers)."""
+    return tuple(field.name for field in FIELDS if ("mcp", part) in field.consumers)
+
+
+# What each part serves, from the contract: the study fields of a line of part studies (each a top-level key
+# of the study, or a key within one); the record's top-level sections of parts manifest and statuses; the
+# sections of part findings, each as its path in the record (a list of rows, such as cohort.frequency or
+# standard_language, or one value, such as cohort.reason); and the study field of part questions.
+STUDY_LINE = tuple(name.removeprefix("studies[].") for name in _served("studies"))
+MANIFEST_KEYS = tuple(dict.fromkeys(name.split(".")[0] for name in _served("manifest")))
+STATUS_KEYS = tuple(dict.fromkeys(name.split(".")[0] for name in _served("statuses")))
+FINDING_SECTIONS = tuple(dict.fromkeys(tuple(name.split("[]")[0].split(".")) for name in _served("findings")))
+QUESTION_KEY = _served("questions")[0].removeprefix("studies[].")
 
 # ── the tools: each one's name, description and input schema ──────────────────────────────────────────────
 
@@ -309,36 +338,50 @@ TOOLS: dict[str, dict[str, Any]] = {
         },
     },
     "scope": {
-        "description": "The resolved search of a run, to show the person what was searched before relying on "
-        "the results: each drug class expanded into its member drugs (every subclass named, each member with "
-        "its source), each drug's names as searched, each disease class through MeSH, and the exact registry "
-        "query; or, when the request could not be resolved, the named reason (its code and stops). Written "
-        "before any study is read. Read-only.",
+        "description": "The search of a run as resolved, to show the person before anything is gathered: "
+        "each drug class expanded into its member drugs (every subclass named, each member with the subclass "
+        "it is reached through), each drug's names as searched, each disease class through MeSH, the other "
+        "filters, and the exact registry query; or, when the request cannot be resolved, the named reason "
+        "(its code and stops). Given the request (and the mode doctor reports), it previews: the request is "
+        "resolved and the search fixed in the run folder, and no trial is read (in relay mode it may first "
+        "list RxNav addresses to fetch and save with save_fetch, as landscape does; then call scope again). "
+        "Show the person in_words; then landscape with the same run and request gathers exactly this search. "
+        "Without the request it reads the search already resolved.",
         "inputSchema": {
             "type": "object",
-            "properties": {"run": RUN},
+            "properties": {
+                "run": RUN,
+                "request": REQUEST,
+                "mode": {
+                    "type": "string",
+                    "enum": list(MODES),
+                    "description": "direct or relay, as doctor reported (default: doctor decides)",
+                },
+            },
             "required": ["run"],
             "additionalProperties": False,
         },
     },
     "record": {
-        "description": "Read the finished record of a run (landscape.json) exactly as it holds it: nothing "
-        "is summarised or rewritten. part manifest: the request, the registry snapshot and code that made "
-        "the record, and the retrieval (studies counted and read, whether drug classes were looked up, and, "
-        "for trials asked for by NCT number, what became of each: found, found under another number, "
-        "missing, repeated or malformed; check it before saying a set is complete). part studies: one line "
-        "per study (NCT number, registry link, sponsor, phases, status, study type, conditions, enrollment, "
-        "dates, whether results are posted). part study, with nct: one study's whole extract (population, "
-        "inclusion and exclusion criteria, line of therapy and setting, planned outcomes and time points, "
-        "biomarkers, posted efficacy and safety, exploratory measures, standard protocol language, arms, "
-        "interventions, publications, documents). part statuses: what each status and each key of a value "
-        "means. part fields: what every field means and where it comes from. Every value is an envelope: "
-        "value, status, source, rule, note, link. Statuses: known (the record states it, or a fixed rule "
-        "read it from the record); interpolated (a default rule's guess); proposed (suggested by a pattern, "
-        "not established); not_stated (the record says nothing; never 'none'); not_posted (no results "
-        "posted; never 'no effect'); unresolved (the rules could not settle it; the note says why). Answer "
-        "only from these values, keeping each one's status and source; a registered outcome is a plan, "
-        "never a result.",
+        "description": "Read the finished record of a run (landscape.json) exactly as it holds it: "
+        "nothing is summarised or rewritten. A registry value is held plain; a value the registry does not "
+        "hold, or a rule's "
+        "reading, is a value object with its status (and a reading's rule, the words it read and its "
+        "note). part manifest: the request, the registry snapshot and code that made the record, the "
+        "universes, and the retrieval (for trials asked for by NCT number, what became of each: found, "
+        "found under another number, missing, repeated or malformed; check it before saying a set is "
+        "complete). part studies: one line per study (NCT number, registry link, sponsor, phases, "
+        "status, study type, conditions, enrollment, dates, universe, whether results are posted). part "
+        "study, with nct: one study's whole extract, paged by its fields; read a long list within it by its "
+        "address. part findings: the across-trial findings, each with its kind and its address. part "
+        "questions: the open questions the rules leave for an expert, each with its study and address. "
+        "part address, with address: the value at a workbook row's address (its 'Address in the record' "
+        "column, a JSON pointer). part statuses: what each status means. part fields: what every field "
+        "means and where it comes from. study, studies, fields, findings, questions and an address "
+        f"holding a list or an object are paged, at most {RECORD_PAGE_LIMIT} entries a call: "
+        "page.next_offset is the offset of the next page, null on the last. Answer only from these "
+        "values, keeping each one's status; not stated is never none, not posted is never no effect, and "
+        "a registered outcome is a plan, never a result.",
         "inputSchema": {
             "type": "object",
             "properties": {
@@ -348,6 +391,22 @@ TOOLS: dict[str, dict[str, Any]] = {
                     "type": "string",
                     "pattern": NCT_PATTERN,
                     "description": "the study's NCT number, for part study",
+                },
+                "address": {
+                    "type": "string",
+                    "description": "a workbook row's address in the record, a JSON pointer such as "
+                    "/studies/0/posted_outcomes/1, for part address",
+                },
+                "offset": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "description": "the first entry of the page (default 0)",
+                },
+                "limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": RECORD_PAGE_LIMIT,
+                    "description": f"the most entries returned (default and at most {RECORD_PAGE_LIMIT})",
                 },
             },
             "required": ["run", "part"],
@@ -441,10 +500,12 @@ def argument_problems(schema: dict[str, Any], arguments: Any) -> tuple[str, list
     """Whether a call's arguments hold to its tool's input schema, at the top level (pure — pinned).
 
     The schemas here use, at the top level, `properties` (each with a `type` of string, object, integer or
-    boolean, and optionally an `enum` or a `pattern`), `required` and `additionalProperties: false`; each
-    pattern is anchored at both ends and matched against the whole value. What lies inside an object
-    argument (the landscape request) is not read here: `request.request_problems` names its problems. Returns
-    the first code that applies, in this order, and the arguments it concerns, sorted:
+    boolean, and optionally an `enum` or a `pattern`; an integer's `minimum` and `maximum` tell the client its
+    range and are not read here: record_view refuses an offset or a limit outside it through page_window),
+    `required` and `additionalProperties: false`; each pattern is anchored at both ends and matched against
+    the whole value. What lies inside an object argument (the landscape request) is not read here:
+    `request.request_problems` names its problems. Returns the first code that applies, in this order, and the
+    arguments it concerns, sorted:
       not_an_object    — the arguments are not an object;
       unknown_argument — names the schema does not describe;
       missing_argument — required names not given;
@@ -506,42 +567,166 @@ def save_target(save_as: Any, named: list[Any]) -> str:
     return "ok" if save_as in named else "not_named"
 
 
-def record_view(record: Any, part: str, nct: str | None) -> tuple[str, Any]:
-    """One part of a finished record, every value as the record holds it (pure — pinned).
+def page_window(total: int, offset: int, limit: int) -> tuple[str, dict[str, Any]]:
+    """The page of a part `total` entries long that an offset and a limit name (pure — pinned).
 
-    `record` is landscape.json decoded. Parts (RECORD_PARTS):
-      manifest — {schema_version, request, manifest}: the request, the snapshot, code and rule versions, and
-                 the retrieval (with the requested-ID accounting when trials were asked for by number);
-      studies  — for each study, in order: its nct, link and the HEADLINE values;
-      study    — the study whose nct is `nct`, its whole extract;
-      statuses — {statuses, envelope}: what each status, and each key of a value, means;
-      fields   — the record's description of every field.
-    Codes: ok (with the part); not_a_record (the record is not an object, or its studies not a list of
-    objects, for studies and study); nct_needed (part study without an nct); no_such_study (with the NCT
-    numbers held); unknown_part. A key a record lacks is read as None, never filled.
+    ("ok", page) with page = {offset, limit, returned, total, next_offset}: the entries from offset, at most
+    limit of them; next_offset the position the next page starts at, None on the last page.
+      offset_out_of_range — offset below 0, or not before the end (0 is always a page, the only one of an
+                            empty part);
+      limit_out_of_range  — limit below 1 or above RECORD_PAGE_LIMIT.
+    The refusals carry an empty page.
     """
-    if not isinstance(record, dict):
-        return "not_a_record", None
+    if limit < 1 or limit > RECORD_PAGE_LIMIT:
+        return "limit_out_of_range", {}
+    if offset < 0 or (offset >= total and offset != 0):
+        return "offset_out_of_range", {}
+    returned = min(limit, total - offset)
+    following = offset + returned
+    page = {"offset": offset, "limit": limit, "returned": returned, "total": total}
+    return "ok", page | {"next_offset": following if following < total else None}
+
+
+def pointer_value(document: Any, pointer: Any) -> tuple[str, Any]:
+    """The value at a JSON pointer (RFC 6901) in a document (pure — pinned).
+
+    A workbook row's address in the record: "/" then each step, "~1" written for "/" and "~0" for "~" within
+    a step. ("ok", the value) when every step is held: a key of an object, or a list position written in
+    decimal without leading zeros. Codes:
+      not_a_pointer  — not a string starting with "/", or a "~" not followed by 0 or 1;
+      outside_record — a step the document does not hold: a key an object lacks, a list position that is
+                       not a number or is past the list's end ("-", the position after the end, among them),
+                       or any step into a value that is neither an object nor a list.
+    """
+    if not isinstance(pointer, str) or not pointer.startswith("/"):
+        return "not_a_pointer", None
+    node = document
+    for raw in pointer[1:].split("/"):
+        if re.search(r"~(?![01])", raw):
+            return "not_a_pointer", None
+        step = raw.replace("~1", "/").replace("~0", "~")
+        if isinstance(node, dict) and step in node:
+            node = node[step]
+        elif isinstance(node, list) and re.fullmatch(r"0|[1-9][0-9]*", step) and int(step) < len(node):
+            node = node[int(step)]
+        else:
+            return "outside_record", None
+    return "ok", node
+
+
+def study_line(study: dict[str, Any]) -> dict[str, Any]:
+    """One study's line in part studies: the fields the contract serves there, as held (pure — pinned).
+
+    Each name of STUDY_LINE in order: a top-level key's value as held; a key within one ("lead_sponsor.name")
+    under its top-level key, unless that key holds a value object (a value not simply known, with its status),
+    which is given whole; a key the study lacks as None, never filled. The universe reading is given as the
+    universes it assigns (its result's list) when its status is known; otherwise whole, with its status and
+    note.
+    """
+    line: dict[str, Any] = {}
+    for name in STUDY_LINE:
+        top, _, inner = name.partition(".")
+        held = study.get(top)
+        if inner and isinstance(held, dict) and "status" not in held:
+            line.setdefault(top, {})[inner] = held.get(inner)
+        else:
+            line[top] = held
+    universe = line.get("universe")
+    if isinstance(universe, dict) and universe.get("status") == "known":
+        result = universe.get("result")
+        if isinstance(result, dict) and isinstance(result.get("universes"), list):
+            line["universe"] = result["universes"]
+    return line
+
+
+def record_view(record: Any, arguments: dict[str, Any]) -> tuple[str, dict[str, Any]]:
+    """One part of a finished schema-3 record, every value as the record holds it (pure — pinned).
+
+    `record` is landscape.json decoded; `arguments` the record tool's (part, and nct, address, offset and
+    limit as the part takes them). The reply holds the part under its name; a part that is a list or an
+    object (study, studies, fields, findings, questions, and an address that names a list or an object) is
+    paged (page_window, offset 0 and RECORD_PAGE_LIMIT by default), with its `page`. Parts (RECORD_PARTS):
+      manifest  — the record's MANIFEST_KEYS (schema version, request, manifest, universes);
+      statuses  — the record's STATUS_KEYS (what each status, and each key of a value object, means);
+      fields    — the field dictionary, paged by field;
+      studies   — each study's study_line, paged;
+      study     — the study whose NCT number is `nct`, its whole extract, paged by its fields (a long list
+                  within it is read by its address);
+      findings  — every row of the FINDING_SECTIONS that are lists (the cohort's tables, the standard
+                  language), in that order, each with its kind and its address, paged; a section that is one
+                  value (the cohort's reason, when too few trials are compared) beside them, under its name;
+      questions — every study's open questions (QUESTION_KEY), each with its study and address, paged;
+      address   — the value at a workbook row's address (pointer_value).
+    Codes: ok; not_a_record (not an object, or its studies not a list of objects); schema_not_3 (another
+    schema_version); unknown_part; nct_needed; no_such_study (with the NCT numbers held); address_needed;
+    pointer_value's codes; page_window's codes. A key a record lacks is read as None, never filled.
+    """
+    if not isinstance(record, dict) or not isinstance(record.get("studies"), list):
+        return "not_a_record", {}
+    studies = record["studies"]
+    if not all(isinstance(study, dict) for study in studies):
+        return "not_a_record", {}
+    if record.get("schema_version") != SCHEMA_VERSION:
+        return "schema_not_3", {}
+    part = arguments.get("part")
     if part == "manifest":
-        return "ok", {key: record.get(key) for key in ("schema_version", "request", "manifest")}
+        return "ok", {part: {key: record.get(key) for key in MANIFEST_KEYS}}
     if part == "statuses":
-        return "ok", {"statuses": record.get("statuses"), "envelope": record.get("envelope")}
-    if part == "fields":
-        return "ok", record.get("fields")
-    if part not in ("studies", "study"):
-        return "unknown_part", None
-    studies = record.get("studies")
-    if not isinstance(studies, list) or not all(isinstance(study, dict) for study in studies):
-        return "not_a_record", None
-    if part == "studies":
-        return "ok", [{key: study.get(key) for key in ("nct", "link", *HEADLINE)} for study in studies]
-    if nct is None:
-        return "nct_needed", None
-    held = [study.get("nct") if isinstance(study.get("nct"), str) else None for study in studies]
-    for number, study in zip(held, studies, strict=True):
-        if number == nct:
-            return "ok", study
-    return "no_such_study", held
+        return "ok", {part: {key: record.get(key) for key in STATUS_KEYS}}
+    if part == "study":
+        nct = arguments.get("nct")
+        if nct is None:
+            return "nct_needed", {}
+        held = [study.get("nct") for study in studies]
+        if nct not in held:
+            return "no_such_study", {"held": held}
+    whole: Any
+    if part == "study":
+        whole = studies[held.index(nct)]
+    elif part == "studies":
+        whole = [study_line(study) for study in studies]
+    elif part == "fields":
+        whole = record.get("fields")
+    elif part == "findings":
+        whole, beside = [], {}
+        for path in FINDING_SECTIONS:
+            where = "/" + "/".join(path)
+            code, held = pointer_value(record, where)
+            if code == "ok" and isinstance(held, list):
+                whole += [
+                    {"kind": path[-1], "address": f"{where}/{n}", "finding": row}
+                    for n, row in enumerate(held)
+                ]
+            elif code == "ok":
+                beside[path[-1]] = held
+    elif part == "questions":
+        whole = [
+            {"nct": study.get("nct"), "address": f"/studies/{s}/{QUESTION_KEY}/{n}", "question": question}
+            for s, study in enumerate(studies)
+            if isinstance(study.get(QUESTION_KEY), list)
+            for n, question in enumerate(study[QUESTION_KEY])
+        ]
+    elif part == "address":
+        if "address" not in arguments:
+            return "address_needed", {}
+        code, whole = pointer_value(record, arguments["address"])
+        if code != "ok":
+            return code, {}
+    else:
+        return "unknown_part", {}
+    reply: dict[str, Any] = {"address": arguments["address"]} if part == "address" else {}
+    if part == "findings":
+        reply |= beside
+    if not isinstance(whole, list | dict):
+        return "ok", reply | {"value" if part == "address" else part: whole}
+    code, page = page_window(
+        len(whole), arguments.get("offset", 0), arguments.get("limit", RECORD_PAGE_LIMIT)
+    )
+    if code != "ok":
+        return code, {}
+    window = list(whole)[page["offset"] : page["offset"] + page["returned"]]
+    shown = {key: whole[key] for key in window} if isinstance(whole, dict) else window
+    return "ok", reply | {"value" if part == "address" else part: shown, "page": page}
 
 
 # ── the shell: it reads messages, asks the decisions what they mean, runs the tools and answers ────────────
@@ -580,6 +765,25 @@ def _doctor(context: Context, folder: Path, _arguments: dict[str, Any]) -> tuple
     return reply | {"with_these_tools": TOOL_NEXT.get(found["mode"], words)}, not usable
 
 
+def _outcome_reply(folder: Path, mode: str, outcome: Outcome, code: int) -> dict[str, Any]:
+    """A run's or a preview's end as these tools tell it: the status, its exit code and meaning, the detail
+    and advice, what the advice means with these tools, and the fetches awaited in relay mode."""
+    reply: dict[str, Any] = {"mode": mode, "status": outcome.status, "exit": code}
+    meaning = PREVIEW_MEANING if outcome.status == PREVIEWED else EXIT_MEANINGS[code]
+    reply |= {"meaning": meaning, "detail": outcome.detail, "advice": outcome.advice}
+    if outcome.status in REFUSED_BODIES:
+        reply["with_these_tools"] = REFUSED_BODY_WORDS
+    elif outcome.status == "mode_unavailable" and mode == "folder_not_writable":
+        reply["with_these_tools"] = NOT_WRITABLE_WORDS
+    elif outcome.status not in ("complete", "awaiting_fetch", PREVIEWED):
+        reply["with_these_tools"] = TOOL_TERMS
+    if outcome.status == "awaiting_fetch":
+        waiting = _read_json(folder / NEXT_NAME) or {}
+        reply |= {"then": RELAY_STEPS, "instructions": waiting.get("instructions")}
+        reply["fetches"] = waiting.get("fetches", [])
+    return reply
+
+
 def _landscape(context: Context, folder: Path, arguments: dict[str, Any]) -> tuple[dict[str, Any], bool]:
     mode = arguments.get("mode") or report(folder, context.probe_get)["mode"]
     if mode in MODES:
@@ -595,18 +799,7 @@ def _landscape(context: Context, folder: Path, arguments: dict[str, Any]) -> tup
     else:
         outcome = Outcome("mode_unavailable", mode, NEXT_STEP[mode])
     code = run_exit(outcome.status)
-    reply: dict[str, Any] = {"mode": mode, "status": outcome.status, "exit": code}
-    reply |= {"meaning": EXIT_MEANINGS[code], "detail": outcome.detail, "advice": outcome.advice}
-    if outcome.status in REFUSED_BODIES:
-        reply["with_these_tools"] = REFUSED_BODY_WORDS
-    elif outcome.status == "mode_unavailable" and mode == "folder_not_writable":
-        reply["with_these_tools"] = NOT_WRITABLE_WORDS
-    elif outcome.status not in ("complete", "awaiting_fetch"):
-        reply["with_these_tools"] = TOOL_TERMS
-    if outcome.status == "awaiting_fetch":
-        waiting = _read_json(folder / NEXT_NAME) or {}
-        reply |= {"then": RELAY_STEPS, "instructions": waiting.get("instructions")}
-        reply["fetches"] = waiting.get("fetches", [])
+    reply = _outcome_reply(folder, mode, outcome, code)
     for key, name in (("record", JSON_NAME), ("workbook", BOOK_NAME)):
         if code == 0 and (folder / name).is_file():
             reply[key] = str((folder / name).resolve())
@@ -642,23 +835,38 @@ def _save_fetch(_context: Context, folder: Path, arguments: dict[str, Any]) -> t
     return {"saved": save_as, "bytes": len(data), "still_to_save": remaining, "then": then}, False
 
 
-def _scope(_context: Context, folder: Path, _arguments: dict[str, Any]) -> tuple[dict[str, Any], bool]:
+def _scope(context: Context, folder: Path, arguments: dict[str, Any]) -> tuple[dict[str, Any], bool]:
+    if "request" in arguments:
+        mode = arguments.get("mode") or report(folder, context.probe_get)["mode"]
+        if mode in MODES:
+            outcome = preview(
+                folder, arguments["request"], mode, get=context.get, sleep=context.sleep, progress=_progress
+            )
+        else:
+            outcome = Outcome("mode_unavailable", mode, NEXT_STEP[mode])
+        code = run_exit(outcome.status)
+        reply = _outcome_reply(folder, mode, outcome, code)
+        if outcome.status == PREVIEWED:
+            reply |= {"scope": _read_json(folder / RESOLUTION_NAME), "in_words": outcome.detail.splitlines()}
+        return reply, code in (1, 2)
     scope = _read_json(folder / RESOLUTION_NAME)
     if scope is None:
-        words = "No search has been resolved in this run folder yet: call landscape with the request first."
+        words = (
+            "No search has been resolved in this run folder yet: call scope with the run and the request to "
+        )
+        words += "preview it (nothing is gathered), then landscape with the same run and request."
         return {"error": "no_scope", "why": words}, True
-    return {"scope": scope}, False
+    return {"scope": scope, "in_words": scope_words(scope)}, False
 
 
 def _record(_context: Context, folder: Path, arguments: dict[str, Any]) -> tuple[dict[str, Any], bool]:
     if not (folder / JSON_NAME).is_file():
         words = "This run has no record yet: call landscape until it reports complete."
         return {"error": "no_record", "why": words}, True
-    code, view = record_view(_read_json(folder / JSON_NAME), arguments["part"], arguments.get("nct"))
+    code, view = record_view(_read_json(folder / JSON_NAME), arguments)
     if code != "ok":
-        reply = {"error": code, "why": RECORD_WORDS[code]}
-        return reply | ({"held": view} if code == "no_such_study" else {}), True
-    return {"part": arguments["part"], arguments["part"]: view}, False
+        return {"error": code, "why": RECORD_WORDS[code], **view}, True
+    return {"part": arguments["part"], **view}, False
 
 
 HANDLERS: dict[str, Callable[[Context, Path, dict[str, Any]], tuple[dict[str, Any], bool]]] = {
