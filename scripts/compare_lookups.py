@@ -6,8 +6,9 @@ Each folder is a `trialledger landscape` run in direct mode: its saved registry 
 Both are read by the same reading (reading.read_population), so a difference is a difference in what RxNav
 answered, never in the code that reads it. For every distinct experimental drug (by its own name) the script
 compares what the record carries of it: its EPC class reading (state, classes, the name that resolved it) and
-its axes (identity code and reason, each name's identity and role, each ATC and structure class with its
-standing and the concept it is asserted of, its aligned ATC classes). Requests, retrieval times and releases
+its axes (identity code and reason, each name's identity and role, each ATC and structure class row as the
+record carries it: the name it was asked by, its standing and the concept it is asserted of; its aligned ATC
+classes). Requests, retrieval times and releases
 are warrants and are not compared; the releases are printed.
 
 Each drug that differs is put in one category, the first that applies:
@@ -46,7 +47,7 @@ def drugs_read(folder: Path) -> tuple[dict[str, dict[str, Any]], dict[str, Any],
                 "class": (state, sorted(classes), resolved_by),
                 "identity": (held["identity"], held["reason"]),
                 "names": sorted((i[0], i[1], i[2], tuple(i[3]), i[4]) for i in held["identities"]),
-                "axes": sorted({(a[1], a[2], a[3], a[4], a[5], a[6]) for a in held["assertions"]}),
+                "axes": sorted({(a[0], a[1], a[2], a[3], a[4], a[5], a[6]) for a in held["assertions"]}),
                 "atc": (held["atc"][0], sorted(held["atc"][1])),
             }
     held = [answer for answer in answers.values() if isinstance(answer, dict)]
