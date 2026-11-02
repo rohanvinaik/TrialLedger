@@ -31,6 +31,8 @@ RECORD_NAME = "landscape.json"
 BOOK_NAME = "landscape.xlsx"
 # The record tool's part that answers an address, and its argument (unit F's interface, 2026-11-01).
 ADDRESS_PART = "address"
+# A criterion the banks typed nothing in (design §2).
+NO_READING = preserve.EMPTY_READING_WORDS["studies[].criteria[].readings"]
 # The title the registry gives the baseline's group of all participants.
 BASELINE_TOTAL = "Total"
 # A paged answer is read page by page up to this many pages.
@@ -40,6 +42,7 @@ FINDING_WORDS = {
     "not_in_destination": "the reviewer's destination sheet has no row for what the record holds",
     "affected_exceeds_at_risk": "more participants affected than at risk, as the record holds them",
     "untraced": "a reading's words are not in the registry text it read",
+    "key_criterion_differs": "a key criterion's text or role is not that of the criterion its reading names",
     "not_answered": "the record tool did not answer the address",
     "answered_differently": "the record tool's answer is not the record's value at the address",
 }
@@ -157,20 +160,19 @@ def _words(value: Any) -> str:
 def eligibility_across(run: Run, ncts: list[str] | None = None) -> TaskResult:
     """Compare eligibility across the selected trials: each criterion, its role and its labelled readings.
 
-    Unresolved: a trial whose criteria were not itemized; a criterion with no reading ("No reading produced",
-    which does not mean it carries no clinical information)."""
+    Unresolved: a trial whose criteria were not itemized (with the coverage reading's reason); a criterion
+    with no reading, its readings empty ("No reading produced", which does not mean it carries no clinical
+    information), named with its address and its text. Findings: a key criterion whose text or role is not
+    that of the criterion its reading names (`reading.at`)."""
     destination = (contract.ELIGIBILITY,)
     evidence, unresolved, findings = [], _no_workbook(run, destination), []
     for i, study in _studies(run, ncts):
         nct = str(study.get("nct"))
         criteria = study.get("criteria")
         if not isinstance(criteria, list) or not criteria:
-            itemized = (
-                study.get("eligibility", {}).get("itemized")
-                if isinstance(study.get("eligibility"), dict)
-                else None
-            )
-            why = _words(itemized) if itemized is not None else "the record holds no itemized criteria"
+            eligibility = study.get("eligibility") if isinstance(study.get("eligibility"), dict) else {}
+            coverage = eligibility.get("coverage")
+            why = _words(coverage) if coverage is not None else "the record holds no itemized criteria"
             unresolved.append(Item(nct, f"/studies/{i}/criteria", f"criteria not itemized ({why})"))
             continue
         addresses = []
@@ -180,18 +182,38 @@ def eligibility_across(run: Run, ncts: list[str] | None = None) -> TaskResult:
             if not isinstance(criterion, dict):
                 continue
             role = criterion.get("role")
-            evidence.append(
-                Item(
-                    nct, address, "criterion", [criterion.get("heading"), _words(role), criterion.get("text")]
-                )
-            )
+            text = criterion.get("text")
+            evidence.append(Item(nct, address, "criterion", [criterion.get("heading"), _words(role), text]))
             readings = criterion.get("readings")
-            if readings is None or (is_value_object(readings) and not readings.get("result")):
-                unresolved.append(Item(nct, address, "No reading produced"))
+            if readings in (None, []) or (is_value_object(readings) and not readings.get("result")):
+                unresolved.append(Item(nct, address, NO_READING, text))
         findings += _listed(run, contract.ELIGIBILITY, nct, addresses)
+        findings += _key_criteria_findings(nct, i, study, criteria)
     return TaskResult(
         "compare eligibility across the selected trials", destination, evidence, unresolved, findings
     )
+
+
+def _key_criteria_findings(nct: str, i: int, study: dict[str, Any], criteria: list[Any]) -> list[Item]:
+    """Each key criterion against the criterion its reading names: the same text and the same role."""
+    findings = []
+    for k, key in enumerate(study.get("key_criteria") or []):
+        if not isinstance(key, dict):
+            continue
+        reading = key.get("reading") if isinstance(key.get("reading"), dict) else {}
+        at = reading.get("at")
+        place = at.split("/")[-1] if isinstance(at, str) else ""
+        source = criteria[int(place)] if place.isdigit() and int(place) < len(criteria) else None
+        address = f"/studies/{i}/key_criteria/{k}"
+        if not isinstance(source, dict):
+            findings.append(Item(nct, address, FINDING_WORDS["key_criterion_differs"], ["no criterion", at]))
+            continue
+        role = source.get("role")
+        role = role.get("result") if is_value_object(role) else role
+        if key.get("text") != source.get("text") or key.get("role") != role:
+            held = [key.get("text"), key.get("role")]
+            findings.append(Item(nct, address, FINDING_WORDS["key_criterion_differs"], held))
+    return findings
 
 
 def eligible_vs_enrolled(run: Run, ncts: list[str] | None = None) -> TaskResult:
@@ -240,8 +262,13 @@ def eligible_vs_enrolled(run: Run, ncts: list[str] | None = None) -> TaskResult:
                     )
                 )
         baseline = study.get("baseline")
-        if not isinstance(baseline, dict):
-            unresolved.append(Item(nct, f"/studies/{i}/baseline", "no baseline characteristics posted"))
+        if not isinstance(baseline, dict) or is_value_object(baseline):
+            why = (
+                f"no baseline characteristics posted ({_words(baseline)})"
+                if baseline
+                else "no baseline characteristics posted"
+            )
+            unresolved.append(Item(nct, f"/studies/{i}/baseline", why))
             continue
         evidence.append(
             Item(
@@ -357,8 +384,9 @@ def safety_in_period(run: Run, ncts: list[str] | None = None) -> TaskResult:
         nct = str(study.get("nct"))
         events = study.get("adverse_events")
         base = f"/studies/{i}/adverse_events"
-        if not isinstance(events, dict):
-            unresolved.append(Item(nct, base, "no adverse events posted"))
+        if not isinstance(events, dict) or is_value_object(events):
+            why = f"no adverse events posted ({_words(events)})" if events else "no adverse events posted"
+            unresolved.append(Item(nct, base, why))
             continue
         period = events.get("time_frame")
         if _plain(period):

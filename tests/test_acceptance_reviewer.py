@@ -319,3 +319,46 @@ def test_the_real_record_tool_answers_each_address(tmp_path):
     shutil.copy(EXAMPLES / "record.json", folder / reviewer.RECORD_NAME)
     result = reviewer.address_answered(run(), reviewer.mcp_ask(tmp_path, "example"))
     assert result.findings == [] and result.evidence
+
+
+def test_a_criterion_whose_readings_are_empty_is_named_with_its_text():
+    result = reviewer.eligibility_across(run(with_criteria([])), ["NCT01030536"])
+    unread = [u for u in result.unresolved if u.what == reviewer.NO_READING]
+    assert [(u.address, u.value) for u in unread] == [("/studies/1/criteria/0", CRITERION_TEXT)]
+    typed = [{"status": "known", "rule": "banks.type_criterion", "words": ["informed consent"], "result": {}}]
+    result = reviewer.eligibility_across(run(with_criteria(typed)), ["NCT01030536"])
+    assert reviewer.NO_READING not in whats(result.unresolved)
+
+
+def with_key_criterion(text, role):
+    record = with_criteria([])
+    reading = {"categories": ["Prior therapy and line"], "at": "criteria/0", "readings": []}
+    key = {"text": text, "role": role, "reading": reading, "rule": "landscape.key_criteria"}
+    record["studies"][1]["key_criteria"] = [key]
+    return record
+
+
+def test_a_key_criterion_is_its_criterions_text_and_role():
+    result = reviewer.eligibility_across(
+        run(with_key_criterion(CRITERION_TEXT, "inclusion")), ["NCT01030536"]
+    )
+    assert result.findings == []
+    for text, role in ((CRITERION_TEXT, "exclusion"), ("Written informed consent", "inclusion")):
+        result = reviewer.eligibility_across(run(with_key_criterion(text, role)), ["NCT01030536"])
+        assert [(f.address, f.what) for f in result.findings] == [
+            ("/studies/1/key_criteria/0", reviewer.FINDING_WORDS["key_criterion_differs"])
+        ]
+
+
+def test_a_module_the_record_says_is_not_posted_is_unresolved_not_read():
+    record = copy.deepcopy(RECORD)
+    not_posted = {"status": "not_posted", "note": "no results posted"}
+    record["studies"][1]["baseline"] = not_posted
+    record["studies"][1]["adverse_events"] = not_posted
+    enrolled = reviewer.eligible_vs_enrolled(run(record), ["NCT01030536"])
+    safety = reviewer.safety_in_period(run(record), ["NCT01030536"])
+    assert any(
+        u.what.startswith("no baseline characteristics posted (not_posted") for u in enrolled.unresolved
+    )
+    assert any(u.what.startswith("no adverse events posted (not_posted") for u in safety.unresolved)
+    assert not any(e.address.endswith("time_frame") for e in safety.evidence)

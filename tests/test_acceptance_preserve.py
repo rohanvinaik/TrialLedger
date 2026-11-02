@@ -6,13 +6,19 @@ code that builds the record or the workbook; units A and C are held to it.
 
 Positive: the contract's example record, an excerpt, agrees with the registry bodies it was cut from; the
 walker's own record of every saved body agrees with the bodies completely; the Safety example's rows, the
-contract's hand-checked cells, agree with the record of their two trials; a Posted results row written by hand
-from the example's hand-checked values agrees with the example record.
+contract's hand-checked cells, agree with the record of their two trials; Posted results, Baseline,
+Eligibility, Trial index and Trial review rows written by hand from the example's hand-checked values agree
+with the example record; a registry decimal as a number cell of the right format agrees; an empty listing may
+say so in one line.
 Negative: each planted defect is caught by name: a measurement moved to another group (its value, or its group
 ID), a denominator under the wrong group, an adverse-event total swapped between groups, a dropped nested
 comment, a value rounded or retyped, a value invented, a held value written as not stated, an excerpt read as
 complete; in the workbook, a wrong row address, a wrong trial, a changed count, a count where the trial has no
-such group, a count written as text, a raw code, a rounded denominator, a missing row and a repeated one.
+such group, a count written as text, a raw code, a rounded denominator, a missing row and a repeated one; a
+wrong absence label (in a listing and in the dossier, value and basis), an omitted "No reading produced", a
+wrong index fact, a wrong dossier fact, a dossier fact without its row, the record's JSON in a cell, a
+recurring criterion's wordings presented as one representative text, a registry decimal shown with other
+decimals, and a value a number cannot hold (1e-400) written as one.
 """
 
 import copy
@@ -237,7 +243,7 @@ def test_a_count_written_as_text_is_retyped():
 def test_a_count_the_registry_does_not_give_reads_not_reported():
     record = safety_record()
     del record["studies"][0]["adverse_events"]["events"][0]["counts"][0]["events"]
-    assert codes(safety_findings(safety_rows(), record)) == ["not_shown"]
+    assert codes(safety_findings(safety_rows(), record)) == ["retyped"]
     rows = safety_rows()
     rows[0][SAFETY["columns"].index("G1 events")] = preserve.NOT_REPORTED
     assert safety_findings(rows, record) == []
@@ -351,20 +357,34 @@ def test_pointer_steps(pointer, expected):
 @pytest.mark.parametrize(
     ("arguments", "expected"),
     [
-        (("7 Participants", ["7", "Participants"], [], False, False), "shown"),
-        (("17 Participants", ["7"], [], False, False), "not_shown"),
-        (("63.40", ["63.4"], [], False, False), "not_shown"),
-        ((None, [], [], False, True), "blank_by_construction"),
-        ((0, [], [], False, True), "not_blank"),
-        ((None, ["7"], [], False, False), "blank"),
-        (("  ", [], [], True, False), "unexplained_blank"),
-        ((7, [], [7], False, False), "shown"),
-        ((7.0, [], [7], False, False), "number_differs"),
-        (("7", [], [7], False, False), "retyped"),
-        (("seven", [], [7], False, False), "number_differs"),
-        ((63.4, ["63.4"], [], False, False), "retyped"),
-        ((True, ["Yes"], [], False, False), "not_shown"),
-        (("Not stated", [], [], True, False), "shown"),
+        (("7 Participants", ["7", "Participants"], [], [], False), "shown"),
+        (("17 Participants", ["7"], [], [], False), "not_shown"),
+        (("63.40", ["63.4"], [], [], False), "not_shown"),
+        ((None, [], [], [], True), "blank_by_construction"),
+        ((0, [], [], [], True), "not_blank"),
+        ((None, ["7"], [], [], False), "blank"),
+        ((None, [], [], ["Not stated"], False), "blank"),
+        (("  ", [], [], [], False), "unexplained_blank"),
+        ((7, [], [7], [], False), "shown"),
+        ((7.0, [], [7], [], False), "number_differs"),
+        (("7", [], [7], [], False), "retyped"),
+        (("seven", [], [7], [], False), "number_differs"),
+        ((63.4, ["63.4"], [], [], False), "shown"),
+        ((63.4, ["63.4"], [], [], False, "0.00"), "decimals_differ"),
+        ((66, ["66.0"], [], [], False), "decimals_differ"),
+        ((66, ["66.0"], [], [], False, "0.0"), "shown"),
+        ((0.0, ["1e-400"], [], [], False), "number_differs"),
+        ((7, ["NA"], [], [], False), "retyped"),
+        ((7, [], [], ["Not stated"], False), "retyped"),
+        ((7, ["7", "Participants"], [], [], False), "not_shown"),
+        ((True, ["Yes"], [], [], False), "not_shown"),
+        (("Not stated", [], [], ["Not stated"], False), "shown"),
+        (("Invented statement", [], [], ["Not stated"], False), "wrong_words"),
+        (("Not posted", [], [], ["Not stated"], False), "wrong_words"),
+        (("Not stated, probably none", [], [], ["Not stated"], False), "wrong_words"),
+        (("Unresolved — the name is not in RxNorm", [], [], ["Unresolved"], False), "shown"),
+        (("Completed", ["Completed"], [], ["Not stated"], False), "shown"),
+        (("Any words", [], [], [], False), "shown"),
     ],
 )
 def test_cell_verdict(arguments, expected):
@@ -455,7 +475,9 @@ def test_a_listing_continued_on_a_numbered_sheet_is_read_whole(tmp_path):
     sheets = preserve.workbook_sheets(book)
     assert list(sheets) == [contract.SAFETY]
     headers, rows = sheets[contract.SAFETY]
-    assert headers == SAFETY["columns"] and [list(row) for row in rows] == SAFETY["rows"]
+    plain = [[preserve._plain(cell) for cell in row] for row in rows]
+    assert headers == SAFETY["columns"] and plain == SAFETY["rows"]
+    assert rows[0][SAFETY["columns"].index("G1 at risk")] == preserve.Number(7, "General")
     assert cell_findings(safety_record(), sheets, complete=True) == []
 
 
@@ -470,3 +492,338 @@ def test_a_run_is_checked_from_its_files(tmp_path):
     )
     assert {f.code for f in found} >= {"number_differs", "sheet_missing"}
     assert [f.field for f in found if f.code == "number_differs"] == ["Safety: G2 at risk"]
+
+
+# ── numbers: a registry decimal written as a number cell ────────────────────────────────────────────────
+
+
+@pytest.mark.parametrize(
+    ("value", "number_format", "expected"),
+    [
+        (66, "General", "66"),
+        (66.0, "General", "66"),
+        (63.4, "General", "63.4"),
+        (66, "0.0", "66.0"),
+        (0.125, "0.00", "0.12"),
+        (1234.5, "#,##0.0", "1234.5"),
+        (7, "0%", None),
+        ("7", "General", None),
+        (True, "General", None),
+    ],
+)
+def test_displayed_number(value, number_format, expected):
+    assert preserve.displayed_number(value, number_format) == expected
+
+
+@pytest.mark.parametrize(
+    ("text", "value", "number_format", "expected"),
+    [
+        ("63.4", 63.4, "General", "same"),
+        ("66.0", 66, "0.0", "same"),
+        ("66.0", 66, "General", "decimals_differ"),
+        ("63.4", 63.39999, "0.0", "value_differs"),
+        ("1e-400", 0.0, "General", "value_differs"),
+        ("3.14159265358979323846", 3.141592653589793, "General", "value_differs"),
+        ("NA", 7, "General", "not_a_number"),
+        ("Infinity", float("inf"), "General", "not_a_number"),
+        ("7", "7", "General", "not_a_number"),
+    ],
+)
+def test_number_agrees(text, value, number_format, expected):
+    assert preserve.number_agrees(text, value, number_format) == expected
+
+
+def baseline_row(value_cell):
+    """The Baseline row of NCT01030536's first group's age, from the example's hand-checked values."""
+    return {
+        "Trial ID": "NCT01030536",
+        contract.ADDRESS: "/studies/1/baseline/measures/0/classes/0/categories/0/measurements/0",
+        "Characteristic": "Age, Continuous",
+        "Population": "Not stated",
+        "Class": "Age",
+        "Category": "Not stated",
+        "Group": "CAT-8015 20 Microgram Per Kilogram (mcg/kg) (BG000)",
+        "Denominator": "7 Participants",
+        "Parameter": "Mean",
+        "Value": value_cell,
+        "Spread or limits": "Standard deviation 8.7",
+        "Unit": "years",
+        "Comment": "Not stated",
+    }
+
+
+def baseline_findings(value_cell, record=None):
+    row = baseline_row(value_cell)
+    sheets = {contract.BASELINE: (list(row), [list(row.values())])}
+    return cell_findings(record or RECORD, sheets, complete=False)
+
+
+def test_a_registry_decimal_as_a_number_cell_must_keep_its_value_and_decimals():
+    assert baseline_findings(preserve.Number(63.4, "General")) == []
+    assert baseline_findings("63.4") == []
+    found = baseline_findings(preserve.Number(63.4, "0"))
+    assert [(f.code, f.field) for f in found] == [("decimals_differ", "Baseline: Value")]
+    assert codes(baseline_findings(preserve.Number(63.0, "0.0"))) == ["number_differs"]
+
+
+def test_a_value_a_cell_cannot_hold_exactly_must_be_text():
+    record = excerpt()
+    baseline_measurements(record)[0]["value"] = "1e-400"
+    assert codes(baseline_findings(preserve.Number(0.0, "General"), record)) == ["number_differs"]
+    assert baseline_findings("1e-400", record) == []
+
+
+# ── a status's words: an absence, an unresolved value, a criterion with no reading ──────────────────────
+
+
+def test_a_wrong_absence_label_is_caught():
+    found = posted_findings(Class="Not posted")
+    assert [(f.code, f.field) for f in found] == [("wrong_words", f"{contract.POSTED}: Class")]
+    assert codes(posted_findings(Category="Invented statement")) == ["wrong_words"]
+
+
+ELIGIBILITY_HEADERS = [
+    "Trial ID",
+    contract.ADDRESS,
+    "Heading",
+    "Criterion number",
+    "Role",
+    "Criterion as written",
+    "Readings",
+]
+CRITERION = (
+    "* Written informed consent and Health Insurance Portability and Accountability Act (HIPAA) authorization"
+)
+
+
+def eligibility_record():
+    record = excerpt()
+    role = {
+        "status": "known",
+        "rule": "criteria.criterion_role",
+        "words": [],
+        "result": "inclusion",
+        "note": "",
+    }
+    record["studies"][1]["criteria"] = [
+        {"heading": "inclusion", "number": 1, "text": CRITERION, "role": role, "readings": []}
+    ]
+    return record
+
+
+def eligibility_findings(readings_cell):
+    row = ["NCT01030536", "/studies/1/criteria/0", "Inclusion", 1, "Inclusion", CRITERION, readings_cell]
+    return cell_findings(eligibility_record(), {contract.ELIGIBILITY: (ELIGIBILITY_HEADERS, [row])})
+
+
+def test_a_criterion_with_no_reading_reads_no_reading_produced():
+    assert eligibility_findings("No reading produced") == []
+
+
+@pytest.mark.parametrize(("cell", "code"), [(None, "blank"), ("None", "wrong_words"), ("", "blank")])
+def test_an_omitted_no_reading_produced_is_caught(cell, code):
+    found = eligibility_findings(cell)
+    assert [(f.code, f.field) for f in found] == [(code, f"{contract.ELIGIBILITY}: Readings")]
+
+
+# ── the Trial index and the Trial review ────────────────────────────────────────────────────────────────
+
+# NCT04852770's index row, from the example's hand-checked values.
+INDEX_ROW = {
+    "Trial ID": "NCT04852770",
+    "Acronym or short title": "Efficacy of TBCT, MBHP and PPT for PTSD During the Covid-19 Pandemics",
+    "Sponsor": "Fundação Bahiana de Infectologia (Other)",
+    "Phase": "Not applicable",
+    "Status": "Terminated",
+    "Conditions": "Posttraumatic Stress Disorder; Covid19",
+    "Universe": "Outside oncology (condition MeSH terms)",
+    "Design": "Treatment; Randomized; masking Double",
+    "Enrollment": "135 (Actual)",
+    "Start": "06-Apr-2020 (Actual)",
+    "Primary endpoint": "Not stated",
+    "Results posted": "Not posted",
+    "Publications": "Not stated",
+    "Countries": "Not stated",
+    "Last update posted": "04-Apr-2025",
+    "Treatment setting": "Not applicable",
+    "Prior lines for advanced disease": "Not applicable",
+    "Gene selection": "Not applicable",
+    "Dossier": "Dossier",
+}
+REVIEW_ROWS = [
+    ("Brief title", "Efficacy of TBCT, MBHP and PPT for PTSD During the Covid-19 Pandemics", "Registry"),
+    ("Acronym", "Not stated", "Not stated"),
+    ("Official title", RECORD["studies"][0]["official_title"], "Registry"),
+    ("Overall status", "Terminated", "Registry"),
+    ("Why stopped", "The study was interrupted due to the end of the pandemic.", "Registry"),
+    ("Start date", "06-Apr-2020 (Actual)", "Registry"),
+    ("Last update posted", "04-Apr-2025", "Registry"),
+    ("Lead sponsor", "Fundação Bahiana de Infectologia (Other)", "Registry"),
+    ("Data monitoring committee", "No", "Registry"),
+    ("Phase", "Not applicable", "Registry"),
+    ("Primary purpose", "Treatment", "Registry"),
+    ("Allocation", "Randomized", "Registry"),
+    ("Masking", "Double", "Registry"),
+    ("Study type", "Interventional", "Registry"),
+    ("Enrollment", "135 (Actual)", "Registry"),
+    ("Conditions", "Posttraumatic Stress Disorder; Covid19", "Registry"),
+    ("Condition MeSH terms", "Stress Disorders, Post-Traumatic; COVID-19", "Registry"),
+    ("Universe", "General: no domain readings apply", "Reading"),
+]
+REVIEW_HEADERS = ["Trial ID", "Section", "Fact", "Value", "Basis"]
+
+
+def one_study():
+    return {"studies": [copy.deepcopy(RECORD["studies"][0])]}
+
+
+def index_findings(**changed):
+    row = INDEX_ROW | changed
+    return cell_findings(one_study(), {contract.INDEX: (list(row), [list(row.values())])})
+
+
+def review_findings(rows):
+    cells = [["NCT04852770", "Section", fact, value, basis] for fact, value, basis in rows]
+    return cell_findings(one_study(), {contract.REVIEW: (REVIEW_HEADERS, cells)})
+
+
+def test_the_index_row_agrees_with_its_record():
+    assert index_findings() == []
+
+
+@pytest.mark.parametrize(
+    ("column", "cell", "code"),
+    [
+        ("Enrollment", "153 (Actual)", "not_shown"),
+        ("Enrollment", "135 (Anticipated)", "not_shown"),
+        ("Start", "06-May-2020 (Actual)", "not_shown"),
+        ("Status", "TERMINATED", "not_shown"),
+        ("Publications", "None", "wrong_words"),
+        ("Publications", "0", "wrong_words"),
+        ("Sponsor", None, "blank"),
+        ("Dossier", None, "unexplained_blank"),
+    ],
+)
+def test_a_wrong_index_fact_is_caught(column, cell, code):
+    found = index_findings(**{column: cell})
+    assert [(f.code, f.field) for f in found] == [(code, f"{contract.INDEX}: {column}")]
+
+
+def test_an_index_row_for_no_trial_and_a_trial_with_no_row_are_caught():
+    found = index_findings(**{"Trial ID": "NCT00000000"})
+    assert sorted(codes(found)) == ["row_missing", "trial_differs"]
+
+
+def test_the_dossier_rows_agree_with_their_record():
+    assert review_findings(REVIEW_ROWS) == []
+
+
+def test_a_wrong_dossier_fact_is_caught():
+    rows = list(REVIEW_ROWS)
+    rows[0] = ("Brief title", "Efficacy of TBCT for PTSD", "Registry")
+    rows[5] = ("Start date", "2020-04-16 (Actual)", "Registry")
+    found = review_findings(rows)
+    assert [(f.code, f.field) for f in found] == [
+        ("not_shown", f"{contract.REVIEW}: Brief title"),
+        ("not_shown", f"{contract.REVIEW}: Start date"),
+    ]
+
+
+def test_a_wrong_absence_label_in_the_dossier_is_caught():
+    rows = list(REVIEW_ROWS)
+    rows[1] = ("Acronym", "Not posted", "Not posted")
+    found = review_findings(rows)
+    assert [(f.code, f.field) for f in found] == [
+        ("wrong_words", f"{contract.REVIEW}: Acronym"),
+        ("wrong_words", f"{contract.REVIEW}: Acronym (basis)"),
+    ]
+
+
+def test_a_dossier_fact_the_registry_holds_without_its_row_is_caught():
+    found = review_findings([row for row in REVIEW_ROWS if row[0] != "Why stopped"])
+    assert [(f.code, f.field) for f in found] == [("fact_missing", f"{contract.REVIEW}: Why stopped")]
+
+
+def test_a_raw_record_in_a_cell_is_caught():
+    rows = [*REVIEW_ROWS, ("Universe", str(RECORD["studies"][0]["universe"]), "Reading")]
+    assert codes(review_findings(rows)) == ["raw_record"]
+
+
+def test_a_numbered_dossier_fact_is_read_line_by_line():
+    record = {"studies": [project_study(BODIES["NCT01030536"])]}
+    arm = record["studies"][0]["arms"][1]
+    value = f"Arm: {arm['label']}\nArm type: Experimental\nArm description: {arm['description']}"
+    rows = [["NCT01030536", "Arms and interventions", "Arm 2", value, "Registry"]]
+
+    def found():
+        every = cell_findings(record, {contract.REVIEW: (REVIEW_HEADERS, rows)})
+        return [f for f in every if f.code != "fact_missing"]
+
+    assert found() == []
+    rows[0][2] = "Arm 3"
+    assert {f.field for f in found()} == {
+        f"{contract.REVIEW}: Arm 3: Arm",
+        f"{contract.REVIEW}: Arm 3: Arm description",
+    }
+
+
+# ── the across-trial criteria listing (its grain read from the contract, whatever its name) ─────────────
+
+CRITERIA_SHEET = next(
+    sheet
+    for sheet in contract.SHEETS
+    if preserve.sheet_grains(sheet) and not preserve.sheet_grains(sheet)[0].startswith("studies")
+)
+CRITERIA_LIST = preserve.sheet_grains(CRITERIA_SHEET)[0].removesuffix("[]")
+SHORT = "ECOG performance status 0-1"
+LONG = "Eastern Cooperative Oncology Group (ECOG) performance status of 0 or 1 at screening"
+
+
+def criteria_findings(wording_cell):
+    entry = {
+        "criterion": {"universe": "oncology.solid", "element": "inclusion:ecog_ps=0-1"},
+        "role": "inclusion",
+        "trials": 3,
+        "of_trials": 4,
+        "wording": [SHORT, LONG],
+        "wording_from": ["NCT02151981 criterion 4", "NCT02296125 criterion 6"],
+        "other_trials": ["NCT04487080"],
+    }
+    cells = {
+        contract.ADDRESS: f"/{CRITERIA_LIST}/0",
+        "Criterion": "Performance status (ECOG 0-1), solid tumour trials",
+        "Role": "Inclusion",
+        "Trials stating it": preserve.Number(3, "General"),
+        "Of comparable trials": preserve.Number(4, "General"),
+        "Representative wording": wording_cell,
+        "Wording from": "NCT02151981 criterion 4; NCT02296125 criterion 6",
+        "Other trials": "NCT04487080",
+    }
+    headers = [column.header for column in CRITERIA_SHEET.columns]
+    sheets = {CRITERIA_SHEET.name: (headers, [[cells[h] for h in headers]])}
+    return cell_findings({CRITERIA_LIST: [entry]}, sheets)
+
+
+def test_the_recurring_criteria_row_shows_each_representative_wording():
+    assert criteria_findings(f"{SHORT}\n{LONG}") == []
+
+
+def test_wording_presented_as_one_representative_text_is_caught():
+    found = criteria_findings(SHORT)
+    assert [(f.code, f.field) for f in found] == [
+        ("not_shown", f"{CRITERIA_SHEET.name}: Representative wording")
+    ]
+
+
+# ── an empty listing's one line ─────────────────────────────────────────────────────────────────────────
+
+
+def test_an_empty_listing_may_say_so_in_one_line():
+    sheet = next(sheet for sheet in contract.SHEETS if sheet.name == contract.ANALYSES)
+    headers = [column.header for column in sheet.columns]
+    line = ["None of these trials posted a statistical analysis"] + [None] * (len(headers) - 1)
+    assert cell_findings(RECORD, {contract.ANALYSES: (headers, [line])}) == []
+    record = excerpt()
+    record["studies"][1]["posted_outcomes"][0]["analyses"] = [{"method": "Log Rank"}]
+    found = cell_findings(record, {contract.ANALYSES: (headers, [line])})
+    assert sorted(codes(found)) == ["address_unreadable", "row_missing"]
