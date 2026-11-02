@@ -53,6 +53,10 @@ DECLARED = {
     "mcp_server.py: stdio_streams": "the process's own standard input and output; production_path gives "
     "`trialledger mcp` its streams, as it gives the registry and RxNav",
     "mcp_server.py: stdio_streams.<locals>.write": "the writer of stdio_streams, likewise",
+    "landscape.py: kept_strata": "the cohort's strata are read only from the signal minimum of trials up, "
+    "which production_path's few trials do not reach; tests/test_landscape.py reaches it",
+    "landscape.py: endpoint_profile": "the cohort's endpoints are read only from the signal minimum of "
+    "trials up, which production_path's few trials do not reach; tests/test_landscape.py reaches it",
     "readout.py: ReadoutError.__init__": "raised only when landscape.xlsx read back differs from its "
     "derivation, which tests/test_readout_schema3.py simulates",
     "landscape.py: standard_language.<locals>.<lambda>": "orders the criteria a universe's trials share, and "

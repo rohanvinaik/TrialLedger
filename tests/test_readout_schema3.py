@@ -361,8 +361,8 @@ def test_a_number_cell_keeps_the_registrys_decimal_places_in_the_file(written):
 def test_an_empty_listing_and_the_across_trial_sheets_say_so_on_one_line():
     (biomarkers,) = sheet_rows(contract.BIOMARKERS)
     assert biomarkers["Trial ID"].startswith("No biomarker is named")
-    # three trials, below the signal minimum: the cohort's rows are not findings
-    assert RECORD["cohort"]["frequency"]
+    # three trials, below the signal minimum: the cohort holds its thresholds and why, and no row
+    assert set(RECORD["cohort"]) == {"thresholds", "reason"}
     (findings,) = sheet_rows(contract.FINDINGS)
     assert findings["Type"].startswith("Too few comparable trials to assess: 3 trials here")
     record = copy.deepcopy(RECORD)

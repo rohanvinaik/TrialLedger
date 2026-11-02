@@ -632,32 +632,39 @@ def key_category(concept: str, values: list[str]) -> str:
 
 
 def key_criteria(criteria: list[dict[str, Any]]) -> list[dict[str, Any]]:
-    """The study's key criteria: each criterion with a reading in a key category, once a category
-    (pure).
+    """The study's key criteria: each criterion with a reading in a key category, once (pure).
 
-    `criteria` are criterion_entries's. For each criterion, in order, and each category its readings fall in
-    (key_category), in the order first met: its text as written, its role (its role reading's result), the
-    reading (the category, the criterion's place among the study's criteria and the concepts and values of
-    its readings in that category) and the rule, landscape.key_criteria.
+    `criteria` are criterion_entries's. For each criterion, in order, with one or more readings in a key
+    category (key_category): its text as written, its role (its role reading's result), the reading (the
+    labels of the categories it falls in, in the order first met; the criterion's place among the study's
+    criteria; and each reading in a category: the category's label, the concept and the values) and the rule,
+    landscape.key_criteria. A criterion falling in several categories is one entry naming them all.
     """
+    labels = {name: label for name, label, _matchers in contract.KEY_CRITERION_CATEGORIES}
     found = []
     for index, criterion in enumerate(criteria):
-        held: dict[str, list[dict[str, Any]]] = {}
+        readings = []
         for reading in criterion["readings"]:
             category = key_category(reading["result"]["concept"], reading["result"]["values"])
             if category:
-                held.setdefault(category, []).append(
-                    {"concept": reading["result"]["concept"], "values": reading["result"]["values"]}
+                readings.append(
+                    {
+                        "category": labels[category],
+                        "concept": reading["result"]["concept"],
+                        "values": reading["result"]["values"],
+                    }
                 )
-        for category, readings in held.items():
-            found.append(
-                {
-                    "text": criterion["text"],
-                    "role": criterion["role"]["result"],
-                    "reading": {"category": category, "at": f"criteria/{index}", "readings": readings},
-                    "rule": "landscape.key_criteria",
-                }
-            )
+        if not readings:
+            continue
+        categories = list(dict.fromkeys(held["category"] for held in readings))
+        found.append(
+            {
+                "text": criterion["text"],
+                "role": criterion["role"]["result"],
+                "reading": {"categories": categories, "at": f"criteria/{index}", "readings": readings},
+                "rule": "landscape.key_criteria",
+            }
+        )
     return found
 
 
@@ -683,7 +690,7 @@ def standard_language(studies: list[dict[str, Any]]) -> list[dict[str, Any]]:
     for universe in sorted(groups):
         members = groups[universe]
         if len(members) < least:
-            reason = f"too few trials to assess ({len(members)}; at least {least} needed)"
+            reason = too_few(len(members), least)
             criterion = {"universe": universe, "element": None, "reason": reason}
             rows.append(
                 {
@@ -918,36 +925,61 @@ def endpoint_profile(trials: list[tuple[str, list[tuple]]]) -> list[tuple]:
     return [row for _, row in keyed]
 
 
-def kept_strata(members: dict[str, list[str]], everyone: list[str]) -> list[str]:
-    """The by-setting strata the cohort keeps: each whose trials are not exactly all trials (pure — pinned).
+def too_few(trials: int, least: int) -> str:
+    """Why a set of comparable trials is not assessed, "" when it is (pure — pinned).
 
-    `members` map each stratum to its trials' NCT numbers; `everyone` the NCT numbers of all trials. A stratum
-    holding every trial and no other repeats "all trials" and is dropped; the rest are kept, in the order of
-    `members`.
+    Fewer than `least` trials (the signal minimum): "too few comparable trials to assess (<trials>; at least
+    <least> needed)"; otherwise "".
+    """
+    return (
+        f"too few comparable trials to assess ({trials}; at least {least} needed)" if trials < least else ""
+    )
+
+
+def kept_strata(members: dict[str, list[str]], everyone: list[str], least: int) -> list[str]:
+    """The by-setting strata the cohort keeps (pure — pinned).
+
+    `members` map each stratum to its trials' NCT numbers; `everyone` the NCT numbers of all trials; `least`
+    the signal minimum. A stratum holding every trial and no other repeats "all trials" and is dropped, and so
+    is one of fewer than `least` trials (too_few); the rest are kept, in the order of `members`.
     """
     whole = sorted(everyone)
-    return [stratum for stratum, ncts in members.items() if sorted(ncts) != whole]
+    return [
+        stratum
+        for stratum, ncts in members.items()
+        if sorted(ncts) != whole and not too_few(len(set(ncts)), least)
+    ]
 
 
 def cohort_section(reading: dict[str, Any], admitted: list[set[str]]) -> dict[str, Any]:
     """The across-trial findings the evidence supports, as named rows; a table with no row is left out.
 
     `reading` is reading.read_population's; `admitted` each view's coordinates its universe admits, in the
-    order of the views. The frequency and mechanism rows over every trial ("all trials"), then by known
-    setting over the trials whose universe admits a setting, each stratum kept only where it is not all
-    trials (kept_strata); a primary endpoint's element is the endpoints' table's, never a criterion's
-    frequency. The occupancy of each setting and observed class cell and the near-miss pairs, over the trials
-    whose universe admits a setting; the planned endpoints and time points by class; the structure relations;
-    and the thresholds the tiers and signals were read at.
+    order of the views. Below the signal minimum (profile.SIGNAL_MIN_TRIALS trials) the cohort holds its
+    thresholds and why it is not assessed (too_few), and no row. Otherwise: the frequency and mechanism rows
+    over every trial ("all trials"), then by known setting over the trials whose universe admits a setting,
+    each stratum kept only where it is not all trials and holds the signal minimum (kept_strata); a primary
+    endpoint's element is the endpoints' table's, never a criterion's frequency. The occupancy of each setting
+    and observed class cell and the near-miss pairs, over the trials whose universe admits a setting; the
+    planned endpoints and time points by class; the structure relations; and the thresholds the tiers and
+    signals were read at.
     """
     views = reading["views"]
+    thresholds = {
+        "standard_share": STANDARD_SHARE,
+        "signal_min_trials": SIGNAL_MIN_TRIALS,
+        "signal_min_sponsors": SIGNAL_MIN_SPONSORS,
+    }
+    reason = too_few(len(views), SIGNAL_MIN_TRIALS)
+    if reason:
+        return {"thresholds": thresholds, "reason": reason}
     setting = [view for view, held in zip(views, admitted, strict=True) if "setting" in held]
     everyone = [view["nct"] for view in views]
     rows = _profile_trials(setting, True)
     members: dict[str, list[str]] = {}
     for row in rows:
         members.setdefault(row[2], []).append(row[0])
-    kept = set(kept_strata(members, everyone))
+    kept = set(kept_strata(members, everyone, SIGNAL_MIN_TRIALS))
     by_setting = [row for row in rows if row[2] in kept]
     frequency, mechanism = [], []
     for trials in (_profile_trials(views, False), by_setting):
@@ -994,11 +1026,6 @@ def cohort_section(reading: dict[str, Any], admitted: list[set[str]]) -> dict[st
         "structure_relations": [
             dict(zip(STRUCTURE_COLUMNS, row, strict=True)) for row in reading["structure_relations"]
         ],
-    }
-    thresholds = {
-        "standard_share": STANDARD_SHARE,
-        "signal_min_trials": SIGNAL_MIN_TRIALS,
-        "signal_min_sponsors": SIGNAL_MIN_SPONSORS,
     }
     return {"thresholds": thresholds, **{name: rows for name, rows in tables.items() if rows}}
 

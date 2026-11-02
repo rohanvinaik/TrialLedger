@@ -734,7 +734,7 @@ _STUDY_FIELDS: tuple[Field, ...] = (
         for name, label in (
             ("text", "Key criterion, as written"),
             ("role", "Its role (inclusion or exclusion)"),
-            ("reading", "Its reading: the key category and the readings in it"),
+            ("reading", "Its reading: the key categories it falls in and the readings in each"),
             ("rule", "The rule that read it"),
         )
     ),
@@ -1593,6 +1593,13 @@ _RECORD_FIELDS: tuple[Field, ...] = (
     ),
     Field("coverage.universe", "The trials TrialLedger supports", "run", ("typematrix.UNIVERSE",), ON_README),
     Field(
+        "cohort.reason",
+        "Why the across-trial findings are not assessed (fewer comparable trials than the signal minimum)",
+        "reading",
+        ("landscape.cohort_section",),
+        (("sheet", FINDINGS, "Population and limits"), ("mcp", "findings")),
+    ),
+    Field(
         "cohort.thresholds",
         "The standard share and the signal minimums",
         "run",
@@ -2262,6 +2269,7 @@ SHEETS: tuple[Sheet, ...] = (
             Column(
                 "Population and limits",
                 (
+                    "cohort.reason",
                     "cohort.thresholds",
                     "cohort.frequency",
                     "cohort.mechanism_signals",

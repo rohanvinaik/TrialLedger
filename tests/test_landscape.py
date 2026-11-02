@@ -351,13 +351,26 @@ def test_the_cohort_holds_no_endpoint_among_criterion_frequencies_and_no_empty_t
     assert cohort["endpoints"]
 
 
-def test_a_stratum_holding_every_trial_is_dropped():
-    assert landscape.kept_strata({"advanced_first_line": ["B", "A"]}, ["A", "B"]) == []
-    assert landscape.kept_strata({"advanced_first_line": ["A"], "setting unresolved": ["B"]}, ["A", "B"]) == [
-        "advanced_first_line",
-        "setting unresolved",
-    ]
-    assert landscape.kept_strata({}, ["A"]) == []
+def test_a_stratum_holding_every_trial_or_too_few_is_dropped():
+    assert landscape.kept_strata({"advanced_first_line": ["B", "A"]}, ["A", "B"], 1) == []
+    members = {"advanced_first_line": ["A"], "setting unresolved": ["B"]}
+    assert landscape.kept_strata(members, ["A", "B"], 1) == ["advanced_first_line", "setting unresolved"]
+    assert landscape.kept_strata(members, ["A", "B"], 2) == []
+    assert landscape.kept_strata({"adjuvant": ["A", "B"]}, ["A", "B", "C"], 2) == ["adjuvant"]
+    assert landscape.kept_strata({}, ["A"], 1) == []
+
+
+def test_too_few_names_the_count_and_the_minimum_and_enough_is_silent():
+    assert landscape.too_few(2, 3) == "too few comparable trials to assess (2; at least 3 needed)"
+    assert landscape.too_few(3, 3) == ""
+    assert landscape.too_few(0, 1) == "too few comparable trials to assess (0; at least 1 needed)"
+
+
+def test_a_cohort_below_the_signal_minimum_holds_its_thresholds_and_why_and_no_row():
+    few = BODIES[: landscape.SIGNAL_MIN_TRIALS - 1]
+    cohort = build(few)["cohort"]
+    assert list(cohort) == ["thresholds", "reason"]
+    assert cohort["reason"] == landscape.too_few(len(few), landscape.SIGNAL_MIN_TRIALS)
 
 
 def test_by_setting_strata_count_only_trials_a_setting_applies_to(record):
@@ -619,11 +632,26 @@ def test_a_criterion_with_a_key_reading_is_a_key_criterion_once_a_category():
     assert list(found[0]) == ["text", "role", "reading", "rule"]
     assert found[0]["text"] == "EGFR mutation, MET negative"
     assert found[0]["role"] == "inclusion" and found[0]["rule"] == "landscape.key_criteria"
-    assert (
-        found[0]["reading"]["category"] == "biomarker_selection" and found[0]["reading"]["at"] == "criteria/0"
-    )
+    assert found[0]["reading"]["categories"] == ["Biomarker selection"]
+    assert found[0]["reading"]["at"] == "criteria/0"
     assert [r["concept"] for r in found[0]["reading"]["readings"]] == ["biomarker:EGFR", "biomarker:MET"]
     assert landscape.key_criteria(landscape.criterion_entries([(1, "inclusion", "Age 18", [atoms[2]])])) == []
+
+
+def test_a_criterion_in_several_key_categories_is_one_entry_naming_them_all():
+    atoms = [
+        ("performance_status", "ecog_ps", ("0", "1"), (), 0, 4),
+        ("conditions", "condition", ("cns_metastases",), (), 5, 9),
+        ("performance_status", "ecog_ps", ("2",), (), 10, 12),
+    ]
+    criteria = landscape.criterion_entries([(3, "exclusion", "ECOG 2 or brain metastases", atoms)])
+    [found] = landscape.key_criteria(criteria)
+    assert found["reading"]["categories"] == ["Performance status", "CNS metastases"]
+    assert [r["category"] for r in found["reading"]["readings"]] == [
+        "Performance status",
+        "CNS metastases",
+        "Performance status",
+    ]
 
 
 def trial(nct, universes, texts):
@@ -667,7 +695,7 @@ def test_a_reading_too_few_trials_state_is_not_standard_and_a_small_universe_say
     assert row["criterion"] == {
         "universe": "general",
         "element": None,
-        "reason": "too few trials to assess (1; at least 3 needed)",
+        "reason": "too few comparable trials to assess (1; at least 3 needed)",
     }
     assert (row["trials"], row["of_trials"], row["wording"]) == (0, 1, [])
 
