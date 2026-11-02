@@ -755,6 +755,21 @@
     "refusal": "",
     "standing": "complete"
   },
+  "TrialLedger/landscape.py::leaf_value": {
+    "cut_reasons": [],
+    "function_digest": "2d647d8b0f68c155",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/landscape.py::module_absence": {
+    "cut_reasons": [
+      "budget_exhausted",
+      "invalid_verification"
+    ],
+    "function_digest": "b099b03360f53f6b",
+    "refusal": "",
+    "standing": "ungateable"
+  },
   "TrialLedger/landscape.py::outcome_sections": {
     "cut_reasons": [],
     "function_digest": "6371642db495a702",
