@@ -176,3 +176,45 @@ def eligibility_coverage(
         else:
             evidence.append((scope, "unspecified"))
     return "present", sectioning, tuple(evidence), markers
+
+
+# A criterion's own words that state it excludes ("patients with brain metastases are excluded", "excluded
+# if", "not eligible", "ineligible"); that state a requirement in the negative ("must not", "no history
+# of"); and that state a permission ("is permitted", "are allowed"). Read case-insensitively, whole words,
+# in the text's order, the first alternative that matches at each place.
+_ROLE_WORDS = re.compile(
+    r"\b(?:(?P<excludes>(?:is|are|will\s+be|be)\s+excluded|excluded\s+if|not\s+(?:be\s+)?eligible|ineligible)"
+    r"|(?P<negates>must\s+not|no\s+history\s+of)"
+    r"|(?P<permits>(?:is|are|will\s+be|be)\s+(?:permitted|allowed)))\b",
+    re.IGNORECASE,
+)
+
+
+def criterion_role(text: str, heading_section: str) -> tuple[str, tuple[str, ...]]:
+    """A criterion's role read from its own wording against the heading it sits under (pure — pinned).
+
+    `heading_section` is the criterion's section as `itemize` gives it ("inclusion", "exclusion" or
+    "unsectioned"). Returns (role, words): role "inclusion", "exclusion" or "unresolved"; words every
+    role word below the criterion holds, as written, in the text's order (empty when the heading alone was
+    read):
+      excluding words ("are excluded", "excluded if", "not eligible", "ineligible") — exclusion, under any
+                       heading: the criterion says it excludes, so one under an inclusion heading is caught;
+      negating words ("must not", "no history of") — exclusion under an exclusion heading; unresolved under
+                       an inclusion heading (a requirement stated in the negative, or an exclusion under the
+                       wrong heading: the words conflict with it) or under none;
+      permitting words ("is permitted", "are allowed") under an exclusion heading — unresolved (a permission
+                       is no exclusion); under an inclusion heading — inclusion;
+      no such words  — the heading's own section; unresolved under no heading.
+    """
+    found = [(match.lastgroup, match.group(0)) for match in _ROLE_WORDS.finditer(text)]
+    kinds = {kind for kind, _ in found}
+    words = tuple(word for _, word in found)
+    if "excludes" in kinds:
+        return "exclusion", words
+    if "negates" in kinds:
+        return ("exclusion" if heading_section == "exclusion" else "unresolved"), words
+    if "permits" in kinds:
+        return ("inclusion" if heading_section == "inclusion" else "unresolved"), words
+    if heading_section in SCOPES:
+        return heading_section, ()
+    return "unresolved", ()

@@ -369,6 +369,12 @@
     "refusal": "",
     "standing": "complete"
   },
+  "TrialLedger/criteria.py::criterion_role": {
+    "cut_reasons": [],
+    "function_digest": "784cb2ed56266204",
+    "refusal": "",
+    "standing": "complete"
+  },
   "TrialLedger/criteria.py::itemize": {
     "cut_reasons": [],
     "function_digest": "d57f70f1642780dd",
@@ -1068,6 +1074,216 @@
   "TrialLedger/reading.py::near_miss_input": {
     "cut_reasons": [],
     "function_digest": "8f6b29edf86ba623",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/readout.py::arm_entries": {
+    "cut_reasons": [],
+    "function_digest": "394bf0db96562e33",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/readout.py::biomarker_entries": {
+    "cut_reasons": [],
+    "function_digest": "54faec577b3d8526",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/readout.py::biomarker_facts": {
+    "cut_reasons": [],
+    "function_digest": "4859678adab5c98a",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/readout.py::class_cell": {
+    "cut_reasons": [],
+    "function_digest": "cd4be64534d1b120",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/readout.py::coordinate_cell": {
+    "cut_reasons": [],
+    "function_digest": "948216445ed74bed",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/readout.py::coverage_cell": {
+    "cut_reasons": [],
+    "function_digest": "eabe2d7da4a4a345",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/readout.py::criteria_entries": {
+    "cut_reasons": [],
+    "function_digest": "f43319024045dfae",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/readout.py::date_text": {
+    "cut_reasons": [],
+    "function_digest": "04fdd04a1c4ac477",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/readout.py::dated": {
+    "cut_reasons": [],
+    "function_digest": "7a9cf1bd569de98c",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/readout.py::dispersion_text": {
+    "cut_reasons": [],
+    "function_digest": "993f309b0fbd942a",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/readout.py::document_cell": {
+    "cut_reasons": [],
+    "function_digest": "04b5ed7d67e499d4",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/readout.py::efficacy_entries": {
+    "cut_reasons": [],
+    "function_digest": "f9d1c3675192f567",
+    "refusal": "",
+    "standing": "incomplete"
+  },
+  "TrialLedger/readout.py::enrolled": {
+    "cut_reasons": [],
+    "function_digest": "4628fac6cf58d1a6",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/readout.py::exploratory_entries": {
+    "cut_reasons": [],
+    "function_digest": "250077984b1c0c93",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/readout.py::held_cell": {
+    "cut_reasons": [],
+    "function_digest": "4c1df522d90161cf",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/readout.py::identification_entries": {
+    "cut_reasons": [],
+    "function_digest": "b07a7ca1ad5ca8b1",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/readout.py::joined": {
+    "cut_reasons": [],
+    "function_digest": "bec55747142265ee",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/readout.py::modality_cell": {
+    "cut_reasons": [],
+    "function_digest": "27a3f5accdfb83de",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/readout.py::numbered_criteria": {
+    "cut_reasons": [],
+    "function_digest": "06305f1bee762fd5",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/readout.py::observed_facts": {
+    "cut_reasons": [],
+    "function_digest": "2022438dcccb8da3",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/readout.py::outcome_entries": {
+    "cut_reasons": [],
+    "function_digest": "136b6f0a6d65a297",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/readout.py::plain": {
+    "cut_reasons": [],
+    "function_digest": "c092424ef889ef8c",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/readout.py::population_entries": {
+    "cut_reasons": [],
+    "function_digest": "c13cf97dc40826a8",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/readout.py::publication_cell": {
+    "cut_reasons": [],
+    "function_digest": "9fa50df0466f4956",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/readout.py::publication_note": {
+    "cut_reasons": [],
+    "function_digest": "0119af25ae05e8bd",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/readout.py::quoted": {
+    "cut_reasons": [],
+    "function_digest": "7495dccaa5b428c3",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/readout.py::read_list_cell": {
+    "cut_reasons": [],
+    "function_digest": "314e8435efe90a28",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/readout.py::result_publications": {
+    "cut_reasons": [],
+    "function_digest": "8a5277de9fca267b",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/readout.py::role_cell": {
+    "cut_reasons": [],
+    "function_digest": "e935881be33cacdb",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/readout.py::safety_entries": {
+    "cut_reasons": [],
+    "function_digest": "45765fb61661a57e",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/readout.py::safety_facts": {
+    "cut_reasons": [],
+    "function_digest": "7fd31ed0b1dcd672",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/readout.py::scalar_text": {
+    "cut_reasons": [],
+    "function_digest": "5dd20320a947afe8",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/readout.py::shown": {
+    "cut_reasons": [],
+    "function_digest": "70bfcf985b31d5cb",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/readout.py::statement_type": {
+    "cut_reasons": [],
+    "function_digest": "0e6a1258df692fad",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/readout.py::tier_cell": {
+    "cut_reasons": [],
+    "function_digest": "5ba4ce1e8300fbd9",
     "refusal": "",
     "standing": "complete"
   },

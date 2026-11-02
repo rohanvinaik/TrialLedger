@@ -190,6 +190,22 @@ The founder, 2026-11-01: the next priority, built to completion.
   link is underlined, without colour; a brief summary is long text; About's topic and item columns swap widths
   (topic 40, item 18, the total still 170), so the book's title in A1 has a summary's width. No value changes.
 
+  2026-11-01: the readout `workbook-design.md` settles is built in `TrialLedger/readout.py`
+  (`write_readout(record, path)`, from a landscape.json record alone): Read me, Trial index, Trial review,
+  Eligibility, Outcomes and efficacy, Biomarkers, Safety, Across-trial findings and Evidence register, every
+  cell a pure row function's (each converged `--two-sign`), the register one row per displayed value, the file
+  read back and refused unless every cell equals its derivation, its bytes the same for the same record. A
+  criterion's role beside its heading is `criteria.criterion_role` (its own words "are excluded", "excluded
+  if", "not eligible", "ineligible", "must not", "no history of", and, beyond the listed words, a permission
+  "is permitted" or "are allowed", which under an exclusion heading is unresolved). Not carried by
+  landscape.json schema 1, so shown "Not stated" with the register saying so: the brief title, the last
+  update date, posted
+  baseline characteristics, a criterion's cohort or arm, a biomarker's assay, specimen and timing, planning
+  assumptions, a measurement's analysis population, denominators and analyses, an adverse event's grade, and
+  an assessment schedule; the retrieval date shown is the manifest's data timestamp. Left: `trialledger
+  landscape` (4.2) calls it (until then its functions are declared in `tests/test_wiring.py`), and the same
+  formatting conventions for `pull`'s review.xlsx and record.xlsx.
+
 ## 5. The agent entry point
 
 - [ ] 5.1 `SKILL.md` and the README's "For an agent" section, one procedure
