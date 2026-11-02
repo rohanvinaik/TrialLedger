@@ -1,110 +1,80 @@
 ## ADDED Requirements
 
-### Requirement: The record carries every registry value a reviewer uses, once
-landscape.json (schema 3) SHALL carry each field of the contract table (`TrialLedger/contract.py`) that the
-registry record holds, as a plain value, with the field's API path stated once in the record's field dictionary,
-and SHALL keep a value object (status, rule, words read, note) only for a rule's reading or a value that is not
-simply known.
+### Requirement: Layer one reports facts and direct derivations only
+Ordinary reports SHALL contain selected registry facts and strictly warranted direct derivations. They SHALL
+NOT invoke clinical analysis, indication assignment, assertion compilation, criterion ranking, biomarker
+recognition, cross-trial inference or MeSH enrichment. Existing layer-two work SHALL remain separate.
 
-#### Scenario: a value the registry holds is never shown as not stated
-- **WHEN** a study's registry record holds a field of the contract table (its brief title, its last update date,
-  a posted measure's analysis population)
-- **THEN** the record carries that value and the workbook shows it, and a contract field whose API path does not
-  resolve in the saved bodies fails the contract test
+#### Scenario: Registry prose mentions treatment history or a biomarker
+- **WHEN** a retained criterion or outcome contains that text
+- **THEN** the report preserves the exact text and location without assigning a therapy setting or biomarker role
 
-#### Scenario: a registry copy is stored without repeated provenance
-- **WHEN** a value is copied from the registry unchanged
-- **THEN** it is stored as a plain value, and its API path appears once, in the field dictionary, never beside
-  each value
+### Requirement: Source fields are preserved once with their scope
+The schema-4 record SHALL carry selected registry values plainly with source paths defined once in fields. Results SHALL
+retain nesting, module-local groups, populations, denominators, units, times, precision, comments and explicit
+zeros. Missing, malformed, false and empty SHALL remain distinct.
 
-### Requirement: Nothing is kept that nobody uses
-Every field of the contract table SHALL name at least one consumer (a workbook sheet and column, the assistant
-through the MCP record tool, or a named layer-two reader), and every consumer it names SHALL exist.
+#### Scenario: Groups share titles across modules
+- **WHEN** an outcome group and a safety group have the same title
+- **THEN** each remains bound to its own module rather than being merged by title
 
-#### Scenario: a field without a consumer is refused
-- **WHEN** a field is added to the contract table without a consumer, or names a sheet, column or reader that
-  does not exist
-- **THEN** the contract test fails
+### Requirement: Direct derivations state their basis
+A derivation SHALL name its rule/version and exact source inputs. Eligibility segmentation SHALL preserve and
+reconstruct the source, abstaining on ambiguous structure. Collection presence SHALL describe only source shape;
+results state, links, labels, exact counts and directly returned RxNav evidence SHALL establish no clinical inference.
 
-### Requirement: Results keep the registry's own structure
-Posted outcomes, statistical analyses, baseline characteristics, participant flow and adverse events SHALL be
-stored in the registry's nesting, with each module's groups keyed within the module, denominators at the scope
-the registry gives them, and the registry's listed zeros kept.
+#### Scenario: An event list is empty or missing
+- **WHEN** a list is explicitly empty, absent or malformed
+- **THEN** the report distinguishes those states and never infers zero harms or an absent clinical condition
 
-#### Scenario: groups of different modules are not merged
-- **WHEN** an outcome group and an adverse-event group have the same title
-- **THEN** they remain distinct groups of their own modules unless a named rule links them
+### Requirement: All three study types retain their relevant context
+INTERVENTIONAL, OBSERVATIONAL and EXPANDED_ACCESS reporting SHALL preserve relevant source-present design and
+population fields. Applicability SHALL cite metadata/source evidence. A present optional or historical value SHALL
+NOT be hidden by a generic type policy.
 
-### Requirement: A disease-specific rule applies only within the indications it declares
-Each study's record SHALL carry its disease as the registry states it, with no category assigned in its place,
-and each disease-specific rule pack SHALL declare its indications and apply by add-scoped-reasoning Decision 4
-(conditions first, the study's own disease statements next, the registry's MeSH last; a disagreement is a named
-conflict; unresolved is never a negative).
+#### Scenario: Observational and access context is stated
+- **WHEN** the source gives sampling, study population, specimen retention or access type/availability/linkage
+- **THEN** the record and workbook preserve those values with false and missing distinguished
 
-#### Scenario: a psychotherapy trial carries no NSCLC setting
-- **WHEN** a study's conditions are post-traumatic stress disorder and COVID-19
-- **THEN** the NSCLC setting and line rules are inapplicable, and its record carries no setting or line reading
+### Requirement: The workbook and assistant expose the same readable evidence
+The workbook SHALL use readable source labels and preserve cell type/value without truncation or rounding.
+Every listing row SHALL have a record address that MCP resolves to the same scoped evidence. Unsupported Excel
+values SHALL name the reason and record location. Oversized listings SHALL continue without dropping rows.
 
-#### Scenario: a mis-derived MeSH term switches nothing on
-- **WHEN** a study's conditions establish Alzheimer disease and its registry MeSH also carries "Lymphoma,
-  Follicular"
-- **THEN** its indication is Alzheimer disease, the MeSH term is shown as a named conflict, and no lymphoma rule
-  applies
+#### Scenario: A person asks about a result row
+- **WHEN** the row is retrieved by its address
+- **THEN** MCP returns its measurement, group, population and denominator as held in the record
 
-#### Scenario: undecidable scope is visible
-- **WHEN** no source establishes the indication
-- **THEN** each disease-specific pack reads scope unresolved with each source's finding, never a silent absence
+### Requirement: Retrieval and replay are accountable
+The operation SHALL preview/fix the search, account for pages and requested IDs, check counts/duplicates/snapshot
+consistency, and retain unchanged relay bodies. Offline verify SHALL reconstruct the report under its writing
+code and name changed/missing inputs or output differences without fetching repairs.
 
-### Requirement: The workbook is the reviewer's
-landscape.xlsx SHALL show codes in clinical words through versioned display dictionaries, SHALL hold one row per
-rule reading in its Readings sheet and each registry-copied column's source once in its column dictionary, and
-SHALL lay out adverse events one row per term with each group's affected and at-risk counts.
+#### Scenario: A requested ID is missing
+- **WHEN** retrieval completes but one requested ID was not found
+- **THEN** the accounting names it and completion is not presented as proof that every requested ID was found
 
-#### Scenario: an adverse-event table does not explode
-- **WHEN** a trial reports 243 terms across 14 groups
-- **THEN** the Safety sheet holds 243 rows for its table of those terms, each with the 14 groups' counts
+### Requirement: Reporting acceptance spans study types without a fitted fixture set
+Acceptance SHALL cover the relevant source schema, enum and study-type applicability branches, independent
+source expectations, perturbations, seeded defects and actual workbook visual checks under design §5. The writer
+SHALL NOT depend on trial IDs, diagnosis vocabulary or clinical phrase recognition. Unsupported fields SHALL be
+named. An interpretation-accuracy sampling campaign SHALL NOT be a reporting-delivery prerequisite.
 
-### Requirement: Lookups ask for each drug once
-The run SHALL ask RxNav about distinct drugs taken from the registry's structured intervention names, with a
-declared bound on requests in flight within NLM's published limit, and SHALL write the answers in an order that
-does not depend on the order replies arrive.
+#### Scenario: Fixed oncology examples pass but observational population is lost
+- **WHEN** an observational source states its study population but the report omits it
+- **THEN** that reporting combination fails regardless of other passing examples
 
-#### Scenario: dose-labelled arms are one drug
-- **WHEN** five arms name the same drug at five doses
-- **THEN** RxNav is asked about that drug once
+#### Scenario: A source-preservation defect is repaired
+- **WHEN** a source value is lost or misdisplayed
+- **THEN** the repair addresses its generic field/shape rule and is checked with varied IDs and source values,
+  rather than adding an exception for the affected trial
 
-### Requirement: The person sees the search before anything is gathered
-The run SHALL offer a preview that resolves the request, writes the resolved search and returns it without
-retrieving any study, and SHALL then execute against that fixed search.
+### Requirement: Reporting claims do not imply clinical interpretation
+Acceptance SHALL check preservation, readability and access to available clinical-development source material,
+not require a compiler, external-source synthesis or inferred answers. Tests SHALL NOT be presented as proof of
+clinical correctness. Defaults, proposals and design decisions SHALL belong to layer two.
 
-#### Scenario: previewing a broad class retrieves nothing
-- **WHEN** the person previews a request for a broad drug class
-- **THEN** the resolved search with every member and subclass is returned and no study is requested from the
-  registry
-
-### Requirement: Every workbook row can be traced to the record
-Every row of every listing SHALL carry its address in landscape.json, and the assistant's record tool SHALL
-return the value at that address.
-
-#### Scenario: asking about a workbook row
-- **WHEN** the person names a row of the Posted results sheet to the assistant
-- **THEN** the assistant reads that row's address and returns the same measurement, group, population and
-  denominator the row shows
-
-### Requirement: A condition that names no disease establishes nothing
-A condition that is not a disease's declared name or an NLM MeSH entry term of a disease SHALL establish no
-indication.
-
-#### Scenario: conditions that are not diseases
-- **WHEN** a study has no condition MeSH and its only condition is "Progression Free Survival"
-- **THEN** its indication is unresolved with each source's finding, and no disease-specific reading is computed
-  or denied silently
-
-### Requirement: The workbook answers the reviewer's questions
-The acceptance SHALL include, for each item of the reviewer's list (design §4a), a task a clinical reviewer
-performs on the workbook with its expected sheet, evidence and unresolved cases, including telling a cohort's
-restriction from the whole trial's and telling a follow-up horizon from an assessment time.
-
-#### Scenario: a cohort restriction is not read as the trial's
-- **WHEN** a criterion applies only to one cohort
-- **THEN** the workbook does not show it as the whole trial's requirement
+#### Scenario: The registry contains no current-care benchmark
+- **WHEN** the person seeks current care, a comparative safety target or reusable protocol requirements
+- **THEN** the report exposes its source evidence and limits without inventing the answer or failing a faithful
+  reporting operation for lacking a layer-two inference

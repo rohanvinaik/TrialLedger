@@ -86,7 +86,7 @@ LISTING_GRAINS: dict[str, tuple[str, ...]] = {
 }
 # Listings whose rows show a reading or a finding: their address must resolve and name the row's trial; their
 # columns are a reading's own parts, which the Readings and Biomarkers checks of acceptance/reviewer.py read.
-ADDRESSED_ONLY = (contract.BIOMARKERS, contract.READINGS, contract.FINDINGS)
+ADDRESSED_ONLY = ()
 # The Groups sheet's columns read by their own rule (_groups_column), not from the fields they name.
 GROUPS_OWN = ("Module", "Column")
 SAFETY_CELL = re.compile(r"G(\d+) (affected|at risk|events)")
@@ -608,16 +608,27 @@ def _put(node: dict[str, Any], segments: list[str], places: list[int], value: An
 # module's own.
 
 # A criterion the banks typed nothing in reads in words (design §2); the record holds its readings as [].
-EMPTY_READING_WORDS = {"studies[].criteria[].readings": "No reading produced"}
+EMPTY_READING_WORDS = {}
 # The statuses a cell shows in their own words where the record holds no value: an absence, a value the
 # rules leave unresolved, a reading its universe does not apply.
 WORDED_STATUSES = ("not_stated", "not_posted", "unresolved", "not_applicable")
 ISO_DATE = re.compile(r"(\d{4})(?:-(\d{2})(?:-(\d{2}))?)?(?:[T ](.+))?")
 MONTHS = ("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
 # Listings the contract gives an empty line but whose rows are readings (no row grain of their own here).
-EMPTY_GRAINS = {contract.BIOMARKERS: ("studies[].biomarker_mentions[]",)}
+EMPTY_GRAINS = {}
 # The units a denominator column implies in its header (contract.DENOMINATOR): a count of these is a number.
 IMPLIED_UNITS = "Participants"
+# Typed registry date fields; date-shaped free text is not a date field.
+DATE_FIELDS = {
+    "studies[].start_date.date",
+    "studies[].primary_completion_date.date",
+    "studies[].completion_date.date",
+    "studies[].first_posted",
+    "studies[].results_first_posted",
+    "studies[].last_update_posted",
+    "studies[].documents[].date",
+    "studies[].posted_outcomes[].anticipated_posting_date",
+}
 DENOMINATOR_UNITS = (
     "studies[].posted_outcomes[].denominators[].units",
     "studies[].posted_outcomes[].classes[].denominators[].units",
@@ -796,6 +807,21 @@ def expected(field: contract.Field, value: Any) -> Expected:
     labels) gives nothing, and the cell must only not be blank."""
     if is_value_object(value):
         status = value.get("status")
+        if status == "not_stated" and value.get("note") == "not_applicable":
+            return Expected([], [], [status_words("not_applicable")])
+        if status == "known" and value.get("rule") == "classes.drug_class":
+            result = value.get("result")
+            classes = result.get("classes") if isinstance(result, dict) else None
+            if isinstance(classes, list) and classes:
+                lines = [
+                    contract.RXNAV_CLASS_DISPLAY_FORM.format(
+                        id=entry[0], name=entry[1], relation=entry[2], source=entry[3]
+                    )
+                    for entry in classes
+                    if isinstance(entry, (list, tuple)) and len(entry) == 4
+                ]
+                if len(lines) == len(classes):
+                    return Expected(["\n".join(lines)], [], [])
         return Expected([], [], [status_words(status)]) if status in WORDED_STATUSES else NOTHING
     if isinstance(value, list):
         if not value and field.name in EMPTY_READING_WORDS:
@@ -815,7 +841,7 @@ def expected(field: contract.Field, value: Any) -> Expected:
     if isinstance(value, int):
         return Expected([str(value)], [value], [])
     if isinstance(value, str) and contract.holds_value(value):
-        return Expected([date_words(value) if ISO_DATE.fullmatch(value) else value], [], [])
+        return Expected([date_words(value) if field.name in DATE_FIELDS else value], [], [])
     if isinstance(value, float):
         return Expected([repr(value)], [], [])
     return NOTHING
@@ -893,10 +919,6 @@ def blank_columns(sheet: str, template: str, node: Any, record: Any, indices: li
             blank |= set(_declared_blank(sheet, "a group of any module but adverse events"))
         if template != POSTED_GROUPS:
             blank |= set(_declared_blank(sheet, "a group of any module but posted results"))
-    if sheet == contract.RECURRING and isinstance(node, dict):
-        element = node.get("element") if isinstance(node.get("element"), dict) else {}
-        if not contract.holds_value(element.get("key")):
-            blank |= set(_declared_blank(sheet, "a group not assessed"))
     return blank
 
 
@@ -1016,7 +1038,9 @@ def row_findings(
     if sheet.name in ADDRESSED_ONLY:
         return findings, address
     grains = sheet_grains(sheet)
-    if template not in grains:
+    placeholder = template in contract.MEASUREMENT_PLACEHOLDER_GRAINS.get(sheet.name, {})
+    placeholder = placeholder and address in listing_nodes(record, sheet)
+    if template not in grains and not placeholder:
         return [*findings, Finding("wrong_grain", str(nct), sheet.name, where, grains, address)], address
     group = node.get("group") if isinstance(node, dict) else None
     blank = blank_columns(sheet.name, template, node, record, indices)
@@ -1040,16 +1064,177 @@ def row_findings(
             )
             want = Expected([t for t in want.texts if t != group], want.counts, want.words)
         verdict = judge(cell, want, column.header in blank)
+        if (
+            column.header == "Spread or limits"
+            and len(want.texts) == 1
+            and want.texts[0].endswith(": " + status_words("not_stated"))
+            and not want.counts
+            and not want.words
+            and _plain(cell) != want.texts[0]
+        ):
+            verdict = "not_shown"
+        findings += _scoped_display_findings(
+            record, sheet.name, column.header, cell, template, indices, node, group, str(nct), where
+        )
         if verdict not in ("shown", "blank_by_construction"):
             field = f"{sheet.name}: {column.header}"
             findings.append(Finding(verdict, str(nct), field, where, want.texts or want.words, _plain(cell)))
     return findings, address
 
 
+def _scoped_display_findings(record, sheet, header, cell, template, indices, node, group, nct, where):
+    """Check scope attachment independently of the flat field-value comparison.
+
+    Shared constants declare display policy only. This walker selects the row's class, measure and module
+    itself, and binds each count or population to its displayed label. Equal values at different scopes do
+    not discharge the obligation to retain both labels.
+    """
+    findings = []
+    text = _plain(cell)
+    if not isinstance(text, str):
+        return findings
+    field = f"{sheet}: {header} (scope)"
+
+    def require(words):
+        if not shows_text(text, words):
+            findings.append(Finding("not_shown", nct, field, where, [words], text))
+
+    if sheet in (contract.POSTED, contract.BASELINE) and header == contract.DENOMINATOR:
+        scopes = []
+        for segment, scope in (
+            ("classes[]", "Class"),
+            ("posted_outcomes[]" if sheet == contract.POSTED else "measures[]", "Measure"),
+        ):
+            found, parent, _t, _i = resolve_pointer(record, _pointer(template, indices, segment))
+            if found and isinstance(parent, dict):
+                scopes.append((scope, parent))
+        if sheet == contract.BASELINE:
+            found, parent, _t, _i = resolve_pointer(record, ["studies", str(indices[0]), "baseline"])
+            if found and isinstance(parent, dict):
+                scopes.append(("Module", parent))
+        supplied = []
+        for scope, parent in scopes:
+            values = []
+            for denominator in parent.get("denominators") or []:
+                for count in denominator.get("counts") or []:
+                    if count.get("group") == group and contract.holds_value(count.get("value")):
+                        values.append((count["value"], denominator.get("units")))
+            if values:
+                supplied.append((scope, values))
+        qualifiers = [
+            (scope, key, parent[key])
+            for scope, parent in scopes
+            for key in contract.DENOMINATOR_QUALIFIER_LABELS
+            if key in parent and not is_value_object(parent[key]) and contract.holds_value(parent[key])
+        ]
+        for scope, key, value in qualifiers:
+            require(
+                contract.DENOMINATOR_QUALIFIER_FORM.format(
+                    scope=scope, label=contract.DENOMINATOR_QUALIFIER_LABELS[key], value=value
+                )
+            )
+        if len(supplied) > 1 or qualifiers:
+            markers = {
+                scope: contract.DENOMINATOR_SCOPE_FORM.format(scope=scope, value="")
+                for scope in contract.DENOMINATOR_SCOPE_LABELS
+            }
+            for scope, values in supplied:
+                marker = markers[scope]
+                require(marker)
+                if marker not in text:
+                    continue
+                component = text.partition(marker)[2]
+                for other in markers.values():
+                    if other in component:
+                        component = component.partition(other)[0]
+                for value, units in values:
+                    if not shows_text(component, str(value)):
+                        findings.append(Finding("not_shown", nct, field, where, [scope, value], component))
+                    if isinstance(units, str) and units != IMPLIED_UNITS and not shows_text(component, units):
+                        findings.append(Finding("not_shown", nct, field, where, [scope, units], component))
+    if sheet == contract.BASELINE and header == "Population":
+        found, measure, _t, _i = resolve_pointer(record, _pointer(template, indices, "measures[]"))
+        module_found, module, _t, _i = resolve_pointer(record, ["studies", str(indices[0]), "baseline"])
+        if found and module_found and isinstance(measure, dict) and isinstance(module, dict):
+            populations = (measure.get("population"), module.get("population"))
+            if all(isinstance(value, str) and contract.holds_value(value) for value in populations):
+                for label, population in zip(contract.BASELINE_POPULATION_LABELS, populations, strict=True):
+                    require(contract.BASELINE_POPULATION_FORM.format(label=label, value=population))
+    if sheet == contract.ANALYSES and header == "Confidence interval" and isinstance(node, dict):
+        policy = contract.CONFIDENCE_COMPONENT_POLICY
+        if any(
+            contract.holds_value(node.get(key)) and not is_value_object(node.get(key))
+            for key in policy["show_when_any"]
+        ):
+            missing = sum(
+                not contract.holds_value(node.get(key)) or is_value_object(node.get(key))
+                for key in ("ci_lower", "ci_upper")
+            )
+            if text.count(policy["missing_bound"]) < missing:
+                findings.append(
+                    Finding(
+                        "not_shown",
+                        nct,
+                        field,
+                        where,
+                        [f"{missing} missing bounds labelled {policy['missing_bound']}"],
+                        text,
+                    )
+                )
+    return findings
+
+
 def _column_expected(record, sheet, column, template, indices, node, group, grains):
     """What a listing cell must show (None where it is not checked): the Groups sheet's own columns by
     their rule, the denominator without the participants its header implies, every other column the values
     of its fields that belong to the row."""
+    if sheet.name in (contract.POSTED, contract.BASELINE) and column.header == "Spread or limits":
+        parent = "posted_outcomes[]" if sheet.name == contract.POSTED else "measures[]"
+        found, measure, _t, _i = resolve_pointer(record, _pointer(template, indices, parent))
+        kind = measure.get("dispersion_type") if found and isinstance(measure, dict) else None
+        measurement = node if template.endswith("measurements[]") and isinstance(node, dict) else {}
+        values = [measurement.get(name) for name in ("spread", "lower_limit", "upper_limit")]
+        present = any(contract.holds_value(value) and not is_value_object(value) for value in values)
+        if isinstance(kind, str) and kind != "NA" and not present:
+            field_name = (
+                "studies[].posted_outcomes[].dispersion_type"
+                if sheet.name == contract.POSTED
+                else "studies[].baseline.measures[].dispersion_type"
+            )
+            label = expected(contract.FIELD_NAMES[field_name], kind).texts[0]
+            return Expected([f"{label}: {status_words('not_stated')}"], [], []), column.fields
+    if sheet.name == contract.BASELINE and column.header == "Population":
+        found, measure, _t, _i = resolve_pointer(record, _pointer(template, indices, "measures[]"))
+        module_found, module, _t, _i = resolve_pointer(record, ["studies", str(indices[0]), "baseline"])
+        measure_value = measure.get("population") if found and isinstance(measure, dict) else None
+        module_value = module.get("population") if module_found and isinstance(module, dict) else None
+        measure_label, module_label = contract.BASELINE_POPULATION_LABELS
+        if isinstance(measure_value, str):
+            want = Expected(
+                [contract.BASELINE_POPULATION_FORM.format(label=measure_label, value=measure_value)], [], []
+            )
+        else:
+            status = (
+                measure_value.get("status", "not_stated") if isinstance(measure_value, dict) else "not_stated"
+            )
+            want = Expected(
+                [],
+                [],
+                [contract.BASELINE_POPULATION_FORM.format(label=measure_label, value=status_words(status))],
+            )
+        if isinstance(module_value, str):
+            want = Expected(
+                want.texts
+                + want.words
+                + [contract.BASELINE_POPULATION_FORM.format(label=module_label, value=module_value)],
+                [],
+                [],
+            )
+        return want, column.fields
+    placeholders = contract.MEASUREMENT_PLACEHOLDER_GRAINS.get(sheet.name, {})
+    if template in placeholders and column.header in ("Value", "Group"):
+        key = "value" if column.header == "Value" else "group"
+        return Expected([contract.MEASUREMENT_PLACEHOLDER_WORDS[key]], [], []), ()
     if sheet.name == contract.GROUPS and column.header == "Module":
         return NOTHING, ()
     if sheet.name == contract.GROUPS and column.header == "Column":
@@ -1058,6 +1243,22 @@ def _column_expected(record, sheet, column, template, indices, node, group, grai
         return NOTHING, ()
     if sheet.name == contract.GROUPS and column.header == "Outcome measures" and template == POSTED_GROUPS:
         return _outcome_measures(record, indices[0], node), ()
+    if sheet.name == contract.ANALYSES and column.header == "Compared groups":
+        parent_tokens = _pointer(template, indices, "posted_outcomes[]")
+        found, measure, _template, _indices = resolve_pointer(record, parent_tokens)
+        groups = measure.get("groups") if found and isinstance(measure, dict) else []
+        titles = {g.get("id"): g.get("title") for g in groups or [] if isinstance(g, dict)}
+        selected = node.get("groups") if isinstance(node, dict) else []
+        want = Expected([titles.get(group, group) for group in selected or []], [], [])
+        for value in _row_values(
+            record, "studies[].posted_outcomes[].analyses[].group_description", template, indices, group
+        ):
+            want = want.plus(
+                expected(
+                    contract.FIELD_NAMES["studies[].posted_outcomes[].analyses[].group_description"], value
+                )
+            )
+        return want, column.fields
     names = [
         name
         for name in column.fields
@@ -1111,13 +1312,32 @@ def grain_nodes(record: dict[str, Any], grain: str) -> list[str]:
     return [pointer for pointer, _node in pointers]
 
 
+def listing_nodes(record: dict[str, Any], sheet: contract.Sheet) -> list[str]:
+    """Actual measurement rows plus the deepest empty source nodes explicitly allowed as placeholders.
+
+    A parent with child classes/categories never gets an additional placeholder; a node with any descendant
+    measurement cannot stand in for one. This is an independent traversal of the record, not the renderer.
+    """
+    nodes = [pointer for grain in sheet_grains(sheet) for pointer in grain_nodes(record, grain)]
+    for grain, descendants in contract.MEASUREMENT_PLACEHOLDER_GRAINS.get(sheet.name, {}).items():
+        for pointer in grain_nodes(record, grain):
+            found, node, _template, _indices = _resolve(record, pointer)
+            if not found or not isinstance(node, dict) or grain_nodes(node, descendants):
+                continue
+            child = descendants.split(".")[0].removesuffix("[]")
+            if child != "measurements" and isinstance(node.get(child), list) and node[child]:
+                continue
+            nodes.append(pointer)
+    return nodes
+
+
 def _empty_line(record: dict[str, Any], sheet: contract.Sheet, rows: list[Row]) -> list[Finding] | None:
     """A listing no trial has a row in is one row: the contract's words (contract.EMPTY_LISTING_WORDS) in its
     first column, every other cell blank. None where the listing is not such a line."""
     grains = sheet_grains(sheet) or EMPTY_GRAINS.get(sheet.name, ())
     if len(rows) != 1 or _plain(rows[0].cells.get(contract.ADDRESS)) is not None or not grains:
         return None
-    if any(grain_nodes(record, grain) for grain in grains):
+    if listing_nodes(record, sheet) or any(grain_nodes(record, grain) for grain in grains):
         return None
     cells = list(rows[0].cells.values())
     words = contract.EMPTY_LISTING_WORDS.get(sheet.name)
@@ -1184,12 +1404,11 @@ def cell_findings(
             if count > 1
         ]
         if complete:
-            for grain in grains:
-                findings += [
-                    Finding("row_missing", "", sheet.name, pointer, pointer, None)
-                    for pointer in grain_nodes(record, grain)
-                    if (_posted_group_key(record, pointer) or pointer) not in addressed
-                ]
+            findings += [
+                Finding("row_missing", "", sheet.name, pointer, pointer, None)
+                for pointer in listing_nodes(record, sheet)
+                if (_posted_group_key(record, pointer) or pointer) not in addressed
+            ]
     return findings
 
 
@@ -1247,45 +1466,60 @@ def _index_expected(record: dict[str, Any], i: int, study: dict[str, Any], colum
         texts = [measure] if isinstance(measure, str) else []
         return Expected(texts + ([str(len(primary) - 1)] if len(primary) > 1 else []), [], [])
     if header == "Results posted":
-        first = study.get("results_first_posted")
-        if isinstance(first, str):
-            return Expected([date_words(first)], [], [])
-        return Expected([], [], [status_words("not_posted")])
+        state = study.get("results_posted")
+        status = state.get("status") if isinstance(state, dict) else "not_stated"
+        if status == "known":
+            first = study.get("results_first_posted")
+            return Expected([date_words(first) if isinstance(first, str) else "Yes"], [], [])
+        return Expected([], [], [status_words(status)])
+    if header == "Design":
+        values = [study.get(name) for name in contract.INDEX_SILENT_DESIGN_FIELDS]
+        silent = all(
+            value is None
+            or value == []
+            or value == ""
+            or (is_value_object(value) and value.get("status") == "not_stated")
+            for value in values
+        )
+        if silent and study.get("study_type") == "INTERVENTIONAL":
+            type_words = contract.display_words("StudyType", study["study_type"])[1]
+            return Expected([contract.INDEX_SILENT_DESIGN_FORM.format(study_type=type_words)], [], [])
+        direct_fields = ("primary_purpose", "allocation", "intervention_model", "masking")
+        inapplicable = all(
+            isinstance(study.get(name), dict)
+            and study[name].get("status") == "not_stated"
+            and study[name].get("note") == "not_applicable"
+            for name in direct_fields
+        )
+        who = study.get("who_masked")
+        who_supplied = contract.holds_value(who) and not is_value_object(who)
+        if (
+            study.get("study_type") in ("OBSERVATIONAL", "EXPANDED_ACCESS")
+            and inapplicable
+            and not who_supplied
+        ):
+            kind = contract.display_words("StudyType", study["study_type"])[1]
+            return Expected([f"{kind} — interventional design fields not applicable"], [], [])
     if header == "Publications":
         references = [r for r in study.get("references") or [] if isinstance(r, dict)]
         if not references:
             return Expected([], [], [status_words("not_stated")])
         results = sum(1 for r in references if r.get("type") == "RESULT")
         return Expected([str(len(references)), str(results)], [], [])
-    if header in ("Treatment setting", "Prior lines for advanced disease", "Gene selection"):
-        held = [v for name in column.fields for v in _study_values(record, i, name)]
-        if not held:
-            inside = _pack_applies(study, column.fields[0].removeprefix("studies[].coordinates."))
-            return Expected([], [], [status_words("unresolved" if inside else "not_applicable")])
     want = NOTHING
     for name in column.fields:
-        want = want.plus(_field_expected(record, i, name))
-    return _as_text(want)
-
-
-def _pack_applies(study: dict[str, Any], coordinate: str) -> bool:
-    """Whether a universe the trial is assigned to owns a pack computing a coordinate (contract.UNIVERSES):
-    inside it, a coordinate the record does not hold is unresolved; outside every such universe, it is not
-    applicable (contract.INDEX_COMPACT)."""
-    universe = study.get("universe")
-    result = (
-        universe.get("result")
-        if is_value_object(universe) and isinstance(universe.get("result"), dict)
-        else {}
-    )
-    names = set(result.get("universes") or [])
-    return any(
-        held == coordinate or held.startswith(f"{coordinate}:")
-        for entry in contract.UNIVERSES
-        if entry.name in names
-        for pack in entry.packs
-        for held in pack.coordinates
-    )
+        if header == "Design":
+            for value in _study_values(record, i, name):
+                if (
+                    is_value_object(value)
+                    and value.get("status") == "not_stated"
+                    and value.get("note") == "not_applicable"
+                ):
+                    continue
+                want = want.plus(expected(contract.FIELD_NAMES[name], value))
+        else:
+            want = want.plus(_field_expected(record, i, name))
+    return want if header == "Enrollment" else _as_text(want)
 
 
 def index_findings(record: dict[str, Any], sheet: contract.Sheet, rows: list[Row]) -> list[Finding]:
@@ -1311,6 +1545,16 @@ def index_findings(record: dict[str, Any], sheet: contract.Sheet, rows: list[Row
                 continue
             cell = row.cells[column.header]
             verdict = judge(cell, want, False)
+            if column.header == "Design" and isinstance(study.get("study_type"), str):
+                type_words = contract.display_words("StudyType", study["study_type"])[1]
+                summaries = (
+                    contract.INDEX_SILENT_DESIGN_FORM.format(study_type=type_words),
+                    f"{type_words} — interventional design fields not applicable",
+                )
+                if any(want.texts == [summary] and _plain(cell) != summary for summary in summaries):
+                    verdict = "wrong_words"
+            if column.header == "Enrollment" and want.counts and not isinstance(_plain(cell), (int, float)):
+                verdict = "retyped"
             if verdict != "shown":
                 field = f"{sheet.name}: {column.header}"
                 findings.append(Finding(verdict, nct, field, where, want.texts or want.words, _plain(cell)))
@@ -1343,7 +1587,10 @@ def _list_fields(label: str) -> dict[str, contract.Field]:
 def _values_expected(field: contract.Field, values: list[Any]) -> Expected:
     want = NOTHING
     for value in values:
-        want = want.plus(expected(field, value))
+        if field.name == "studies[].enrollment.count" and type(value) is int:
+            want = want.plus(Expected([f"{value:,}"], [], []))
+        else:
+            want = want.plus(expected(field, value))
     return want
 
 
@@ -1424,8 +1671,14 @@ def dossier_findings(record: dict[str, Any], sheet: contract.Sheet, rows: list[R
         text = _plain(value)
         if not isinstance(text, str):
             continue
-        lines = [LINE.fullmatch(line) for line in text.split("\n")]
-        labelled = [(m.group(1), m.group(2)) for m in lines if m is not None]
+        labelled = []
+        for line in text.split("\n"):
+            match = LINE.fullmatch(line)
+            if match is not None and _list_fields(match.group(1)):
+                labelled.append((match.group(1), match.group(2)))
+            elif labelled and line != "[End of field]":
+                label, previous = labelled.pop()
+                labelled.append((label, previous + "\n" + line))
         entry = _numbered_element(study, fact, [label for label, _text in labelled if _list_fields(label)])
         if entry is None:
             continue

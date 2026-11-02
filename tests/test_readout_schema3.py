@@ -18,17 +18,15 @@ import zipfile
 
 import pytest
 from openpyxl import load_workbook
-from schema3_records import BODIES, EXAMPLES, NOT_STATED, record_of
+from schema3_records import EXAMPLES, NOT_STATED, record_of
 
 from TrialLedger import contract, readout
 from TrialLedger.readout import (
     absence_words,
-    assigned,
     basis,
     held_kind,
     item_words,
     least_settled,
-    pack_applies,
     reading_words,
     result_words,
     row_lines,
@@ -117,7 +115,8 @@ def test_codes_read_in_clinical_words_and_an_unknown_code_says_so():
 def test_a_reading_is_labelled_and_never_reads_as_the_registrys():
     known = {"status": "known", "rule": "r", "words": [], "result": "first_line", "note": ""}
     assert value_words(known) == "Reading: first line"
-    assert reading_words({**known, "status": "interpolated"}, "x") == "Interpolated: x"
+    assert reading_words({**known, "status": "interpolated"}, "x").startswith("Unresolved")
+    assert reading_words({**known, "status": "proposed"}, "x").startswith("Unresolved")
     assert reading_words({**known, "status": "unresolved", "note": "why"}, "x") == "Unresolved — why"
     assert result_words(["0", "1"]) == "0 or 1" and result_words(None) == "nothing"
     assert result_words({"a": "b_c"}) == "a: b c"
@@ -126,7 +125,7 @@ def test_a_reading_is_labelled_and_never_reads_as_the_registrys():
 def test_the_basis_names_what_a_value_rests_on():
     known = {"status": "known", "rule": "r", "words": [], "result": "x", "note": ""}
     assert basis("x") == "Registry" and basis(known) == "Reading" and basis(None) == "Not stated"
-    assert basis({**known, "status": "interpolated"}) == "Interpolated"
+    assert basis({**known, "status": "interpolated"}) == "Unresolved"
     assert basis({"status": "not_posted", "note": ""}) == "Not posted"
     assert basis({"status": "odd", "note": ""}) == "Unresolved"
     assert least_settled(["Registry", "Interpolated"]) == "Unresolved"
@@ -137,63 +136,6 @@ def test_the_basis_names_what_a_value_rests_on():
 
 
 # ── universes ───────────────────────────────────────────────────────────────────────────────────────────
-
-
-def test_a_pack_applies_only_where_its_requirements_hold():
-    assert pack_applies("setting", ("oncology.solid",), "TREATMENT") == "applies"
-    assert pack_applies("setting", ("oncology.solid",), "SUPPORTIVE_CARE") == "other_purpose"
-    assert pack_applies("selection", ("oncology.solid",), "SUPPORTIVE_CARE") == "applies"
-    assert pack_applies("prior_advanced_lines", ("oncology.heme",), "TREATMENT") == "applies"
-    assert pack_applies("setting", ("oncology.heme",), "TREATMENT") == "outside_universe"
-    assert pack_applies("setting", ("general",), "TREATMENT") == "outside_universe"
-
-
-def test_why_a_reading_is_not_made_is_said_in_clinical_words():
-    words = readout.not_applicable_words("setting", ("oncology.heme",), "TREATMENT")
-    assert words == "Not read for haematologic cancer trials (this reading is defined for solid tumours)"
-    words = readout.not_applicable_words("setting", ("oncology.solid",), "SUPPORTIVE_CARE")
-    assert words == "Not read for supportive care trials (this reading is defined for treatment trials)"
-
-
-def test_an_index_reading_left_open_by_the_default_relations_reads_unresolved():
-    study = copy.deepcopy(RECORD["studies"][1])
-    study["universe"]["result"]["universes"] = ["oncology.solid"]
-    study["universe"]["result"]["applicability"] = [
-        {"pack": "oncology.solid/setting_and_line", "status": "permitted", "words": "applies"}
-    ]
-    study["primary_purpose"] = "TREATMENT"
-    left_open = {"status": "unresolved", "rule": "r", "words": [], "result": ["a", "b"], "note": ""}
-    narrowed = {"status": "interpolated", "rule": "r", "words": [], "result": ["a", "b"], "note": ""}
-    study["coordinates"] = {"setting": left_open, "setting_interpolated": narrowed}
-    assert readout.coordinate_short(study, "setting") == "Unresolved"
-    study["coordinates"]["setting_interpolated"] = {**narrowed, "result": ["advanced_first_line"]}
-    assert readout.coordinate_short(study, "setting") == "Interpolated: advanced first line (as registered)"
-
-
-def test_the_universe_reading_names_its_universes():
-    assert assigned(RECORD["studies"][0]) == ("known", ("oncology.heme",))
-    assert assigned(RECORD["studies"][1]) == ("known", ("oncology.solid",))
-    assert assigned({}) == ("missing", ())
-    assert assigned({"universe": {"status": "not_stated", "note": "x"}}) == ("unresolved", ())
-
-
-def test_outside_its_universe_a_reading_is_not_applicable_on_the_index_with_its_reason_in_the_dossier():
-    index = sheet_rows(contract.INDEX)
-    for column in ("Treatment setting", "Prior lines for advanced disease", "Gene selection"):
-        assert index[2][column] == "Not applicable"
-    assert index[0]["Treatment setting"] == "Not applicable"
-    # The CLL trial's prior-lines pack needs an intervention that treats the cancer; RxNav gives CAT-8015 no
-    # class (and in relay mode nothing is looked up), so its applicability reads unresolved, with its reason.
-    assert index[0]["Prior lines for advanced disease"] == "Unresolved"
-    facts = dossier(RECORD["studies"][0])
-    words, label_ = facts["Prior lines for advanced disease"]
-    assert words.startswith("Unresolved — what the interventions treat cannot be read (the drugs' classes")
-    assert label_ == "Unresolved"
-    assert facts["Treatment setting"][0].startswith("Not read for haematologic cancer trials")
-    assert "Treatment setting and line: what they are" not in facts
-    assert "Treatment setting and line: what they are" not in dossier(RECORD["studies"][2])
-    answered = record_of(("NCT02151981",), answers=OSIMERTINIB)["studies"][0]
-    assert "Treatment setting and line: what they are" in dossier(answered)
 
 
 # ── the dossier ─────────────────────────────────────────────────────────────────────────────────────────
@@ -215,39 +157,6 @@ def test_the_dossier_shows_expected_facts_always_and_others_only_when_stated():
         assert internal not in ptsd
     assert heme["Adverse-event reporting period"][0].startswith("From Screening")
     assert not any(fact.startswith(("How the criteria", "Whether the record says")) for fact in heme)
-
-
-def test_a_key_criterion_is_one_row_its_categories_first():
-    rows = readout.key_criterion_rows(RECORD["studies"][1])
-    fact, value, label_ = rows[0]
-    assert (fact, label_) == ("Key criterion 1", "Reading")
-    lines = value.split("\n")
-    assert lines[0] == "Prior therapy and line"
-    assert lines[1].startswith("As written: * Radiological documentation of disease progression")
-    assert lines[2] == "Role: Inclusion"
-    assert lines[3] == "Reading: Prior lines of therapy: 1 or 2 or 3+; Prior treatment: EGFR inhibitor"
-    texts = [row[1].split("\n")[1] for row in rows]
-    assert len(texts) == len(set(texts))
-    two = {"categories": ["Performance status", "CNS metastases"], "readings": []}
-    assert readout.key_categories(two) == "Performance status; CNS metastases"
-    assert readout.key_categories({}) == "Not stated"
-
-
-def test_the_dossier_has_key_criteria_and_each_band_links_to_its_listing():
-    rows = sheet_rows(contract.REVIEW)
-    key = [row for row in rows if row["Section"] == "Key criteria" and row["Trial ID"] == "NCT02151981"]
-    assert key[0]["Fact"] == "Detail" and key[0]["Value"].endswith("rows in Eligibility")
-    assert any(row["Fact"].startswith("Key criterion") and row["Basis"] == "Reading" for row in key)
-    assert {row["Basis"] for row in rows} <= {
-        "Registry",
-        "Reading",
-        "Note",
-        "Not stated",
-        "Not posted",
-        "Unresolved",
-        "Interpolated",
-        "Proposed",
-    }
 
 
 # ── the listings ────────────────────────────────────────────────────────────────────────────────────────
@@ -326,7 +235,10 @@ def test_a_measurement_names_its_group_within_its_measure_and_its_denominator_at
     assert first["Comment"].startswith("Data was not reported")
     outcome = {"denominators": [{"units": "Participants", "counts": [{"group": "OG000", "value": "7"}]}]}
     klass = {"denominators": [{"units": "Eyes", "counts": [{"group": "OG000", "value": "12"}]}]}
-    assert readout.denominator_words([klass, outcome], "OG000") == "12 Eyes"
+    assert (
+        readout.denominator_words([klass, outcome], "OG000")
+        == "Class denominator: 12 Eyes; Measure denominator: 7 Participants"
+    )
     assert readout.denominator_words([{}, outcome], "OG000") == "7"
     assert readout.denominator_words([{}, outcome], "OG009") == "Not stated"
 
@@ -351,10 +263,11 @@ def test_an_analysis_names_its_compared_groups_interval_and_hypothesis():
 
 def test_eligibility_registered_outcomes_and_flow_read_in_clinical_words():
     criteria = [row for row in sheet_rows(contract.ELIGIBILITY) if row["Trial ID"] == "NCT02151981"]
-    assert criteria[5]["Readings"] == "Reading: Performance status (ECOG/WHO): 0 or 1"
-    assert criteria[3]["Readings"] == "No reading produced"
+    source = next(study for study in RECORD["studies"] if study["nct"] == "NCT02151981")
+    assert [row["Source passage"] for row in criteria] == [piece["text"] for piece in source["criteria"]]
+    assert all("Role" not in row and "Readings" not in row for row in criteria)
     registered = sheet_rows(contract.REGISTERED)[0]
-    assert registered["Category"] == "Primary" and registered["Time-point reading"] == "Reading: 28 day"
+    assert registered["Category"] == "Primary" and "Time-point reading" not in registered
     flow = sheet_rows(contract.FLOW)[0]
     assert (flow["Milestone or reason"], flow["Participants"]) == ("Started", 7)
 
@@ -396,64 +309,6 @@ def test_a_number_cell_keeps_the_registrys_decimal_places_in_the_file(written):
     assert (value.value, value.number_format) == (63.4, "0.0")
 
 
-def test_an_empty_listing_and_the_across_trial_sheets_say_so_on_one_line():
-    (biomarkers,) = sheet_rows(contract.BIOMARKERS)
-    assert biomarkers["Trial ID"].startswith("No biomarker is named")
-    # three trials, below the signal minimum: the cohort holds its thresholds and why, and no row
-    assert set(RECORD["cohort"]) == {"thresholds", "reason"}
-    (findings,) = sheet_rows(contract.FINDINGS)
-    assert findings["Type"] == "Too few comparable trials to assess"
-    assert findings["Population and limits"] == "Too few comparable trials to assess (3; at least 5 needed)"
-    record = copy.deepcopy(RECORD)
-    record["recurring_criteria"] = []
-    (recurring,) = readout.recurring_rows(record)
-    assert recurring[0][0].startswith("No criterion is stated by more than half")
-
-
-def test_at_the_signal_minimum_an_empty_section_never_reads_as_too_few():
-    record = copy.deepcopy(RECORD)
-    record["studies"] = record["studies"] * 2
-    record["recurring_criteria"] = []
-    record["cohort"] = {"thresholds": RECORD["cohort"]["thresholds"]}
-    (row,) = readout.recurring_rows(record)
-    assert row[0][0].startswith("No criterion is stated by more than half")
-    (row,) = readout.findings_rows(record)
-    assert row[1][0] == "The record holds no across-trial finding for these trials"
-
-
-def test_recurring_criteria_show_each_element_with_its_grouping_and_whole_criteria_as_examples():
-    record = record_of(tuple(BODIES))
-    rows = [[held[0] for held in row] for row in readout.recurring_rows(record)]
-    headers = readout.sheet_headers(contract.RECURRING, 0)
-    named = [dict(zip(headers, row, strict=True)) for row in rows]
-    too_few = [row for row in named if row["Role"] is None]
-    assert too_few and all(row["Element"].startswith(("Too few", "No condition grouping")) for row in too_few)
-    shown = [row for row in named if row["Role"] is not None]
-    assert shown
-    for row in shown:
-        entry = resolve(record, row[contract.ADDRESS])
-        assert row["Element"] == entry["element"]["words"]
-        assert row["Grouping"] == entry["grouping"]
-        lines = row[contract.RECURRING_EXAMPLE].split("\n")
-        assert len(lines) == len(entry["examples"])
-        for line, example in zip(lines, entry["examples"], strict=True):
-            # each whole criterion on its own line, after its trial and criterion number
-            number = example["criterion"]["number"]
-            assert line.startswith(f"{example['trial']}, ") and f"criterion {number}: “" in line
-            assert line.endswith(f"“{example['text']}”")
-        assert row["Trials stating it"] == entry["trials"] and entry["trials"] * 2 > entry["of_trials"]
-
-
-def test_every_reading_has_its_row_in_the_readings_sheet():
-    readings = sheet_rows(contract.READINGS)
-    pointers = {row["Address in the record"] for row in readings}
-    for i, study in enumerate(RECORD["studies"]):
-        for pointer, _value in readout.readings_of(study, f"/studies/{i}"):
-            assert pointer in pointers
-    role = next(row for row in readings if row["Address in the record"] == "/studies/0/criteria/0/role")
-    assert role["Words read"] == "Its heading" and role["Result"] == "Inclusion"
-
-
 def test_the_column_dictionary_names_each_columns_source_once():
     rows = sheet_rows(contract.DICTIONARY)
     pairs = [(row["Sheet"], row["Column"]) for row in rows]
@@ -462,24 +317,6 @@ def test_the_column_dictionary_names_each_columns_source_once():
     assert not any(sheet == contract.READ_ME for sheet, _column in pairs)
     phase = next(row for row in rows if (row["Sheet"], row["Column"]) == (contract.INDEX, "Phase"))
     assert phase["Registry field or rule"] == "protocolSection.designModule.phases[]"
-
-
-def test_the_readings_sheet_names_each_field_plainly():
-    fields = {row["Field"] for row in sheet_rows(contract.READINGS)}
-    assert {"Criterion reading", "Criterion role", "Endpoint reading", "Time-point reading"} <= fields
-    assert not any(field.startswith("Readings (each labelled") for field in fields)
-
-
-def test_a_reading_the_default_relations_leave_as_it_is_is_one_dossier_row():
-    """On NCT02151981 read as a direct run reads it: osimertinib (an other name) is antineoplastic, so its
-    setting and line packs apply and its prior lines are read."""
-    study = copy.deepcopy(record_of(("NCT02151981",), answers=OSIMERTINIB)["studies"][0])
-    facts = dossier(study)
-    assert "Prior lines for advanced disease" in facts
-    assert "Prior lines for advanced disease (with the default relations)" not in facts
-    narrowed = {**study["coordinates"]["prior_advanced_lines"], "status": "interpolated", "result": ["0"]}
-    study["coordinates"]["prior_advanced_lines_interpolated"] = narrowed
-    assert "Prior lines for advanced disease (with the default relations)" in dossier(study)
 
 
 # ── the independent record → cell check (task 3.6) ──────────────────────────────────────────────────────
@@ -533,7 +370,10 @@ def preservation_problems(record):
             denominator = cells[contract.DENOMINATOR]
             if isinstance(denominator, int):
                 denominator = f"{denominator} Participants"
-            if denominator.split(";")[0] != expected:
+            first_denominator = denominator.split(";")[0]
+            for scope_name in contract.DENOMINATOR_SCOPE_LABELS:
+                first_denominator = first_denominator.removeprefix(f"{scope_name} denominator: ")
+            if first_denominator != expected:
                 problems.append((pointer, "denominator", cells[contract.DENOMINATOR], expected))
     headers, rows = plan[contract.SAFETY]
     for row in rows:
@@ -600,7 +440,11 @@ def test_the_search_reads_in_words_never_as_json():
 
 def test_the_read_me_follows_the_contracts_topics_search_first_provenance_last():
     rows = readout.guide_rows(RECORD)
-    assert [row[0][0] for row in rows] == [topic for topic, _ in contract.READ_ME_TOPICS]
+    assert [row[0][0] for row in rows] == [
+        topic
+        for topic, _ in contract.READ_ME_TOPICS
+        if topic != "Treatment setting and line" or readout.conditional_index_columns(RECORD)
+    ]
     assert all("{" not in str(row[1][0]) for row in rows)
 
 
@@ -625,10 +469,11 @@ def test_every_sheet_holds_the_contracts_headers(written):
     n = readout.safety_groups(RECORD)
     assert book.sheetnames == [sheet.name for sheet in contract.SHEETS]
     for name in book.sheetnames:
-        assert next(book[name].iter_rows(values_only=True)) == readout.sheet_headers(name, n)
+        assert next(book[name].iter_rows(values_only=True)) == readout.sheet_headers(name, n, RECORD)
         declared = [c.header for c in next(s for s in contract.SHEETS if s.name == name).columns]
-        fixed = [h for h in readout.sheet_headers(name, n) if not re.fullmatch(r"G\d+ .*", h)]
-        assert fixed == [h for h in declared if "{n}" not in h], name
+        fixed = [h for h in readout.sheet_headers(name, n, RECORD) if not re.fullmatch(r"G\d+ .*", h)]
+        expected = [h for h in declared if "{n}" not in h]
+        assert fixed == expected, name
 
 
 INTERNAL = re.compile(r"\b(atoms?|packs?|rule pack|unnarrowed|coordinates?|interpolated_|not_stated)\b", re.I)
@@ -725,12 +570,7 @@ def test_every_cell_uses_the_contracts_words_and_never_another_word_for_unresolv
             if name == contract.REGISTERED:
                 assert cells["Category"] in contract.WHICH_LIST_WORDS.values(), cells["Category"]
             if name == contract.ELIGIBILITY:
-                assert cells["Heading"] in contract.READING_CODE_WORDS.values(), cells["Heading"]
-
-
-def test_an_unresolved_value_reads_in_the_contracts_reason_form():
-    assert readout.unresolved_because("why") == contract.REASON_FORM.format(status="Unresolved", reason="why")
-    assert readout.unresolved_because("why") == "Unresolved — why"
+                assert cells["Source section"] in contract.READING_CODE_WORDS.values(), cells
 
 
 def test_a_count_is_in_the_general_format_and_a_registry_decimal_in_its_own(written):
@@ -794,35 +634,6 @@ def test_a_denominator_names_any_unit_but_participants_and_never_drops_one():
     assert readout.denominator_words([other], "OG000") == "12 Eyes"
     assert readout.denominator_words([missing], "OG000") == "9 (units not stated)"
     assert "participants unless otherwise specified" in contract.DENOMINATOR
-
-
-def test_an_open_question_reads_in_words_with_its_status():
-    study = copy.deepcopy(RECORD["studies"][0])
-    study["open_questions"] = [
-        {
-            "status": "unresolved",
-            "rule": "review.flags_for",
-            "words": [],
-            "result": {
-                "kind": "drug_class_unresolved",
-                "element": "CAT-8015 20 mcg/kg",
-                "why": "RxClass and the record's own entry give no class (unresolved)",
-                "priority": 3,
-                "question": "What is the pharmacologic class (mechanism) of CAT-8015 20 mcg/kg?",
-                "options": ["Kinase Inhibitor", "none of these"],
-            },
-            "note": "RxClass and the record's own entry give no class (unresolved)",
-        }
-    ]
-    facts = dossier(study)
-    value, basis_word = facts["Open question 1"]
-    assert value.split("\n") == [
-        "What is the pharmacologic class (mechanism) of CAT-8015 20 mcg/kg?",
-        "Options: Kinase Inhibitor; none of these",
-        "Why it is asked: RxClass and the record's own entry give no class (unresolved)",
-    ]
-    assert basis_word == "Unresolved"
-    assert "Open questions (closed questions for an expert; never answered here)" not in facts
 
 
 RECORD_JSON = re.compile(r"[{\[]\s*['\"]")

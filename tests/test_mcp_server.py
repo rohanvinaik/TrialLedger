@@ -33,13 +33,11 @@ from TrialLedger.contract import FIELDS
 from TrialLedger.ingest import API_BASE
 from TrialLedger.mcp_server import (
     ERRORS,
-    FINDING_SECTIONS,
     INSTRUCTIONS,
     MANIFEST_KEYS,
     NOT_WRITABLE_WORDS,
     PREVIEW_MEANING,
     PROTOCOL_VERSIONS,
-    QUESTION_KEY,
     RECORD_PAGE_LIMIT,
     RECORD_PARTS,
     RECORD_WORDS,
@@ -500,7 +498,7 @@ def test_arguments_the_schema_refuses_are_a_tool_error_in_plain_words(
     assert sorted(p.name for p in tmp_path.iterdir()) == []
 
 
-def test_a_relay_run_through_the_tools_writes_the_record_a_direct_run_writes(tmp_path):
+def test_relay_and_direct_preserve_same_registry_values(tmp_path):
     client = Client(tmp_path / "runs", probe_get=sandbox)
     statuses, document, is_error = relay_through_the_tools(client, "relayed", PD1_IN_LUNG)
     assert statuses[-1] == "complete" and set(statuses[:-1]) == {"awaiting_fetch"} and len(statuses) > 3
@@ -512,7 +510,10 @@ def test_a_relay_run_through_the_tools_writes_the_record_a_direct_run_writes(tmp
     assert failed is False and done["status"] == "complete" and "fetches" not in done
     relayed = json.loads((folder / "landscape.json").read_text(encoding="utf-8"))
     held = json.loads((tmp_path / "runs" / "direct" / "landscape.json").read_text(encoding="utf-8"))
+    assert relayed["schema_version"] == held["schema_version"] == 4
     assert relayed["manifest"]["retrieval"]["mode"] == "relay"
+    assert held["manifest"]["retrieval"]["mode"] == "direct"
+    # These source studies are drug-free, so retrieval mode is the only reporting difference.
     relayed["manifest"]["retrieval"] = held["manifest"]["retrieval"]
     assert relayed == held
 
@@ -911,11 +912,11 @@ def test_scope_refuses_a_changed_request_and_a_request_by_name(tmp_path):
     assert document["with_these_tools"] == NOT_WRITABLE_WORDS
 
 
-# ── the record, schema 3, through the tool ──────────────────────────────────────────────────────────────
+# ── the record, schema 4, through the tool ──────────────────────────────────────────────────────────────
 
 
 def placed(tmp_path, record=None):
-    """A client whose run folder r holds the schema-3 fixture record (tests/schema3_record.py)."""
+    """A client whose run folder r holds the schema-4 fixture record (tests/schema3_record.py)."""
     folder = tmp_path / "runs" / "r"
     folder.mkdir(parents=True)
     held = schema3_record() if record is None else record
@@ -927,7 +928,7 @@ def test_record_serves_the_manifest_statuses_and_a_study_by_its_plain_nct(tmp_pa
     client, held = placed(tmp_path)
     manifest, is_error = client.call("record", run="r", part="manifest")
     assert is_error is False and manifest["manifest"] == {
-        key: held[key] for key in ("schema_version", "request", "manifest", "universes")
+        key: held[key] for key in ("schema_version", "request", "manifest")
     }
     statuses, _ = client.call("record", run="r", part="statuses")
     assert statuses["statuses"] == {"statuses": held["statuses"], "envelope": held["envelope"]}
@@ -936,15 +937,24 @@ def test_record_serves_the_manifest_statuses_and_a_study_by_its_plain_nct(tmp_pa
         "tool": "record",
         "run_folder": str((tmp_path / "runs" / "r").resolve()),
         "part": "study",
-        "study": held["studies"][1],
+        "study": {key: held["studies"][1][key] for key in list(held["studies"][1])[:RECORD_PAGE_LIMIT]},
         "page": {
             "offset": 0,
-            "limit": 50,
-            "returned": len(held["studies"][1]),
+            "limit": RECORD_PAGE_LIMIT,
+            "returned": min(RECORD_PAGE_LIMIT, len(held["studies"][1])),
             "total": len(held["studies"][1]),
-        }
-        | {"next_offset": None},
+            "next_offset": RECORD_PAGE_LIMIT if len(held["studies"][1]) > RECORD_PAGE_LIMIT else None,
+        },
     }
+    complete = dict(study["study"])
+    following = study["page"]["next_offset"]
+    while following is not None:
+        rest, failed = client.call("record", run="r", part="study", nct="NCT01030536", offset=following)
+        assert failed is False
+        assert not complete.keys() & rest["study"].keys()
+        complete.update(rest["study"])
+        following = rest["page"]["next_offset"]
+    assert complete == held["studies"][1]
     # a study is paged by its fields, each page a part of its keys
     first, _ = client.call("record", run="r", part="study", nct="NCT01030536", limit=3)
     keys = list(held["studies"][1])
@@ -952,7 +962,7 @@ def test_record_serves_the_manifest_statuses_and_a_study_by_its_plain_nct(tmp_pa
 
 
 def test_record_pages_the_studies_as_the_contracts_example_shows(tmp_path):
-    client, _held = placed(tmp_path)
+    client, held = placed(tmp_path)
     first, is_error = client.call("record", run="r", part="studies", limit=2)
     assert is_error is False
     assert first["page"] == {"offset": 0, "limit": 2, "returned": 2, "total": 3, "next_offset": 2}
@@ -968,50 +978,22 @@ def test_record_pages_the_studies_as_the_contracts_example_shows(tmp_path):
 
 
 def test_record_serves_only_the_studies_part_fields_on_a_line(tmp_path):
-    client, _held = placed(tmp_path)
+    client, held = placed(tmp_path)
     page, _ = client.call("record", run="r", part="studies")
     line = page["studies"][1]
     served = [f.name.removeprefix("studies[].") for f in FIELDS if ("mcp", "studies") in f.consumers]
-    assert list(line) == list(dict.fromkeys(name.split(".")[0] for name in served))
+    assert list(line) == list(dict.fromkeys(name.split(".")[0].removesuffix("[]") for name in served))
     assert line["lead_sponsor"] == {"name": "MedImmune LLC"}  # the name, never the class
     assert line["start_date"] == {"date": "2010-02-15", "type": "ACTUAL"}
-    assert line["universe"] == ["oncology.heme"]
-    assert line["results_posted"] is None  # a key the record lacks is None, never filled
+    assert line["results_posted"] == held["studies"][1]["results_posted"]
 
 
-def test_record_serves_the_findings_and_the_questions_each_with_its_address(tmp_path):
-    client, held = placed(tmp_path)
-    findings, is_error = client.call("record", run="r", part="findings")
-    assert is_error is False and "thresholds" not in findings and "reason" not in findings
-    assert [(f["kind"], f["address"]) for f in findings["findings"]] == [
-        ("frequency", "/cohort/frequency/0"),
-        ("frequency", "/cohort/frequency/1"),
-        ("near_misses", "/cohort/near_misses/0"),
-        ("recurring_criteria", "/recurring_criteria/0"),
-    ]
-    assert findings["findings"][2]["finding"] == held["cohort"]["near_misses"][0]
-    assert findings["findings"][3]["finding"] == held["recurring_criteria"][0]
-    assert findings["page"]["total"] == 4
-    questions, _ = client.call("record", run="r", part="questions", offset=1, limit=1)
-    assert questions["questions"] == [
-        {
-            "nct": "NCT01030536",
-            "address": "/studies/1/open_questions/1",
-            "question": held["studies"][1]["open_questions"][1],
-        }
-    ]
-    assert questions["page"] == {"offset": 1, "limit": 1, "returned": 1, "total": 3, "next_offset": 2}
-    for item in findings["findings"]:
-        value, _ = client.call("record", run="r", part="address", address=item["address"])
-        assert value["value"] == item["finding"]
-    # below the signal minimum the cohort holds its reason, given beside the (empty) findings
-    reason = {"status": "unresolved", "note": "2 trials, fewer than 3"}
-    (tmp_path / "runs" / "r" / "landscape.json").write_text(
-        json.dumps({**held, "cohort": {"thresholds": {}, "reason": reason}, "recurring_criteria": []}),
-        encoding="utf-8",
-    )
-    few, is_error = client.call("record", run="r", part="findings")
-    assert is_error is False and few["reason"] == reason and few["findings"] == []
+@pytest.mark.parametrize("part", ["findings", "questions", "cohort"])
+def test_record_rejects_removed_analysis_parts(tmp_path, part):
+    client, _held = placed(tmp_path)
+    result, failed = client.call("record", run="r", part=part)
+    assert failed is True and result["refused"] == "not_allowed"
+    assert record_view(schema3_record(), {"part": part}) == ("unknown_part", {})
 
 
 def test_record_resolves_a_workbook_rows_address_to_its_value(tmp_path):
@@ -1048,7 +1030,7 @@ def test_record_pages_the_fields_by_field(tmp_path):
         ({"part": "studies", "offset": 3}, "offset_out_of_range"),
         ({"part": "studies", "offset": -1}, "offset_out_of_range"),
         ({"part": "studies", "limit": 0}, "limit_out_of_range"),
-        ({"part": "findings", "limit": RECORD_PAGE_LIMIT + 1}, "limit_out_of_range"),
+        ({"part": "fields", "limit": RECORD_PAGE_LIMIT + 1}, "limit_out_of_range"),
     ],
 )
 def test_record_refuses_by_name_in_plain_words(tmp_path, arguments, error):
@@ -1062,7 +1044,7 @@ def test_record_refuses_by_name_in_plain_words(tmp_path, arguments, error):
 def test_record_refuses_a_record_of_another_schema_and_one_not_there(tmp_path):
     client, _ = placed(tmp_path, {**schema3_record(), "schema_version": "2"})
     document, is_error = client.call("record", run="r", part="manifest")
-    assert is_error is True and document["error"] == "schema_not_3" and "new run name" in document["why"]
+    assert is_error is True and document["error"] == "schema_not_4" and "new run name" in document["why"]
     document, is_error = client.call("record", run="nothing", part="manifest")
     assert is_error is True and document["error"] == "no_record"
     document, is_error = client.call("record", run="r", part="cohort")
@@ -1074,11 +1056,9 @@ def test_record_refuses_a_record_of_another_schema_and_one_not_there(tmp_path):
 def test_every_part_serves_what_the_contract_names_it_for():
     named = {rest[0] for f in FIELDS for kind, *rest in f.consumers if kind == "mcp"}
     assert named <= set(RECORD_PARTS) and contract.MCP_PARTS_TO_BUILD == {}
-    assert MANIFEST_KEYS == ("schema_version", "request", "manifest", "universes")
+    assert RECORD_PARTS == ("manifest", "studies", "study", "statuses", "fields", "address")
+    assert MANIFEST_KEYS == ("schema_version", "request", "manifest")
     assert STATUS_KEYS == ("statuses", "envelope")
-    tables = tuple(tuple(name.split(".")) for name in contract.ACROSS_TRIAL_FINDINGS_FIELDS)
-    assert (("cohort", "reason"), *tables, ("recurring_criteria",)) == FINDING_SECTIONS
-    assert QUESTION_KEY == "open_questions"
 
 
 def test_every_part_answers_on_a_real_record(tmp_path):
@@ -1094,8 +1074,6 @@ def test_every_part_answers_on_a_real_record(tmp_path):
         {"part": "fields"},
         {"part": "studies"},
         {"part": "study", "nct": nct},
-        {"part": "findings"},
-        {"part": "questions"},
         {"part": "address", "address": "/studies/1"},
     ):
         document, is_error = client.call("record", run="r", **arguments)
@@ -1113,11 +1091,6 @@ def test_every_part_answers_on_a_real_record(tmp_path):
     }
     fields, _ = client.call("record", run="r", part="fields", limit=RECORD_PAGE_LIMIT)
     assert fields["page"]["total"] == len(held["fields"])
-    findings, _ = client.call("record", run="r", part="findings")
-    assert findings.get("reason") == held["cohort"].get("reason")
-    questions, _ = client.call("record", run="r", part="questions")
-    asked = [question for item in held["studies"] for question in item.get("open_questions", [])]
-    assert [item["question"] for item in questions["questions"]] == asked[:RECORD_PAGE_LIMIT]
 
 
 # ── the record's decisions, directly ────────────────────────────────────────────────────────────────────
@@ -1177,18 +1150,18 @@ def test_pointer_value(pointer, expected):
     assert pointer_value(DOCUMENT, pointer) == expected
 
 
-def test_study_line_keeps_a_value_object_whole_and_an_unresolved_universe_whole():
-    unresolved = {"status": "unresolved", "rule": "universes.assign", "words": [], "result": {}, "note": "x"}
+def test_study_line_keeps_source_status_objects_and_missing_nested_fields():
     absent = {"status": "not_stated", "note": "not_reported"}
+    unresolved = {"status": "unresolved", "note": "inconsistent source results state"}
     line = study_line(
-        {"nct": "N", "lead_sponsor": absent, "universe": unresolved, "start_date": {"date": "x"}}
+        {"nct": "N", "lead_sponsor": absent, "results_posted": unresolved, "start_date": {"date": "x"}}
     )
-    assert line["lead_sponsor"] == absent and line["universe"] == unresolved
+    assert line["lead_sponsor"] == absent and line["results_posted"] == unresolved
     assert line["start_date"] == {"date": "x", "type": None}
-    assert list(line) == list(dict.fromkeys(name.split(".")[0] for name in mcp_server.STUDY_LINE))
-    odd = {"status": "known", "result": {"universes": "general"}}
-    assert study_line({"universe": odd})["universe"] == odd
-    assert study_line({"universe": {"status": "known", "result": None}})["universe"]["result"] is None
+    assert line["enrollment"] is None
+    assert list(line) == list(
+        dict.fromkeys(name.split(".")[0].removesuffix("[]") for name in mcp_server.STUDY_LINE)
+    )
 
 
 EMPTY = window(0, RECORD_PAGE_LIMIT, 0, 0, None)
@@ -1200,30 +1173,16 @@ EMPTY = window(0, RECORD_PAGE_LIMIT, 0, 0, None)
         (None, {"part": "manifest"}, ("not_a_record", {})),
         ({"studies": {}}, {"part": "manifest"}, ("not_a_record", {})),
         ({"studies": [1]}, {"part": "manifest"}, ("not_a_record", {})),
-        ({"schema_version": "2", "studies": []}, {"part": "manifest"}, ("schema_not_3", {})),
-        ({"schema_version": "3", "studies": []}, {"part": "cohort"}, ("unknown_part", {})),
-        ({"schema_version": "3", "studies": []}, {"part": "fields"}, ("ok", {"fields": None})),
+        ({"schema_version": 3, "studies": []}, {"part": "manifest"}, ("schema_not_4", {})),
+        ({"schema_version": 4, "studies": []}, {"part": "cohort"}, ("unknown_part", {})),
+        ({"schema_version": 4, "studies": []}, {"part": "fields"}, ("ok", {"fields": None})),
         (
-            {"schema_version": "3", "studies": [], "fields": []},
+            {"schema_version": 4, "studies": [], "fields": []},
             {"part": "fields"},
             ("ok", {"fields": [], "page": EMPTY}),
         ),
         (
-            {"schema_version": "3", "studies": []},
-            {"part": "findings"},
-            ("ok", {"findings": [], "page": EMPTY}),
-        ),
-        (
-            {
-                "schema_version": "3",
-                "studies": [{"nct": "N", "open_questions": "x"}],
-                "cohort": {"frequency": 1},
-            },
-            {"part": "questions"},
-            ("ok", {"questions": [], "page": EMPTY}),
-        ),
-        (
-            {"schema_version": "3", "studies": [{"nct": "N"}]},
+            {"schema_version": 4, "studies": [{"nct": "N"}]},
             {"part": "address", "address": "/studies/0/nct"},
             ("ok", {"address": "/studies/0/nct", "value": "N"}),
         ),
@@ -1231,3 +1190,24 @@ EMPTY = window(0, RECORD_PAGE_LIMIT, 0, 0, None)
 )
 def test_record_view_reads_what_a_record_holds_and_refuses_by_name(record, arguments, expected):
     assert record_view(record, arguments) == expected
+
+
+def test_study_list_keeps_browse_leaves_as_an_actual_array_not_a_template_key():
+    leaves = [{"id": "M123", "name": "Declared disease", "as_found": "Declared disease", "relevance": "HIGH"}]
+    code, reply = record_view(
+        {"schema_version": 4, "studies": [{"nct": "NCT1", "condition_browse_leaves": leaves}]},
+        {"part": "studies"},
+    )
+    assert code == "ok"
+    assert reply["studies"][0]["condition_browse_leaves"] == leaves
+    assert "condition_browse_leaves[]" not in reply["studies"][0]
+
+
+def test_record_studies_page_retains_reporting_status_through_tools(tmp_path):
+    held = schema3_record()
+    state = {"status": "unresolved", "note": "inconsistent source results state"}
+    held["studies"][0]["results_posted"] = state
+    client, _ = placed(tmp_path, held)
+    page, failed = client.call("record", run="r", part="studies", limit=1)
+    assert failed is False and page["studies"][0]["results_posted"] == state
+    assert page["page"]["next_offset"] == 1

@@ -1,7 +1,7 @@
 """The `trialledger` command. The user commands, which the guides name and `trialledger --help` lists first in
 plain words for a clinical reader: `doctor` (what this sandbox can do), `landscape` (a request, or trials by
 number, to the record and its workbook), `pull` (the registry's records saved with two certified workbooks)
-and `verify` (a pulled folder re-derived from its record). The developer tools (`resolve`, `profile`,
+and `verify` (a saved folder re-derived from its sources). The developer tools (`resolve`, `profile`,
 `sample`, `audit`, `pilot`) run as before and are named under "for developers"."""
 
 from __future__ import annotations
@@ -22,7 +22,6 @@ import httpx
 
 from TrialLedger import classes as rx
 from TrialLedger import warrants
-from TrialLedger.design import DESIGN_NAME, DesignError, write_book, write_design
 from TrialLedger.ingest import (
     SPEC_API_VERSION,
     PullError,
@@ -31,10 +30,8 @@ from TrialLedger.ingest import (
     query_studies,
     requested_id_words,
 )
-from TrialLedger.reading import axes_aliases, drug_aliases, read_population
 from TrialLedger.record import CSV_NAME, JSON_NAME, code_commit, verify_folder, write_record
 from TrialLedger.request import PHASES, STATUSES, STUDY_TYPES
-from TrialLedger.symbolic import symbolic_output
 from TrialLedger.workbook import RECORD_NAME, WORKBOOK_NAME, WorkbookError
 
 # The commands a person's assistant runs (the ones AGENTS.md and README.md name), listed first by
@@ -50,6 +47,11 @@ for the person who asked, every trial's dossier and the listings that compare th
 Every value is a field of the registry's own record, or the result of a named, fixed rule over such fields,
 and says which; no language model reads a trial. Start with `trialledger doctor`, then
 `trialledger landscape`.
+
+Layer one is available: request specific trials or a subset, and receive a clinical reference spreadsheet
+and matching evidence record for your assistant, containing registry facts and direct derivations only.
+Layer two is a partially built new-trial designer, intended to construct a new trial from scratch from
+your brief and that evidence. Some foundations exist; the complete design workflow is not yet available.
 """
 
 DEVELOPER_EPILOG = """\
@@ -116,6 +118,12 @@ nothing was written · 2 the search was refused (the words printed say why)
 """
 
 VERIFY_HELP = """\
+Check a folder that `trialledger landscape` wrote by replaying its retained registry records, drug answers
+without contacting a service. The input fingerprints, code version, full
+clinical record, and workbook (including formatting and links) must agree. Changed or missing evidence is
+named; it is never fetched or repaired. Earlier landscape folders without retained lookup evidence cannot
+pass this check: use their writing version or gather a new run.
+
 Check a folder that `trialledger pull` wrote: that every record in studies.json is exactly as it was saved
 (each record's fingerprint, and one over them all), that studies.csv is unchanged, and that every cell of
 review.xlsx and record.xlsx, and each file itself, is exactly what the same version of TrialLedger writes
@@ -127,6 +135,7 @@ What it shows: that each value follows from the saved record by the code that wr
 registry is right, nor that a rule reads a criterion correctly.
 
 example:
+  trialledger verify my-trials
   trialledger verify trialledger_20261101T120000Z
 
 exit status: 0 the folder checks out · 1 something no longer matches (each difference printed) · 2 not a
@@ -135,8 +144,10 @@ folder TrialLedger wrote (no readable studies.json)
 
 LANDSCAPE_HELP = """\
 Gather every ClinicalTrials.gov study that matches a request, in one run, into a run folder (--run DIR):
-landscape.json, the record an assistant answers from (every value with its status, its source and the trial's
-registry link), with manifest.json beside it; and landscape.xlsx, the spreadsheet for the person (every
+landscape.json, the record an assistant answers from, with manifest.json beside it; copied registry values
+are stored as given, their sources defined once in the field dictionary, while rule readings and missing
+values carry their status and explanation. Each trial has its registry link. landscape.xlsx is the
+spreadsheet for the person (every
 trial's dossier and the listings that compare them, checked cell by cell against the record). Before any trial
 is read, the request's terms are expanded through named sources and the expansion written to scope.json and
 resolution.json: a drug class into its member drugs and every subclass it includes, each drug into every name
@@ -167,8 +178,8 @@ again changes nothing. In direct mode TrialLedger fetches from the registry and 
 and says how far its drug lookups have got. In relay mode, for a sandbox that cannot reach them, it writes
 next.json, naming each web address to fetch and the file to save it as: fetch each one, save it unchanged,
 then run the same command again, until it reports complete. In relay mode the drugs of the trials read are
-not looked up for their classes, and the record says so. Unless --mode is given, the mode is what
-`trialledger doctor` finds.
+not looked up for their classes, and the record says so. Registry conditions and MeSH are copied as given.
+Unless --mode is given, the mode is what `trialledger doctor` finds.
 
 examples:
   trialledger landscape --run egfr-nsclc --drug-class "EGFR tyrosine kinase inhibitors" --class-source ATC \\
@@ -403,12 +414,12 @@ def main(
     )
     verify_parser = commands.add_parser(
         "verify",
-        help="check that a folder pull saved is unchanged and still follows from its records",
+        help="check that a saved landscape or pull folder still follows from its retained sources",
         description=VERIFY_HELP,
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
     verify_parser.add_argument(
-        "folder", type=Path, metavar="FOLDER", help="a folder `trialledger pull` wrote"
+        "folder", type=Path, metavar="FOLDER", help="a folder `trialledger landscape` or `pull` wrote"
     )
     mcp_parser = commands.add_parser(
         "mcp",
@@ -864,6 +875,7 @@ def _pilot(args, *, model_http) -> int:
 def _audit(args, *, http, sleep, rxclass_get, model_http) -> int:
     from TrialLedger.audit import run_audit
     from TrialLedger.ingest import query_ids
+    from TrialLedger.reading import drug_aliases
     from TrialLedger.sample import SnapshotChanged
     from TrialLedger.transport import LocalModel, TransportError, urllib_http
 
@@ -918,6 +930,10 @@ def _audit(args, *, http, sleep, rxclass_get, model_http) -> int:
 
 
 def _resolve(args, *, http, sleep, rxclass_get) -> int:
+    from TrialLedger.design import write_book
+    from TrialLedger.reading import axes_aliases, drug_aliases, read_population
+    from TrialLedger.symbolic import symbolic_output
+
     code, params, offending = parse_query_args(args.parameters)
     if code != "ok":
         print(f"trialledger: refused ({code}): {' '.join(offending)}", file=sys.stderr)
@@ -981,6 +997,8 @@ def _resolve(args, *, http, sleep, rxclass_get) -> int:
 def _profile(
     folder: Path, rxclass_get: Callable[[str, dict[str, str]], tuple[int, Any]] | None, *, fill_axes: bool
 ) -> int:
+    from TrialLedger.design import DESIGN_NAME, DesignError, write_design
+
     get = {"get": rxclass_get} if rxclass_get else {}
     if fill_axes:
         _fill_axes(folder, **get)
@@ -1004,6 +1022,7 @@ def _fill_axes(folder: Path, get: Callable[[str, dict[str, str]], tuple[int, Any
     """`profile --fill-axes`: ask RxNav for the axes of the folder's experimental drug names not yet cached in
     its classes.json, only once its record verifies; a folder that is no record or does not verify is left
     as it is, for write_design to name."""
+    from TrialLedger.reading import axes_aliases, drug_aliases
     from TrialLedger.record import record_problems
 
     try:
@@ -1020,6 +1039,19 @@ def _fill_axes(folder: Path, get: Callable[[str, dict[str, str]], tuple[int, Any
 
 
 def _verify(folder: Path) -> int:
+    if (folder / "landscape.json").is_file():
+        from TrialLedger.landscape_verify import verify_landscape
+
+        code, problems = verify_landscape(folder)
+        if code != "verified":
+            for problem in problems:
+                print(f"trialledger: {code} — {problem}", file=sys.stderr)
+            return 1
+        print(
+            f"{folder}: verified — the clinical record and workbook reproduce from the retained sources. "
+            "This checks derivation, not clinical interpretation."
+        )
+        return 0
     code, problems = verify_folder(folder)
     if code == "not_a_record":
         print(f"trialledger: not a TrialLedger record — {problems[0]}", file=sys.stderr)

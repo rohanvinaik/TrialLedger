@@ -1,43 +1,106 @@
 {
- "part": "studies",
- "studies": [
-  {
-   "nct": "NCT04852770",
-   "link": "https://clinicaltrials.gov/study/NCT04852770",
-   "overall_status": "TERMINATED",
-   "phases": [
-    "NA"
-   ],
-   "conditions": [
-    "Posttraumatic Stress Disorder",
-    "Covid19"
-   ],
-   "universe": [
-    "general"
-   ]
-  },
-  {
-   "nct": "NCT01030536",
-   "link": "https://clinicaltrials.gov/study/NCT01030536",
-   "overall_status": "COMPLETED",
-   "phases": [
-    "PHASE1",
-    "PHASE2"
-   ],
-   "conditions": [
-    "Non-Hodgkin Lymphoma",
-    "Chronic Lymphocytic Leukemia"
-   ],
-   "universe": [
-    "oncology.heme"
-   ]
+  "part": "studies",
+  "studies": [
+    {
+      "nct": "NCT04852770",
+      "link": "https://clinicaltrials.gov/study/NCT04852770",
+      "overall_status": "TERMINATED",
+      "start_date": {
+        "date": "2020-04-06",
+        "type": "ACTUAL"
+      },
+      "primary_completion_date": {
+        "date": "2023-06-21",
+        "type": "ACTUAL"
+      },
+      "completion_date": {
+        "date": "2023-07-18",
+        "type": "ACTUAL"
+      },
+      "lead_sponsor": {
+        "name": "Fundação Bahiana de Infectologia"
+      },
+      "conditions": [
+        "Posttraumatic Stress Disorder",
+        "Covid19"
+      ],
+      "keywords": [
+        "Cognitive-Behavior Therapy",
+        "Trial-Based Cognitive Therapy",
+        "Mindfulness Based Health Promotion",
+        "Positive Psychotherapy",
+        "PTSD",
+        "Covid 19",
+        "Randomized clinical trial"
+      ],
+      "condition_browse_leaves": [],
+      "phases": [
+        "NA"
+      ],
+      "study_type": "INTERVENTIONAL",
+      "enrollment": {
+        "count": 135,
+        "type": "ACTUAL"
+      },
+      "results_posted": {
+        "status": "not_posted",
+        "rule": "ledger.results_state",
+        "words": [],
+        "result": "no results posted",
+        "note": ""
+      }
+    },
+    {
+      "nct": "NCT01030536",
+      "link": "https://clinicaltrials.gov/study/NCT01030536",
+      "overall_status": "COMPLETED",
+      "start_date": {
+        "date": "2010-02-15",
+        "type": "ACTUAL"
+      },
+      "primary_completion_date": {
+        "date": "2013-03-04",
+        "type": "ACTUAL"
+      },
+      "completion_date": {
+        "date": "2013-03-04",
+        "type": "ACTUAL"
+      },
+      "lead_sponsor": {
+        "name": "MedImmune LLC"
+      },
+      "conditions": [
+        "Non-Hodgkin Lymphoma",
+        "Chronic Lymphocytic Leukemia"
+      ],
+      "keywords": [
+        "NHL",
+        "CLL"
+      ],
+      "condition_browse_leaves": [],
+      "phases": [
+        "PHASE1",
+        "PHASE2"
+      ],
+      "study_type": "INTERVENTIONAL",
+      "enrollment": {
+        "count": 23,
+        "type": "ACTUAL"
+      },
+      "results_posted": {
+        "status": "known",
+        "rule": "ledger.results_state",
+        "words": [],
+        "result": "results posted",
+        "note": ""
+      }
+    }
+  ],
+  "page": {
+    "offset": 0,
+    "limit": 2,
+    "returned": 2,
+    "total": 3,
+    "next_offset": 2
   }
- ],
- "page": {
-  "offset": 0,
-  "limit": 2,
-  "returned": 2,
-  "total": 3,
-  "next_offset": 2
- }
 }

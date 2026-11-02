@@ -328,30 +328,32 @@ def test_the_universes_name_what_coherence_holds():
     assert contract.UNIVERSES[-1].packs == ()
 
 
-def test_the_assignment_reads_contract_paths_and_the_declared_vocabulary():
-    reads = set(contract.FIELD_NAMES["studies[].universe"].reads)
-    for _name, words, paths in contract.ASSIGNMENT_SOURCES:
-        assert words and set(paths) <= reads
-    terms = {term.lower() for term, _match in contract.ONCOLOGY_TERMS}
-    required = "neoplasm cancer carcinoma tumour tumor lymphoma leukaemia leukemia myeloma sarcoma malignan"
-    assert (
-        set(required.split()) | {"nsclc", "sclc", "melanoma", "glioma", "blastoma", "mesothelioma"} <= terms
-    )
-    assert set(contract.HAEMATOLOGIC_TERMS) <= terms
-    assert {match for _term, match in contract.ONCOLOGY_TERMS} <= set(contract.TERM_MATCHES)
-    conditions = {condition.lower() for condition, _why in contract.NOT_DISEASE_CONDITIONS}
-    assert {"progression free survival", "anticancer treatment"} <= conditions
-    assert [case for case, _words in contract.ASSIGNMENT_CASES] == ["oncology", "general", "unresolved"]
+def test_reporting_fields_do_not_authorize_inferred_clinical_categories():
+    assert "studies[].universe" not in contract.FIELD_NAMES
+    assert not any(name.startswith("studies[].coordinates.") for name in contract.FIELD_NAMES)
+    assert not any(name.startswith("cohort.") for name in contract.FIELD_NAMES)
+    assert "studies[].scoped_assertions" not in contract.FIELD_NAMES
 
 
-def test_every_mesh_anchor_is_held_by_a_body_or_named_unobserved():
-    paths = {name: paths for name, _words, paths in contract.ASSIGNMENT_SOURCES}
-    unobserved = set()
-    for universe, source, anchors in contract.MESH_ANCHORS:
-        assert universe in {u.name for u in contract.UNIVERSES}
-        held = {term for body in BODIES for path in paths[source] for term in template_values(body, path)}
-        unobserved |= {anchor for anchor in anchors if anchor not in held}
-    assert unobserved == set(contract.UNOBSERVED_ANCHORS)
+def test_assignment_preserves_registry_sources_without_lookups_or_category_guessing():
+    from TrialLedger.universes import assign, reading
+
+    for body in BODIES:
+        result = reading(assign(body))
+        assert result["status"] == "unresolved"
+        assert result["result"]["universes"] == []
+        assert result["result"]["indications"] == []
+        assert all(row["status"] == "scope_unresolved" for row in result["result"]["applicability"])
+        sources = {row["source"]: row for row in result["result"]["sources"] if "source" in row}
+        conditions = body["protocolSection"].get("conditionsModule", {})
+        browse = body.get("derivedSection", {}).get("conditionBrowseModule", {})
+        assert sources["registry_conditions"]["conditions"] == conditions.get("conditions", [])
+        assert sources["registry_conditions"]["keywords"] == conditions.get("keywords", [])
+        assert sources["registry_mesh"]["meshes"] == browse.get("meshes", [])
+        assert sources["registry_mesh"]["ancestors"] == browse.get("ancestors", [])
+        assert sources["registry_mesh"]["browse_leaves"] == browse.get("browseLeaves", [])
+        assert sources["mesh_lookups"]["lookups"] == []
+        assert sources["titles"]["code"] == "not_looked_up"
 
 
 # ── the helpers ─────────────────────────────────────────────────────────────────────────────────────────

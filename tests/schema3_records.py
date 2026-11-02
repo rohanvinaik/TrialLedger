@@ -1,4 +1,4 @@
-"""landscape.json schema-3 records for the workbook's tests, made by the record's own assembly.
+"""landscape.json schema-4 records for the workbook's tests, made by the record's own assembly.
 
 Each record is landscape.landscape_record over the contract's saved registry bodies
 (tests/fixtures/contract/studies-*.json), read as a relay-mode run reads them (no RxNav answers: every drug
@@ -14,7 +14,6 @@ from pathlib import Path
 from typing import Any
 
 from TrialLedger import landscape, operate
-from TrialLedger.reading import read_population
 
 FIXTURES = Path(__file__).resolve().parent / "fixtures" / "contract"
 EXAMPLES = FIXTURES / "examples"
@@ -33,7 +32,7 @@ def record_of(
     bodies: dict[str, Any] | None = None,
     answers: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
-    """The schema-3 record of the given trials, in that order (module docstring); with `answers`, RxNav's
+    """The schema-4 record of the given trials, in that order (module docstring); with `answers`, RxNav's
     answers in classes.json's shape, read as a direct run reads them."""
     held = bodies if bodies is not None else BODIES
     studies = [held[nct] for nct in ncts]
@@ -47,7 +46,6 @@ def record_of(
         retrieval,
         landscape.RULE_VERSIONS,
     )
-    reading = read_population(studies, {})
     request, scope = {"params": {"filter.ids": ids}}, {"query": {"filter.ids": ids}}
-    record = landscape.landscape_record(reading, studies, request, scope, manifest, answers)
+    record = landscape.landscape_record(studies, request, scope, manifest, answers)
     return json.loads(json.dumps(record, ensure_ascii=False))

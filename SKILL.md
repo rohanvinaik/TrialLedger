@@ -1,41 +1,45 @@
 ---
 name: trialledger
-description: Gather every ClinicalTrials.gov study matching a clinical question into a verified record and a professional workbook, and design a new trial from that evidence. Use when someone asks about clinical trials of a drug, drug class, mechanism or disease (populations, eligibility criteria, line of therapy, endpoints and time points, biomarkers, efficacy and safety results), or wants to design a trial. No language model reads a trial; every value comes from the registry or a named rule.
+description: Produce a clean clinical-trial reference spreadsheet and matching JSON for specific trial numbers or a requested subset of ClinicalTrials.gov studies (layer one, available). Report registry facts and strictly warranted direct derivations. Layer two aims to construct a new trial from scratch through symbolic reasoning; it is partially built, without a complete design workflow.
 ---
 
 # TrialLedger
 
-Answer clinical-trial questions from a verified record of ClinicalTrials.gov, never from your own knowledge of the
-trials. `AGENTS.md` explains each step and what to trust in depth.
+**Layer one is available:** a user names specific trials or a subset by drug/class, condition, phase, status,
+study type or date; return one formatted reference workbook (`landscape.xlsx`) and matching JSON
+(`landscape.json`), with a dossier per study and shared listings. Use the saved record for answers and give
+the person the workbook. Its content is registry facts and strictly warranted direct derivations only.
 
-## Procedure
+**Layer two is partially built:** its purpose is to construct a new trial from scratch from the user's brief
+and layer-one evidence through symbolic reasoning, with deductions, proposals and human choices distinguished.
+Reasoning and existing-trial analysis foundations exist; the complete design workflow and public design
+command/tool do not. Explain this status when introducing TrialLedger; do not promise a completed new trial.
 
-1. Install: `pip install "git+https://github.com/rohanvinaik/TrialLedger"` (Python 3.12+).
-2. `trialledger doctor`: reports whether this sandbox reaches ClinicalTrials.gov and RxNav, and the mode (direct,
-   or relay where you fetch for TrialLedger).
-3. Turn the question into a request (drug, drug class with its source EPC, MoA or ATC, mechanism, condition or
-   MeSH disease class, phase, status, study type, start dates) and run
-   `trialledger landscape --run <folder> <request flags or --request file.json>`; `--help` lists the fields.
-   Trials named by number: `--ids NCT...,NCT...`.
-4. Show the person the resolved search in `<folder>/resolution.json` (every class member, subclass and name
-   searched) before relying on the results; narrow or exclude subclasses if they ask.
-5. Exit 3 means relay: fetch each address in `<folder>/next.json` into the file it names, body unmodified, and
-   run the same command again until exit 0 (drug classes then read "not looked up"; say so). Exit 2 names what to
-   change. Exit 1: the printed words say whether to run again or start a new run folder.
-6. Answer from `<folder>/landscape.json`, keeping each value's status (known, interpolated, proposed, not stated,
-   not posted, unresolved) and source; hand over `<folder>/landscape.xlsx`, whose Trial review sheet holds each
-   trial's dossier.
-7. To design a trial: `trialledger design --run <folder>`, putting each question it returns to the person, one at
-   a time, with its suggestion.
+Read `AGENTS.md` for the full procedure.
 
-## Rules
+1. Install on Python 3.12+: `pip install "git+https://github.com/rohanvinaik/TrialLedger"`.
+2. Run `trialledger doctor --run FOLDER`; prefer direct mode. Relay means fetching named URLs unchanged.
+3. Build request flags or `--request FILE`; study numbers use `--ids NCT...,NCT...`. Preview with
+   `trialledger landscape --run FOLDER <request flags> --preview`. Show the resolved search and resolution.json.
+4. Repeat without preview to gather the fixed search. A changed request uses a new folder. Exit 3 awaits
+   next.json fetches; save each body unchanged at its named path and repeat. Exit 0 is complete/previewed;
+   2 names refusal/stop; 1 gives failure/retry advice. Never shorten, retype or correct a relay response.
+5. Read landscape.json, inspect requested-ID accounting when relevant, and deliver landscape.xlsx. Retrieval
+   completion does not establish that every requested ID was found.
 
-- "Not stated" is not "none"; "not posted" is not "no effect"; a registered outcome is a plan, not a result.
-- A reading of eligibility text names the words it read: show them; it is evidence, not fact.
-- When trials were requested by number, check the requested-ID accounting before saying the set is complete.
-- Fetch only the addresses TrialLedger names, and save each body exactly as received, byte for byte: in relay
-  TrialLedger checks pages' form, counts and trials, not each value. Run direct whenever `doctor` allows.
-- Through MCP (`trialledger mcp`), take the same steps with its tools: `doctor`, `landscape`, `scope`,
-  `save_fetch` (relay), `record`, `design`.
-- For an archival, re-checkable copy of the registry's own records: `trialledger pull`, later `trialledger
-  verify`; the workbook the person reads is still `landscape.xlsx`.
+The schema-4 record stores copied fields plainly with source paths once in `fields`. Direct derivations name
+their rule and inputs; missing/malformed values retain named states. Listing addresses retrieve the same scoped
+record evidence through MCP. Preserve exact words, groups, populations, denominators, units, times, precision,
+zeros and false. Not stated is not none; not posted is not no effect; empty listings are not zero harms.
+
+Eligibility segmentation is structural, not interpretation. Keep registered plans apart from posted observations.
+Show biomarker, imaging and treatment-history text as written; do not infer roles, setting, current care, grades,
+comparability, planning targets or reusable standards. Ordinary reports do not perform MeSH enrichment or clinical
+recognition/ranking. Direct drug lookup evidence remains attributed; relay does not enrich gathered drugs.
+
+`trialledger mcp` exposes doctor, scope, landscape, save_fetch and record. Preview with scope; follow relay
+requests exactly; use record/address for answers. Follow page.next_offset; paging is bounded at 50 entries.
+`verify FOLDER` checks landscape or archival pull reproducibility offline from retained inputs under the writing
+code. It does not certify clinical meaning. `pull` separately preserves raw registry records/CSV and archival
+workbooks. Clinical inference/defaults/proposals and design belong to layer two. No current design/edits operation
+or automatic import of workbook annotations is promised.

@@ -5,7 +5,7 @@ build-backend = "hatchling.build"
 [project]
 name = "TrialLedger"
 dynamic = ["version"]
-description = "A tool AI assistants use for clinical trials: every ClinicalTrials.gov study matching a question gathered into a verified record and a professional workbook, and a trial designed from that evidence. No language model abstracts a trial or supplies a fact."
+description = "ClinicalTrials.gov reference spreadsheets and matching JSON for requested trials (layer one, available). A symbolic new-trial designer is partially built (layer two); its complete design workflow is not yet available."
 readme = "README.md"
 requires-python = ">=3.12"
 license = "MIT"

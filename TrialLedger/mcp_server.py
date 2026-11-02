@@ -26,7 +26,7 @@ with `isError: true` and plain words, as the specification asks for input the to
 The tools: `doctor` (the capability report), `landscape` (start or continue a run), `save_fetch` (write one
 body the assistant fetched, in relay mode, only where the run's next.json names it), `scope` (the resolved
 search; given the request, the search previewed: resolved and fixed, no trial read, `preview.preview`) and
-`record` (the finished schema-3 record, part by part, every value as the record holds it, a list or object
+`record` (the finished schema-4 record, part by part, every value as the record holds it, a list or object
 paged, a workbook row's address resolved to its value). Each run folder
 is a name inside one root folder (`--root`), and the server reads and writes only inside the run folders it is
 given.
@@ -84,14 +84,22 @@ ERRORS = {
 # The methods served once initialized, by their route code.
 METHODS = {"tools/list": "tools_list", "tools/call": "tools_call"}
 INSTRUCTIONS = (
-    "TrialLedger gathers every ClinicalTrials.gov study matching a request into a verified record, by "
-    "fixed rules; no language model reads a trial. Call doctor first; then landscape with a run name and "
+    "TrialLedger has two layers. Layer one is available: the user names specific trial numbers or requests "
+    "a subset by drug/class, condition, phase, status, study type or date. Return landscape.xlsx, a clean "
+    "clinical reference spreadsheet with a dossier per study and shared listings, and landscape.json, "
+    "the matching evidence record you answer from. Layer one contains registry facts and strictly warranted "
+    "direct derivations only; no language model reads a trial. Layer two is a partially built new-trial "
+    "designer, intended to construct a new trial from scratch from the user's brief and layer-one evidence "
+    "through symbolic reasoning, distinguishing deductions, proposals and human choices. Reasoning and "
+    "existing-trial analysis foundations exist; the complete design workflow is not yet available, and "
+    "these tools do not offer trial design. Explain that status; do not promise a completed new trial. "
+    "Call doctor first; then landscape with a run name and "
     "the person's request, in the mode doctor reports; show the person the resolved search (scope) before "
     "relying on the results; in relay mode, fetch what landscape lists, save each body with save_fetch, and "
     "call landscape again until it reports complete (use relay only when doctor reports it: each body then "
     "passes through you, so save it exactly as received, never retyped, shortened or corrected); then answer "
-    "only from record, keeping each value's "
-    "status and source. Not stated is never none; not posted is never no effect; a registered outcome is a "
+    "only from record, keeping its sources and any stated status. "
+    "Not stated is never none; not posted is never no effect; a registered outcome is a "
     "plan, not a result."
 )
 # What each exit code of a run means, in plain words (operate.run_exit).
@@ -162,15 +170,15 @@ ARGUMENT_WORDS = {
     "name: letters, digits, '.', '_' or '-', starting with a letter or digit; an NCT number: NCT and eight "
     "digits).",
 }
-RECORD_PARTS = ("manifest", "studies", "study", "statuses", "fields", "findings", "questions", "address")
+RECORD_PARTS = ("manifest", "studies", "study", "statuses", "fields", "address")
 # The most entries one call returns of a part that is a list or an object (studies, fields, findings,
 # questions, and a list or object an address names): the rest is read page by page, with offset.
 RECORD_PAGE_LIMIT = 50
 RECORD_WORDS = {
     "not_a_record": "landscape.json in this run folder is not a record of TrialLedger's form; do not answer "
     "from it.",
-    "schema_not_3": "landscape.json in this run folder was written under another form of the record (its "
-    "schema_version is not 3), which these tools do not read. Call landscape with a new run name and the "
+    "schema_not_4": "landscape.json in this run folder was written under another form of the record (its "
+    "schema_version is not 4), which these tools do not read. Call landscape with a new run name and the "
     "same request to gather it again.",
     "nct_needed": "part study needs nct, the study's NCT number (part studies lists them).",
     "no_such_study": "The record holds no study of that NCT number (held lists those it does).",
@@ -201,8 +209,6 @@ def _served(part: str) -> tuple[str, ...]:
 STUDY_LINE = tuple(name.removeprefix("studies[].") for name in _served("studies"))
 MANIFEST_KEYS = tuple(dict.fromkeys(name.split(".")[0] for name in _served("manifest")))
 STATUS_KEYS = tuple(dict.fromkeys(name.split(".")[0] for name in _served("statuses")))
-FINDING_SECTIONS = tuple(dict.fromkeys(tuple(name.split("[]")[0].split(".")) for name in _served("findings")))
-QUESTION_KEY = _served("questions")[0].removeprefix("studies[].")
 
 # ── the tools: each one's name, description and input schema ──────────────────────────────────────────────
 
@@ -363,25 +369,13 @@ TOOLS: dict[str, dict[str, Any]] = {
         },
     },
     "record": {
-        "description": "Read the finished record of a run (landscape.json) exactly as it holds it: "
-        "nothing is summarised or rewritten. A registry value is held plain; a value the registry does not "
-        "hold, or a rule's "
-        "reading, is a value object with its status (and a reading's rule, the words it read and its "
-        "note). part manifest: the request, the registry snapshot and code that made the record, the "
-        "universes, and the retrieval (for trials asked for by NCT number, what became of each: found, "
-        "found under another number, missing, repeated or malformed; check it before saying a set is "
-        "complete). part studies: one line per study (NCT number, registry link, sponsor, phases, "
-        "status, study type, conditions, enrollment, dates, universe, whether results are posted). part "
-        "study, with nct: one study's whole extract, paged by its fields; read a long list within it by its "
-        "address. part findings: the across-trial findings, each with its kind and its address. part "
-        "questions: the open questions the rules leave for an expert, each with its study and address. "
-        "part address, with address: the value at a workbook row's address (its 'Address in the record' "
-        "column, a JSON pointer). part statuses: what each status means. part fields: what every field "
-        "means and where it comes from. study, studies, fields, findings, questions and an address "
-        f"holding a list or an object are paged, at most {RECORD_PAGE_LIMIT} entries a call: "
-        "page.next_offset is the offset of the next page, null on the last. Answer only from these "
-        "values, keeping each one's status; not stated is never none, not posted is never no effect, and "
-        "a registered outcome is a plan, never a result.",
+        "description": "Read landscape.json exactly as written. Registry values are plain; their API paths "
+        "are defined once in fields. Direct derivations and missing values retain their status and source. "
+        "Parts: manifest (request, snapshot, code and requested-ID accounting), studies (study index), study "
+        "(one NCT record), fields (source dictionary), statuses, and address (the exact JSON pointer from a "
+        "workbook row). Lists and objects are paged at most 50 entries per call; use page.next_offset. "
+        "Not stated is never none; not posted is never no effect; planned outcomes are not observed results. "
+        "Layer one supplies no inferred setting, clinical recommendation or trial-design proposal.",
         "inputSchema": {
             "type": "object",
             "properties": {
@@ -615,51 +609,27 @@ def pointer_value(document: Any, pointer: Any) -> tuple[str, Any]:
 
 
 def study_line(study: dict[str, Any]) -> dict[str, Any]:
-    """One study's line in part studies: the fields the contract serves there, as held (pure — pinned).
+    """The contract's source fields for one index line, preserving missing-value objects whole.
 
-    Each name of STUDY_LINE in order: a top-level key's value as held; a key within one ("lead_sponsor.name")
-    under its top-level key, unless that key holds a value object (a value not simply known, with its status),
-    which is given whole; a key the study lacks as None, never filled. The universe reading is given as the
-    universes it assigns (its result's list) when its status is known; otherwise whole, with its status and
-    note.
+    Nested source fields retain their parent object. No derived clinical category is substituted.
     """
     line: dict[str, Any] = {}
     for name in STUDY_LINE:
         top, _, inner = name.partition(".")
+        top = top.removesuffix("[]")
         held = study.get(top)
         if inner and isinstance(held, dict) and "status" not in held:
             line.setdefault(top, {})[inner] = held.get(inner)
         else:
             line[top] = held
-    universe = line.get("universe")
-    if isinstance(universe, dict) and universe.get("status") == "known":
-        result = universe.get("result")
-        if isinstance(result, dict) and isinstance(result.get("universes"), list):
-            line["universe"] = result["universes"]
     return line
 
 
 def record_view(record: Any, arguments: dict[str, Any]) -> tuple[str, dict[str, Any]]:
-    """One part of a finished schema-3 record, every value as the record holds it (pure — pinned).
+    """Read a part of the direct source record, with bounded paging and exact JSON addresses.
 
-    `record` is landscape.json decoded; `arguments` the record tool's (part, and nct, address, offset and
-    limit as the part takes them). The reply holds the part under its name; a part that is a list or an
-    object (study, studies, fields, findings, questions, and an address that names a list or an object) is
-    paged (page_window, offset 0 and RECORD_PAGE_LIMIT by default), with its `page`. Parts (RECORD_PARTS):
-      manifest  — the record's MANIFEST_KEYS (schema version, request, manifest, universes);
-      statuses  — the record's STATUS_KEYS (what each status, and each key of a value object, means);
-      fields    — the field dictionary, paged by field;
-      studies   — each study's study_line, paged;
-      study     — the study whose NCT number is `nct`, its whole extract, paged by its fields (a long list
-                  within it is read by its address);
-      findings  — every row of the FINDING_SECTIONS that are lists (the cohort's tables, the recurring
-                  criteria), in that order, each with its kind and its address, paged; a section that is one
-                  value (the cohort's reason, when too few trials are compared) beside them, under its name;
-      questions — every study's open questions (QUESTION_KEY), each with its study and address, paged;
-      address   — the value at a workbook row's address (pointer_value).
-    Codes: ok; not_a_record (not an object, or its studies not a list of objects); schema_not_3 (another
-    schema_version); unknown_part; nct_needed; no_such_study (with the NCT numbers held); address_needed;
-    pointer_value's codes; page_window's codes. A key a record lacks is read as None, never filled.
+    Parts: manifest, statuses, fields, studies, study and address. No clinical inference or
+    proposed design findings are part of a layer-one record. A different schema is refused.
     """
     if not isinstance(record, dict) or not isinstance(record.get("studies"), list):
         return "not_a_record", {}
@@ -667,7 +637,7 @@ def record_view(record: Any, arguments: dict[str, Any]) -> tuple[str, dict[str, 
     if not all(isinstance(study, dict) for study in studies):
         return "not_a_record", {}
     if record.get("schema_version") != SCHEMA_VERSION:
-        return "schema_not_3", {}
+        return "schema_not_4", {}
     part = arguments.get("part")
     if part == "manifest":
         return "ok", {part: {key: record.get(key) for key in MANIFEST_KEYS}}
@@ -687,25 +657,6 @@ def record_view(record: Any, arguments: dict[str, Any]) -> tuple[str, dict[str, 
         whole = [study_line(study) for study in studies]
     elif part == "fields":
         whole = record.get("fields")
-    elif part == "findings":
-        whole, beside = [], {}
-        for path in FINDING_SECTIONS:
-            where = "/" + "/".join(path)
-            code, held = pointer_value(record, where)
-            if code == "ok" and isinstance(held, list):
-                whole += [
-                    {"kind": path[-1], "address": f"{where}/{n}", "finding": row}
-                    for n, row in enumerate(held)
-                ]
-            elif code == "ok":
-                beside[path[-1]] = held
-    elif part == "questions":
-        whole = [
-            {"nct": study.get("nct"), "address": f"/studies/{s}/{QUESTION_KEY}/{n}", "question": question}
-            for s, study in enumerate(studies)
-            if isinstance(study.get(QUESTION_KEY), list)
-            for n, question in enumerate(study[QUESTION_KEY])
-        ]
     elif part == "address":
         if "address" not in arguments:
             return "address_needed", {}
@@ -715,8 +666,6 @@ def record_view(record: Any, arguments: dict[str, Any]) -> tuple[str, dict[str, 
     else:
         return "unknown_part", {}
     reply: dict[str, Any] = {"address": arguments["address"]} if part == "address" else {}
-    if part == "findings":
-        reply |= beside
     if not isinstance(whole, list | dict):
         return "ok", reply | {"value" if part == "address" else part: whole}
     code, page = page_window(

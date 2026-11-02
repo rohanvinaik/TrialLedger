@@ -1,15 +1,14 @@
 """The contract's worked examples (tests/fixtures/contract/examples) held to the contract and to the registry.
 
-Each example was checked by hand against the saved registry bodies (its README says how); these tests hold it
-to contract.FIELDS and contract.SHEETS, and re-read every plain value from the body it came from, so that a
-producer and a consumer built against the examples cannot agree on the same mistake.
+Generated source examples are checked against fixed raw registry bodies, contract fields and sheet columns.
+Independent path traversal, source spans and fixed manual anchors provide checks beyond producer agreement.
 """
 
 import json
 from pathlib import Path
 
 from TrialLedger import contract, landscape, mcp_server
-from TrialLedger.contract import FIELD_NAMES, SHEETS, template_values
+from TrialLedger.contract import FIELD_NAMES, SHEETS
 
 FIXTURES = Path(__file__).resolve().parent / "fixtures" / "contract"
 EXAMPLES = FIXTURES / "examples"
@@ -35,9 +34,16 @@ def leaves(node, path=""):
         if where in FIELD_NAMES:
             found.append((where, positions, held))
         elif isinstance(held, dict):
-            assert any(name.startswith(f"{where}.".lstrip(".")) for name in FIELD_NAMES), where
+            assert any(
+                name.startswith(f"{where}.".lstrip(".")) or name.startswith(f"{where}[].")
+                for name in FIELD_NAMES
+            ), where
+            if is_value_object(held, ABSENT_KEYS):
+                # Module-level absence is checked independently against its raw source below.
+                continue
             queue.extend((value, f"{where}.{key}".lstrip("."), positions) for key, value in held.items())
         elif isinstance(held, list):
+            assert any(name.startswith(f"{where}[].") for name in FIELD_NAMES), where
             queue.extend((value, f"{where}[]", (*positions, i)) for i, value in enumerate(held))
         else:
             raise AssertionError(f"{where} is not a field of the contract")
@@ -70,16 +76,15 @@ def test_the_example_record_holds_only_contract_fields():
     found = leaves(RECORD)
     assert {name for name, _p, _v in found} >= {
         "studies[].nct",
-        "studies[].universe",
         "studies[].posted_outcomes[].classes[].categories[].measurements[].comment",
         "studies[].baseline.measures[].classes[].categories[].measurements[].spread",
         "studies[].participant_flow.periods[].withdrawals[].reason",
         "studies[].adverse_events.events[].counts[].at_risk",
         "studies[].interventions[].drug_class",
     }
-    # Neither example trial carries a coordinate: the PTSD trial is general, and what the CLL trial's
-    # CAT-8015 treats cannot be read (RxNav gives it no ATC class), so its prior-lines pack is unresolved.
-    assert not any(name.startswith("studies[].coordinates.") for name, _p, _v in found)
+    assert not any(
+        name.startswith(("studies[].coordinates.", "studies[].universe", "cohort.")) for name, _p, _v in found
+    )
 
 
 def test_every_plain_value_is_the_registrys_and_every_absence_is_real():
@@ -107,37 +112,11 @@ def test_every_reading_is_a_value_object_of_its_rule():
         field = FIELD_NAMES[name]
         if field.kind != "reading":
             continue
+        if name.startswith("studies[].criteria[]."):
+            continue  # Literal section scalars are proved by their exact source spans below.
         assert is_value_object(value, READING_KEYS), name
         assert value["rule"] == field.source[0], name
         assert value["status"] in landscape.STATUSES, name
-
-
-def test_the_universe_assignments_are_of_the_contracts_sources_and_anchors():
-    universes = example("universes.json")
-    names = {universe.name for universe in contract.UNIVERSES}
-    paths = {name: paths for name, _words, paths in contract.ASSIGNMENT_SOURCES}
-    anchors = {anchor for _u, _s, terms in contract.MESH_ANCHORS for anchor in terms}
-    anchors |= {term for term, _match in contract.ONCOLOGY_TERMS}
-    expected = {
-        "NCT04852770": ["general"],
-        "NCT01030536": ["oncology.heme"],
-        "NCT01827384": ["oncology.solid"],
-    }
-    for nct, assignment in universes.items():
-        assert tuple(assignment) == READING_KEYS
-        assert assignment["rule"] == "universes.assign"
-        result = assignment["result"]
-        assert result["universes"] == expected[nct] and set(result["universes"]) <= names
-        assert [source["source"] for source in result["sources"]] == list(paths)
-        assert result["decided_by"] in paths
-        for source in result["sources"]:
-            held = {value for path in paths[source["source"]] for value in template_values(BODIES[nct], path)}
-            for finding in source["found"]:
-                assert finding["term"] in held and finding["anchor"] in anchors, (nct, finding)
-                assert finding["universe"] in names
-            assert set(source["non_oncology"]) <= held, nct
-    assert RECORD["studies"][0]["universe"] == universes["NCT04852770"]
-    assert RECORD["studies"][1]["universe"] == universes["NCT01030536"]
 
 
 def test_the_safety_example_is_the_sheets_layout_and_the_registrys_counts():
@@ -182,9 +161,39 @@ def test_the_safety_example_is_the_sheets_layout_and_the_registrys_counts():
 def test_the_mcp_page_serves_only_studies_part_fields():
     page = example("mcp_paging.json")
     assert page["part"] in mcp_server.RECORD_PARTS
-    for line in page["studies"]:
-        for key in line:
-            assert ("mcp", "studies") in FIELD_NAMES[f"studies[].{key}"].consumers, key
+    for name, _positions, _value in leaves({"studies": page["studies"]}):
+        assert ("mcp", "studies") in FIELD_NAMES[name].consumers, name
     window = page["page"]
     assert window["returned"] == len(page["studies"]) <= window["limit"]
     assert window["next_offset"] == window["offset"] + window["returned"] < window["total"]
+
+
+def test_literal_sections_are_exact_source_slices_without_clinical_assertions():
+    for study in RECORD["studies"]:
+        source = BODIES[study["nct"]]["protocolSection"]["eligibilityModule"]["eligibilityCriteria"]
+        assert study["eligibility"]["text"] == source
+        assert "".join(section["text"] for section in study["criteria"]) == source
+        for section in study["criteria"]:
+            assert set(section) == {"heading", "number", "text", "source_start", "source_end"}
+            assert source[section["source_start"] : section["source_end"]] == section["text"]
+            assert len(section["text"]) <= 1600
+
+
+def test_independent_manual_anchors_and_module_absences_stay_tied_to_raw_sources():
+    absent, posted = RECORD["studies"]
+    assert absent["nct"] == "NCT04852770" and posted["nct"] == "NCT01030536"
+    assert absent["conditions"] == ["Posttraumatic Stress Disorder", "Covid19"]
+    assert BODIES[absent["nct"]]["protocolSection"]["conditionsModule"]["conditions"] == absent["conditions"]
+    assert "resultsSection" not in BODIES[absent["nct"]]
+    for module in ("posted_outcomes", "baseline", "participant_flow", "adverse_events"):
+        assert absent[module]["status"] == "not_posted"
+    raw = BODIES[posted["nct"]]["resultsSection"]["baselineCharacteristicsModule"]["measures"][0]
+    source_values = raw["classes"][0]["categories"][0]["measurements"]
+    shown = posted["baseline"]["measures"][0]["classes"][0]["categories"][0]["measurements"]
+    assert [(value["value"], value["spread"]) for value in source_values[:2]] == [
+        ("63.4", "8.7"),
+        ("53.7", "16.9"),
+    ]
+    assert [(value["value"], value["spread"]) for value in shown[:2]] == [("63.4", "8.7"), ("53.7", "16.9")]
+    assert source_values[4]["spread"] == shown[4]["spread"] == "NA"
+    assert source_values[4]["comment"] == shown[4]["comment"] == "Data was not calculated"

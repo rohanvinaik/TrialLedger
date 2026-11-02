@@ -133,3 +133,11 @@ def test_verify_needs_the_version_that_wrote_a_folder_under_any_python_and_a_rep
 def test_landscape_exit_2_names_the_cases_a_first_time_user_meets(capsys):
     exits = " ".join(help_text(capsys, "landscape").split("exit status", 1)[1].split())
     assert "already holds another request" in exits and "no run can start" in exits
+
+
+def test_landscape_help_describes_plain_registry_fields_and_separate_readings(capsys):
+    text = " ".join(help_text(capsys, "landscape").split())
+    assert "sources defined once in the field dictionary" in text
+    assert "rule readings and missing values carry their status" in text
+    assert "Registry conditions and MeSH are copied as given" in text
+    assert "every value with its status" not in text

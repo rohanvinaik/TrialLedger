@@ -1,24 +1,8 @@
-"""`trialledger landscape` end to end (add-agent-operation 4.2): operate.run and the command over a fake
-registry and RxNav's own recorded answers (tests/rxnav_request_answers.json, fetched 2026-11-01); nothing here
-touches the network.
+"""Registry reporting through `trialledger landscape`, with recorded service answers and no network.
 
-Positive: a relay run, the agent fetching every URL next.json names and saving each body where it says, writes
-the record a direct run writes, apart from the retrieval's mode and its statement that the drugs' classes
-were not looked up, when no study read has an experimental arm's drug (with one, the drug's classes, axes,
-review flags and what follows from them read not_looked_up in relay mode, by design); the resolved scope is
-written before any study is read and is the record's scope, with RxNav's release asked again after the last
-round and found unchanged; a relay run reads every experimental
-drug's classes and axes not_looked_up and asks RxNav nothing after the pull; a re-run with nothing new
-changes nothing, a run interrupted resumes, and a finished run re-run, in either mode, asks nothing and leaves
-its record byte for byte; failed lookups are set aside and asked again on the next run; a query by number
-accounts for every number asked; the command ends 0 complete, 3 awaiting fetch, 2 refused or stopped and 1
-failed, each with its words, its mode the doctor's when none is given; the workbook's call site writes
-landscape.xlsx, the record's readout, certified by reading it back, staged then renamed, and kept on a re-run.
-Negative: a request that cannot resolve (an empty request, an unknown class, a query too long) stops by name
-with its advice and no registry query is written or sent, and a failed lookup beside such a stop is never
-promised again in that folder; a release changed between the rounds is refused; a registry that keeps
-failing writes no record; a folder holding another request, or a record that differs, is never overwritten;
-a record the schema refuses is not written; a request given both as a file and as flags is refused.
+The real CLI preserves request resolution, retrieval accounting, retries, release consistency, exact saved
+records and workbook staging/resume behavior. Report assertions concern literal registry values and direct
+source/service states; interpretation engine behavior is tested separately from this reporting entry point.
 """
 
 import json
@@ -186,9 +170,9 @@ def test_a_relay_run_writes_the_record_a_direct_run_writes(tmp_path):
         "drug_classes": CLASSES_NOT_LOOKED_UP,
     }
     relayed["manifest"]["retrieval"] = retrieval
+    assert held["manifest"].pop("input_digests") == relayed["manifest"].pop("input_digests")
     assert relayed == held
     assert ids_of(studies) == [study["nct"] for study in held["studies"]]
-    # the scope: written before any study was read, and the record's
     scope = json.loads((tmp_path / "relay" / "resolution.json").read_text(encoding="utf-8"))
     assert held["scope"] == scope and scope["code"] == "resolved"
     assert scope["query"]["filter.advanced"].startswith(PD1_CLAUSE_START)
@@ -199,7 +183,7 @@ def test_a_relay_run_writes_the_record_a_direct_run_writes(tmp_path):
         "rxnav": [],
     }
     assert (tmp_path / "direct" / "manifest.json").read_bytes() == (
-        json.dumps(held["manifest"], ensure_ascii=False, indent=1) + "\n"
+        json.dumps(record(tmp_path / "direct")["manifest"], ensure_ascii=False, indent=1) + "\n"
     ).encode()
 
 
@@ -235,9 +219,9 @@ def test_a_relay_run_reads_every_experimental_drug_not_looked_up(tmp_path):
     assert testamab["drug_class"]["result"] == {"state": "not_looked_up", "classes": [], "resolved_by": ""}
     assert (testamab["drug_class"]["status"], testamab["drug_class"]["note"]) == (
         "unresolved",
-        "not looked up (in relay mode the gathered trials' drug classes are not looked up)",
+        "Drug classes were not looked up for this run",
     )
-    assert testamab["axes"]["note"] == "not_looked_up: own_name_not_looked_up"
+    assert "axes" not in testamab and "modality" not in testamab
     assert not (tmp_path / "relay" / "classes.json").exists()
 
 
@@ -327,6 +311,19 @@ def test_a_finished_run_rerun_asks_nothing_and_leaves_its_record(tmp_path):
         after = files(folder)
         after.pop("next.json", None), before.pop("next.json", None)
         assert after == before
+
+
+def test_a_finished_registry_report_rerun_needs_no_terminology_enrichment(tmp_path):
+    folder = tmp_path / "frozen"
+    studies = [drug_free(results_study())]
+    assert direct(folder, PD1_IN_LUNG, Registry(studies), RxNav()).status == "complete"
+    before = files(folder)
+    rxnav, registry = RxNav(), Registry(studies)
+    assert direct(folder, PD1_IN_LUNG, registry, rxnav).status == "complete"
+    assert registry.requests == [] and rxnav.asked == []
+    assert files(folder) == before
+    assert not (folder / "mesh-lookups.json").exists()
+    assert "indication_lookup_digest" not in record(folder)["manifest"]
 
 
 def test_a_run_interrupted_resumes(tmp_path):
@@ -742,3 +739,62 @@ def test_drug_lookups_whose_release_is_not_stated_still_make_the_record(tmp_path
     _lookup_with_releases(monkeypatch, ("found", "05-Oct-2026"), ("not_stated", ""))
     folder = tmp_path / "direct"
     assert direct(folder, PD1_IN_LUNG, Registry([drug_free(results_study())]), RxNav()).status == "complete"
+
+
+@pytest.mark.parametrize("study_type", ["INTERVENTIONAL", "OBSERVATIONAL", "EXPANDED_ACCESS"])
+def test_cli_and_mcp_preserve_literal_source_without_interpretation(tmp_path, monkeypatch, study_type):
+    """The real reporting command must not need clinical interpretation functions to run."""
+    import sys
+
+    from acceptance import preserve, reviewer
+
+    # Fail existing loaded engines if any other test imported them; do not import them to run reporting.
+    def forbidden(*args, **kwargs):
+        raise AssertionError("An interpretation function executed during registry reporting")
+
+    for module_name, names in {
+        "TrialLedger.reading": ("read_population", "study_view"),
+        "TrialLedger.coherence": ("resolve",),
+        "TrialLedger.universes": ("assign",),
+        "TrialLedger.indications": ("resolve_indication",),
+        "TrialLedger.assertion_compiler": ("compile_criteria",),
+    }.items():
+        module = sys.modules.get(module_name)
+        if module is not None:
+            for name in names:
+                monkeypatch.setattr(module, name, forbidden)
+
+    source = ongoing_study()
+    source["protocolSection"]["designModule"]["studyType"] = study_type
+    text = "Eligibility source text: ECOG 0 OR 1; prior treatment is neither inferred nor excluded."
+    source["protocolSection"]["eligibilityModule"]["eligibilityCriteria"] = text
+    source["protocolSection"]["eligibilityModule"]["studyPopulation"] = (
+        "Clinic source population\nRetained verbatim."
+    )
+    folder = tmp_path / "report"
+    nct = ids_of([source])[0]
+    assert command(folder, "--ids", nct, "--mode", "direct", registry=Registry([source])) == 0
+    held = record(folder)
+    [study] = held["studies"]
+    assert study["study_type"] == study_type
+    assert study["eligibility"]["text"] == text
+    assert study["study_population"] == "Clinic source population\nRetained verbatim."
+    assert not {"universes", "coverage", "cohort", "recurring_criteria"}.intersection(held)
+    assert not {
+        "universe",
+        "coordinates",
+        "scoped_assertions",
+        "assertion_compilation",
+        "key_criteria",
+        "biomarker_mentions",
+        "open_questions",
+    }.intersection(study)
+    ask = reviewer.mcp_ask(tmp_path, "report")
+    assert ask("/studies/0/eligibility/text") == ("ok", text)
+    assert ask("/studies/0/study_population") == ("ok", "Clinic source population\nRetained verbatim.")
+    assert preserve.record_findings({nct: source}, held) == []
+    changed = json.loads(json.dumps(held))
+    changed["studies"][0]["eligibility"]["text"] = "A shortened substitute"
+    assert any(
+        f.field == "studies[].eligibility.text" for f in preserve.record_findings({nct: source}, changed)
+    )

@@ -1,19 +1,8 @@
-"""The reviewer's tasks (acceptance/reviewer.py), exercised on the contract's examples.
+"""Reporting review tasks checked against saved registry evidence and actual MCP responses.
 
-The tasks run on tests/fixtures/contract/examples/record.json as a run folder's landscape.json, with no
-workbook, beside the registry bodies it was cut from (real run folders are checked in acceptance/runs); the
-address task asks a stand-in record tool, and the real one (`trialledger mcp`'s record tool, part address)
-through the Model Context Protocol.
-
-Positive: each task names its destination, finds its evidence at the record's addresses (the eligibility
-criteria and their roles, the enrolled and analysed populations, a result's population and denominator per
-group, the adverse-event period, threshold and counts, each reading's words in the registry text), and names
-what stays unresolved (no criteria itemized, no baseline posted, the baseline analysing fewer than enrolled,
-no workbook to check the destination, no biomarker mention). A record tool that answers each address with the
-record's value passes.
-Negative: a reading whose words the registry does not hold, more affected than at risk, a criterion with no
-reading, a group without a denominator, an "NA" without its reason, an answer that differs from the record's
-value, a refused address, and a workbook missing the destination's rows, are each named.
+Positive cases retain exact source spans, group-specific populations/denominators, reporting periods and
+record addresses. Negative cases plant altered source words/offsets, missing denominator or workbook rows,
+count inconsistencies and changed/refused MCP answers. No clinical-role or biomarker reading is expected.
 """
 
 import copy
@@ -21,16 +10,22 @@ import json
 import shutil
 from pathlib import Path
 
-import pytest
-
 from acceptance import preserve, reviewer
 from acceptance.reviewer import Run
 from TrialLedger import contract
 
 FIXTURES = Path(__file__).resolve().parent / "fixtures" / "contract"
+
+
 EXAMPLES = FIXTURES / "examples"
+
+
 BODIES = preserve.bodies_in([FIXTURES / "studies-ids-3.json", FIXTURES / "studies-osimertinib-subset.json"])
+
+
 RECORD = json.loads((EXAMPLES / "record.json").read_text(encoding="utf-8"))
+
+
 NO_WORKBOOK = "no workbook in the run folder"
 
 
@@ -60,72 +55,65 @@ def test_every_task_names_its_destination_and_says_no_workbook_was_checked():
         (contract.REVIEW, contract.BASELINE),
         (contract.POSTED,),
         (contract.SAFETY, contract.GROUPS),
-        (contract.BIOMARKERS, contract.READINGS),
     ]
     for result in results:
         assert result.task and any(w.startswith(NO_WORKBOOK) for w in whats(result.unresolved))
         assert result.findings == []
 
 
-# ── eligibility ─────────────────────────────────────────────────────────────────────────────────────────
+CRITERION_TEXT = BODIES["NCT01030536"]["protocolSection"]["eligibilityModule"]["eligibilityCriteria"]
 
 
-CRITERION_TEXT = (
-    "Written informed consent and Health Insurance Portability and Accountability Act (HIPAA) authorization"
-)
-
-
-def with_criteria(readings):
+def with_criteria():
     record = copy.deepcopy(RECORD)
-    role = {"status": "known", "rule": "criteria.criterion_role", "words": ["Inclusion Criteria:"]}
-    role |= {"result": "inclusion", "note": ""}
+    original = BODIES["NCT01030536"]["protocolSection"]["eligibilityModule"]["eligibilityCriteria"]
+    start = original.index(CRITERION_TEXT)
     record["studies"][1]["criteria"] = [
         {
-            "heading": "Inclusion Criteria",
-            "number": "1",
+            "heading": "unsectioned",
+            "number": 1,
             "text": CRITERION_TEXT,
-            "role": role,
-            "readings": readings,
+            "source_start": start,
+            "source_end": start + len(CRITERION_TEXT),
         }
     ]
     return record
 
 
-def test_the_example_has_no_itemized_criteria_and_says_so():
+def test_the_source_example_sections_are_exact_and_visible():
     result = reviewer.eligibility_across(run())
-    assert result.evidence == []
-    assert [(u.nct, u.address) for u in result.unresolved[1:]] == [
-        ("NCT04852770", "/studies/0/criteria"),
-        ("NCT01030536", "/studies/1/criteria"),
-    ]
+    assert result.evidence and result.findings == []
+    for item in result.evidence:
+        heading, text, start, end = item.value
+        original = BODIES[item.nct]["protocolSection"]["eligibilityModule"]["eligibilityCriteria"]
+        assert text == original[start:end]
+        assert heading in {"unsectioned", "inclusion", "exclusion"}
 
 
-def test_a_criterion_is_compared_with_its_role_and_a_criterion_unread_is_named():
-    result = reviewer.eligibility_across(run(with_criteria(None)), ["NCT01030536"])
-    assert [(e.address, e.value[2]) for e in result.evidence] == [("/studies/1/criteria/0", CRITERION_TEXT)]
-    assert "No reading produced" in whats(result.unresolved)
+def test_an_eligibility_section_is_compared_as_exact_source_text():
+    result = reviewer.eligibility_across(run(with_criteria()), ["NCT01030536"])
+    assert [(e.address, e.value[1]) for e in result.evidence] == [("/studies/1/criteria/0", CRITERION_TEXT)]
+    assert result.findings == []
 
 
 def test_a_criterion_missing_from_the_eligibility_sheet_is_found():
     sheets = {contract.ELIGIBILITY: ([contract.ADDRESS], [])}
-    result = reviewer.eligibility_across(run(with_criteria(None), sheets), ["NCT01030536"])
+    result = reviewer.eligibility_across(run(with_criteria(), sheets), ["NCT01030536"])
     assert [(f.address, f.value) for f in result.findings] == [
         ("/studies/1/criteria/0", contract.ELIGIBILITY)
     ]
-
-
-# ── eligible and enrolled ───────────────────────────────────────────────────────────────────────────────
 
 
 def test_the_enrolled_and_analysed_populations_are_told_apart():
     result = reviewer.eligible_vs_enrolled(run())
     evidence = {(e.nct, e.what): e.value for e in result.evidence}
     assert evidence[("NCT01030536", "enrolled")] == [23, "ACTUAL"]
-    assert evidence[("NCT01030536", "analysed, BG000")] == "7"
-    assert ("NCT04852770", "no baseline characteristics posted") in {
-        (u.nct, u.what) for u in result.unresolved
-    }
-    assert "the baseline analysed 13 of 23 enrolled" in whats(result.unresolved)
+    assert evidence[("NCT01030536", "baseline denominator, BG000")] == ["7", "Participants"]
+    assert any(
+        u.nct == "NCT04852770" and u.what.startswith("no baseline characteristics posted")
+        for u in result.unresolved
+    )
+    assert not any("the baseline analysed" in u.what for u in result.unresolved)
 
 
 def test_a_complete_baseline_analysing_every_enrolled_participant_is_not_unresolved():
@@ -143,9 +131,6 @@ def test_an_enrollment_no_trial_review_row_shows_is_found():
     assert "no Trial review row shows the enrollment" not in whats(result.findings)
 
 
-# ── a result's population and denominator ───────────────────────────────────────────────────────────────
-
-
 def test_a_results_population_and_each_groups_denominator_are_found():
     result = reviewer.result_population(run())
     assert ("NCT04852770", "no results posted") in {(u.nct, u.what) for u in result.unresolved}
@@ -159,15 +144,12 @@ def test_a_results_population_and_each_groups_denominator_are_found():
 def test_a_group_without_a_denominator_and_an_na_without_its_reason_are_unresolved():
     record = copy.deepcopy(RECORD)
     measure = record["studies"][1]["posted_outcomes"][0]
-    measure["denominators"][0]["counts"].pop()
+    missing_group = measure["denominators"][0]["counts"].pop()["group"]
     del measure["classes"][0]["categories"][0]["measurements"][0]["comment"]
     result = reviewer.result_population(run(record))
-    assert {"no denominator for group OG001", "NA without the registry's reason"} <= set(
+    assert {f"no denominator for group {missing_group}", "NA without the registry's reason"} <= set(
         whats(result.unresolved)
     )
-
-
-# ── safety within its period ────────────────────────────────────────────────────────────────────────────
 
 
 def test_safety_is_read_within_its_period():
@@ -192,85 +174,18 @@ def test_more_affected_than_at_risk_and_a_count_not_reported_are_named():
 
 
 def test_a_safety_row_and_a_group_row_missing_from_the_workbook_are_found():
-    sheets = {contract.SAFETY: ([contract.ADDRESS], [["/studies/1/adverse_events/events/0"]])}
-    sheets[contract.GROUPS] = ([contract.ADDRESS], [["/studies/1/adverse_events/groups/0"]])
-    result = reviewer.safety_in_period(run(sheets=sheets), ["NCT01030536"])
-    assert [(f.address, f.value) for f in result.findings] == [
-        ("/studies/1/adverse_events/groups/1", contract.GROUPS)
-    ]
-
-
-# ── readings traced to their words ──────────────────────────────────────────────────────────────────────
-
-
-def test_every_reading_of_the_examples_is_traced_to_the_registrys_words():
-    result = reviewer.biomarker_trace(run())
-    traced = {(e.nct, e.address) for e in result.evidence}
-    assert traced == {
-        ("NCT04852770", "/studies/0/universe"),
-        ("NCT01030536", "/studies/1/universe"),
-        ("NCT01030536", "/studies/1/interventions/0/drug_class"),
-    }
-    assert "no biomarker mention in the record" in whats(result.unresolved)
-    assert result.findings == []
-
-
-def test_a_biomarker_mention_is_traced_and_one_the_registry_does_not_hold_is_found():
-    record = copy.deepcopy(RECORD)
-    mention = {"status": "known", "rule": "banks.biomarker_status", "words": ["B-cell CLL"]}
-    record["studies"][1]["biomarker_mentions"] = [mention | {"result": {}, "note": ""}]
-    result = reviewer.biomarker_trace(run(record), ["NCT01030536"])
-    assert "/studies/1/biomarker_mentions/0" in {e.address for e in result.evidence}
-    record["studies"][1]["biomarker_mentions"][0]["words"] = ["EGFR exon 19 deletion"]
-    result = reviewer.biomarker_trace(run(record), ["NCT01030536"])
-    assert [(f.address, f.value) for f in result.findings] == [
-        ("/studies/1/biomarker_mentions/0", ["quotation", "untraced", ["EGFR exon 19 deletion"]])
-    ]
-
-
-def test_a_reading_with_altered_words_is_found_and_one_without_a_body_is_unresolved():
-    record = copy.deepcopy(RECORD)
-    record["studies"][0]["universe"]["words"][0] = "Stress Disorder"
-    result = reviewer.biomarker_trace(run(record))
-    assert result.findings == []  # a word within a registry term is traced
-    record["studies"][0]["universe"]["words"][0] = "Depressive Disorder"
-    result = reviewer.biomarker_trace(run(record))
-    assert [(f.nct, f.value) for f in result.findings] == [
-        ("NCT04852770", ["quotation", "untraced", ["Depressive Disorder"]])
-    ]
-    result = reviewer.biomarker_trace(run(bodies={}))
-    assert "registry body not given: readings not traced" in whats(result.unresolved)
-
-
-def test_a_reading_with_no_readings_row_is_found():
+    events = RECORD["studies"][1]["adverse_events"]
+    event_addresses = [f"/studies/1/adverse_events/events/{i}" for i in range(len(events["events"]))]
+    group_addresses = [f"/studies/1/adverse_events/groups/{i}" for i in range(len(events["groups"]))]
     sheets = {
-        contract.READINGS: ([contract.ADDRESS], [["/studies/0/universe"]]),
-        contract.BIOMARKERS: ([], []),
+        contract.SAFETY: ([contract.ADDRESS], [[a] for a in event_addresses[:-1]]),
+        contract.GROUPS: ([contract.ADDRESS], [[a] for a in group_addresses[:-1]]),
     }
-    result = reviewer.biomarker_trace(run(sheets=sheets), ["NCT04852770"])
-    assert result.findings == []
-    result = reviewer.biomarker_trace(run(sheets=sheets), ["NCT01030536"])
-    assert {f.address for f in result.findings} == {
-        "/studies/1/universe",
-        "/studies/1/interventions/0/drug_class",
+    result = reviewer.safety_in_period(run(sheets=sheets), ["NCT01030536"])
+    assert {(f.address, f.value) for f in result.findings} == {
+        (event_addresses[-1], contract.SAFETY),
+        (group_addresses[-1], contract.GROUPS),
     }
-
-
-@pytest.mark.parametrize(
-    ("words", "texts", "expected"),
-    [
-        (["EGFR"], ["EGFR mutation"], ("traced", [])),
-        ([], ["EGFR"], ("no_words", [])),
-        (["EGFR", "ALK"], ["EGFR mutation"], ("untraced", ["ALK"])),
-        (["egfr"], ["EGFR"], ("untraced", ["egfr"])),
-        (["EGFR"], [], ("untraced", ["EGFR"])),
-    ],
-)
-def test_words_traced(words, texts, expected):
-    assert reviewer.words_traced(words, texts) == expected
-
-
-# ── a row's address asked of the record tool ────────────────────────────────────────────────────────────
 
 
 def faithful(record):
@@ -278,26 +193,33 @@ def faithful(record):
 
 
 def test_a_record_tool_answering_each_address_with_the_records_value_passes():
-    result = reviewer.address_answered(run(), faithful(RECORD))
-    assert result.findings == [] and len(result.evidence) == 17
+    result = reviewer.address_answered(run(), faithful(RECORD), bound=1000)
+    assert result.findings == [] and result.evidence
     assert "/studies/1/adverse_events/events/0" in {e.address for e in result.evidence}
 
 
 def test_an_answer_off_the_record_or_refused_is_found():
+    addresses = [
+        "/studies/1/posted_outcomes/0/classes/0/categories/0/measurements/0",
+        "/studies/1/adverse_events/events/0",
+    ]
+    sheets = {
+        contract.POSTED: ([contract.ADDRESS], [[addresses[0]]]),
+        contract.SAFETY: ([contract.ADDRESS], [[addresses[1]]]),
+    }
+
     def off(address):
-        value = copy.deepcopy(resolved_value(RECORD, address))
-        if address.endswith("measurements/0"):
-            value["value"] = "7"
-        if address.endswith("events/0"):
+        if address == addresses[1]:
             return "refused", {"error": "outside_record"}
+        value = copy.deepcopy(resolved_value(RECORD, address))
+        value["value"] = "7"
         return "ok", value
 
-    result = reviewer.address_answered(run(), off)
-    assert sorted(whats(result.findings)) == [
+    result = reviewer.address_answered(run(sheets=sheets), off)
+    assert {f.what for f in result.findings} == {
         reviewer.FINDING_WORDS["not_answered"],
         reviewer.FINDING_WORDS["answered_differently"],
-        reviewer.FINDING_WORDS["answered_differently"],
-    ]
+    }
 
 
 def test_the_rows_asked_are_the_workbooks_when_there_is_one():
@@ -314,35 +236,6 @@ def test_the_real_record_tool_answers_each_address(tmp_path):
     assert result.findings == [] and result.evidence
 
 
-def test_a_criterion_whose_readings_are_empty_is_named_with_its_text():
-    result = reviewer.eligibility_across(run(with_criteria([])), ["NCT01030536"])
-    unread = [u for u in result.unresolved if u.what == reviewer.NO_READING]
-    assert [(u.address, u.value) for u in unread] == [("/studies/1/criteria/0", CRITERION_TEXT)]
-    typed = [{"status": "known", "rule": "banks.type_criterion", "words": ["informed consent"], "result": {}}]
-    result = reviewer.eligibility_across(run(with_criteria(typed)), ["NCT01030536"])
-    assert reviewer.NO_READING not in whats(result.unresolved)
-
-
-def with_key_criterion(text, role):
-    record = with_criteria([])
-    reading = {"categories": ["Prior therapy and line"], "at": "criteria/0", "readings": []}
-    key = {"text": text, "role": role, "reading": reading, "rule": "landscape.key_criteria"}
-    record["studies"][1]["key_criteria"] = [key]
-    return record
-
-
-def test_a_key_criterion_is_its_criterions_text_and_role():
-    result = reviewer.eligibility_across(
-        run(with_key_criterion(CRITERION_TEXT, "inclusion")), ["NCT01030536"]
-    )
-    assert result.findings == []
-    for text, role in ((CRITERION_TEXT, "exclusion"), ("Written informed consent", "inclusion")):
-        result = reviewer.eligibility_across(run(with_key_criterion(text, role)), ["NCT01030536"])
-        assert [(f.address, f.what) for f in result.findings] == [
-            ("/studies/1/key_criteria/0", reviewer.FINDING_WORDS["key_criterion_differs"])
-        ]
-
-
 def test_a_module_the_record_says_is_not_posted_is_unresolved_not_read():
     record = copy.deepcopy(RECORD)
     not_posted = {"status": "not_posted", "note": "no results posted"}
@@ -357,89 +250,62 @@ def test_a_module_the_record_says_is_not_posted_is_unresolved_not_read():
     assert not any(e.address.endswith("time_frame") for e in safety.evidence)
 
 
-# ── each reading by the kind of warrant it rests on ─────────────────────────────────────────────────────
+def test_altered_section_words_or_offsets_are_source_disagreements():
+    record = with_criteria()
+    record["studies"][1]["criteria"][0]["text"] = "A substituted clinical interpretation"
+    assert reviewer.eligibility_across(run(record), ["NCT01030536"]).findings
+    record = with_criteria()
+    record["studies"][1]["criteria"][0]["source_start"] += 1
+    assert reviewer.eligibility_across(run(record), ["NCT01030536"]).findings
 
 
-@pytest.mark.parametrize(
-    ("arguments", "expected"),
-    [
-        (("inclusion", "inclusion", [], "* Age 18 or over"), "heading"),
-        (("inclusion", "exclusion", [], "* Age 18 or over"), "unwarranted"),
-        (
-            ("inclusion", "exclusion", ["ineligible"], "* Patients who are ineligible for surgery"),
-            "own_words",
-        ),
-        (("inclusion", "exclusion", ["Ineligible"], "* patients who are ineligible"), "own_words"),
-        (("exclusion", "unresolved", ["are permitted"], "* Steroids are permitted"), "own_words"),
-        (("inclusion", "exclusion", ["not eligible"], "* Age 18 or over"), "untraced"),
-    ],
-)
-def test_role_warrant(arguments, expected):
-    assert reviewer.role_warrant(*arguments) == expected
+def test_result_evidence_keeps_measure_and_class_denominators_separately():
+    record = copy.deepcopy(RECORD)
+    measure = record["studies"][1]["posted_outcomes"][0]
+    measure["classes"][0]["denominators"] = [
+        {"units": "Participants", "counts": [{"group": "OG000", "value": "5"}]}
+    ]
+    evidence = {item.address: item.value for item in reviewer.result_population(run(record)).evidence}
+    base = "/studies/1/posted_outcomes/0"
+    assert evidence[base + "/denominators/0/counts/0"] == ["7", "Participants"]
+    assert evidence[base + "/classes/0/denominators/0/counts/0"] == ["5", "Participants"]
 
 
-@pytest.mark.parametrize(
-    ("has_results", "status", "expected"),
-    [
-        (True, "known", "flag_agrees"),
-        (False, "not_posted", "flag_agrees"),
-        (True, "not_posted", "flag_disagrees"),
-        (False, "known", "flag_disagrees"),
-        (None, "known", "no_flag"),
-        ("true", "known", "no_flag"),
-    ],
-)
-def test_results_warrant(has_results, status, expected):
-    assert reviewer.results_warrant(has_results, status) == expected
+def test_baseline_measure_population_and_lower_denominators_remain_distinct():
+    record = copy.deepcopy(RECORD)
+    measure = record["studies"][1]["baseline"]["measures"][0]
+    measure["population"] = "Participants with an age measurement"
+    measure["denominators"] = [{"units": "Participants", "counts": [{"group": "BG000", "value": "5"}]}]
+    measure["classes"][0]["denominators"] = [
+        {"units": "Participants", "counts": [{"group": "BG000", "value": "3"}]}
+    ]
+    result = reviewer.eligible_vs_enrolled(run(record))
+    evidence = {item.address: item.value for item in result.evidence}
+    base = "/studies/1/baseline/measures/0"
+    assert evidence[base + "/population"] == "Participants with an age measurement"
+    assert evidence[base + "/denominators/0/counts/0"] == ["5", "Participants"]
+    assert evidence[base + "/classes/0/denominators/0/counts/0"] == ["3", "Participants"]
+    assert evidence["/studies/1/baseline/denominators/0/counts/0"] == ["7", "Participants"]
+    assert not any("the baseline analysed" in item.what for item in result.unresolved)
 
 
-@pytest.mark.parametrize(
-    ("known", "interpolated", "expected"),
-    [
-        (["0", "1", "2", "3+"], ["0", "1", "2", "3+"], "narrows"),
-        (["adjuvant", "advanced_first_line"], ["advanced_first_line"], "narrows"),
-        (["advanced_first_line"], ["adjuvant", "advanced_first_line"], "widens"),
-        ({"EGFR": ["mutated"]}, {"EGFR": ["mutated"]}, "narrows"),
-        ({}, {"ALK": ["rearranged"]}, "widens"),
-        (None, ["0"], "not_comparable"),
-        (["0"], {"EGFR": []}, "not_comparable"),
-    ],
-)
-def test_narrowing_warrant(known, interpolated, expected):
-    assert reviewer.narrowing_warrant(known, interpolated) == expected
-
-
-def test_each_reading_is_checked_by_its_own_kind_of_warrant():
-    record = with_criteria([])
-    role = {
-        "status": "known",
-        "rule": "criteria.criterion_role",
-        "words": [],
-        "result": "inclusion",
-        "note": "",
-    }
-    record["studies"][1]["criteria"][0] |= {"heading": "inclusion", "role": role}
-    record["studies"][1]["results_posted"] = {
-        "status": "known",
-        "rule": "ledger.results_state",
-        "words": [],
-        "result": "results posted",
-        "note": "",
-    }
-    lines = {"status": "unresolved", "rule": "coherence.resolve", "words": [], "note": "no default relation"}
-    record["studies"][1]["coordinates"] = {
-        "prior_advanced_lines": lines | {"result": ["0", "1", "2", "3+"], "note": "unnarrowed"},
-        "prior_advanced_lines_interpolated": lines | {"result": ["0", "1"]},
-    }
-    result = reviewer.biomarker_trace(run(record), ["NCT01030536"])
-    kinds = {e.what.split(":")[0] for e in result.evidence}
-    assert kinds == {"quotation", "structural", "derivation"}
+def test_a_dropped_source_passage_cannot_hide_behind_the_full_eligibility_field():
+    record = with_criteria()
+    text = CRITERION_TEXT
+    record["studies"][1]["criteria"] = [
+        {"heading": "unsectioned", "number": 1, "text": text[:10], "source_start": 0, "source_end": 10},
+        {
+            "heading": "unsectioned",
+            "number": 2,
+            "text": text[20:],
+            "source_start": 20,
+            "source_end": len(text),
+        },
+    ]
+    result = reviewer.eligibility_across(run(record), ["NCT01030536"])
+    assert any(item.what == "source eligibility passages are not contiguous" for item in result.findings)
+    record["studies"][1]["criteria"].pop()
+    result = reviewer.eligibility_across(run(record), ["NCT01030536"])
     assert any(
-        u.what.startswith("derivation: studies[].coordinates.prior_advanced_lines: unnarrowed")
-        for u in result.unresolved
+        item.what == "source eligibility passages do not cover the original text" for item in result.findings
     )
-    assert result.findings == []
-    record["studies"][1]["coordinates"]["prior_advanced_lines_interpolated"]["result"] = ["0", "1", "4+"]
-    record["studies"][1]["criteria"][0]["role"]["result"] = "exclusion"
-    result = reviewer.biomarker_trace(run(record), ["NCT01030536"])
-    assert sorted(f.value[1] for f in result.findings) == ["unwarranted", "widens"]

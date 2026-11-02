@@ -16,7 +16,8 @@ again, a finished run run again, a mechanism stopped by name, trials by number w
 in relay mode through next.json; `mcp`, an MCP client's session (the handshake, tools/list, the errors a
 client can meet, a relay run through landscape and save_fetch, the record's every part and the scope read
 back, a search previewed through scope and then gathered directly); `sample`, `audit` and `pilot`; `verify`
-of a folder whose workbook is unreadable; and a pull the server keeps failing.
+of a folder whose workbook is unreadable; a pull the server keeps failing; and the real development
+conformance command, under the same call recorder.
 """
 
 import ast
@@ -73,15 +74,24 @@ def near_miss_study(nct: str, ecog: str) -> dict:
         "Inclusion Criteria:\n\n* Stage IV non-small cell lung cancer\n"
         "* No prior systemic therapy for advanced or metastatic disease\n"
         # a record that says its exclusions are abbreviated: the coverage markers and their flag are reached
-        f"* ECOG performance status {ecog}\n\nKey Exclusion Criteria:\n\n* Active autoimmune disease\n"
+        f"* Participants must have ECOG performance status {ecog}\n"
+        "* Participants must have hemoglobin >= 9 g/dL\n"
+        "\nCohort A only:\n\n* Participants must have ECOG performance status 0-1 "
+        "or ECOG performance status 0-2\n\n"
+        "All participants:\n\n"
+        "Key Exclusion Criteria:\n\n* Active autoimmune disease\n"
     )
     protocol["armsInterventionsModule"] = {
         "armGroups": [{"label": "A", "type": "EXPERIMENTAL", "interventionNames": ["Drug: Placebo"]}],
         "interventions": [{"type": "DRUG", "name": "Placebo"}],
     }
-    # a lung-cancer treatment trial: its universe (solid-tumour oncology, from the free-text condition) admits
-    # the setting, prior lines and gene selection, so the record reads them and the workbook shows them
-    protocol["conditionsModule"] = {"conditions": ["Non-Small Cell Lung Cancer"]}
+    # An explicit synthetic canonical condition resolves only through its recorded MeSH response.
+    # This changes no other registry fixture and authorizes no title-fragment or category inference.
+    protocol["conditionsModule"] = {"conditions": ["Carcinoma, Non-Small-Cell Lung"]}
+    study.setdefault("derivedSection", {})["conditionBrowseModule"] = {
+        "meshes": [{"id": "D002289", "term": "Carcinoma, Non-Small-Cell Lung"}],
+        "ancestors": [],
+    }
     protocol.setdefault("designModule", {}).setdefault("designInfo", {})["primaryPurpose"] = "TREATMENT"
     return study
 
@@ -223,6 +233,22 @@ def landscape_runs(scratch: Path, studies: list[dict], rxclass, sandbox) -> dict
     codes = {"landscape_lookup_failed": direct("landscape-direct", *flags)}
     codes["landscape"] = direct("landscape-direct", *flags)
     codes["landscape_again"] = direct("landscape-direct", *flags)
+    codes["verify_landscape"] = cli.main(["verify", str(scratch / "landscape-direct")])
+    invalid_json = scratch / "landscape-nonfinite"
+    shutil.copytree(scratch / "landscape-direct", invalid_json)
+    (invalid_json / "landscape.json").write_text('{"value":NaN}')
+    codes["verify_landscape_nonfinite"] = cli.main(["verify", str(invalid_json)])
+    completed = json.loads((scratch / "landscape-direct" / "landscape.json").read_text())
+    sources = {study["protocolSection"]["identificationModule"]["nctId"]: study for study in studies}
+    for reported in completed["studies"]:
+        original = sources[reported["nct"]]
+        assert (
+            reported["eligibility"]["text"]
+            == original["protocolSection"]["eligibilityModule"]["eligibilityCriteria"]
+        )
+        assert not {"universe", "coordinates", "scoped_assertions", "assertion_compilation"}.intersection(
+            reported
+        )
     codes["landscape_stopped"] = direct("landscape-mechanism", "--mechanism", "PD-1", "--mode", "direct")
     # A class with subclasses (the FDA's Kinase Inhibitor: HER2, EGFR, JAK ... below it), so each subclass's
     # own members are asked and every member attributed to the subclass it comes through.

@@ -1,19 +1,9 @@
-"""The reviewer's tasks, each a check over a run folder (refine-landscape-record design §6 and task 5.2).
+"""Independent checks of registry reporting tasks over record, workbook and MCP data.
 
-A clinical reviewer opens a run's workbook to do six things; each is checked here as that reviewer would do
-it, from the record (landscape.json), the workbook read back (landscape.xlsx) and the assistant's record
-tool, all read as data or called as black boxes (acceptance/preserve.py reads the files; `mcp_ask` speaks
-the Model Context Protocol to `trialledger mcp`'s answer function). Each task names its expected destination
-(the sheets a reviewer turns to), the evidence it found there (each item with its address in the record) and
-its unresolved cases (what the reviewer cannot settle from the run, in words), beside its findings (what the
-run gets wrong, by name):
-
-- `eligibility_across`: compare eligibility across selected trials (Eligibility);
-- `eligible_vs_enrolled`: tell the eligible from the enrolled population (Trial review, Baseline);
-- `result_population`: a result's analysis population and denominator (Posted results);
-- `safety_in_period`: safety within its reporting period (Safety, Groups);
-- `biomarker_trace`: a biomarker, and every reading, traced to its source words (Biomarkers, Readings);
-- `address_answered`: a workbook row's address asked of the record tool returns the row's value (MCP).
+Four tasks preserve the evidence boundaries: exact eligibility source sections; registered population,
+enrollment and baseline denominators kept separate; posted-result populations and scoped denominators;
+and adverse-event periods with group-specific counts. Workbook row addresses are checked against the
+record tool. These checks do not supply clinical interpretations, recommendations or an inferred population.
 """
 
 from __future__ import annotations
@@ -32,9 +22,7 @@ BOOK_NAME = "landscape.xlsx"
 # The record tool's part that answers an address, and its argument (unit F's interface, 2026-11-01).
 ADDRESS_PART = "address"
 # A criterion the banks typed nothing in (design §2).
-NO_READING = preserve.EMPTY_READING_WORDS["studies[].criteria[].readings"]
 # The title the registry gives the baseline's group of all participants.
-BASELINE_TOTAL = "Total"
 # A paged answer is read page by page up to this many pages.
 PAGE_BOUND = 1000
 
@@ -87,19 +75,6 @@ def load_run(folder: Path, bodies: dict[str, dict[str, Any]] | None = None) -> R
 
 
 # ── the pure decision ───────────────────────────────────────────────────────────────────────────────────
-
-
-def words_traced(words: list[str], texts: list[str]) -> tuple[str, list[str]]:
-    """Whether a reading's words are the registry's own (pure — pinned).
-
-    `words` are the words a reading names; `texts` the registry text at the paths it read. Codes: traced
-    (every word appears, exactly, in some text); no_words (the reading names none); untraced (with the words
-    no text holds).
-    """
-    if not words:
-        return "no_words", []
-    missing = [word for word in words if not any(word in text for text in texts)]
-    return ("untraced", missing) if missing else ("traced", [])
 
 
 # ── helpers over the record and the workbook ────────────────────────────────────────────────────────────
@@ -159,72 +134,68 @@ def _words(value: Any) -> str:
 
 
 def eligibility_across(run: Run, ncts: list[str] | None = None) -> TaskResult:
-    """Compare eligibility across the selected trials: each criterion, its role and its labelled readings.
-
-    Unresolved: a trial whose criteria were not itemized (with the coverage reading's reason); a criterion
-    with no reading, its readings empty ("No reading produced", which does not mean it carries no clinical
-    information), named with its address and its text. Findings: a key criterion whose text or role is not
-    that of the criterion its reading names (`reading.at`)."""
+    """Compare exact source eligibility sections, without assigning a clinical role or reading."""
     destination = (contract.ELIGIBILITY,)
     evidence, unresolved, findings = [], _no_workbook(run, destination), []
     for i, study in _studies(run, ncts):
         nct = str(study.get("nct"))
         criteria = study.get("criteria")
         if not isinstance(criteria, list) or not criteria:
-            eligibility = study.get("eligibility") if isinstance(study.get("eligibility"), dict) else {}
-            coverage = eligibility.get("coverage")
-            why = _words(coverage) if coverage is not None else "the record holds no itemized criteria"
-            unresolved.append(Item(nct, f"/studies/{i}/criteria", f"criteria not itemized ({why})"))
+            unresolved.append(Item(nct, f"/studies/{i}/criteria", "no eligibility sections stated"))
             continue
+        original = (
+            run.bodies.get(nct, {})
+            .get("protocolSection", {})
+            .get("eligibilityModule", {})
+            .get("eligibilityCriteria")
+        )
         addresses = []
-        for j, criterion in enumerate(criteria):
+        source_end = 0
+        for j, section in enumerate(criteria):
             address = f"/studies/{i}/criteria/{j}"
             addresses.append(address)
-            if not isinstance(criterion, dict):
+            if not isinstance(section, dict):
+                findings.append(Item(nct, address, "eligibility section is not an object"))
                 continue
-            role = criterion.get("role")
-            text = criterion.get("text")
-            evidence.append(Item(nct, address, "criterion", [criterion.get("heading"), _words(role), text]))
-            readings = criterion.get("readings")
-            if readings in (None, []) or (is_value_object(readings) and not readings.get("result")):
-                unresolved.append(Item(nct, address, NO_READING, text))
+            start, end, text = section.get("source_start"), section.get("source_end"), section.get("text")
+            evidence.append(
+                Item(nct, address, "source eligibility section", [section.get("heading"), text, start, end])
+            )
+            if original is None:
+                unresolved.append(Item(nct, address, "registry body not given: source section not checked"))
+            elif not (
+                type(start) is int
+                and type(end) is int
+                and 0 <= start <= end <= len(original)
+                and original[start:end] == text
+            ):
+                findings.append(
+                    Item(nct, address, "eligibility section differs from its exact source span", text)
+                )
+            if isinstance(original, str):
+                if start != source_end:
+                    findings.append(Item(nct, address, "source eligibility passages are not contiguous"))
+                if type(end) is int:
+                    source_end = end
+        if isinstance(original, str) and source_end != len(original):
+            findings.append(
+                Item(
+                    nct,
+                    f"/studies/{i}/criteria",
+                    "source eligibility passages do not cover the original text",
+                )
+            )
         findings += _listed(run, contract.ELIGIBILITY, nct, addresses)
-        findings += _key_criteria_findings(nct, i, study, criteria)
     return TaskResult(
-        "compare eligibility across the selected trials", destination, evidence, unresolved, findings
+        "compare source eligibility across selected trials", destination, evidence, unresolved, findings
     )
 
 
-def _key_criteria_findings(nct: str, i: int, study: dict[str, Any], criteria: list[Any]) -> list[Item]:
-    """Each key criterion against the criterion its reading names: the same text and the same role."""
-    findings = []
-    for k, key in enumerate(study.get("key_criteria") or []):
-        if not isinstance(key, dict):
-            continue
-        reading = key.get("reading") if isinstance(key.get("reading"), dict) else {}
-        at = reading.get("at")
-        place = at.split("/")[-1] if isinstance(at, str) else ""
-        source = criteria[int(place)] if place.isdigit() and int(place) < len(criteria) else None
-        address = f"/studies/{i}/key_criteria/{k}"
-        if not isinstance(source, dict):
-            findings.append(Item(nct, address, FINDING_WORDS["key_criterion_differs"], ["no criterion", at]))
-            continue
-        role = source.get("role")
-        role = role.get("result") if is_value_object(role) else role
-        if key.get("text") != source.get("text") or key.get("role") != role:
-            held = [key.get("text"), key.get("role")]
-            findings.append(Item(nct, address, FINDING_WORDS["key_criterion_differs"], held))
-    return findings
-
-
 def eligible_vs_enrolled(run: Run, ncts: list[str] | None = None) -> TaskResult:
-    """Tell the eligible population (the registry's eligibility: ages, sex, healthy volunteers) from the
-    enrolled one (the enrollment) and the analysed one (the baseline's population and denominators).
+    """Keep the registered eligible population, enrollment and baseline populations separate.
 
-    Unresolved: an anticipated enrollment; no baseline posted; a baseline denominator total that differs from
-    the enrollment (the reviewer reads why in the baseline's population description). The total is the
-    registry's own "Total" group's count at the module's first denominator where the baseline lists one, else
-    the groups' counts summed."""
+    Every denominator retains its stated group and scope. No group counts are summed to infer a unique
+    enrolled or analysed population; overlapping groups cannot establish such a total."""
     destination = (contract.REVIEW, contract.BASELINE)
     evidence, unresolved, findings = [], _no_workbook(run, destination), []
     review = _rows(run, contract.REVIEW)
@@ -251,7 +222,11 @@ def eligible_vs_enrolled(run: Run, ncts: list[str] | None = None) -> TaskResult:
         if run.sheets is not None and _plain(count):
             mine = [row for row in review if row.get("Trial ID") == nct]
             if not any(
-                isinstance(row.get("Value"), (str, int)) and shows_text(str(row.get("Value")), str(count))
+                isinstance(row.get("Value"), (str, int))
+                and (
+                    shows_text(str(row.get("Value")), str(count))
+                    or (type(count) is int and shows_text(str(row.get("Value")), f"{count:,}"))
+                )
                 for row in mine
             ):
                 findings.append(
@@ -279,27 +254,44 @@ def eligible_vs_enrolled(run: Run, ncts: list[str] | None = None) -> TaskResult:
                 _words(baseline.get("population")),
             )
         )
-        totals = {g.get("id") for g in baseline.get("groups") or [] if g.get("title") == BASELINE_TOTAL}
-        counts: dict[str, int] = {}
-        whole = True
         for d, denominator in enumerate(baseline.get("denominators") or []):
             for c, entry in enumerate(denominator.get("counts") or []):
                 address = f"/studies/{i}/baseline/denominators/{d}/counts/{c}"
-                evidence.append(Item(nct, address, f"analysed, {entry.get('group')}", entry.get("value")))
-                value = entry.get("value")
-                whole = whole and isinstance(value, str) and value.isdigit()
-                if d == 0 and isinstance(value, str) and value.isdigit():
-                    counts[entry.get("group")] = int(value)
-        held_totals = [counts[group] for group in totals if group in counts]
-        total = held_totals[0] if held_totals else sum(counts.values())
-        if whole and isinstance(count, int) and total != count:
-            unresolved.append(
-                Item(
-                    nct,
-                    f"/studies/{i}/baseline/denominators",
-                    f"the baseline analysed {total} of {count} enrolled",
+                evidence.append(
+                    Item(
+                        nct,
+                        address,
+                        f"baseline denominator, {entry.get('group')}",
+                        [entry.get("value"), denominator.get("units")],
+                    )
                 )
-            )
+        for m, measure in enumerate(baseline.get("measures") or []):
+            measure_base = f"/studies/{i}/baseline/measures/{m}"
+            if _plain(measure.get("population")):
+                evidence.append(
+                    Item(
+                        nct,
+                        f"{measure_base}/population",
+                        "baseline measure population",
+                        measure["population"],
+                    )
+                )
+            holders = [("measure", measure, measure_base)]
+            holders += [
+                ("class", klass, f"{measure_base}/classes/{c}")
+                for c, klass in enumerate(measure.get("classes") or [])
+            ]
+            for scope, holder, location in holders:
+                for d, denominator in enumerate(holder.get("denominators") or []):
+                    for count_index, count_entry in enumerate(denominator.get("counts") or []):
+                        evidence.append(
+                            Item(
+                                nct,
+                                f"{location}/denominators/{d}/counts/{count_index}",
+                                f"baseline {scope} denominator, {count_entry.get('group')}",
+                                [count_entry.get("value"), denominator.get("units")],
+                            )
+                        )
         findings += _listed(run, contract.BASELINE, nct, _nodes(i, study, contract.BASELINE))
     return TaskResult(
         "tell the eligible from the enrolled population", destination, evidence, unresolved, findings
@@ -356,6 +348,21 @@ def result_population(run: Run, ncts: list[str] | None = None) -> TaskResult:
                                     [value.get("value"), denominator],
                                 )
                             )
+                        for scope, holder, location in (
+                            ("measure", measure, base),
+                            ("class", klass, f"{base}/classes/{c}"),
+                        ):
+                            for d, stated in enumerate(holder.get("denominators") or []):
+                                for count_index, count_entry in enumerate(stated.get("counts") or []):
+                                    if count_entry.get("group") == group:
+                                        evidence.append(
+                                            Item(
+                                                nct,
+                                                f"{location}/denominators/{d}/counts/{count_index}",
+                                                f"{scope} denominator, {group}",
+                                                [count_entry.get("value"), stated.get("units")],
+                                            )
+                                        )
                         if value.get("value") == "NA" and not _plain(value.get("comment")):
                             unresolved.append(Item(nct, address, "NA without the registry's reason"))
         findings += _listed(run, contract.POSTED, nct, addresses)
@@ -447,172 +454,7 @@ def _exceeds(nct: str, address: str, affected: Any, at_risk: Any) -> list[Item]:
     return []
 
 
-def _readings(study: dict[str, Any], i: int) -> list[tuple[str, str, dict[str, Any]]]:
-    """Every reading of a study: (its field, its address, its value object), lists followed."""
-    found = []
-    for field in contract.FIELDS:
-        if field.kind != "reading" or not field.name.startswith("studies[]."):
-            continue
-        nodes = [(f"/studies/{i}", study)]
-        for segment in field.name.split(".")[1:]:
-            name = segment.removesuffix("[]")
-            following = []
-            for pointer, node in nodes:
-                if not isinstance(node, dict) or name not in node:
-                    continue
-                value = node[name]
-                if segment.endswith("[]"):
-                    following += [
-                        (f"{pointer}/{name}/{k}", item)
-                        for k, item in enumerate(value if isinstance(value, list) else [])
-                    ]
-                else:
-                    following.append((f"{pointer}/{name}", value))
-            nodes = following
-        for pointer, value in nodes:
-            items = value if isinstance(value, list) else [value]
-            for k, item in enumerate(items):
-                if is_value_object(item):
-                    found.append((field.name, pointer if item is value else f"{pointer}/{k}", item))
-    return found
-
-
-def biomarker_trace(run: Run, ncts: list[str] | None = None) -> TaskResult:
-    """Trace each biomarker mention, and every other reading, to what warrants it, by the kind of warrant its
-    field rests on (WARRANT_KINDS):
-
-    - quotation: the words a reading cites must occur, exactly, in the registry text at the paths its field
-      reads (contract.FIELDS' `reads`). "Traced" means only that the cited words occur there, never that the
-      clinical interpretation of them is right;
-    - structural: a criterion's role rests on its heading, or on its own words where they overrule it (each
-      in the criterion's text); results posted rests on the registry's hasResults flag;
-    - derivation: a coordinate's known level is derived from typed readings (their cited words in the
-      eligibility text; none, and it is unnarrowed), its interpolated level within its known level; an open
-      question is derived from an unresolved reading it names (an intervention of the trial).
-
-    Unresolved: a trial with no biomarker mention; a quotation reading that cites no words; a coordinate no
-    typed reading narrows; a trial whose registry body was not given. Findings: each warrant that does not
-    hold, and (with a workbook) a reading with no row in its destination. Evidence names its warrant kind and
-    what holds it."""
-    destination = (contract.BIOMARKERS, contract.READINGS)
-    evidence, unresolved, findings = [], _no_workbook(run, destination), []
-    readings_listed = _addressed(run, contract.READINGS)
-    biomarkers_listed = _addressed(run, contract.BIOMARKERS)
-    for i, study in _studies(run, ncts):
-        nct = str(study.get("nct"))
-        body = run.bodies.get(nct)
-        readings = _readings(study, i)
-        if not any(name == "studies[].biomarker_mentions" for name, _a, _v in readings):
-            unresolved.append(
-                Item(nct, f"/studies/{i}/biomarker_mentions", "no biomarker mention in the record")
-            )
-        if body is None:
-            unresolved.append(Item(nct, f"/studies/{i}", "registry body not given: readings not traced"))
-            continue
-        for name, address, value in readings:
-            kind = warrant_kind(name)
-            code, detail = _warrant(kind, name, address, value, study, body)
-            what = f"{kind}: {name}: {code}"
-            if code in WARRANTED:
-                evidence.append(Item(nct, address, what, detail))
-            elif code in ("no_words", "unnarrowed"):
-                unresolved.append(Item(nct, address, what, _words(value)))
-            else:
-                findings.append(Item(nct, address, FINDING_WORDS["unwarranted"], [kind, code, detail]))
-            if run.sheets is not None:
-                sheet = contract.BIOMARKERS if name == "studies[].biomarker_mentions" else contract.READINGS
-                listed = biomarkers_listed if sheet == contract.BIOMARKERS else readings_listed
-                if address not in listed and not any(str(a).startswith(address + "/") for a in listed):
-                    findings.append(Item(nct, address, FINDING_WORDS["not_in_destination"], sheet))
-    return TaskResult("trace a biomarker to its source words", destination, evidence, unresolved, findings)
-
-
 # The kind of warrant each reading's field rests on; a field not named rests on quotation.
-WARRANT_KINDS = {
-    "studies[].criteria[].role": "structural",
-    "studies[].results_posted": "structural",
-    "studies[].open_questions": "derivation",
-}
-WARRANTED = ("traced", "heading", "own_words", "flag_agrees", "narrows", "derived")
-
-
-def warrant_kind(field_name: str) -> str:
-    """quotation, structural or derivation (a coordinate is derived from typed readings)."""
-    if field_name.startswith("studies[].coordinates."):
-        return "derivation"
-    return WARRANT_KINDS.get(field_name, "quotation")
-
-
-def role_warrant(heading: str, result: str, words: list[str], text: str) -> str:
-    """A criterion's role against what warrants it (pure — pinned): heading (no words cited, the role is
-    its heading's); own_words (its own cited words, each in the criterion's text, overrule the heading or
-    leave it unresolved); untraced (a cited word not in the text); unwarranted (no words cited, yet the role
-    is not its heading's)."""
-    if words:
-        return "own_words" if all(word.lower() in text.lower() for word in words) else "untraced"
-    return "heading" if result == heading else "unwarranted"
-
-
-def results_warrant(has_results: object, status: str) -> str:
-    """Results posted against the registry's own flag (pure — pinned): flag_agrees (hasResults true and the
-    reading known, or false and not posted); flag_disagrees; no_flag (the body holds no boolean flag)."""
-    if not isinstance(has_results, bool):
-        return "no_flag"
-    return "flag_agrees" if (status == "known") == has_results else "flag_disagrees"
-
-
-def narrowing_warrant(known: object, interpolated: object) -> str:
-    """A coordinate's interpolated level against its known level (pure — pinned): narrows (every value the
-    interpolated level leaves is one the known level leaves: a default relation only removes values);
-    widens (it leaves a value the known level had removed); not_comparable (the levels are not lists of
-    values, or not maps of genes to values)."""
-    if isinstance(known, list) and isinstance(interpolated, list):
-        return "narrows" if set(map(str, interpolated)) <= set(map(str, known)) else "widens"
-    if isinstance(known, dict) and isinstance(interpolated, dict):
-        return "narrows" if set(interpolated) <= set(known) else "widens"
-    return "not_comparable"
-
-
-def _warrant(kind: str, name: str, address: str, value: dict, study: dict, body: dict) -> tuple[str, Any]:
-    """A reading's warrant checked by its kind: (its code, what holds it)."""
-    words = [w for w in value.get("words") or [] if isinstance(w, str)]
-    if kind == "quotation":
-        texts = [
-            t
-            for path in contract.FIELD_NAMES[name].reads
-            for t in _strings(contract.template_values(body, path))
-        ]
-        code, missing = words_traced(words, texts)
-        return code, missing or words
-    if name == "studies[].criteria[].role":
-        place = address.rsplit("/", 2)[-2]
-        criterion = (study.get("criteria") or [])[int(place)] if place.isdigit() else {}
-        heading, text = criterion.get("heading"), criterion.get("text")
-        code = role_warrant(str(heading), str(value.get("result")), words, str(text))
-        return code, [heading, value.get("result"), words]
-    if name == "studies[].results_posted":
-        return results_warrant(body.get("hasResults"), str(value.get("status"))), body.get("hasResults")
-    if name == "studies[].open_questions":
-        element = (
-            (value.get("result") or {}).get("element") if isinstance(value.get("result"), dict) else None
-        )
-        names = _strings(contract.template_values(body, f"{contract.AI}.interventions[].name"))
-        return ("derived" if element in names else "underived"), element
-    coordinate = name.removeprefix("studies[].coordinates.")
-    base = coordinate.removesuffix("_interpolated").removesuffix("_proposed")
-    if coordinate == base:
-        if not words:
-            return "unnarrowed", value.get("note")
-        texts = _strings(contract.template_values(body, f"{contract.EL}.eligibilityCriteria"))
-        code, missing = words_traced(words, texts)
-        return ("derived" if code == "traced" else code), missing or words
-    known = (study.get("coordinates") or {}).get(base)
-    known_result = known.get("result") if is_value_object(known) else None
-    return narrowing_warrant(known_result, value.get("result")), [known_result, value.get("result")]
-
-
-def _strings(values: list[Any]) -> list[str]:
-    return [value for value in values if isinstance(value, str)]
 
 
 def address_answered(run: Run, ask: Callable[[str], tuple[str, Any]], bound: int = 200) -> TaskResult:
@@ -701,7 +543,7 @@ def mcp_ask(root: Path, run_name: str) -> Callable[[str], tuple[str, Any]]:
     return ask
 
 
-TASKS = (eligibility_across, eligible_vs_enrolled, result_population, safety_in_period, biomarker_trace)
+TASKS = (eligibility_across, eligible_vs_enrolled, result_population, safety_in_period)
 
 
 def review(run: Run, ask: Callable[[str], tuple[str, Any]] | None = None) -> list[TaskResult]:

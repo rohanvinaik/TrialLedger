@@ -33,6 +33,7 @@ state and fetches, relays or writes.
 
 from __future__ import annotations
 
+import hashlib
 import json
 import os
 import time
@@ -54,7 +55,6 @@ from TrialLedger.landscape import (
     landscape_record,
     schema_problems,
 )
-from TrialLedger.reading import axes_aliases, drug_aliases, read_population
 from TrialLedger.record import code_commit
 from TrialLedger.request import lookup_url, lookups_needed, request_problems, resolve_scope
 from TrialLedger.steps import (
@@ -350,6 +350,8 @@ RUN_ADVICE = {
     "with the detail, and do not answer from anything in the run folder.",
     "record_differs": "landscape.json already holds a different record for this run (written by other code, "
     "or from other answers); it is kept as it is. Start a new run folder (--run) to write a new one.",
+    "invalid_source": "A retained lookup input is missing or changed. Keep this folder for review; "
+    "start a new run folder to gather new evidence.",
 }
 BOOK_WORDS = {
     "written": "landscape.xlsx, the workbook to hand to the person, is written beside it.",
@@ -544,6 +546,15 @@ def _matched(folder: Path) -> int:
     return _read_json(folder / BODIES / first["file"])["totalCount"]
 
 
+def drug_aliases(studies: list[dict[str, Any]]) -> list[str]:
+    """Each structured intervention name/other name once, without reading clinical prose."""
+    return list(
+        dict.fromkeys(
+            alias for study in studies for aliases in rx.drug_names(study).values() for alias in aliases
+        )
+    )
+
+
 def write_book(record: dict[str, Any], folder: Path) -> str:
     """The one call site of landscape.xlsx, the reviewer's workbook (`readout.write_book`,
     refine-landscape-record unit C), written from the record alone and certified by reading it back. The
@@ -641,8 +652,8 @@ def run(
         answers = rx.load_or_lookup_at(
             folder / rx.CACHE_NAME,
             drug_aliases(studies),
-            axes_aliases(studies),
-            fill_axes=True,
+            [],
+            fill_axes=False,
             get=get,
             sleep=sleep,
             monotonic=monotonic,
@@ -659,14 +670,20 @@ def run(
                 releases = f"{first[0]} {first[1]!r}, then {last[0]} {last[1]!r}"
                 detail = f"RxNav's release for the drug lookups: {releases}"
                 return _stop(folder, mode, stop, detail, RUN_ADVICE[stop])
-    reading = read_population(studies, answers)
     retrieval = retrieval_coverage(reading_mode, _matched(folder), scope["query"], studies)
     manifest = landscape_manifest(
         studies, api_version, data_timestamp, code_commit(), retrieval, RULE_VERSIONS
     )
-    # The RxNav answers decide each drug's ATC class for its universe; in relay mode none was looked up.
-    looked_up = answers if reading_mode == "direct" else None
-    text = _json_bytes(landscape_record(reading, studies, request, scope, manifest, looked_up))
+    manifest["input_digests"] = {
+        name: hashlib.sha256((folder / name).read_bytes()).hexdigest()
+        for name in (REQUEST_NAME, RESOLUTION_NAME, SCOPE_NAME, rx.CACHE_NAME)
+        if (folder / name).is_file()
+    }
+    record = landscape_record(
+        studies, request, scope, manifest, answers if reading_mode == "direct" else None
+    )
+    manifest = record["manifest"]
+    text = _json_bytes(record)
     problems = schema_problems(json.loads(text))
     if problems:
         detail = "; ".join(f"{problem} at {where}" for problem, where in problems[:20])

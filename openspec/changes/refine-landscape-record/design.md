@@ -1,372 +1,122 @@
-# Design: refine-landscape-record
+# Design: source → record → readable workbook and MCP
 
-Settled 2026-11-01 from two analyses of a real run (an inventory of the record against the registry's API, and
-a study of Regenesis's universe-specific rule import), Claude's reading and Codex's independent one (GPT-6.1 Sol,
-model-only), which agreed on the structure; Codex's additions are adopted where marked. A further review the
-same evening (an agent that traced the reporting path, ran the MCP and operation tests and opened the saved
-workbook) added the search preview, the MCP migration, the compact index, the treatment-context limit, the
-safety table's columns, preservation tests and two scope boundaries; each is marked "(review)". The founder's
-direction is in the proposal.
+## 1. Reporting boundary
 
-## 0. Order and the frozen contract (settled before any unit starts)
+Layer one gathers registry facts and strictly warranted direct derivations. It does not infer clinical meaning,
+rank criteria, select biomarkers, assign indication or setting, propose mechanisms, compare trials or design a
+protocol. Those operations belong to the existing layer-two work. A clinical interpretation compiler, external
+source parser or semantic-conformance framework is not a prerequisite for this report.
 
-The parallel build holds together only if every unit builds against the same contract, on the same base.
+The reporting path assembles retained API fields directly. `landscape_record(studies, request, scope,
+manifest, answers=None)` takes source studies, not an analysis view. Schema 4 has only `schema_version`,
+`request`, `scope`, `manifest`, `statuses`, `envelope`, `fields` and `studies`; there is no legacy compatibility
+scaffold. It does not invoke `read_population`, coherence,
+universe/indication assignment or the assertion compiler. Ordinary reports do not fetch MeSH enrichment.
+Search resolution may use named vocabulary sources to construct the requested query; this does not authorize
+clinical interpretation of the studies it retrieves. Direct RxNav response evidence may be retained as sourced
+lookup evidence, without inferred memberships or automatic clinical conclusions.
 
-1. **Base.** The finished branches land first, in this order: the push gate's secret-scan fix; the acceptance
-   harness (add-agent-operation 7.1); relation-kinds (add-scoped-reasoning 1.1-1.2), which already moves
-   landscape.json to schema 2 and changes the coordinate output the readout shows. This change is **schema 3**.
-2. **The contract commit**, on that base, before any unit: the schema-3 field table as code
-   (`TrialLedger/contract.py`), one row per field: its name, its API path (or the rule that produces it), plain
-   value or reading, and its consumers (a workbook sheet and column, the assistant through the MCP `record`
-   tool, or a named layer-two reader). Two tests make the founder's two principles gates:
-   - **no false silence:** every API path in the table resolves in real saved bodies (the 3-trial and 49-trial
-     baseline runs, and the API's own field metadata, kept as fixtures); a value the registry holds that the
-     record does not carry is a failing test, never a status a reader sees;
-   - **nothing nobody uses:** every field names at least one consumer, and every consumer it names exists
-     (checked like `tests/test_wiring.py`'s declared table).
-   Presence is not preservation (review): units A and C add an independent check of registry value → record
-   value → displayed cell, including nested populations, category-level denominators, comments and precision,
-   and it must fail on planted defects (a measurement assigned to the wrong group, a dropped nested field).
-   The universe table (section 3) and the display dictionaries (section 4) are part of the same commit.
-3. **Units**, in parallel worktrees, against the contract commit (section 6).
+## 2. Record and source contract
 
-## 1. The record (schema 3)
+Registry copies are plain values in schema 4. `fields` defines each selected field's source path, label, type and
+consumer once. Each study has its ID, registry link and digest. A direct derivation names its rule, version and
+source inputs. Missing or malformed inputs have named states; neither becomes false, zero, none or a successful
+reading. Proposed and interpolated clinical readings are absent from ordinary reporting output.
 
-| Component | Contract |
-|---|---|
-| Registry values | Plain JSON values, the registry's precision, units and wording kept (a registry "NA" stays "NA", with its comment) |
-| Field dictionary | Field → API path template, type, label, definition; once per record (`fields`, served by MCP) |
-| Study source | NCT ID, registry link, the study's digest; once per study |
-| Reading | Rule and version, the words read, the result, its status, its scope; one object per reading |
-| Not simply known | A value object with its status (not stated, not posted, not applicable, unresolved, proposed, interpolated) and its note |
+Preserve clinically useful structured fields and exact prose: identity/status/dates, design, population,
+eligibility, arms/cohorts and interventions, registered outcomes, posted results/statistical analyses, baseline,
+participant flow, adverse events, limitations, publications and documents. Results keep the registry's nesting;
+group identities are local to their module. Keep actual/anticipated enrollment separate, and keep every population,
+denominator, unit, time frame, reporting threshold, NA reason, precision and explicit zero with its value.
+Registered outcomes remain plans, not observations. Linked publications are not asserted to contain findings the
+report has not read.
 
-"Not stated" means the registry record holds no value, and only that. A field the registry's API does not have
-(an adverse event's grade, a visit schedule, a criterion's cohort, a biomarker's assay, specimen or timing,
-planning assumptions) has no column; where a reader would look for it, the sheet says once that the registry
-does not report it (Safety: "The registry's adverse-event tables report no grade").
+Cross-type context includes observational model, time perspective, patient-registry flag, target follow-up,
+specimen retention/description, study population and sampling method; and expanded-access type flags, availability,
+linked record/status and the source-defined count of studies referencing an access record. Multiple boolean flags,
+false and missing remain distinct. Preserve a present historical field even if it is optional or unusual for the
+study type. Inapplicability is source/metadata-bound, never inferred merely from a missing key.
 
-**Added** (all present in the saved bodies; API paths in the contract table): brief title, acronym, official
-title, organization's study ID, secondary IDs, NCT aliases; design (allocation, intervention model, primary
-purpose, masking and who is masked, the model and masking descriptions); why stopped; first posted, results first
-posted, last update; lead sponsor's class, collaborators; location countries and site count; overall officials;
-DMC; brief summary and detailed description (Codex: it carries treatment schedules, rescue rules and design
-rationale no structured field holds); condition and intervention MeSH terms and ancestors; participant flow;
-baseline characteristics; results' population description, denominators, comments, reporting status and
-statistical analyses; adverse events' frequency threshold, description and all-cause mortality comment;
-available IPD and protocol links; limitations and caveats.
+Eligible direct derivations are limited to source-defined labels, exact links and counts, results/source-presence
+states, and lossless eligibility segmentation under unambiguous source headings/bullets. Segmentation retains
+literal wording, ordering, bullets and source locations and reconstructs the original text; ambiguous headings leave passages unsectioned. Physical source lines and bounded continuations remain
+exact substrings with offsets; joining them reconstructs every character. A heading is a source label, not a clinical polarity or cohort inference.
+An empty source list establishes only an empty listing, not zero harms or an absent clinical condition. A missing
+or malformed collection is distinguished from an explicit empty list at its exact source pointer.
 
-Study type is kept (review): the request accepts observational studies, so the record says which each study is.
+## 3. Workbook and assistant
 
-**Removed:** per-value source and link copies; exploratory measures (an exact copy of other outcomes);
-standard_language (per-criterion copies of the cohort tiers); interventions' per-alias RxNav request histories
-(kept in classes.json); the declared type matrix (coverage.types, the same every run); the eligibility's internal itemizing state;
-duplicate results flags; empty bookkeeping in the scope. Not wanted: submit, QC and disposition dates, facility
-names and contacts, responsible party, miscellaneous info, keywords, IPD-sharing process details, export and
-violation flags, document file sizes.
+The workbook starts with Read me, Trial index and Trial review, then Eligibility, Registered outcomes, Posted
+results, Statistical analyses, Baseline, Participant flow, Groups, Safety and Column dictionary. Any direct-rule
+listing states its source and purpose. Do not expose inference sheets, key-criterion rankings, inferred setting,
+biomarker recognition or cross-trial findings as reporting. Clinical text remains available in the source fields
+and exact eligibility/outcome listings rather than being selectively recognized.
 
-**Shapes** (Codex): each results-type module keeps the registry's nesting and keys its groups within the module;
-groups of different modules are never matched by title.
+Use readable registry labels, filters, stable row identities, wrapped prose and links. Keep the index compact;
+long text belongs in the dossier/listings. Present observational cohorts and access programs in their own terms,
+without forcing experimental-arm or interventional design labels. Avoid irrelevant columns where a field cannot
+apply; informative absence is stated in words. Mixed-type workbooks must remain readable.
 
-| Module | Shape |
-|---|---|
-| Posted outcomes | measure (title, type, population, unit, param and dispersion type, time frame, reporting status) → denominators (group, scope, count) → classes → categories → per-group measurement (value, spread or limits, comment) |
-| Analyses | per measure: compared groups, method, parameter and value, CI, p-value, non-inferiority type, comments |
-| Baseline | population description, denominators, measures → classes → categories → per-group measurement |
-| Participant flow | groups, recruitment and pre-assignment details, periods → milestones and withdrawal reasons → per-group counts |
-| Adverse events | reporting period, threshold, vocabulary, assessment type, description once; groups with totals; serious and other tables → term (organ system, term, vocabulary) → per-group affected, at risk, events |
+Every listing row has a JSON-pointer address into the record. MCP returns the same source-scoped value, with
+bounded paging. Workbook cells must preserve type and value; text beginning with `=` remains text. Values Excel
+cannot hold exactly name the reason and their record location rather than being truncated or rounded. Continue
+oversized listings on numbered sheets; never drop rows. Read back the workbook before release.
 
-Registered outcomes and posted measures stay separate; a link between them is made only by a named rule.
+## 4. Retrieval and reproducibility
 
-**Addresses** (review): every workbook row carries its address in the record (a JSON pointer into
-landscape.json, in the row's key column), so a person can ask the assistant about that row and the assistant
-reads exactly that value.
+Preview resolves and fixes the search before studies are fetched. Retrieval accounts for every page and requested
+ID, checks counts, duplicates and snapshot consistency, and resumes direct or exact-body relay fetches. A failed
+or incomplete retrieval does not become a completed evidence record. Relay verifies shape/counts/identities, not
+values against the live service; retain response bodies unchanged.
 
-## 2. Readings
+`verify` replays retained inputs offline under the writing derivation code and checks the record and workbook,
+including formatting and links. Missing/changed evidence and incompatible code are named, never repaired by the
+verifier. Reproducibility proves derivation from retained sources, not registry truth or clinical correctness.
 
-Readings keep their rules and words. A criterion's typed reading is shown with a label ("Reading: prior
-treatment mentioned"), never a slug; an untyped criterion reads "No reading produced" (which does not mean the
-criterion carries no clinical information). The drug class says why it is unresolved in words (the name is not
-in RxNorm; the lookup failed; not looked up in relay mode); the registry's intervention MeSH is shown beside it,
-labelled as the registry's term, never as a drug class.
+## 5. Acceptance across study types
 
-## 3. Universes (the Regenesis port) — superseded by §9 on 2026-11-02; kept for the record
+Acceptance verifies literal encoding, readable presentation and access to the clinical-development source fields.
+It does not require a clinical interpretation, external-source synthesis, or an answer beyond what the registry
+states. Existing fixed baselines and inspected failures are regressions, not coverage claims.
 
-From Regenesis: a universe is a declared, versioned record naming the rule packs it owns; rules outside a
-universe are never applied. Regenesis has no assignment step (its caller names the universe); TrialLedger's is new.
+Acceptance follows the registry schema and the declared field/display contract, not an arbitrary set of trial
+numbers. Exercise each selected field shape, relevant enum and study-type applicability branch, with independent
+source expectations and source-preserving perturbations. The record writer must not depend on trial ID,
+diagnosis vocabulary or recognized clinical phrases. A source-present value wins over a generic type policy.
 
-**Membership is not permission** (Codex): assignment gives a trial its candidate domains; each pack then states
-what it requires before its coordinates are computed (the setting and line-of-therapy pack requires a treatment
-purpose and an oncology domain; a trial in cancer patients treating depression or preventing nausea gets none).
+Use actual interventional, observational and expanded-access records to check readable population/design context,
+including a mixed workbook; retain their source versions and the findings. Synthetic boundary cases establish
+specified encoding/display behavior, not clinical interpretation accuracy. An interpretation-accuracy study,
+population sampling campaign or comprehensive combination ledger is not a reporting-delivery prerequisite.
+State the tested source shapes and any unsupported fields honestly; finite examples do not establish every
+clinical situation. Source inspection is for direct value comparison, not fitting clinical readings.
 
-**Assignment** is a pure function over three named sources, each recorded with what it found:
-1. condition MeSH terms and their ancestors (the registry's derived browse module);
-2. the free-text conditions and the titles, matched against a declared vocabulary (13 of the 49 osimertinib
-   trials and the solid-tumour basket NCT01827384 carry no condition MeSH; some conditions are not diseases:
-   "Progression Free Survival", "Anticancer Treatment");
-3. for a treatment trial, its interventions' MeSH ancestors (an antineoplastic agent).
+Required checklist:
 
-| Case | Record | Trial index and dossier |
-|---|---|---|
-| One domain | its packs' coordinates computed | universe and the source that decided it |
-| Several | the union, each reading tagged with its pack | each universe named; a conflicting reading shown as such |
-| None (a non-oncology domain positively identified) | general; domain coordinates absent | "General: no domain readings apply (…why)" |
-| Sources disagree, or none identifies any domain | scope unresolved, with each source's finding | "Scope unresolved — <the disagreement>", never silently absent |
+- [ ] Map complete relevant metadata modules to record fields/consumers or reviewed exclusions, including paths
+  outside the original contract. Check observational and access fields, not only oncology/interventional examples.
+- [ ] Independently compare exact source → record → displayed workbook → MCP/address values and source scopes,
+  including homogeneous-type and mixed-type workbooks. A present selected value lost anywhere fails.
+- [ ] Exercise actual/anticipated and child/adult populations, cohort descriptions, one/many groups, posted/partly
+  posted/no results, explicit empty/absent/malformed collections, zeros/false/NA, precision and nested denominators.
+- [ ] Check identity-preserving reordering/renaming with local references updated, unrelated-study insertion,
+  varying cardinality and one-field perturbations. Only affected evidence/presentation changes.
+- [ ] Pair intact cases with planted omissions, wrong group/population, false-as-missing, precision/text loss,
+  misleading zero/absence, bad labels and broken addresses; accept intact and reject each defect.
+- [ ] Visually review sparse/long/mixed-type/many-group workbooks. Publish per-type/combination encoding,
+  presentation and access findings, source limits, unexercised cases and unsupported fields separately.
+- [ ] Run the relevant local tests, two-sign verification for changed pure decisions, offline verify, release
+  installation and fresh-sandbox assistant procedure on the exact candidate. Record performance on frozen inputs.
 
-The boundary (review): "general" needs positive evidence of a non-oncology domain (a condition MeSH term outside
-Neoplasms, or a recognized non-oncology condition) and no oncology signal; a study whose sources yield no usable
-condition at all (no MeSH, and conditions that are not diseases, such as "Progression Free Survival") is scope
-unresolved, never general. Fixtures distinguish the two.
+The colleague's questions guide which evidence is easy to find: population/eligibility, registered treatment
+history as prose, outcomes/timing, biomarker/imaging/biopsy text as written, protocol/statistical statements if
+registered, observed results, safety and verbatim wording. The report does not determine current care, select
+key criteria, interpret biomarker roles, infer grades, set planning targets or authorize language reuse. Those
+are layer-two questions. Reporting acceptance asks whether their available source material was preserved and is
+readable/retrievable, not whether an interpretation engine can answer them.
 
-**Treatment context** (review): the setting and line read here are the trial's setting *as registered*, never
-its place on today's standard of care, which needs dated, sourced context the registry does not hold; the
-workbook says so wherever setting or line appears. The split of setting into disease extent, treatment history
-and treatment role (add-scoped-reasoning, open) is consumed when it lands; until then the Read me names the
-limitation.
+## 6. Completion claim
 
-Universes in this change: `oncology.solid` (setting, prior advanced lines, gene selection, the NSCLC relations,
-each pack declaring its own requirements), `oncology.heme` (prior lines only), `general` (none). Packs live in the
-existing versioned fragment loader (`semantics/loader.py`), which already refuses a missing pack; a pack's
-`universes` key is written into its canonical form only when present, so the NSCLC fragment's registry version
-is unchanged until it declares one. Recognition stays universal (B3): an explicit "adjuvant" or mutation mention
-outside an oncology universe is listed with its words and rule; it establishes no setting and no selection.
-
-The acceptance run on a lung-cancer search asserts that every trial whose condition sources fall under
-neoplasms is in an oncology universe, each exception named in the report.
-
-## 4. The workbook
-
-Conventions kept: header row, filter, frozen identifying columns, stable row keys, Arial, wrapped prose, print
-setup, deterministic bytes, every cell read back against its derivation. Changed (Codex): a cell is blank only
-where its column cannot apply to its row by construction; a value that could exist and does not is written in
-words. Codes are shown through versioned display dictionaries (Phase 1/Phase 2, Participants, Systematic
-assessment), sourced to the API's enum definitions.
-
-| Sheet | Row | Holds |
-|---|---|---|
-| Read me | topic | first the search in plain words and what it found; then how to read the workbook, status meanings, what the registry does not report, the treatment-context limit; last the technical provenance (retrieval date, API version, mode and what relaying checks, code version); no raw JSON |
-| Trial index | trial | compact (review): linked ID, acronym or short title, sponsor, phase, status, conditions, universe, design in short words, enrollment, start, primary endpoint (short), results posted (date) or not, publications (count, linked), countries, last update, dossier link; setting and line only where its pack applies; an unresolved value as a short label ("Unresolved"), its reason in the dossier; no cell sized by prose |
-| Trial review | trial × fact | in section bands: identity, purpose and design, the brief summary, population and eligibility summary, arms and interventions with drug class, outcomes (one row each), results and safety availability with totals, flow and baseline availability, publications and documents, open questions with their reasons; each band links to its listing; detail lives in the listings |
-| Eligibility | criterion | heading, role, number, text, labelled readings |
-| Registered outcomes | outcome | category, measure, description, time frame, endpoint and time-point readings |
-| Posted results | measure × class × category × group | population, denominator, value, spread or CI, unit, comment; long by group (units, categories and denominators differ per measure) |
-| Statistical analyses | analysis | measure, compared groups, method, parameter, CI, p-value, non-inferiority |
-| Baseline | measure × class × category × group | denominator, value, spread, unit |
-| Participant flow | period × milestone or reason × group | count, comment |
-| Groups | trial × module × group | title, description, totals |
-| Safety | trial × table × term | organ system, term, then for each group G1…Gn of that trial's adverse-event module three numeric cells (affected, at risk, events), n being the most groups any trial in the run has; a trial with fewer groups leaves the extra columns blank by construction; a stat the registry does not give for a group reads "Not reported"; listed zeros kept as 0; the Groups sheet names G1…Gn per trial; the reporting period, threshold and method once per trial; unlisted events never read as zeros |
-| Biomarkers | mention | words, role, rule |
-| Across-trial findings | supported finding | numerator, denominator, population, limits; below the signal minimum one line, "too few trials to assess" |
-| Readings | rule reading | trial, field, the words read, the rule and version, the result |
-| Column dictionary | sheet × column | the API path or the rule, once |
-
-A listing too long for one sheet continues on numbered sheets of the same columns; no row is dropped.
-
-## 4a. What the reviewer asked for, item by item (2026-11-01)
-
-The founder's list of what each study's report must hold (paraphrased): the patient population; the key
-inclusion and exclusion criteria; the trial's line of therapy on the current standard-of-care ladder; the
-clinical outcome measures with the time points assessed; the biomarkers with their time points; the anticipated
-efficacy threshold; the safety signals, with adverse-event grades (what a new trial must do better than); the
-exploratory biomarkers, imaging and biopsies; and standard protocol language reusable across studies in an
-indication. This change answers each from the registry, or names the source a later change adds:
-
-| Item | This change | Later (add-evidence-sources) |
-|---|---|---|
-| Population | eligibility, population fields; the enrolled baseline apart | |
-| Key inclusion and exclusion | a "Key criteria" band in each dossier: the criteria whose readings fall in a declared set of decisive categories (performance status, biomarker selection, prior therapy and line, measurable disease, organ-function thresholds, CNS metastases, autoimmune disease and immunosuppression, HIV and hepatitis B and C, cardiac history), each verbatim with its reading; every criterion stays in Eligibility | |
-| Line on today's ladder | the registered setting and line, labelled as registered | dated treatment context (labels, PDQ) under named rules |
-| Outcomes and time points | registered outcomes with time-point readings | assessment schedules from publications |
-| Biomarkers and time points | biomarker mentions with their words and role | assays, specimens and schedules from publications |
-| Efficacy threshold | posted results and statistical analyses (including non-inferiority margins) | the protocol's stated success criterion; a planning target under a named decision rule, kept apart from observed results |
-| Safety, with grade | counts per group within their reporting period and threshold | grades from publications under CTCAE, by version |
-| Exploratory measures | the registry's other outcomes and biomarker mentions | assays, imaging and biopsies from publications |
-| Standard protocol language | a "Standard protocol language" sheet: each criterion most comparable trials state (comparable = the same universe), with how many of how many, representative verbatim wording and its trials | template language (NIH protocol templates) kept apart from language recurring across trials |
-
-## 5. Lookups
-
-Ask RxNav for distinct drugs taken from the registry's structured intervention names, never arm labels; a dose
-or schedule is stripped only by a named rule; identity once, then classes by RxNorm identifier; successful,
-ambiguous and negative answers cached; a request-rate budget (at most 15 per second, under NLM's 20 per second
-per address) enforced by spacing, plus a declared bound on requests in flight (review: a concurrency bound alone
-does not bound the rate); the release asked before the first round and after the last, as now;
-answers written in a fixed order, so a record's bytes never depend on the order replies arrive. A lookup that
-fails stays distinct from "no class exists".
-
-## 5a. The search preview and the assistant's interface (review)
-
-AGENTS.md promises the person sees the resolved search before anything is gathered, but `landscape` resolves and
-then retrieves in one call, and the MCP `scope` tool asks for `landscape` first. A preview step resolves the
-request, writes `resolution.json`, and returns the scope with no study retrieved (a test asserts zero registry
-study requests for a broad drug class); the run then executes against that fixed scope. The CLI gains
-`landscape --preview`; MCP's `scope` tool previews.
-
-MCP's `record` tool reads schema 3 (today it expects `{"value": ...}` around trial IDs and returns
-`no_such_study` for a plain one), gains parts for the across-trial findings and the review questions, pages
-large parts with a declared bound, and resolves a workbook row's address to its value. Tested through the MCP
-interface on a schema-3 fixture.
-
-## 6. Code shape and units
-
-The record unit owns every call site in `landscape.py`; the universe unit exposes pure functions only.
-`operate.py` (the run's control, record assembly and lookup scheduling) has one owner, the integrator: units A,
-D and F expose functions and the integrator wires them (a second review, 2026-11-01). The contract commit
-carries executable examples, not only names: schema-3 fixture records with hand-checked expected values
-(ordinary, missing, conflicting and nested results), the exact shapes of a universe assignment, an MCP paging
-response and the safety columns for trials with different group counts, so a producer and a consumer cannot
-agree on the same mistake.
-
-| Unit | Owns | Interface it provides or consumes |
-|---|---|---|
-| A. Record | `landscape.py` (study_extract, results/baseline/flow/AE shaping, cohort section, fields, schema) | consumes `contract.FIELDS`, `universes.assign`, `coherence.resolve(evidence, universe)` |
-| B. Universes | `universes.py` (new: the universe table, `assign(study) -> Assignment`), `coherence.py` (per-universe coordinates and relations), `semantics/loader.py` (the `universes` key) | provides pure functions; edits no call site in landscape.py |
-| C. Workbook | `readout.py` | consumes schema-3 records; built against fixture records made from the baseline bodies by the contract's shapes |
-| D. Lookups | `classes.py`, the lookup lists in `request.py` / `reading.py` | provides the same answers, fewer requests |
-| F. Preview and MCP (review) | a preview function the integrator wires into `operate.py`, `cli.py`'s landscape flags, `mcp_server.py` | consumes schema-3 records (fixture records until A lands) |
-| E1. Independent checks (built from the start) | `acceptance/` and its tests: the registry → record → cell preservation checks and the reviewer's tasks, written from the contract's examples, never from the producers' code | the target units A, C and F must meet |
-| E2. Documents (last) | README, AGENTS.md, SKILL.md, MCP tool descriptions, CLI help | each promise the new contract changes rewritten as built (AGENTS's "every value is an envelope", the README's evidence register line) |
-
-Each unit: Detective converges every new pure decision; the gate before each commit; an independent review
-before merge. Integration order: B and D, then A, then C and F (each switched from fixture records to A's real
-output before it merges), then E2; E1's checks run at every integration. The workbook unit first renders a
-sample (Read me, compact index, one full dossier, Posted results, mixed-group safety) for the integrator's
-inspection before it builds the remaining sheets.
-
-Acceptance (review), each with its expected destination, evidence and unresolved cases: compare eligibility
-across selected trials (Eligibility); tell the eligible from the enrolled population (Trial review, Baseline);
-find a result's analysis population and denominator (Posted results); read safety within its reporting period
-(Safety, Groups); trace a biomarker to its source words (Biomarkers, Readings); ask the assistant about a
-workbook row by its address and get that value (MCP).
-
-## 7. Receipts
-
-Baseline (build 860b17d, Python 3.14, kept at ~/tools/TrialLedger-runs/baseline-2026-11-01): three trials by
-number, the workbook written and checked in 14 s at 347 MB; the 49 osimertinib phase-3 trials, 1,005 s wall,
-52 s CPU, 730 MB peak, almost all of it RxNav. After the change the same two runs and a run of a few hundred
-trials are measured the same way; each change is reported with its behaviour (the new contract's tests) and its
-resource result (wall time, CPU, peak memory, rows per sheet, record size).
-
-## 8. What completion claims (a third review, 2026-11-02)
-
-This change is complete when, and claims only that: the selected registry fields are preserved through the
-record and the workbook (checked independently, registry value to record value to displayed cell, on real run
-folders); derived readings are labelled and bounded, each applied only where its requirements hold (membership
-in a universe is not permission: the setting and line pack also needs an anticancer intervention, else its
-applicability reads unresolved; unknown condition text is no evidence of any domain); missing or unsupported
-readings stay visible ("No reading produced", "applicability unresolved", "not looked up", "lookup failed"); and
-the assistant retrieves, by a row's address, the same evidence the clinician sees. It does not claim a
-comprehensive clinical interpretation: the recurring-criteria sheet is example wording around shared elements
-within a stated grouping, the starting material for standard protocol language, never established reusable
-text; and three further changes carry the rest of the reviewer's list:
-
-- add-evidence-sources: the content the registry does not hold (today's standard of care, grades, assays and
-  schedules, success criteria), each field first assessed as "not yet read by a rule" or "not in the retrieved
-  registry content" before a publication or label is asked;
-- add-bank-coverage: the readings the rules miss (a Karnofsky performance status read as no reading);
-- add-scoped-assertions: referents, normative force, temporal attachment and cohort scope (what a person is
-  "ineligible for", which cohort a criterion binds); adding recognized terms does not settle these.
-
-Acceptance, in order: the fixes of the third review; units A, C, F and E1 integrated; the MCP address task
-passing through the integrated interface; preservation and the reviewer's tasks on real run folders; the
-workbook read visually (long criteria, mixed groups, unresolved cases); the deep gate on the exact release
-candidate; the committed package installed locally, then from the public repository; the fresh-sandbox test.
-Every finding of the independent checks gets one disposition, recorded in a findings ledger kept beside the
-first report so a falling count can be read (a fourth review, 2026-11-02): a workbook or record defect is fixed
-and the check re-run; a reviewed display-policy change updates the contract, its examples and a negative test,
-then the check re-runs; missing or contradictory source evidence is kept and shown unresolved; a deferred software
-defect names the capability it affects, which the completion claim then excludes. Naming a defect does not
-discharge it: the target is zero unexplained conformance failures, with source uncertainty reported apart. The
-checks share only the contract's declarative display policy with the workbook, never its rendering or selection
-code, and keep their own hand-checked examples and planted defects. A reading "traced" means its cited words
-occur in the registry text, not that its clinical interpretation is right; readings resting on a heading or a
-derivation are checked by that warrant, not by quotation. Posted-outcome group descriptions stay reachable: once
-per trial and distinct group in the Groups sheet, linked from each result row.
-
-Performance is measured twice, on frozen inputs (the saved bodies and caches) apart from live retrieval, with
-the cache state, runtime and versions recorded, and memory traced to the stage that uses it, not only its peak.
-
-## 9. Corrections (2026-11-02, the founder's direction; reviewed by Codex model-only)
-
-Layer one is data entry: query the registry, record what it states with its source, and write a workbook a
-clinical development professional can read and use. Where reasoning is needed, the founder's designs govern
-(docs/THEORY_OF_THE_CASE.md; add-scoped-reasoning; add-scoped-assertions). The build departed from that in the
-ways below; each is corrected here, and nothing else is added.
-
-**9.1 Disease, as the registry states it (replaces §3's assignment).** `universes.py`'s sorting of trials into
-solid tumour, haematologic and general, and every rule it used to decide that, is removed. The record carries,
-per trial: the sponsor's conditions and keywords; the registry's condition MeSH terms and ancestors; and, from
-the registry's browse leaves, kept as their own records as the API gives them (`id`, `name`, `asFound`,
-`relevance`; the request asks for them). Rule scoping is add-scoped-reasoning Decision 4, as written: a trial's
-indication is resolved from, in order, its literal `conditions`, the record's own disease assertions in its
-title and eligibility, and the registry's derived MeSH as a lower-priority source whose disagreement is a named
-conflict. A condition or title names a disease when it is the disease's declared name or one of its entry terms
-in NLM's MeSH vocabulary (a cited lookup, versioned and kept with the run; never a hand-written list); disease
-assertions in eligibility join when add-scoped-assertions can read them, and until then that source is named as
-not yet read. Each rule pack declares the indications it applies to, by MeSH descriptor, listing any narrower
-descriptors it covers (the NSCLC setting and line rules: Carcinoma, Non-Small-Cell Lung); nothing is inherited
-through the MeSH tree unless declared. Outcomes: an indication established within a pack's declared indications
-→ the pack applies; established outside them → the pack is inapplicable; the sources do not resolve it →
-`scope_unresolved`, never a negative; the sources disagree → a named conflict, shown with each source, and the
-pack applies only as the higher-priority source establishes. So a trial whose conditions establish Alzheimer's
-disease while its MeSH also carries "Lymphoma, Follicular" (the breadth runs reported this for several
-Alzheimer's and psoriasis trials, e.g. NCT06362707, NCT01313221) has its indication from its conditions, the
-MeSH term shown as a named conflict, and no lymphoma rule applied. A missing MeSH term alone decides nothing. No
-purpose gate is added: the founder's design has none (the conform branch's treatment-purpose gate is removed).
-The Trial index shows each trial's conditions as stated (and a named conflict where there is one), not a
-category; §4's "universe" column and the Risks' universe assignment are replaced by this.
-
-Build choices Decision 4 does not name (Claude's rulings of 2026-11-02, each a named constant, for the founder's
-review): a "disease" is a MeSH descriptor in tree C (Diseases), excluding C23 (conditions and processes such as
-recurrence or metastasis), or in F03 (Mental Disorders); a title establishes a disease only when it is whole a name
-or entry term (a disease named inside a longer title is "not yet read", for the compiler); a run that has not
-looked conditions up (relay mode) reads scope unresolved; a pack applies when any established descriptor is within
-its declared indications; an established descriptor broader than the pack's in NLM's tree reads scope unresolved,
-never inapplicable (a broader term is no evidence of another disease); a conflict is a registry MeSH descriptor
-(never an ancestor) the higher-priority source did not establish; the NSCLC gene-selection rules declare NSCLC as
-their indication; the haematologic prior-line pack, which existed only through the removed classifier, is dropped;
-recurring criteria group the whole run as one; an indication NLM's lookup establishes is known, with the lookup's
-request and retrieval time as its warrant. The registry's API defines condition browse leaves but returned none to
-any request on 2026-11-02 (probed four ways); the record says so.
-
-**9.2 Readings say only what the text says.** A reading names the words it read and states only what they
-establish: "steroid" is a mention of steroids, not immunosuppression; "must have negative serology for HIV" under
-Inclusion is an inclusion requirement of negative HIV serology, not "exclusion: HIV" (polarity and the heading's
-scope kept). Known is the founder's definition, whole: a literal field of the registry's record, typed
-structural information (a class the record states included), or a direct symbolic derivation from one (2 years
-written as 24 months); a deterministic typing that states what the text says is known (law 8). A reading that
-claims more than that is not deleted: it is given the status the theory gives it (a coherent interpolation, or a
-proposal), or corrected to what the words establish. A registry field that is explicitly empty is a known fact;
-a rule that read a text and extracted nothing says unresolved with the source text, never known with an empty
-result (the time-point readings). A placebo: the arm's registered type is shown as the registry states it; the
-intervention's identification as the placebo from the arm structure carries the status its derivation warrants,
-shown apart from the arm type.
-
-**9.3 The workbook a person can use.** Fewer, well-chosen columns (the founder's ruling, 2026-11-02: a sheet of
-80 columns, 60 of them degenerate or not applicable, is less useful than one of 20 well-chosen ones): a column,
-row or Read me topic appears only when the run holds a trial it applies to (the NSCLC setting columns are absent
-from a heart-failure workbook); an informative absence (a value that could exist and does not) stays written in
-words. Compared groups are shown by their titles. A trial outside the coverage the Read me
-states is flagged on its row. The presentation defects of the 2026-11-02 breadth runs are fixed, each with a
-negative test: a confidence level and sides written as "Not stated"; limits dropped beside a spread; the second
-level of denominators and baseline populations dropped; internal text and raw codes in cells; enrollment as
-number or text in one column, and a missing actual/anticipated type without words; a drug class missing without
-words, and "not looked up" in a direct run; an empty key-criteria band without words; "Not stated" for a reading
-not produced; multi-paragraph values without a clear end; observational and expanded-access designs' "not
-applicable" wording; placeholder rows at the wrong grain.
-
-**9.4 Sources and warrants as promised.** Every value's source is stated: a copied value through the record's
-field dictionary and its address in the record (field and, in results, the group), a derived value through its
-rule and words. Law 12 (every value carries a
-checkable warrant, re-derivable by `trialledger verify`) is checked for landscape output; where it is not met, it
-is built, not dropped. AGENTS.md, README and SKILL.md describe the record and workbook as built.
-
-**9.5 Acceptance.** The breadth runs are discovery evidence: their trials become regression tests; confirmation
-uses trials not looked at while correcting. Re-run the 49-trial baseline, the lung-cancer search and the breadth
-set; the preservation and reviewer checks; a findings ledger with every finding disposed; a visual read.
-
-## Risks
-
-A misassigned trial loses a domain reading: the index shows each universe and its reason, and the acceptance
-check names every exception. Compression can change meaning: denominators stay at their scope, groups are never
-merged, zeros listed by the registry stay. Thresholded safety tables and posted results are not complete
-accounts of harm or efficacy: the Read me and the Safety sheet say so. Folders written under schema 2 do not
-verify under schema 3; a new run is needed.
+Completion means the declared registry fields and direct derivations are preserved and readable across the
+declared source-field contract, with source addresses and reproducibility. It does not establish superior manual
+abstraction accuracy, clinical correctness, comparative validity or readiness of the layer-two designer.

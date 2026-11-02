@@ -1,189 +1,106 @@
 # TrialLedger
 
-**Gives an AI assistant real command of clinical trial data: every study matching a question gathered from
-ClinicalTrials.gov into a verified record and a professional spreadsheet, and a new trial designed from that
-evidence. No language model abstracts a trial or supplies a fact.**
+**ClinicalTrials.gov records in a readable workbook, with every reported value traceable to its source.**
 
-Designing a clinical trial starts with what has already been done. Which trials have tested this drug, this class
-of drugs, this disease? Whom did they enroll and exclude, what did they measure and when, and what happened? The
-answers are public on ClinicalTrials.gov, but they are scattered across hundreds of records, and assembling them
-properly means opening each record and copying its fields by hand, for every question. It is days of work, and it
-is most of the work.
+Give TrialLedger a search or a list of study numbers. It gathers the registry records and presents their design,
+population, eligibility, interventions, planned outcomes, posted results and safety in one workbook. Your
+assistant runs it, answers from the saved record and gives you the spreadsheet. No language model abstracts the
+studies or supplies trial facts.
 
-The common shortcut is to paste registry pages into a chatbot and ask for a summary. The summary reads well and
-cannot be trusted: a language model paraphrases, and it can drop an exclusion criterion, merge two arms, attach a
-time point to the wrong endpoint, or describe results that were never posted, with nothing to show which sentence
-is wrong.
+- **Layer one — trial reference sheets (available).** Ask for specific trial numbers or a subset by drug,
+  drug class, condition, phase, status, study type or date. Receive one formatted spreadsheet and matching
+  JSON, with a dossier per study and shared listings. The content is registry facts and strictly warranted
+  direct derivations; your assistant answers from that evidence record.
+- **Layer two — new-trial designer (partially built).** Intended to construct a new trial from scratch from
+  your brief and layer-one evidence through symbolic reasoning, distinguishing deductions, proposals and
+  choices that require your judgment. Some foundations exist; the complete design workflow is not available.
 
-TrialLedger takes a different approach. It is a tool your AI assistant (ChatGPT, Claude or Gemini) picks up and
-runs. TrialLedger does the work by fixed, checkable rules; the assistant answers you from what TrialLedger built,
-and hands you the spreadsheet. Every value comes from the registry record or from a named rule, and says which.
+## What you receive
 
-## How you use it
+`landscape.xlsx` is the review workbook; `landscape.json` is the corresponding evidence record. Start with the
+Trial index and study-by-study Trial review, then use the eligibility, outcome, results, statistical-analysis,
+baseline, participant-flow, group and safety listings. A brief field dictionary identifies the source of the
+reported fields. Listing addresses let your assistant retrieve the same evidence you see.
 
-You ask your assistant a question about trials, in your own words, and point it at this repository:
+The report preserves the registry's wording and values. It keeps observational study populations, sampling,
+follow-up and specimen information, and expanded-access types and availability, alongside interventional study
+design. Enrollment count and actual/anticipated type remain separate. Results retain their group, analysis
+population, denominator, unit and time frame. Safety retains affected participants, participants at risk and
+event counts, with reporting period and threshold.
 
-> *Using github.com/rohanvinaik/TrialLedger, find the completed Phase 3 trials of EGFR tyrosine kinase inhibitors
-> in non-small cell lung cancer.*
+Eligibility text may be divided at unambiguous headings and bullets for readability; the original wording and
+source locations remain available. That division does not interpret the criteria or decide whom they apply to.
+Other direct operations include registry labels, source-presence and results states, counts and source links.
+Drug lookup evidence, where available, names its source; a lookup failure is distinct from a negative response.
 
-The assistant installs TrialLedger in its own workspace, turns your question into a search, and shows you the
-search before anything is gathered: each drug class expanded into its member drugs, with the subclasses it
-includes named (so you can see, for instance, which antibodies a broad "kinase inhibitor" class brings in, and
-exclude them); each disease class through the registry's own disease vocabulary; each drug by every name the
-registry records it under. You confirm or narrow it. TrialLedger then gathers every study matching that search,
-verifies the retrieval, and writes two things: a structured record your assistant answers your questions from,
-and a workbook for you.
+## How far the report goes
 
-The workbook is a serious spreadsheet for professional reading, filtering, highlighting, editing and sharing:
+Layer one reports registry facts and strictly warranted direct derivations. It does not rank key criteria, infer
+treatment setting, identify biomarker roles, decide which trials are comparable or make clinical recommendations.
+There is no ordinary-report MeSH enrichment or disease classification. Exact eligibility, descriptions and
+outcomes remain available for a professional to read; publications and documents are linked.
 
-- **Read me**: the search as run, the date the registry was read, and what each status means.
-- **Trial index**: one row per trial, the landscape table you would circulate: phase, status, population and
-  setting, investigational treatment and comparator, enrollment, primary outcome and time frame, whether results
-  are posted, and any results publication the sponsor linked.
-- **Trial review**: each trial's complete dossier, read top to bottom in the order of the questions a trial
-  designer asks: population, inclusion and exclusion criteria, line of therapy, outcomes and time points,
-  biomarkers, efficacy (anticipated and observed kept apart), safety, exploratory assessments, protocol
-  language. Every statement is marked as what the record says, what that establishes, or what remains
-  unresolved.
-- **Eligibility, Outcomes and efficacy, Biomarkers, Safety**: listings for comparing across trials, one row per
-  criterion, endpoint, result or event.
-- **Across-trial findings**: criteria most trials share, exclusions that follow a drug's mechanism, and trials
-  that differ in one design choice, each with how many trials support it out of how many could.
-- **Evidence register**: where every value came from.
+A registered outcome is a plan; a posted result is an observation. Eligible, enrolled and analysed populations
+are different. An explicit empty event list is not proof of zero harms. **Not stated** is not none; **not
+posted** is not no effect; **unresolved** or malformed input is not a negative finding. Seriousness does not
+establish adverse-event grade. Current care, comparative benchmarks and new planning targets require more than
+transcription of a registry record.
 
-A value the record does not state says "Not stated"; results not posted say "Not posted"; anything TrialLedger
-could not settle says "Unresolved" and why. Nothing is left blank, guessed or filled in.
+TrialLedger checks retrieval completeness and spreadsheet fidelity, and can replay a saved report offline.
+Those checks establish preservation and reproducibility, not that the registry is correct or that a clinical
+interpretation is correct. Coverage is checked across study types and source shapes; a passing collection of
+examples does not establish every clinical situation.
 
-## Layer one: gathering the evidence
+## Use it through your assistant
 
-For every trial matching the search, TrialLedger sets out what the record says: the population, the inclusion
-and exclusion criteria in full, the line of therapy, the outcome measures with their time points, the biomarkers
-and the role each plays, efficacy and safety results where the trial posted them, exploratory measures, and links
-to the registry page, publications and any protocol or statistical analysis plan the sponsor posted.
+Point your assistant at this repository and ask, for example:
 
-It holds itself to the standards of clinical data management:
+> Using TrialLedger, find completed Phase 3 trials of EGFR tyrosine kinase inhibitors in non-small cell lung
+> cancer. Show me the search before gathering the records, then give me the workbook.
 
-- **Every value has a source.** Each value traces to the registry field it came from or the named rule that read
-  it, carries a fingerprint that lets anyone re-derive it, and says how it is known.
-- **Unknown stays unknown.** An empty field is never read as "none". A trial without posted results says so, and
-  shows any results publication the sponsor linked beside it.
-- **Planned is never reported.** An outcome a trial registered is what it meant to measure, never evidence that it
-  worked.
-- **Records are checked against themselves.** A completed study should not carry an estimated completion date; no
-  adverse event can affect more people than were at risk. Contradictions are raised as queries, never quietly
-  corrected.
-- **Complete or nothing.** A retrieval that cannot be completed and verified writes nothing, and every trial you
-  asked for by number is accounted for: found, found under another number, or missing.
+The assistant previews the resolved drugs, class members/subclasses, disease search and filters before gathering
+studies. A shared search does not establish that the resulting studies are clinically comparable.
 
-## Why the results can be trusted
-
-TrialLedger is tested against the ways clinical data software produces plausible but wrong results: lost pages
-of registry results, studies repeated or dropped, the registry changing mid-retrieval, a trial number that
-silently matches another trial, spreadsheet cells that cut text or round numbers, values altered after the file
-was written. Its rule is to preserve the source exactly or refuse to claim a complete result. The same scrutiny
-applies to the code itself: every decision is a small, separately tested rule, the tests are checked by
-deliberately altering the code to see that they catch it, and a test fails if any part of the program is never
-actually used.
-
-What this establishes is the faithfulness of the transcription: the record and the workbook say what the
-registry says. Where TrialLedger reads clinical meaning from text (classifying an eligibility criterion, placing a
-trial's line of therapy), the reading names the words it read, so it can be checked; such readings are marked as
-readings, not as facts. TrialLedger makes no claim that the registry itself is correct, and none that its
-accuracy exceeds a trained professional's: it is built so that its completeness, reproducibility and
-traceability can be checked, which a manual spreadsheet's cannot.
-
-## Layer two: designing the trial
-
-Tell TrialLedger what you want to test, and it designs the trial.
-
-It works the way an experienced trial designer thinks. Most of a protocol is not a matter of taste. Some of it is
-simply correct, because it follows from the question. Much of it is what comparable trials have done, for reasons
-the field has settled. Only a small part calls for judgment. TrialLedger treats each part accordingly.
-
-**What is obviously correct, it builds.** Much of a design follows from what you have already stated. If the
-outcomes are measured in the pregnant participant herself, the population is people who can become pregnant; a
-study that enrolls partners states a different population, and gets different consequences. If "first-line" means
-no prior systemic therapy for advanced disease, that follows for the eligibility criteria, while treatment given
-earlier in the disease, such as after surgery, stays a separate question. These are deductions from explicit
-premises, not decisions, and TrialLedger never treats a premise as given that you have not stated. It represents
-eligibility as precise logical statements, keeping disease extent, treatment history and the role of the therapy
-apart, derives what follows, shows each step with the premises it rests on, and flags any requirements that
-contradict each other.
-
-**What has been done before, it recommends, with the evidence.** Here TrialLedger works as a recommendation
-engine, using classical methods rather than a language model. It finds the genuinely comparable trials, those
-with the same indication, drug class, line of therapy and stage of disease, and reads what they did:
-
-- the criteria nearly all of them share, which become standard parts of the design (leaving one out has to be
-  justified)
-- the exclusions that follow a drug's mechanism, such as the autoimmune exclusions typical of immunotherapy trials
-- the endpoints and time points they used, compared like for like
-- the event rates and effect sizes their posted results give, for planning the sample size
-- the combinations of population, setting and mechanism no trial has yet tried
-
-Every recommendation shows the trials and the numbers behind it, and evidence only ever ranks the options the
-logic allows; it never overrides the logic.
-
-**What calls for judgment, it offers to you.** After the logic and the evidence have done their work, a few real
-choices remain, matters of strategy, taste or ethics. TrialLedger does not make them for you, and it does not hand
-you a list of open questions either. Like a good butler, it works out which single decision would settle the most,
-and offers it with a suggestion:
-
-> *Would you care for biomarker selection in this trial? Comparable trials of this class have usually enrolled on
-> it, and accepting would also settle the stratification and the screening test.*
-
-You accept, choose otherwise, or answer in your own words, and the choice is recorded as yours. For most trials the
-right answers are plain, and you can accept every suggestion at once.
-
-The result is a draft trial in the same professional workbook form: the population and eligibility criteria,
-endpoints and schedule, and the inputs for sample size, each element marked as deduced, recommended from
-precedent, or chosen by you, with its reasons.
-
-## What TrialLedger will never do
-
-- Let a language model abstract a trial or supply a value as fact.
-- Fill in a value it cannot trace to its source.
-- Hide a gap, a conflict or a failed retrieval.
-- Compare results that are not comparable.
-- Treat a recurring pattern as established fact.
-- Make a design choice that is yours to make.
-
-## Running it yourself
-
-TrialLedger needs Python 3.12 or later.
+For a local installation, Python 3.12 or later is required:
 
 ```bash
 pip install "git+https://github.com/rohanvinaik/TrialLedger"
-trialledger doctor
+trialledger doctor --run egfr-nsclc
 trialledger landscape --run egfr-nsclc --drug-class "EGFR tyrosine kinase inhibitors" --class-source ATC \
-    --condition-class "Carcinoma, Non-Small-Cell Lung" --phase PHASE3 --status COMPLETED
+    --condition-class "Carcinoma, Non-Small-Cell Lung" --phase PHASE3 --status COMPLETED --preview
 ```
 
-The run folder then holds `landscape.json` (the record) and `landscape.xlsx` (the workbook), with the resolved
-search in `resolution.json`. Trials you already know by number go through the same command:
-`trialledger landscape --run my-trials --ids NCT01234567,NCT07654321`. `trialledger design --run <folder>`
-designs a trial from a run. For an archival copy of the registry's own records, `trialledger pull` saves them
-exactly as sent with certified spreadsheets, and `trialledger verify` later re-checks every value in the saved
-copy and names anything that no longer matches. Each command explains itself with `--help`.
+Read the preview and `resolution.json`, then repeat without `--preview` to gather that fixed search. For study
+numbers, use `trialledger landscape --run my-trials --ids NCT04852770,NCT01827384`. `landscape --help` lists the
+request fields. A request file can exclude class subclasses through `drug_class.subclasses`: `"exclude"` or a
+list of subclass IDs, rather than the default `"include"`. A changed request uses a new run folder.
 
-An assistant using TrialLedger reads [`AGENTS.md`](AGENTS.md) (or [`SKILL.md`](SKILL.md)). An assistant app that
-runs local Model Context Protocol servers (Claude Desktop, Claude Code, and the ChatGPT and Gemini clients that
-launch one) can use TrialLedger as one: `trialledger mcp` serves the same operations as tools, each run folder a
-name inside one root folder. To add it to Claude Code:
+`doctor` checks ClinicalTrials.gov and RxNav reachability. In **direct** mode the program fetches for itself.
+In **relay** mode the assistant fetches each exact address in `next.json`, saves its unchanged response to the
+named file and repeats the command. Relay checks form, counts, order and study identities, not every value
+against the live registry. Never retype, shorten or correct a body. Gathered-study drug enrichment is not
+performed in relay mode; that means not looked up, not no class.
 
-```bash
-claude mcp add --scope user trialledger -- trialledger mcp --root ~/trialledger-runs
-```
+Exit **0** means complete, or previewed when requested; **3** means relay fetches awaited; **2** names a refusal
+or stop; **1** names a failure and retry advice. Repeating the same request resumes safely. When studies were
+requested by number, inspect the requested-ID accounting: a completed retrieval can still include missing IDs.
 
-To add it to Claude Desktop, put it in `claude_desktop_config.json` (on macOS in
-`~/Library/Application Support/Claude/`, on Windows in `%APPDATA%\Claude\`, on Linux in `~/.config/Claude/`) and
-restart the app. Both paths must be absolute: the app starts the command without a shell, so `~` is not expanded,
-and `command` is the full path `which trialledger` prints.
+`trialledger verify FOLDER` replays a saved landscape offline from retained inputs under its writing code and
+compares the record and workbook, including formatting and links. Missing or changed evidence is named, never
+repaired. Older folders require their writing version. `trialledger pull` separately saves the registry's raw
+records/CSV with certified archival `review.xlsx` and `record.xlsx`.
+
+## MCP
+
+`trialledger mcp --root /absolute/path/to/trialledger-runs` serves **doctor**, **scope**, **landscape**,
+**save_fetch** and **record** over standard input/output. Preview with `scope`, gather with `landscape`, follow
+relay requests exactly, and answer with `record`, including a workbook row's address. Lists and objects are
+paged, at most 50 entries per call.
 
 ```json
 {
   "mcpServers": {
-    "trialledger": {
+    "TrialLedger": {
       "command": "/absolute/path/to/trialledger",
       "args": ["mcp", "--root", "/absolute/path/to/trialledger-runs"]
     }
@@ -191,19 +108,20 @@ and `command` is the full path `which trialledger` prints.
 }
 ```
 
-Contributors start with [`DEVELOPING.md`](DEVELOPING.md).
+Use absolute paths; the client launches without a shell and does not expand `~`. Assistants follow
+[AGENTS.md](AGENTS.md) or [SKILL.md](SKILL.md); contributors read [DEVELOPING.md](DEVELOPING.md).
 
-## Background
+## Layer two
 
-TrialLedger draws on earlier projects. **harmonizing** contributed the ledger: keep every piece of
-evidence, richer than any output, and never invent. **GSE** contributed its handling of uncertainty: silence is
-not absence, conflicts are reported rather than voted away, and a pattern only ever proposes a rule.
-**TriageGeist** showed that a clinical process can be symbolic almost throughout and legible to the clinicians who
-must trust it. **ModelAtlas** contributed the recommendation engine and its manner of closing: surface what
-remains open, and suggest the decision that settles the most.
+Layer two's purpose is to construct a new trial from scratch using your design brief and the gathered evidence.
+It is partially built: reasoning and existing-trial analysis foundations are present, but the integrated
+brief-to-new-trial designer is unfinished. Its intended output distinguishes deductions with their premises,
+proposals with their evidence, and decisions made by the person. This is symbolic reasoning, not LLM-generated
+trial design. The design is documented in [add-design-synthesis](openspec/changes/add-design-synthesis/proposal.md)
+and [THEORY_OF_THE_CASE.md](docs/THEORY_OF_THE_CASE.md).
 
-The full design is in [`docs/THEORY_OF_THE_CASE.md`](docs/THEORY_OF_THE_CASE.md).
+These operations remain separate from layer-one reporting. The current CLI/MCP has no `design` or `edits`
+operation or automatic workbook-edit import. A developer tool's `design.xlsx` analyses existing trials; it is
+not a newly designed protocol.
 
-## Licence
-
-MIT; see [`LICENSE`](LICENSE).
+MIT; see [LICENSE](LICENSE).

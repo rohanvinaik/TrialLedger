@@ -40,30 +40,22 @@ DORMANT_HELPERS: set[str] = set()
 # Reached by no production path, each for its reason.
 DECLARED = {
     "record.py: _ignore": "write_record's default progress sink, likewise",
-    "workbook.py: WorkbookError.__init__": "raised only when the read-back differs from the derivation, "
-    "which tests/test_workbook.py simulates",
+    "workbook.py: WorkbookError.__init__": "raised only when the read-back differs from the "
+    "derivation, which tests/test_workbook.py simulates",
     "classes.py: http_get": "RxClass's network transport; production_path injects a fake, as it does the API",
     "profile.py: mechanism_rows.<locals>.<lambda>": "sorts mechanism rows, and two studies make none; "
     "tests/test_profile.py reaches it",
     "audit.py: run_audit.<locals>.<lambda>": "run_audit's default progress sink; the CLI passes its own",
     "sample.py: draw_sample.<locals>.<lambda>": "draw_sample's default progress sink; the CLI passes its own",
-    "transport.py: urllib_http": "the local model's network call; production_path injects a fake, as it does "
-    "the registry and RxClass",
+    "transport.py: urllib_http": "the local model's network call; production_path injects a fake, as "
+    "it does the registry and RxClass",
     "operate.py: _ignore": "operate.run's default progress sink; the CLI passes its own",
-    "mcp_server.py: stdio_streams": "the process's own standard input and output; production_path gives "
-    "`trialledger mcp` its streams, as it gives the registry and RxNav",
+    "mcp_server.py: stdio_streams": "the process's own standard input and output; production_path "
+    "gives `trialledger mcp` its streams, as it gives the registry "
+    "and RxNav",
     "mcp_server.py: stdio_streams.<locals>.write": "the writer of stdio_streams, likewise",
-    "landscape.py: kept_strata": "the cohort's strata are read only from the signal minimum of trials up, "
-    "which production_path's few trials do not reach; tests/test_landscape.py reaches it",
-    "landscape.py: endpoint_profile": "the cohort's endpoints are read only from the signal minimum of "
-    "trials up, which production_path's few trials do not reach; tests/test_landscape.py reaches it",
     "readout.py: ReadoutError.__init__": "raised only when landscape.xlsx read back differs from its "
     "derivation, which tests/test_readout_schema3.py simulates",
-    "landscape.py: recurring_criteria.<locals>.<lambda>": "orders the examples of a recurring criterion, and "
-    "production_path's runs hold fewer comparable trials than a recurring criterion needs; "
-    "tests/test_landscape.py reaches it",
-    "landscape.py: element_words": "words a recurring criterion's element, and production_path's runs hold "
-    "fewer comparable trials than a recurring criterion needs; tests/test_landscape.py reaches it",
 }
 # The frozen contracts of add-bank-coverage group 1, which the parallel packages are written against: nothing
 # in production consumes them yet. Each name is declared with the task that will put it on the path; that task
@@ -172,7 +164,10 @@ DECLARED |= {f"{file}: {name}": reason for reason, (file, names) in FOUNDATIONS.
 # The scoped-assertion object model and its decision procedure (add-scoped-assertions 1.1, 3.1, 3.2): a
 # foundation nothing in production builds assertions for yet; the shadow-mode run reaches it, until
 # add-scoped-assertions 5.1. tests/test_assertions.py and tests/test_entail.py reach every one.
-UNTIL_SHADOW_MODE = "until add-scoped-assertions 5.1 (assertions produced in shadow mode)"
+UNTIL_SHADOW_MODE = (
+    "Layer-two scoped-assertion foundations, tested in test_assertions/test_entail; registry reporting "
+    "does not compile or consume eligibility assertions (add-scoped-assertions integration remains pending)"
+)
 SCOPED_ASSERTIONS_DORMANT = {
     f"{module}: {name}": UNTIL_SHADOW_MODE
     for module, names in (
@@ -221,7 +216,8 @@ DECLARED |= SCOPED_ASSERTIONS_DORMANT
 # with D1 structure and D2 alternatives (2.1), and nothing in production builds literals before then.
 # tests/test_predicates.py reaches every one.
 UNTIL_THE_COMPILER = (
-    "until add-scoped-assertions 2.1 (the compiler reads atoms as literals through the registry)"
+    "Layer-two predicate foundations, tested in test_predicates; registry reporting does not map "
+    "clinical predicates (add-scoped-assertions integration remains pending)"
 )
 DECLARED |= {
     f"predicates.py: {name}": UNTIL_THE_COMPILER
@@ -263,6 +259,8 @@ def test_the_production_path_ends_as_production_does(production):
         "landscape_lookup_failed": 1,
         "landscape": 0,
         "landscape_again": 0,
+        "verify_landscape": 0,
+        "verify_landscape_nonfinite": 1,
         "landscape_stopped": 2,
         "landscape_subclasses": 0,
         "landscape_ids": 0,
@@ -302,7 +300,11 @@ def test_production_gathers_exactly_the_approved_checks(production):
 def test_only_declared_code_goes_unreached(production):
     dormant = {f"checks.py: {GATHERERS[check_id].__name__}" for check_id in PROPOSED}
     dormant |= {f"checks.py: {name}" for name in DORMANT_DECISIONS | DORMANT_HELPERS}
-    assert set(production["unreached"]) == dormant | set(DECLARED)
+    actual, expected = set(production["unreached"]), dormant | set(DECLARED)
+    assert actual == expected, {
+        "unexpected_unreached": sorted(actual - expected),
+        "declared_but_reached": sorted(expected - actual),
+    }
 
 
 def test_a_dormant_decision_belongs_to_proposed_checks_only():
@@ -383,3 +385,27 @@ def test_every_field_the_definitions_limit_is_shown():
     sources = [column.source for sheet in workbook.SHEETS for column in sheet.columns]
     for field in ledger.APPLIES_TO:
         assert any(source.startswith(field) for source in sources), field
+
+
+DECLARED |= {
+    f"indications.py: {name}": "Layer-two indication lookup foundation; tested in test_indications, "
+    "not a registry reporting operation"
+    for name in (
+        "MeshLookup.__init__",
+        "MeshLookup._fetch",
+        "MeshLookup.lookup",
+        "is_disease",
+        "lookup_url",
+        "parse_response",
+        "relation",
+        "resolve_indication",
+    )
+}
+DECLARED |= {
+    f"universes.py: {name}": "Layer-two applicability foundation; tested in test_universes, "
+    "not a registry reporting interpretation"
+    for name in ("_module", "_source_identities", "assign", "pack_scope", "reading")
+}
+DECLARED["criteria.py: criterion_role"] = (
+    "Layer-two criterion-role interpretation; tested separately, registry reporting keeps source headings"
+)

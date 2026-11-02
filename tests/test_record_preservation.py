@@ -17,7 +17,6 @@ from pathlib import Path
 
 from TrialLedger import landscape
 from TrialLedger.contract import FIELDS
-from TrialLedger.reading import read_population
 
 FIXTURES = Path(__file__).resolve().parent / "fixtures" / "contract"
 BODIES = [
@@ -123,9 +122,8 @@ def preservation_problems(record, bodies):
 
 
 def build():
-    reading = read_population(BODIES, {})
     manifest = landscape.landscape_manifest(BODIES, "2", "t", "c", {}, landscape.RULE_VERSIONS)
-    record = landscape.landscape_record(reading, BODIES, {}, {}, manifest, None)
+    record = landscape.landscape_record(BODIES, {}, {}, manifest)
     return json.loads(json.dumps(record, ensure_ascii=False))
 
 

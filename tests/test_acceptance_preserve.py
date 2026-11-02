@@ -89,7 +89,9 @@ def test_every_saved_body_agrees_with_the_walkers_own_record_completely():
 
 
 def test_the_example_is_not_a_complete_record():
-    found = record_findings(BODIES, RECORD, complete=True)
+    partial = excerpt()
+    partial["studies"][0].pop("brief_title")
+    found = record_findings(BODIES, partial, complete=True)
     assert "dropped" in codes(found) and "study_missing" in codes(found)
     assert set(codes(found)) <= {"dropped", "study_missing"}
 
@@ -103,7 +105,7 @@ def baseline_measurements(record):
 
 def test_a_measurement_value_moved_to_another_group_is_misplaced():
     record = excerpt()
-    first, second = baseline_measurements(record)
+    first, second = baseline_measurements(record)[:2]
     first["value"], second["value"] = second["value"], first["value"]
     found = record_findings(BODIES, record, complete=False)
     assert codes(found) == ["misplaced"]
@@ -114,7 +116,7 @@ def test_a_measurement_value_moved_to_another_group_is_misplaced():
 
 def test_a_measurement_whose_group_id_is_swapped_is_misplaced():
     record = excerpt()
-    first, second = baseline_measurements(record)
+    first, second = baseline_measurements(record)[:2]
     first["group"], second["group"] = second["group"], first["group"]
     assert "misplaced" in codes(record_findings(BODIES, record, complete=False))
 
@@ -128,7 +130,7 @@ def test_a_denominator_under_the_wrong_group_is_misplaced():
 
 def test_adverse_event_totals_swapped_between_groups_are_misplaced():
     record = excerpt()
-    first, second = record["studies"][1]["adverse_events"]["groups"]
+    first, second = record["studies"][1]["adverse_events"]["groups"][:2]
     first["serious_affected"], second["serious_affected"] = (
         second["serious_affected"],
         first["serious_affected"],
@@ -274,7 +276,9 @@ POSTED_ROW = {
     contract.ADDRESS: MEASURE,
     "Outcome type": "Primary",
     "Measure": "Maximum Tolerated Dose (MTD)",
-    "Measure description": "Not stated",
+    "Measure description": BODIES["NCT01030536"]["resultsSection"]["outcomeMeasuresModule"][
+        "outcomeMeasures"
+    ][0]["description"],
     "Analysis population": RECORD["studies"][1]["posted_outcomes"][0]["population"],
     "Reporting status": "Posted",
     "Time frame": "Day 1 to end of Cycle 1 (approximately 28 days)",
@@ -310,7 +314,7 @@ def test_a_hand_written_posted_results_row_agrees_with_the_example():
         ("Group", "CAT-8015 30 Microgram Per Kilogram (mcg/kg) (OG001)", "not_shown"),
         ("Parameter", "NUMBER", "not_shown"),
         ("Comment", None, "blank"),
-        ("Measure description", "", "unexplained_blank"),
+        ("Measure description", "", "blank"),
     ],
 )
 def test_a_posted_results_cell_off_its_record_is_caught(column, cell, code):
@@ -548,7 +552,7 @@ def baseline_row(value_cell):
         "Trial ID": "NCT01030536",
         contract.ADDRESS: "/studies/1/baseline/measures/0/classes/0/categories/0/measurements/0",
         "Characteristic": "Age, Continuous",
-        "Population": "Not stated",
+        "Population": "Measure population: Not stated",
         "Class": "Age",
         "Category": None,
         "Group": "CAT-8015 20 Microgram Per Kilogram (mcg/kg) (BG000)",
@@ -595,50 +599,6 @@ def test_a_wrong_absence_label_is_caught():
     assert codes(found) == ["wrong_words"]
 
 
-ELIGIBILITY_HEADERS = [
-    "Trial ID",
-    contract.ADDRESS,
-    "Heading",
-    "Criterion number",
-    "Role",
-    "Criterion as written",
-    "Readings",
-]
-CRITERION = (
-    "* Written informed consent and Health Insurance Portability and Accountability Act (HIPAA) authorization"
-)
-
-
-def eligibility_record():
-    record = excerpt()
-    role = {
-        "status": "known",
-        "rule": "criteria.criterion_role",
-        "words": [],
-        "result": "inclusion",
-        "note": "",
-    }
-    record["studies"][1]["criteria"] = [
-        {"heading": "inclusion", "number": 1, "text": CRITERION, "role": role, "readings": []}
-    ]
-    return record
-
-
-def eligibility_findings(readings_cell):
-    row = ["NCT01030536", "/studies/1/criteria/0", "Inclusion", 1, "Inclusion", CRITERION, readings_cell]
-    return cell_findings(eligibility_record(), {contract.ELIGIBILITY: (ELIGIBILITY_HEADERS, [row])})
-
-
-def test_a_criterion_with_no_reading_reads_no_reading_produced():
-    assert eligibility_findings("No reading produced") == []
-
-
-@pytest.mark.parametrize(("cell", "code"), [(None, "blank"), ("None", "wrong_words"), ("", "blank")])
-def test_an_omitted_no_reading_produced_is_caught(cell, code):
-    found = eligibility_findings(cell)
-    assert [(f.code, f.field) for f in found] == [(code, f"{contract.ELIGIBILITY}: Readings")]
-
-
 # ── the Trial index and the Trial review ────────────────────────────────────────────────────────────────
 
 # NCT04852770's index row, from the example's hand-checked values.
@@ -649,18 +609,15 @@ INDEX_ROW = {
     "Phase": "Not applicable",
     "Status": "Terminated",
     "Conditions": "Posttraumatic Stress Disorder; Covid19",
-    "Universe": "Outside oncology (condition MeSH terms)",
     "Design": "Treatment; Randomized; masking Double",
-    "Enrollment": "135 (Actual)",
+    "Enrollment": preserve.Number(135, "General"),
+    "Enrollment type": "Actual",
     "Start": "06-Apr-2020 (Actual)",
     "Primary endpoint": "Not stated",
-    "Results posted": "Not posted",
+    "Results posted": "Not stated",
     "Publications": "Not stated",
     "Countries": "Not stated",
     "Last update posted": "04-Apr-2025",
-    "Treatment setting": "Not applicable",
-    "Prior lines for advanced disease": "Not applicable",
-    "Gene selection": "Not applicable",
     "Dossier": "Dossier",
 }
 REVIEW_ROWS = [
@@ -681,13 +638,37 @@ REVIEW_ROWS = [
     ("Enrollment", "135 (Actual)", "Registry"),
     ("Conditions", "Posttraumatic Stress Disorder; Covid19", "Registry"),
     ("Condition MeSH terms", "Stress Disorders, Post-Traumatic; COVID-19", "Registry"),
-    ("Universe", "General: no domain readings apply", "Reading"),
 ]
 REVIEW_HEADERS = ["Trial ID", "Section", "Fact", "Value", "Basis"]
 
 
 def one_study():
-    return {"studies": [copy.deepcopy(RECORD["studies"][0])]}
+    # Deliberate excerpt for these hand-authored index/dossier rows; complete-record tests are separate.
+    fields = {
+        "nct",
+        "brief_title",
+        "acronym",
+        "official_title",
+        "overall_status",
+        "why_stopped",
+        "start_date",
+        "last_update_posted",
+        "lead_sponsor",
+        "dmc",
+        "phases",
+        "primary_purpose",
+        "allocation",
+        "masking",
+        "study_type",
+        "enrollment",
+        "conditions",
+        "condition_mesh",
+    }
+    return {
+        "studies": [
+            {key: copy.deepcopy(value) for key, value in RECORD["studies"][0].items() if key in fields}
+        ]
+    }
 
 
 def index_findings(**changed):
@@ -707,8 +688,8 @@ def test_the_index_row_agrees_with_its_record():
 @pytest.mark.parametrize(
     ("column", "cell", "code"),
     [
-        ("Enrollment", "153 (Actual)", "not_shown"),
-        ("Enrollment", "135 (Anticipated)", "not_shown"),
+        ("Enrollment", preserve.Number(153, "General"), "number_differs"),
+        ("Enrollment type", "Anticipated", "not_shown"),
         ("Start", "06-May-2020 (Actual)", "not_shown"),
         ("Status", "TERMINATED", "not_shown"),
         ("Publications", "None", "wrong_words"),
@@ -758,7 +739,7 @@ def test_a_dossier_fact_the_registry_holds_without_its_row_is_caught():
 
 
 def test_a_raw_record_in_a_cell_is_caught():
-    rows = [*REVIEW_ROWS, ("Universe", str(RECORD["studies"][0]["universe"]), "Reading")]
+    rows = [*REVIEW_ROWS, ("Raw results state", str(RECORD["studies"][0]["results_posted"]), "Reading")]
     assert codes(review_findings(rows)) == ["raw_record"]
 
 
@@ -781,67 +762,6 @@ def test_a_numbered_dossier_fact_is_read_line_by_line():
 
 
 # ── the across-trial criteria listing (its grain read from the contract, whatever its name) ─────────────
-
-CRITERIA_SHEET = next(
-    sheet
-    for sheet in contract.SHEETS
-    if preserve.sheet_grains(sheet) and not preserve.sheet_grains(sheet)[0].startswith("studies")
-)
-CRITERIA_LIST = preserve.sheet_grains(CRITERIA_SHEET)[0].removesuffix("[]")
-SHORT = "* ECOG performance status 0-1"
-LONG = "* Eastern Cooperative Oncology Group (ECOG) performance status of 0 or 1 at screening"
-
-
-def recurring_entry():
-    return {
-        "element": {"key": "inclusion:ecog_ps=0-1", "concept": "ecog_ps", "values": ["0", "1"], "words": ""},
-        "role": "inclusion",
-        "trials": 3,
-        "of_trials": 4,
-        "grouping": "among the 4 trials in solid-tumour oncology whose condition MeSH term is Lung Neoplasms",
-        "examples": [
-            {"text": SHORT, "trial": "NCT02151981", "criterion": "Inclusion 4"},
-            {"text": LONG, "trial": "NCT02296125", "criterion": "Inclusion 6"},
-        ],
-        "other_trials": ["NCT04487080"],
-    }
-
-
-def criteria_findings(examples_cell, entry=None):
-    cells = {
-        contract.ADDRESS: f"/{CRITERIA_LIST}/0",
-        "Element": "Performance status: ECOG 0, 1",
-        "Role": "Inclusion",
-        "Trials stating it": preserve.Number(3, "General"),
-        "Of comparable trials": preserve.Number(4, "General"),
-        "Grouping": "among the 4 trials in solid-tumour oncology whose condition MeSH term is Lung Neoplasms",
-        contract.RECURRING_EXAMPLE: examples_cell,
-        "Examples from": "NCT02151981 Inclusion 4\nNCT02296125 Inclusion 6",
-        "Other trials": "NCT04487080",
-    }
-    headers = [column.header for column in CRITERIA_SHEET.columns]
-    sheets = {CRITERIA_SHEET.name: (headers, [[cells[h] for h in headers]])}
-    return cell_findings({CRITERIA_LIST: [entry or recurring_entry()]}, sheets)
-
-
-def test_the_recurring_criteria_row_shows_each_whole_example():
-    assert criteria_findings(f"{SHORT}\n{LONG}") == []
-
-
-def test_examples_presented_as_one_representative_text_are_caught():
-    found = criteria_findings(SHORT)
-    assert [(f.code, f.field) for f in found] == [
-        ("not_shown", f"{CRITERIA_SHEET.name}: {contract.RECURRING_EXAMPLE}")
-    ]
-
-
-def test_a_group_not_assessed_leaves_its_counts_and_examples_blank():
-    entry = recurring_entry() | {"role": "", "trials": 0, "examples": [], "other_trials": []}
-    entry["element"] = {"key": None, "concept": None, "values": [], "words": "too few comparable trials"}
-    found = criteria_findings(None, entry)
-    columns = {f.field.split(": ", 1)[1] for f in found}
-    assert columns == {"Role", "Trials stating it", "Examples from", "Other trials"}
-    assert {f.code for f in found} == {"not_blank"}
 
 
 # ── an empty listing's one line ─────────────────────────────────────────────────────────────────────────
@@ -953,19 +873,6 @@ def test_a_participant_denominator_changed_to_eyes_without_its_unit_shown_is_cau
     shown = POSTED_ROW | {contract.DENOMINATOR: "7 Eyes"}
     found = cell_findings(record, {contract.POSTED: (list(shown), [list(shown.values())])}, complete=False)
     assert found == []
-
-
-def test_an_absent_coordinate_inside_its_universe_reads_unresolved_outside_not_applicable():
-    record = {"studies": [copy.deepcopy(RECORD["studies"][1])]}
-    row = {"Trial ID": "NCT01030536", "Treatment setting": "Not applicable"}
-
-    def found(prior_lines):
-        cells = row | {"Prior lines for advanced disease": prior_lines}
-        every = cell_findings(record, {contract.INDEX: (list(cells), [list(cells.values())])})
-        return [(f.code, f.field) for f in every if f.field.endswith(("setting", "disease"))]
-
-    assert found("Unresolved") == []
-    assert found("Not applicable") == [("wrong_words", f"{contract.INDEX}: Prior lines for advanced disease")]
 
 
 def baseline_group_row(record, g):
@@ -1083,3 +990,389 @@ def test_an_unlinked_baseline_group_cell_must_still_show_the_groups_id():
     assert [(f.code, f.field) for f in found if f.field == f"{contract.BASELINE}: Group"] == [
         ("not_shown", f"{contract.BASELINE}: Group")
     ]
+
+
+def scoped_baseline():
+    record = excerpt()
+    baseline = record["studies"][1]["baseline"]
+    measure = baseline["measures"][0]
+    klass = measure["classes"][0]
+    for holder in (baseline, measure, klass):
+        holder["denominators"] = [{"units": "Participants", "counts": [{"group": "BG000", "value": "7"}]}]
+    baseline["population"] = "All treated participants"
+    measure["population"] = "Evaluable participants"
+    row = baseline_row(preserve.Number(63.4, "0.0"))
+    row[contract.DENOMINATOR] = "Class denominator: 7; Measure denominator: 7; Module denominator: 7"
+    row["Population"] = (
+        "Measure population: Evaluable participants\nBaseline population: All treated participants"
+    )
+    return record, row
+
+
+def scoped_baseline_findings(record, row):
+    return cell_findings(record, {contract.BASELINE: (list(row), [list(row.values())])}, complete=False)
+
+
+def test_all_denominator_and_population_scopes_are_shown_independently():
+    record, row = scoped_baseline()
+    assert scoped_baseline_findings(record, row) == []
+
+
+def test_equal_denominators_do_not_excuse_dropped_scope_labels():
+    record, row = scoped_baseline()
+    row[contract.DENOMINATOR] = "7; 7; 7"
+    findings = scoped_baseline_findings(record, row)
+    assert (
+        len([f for f in findings if f.field == f"{contract.BASELINE}: {contract.DENOMINATOR} (scope)"]) == 3
+    )
+
+
+def test_denominator_values_must_not_be_attached_to_another_scope():
+    record, row = scoped_baseline()
+    measure = record["studies"][1]["baseline"]["measures"][0]
+    measure["denominators"][0]["counts"][0]["value"] = "5"
+    measure["classes"][0]["denominators"][0]["counts"][0]["value"] = "3"
+    row[contract.DENOMINATOR] = "Class denominator: 5; Measure denominator: 3; Module denominator: 7"
+    findings = scoped_baseline_findings(record, row)
+    assert {tuple(f.expected) for f in findings if f.field.endswith("(scope)")} == {
+        ("Class", "3"),
+        ("Measure", "5"),
+    }
+
+
+def test_population_values_must_not_lose_their_scope_labels():
+    record, row = scoped_baseline()
+    row["Population"] = "Evaluable participants; All treated participants"
+    findings = scoped_baseline_findings(record, row)
+    assert len([f for f in findings if f.field == f"{contract.BASELINE}: Population (scope)"]) == 2
+
+
+def test_a_denominator_qualifier_must_keep_its_own_scope_even_without_counts():
+    record, row = scoped_baseline()
+    record["studies"][1]["baseline"]["measures"][0]["units_analyzed"] = "Eyes"
+    row[contract.DENOMINATOR] += "; Measure units analyzed (other than participants): Eyes"
+    assert scoped_baseline_findings(record, row) == []
+    row[contract.DENOMINATOR] = row[contract.DENOMINATOR].replace(
+        "Measure units analyzed", "Module units analyzed"
+    )
+    assert any(f.field.endswith("(scope)") for f in scoped_baseline_findings(record, row))
+
+
+def test_multiline_dossier_fields_are_read_whole_and_paragraph_loss_is_caught():
+    record = {"studies": [project_study(BODIES["NCT01030536"])]}
+    arm = record["studies"][0]["arms"][0]
+    arm["description"] = "First paragraph.\n\nSecond paragraph with a separate requirement."
+    value = f"Arm: {arm['label']}\nArm description: {arm['description']}\n[End of field]"
+    row = ["NCT01030536", "Arms", "Arm 1", value, "Registry"]
+    findings = cell_findings(record, {contract.REVIEW: (REVIEW_HEADERS, [row])})
+    assert not [f for f in findings if f.code != "fact_missing"]
+    row[3] = f"Arm: {arm['label']}\nArm description: First paragraph.\n[End of field]"
+    findings = cell_findings(record, {contract.REVIEW: (REVIEW_HEADERS, [row])})
+    assert any(f.field == "Trial review: Arm 1: Arm description" and f.code == "not_shown" for f in findings)
+
+
+def test_numeric_enrollment_must_not_return_as_text():
+    found = index_findings(Enrollment="135")
+    assert [(f.code, f.field) for f in found] == [("retyped", "Trial index: Enrollment")]
+
+
+def test_placeholder_rows_are_only_the_deepest_empty_source_nodes():
+    record = {
+        "studies": [
+            {
+                "nct": "NCT09000001",
+                "posted_outcomes": [{"title": "Empty measure", "classes": [{"categories": []}]}],
+            }
+        ]
+    }
+    sheet = next(s for s in contract.SHEETS if s.name == contract.POSTED)
+    assert preserve.listing_nodes(record, sheet) == ["/studies/0/posted_outcomes/0/classes/0"]
+    empty_class = record["studies"][0]["posted_outcomes"][0]["classes"][0]
+    empty_class["categories"] = [{"measurements": [{"group": "OG000", "value": "7"}]}]
+    assert preserve.listing_nodes(record, sheet) == [
+        "/studies/0/posted_outcomes/0/classes/0/categories/0/measurements/0"
+    ]
+
+
+def test_a_placeholder_must_not_hide_an_existing_measurement():
+    record = {
+        "studies": [
+            {
+                "nct": "NCT09000001",
+                "posted_outcomes": [
+                    {"classes": [{"categories": [{"measurements": [{"group": "OG000", "value": "7"}]}]}]}
+                ],
+            }
+        ]
+    }
+    sheet = next(s for s in contract.SHEETS if s.name == contract.POSTED)
+    row = preserve.Row(
+        contract.POSTED,
+        1,
+        {
+            "Trial ID": "NCT09000001",
+            contract.ADDRESS: "/studies/0/posted_outcomes/0/classes/0",
+            "Value": "No measurements posted",
+        },
+    )
+    findings, _address = preserve.row_findings(record, sheet, row)
+    assert "wrong_grain" in codes(findings)
+
+
+def test_missing_confidence_bound_is_written_in_words_while_missing_metadata_is_omitted():
+    record = {
+        "studies": [
+            {"nct": "NCT09000001", "posted_outcomes": [{"analyses": [{"ci_percent": "95", "ci_lower": "2"}]}]}
+        ]
+    }
+    row = {
+        "Trial ID": "NCT09000001",
+        contract.ADDRESS: "/studies/0/posted_outcomes/0/analyses/0",
+        "Confidence interval": "95% CI 2 to Not stated",
+    }
+    sheets = {contract.ANALYSES: (list(row), [list(row.values())])}
+    findings = cell_findings(record, sheets, complete=False)
+    assert not [f for f in findings if f.field.startswith("Statistical analyses: Confidence interval")]
+    sheets[contract.ANALYSES][1][0][-1] = "95% CI 2"
+    findings = cell_findings(record, sheets, complete=False)
+    assert any(f.field == "Statistical analyses: Confidence interval (scope)" for f in findings)
+
+
+@pytest.mark.parametrize(
+    "words,accepted",
+    [
+        ("Interventional — design not stated", True),
+        ("Interventional — interventional design fields not applicable", False),
+        ("Not applicable", False),
+        ("Interventional — design not stated; randomized", False),
+        ("Treatment; randomized; parallel assignment; double masked", False),
+    ],
+)
+def test_silent_interventional_index_design_uses_exact_declared_policy(words, accepted):
+    study = {"nct": "NCT90000001", "study_type": "INTERVENTIONAL"}
+    for name in ("primary_purpose", "allocation", "intervention_model", "masking", "who_masked"):
+        study[name] = {"status": "not_stated", "note": "not_reported"}
+    design = next(
+        c
+        for sheet in contract.SHEETS
+        if sheet.name == contract.INDEX
+        for c in sheet.columns
+        if c.header == "Design"
+    )
+    sheet = contract.Sheet(contract.INDEX, "studies[]", (design,))
+    row = preserve.Row(contract.INDEX, 2, {"Trial ID": study["nct"], "Design": words})
+    findings = preserve.index_findings({"studies": [study]}, sheet, [row])
+    assert (findings == []) is accepted
+
+
+@pytest.mark.parametrize(
+    "field,value",
+    [
+        ("primary_purpose", "TREATMENT"),
+        ("allocation", "RANDOMIZED"),
+        ("intervention_model", "PARALLEL"),
+        ("masking", "DOUBLE"),
+        ("who_masked", ["PARTICIPANT"]),
+    ],
+)
+def test_compact_silent_design_must_not_hide_any_supplied_design_field(field, value):
+    study = {"nct": "NCT90000001", "study_type": "INTERVENTIONAL"}
+    for name in ("primary_purpose", "allocation", "intervention_model", "masking", "who_masked"):
+        study[name] = {"status": "not_stated", "note": "not_reported"}
+    study[field] = value
+    design = next(
+        c
+        for sheet in contract.SHEETS
+        if sheet.name == contract.INDEX
+        for c in sheet.columns
+        if c.header == "Design"
+    )
+    sheet = contract.Sheet(contract.INDEX, "studies[]", (design,))
+    row = preserve.Row(
+        contract.INDEX, 2, {"Trial ID": study["nct"], "Design": "Interventional — design not stated"}
+    )
+    assert preserve.index_findings({"studies": [study]}, sheet, [row])
+
+
+@pytest.mark.parametrize(
+    "wrong",
+    [
+        "Class one\nClass two",
+        (
+            "Class one [ID: id-two; relation: rel-one; source: source-one]\n"
+            "Class two [ID: id-one; relation: rel-two; source: source-two]"
+        ),
+        (
+            "Class one [ID: id-one; relation: rel-one; source: source-one] or "
+            "Class two [ID: id-two; relation: rel-two; source: source-two]"
+        ),
+    ],
+)
+def test_direct_class_display_must_keep_each_source_tuple_and_line(wrong):
+    field = contract.FIELD_NAMES["studies[].interventions[].drug_class"]
+    value = {
+        "status": "known",
+        "rule": "classes.drug_class",
+        "words": ["Source intervention"],
+        "note": "",
+        "result": {
+            "state": "classified",
+            "resolved_by": "Source intervention",
+            "classes": [
+                ["id-one", "Class one", "rel-one", "source-one"],
+                ["id-two", "Class two", "rel-two", "source-two"],
+            ],
+        },
+    }
+    expected = preserve.expected(field, value)
+    correct = (
+        "Class one [ID: id-one; relation: rel-one; source: source-one]\n"
+        "Class two [ID: id-two; relation: rel-two; source: source-two]"
+    )
+    assert preserve.judge(correct, expected, False) == "shown"
+    assert preserve.judge(wrong, expected, False) != "shown"
+
+
+@pytest.mark.parametrize(
+    "study_type,type_words", [("OBSERVATIONAL", "Observational"), ("EXPANDED_ACCESS", "Expanded access")]
+)
+def test_noninterventional_absence_notes_require_applicability_words(study_type, type_words):
+    study = {
+        "nct": "NCT90000001",
+        "study_type": study_type,
+        "who_masked": {"status": "not_stated", "note": "not_reported"},
+    }
+    for name in ("phases", "primary_purpose", "allocation", "intervention_model", "masking"):
+        study[name] = {"status": "not_stated", "note": "not_applicable"}
+    design = next(
+        c
+        for sheet in contract.SHEETS
+        if sheet.name == contract.INDEX
+        for c in sheet.columns
+        if c.header == "Design"
+    )
+    phase = next(
+        c
+        for sheet in contract.SHEETS
+        if sheet.name == contract.INDEX
+        for c in sheet.columns
+        if c.header == "Phase"
+    )
+    sheet = contract.Sheet(contract.INDEX, "studies[]", (design, phase))
+    row = preserve.Row(
+        contract.INDEX,
+        2,
+        {
+            "Trial ID": study["nct"],
+            "Design": f"{type_words} — interventional design fields not applicable",
+            "Phase": "Not applicable",
+        },
+    )
+    assert preserve.index_findings({"studies": [study]}, sheet, [row]) == []
+    row.cells["Phase"] = "Not stated"
+    assert preserve.index_findings({"studies": [study]}, sheet, [row])
+    study["phases"] = ["PHASE3"]
+    row.cells["Phase"] = "Not applicable"
+    assert preserve.index_findings({"studies": [study]}, sheet, [row])
+
+
+@pytest.mark.parametrize(
+    "name,value",
+    [
+        ("primary_purpose", "TREATMENT"),
+        ("allocation", "RANDOMIZED"),
+        ("intervention_model", "PARALLEL"),
+        ("masking", "NONE"),
+        ("who_masked", ["PARTICIPANT"]),
+    ],
+)
+def test_noninterventional_summary_cannot_hide_any_source_present_design_value(name, value):
+    study = {"nct": "NCT90000001", "study_type": "OBSERVATIONAL"}
+    for key in ("primary_purpose", "allocation", "intervention_model", "masking", "who_masked"):
+        study[key] = {"status": "not_stated", "note": "not_applicable"}
+    study[name] = value
+    design = next(
+        c
+        for sheet in contract.SHEETS
+        if sheet.name == contract.INDEX
+        for c in sheet.columns
+        if c.header == "Design"
+    )
+    sheet = contract.Sheet(contract.INDEX, "studies[]", (design,))
+    row = preserve.Row(
+        contract.INDEX,
+        2,
+        {"Trial ID": study["nct"], "Design": "Observational — interventional design fields not applicable"},
+    )
+    assert preserve.index_findings({"studies": [study]}, sheet, [row])
+
+
+def test_date_shaped_prose_is_literal_while_typed_registry_dates_use_date_format():
+    comment = contract.FIELD_NAMES["studies[].participant_flow.periods[].milestones[].comment"]
+    typed = contract.FIELD_NAMES["studies[].start_date.date"]
+    prose = preserve.expected(comment, "2016-12-27")
+    date = preserve.expected(typed, "2016-12-27")
+    assert preserve.judge("2016-12-27", prose, False) == "shown"
+    assert preserve.judge("27-Dec-2016", prose, False) != "shown"
+    assert preserve.judge("27-Dec-2016", date, False) == "shown"
+    assert preserve.judge("30-Dec-2016", date, False) != "shown"
+
+
+def test_grouped_enrollment_display_does_not_relax_the_integer_value():
+    field = contract.FIELD_NAMES["studies[].enrollment.count"]
+    want = preserve._values_expected(field, [1074])
+    assert preserve.judge("1,074 (Actual)", want, False) == "shown"
+    assert preserve.judge("1,075 (Actual)", want, False) != "shown"
+    assert preserve.judge("11,074 (Actual)", want, False) != "shown"
+
+
+@pytest.mark.parametrize("placeholder", [False, True])
+@pytest.mark.parametrize(
+    "wrong",
+    [
+        "Not stated",
+        "Not applicable",
+        "Standard Deviation",
+        "Standard Deviation: 7",
+        "Standard Deviation: Not stated; 7",
+    ],
+)
+def test_known_dispersion_type_with_no_numeric_spread_is_not_erased_or_filled(placeholder, wrong):
+    measurement = {"group": "G1", "value": "53"}
+    measure = {
+        "dispersion_type": "Standard Deviation",
+        "classes": [] if placeholder else [{"categories": [{"measurements": [measurement]}]}],
+    }
+    record = {"studies": [{"nct": "NCT90000001", "posted_outcomes": [measure]}]}
+    address = "/studies/0/posted_outcomes/0" + (
+        "" if placeholder else "/classes/0/categories/0/measurements/0"
+    )
+    column = next(
+        c
+        for s in contract.SHEETS
+        if s.name == contract.POSTED
+        for c in s.columns
+        if c.header == "Spread or limits"
+    )
+    sheet = contract.Sheet(contract.POSTED, "studies[].posted_outcomes[]", (column,))
+    row = preserve.Row(
+        contract.POSTED,
+        2,
+        {
+            "Trial ID": "NCT90000001",
+            contract.ADDRESS: address,
+            "Spread or limits": "Standard Deviation: Not stated",
+        },
+    )
+    assert preserve.row_findings(record, sheet, row)[0] == []
+    row.cells["Spread or limits"] = wrong
+    assert preserve.row_findings(record, sheet, row)[0]
+
+
+def test_typed_anticipated_posting_month_is_formatted_but_identical_comment_is_literal():
+    typed = contract.FIELD_NAMES["studies[].posted_outcomes[].anticipated_posting_date"]
+    comment = contract.FIELD_NAMES["studies[].participant_flow.periods[].milestones[].comment"]
+    want = preserve.expected(typed, "2028-06")
+    assert preserve.judge("Not posted (anticipated Jun-2028)", want, False) == "shown"
+    assert preserve.judge("Not posted (anticipated Jul-2028)", want, False) != "shown"
+    assert preserve.judge("Jun-2028", preserve.expected(comment, "2028-06"), False) != "shown"
