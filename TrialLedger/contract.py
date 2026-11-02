@@ -127,9 +127,9 @@ GROUPS = "Groups"
 SAFETY = "Safety"
 BIOMARKERS = "Biomarkers"
 FINDINGS = "Across-trial findings"
+STANDARD = "Standard protocol language"
 READINGS = "Readings"
 DICTIONARY = "Column dictionary"
-STANDARD = "Standard protocol language"
 
 # Consumers many fields share.
 DOSSIER = ("sheet", REVIEW, "Value")
@@ -1646,7 +1646,7 @@ _RECORD_FIELDS: tuple[Field, ...] = (
         "What each status means",
         "run",
         ("landscape.STATUSES",),
-        (*ON_README, ("sheet", REVIEW, "Status"), ("mcp", "statuses")),
+        (*ON_README, ("sheet", REVIEW, "Basis"), ("mcp", "statuses")),
     ),
     Field(
         "envelope",
@@ -1918,7 +1918,7 @@ SHEETS: tuple[Sheet, ...] = (
                     "studies[].open_questions",
                 ),
             ),
-            Column("Status", ("statuses",)),
+            Column("Basis", ("statuses",)),
         ),
     ),
     Sheet(
@@ -2420,6 +2420,7 @@ DOSSIER_SECTIONS: tuple[tuple[str, str, tuple[str, ...]], ...] = (
             "studies[].enrollment.",
         ),
     ),
+    ("Key criteria", ELIGIBILITY, ("studies[].key_criteria[].",)),
     (
         "Conditions and universe",
         READINGS,
@@ -2434,7 +2435,7 @@ DOSSIER_SECTIONS: tuple[tuple[str, str, tuple[str, ...]], ...] = (
     (
         "Population and eligibility",
         ELIGIBILITY,
-        ("studies[].population.", "studies[].key_criteria[]."),
+        ("studies[].population.",),
     ),
     (
         "Arms and interventions",

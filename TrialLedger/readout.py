@@ -2131,17 +2131,17 @@ def write_readout(record: dict[str, Any], path: Path) -> int:
     return written
 
 
-# ── landscape.json schema 3: the reviewer's workbook (refine-landscape-record 3.1-3.6) ─────────────────────
+# ── landscape.json schema 3: the reviewer's workbook (refine-landscape-record 3.1-3.7) ─────────────────────
 # The workbook contract.SHEETS lays out, derived from a schema-3 record alone. A registry value is held
 # plain; a value the registry does not hold, or a rule's reading, is a value object (contract module
-# docstring). Every code is shown through contract.DISPLAY; a reading is labelled "Reading: ..."; a cell is
-# blank only where its
-# column cannot apply to its row by construction (a Safety group column past the trial's own groups; a domain
-# coordinate outside the trial's universe; a Groups column or total only adverse events have), and anything
-# else the registry does not give is said in words. Every listing row's address column is a JSON pointer to
-# the node the row shows. operate.write_book writes the schema-2 readout above until the record is schema 3.
+# docstring). Every code is shown through contract.DISPLAY; a reading is labelled ("Reading: ...", or the
+# dossier's Basis column); a cell is blank only where its column cannot apply to its row by construction (a
+# Safety group column past the trial's own groups; an unnamed class or category of a posted measure; a
+# Groups column or total only adverse events have), and anything else the registry does not give is said in
+# words. Every listing row's address is a JSON pointer to the node the row shows. operate.write_book writes
+# the schema-2 readout above until the record is schema 3.
 
-BOOK_VERSION = "book-1"
+BOOK_VERSION = "book-2"
 ABSENT_KEYS = ("status", "note")
 READING_KEYS = ("status", "rule", "words", "result", "note")
 NOT_REPORTED = "Not reported"
@@ -2155,6 +2155,7 @@ STATUS_LABELS = {
     "not_posted": "Not posted",
     "unresolved": "Unresolved",
 }
+REGISTRY, READING, NOTE = "Registry", "Reading", "Note"
 SOURCE_WORDS = {
     "condition_mesh": "the condition MeSH terms",
     "free_text": "the conditions and titles",
@@ -2162,10 +2163,25 @@ SOURCE_WORDS = {
 }
 UNIVERSE_LABELS = {universe.name: universe.label for universe in contract.UNIVERSES}
 UNIVERSE_SHORT = {"oncology.solid": "Solid tumour", "oncology.heme": "Haematologic", "general": "General"}
+# How a universe's trials are named, and what a reading defined for it is defined for.
+TRIAL_WORDS = {
+    "oncology.solid": "solid-tumour trials",
+    "oncology.heme": "haematologic cancer trials",
+    "general": "trials outside oncology",
+}
+DEFINED_FOR = {"oncology.solid": "solid tumours", "oncology.heme": "haematologic cancers"}
 COORDINATE_WORDS = {
     "setting": "Treatment setting",
     "prior_advanced_lines": "Prior lines for advanced disease",
     "selection": "Gene selection",
+}
+# What would settle a coordinate the criteria leave open, in the eligibility criteria's own terms.
+UNSETTLED_WORDS = {
+    "setting": "the eligibility criteria do not state the treatment setting (such as adjuvant, first-line "
+    "or previously treated advanced disease)",
+    "prior_advanced_lines": "the eligibility criteria do not state the prior lines of therapy for advanced "
+    "disease",
+    "selection": "the eligibility criteria do not state a gene's mutation, fusion or other selecting state",
 }
 # A field shown after another in brackets, in the dossier and the index ("06-Apr-2020 (Actual)").
 BESIDE = {
@@ -2185,6 +2201,39 @@ DATES = (
     "studies[].documents[].date",
     "studies[].documents[].upload_date",
 )
+# The dossier's facts shown for every trial, "Not stated" when the registry leaves them empty; every other
+# fact is shown only when the record holds it (the record and the listings hold everything).
+EXPECTED = (
+    "studies[].brief_title",
+    "studies[].official_title",
+    "studies[].overall_status",
+    "studies[].start_date.date",
+    "studies[].primary_completion_date.date",
+    "studies[].completion_date.date",
+    "studies[].first_posted",
+    "studies[].last_update_posted",
+    "studies[].lead_sponsor.name",
+    "studies[].phases",
+    "studies[].primary_purpose",
+    "studies[].allocation",
+    "studies[].intervention_model",
+    "studies[].masking",
+    "studies[].enrollment.count",
+    "studies[].conditions",
+    "studies[].universe",
+    "studies[].population.minimum_age",
+    "studies[].population.maximum_age",
+    "studies[].population.sex",
+    "studies[].population.healthy_volunteers",
+    "arms",
+    "interventions",
+    "registered_outcomes",
+    "studies[].results_posted",
+    "references",
+)
+# The internal state of a reading, shown in the Readings sheet and never as a dossier fact.
+NOT_IN_DOSSIER = ("studies[].eligibility.itemized", "studies[].eligibility.coverage")
+STOPPED = ("TERMINATED", "SUSPENDED", "WITHDRAWN")
 # The dossier's one row per element of a registry list: what one element is called.
 ELEMENT_WORDS = {
     "secondary_ids": "Other identifier",
@@ -2192,6 +2241,7 @@ ELEMENT_WORDS = {
     "officials": "Overall official",
     "arms": "Arm",
     "interventions": "Intervention",
+    "key_criteria": "Key criterion",
     "registered_outcomes": "Registered outcome",
     "references": "Publication",
     "links": "Related link",
@@ -2199,6 +2249,22 @@ ELEMENT_WORDS = {
     "documents": "Posted document",
 }
 RESULTS_MODULES = ("posted_outcomes", "baseline", "participant_flow", "adverse_events")
+HEADINGS = {"inclusion": "Inclusion", "exclusion": "Exclusion", "unsectioned": "No heading"}
+# The clinical words of the typing banks' concepts (banks.type_criterion), a concept not listed shown with its
+# underscores as spaces.
+CONCEPT_WORDS = {
+    "condition": "Condition",
+    "extent": "Disease extent",
+    "setting_word": "Treatment setting named",
+    "prior_lines": "Prior lines of therapy",
+    "prior_agent": "Prior treatment",
+    "ecog_ps": "Performance status (ECOG/WHO)",
+    "karnofsky": "Performance status (Karnofsky)",
+    "age": "Age",
+    "histology": "Histology",
+    "biomarker": "Biomarker",
+    "organ_function": "Organ function",
+}
 
 
 def held_kind(value: Any) -> str:
@@ -2216,6 +2282,15 @@ def held_kind(value: Any) -> str:
     if isinstance(value, dict) and tuple(value) == READING_KEYS:
         return "reading"
     return "plain"
+
+
+def stated(value: Any) -> bool:
+    """Whether the record states a value: a plain value with something in it, or a known, interpolated or
+    proposed reading."""
+    kind = held_kind(value)
+    if kind == "plain":
+        return contract.holds_value(value)
+    return kind == "reading" and value["status"] in ("known", "interpolated", "proposed")
 
 
 def absence_words(status: Any, note: Any) -> str:
@@ -2241,8 +2316,8 @@ def item_words(item: Any, dictionary: str) -> str:
     """One registry item in words (pure — pinned).
 
     A boolean — "Yes" or "No"; a code with a dictionary — its words (contract.display_words), or "<code> (a
-    registry code without clinical words)" when the dictionary does not hold it; None — "Not stated"; anything
-    else — its text as held.
+    registry code without clinical words)" when the dictionary does not hold it; None — "Not stated";
+    anything else — its text as held.
     """
     if isinstance(item, bool):
         return "Yes" if item else "No"
@@ -2302,26 +2377,33 @@ def reading_words(value: dict[str, Any], words: str) -> str:
     return absence_words(status, value["note"])
 
 
-def status_label(value: Any) -> str:
-    """A value's status as the Status column names it (pure — pinned): a plain value "Known"; a value object
-    its status's label (STATUS_LABELS), an unknown status "Unresolved"; a missing value "Not stated"."""
+def basis(value: Any) -> str:
+    """What a dossier value rests on, as the Basis column names it (pure — pinned): a plain registry value
+    "Registry"; a known reading "Reading"; anything else its status's label (STATUS_LABELS: Not stated,
+    Not posted, Unresolved, Interpolated, Proposed), an unknown status "Unresolved", a missing value "Not
+    stated"."""
     kind = held_kind(value)
     if kind == "plain":
-        return STATUS_LABELS["known"]
+        return REGISTRY
     if kind == "missing":
         return STATUS_LABELS["not_stated"]
+    if kind == "reading" and value["status"] == "known":
+        return READING
     return STATUS_LABELS.get(value["status"], STATUS_LABELS["unresolved"])
 
 
 def least_settled(labels: list[str]) -> str:
-    """The status of a cell showing several values (pure — pinned): Unresolved when any is unresolved,
-    proposed or interpolated; else Not posted when any is; else Known when any is; else Not stated."""
+    """The basis of a cell showing several values (pure — pinned): Unresolved when any is unresolved,
+    proposed or interpolated; else Registry when any is a registry value (a registry entry the rules also
+    read stays the registry's); else Reading when any is a reading; else Not posted when any is; else Not
+    stated."""
     held = set(labels)
     if held & {"Unresolved", "Proposed", "Interpolated"}:
         return "Unresolved"
-    if "Not posted" in held:
-        return "Not posted"
-    return "Known" if "Known" in held else "Not stated"
+    for label_ in (REGISTRY, READING, "Not posted"):
+        if label_ in held:
+            return label_
+    return "Not stated"
 
 
 def at(node: Any, name: str) -> Any:
@@ -2332,20 +2414,32 @@ def at(node: Any, name: str) -> Any:
 
 
 def shown_field(study: dict[str, Any], name: str) -> tuple[Any, str]:
-    """A study field (no list segment) in words and its status label: its DISPLAY words, a date as
-    date_text, and its BESIDE field in brackets after it."""
+    """A study field (no list segment) in words and its basis: its DISPLAY words, a date as date_text, and its
+    BESIDE field in brackets after it."""
     field = contract.FIELD_NAMES[name]
     value = at(study, name.removeprefix("studies[]."))
     words = value_words(value, field.display)
     if name in DATES and held_kind(value) == "plain":
         words = date_text(value)
     for beside, main in BESIDE.items():
-        if main == name and held_kind(at(study, beside.removeprefix("studies[]."))) == "plain":
-            extra = value_words(
-                at(study, beside.removeprefix("studies[].")), contract.FIELD_NAMES[beside].display
-            )
+        held = at(study, beside.removeprefix("studies[]."))
+        if main == name and held_kind(held) == "plain":
+            extra = value_words(held, contract.FIELD_NAMES[beside].display)
             words = f"{words:,} ({extra})" if isinstance(words, int) else f"{words} ({extra})"
-    return words, status_label(value)
+    return words, basis(value)
+
+
+def applies(name: str, study: dict[str, Any]) -> bool:
+    """Whether a study field can apply to the trial, by the registry's own fields: who is masked only under
+    masking; the last known status only when the status is unknown; why stopped only for a stopped trial."""
+    status = study.get("overall_status")
+    if name == "studies[].who_masked":
+        return study.get("masking") != "NONE"
+    if name == "studies[].last_known_status":
+        return status == "UNKNOWN"
+    if name == "studies[].why_stopped":
+        return status in STOPPED
+    return True
 
 
 # ── universes and the domain readings they permit ───────────────────────────────────────────────────────
@@ -2364,45 +2458,71 @@ def assigned(study: dict[str, Any]) -> tuple[str, tuple[str, ...]]:
     return value["status"], tuple(str(name) for name in universes)
 
 
-def pack_applies(coordinate: str, universes: tuple[str, ...], purpose: Any) -> bool:
+def pack_applies(coordinate: str, universes: tuple[str, ...], purpose: Any) -> str:
     """Whether a pack of contract.UNIVERSES computes the coordinate for a trial (pure — pinned).
 
-    `coordinate` is setting, prior_advanced_lines or selection (a pack's "selection:<gene>"); a pack applies
-    when every requirement holds: one of the trial's universes is among a universe requirement's values, and
-    its primary purpose (the registry's code) among a primary-purpose requirement's.
+    `coordinate` is setting, prior_advanced_lines or selection (a pack's "selection:<gene>").
+      applies          — a pack computing it has every requirement held: one of the trial's universes among a
+                         universe requirement's values, its primary purpose among a primary-purpose one's;
+      outside_universe — no pack computing it is defined for any of the trial's universes;
+      other_purpose    — a pack is defined for the trial's universe, but needs another primary purpose.
     """
+    in_universe = False
     for universe in contract.UNIVERSES:
         for pack in universe.packs:
-            computes = any(name.split(":")[0] == coordinate for name in pack.coordinates)
-            held = all(
-                bool(set(universes) & set(requirement.values))
-                if requirement.kind == "universe"
-                else purpose in requirement.values
-                for requirement in pack.requires
-            )
-            if computes and held:
-                return True
-    return False
+            if not any(name.split(":")[0] == coordinate for name in pack.coordinates):
+                continue
+            kinds = {requirement.kind: requirement.values for requirement in pack.requires}
+            if set(universes) & set(kinds.get("universe", ())):
+                in_universe = True
+                if "primary_purpose" not in kinds or purpose in kinds["primary_purpose"]:
+                    return "applies"
+    return "other_purpose" if in_universe else "outside_universe"
+
+
+def not_applicable_words(coordinate: str, universes: tuple[str, ...], purpose: Any) -> str:
+    """Why a domain reading is not made for a trial, in clinical words, from the universe table."""
+    defined = []
+    purposes: list[str] = []
+    for universe in contract.UNIVERSES:
+        for pack in universe.packs:
+            if any(name.split(":")[0] == coordinate for name in pack.coordinates):
+                for requirement in pack.requires:
+                    if requirement.kind == "universe":
+                        defined += [DEFINED_FOR.get(name, name) for name in requirement.values]
+                    else:
+                        purposes += [
+                            item_words(code, "PrimaryPurpose").lower() for code in requirement.values
+                        ]
+    if pack_applies(coordinate, universes, purpose) == "other_purpose":
+        kind = item_words(purpose, "PrimaryPurpose").lower()
+        return f"Not read for {kind} trials (this reading is defined for {' or '.join(purposes)} trials)"
+    named = " and ".join(TRIAL_WORDS.get(name, name) for name in universes) or "trials of no universe"
+    return f"Not read for {named} (this reading is defined for {' and '.join(dict.fromkeys(defined))})"
 
 
 def universe_words(study: dict[str, Any]) -> tuple[str, str, str]:
-    """A trial's universe as (the index's short words, the dossier's words, the status label)."""
+    """A trial's universe as (the index's short words, the dossier's words, the basis)."""
     status, universes = assigned(study)
     if status == "missing":
         return NO_READING, NO_READING, STATUS_LABELS["not_stated"]
     value = study["universe"]
+    result = value.get("result") if isinstance(value.get("result"), dict) else {}
     if status != "known" or not universes:
-        reason = absence_words("unresolved", value.get("note"))
-        sources = []
-        result = value.get("result") if isinstance(value.get("result"), dict) else {}
-        for source in result.get("sources") or []:
-            found = ", ".join(str(item.get("term")) for item in source.get("found") or []) or "nothing"
-            sources.append(f"{SOURCE_WORDS.get(source.get('source'), source.get('source'))} found {found}")
-        detail = f"{reason}; " + "; ".join(sources) if sources else reason
-        return "Unresolved", detail, STATUS_LABELS["unresolved"]
-    result = value["result"]
+        sources = [
+            f"{SOURCE_WORDS.get(source.get('source'), source.get('source'))} name "
+            + (", ".join(str(item.get("term")) for item in source.get("found") or []) or "no cancer")
+            for source in result.get("sources") or []
+        ]
+        return (
+            "Unresolved",
+            "Not settled: " + ("; ".join(sources) or "no source names a domain"),
+            "Unresolved",
+        )
     decided = SOURCE_WORDS.get(result.get("decided_by"), str(result.get("decided_by")))
-    labels = [UNIVERSE_LABELS.get(name, name) if name != "general" else "General" for name in universes]
+    labels = [
+        UNIVERSE_LABELS.get(name, name) if name != "general" else "Outside oncology" for name in universes
+    ]
     short = " + ".join(UNIVERSE_SHORT.get(name, name) for name in universes)
     found = [
         str(item.get("term"))
@@ -2410,42 +2530,108 @@ def universe_words(study: dict[str, Any]) -> tuple[str, str, str]:
         if source.get("source") == result.get("decided_by")
         for item in source.get("found") or []
     ]
-    words = f"Reading: {' and '.join(labels)}, decided by {decided}"
-    words += f" ({', '.join(dict.fromkeys(found))})" if found else ""
-    words += f". {value['note']}" if value.get("note") else ""
-    return f"{short} ({decided.removeprefix('the ')})", words, STATUS_LABELS["known"]
+    named = [
+        str(term)
+        for source in result.get("sources") or []
+        if source.get("source") == result.get("decided_by")
+        for term in source.get("non_oncology") or []
+    ]
+    words = f"{' and '.join(labels)}, from {decided}"
+    shown_terms = found or named
+    words += f" ({', '.join(dict.fromkeys(shown_terms))})" if shown_terms else ""
+    return f"{short} ({decided.removeprefix('the ')})", words, READING
 
 
 def coordinate_levels(study: dict[str, Any], name: str) -> list[tuple[str, Any]]:
     """A coordinate's readings the record holds, in order: known, interpolated, then each proposal alone."""
-    coordinates = study.get("coordinates") if isinstance(study.get("coordinates"), dict) else {}
+    held = study.get("coordinates")
+    coordinates = held if isinstance(held, dict) else {}
     levels = [
         ("", coordinates.get(name)),
-        (" (default relations added)", coordinates.get(f"{name}_interpolated")),
+        (" (with the default relations)", coordinates.get(f"{name}_interpolated")),
     ]
     proposed = coordinates.get(f"{name}_proposed")
-    levels += [(" (one proposal alone, never built on)", item) for item in proposed or []]
+    levels += [(" (one proposed relation alone, never relied on)", item) for item in proposed or []]
     return [(words, value) for words, value in levels if value is not None]
 
 
+def coordinate_words(name: str, value: Any) -> str:
+    """A domain reading's value in clinical words: its result as registered; an unsettled one says which words
+    of the criteria would settle it; a conflict says so."""
+    if held_kind(value) != "reading":
+        return value_words(value)
+    status, result = value["status"], value["result"]
+    if status == "known":
+        return f"{result_words(result)} (as registered)"
+    if status in ("interpolated", "proposed"):
+        return f"{status.capitalize()}: {result_words(result)} (as registered)"
+    if status == "unresolved" and isinstance(result, list) and not result:
+        return "Not settled: the eligibility criteria state values that conflict"
+    if status == "unresolved":
+        return f"Not settled: {UNSETTLED_WORDS.get(name, 'the eligibility criteria do not state it')}"
+    return value_words(value)
+
+
 def coordinate_short(study: dict[str, Any], name: str) -> Any:
-    """The index's cell for a domain coordinate: None (blank: it cannot apply) outside the trial's universe;
-    "No reading produced" without a universe or a reading; the known value as registered; else the
-    interpolated one, labelled; else "Unresolved" (its reason is in the dossier)."""
+    """The index's cell for a domain reading: "No reading produced" without a universe or a reading; "Not
+    applicable" where it is not read for the trial (its reason in the dossier); the known value as
+    registered; else the interpolated one, labelled; else "Unresolved" (its reason in the dossier)."""
     status, universes = assigned(study)
     if status == "missing":
         return NO_READING
-    if not pack_applies(name, universes, study.get("primary_purpose")):
-        return None
+    if pack_applies(name, universes, study.get("primary_purpose")) != "applies":
+        return NOT_APPLICABLE
     levels = dict(coordinate_levels(study, name)[:2])
-    known, interpolated = levels.get(""), levels.get(" (default relations added)")
+    known, interpolated = levels.get(""), levels.get(" (with the default relations)")
     if known is None:
         return NO_READING
     if held_kind(known) == "reading" and known["status"] == "known":
-        return f"{result_words(known['result'])} (as registered)"
+        return coordinate_words(name, known)
     if held_kind(interpolated) == "reading" and interpolated["status"] == "interpolated":
-        return f"Interpolated: {result_words(interpolated['result'])} (as registered)"
+        return coordinate_words(name, interpolated)
     return "Unresolved"
+
+
+# ── a criterion's readings ──────────────────────────────────────────────────────────────────────────────
+
+
+def atom_words(atom: Any) -> str:
+    """One typed reading of a criterion in clinical words: "<concept>: <values joined by ' or '>", then its
+    qualifiers in brackets."""
+    if not isinstance(atom, dict):
+        return result_words(atom)
+    concept = str(atom.get("concept", ""))
+    named = CONCEPT_WORDS.get(concept, concept.replace("_", " ").capitalize())
+    values = " or ".join(str(item).replace("_", " ") for item in atom.get("values") or []) or "named"
+    params = atom.get("params") if isinstance(atom.get("params"), dict) else {}
+    extra = "; ".join(
+        f"{key.replace('_', ' ')} {str(item).replace('_', ' ')}"
+        for key, item in params.items()
+        if str(item).strip()
+    )
+    return f"{named}: {values}" + (f" ({extra})" if extra else "")
+
+
+def criterion_readings(value: Any) -> str:
+    """A criterion's typed readings, one "Reading: ..." per line; none — "No reading produced" (which does not
+    mean the criterion holds no clinical information)."""
+    if held_kind(value) != "reading" or value["status"] != "known" or not value["result"]:
+        return NO_READING
+    return "\n".join(f"Reading: {atom_words(atom)}" for atom in value["result"])
+
+
+def role_words(value: Any) -> str:
+    """A criterion's role: its heading's, or the one its own words state, with those words; unresolved in
+    words."""
+    if held_kind(value) != "reading":
+        return value_words(value)
+    if value["status"] != "known":
+        words = ", ".join(f"“{word}”" for word in value.get("words") or [])
+        reason = f"its own words {words} conflict with its heading" if words else "it is under no heading"
+        return f"Not settled: {reason}"
+    role = HEADINGS.get(str(value["result"]), result_words(value["result"]))
+    words = ", ".join(dict.fromkeys(f"“{word}”" for word in value.get("words") or []))
+    return f"{role} (its own words: {words})" if words else role
 
 
 # ── the dossier (Trial review) ───────────────────────────────────────────────────────────────────────────
@@ -2466,12 +2652,15 @@ def band_fields(prefixes: tuple[str, ...]) -> list[contract.Field]:
 
 
 def element_rows(study: dict[str, Any], key: str, fields: list[contract.Field]) -> list[tuple[str, Any, str]]:
-    """A registry list as dossier rows: one per element, each field "<label>: <words>" per line; a nested list
-    one line per item; no element — one row saying why (Not stated, or Not posted)."""
+    """A registry list as dossier rows: one per element, each field "<label>: <words>" per line (a field the
+    element does not state left out); a nested list one line per item; no element — one "Not stated" row when
+    the list is expected, else none."""
     elements = study.get(key)
     plural = ELEMENT_WORDS[key]
     if not isinstance(elements, list) or not elements:
-        return [(f"{plural}s", value_words(elements), status_label(elements))]
+        if key not in EXPECTED:
+            return []
+        return [(f"{plural}s", value_words(elements), basis(elements))]
     rows = []
     counts: dict[str, int] = {}
     for number, element in enumerate(elements, 1):
@@ -2484,11 +2673,12 @@ def element_rows(study: dict[str, Any], key: str, fields: list[contract.Field]) 
                 outer, inner = rest.split("[].", 1)
                 items = element.get(outer)
                 held = [value_words(at(item, inner)) for item in items] if isinstance(items, list) else []
-                lines.append(f"{field.label}: {'; '.join(str(h) for h in held) or NOT_STATED}")
-                labels.append("Known" if held else "Not stated")
+                if held:
+                    lines.append(f"{field.label}: {'; '.join(str(h) for h in held)}")
+                    labels.append(REGISTRY)
                 continue
             value = element.get(rest)
-            if field.kind == "reading" and value is None:
+            if not stated(value) and not (field.kind == "reading" and held_kind(value) == "reading"):
                 continue
             words = value_words(value, field.display)
             if (
@@ -2498,47 +2688,46 @@ def element_rows(study: dict[str, Any], key: str, fields: list[contract.Field]) 
             ):
                 mesh = value_words(study.get("intervention_mesh"))
                 words = (
-                    f"{words}; the registry's intervention MeSH terms beside it: {mesh} "
-                    "(the registry's terms, never a drug class)"
+                    f"Not settled ({value_words(value)}); the registry's intervention MeSH terms beside it: "
+                    f"{mesh} (the registry's terms, never a drug class)"
                 )
             if field.name in DATES and held_kind(value) == "plain":
                 words = date_text(value)
             lines.append(f"{field.label}: {words}")
-            labels.append(status_label(value))
+            reading = field.kind == "reading" and held_kind(value) == "plain"
+            labels.append(READING if reading else basis(value))
         fact = f"{plural} {number}"
         if key == "registered_outcomes":
             category = str(element.get("category", "registered")).capitalize()
             counts[category] = counts.get(category, 0) + 1
             fact = f"{category} outcome {counts[category]}"
             lines = [line for line in lines if not line.startswith("Category")]
-        rows.append((fact, "\n".join(lines), least_settled(labels)))
+        rows.append((fact, "\n".join(lines) or NOT_STATED, least_settled(labels)))
     return rows
 
 
 def universe_band_rows(study: dict[str, Any]) -> list[tuple[str, Any, str]]:
-    """The universe and the domain coordinates it permits, each with the treatment-context limit."""
+    """The universe and the domain readings it permits, each with the treatment-context limit."""
     _short, words, label_ = universe_words(study)
     rows = [("Universe", words, label_)]
     status, universes = assigned(study)
+    purpose = study.get("primary_purpose")
+    shown_any = False
     for name, title in COORDINATE_WORDS.items():
         if status == "missing":
             rows.append((title, NO_READING, STATUS_LABELS["not_stated"]))
             continue
-        if not pack_applies(name, universes, study.get("primary_purpose")):
-            names = " and ".join(UNIVERSE_SHORT.get(u, u) for u in universes) or "no"
-            words = f"Does not apply: no rule pack of the {names} universe reads it for this trial"
-            rows.append((title, words, "Known"))
+        if pack_applies(name, universes, purpose) != "applies":
+            rows.append((title, not_applicable_words(name, universes, purpose), READING))
             continue
         levels = coordinate_levels(study, name)
         if not levels:
             rows.append((title, NO_READING, STATUS_LABELS["not_stated"]))
         for words_, value in levels:
-            rows.append((f"{title}{words_}", value_words(value), status_label(value)))
-    if any(
-        row[0].startswith(("Treatment setting", "Prior lines")) and not row[1].startswith("Does not")
-        for row in rows
-    ):
-        rows.append(("Treatment setting and line: what they are", contract.TREATMENT_CONTEXT_LIMIT, "Known"))
+            rows.append((f"{title}{words_}", coordinate_words(name, value), basis(value)))
+            shown_any = shown_any or name != "selection"
+    if shown_any:
+        rows.append(("Treatment setting and line: what they are", contract.TREATMENT_CONTEXT_LIMIT, NOTE))
     return rows
 
 
@@ -2560,11 +2749,33 @@ def group_totals(group: dict[str, Any]) -> str:
     return "\n".join(lines)
 
 
+def results_posted(study: dict[str, Any]) -> bool:
+    """Whether the record's results reading says the trial posted results."""
+    value = study.get("results_posted")
+    return held_kind(value) == "reading" and value["status"] == "known" and value["result"] == "posted"
+
+
+def results_words(study: dict[str, Any]) -> tuple[str, str]:
+    """Whether results are posted, in words: "Yes, first posted <date>", "Not posted", or the reading's
+    status in words."""
+    value = study.get("results_posted")
+    if results_posted(study):
+        first = study.get("results_first_posted")
+        when = f", first posted {date_text(first)}" if held_kind(first) == "plain" else ""
+        return f"Yes{when}", READING
+    if held_kind(value) == "reading" and value["status"] in ("not_posted", "known"):
+        return NOT_POSTED, STATUS_LABELS["not_posted"]
+    return value_words(value), basis(value)
+
+
 def availability_rows(study: dict[str, Any], heading: str) -> list[tuple[str, Any, str]]:
-    """What the band's listings hold for the trial, counted (results, flow and safety bands)."""
-    posted = results_posted(study)
+    """What the band's listings hold for the trial, counted (results, flow and safety bands); a trial that
+    posted no results — nothing (the Results band says so once)."""
+    if not results_posted(study):
+        return []
     if heading == "Results":
-        outcomes = study.get("posted_outcomes") if isinstance(study.get("posted_outcomes"), list) else []
+        held = study.get("posted_outcomes")
+        outcomes = held if isinstance(held, list) else []
         values = sum(
             len(category.get("measurements") or [])
             for outcome in outcomes
@@ -2572,74 +2783,54 @@ def availability_rows(study: dict[str, Any], heading: str) -> list[tuple[str, An
             for category in klass.get("categories") or []
         )
         analyses = sum(len(outcome.get("analyses") or []) for outcome in outcomes)
-        baseline = study.get("baseline") if isinstance(study.get("baseline"), dict) else {}
-        characteristics = len(baseline.get("measures") or [])
-        if not posted:
-            return [("Posted results, analyses and baseline", NOT_POSTED, STATUS_LABELS["not_posted"])]
+        held = study.get("baseline")
+        characteristics = len(held.get("measures") or []) if isinstance(held, dict) else 0
         return [
             (
                 "Posted outcome measures",
-                f"{len(outcomes)} measures, {values} values (Posted results sheet)",
-                "Known",
+                f"{len(outcomes)} measures, {values} values (Posted results)",
+                REGISTRY,
             ),
-            ("Statistical analyses", f"{analyses} analyses (Statistical analyses sheet)", "Known"),
-            ("Baseline characteristics", f"{characteristics} characteristics (Baseline sheet)", "Known"),
+            ("Statistical analyses", f"{analyses} analyses (Statistical analyses)", REGISTRY),
+            ("Baseline characteristics", f"{characteristics} characteristics (Baseline)", REGISTRY),
         ]
     if heading == "Participant flow":
         flow = study.get("participant_flow")
         if not isinstance(flow, dict):
-            return [
-                (
-                    "Participant flow",
-                    NOT_POSTED if not posted else NOT_STATED,
-                    "Not posted" if not posted else "Not stated",
-                )
-            ]
+            return [("Participant flow", NOT_STATED, STATUS_LABELS["not_stated"])]
         periods = flow.get("periods") or []
         names = "; ".join(str(value_words(period.get("title"))) for period in periods) or NOT_STATED
-        return [("Periods", f"{len(periods)}: {names} (Participant flow sheet)", "Known")]
+        return [("Periods", f"{len(periods)}: {names} (Participant flow)", REGISTRY)]
     events = study.get("adverse_events")
     if not isinstance(events, dict):
-        return [
-            (
-                "Adverse events",
-                NOT_POSTED if not posted else NOT_STATED,
-                "Not posted" if not posted else "Not stated",
-            )
-        ]
+        return [("Adverse events", NOT_STATED, STATUS_LABELS["not_stated"])]
     rows = [
-        (f"Group G{number}", f"{value_words(group.get('title'))}\n{group_totals(group)}", "Known")
+        (f"Group G{number}", f"{value_words(group.get('title'))}\n{group_totals(group)}", REGISTRY)
         for number, group in enumerate(events.get("groups") or [], 1)
     ]
     listed = events.get("events") or []
     serious = sum(1 for event in listed if event.get("table") == "serious")
-    rows.append(
-        (
-            "Adverse-event terms",
-            f"{serious} serious and {len(listed) - serious} other terms (Safety sheet)",
-            "Known",
-        )
-    )
-    rows.append(("Grade", NO_GRADE, "Known"))
+    words = f"{serious} serious and {len(listed) - serious} other terms (Safety)"
+    rows += [("Adverse-event terms", words, REGISTRY), ("Grade", NO_GRADE, REGISTRY)]
     return rows
 
 
-def results_posted(study: dict[str, Any]) -> bool:
-    """Whether the record's results reading says the trial posted results."""
-    value = study.get("results_posted")
-    return held_kind(value) == "reading" and value["status"] == "known" and value["result"] == "posted"
-
-
 def dossier_facts(study: dict[str, Any]) -> list[tuple[str, str, str, Any, str]]:
-    """A trial's dossier, band by band (contract.DOSSIER_SECTIONS): (band, listing, fact, value, status)."""
+    """A trial's dossier, band by band (contract.DOSSIER_SECTIONS): (band, listing, fact, value, basis). An
+    EXPECTED fact always; any other only when stated; a fact that cannot apply never."""
     facts = []
+    posted = results_posted(study)
     for heading, listing, prefixes in contract.DOSSIER_SECTIONS:
         fields = band_fields(prefixes)
         rows: list[tuple[str, Any, str]] = []
         done: set[str] = set()
         for field in fields:
             rest = field.name.removeprefix("studies[].")
-            if field.name in BESIDE or rest.startswith(("universe", "coordinates.")):
+            if (
+                field.name in BESIDE
+                or field.name in NOT_IN_DOSSIER
+                or rest.startswith(("universe", "coordinates."))
+            ):
                 continue
             if "[]" in rest:
                 key = rest.split("[]", 1)[0]
@@ -2649,14 +2840,18 @@ def dossier_facts(study: dict[str, Any]) -> list[tuple[str, str, str, Any, str]]
                         study, key, [f for f in fields if f.name.startswith(f"studies[].{key}[].")]
                     )
                 continue
-            words, label_ = shown_field(study, field.name)
-            in_module = field.name.startswith(tuple(f"studies[].{module}" for module in RESULTS_MODULES))
-            if (in_module or field.name == "studies[].limitations") and at(study, rest) is None:
-                # A module the trial did not post: its band's availability row says so, once.
-                if not results_posted(study):
-                    continue
-                words, label_ = NOT_STATED, "Not stated"
-            rows.append((field.label, words, label_))
+            if field.name == "studies[].results_posted":
+                rows.append((field.label, *results_words(study)))
+                continue
+            if field.name == "studies[].adverse_events.time_frame" and posted:
+                rows.append((field.label, *shown_field(study, field.name)))
+                continue
+            value = at(study, rest)
+            if not applies(field.name, study):
+                continue
+            if field.name not in EXPECTED and not stated(value):
+                continue
+            rows.append((field.label, *shown_field(study, field.name)))
         if heading == "Conditions and universe":
             rows += universe_band_rows(study)
         if heading in ("Results", "Participant flow", "Safety"):
@@ -2668,26 +2863,77 @@ def dossier_facts(study: dict[str, Any]) -> list[tuple[str, str, str, Any, str]]
 # ── the listings ─────────────────────────────────────────────────────────────────────────────────────────
 
 
-def denominator_words(outcome: dict[str, Any], klass: dict[str, Any], group: Any) -> str:
-    """A measurement's denominator: the class's count for its group where the class gives one, else the
-    measure's; "<count> <units>", several units joined by "; "; none — "Not stated"."""
-    for scope in (klass, outcome):
+def group_title(groups: Any, group: Any) -> str:
+    """A group named within its own module, by its ID; an ID the module does not hold says so."""
+    for held in groups if isinstance(groups, list) else []:
+        if held.get("id") == group:
+            return str(value_words(held.get("title")))
+    return f"{group} (no such group in this module)"
+
+
+PLAIN_DECIMAL = re.compile(r"-?(0|[1-9][0-9]*)(\.[0-9]+)?")
+COUNT_FORMAT = "#,##0"
+
+
+def registry_number(text: Any) -> tuple[str, Any, str]:
+    """A registry value written as a number where it is a plain decimal (pure — pinned).
+
+    number — the text is a plain decimal ("63.4", "63.40", "7", "-0.5": digits, an optional sign and point,
+             no leading zero, no grouping comma), a negative zero excepted, with at most 15 significant
+             digits: (number, the int or float, the format that shows exactly the registry's decimal places:
+             "0" for none, "0.00" for two);
+    text   — anything else ("NA", "<0.001", "1,500", "0.1-0.3", a number with more digits than a cell holds
+             exactly): (text, the value as given, "").
+    """
+    if not isinstance(text, str) or not PLAIN_DECIMAL.fullmatch(text):
+        return "text", text, ""
+    whole, _point, places = text.lstrip("-").partition(".")
+    digits = (whole + places).lstrip("0")
+    value: Any = float(text) if places else int(text)
+    if len(digits) > 15 or (text.startswith("-") and value == 0):
+        return "text", text, ""
+    return "number", value, "0." + "0" * len(places) if places else "0"
+
+
+def number_cell(value: Any, address: str) -> tuple:
+    """A cell of a registry value: a plain decimal as a number in its own format, anything else as text."""
+    code, held, form = registry_number(value)
+    if code == "number":
+        return cell(held, "known", address, form)
+    return cell(value, "known", address)
+
+
+def numbered(values: tuple, address: str, positions: tuple[int, ...]) -> tuple:
+    """A listing row's cells, the values at `positions` written by number_cell."""
+    return tuple(
+        number_cell(value, address) if i in positions else cell(value, "known", address)
+        for i, value in enumerate(values)
+    )
+
+
+def denominator_words(scopes: list[Any], group: Any) -> Any:
+    """A measurement's denominator: the innermost scope that gives one for its group (class, measure, module);
+    a count of participants alone — the count as the registry writes it (a number cell); otherwise "<count>
+    <units>", several units joined by "; "; none — "Not stated"."""
+    for scope in scopes:
         found = [
-            f"{value_words(count.get('value'))} {value_words(denominator.get('units'))}"
-            for denominator in scope.get("denominators") or []
+            (value_words(count.get("value")), value_words(denominator.get("units")))
+            for denominator in (scope.get("denominators") or [] if isinstance(scope, dict) else [])
             for count in denominator.get("counts") or []
             if count.get("group") == group
         ]
+        if len(found) == 1 and found[0][1] == "Participants":
+            return found[0][0]
         if found:
-            return "; ".join(found)
+            return "; ".join(f"{count} {units}" for count, units in found)
     return NOT_STATED
 
 
-def spread_words(kind: Any, measurement: dict[str, Any]) -> str:
+def spread_words(kind: Any, measurement: dict[str, Any], dictionary: str = "") -> str:
     """A measurement's spread or limits (pure — pinned): "<dispersion>: <spread>" or "<dispersion>: <lower> to
     <upper>"; neither posted — "Not applicable" when the registry's dispersion is "NA", else "Not stated"."""
     spread, lower, upper = (measurement.get(key) for key in ("spread", "lower_limit", "upper_limit"))
-    named = value_words(kind) if held_kind(kind) == "plain" else "Spread"
+    named = value_words(kind, dictionary) if held_kind(kind) == "plain" else "Spread"
     if held_kind(spread) == "plain":
         return f"{named}: {value_words(spread)}"
     if held_kind(lower) == "plain" or held_kind(upper) == "plain":
@@ -2695,15 +2941,51 @@ def spread_words(kind: Any, measurement: dict[str, Any]) -> str:
     return NOT_APPLICABLE if kind == "NA" else NOT_STATED
 
 
+def title_or_blank(value: Any) -> Any:
+    """A class's or category's title; an untitled one blank (None): the registry's single unnamed class or
+    category has no name to show."""
+    return value_words(value) if stated(value) else None
+
+
+def measurement_rows(
+    trial: str, base: str, module: dict[str, Any], head: tuple, scopes: tuple, extra: dict
+) -> list[tuple]:
+    """Each measurement of a measure (posted outcome or baseline characteristic) as one row's values: its
+    head, class, category, group, denominator, parameter, value, spread, unit and comment."""
+    rows = []
+    groups = module.get("groups")
+    measure = extra["measure"]
+    for k, klass in enumerate(measure.get("classes") or []):
+        for c, category in enumerate(klass.get("categories") or []):
+            for m, measurement in enumerate(category.get("measurements") or []):
+                group = measurement.get("group")
+                address = f"{base}/classes/{k}/categories/{c}/measurements/{m}"
+                values = (
+                    trial,
+                    address,
+                    *head,
+                    title_or_blank(klass.get("title")),
+                    title_or_blank(category.get("title")),
+                    group_title(groups, group),
+                    denominator_words([klass, *scopes], group),
+                    value_words(measure.get("param_type"), "MeasureParam"),
+                    value_words(measurement.get("value")),
+                    spread_words(measure.get("dispersion_type"), measurement, extra["dispersion"]),
+                    value_words(measure.get("unit")),
+                    value_words(measurement.get("comment")),
+                )
+                # the denominator and the value, numbers where the registry writes plain decimals
+                rows.append(numbered(values, address, (len(head) + 5, len(head) + 7)))
+    return rows
+
+
 def posted_rows(study: dict[str, Any], number: int) -> list[tuple]:
     """A trial's Posted results rows: one per measurement (measure × class × category × group), each group
     named within its own measure, its denominator at the scope the registry gives it; a measure without
     measurements one row saying so."""
     rows = []
-    trial = study["nct"]
-    outcomes = study.get("posted_outcomes") if isinstance(study.get("posted_outcomes"), list) else []
-    for o, outcome in enumerate(outcomes):
-        titles = {group.get("id"): group.get("title") for group in outcome.get("groups") or []}
+    held = study.get("posted_outcomes")
+    for o, outcome in enumerate(held if isinstance(held, list) else []):
         status = value_words(outcome.get("reporting_status"), "ReportingStatus")
         if held_kind(outcome.get("anticipated_posting_date")) == "plain":
             status = f"{status} (anticipated {date_text(outcome['anticipated_posting_date'])})"
@@ -2715,50 +2997,144 @@ def posted_rows(study: dict[str, Any], number: int) -> list[tuple]:
             status,
             value_words(outcome.get("time_frame")),
         )
-        found = 0
-        for k, klass in enumerate(outcome.get("classes") or []):
-            for c, category in enumerate(klass.get("categories") or []):
-                for m, measurement in enumerate(category.get("measurements") or []):
-                    group = measurement.get("group")
-                    title = titles.get(group)
-                    named = (
-                        value_words(title)
-                        if title is not None
-                        else f"{group} (no such group in this measure)"
-                    )
-                    address = (
-                        f"/studies/{number}/posted_outcomes/{o}/classes/{k}/categories/{c}/measurements/{m}"
-                    )
-                    values = (
-                        trial,
-                        address,
-                        *head,
-                        value_words(klass.get("title")),
-                        value_words(category.get("title")),
-                        named,
-                        denominator_words(outcome, klass, group),
-                        value_words(outcome.get("param_type"), "MeasureParam"),
-                        value_words(measurement.get("value")),
-                        spread_words(outcome.get("dispersion_type"), measurement),
-                        value_words(outcome.get("unit")),
-                        value_words(measurement.get("comment")),
-                    )
-                    rows.append(tuple(cell(value, "known", address) for value in values))
-                    found += 1
+        base = f"/studies/{number}/posted_outcomes/{o}"
+        found = measurement_rows(
+            study["nct"], base, outcome, head, (outcome,), {"measure": outcome, "dispersion": ""}
+        )
         if not found:
-            address = f"/studies/{number}/posted_outcomes/{o}"
             values = (
-                trial,
-                address,
+                study["nct"],
+                base,
                 *head,
-                *(NOT_POSTED,) * 5,
+                *(NOT_POSTED,) * 4,
                 value_words(outcome.get("param_type"), "MeasureParam"),
                 NOT_POSTED,
                 NOT_POSTED,
                 value_words(outcome.get("unit")),
                 NOT_POSTED,
             )
-            rows.append(tuple(cell(value, "known", address) for value in values))
+            found = [tuple(cell(value, "known", base) for value in values)]
+        rows += found
+    return rows
+
+
+def baseline_rows(study: dict[str, Any], number: int) -> list[tuple]:
+    """A trial's Baseline rows: one per measurement (characteristic × class × category × group), each group
+    named within the baseline module, its denominator at the scope the registry gives it."""
+    baseline = study.get("baseline")
+    if not isinstance(baseline, dict):
+        return []
+    rows = []
+    for m, measure in enumerate(baseline.get("measures") or []):
+        title = value_words(measure.get("title"))
+        if stated(measure.get("description")):
+            title = f"{title}\n{value_words(measure.get('description'))}"
+        population = measure.get("population")
+        population = population if stated(population) else baseline.get("population")
+        head = (title, value_words(population))
+        base = f"/studies/{number}/baseline/measures/{m}"
+        extra = {"measure": measure, "dispersion": "MeasureDispersionType"}
+        rows += measurement_rows(study["nct"], base, baseline, head, (measure, baseline), extra)
+    return rows
+
+
+def analysis_rows(study: dict[str, Any], number: int) -> list[tuple]:
+    """A trial's Statistical analyses rows: one per analysis of a posted measure, its compared groups named
+    within that measure; a part the registry leaves empty "Not stated" in a column's first part, left out
+    after it."""
+    rows = []
+    held = study.get("posted_outcomes")
+    for o, outcome in enumerate(held if isinstance(held, list) else []):
+        groups = outcome.get("groups")
+        for a, analysis in enumerate(outcome.get("analyses") or []):
+            address = f"/studies/{number}/posted_outcomes/{o}/analyses/{a}"
+
+            def part(name: str, dictionary: str = "", item: dict = analysis) -> Any:
+                return value_words(item.get(name), dictionary)
+
+            def more(*names: str, item: dict = analysis) -> str:
+                return "".join(f"\n{value_words(item.get(name))}" for name in names if stated(item.get(name)))
+
+            compared = [group_title(groups, group) for group in analysis.get("groups") or []]
+            interval = NOT_STATED
+            if stated(analysis.get("ci_lower")) or stated(analysis.get("ci_upper")):
+                level = f"{part('ci_percent')}% " if stated(analysis.get("ci_percent")) else ""
+                sides = (
+                    f"{part('ci_sides', 'ConfidenceIntervalNumSides')} "
+                    if stated(analysis.get("ci_sides"))
+                    else ""
+                )
+                interval = f"{level}{sides}interval: {part('ci_lower')} to {part('ci_upper')}"
+            estimate = str(part("param_value"))
+            if stated(analysis.get("dispersion_value")):
+                estimate += (
+                    f" ({part('dispersion_type', 'AnalysisDispersionType')}: {part('dispersion_value')})"
+                )
+            values = (
+                study["nct"],
+                address,
+                value_words(outcome.get("title")),
+                ("; ".join(compared) or NOT_STATED) + more("group_description"),
+                str(part("method")) + more("method_comment"),
+                part("param_type"),
+                estimate + more("estimate_comment"),
+                interval + more("ci_lower_comment", "ci_upper_comment"),
+                str(part("p_value")) + more("p_value_comment"),
+                str(part("hypothesis", "NonInferiorityType")) + more("hypothesis_comment"),
+                part("other_description"),
+            )
+            # an estimate or p-value that is the registry's plain decimal alone is a number
+            rows.append(numbered(values, address, (6, 8)))
+    return rows
+
+
+FIXED_MILESTONES = tuple(contract.DISPLAY["FlowMilestone"])
+
+
+def flow_rows(study: dict[str, Any], number: int) -> list[tuple]:
+    """A trial's Participant flow rows: one per period × milestone (or reason not completed) × group, the
+    count as the registry gives it, each group named within the flow."""
+    flow = study.get("participant_flow")
+    if not isinstance(flow, dict):
+        return []
+    rows = []
+    groups = flow.get("groups")
+    for p, period in enumerate(flow.get("periods") or []):
+        entries = [
+            # the registry's three fixed milestones in words; a sponsor's own milestone as written
+            (
+                "milestones",
+                i,
+                value_words(
+                    item.get("type"), "FlowMilestone" if item.get("type") in FIXED_MILESTONES else ""
+                ),
+                item,
+            )
+            for i, item in enumerate(period.get("milestones") or [])
+        ]
+        entries += [
+            ("withdrawals", i, f"Not completed: {value_words(item.get('reason'))}", item)
+            for i, item in enumerate(period.get("withdrawals") or [])
+        ]
+        for kind, i, named, item in entries:
+            for c, count in enumerate(item.get("counts") or []):
+                address = f"/studies/{number}/participant_flow/periods/{p}/{kind}/{i}/counts/{c}"
+                participants = value_words(count.get("participants"))
+                if stated(count.get("units")):
+                    participants = f"{participants} ({value_words(count.get('units'))} units)"
+                comments = [
+                    value_words(held) for held in (item.get("comment"), count.get("comment")) if stated(held)
+                ]
+                values = (
+                    study["nct"],
+                    address,
+                    value_words(period.get("title")),
+                    named,
+                    group_title(groups, count.get("group")),
+                    participants,
+                    "\n".join(str(held) for held in comments) or NOT_STATED,
+                )
+                rows.append(numbered(values, address, (5,)))
     return rows
 
 
@@ -2785,7 +3161,8 @@ def safety_rows(study: dict[str, Any], number: int, n: int) -> list[tuple]:
     """A trial's Safety rows: one per table × term, then for each of its adverse-event groups G1 ... (in the
     module's order) affected, at risk and events; G columns past its own groups blank (None) by construction.
     Unlisted events are never zeros: a trial posts only the terms its tables list."""
-    events = study.get("adverse_events") if isinstance(study.get("adverse_events"), dict) else {}
+    held = study.get("adverse_events")
+    events = held if isinstance(held, dict) else {}
     groups = [group.get("id") for group in events.get("groups") or []]
     rows = []
     for e, event in enumerate(events.get("events") or []):
@@ -2814,28 +3191,21 @@ def safety_rows(study: dict[str, Any], number: int, n: int) -> list[tuple]:
 
 
 def group_rows(study: dict[str, Any], number: int) -> list[tuple]:
-    """A trial's Groups rows: each group of each results module, keyed within its module (never matched across
-    modules); the adverse-event groups named G1 ... with their totals."""
+    """A trial's Groups rows: the groups of its baseline, participant flow and adverse events, each keyed
+    within its module (never matched across modules); the adverse-event groups named G1 ... with their totals.
+    A posted measure's groups are named on each Posted results row instead."""
     rows = []
-    modules = []
-    for o, outcome in enumerate(
-        study.get("posted_outcomes") or [] if isinstance(study.get("posted_outcomes"), list) else []
-    ):
-        modules.append(
-            (f"Posted results: {value_words(outcome.get('title'))}", f"posted_outcomes/{o}", outcome)
-        )
     for key, words in (
-        ("baseline", "Baseline characteristics"),
+        ("baseline", "Baseline"),
         ("participant_flow", "Participant flow"),
         ("adverse_events", "Adverse events"),
     ):
-        if isinstance(study.get(key), dict):
-            modules.append((words, key, study[key]))
-    for words, path, module in modules:
+        module = study.get(key)
+        if not isinstance(module, dict):
+            continue
         for g, group in enumerate(module.get("groups") or []):
-            address = f"/studies/{number}/{path}/groups/{g}"
-            events = path == "adverse_events"
-            totals = group_totals(group) if events else None
+            address = f"/studies/{number}/{key}/groups/{g}"
+            events = key == "adverse_events"
             values = (
                 study["nct"],
                 address,
@@ -2844,9 +3214,272 @@ def group_rows(study: dict[str, Any], number: int) -> list[tuple]:
                 f"G{g + 1}" if events else None,
                 value_words(group.get("title")),
                 value_words(group.get("description")),
-                totals,
+                group_totals(group) if events else None,
             )
             rows.append(tuple(cell(value, "known", address) for value in values))
+    return rows
+
+
+def criterion_rows(study: dict[str, Any], number: int) -> list[tuple]:
+    """A trial's Eligibility rows: one per criterion, its heading, number, role, words and typed readings; a
+    trial whose criteria the record does not list — one row saying so."""
+    held = study.get("criteria")
+    criteria = held if isinstance(held, list) else []
+    rows = []
+    for c, criterion in enumerate(criteria):
+        address = f"/studies/{number}/criteria/{c}"
+        values = (
+            study["nct"],
+            address,
+            HEADINGS.get(str(criterion.get("heading")), value_words(criterion.get("heading"))),
+            value_words(criterion.get("number")),
+            role_words(criterion.get("role")),
+            value_words(criterion.get("text")),
+            criterion_readings(criterion.get("readings")),
+        )
+        rows.append(tuple(cell(value, "known", address) for value in values))
+    if not rows:
+        address = f"/studies/{number}"
+        values = (study["nct"], address, *(NOT_STATED,) * 4, NO_READING)
+        rows.append(tuple(cell(value, "known", address) for value in values))
+    return rows
+
+
+def registered_rows(study: dict[str, Any], number: int) -> list[tuple]:
+    """A trial's Registered outcomes rows: one per outcome it planned to measure, never a result."""
+    rows = []
+    held = study.get("registered_outcomes")
+    for o, outcome in enumerate(held if isinstance(held, list) else []):
+        address = f"/studies/{number}/registered_outcomes/{o}"
+        readings = []
+        for name in ("endpoint_classes", "time_points"):
+            value = outcome.get(name)
+            if held_kind(value) == "reading" and value["status"] == "known" and not value["result"]:
+                readings.append(NO_READING)
+            else:
+                readings.append(value_words(value) if value is not None else NO_READING)
+        values = (
+            study["nct"],
+            address,
+            str(outcome.get("category", NOT_STATED)).capitalize(),
+            value_words(outcome.get("measure")),
+            value_words(outcome.get("description")),
+            value_words(outcome.get("time_frame")),
+            *readings,
+        )
+        rows.append(tuple(cell(value, "known", address) for value in values))
+    return rows
+
+
+def biomarker_rows(study: dict[str, Any], number: int) -> list[tuple]:
+    """A trial's Biomarkers rows: one per mention the rule read (the biomarker, its states, its role, the
+    words read, the rule); a mention is no assay, specimen or timing, which the registry does not report."""
+    value = study.get("biomarker_mentions")
+    if held_kind(value) != "reading" or not isinstance(value["result"], list):
+        return []
+    rows = []
+    for k, mention in enumerate(value["result"]):
+        address = f"/studies/{number}/biomarker_mentions/result/{k}"
+        values = (
+            study["nct"],
+            address,
+            value_words(mention.get("biomarker")),
+            value_words(mention.get("states"), "", " or "),
+            value_words(mention.get("role")),
+            f"“{value_words(mention.get('words'))}”",
+            str(value["rule"]),
+        )
+        rows.append(tuple(cell(item, "known", address) for item in values))
+    return rows
+
+
+def pointer_field(pointer: str) -> str:
+    """The contract field a JSON pointer into the record names: list positions as "[]"."""
+    parts = []
+    for part in pointer.strip("/").split("/"):
+        if part.isdigit():
+            parts[-1] += "[]"
+        else:
+            parts.append(part)
+    return ".".join(parts)
+
+
+def readings_of(node: Any, pointer: str) -> list[tuple[str, dict[str, Any]]]:
+    """Every rule's reading below `node`, with its JSON pointer, in the record's order."""
+    found = []
+    stack = [(pointer, node)]
+    for where, held in stack:
+        if held_kind(held) == "reading":
+            found.append((where, held))
+        elif isinstance(held, dict):
+            stack.extend((f"{where}/{key}", value) for key, value in held.items())
+        elif isinstance(held, list):
+            stack.extend((f"{where}/{i}", value) for i, value in enumerate(held))
+    return sorted(
+        found, key=lambda item: [(0, int(p), "") if p.isdigit() else (1, 0, p) for p in item[0].split("/")]
+    )
+
+
+def reading_result(field: str, value: dict[str, Any]) -> str:
+    """A reading's result, in the words its own sheet uses."""
+    if field.endswith("criteria[].readings"):
+        return (
+            criterion_readings(value).replace("Reading: ", "") if value["result"] else "No reading produced"
+        )
+    if field.endswith("criteria[].role"):
+        return role_words(value)
+    if field.endswith("biomarker_mentions"):
+        return f"{len(value['result'] or [])} mentions (Biomarkers)"
+    if field == "studies[].universe" and isinstance(value["result"], dict):
+        return (
+            " and ".join(UNIVERSE_LABELS.get(u, u) for u in value["result"].get("universes") or []) or "none"
+        )
+    return result_words(value["result"])
+
+
+def reading_rows(study: dict[str, Any], number: int, versions: dict[str, Any]) -> list[tuple]:
+    """A trial's Readings rows: one per rule reading the record holds (the field, the words read, the rule
+    and its version, the result, the status)."""
+    rows = []
+    for pointer, value in readings_of(study, f"/studies/{number}"):
+        field = pointer_field(pointer)
+        named = contract.FIELD_NAMES.get(field) or contract.FIELD_NAMES.get(field.removesuffix("[]"))
+        words = value.get("words") or []
+        read = "; ".join(f"“{word}”" for word in words if isinstance(word, str) and word.strip())
+        rule = str(value["rule"])
+        version = versions.get(rule.split(".")[0], f"TrialLedger {__version__}")
+        values = (
+            study["nct"],
+            pointer,
+            named.label if named else field,
+            read or ("Its heading" if field.endswith("criteria[].role") else NOT_STATED),
+            f"{rule} ({version})",
+            reading_result(field, value),
+            STATUS_LABELS.get(value["status"], STATUS_LABELS["unresolved"]),
+        )
+        rows.append(tuple(cell(item, "known", pointer) for item in values))
+    return rows
+
+
+def too_few(record: dict[str, Any], what: str) -> str:
+    """The one line of an across-trial sheet below the signal minimum."""
+    cohort = record.get("cohort")
+    thresholds = cohort.get("thresholds") if isinstance(cohort, dict) else None
+    minimum = thresholds.get("signal_min_trials") if isinstance(thresholds, dict) else None
+    sponsors = thresholds.get("signal_min_sponsors") if isinstance(thresholds, dict) else None
+    need = f"; {what} need at least {minimum} comparable trials" if minimum else ""
+    need += f" from {sponsors} sponsors" if minimum and sponsors else ""
+    trials = len(record["studies"])
+    return f"Too few comparable trials to assess: {trials} trial{'s' if trials != 1 else ''} here{need}."
+
+
+FINDING_TYPES = {
+    "frequency": "Criteria most trials share",
+    "mechanism_signals": "Exclusions that follow a drug's mechanism",
+    "occupancy": "Setting and class combinations tried and untried",
+    "near_misses": "Trials differing in one design choice",
+    "aligned_near_misses": "Trials differing in one design choice, drug classes aligned",
+    "endpoints": "Endpoints and time points across trials",
+    "structure_relations": "Drugs sharing a structure class",
+}
+FINDING_RULES = {
+    field.name.removeprefix("cohort."): field.source[0]
+    for field in contract.FIELDS
+    if field.name.removeprefix("cohort.") in FINDING_TYPES
+}
+
+
+def findings_rows(record: dict[str, Any]) -> list[tuple]:
+    """The Across-trial findings: one row per supported finding of the record's cohort section, its counts in
+    words; below the signal minimum, or with none, one line saying so."""
+    cohort = record.get("cohort") if isinstance(record.get("cohort"), dict) else {}
+    thresholds = cohort.get("thresholds") if isinstance(cohort.get("thresholds"), dict) else {}
+    limits = ", ".join(f"{key.replace('_', ' ')} {value}" for key, value in thresholds.items()) or NOT_STATED
+    rows = []
+    for kind, words in FINDING_TYPES.items():
+        for i, entry in enumerate(cohort.get(kind) or []):
+            address = f"/cohort/{kind}/{i}"
+            held = dict(entry) if isinstance(entry, dict) else {"value": entry}
+            trials = [str(held.pop(key)) for key in ("a", "b", "ncts") if key in held]
+            numbers = [
+                f"{held[key]} of {held[of]}"
+                for key, of in (("stating", "trials"), ("in_class_stating", "in_class"))
+                if key in held
+            ]
+            finding = "; ".join(
+                f"{key.replace('_', ' ')}: {result_words(value)}" for key, value in held.items()
+            )
+            values = (
+                address,
+                words,
+                finding,
+                "\n".join(trials) or NOT_STATED,
+                "; ".join(numbers) or NOT_STATED,
+                limits,
+                FINDING_RULES.get(kind, kind),
+            )
+            rows.append(tuple(cell(value, "known", address) for value in values))
+    if not rows:
+        rows.append(
+            (
+                cell("/cohort", "known"),
+                cell(too_few(record, "across-trial findings"), "known"),
+                *(cell(None, "known"),) * 5,
+            )
+        )
+    return rows
+
+
+def standard_rows(record: dict[str, Any]) -> list[tuple]:
+    """The Standard protocol language rows: one per criterion most comparable trials state, with how many of
+    how many, a representative wording verbatim, its trial and the others; none — one line saying so."""
+    held = record.get("standard_language")
+    rows = []
+    for i, entry in enumerate(held if isinstance(held, list) else []):
+        address = f"/standard_language/{i}"
+        values = (
+            value_words(entry.get("criterion")),
+            HEADINGS.get(str(entry.get("role")), value_words(entry.get("role"))),
+            value_words(entry.get("trials")),
+            value_words(entry.get("of_trials")),
+            f"“{value_words(entry.get('wording'))}”",
+            value_words(entry.get("wording_from")),
+            value_words(entry.get("other_trials"), "", ", "),
+            address,
+        )
+        rows.append(tuple(cell(value, "known", address) for value in values))
+    if not rows:
+        line = too_few(record, "standard protocol language")
+        rows.append((cell(line, "known"), *(cell(None, "known"),) * 6, cell("/standard_language", "known")))
+    return rows
+
+
+SOURCE_KIND = {"plain": "{path}", "reading": "rule {path}", "run": "recorded by the run ({path})"}
+
+
+def dictionary_rows(n: int) -> list[tuple]:
+    """The Column dictionary: each sheet's columns, once, with the registry fields or rules they show and
+    what they hold."""
+    rows = []
+    for sheet in contract.SHEETS:
+        if sheet.name not in BUILT:
+            continue
+        for column in sheet.columns:
+            if column.shows == "address":
+                source = "A JSON pointer into landscape.json"
+                definition = "Where the row's value is in the record: ask the assistant about the row by it"
+            else:
+                fields = [contract.FIELD_NAMES[name] for name in column.fields]
+                source = "\n".join(
+                    dict.fromkeys(
+                        SOURCE_KIND[field.kind].format(path=path) for field in fields for path in field.source
+                    )
+                )
+                definition = "\n".join(dict.fromkeys(field.label for field in fields))
+            header = (
+                column.header.format(n="1 ... G" + str(n)) if column.shows == "per group" else column.header
+            )
+            rows.append(tuple(label(value) for value in (sheet.name, header, source, definition)))
     return rows
 
 
@@ -2901,9 +3534,8 @@ def search_plain_words(request: Any) -> str:
 
 def found_words(record: dict[str, Any]) -> str:
     """What the run found, in words: the trials matched and read, each number asked, how the pages came."""
-    retrieval = (
-        record["manifest"].get("retrieval") if isinstance(record["manifest"].get("retrieval"), dict) else {}
-    )
+    held = record["manifest"].get("retrieval")
+    retrieval = held if isinstance(held, dict) else {}
     matched, read = retrieval.get("matched", NOT_STATED), retrieval.get("read", NOT_STATED)
     lines = [
         f"The registry matched {matched} trials; {read} were read, {len(record['studies'])} in this "
@@ -2913,8 +3545,8 @@ def found_words(record: dict[str, Any]) -> str:
         words = ID_WORDS.get(entry.get("status"), str(entry.get("status"))).format(study=entry.get("study"))
         lines.append(f"{entry.get('requested')}: {words}")
     lines.append(retrieval_mode_words(retrieval))
-    classes = retrieval.get("drug_classes") if isinstance(retrieval.get("drug_classes"), dict) else {}
-    if classes.get("state") == "not_looked_up":
+    classes = retrieval.get("drug_classes")
+    if isinstance(classes, dict) and classes.get("state") == "not_looked_up":
         lines.append("Drug classes were not looked up in this run; each reads so, never as no class.")
     return "\n".join(lines)
 
@@ -2922,18 +3554,20 @@ def found_words(record: dict[str, Any]) -> str:
 HOW_TO_READ = "\n".join(
     (
         "Start with the Trial index: one row per trial, in short clinical words. A trial's Dossier link "
-        "opens its Trial review: the trial's full record, top to bottom, in bands.",
-        "The listings compare trials row by row. Posted results: one row per measurement, each group named "
-        "within its own measure, its denominator at the scope the registry gives it. Groups: each results "
-        "module's groups; the adverse-event groups are named G1, G2, ... Safety: one row per adverse-event "
-        "term, then for each group G1, G2, ... the participants affected, at risk, and the events.",
+        "opens its Trial review: the trial's record, top to bottom, in bands; the Basis column says whether "
+        "each value is the registry's, a reading by one of TrialLedger's named rules, or not stated.",
+        "The listings compare trials row by row: Eligibility (every criterion, verbatim, with its readings), "
+        "Registered outcomes (what each trial planned to measure, never a result), Posted results (one row "
+        "per measurement, each group named within its own measure, its denominator at the scope the registry "
+        "gives it), Statistical analyses, Baseline, Participant flow, Groups (the adverse-event groups named "
+        "G1, G2, ...), Safety (one row per adverse-event term, then for each group G1, G2, ... the "
+        "participants affected, at risk, and the events), Biomarkers, and the readings across trials.",
         "Every listing row's Address in the record is where the assistant finds that row in landscape.json: "
-        "ask about a row by its address.",
+        "ask about a row by its address. The Readings sheet lists every reading a rule made, with the words "
+        "it read; the Column dictionary says where each column comes from.",
         "A cell says in words what the registry does not give (Not stated, Not posted, Not reported, No "
         "reading produced). A blank cell is one whose column cannot apply to its row: a Safety group column "
-        "past the trial's own groups, a treatment setting outside the trial's universe.",
-        'A reading made by one of TrialLedger\'s named rules starts "Reading:"; everything else is the '
-        "registry's own value, its codes in clinical words.",
+        "past the trial's own groups, the unnamed class or category of a posted measure.",
     )
 )
 
@@ -2941,7 +3575,8 @@ HOW_TO_READ = "\n".join(
 def provenance_words(record: dict[str, Any]) -> str:
     """The technical provenance, in words, last on the Read me."""
     manifest = record["manifest"]
-    versions = manifest.get("rule_versions") if isinstance(manifest.get("rule_versions"), dict) else {}
+    held = manifest.get("rule_versions")
+    versions = held if isinstance(held, dict) else {}
     lines = [
         f"Registry: ClinicalTrials.gov API {manifest.get('api_version', NOT_STATED)}; data as of "
         f"{date_text(manifest.get('data_timestamp'))}",
@@ -2950,32 +3585,39 @@ def provenance_words(record: dict[str, Any]) -> str:
         f"Workbook: {BOOK_VERSION}; clinical words {contract.DISPLAY_VERSION}; TrialLedger {__version__}",
     ]
     lines += [f"Rule version, {name}: {value}" for name, value in versions.items()]
-    query = record.get("scope", {}).get("query") if isinstance(record.get("scope"), dict) else None
+    scope = record.get("scope")
+    query = scope.get("query") if isinstance(scope, dict) else None
     if isinstance(query, dict):
         lines += [f"Registry search sent, {name}: {value}" for name, value in query.items()]
     return "\n".join(lines)
 
 
+def domain_words() -> str:
+    """Which trials the treatment setting, prior lines and gene selection are read for, from the universe
+    table."""
+    lines = []
+    for universe in contract.UNIVERSES:
+        read = [pack.label.lower() for pack in universe.packs]
+        if read:
+            lines.append(f"For {TRIAL_WORDS[universe.name]}: {'; '.join(read)}")
+    lines.append(f"For {TRIAL_WORDS['general']}: none of them")
+    return "\n".join(lines)
+
+
 def guide_rows(record: dict[str, Any]) -> list[tuple]:
     """The Read me: contract.READ_ME_TOPICS, in order, each (topic, content) in words."""
-    statuses = record.get("statuses") if isinstance(record.get("statuses"), dict) else {}
-    universes = [
-        f"{UNIVERSE_LABELS.get(u.name, u.name)}: "
-        + ("; ".join(pack.label for pack in u.packs) or "no domain readings")
-        for u in contract.UNIVERSES
-    ]
+    held = record.get("statuses")
+    statuses = held if isinstance(held, dict) else {}
     coverage = (
         record.get("coverage", {}).get("universe") if isinstance(record.get("coverage"), dict) else None
     )
     supported = NOT_STATED
     if isinstance(coverage, dict):
+        unsupported = coverage.get("unsupported") or {}
         supported = (
             f"{item_words(coverage.get('study_type'), 'StudyType')} studies started from "
             f"{coverage.get('start_from')} to {coverage.get('start_to')}; "
-            + "; ".join(
-                f"{item_words(kind, 'StudyType')}: {why}"
-                for kind, why in (coverage.get("unsupported") or {}).items()
-            )
+            + "; ".join(f"{item_words(kind, 'StudyType')}: {why}" for kind, why in unsupported.items())
         )
     content = {
         "The search, in plain words": search_plain_words(record.get("request")),
@@ -2990,8 +3632,8 @@ def guide_rows(record: dict[str, Any]) -> list[tuple]:
         + "\nA posted safety table lists only the terms over its frequency threshold, and posted results "
         "only the measures the sponsor posted: neither is a complete account of harm or efficacy.",
         "Treatment setting and line": contract.TREATMENT_CONTEXT_LIMIT
-        + " They are read only for a trial in a universe whose rule pack reads them:\n"
-        + "\n".join(universes),
+        + " They are read only for the trials below; for any other trial they read Not applicable.\n"
+        + domain_words(),
         "The trials TrialLedger supports": supported,
         "Technical provenance": provenance_words(record),
     }
@@ -3005,7 +3647,7 @@ def design_words(study: dict[str, Any]) -> str:
         for name in ("primary_purpose", "allocation", "intervention_model")
     ]
     masking = value_words(study.get("masking"), "DesignMasking")
-    if held_kind(study.get("who_masked")) == "plain":
+    if held_kind(study.get("who_masked")) == "plain" and applies("studies[].who_masked", study):
         masking += f" ({value_words(study['who_masked'], 'WhoMasked', ', ')})"
     return "; ".join(str(part) for part in [*parts, f"masking {masking}"])
 
@@ -3013,27 +3655,29 @@ def design_words(study: dict[str, Any]) -> str:
 def index_cells(study: dict[str, Any], dossier: str, publications: str) -> tuple:
     """One trial's Trial index row, short fields only (no cell sized by prose): `dossier` and `publications`
     are the in-workbook links to its dossier and its dossier's publications band."""
-    nct = study["nct"]
     acronym = study.get("acronym")
     short = acronym if held_kind(acronym) == "plain" else study.get("brief_title")
     status = value_words(study.get("overall_status"), "Status")
-    if held_kind(study.get("last_known_status")) == "plain":
+    if held_kind(study.get("last_known_status")) == "plain" and applies("studies[].last_known_status", study):
         status = f"{status} (last known: {value_words(study['last_known_status'], 'Status')})"
-    outcomes = study.get("registered_outcomes") if isinstance(study.get("registered_outcomes"), list) else []
-    primary = [o for o in outcomes if o.get("category") == "primary"]
+    held = study.get("registered_outcomes")
+    primary = [o for o in (held if isinstance(held, list) else []) if o.get("category") == "primary"]
     endpoint = value_words(primary[0].get("measure")) if primary else NOT_STATED
     endpoint = f"{endpoint} (+{len(primary) - 1} more)" if len(primary) > 1 else endpoint
-    results = NOT_POSTED
-    if held_kind(study.get("results_first_posted")) == "plain":
-        results = date_text(study["results_first_posted"])
-    references = study.get("references") if isinstance(study.get("references"), list) else []
-    reporting = sum(1 for reference in references if reference.get("type") == "RESULT")
-    cited = f"{len(references)} ({reporting} marked as results)" if references else NOT_STATED
+    first = study.get("results_first_posted")
+    results = (
+        date_text(first) if results_posted(study) and held_kind(first) == "plain" else results_words(study)[0]
+    )
+    held = study.get("references")
+    references = held if isinstance(held, list) else []
+    marked = sum(1 for reference in references if reference.get("type") == "RESULT")
+    cited = f"{len(references)} ({marked} marked as results)" if references else NOT_STATED
     sponsor, _ = shown_field(study, "studies[].lead_sponsor.name")
     enrollment, _ = shown_field(study, "studies[].enrollment.count")
     start, _ = shown_field(study, "studies[].start_date.date")
+    update = study.get("last_update_posted")
     return (
-        cell(nct, "known", "studies[].nct", "", "", study.get("link") or ""),
+        cell(study["nct"], "known", "studies[].nct", "", "", study.get("link") or ""),
         cell(value_words(short), "known"),
         cell(sponsor, "known"),
         cell(value_words(study.get("phases"), "Phase", " / "), "known"),
@@ -3047,12 +3691,7 @@ def index_cells(study: dict[str, Any], dossier: str, publications: str) -> tuple
         cell(results, "known"),
         cell(cited, "known", "", "", "", publications if references else ""),
         cell(value_words(study.get("countries")), "known"),
-        cell(
-            date_text(study["last_update_posted"])
-            if held_kind(study.get("last_update_posted")) == "plain"
-            else NOT_STATED,
-            "known",
-        ),
+        cell(date_text(update) if held_kind(update) == "plain" else NOT_STATED, "known"),
         cell(coordinate_short(study, "setting"), "known"),
         cell(coordinate_short(study, "prior_advanced_lines"), "known"),
         cell(coordinate_short(study, "selection"), "known"),
@@ -3076,11 +3715,12 @@ def sheet_headers(name: str, n: int) -> tuple[str, ...]:
     return tuple(headers)
 
 
-# Each sheet's layout: frozen panes, the width of each column (characters; the rest DEFAULT_WIDTH), the
-# columns written on one line (no wrap, so no row is sized by their prose), and the most lines a row shows
+# Each sheet's layout: frozen panes, the width of each column (characters; the rest DEFAULT_WIDTH), whether
+# its text wraps (the index's does not, so no row is sized by its prose), and the most lines a row shows
 # before the reader widens it (its full text is in the cell).
 DEFAULT_WIDTH = 16
 LINE_POINTS = 12.75
+LISTING = {"Trial ID": 13, contract.ADDRESS: 22}
 LAYOUT: dict[str, tuple[str, dict[str, int], bool, int]] = {
     contract.READ_ME: ("B2", {"Topic": 30, "Content": 110}, True, 40),
     contract.INDEX: (
@@ -3109,17 +3749,37 @@ LAYOUT: dict[str, tuple[str, dict[str, int], bool, int]] = {
         False,
         1,
     ),
-    contract.REVIEW: (
-        "D2",
-        {"Trial ID": 13, "Section": 22, "Fact": 30, "Value": 100, "Status": 12},
+    contract.REVIEW: ("D2", {"Trial ID": 13, "Section": 22, "Fact": 30, "Value": 100, "Basis": 12}, True, 20),
+    contract.ELIGIBILITY: (
+        "C2",
+        {
+            **LISTING,
+            "Heading": 11,
+            "Criterion number": 10,
+            "Role": 24,
+            "Criterion as written": 70,
+            "Readings": 44,
+        },
         True,
-        20,
+        8,
+    ),
+    contract.REGISTERED: (
+        "C2",
+        {
+            **LISTING,
+            "Category": 11,
+            "Measure": 40,
+            "Description": 50,
+            "Time frame": 30,
+            "Endpoint reading": 24,
+        },
+        True,
+        6,
     ),
     contract.POSTED: (
         "C2",
         {
-            "Trial ID": 13,
-            "Address in the record": 22,
+            **LISTING,
             "Measure": 36,
             "Measure description": 36,
             "Analysis population": 36,
@@ -3131,65 +3791,195 @@ LAYOUT: dict[str, tuple[str, dict[str, int], bool, int]] = {
         True,
         6,
     ),
-    contract.GROUPS: (
+    contract.ANALYSES: (
         "C2",
         {
-            "Trial ID": 13,
-            "Address in the record": 22,
-            "Module": 34,
-            "Column": 8,
-            "Title": 30,
-            "Description": 50,
-            "Totals": 34,
+            **LISTING,
+            "Measure": 36,
+            "Compared groups": 30,
+            "Method": 26,
+            "Estimate": 20,
+            "Confidence interval": 24,
         },
         True,
         6,
     ),
-    contract.SAFETY: (
-        "F2",
-        {"Trial ID": 13, "Address in the record": 22, "Table": 9, "Organ system": 28, "Term": 28},
+    contract.BASELINE: (
+        "C2",
+        {**LISTING, "Characteristic": 30, "Population": 30, "Group": 28, "Denominator": 18, "Comment": 24},
         True,
-        3,
+        6,
+    ),
+    contract.FLOW: (
+        "C2",
+        {**LISTING, "Period": 22, "Milestone or reason": 30, "Group": 30, "Comment": 30},
+        True,
+        4,
+    ),
+    contract.GROUPS: (
+        "C2",
+        {**LISTING, "Module": 24, "Column": 8, "Title": 30, "Description": 50, "Totals": 34},
+        True,
+        6,
+    ),
+    contract.SAFETY: ("F2", {**LISTING, "Table": 9, "Organ system": 28, "Term": 28}, True, 3),
+    contract.BIOMARKERS: (
+        "C2",
+        {**LISTING, "Biomarker": 14, "States": 18, "Role": 14, "Words read": 50, "Rule": 26},
+        True,
+        4,
+    ),
+    contract.FINDINGS: (
+        "B2",
+        {
+            contract.ADDRESS: 22,
+            "Type": 30,
+            "Finding": 70,
+            "Trial IDs": 16,
+            "Numerator / denominator": 18,
+            "Population and limits": 30,
+            "Rule": 26,
+        },
+        True,
+        8,
+    ),
+    contract.STANDARD: (
+        "B2",
+        {
+            "Criterion": 34,
+            "Role": 11,
+            "Representative wording": 60,
+            "Wording from": 14,
+            "Other trials": 30,
+            contract.ADDRESS: 22,
+        },
+        True,
+        6,
+    ),
+    contract.READINGS: (
+        "C2",
+        {**LISTING, "Field": 30, "Words read": 50, "Rule and version": 30, "Result": 40, "Status": 12},
+        True,
+        4,
+    ),
+    contract.DICTIONARY: (
+        "C2",
+        {"Sheet": 20, "Column": 28, "Registry field or rule": 60, "Definition": 50},
+        True,
+        8,
     ),
 }
-BUILT = (contract.READ_ME, contract.INDEX, contract.REVIEW, contract.POSTED, contract.GROUPS, contract.SAFETY)
+BUILT = tuple(sheet.name for sheet in contract.SHEETS)
+
+
+def written_safely(rows: list[tuple]) -> list[tuple]:
+    """Rows every text cell of which a spreadsheet holds exactly: a text it cannot (cells.cell_text_state:
+    too long, a character no cell holds) is written as "Unresolved — not written: <why>; it is in
+    landscape.json at <its address>"."""
+    out = []
+    for row in rows:
+        fixed = []
+        for held in row:
+            value = held[0]
+            state = cell_text_state(value) if isinstance(value, str) else "ok"
+            if state != "ok":
+                where = held[3] or "the row's address"
+                words = (
+                    f"{UNRESOLVED}not written: {state.replace('_', ' ')}; it is in landscape.json at {where}"
+                )
+                held = (words, *held[1:])
+            fixed.append(held)
+        out.append(tuple(fixed))
+    return out
+
+
+# What a listing no trial of the workbook has a row in says, on its one line.
+EMPTY_WORDS = {
+    contract.BIOMARKERS: "No biomarker is named in these trials' eligibility criteria",
+    contract.POSTED: "None of these trials posted results",
+    contract.ANALYSES: "None of these trials posted a statistical analysis",
+    contract.BASELINE: "None of these trials posted baseline characteristics",
+    contract.FLOW: "None of these trials posted a participant flow",
+    contract.GROUPS: "None of these trials posted results by group",
+}
 
 
 def book_plan(record: dict[str, Any]) -> list[tuple]:
-    """Every sheet built, in contract.SHEETS' order, as (name, headers, rows, page starts): the dossier
-    first, so the index links to each trial's dossier and its publications band; each trial's dossier starts
-    a printed page."""
+    """Every sheet, in contract.SHEETS' order, as (name, headers, rows, page starts): the dossier first, so
+    the index links to each trial's dossier and its publications band, and each band with a listing to the
+    trial's first row there; each trial's dossier starts a printed page."""
     studies = record["studies"]
     n = safety_groups(record)
+    held = record["manifest"].get("rule_versions")
+    versions = held if isinstance(held, dict) else {}
+    listings = {
+        contract.ELIGIBILITY: criterion_rows,
+        contract.REGISTERED: registered_rows,
+        contract.POSTED: posted_rows,
+        contract.ANALYSES: analysis_rows,
+        contract.BASELINE: baseline_rows,
+        contract.FLOW: flow_rows,
+        contract.GROUPS: group_rows,
+        contract.BIOMARKERS: biomarker_rows,
+    }
+    rows: dict[str, list[tuple]] = {name: [] for name in BUILT}
+    first: dict[tuple[str, int], int] = {}
+    for i, study in enumerate(studies):
+        for name, rows_of in listings.items():
+            first[(name, i)] = len(rows[name])
+            rows[name] += rows_of(study, i)
+        first[(contract.SAFETY, i)] = len(rows[contract.SAFETY])
+        rows[contract.SAFETY] += safety_rows(study, i, n)
+        first[(contract.READINGS, i)] = len(rows[contract.READINGS])
+        rows[contract.READINGS] += reading_rows(study, i, versions)
     review: list[tuple] = []
     starts, links_ = [], []
-    for study in studies:
+    for i, study in enumerate(studies):
         starts.append(len(review))
-        first_publication = None
-        for heading, listing, fact, value, status in dossier_facts(study):
-            if heading == "Publications and documents" and first_publication is None:
-                first_publication = len(review)
-            row = (
-                label(study["nct"]),
-                label(heading if not listing else f"{heading} (detail: {listing})"),
-                label(fact),
-                cell(value, "known"),
-                label(status),
+        publications = None
+        shown_band = ""
+        for heading, listing, fact, value, label_ in dossier_facts(study):
+            if heading != shown_band and listing:
+                count = sum(1 for row in rows[listing] if row[0][0] == study["nct"])
+                part, row_number = place(first[(listing, i)], CAPACITY, listing)
+                link = f"#'{part}'!A{row_number}" if count else ""
+                words = f"{count} rows in {listing}" if count else f"No row in {listing}"
+                review.append(
+                    (
+                        label(study["nct"]),
+                        label(heading),
+                        label("Detail"),
+                        cell(words, LABEL, "", "", "", link),
+                        label(NOTE),
+                    )
+                )
+            shown_band = heading
+            if heading == "Publications and documents" and publications is None:
+                publications = len(review)
+            review.append(
+                (label(study["nct"]), label(heading), label(fact), cell(value, "known"), label(label_))
             )
-            review.append(row)
         sheet, row_number = place(starts[-1], CAPACITY, contract.REVIEW)
-        sheet_p, row_p = place(first_publication or starts[-1], CAPACITY, contract.REVIEW)
+        sheet_p, row_p = place(publications or starts[-1], CAPACITY, contract.REVIEW)
         links_.append((f"#'{sheet}'!A{row_number}", f"#'{sheet_p}'!A{row_p}"))
-    rows = {
-        contract.READ_ME: guide_rows(record),
-        contract.INDEX: [index_cells(study, *held) for study, held in zip(studies, links_, strict=True)],
-        contract.REVIEW: review,
-        contract.POSTED: [row for i, study in enumerate(studies) for row in posted_rows(study, i)],
-        contract.GROUPS: [row for i, study in enumerate(studies) for row in group_rows(study, i)],
-        contract.SAFETY: [row for i, study in enumerate(studies) for row in safety_rows(study, i, n)],
-    }
+    for name in listings:
+        if not rows[name]:
+            words = EMPTY_WORDS.get(name, f"None of these trials has a row in {name}")
+            width = len(sheet_headers(name, n))
+            rows[name] = [(cell(words, LABEL), *(cell(None, LABEL),) * (width - 1))]
+    rows[contract.READ_ME] = guide_rows(record)
+    rows[contract.INDEX] = [index_cells(study, *held) for study, held in zip(studies, links_, strict=True)]
+    rows[contract.REVIEW] = review
+    rows[contract.FINDINGS] = findings_rows(record)
+    rows[contract.STANDARD] = standard_rows(record)
+    rows[contract.DICTIONARY] = dictionary_rows(n)
     return [
-        (name, sheet_headers(name, n), rows[name], starts[1:] if name == contract.REVIEW else [])
+        (
+            name,
+            sheet_headers(name, n),
+            written_safely(rows[name]),
+            starts[1:] if name == contract.REVIEW else [],
+        )
         for name in BUILT
     ]
 
@@ -3227,14 +4017,24 @@ def _book_styles(sheet: Any) -> dict[tuple[bool, str], Any]:
     return styles
 
 
+def book_format(held: tuple) -> str:
+    """A number cell's format: the registry string's own decimal places (number_cell keeps them in the
+    cell's fourth part), else a count's, with thousands separators."""
+    return held[4] or COUNT_FORMAT
+
+
 def _book_cell(sheet: Any, held: tuple, header: bool, wrap: bool, styles: dict) -> Any:
-    """One written cell of the book: text forced to text, a number right-aligned, a link kept."""
+    """One written cell of the book: text forced to text, a number right-aligned in its format (book_format),
+    a link kept."""
     value, link = held[0], held[1]
     written = WriteOnlyCell(sheet, value=value)
-    kind = "number" if isinstance(value, int) else "wrap" if wrap else "line"
+    number = isinstance(value, (int, float)) and not isinstance(value, bool)
+    kind = "number" if number else "wrap" if wrap else "line"
     if isinstance(value, str):
         written.data_type = "s"
     written._style = copy(styles[(header, kind)])
+    if number:
+        written.number_format = book_format(held)
     if link.startswith("#"):
         written.hyperlink = Hyperlink(ref="", location=link[1:], display=str(value))
     elif link:
@@ -3290,6 +4090,14 @@ def _write_book(plan: list[tuple], footer: tuple[str, str, str]) -> tuple[bytes,
     return fixed.getvalue(), written
 
 
+def held_type(value: Any) -> str:
+    """A cell's kind for the read-back: a number (a spreadsheet keeps 40.0 as 40, shown by its format),
+    text, or blank."""
+    if isinstance(value, (int, float)) and not isinstance(value, bool):
+        return "number"
+    return "blank" if value is None else type(value).__name__
+
+
 def book_problems(record: dict[str, Any], path: Path, limit: int = 20) -> list[str]:
     """Every way the file at `path` differs from the book `record` derives, cell by cell (values and their
     types, blanks as None); an empty list certifies the file."""
@@ -3307,13 +4115,26 @@ def book_problems(record: dict[str, Any], path: Path, limit: int = 20) -> list[s
                 if part not in opened.sheetnames:
                     problems.append(f"sheet {part!r} is missing")
                     continue
-                want = [headers] + [tuple(held[0] for held in row) for row in rows[start : start + CAPACITY]]
-                have = list(opened[part].iter_rows(values_only=True))
+                # each cell as (value, number format or "" for anything not a number)
+                want = [tuple((header, "") for header in headers)] + [
+                    tuple(
+                        (held[0], book_format(held) if isinstance(held[0], (int, float)) else "")
+                        for held in row
+                    )
+                    for row in rows[start : start + CAPACITY]
+                ]
+                have = [
+                    tuple(
+                        (got.value, got.number_format if isinstance(got.value, (int, float)) else "")
+                        for got in row
+                    )
+                    for row in opened[part].iter_rows()
+                ]
                 if len(have) != len(want):
                     problems.append(f"{part}: {len(have)} rows, the derivation {len(want)}")
                 for number, (wanted, held) in enumerate(zip(want, have, strict=False), 1):
                     if tuple(wanted) != tuple(held) or any(
-                        type(a) is not type(b) for a, b in zip(wanted, held, strict=False)
+                        held_type(a[0]) != held_type(b[0]) for a, b in zip(wanted, held, strict=False)
                     ):
                         problems.append(f"{part} row {number}: expected {wanted!r}, found {held!r}")
                     if len(problems) >= limit:

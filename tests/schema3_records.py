@@ -24,7 +24,18 @@ import json
 from pathlib import Path
 from typing import Any
 
-from TrialLedger import contract, landscape, ledger, links, operate, typematrix
+from TrialLedger import (
+    banks,
+    contract,
+    criteria,
+    landscape,
+    ledger,
+    links,
+    operate,
+    profile,
+    readout,
+    typematrix,
+)
 from TrialLedger.contract import holds_value, template_values
 
 FIXTURES = Path(__file__).resolve().parent / "fixtures" / "contract"
@@ -40,6 +51,9 @@ NOT_STATED = {"status": "not_stated", "note": "not_reported"}
 STUDY = "studies[]."
 # The trials of the mixed-group safety example (examples/safety.json), in its order, then the PTSD trial.
 SAMPLE = ("NCT01030536", "NCT02151981", "NCT04852770")
+# FIXTURE: the typed-reading concepts a hand-made key-criteria stand-in picks (performance status, prior
+# therapy and line, measurable or extent of disease, biomarker selection), until unit A's rule (task 1.8).
+KEY_CONCEPTS = ("ecog_ps", "karnofsky", "prior_lines", "prior_agent", "extent", "biomarker")
 
 
 def indexed(body: Any, template: str) -> list[tuple[tuple[int, ...], Any]]:
@@ -163,7 +177,81 @@ def study_record(nct: str) -> dict[str, Any]:
                 study["interventions"][position]["drug_class"] = intervention["drug_class"]
         if "coordinates" in example:
             study["coordinates"] = example["coordinates"]
+    _criteria(study, body)
+    for outcome in study.get("registered_outcomes", []):
+        measure, frame = outcome.get("measure"), outcome.get("time_frame")
+        if isinstance(measure, str):
+            outcome["endpoint_classes"] = reading(
+                "banks.endpoint_classes", [measure], banks.endpoint_classes(measure)
+            )
+        if isinstance(frame, str):
+            outcome["time_points"] = reading("banks.time_points", [frame], banks.time_points(frame))
     return study
+
+
+def _criteria(study: dict[str, Any], body: dict[str, Any]) -> None:
+    """The criteria, their roles and typed readings, the biomarker mentions and the key criteria: the
+    contract's own rules (criteria.itemize, criteria.criterion_role, banks.type_criterion,
+    banks.biomarker_status) over the eligibility text; the key criteria are FIXTURE: the criteria with a
+    reading in KEY_CONCEPTS, a hand-made stand-in for unit A's rule (task 1.8)."""
+    text = template_values(body, f"{contract.EL}.eligibilityCriteria")
+    if not text or not isinstance(text[0], str):
+        return
+    text = text[0]
+    _code, pieces = criteria.itemize(text)
+    found, mentions, key = [], [], []
+    for kind, section, start, end in pieces:
+        if kind != "criterion":
+            continue
+        words = text[start:end]
+        role, role_words = criteria.criterion_role(words, section)
+        atoms = [
+            {
+                "bank": bank,
+                "concept": concept,
+                "values": list(values),
+                "params": dict(params),
+                "words": words[a:b],
+            }
+            for bank, concept, values, params, a, b in banks.type_criterion(words)
+        ]
+        found.append(
+            {
+                "heading": section,
+                "number": len(found) + 1,
+                "text": words,
+                "role": reading(
+                    "criteria.criterion_role",
+                    list(role_words),
+                    role,
+                    "unresolved" if role == "unresolved" else "known",
+                ),
+                "readings": reading("banks.type_criterion", [words], atoms),
+            }
+        )
+        for concept, states, _params, _a, _b in banks.biomarker_status(words):
+            mentions.append(
+                {
+                    "biomarker": concept.removeprefix("biomarker:"),
+                    "states": list(states),
+                    "role": role,
+                    "words": words,
+                }
+            )
+        hits = [atom for atom in atoms if atom["concept"] in KEY_CONCEPTS]
+        if hits:
+            key.append(
+                {
+                    "text": words,
+                    "role": role,
+                    "reading": "; ".join(readout.atom_words(atom) for atom in hits),
+                    "rule": "banks.type_criterion",
+                }
+            )
+    study["criteria"] = found
+    study["biomarker_mentions"] = reading("banks.biomarker_status", [text], mentions)
+    if key:
+        study["key_criteria"] = key
 
 
 def fields_dictionary() -> dict[str, dict[str, Any]]:
@@ -198,6 +286,14 @@ def record_of(ncts: tuple[str, ...] = SAMPLE) -> dict[str, Any]:
         },
         "universes": [universe._asdict() for universe in contract.UNIVERSES],
         "coverage": {"universe": typematrix.UNIVERSE},
+        "cohort": {
+            "thresholds": {
+                "standard_share": profile.STANDARD_SHARE,
+                "signal_min_trials": profile.SIGNAL_MIN_TRIALS,
+                "signal_min_sponsors": profile.SIGNAL_MIN_SPONSORS,
+            }
+        },
+        "standard_language": [],
         "statuses": dict(landscape.STATUSES),
         "fields": fields_dictionary(),
         "studies": studies,
