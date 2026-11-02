@@ -146,6 +146,18 @@ def test_why_a_reading_is_not_made_is_said_in_clinical_words():
     assert words == "Not read for supportive care trials (this reading is defined for treatment trials)"
 
 
+def test_an_index_reading_left_open_by_the_default_relations_reads_unresolved():
+    study = copy.deepcopy(RECORD["studies"][1])
+    study["universe"]["result"]["universes"] = ["oncology.solid"]
+    study["primary_purpose"] = "TREATMENT"
+    left_open = {"status": "unresolved", "rule": "r", "words": [], "result": ["a", "b"], "note": ""}
+    narrowed = {"status": "interpolated", "rule": "r", "words": [], "result": ["a", "b"], "note": ""}
+    study["coordinates"] = {"setting": left_open, "setting_interpolated": narrowed}
+    assert readout.coordinate_short(study, "setting") == "Unresolved"
+    study["coordinates"]["setting_interpolated"] = {**narrowed, "result": ["advanced_first_line"]}
+    assert readout.coordinate_short(study, "setting") == "Interpolated: advanced first line (as registered)"
+
+
 def test_the_universe_reading_names_its_universes():
     assert assigned(RECORD["studies"][0]) == ("known", ("oncology.heme",))
     assert assigned(RECORD["studies"][1]) == ("known", ("oncology.solid",))

@@ -604,7 +604,8 @@ def coordinate_words(name: str, value: Any) -> str:
 def coordinate_short(study: dict[str, Any], name: str) -> Any:
     """The index's cell for a domain reading: "No reading produced" without a universe or a reading; "Not
     applicable" where it is not read for the trial (its reason in the dossier); the known value as
-    registered; else the interpolated one, labelled; else "Unresolved" (its reason in the dossier)."""
+    registered; else the interpolated one when it settles on one value, labelled; else "Unresolved" (its
+    reason and any values the default relations leave are in the dossier)."""
     status, universes = assigned(study)
     if status == "missing":
         return NO_READING
@@ -616,7 +617,8 @@ def coordinate_short(study: dict[str, Any], name: str) -> Any:
         return NO_READING
     if held_kind(known) == "reading" and known["status"] == "known":
         return coordinate_words(name, known)
-    if held_kind(interpolated) == "reading" and interpolated["status"] == "interpolated":
+    settled = held_kind(interpolated) == "reading" and interpolated["status"] == "interpolated"
+    if settled and not (isinstance(interpolated["result"], list) and len(interpolated["result"]) > 1):
         return coordinate_words(name, interpolated)
     return "Unresolved"
 
