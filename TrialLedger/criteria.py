@@ -178,12 +178,25 @@ def eligibility_coverage(
     return "present", sectioning, tuple(evidence), markers
 
 
+# What "not eligible" or "ineligible" must refer to before it states that the criterion excludes: this study,
+# trial or protocol, or the person's participation ("not eligible for this study", "ineligible for
+# enrollment", "ineligible to participate"). Standing alone ("are ineligible", "will be ineligible",
+# "considered ineligible by the investigator") it refers to the study by default. "Ineligible for" anything
+# else ("for any available standard line of therapy", "for transplant", "for or refused standard therapy")
+# describes the patient, and is no exclusion.
+_STUDY_REFERENT = (
+    r"(?=\s+(?:for|from)\s+(?:(?:this|the|a|any)\s+)?(?:clinical\s+)?"
+    r"(?:study|trial|protocol|enrol?ment|enrollment|participation|entry|inclusion|randomi[sz]ation)\b"
+    r"|\s+to\s+(?:participate|enrol|enroll|enter|take\s+part|be\s+enrolled|be\s+included)\b"
+    r"|(?!\s+(?:for|to)\b))"
+)
 # A criterion's own words that state it excludes ("patients with brain metastases are excluded", "excluded
-# if", "not eligible", "ineligible"); that state a requirement in the negative ("must not", "no history
-# of"); and that state a permission ("is permitted", "are allowed"). Read case-insensitively, whole words,
-# in the text's order, the first alternative that matches at each place.
+# if", "not eligible" and "ineligible" referring to the study); that state a requirement in the negative
+# ("must not", "no history of"); and that state a permission ("is permitted", "are allowed"). Read
+# case-insensitively, whole words, in the text's order, the first alternative that matches at each place.
 _ROLE_WORDS = re.compile(
-    r"\b(?:(?P<excludes>(?:is|are|will\s+be|be)\s+excluded|excluded\s+if|not\s+(?:be\s+)?eligible|ineligible)"
+    r"\b(?:(?P<excludes>(?:is|are|will\s+be|be)\s+excluded|excluded\s+if"
+    rf"|(?:not\s+(?:be\s+)?eligible|ineligible){_STUDY_REFERENT})"
     r"|(?P<negates>must\s+not|no\s+history\s+of)"
     r"|(?P<permits>(?:is|are|will\s+be|be)\s+(?:permitted|allowed)))\b",
     re.IGNORECASE,
@@ -197,8 +210,10 @@ def criterion_role(text: str, heading_section: str) -> tuple[str, tuple[str, ...
     "unsectioned"). Returns (role, words): role "inclusion", "exclusion" or "unresolved"; words every
     role word below the criterion holds, as written, in the text's order (empty when the heading alone was
     read):
-      excluding words ("are excluded", "excluded if", "not eligible", "ineligible") — exclusion, under any
+      excluding words ("are excluded", "excluded if", and "not eligible" or "ineligible" standing alone or
+                       for this study, trial, protocol, enrollment or participation) — exclusion, under any
                        heading: the criterion says it excludes, so one under an inclusion heading is caught;
+                       "ineligible for" a therapy, transplant or surgery describes the patient, and is none;
       negating words ("must not", "no history of") — exclusion under an exclusion heading; unresolved under
                        an inclusion heading (a requirement stated in the negative, or an exclusion under the
                        wrong heading: the words conflict with it) or under none;
