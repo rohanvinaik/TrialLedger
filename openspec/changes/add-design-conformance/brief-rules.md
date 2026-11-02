@@ -3,7 +3,8 @@ Reading logic: the design is the contract (carried verbatim in every build agent
 - Read docs/THEORY_OF_THE_CASE.md Part III and IV and the design decisions your change touches, whole, before
   changing any reading.
 - Recognition (a word, a unit, a gene symbol) produces typed evidence with its span and decides nothing. Meaning
-  is assigned only by eliminating alternatives across independent evidence; one sentence counts once; a default is
+  is assigned only by eliminating alternatives across independent evidence; the same evidence is never counted
+  twice; a default is
   interpolated, never known; a domain rule applies only within the indications it declares; what the sources do
   not decide is shown unresolved, never patched.
 - Do not add a word list, a pattern or a name rule that decides meaning. A gap found in a review, a test or a

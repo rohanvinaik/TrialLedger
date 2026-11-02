@@ -11,8 +11,8 @@ change's own design differ, the design governs and this document is corrected in
 - **The theory is the contract.** docs/THEORY_OF_THE_CASE.md Parts III and IV, read whole. Recognition (a word, a
   unit, a gene symbol) produces typed evidence with its span and decides nothing; meaning is assigned only by a
   named warrant (add-design-conformance design §2), for an ambiguous reading by eliminating alternatives across
-  observations of distinct provenance; the same observation never counts twice, while one sentence may state
-  several distinct constraints; a default is interpolated, never known; a domain rule applies only within the
+  observations of distinct provenance; the same evidence is never counted twice; a default is interpolated, never
+  known; a domain rule applies only within the
   indications it declares; what the sources do not decide is shown unresolved, never patched. brief-rules.md is
   carried verbatim in every build brief.
 - **Gates, not memory.** The local gate (scripts/ci_local.sh, read whole) before every commit; the conformance test;

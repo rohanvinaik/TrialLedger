@@ -63,7 +63,7 @@ the diff and the tree (a function of literal inputs, two-sign tested and converg
 
 The reviewer reads the trace and the diff against docs/THEORY_OF_THE_CASE.md Part III and IV and the cited design
 decisions, and answers: does any decision in the change assign meaning from one lexical observation; does it count
-one sentence twice; does it turn a default into a known value; does it apply a domain rule outside its declared
+the same evidence twice; does it turn a default into a known value; does it apply a domain rule outside its declared
 indications; is anything the sources do not decide shown unresolved. Codex model-only (SquishOS consultation
 protocol) is the default reviewer; its verdict and the lead's resolution of any disagreement go in the trace.
 
@@ -103,8 +103,8 @@ additions that make the guarantee real:
 3. **Data is inventoried like code.** Any vocabulary, table or resource a reading module loads at run time (JSON,
    YAML, CSV, a generated file) is declared, versioned and hashed in the inventory; an undeclared runtime load in a
    reading module fails the test.
-4. **Executable counterexamples.** The four failures, and Codex's perturbations (duplicating a sentence adds no
-   evidential force; renaming an irrelevant name changes no reading; removing a required independent source yields
+4. **Executable counterexamples.** The four failures, and Codex's perturbations (the same evidence repeated is not
+   counted twice; renaming an irrelevant name changes no reading; removing a required independent source yields
    unresolved; keeping ATC membership while changing the indication never promotes a default to known; a nausea
    trial in chemotherapy patients is not "outside oncology"; a placebo arm with two candidates stays unresolved),
    run at the real entry point (`trialledger landscape` over fixture registry pages) and assert the required
@@ -124,10 +124,9 @@ The trace's independence section is prose; the computation must hold the same fa
 of add-scoped-assertions (MVP_PATH step 3) therefore carries, for every observation: its identity, its source
 location (field and span), its derivation ancestry (a derived index term, such as the registry's condition MeSH
 derived from the trial's own words, descends from those words and is not independent of them; differently named
-API fields are not independent for that reason alone), its scope, and the constraint it supplies. One sentence
-counts once means no duplicated evidential force: the same observation reached twice supports nothing twice; it
-does not stop one sentence stating several distinct constraints, each kept as its own proposition with the shared
-provenance recorded. Consumers accept readings only as checked derivations (premises and evidence references,
+API fields are not independent for that reason alone), its scope, and the constraint it supplies. The same
+evidence is never counted twice toward a reading; one piece of evidence may of course support several different
+readings. Consumers accept readings only as checked derivations (premises and evidence references,
 bindings and scope, the statuses the consumer accepts, and named failures when the proof does not check), and a
 legacy reading has its own type, which a consumer requiring a structurally established assertion refuses; the
 workbook label (task 1.3) shows it, the type enforces it.

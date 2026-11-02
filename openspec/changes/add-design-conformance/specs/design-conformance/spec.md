@@ -61,9 +61,8 @@ Fixture registry pages run through `trialledger landscape` SHALL produce the req
 not-applicable outcome for each shortcut kind found on 2026-11-02 and each perturbation of design §7.4.
 
 #### Scenario: duplicated evidence presented as separate support
-- **WHEN** the same sentence, or a derived index term and the words it was derived from, are offered as two
-  observations toward one reading
-- **THEN** the reading's support counts them once and its status is what one observation warrants
+- **WHEN** the same text, or a registry term derived from that text, is offered twice as support for one reading
+- **THEN** it is counted once, and the reading's status is what that one piece of evidence warrants
 
 #### Scenario: a non-oncology trial in oncology patients
 - **WHEN** a nausea trial enrols patients receiving chemotherapy

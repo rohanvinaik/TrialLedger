@@ -8,8 +8,7 @@ cited external answer), its derivation ancestry (what it was derived from, if an
 constraint it supplies.
 
 ## Independence
-Which observations share a source or descend from the same evidence (counted once). One sentence stating several
-distinct constraints keeps each as its own proposition, with the shared provenance recorded.
+Which observations share a source or descend from the same evidence (never counted twice toward one reading).
 
 ## Candidates
 The interpretations still possible before any elimination.
@@ -27,7 +26,7 @@ default supplies it, shown as interpolated with its defeaters.
 What no source decides, and how it is shown.
 
 ## Perturbations
-Reword, negate, change the target, remove a source, duplicate a sentence: the consequence of each, reached without
+Reword, negate, change the target, remove a source, repeat the same evidence: the consequence of each, reached without
 adding a case-specific phrase rule.
 
 ## Exposure

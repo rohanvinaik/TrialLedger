@@ -213,8 +213,9 @@ indication gates which rules apply.
 - Computable does not mean forced: constraints define which designs are feasible, frequencies describe which
   were chosen, and neither alone shows what a sponsor inherited.
 - Silence is unresolved; a zero (orthogonal) needs its own warrant.
-- Agreement between banks is not assignment: evidence from one sentence counts once, and a value is assigned
-  only by eliminating the alternatives.
+- Agreement between banks is not assignment: the same evidence is never counted twice, and a value is assigned
+  only by eliminating the alternatives. (Reworded 2026-11-02 to his meaning; the earlier wording, "evidence from
+  one sentence counts once", was Claude's and not his.)
 - Rarity is not relevance; frequency, logical state, association and relevance are separate quantities.
 - A mechanism association proposes a rule; sponsor templates and eras can produce the same signal.
 - Niches have three states (covered and empty, unresolved, infeasible); a failed trial occupies its region.

@@ -14,7 +14,7 @@ contract defeats the point of the project.
 
 The principle every reading must obey: recognition (a word, a unit, a gene symbol) is legitimate encoding that
 produces typed evidence with its span; meaning is assigned only by eliminating alternatives across independent
-evidence, one sentence counting once; where the sources do not decide, the value is unresolved and shown so;
+evidence, the same evidence never counted twice; where the sources do not decide, the value is unresolved and shown so;
 domain rules apply only within the indications they declare; a default is interpolated, never known.
 
 ## What changes
