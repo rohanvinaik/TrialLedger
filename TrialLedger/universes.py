@@ -87,6 +87,8 @@ CASE_CODES = {
 }
 # The intervention types the drug source reads for what a trial treats, and the one that treats the cancer.
 DRUG_TYPES = ("DRUG", "BIOLOGICAL")
+# The ATC answer codes (classes.py) that say RxNav could not be read for a name, not that it gave no class.
+FAILED_LOOKUPS = ("lookup_failed", "identity_lookup_failed", "malformed")
 RADIATION = "RADIATION"
 # What pack_applicability names, each in words.
 APPLICABILITY_CODES = {
@@ -285,19 +287,20 @@ def pack_scope(packs: tuple[str, ...]) -> tuple[dict[str, list[str]], tuple[str,
 
 
 def atc_classes(answers: dict[str, Any]) -> dict[str, tuple[str, ...] | None]:
-    """Each name's ATC codes from the run's RxNav answers (classes.json's "answers"): a name whose ATC was
-    asked and answered (found, or found to have none) maps to its codes, () for none; a name whose ATC
-    lookup failed maps to None, so it reads "lookup failed", never "no class"; a name whose ATC was never
-    asked is left out, so it reads "not looked up"."""
+    """Each name's ATC codes from the run's RxNav answers (classes.json's "answers"): a name RxNav answered
+    for maps to its codes, () for none (no ATC class, the name not in RxNorm, an identity RxNav leaves
+    ambiguous or unresolved); a name whose lookup failed (FAILED_LOOKUPS) maps to None, so it reads
+    "lookup failed", never "no class"; a name whose ATC was never asked is left out, so it reads "not looked
+    up"."""
     codes: dict[str, tuple[str, ...] | None] = {}
     for name, answer in answers.items():
         atc = answer.get("axes", {}).get("ATC") if isinstance(answer, dict) else None
         if not isinstance(atc, dict) or "code" not in atc:
             continue
-        if atc["code"] in ("found", "not_found"):
-            codes[name] = tuple(str(assertion[0]) for assertion in atc.get("assertions", []))
-        else:
+        if atc["code"] in FAILED_LOOKUPS:
             codes[name] = None
+        else:
+            codes[name] = tuple(str(assertion[0]) for assertion in atc.get("assertions", []))
     return codes
 
 

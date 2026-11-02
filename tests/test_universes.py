@@ -561,8 +561,21 @@ def test_atc_classes_keeps_answered_names_and_marks_failed_ones():
         "Placebo": {"axes": {"ATC": {"code": "not_found", "assertions": []}}},
         "Cisplatin injection": {"classes": [], "codes": {}},
         "Pemetrexed": {"axes": {"ATC": {"code": "lookup_failed", "assertions": []}}},
+        # unit D's lookups: a name RxNorm does not hold is answered, never a failure
+        "CAT-8015 20 mcg/kg": {"axes": {"ATC": {"code": "not_in_rxnorm", "assertions": []}}},
+        "Two concepts": {"axes": {"ATC": {"code": "identity_unresolved", "assertions": []}}},
+        "Unasked": {"axes": {"ATC": {"code": "identity_lookup_failed", "assertions": []}}},
+        "Garbled": {"axes": {"ATC": {"code": "malformed", "assertions": []}}},
     }
-    assert atc_classes(answers) == {"Osimertinib": ("L01EB",), "Placebo": (), "Pemetrexed": None}
+    assert atc_classes(answers) == {
+        "Osimertinib": ("L01EB",),
+        "Placebo": (),
+        "Pemetrexed": None,
+        "CAT-8015 20 mcg/kg": (),
+        "Two concepts": (),
+        "Unasked": None,
+        "Garbled": None,
+    }
 
 
 def test_a_failed_drug_lookup_is_never_read_as_no_cancer_drug():
