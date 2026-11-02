@@ -1900,7 +1900,19 @@
   },
   "acceptance/preserve.py::cell_verdict": {
     "cut_reasons": [],
-    "function_digest": "d6a82a35a22f7457",
+    "function_digest": "bb421a6e35c9fceb",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "acceptance/preserve.py::displayed_number": {
+    "cut_reasons": [],
+    "function_digest": "2c171beef2ebeec8",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "acceptance/preserve.py::number_agrees": {
+    "cut_reasons": [],
+    "function_digest": "94093bc8974948a7",
     "refusal": "",
     "standing": "complete"
   },
