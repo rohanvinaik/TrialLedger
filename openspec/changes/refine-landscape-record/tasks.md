@@ -6,7 +6,7 @@
       fingerprints, never credentials), the other detectors kept, the digest-recognition code it needed deleted.
 - [ ] 0.2 The acceptance harness (add-agent-operation 7.1) on main.
 - [ ] 0.3 relation-kinds (add-scoped-reasoning 1.1-1.2) rebased and on main (landscape.json schema 2).
-- [ ] 0.4 The contract commit: `TrialLedger/contract.py` (the schema-3 field table: field, API path or rule,
+- [x] 0.4 The contract commit: `TrialLedger/contract.py` (the schema-3 field table: field, API path or rule,
       plain or reading, consumers; the universe table; the display dictionaries for the API's enums), the
       baseline bodies and the API field metadata as test fixtures, and the two gates (every API path resolves
       in the saved bodies; every field names an existing consumer).

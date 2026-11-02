@@ -131,6 +131,10 @@ FOUNDATIONS = {
         "typematrix.py",
         ("manifest_problems",),
     ),
+    "until refine-landscape-record units A-C consume the contract": (
+        "contract.py",
+        ("display_words", "holds_value", "resolves", "template_values"),
+    ),
     "until add-bank-coverage 7.1 (the confirmation evaluated through the real entry point)": (
         "evaluation.py",
         (

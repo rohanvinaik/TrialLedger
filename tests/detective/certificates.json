@@ -2020,5 +2020,29 @@
     "function_digest": "00a34ea8979411b5",
     "refusal": "",
     "standing": "complete"
+  },
+  "TrialLedger/contract.py::display_words": {
+    "cut_reasons": [],
+    "function_digest": "4d002503b02685ab",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/contract.py::holds_value": {
+    "cut_reasons": [],
+    "function_digest": "3571ed03d3687644",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/contract.py::resolves": {
+    "cut_reasons": [],
+    "function_digest": "732020656c0ff194",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/contract.py::template_values": {
+    "cut_reasons": [],
+    "function_digest": "acacefd97ba5f03a",
+    "refusal": "",
+    "standing": "complete"
   }
 }
