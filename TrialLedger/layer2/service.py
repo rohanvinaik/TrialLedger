@@ -541,14 +541,15 @@ def _full_description() -> dict[str, Any]:
     return {
         "basis": BASIS,
         "clinical_use": (
-            "Symbolic reasoning about trial design, operated by the assistant in conversation. The "
-            "assistant translates: it restates the person's criteria and questions as typed premises, shows "
-            "them back in plain words and encodes only what the person confirms. The operations reason: "
-            "every answer is computed and lands in one of four categories (settled, something wrong, your "
-            "call, not knowable from this evidence) with the premise that decided it. They abstain exactly "
-            "where the premises do not settle a question: 'must everyone be at least 65?' against a brief "
-            "requiring 18 or older allows both age ranges. Read the relevant operation guide; the full "
-            "worked session is available when useful."
+            "Work through a trial concept in conversation: what did the comparison trials document, what "
+            "should we choose, and what happens if we change it? The assistant reads saved evidence, "
+            "settles material interpretations with the person and prepares typed comparison features or "
+            "design premises. These operations compute the supported counts, consequences, contradictions "
+            "and open choices, retaining their basis. The assistant maintains the working brief and reruns "
+            "checks when choices change; it can save request/result pairs separately from the source record. "
+            "The person makes the clinical judgments. Automatic source-to-premise compilation and complete "
+            "protocol generation remain unintegrated. Read the relevant operation guide; the worked session "
+            "shows runnable examples of the translation and checking steps."
         ),
         "answer_guide": guide.answer_guide(),
         "question_vocabulary": deepcopy(guide.QUESTION_VOCABULARY),
@@ -1078,10 +1079,13 @@ def _describe(request: dict[str, Any]) -> dict[str, Any]:
     if view == "overview":
         return common | {
             "clinical_use": (
-                "Help the person examine trial-design restrictions and patterns. Choose the operation "
-                "for their question, read its focused guide, settle material premises together, then run "
-                "it. Answer with the result, deciding basis and material open items; keep full analyses "
-                "in a separate file when useful. These tools do not generate a complete protocol."
+                "Help the person explore what other trials documented, make a design choice precise, "
+                "check its consequences and revise it. You read the saved evidence and prepare agreed "
+                "comparison features or premises; the operations compute over them. Read the focused "
+                "guide, run the appropriate operation and explain the deciding basis and open choices. "
+                "Update the working premises and rerun when a choice changes; save the brief and "
+                "request/result pairs separately when file access permits. The person makes the clinical "
+                "judgments. Automatic text compilation and complete protocol generation are not integrated."
             ),
             "use_cases": full["use_cases"],
             "input_shapes": {"describe": full["input_shapes"]["describe"]},

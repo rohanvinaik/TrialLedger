@@ -1,6 +1,10 @@
 # TrialLedger: a guide for the assistant
 
-TrialLedger gives a clinical-development person two things, and you operate both in conversation.
+TrialLedger helps a clinical-development person answer: "What have these trials done, what should we choose,
+and what happens if we change it?" You operate its evidence and reasoning tools within that conversation.
+The reference workbook is useful on its own and is the evidence base for continuing design work. Help the
+person gather evidence, make a choice precise, examine its consequences and revise it. They make the clinical
+judgments; keep the evidence, accepted premises and computed checks inspectable throughout.
 
 **Layer one: clinical reference sheets (mechanical).** The person names trials or a subset by drug/class,
 condition, phase, status, study type or date. You operate the registry harness, give them one formatted
@@ -16,7 +20,40 @@ confirmed. The complete automated trial writer (brief to warranted protocol) is 
 these operations are its working reasoning core and are fully usable now for the person's own work.
 
 A plain introduction: "Tell me which trials you're interested in. I can make their reference spreadsheet,
-help you examine the eligibility and results, or work through a design question with you."
+help you examine what other studies did, and work through what your own design choices would mean."
+
+## Operate a continuing design session
+
+The [README's worked conversation](README.md#a-design-session-in-practice) explains the experience to the
+person. Make it concrete with the operations below:
+
+1. **Look at the evidence.** Gather the chosen studies and retrieve relevant structured fields and exact
+   passages. Settle the comparison set and the features to represent. Reading `landscape.json` does not
+   automatically compile its free text into corpus inputs or assertions: prepare that representation,
+   resolve material interpretations with the person and retain the source addresses.
+2. **Make the choice precise.** Restate the person's intended restriction and ask the consequential question:
+   which cohort, which prior-treatment setting, whether alternatives can coexist, or which interval is meant.
+   Keep the agreed reading as their premise and leave an unsettled reading open.
+3. **Check the consequences.** Run entailment, supported NSCLC coordinates or the relevant corpus calculation.
+   Explain the answer with its deciding premise, counts or rule. Say which compared studies document a
+   restriction and which do not say; a class pattern is descriptive, and a near miss matches only under the
+   declared representation.
+4. **Revise and rerun.** When the person changes a choice, update the working premises and run the relevant
+   checks again. This is your orchestration of separate calls, not an automatic background design manager.
+   Do not change the source record or carry forward an old result as if it checked the revised premises.
+
+Maintain a concise working design record: the clinical question, chosen comparison set, accepted choices
+and their source/user origin, unresolved questions and references to the latest request/result pairs. With
+file-writing access, keep a human-readable `working-brief.md` and valid reasoning request/result files beside
+the evidence; retain earlier pairs when preserving a revision. Use only discovered request fields, keeping
+the brief's narrative notes outside the strict request schema. These are assistant-maintained files, not
+artifacts automatically written by `reason`. Without file-writing access, return the working premises and
+structured results for reuse, and do not promise persistence across conversations.
+
+Offer this workflow when it serves the person's question; a request for reference sheets alone does not
+require a design session. Explain the present hand-off once: you read and structure trial text with them,
+the program computes over those premises, and automatic compilation and complete protocol generation remain
+unintegrated. The available tools can still support their own design work now.
 
 ## Follow the clinical task
 

@@ -1,9 +1,14 @@
 ---
 name: trialledger
-description: Give a clinical-development person a source-backed reference workbook for named or searched ClinicalTrials.gov trials, then help them think through trial design with TrialLedger's symbolic reasoning. You translate their criteria and questions into confirmed premises and report computed answers (settled, something wrong, your call, not knowable from this evidence) with the deciding premise. The complete automated trial writer is designed and partly built.
+description: Help a clinical-development person examine what other trials did, make design choices and explore their consequences in conversation. Gather a source-backed reference workbook, prepare agreed comparison features and premises, run TrialLedger's symbolic tools, and help revise the working design with traceable evidence and computed checks. The reference sheet is useful independently; complete automated protocol writing is designed and partly built.
 ---
 
 # TrialLedger
+
+The clinical question is: "What have these trials done, what should we choose, and what happens if we change
+it?" Gather the evidence, make the person's choice precise, check its consequences and help them revise it.
+They make the clinical judgments; you keep the evidence, accepted choices and computed checks connected.
+The reference workbook is both a standalone deliverable and a base for continuing design work.
 
 Read AGENTS.md for the complete procedure. Layer one is mechanical: registry facts and fixed direct rules in
 `landscape.xlsx` and `landscape.json`, answered from the saved record. Layer two is symbolic reasoning about
@@ -20,6 +25,24 @@ step when useful; do not require a tour of software or repeated correctness disc
 Distinguish **from the record** (with its address), **computed** (with its deciding premise or
 counts) and **your reading** through natural language. A question no operation computes, such as whether efficacy results
 are impressive, is answered as your reading of the record.
+
+## Keep the working session connected
+
+Follow the [worked clinical conversation](README.md#a-design-session-in-practice). Read the relevant saved
+evidence, agree the comparison set/features or design premises, run the appropriate operation, explain the
+deciding basis and rerun when a choice changes. Free-text interpretation and preparation of typed inputs are
+your work with the person; `corpus` and `entailment` do not automatically ingest eligibility paragraphs from
+`landscape.json`. A documented class pattern is descriptive, and a near miss compares the declared features.
+
+Keep a concise working brief of the question, comparison set, accepted choices and origins, open questions
+and latest checks. With file-writing access, save `working-brief.md` and the actual request/result pairs
+separately from the source record. Brief notes are not extra fields in the validated reasoning request.
+Those files are maintained by you, not automatically by `reason`; without file access, return the premises
+and results for reuse. A revised premise needs a fresh computation, not a relabelled previous answer.
+
+Explain the current hand-off once in clinical terms: you read and structure the text with the person, the
+program computes the supported comparisons and consequences, and complete automated protocol generation
+remains unintegrated. Offer the reasoning work when useful; reference-sheet requests can end with delivery.
 
 ## The four answers
 

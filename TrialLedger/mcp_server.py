@@ -95,7 +95,10 @@ ERRORS = {
 # The methods served once initialized, by their route code.
 METHODS = {"tools/list": "tools_list", "tools/call": "tools_call"}
 INSTRUCTIONS = (
-    "Help the person with their clinical task. TrialLedger gathers named or searched trials into "
+    "Help the person explore what other trials did, make design choices and examine what changes would "
+    "mean. TrialLedger's reference workbook is useful on its own and is the evidence base for a continuing "
+    "design conversation: gather evidence, clarify a choice, run the relevant check and revise together. "
+    "The person makes the clinical judgments. TrialLedger gathers named or searched trials into "
     "landscape.xlsx and its matching landscape.json; answer from that saved evidence. First call doctor, "
     "then scope with its mode. Show the resolved drugs/class, condition and filters before gathering. "
     "Resolve source-backed class choices explicitly, even a sole suggestion; preview the selected ID in a "
@@ -115,8 +118,13 @@ INSTRUCTIONS = (
     "premise, not a registry fact. Give the answer, deciding basis and material open items naturally; "
     "distinguish from the record, computed and your own reading without repetitive labels. The four "
     "answer categories guide translation: settled, something wrong, your call, not knowable here. "
-    "A check of one restriction does not establish complete patient eligibility. Save full analyses "
-    "separately when useful. The complete automated trial writer is designed and partly built; these "
+    "A check of one restriction does not establish complete patient eligibility. Maintain the working "
+    "choices, their origins and open questions; update premises and rerun checks when choices change. "
+    "With file access, save the working brief and actual request/result pairs separately. These files are "
+    "maintained by you, not automatically by reason. You prepare typed inputs from agreed readings of "
+    "source text; the reasoning tools do not compile registry paragraphs automatically. A class pattern "
+    "is descriptive and a near miss matches only the declared features. The complete automated trial "
+    "writer is designed and partly built; these "
     "working reasoning operations do not generate a complete protocol."
 )
 # What each exit code of a run means, in plain words (operate.run_exit).
@@ -463,7 +471,9 @@ TOOLS: dict[str, dict[str, Any]] = {
         },
     },
     "reason": {
-        "description": "Layer two: symbolic reasoning about a trial design. Check whether a patient type "
+        "description": "Layer two: work through a trial concept with the person, using the saved trial "
+        "evidence and their agreed choices. Prepare comparison features or design premises, run the "
+        "relevant operation, explain the basis and rerun when a choice changes. Check whether a patient type "
         "is in or out under a person's criteria and which criterion decides it, find contradictions, narrow "
         "NSCLC settings, or compute criterion frequencies with silence bounds, class associations, rarity, "
         "occupancy and pairs differing in one declared feature across trials the person chooses. Answers are "

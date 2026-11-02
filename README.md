@@ -1,18 +1,64 @@
 # TrialLedger
 
-**Tell your assistant which clinical trials you're interested in. Get a reference spreadsheet you can work
-from, with a matching evidence record for follow-up questions.**
+**Explore clinical trials and work through a trial concept with your assistant, with evidence and decisions
+you can inspect.**
 
-Name specific trials, or describe a group by drug, drug class, condition, phase, status or study type.
-TrialLedger gathers their ClinicalTrials.gov records into one formatted workbook, with a dossier per study
-and shared listings. Your assistant can then take you to the exact eligibility, endpoints, results or safety
-information behind an answer.
+Start with the studies you care about. TrialLedger gathers their ClinicalTrials.gov records into a readable
+reference workbook and a matching evidence record. You can examine who could enroll, what was measured,
+when it was assessed, and what results and safety information were reported.
 
-For example:
+Then ask: “What have these studies done here—and what would happen if we chose something different?”
 
-- “Give me the reference sheets for IPASS and ARCHER 1050.”
-- “Find completed Phase 3 EGFR inhibitor studies in non-small cell lung cancer.”
-- “Show me who could enroll, the outcome time points and the reported safety by treatment group.”
+Your assistant brings the relevant evidence into the conversation, helps make your intended choices
+explicit, and runs TrialLedger's comparison and reasoning tools. You can examine documented patterns, check
+whether your draft restrictions conflict, explore alternatives, and revise a choice with its consequences
+in view.
+
+You make the clinical judgments. The evidence, agreed choices and computed checks give you something you
+can inspect, question and return to as the design develops. The reference workbook is useful on its own,
+and it provides the evidence base for a continuing design conversation.
+
+## A design session in practice
+
+Suppose you're sketching an NSCLC trial and ask:
+
+> “We need an age cutoff—and what about CNS metastases or prior treatment? What have other trials like
+> these used?”
+
+Here is how the conversation can develop. The draft choices below illustrate the workflow; they are not
+findings from a particular trial or a recommended protocol.
+
+**1. Look at the evidence.** Your assistant gathers the trials you choose, shows the search scope, and reads
+the relevant population fields and exact eligibility passages. You agree which features and trials to
+compare. TrialLedger can then count documented restrictions while keeping missing information visible.
+“Eight studies document this restriction; two don't say” is different from “this is standard practice.”
+It can also show restrictions documented more often within a selected drug class, unusual observations,
+and trial pairs that differ on one feature under the comparison you defined.
+
+**2. Make a choice precise.** You say, “Let's use adults 18 or older, ECOG 0–1, and EGFR exon 19 deletion or
+L858R.” Your assistant might ask: “If L858R occurs alongside another mutation, should that person qualify?”
+That question makes your intended eligibility decision explicit. The assistant records your agreed reading
+for the analysis.
+
+**3. Check the consequences.** Ask, “Does that rule out ECOG 2?” or “Do these restrictions contradict each
+other?” Your assistant runs the reasoning tool and explains the answer with the premise that decides it.
+For supported NSCLC questions, it can also examine which treatment settings remain possible, showing where
+a result uses a default or leaves you a choice.
+
+**4. Revise the design.** Add a cohort, change a restriction or reconsider a comparison. Your assistant
+updates the working choices and reruns the relevant checks. You can see what follows from the revised
+choices, what remains open and which evidence informed them. The original registry record stays intact.
+
+The session can leave you with the source workbook and record, a working brief of your agreed choices and
+open questions, and the structured checks behind the answers. Your assistant can save the brief and the
+analysis inputs and results separately so you can revisit a decision and rerun it.
+
+Today, your assistant reads trial text with you, makes the agreed choices explicit and runs the checks;
+TrialLedger computes the supported comparisons and logical consequences. The complete automated trial
+writer is designed and partly built. Automatic conversion of trial text into reasoning inputs and complete
+protocol writing are not yet integrated. Its working tools are available now for your own design
+and comparison work. See the [full design](openspec/changes/add-design-synthesis/design.md) and
+[theory](docs/THEORY_OF_THE_CASE.md) for the component map.
 
 ## What you receive
 
@@ -22,45 +68,16 @@ flow, groups and safety. Numbers keep their study groups, denominators, units an
 Observational and expanded-access studies retain their own applicable details.
 
 **`landscape.json`** contains the matching selected clinical evidence your assistant uses for questions.
-Complete registry responses are also retained. The workbook and record preserve source wording; the assistant
-can show the evidence behind an answer without reconstructing a registry page from memory.
+Complete registry responses are also retained. The workbook and record preserve source wording, with links
+back to the evidence behind an answer. Planned outcomes remain separate from posted results, and missing
+information stays visible. A source link gives you a place to investigate further when an answer needs
+information beyond the registry.
 
-The search is shown before gathering: which drugs a class includes, the condition and the filters. If a
-name is ambiguous, your assistant helps you select the intended source-backed meaning. Requested trial
-numbers are accounted for, including any that were not found. An interrupted run can resume.
+You can also stop at the reference sheet. For example:
 
-The report copies registry facts and applies fixed, named transformations. It keeps planned outcomes
-separate from posted results and makes missing information visible. It does not invent a treatment setting,
-adverse-event grade, current standard of care or a new study's efficacy target when the source does not
-establish one. Source links remain available for further investigation.
-
-## Work through a design question
-
-TrialLedger also has working symbolic reasoning tools that your assistant operates with you. You can ask:
-
-- “Does our draft rule out ECOG 2 patients? Which restriction decides that?”
-- “Do these criteria contradict each other?”
-- “What treatment settings could these lung cancer premises support?”
-- “How often is this exclusion documented in the comparison set we chose?”
-- “Which trials differ on this design feature? What's unusual in this set?”
-
-Your assistant restates the material premises together in clinical words, checks ambiguities with you and
-runs the appropriate operation. You get the answer, its deciding premise or counts, and any open issue that
-changes its meaning. Change a premise and rerun whenever you like; the source record stays intact.
-
-For example, if your draft requires adults aged 18 or older, a 16-year-old fails that age restriction.
-A minimum age of 65 is not required: the restriction allows adults on both sides of 65. That answers the
-age question without claiming that every requirement for a particular patient's enrollment has been checked.
-
-These operations compute consequences from the premises supplied. Your assistant distinguishes what the
-registry reports, what the program computes and its own clinical reading. Your confirmation establishes a
-premise for the analysis; it does not turn an interpretation into a registry fact. Supported defaults and
-suggestions remain visible as such.
-
-The complete automated trial writer—from a brief and evidence to a warranted protocol—is designed and
-partly built. Its working reasoning tools are available now; automatic source-to-premise compilation and
-complete brief-to-protocol writing are not yet integrated. See the [full design](openspec/changes/add-design-synthesis/design.md)
-and [theory](docs/THEORY_OF_THE_CASE.md) for the component map and remaining work.
+- “Give me the reference sheets for IPASS and ARCHER 1050.”
+- “Find completed Phase 3 EGFR inhibitor studies in non-small cell lung cancer.”
+- “Show me who could enroll, the outcome time points and the reported safety by treatment group.”
 
 ## Getting started with your assistant
 
