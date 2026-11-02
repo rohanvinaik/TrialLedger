@@ -618,8 +618,20 @@ def run(
             fill_axes=True,
             get=get,
             sleep=sleep,
+            monotonic=monotonic,
             progress=progress,
         )
+        # RxNav's release, asked before each batch's first request and after its last: answers read across a
+        # release change, or with a release that could not be read, are never made into a record.
+        # The same verdicts as the request's resolution (release_check): a changed release is refused, a
+        # failed release request is asked again on a re-run, and a release not stated refuses nothing.
+        for first, last in rx.batch_releases(answers):
+            verdict = release_check(first, last)
+            if verdict in ("release_changed", "release_lookup_failed"):
+                stop = "rxnav_release_changed" if verdict == "release_changed" else "lookup_failed"
+                releases = f"{first[0]} {first[1]!r}, then {last[0]} {last[1]!r}"
+                detail = f"RxNav's release for the drug lookups: {releases}"
+                return _stop(folder, mode, stop, detail, RUN_ADVICE[stop])
     reading = read_population(studies, answers)
     retrieval = retrieval_coverage(reading_mode, _matched(folder), scope["query"], studies)
     manifest = landscape_manifest(

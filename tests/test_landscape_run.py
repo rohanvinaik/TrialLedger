@@ -706,3 +706,39 @@ def test_the_command_ends_1_when_the_registry_keeps_failing(tmp_path, capsys):
     assert err[4].startswith("http.server_error: GET https://clinicaltrials.gov/api/v2/version")
     assert err[5] == RUN_ADVICE["pull_failed"]
     assert not (tmp_path / "run" / "landscape.json").exists()
+
+
+def _lookup_with_releases(monkeypatch, first, last):
+    """operate's drug lookup, its answers carrying one batch read under `first` and `last` releases."""
+    real = operate.rx.load_or_lookup_at
+
+    def looked_up(*args, **kwargs):
+        answers = dict(real(*args, **kwargs))
+        answers["a drug of the batch"] = {"release": list(first), "release_end": list(last)}
+        return answers
+
+    monkeypatch.setattr(operate.rx, "load_or_lookup_at", looked_up)
+
+
+def test_drug_lookups_read_across_a_release_change_make_no_record(tmp_path, monkeypatch):
+    _lookup_with_releases(monkeypatch, ("found", "05-Oct-2026"), ("found", "02-Nov-2026"))
+    folder = tmp_path / "direct"
+    outcome = direct(folder, PD1_IN_LUNG, Registry([drug_free(results_study())]), RxNav())
+    assert (outcome.status, run_exit(outcome.status)) == ("rxnav_release_changed", 1)
+    assert outcome.detail == (
+        "RxNav's release for the drug lookups: found '05-Oct-2026', then found '02-Nov-2026'"
+    )
+    assert not (folder / "landscape.json").exists()
+
+
+def test_drug_lookups_whose_release_could_not_be_read_are_asked_again(tmp_path, monkeypatch):
+    _lookup_with_releases(monkeypatch, ("found", "05-Oct-2026"), ("lookup_failed", ""))
+    folder = tmp_path / "direct"
+    outcome = direct(folder, PD1_IN_LUNG, Registry([drug_free(results_study())]), RxNav())
+    assert outcome.status == "lookup_failed" and not (folder / "landscape.json").exists()
+
+
+def test_drug_lookups_whose_release_is_not_stated_still_make_the_record(tmp_path, monkeypatch):
+    _lookup_with_releases(monkeypatch, ("found", "05-Oct-2026"), ("not_stated", ""))
+    folder = tmp_path / "direct"
+    assert direct(folder, PD1_IN_LUNG, Registry([drug_free(results_study())]), RxNav()).status == "complete"
