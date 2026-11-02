@@ -57,8 +57,10 @@ push to main. Claims: detection and accountability, bounded as its design §7 st
 are clinically right, or that the mechanism they protect exists (that is step 3).
 
 ### Step 2. refine-landscape-record — close it: Milestone A (entry: step 1's 0.1)
-Open: the conformance commits (the three shortcuts and the treats-the-cancer gate removed; indication gating per
-add-scoped-reasoning Decision 4; legacy readings labelled); the presentation defects of the 2026-11-02 breadth runs
+Open: its design §9 corrections (the disease classifier removed and rules scoped by add-scoped-reasoning
+Decision 4; readings stating only what their words establish; the workbook's columns chosen for the reader;
+every value's source); the conformance commits (the three shortcuts and the treats-the-cancer gate removed;
+legacy readings labelled); the presentation defects of the 2026-11-02 breadth runs
 (confidence level and sides written as silence, limits dropped beside a spread, the second level of denominators and
 baseline populations, internal text in cells, enrollment's mixed form, a drug class missing without words, an empty
 key-criteria band without words, "not stated" for a reading not produced); 5.1 the documents as built (no promise

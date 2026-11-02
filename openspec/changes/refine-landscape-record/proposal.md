@@ -32,12 +32,14 @@ they could need; build it fast and wide.
   details); copies and internal bookkeeping are removed (exploratory measures, per-criterion frequency tiers,
   per-alias lookup histories, the declared type matrix). Results, baseline, flow and adverse events
   keep the registry's own nesting, each module's groups keyed within the module.
-- **Universes.** Each trial is assigned to universes (solid-tumour oncology, haematologic oncology, general)
-  by a named rule over its condition MeSH terms, its free-text conditions and titles, and, for a treatment
-  trial, its interventions' MeSH; the assignment and the source that decided it are recorded and shown. A
-  domain reading (setting, line of therapy, gene selection) exists only where its pack's requirements hold;
-  elsewhere it is absent, and the scope says why. Recognition of an explicit mention stays universal
-  (founder decision B3).
+- **Rules scoped to the diseases they are written for** (corrected 2026-11-02, design §9). The record carries
+  each trial's disease as the registry states it: the sponsor's conditions and keywords, and the registry's
+  condition MeSH terms with their ancestors and browse leaves, as the API gives them. No classifier sorts
+  trials into categories. A rule written for one disease (the NSCLC setting and line rules) declares that
+  disease and applies by add-scoped-reasoning Decision 4: the trial's indication comes from its conditions
+  first, its own disease statements next, the registry's MeSH last; a disagreement is a named conflict, shown;
+  what the sources do not resolve reads scope unresolved.
+  Recognition of an explicit mention stays universal (founder decision B3).
 - **The workbook, rebuilt for the reviewer.** Read me; Trial index (one row per trial in clinical words, with
   each trial's universe and why); Trial review (each trial's dossier, one row per fact, detail left to the
   listings); Eligibility; Registered outcomes; Posted results; Statistical analyses; Baseline; Participant flow;

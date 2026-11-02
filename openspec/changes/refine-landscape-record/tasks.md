@@ -74,6 +74,20 @@
       destination, evidence and unresolved cases.
 - [ ] 5.3 `scripts/release_check.py` against the public repository.
 
+## 7. Corrections (design §9, 2026-11-02)
+
+- [ ] 7.1 The conform branch merged after review, with its treatment-purpose gate removed and placebo shown as
+      the structural fact plus a proposed reading (§9.2).
+- [ ] 7.2 `universes.py`'s sorting removed; the request asks for the browse leaves; the record carries conditions,
+      keywords, condition MeSH with ancestors and the browse leaves as given; indication resolved by Decision 4's
+      source order with NLM MeSH entry terms as the cited name lookup; each pack declares its indications;
+      named conflicts shown; the Trial index shows conditions as stated, not a category.
+- [ ] 7.3 Readings say only what their words establish (§9.2); empty readings unresolved, never known.
+- [ ] 7.4 The workbook corrections of §9.3, each with a negative test.
+- [ ] 7.5 Sources and warrants (§9.4): law 12 checked for landscape output and built where missing; AGENTS.md,
+      README and SKILL.md as built.
+- [ ] 7.6 Acceptance by §9.5.
+
 ## 6. Unit F: the search preview and the assistant's interface (design §5a)
 
 - [ ] 6.1 The preview stop: resolve, write resolution.json, return the scope, retrieve nothing (a test asserts

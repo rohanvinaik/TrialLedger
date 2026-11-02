@@ -89,7 +89,7 @@ criterion carries no clinical information). The drug class says why it is unreso
 in RxNorm; the lookup failed; not looked up in relay mode); the registry's intervention MeSH is shown beside it,
 labelled as the registry's term, never as a drug class.
 
-## 3. Universes (the Regenesis port)
+## 3. Universes (the Regenesis port) — superseded by §9 on 2026-11-02; kept for the record
 
 From Regenesis: a universe is a declared, versioned record naming the rule packs it owns; rules outside a
 universe are never applied. Regenesis has no assignment step (its caller names the universe); TrialLedger's is new.
@@ -283,6 +283,72 @@ per trial and distinct group in the Groups sheet, linked from each result row.
 
 Performance is measured twice, on frozen inputs (the saved bodies and caches) apart from live retrieval, with
 the cache state, runtime and versions recorded, and memory traced to the stage that uses it, not only its peak.
+
+## 9. Corrections (2026-11-02, the founder's direction; reviewed by Codex model-only)
+
+Layer one is data entry: query the registry, record what it states with its source, and write a workbook a
+clinical development professional can read and use. Where reasoning is needed, the founder's designs govern
+(docs/THEORY_OF_THE_CASE.md; add-scoped-reasoning; add-scoped-assertions). The build departed from that in the
+ways below; each is corrected here, and nothing else is added.
+
+**9.1 Disease, as the registry states it (replaces §3's assignment).** `universes.py`'s sorting of trials into
+solid tumour, haematologic and general, and every rule it used to decide that, is removed. The record carries,
+per trial: the sponsor's conditions and keywords; the registry's condition MeSH terms and ancestors; and, from
+the registry's browse leaves, kept as their own records as the API gives them (`id`, `name`, `asFound`,
+`relevance`; the request asks for them). Rule scoping is add-scoped-reasoning Decision 4, as written: a trial's
+indication is resolved from, in order, its literal `conditions`, the record's own disease assertions in its
+title and eligibility, and the registry's derived MeSH as a lower-priority source whose disagreement is a named
+conflict. A condition or title names a disease when it is the disease's declared name or one of its entry terms
+in NLM's MeSH vocabulary (a cited lookup, versioned and kept with the run; never a hand-written list); disease
+assertions in eligibility join when add-scoped-assertions can read them, and until then that source is named as
+not yet read. Each rule pack declares the indications it applies to, by MeSH descriptor, listing any narrower
+descriptors it covers (the NSCLC setting and line rules: Carcinoma, Non-Small-Cell Lung); nothing is inherited
+through the MeSH tree unless declared. Outcomes: an indication established within a pack's declared indications
+→ the pack applies; established outside them → the pack is inapplicable; the sources do not resolve it →
+`scope_unresolved`, never a negative; the sources disagree → a named conflict, shown with each source, and the
+pack applies only as the higher-priority source establishes. So a trial whose conditions establish Alzheimer's
+disease while its MeSH also carries "Lymphoma, Follicular" (the breadth runs reported this for several
+Alzheimer's and psoriasis trials, e.g. NCT06362707, NCT01313221) has its indication from its conditions, the
+MeSH term shown as a named conflict, and no lymphoma rule applied. A missing MeSH term alone decides nothing. No
+purpose gate is added: the founder's design has none (the conform branch's treatment-purpose gate is removed).
+The Trial index shows each trial's conditions as stated (and a named conflict where there is one), not a
+category; §4's "universe" column and the Risks' universe assignment are replaced by this.
+
+**9.2 Readings say only what the text says.** A reading names the words it read and states only what they
+establish: "steroid" is a mention of steroids, not immunosuppression; "must have negative serology for HIV" under
+Inclusion is an inclusion requirement of negative HIV serology, not "exclusion: HIV" (polarity and the heading's
+scope kept). Known is the founder's definition, whole: a literal field of the registry's record, typed
+structural information (a class the record states included), or a direct symbolic derivation from one (2 years
+written as 24 months); a deterministic typing that states what the text says is known (law 8). A reading that
+claims more than that is not deleted: it is given the status the theory gives it (a coherent interpolation, or a
+proposal), or corrected to what the words establish. A registry field that is explicitly empty is a known fact;
+a rule that read a text and extracted nothing says unresolved with the source text, never known with an empty
+result (the time-point readings). A placebo: the arm's registered type is shown as the registry states it; the
+intervention's identification as the placebo from the arm structure carries the status its derivation warrants,
+shown apart from the arm type.
+
+**9.3 The workbook a person can use.** Fewer, well-chosen columns (the founder's ruling, 2026-11-02: a sheet of
+80 columns, 60 of them degenerate or not applicable, is less useful than one of 20 well-chosen ones): a column,
+row or Read me topic appears only when the run holds a trial it applies to (the NSCLC setting columns are absent
+from a heart-failure workbook); an informative absence (a value that could exist and does not) stays written in
+words. Compared groups are shown by their titles. A trial outside the coverage the Read me
+states is flagged on its row. The presentation defects of the 2026-11-02 breadth runs are fixed, each with a
+negative test: a confidence level and sides written as "Not stated"; limits dropped beside a spread; the second
+level of denominators and baseline populations dropped; internal text and raw codes in cells; enrollment as
+number or text in one column, and a missing actual/anticipated type without words; a drug class missing without
+words, and "not looked up" in a direct run; an empty key-criteria band without words; "Not stated" for a reading
+not produced; multi-paragraph values without a clear end; observational and expanded-access designs' "not
+applicable" wording; placeholder rows at the wrong grain.
+
+**9.4 Sources and warrants as promised.** Every value's source is stated: a copied value through the record's
+field dictionary and its address in the record (field and, in results, the group), a derived value through its
+rule and words. Law 12 (every value carries a
+checkable warrant, re-derivable by `trialledger verify`) is checked for landscape output; where it is not met, it
+is built, not dropped. AGENTS.md, README and SKILL.md describe the record and workbook as built.
+
+**9.5 Acceptance.** The breadth runs are discovery evidence: their trials become regression tests; confirmation
+uses trials not looked at while correcting. Re-run the 49-trial baseline, the lung-cancer search and the breadth
+set; the preservation and reviewer checks; a findings ledger with every finding disposed; a visual read.
 
 ## Risks
 
