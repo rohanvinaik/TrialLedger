@@ -375,3 +375,46 @@ def test_shows_text_reads_numbers_whole():
     assert preserve.shows_text("63.4 (8.7)", "63.4") and preserve.shows_text("n = 7", "7")
     assert not preserve.shows_text("63.45", "63.4") and not preserve.shows_text("1.7", "7")
     assert preserve.shows_text("7.", "7") and not preserve.shows_text("7.5", "7")
+
+
+# ── the shells: a workbook read back and a run's files ──────────────────────────────────────────────────
+
+
+def write_safety_book(path, rows, split):
+    from openpyxl import Workbook
+
+    book = Workbook()
+    first = book.active
+    first.title = contract.SAFETY
+    first.append(["Safety: one row per adverse-event term"])
+    first.append(SAFETY["columns"])
+    for row in rows[:split]:
+        first.append(row)
+    second = book.create_sheet(f"{contract.SAFETY} (2)")
+    second.append(SAFETY["columns"])
+    for row in rows[split:]:
+        second.append(row)
+    book.save(path)
+
+
+def test_a_listing_continued_on_a_numbered_sheet_is_read_whole(tmp_path):
+    book = tmp_path / "landscape.xlsx"
+    write_safety_book(book, safety_rows(), 2)
+    sheets = preserve.workbook_sheets(book)
+    assert list(sheets) == [contract.SAFETY]
+    headers, rows = sheets[contract.SAFETY]
+    assert headers == SAFETY["columns"] and [list(row) for row in rows] == SAFETY["rows"]
+    assert cell_findings(safety_record(), sheets, complete=True) == []
+
+
+def test_a_run_is_checked_from_its_files(tmp_path):
+    (tmp_path / "landscape.json").write_text(json.dumps(safety_record()), encoding="utf-8")
+    rows = safety_rows()
+    rows[3][SAFETY["columns"].index("G2 at risk")] = 135
+    write_safety_book(tmp_path / "landscape.xlsx", rows, 3)
+    bodies = {nct: BODIES[nct] for nct in SAFETY["trials"]}
+    found = preserve.check_run(
+        bodies, tmp_path / "landscape.json", tmp_path / "landscape.xlsx", complete=False
+    )
+    assert {f.code for f in found} >= {"number_differs", "sheet_missing"}
+    assert [f.field for f in found if f.code == "number_differs"] == ["Safety: G2 at risk"]
