@@ -92,6 +92,8 @@ def _plain(model: object) -> dict:
 
 def _signal_premise(signal: signal_engine.Signal) -> dict:
     result = dataclasses.asdict(signal)
+    if not signal.application_blockers:
+        result.pop("application_blockers")
     result["bindings"] = {ref: _plain(body) for ref, body in signal.bindings.items()}
     return result
 

@@ -20,6 +20,8 @@ from TrialLedger.layer2 import (
     corpus_admission,
     design_bounds,
     entail,
+    exception_bounds,
+    exception_guide,
     expectations,
     guide,
     interpretation_bindings,
@@ -28,6 +30,7 @@ from TrialLedger.layer2 import (
     nearmiss,
     profile,
     result_semantics,
+    signal_binding_gate,
     signals,
     signals_guide,
     source_assertions,
@@ -49,6 +52,7 @@ MAX_ITEMS = 1000
 BASIS = "Conditional on the supplied typed premises; their source meaning is not certified by this operation."
 # The same closed field sets drive request validation and the agent-facing description.
 INPUTS = {
+    **exception_guide.INPUTS,
     **bounds_guide.INPUTS,
     **signals_guide.INPUTS,
     **interpretations_guide.INPUTS,
@@ -344,8 +348,8 @@ def _support_words(status: Any, resolution: Any) -> tuple[str, str]:
 
 def _signals(request: dict[str, Any]) -> dict[str, Any]:
     _input(request, "signals", "request")
-    prepared = _prepared_signals(request["signals"])
-    return {
+    prepared, bindings = _bound_signals(request)
+    response = {
         "basis": BASIS,
         "premises": request["signals"],
         "signals": [signals.evaluate(signal) for signal in prepared],
@@ -353,10 +357,31 @@ def _signals(request: dict[str, Any]) -> dict[str, Any]:
             "Typed, source-bound partial evidence; no clinical text interpretation or source mutation."
         ),
     }
+    if "bindings" in request or "binding_uses" in request:
+        response["binding_checks"] = bindings
+        response["binding_premises"] = {
+            key: request.get(key, []) for key in ("study_ref", "bindings", "binding_uses")
+        }
+    return response
+
+
+def _bound_signals(request: dict) -> tuple[list[signals.Signal], list[dict]]:
+    """Run the same declared application gates before all ordinary signal consumers."""
+    prepared = _prepared_signals(request.get("signals", []))
+    if "bindings" not in request and "binding_uses" not in request:
+        return prepared, []
+    study = _text(request.get("study_ref"), "binding:study_ref")
+    gated, checks = signal_binding_gate.gate_signals(
+        tuple(prepared), request.get("bindings", []), request.get("binding_uses", []), study
+    )
+    return list(gated), checks
 
 
 def _bound_observation(
-    value: Any, available: dict | None = None, calculated: dict | None = None
+    value: Any,
+    available: dict | None = None,
+    calculated: dict | None = None,
+    exceptions: exception_bounds.Bundle | None = None,
 ) -> design_bounds.Observation:
     derived = isinstance(value, dict) and "derivation" in value
     row = _input(value, "derived_observation" if derived else "observation", "observation")
@@ -411,6 +436,25 @@ def _bound_observation(
             raise RequestError("witness_count_needed")
     if not isinstance(body, assertions.PROPOSITIONS):
         raise RequestError("witness_proposition_required")
+    cap = bridge["max_exceptions"]
+    check = None
+    bridge_basis = _bound_basis(bridge["basis"])
+    if "exception_evidence" in bridge:
+        if exceptions is None:
+            raise RequestError("missing_exception_evidence")
+        if cap is not None:
+            cap = _bound_count(cap, denominator)
+        applied = _exception_application(
+            exceptions, bridge["exception_evidence"], row, body, cap, bridge_status, resolution
+        )
+        check = applied["check"]
+        bridge_status = applied["status"]
+        resolution = applied["resolution"]
+        blockers += tuple(applied["blockers"])
+        bridge_basis += tuple(applied["basis"])
+        cap = applied["effective_cap"]
+    else:
+        cap = _bound_count(cap, denominator)
     return design_bounds.Observation(
         _text(row["id"], "observation:id"),
         count,
@@ -420,13 +464,41 @@ def _bound_observation(
         _reason_context(row["context"]),
         entail.weakest_status((source_status, bridge_status)),
         resolution,
-        _bound_count(bridge["max_exceptions"], denominator),
-        source_basis + _bound_basis(bridge["basis"]),
+        cap,
+        source_basis + bridge_basis,
         upper,
         direction,
         blockers,
         derivation,
+        check,
     )
+
+
+def _exception_application(bundle, reference, row, body, cap, status, resolution) -> dict:
+    """Keep the checked positive budget separate from a rejected witness's different predicate."""
+    applied = exception_bounds.apply(
+        bundle, reference, row["population"], row["denominator"], body, cap, status, resolution
+    )
+    check = applied["check"]
+    if row.get("direction", "accepted") != "accepted":
+        blocker = "exception_budget_predicate_mismatch:" + row["id"]
+        check = {
+            "code": "unresolved",
+            "lower": None,
+            "upper": cap,
+            "structural_maximum": row["denominator"],
+            "positive_budget_check": check,
+            "blockers": [blocker],
+            "basis": applied["basis"],
+            "rule": "exception-budget-direction:1",
+        }
+        applied.update(check=check, resolution="unresolved", blockers=[blocker])
+    elif check["code"] in ("conflict", "attribution_conflict"):
+        blocker = "exception_bridge_conflict:" + row["id"]
+        applied.update(resolution="conflicting", blockers=[*applied["blockers"], blocker])
+        check["blockers"] = applied["blockers"].copy()
+    check.update(id="exception:" + row["id"], observation=row["id"], status=applied["status"])
+    return applied
 
 
 def _scoped_assertions(raw: Any) -> tuple[assertions.ScopedAssertion, ...]:
@@ -442,9 +514,14 @@ def _scoped_assertions(raw: Any) -> tuple[assertions.ScopedAssertion, ...]:
 def _design_bounds(request: dict[str, Any]) -> dict[str, Any]:
     _input(request, "design_bounds", "request")
     study = _text(request["study_ref"], "study_ref")
+    exceptions = (
+        exception_bounds.prepare(request["exception_evidence"], study)
+        if "exception_evidence" in request
+        else None
+    )
     candidates = []
     claims: dict[str, list[dict]] = {}
-    prepared = _prepared_signals(request.get("signals", []))
+    prepared, binding_checks = _bound_signals(request)
     by_id = {signal.id: signal for signal in prepared}
     calculated = {signal.id: signals.evaluate(signal) for signal in prepared}
     for raw in _list(request["candidates"], "candidates"):
@@ -460,7 +537,8 @@ def _design_bounds(request: dict[str, Any]) -> dict[str, Any]:
             checks.append(check)
         claims[row["id"]] = checks
     observations = [
-        _bound_observation(raw, by_id, calculated) for raw in _list(request["observations"], "observations")
+        _bound_observation(raw, by_id, calculated, exceptions)
+        for raw in _list(request["observations"], "observations")
     ]
     if not candidates or not (observations or prepared):
         raise RequestError("empty_design_bounds_inputs")
@@ -484,6 +562,8 @@ def _design_bounds(request: dict[str, Any]) -> dict[str, Any]:
         claims=claims,
         computed_signals=list(calculated.values()),
     )
+    if "bindings" in request or "binding_uses" in request:
+        result["binding_checks"] = binding_checks
     return {
         "basis": BASIS,
         "study_ref": study,
@@ -1523,6 +1603,7 @@ def _describe(request: dict[str, Any]) -> dict[str, Any]:
     signals_guide.extend(full)
     interpretations_guide.extend(full)
     source_assertions_guide.extend(full)
+    full["exception_example"] = exception_guide.example()
     full["response_metadata"] = {
         "location": "Every reason envelope has additive metadata; original clinical results remain intact.",
         "version": 1,
@@ -1662,7 +1743,14 @@ def _describe(request: dict[str, Any]) -> dict[str, Any]:
         result["signal_kinds"] = full["signal_kinds"]
         result["signal_examples"] = full["signal_examples"]
     if view == "design_bounds":
+        result["exception_example"] = full["exception_example"]
+        for key in exception_guide.INPUTS:
+            result["input_shapes"][key] = full["input_shapes"][key]
         for key in signals_guide.INPUTS:
+            result["input_shapes"][key] = full["input_shapes"][key]
+    if view in ("signals", "design_bounds"):
+        result["binding_example"] = full["binding_example"]
+        for key in ("interpretation_binding", "interpretation_binding_use"):
             result["input_shapes"][key] = full["input_shapes"][key]
     if view == "corpus":
         result["capability_examples"] = full["capability_examples"]

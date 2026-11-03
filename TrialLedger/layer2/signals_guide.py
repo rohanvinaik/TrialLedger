@@ -7,7 +7,15 @@ from copy import deepcopy
 from TrialLedger.layer2 import signals
 
 INPUTS = {
-    "signals": {"required": ("signals",), "fields": {"signals": "array of source-supported signal objects"}},
+    "signals": {
+        "required": ("signals",),
+        "fields": {
+            "signals": "array of source-supported signal objects",
+            "study_ref": "required nonempty identity when bindings or binding_uses supplied",
+            "bindings": "optional interpretation_binding declarations",
+            "binding_uses": "optional interpretation_binding_use; proposed refused outside frames",
+        },
+    },
     "signal": {
         "required": ("id", "kind", "data", "support"),
         "fields": {
@@ -77,6 +85,38 @@ def example(kind: str = "overlap") -> dict:
     }
 
 
+def binding_example() -> dict:
+    """Invented subset relation; compatibility never establishes population identity."""
+    request = example("population")
+    scope = {
+        "study": "invented:study",
+        "population": "invented:randomized",
+        "arm": "all",
+        "time": "entry",
+        "version": "v1",
+    }
+    request.update(
+        study_ref=scope["study"],
+        bindings=[
+            {
+                "id": "analysed-subset",
+                "kind": "population",
+                "relation": "subset_of",
+                "subjects": ["randomized", "analysed"],
+                "scope": scope.copy(),
+                "sources": [
+                    {"ref": "invented:population-definition", "version": "v1", "address": "/definition"}
+                ],
+                "status": "interpolated",
+                "resolution": "resolved",
+                "basis": ["invented:working-population-reading"],
+            }
+        ],
+        binding_uses=[{"binding": "analysed-subset", "signal": "invented-population", "scope": scope.copy()}],
+    )
+    return request
+
+
 def extend(description: dict) -> None:
     description["availability"]["built"].append("typed partial-evidence bounds and graph/dependency checks")
     description["use_cases"].append(
@@ -121,3 +161,13 @@ def extend(description: dict) -> None:
         kind: deepcopy(signals.operator(kind).INPUTS[kind]) for kind in signals.MODULES
     }
     description["signal_examples"] = {kind: example(kind) for kind in signals.MODULES}
+    description["binding_example"] = binding_example()
+    description["result_guides"]["signals"]["optional_fields"] = {
+        "binding_checks": "Full application checks; proposed bindings are refused outside frames",
+        "binding_premises": "Unchanged study identity, bindings and application scopes",
+    }
+    description["result_guides"]["signals"]["binding_preflight"] = (
+        "Supply bindings and binding_uses with study_ref to check population/definition applications. "
+        "Gate arithmetic, candidate claims and derived witnesses together. A mismatched scope remains "
+        "unresolved even when raw arithmetic conflicts; compatibility does not establish identity."
+    )

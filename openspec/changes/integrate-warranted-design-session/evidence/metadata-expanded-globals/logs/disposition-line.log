@@ -1,0 +1,46 @@
+  ▸ recalled 11 pinned test(s) from a previous run
+  … disposition_code: tracing 42 function-routed tests
+  … disposition_code: baseline traced · 42 tests · 0.2s
+  … disposition_code: 1/189 mutants · 3.1/s · ETA estimating… (heartbeat)
+  … disposition_code: 189/189 mutants · 229.5/s · done in 0.8s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  ▸ pass 0: 12 value-survivor(s) — synthesizing killing tests…
+  ▸ pass 0: +10 new killing test(s) written [test_TrialLedger_layer2_result_semantics_disposition_code_3741ce9eea_synth.py]
+  … disposition_code: tracing 52 function-routed tests
+  … disposition_code: baseline traced · 52 tests · 0.0s
+  … disposition_code: 189/189 mutants · 149.0/s · done in 1.3s
+  ▸ pass 1: ✓ every mutant killed
+  ▸ witness pass: searching richer inputs for a distinguishing kill…
+  ▸ finalizing — re-profiling the full mutant universe against the written suite…
+  … disposition_code: tracing 52 function-routed tests
+  … disposition_code: baseline traced · 52 tests · 0.0s
+  … disposition_code: 189/189 mutants · 141.8/s · done in 1.3s
+  ▸ minimizing — dropped 9 redundant test(s) our own cover flagged
+  … disposition_code: tracing 43 function-routed tests
+  … disposition_code: baseline traced · 43 tests · 0.0s
+  … disposition_code: 189/189 mutants · 151.3/s · done in 1.2s
+  ▸ verifying reproducibility — fresh isolated observation of the function's proof basis…
+  … disposition_code: tracing 43 function-routed tests
+  … disposition_code: baseline traced · 43 tests · 0.0s
+  … disposition_code: tracing 2 function-routed tests
+  … disposition_code: baseline traced · 2 tests · 0.0s
+  ▸ reproducibility confirmed — the certificate rests on the isolated observation
+──────────────────────────────────────────────────────────────────────────────
+TrialLedger/layer2/result_semantics.py::disposition_code — converge · 189 behaviours · 189 pinned
+
+  ✓ wrote              12 test(s) → tests/detective/test_TrialLedger_layer2_result_semantics_disposition_code_3741ce9eea_synth.py
+  · not consulted      84 collected test(s) have no static path to this function — not traced (a missed dynamic reacher costs a redundant generated test, never a certificate)
+  · full report        .detective/reports/converge_disposition_code.txt
+
+DONE:  the suite pins every behaviour this function makes.
+
+       NEXT — the style pass (behaviour is pinned; this is the self-evident next move):
+         detective plan 'TrialLedger/layer2/result_semantics.py'
+         detective decompose 'TrialLedger/layer2/result_semantics.py::disposition_code' --apply --two-sign
+         detective survey 'TrialLedger/layer2/result_semantics.py'
+         (efficiency: verify-rewrite --budget against a receipt from policy 9+neg.f5a15364c11d)
+
+FINAL TrialLedger/layer2/result_semantics.py::disposition_code: ✓ COMPLETE (operator universe) · 189/189 killed · 12 test(s) → tests/detective/test_TrialLedger_layer2_result_semantics_disposition_code_3741ce9eea_synth.py · policy 9+neg.f5a15364c11d

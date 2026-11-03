@@ -1,0 +1,427 @@
+{
+  "revision": "08a0d334401267c5cdb041835f1ca81c56ebedae",
+  "before": {
+    "TrialLedger/layer2/service.py": "348233abe6af07c8d02b4d640a369527f489a141a390caac0f6b3c8731b6a517",
+    "TrialLedger/layer2/signals.py": "9d483d6d77fadfa130df186d2e533b6685d73986fbc99c1fe4443384ca230e74",
+    "TrialLedger/layer2/signal_binding_gate.py": "902615d1d57540abcf444585b194495277eaf31c4f194425d8a0b36e8737f23e",
+    "TrialLedger/layer2/interpretation_bindings.py": "ecb353c932964ad7011b6e8e504a540b22b001ee270b1c064bbb33514d488949",
+    "TrialLedger/layer2/exception_bounds.py": "f01877917c7f3dbad17c447fd42930516b7ae268276af1915e9e838e5c6c639c",
+    "TrialLedger/layer2/exception_guide.py": "83ca1accbb4c3b31afdf01b8b19dbcd68a8ffed67d0d992ed1ef1831b6a87c95",
+    "TrialLedger/layer2/design_bounds.py": "58b915c91d57d01af1bc6654846ed3b9bd54d66b1c2812355526eb5925f06189",
+    "TrialLedger/layer2/result_semantics.py": "91681c21fafeda67708a9a83ff11d40f81331ac2328ec75a7d55a62657dae2fd",
+    "TrialLedger/layer2/source_assertions.py": "8c2783ddc8044feff2de25c387460292edca46876a536f5cd39a625bb079d7bc",
+    "TrialLedger/layer2/source_evidence.py": "0cd06238c3a1b578ec873dc15e90745f684f6c4818522727e99ad9d494456bf0",
+    "TrialLedger/layer2/bounds_guide.py": "d3cdf03630450e4a9a8c9114ddc5bbd8017431b8d354dfb8d50a5f75bd2ee696",
+    "TrialLedger/layer2/signals_guide.py": "41b977779ca1ede0a4ae2211a95efb006f4fa39dfbe5978f4307fbc7815eb166"
+  },
+  "after": {
+    "TrialLedger/layer2/service.py": "348233abe6af07c8d02b4d640a369527f489a141a390caac0f6b3c8731b6a517",
+    "TrialLedger/layer2/signals.py": "9d483d6d77fadfa130df186d2e533b6685d73986fbc99c1fe4443384ca230e74",
+    "TrialLedger/layer2/signal_binding_gate.py": "902615d1d57540abcf444585b194495277eaf31c4f194425d8a0b36e8737f23e",
+    "TrialLedger/layer2/interpretation_bindings.py": "ecb353c932964ad7011b6e8e504a540b22b001ee270b1c064bbb33514d488949",
+    "TrialLedger/layer2/exception_bounds.py": "f01877917c7f3dbad17c447fd42930516b7ae268276af1915e9e838e5c6c639c",
+    "TrialLedger/layer2/exception_guide.py": "83ca1accbb4c3b31afdf01b8b19dbcd68a8ffed67d0d992ed1ef1831b6a87c95",
+    "TrialLedger/layer2/design_bounds.py": "58b915c91d57d01af1bc6654846ed3b9bd54d66b1c2812355526eb5925f06189",
+    "TrialLedger/layer2/result_semantics.py": "91681c21fafeda67708a9a83ff11d40f81331ac2328ec75a7d55a62657dae2fd",
+    "TrialLedger/layer2/source_assertions.py": "8c2783ddc8044feff2de25c387460292edca46876a536f5cd39a625bb079d7bc",
+    "TrialLedger/layer2/source_evidence.py": "0cd06238c3a1b578ec873dc15e90745f684f6c4818522727e99ad9d494456bf0",
+    "TrialLedger/layer2/bounds_guide.py": "d3cdf03630450e4a9a8c9114ddc5bbd8017431b8d354dfb8d50a5f75bd2ee696",
+    "TrialLedger/layer2/signals_guide.py": "41b977779ca1ede0a4ae2211a95efb006f4fa39dfbe5978f4307fbc7815eb166"
+  },
+  "stable_during_calls": true,
+  "transports": [
+    {
+      "name": "source-general-age",
+      "cli_command": [
+        "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/python3",
+        "-m",
+        "TrialLedger",
+        "reason",
+        "--request",
+        "/tmp/trialledger-psoriasis-walkthrough-20261103/requests/source-general-age.json"
+      ],
+      "mcp_command": [
+        "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/python3",
+        "-m",
+        "TrialLedger",
+        "mcp",
+        "--root",
+        "/Users/rohanvinaik/trialledger-runs/psoriasis-population-exceptions-20261103/mcp-root"
+      ],
+      "cli_exit_code": 0,
+      "mcp_exit_code": 0,
+      "complete_json_equal_excluding_tool_wrapper": true,
+      "request_sha256": "c81d8bee17b12db480c6b531197141576f5047309c87903b001029c6f249a859",
+      "canonical_result_sha256": "42ae4138fbbb11f8bf18f2a7a2c0cc37c2285847b0b1f38794c826dc93f59cb8",
+      "mcp_payload_sha256": "b81354b4f4b54af6f9572b26685918ee20adb12c1c3f7341093479a1ed3c0850",
+      "local_mcp_capture": "/Users/rohanvinaik/trialledger-runs/psoriasis-population-exceptions-20261103/walkthrough-transport/source-general-age-mcp.jsonl",
+      "mcp_capture_sha256": "ff0d135eadbd78183d61ccd63f6fff6d49a7a260424f5d3e90434bb59c43ebdf"
+    },
+    {
+      "name": "exception-broad-proposed-unknown-ceiling",
+      "cli_command": [
+        "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/python3",
+        "-m",
+        "TrialLedger",
+        "reason",
+        "--request",
+        "/tmp/trialledger-psoriasis-walkthrough-20261103/requests/exception-broad-proposed-unknown-ceiling.json"
+      ],
+      "mcp_command": [
+        "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/python3",
+        "-m",
+        "TrialLedger",
+        "mcp",
+        "--root",
+        "/Users/rohanvinaik/trialledger-runs/psoriasis-population-exceptions-20261103/mcp-root"
+      ],
+      "cli_exit_code": 0,
+      "mcp_exit_code": 0,
+      "complete_json_equal_excluding_tool_wrapper": true,
+      "request_sha256": "51ec599d98c6719f43bb40e6ba6f5903c3e20a62734f3437756cd0811074648b",
+      "canonical_result_sha256": "99377e3ca32f973ed7fb2c18a8670d5ca0ca0df9e621b25ceb7f588c9bce4369",
+      "mcp_payload_sha256": "3cb9a8caf0be90c6db0b62168a9a06a74ed8ee6a198b48512b3d85714d5dc9e4",
+      "local_mcp_capture": "/Users/rohanvinaik/trialledger-runs/psoriasis-population-exceptions-20261103/walkthrough-transport/exception-broad-proposed-unknown-ceiling-mcp.jsonl",
+      "mcp_capture_sha256": "45372e85d76153d54dfb5b59db7163ef08cbfd0294edc35d3f6259bf06a5fd3e"
+    },
+    {
+      "name": "exception-broad-proposed-cap5",
+      "cli_command": [
+        "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/python3",
+        "-m",
+        "TrialLedger",
+        "reason",
+        "--request",
+        "/tmp/trialledger-psoriasis-walkthrough-20261103/requests/exception-broad-proposed-cap5.json"
+      ],
+      "mcp_command": [
+        "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/python3",
+        "-m",
+        "TrialLedger",
+        "mcp",
+        "--root",
+        "/Users/rohanvinaik/trialledger-runs/psoriasis-population-exceptions-20261103/mcp-root"
+      ],
+      "cli_exit_code": 0,
+      "mcp_exit_code": 0,
+      "complete_json_equal_excluding_tool_wrapper": true,
+      "request_sha256": "ae2548abde629b3e2aa76a2e44d04330641fab58b4f00313b8583c05ab401b7d",
+      "canonical_result_sha256": "e362747a13bfc7a3abe679d15db7cdc5608657fafb19c03404620bc468b40eb5",
+      "mcp_payload_sha256": "2fe4869c34de2bb682ef95694ec31d364e9d1714c5979d29f29bb07dcd761c59",
+      "local_mcp_capture": "/Users/rohanvinaik/trialledger-runs/psoriasis-population-exceptions-20261103/walkthrough-transport/exception-broad-proposed-cap5-mcp.jsonl",
+      "mcp_capture_sha256": "1f46522825f5a57812dbfcab714511bb6cefe401b6522d6871882b8f0b9d2dbf"
+    },
+    {
+      "name": "exception-entry-proposed-cap0",
+      "cli_command": [
+        "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/python3",
+        "-m",
+        "TrialLedger",
+        "reason",
+        "--request",
+        "/tmp/trialledger-psoriasis-walkthrough-20261103/requests/exception-entry-proposed-cap0.json"
+      ],
+      "mcp_command": [
+        "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/python3",
+        "-m",
+        "TrialLedger",
+        "mcp",
+        "--root",
+        "/Users/rohanvinaik/trialledger-runs/psoriasis-population-exceptions-20261103/mcp-root"
+      ],
+      "cli_exit_code": 0,
+      "mcp_exit_code": 0,
+      "complete_json_equal_excluding_tool_wrapper": true,
+      "request_sha256": "8f86793c1476836069b1edb403398a05f14f0af8c489038bad99564d2024bce7",
+      "canonical_result_sha256": "739200fdcf603eb7137661657aaa08c4285010e7b674b4a108dfcb32abf7ac0b",
+      "mcp_payload_sha256": "897e521885b3ccde29af4e6f509391c9b95f197c47afa88d1dfbe6038cee222c",
+      "local_mcp_capture": "/Users/rohanvinaik/trialledger-runs/psoriasis-population-exceptions-20261103/walkthrough-transport/exception-entry-proposed-cap0-mcp.jsonl",
+      "mcp_capture_sha256": "4218b8071a08db4c377af0905353b946bdc22139755cc4279eda548c83823c1f"
+    },
+    {
+      "name": "exception-entry-assumed-cap0",
+      "cli_command": [
+        "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/python3",
+        "-m",
+        "TrialLedger",
+        "reason",
+        "--request",
+        "/tmp/trialledger-psoriasis-walkthrough-20261103/requests/exception-entry-assumed-cap0.json"
+      ],
+      "mcp_command": [
+        "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/python3",
+        "-m",
+        "TrialLedger",
+        "mcp",
+        "--root",
+        "/Users/rohanvinaik/trialledger-runs/psoriasis-population-exceptions-20261103/mcp-root"
+      ],
+      "cli_exit_code": 0,
+      "mcp_exit_code": 0,
+      "complete_json_equal_excluding_tool_wrapper": true,
+      "request_sha256": "f893ada04dd3afe8c66bb8415884c56ffbdb24a76b983d1d9fed5da82c0ccc14",
+      "canonical_result_sha256": "fc4d029f45d2c0faa740e97513dc37f86d8caa7e0d4f332b2287f0c51c6b87c7",
+      "mcp_payload_sha256": "8f9b4d628fb8289e8e14faee3d8117a1c65e79679d8e3c1b94abb97fae882e45",
+      "local_mcp_capture": "/Users/rohanvinaik/trialledger-runs/psoriasis-population-exceptions-20261103/walkthrough-transport/exception-entry-assumed-cap0-mcp.jsonl",
+      "mcp_capture_sha256": "bb4c2bc5db588f8239bc2b5568a5f4866ef163bd2e6a7ee5d295c7f5cfb25067"
+    },
+    {
+      "name": "exception-entry-assumed-cap4",
+      "cli_command": [
+        "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/python3",
+        "-m",
+        "TrialLedger",
+        "reason",
+        "--request",
+        "/tmp/trialledger-psoriasis-walkthrough-20261103/requests/exception-entry-assumed-cap4.json"
+      ],
+      "mcp_command": [
+        "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/python3",
+        "-m",
+        "TrialLedger",
+        "mcp",
+        "--root",
+        "/Users/rohanvinaik/trialledger-runs/psoriasis-population-exceptions-20261103/mcp-root"
+      ],
+      "cli_exit_code": 0,
+      "mcp_exit_code": 0,
+      "complete_json_equal_excluding_tool_wrapper": true,
+      "request_sha256": "fff7b25793369272e5120b1edb059ffeb3b03c1dbcf78c23e4d4c0cc7b51f473",
+      "canonical_result_sha256": "e6df0d93354c1adfc67519c270c2c1f44f6020639cb75b6f2759f6e9240371b7",
+      "mcp_payload_sha256": "fe7a1563aa2b3556cae94303edcbdc11882562cb297a9366b86864fc2a433810",
+      "local_mcp_capture": "/Users/rohanvinaik/trialledger-runs/psoriasis-population-exceptions-20261103/walkthrough-transport/exception-entry-assumed-cap4-mcp.jsonl",
+      "mcp_capture_sha256": "d27bfcd00aec71d8530803dfaaedadf73f873beaf784fb57a040eabc98d23a6c"
+    },
+    {
+      "name": "baseline-age-cap52",
+      "cli_command": [
+        "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/python3",
+        "-m",
+        "TrialLedger",
+        "reason",
+        "--request",
+        "/tmp/trialledger-psoriasis-walkthrough-20261103/requests/baseline-age-cap52.json"
+      ],
+      "mcp_command": [
+        "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/python3",
+        "-m",
+        "TrialLedger",
+        "mcp",
+        "--root",
+        "/Users/rohanvinaik/trialledger-runs/psoriasis-population-exceptions-20261103/mcp-root"
+      ],
+      "cli_exit_code": 0,
+      "mcp_exit_code": 0,
+      "complete_json_equal_excluding_tool_wrapper": true,
+      "request_sha256": "7cfef1f724cc5217786f08956ccac6e30281510727807f7c3d2e464ad9cd3fb7",
+      "canonical_result_sha256": "a98fdb54014a076c07d55fe9845eb72051ccffe4257f278863e86074efe50c09",
+      "mcp_payload_sha256": "8b0dd9616da3b0ea9aa57bce0a3591f190814f967cb2e8e1154d6d2260ce5da7",
+      "local_mcp_capture": "/Users/rohanvinaik/trialledger-runs/psoriasis-population-exceptions-20261103/walkthrough-transport/baseline-age-cap52-mcp.jsonl",
+      "mcp_capture_sha256": "30dfbe0f17713b71808db2e63b27acc8998fd7454c21f960610e9558dea90cbc"
+    },
+    {
+      "name": "baseline-age-cap53",
+      "cli_command": [
+        "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/python3",
+        "-m",
+        "TrialLedger",
+        "reason",
+        "--request",
+        "/tmp/trialledger-psoriasis-walkthrough-20261103/requests/baseline-age-cap53.json"
+      ],
+      "mcp_command": [
+        "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/python3",
+        "-m",
+        "TrialLedger",
+        "mcp",
+        "--root",
+        "/Users/rohanvinaik/trialledger-runs/psoriasis-population-exceptions-20261103/mcp-root"
+      ],
+      "cli_exit_code": 0,
+      "mcp_exit_code": 0,
+      "complete_json_equal_excluding_tool_wrapper": true,
+      "request_sha256": "2460c550171a2a5b534e5ad392571f081796e56b73f4f7e4075a0c5180c260c8",
+      "canonical_result_sha256": "5996f9cb53c61d4ab600460fa336ad83588098d34c3238748809a18351ef938a",
+      "mcp_payload_sha256": "094cf7da4d017489baf1641aaa3e9bb9877522c1c6d957a7a0cb8114bc1adc34",
+      "local_mcp_capture": "/Users/rohanvinaik/trialledger-runs/psoriasis-population-exceptions-20261103/walkthrough-transport/baseline-age-cap53-mcp.jsonl",
+      "mcp_capture_sha256": "1590a186a2c43d5749e35f9fa6eac13f5338871a55f30283a2382f628e04d066"
+    },
+    {
+      "name": "population-proposed",
+      "cli_command": [
+        "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/python3",
+        "-m",
+        "TrialLedger",
+        "reason",
+        "--request",
+        "/tmp/trialledger-psoriasis-walkthrough-20261103/requests/population-proposed.json"
+      ],
+      "mcp_command": [
+        "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/python3",
+        "-m",
+        "TrialLedger",
+        "mcp",
+        "--root",
+        "/Users/rohanvinaik/trialledger-runs/psoriasis-population-exceptions-20261103/mcp-root"
+      ],
+      "cli_exit_code": 0,
+      "mcp_exit_code": 0,
+      "complete_json_equal_excluding_tool_wrapper": true,
+      "request_sha256": "ba946e3b5bfcdc4983f4159c511f671953208fe6f63a94c45ecd4ed5542a1fbb",
+      "canonical_result_sha256": "163de43327b62854b371f8040fc5650731f8702d02cb873495d5201e45c31516",
+      "mcp_payload_sha256": "2187c7930ac166adb02e696f59add0bc42b776e0a842d96c92325e6db6805e35",
+      "local_mcp_capture": "/Users/rohanvinaik/trialledger-runs/psoriasis-population-exceptions-20261103/walkthrough-transport/population-proposed-mcp.jsonl",
+      "mcp_capture_sha256": "b64ff32fa78260282ff2bdc757b6118c737287c137b7a7aae4bc73e7aed6ff6e"
+    },
+    {
+      "name": "population-assumed",
+      "cli_command": [
+        "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/python3",
+        "-m",
+        "TrialLedger",
+        "reason",
+        "--request",
+        "/tmp/trialledger-psoriasis-walkthrough-20261103/requests/population-assumed.json"
+      ],
+      "mcp_command": [
+        "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/python3",
+        "-m",
+        "TrialLedger",
+        "mcp",
+        "--root",
+        "/Users/rohanvinaik/trialledger-runs/psoriasis-population-exceptions-20261103/mcp-root"
+      ],
+      "cli_exit_code": 0,
+      "mcp_exit_code": 0,
+      "complete_json_equal_excluding_tool_wrapper": true,
+      "request_sha256": "483c7a543c0aac659ba03c17787d756516ea57b81fcf6b3bc0e3ca6ca14facf9",
+      "canonical_result_sha256": "50f4dd2ef73d7e36cf785f065679610e04425829a088ab7f576a7123c7b58fa5",
+      "mcp_payload_sha256": "081dcf49fa601bb0f92d0f76db29e8aa364e91d36802995fccce04dc3d9fcfd9",
+      "local_mcp_capture": "/Users/rohanvinaik/trialledger-runs/psoriasis-population-exceptions-20261103/walkthrough-transport/population-assumed-mcp.jsonl",
+      "mcp_capture_sha256": "22a3b1685f4a181c792cc4bbd61d3600e42fdee8f4f5a1d4bbdb39b56305504d"
+    },
+    {
+      "name": "population-subjects-mismatch",
+      "cli_command": [
+        "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/python3",
+        "-m",
+        "TrialLedger",
+        "reason",
+        "--request",
+        "/tmp/trialledger-psoriasis-walkthrough-20261103/requests/population-subjects-mismatch.json"
+      ],
+      "mcp_command": [
+        "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/python3",
+        "-m",
+        "TrialLedger",
+        "mcp",
+        "--root",
+        "/Users/rohanvinaik/trialledger-runs/psoriasis-population-exceptions-20261103/mcp-root"
+      ],
+      "cli_exit_code": 0,
+      "mcp_exit_code": 0,
+      "complete_json_equal_excluding_tool_wrapper": true,
+      "request_sha256": "ceaaf443901f1d13d8dc782f88346bccdf52f62c7d9caf4a6f363dedede1951b",
+      "canonical_result_sha256": "2c497db0c6e413f82ff63bff1726a1e2015a1b7e6d0a1372d1826fe8232c4ff0",
+      "mcp_payload_sha256": "3ea03330854d8d52a2f3d28f1ddfc5588ab11e6f5984ebf0f841670fbffee5fb",
+      "local_mcp_capture": "/Users/rohanvinaik/trialledger-runs/psoriasis-population-exceptions-20261103/walkthrough-transport/population-subjects-mismatch-mcp.jsonl",
+      "mcp_capture_sha256": "28ea20f0e5293b2af0046ba49b1e60edb39d2366b6f270c325f43f8d1fd1ff13"
+    },
+    {
+      "name": "population-reversed-direction",
+      "cli_command": [
+        "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/python3",
+        "-m",
+        "TrialLedger",
+        "reason",
+        "--request",
+        "/tmp/trialledger-psoriasis-walkthrough-20261103/requests/population-reversed-direction.json"
+      ],
+      "mcp_command": [
+        "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/python3",
+        "-m",
+        "TrialLedger",
+        "mcp",
+        "--root",
+        "/Users/rohanvinaik/trialledger-runs/psoriasis-population-exceptions-20261103/mcp-root"
+      ],
+      "cli_exit_code": 0,
+      "mcp_exit_code": 0,
+      "complete_json_equal_excluding_tool_wrapper": true,
+      "request_sha256": "b6c2951cd9eea08d13e65966bce43e325924d54632236b4994738c20fde205b4",
+      "canonical_result_sha256": "b10c2e0c0f839dcd2d2ec852e39f9eff7bf5d8ddea7e706c7da4f8b05f68ed36",
+      "mcp_payload_sha256": "f8fde941d5b06d44bec78448e375d7dda0f6a001abf9277c0ec0760ce796be01",
+      "local_mcp_capture": "/Users/rohanvinaik/trialledger-runs/psoriasis-population-exceptions-20261103/walkthrough-transport/population-reversed-direction-mcp.jsonl",
+      "mcp_capture_sha256": "ed317dc842c3da62798886de00f8d97cb6361d400cc2d563d558214fbdd59de2"
+    },
+    {
+      "name": "population-design-claims",
+      "cli_command": [
+        "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/python3",
+        "-m",
+        "TrialLedger",
+        "reason",
+        "--request",
+        "/tmp/trialledger-psoriasis-walkthrough-20261103/requests/population-design-claims.json"
+      ],
+      "mcp_command": [
+        "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/python3",
+        "-m",
+        "TrialLedger",
+        "mcp",
+        "--root",
+        "/Users/rohanvinaik/trialledger-runs/psoriasis-population-exceptions-20261103/mcp-root"
+      ],
+      "cli_exit_code": 0,
+      "mcp_exit_code": 0,
+      "complete_json_equal_excluding_tool_wrapper": true,
+      "request_sha256": "c23dc6f2cb02bb6f42aebe2b8708c086515d0f80956673d4f62a21a904b07e46",
+      "canonical_result_sha256": "ec6758c1d5f049d01b6fca641ec97f5717262711595fd1ed3a0db4c470014d15",
+      "mcp_payload_sha256": "ec9a7dfb361fe1cfb907aefc9deb0181689583be66d5754157953a826aa01768",
+      "local_mcp_capture": "/Users/rohanvinaik/trialledger-runs/psoriasis-population-exceptions-20261103/walkthrough-transport/population-design-claims-mcp.jsonl",
+      "mcp_capture_sha256": "b3580ef260693ff2fbc965a6a5b69842997178259c777802b757760c66a63aed"
+    },
+    {
+      "name": "population-design-wrong-arm",
+      "cli_command": [
+        "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/python3",
+        "-m",
+        "TrialLedger",
+        "reason",
+        "--request",
+        "/tmp/trialledger-psoriasis-walkthrough-20261103/requests/population-design-wrong-arm.json"
+      ],
+      "mcp_command": [
+        "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/python3",
+        "-m",
+        "TrialLedger",
+        "mcp",
+        "--root",
+        "/Users/rohanvinaik/trialledger-runs/psoriasis-population-exceptions-20261103/mcp-root"
+      ],
+      "cli_exit_code": 0,
+      "mcp_exit_code": 0,
+      "complete_json_equal_excluding_tool_wrapper": true,
+      "request_sha256": "661cd58d09c356ea95d4ae044c9a7637dbb3590ce0c1b96801dc2ad193727457",
+      "canonical_result_sha256": "11c52d47dedc6d4baa6a5ff53e871e8f4613033a5fff72da8438e06352b177f6",
+      "mcp_payload_sha256": "1d8dc029d3da93a67aa9a9d6e8bdb1ed8ebc1d90904bf1271490ad58c0a30ff9",
+      "local_mcp_capture": "/Users/rohanvinaik/trialledger-runs/psoriasis-population-exceptions-20261103/walkthrough-transport/population-design-wrong-arm-mcp.jsonl",
+      "mcp_capture_sha256": "fd4098370c5e03c5fcd49e92d598d94c58318c921bd0b0483af945b24cdcaddb"
+    }
+  ],
+  "completed_at_utc": "2026-11-03T21:23:01.711761+00:00",
+  "runtime_freeze_status": "Rerun after final format-only runtime edit; before/after hashes stable and checked at packet freeze.",
+  "source_batch_sha256": "68321af7033bb6c329737e177fbcfd864fbf96803ec7925d19a4fd500cc706ba",
+  "rule_versions": {
+    "landscape_schema": 4,
+    "contract": "4.1",
+    "trialledger": "0.1.0",
+    "derivation_code_root": "bdbe6253f6db6c7a9798911734f519edf556af1ce1afa51c89d04e8895caa0ef",
+    "display": "display-1",
+    "eligibility_sections": "registry-headings-source-passages/1",
+    "registry_checks": 3
+  },
+  "source_unchanged_since_acquisition": true,
+  "writing_helper": "/Users/rohanvinaik/trialledger-runs/psoriasis-population-exceptions-20261103/walkthrough-support/prepare_and_run.py",
+  "writing_helper_sha256": "bd0853fca0a99a72b2843d3cd209b40bc56878ec46410c172d98028ea8202ee0"
+}

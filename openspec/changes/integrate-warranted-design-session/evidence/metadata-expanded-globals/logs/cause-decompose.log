@@ -1,0 +1,28 @@
+  ▸ proving: converging the target to a mutation-complete suite (the proof)…
+  ▸ recalled 1 pinned test(s) from a previous run
+  … cause_kind: tracing 25 function-routed tests
+  … cause_kind: baseline traced · 25 tests · 0.1s
+  ▸ pass 0: 1 value-survivor(s) — synthesizing killing tests…
+  ▸ pass 0: +1 new killing test(s) written [test_TrialLedger_layer2_result_semantics_cause_kind_a38b8f3a25_synth.py]
+  … cause_kind: tracing 26 function-routed tests
+  … cause_kind: baseline traced · 26 tests · 0.0s
+  ▸ pass 1: 1 survivor(s) — no progress, at floor
+  ▸ witness pass: searching richer inputs for a distinguishing kill…
+  ▸ finalizing — re-profiling the full mutant universe against the written suite…
+  … cause_kind: tracing 26 function-routed tests
+  … cause_kind: baseline traced · 26 tests · 0.0s
+  ▸ minimizing — dropped 1 redundant test(s) our own cover flagged
+  … cause_kind: tracing 25 function-routed tests
+  … cause_kind: baseline traced · 25 tests · 0.0s
+  ▸ 1 survivor(s) remain — classifying (killable / equivalent / needs-input)…
+  ▸ verifying reproducibility — fresh isolated observation of the function's proof basis…
+  … cause_kind: tracing 25 function-routed tests
+  … cause_kind: baseline traced · 25 tests · 0.0s
+  … cause_kind: tracing 4 function-routed tests
+  … cause_kind: baseline traced · 4 tests · 0.0s
+  ▸ reproducibility confirmed — the certificate rests on the isolated observation
+  ▸ 1 crash-only survivor(s) block automatic application — a green trial would prove only the pinned behaviours, not these. `detective flag` each that is truly equivalent, or supply a stronger proof; extractions will be proposed only
+  ▸ full report: .detective/reports/decompose_cause_kind.txt
+cause_kind — decompose
+
+DONE:  no separable block. There is no seam here to split.

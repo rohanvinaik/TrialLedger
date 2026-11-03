@@ -1,0 +1,15 @@
+──────────────────────────────────────────────────────────────────────────────
+TrialLedger/layer2/result_semantics.py::completion_code — plan (full) · 1 regions · budget 500 DOF-proxy · spent 0
+
+  TrialLedger/layer2/result_semantics.py::completion_code
+                       AMBIGUOUS · judged_leave · status pinned · not_clean · agreement 1
+                       judgment: leave
+                       smells: overload (41 DOF / 15 lines (static proxy))
+                       cost 41 (static_dof_proxy)
+
+  · unexamined         what this plan did not propose is UNEXAMINED, not approved
+                       regime — unread: it needs a live mutation profile this static plan never runs
+                       fences held at 0 — the form-censor spine (§5.3) is unbuilt, so DESTRUCTIVE is unexercised
+                       recognizers — 5 template(s); a region with no match is a library gap, not a clean bill
+
+FINAL plan TrialLedger/layer2/result_semantics.py::completion_code: 0 funded · 0 constructive · 1 escalated · 0 fenced · 0 silent (clean 0 · unread 0) · advisory — writes no project files

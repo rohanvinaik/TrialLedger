@@ -1,0 +1,26 @@
+  … attribution_state: tracing 83 function-routed tests
+  … attribution_state: baseline traced · 83 tests · 0.4s
+  … attribution_state: 1/56 mutants · 8.3/s · ETA estimating… (heartbeat)
+  … attribution_state: 56/56 mutants · 162.8/s · done in 0.3s
+  ▸ pass 0: ✓ every mutant killed
+  ▸ witness pass: searching richer inputs for a distinguishing kill…
+  ▸ finalizing — re-profiling the full mutant universe against the existing suite (no test written this run)…
+  ▸ verifying reproducibility — fresh isolated observation of the function's proof basis…
+  … attribution_state: tracing 83 function-routed tests
+  … attribution_state: baseline traced · 83 tests · 0.0s
+  ▸ reproducibility confirmed — the certificate rests on the isolated observation
+──────────────────────────────────────────────────────────────────────────────
+TrialLedger/layer2/exception_bounds.py::attribution_state — converge · 56 behaviours · 56 pinned
+
+  · not consulted      8 collected test(s) have no static path to this function — not traced (a missed dynamic reacher costs a redundant generated test, never a certificate)
+  · full report        .detective/reports/converge_attribution_state.txt
+
+DONE:  the suite pins every behaviour this function makes.
+
+       NEXT — the style pass (behaviour is pinned; this is the self-evident next move):
+         detective plan 'TrialLedger/layer2/exception_bounds.py'
+         detective decompose 'TrialLedger/layer2/exception_bounds.py::attribution_state' --apply --two-sign
+         detective survey 'TrialLedger/layer2/exception_bounds.py'
+         (efficiency: verify-rewrite --budget against a receipt from policy 9+neg.f5a15364c11d)
+
+FINAL TrialLedger/layer2/exception_bounds.py::attribution_state: ✓ COMPLETE (operator universe) · 56/56 killed · minimal cover 5 test(s) · policy 9+neg.f5a15364c11d

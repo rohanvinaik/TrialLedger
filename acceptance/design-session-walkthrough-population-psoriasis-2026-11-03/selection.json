@@ -1,0 +1,67 @@
+{
+  "question": "For a proposed adult plaque-psoriasis trial considering an upper age limit below65, how can posted baseline/flow counts constrain that choice, and what must be established before treating protocol-related withdrawals as eligibility exceptions or joining analysis populations?",
+  "category": "Psoriasis; randomized development walkthrough, not a clinician-confirmed design brief",
+  "scope": {
+    "drug": [
+      "guselkumab"
+    ],
+    "condition": "Psoriasis",
+    "phase": [
+      "PHASE3"
+    ],
+    "status": [
+      "COMPLETED"
+    ]
+  },
+  "seed": 6115270599430829862,
+  "selection_rule": "Sample three IDs without replacement from the sorted complete ID pool, or all if fewer than three; no clinical-content substitution.",
+  "gather_limit": 30,
+  "retention_declared_before_acquisition": {
+    "full_report": "/Users/rohanvinaik/trialledger-runs/psoriasis-population-exceptions-20261103",
+    "reviewable_packet": "/tmp/trialledger-psoriasis-walkthrough-20261103",
+    "rule": "Keep full raw/report/workbook outsideGit; retain complete necessary requests, one canonical result per actual CLI/MCP pair, source fingerprints/locators and clinical decision handoff in scratch."
+  },
+  "status": "Completed14actualCLI/MCPpairs after corrected runtime freeze; clinical interpretations remain assistant proposed or explicitly hypothetical interpolated.",
+  "pool": [
+    "NCT02203032",
+    "NCT02207231",
+    "NCT02207244",
+    "NCT02325219",
+    "NCT02343744",
+    "NCT02641730",
+    "NCT02905331",
+    "NCT02951533",
+    "NCT03090100",
+    "NCT03158285",
+    "NCT03162796",
+    "NCT03796858",
+    "NCT03818035",
+    "NCT03998683",
+    "NCT04936308",
+    "NCT05272150",
+    "NCT06039189"
+  ],
+  "preflight": {
+    "url": "https://clinicaltrials.gov/api/v2/studies?filter.advanced=%28AREA%5BInterventionName%5D%22guselkumab%22+OR+AREA%5BInterventionOtherName%5D%22guselkumab%22%29+AND+AREA%5BPhase%5DPHASE3+AND+AREA%5BOverallStatus%5DCOMPLETED&query.cond=Psoriasis&format=json&fields=NCTId&countTotal=true&pageSize=1000",
+    "raw_locator": "/Users/rohanvinaik/trialledger-runs/psoriasis-population-exceptions-20261103/walkthrough-id-preflight.json",
+    "sha256": "ff3df30e572111c22a8e872e3ef4691fd331548e74c42273773230aa16359383",
+    "observed_at_utc": "2026-11-03T21:05:22.982622+00:00",
+    "total_count": 17,
+    "complete": true,
+    "within_limit": true
+  },
+  "sample": [
+    "NCT02905331",
+    "NCT04936308",
+    "NCT02203032"
+  ],
+  "gather": {
+    "matched": 17,
+    "completed": true,
+    "raw_body": "/Users/rohanvinaik/trialledger-runs/psoriasis-population-exceptions-20261103/bodies/studies-001.json",
+    "raw_sha256": "68321af7033bb6c329737e177fbcfd864fbf96803ec7925d19a4fd500cc706ba",
+    "raw_local_write_time_utc": "2026-11-03T21:05:34.282796+00:00",
+    "capture_timestamp_kind": "Local response-file write time; exact network response time not independently recorded.",
+    "registry_data_timestamp": "2026-11-03T10:00:05"
+  }
+}

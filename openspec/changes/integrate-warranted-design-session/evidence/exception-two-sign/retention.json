@@ -1,0 +1,236 @@
+[
+  {
+    "original": "TrialLedger/layer2/exception_bounds.py",
+    "stored": "TrialLedger/layer2/exception_bounds.py.txt",
+    "sha256": "da5f90fdb7f0056fa6e51734b01b3850c55a927171414d0ddd5e4ee99b8f988f",
+    "bytes": 23907
+  },
+  {
+    "original": "commands.json",
+    "stored": "commands.json",
+    "sha256": "c3724df9909e3b68f471012aa9aacff59ed2a58210fe0ef11d3ee6d72fc59a86",
+    "bytes": 3351
+  },
+  {
+    "original": "logs/attribution-two-sign.log",
+    "stored": "logs/attribution-two-sign.log",
+    "sha256": "266187bef57129653b4b61ad50d70d21dd212f95f35493c45f08ea2b6aeed01a",
+    "bytes": 2039
+  },
+  {
+    "original": "logs/converge-help.log",
+    "stored": "logs/converge-help.log",
+    "sha256": "20d092b811fa0be2e86e5df8cc500f9eb8a3b611f944399de794e2e77d9a0e97",
+    "bytes": 9948
+  },
+  {
+    "original": "logs/crosshair.log",
+    "stored": "logs/crosshair.log",
+    "sha256": "f38e4276a53f8f61e0adfad21c23d9e44863cefd65944ed1f02cfb52d3967002",
+    "bytes": 2149
+  },
+  {
+    "original": "logs/decompose.log",
+    "stored": "logs/decompose.log",
+    "sha256": "41c9dbd530f643c02d65631f73fd245a5229db5b121627c2beea31fe5b7713d2",
+    "bytes": 1083
+  },
+  {
+    "original": "logs/detective-help.log",
+    "stored": "logs/detective-help.log",
+    "sha256": "1629b84ce31fc121fe2da5361946861273272397aebe227d5425a219461c5671",
+    "bytes": 4194
+  },
+  {
+    "original": "logs/format-final.log",
+    "stored": "logs/format-final.log",
+    "sha256": "3bc53bf3e981a98a34a852e175bf9b77af841edea74fca595d9aedcbaf9a4938",
+    "bytes": 26
+  },
+  {
+    "original": "logs/intent-tests-expanded.log",
+    "stored": "logs/intent-tests-expanded.log",
+    "sha256": "ffbdec279cfb9c37ebcb96b3fb5977863ca1486ff0a2c202557dac8589d83a5e",
+    "bytes": 521
+  },
+  {
+    "original": "logs/intent-tests-final.log",
+    "stored": "logs/intent-tests-final.log",
+    "sha256": "ffbdec279cfb9c37ebcb96b3fb5977863ca1486ff0a2c202557dac8589d83a5e",
+    "bytes": 521
+  },
+  {
+    "original": "logs/intent-tests-first.log",
+    "stored": "logs/intent-tests-first.log",
+    "sha256": "4cbe6e1f2874426eb713d1fb62c16946ffc17a797b0d9e3dfb7a9601f1c291e3",
+    "bytes": 521
+  },
+  {
+    "original": "logs/plan.log",
+    "stored": "logs/plan.log",
+    "sha256": "20073390d7bb71ff7a95fc75ad64e85f075fb178f8eca53c4bcf60d30c57e78f",
+    "bytes": 1852
+  },
+  {
+    "original": "logs/regime.log",
+    "stored": "logs/regime.log.gz",
+    "sha256": "5dce61dba5938a6db6e7e273d95754b75e6ed06d4b611b60d5f314033833d212",
+    "bytes": 571
+  },
+  {
+    "original": "logs/ruff-final.log",
+    "stored": "logs/ruff-final.log",
+    "sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+    "bytes": 19
+  },
+  {
+    "original": "logs/ruff.log",
+    "stored": "logs/ruff.log",
+    "sha256": "aeb1ee387d3030ce54a7b9f442bcd2e7386af45e0762cdc877c96e752f037778",
+    "bytes": 454
+  },
+  {
+    "original": "logs/survey.log",
+    "stored": "logs/survey.log",
+    "sha256": "ea705d9a8b0711e43321472bc3e57e15e8a59eed4c61c367062f2823870999c3",
+    "bytes": 217
+  },
+  {
+    "original": "logs/ty-final.log",
+    "stored": "logs/ty-final.log",
+    "sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+    "bytes": 19
+  },
+  {
+    "original": "logs/ty.log",
+    "stored": "logs/ty.log",
+    "sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+    "bytes": 19
+  },
+  {
+    "original": "primitive-identity-before.json",
+    "stored": "primitive-identity-before.json",
+    "sha256": "96b7e8356bd80da01c228517a343085fd6e72eb0733bfba00d357583ab7a45c9",
+    "bytes": 406
+  },
+  {
+    "original": "proof/existing-primitives/.detective/reports/converge_extent_transfer.txt",
+    "stored": "proof/existing-primitives/detective-state/reports/converge_extent_transfer.txt",
+    "sha256": "8d916b447e21456b0cb0aa50c573e9ebf9a224941caf30d803bc1aeea617c7ee",
+    "bytes": 3906
+  },
+  {
+    "original": "proof/existing-primitives/.detective/reports/converge_interval_state.txt",
+    "stored": "proof/existing-primitives/detective-state/reports/converge_interval_state.txt",
+    "sha256": "836f031da1991cca75fbe07a7985a01b77378d9a5aec6ff9b8e476c525c4736d",
+    "bytes": 5931
+  },
+  {
+    "original": "proof/existing-primitives/TrialLedger/layer2/exception_bounds.py",
+    "stored": "proof/existing-primitives/TrialLedger/layer2/exception_bounds.py.txt",
+    "sha256": "112a4277e860d158a96d67a3252380a0ca65955048a21cfd2402189dafc4dc52",
+    "bytes": 16660
+  },
+  {
+    "original": "proof/existing-primitives/commands.json",
+    "stored": "proof/existing-primitives/commands.json",
+    "sha256": "0a19918a020fea4973ede21ec0da894ebf2f79f2de6787a48633af7a8cf20e68",
+    "bytes": 4387
+  },
+  {
+    "original": "proof/existing-primitives/logs/extent-two-sign.log",
+    "stored": "proof/existing-primitives/logs/extent-two-sign.log",
+    "sha256": "cac6686725979a3ba1d9d4ca381e3e5ac118d033907b4578fdcf9b2b897018c8",
+    "bytes": 2019
+  },
+  {
+    "original": "proof/existing-primitives/logs/interval-two-sign.log",
+    "stored": "proof/existing-primitives/logs/interval-two-sign.log",
+    "sha256": "b2429ba1b4920a4ae03278b1443791dfa7690f79668b386ac34234f4d0bd8990",
+    "bytes": 3508
+  },
+  {
+    "original": "proof/existing-primitives/tests/detective/test_TrialLedger_layer2_exception_bounds_interval_state_71bac56452_synth.py",
+    "stored": "proof/existing-primitives/tests/detective/test_TrialLedger_layer2_exception_bounds_interval_state_71bac56452_synth.py.txt",
+    "sha256": "24fa9db2b68b2f1b631516a86dac1f373ec52b518afa498d57686c9f65cd4392",
+    "bytes": 682
+  },
+  {
+    "original": "proof/existing-primitives/tests/test_exception_bounds.py",
+    "stored": "proof/existing-primitives/tests/test_exception_bounds.py.txt",
+    "sha256": "215eb68102c24cfe1b87d093eb3cd3257b9dee05a23b34c261ccf09eb8fef032",
+    "bytes": 16691
+  },
+  {
+    "original": "proof/existing-primitives/two-sign-receipt.json",
+    "stored": "proof/existing-primitives/two-sign-receipt.json",
+    "sha256": "93668662205b8b453acabe5c1a580d18cfe864030663b722c64c9d317e1afeb6",
+    "bytes": 2127
+  },
+  {
+    "original": "proof/new-attribution/.detective/reports/converge_attribution_state.txt",
+    "stored": "proof/new-attribution/detective-state/reports/converge_attribution_state.txt",
+    "sha256": "3798b476f438141f4737a1789982136029d19a7c0e91b18c6e93164529436a17",
+    "bytes": 5132
+  },
+  {
+    "original": "proof/new-attribution/.detective/reports/decompose_attribution_state.txt",
+    "stored": "proof/new-attribution/detective-state/reports/decompose_attribution_state.txt",
+    "sha256": "2f72cfcf063ff7f799ca0c52687500ab0cf37dbf614eebb976e6829fc718ba21",
+    "bytes": 5763
+  },
+  {
+    "original": "proof/new-attribution/.detective/reports/plan_TrialLedger_layer2_exception_bounds_py.txt",
+    "stored": "proof/new-attribution/detective-state/reports/plan_TrialLedger_layer2_exception_bounds_py.txt",
+    "sha256": "4d4ac5e6f21914ed1434bd5c56ac408850368426887603b01dc670a881d0a27d",
+    "bytes": 8783
+  },
+  {
+    "original": "proof/new-attribution/logs/attribution-two-sign.log",
+    "stored": "proof/new-attribution/logs/attribution-two-sign.log",
+    "sha256": "266187bef57129653b4b61ad50d70d21dd212f95f35493c45f08ea2b6aeed01a",
+    "bytes": 2039
+  },
+  {
+    "original": "proof/new-attribution/logs/decompose.log",
+    "stored": "proof/new-attribution/logs/decompose.log",
+    "sha256": "41c9dbd530f643c02d65631f73fd245a5229db5b121627c2beea31fe5b7713d2",
+    "bytes": 1083
+  },
+  {
+    "original": "proof/new-attribution/logs/plan.log",
+    "stored": "proof/new-attribution/logs/plan.log",
+    "sha256": "20073390d7bb71ff7a95fc75ad64e85f075fb178f8eca53c4bcf60d30c57e78f",
+    "bytes": 1852
+  },
+  {
+    "original": "proof/new-attribution/logs/survey.log",
+    "stored": "proof/new-attribution/logs/survey.log",
+    "sha256": "ea705d9a8b0711e43321472bc3e57e15e8a59eed4c61c367062f2823870999c3",
+    "bytes": 217
+  },
+  {
+    "original": "pyproject.toml",
+    "stored": "pyproject.toml",
+    "sha256": "4e9de0fd7d7d867684dd74306fa52e738302e1007d2a6902d6674990e4eea6f4",
+    "bytes": 106
+  },
+  {
+    "original": "target-sets-receipt.json",
+    "stored": "target-sets-receipt.json",
+    "sha256": "0f409a5c7db3ec8251833876193eff2f3b1658951b74e5af8d2b8ef3a2cb293b",
+    "bytes": 6890
+  },
+  {
+    "original": "tests/detective/certificates.json",
+    "stored": "tests/detective/certificates.json",
+    "sha256": "5c35622e0e498696370008ceb023e0b3ff9c65645f2aa8446fc44ebf02643017",
+    "bytes": 185
+  },
+  {
+    "original": "tests/test_exception_bounds.py",
+    "stored": "tests/test_exception_bounds.py.txt",
+    "sha256": "417941799e68e54ef4bfb5702c6c77cc2c3d18d494652627d8bc5d65d611ae24",
+    "bytes": 33527
+  }
+]

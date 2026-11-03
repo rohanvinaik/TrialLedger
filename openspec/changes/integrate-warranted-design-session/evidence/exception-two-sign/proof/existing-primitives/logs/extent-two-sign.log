@@ -1,0 +1,26 @@
+  … extent_transfer: tracing 52 function-routed tests
+  … extent_transfer: baseline traced · 52 tests · 0.2s
+  … extent_transfer: 1/54 mutants · 5.6/s · ETA estimating… (heartbeat)
+  … extent_transfer: 54/54 mutants · 203.0/s · done in 0.3s
+  ▸ pass 0: ✓ every mutant killed
+  ▸ witness pass: searching richer inputs for a distinguishing kill…
+  ▸ finalizing — re-profiling the full mutant universe against the existing suite (no test written this run)…
+  ▸ verifying reproducibility — fresh isolated observation of the function's proof basis…
+  … extent_transfer: tracing 52 function-routed tests
+  … extent_transfer: baseline traced · 52 tests · 0.0s
+  ▸ reproducibility confirmed — the certificate rests on the isolated observation
+──────────────────────────────────────────────────────────────────────────────
+TrialLedger/layer2/exception_bounds.py::extent_transfer — converge · 54 behaviours · 54 pinned
+
+  · not consulted      4 collected test(s) have no static path to this function — not traced (a missed dynamic reacher costs a redundant generated test, never a certificate)
+  · full report        .detective/reports/converge_extent_transfer.txt
+
+DONE:  the suite pins every behaviour this function makes.
+
+       NEXT — the style pass (behaviour is pinned; this is the self-evident next move):
+         detective plan 'TrialLedger/layer2/exception_bounds.py'
+         detective decompose 'TrialLedger/layer2/exception_bounds.py::extent_transfer' --apply --two-sign
+         detective survey 'TrialLedger/layer2/exception_bounds.py'
+         (efficiency: verify-rewrite --budget against a receipt from policy 9+neg.f5a15364c11d)
+
+FINAL TrialLedger/layer2/exception_bounds.py::extent_transfer: ✓ COMPLETE (operator universe) · 54/54 killed · minimal cover 4 test(s) · policy 9+neg.f5a15364c11d

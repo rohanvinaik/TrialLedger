@@ -1,0 +1,18 @@
+{
+  "module_sha256": "da5f90fdb7f0056fa6e51734b01b3850c55a927171414d0ddd5e4ee99b8f988f",
+  "existing_primitives": {
+    "interval_state": {
+      "source_sha256": "162c1416e7669075eb20ff92b17c237a54a64c72eeb734c95c5037f010efa006",
+      "ast_sha256": "ab70577aff954ed08f7de769326b245776ba1a1e335402230f691f7fe41413cf"
+    },
+    "extent_transfer": {
+      "source_sha256": "c157245cc3e9e6de1003a589ff9d82d77a2a37c0d1c79f1d50fa8786d738590b",
+      "ast_sha256": "741295d2de17316a86eb72a232c02ec0fc9aa145440e249f3610fa6791e2b46c"
+    },
+    "attribution_state": {
+      "source_sha256": "2d66817c18075679e946c88a84b389b39953eb8cd7adebd9151fbc42f0e2e8b0",
+      "ast_sha256": "ebef55be04b09a496a689ea5100ee634f6a54169a99fdb5cd82f2ecc2a46d3b0"
+    }
+  },
+  "config_sha256": "4a0a5758a6a27eacb4967c2df79857ac6ca32485916b3acdc40974121685d074"
+}

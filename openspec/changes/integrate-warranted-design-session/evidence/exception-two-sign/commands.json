@@ -1,0 +1,104 @@
+{
+  "cwd": "/tmp/trialledger-exception-target-sets-20261103-v1",
+  "commands": [
+    {
+      "argv": [
+        "/Users/rohanvinaik/Projects/SquishOS/ops/agents/bin/owned-run",
+        "--label",
+        "exception-target-sets-detective-help",
+        "--",
+        "env",
+        "PYTHONPATH=/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+        "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+        "--help"
+      ],
+      "stdout_stderr": "logs/detective-help.log"
+    },
+    {
+      "argv": [
+        "/Users/rohanvinaik/Projects/SquishOS/ops/agents/bin/owned-run",
+        "--label",
+        "exception-target-sets-regime",
+        "--",
+        "env",
+        "PYTHONPATH=/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+        "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+        "regime"
+      ],
+      "stdout_stderr": "logs/regime.log"
+    },
+    {
+      "argv": [
+        "/Users/rohanvinaik/Projects/SquishOS/ops/agents/bin/owned-run",
+        "--label",
+        "exception-target-sets-converge-help",
+        "--",
+        "env",
+        "PYTHONPATH=/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+        "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+        "converge",
+        "--help"
+      ],
+      "stdout_stderr": "logs/converge-help.log"
+    },
+    {
+      "argv": [
+        "/Users/rohanvinaik/Projects/SquishOS/ops/agents/bin/owned-run",
+        "--label",
+        "exception-target-sets-pin",
+        "--",
+        "env",
+        "PYTHONPATH=/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+        "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+        "converge",
+        "TrialLedger/layer2/exception_bounds.py::attribution_state",
+        "--two-sign"
+      ],
+      "stdout_stderr": "logs/attribution-two-sign.log"
+    },
+    {
+      "argv": [
+        "/Users/rohanvinaik/Projects/SquishOS/ops/agents/bin/owned-run",
+        "--label",
+        "exception-target-sets-plan",
+        "--",
+        "env",
+        "PYTHONPATH=/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+        "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+        "plan",
+        "TrialLedger/layer2/exception_bounds.py"
+      ],
+      "stdout_stderr": "logs/plan.log"
+    },
+    {
+      "argv": [
+        "/Users/rohanvinaik/Projects/SquishOS/ops/agents/bin/owned-run",
+        "--label",
+        "exception-target-sets-decompose",
+        "--",
+        "env",
+        "PYTHONPATH=/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+        "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+        "decompose",
+        "TrialLedger/layer2/exception_bounds.py::attribution_state",
+        "--apply",
+        "--two-sign"
+      ],
+      "stdout_stderr": "logs/decompose.log"
+    },
+    {
+      "argv": [
+        "/Users/rohanvinaik/Projects/SquishOS/ops/agents/bin/owned-run",
+        "--label",
+        "exception-target-sets-survey",
+        "--",
+        "env",
+        "PYTHONPATH=/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+        "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+        "survey",
+        "TrialLedger/layer2/exception_bounds.py"
+      ],
+      "stdout_stderr": "logs/survey.log"
+    }
+  ]
+}

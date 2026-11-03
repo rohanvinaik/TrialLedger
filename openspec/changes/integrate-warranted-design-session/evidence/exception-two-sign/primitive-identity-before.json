@@ -1,0 +1,10 @@
+{
+  "interval_state": {
+    "source_sha256": "162c1416e7669075eb20ff92b17c237a54a64c72eeb734c95c5037f010efa006",
+    "ast_sha256": "ab70577aff954ed08f7de769326b245776ba1a1e335402230f691f7fe41413cf"
+  },
+  "extent_transfer": {
+    "source_sha256": "c157245cc3e9e6de1003a589ff9d82d77a2a37c0d1c79f1d50fa8786d738590b",
+    "ast_sha256": "741295d2de17316a86eb72a232c02ec0fc9aa145440e249f3610fa6791e2b46c"
+  }
+}

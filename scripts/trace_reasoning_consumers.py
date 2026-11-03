@@ -7,6 +7,7 @@ The receipt contains digests and observed code paths, not private conversation o
 from __future__ import annotations
 
 import contextlib
+import copy
 import hashlib
 import io
 import json
@@ -27,6 +28,26 @@ def digest(value):
 def cases():
     description = run({"operation": "describe", "view": "full"})["result"]
     rows = [("discovery:" + name, request) for name, request in description["examples"].items()]
+    rows.extend(("discovery:" + key, description[key]) for key in ("exception_example", "binding_example"))
+    bound_binding = copy.deepcopy(description["binding_example"])
+    bound_binding.update(
+        operation="design_bounds",
+        observations=[],
+        query=description["examples"]["design_bounds"]["query"],
+        candidates=[
+            {
+                "id": "invented-all-analysed",
+                "assertions": [],
+                "signal_claims": [
+                    {
+                        "signal": "invented-population",
+                        "claim": {"count": "outside", "lower": None, "upper": 0},
+                    }
+                ],
+            }
+        ],
+    )
+    rows.append(("binding:design_bounds", bound_binding))
     rows.extend(("signal:" + name, request) for name, request in description["signal_examples"].items())
     rows.extend(
         ("corpus:" + name, item["request"]) for name, item in description["capability_examples"].items()

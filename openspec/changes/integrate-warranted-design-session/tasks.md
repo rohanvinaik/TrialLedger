@@ -13,15 +13,15 @@ Implementation is sequenced by public usefulness. Checkboxes record one observab
 
 ## 2. Exception evidence reaches design_bounds directly
 
-- [ ] 2.1 Add supplied, source-bound exception observations and separate meaning/scope bindings with target-possibility sets, warranted narrowing and strict validation tests; retain other-protocol residuals and late-discovered entry violations.
-- [ ] 2.2 Implement named bound-intersection and witness-cap decisions; test unknown ceiling, zero, global/subgroup scope and overlap prohibitions.
-- [ ] 2.3 Add optional exception-evidence references to existing design_bounds bridges without changing the legacy supplied-premise contract.
-- [ ] 2.4 Verify source observation → bridge check → candidate consequence through CLI and MCP, including floor-one/cap-zero and cap-48/cap-49 boundaries; IPASS label meaning remains a reading, so zero-cap conflict is conditional on its accepted attribution, not registry-only truth.
-- [ ] 2.5 Expose population-binding preflight through existing consumers; verify 609-ITT/590-EFQ reversal and wrong-arm/version cases.
-- [ ] 2.6 Update discovery and source-bridge documentation from executed public examples.
-- [ ] 2.7 Pin suitable exception primitives with Detective two-sign and explicit contracts; retain exact results.
-- [ ] 2.8 Apply the documented walkthrough-retention contract before acquisition, then run the model-operated walkthrough in another trial category and resolve or retain its concrete findings.
-- [ ] 2.9 Verify positive and negative witness propagation through candidate decisions, elimination standing, common consequences and classified metadata; retain broader protocol failures without promoting them to eligibility exceptions or universal exclusions.
+- [x] 2.1 Add supplied, source-bound exception observations and separate meaning/scope bindings with target-possibility sets, warranted narrowing and strict validation tests; retain other-protocol residuals and late-discovered entry violations.
+- [x] 2.2 Implement named bound-intersection and witness-cap decisions; test unknown ceiling, zero, global/subgroup scope and overlap prohibitions.
+- [x] 2.3 Add optional exception-evidence references to existing design_bounds bridges without changing the legacy supplied-premise contract.
+- [x] 2.4 Verify source observation → bridge check → candidate consequence through CLI and MCP, including floor-one/cap-zero and cap-48/cap-49 boundaries; IPASS label meaning remains a reading, so zero-cap conflict is conditional on its accepted attribution, not registry-only truth.
+- [x] 2.5 Expose population-binding preflight through existing consumers; verify 609-ITT/590-EFQ reversal and wrong-arm/version cases.
+- [x] 2.6 Update discovery and source-bridge documentation from executed public examples.
+- [x] 2.7 Pin suitable exception primitives with Detective two-sign and explicit contracts; retain exact results.
+- [x] 2.8 Apply the documented walkthrough-retention contract before acquisition, then run the model-operated walkthrough in another trial category and resolve or retain its concrete findings.
+- [x] 2.9 Verify positive and negative witness propagation through candidate decisions, elimination standing, common consequences and classified metadata; retain broader protocol failures without promoting them to eligibility exceptions or universal exclusions.
 
 ## 2a. Distinguishing evidence requests before session work
 

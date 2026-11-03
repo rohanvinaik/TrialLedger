@@ -1,0 +1,654 @@
+{
+ "code": "complete",
+ "operation": "source_assertions",
+ "result": {
+  "source": {
+   "nct": "NCT02203032",
+   "digest": "320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c",
+   "study_ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c",
+   "version": "320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c",
+   "last_update": {
+    "date": "2017-09-12",
+    "type": "ACTUAL"
+   }
+  },
+  "anchors": [],
+  "fixed": {
+   "assertions": [
+    {
+     "applicability": {
+      "class": "Always"
+     },
+     "body": {
+      "class": "Literal",
+      "evidence": [
+       {
+        "class": "Evidence",
+        "kind": "record_field",
+        "ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/protocolSection/eligibilityModule/minimumAge"
+       }
+      ],
+      "polarity": "positive",
+      "predicate": {
+       "class": "Predicate",
+       "key": "age",
+       "kind": "measurement"
+      },
+      "qualifiers": {
+       "class": "Always"
+      },
+      "subject": {
+       "class": "Subject",
+       "kind": "participant",
+       "referent": ""
+      },
+      "time": null,
+      "value": {
+       "class": "Value",
+       "comparison": "ge",
+       "inclusivity": "unspecified",
+       "kind": "quantity",
+       "members": [],
+       "number": 18.0,
+       "unit": "Years",
+       "upper": null
+      }
+     },
+     "branch": {
+      "class": "Branch",
+      "node": "unresolved",
+      "path": []
+     },
+     "class": "ScopedAssertion",
+     "cohort": {
+      "class": "Scope",
+      "kind": "all_participants",
+      "parts": [],
+      "ref": ""
+     },
+     "criterion_ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/protocolSection/eligibilityModule/minimumAge",
+     "id": "registry-age-minimumAge",
+     "modality": "required",
+     "resolution": "resolved",
+     "rule": {
+      "answers": [],
+      "class": "Rule",
+      "id": "ctg-structured-general-eligibility-age",
+      "premises": [
+       "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/protocolSection/eligibilityModule/minimumAge"
+      ],
+      "version": "1",
+      "warrants": []
+     },
+     "span": [],
+     "status": "known"
+    },
+    {
+     "applicability": {
+      "class": "Always"
+     },
+     "body": {
+      "class": "Literal",
+      "evidence": [
+       {
+        "class": "Evidence",
+        "kind": "record_field",
+        "ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/protocolSection/eligibilityModule/maximumAge"
+       }
+      ],
+      "polarity": "positive",
+      "predicate": {
+       "class": "Predicate",
+       "key": "age",
+       "kind": "measurement"
+      },
+      "qualifiers": {
+       "class": "Always"
+      },
+      "subject": {
+       "class": "Subject",
+       "kind": "participant",
+       "referent": ""
+      },
+      "time": null,
+      "value": {
+       "class": "Value",
+       "comparison": "le",
+       "inclusivity": "unspecified",
+       "kind": "quantity",
+       "members": [],
+       "number": 99.0,
+       "unit": "Years",
+       "upper": null
+      }
+     },
+     "branch": {
+      "class": "Branch",
+      "node": "unresolved",
+      "path": []
+     },
+     "class": "ScopedAssertion",
+     "cohort": {
+      "class": "Scope",
+      "kind": "all_participants",
+      "parts": [],
+      "ref": ""
+     },
+     "criterion_ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/protocolSection/eligibilityModule/maximumAge",
+     "id": "registry-age-maximumAge",
+     "modality": "required",
+     "resolution": "resolved",
+     "rule": {
+      "answers": [],
+      "class": "Rule",
+      "id": "ctg-structured-general-eligibility-age",
+      "premises": [
+       "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/protocolSection/eligibilityModule/maximumAge"
+      ],
+      "version": "1",
+      "warrants": []
+     },
+     "span": [],
+     "status": "known"
+    }
+   ],
+   "signals": []
+  },
+  "interpretations": [],
+  "bindings": [],
+  "coverage": [
+   {
+    "address": "/protocolSection/eligibilityModule/minimumAge",
+    "code": "compiled",
+    "value": "18 Years",
+    "assertion": "registry-age-minimumAge",
+    "rule": "ctg-structured-general-eligibility-age",
+    "ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/protocolSection/eligibilityModule/minimumAge"
+   },
+   {
+    "address": "/protocolSection/eligibilityModule/maximumAge",
+    "code": "compiled",
+    "value": "99 Years",
+    "assertion": "registry-age-maximumAge",
+    "rule": "ctg-structured-general-eligibility-age",
+    "ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/protocolSection/eligibilityModule/maximumAge"
+   },
+   {
+    "address": "/protocolSection/eligibilityModule/eligibilityCriteria",
+    "code": "unresolved_retained",
+    "value": "Inclusion Criteria:\n\n* Have a diagnosis of plaque-type psoriasis (with or without psoriatic arthritis for at least 6 months before the first administration of study drug\n* Have a Psoriasis Area and Severity Index (PASI) greater than or equal to (\\>=) 12 at Screening and at Baseline\n* Have an Investigator's Global Assessment (IGA) \\>=3 at Screening and at Baseline\n* Have an involved body surface area (BSA) \\>= 10 percent (%) at Screening and at Baseline\n* Be a candidate for phototherapy or systemic treatment for psoriasis (either naïve or history of previous treatment)\n\nExclusion Criteria:\n\n* Has a history or current signs or symptoms of severe, progressive, or uncontrolled renal, hepatic, cardiac, vascular, pulmonary, gastrointestinal, endocrine, neurologic, hematologic, rheumatologic, psychiatric, or metabolic disturbances\n* Has unstable cardiovascular disease, defined as a recent clinical deterioration (example \\[eg\\], unstable angina, rapid atrial fibrillation) in the last 3 months or a cardiac hospitalization within the last 3 months\n* Currently has a malignancy or has a history of malignancy within 5 years before Screening (with the exception of a nonmelanoma skin cancer that has been adequately treated with no evidence of recurrence for at least 3 months before the first study drug administration, or cervical carcinoma in situ that has been treated with no evidence of recurrence for at least 3 months before the first study drug administration)\n* Has previously received guselkumab or ustekinumab"
+   },
+   {
+    "address": "/protocolSection/eligibilityModule/healthyVolunteers",
+    "code": "unresolved_retained",
+    "value": false
+   },
+   {
+    "address": "/protocolSection/eligibilityModule/sex",
+    "code": "unresolved_retained",
+    "value": "ALL"
+   },
+   {
+    "address": "/protocolSection/eligibilityModule/stdAges",
+    "code": "unresolved_retained",
+    "value": [
+     "ADULT",
+     "OLDER_ADULT"
+    ]
+   },
+   {
+    "address": "/resultsSection",
+    "ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/resultsSection",
+    "code": "unresolved_retained",
+    "reason": "outside_structured_age_direct_rules"
+   },
+   {
+    "address": "/derivedSection",
+    "ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/derivedSection",
+    "code": "unresolved_retained",
+    "reason": "outside_structured_age_direct_rules"
+   },
+   {
+    "address": "/hasResults",
+    "ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/hasResults",
+    "code": "unresolved_retained",
+    "reason": "outside_structured_age_direct_rules"
+   },
+   {
+    "address": "/protocolSection/identificationModule",
+    "ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/protocolSection/identificationModule",
+    "code": "unresolved_retained",
+    "reason": "outside_structured_age_direct_rules"
+   },
+   {
+    "address": "/protocolSection/statusModule",
+    "ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/protocolSection/statusModule",
+    "code": "unresolved_retained",
+    "reason": "outside_structured_age_direct_rules"
+   },
+   {
+    "address": "/protocolSection/sponsorCollaboratorsModule",
+    "ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/protocolSection/sponsorCollaboratorsModule",
+    "code": "unresolved_retained",
+    "reason": "outside_structured_age_direct_rules"
+   },
+   {
+    "address": "/protocolSection/oversightModule",
+    "ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/protocolSection/oversightModule",
+    "code": "unresolved_retained",
+    "reason": "outside_structured_age_direct_rules"
+   },
+   {
+    "address": "/protocolSection/descriptionModule",
+    "ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/protocolSection/descriptionModule",
+    "code": "unresolved_retained",
+    "reason": "outside_structured_age_direct_rules"
+   },
+   {
+    "address": "/protocolSection/conditionsModule",
+    "ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/protocolSection/conditionsModule",
+    "code": "unresolved_retained",
+    "reason": "outside_structured_age_direct_rules"
+   },
+   {
+    "address": "/protocolSection/designModule",
+    "ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/protocolSection/designModule",
+    "code": "unresolved_retained",
+    "reason": "outside_structured_age_direct_rules"
+   },
+   {
+    "address": "/protocolSection/armsInterventionsModule",
+    "ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/protocolSection/armsInterventionsModule",
+    "code": "unresolved_retained",
+    "reason": "outside_structured_age_direct_rules"
+   },
+   {
+    "address": "/protocolSection/outcomesModule",
+    "ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/protocolSection/outcomesModule",
+    "code": "unresolved_retained",
+    "reason": "outside_structured_age_direct_rules"
+   },
+   {
+    "address": "/protocolSection/contactsLocationsModule",
+    "ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/protocolSection/contactsLocationsModule",
+    "code": "unresolved_retained",
+    "reason": "outside_structured_age_direct_rules"
+   },
+   {
+    "address": "/protocolSection/referencesModule",
+    "ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/protocolSection/referencesModule",
+    "code": "unresolved_retained",
+    "reason": "outside_structured_age_direct_rules"
+   }
+  ],
+  "submitted": {
+   "interpretations": [],
+   "bindings": []
+  },
+  "requests": [
+   {
+    "operation": "entailment",
+    "assertions": [
+     {
+      "applicability": {
+       "class": "Always"
+      },
+      "body": {
+       "class": "Literal",
+       "evidence": [
+        {
+         "class": "Evidence",
+         "kind": "record_field",
+         "ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/protocolSection/eligibilityModule/minimumAge"
+        }
+       ],
+       "polarity": "positive",
+       "predicate": {
+        "class": "Predicate",
+        "key": "age",
+        "kind": "measurement"
+       },
+       "qualifiers": {
+        "class": "Always"
+       },
+       "subject": {
+        "class": "Subject",
+        "kind": "participant",
+        "referent": ""
+       },
+       "time": null,
+       "value": {
+        "class": "Value",
+        "comparison": "ge",
+        "inclusivity": "unspecified",
+        "kind": "quantity",
+        "members": [],
+        "number": 18.0,
+        "unit": "Years",
+        "upper": null
+       }
+      },
+      "branch": {
+       "class": "Branch",
+       "node": "unresolved",
+       "path": []
+      },
+      "class": "ScopedAssertion",
+      "cohort": {
+       "class": "Scope",
+       "kind": "all_participants",
+       "parts": [],
+       "ref": ""
+      },
+      "criterion_ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/protocolSection/eligibilityModule/minimumAge",
+      "id": "registry-age-minimumAge",
+      "modality": "required",
+      "resolution": "resolved",
+      "rule": {
+       "answers": [],
+       "class": "Rule",
+       "id": "ctg-structured-general-eligibility-age",
+       "premises": [
+        "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/protocolSection/eligibilityModule/minimumAge"
+       ],
+       "version": "1",
+       "warrants": []
+      },
+      "span": [],
+      "status": "known"
+     },
+     {
+      "applicability": {
+       "class": "Always"
+      },
+      "body": {
+       "class": "Literal",
+       "evidence": [
+        {
+         "class": "Evidence",
+         "kind": "record_field",
+         "ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/protocolSection/eligibilityModule/maximumAge"
+        }
+       ],
+       "polarity": "positive",
+       "predicate": {
+        "class": "Predicate",
+        "key": "age",
+        "kind": "measurement"
+       },
+       "qualifiers": {
+        "class": "Always"
+       },
+       "subject": {
+        "class": "Subject",
+        "kind": "participant",
+        "referent": ""
+       },
+       "time": null,
+       "value": {
+        "class": "Value",
+        "comparison": "le",
+        "inclusivity": "unspecified",
+        "kind": "quantity",
+        "members": [],
+        "number": 99.0,
+        "unit": "Years",
+        "upper": null
+       }
+      },
+      "branch": {
+       "class": "Branch",
+       "node": "unresolved",
+       "path": []
+      },
+      "class": "ScopedAssertion",
+      "cohort": {
+       "class": "Scope",
+       "kind": "all_participants",
+       "parts": [],
+       "ref": ""
+      },
+      "criterion_ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/protocolSection/eligibilityModule/maximumAge",
+      "id": "registry-age-maximumAge",
+      "modality": "required",
+      "resolution": "resolved",
+      "rule": {
+       "answers": [],
+       "class": "Rule",
+       "id": "ctg-structured-general-eligibility-age",
+       "premises": [
+        "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/protocolSection/eligibilityModule/maximumAge"
+       ],
+       "version": "1",
+       "warrants": []
+      },
+      "span": [],
+      "status": "known"
+     }
+    ],
+    "query": {
+     "class": "Literal",
+     "evidence": [],
+     "polarity": "positive",
+     "predicate": {
+      "class": "Predicate",
+      "key": "age",
+      "kind": "measurement"
+     },
+     "qualifiers": {
+      "class": "Always"
+     },
+     "subject": {
+      "class": "Subject",
+      "kind": "participant",
+      "referent": ""
+     },
+     "time": null,
+     "value": {
+      "class": "Value",
+      "comparison": "ge",
+      "inclusivity": "unspecified",
+      "kind": "quantity",
+      "members": [],
+      "number": 18.0,
+      "unit": "Years",
+      "upper": null
+     }
+    }
+   }
+  ],
+  "limits": [
+   "Structured ages describe registry general eligibility, not verified actual protocol.",
+   "A located quotation proves quotation only; clinical readings remain hypothetical.",
+   "No unit conversion, automatic binding joins, clinical text interpretation or source mutation."
+  ],
+  "analyses": [
+   {
+    "code": "complete",
+    "operation": "entailment",
+    "result": {
+     "basis": "Conditional on the supplied typed premises; their source meaning is not certified by this operation.",
+     "decision": {
+      "result": "ENTAILED",
+      "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+      "status": "known",
+      "proof": [
+       "registry-age-minimumAge"
+      ],
+      "blockers": []
+     },
+     "premises": [
+      {
+       "applicability": {
+        "class": "Always"
+       },
+       "body": {
+        "class": "Literal",
+        "evidence": [
+         {
+          "class": "Evidence",
+          "kind": "record_field",
+          "ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/protocolSection/eligibilityModule/minimumAge"
+         }
+        ],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "age",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "participant",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "ge",
+         "inclusivity": "unspecified",
+         "kind": "quantity",
+         "members": [],
+         "number": 18.0,
+         "unit": "Years",
+         "upper": null
+        }
+       },
+       "branch": {
+        "class": "Branch",
+        "node": "unresolved",
+        "path": []
+       },
+       "class": "ScopedAssertion",
+       "cohort": {
+        "class": "Scope",
+        "kind": "all_participants",
+        "parts": [],
+        "ref": ""
+       },
+       "criterion_ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/protocolSection/eligibilityModule/minimumAge",
+       "id": "registry-age-minimumAge",
+       "modality": "required",
+       "resolution": "resolved",
+       "rule": {
+        "answers": [],
+        "class": "Rule",
+        "id": "ctg-structured-general-eligibility-age",
+        "premises": [
+         "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/protocolSection/eligibilityModule/minimumAge"
+        ],
+        "version": "1",
+        "warrants": []
+       },
+       "span": [],
+       "status": "known"
+      },
+      {
+       "applicability": {
+        "class": "Always"
+       },
+       "body": {
+        "class": "Literal",
+        "evidence": [
+         {
+          "class": "Evidence",
+          "kind": "record_field",
+          "ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/protocolSection/eligibilityModule/maximumAge"
+         }
+        ],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "age",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "participant",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "le",
+         "inclusivity": "unspecified",
+         "kind": "quantity",
+         "members": [],
+         "number": 99.0,
+         "unit": "Years",
+         "upper": null
+        }
+       },
+       "branch": {
+        "class": "Branch",
+        "node": "unresolved",
+        "path": []
+       },
+       "class": "ScopedAssertion",
+       "cohort": {
+        "class": "Scope",
+        "kind": "all_participants",
+        "parts": [],
+        "ref": ""
+       },
+       "criterion_ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/protocolSection/eligibilityModule/maximumAge",
+       "id": "registry-age-maximumAge",
+       "modality": "required",
+       "resolution": "resolved",
+       "rule": {
+        "answers": [],
+        "class": "Rule",
+        "id": "ctg-structured-general-eligibility-age",
+        "premises": [
+         "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/protocolSection/eligibilityModule/maximumAge"
+        ],
+        "version": "1",
+        "warrants": []
+       },
+       "span": [],
+       "status": "known"
+      }
+     ]
+    },
+    "problems": [],
+    "metadata": {
+     "version": 1,
+     "kind": "reasoning",
+     "findings": [
+      {
+       "path": "/result/decision",
+       "kind": "logical",
+       "logical_result": "ENTAILED",
+       "standing": "known",
+       "completion": "complete",
+       "causes": [],
+       "disposition": "settled"
+      }
+     ]
+    }
+   }
+  ]
+ },
+ "problems": [],
+ "metadata": {
+  "version": 1,
+  "kind": "reasoning",
+  "findings": [
+   {
+    "path": "/result/analyses/0/result/decision",
+    "kind": "logical",
+    "logical_result": "ENTAILED",
+    "standing": "known",
+    "completion": "complete",
+    "causes": [],
+    "disposition": "settled"
+   }
+  ]
+ }
+}

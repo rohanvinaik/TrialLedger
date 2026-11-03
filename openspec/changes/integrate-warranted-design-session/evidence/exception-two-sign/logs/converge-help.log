@@ -1,0 +1,152 @@
+usage: detective converge [-h] [--project-root PROJECT_ROOT] [--json]
+                          [--verbose] [--trace-budget SECONDS]
+                          [--trace-session-budget SECONDS] [--include-shaped]
+                          [--two-sign] [--isolated] [--write-dir WRITE_DIR]
+                          [--max-iterations MAX_ITERATIONS] [--fast] [--full]
+                          [--input TUPLE] [--clock EPOCH] [--env NAME=value]
+                          [--receiver-factory MODULE:CALLABLE]
+                          [--deadline SECONDS]
+                          target
+
+Write a complete, minimal pytest suite for a function (the flagship; writes
+files).
+
+BEFORE this runs, Detective resolves the repo's TESTING REGIME: the name that
+imports your target, the sys.path your SUITE gets, and whether that name means
+the file you pointed at. If anything makes a verdict untrustworthy — the target
+is SHADOWED by another copy of itself, or two conftests share one module name
+and kill the live pytest session — it REFUSES and prints the exact fix, rather
+than reporting a number measured against the wrong file.
+
+    detective regime            # see it, and why a run refused
+    detective regime --migrate  # fix the part that is Detective's to fix
+
+positional arguments:
+  target                file.py::function
+
+options:
+  -h, --help            show this help message and exit
+  --project-root PROJECT_ROOT
+                        project root the target path is relative to
+  --json                emit JSON
+  --verbose             more detail: the memory-telemetry footer (stderr) on
+                        any command, and — with --full on converge — every
+                        surviving mutant's id and diff instead of grouping
+                        them by the statement they mutated. Use it when you
+                        need an id to pass to `flag`, or when you are
+                        debugging the run itself
+  --trace-budget SECONDS
+                        per-test cap on the traced baseline pass (default 50s;
+                        0 = unbounded). Bounds ONE pathological test; rarely
+                        what cut you — see --trace-session-budget. A cut
+                        test's line coverage is under-counted, is reported by
+                        name, and makes already-pinned behaviour read as
+                        unpinned.
+  --trace-session-budget SECONDS
+                        cap on the WHOLE traced baseline pass (default 1800s;
+                        0 = unbounded). Bounds the aggregate, which the per-
+                        test cap cannot: tests not reached are reported by
+                        name. THIS is almost always the knob that cut you —
+                        raise it first, or set both to 0 for an exact
+                        measurement.
+  --include-shaped      include shape-hazardous tests
+                        (subprocess/thread/signal/custom-collector) in the
+                        speculative widen search. By DEFAULT these are
+                        DEFERRED — one such test forces the expensive
+                        isolation path (a subprocess per mutant, e.g. a 50s
+                        live-game system test per widen step) and is almost
+                        never the minimal distinguishing witness for a unit-
+                        level mutant, so the widen skips them and the report
+                        discloses how many. Pass this when a residual may be
+                        killable ONLY by such a test and you want to pay to
+                        trace them.
+  --two-sign            opt into the two-sign contract σ(P, μ ∪ μ⁻): also run
+                        the codomain operator μ⁻, which perturbs the RETURN
+                        VALUE. A surviving μ⁻ perturbation is a negative
+                        degree of freedom — an output invariant your suite
+                        does not pin (→None: the output must exist; →const: it
+                        must depend on the input; →identity: it must transform
+                        its input). On `audit`, such a survivor is a killable
+                        gap, so `audit --two-sign --check` gates CI on an
+                        engine-found negative DOF (extending the authored
+                        `flag --fence`). On `decompose`, the preservation
+                        proof is then over σ(P, μ ∪ μ⁻), so an applied
+                        extraction is certified to have preserved the value
+                        pins AND the negative fences (Thm 15.4). Off by
+                        default.
+  --isolated            evaluate mutations in isolated workers throughout
+                        convergence; use after a reproducibility refusal
+  --write-dir WRITE_DIR
+                        write synthesized tests here (default:
+                        tests/detective)
+  --max-iterations MAX_ITERATIONS
+                        max converge passes before stopping (default 3)
+  --fast                greedy-sample a (1−1/e)-optimal subset of mutants per
+                        category per pass instead of the full universe —
+                        faster, converging over passes (default:
+                        comprehensive)
+  --full                print the full report to the terminal (default: a
+                        minimal banner + the one quick action; the full report
+                        is always written to .detective/reports/ regardless)
+  --input TUPLE         one real call's positional arguments, as a Python
+                        literal tuple — e.g. "([{'qty': 5, 'price': 2.0}],
+                        0.08, 'gold', None)" — to reach behaviour synthesis
+                        could not. Repeatable; a bare non-tuple literal is one
+                        argument. Non-finite floats are spelled `nan`, `inf`,
+                        `-inf` or `float('nan')` / `float('-inf')`, whatever
+                        the target module imports. LITERALS ONLY (plus
+                        `ast.*`): this parses an allowlist, which is what
+                        makes "no arbitrary code execution" checkable rather
+                        than hoped-for — so it CANNOT carry your own classes
+                        (`Account(...)` is rejected). For a function taking a
+                        domain object, do not use this flag: write ONE test
+                        that calls the function with a real object and
+                        Detective captures the arguments from it. The report
+                        tells you which of the two applies; it never asks for
+                        an --input it will refuse.
+  --clock EPOCH         freeze time.time() to this UNIX-epoch value while
+                        pinning — for a function whose output reads the wall
+                        clock (a TTL/expiry check), which is otherwise non-
+                        deterministic and cannot be pinned. The emitted test
+                        re-freezes and restores the clock, so the pin holds.
+                        v1 freezes time.time() only; the report flags time-
+                        gated lines under `env-gated`.
+  --env NAME=value      declare an environment variable while pinning —
+                        NAME=value sets it, NAME- declares it ABSENT — for a
+                        function whose result reads os.environ / os.getenv,
+                        which is otherwise CI-dependent and refused.
+                        Repeatable. The emitted test re-applies and restores
+                        the same environment (stdlib only), so the pin holds
+                        with no fixture. A variable the function reads but you
+                        do not declare stays refused (an undeclared dependency
+                        must not ride a certificate).
+  --receiver-factory MODULE:CALLABLE
+                        for a METHOD target whose class cannot be constructed
+                        with no arguments (``Basket()`` fails), name a zero-
+                        argument factory that returns a receiver — e.g.
+                        ``package.factories:make_basket``. The factory builds
+                        a FRESH receiver for every capture and witness call
+                        (so no mutable state leaks between checks), and the
+                        emitted test imports and calls it. The receiver is a
+                        separate proof axis from ``--input`` (which parses
+                        literals only and cannot carry a constructed object);
+                        a ``✓ COMPLETE`` on a method holds UNDER the receiver
+                        population this explores, not every instance state.
+                        Without it, such a target is a named ``needs-
+                        receiver`` refusal, never 0 kills.
+  --deadline SECONDS    ONE aggregate wall for the whole command (default
+                        300s; 0 = unbounded). Every phase — profiling, witness
+                        search, minimization, finalization — draws from the
+                        SAME remaining budget, so a runaway or a flooding
+                        integration target is CUT with a named diagnosis
+                        instead of hanging. A cut run is non-gateable: no `✓
+                        COMPLETE`, and decompose will not treat it as a
+                        preservation proof.
+
+WORKFLOW — converge at WRITE TIME, in isolation:
+    Write the function, converge it, THEN wire it in. Converging a function that
+    is already wired into a property / to_dict / a broadly-called path traces
+    every test reaching those callers, so its covering set balloons to suite
+    scale and the run can hang. In isolation the covering set is just this
+    function's own tests — the complete, minimal suite lands while the code is
+    still fresh in hand.

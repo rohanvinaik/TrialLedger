@@ -50,6 +50,8 @@ that context still remain `unclassified`.
 | Exact retained NIH field/quotation | source_assertions → existing entailment/interpretations | Snapshot and exact location; named structured age rules alone create fixed assertions. Other meanings remain proposed. |
 | Scoped requirement/exclusion | entailment → finite countermodel check | Proposed premises refused; scope, alternatives and qualifiers retained. A decision is conditional on the supplied encoding. |
 | Counts, partitions, summaries, subsets | signals → numeric_evidence; selected derived witness → design_bounds → eligibility_witness | Same universe and predicates explicitly bound; interval retained; lower bound alone compared to exceptions. |
+| Reported protocol failures and separate target attributions | exception_bounds.prepare/apply → service._exception_application → design_bounds observations/consequence | Exact source anchors and scopes retained; entry-only accepted attribution supplies a floor, never an informative ceiling. Conflicting budgets block dependent elimination. |
+| Explicit population/definition applications outside frames | signal_binding_gate.gate_signals → Signal.application_blockers → signals.evaluate → candidate claims and derived_witness | Same gate before every consumer; exact scope blockers and weakest support survive. Proposed bindings remain refused. Raw arithmetic stays visible. |
 | Time, assigned regimen, directional relation, adopted definition | signals → graph_evidence/dependency_evidence → grouped candidate claims | Claims against one signal checked jointly; roles, versions and missing/observed/imputed distinctions retained. No automatic joins. |
 | Rival meanings and population/definition bindings | interpretations → isolated frames → fixed answers, per-frame checks and common consequences | Proposed assumptions local only; binding applications gate admission; unresolved frames retained; family not exhaustive. |
 | Typed NSCLC evidence | coordinate_admission → coherence closure | Known/resolved inputs narrow known; interpolated/resolved inputs only the weaker layer. Pending inputs retained, never conjoined. Defaults remain defaults. |
@@ -60,6 +62,34 @@ that context still remain `unclassified`.
 | Declared expectation observations | corpus_admission → conditional_rarity | Known/resolved rows only; original states and pending rows retained. Denominator/support are explicit; no automatic join with trials. |
 
 ## Declare the warrant once, retain unsettled details
+
+Discover `design_bounds` for the runnable `exception_example` and closed source/observation/binding
+shapes. The example is invented. A recorded protocol violation retains its category and count; it needs
+a separate warranted attribution before it constrains entry eligibility. Accepted target restrictions
+intersect only for the same failure, scope and profile. Competing proposed readings remain separate.
+An empty intersection is a conflict, not zero failures. Different counts combine conservatively by maximum,
+never addition. A population-wide floor does not locate a violation in an arbitrary subgroup.
+
+`exception_checks` preserves admitted and conditional floors, a separate supplied upper bound, structural
+maximum, sources, rules and blockers. `upper: null` means unknown informative ceiling. Candidate witness
+rows cite the check and expose the count threshold. A floor above the ceiling blocks that bridge and the
+common consequence; the declared candidates are not refuted by an invalid bridge. These floors concern
+exceptions to positive participation-to-eligibility bridges. Applying them to a rejected witness retains
+the positive-budget calculation separately and reports `exception_budget_predicate_mismatch`.
+
+Attribution uncertainty blocks a cap only when it can change compatibility. A single reported failure
+with possible entry/treatment meanings cannot contradict an independently warranted cap of five under
+either reading. `possible_floor_upper` describes the largest floor this selected evidence could supply;
+it is **not** an upper bound on all exceptions. Cap zero remains attribution-dependent in that example.
+`conditional_interval_state` exposes a conflict if a proposed bridge were adopted, without admitting it.
+Irrelevant or inapplicable attributions retain their own support without weakening an independent known
+conflict's standing.
+
+Both `signals` and `design_bounds` accept explicit `bindings` and `binding_uses`; discovery provides
+`binding_example`. Application checks precede all ordinary consumers, so a wrong arm or version cannot
+reach an elimination through a derived witness or a candidate claim. Numerical compatibility does not
+establish that two populations are the same. Existing hypothetical interpretation frames retain their
+separate assumption rules. Unchanged standalone requests retain their caller-declared binding contract.
 
 Discover `coordinates` or `corpus` for exact request shapes. A standing is:
 

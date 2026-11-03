@@ -1,0 +1,9 @@
+{
+  "TrialLedger/layer2/result_semantics.py::completion_code": {
+    "disposition": "leave",
+    "func_key": "TrialLedger/layer2/result_semantics.py::completion_code",
+    "function_digest": "0ca68ed2a47b84e6",
+    "note": "One total decision assigns completion with explicit precedence: computation limit, unsupported, malformed refusal, unknown result/cause, then complete. Each branch is a different remedy; extracting branches would hide that precedence without introducing an independent policy. Public mixed-cause tests exercise the consumer separately. This is a scoped style judgment, not semantic certification of adapters.",
+    "verdict": "AMBIGUOUS"
+  }
+}

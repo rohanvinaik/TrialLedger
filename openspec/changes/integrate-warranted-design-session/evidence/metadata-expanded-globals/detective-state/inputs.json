@@ -1,0 +1,9 @@
+{
+  "TrialLedger/layer2/result_semantics.py::completion_code": [
+    "('UNDETERMINED', ['unsupported_domain'])",
+    "('UNDETERMINED', ['not_an_object'])"
+  ],
+  "TrialLedger/layer2/result_semantics.py::disposition_code": [
+    "('computed', '', 'complete')"
+  ]
+}

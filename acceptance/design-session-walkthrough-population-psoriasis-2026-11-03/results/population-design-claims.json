@@ -1,0 +1,633 @@
+{
+ "code": "complete",
+ "operation": "design_bounds",
+ "result": {
+  "basis": "Conditional on the supplied typed premises; their source meaning is not certified by this operation.",
+  "study_ref": "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2",
+  "premises": {
+   "operation": "design_bounds",
+   "study_ref": "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2",
+   "signals": [
+    {
+     "id": "Q8W-FAS-coverage",
+     "kind": "population",
+     "data": {
+      "universe": "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2:Q8W-started",
+      "alignment": "confirmed",
+      "total": 152,
+      "parent_ref": "Q8W-started",
+      "subset_relation": "confirmed",
+      "subset": {
+       "ref": "Q8W-FAS",
+       "universe": "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2:Q8W-started",
+       "lower": 151,
+       "upper": 151
+      }
+     },
+     "support": [
+      {
+       "id": "reported-arm-counts",
+       "status": "known",
+       "resolution": "resolved",
+       "basis": [
+        "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones/0/achievements/1",
+        "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones/1"
+       ]
+      }
+     ],
+     "bindings": {
+      "Q8W-started": {
+       "class": "Literal",
+       "evidence": [],
+       "polarity": "positive",
+       "predicate": {
+        "class": "Predicate",
+        "key": "Q8W_started",
+        "kind": "demographic"
+       },
+       "qualifiers": {
+        "class": "Always"
+       },
+       "subject": {
+        "class": "Subject",
+        "kind": "participant",
+        "referent": ""
+       },
+       "time": null,
+       "value": {
+        "class": "Value",
+        "comparison": "eq",
+        "inclusivity": "unspecified",
+        "kind": "boolean",
+        "members": [],
+        "number": null,
+        "unit": "",
+        "upper": null
+       }
+      },
+      "Q8W-FAS": {
+       "class": "Literal",
+       "evidence": [],
+       "polarity": "positive",
+       "predicate": {
+        "class": "Predicate",
+        "key": "Q8W_in_FAS",
+        "kind": "demographic"
+       },
+       "qualifiers": {
+        "class": "Always"
+       },
+       "subject": {
+        "class": "Subject",
+        "kind": "participant",
+        "referent": ""
+       },
+       "time": null,
+       "value": {
+        "class": "Value",
+        "comparison": "eq",
+        "inclusivity": "unspecified",
+        "kind": "boolean",
+        "members": [],
+        "number": null,
+        "unit": "",
+        "upper": null
+       }
+      }
+     }
+    }
+   ],
+   "bindings": [
+    {
+     "id": "Q8W-FAS-subset",
+     "kind": "population",
+     "relation": "subset_of",
+     "subjects": [
+      "Q8W-started",
+      "Q8W-FAS"
+     ],
+     "scope": {
+      "study": "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2",
+      "version": "ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2",
+      "population": "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2:Q8W-started",
+      "arm": "guselkumab-Q8W",
+      "time": "randomization"
+     },
+     "sources": [
+      {
+       "ref": "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2",
+       "version": "ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2",
+       "address": "/resultsSection/participantFlowModule/periods/0/milestones",
+       "digest": "ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2"
+      }
+     ],
+     "status": "interpolated",
+     "resolution": "resolved",
+     "basis": [
+      "investigation:explicit-hypothetical-within-arm-subset-not-user-confirmed"
+     ]
+    }
+   ],
+   "binding_uses": [
+    {
+     "binding": "Q8W-FAS-subset",
+     "signal": "Q8W-FAS-coverage",
+     "scope": {
+      "study": "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2",
+      "version": "ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2",
+      "population": "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2:Q8W-started",
+      "arm": "guselkumab-Q8W",
+      "time": "randomization"
+     }
+    }
+   ],
+   "candidates": [
+    {
+     "id": "all-started-in-FAS",
+     "assertions": [],
+     "signal_claims": [
+      {
+       "signal": "Q8W-FAS-coverage",
+       "claim": {
+        "count": "outside",
+        "lower": null,
+        "upper": 0
+       }
+      }
+     ]
+    },
+    {
+     "id": "one-outside-FAS",
+     "assertions": [],
+     "signal_claims": [
+      {
+       "signal": "Q8W-FAS-coverage",
+       "claim": {
+        "count": "outside",
+        "lower": 1,
+        "upper": 1
+       }
+      }
+     ]
+    }
+   ],
+   "observations": [],
+   "query": {
+    "class": "Literal",
+    "evidence": [],
+    "polarity": "positive",
+    "predicate": {
+     "class": "Predicate",
+     "key": "Q8W_in_FAS",
+     "kind": "demographic"
+    },
+    "qualifiers": {
+     "class": "Always"
+    },
+    "subject": {
+     "class": "Subject",
+     "kind": "participant",
+     "referent": ""
+    },
+    "time": null,
+    "value": {
+     "class": "Value",
+     "comparison": "eq",
+     "inclusivity": "unspecified",
+     "kind": "boolean",
+     "members": [],
+     "number": null,
+     "unit": "",
+     "upper": null
+    }
+   }
+  },
+  "candidates": [
+   {
+    "id": "all-started-in-FAS",
+    "state": "ruled_out",
+    "observations": [],
+    "query_decision": {
+     "result": "UNDETERMINED",
+     "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"Q8W_in_FAS\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+     "status": null,
+     "proof": [],
+     "blockers": [
+      "no_constraint_mentions_query"
+     ]
+    },
+    "signal_checks": [
+     {
+      "id": "Q8W-FAS-coverage",
+      "kind": "population",
+      "code": "conflict",
+      "calculation_code": "conflict",
+      "value": {
+       "universe": "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2:Q8W-started",
+       "total": 152,
+       "counts": [],
+       "witnesses": []
+      },
+      "rule": "numeric.population:1",
+      "status": "interpolated",
+      "basis": [
+       "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones/0/achievements/1",
+       "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones/1",
+       "investigation:explicit-hypothetical-within-arm-subset-not-user-confirmed",
+       "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2@ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones"
+      ],
+      "support": [
+       {
+        "id": "reported-arm-counts",
+        "status": "known",
+        "resolution": "resolved",
+        "basis": [
+         "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones/0/achievements/1",
+         "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones/1"
+        ]
+       },
+       {
+        "id": "binding-use:Q8W-FAS-subset",
+        "status": "interpolated",
+        "resolution": "resolved",
+        "basis": [
+         "investigation:explicit-hypothetical-within-arm-subset-not-user-confirmed",
+         "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2@ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones"
+        ]
+       }
+      ],
+      "blockers": [
+       "inconsistent_population_total"
+      ]
+     }
+    ],
+    "elimination_status": "interpolated"
+   },
+   {
+    "id": "one-outside-FAS",
+    "state": "not_ruled_out",
+    "observations": [],
+    "query_decision": {
+     "result": "UNDETERMINED",
+     "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"Q8W_in_FAS\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+     "status": null,
+     "proof": [],
+     "blockers": [
+      "no_constraint_mentions_query"
+     ]
+    },
+    "signal_checks": [
+     {
+      "id": "Q8W-FAS-coverage",
+      "kind": "population",
+      "code": "bounded",
+      "calculation_code": "bounded",
+      "value": {
+       "universe": "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2:Q8W-started",
+       "total": 152,
+       "counts": [
+        {
+         "id": "Q8W-started",
+         "lower": 152,
+         "upper": 152
+        },
+        {
+         "id": "Q8W-FAS",
+         "lower": 151,
+         "upper": 151
+        },
+        {
+         "id": "outside",
+         "lower": 1,
+         "upper": 1
+        }
+       ],
+       "witnesses": [
+        {
+         "id": "Q8W-started",
+         "lower": 152,
+         "upper": 152,
+         "expression": {
+          "kind": "all_of",
+          "refs": [
+           "Q8W-started"
+          ]
+         }
+        },
+        {
+         "id": "Q8W-FAS",
+         "lower": 151,
+         "upper": 151,
+         "expression": {
+          "kind": "all_of",
+          "refs": [
+           "Q8W-FAS"
+          ]
+         }
+        },
+        {
+         "id": "outside",
+         "lower": 1,
+         "upper": 1,
+         "expression": {
+          "kind": "difference",
+          "refs": [
+           "Q8W-started",
+           "Q8W-FAS"
+          ]
+         }
+        }
+       ]
+      },
+      "rule": "numeric.population:1",
+      "status": "interpolated",
+      "basis": [
+       "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones/0/achievements/1",
+       "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones/1",
+       "investigation:explicit-hypothetical-within-arm-subset-not-user-confirmed",
+       "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2@ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones"
+      ],
+      "support": [
+       {
+        "id": "reported-arm-counts",
+        "status": "known",
+        "resolution": "resolved",
+        "basis": [
+         "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones/0/achievements/1",
+         "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones/1"
+        ]
+       },
+       {
+        "id": "binding-use:Q8W-FAS-subset",
+        "status": "interpolated",
+        "resolution": "resolved",
+        "basis": [
+         "investigation:explicit-hypothetical-within-arm-subset-not-user-confirmed",
+         "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2@ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones"
+        ]
+       }
+      ],
+      "blockers": []
+     }
+    ]
+   }
+  ],
+  "remaining": [
+   "one-outside-FAS"
+  ],
+  "consequence": {
+   "result": "UNDETERMINED",
+   "status": null,
+   "basis": "All remaining declared candidate designs; includes the support of eliminations."
+  },
+  "signals": [
+   {
+    "id": "Q8W-FAS-coverage",
+    "kind": "population",
+    "code": "bounded",
+    "calculation_code": "bounded",
+    "value": {
+     "universe": "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2:Q8W-started",
+     "total": 152,
+     "counts": [
+      {
+       "id": "Q8W-started",
+       "lower": 152,
+       "upper": 152
+      },
+      {
+       "id": "Q8W-FAS",
+       "lower": 151,
+       "upper": 151
+      },
+      {
+       "id": "outside",
+       "lower": 1,
+       "upper": 1
+      }
+     ],
+     "witnesses": [
+      {
+       "id": "Q8W-started",
+       "lower": 152,
+       "upper": 152,
+       "expression": {
+        "kind": "all_of",
+        "refs": [
+         "Q8W-started"
+        ]
+       }
+      },
+      {
+       "id": "Q8W-FAS",
+       "lower": 151,
+       "upper": 151,
+       "expression": {
+        "kind": "all_of",
+        "refs": [
+         "Q8W-FAS"
+        ]
+       }
+      },
+      {
+       "id": "outside",
+       "lower": 1,
+       "upper": 1,
+       "expression": {
+        "kind": "difference",
+        "refs": [
+         "Q8W-started",
+         "Q8W-FAS"
+        ]
+       }
+      }
+     ]
+    },
+    "rule": "numeric.population:1",
+    "status": "interpolated",
+    "basis": [
+     "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones/0/achievements/1",
+     "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones/1",
+     "investigation:explicit-hypothetical-within-arm-subset-not-user-confirmed",
+     "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2@ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones"
+    ],
+    "support": [
+     {
+      "id": "reported-arm-counts",
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones/0/achievements/1",
+       "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones/1"
+      ]
+     },
+     {
+      "id": "binding-use:Q8W-FAS-subset",
+      "status": "interpolated",
+      "resolution": "resolved",
+      "basis": [
+       "investigation:explicit-hypothetical-within-arm-subset-not-user-confirmed",
+       "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2@ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones"
+      ]
+     }
+    ],
+    "blockers": []
+   }
+  ],
+  "binding_checks": [
+   {
+    "binding": "Q8W-FAS-subset",
+    "signal": "Q8W-FAS-coverage",
+    "code": "conditional",
+    "status": "interpolated",
+    "basis": [
+     "investigation:explicit-hypothetical-within-arm-subset-not-user-confirmed",
+     "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2@ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones"
+    ],
+    "blockers": [],
+    "rule": "interpretation.binding-use:1",
+    "checked_code": "conditional",
+    "support_id": "binding-use:Q8W-FAS-subset",
+    "declaration": {
+     "id": "Q8W-FAS-subset",
+     "kind": "population",
+     "relation": "subset_of",
+     "subjects": [
+      "Q8W-started",
+      "Q8W-FAS"
+     ],
+     "scope": {
+      "arm": "guselkumab-Q8W",
+      "population": "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2:Q8W-started",
+      "study": "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2",
+      "time": "randomization",
+      "version": "ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2"
+     },
+     "sources": [
+      {
+       "ref": "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2",
+       "version": "ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2",
+       "address": "/resultsSection/participantFlowModule/periods/0/milestones",
+       "digest": "ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2"
+      }
+     ],
+     "status": "interpolated",
+     "resolution": "resolved",
+     "basis": [
+      "investigation:explicit-hypothetical-within-arm-subset-not-user-confirmed"
+     ]
+    }
+   }
+  ],
+  "limits": "Declared candidate family only; source meaning and eligibility bridges are not certified. No automatic table interpretation or source mutation."
+ },
+ "problems": [],
+ "metadata": {
+  "version": 1,
+  "kind": "reasoning",
+  "findings": [
+   {
+    "path": "/result/candidates/0",
+    "kind": "candidate",
+    "logical_result": "ruled_out",
+    "standing": "interpolated",
+    "completion": "complete",
+    "causes": [],
+    "disposition": "conditional"
+   },
+   {
+    "path": "/result/candidates/0/query_decision",
+    "kind": "logical",
+    "logical_result": "UNDETERMINED",
+    "standing": null,
+    "completion": "complete",
+    "causes": [
+     {
+      "code": "no_constraint_mentions_query",
+      "kind": "coverage"
+     }
+    ],
+    "disposition": "open"
+   },
+   {
+    "path": "/result/candidates/0/signal_checks/0",
+    "kind": "signal",
+    "logical_result": "conflict",
+    "standing": "interpolated",
+    "completion": "complete",
+    "causes": [
+     {
+      "code": "inconsistent_population_total",
+      "kind": "conflict"
+     }
+    ],
+    "disposition": "conflict"
+   },
+   {
+    "path": "/result/candidates/1",
+    "kind": "candidate",
+    "logical_result": "not_ruled_out",
+    "standing": null,
+    "completion": "complete",
+    "causes": [],
+    "disposition": "open"
+   },
+   {
+    "path": "/result/candidates/1/query_decision",
+    "kind": "logical",
+    "logical_result": "UNDETERMINED",
+    "standing": null,
+    "completion": "complete",
+    "causes": [
+     {
+      "code": "no_constraint_mentions_query",
+      "kind": "coverage"
+     }
+    ],
+    "disposition": "open"
+   },
+   {
+    "path": "/result/candidates/1/signal_checks/0",
+    "kind": "signal",
+    "logical_result": "bounded",
+    "standing": "interpolated",
+    "completion": "complete",
+    "causes": [],
+    "disposition": "conditional"
+   },
+   {
+    "path": "/result/consequence",
+    "kind": "candidate_family_consequence",
+    "logical_result": "UNDETERMINED",
+    "standing": null,
+    "completion": "complete",
+    "causes": [
+     {
+      "code": "no_constraint_mentions_query",
+      "kind": "coverage"
+     }
+    ],
+    "disposition": "open"
+   },
+   {
+    "path": "/result/signals/0",
+    "kind": "signal",
+    "logical_result": "bounded",
+    "standing": "interpolated",
+    "completion": "complete",
+    "causes": [],
+    "disposition": "conditional"
+   },
+   {
+    "path": "/result/binding_checks/0",
+    "kind": "binding",
+    "logical_result": "conditional",
+    "standing": "interpolated",
+    "completion": "complete",
+    "causes": [],
+    "disposition": "conditional",
+    "support_path": "/result/binding_checks/0"
+   }
+  ]
+ }
+}

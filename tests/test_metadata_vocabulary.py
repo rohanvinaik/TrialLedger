@@ -40,6 +40,7 @@ def _guide_requests():
     assert description["code"] == "complete"
     full = description["result"]
     cases = [("examples/" + name, request) for name, request in full["examples"].items()]
+    cases.extend((name, full[name]) for name in ("exception_example", "binding_example"))
     cases.extend(
         ("capability_examples/" + name, example["request"])
         for name, example in full["capability_examples"].items()
@@ -53,6 +54,9 @@ def _guide_requests():
         focused = run({"operation": "describe", "view": operation})
         assert focused["code"] == "complete"
         cases.append(("focused/" + operation, focused["result"]["example"]))
+        for name in ("exception_example", "binding_example"):
+            if name in focused["result"]:
+                cases.append(("focused/" + operation + "/" + name, focused["result"][name]))
     return [pytest.param(label, request, id=label) for label, request in cases]
 
 

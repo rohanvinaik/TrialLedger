@@ -1,0 +1,47 @@
+  … cause_kind: tracing 11 function-routed tests
+  … cause_kind: baseline traced · 11 tests · 0.0s
+  … cause_kind: 1/18 mutants · 61.1/s · ETA estimating… (heartbeat)
+  … cause_kind: 18/18 mutants · 342.3/s · done in 0.1s
+  ▸ pass 0: 1 value-survivor(s) — synthesizing killing tests…
+  ▸ pass 0: +2 new killing test(s) written [test_TrialLedger_layer2_result_semantics_cause_kind_a38b8f3a25_synth.py]
+  … cause_kind: tracing 13 function-routed tests
+  … cause_kind: baseline traced · 13 tests · 0.0s
+  … cause_kind: 18/18 mutants · 333.0/s · done in 0.1s
+  ▸ pass 1: 1 survivor(s) — no progress, at floor
+  ▸ witness pass: searching richer inputs for a distinguishing kill…
+  ▸ finalizing — re-profiling the full mutant universe against the written suite…
+  … cause_kind: tracing 13 function-routed tests
+  … cause_kind: baseline traced · 13 tests · 0.0s
+  … cause_kind: 18/18 mutants · 356.8/s · done in 0.1s
+  ▸ minimizing — dropped 1 redundant test(s) our own cover flagged
+  … cause_kind: tracing 12 function-routed tests
+  … cause_kind: baseline traced · 12 tests · 0.0s
+  … cause_kind: 18/18 mutants · 362.6/s · done in 0.0s
+  ▸ 1 survivor(s) remain — classifying (killable / equivalent / needs-input)…
+  ▸ verifying reproducibility — fresh isolated observation of the function's proof basis…
+  … cause_kind: tracing 12 function-routed tests
+  … cause_kind: baseline traced · 12 tests · 0.0s
+  … cause_kind: tracing 17 function-routed tests
+  … cause_kind: baseline traced · 17 tests · 0.1s
+  ▸ reproducibility confirmed — the certificate rests on the isolated observation
+──────────────────────────────────────────────────────────────────────────────
+TrialLedger/layer2/result_semantics.py::cause_kind — converge · 18 behaviours · 17 pinned · 1 crash-only
+
+  ✓ wrote              1 test(s) → tests/detective/test_TrialLedger_layer2_result_semantics_cause_kind_a38b8f3a25_synth.py
+  · crash-only-equiv   1 — detected by crash; no value pins them
+  · not consulted      85 collected test(s) have no static path to this function — not traced (a missed dynamic reacher costs a redundant generated test, never a certificate)
+  · full report        .detective/reports/converge_cause_kind.txt
+
+DONE:  every killable behaviour Detective found is pinned.
+       What remains differs from your function only by a CRASH: an input
+       distinguishes each (the mutant raises where your function returns), so
+       none is an equivalence candidate and nothing is offered to `flag` — no
+       value assertion can pin a raise. They are detected, not equivalent.
+
+       NEXT — the style pass (behaviour is pinned; this is the self-evident next move):
+         detective plan 'TrialLedger/layer2/result_semantics.py'
+         detective decompose 'TrialLedger/layer2/result_semantics.py::cause_kind' --apply --two-sign
+         detective survey 'TrialLedger/layer2/result_semantics.py'
+         (efficiency: verify-rewrite --budget against a receipt from policy 9+neg.f5a15364c11d)
+
+FINAL TrialLedger/layer2/result_semantics.py::cause_kind: ✓ COMPLETE (operator universe · modulo 1 crash-only value gap) · 18/18 killed · 1 test(s) → tests/detective/test_TrialLedger_layer2_result_semantics_cause_kind_a38b8f3a25_synth.py · policy 9+neg.f5a15364c11d

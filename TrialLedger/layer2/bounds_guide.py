@@ -17,6 +17,9 @@ INPUTS = {
             "context": "context for the consequence query; default open cohort/phase/arm",
             "bound": "integer 1..65536 per entailment decision; default 65536",
             "signals": "optional array of typed, source-supported partial-evidence signal objects",
+            "exception_evidence": "optional source-bound exceptions with separate meaning bindings",
+            "bindings": "optional interpretation_binding declarations; scope-gated before signal consumers",
+            "binding_uses": "optional interpretation_binding_use applications to signals",
         },
     },
     "candidate": {
@@ -60,6 +63,10 @@ INPUTS = {
             "resolution": "resolved, partially_resolved, unresolved or conflicting",
             "max_exceptions": "integer 0..denominator; maximum participants not serving as witnesses",
             "basis": "nonempty references warranting population, measurement, time and exception bound",
+            "exception_evidence": (
+                "optional bindings/scope/extent/profile reference into exception_evidence; "
+                "permits null max_exceptions (unknown ceiling)"
+            ),
         },
     },
 }
@@ -229,4 +236,16 @@ def extend(description: dict) -> None:
             "and their weakest standing reaches common consequences."
         ),
         "solver_blockers": description["answer_guide"]["entailment"]["blockers"],
+        "optional_fields": {
+            "exception_checks": "Source counts, target possibilities, floors, ceiling, scope and warrants",
+            "binding_checks": "Population/definition application gates shared by all signal consumers",
+        },
+        "exceptions": (
+            "Exact counts and categories do not establish entry-ineligibility. Supply separate scoped "
+            "attributions; proposed rivals remain conditional. Same-failure accepted targets intersect, "
+            "different counts never sum. Global floors do not locate subgroup exceptions. Unknown ceiling "
+            "remains null; a floor above a ceiling blocks the bridge before elimination. Entry-ineligibility "
+            "floors apply to positive enrollment bridges; rejected witnesses have a different budget. "
+            "exception_example is an invented runnable demonstration; use its source shapes, never its facts."
+        ),
     }

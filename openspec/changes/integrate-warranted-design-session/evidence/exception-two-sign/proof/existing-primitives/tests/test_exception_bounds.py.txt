@@ -1,0 +1,442 @@
+"""Authored positive and MUST-NOT intents: documentary floors never become clinical ceilings.
+
+Exact source selections locate values; accepted meaning, same scope and the caller's
+ceiling are separate premises. In particular, global deviations do not prove local ones.
+"""
+
+import copy
+import dataclasses
+import json
+
+import pytest
+
+from TrialLedger.layer2 import assertions as a
+from TrialLedger.layer2.exception_bounds import (
+    apply,
+    extent_transfer,
+    interval_state,
+    prepare,
+)
+from TrialLedger.layer2.source_evidence import snapshot
+
+
+def profile(key="PS2"):
+    return json.loads(
+        a.canonical(
+            a.Literal(
+                a.Subject("participant"),
+                a.Predicate("defined_term", key),
+                a.Value("boolean", "eq"),
+            )
+        )
+    )
+
+
+@pytest.fixture
+def evidence():
+    study = {
+        "protocolSection": {"identificationModule": {"nctId": "NCT00322452"}},
+        "deviations": {
+            "count": "1",
+            "category": "protocol deviation",
+            "denominator": "100",
+        },
+        "documentary_context": {"group": "local-G1", "period": "enrollment"},
+    }
+    identity = snapshot(study)
+    scope = {
+        "study": identity["study_ref"],
+        "population": "randomized",
+        "arm": "all",
+        "time": "enrollment",
+        "version": identity["digest"],
+    }
+    raw = {
+        "sources": [{"id": "registry", "study": study, "digest": identity["digest"]}],
+        "observations": [
+            {
+                "id": "reported",
+                "source": "registry",
+                "scope": copy.deepcopy(scope),
+                "context": [
+                    {"id": name, "address": "/documentary_context/" + name, "expected": value}
+                    for name, value in study["documentary_context"].items()
+                ],
+                **{
+                    key: {"address": "/deviations/" + key, "expected": value}
+                    for key, value in study["deviations"].items()
+                },
+            }
+        ],
+        "bindings": [
+            {
+                "id": "meaning",
+                "observation": "reported",
+                "scope": copy.deepcopy(scope),
+                "extent": "population",
+                "profile": None,
+                "status": "known",
+                "resolution": "resolved",
+                "basis": [
+                    "Accepted: distinct randomized participants with eligibility deviations at enrollment."
+                ],
+                "rule": {"id": "person-confirmed-meaning", "version": "1"},
+            }
+        ],
+    }
+    reference = {
+        "bindings": ["meaning"],
+        "scope": copy.deepcopy(scope),
+        "extent": "population",
+        "profile": None,
+    }
+    return raw, reference, identity["study_ref"]
+
+
+def test_interval_positive_lower_and_zero_ceiling_conflict():
+    assert interval_state(1, 0, 100) == "ceiling_conflict"
+
+
+def test_interval_must_not_make_unknown_ceiling_zero():
+    assert interval_state(1, None, 100) == "unknown_ceiling"
+
+
+def test_interval_structural_maximum_is_independent_of_informative_ceiling():
+    assert interval_state(101, None, 100) == "structural_maximum_conflict"
+    assert interval_state(101, 200, 100) == "structural_maximum_conflict"
+
+
+def test_interval_boundary_is_consistent_and_must_not_conflict_on_equality():
+    assert interval_state(1, 1, 100) == "consistent"
+    assert interval_state(0, 0, 0) == "consistent"
+
+
+def test_extent_population_floor_transfers_to_population():
+    assert extent_transfer("population", "population", False) == "population_floor"
+
+
+def test_extent_must_not_transfer_global_floor_into_profile():
+    assert extent_transfer("population", "profile", True) == "no_local_floor"
+    assert extent_transfer("population", "profile", False) == "no_local_floor"
+
+
+def test_extent_profile_floor_transfers_to_same_profile_and_global():
+    assert extent_transfer("profile", "profile", True) == "profile_floor"
+    assert extent_transfer("profile", "population", False) == "population_floor"
+
+
+def test_extent_must_not_transfer_between_different_profiles():
+    assert extent_transfer("profile", "profile", False) == "profile_mismatch"
+
+
+def test_known_global_floor_conflicts_with_global_zero_cap(evidence):
+    raw, ref, study = evidence
+    result = apply(prepare(raw, study), ref, "randomized", 100, profile(), 0, "known", "resolved")
+    assert result["check"]["code"] == "conflict"
+    assert result["check"]["lower"] == 1
+    assert result["check"]["upper"] == 0
+    assert result["check"]["structural_maximum"] == 100
+    assert result["status"] == "known"
+
+
+def test_global_floor_must_not_conflict_with_profile_zero_cap(evidence):
+    raw, ref, study = evidence
+    ref.update(extent="profile", profile=profile())
+    result = apply(prepare(raw, study), ref, "randomized", 100, profile(), 0, "known", "resolved")
+    assert result["check"]["code"] == "consistent"
+    assert result["check"]["lower"] == 0
+    assert result["check"]["contributions"][0]["transfer"] == "no_local_floor"
+    assert result["blockers"] == []
+
+
+def test_profile_floor_can_conflict_with_same_scope_global_cap(evidence):
+    raw, ref, study = evidence
+    raw["bindings"][0].update(extent="profile", profile=profile())
+    result = apply(prepare(raw, study), ref, "randomized", 100, profile(), 0, "known", "resolved")
+    assert result["check"]["code"] == "conflict"
+    assert result["check"]["contributions"][0]["transfer"] == "population_floor"
+
+
+def test_profile_floor_same_profile_is_useful(evidence):
+    raw, ref, study = evidence
+    raw["bindings"][0].update(extent="profile", profile=profile())
+    ref.update(extent="profile", profile=profile())
+    result = apply(prepare(raw, study), ref, "randomized", 100, profile(), 0, "known", "resolved")
+    assert result["check"]["code"] == "conflict"
+
+
+def test_different_profile_must_not_supply_a_local_floor(evidence):
+    raw, ref, study = evidence
+    raw["bindings"][0].update(extent="profile", profile=profile("PS3"))
+    ref.update(extent="profile", profile=profile())
+    result = apply(prepare(raw, study), ref, "randomized", 100, profile(), 0, "known", "resolved")
+    assert result["check"]["code"] == "unresolved"
+    assert result["check"]["lower"] == 0
+    assert "profile_mismatch:meaning" in result["blockers"]
+
+
+@pytest.mark.parametrize(
+    "status,resolution,blocker",
+    [
+        ("proposed", "resolved", "binding_proposed"),
+        ("known", "unresolved", "binding_unresolved"),
+        ("interpolated", "conflicting", "binding_unresolved"),
+    ],
+)
+def test_unaccepted_meaning_must_not_eliminate_but_keeps_conditional_arithmetic(
+    evidence, status, resolution, blocker
+):
+    raw, ref, study = evidence
+    raw["bindings"][0].update(status=status, resolution=resolution)
+    result = apply(prepare(raw, study), ref, "randomized", 100, profile(), 0, "known", "resolved")
+    assert result["check"]["code"] == "unresolved"
+    assert result["check"]["lower"] == 0
+    assert result["check"]["conditional_lower"] == 1
+    assert blocker + ":meaning" in result["blockers"]
+
+
+def test_interpolated_resolved_meaning_contributes_without_promotion(evidence):
+    raw, ref, study = evidence
+    raw["bindings"][0]["status"] = "interpolated"
+    result = apply(prepare(raw, study), ref, "randomized", 100, profile(), 0, "known", "resolved")
+    assert result["check"]["code"] == "conflict"
+    assert result["status"] == "interpolated"
+
+
+@pytest.mark.parametrize(
+    "status,resolution,blocker",
+    [
+        ("proposed", "resolved", "bridge_proposed"),
+        ("known", "unresolved", "bridge_unresolved"),
+    ],
+)
+def test_bridge_admission_is_independent_of_documentary_location(evidence, status, resolution, blocker):
+    raw, ref, study = evidence
+    result = apply(prepare(raw, study), ref, "randomized", 100, profile(), 0, status, resolution)
+    assert result["check"]["code"] == "unresolved"
+    assert blocker + ":meaning" in result["blockers"]
+
+
+def test_multiple_floors_must_be_maximum_never_sum(evidence):
+    raw, ref, study = evidence
+    second = copy.deepcopy(raw["bindings"][0])
+    second["id"] = "second-meaning"
+    raw["bindings"].append(second)
+    ref["bindings"].append("second-meaning")
+    result = apply(prepare(raw, study), ref, "randomized", 100, profile(), 1, "known", "resolved")
+    assert result["check"]["code"] == "consistent"
+    assert result["check"]["lower"] == 1
+    assert len(result["check"]["contributions"]) == 2
+
+
+def test_count_must_not_become_informative_upper_bound(evidence):
+    raw, ref, study = evidence
+    result = apply(prepare(raw, study), ref, "randomized", 100, profile(), 80, "known", "resolved")
+    assert result["check"]["upper"] == 80
+    assert result["check"]["structural_maximum"] == 100
+    assert result["effective_cap"] == 80
+
+
+@pytest.mark.parametrize(
+    "target,field,value",
+    [
+        ("observation", "arm", "other"),
+        ("binding", "time", "followup"),
+        ("reference", "version", "other"),
+        ("observation", "study", "abstract-trial-label"),
+    ],
+)
+def test_scope_mismatch_is_named_unresolved_not_clinical_refutation(evidence, target, field, value):
+    raw, ref, study = evidence
+    row = (
+        raw["observations"][0]
+        if target == "observation"
+        else raw["bindings"][0]
+        if target == "binding"
+        else ref
+    )
+    row["scope"][field] = value
+    result = apply(prepare(raw, study), ref, "randomized", 100, profile(), 0, "known", "resolved")
+    assert result["check"]["code"] == "unresolved"
+    assert result["check"]["lower"] == 0
+    assert result["blockers"]
+
+
+def test_wrong_top_study_identity_must_not_rename_real_record(evidence):
+    raw, ref, _ = evidence
+    result = apply(prepare(raw, "IPASS"), ref, "randomized", 100, profile(), 0, "known", "resolved")
+    assert result["check"]["code"] == "unresolved"
+    assert "source_study_mismatch:meaning" in result["blockers"]
+
+
+@pytest.mark.parametrize(
+    "population,denominator,blocker",
+    [
+        ("safety", 100, "population_mismatch"),
+        ("randomized", 99, "denominator_mismatch"),
+    ],
+)
+def test_equal_names_or_counts_must_not_join_different_populations(
+    evidence, population, denominator, blocker
+):
+    raw, ref, study = evidence
+    result = apply(
+        prepare(raw, study),
+        ref,
+        population,
+        denominator,
+        profile(),
+        0,
+        "known",
+        "resolved",
+    )
+    assert result["check"]["code"] == "unresolved"
+    assert blocker + ":meaning" in result["blockers"]
+
+
+def test_source_values_and_meaning_evidence_are_retained_independently(evidence):
+    raw, ref, study = evidence
+    result = apply(prepare(raw, study), ref, "randomized", 100, profile(), 1, "known", "resolved")
+    contribution = result["check"]["contributions"][0]
+    assert [row["value"] for row in contribution["located"]] == [
+        "1",
+        "protocol deviation",
+        "100",
+        "local-G1",
+        "enrollment",
+    ]
+    assert all(row["code"] == "located" for row in contribution["located"])
+    assert contribution["meaning_rule"] == raw["bindings"][0]["rule"]
+    assert raw["bindings"][0]["basis"][0] in result["basis"]
+    assert len(result["basis"]) == 6
+
+
+def test_prepared_bundle_and_returned_values_must_not_alias_inputs(evidence):
+    raw, ref, study = evidence
+    bundle = prepare(raw, study)
+    raw["bindings"][0]["basis"].append("later")
+    raw["observations"][0]["scope"]["population"] = "changed"
+    raw["sources"][0]["study"]["deviations"]["count"] = "99"
+    first = apply(bundle, ref, "randomized", 100, profile(), 1, "known", "resolved")
+    first["check"]["contributions"][0]["located"][0]["value"] = "changed"
+    second = apply(bundle, ref, "randomized", 100, profile(), 1, "known", "resolved")
+    assert second["check"]["lower"] == 1
+    assert "later" not in second["basis"]
+    assert second["check"]["contributions"][0]["located"][0]["value"] == "1"
+    with pytest.raises(dataclasses.FrozenInstanceError):
+        bundle.study_ref = "changed"
+
+
+@pytest.mark.parametrize("role", ["count", "category", "denominator"])
+def test_every_documentary_selection_must_match_exact_retained_value(evidence, role):
+    raw, _, study = evidence
+    raw["observations"][0][role]["expected"] = "stale"
+    with pytest.raises(ValueError, match="stale_value"):
+        prepare(raw, study)
+
+
+def test_stale_supplied_digest_must_be_refused_before_meaning(evidence):
+    raw, _, study = evidence
+    raw["sources"][0]["digest"] = "0" * 64
+    with pytest.raises(ValueError, match="stale_digest"):
+        prepare(raw, study)
+
+
+@pytest.mark.parametrize("target", ["raw", "source", "observation", "binding", "selection", "scope", "rule"])
+def test_input_schema_must_be_closed(evidence, target):
+    raw, _, study = evidence
+    rows = {
+        "raw": raw,
+        "source": raw["sources"][0],
+        "observation": raw["observations"][0],
+        "binding": raw["bindings"][0],
+        "selection": raw["observations"][0]["count"],
+        "scope": raw["observations"][0]["scope"],
+        "rule": raw["bindings"][0]["rule"],
+    }
+    rows[target]["invented"] = True
+    with pytest.raises(ValueError):
+        prepare(raw, study)
+
+
+@pytest.mark.parametrize("value", [True, False, 1.5, None, "1.0", " 1", "1,000"])
+def test_count_must_not_coerce_invalid_integer(evidence, value):
+    raw, _, study = evidence
+    raw["sources"][0]["study"]["deviations"]["count"] = value
+    raw["sources"][0]["digest"] = snapshot(raw["sources"][0]["study"])["digest"]
+    raw["observations"][0]["count"]["expected"] = value
+    with pytest.raises(ValueError):
+        prepare(raw, study)
+
+
+def test_reference_profile_must_equal_observation_body(evidence):
+    raw, ref, study = evidence
+    ref.update(extent="profile", profile=profile("PS3"))
+    with pytest.raises(ValueError, match="profile_body_mismatch"):
+        apply(
+            prepare(raw, study),
+            ref,
+            "randomized",
+            100,
+            profile(),
+            0,
+            "known",
+            "resolved",
+        )
+
+
+def test_unknown_informative_ceiling_must_not_become_zero_or_known_population_upper(evidence):
+    raw, ref, study = evidence
+    result = apply(prepare(raw, study), ref, "randomized", 100, profile(), None, "known", "resolved")
+    assert result["check"]["code"] == "unresolved"
+    assert result["check"]["lower"] == 1
+    assert result["check"]["upper"] is None
+    assert result["check"]["structural_maximum"] == 100
+    assert result["effective_cap"] == 100
+    assert result["check"]["interval_state"] == "unknown_ceiling"
+    assert result["blockers"] == ["exception_upper_unknown"]
+
+
+def test_independent_accepted_conflict_is_not_erased_by_another_unresolved_binding(evidence):
+    raw, ref, study = evidence
+    other = copy.deepcopy(raw["bindings"][0])
+    other.update(id="pending", status="proposed")
+    raw["bindings"].append(other)
+    ref["bindings"].append("pending")
+    result = apply(prepare(raw, study), ref, "randomized", 100, profile(), 0, "known", "resolved")
+    assert result["check"]["code"] == "conflict"
+    assert result["check"]["lower"] == 1
+    assert "binding_proposed:pending" in result["blockers"]
+
+
+def test_documentary_floor_above_selected_population_maximum_is_not_silently_discarded(evidence):
+    raw, ref, study = evidence
+    raw["sources"][0]["study"]["deviations"]["count"] = "101"
+    identity = snapshot(raw["sources"][0]["study"])
+    raw["sources"][0]["digest"] = identity["digest"]
+    raw["observations"][0]["count"]["expected"] = "101"
+    for row in (raw["observations"][0], raw["bindings"][0], ref):
+        row["scope"].update(study=identity["study_ref"], version=identity["digest"])
+    result = apply(
+        prepare(raw, identity["study_ref"]), ref, "randomized", 100, profile(), None, "known", "resolved"
+    )
+    assert result["check"]["code"] == "conflict"
+    assert result["check"]["interval_state"] == "structural_maximum_conflict"
+    assert result["check"]["upper"] is None
+    assert "exception_upper_unknown" in result["blockers"]
+
+
+@pytest.mark.parametrize(
+    "context",
+    [
+        [],
+        [{"id": "count", "address": "/documentary_context/group", "expected": "local-G1"}],
+        [{"id": "group", "address": "/documentary_context/group", "expected": "wrong"}],
+        [{"id": "group", "address": "/documentary_context/group", "expected": "local-G1"}] * 2,
+    ],
+)
+def test_documentary_context_must_be_exact_nonempty_and_unambiguous(evidence, context):
+    raw, _, study = evidence
+    raw["observations"][0]["context"] = context
+    with pytest.raises(ValueError):
+        prepare(raw, study)

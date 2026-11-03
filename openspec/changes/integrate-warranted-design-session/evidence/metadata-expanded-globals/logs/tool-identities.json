@@ -1,0 +1,12 @@
+{
+  "python": "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/python",
+  "python_version": "3.14.7 (main, Sep  1 2026, 14:05:28) [Clang 22.1.3 ]",
+  "Detective": "/Users/rohanvinaik/tools/Detective/Detective/__init__.py",
+  "Wesker": "/Users/rohanvinaik/tools/Wesker/Wesker/__init__.py",
+  "target": "/private/tmp/trialledger-metadata-expanded-globals-20261103-v1/TrialLedger/layer2/result_semantics.py",
+  "revisions": {
+    "TrialLedger": "08a0d334401267c5cdb041835f1ca81c56ebedae",
+    "Detective": "ce2a50002529861d303eec0071984a3c3cbb5fd9",
+    "Wesker": "2fbd029f47bfe6e684e2bd0b0a956bac71d246e8"
+  }
+}

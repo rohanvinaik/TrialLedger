@@ -1,0 +1,12 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.14.7, pytest-9.2.0, pluggy-1.7.0
+rootdir: /private/tmp/trialledger-metadata-expanded-globals-20261103-v1
+configfile: pyproject.toml
+plugins: anyio-4.15.1
+collected 113 items
+
+tests/test_result_semantics.py ........................................  [ 35%]
+tests/test_metadata_vocabulary.py ...................................... [ 69%]
+...................................                                      [100%]
+
+============================= 113 passed in 0.33s ==============================

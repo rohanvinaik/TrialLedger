@@ -1,0 +1,290 @@
+{
+  "cwd": "/tmp/trialledger-metadata-expanded-globals-20261103-v1",
+  "Detective_calls": [
+    {
+      "argv": [
+        "/Users/rohanvinaik/Projects/SquishOS/ops/agents/bin/owned-run",
+        "--label",
+        "metadata-expanded-help",
+        "--",
+        "env",
+        "PYTHONPATH=/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker:/tmp/trialledger-metadata-expanded-globals-20261103-v1",
+        "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+        "--help"
+      ],
+      "stdout_stderr": "logs/help.log"
+    },
+    {
+      "argv": [
+        "/Users/rohanvinaik/Projects/SquishOS/ops/agents/bin/owned-run",
+        "--label",
+        "metadata-expanded-regime",
+        "--",
+        "env",
+        "PYTHONPATH=/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker:/tmp/trialledger-metadata-expanded-globals-20261103-v1",
+        "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+        "regime"
+      ],
+      "stdout_stderr": "logs/regime.log"
+    },
+    {
+      "argv": [
+        "/Users/rohanvinaik/Projects/SquishOS/ops/agents/bin/owned-run",
+        "--label",
+        "metadata-expanded-cause",
+        "--",
+        "env",
+        "PYTHONPATH=/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker:/tmp/trialledger-metadata-expanded-globals-20261103-v1",
+        "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+        "converge",
+        "TrialLedger/layer2/result_semantics.py::cause_kind",
+        "--two-sign"
+      ],
+      "stdout_stderr": "logs/cause-converge.log"
+    },
+    {
+      "argv": [
+        "/Users/rohanvinaik/Projects/SquishOS/ops/agents/bin/owned-run",
+        "--label",
+        "metadata-expanded-cause-plan",
+        "--",
+        "env",
+        "PYTHONPATH=/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker:/tmp/trialledger-metadata-expanded-globals-20261103-v1",
+        "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+        "plan",
+        "TrialLedger/layer2/result_semantics.py"
+      ],
+      "stdout_stderr": "logs/cause-plan.log"
+    },
+    {
+      "argv": [
+        "/Users/rohanvinaik/Projects/SquishOS/ops/agents/bin/owned-run",
+        "--label",
+        "metadata-expanded-cause-decompose",
+        "--",
+        "env",
+        "PYTHONPATH=/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker:/tmp/trialledger-metadata-expanded-globals-20261103-v1",
+        "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+        "decompose",
+        "TrialLedger/layer2/result_semantics.py::cause_kind",
+        "--apply",
+        "--two-sign"
+      ],
+      "stdout_stderr": "logs/cause-decompose.log"
+    },
+    {
+      "argv": [
+        "/Users/rohanvinaik/Projects/SquishOS/ops/agents/bin/owned-run",
+        "--label",
+        "metadata-expanded-cause-survey",
+        "--",
+        "env",
+        "PYTHONPATH=/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker:/tmp/trialledger-metadata-expanded-globals-20261103-v1",
+        "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+        "survey",
+        "TrialLedger/layer2/result_semantics.py"
+      ],
+      "stdout_stderr": "logs/cause-survey.log"
+    },
+    {
+      "argv": [
+        "/Users/rohanvinaik/Projects/SquishOS/ops/agents/bin/owned-run",
+        "--label",
+        "metadata-expanded-completion",
+        "--",
+        "env",
+        "PYTHONPATH=/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker:/tmp/trialledger-metadata-expanded-globals-20261103-v1",
+        "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+        "converge",
+        "TrialLedger/layer2/result_semantics.py::completion_code",
+        "--two-sign"
+      ],
+      "stdout_stderr": "logs/completion-converge.log"
+    },
+    {
+      "argv": [
+        "/Users/rohanvinaik/Projects/SquishOS/ops/agents/bin/owned-run",
+        "--label",
+        "metadata-expanded-completion-witnesses",
+        "--",
+        "env",
+        "PYTHONPATH=/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker:/tmp/trialledger-metadata-expanded-globals-20261103-v1",
+        "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+        "converge",
+        "TrialLedger/layer2/result_semantics.py::completion_code",
+        "--two-sign",
+        "--input",
+        "('UNDETERMINED', ['unsupported_domain'])",
+        "--input",
+        "('UNDETERMINED', ['not_an_object'])"
+      ],
+      "stdout_stderr": "logs/completion-witnesses.log"
+    },
+    {
+      "argv": [
+        "/Users/rohanvinaik/Projects/SquishOS/ops/agents/bin/owned-run",
+        "--label",
+        "metadata-expanded-completion-plan",
+        "--",
+        "env",
+        "PYTHONPATH=/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker:/tmp/trialledger-metadata-expanded-globals-20261103-v1",
+        "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+        "plan",
+        "TrialLedger/layer2/result_semantics.py"
+      ],
+      "stdout_stderr": "logs/completion-plan.log"
+    },
+    {
+      "argv": [
+        "/Users/rohanvinaik/Projects/SquishOS/ops/agents/bin/owned-run",
+        "--label",
+        "metadata-expanded-completion-style",
+        "--",
+        "env",
+        "PYTHONPATH=/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker:/tmp/trialledger-metadata-expanded-globals-20261103-v1",
+        "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+        "flag",
+        "TrialLedger/layer2/result_semantics.py::completion_code",
+        "--style",
+        "--leave",
+        "--note",
+        "One total decision assigns completion with explicit precedence: computation limit, unsupported, malformed refusal, unknown result/cause, then complete. Each branch is a different remedy; extracting branches would hide that precedence without introducing an independent policy. Public mixed-cause tests exercise the consumer separately. This is a scoped style judgment, not semantic certification of adapters."
+      ],
+      "stdout_stderr": "logs/completion-style.log"
+    },
+    {
+      "argv": [
+        "/Users/rohanvinaik/Projects/SquishOS/ops/agents/bin/owned-run",
+        "--label",
+        "metadata-expanded-completion-style-plan",
+        "--",
+        "env",
+        "PYTHONPATH=/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker:/tmp/trialledger-metadata-expanded-globals-20261103-v1",
+        "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+        "plan",
+        "TrialLedger/layer2/result_semantics.py::completion_code"
+      ],
+      "stdout_stderr": "logs/completion-style-plan.log"
+    },
+    {
+      "argv": [
+        "/Users/rohanvinaik/Projects/SquishOS/ops/agents/bin/owned-run",
+        "--label",
+        "metadata-expanded-completion-decompose",
+        "--",
+        "env",
+        "PYTHONPATH=/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker:/tmp/trialledger-metadata-expanded-globals-20261103-v1",
+        "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+        "decompose",
+        "TrialLedger/layer2/result_semantics.py::completion_code",
+        "--apply",
+        "--two-sign"
+      ],
+      "stdout_stderr": "logs/completion-decompose.log"
+    },
+    {
+      "argv": [
+        "/Users/rohanvinaik/Projects/SquishOS/ops/agents/bin/owned-run",
+        "--label",
+        "metadata-expanded-completion-survey",
+        "--",
+        "env",
+        "PYTHONPATH=/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker:/tmp/trialledger-metadata-expanded-globals-20261103-v1",
+        "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+        "survey",
+        "TrialLedger/layer2/result_semantics.py"
+      ],
+      "stdout_stderr": "logs/completion-survey.log"
+    },
+    {
+      "argv": [
+        "/Users/rohanvinaik/Projects/SquishOS/ops/agents/bin/owned-run",
+        "--label",
+        "metadata-expanded-disposition",
+        "--",
+        "env",
+        "PYTHONPATH=/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker:/tmp/trialledger-metadata-expanded-globals-20261103-v1",
+        "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+        "converge",
+        "TrialLedger/layer2/result_semantics.py::disposition_code",
+        "--two-sign"
+      ],
+      "stdout_stderr": "logs/disposition-converge.log"
+    },
+    {
+      "argv": [
+        "/Users/rohanvinaik/Projects/SquishOS/ops/agents/bin/owned-run",
+        "--label",
+        "metadata-expanded-disposition-line",
+        "--",
+        "env",
+        "PYTHONPATH=/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker:/tmp/trialledger-metadata-expanded-globals-20261103-v1",
+        "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+        "converge",
+        "TrialLedger/layer2/result_semantics.py::disposition_code",
+        "--two-sign",
+        "--input",
+        "('computed', '', 'complete')"
+      ],
+      "stdout_stderr": "logs/disposition-line.log"
+    },
+    {
+      "argv": [
+        "/Users/rohanvinaik/Projects/SquishOS/ops/agents/bin/owned-run",
+        "--label",
+        "metadata-expanded-disposition-plan",
+        "--",
+        "env",
+        "PYTHONPATH=/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker:/tmp/trialledger-metadata-expanded-globals-20261103-v1",
+        "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+        "plan",
+        "TrialLedger/layer2/result_semantics.py"
+      ],
+      "stdout_stderr": "logs/disposition-plan.log"
+    },
+    {
+      "argv": [
+        "/Users/rohanvinaik/Projects/SquishOS/ops/agents/bin/owned-run",
+        "--label",
+        "metadata-expanded-disposition-decompose",
+        "--",
+        "env",
+        "PYTHONPATH=/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker:/tmp/trialledger-metadata-expanded-globals-20261103-v1",
+        "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+        "decompose",
+        "TrialLedger/layer2/result_semantics.py::disposition_code",
+        "--apply",
+        "--two-sign"
+      ],
+      "stdout_stderr": "logs/disposition-decompose.log"
+    },
+    {
+      "argv": [
+        "/Users/rohanvinaik/Projects/SquishOS/ops/agents/bin/owned-run",
+        "--label",
+        "metadata-expanded-disposition-survey",
+        "--",
+        "env",
+        "PYTHONPATH=/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker:/tmp/trialledger-metadata-expanded-globals-20261103-v1",
+        "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+        "survey",
+        "TrialLedger/layer2/result_semantics.py"
+      ],
+      "stdout_stderr": "logs/disposition-survey.log"
+    }
+  ],
+  "contract_command": [
+    "uv",
+    "run",
+    "--project",
+    "/Users/rohanvinaik/tools/TrialLedger",
+    "--with",
+    "crosshair-tool",
+    "crosshair",
+    "check",
+    "TrialLedger/layer2/result_semantics.py",
+    "--report_all",
+    "--per_condition_timeout",
+    "10"
+  ]
+}

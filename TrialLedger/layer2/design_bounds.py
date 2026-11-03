@@ -31,6 +31,7 @@ class Observation:
     direction: str = "accepted"
     blockers: tuple[str, ...] = ()
     derivation: dict | None = None
+    exception_check: dict | None = None
 
 
 class WitnessResult(TypedDict):
@@ -43,6 +44,8 @@ class WitnessResult(TypedDict):
     bounds: NotRequired[dict]
     direction: NotRequired[str]
     derivation: NotRequired[dict]
+    exception_check: NotRequired[str]
+    witness_threshold: NotRequired[dict]
 
 
 class CandidateResult(TypedDict):
@@ -183,6 +186,14 @@ def bound_designs(
                 evidence[-1]["direction"] = observation.direction
             if observation.derivation is not None:
                 evidence[-1]["derivation"] = observation.derivation
+            if observation.exception_check is not None:
+                evidence[-1]["exception_check"] = observation.exception_check["id"]
+                evidence[-1]["witness_threshold"] = {
+                    "count_lower": observation.count,
+                    "supplied_exception_upper": observation.exception_check["upper"],
+                    "maximum_exceptions_for_witness": observation.count - 1 if observation.count else None,
+                    "requires": "accepted, resolved, same-predicate and same-scope bridge",
+                }
             if observation.blockers:
                 evidence[-1]["decision"]["blockers"] = tuple(
                     sorted(set(decision.blockers) | set(observation.blockers))
@@ -240,9 +251,14 @@ def bound_designs(
     )
     statuses = elimination_statuses + [row["query_decision"]["status"] or "known" for row in remaining]
     conflicts = [result for result in source_results if result["code"] == "conflict"]
+    exception_checks = [o.exception_check for o in observations if o.exception_check is not None]
+    exception_conflicts = [c for c in exception_checks if c["code"] in ("conflict", "attribution_conflict")]
     if conflicts:
         result = "CONFLICT"
         statuses.extend(result["status"] for result in conflicts)
+    if exception_conflicts:
+        result = "CONFLICT"
+        statuses.extend(check["status"] for check in exception_conflicts)
     consequence_payload: dict[str, Any] = {
         "result": result,
         "status": entail.weakest_status(tuple(statuses)) if result != "UNDETERMINED" else None,
@@ -255,9 +271,18 @@ def bound_designs(
     }
     if signals:
         response["signals"] = source_results
+    if exception_checks:
+        response["exception_checks"] = exception_checks
     if conflicts:
         consequence_payload["basis"] = (
             "Input signal conflict; not proof that every real protocol is impossible."
         )
         consequence_payload["blockers"] = ["signal_conflict:" + item["id"] for item in conflicts]
+    if exception_conflicts:
+        consequence_payload["basis"] = (
+            "Input exception-bridge conflict; not proof that every real protocol is impossible."
+        )
+        consequence_payload.setdefault("blockers", []).extend(
+            "exception_bridge_conflict:" + check["observation"] for check in exception_conflicts
+        )
     return response

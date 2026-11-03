@@ -1,0 +1,11 @@
+{
+  "command": [
+    "uv",
+    "run",
+    "trialledger",
+    "verify",
+    "/Users/rohanvinaik/trialledger-runs/psoriasis-population-exceptions-20261103"
+  ],
+  "exit_code": 0,
+  "observed_stdout": "/Users/rohanvinaik/trialledger-runs/psoriasis-population-exceptions-20261103: verified — the clinical record and workbook reproduce from the retained sources. This checks derivation, not clinical interpretation.\n"
+}

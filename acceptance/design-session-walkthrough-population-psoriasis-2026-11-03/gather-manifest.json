@@ -1,0 +1,49 @@
+{
+ "api_version": "2.0.5",
+ "data_timestamp": "2026-11-03T10:00:05",
+ "study_digests": [
+  "03049289c8b58937d6343ffdc320bf60d8a11aa5296bae34b905618dc57dba39",
+  "2434cc0a6f5a2cf0ec067901f1ba70d747f6973a9221a0a57d3f70771941256d",
+  "850fde20dd0c422c94b5a93c500e65e4aede7d2a777e94485379f7c0b9463e34",
+  "320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c",
+  "f97491d54a4fa7caf987bf684f9f28e918895fe203e9fbad03bcba613833c35d",
+  "7e127363eacd6516b9ececf3ec703db7522a485c8a1a5e3b99ee3ffaa1a70322",
+  "a8206dad5d7bd7e30f3ec5dc9f4f7e8cf82a3dec2d45b6721d6ac5a21ddc0e5d",
+  "2499070f872e39dde4608b5d0baef3624f86147181495df5d38bf088a81f6c03",
+  "3d71798418acde65b79ac3793ae9d374818cdf4b1fadb39432a8c84e85b9a14d",
+  "577f6c7db6620eb9ccfcce28a6cedf2007483c77ec6cf1beb5a589ab3e4dc254",
+  "9c388a77be56e0a752c63d7673f9f6f9b56cbffc92a78113244887de6411ba7f",
+  "15f7ff2faf16961346360ae17239ad20fbc2aabaa5fa2be5c4bc269a3963de2d",
+  "45fead664c3788b51b81664ef9ddc33cbcfde2e0536cade5b7507a3044058fad",
+  "0394878cffeffceb20c4b58ace2822a41fe6c3b862a9ededdfece82ba59a9d61",
+  "7672066c7ef0a1fbc5f9723c65fc7f64bf0358175c6eddac414584d0aac15dfa",
+  "ab5063f8f68ceb6acca16823d6a3043f8b759c6a04b01aaff0ac2c415802842c",
+  "ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2"
+ ],
+ "merkle_root": "3b85564942d45f2b39bdc10b3dd150bdc433e5f7246796251f432d744f6d0ab5",
+ "code_commit": "08a0d334401267c5cdb041835f1ca81c56ebedae",
+ "rule_versions": {
+  "landscape_schema": 4,
+  "contract": "4.1",
+  "trialledger": "0.1.0",
+  "derivation_code_root": "bdbe6253f6db6c7a9798911734f519edf556af1ce1afa51c89d04e8895caa0ef",
+  "display": "display-1",
+  "eligibility_sections": "registry-headings-source-passages/1",
+  "registry_checks": 3
+ },
+ "retrieval": {
+  "mode": "direct",
+  "matched": 17,
+  "read": 17,
+  "drug_classes": {
+   "state": "looked_up",
+   "source": "NLM RxClass asked for the EPC and MoA classes of every drug, biological and genetic intervention of the studies read, and RxNav for the RxNorm identity, ATC classes and structure of each experimental arm's drug, biological or genetic intervention only; cached in the run folder's classes.json"
+  }
+ },
+ "input_digests": {
+  "request.json": "7e2dea2fb6c873fc2f77c0ebed2370075ee74b2809de94d8cc8b8860f4b23d60",
+  "resolution.json": "e432f175dbbe7c0f7b5ba609c484a327a76461d8afd30a78c0eaa5039cb96cdd",
+  "scope.json": "4ce7d20cae06aadf7e63ac0df046b4b9a1d752c21fae0cb858a96c907441fe82",
+  "classes.json": "167f61c4722d04636ad8aad404d667996b1263c1b5c95a95884c019133dd323b"
+ }
+}

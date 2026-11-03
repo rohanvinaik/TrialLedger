@@ -1,0 +1,4 @@
+./TrialLedger/layer2/exception_bounds.py — survey · 0 trapped pure decisions   (static advisory)
+
+  No trap detected within this static scan.
+  Unresolved types and ambiguous uses are not proved --input-reachable.

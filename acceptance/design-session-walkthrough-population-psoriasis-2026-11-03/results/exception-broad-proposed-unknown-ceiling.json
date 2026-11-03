@@ -1,0 +1,5251 @@
+{
+ "code": "complete",
+ "operation": "design_bounds",
+ "result": {
+  "basis": "Conditional on the supplied typed premises; their source meaning is not certified by this operation.",
+  "study_ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c",
+  "premises": {
+   "operation": "design_bounds",
+   "study_ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c",
+   "candidates": [
+    {
+     "id": "adult-under65",
+     "assertions": [
+      {
+       "applicability": {
+        "class": "Always"
+       },
+       "body": {
+        "class": "Literal",
+        "evidence": [
+         {
+          "class": "Evidence",
+          "kind": "record_field",
+          "ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/protocolSection/eligibilityModule/minimumAge"
+         }
+        ],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "age",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "participant",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "ge",
+         "inclusivity": "unspecified",
+         "kind": "quantity",
+         "members": [],
+         "number": 18.0,
+         "unit": "Years",
+         "upper": null
+        }
+       },
+       "branch": {
+        "class": "Branch",
+        "node": "unresolved",
+        "path": []
+       },
+       "class": "ScopedAssertion",
+       "cohort": {
+        "class": "Scope",
+        "kind": "all_participants",
+        "parts": [],
+        "ref": ""
+       },
+       "criterion_ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/protocolSection/eligibilityModule/minimumAge",
+       "id": "registry-age-minimumAge",
+       "modality": "required",
+       "resolution": "resolved",
+       "rule": {
+        "answers": [],
+        "class": "Rule",
+        "id": "ctg-structured-general-eligibility-age",
+        "premises": [
+         "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/protocolSection/eligibilityModule/minimumAge"
+        ],
+        "version": "1",
+        "warrants": []
+       },
+       "span": [],
+       "status": "known"
+      },
+      {
+       "applicability": {
+        "class": "Always"
+       },
+       "body": {
+        "class": "Literal",
+        "evidence": [
+         {
+          "class": "Evidence",
+          "kind": "record_field",
+          "ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/protocolSection/eligibilityModule/maximumAge"
+         }
+        ],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "age",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "participant",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "le",
+         "inclusivity": "unspecified",
+         "kind": "quantity",
+         "members": [],
+         "number": 99.0,
+         "unit": "Years",
+         "upper": null
+        }
+       },
+       "branch": {
+        "class": "Branch",
+        "node": "unresolved",
+        "path": []
+       },
+       "class": "ScopedAssertion",
+       "cohort": {
+        "class": "Scope",
+        "kind": "all_participants",
+        "parts": [],
+        "ref": ""
+       },
+       "criterion_ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/protocolSection/eligibilityModule/maximumAge",
+       "id": "registry-age-maximumAge",
+       "modality": "required",
+       "resolution": "resolved",
+       "rule": {
+        "answers": [],
+        "class": "Rule",
+        "id": "ctg-structured-general-eligibility-age",
+        "premises": [
+         "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/protocolSection/eligibilityModule/maximumAge"
+        ],
+        "version": "1",
+        "warrants": []
+       },
+       "span": [],
+       "status": "known"
+      },
+      {
+       "applicability": {
+        "class": "Always"
+       },
+       "body": {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "age",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "participant",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "lt",
+         "inclusivity": "unspecified",
+         "kind": "quantity",
+         "members": [],
+         "number": 65.0,
+         "unit": "Years",
+         "upper": null
+        }
+       },
+       "branch": {
+        "class": "Branch",
+        "node": "unresolved",
+        "path": []
+       },
+       "class": "ScopedAssertion",
+       "cohort": {
+        "class": "Scope",
+        "kind": "all_participants",
+        "parts": [],
+        "ref": ""
+       },
+       "criterion_ref": "investigation:explicit-hypothetical-candidate-not-source-or-user-choice",
+       "id": "upper-age-below65",
+       "modality": "required",
+       "resolution": "resolved",
+       "rule": {
+        "answers": [],
+        "class": "Rule",
+        "id": "investigation-hypothesis",
+        "premises": [],
+        "version": "1",
+        "warrants": [
+         "investigation:not-clinically-confirmed"
+        ]
+       },
+       "span": [],
+       "status": "interpolated"
+      }
+     ]
+    },
+    {
+     "id": "adult-no-upper-added",
+     "assertions": [
+      {
+       "applicability": {
+        "class": "Always"
+       },
+       "body": {
+        "class": "Literal",
+        "evidence": [
+         {
+          "class": "Evidence",
+          "kind": "record_field",
+          "ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/protocolSection/eligibilityModule/minimumAge"
+         }
+        ],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "age",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "participant",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "ge",
+         "inclusivity": "unspecified",
+         "kind": "quantity",
+         "members": [],
+         "number": 18.0,
+         "unit": "Years",
+         "upper": null
+        }
+       },
+       "branch": {
+        "class": "Branch",
+        "node": "unresolved",
+        "path": []
+       },
+       "class": "ScopedAssertion",
+       "cohort": {
+        "class": "Scope",
+        "kind": "all_participants",
+        "parts": [],
+        "ref": ""
+       },
+       "criterion_ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/protocolSection/eligibilityModule/minimumAge",
+       "id": "registry-age-minimumAge",
+       "modality": "required",
+       "resolution": "resolved",
+       "rule": {
+        "answers": [],
+        "class": "Rule",
+        "id": "ctg-structured-general-eligibility-age",
+        "premises": [
+         "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/protocolSection/eligibilityModule/minimumAge"
+        ],
+        "version": "1",
+        "warrants": []
+       },
+       "span": [],
+       "status": "known"
+      },
+      {
+       "applicability": {
+        "class": "Always"
+       },
+       "body": {
+        "class": "Literal",
+        "evidence": [
+         {
+          "class": "Evidence",
+          "kind": "record_field",
+          "ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/protocolSection/eligibilityModule/maximumAge"
+         }
+        ],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "age",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "participant",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "le",
+         "inclusivity": "unspecified",
+         "kind": "quantity",
+         "members": [],
+         "number": 99.0,
+         "unit": "Years",
+         "upper": null
+        }
+       },
+       "branch": {
+        "class": "Branch",
+        "node": "unresolved",
+        "path": []
+       },
+       "class": "ScopedAssertion",
+       "cohort": {
+        "class": "Scope",
+        "kind": "all_participants",
+        "parts": [],
+        "ref": ""
+       },
+       "criterion_ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/protocolSection/eligibilityModule/maximumAge",
+       "id": "registry-age-maximumAge",
+       "modality": "required",
+       "resolution": "resolved",
+       "rule": {
+        "answers": [],
+        "class": "Rule",
+        "id": "ctg-structured-general-eligibility-age",
+        "premises": [
+         "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/protocolSection/eligibilityModule/maximumAge"
+        ],
+        "version": "1",
+        "warrants": []
+       },
+       "span": [],
+       "status": "known"
+      }
+     ]
+    }
+   ],
+   "query": {
+    "class": "Literal",
+    "evidence": [],
+    "polarity": "positive",
+    "predicate": {
+     "class": "Predicate",
+     "key": "age",
+     "kind": "measurement"
+    },
+    "qualifiers": {
+     "class": "Always"
+    },
+    "subject": {
+     "class": "Subject",
+     "kind": "participant",
+     "referent": ""
+    },
+    "time": null,
+    "value": {
+     "class": "Value",
+     "comparison": "ge",
+     "inclusivity": "unspecified",
+     "kind": "quantity",
+     "members": [],
+     "number": 18.0,
+     "unit": "Years",
+     "upper": null
+    }
+   },
+   "exception_evidence": {
+    "sources": [
+     {
+      "id": "NAVIGATE",
+      "study": {
+       "protocolSection": {
+        "identificationModule": {
+         "nctId": "NCT02203032",
+         "orgStudyIdInfo": {
+          "id": "CR104918"
+         },
+         "secondaryIdInfos": [
+          {
+           "id": "CNTO1959PSO3003",
+           "type": "OTHER",
+           "domain": "Janssen Research & Development, LLC"
+          },
+          {
+           "id": "2014-000721-20",
+           "type": "EUDRACT_NUMBER"
+          },
+          {
+           "id": "2014",
+           "type": "NIH",
+           "link": "https://reporter.nih.gov/quickSearch/2014"
+          }
+         ],
+         "organization": {
+          "fullName": "Janssen Research & Development, LLC",
+          "class": "INDUSTRY"
+         },
+         "briefTitle": "A Study of Guselkumab in Participants With Moderate to Severe Plaque-type Psoriasis and an Inadequate Response to Ustekinumab",
+         "officialTitle": "A Phase 3, Multicenter, Randomized, Double-blind Study to Evaluate the Efficacy and Safety of Guselkumab for the Treatment of Subjects With Moderate to Severe Plaque-type Psoriasis and an Inadequate Response to Ustekinumab",
+         "acronym": "NAVIGATE"
+        },
+        "statusModule": {
+         "statusVerifiedDate": "2017-08",
+         "overallStatus": "COMPLETED",
+         "expandedAccessInfo": {
+          "hasExpandedAccess": false
+         },
+         "startDateStruct": {
+          "date": "2014-10-07",
+          "type": "ACTUAL"
+         },
+         "primaryCompletionDateStruct": {
+          "date": "2015-12-25",
+          "type": "ACTUAL"
+         },
+         "completionDateStruct": {
+          "date": "2016-05-24",
+          "type": "ACTUAL"
+         },
+         "studyFirstSubmitDate": "2014-07-25",
+         "studyFirstSubmitQcDate": "2014-07-25",
+         "studyFirstPostDateStruct": {
+          "date": "2014-07-29",
+          "type": "ESTIMATED"
+         },
+         "resultsFirstSubmitDate": "2017-06-14",
+         "resultsFirstSubmitQcDate": "2017-06-14",
+         "resultsFirstPostDateStruct": {
+          "date": "2017-07-17",
+          "type": "ACTUAL"
+         },
+         "dispFirstSubmitDate": "2016-07-12",
+         "dispFirstSubmitQcDate": "2016-07-12",
+         "dispFirstPostDateStruct": {
+          "date": "2016-07-14",
+          "type": "ESTIMATED"
+         },
+         "lastUpdateSubmitDate": "2017-08-11",
+         "lastUpdatePostDateStruct": {
+          "date": "2017-09-12",
+          "type": "ACTUAL"
+         }
+        },
+        "sponsorCollaboratorsModule": {
+         "responsibleParty": {
+          "type": "SPONSOR"
+         },
+         "leadSponsor": {
+          "name": "Janssen Research & Development, LLC",
+          "class": "INDUSTRY"
+         }
+        },
+        "oversightModule": {
+         "oversightHasDmc": true,
+         "isFdaRegulatedDrug": true,
+         "isFdaRegulatedDevice": false
+        },
+        "descriptionModule": {
+         "briefSummary": "The purpose of this study is to evaluate the efficacy and safety of guselkumab (CNTO 1959) in the treatment of participants with moderate to severe plaque-type psoriasis (scaly skin rash) who had inadequate response to ustekinumab.",
+         "detailedDescription": "This is a randomized (assignment of study drug by chance), double-blind (participants nor study staff will know the identity of study drugs), multicenter study to evaluate efficacy and safety of guselkumab for the treatment of participants with moderate to severe plaque-type psoriasis who had an inadequate response to ustekinumab. The study will consist of a screening period, open-label and double-blind treatment periods, and a follow-up period. The treatment period will have 2 phases: an open-label treatment phase during which all participants will receive ustekinumab at Weeks 0 and 4 and a blinded treatment phase during which participants with an inadequate Investigator's Global Assessment response (IGA≥2) to ustekinumab at Week 16 will be randomized to receive either guselkumab or ustekinumab through Week 44. Participants with an IGA response of 0 or 1 (cleared or minimal disease) at Week 16 will continue to receive open-label treatment with ustekinumab every 12 weeks through Week 40. All participants will complete a follow-up phase through Week 52 for efficacy and through Week 60 for safety evaluations. The total duration of the study will be approximately 64 weeks (includes a 4-week screening period). Participants' safety will be monitored throughout the study."
+        },
+        "conditionsModule": {
+         "conditions": [
+          "Psoriasis"
+         ],
+         "keywords": [
+          "Psoriasis",
+          "Plaque-type psoriasis",
+          "Guselkumab",
+          "Ustekinumab",
+          "CNTO 1959",
+          "Monoclonal antibody"
+         ]
+        },
+        "designModule": {
+         "studyType": "INTERVENTIONAL",
+         "phases": [
+          "PHASE3"
+         ],
+         "designInfo": {
+          "allocation": "RANDOMIZED",
+          "interventionModel": "PARALLEL",
+          "primaryPurpose": "TREATMENT",
+          "maskingInfo": {
+           "masking": "TRIPLE",
+           "whoMasked": [
+            "PARTICIPANT",
+            "CARE_PROVIDER",
+            "INVESTIGATOR"
+           ]
+          }
+         },
+         "enrollmentInfo": {
+          "count": 872,
+          "type": "ACTUAL"
+         }
+        },
+        "armsInterventionsModule": {
+         "armGroups": [
+          {
+           "label": "Open-label ustekinumab",
+           "type": "EXPERIMENTAL",
+           "interventionNames": [
+            "Drug: Ustekinumab"
+           ]
+          },
+          {
+           "label": "Double-blind guselkumab",
+           "type": "EXPERIMENTAL",
+           "interventionNames": [
+            "Drug: Guselkumab",
+            "Drug: Placebo for ustekinumab"
+           ]
+          },
+          {
+           "label": "Double-blind ustekinumab",
+           "type": "EXPERIMENTAL",
+           "interventionNames": [
+            "Drug: Ustekinumab",
+            "Drug: Placebo for guselkumab"
+           ]
+          }
+         ],
+         "interventions": [
+          {
+           "type": "DRUG",
+           "name": "Ustekinumab",
+           "description": "45 mg or 90 mg given by subcutaneous injection at Weeks 0 and 4 for all participants. Participants with an IGA score of 0 or 1 at Week 16 will also receive ustekinumab every 12 weeks (q12w) from Week 16 to Week 40.",
+           "armGroupLabels": [
+            "Double-blind ustekinumab",
+            "Open-label ustekinumab"
+           ]
+          },
+          {
+           "type": "DRUG",
+           "name": "Guselkumab",
+           "description": "100 mg given by subcutaneous injection at Weeks 16 and 20 and every 8 weeks (q8w) thereafter through Week 44.",
+           "armGroupLabels": [
+            "Double-blind guselkumab"
+           ]
+          },
+          {
+           "type": "DRUG",
+           "name": "Placebo for ustekinumab",
+           "description": "Subcutaneous injection at Weeks 16, 28, and 40 to maintain the blind for participants randomized to treatment with guselkumab.",
+           "armGroupLabels": [
+            "Double-blind guselkumab"
+           ]
+          },
+          {
+           "type": "DRUG",
+           "name": "Placebo for guselkumab",
+           "description": "Subcutaneous injection at Weeks 16 and 20 and q8w thereafter through Week 44 to maintain the blind for participants randomized to treatment with ustekinumab.",
+           "armGroupLabels": [
+            "Double-blind ustekinumab"
+           ]
+          }
+         ]
+        },
+        "outcomesModule": {
+         "primaryOutcomes": [
+          {
+           "measure": "Number of Visits at Which Participants Achieved an Investigator's Global Assessment (IGA) Response of Cleared (0) or Minimal (1) and at Least a 2 Grade Improvement (From Week 16) From Week 28 Through Week 40",
+           "description": "The IGA documents the investigator's assessment of the participants psoriasis at a given time point. Overall lesions are graded for induration, erythema, and scaling. The participants' psoriasis was assessed as cleared (0), minimal (1), mild (2), moderate (3), or severe (4).",
+           "timeFrame": "Week 28 through Week 40"
+          }
+         ],
+         "secondaryOutcomes": [
+          {
+           "measure": "Number of Visits at Which Participants Achieved a Psoriasis Area and Severity Index (PASI) 90 Response From Week 28 Through Week 40",
+           "description": "The PASI is a system used for assessing and grading the severity of psoriatic lesions. In the PASI system, the body is divided into 4 regions: the head, trunk, upper extremities, and lower extremities. Each of these areas were assessed separately for the percentage of the area involved, which translates to a numeric score that ranges from 0 to 6, and for erythema, induration, and scaling, which are each rated on a scale of 0 to 4. The PASI produces a numeric score that can range from 0 to 72. A higher score indicates more severe disease. A PASI 90 response represents participants who achieved at least a 90 percent improvement from baseline in the PASI score.",
+           "timeFrame": "Week 28 through Week 40"
+          },
+          {
+           "measure": "Number of Visits at Which Participants Achieved an IGA Score of Cleared (0) From Week 28 Through Week 40",
+           "description": "The IGA documents the investigator's assessment of the participants psoriasis at a given time point. Overall lesions are graded for induration, erythema, and scaling. The participants' psoriasis was assessed as cleared (0), minimal (1), mild (2), moderate (3), or severe (4).",
+           "timeFrame": "Week 28 through Week 40"
+          },
+          {
+           "measure": "Percentage of Participants With an Investigator's Global Assessment (IGA) Score of Cleared (0) or Minimal (1) and at Least a 2 Grade Improvement (From Week 16) at Week 28",
+           "description": "The IGA documents the investigator's assessment of the participants psoriasis at a given time point. Overall lesions are graded for induration, erythema, and scaling. The participants' psoriasis was assessed as cleared (0), minimal (1), mild (2), moderate (3), or severe (4).",
+           "timeFrame": "Week 28"
+          }
+         ]
+        },
+        "eligibilityModule": {
+         "eligibilityCriteria": "Inclusion Criteria:\n\n* Have a diagnosis of plaque-type psoriasis (with or without psoriatic arthritis for at least 6 months before the first administration of study drug\n* Have a Psoriasis Area and Severity Index (PASI) greater than or equal to (\\>=) 12 at Screening and at Baseline\n* Have an Investigator's Global Assessment (IGA) \\>=3 at Screening and at Baseline\n* Have an involved body surface area (BSA) \\>= 10 percent (%) at Screening and at Baseline\n* Be a candidate for phototherapy or systemic treatment for psoriasis (either naïve or history of previous treatment)\n\nExclusion Criteria:\n\n* Has a history or current signs or symptoms of severe, progressive, or uncontrolled renal, hepatic, cardiac, vascular, pulmonary, gastrointestinal, endocrine, neurologic, hematologic, rheumatologic, psychiatric, or metabolic disturbances\n* Has unstable cardiovascular disease, defined as a recent clinical deterioration (example \\[eg\\], unstable angina, rapid atrial fibrillation) in the last 3 months or a cardiac hospitalization within the last 3 months\n* Currently has a malignancy or has a history of malignancy within 5 years before Screening (with the exception of a nonmelanoma skin cancer that has been adequately treated with no evidence of recurrence for at least 3 months before the first study drug administration, or cervical carcinoma in situ that has been treated with no evidence of recurrence for at least 3 months before the first study drug administration)\n* Has previously received guselkumab or ustekinumab",
+         "healthyVolunteers": false,
+         "sex": "ALL",
+         "minimumAge": "18 Years",
+         "maximumAge": "99 Years",
+         "stdAges": [
+          "ADULT",
+          "OLDER_ADULT"
+         ]
+        },
+        "contactsLocationsModule": {
+         "overallOfficials": [
+          {
+           "name": "Janssen Research & Development, LLC Clinical Trial",
+           "affiliation": "Janssen Research & Development, LLC",
+           "role": "STUDY_DIRECTOR"
+          }
+         ],
+         "locations": [
+          {
+           "city": "Birmingham",
+           "state": "Alabama",
+           "country": "United States",
+           "geoPoint": {
+            "lat": 33.52066,
+            "lon": -86.80249
+           }
+          },
+          {
+           "city": "Bakersfield",
+           "state": "California",
+           "country": "United States",
+           "geoPoint": {
+            "lat": 35.37329,
+            "lon": -119.01871
+           }
+          },
+          {
+           "city": "Los Angeles",
+           "state": "California",
+           "country": "United States",
+           "geoPoint": {
+            "lat": 34.05223,
+            "lon": -118.24368
+           }
+          },
+          {
+           "city": "Santa Monica",
+           "state": "California",
+           "country": "United States",
+           "geoPoint": {
+            "lat": 34.01949,
+            "lon": -118.49138
+           }
+          },
+          {
+           "city": "Coral Gables",
+           "state": "Florida",
+           "country": "United States",
+           "geoPoint": {
+            "lat": 25.72149,
+            "lon": -80.26838
+           }
+          },
+          {
+           "city": "Ocala",
+           "state": "Florida",
+           "country": "United States",
+           "geoPoint": {
+            "lat": 29.1872,
+            "lon": -82.14009
+           }
+          },
+          {
+           "city": "Alpharetta",
+           "state": "Georgia",
+           "country": "United States",
+           "geoPoint": {
+            "lat": 34.07538,
+            "lon": -84.29409
+           }
+          },
+          {
+           "city": "Atlanta",
+           "state": "Georgia",
+           "country": "United States",
+           "geoPoint": {
+            "lat": 33.749,
+            "lon": -84.38798
+           }
+          },
+          {
+           "city": "Arlington Heights",
+           "state": "Illinois",
+           "country": "United States",
+           "geoPoint": {
+            "lat": 42.08836,
+            "lon": -87.98063
+           }
+          },
+          {
+           "city": "Chicago",
+           "state": "Illinois",
+           "country": "United States",
+           "geoPoint": {
+            "lat": 41.85003,
+            "lon": -87.65005
+           }
+          },
+          {
+           "city": "Skokie",
+           "state": "Illinois",
+           "country": "United States",
+           "geoPoint": {
+            "lat": 42.03336,
+            "lon": -87.73339
+           }
+          },
+          {
+           "city": "Indianapolis",
+           "state": "Indiana",
+           "country": "United States",
+           "geoPoint": {
+            "lat": 39.76838,
+            "lon": -86.15804
+           }
+          },
+          {
+           "city": "Plainfield",
+           "state": "Indiana",
+           "country": "United States",
+           "geoPoint": {
+            "lat": 39.70421,
+            "lon": -86.39944
+           }
+          },
+          {
+           "city": "Louisville",
+           "state": "Kentucky",
+           "country": "United States",
+           "geoPoint": {
+            "lat": 38.25424,
+            "lon": -85.75941
+           }
+          },
+          {
+           "city": "Boston",
+           "state": "Massachusetts",
+           "country": "United States",
+           "geoPoint": {
+            "lat": 42.35843,
+            "lon": -71.05977
+           }
+          },
+          {
+           "city": "Troy",
+           "state": "Michigan",
+           "country": "United States",
+           "geoPoint": {
+            "lat": 42.60559,
+            "lon": -83.14993
+           }
+          },
+          {
+           "city": "Buffalo",
+           "state": "New York",
+           "country": "United States",
+           "geoPoint": {
+            "lat": 42.88645,
+            "lon": -78.87837
+           }
+          },
+          {
+           "city": "New York",
+           "state": "New York",
+           "country": "United States",
+           "geoPoint": {
+            "lat": 40.71427,
+            "lon": -74.00597
+           }
+          },
+          {
+           "city": "Portland",
+           "state": "Oregon",
+           "country": "United States",
+           "geoPoint": {
+            "lat": 45.52345,
+            "lon": -122.67621
+           }
+          },
+          {
+           "city": "Pittsburgh",
+           "state": "Pennsylvania",
+           "country": "United States",
+           "geoPoint": {
+            "lat": 40.44062,
+            "lon": -79.99589
+           }
+          },
+          {
+           "city": "Johnston",
+           "state": "Rhode Island",
+           "country": "United States",
+           "geoPoint": {
+            "lat": 41.82186,
+            "lon": -71.50675
+           }
+          },
+          {
+           "city": "Nashville",
+           "state": "Tennessee",
+           "country": "United States",
+           "geoPoint": {
+            "lat": 36.16589,
+            "lon": -86.78444
+           }
+          },
+          {
+           "city": "Arlington",
+           "state": "Texas",
+           "country": "United States",
+           "geoPoint": {
+            "lat": 32.73569,
+            "lon": -97.10807
+           }
+          },
+          {
+           "city": "Austin",
+           "state": "Texas",
+           "country": "United States",
+           "geoPoint": {
+            "lat": 30.26715,
+            "lon": -97.74306
+           }
+          },
+          {
+           "city": "Dallas",
+           "state": "Texas",
+           "country": "United States",
+           "geoPoint": {
+            "lat": 32.78306,
+            "lon": -96.80667
+           }
+          },
+          {
+           "city": "San Antonio",
+           "state": "Texas",
+           "country": "United States",
+           "geoPoint": {
+            "lat": 29.42412,
+            "lon": -98.49363
+           }
+          },
+          {
+           "city": "Webster",
+           "state": "Texas",
+           "country": "United States",
+           "geoPoint": {
+            "lat": 29.53773,
+            "lon": -95.11826
+           }
+          },
+          {
+           "city": "Norfolk",
+           "state": "Virginia",
+           "country": "United States",
+           "geoPoint": {
+            "lat": 36.84681,
+            "lon": -76.28522
+           }
+          },
+          {
+           "city": "Spokane",
+           "state": "Washington",
+           "country": "United States",
+           "geoPoint": {
+            "lat": 47.65966,
+            "lon": -117.42908
+           }
+          },
+          {
+           "city": "Fremantle",
+           "country": "Australia",
+           "geoPoint": {
+            "lat": -32.05632,
+            "lon": 115.74557
+           }
+          },
+          {
+           "city": "Victoria Park",
+           "country": "Australia",
+           "geoPoint": {
+            "lat": -31.97619,
+            "lon": 115.90525
+           }
+          },
+          {
+           "city": "Woden",
+           "country": "Australia"
+          },
+          {
+           "city": "Woolloongabba",
+           "country": "Australia",
+           "geoPoint": {
+            "lat": -27.48855,
+            "lon": 153.03655
+           }
+          },
+          {
+           "city": "Surrey",
+           "state": "British Columbia",
+           "country": "Canada",
+           "geoPoint": {
+            "lat": 49.10635,
+            "lon": -122.82509
+           }
+          },
+          {
+           "city": "Vancouver",
+           "state": "British Columbia",
+           "country": "Canada",
+           "geoPoint": {
+            "lat": 49.24966,
+            "lon": -123.11934
+           }
+          },
+          {
+           "city": "Moncton",
+           "state": "New Brunswick",
+           "country": "Canada",
+           "geoPoint": {
+            "lat": 46.09454,
+            "lon": -64.7965
+           }
+          },
+          {
+           "city": "Halifax",
+           "state": "Nova Scotia",
+           "country": "Canada",
+           "geoPoint": {
+            "lat": 44.64269,
+            "lon": -63.57688
+           }
+          },
+          {
+           "city": "Ajax",
+           "state": "Ontario",
+           "country": "Canada",
+           "geoPoint": {
+            "lat": 43.85012,
+            "lon": -79.03288
+           }
+          },
+          {
+           "city": "Richmond Hill",
+           "state": "Ontario",
+           "country": "Canada",
+           "geoPoint": {
+            "lat": 43.87111,
+            "lon": -79.43725
+           }
+          },
+          {
+           "city": "Montreal",
+           "state": "Quebec",
+           "country": "Canada",
+           "geoPoint": {
+            "lat": 45.50884,
+            "lon": -73.58781
+           }
+          },
+          {
+           "city": "Québec",
+           "state": "Quebec",
+           "country": "Canada",
+           "geoPoint": {
+            "lat": 46.81228,
+            "lon": -71.21454
+           }
+          },
+          {
+           "city": "Berlin",
+           "country": "Germany",
+           "geoPoint": {
+            "lat": 52.52437,
+            "lon": 13.41053
+           }
+          },
+          {
+           "city": "Bonn",
+           "country": "Germany",
+           "geoPoint": {
+            "lat": 50.73438,
+            "lon": 7.09549
+           }
+          },
+          {
+           "city": "Essen",
+           "country": "Germany",
+           "geoPoint": {
+            "lat": 51.45657,
+            "lon": 7.01228
+           }
+          },
+          {
+           "city": "Gera",
+           "country": "Germany",
+           "geoPoint": {
+            "lat": 50.88029,
+            "lon": 12.08187
+           }
+          },
+          {
+           "city": "Hamburg",
+           "country": "Germany",
+           "geoPoint": {
+            "lat": 53.55073,
+            "lon": 9.99302
+           }
+          },
+          {
+           "city": "Leipzig",
+           "country": "Germany",
+           "geoPoint": {
+            "lat": 51.33962,
+            "lon": 12.37129
+           }
+          },
+          {
+           "city": "Lübeck",
+           "country": "Germany",
+           "geoPoint": {
+            "lat": 53.86893,
+            "lon": 10.68729
+           }
+          },
+          {
+           "city": "Mahlow",
+           "country": "Germany",
+           "geoPoint": {
+            "lat": 52.36017,
+            "lon": 13.40954
+           }
+          },
+          {
+           "city": "Münster",
+           "country": "Germany",
+           "geoPoint": {
+            "lat": 51.96236,
+            "lon": 7.62571
+           }
+          },
+          {
+           "city": "Witten",
+           "country": "Germany",
+           "geoPoint": {
+            "lat": 51.44362,
+            "lon": 7.35258
+           }
+          },
+          {
+           "city": "Bialystok",
+           "country": "Poland",
+           "geoPoint": {
+            "lat": 53.13333,
+            "lon": 23.16433
+           }
+          },
+          {
+           "city": "Bydgoszcz",
+           "country": "Poland",
+           "geoPoint": {
+            "lat": 53.1235,
+            "lon": 18.00762
+           }
+          },
+          {
+           "city": "Gdansk",
+           "country": "Poland",
+           "geoPoint": {
+            "lat": 54.35227,
+            "lon": 18.64912
+           }
+          },
+          {
+           "city": "Krakow",
+           "country": "Poland",
+           "geoPoint": {
+            "lat": 50.06143,
+            "lon": 19.93658
+           }
+          },
+          {
+           "city": "Lodz",
+           "country": "Poland",
+           "geoPoint": {
+            "lat": 51.77058,
+            "lon": 19.47395
+           }
+          },
+          {
+           "city": "Lublin",
+           "country": "Poland",
+           "geoPoint": {
+            "lat": 51.25058,
+            "lon": 22.57009
+           }
+          },
+          {
+           "city": "Olsztyn",
+           "country": "Poland",
+           "geoPoint": {
+            "lat": 53.78376,
+            "lon": 20.49272
+           }
+          },
+          {
+           "city": "Poznan",
+           "country": "Poland",
+           "geoPoint": {
+            "lat": 52.40692,
+            "lon": 16.92993
+           }
+          },
+          {
+           "city": "Torun",
+           "country": "Poland",
+           "geoPoint": {
+            "lat": 53.01375,
+            "lon": 18.59814
+           }
+          },
+          {
+           "city": "Warsaw",
+           "country": "Poland",
+           "geoPoint": {
+            "lat": 52.22977,
+            "lon": 21.01178
+           }
+          },
+          {
+           "city": "Wroclaw",
+           "country": "Poland",
+           "geoPoint": {
+            "lat": 51.10286,
+            "lon": 17.03006
+           }
+          },
+          {
+           "city": "Chelyabinsk",
+           "country": "Russia",
+           "geoPoint": {
+            "lat": 55.1611,
+            "lon": 61.42877
+           }
+          },
+          {
+           "city": "Krasnodar",
+           "country": "Russia",
+           "geoPoint": {
+            "lat": 45.04534,
+            "lon": 38.98178
+           }
+          },
+          {
+           "city": "Lipetsk",
+           "country": "Russia",
+           "geoPoint": {
+            "lat": 52.5876,
+            "lon": 39.55151
+           }
+          },
+          {
+           "city": "Saint Petersburg",
+           "country": "Russia",
+           "geoPoint": {
+            "lat": 59.93863,
+            "lon": 30.31413
+           }
+          },
+          {
+           "city": "Stavropol",
+           "country": "Russia",
+           "geoPoint": {
+            "lat": 45.03442,
+            "lon": 41.9642
+           }
+          },
+          {
+           "city": "Ufa",
+           "country": "Russia",
+           "geoPoint": {
+            "lat": 54.74306,
+            "lon": 55.96779
+           }
+          },
+          {
+           "city": "Yekaterinburg",
+           "country": "Russia",
+           "geoPoint": {
+            "lat": 56.85733,
+            "lon": 60.61529
+           }
+          },
+          {
+           "city": "Anyang",
+           "country": "South Korea",
+           "geoPoint": {
+            "lat": 36.9577,
+            "lon": 127.1464
+           }
+          },
+          {
+           "city": "Incheon",
+           "country": "South Korea",
+           "geoPoint": {
+            "lat": 37.45646,
+            "lon": 126.70515
+           }
+          },
+          {
+           "city": "Seoul",
+           "country": "South Korea",
+           "geoPoint": {
+            "lat": 37.566,
+            "lon": 126.9784
+           }
+          },
+          {
+           "city": "A Coruña",
+           "country": "Spain",
+           "geoPoint": {
+            "lat": 43.37135,
+            "lon": -8.396
+           }
+          },
+          {
+           "city": "Alcorcón",
+           "country": "Spain",
+           "geoPoint": {
+            "lat": 40.34582,
+            "lon": -3.82487
+           }
+          },
+          {
+           "city": "Alicante",
+           "country": "Spain",
+           "geoPoint": {
+            "lat": 38.34517,
+            "lon": -0.48149
+           }
+          },
+          {
+           "city": "Barcelona",
+           "country": "Spain",
+           "geoPoint": {
+            "lat": 41.38879,
+            "lon": 2.15899
+           }
+          },
+          {
+           "city": "Madrid",
+           "country": "Spain",
+           "geoPoint": {
+            "lat": 40.4165,
+            "lon": -3.70256
+           }
+          },
+          {
+           "city": "Taichung",
+           "country": "Taiwan",
+           "geoPoint": {
+            "lat": 24.1469,
+            "lon": 120.6839
+           }
+          },
+          {
+           "city": "Tainan",
+           "country": "Taiwan",
+           "geoPoint": {
+            "lat": 22.99259,
+            "lon": 120.20507
+           }
+          },
+          {
+           "city": "Taipei",
+           "country": "Taiwan",
+           "geoPoint": {
+            "lat": 25.05306,
+            "lon": 121.52639
+           }
+          },
+          {
+           "city": "Taoyuan",
+           "country": "Taiwan",
+           "geoPoint": {
+            "lat": 24.99368,
+            "lon": 121.29696
+           }
+          },
+          {
+           "city": "Dudley",
+           "country": "United Kingdom",
+           "geoPoint": {
+            "lat": 52.5,
+            "lon": -2.08333
+           }
+          },
+          {
+           "city": "Dundee",
+           "country": "United Kingdom",
+           "geoPoint": {
+            "lat": 56.46913,
+            "lon": -2.97489
+           }
+          },
+          {
+           "city": "London",
+           "country": "United Kingdom",
+           "geoPoint": {
+            "lat": 51.50853,
+            "lon": -0.12574
+           }
+          },
+          {
+           "city": "Salford",
+           "country": "United Kingdom",
+           "geoPoint": {
+            "lat": 53.48771,
+            "lon": -2.29042
+           }
+          }
+         ]
+        },
+        "referencesModule": {
+         "references": [
+          {
+           "pmid": "37906417",
+           "type": "DERIVED",
+           "citation": "Strober B, Coates LC, Lebwohl MG, Deodhar A, Leibowitz E, Rowland K, Kollmeier AP, Miller M, Wang Y, Li S, Chakravarty SD, Chan D, Shawi M, Yang YW, Thaҫi D, Rahman P. Long-Term Safety of Guselkumab in Patients with Psoriatic Disease: An Integrated Analysis of Eleven Phase II/III Clinical Studies in Psoriasis and Psoriatic Arthritis. Drug Saf. 2024 Jan;47(1):39-57. doi: 10.1007/s40264-023-01361-w. Epub 2023 Oct 31."
+          },
+          {
+           "pmid": "37071038",
+           "type": "DERIVED",
+           "citation": "Campbell K, Li K, Yang F, Branigan P, Elloso MM, Benson J, Orlovsky Y, Chen Y, Garcet S, Krueger JG. Guselkumab More Effectively Neutralizes Psoriasis-Associated Histologic, Transcriptomic, and Clinical Measures than Ustekinumab. Immunohorizons. 2023 Apr 1;7(4):273-285. doi: 10.4049/immunohorizons.2300003."
+          }
+         ]
+        }
+       },
+       "resultsSection": {
+        "participantFlowModule": {
+         "preAssignmentDetails": "Study consists of 2 periods: Open label run-in (Period 1) and blinded phase (Period 2). Participants were enrolled in open label run-in period only. Participants completed the open label run-in period entered into blinded phase period.",
+         "groups": [
+          {
+           "id": "FG000",
+           "title": "Ustekinumab (Open Label Run-in)",
+           "description": "All participants received ustekinumab 45 milligram (mg) (participants weighing less than or equal to \\[\\<=\\]100 kilogram \\[kg\\]) or 90 mg (participants weighing \\>100 kg) at Weeks 0 and 4. At Week 16, participants with IGA \\>=2 were randomized to either switch to guselkumab 100 mg at Weeks 16 and 20 and then every 8 weeks thereafter or continue on ustekinumab every 12 weeks (q12w); participants with an IGA=0 or 1 were to continue to receive open-label ustekinumab q12w."
+          },
+          {
+           "id": "FG001",
+           "title": "100 mg Guselkumab (Randomized)",
+           "description": "Participants from open label run-in phase with an investigator global assessment (IGA) greater than or equal to (\\>=) 2 at Week 16 who were randomized to guselkumab, received guselkumab 100 mg at Weeks 16, 20, 28, 36, and 44 and placebo for ustekinumab at Weeks 16, 28, and 40."
+          },
+          {
+           "id": "FG002",
+           "title": "Ustekinumab (Randomized)",
+           "description": "Participants from open label run-in phase with an IGA \\>=2 at Week 16 who were randomized to ustekinumab, continued to receive ustekinumab, according to their baseline (Week 0) weight, at Weeks 16, 28, and 40, and placebo for guselkumab at Weeks 16, 20, 28, 36, and 44."
+          },
+          {
+           "id": "FG003",
+           "title": "Ustekinumab (Nonrandomized Open Label Continuation)",
+           "description": "Participants from open label run-in phase with an IGA=0 or 1 at Week 16 received ustekinumab 45 mg or 90 mg (according to their baseline weight \\[Week 0\\]) at Weeks 16, 28, and 40."
+          }
+         ],
+         "periods": [
+          {
+           "title": "Open Label Run-in (Week 0 to Week 16)",
+           "milestones": [
+            {
+             "type": "STARTED",
+             "achievements": [
+              {
+               "groupId": "FG000",
+               "numSubjects": "872"
+              },
+              {
+               "groupId": "FG001",
+               "numSubjects": "0"
+              },
+              {
+               "groupId": "FG002",
+               "numSubjects": "0"
+              },
+              {
+               "groupId": "FG003",
+               "numSubjects": "0"
+              }
+             ]
+            },
+            {
+             "type": "Treated",
+             "achievements": [
+              {
+               "groupId": "FG000",
+               "numSubjects": "871"
+              },
+              {
+               "groupId": "FG001",
+               "numSubjects": "0"
+              },
+              {
+               "groupId": "FG002",
+               "numSubjects": "0"
+              },
+              {
+               "groupId": "FG003",
+               "numSubjects": "0"
+              }
+             ]
+            },
+            {
+             "type": "COMPLETED",
+             "achievements": [
+              {
+               "groupId": "FG000",
+               "numSubjects": "853"
+              },
+              {
+               "groupId": "FG001",
+               "numSubjects": "0"
+              },
+              {
+               "groupId": "FG002",
+               "numSubjects": "0"
+              },
+              {
+               "groupId": "FG003",
+               "numSubjects": "0"
+              }
+             ]
+            },
+            {
+             "type": "NOT COMPLETED",
+             "achievements": [
+              {
+               "groupId": "FG000",
+               "numSubjects": "19"
+              },
+              {
+               "groupId": "FG001",
+               "numSubjects": "0"
+              },
+              {
+               "groupId": "FG002",
+               "numSubjects": "0"
+              },
+              {
+               "groupId": "FG003",
+               "numSubjects": "0"
+              }
+             ]
+            }
+           ],
+           "dropWithdraws": [
+            {
+             "type": "Adverse Event",
+             "reasons": [
+              {
+               "groupId": "FG000",
+               "numSubjects": "2"
+              },
+              {
+               "groupId": "FG001",
+               "numSubjects": "0"
+              },
+              {
+               "groupId": "FG002",
+               "numSubjects": "0"
+              },
+              {
+               "groupId": "FG003",
+               "numSubjects": "0"
+              }
+             ]
+            },
+            {
+             "type": "Lack of Efficacy",
+             "reasons": [
+              {
+               "groupId": "FG000",
+               "numSubjects": "1"
+              },
+              {
+               "groupId": "FG001",
+               "numSubjects": "0"
+              },
+              {
+               "groupId": "FG002",
+               "numSubjects": "0"
+              },
+              {
+               "groupId": "FG003",
+               "numSubjects": "0"
+              }
+             ]
+            },
+            {
+             "type": "Lost to Follow-up",
+             "reasons": [
+              {
+               "groupId": "FG000",
+               "numSubjects": "3"
+              },
+              {
+               "groupId": "FG001",
+               "numSubjects": "0"
+              },
+              {
+               "groupId": "FG002",
+               "numSubjects": "0"
+              },
+              {
+               "groupId": "FG003",
+               "numSubjects": "0"
+              }
+             ]
+            },
+            {
+             "type": "Withdrawal by Subject",
+             "reasons": [
+              {
+               "groupId": "FG000",
+               "numSubjects": "6"
+              },
+              {
+               "groupId": "FG001",
+               "numSubjects": "0"
+              },
+              {
+               "groupId": "FG002",
+               "numSubjects": "0"
+              },
+              {
+               "groupId": "FG003",
+               "numSubjects": "0"
+              }
+             ]
+            },
+            {
+             "type": "Protocol Violation",
+             "reasons": [
+              {
+               "groupId": "FG000",
+               "numSubjects": "4"
+              },
+              {
+               "groupId": "FG001",
+               "numSubjects": "0"
+              },
+              {
+               "groupId": "FG002",
+               "numSubjects": "0"
+              },
+              {
+               "groupId": "FG003",
+               "numSubjects": "0"
+              }
+             ]
+            },
+            {
+             "type": "Other",
+             "reasons": [
+              {
+               "groupId": "FG000",
+               "numSubjects": "2"
+              },
+              {
+               "groupId": "FG001",
+               "numSubjects": "0"
+              },
+              {
+               "groupId": "FG002",
+               "numSubjects": "0"
+              },
+              {
+               "groupId": "FG003",
+               "numSubjects": "0"
+              }
+             ]
+            },
+            {
+             "type": "Enrolled but not treated",
+             "reasons": [
+              {
+               "groupId": "FG000",
+               "numSubjects": "1"
+              },
+              {
+               "groupId": "FG001",
+               "numSubjects": "0"
+              },
+              {
+               "groupId": "FG002",
+               "numSubjects": "0"
+              },
+              {
+               "groupId": "FG003",
+               "numSubjects": "0"
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "title": "Blinded Phase (Week 16 to Week 44)",
+           "milestones": [
+            {
+             "type": "STARTED",
+             "achievements": [
+              {
+               "groupId": "FG000",
+               "numSubjects": "0"
+              },
+              {
+               "groupId": "FG001",
+               "numSubjects": "135"
+              },
+              {
+               "groupId": "FG002",
+               "numSubjects": "133"
+              },
+              {
+               "groupId": "FG003",
+               "numSubjects": "585"
+              }
+             ]
+            },
+            {
+             "type": "COMPLETED",
+             "achievements": [
+              {
+               "groupId": "FG000",
+               "numSubjects": "0"
+              },
+              {
+               "groupId": "FG001",
+               "numSubjects": "120"
+              },
+              {
+               "groupId": "FG002",
+               "numSubjects": "107"
+              },
+              {
+               "groupId": "FG003",
+               "numSubjects": "539"
+              }
+             ]
+            },
+            {
+             "type": "NOT COMPLETED",
+             "achievements": [
+              {
+               "groupId": "FG000",
+               "numSubjects": "0"
+              },
+              {
+               "groupId": "FG001",
+               "numSubjects": "15"
+              },
+              {
+               "groupId": "FG002",
+               "numSubjects": "26"
+              },
+              {
+               "groupId": "FG003",
+               "numSubjects": "46"
+              }
+             ]
+            }
+           ],
+           "dropWithdraws": [
+            {
+             "type": "Lost to Follow-up",
+             "reasons": [
+              {
+               "groupId": "FG000",
+               "numSubjects": "0"
+              },
+              {
+               "groupId": "FG001",
+               "numSubjects": "2"
+              },
+              {
+               "groupId": "FG002",
+               "numSubjects": "3"
+              },
+              {
+               "groupId": "FG003",
+               "numSubjects": "8"
+              }
+             ]
+            },
+            {
+             "type": "Withdrawal by Subject",
+             "reasons": [
+              {
+               "groupId": "FG000",
+               "numSubjects": "0"
+              },
+              {
+               "groupId": "FG001",
+               "numSubjects": "8"
+              },
+              {
+               "groupId": "FG002",
+               "numSubjects": "19"
+              },
+              {
+               "groupId": "FG003",
+               "numSubjects": "20"
+              }
+             ]
+            },
+            {
+             "type": "Other",
+             "reasons": [
+              {
+               "groupId": "FG000",
+               "numSubjects": "0"
+              },
+              {
+               "groupId": "FG001",
+               "numSubjects": "4"
+              },
+              {
+               "groupId": "FG002",
+               "numSubjects": "1"
+              },
+              {
+               "groupId": "FG003",
+               "numSubjects": "15"
+              }
+             ]
+            },
+            {
+             "type": "Death",
+             "reasons": [
+              {
+               "groupId": "FG000",
+               "numSubjects": "0"
+              },
+              {
+               "groupId": "FG001",
+               "numSubjects": "0"
+              },
+              {
+               "groupId": "FG002",
+               "numSubjects": "0"
+              },
+              {
+               "groupId": "FG003",
+               "numSubjects": "1"
+              }
+             ]
+            },
+            {
+             "type": "Completed Safety follow-up",
+             "reasons": [
+              {
+               "groupId": "FG000",
+               "numSubjects": "0"
+              },
+              {
+               "groupId": "FG001",
+               "numSubjects": "1"
+              },
+              {
+               "groupId": "FG002",
+               "numSubjects": "3"
+              },
+              {
+               "groupId": "FG003",
+               "numSubjects": "2"
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        },
+        "baselineCharacteristicsModule": {
+         "populationDescription": "Baseline analysis included all participants who were enrolled at Week 0 and received at least 1 dose of study agent administration.",
+         "groups": [
+          {
+           "id": "BG000",
+           "title": "Ustekinumab (Open Label Run-in)",
+           "description": "All participants received ustekinumab 45 milligram (mg) (participants weighing less than or equal to \\[\\<=\\]100 kilogram \\[kg\\]) or 90 mg (participants weighing \\>100 kg) at Weeks 0 and 4. At Week 16, participants with IGA \\>=2 were randomized to either switch to guselkumab 100 mg at Weeks 16 and 20 and then every 8 weeks thereafter or continue on ustekinumab every 12 weeks (q12w); participants with an IGA=0 or 1 were to continue to receive open-label ustekinumab q12w."
+          }
+         ],
+         "denoms": [
+          {
+           "units": "Participants",
+           "counts": [
+            {
+             "groupId": "BG000",
+             "value": "871"
+            }
+           ]
+          }
+         ],
+         "measures": [
+          {
+           "title": "Age, Categorical",
+           "paramType": "COUNT_OF_PARTICIPANTS",
+           "unitOfMeasure": "Participants",
+           "classes": [
+            {
+             "categories": [
+              {
+               "title": "<=18 years",
+               "measurements": [
+                {
+                 "groupId": "BG000",
+                 "value": "4"
+                }
+               ]
+              },
+              {
+               "title": "Between 18 and 65 years",
+               "measurements": [
+                {
+                 "groupId": "BG000",
+                 "value": "814"
+                }
+               ]
+              },
+              {
+               "title": ">=65 years",
+               "measurements": [
+                {
+                 "groupId": "BG000",
+                 "value": "53"
+                }
+               ]
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "title": "Age, Continuous",
+           "paramType": "MEAN",
+           "dispersionType": "STANDARD_DEVIATION",
+           "unitOfMeasure": "years",
+           "classes": [
+            {
+             "categories": [
+              {
+               "measurements": [
+                {
+                 "groupId": "BG000",
+                 "value": "43.1",
+                 "spread": "13.21"
+                }
+               ]
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "title": "Sex: Female, Male",
+           "paramType": "COUNT_OF_PARTICIPANTS",
+           "unitOfMeasure": "Participants",
+           "classes": [
+            {
+             "categories": [
+              {
+               "title": "Female",
+               "measurements": [
+                {
+                 "groupId": "BG000",
+                 "value": "305"
+                }
+               ]
+              },
+              {
+               "title": "Male",
+               "measurements": [
+                {
+                 "groupId": "BG000",
+                 "value": "566"
+                }
+               ]
+              }
+             ]
+            }
+           ]
+          },
+          {
+           "title": "Region of Enrollment",
+           "paramType": "NUMBER",
+           "unitOfMeasure": "participants",
+           "classes": [
+            {
+             "title": "Germany",
+             "categories": [
+              {
+               "measurements": [
+                {
+                 "groupId": "BG000",
+                 "value": "96"
+                }
+               ]
+              }
+             ]
+            },
+            {
+             "title": "Poland",
+             "categories": [
+              {
+               "measurements": [
+                {
+                 "groupId": "BG000",
+                 "value": "294"
+                }
+               ]
+              }
+             ]
+            },
+            {
+             "title": "Russia",
+             "categories": [
+              {
+               "measurements": [
+                {
+                 "groupId": "BG000",
+                 "value": "88"
+                }
+               ]
+              }
+             ]
+            },
+            {
+             "title": "Spain",
+             "categories": [
+              {
+               "measurements": [
+                {
+                 "groupId": "BG000",
+                 "value": "24"
+                }
+               ]
+              }
+             ]
+            },
+            {
+             "title": "United Kingdom",
+             "categories": [
+              {
+               "measurements": [
+                {
+                 "groupId": "BG000",
+                 "value": "11"
+                }
+               ]
+              }
+             ]
+            },
+            {
+             "title": "Canada",
+             "categories": [
+              {
+               "measurements": [
+                {
+                 "groupId": "BG000",
+                 "value": "61"
+                }
+               ]
+              }
+             ]
+            },
+            {
+             "title": "United States",
+             "categories": [
+              {
+               "measurements": [
+                {
+                 "groupId": "BG000",
+                 "value": "194"
+                }
+               ]
+              }
+             ]
+            },
+            {
+             "title": "Australia",
+             "categories": [
+              {
+               "measurements": [
+                {
+                 "groupId": "BG000",
+                 "value": "19"
+                }
+               ]
+              }
+             ]
+            },
+            {
+             "title": "Korea, Republic Of",
+             "categories": [
+              {
+               "measurements": [
+                {
+                 "groupId": "BG000",
+                 "value": "29"
+                }
+               ]
+              }
+             ]
+            },
+            {
+             "title": "Taiwan, Province Of China",
+             "categories": [
+              {
+               "measurements": [
+                {
+                 "groupId": "BG000",
+                 "value": "55"
+                }
+               ]
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        },
+        "outcomeMeasuresModule": {
+         "outcomeMeasures": [
+          {
+           "type": "PRIMARY",
+           "title": "Number of Visits at Which Participants Achieved an Investigator's Global Assessment (IGA) Response of Cleared (0) or Minimal (1) and at Least a 2 Grade Improvement (From Week 16) From Week 28 Through Week 40",
+           "description": "The IGA documents the investigator's assessment of the participants psoriasis at a given time point. Overall lesions are graded for induration, erythema, and scaling. The participants' psoriasis was assessed as cleared (0), minimal (1), mild (2), moderate (3), or severe (4).",
+           "populationDescription": "Randomized population included all enrolled participants with IGA \\>=2 at Week 16 randomly assigned to 1 of the 2 treatment regimens (guselkumab or ustekinumab) at Week 16.",
+           "reportingStatus": "POSTED",
+           "paramType": "MEAN",
+           "dispersionType": "Standard Deviation",
+           "unitOfMeasure": "visits",
+           "timeFrame": "Week 28 through Week 40",
+           "groups": [
+            {
+             "id": "OG000",
+             "title": "Guselkumab (Randomized)",
+             "description": "Participants from open label Run-in phase with an investigator global assessment (IGA) greater than or equal to (\\>=) 2 at Week 16 who were randomized to guselkumab, received guselkumab 100 mg at Weeks 16, 20, 28, 36, and 44 and placebo for ustekinumab at Weeks 16, 28, and 40."
+            },
+            {
+             "id": "OG001",
+             "title": "Ustekinumab (Randomized)",
+             "description": "Participants from open label run-in phase with an IGA \\>=2 at Week 16 who were randomized to ustekinumab, continued to receive ustekinumab, according to their baseline (Week 0) weight, at Weeks 16, 28, and 40, and placebo for guselkumab at Weeks 16, 20, 28, 36, and 44."
+            }
+           ],
+           "denoms": [
+            {
+             "units": "Participants",
+             "counts": [
+              {
+               "groupId": "OG000",
+               "value": "135"
+              },
+              {
+               "groupId": "OG001",
+               "value": "133"
+              }
+             ]
+            }
+           ],
+           "classes": [
+            {
+             "categories": [
+              {
+               "measurements": [
+                {
+                 "groupId": "OG000",
+                 "value": "1.5",
+                 "spread": "1.57"
+                },
+                {
+                 "groupId": "OG001",
+                 "value": "0.7",
+                 "spread": "1.26"
+                }
+               ]
+              }
+             ]
+            }
+           ],
+           "analyses": [
+            {
+             "groupIds": [
+              "OG000",
+              "OG001"
+             ],
+             "nonInferiorityType": "SUPERIORITY_OR_OTHER",
+             "pValue": "< 0.001",
+             "statisticalMethod": "Row mean score test"
+            }
+           ]
+          },
+          {
+           "type": "SECONDARY",
+           "title": "Number of Visits at Which Participants Achieved a Psoriasis Area and Severity Index (PASI) 90 Response From Week 28 Through Week 40",
+           "description": "The PASI is a system used for assessing and grading the severity of psoriatic lesions. In the PASI system, the body is divided into 4 regions: the head, trunk, upper extremities, and lower extremities. Each of these areas were assessed separately for the percentage of the area involved, which translates to a numeric score that ranges from 0 to 6, and for erythema, induration, and scaling, which are each rated on a scale of 0 to 4. The PASI produces a numeric score that can range from 0 to 72. A higher score indicates more severe disease. A PASI 90 response represents participants who achieved at least a 90 percent improvement from baseline in the PASI score.",
+           "populationDescription": "Randomized population included all enrolled participants with IGA \\>=2 at Week 16 randomly assigned to 1 of the 2 treatment regimens (guselkumab or ustekinumab) at Week 16.",
+           "reportingStatus": "POSTED",
+           "paramType": "MEAN",
+           "dispersionType": "Standard Deviation",
+           "unitOfMeasure": "visits",
+           "timeFrame": "Week 28 through Week 40",
+           "groups": [
+            {
+             "id": "OG000",
+             "title": "Guselkumab (Randomized)",
+             "description": "Participants from open label Run-in phase with an investigator global assessment (IGA) greater than or equal to (\\>=) 2 at Week 16 who were randomized to guselkumab, received guselkumab 100 mg at Weeks 16, 20, 28, 36, and 44 and placebo for ustekinumab at Weeks 16, 28, and 40."
+            },
+            {
+             "id": "OG001",
+             "title": "Ustekinumab (Randomized)",
+             "description": "Participants from open label run-in phase with an IGA \\>=2 at Week 16 who were randomized to ustekinumab, continued to receive ustekinumab, according to their baseline (Week 0) weight, at Weeks 16, 28, and 40, and placebo for guselkumab at Weeks 16, 20, 28, 36, and 44."
+            }
+           ],
+           "denoms": [
+            {
+             "units": "Participants",
+             "counts": [
+              {
+               "groupId": "OG000",
+               "value": "135"
+              },
+              {
+               "groupId": "OG001",
+               "value": "133"
+              }
+             ]
+            }
+           ],
+           "classes": [
+            {
+             "categories": [
+              {
+               "measurements": [
+                {
+                 "groupId": "OG000",
+                 "value": "2.2",
+                 "spread": "1.69"
+                },
+                {
+                 "groupId": "OG001",
+                 "value": "1.1",
+                 "spread": "1.53"
+                }
+               ]
+              }
+             ]
+            }
+           ],
+           "analyses": [
+            {
+             "groupIds": [
+              "OG000",
+              "OG001"
+             ],
+             "nonInferiorityType": "SUPERIORITY_OR_OTHER",
+             "pValue": "< 0.001",
+             "statisticalMethod": "Row mean score test"
+            }
+           ]
+          },
+          {
+           "type": "SECONDARY",
+           "title": "Number of Visits at Which Participants Achieved an IGA Score of Cleared (0) From Week 28 Through Week 40",
+           "description": "The IGA documents the investigator's assessment of the participants psoriasis at a given time point. Overall lesions are graded for induration, erythema, and scaling. The participants' psoriasis was assessed as cleared (0), minimal (1), mild (2), moderate (3), or severe (4).",
+           "populationDescription": "Randomized population included all enrolled participants with IGA \\>=2 at Week 16 randomly assigned to 1 of the 2 treatment regimens (guselkumab or ustekinumab) at Week 16.",
+           "reportingStatus": "POSTED",
+           "paramType": "MEAN",
+           "dispersionType": "Standard Deviation",
+           "unitOfMeasure": "visits",
+           "timeFrame": "Week 28 through Week 40",
+           "groups": [
+            {
+             "id": "OG000",
+             "title": "Guselkumab (Randomized)",
+             "description": "Participants from open label Run-in phase with an investigator global assessment (IGA) greater than or equal to (\\>=) 2 at Week 16 who were randomized to guselkumab, received guselkumab 100 mg at Weeks 16, 20, 28, 36, and 44 and placebo for ustekinumab at Weeks 16, 28, and 40."
+            },
+            {
+             "id": "OG001",
+             "title": "Ustekinumab (Randomized)",
+             "description": "Participants from open label run-in phase with an IGA \\>=2 at Week 16 who were randomized to ustekinumab, continued to receive ustekinumab, according to their baseline (Week 0) weight, at Weeks 16, 28, and 40, and placebo for guselkumab at Weeks 16, 20, 28, 36, and 44."
+            }
+           ],
+           "denoms": [
+            {
+             "units": "Participants",
+             "counts": [
+              {
+               "groupId": "OG000",
+               "value": "135"
+              },
+              {
+               "groupId": "OG001",
+               "value": "133"
+              }
+             ]
+            }
+           ],
+           "classes": [
+            {
+             "categories": [
+              {
+               "measurements": [
+                {
+                 "groupId": "OG000",
+                 "value": "0.9",
+                 "spread": "1.34"
+                },
+                {
+                 "groupId": "OG001",
+                 "value": "0.4",
+                 "spread": "1.06"
+                }
+               ]
+              }
+             ]
+            }
+           ],
+           "analyses": [
+            {
+             "groupIds": [
+              "OG000",
+              "OG001"
+             ],
+             "nonInferiorityType": "SUPERIORITY_OR_OTHER",
+             "pValue": "< 0.001",
+             "statisticalMethod": "Row mean score test"
+            }
+           ]
+          },
+          {
+           "type": "SECONDARY",
+           "title": "Percentage of Participants With an Investigator's Global Assessment (IGA) Score of Cleared (0) or Minimal (1) and at Least a 2 Grade Improvement (From Week 16) at Week 28",
+           "description": "The IGA documents the investigator's assessment of the participants psoriasis at a given time point. Overall lesions are graded for induration, erythema, and scaling. The participants' psoriasis was assessed as cleared (0), minimal (1), mild (2), moderate (3), or severe (4).",
+           "populationDescription": "Randomized population included all enrolled participants with IGA \\>=2 at Week 16 randomly assigned to 1 of the 2 treatment regimens (guselkumab or ustekinumab) at Week 16.",
+           "reportingStatus": "POSTED",
+           "paramType": "NUMBER",
+           "unitOfMeasure": "percentage of participants",
+           "timeFrame": "Week 28",
+           "groups": [
+            {
+             "id": "OG000",
+             "title": "Guselkumab (Randomized)",
+             "description": "Participants from open label Run-in phase with an investigator global assessment (IGA) greater than or equal to (\\>=) 2 at Week 16 who were randomized to guselkumab, received guselkumab 100 mg at Weeks 16, 20, 28, 36, and 44 and placebo for ustekinumab at Weeks 16, 28, and 40."
+            },
+            {
+             "id": "OG001",
+             "title": "Ustekinumab (Randomized)",
+             "description": "Participants from open label run-in phase with an IGA \\>=2 at Week 16 who were randomized to ustekinumab, continued to receive ustekinumab, according to their baseline (Week 0) weight, at Weeks 16, 28, and 40, and placebo for guselkumab at Weeks 16, 20, 28, 36, and 44."
+            }
+           ],
+           "denoms": [
+            {
+             "units": "Participants",
+             "counts": [
+              {
+               "groupId": "OG000",
+               "value": "135"
+              },
+              {
+               "groupId": "OG001",
+               "value": "133"
+              }
+             ]
+            }
+           ],
+           "classes": [
+            {
+             "categories": [
+              {
+               "measurements": [
+                {
+                 "groupId": "OG000",
+                 "value": "31.1"
+                },
+                {
+                 "groupId": "OG001",
+                 "value": "14.3"
+                }
+               ]
+              }
+             ]
+            }
+           ],
+           "analyses": [
+            {
+             "groupIds": [
+              "OG000",
+              "OG001"
+             ],
+             "nonInferiorityType": "SUPERIORITY_OR_OTHER",
+             "pValue": "= 0.001",
+             "statisticalMethod": "Cochran-Mantel-Haenszel"
+            }
+           ]
+          }
+         ]
+        },
+        "adverseEventsModule": {
+         "frequencyThreshold": "5",
+         "timeFrame": "Up to Week 60",
+         "description": "Safety analysis included all participants who were enrolled at Week 0 and received at least 1 dose of study agent administration.",
+         "eventGroups": [
+          {
+           "id": "EG000",
+           "title": "Ustekinumab (Open Label Run-in)",
+           "description": "All participants received ustekinumab 45 milligram (mg) (participants weighing less than or equal to \\[\\<=\\]100 kilogram \\[kg\\]) or 90 mg (participants weighing \\>100 kg) at Weeks 0 and 4. At Week 16, participants with IGA \\>=2 were randomized to either switch to guselkumab 100 mg at Weeks 16 and 20 and then every 8 weeks thereafter or continue on ustekinumab every 12 weeks (q12w); participants with an IGA=0 or 1 were to continue to receive open-label ustekinumab q12w.",
+           "seriousNumAffected": 11,
+           "seriousNumAtRisk": 871,
+           "otherNumAffected": 80,
+           "otherNumAtRisk": 871
+          },
+          {
+           "id": "EG001",
+           "title": "100 mg Guselkumab (Randomized)",
+           "description": "Participants from open label run-in phase with an investigator global assessment (IGA) greater than or equal to (\\>=) 2 at Week 16 who were randomized to guselkumab, received guselkumab 100 mg at Weeks 16, 20, 28, 36, and 44 and placebo for ustekinumab at Weeks 16, 28, and 40.",
+           "seriousNumAffected": 9,
+           "seriousNumAtRisk": 135,
+           "otherNumAffected": 37,
+           "otherNumAtRisk": 135
+          },
+          {
+           "id": "EG002",
+           "title": "Ustekinumab (Randomized)",
+           "description": "Participants from open label run-in phase with an IGA \\>=2 at Week 16 who were randomized to ustekinumab, continued to receive ustekinumab, according to their baseline (Week 0) weight, at Weeks 16, 28, and 40, and placebo for guselkumab at Weeks 16, 20, 28, 36, and 44.",
+           "seriousNumAffected": 6,
+           "seriousNumAtRisk": 133,
+           "otherNumAffected": 33,
+           "otherNumAtRisk": 133
+          },
+          {
+           "id": "EG003",
+           "title": "Ustekinumab (Nonrandomized Open Label Continuation)",
+           "description": "Participants from open label run-in phase with an IGA=0 or 1 at Week 16 received ustekinumab 45 mg or 90 mg (according to their baseline weight \\[Week 0\\]) at Weeks 16, 28, and 40.",
+           "seriousNumAffected": 20,
+           "seriousNumAtRisk": 585,
+           "otherNumAffected": 60,
+           "otherNumAtRisk": 585
+          }
+         ],
+         "seriousEvents": [
+          {
+           "term": "Acute Myocardial Infarction",
+           "organSystem": "Cardiac disorders",
+           "sourceVocabulary": "MedDRA Version 18.1",
+           "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+           "stats": [
+            {
+             "groupId": "EG000",
+             "numAffected": 0,
+             "numAtRisk": 871
+            },
+            {
+             "groupId": "EG001",
+             "numAffected": 0,
+             "numAtRisk": 135
+            },
+            {
+             "groupId": "EG002",
+             "numAffected": 1,
+             "numAtRisk": 133
+            },
+            {
+             "groupId": "EG003",
+             "numAffected": 1,
+             "numAtRisk": 585
+            }
+           ]
+          },
+          {
+           "term": "Angina Unstable",
+           "organSystem": "Cardiac disorders",
+           "sourceVocabulary": "MedDRA Version 18.1",
+           "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+           "stats": [
+            {
+             "groupId": "EG000",
+             "numAffected": 0,
+             "numAtRisk": 871
+            },
+            {
+             "groupId": "EG001",
+             "numAffected": 1,
+             "numAtRisk": 135
+            },
+            {
+             "groupId": "EG002",
+             "numAffected": 0,
+             "numAtRisk": 133
+            },
+            {
+             "groupId": "EG003",
+             "numAffected": 0,
+             "numAtRisk": 585
+            }
+           ]
+          },
+          {
+           "term": "Atrial Fibrillation",
+           "organSystem": "Cardiac disorders",
+           "sourceVocabulary": "MedDRA Version 18.1",
+           "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+           "stats": [
+            {
+             "groupId": "EG000",
+             "numAffected": 1,
+             "numAtRisk": 871
+            },
+            {
+             "groupId": "EG001",
+             "numAffected": 0,
+             "numAtRisk": 135
+            },
+            {
+             "groupId": "EG002",
+             "numAffected": 0,
+             "numAtRisk": 133
+            },
+            {
+             "groupId": "EG003",
+             "numAffected": 0,
+             "numAtRisk": 585
+            }
+           ]
+          },
+          {
+           "term": "Myocardial Infarction",
+           "organSystem": "Cardiac disorders",
+           "sourceVocabulary": "MedDRA Version 18.1",
+           "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+           "stats": [
+            {
+             "groupId": "EG000",
+             "numAffected": 0,
+             "numAtRisk": 871
+            },
+            {
+             "groupId": "EG001",
+             "numAffected": 2,
+             "numAtRisk": 135
+            },
+            {
+             "groupId": "EG002",
+             "numAffected": 0,
+             "numAtRisk": 133
+            },
+            {
+             "groupId": "EG003",
+             "numAffected": 0,
+             "numAtRisk": 585
+            }
+           ]
+          },
+          {
+           "term": "Sinus Node Dysfunction",
+           "organSystem": "Cardiac disorders",
+           "sourceVocabulary": "MedDRA Version 18.1",
+           "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+           "stats": [
+            {
+             "groupId": "EG000",
+             "numAffected": 0,
+             "numAtRisk": 871
+            },
+            {
+             "groupId": "EG001",
+             "numAffected": 0,
+             "numAtRisk": 135
+            },
+            {
+             "groupId": "EG002",
+             "numAffected": 0,
+             "numAtRisk": 133
+            },
+            {
+             "groupId": "EG003",
+             "numAffected": 1,
+             "numAtRisk": 585
+            }
+           ]
+          },
+          {
+           "term": "Blindness",
+           "organSystem": "Eye disorders",
+           "sourceVocabulary": "MedDRA Version 18.1",
+           "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+           "stats": [
+            {
+             "groupId": "EG000",
+             "numAffected": 1,
+             "numAtRisk": 871
+            },
+            {
+             "groupId": "EG001",
+             "numAffected": 0,
+             "numAtRisk": 135
+            },
+            {
+             "groupId": "EG002",
+             "numAffected": 0,
+             "numAtRisk": 133
+            },
+            {
+             "groupId": "EG003",
+             "numAffected": 0,
+             "numAtRisk": 585
+            }
+           ]
+          },
+          {
+           "term": "Cataract",
+           "organSystem": "Eye disorders",
+           "sourceVocabulary": "MedDRA Version 18.1",
+           "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+           "stats": [
+            {
+             "groupId": "EG000",
+             "numAffected": 0,
+             "numAtRisk": 871
+            },
+            {
+             "groupId": "EG001",
+             "numAffected": 0,
+             "numAtRisk": 135
+            },
+            {
+             "groupId": "EG002",
+             "numAffected": 0,
+             "numAtRisk": 133
+            },
+            {
+             "groupId": "EG003",
+             "numAffected": 2,
+             "numAtRisk": 585
+            }
+           ]
+          },
+          {
+           "term": "Retinal Artery Embolism",
+           "organSystem": "Eye disorders",
+           "sourceVocabulary": "MedDRA Version 18.1",
+           "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+           "stats": [
+            {
+             "groupId": "EG000",
+             "numAffected": 0,
+             "numAtRisk": 871
+            },
+            {
+             "groupId": "EG001",
+             "numAffected": 0,
+             "numAtRisk": 135
+            },
+            {
+             "groupId": "EG002",
+             "numAffected": 0,
+             "numAtRisk": 133
+            },
+            {
+             "groupId": "EG003",
+             "numAffected": 1,
+             "numAtRisk": 585
+            }
+           ]
+          },
+          {
+           "term": "Gastritis",
+           "organSystem": "Gastrointestinal disorders",
+           "sourceVocabulary": "MedDRA Version 18.1",
+           "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+           "stats": [
+            {
+             "groupId": "EG000",
+             "numAffected": 0,
+             "numAtRisk": 871
+            },
+            {
+             "groupId": "EG001",
+             "numAffected": 0,
+             "numAtRisk": 135
+            },
+            {
+             "groupId": "EG002",
+             "numAffected": 0,
+             "numAtRisk": 133
+            },
+            {
+             "groupId": "EG003",
+             "numAffected": 1,
+             "numAtRisk": 585
+            }
+           ]
+          },
+          {
+           "term": "Chest Pain",
+           "organSystem": "General disorders",
+           "sourceVocabulary": "MedDRA Version 18.1",
+           "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+           "stats": [
+            {
+             "groupId": "EG000",
+             "numAffected": 0,
+             "numAtRisk": 871
+            },
+            {
+             "groupId": "EG001",
+             "numAffected": 0,
+             "numAtRisk": 135
+            },
+            {
+             "groupId": "EG002",
+             "numAffected": 0,
+             "numAtRisk": 133
+            },
+            {
+             "groupId": "EG003",
+             "numAffected": 1,
+             "numAtRisk": 585
+            }
+           ]
+          },
+          {
+           "term": "Bile Duct Stenosis",
+           "organSystem": "Hepatobiliary disorders",
+           "sourceVocabulary": "MedDRA Version 18.1",
+           "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+           "stats": [
+            {
+             "groupId": "EG000",
+             "numAffected": 0,
+             "numAtRisk": 871
+            },
+            {
+             "groupId": "EG001",
+             "numAffected": 0,
+             "numAtRisk": 135
+            },
+            {
+             "groupId": "EG002",
+             "numAffected": 0,
+             "numAtRisk": 133
+            },
+            {
+             "groupId": "EG003",
+             "numAffected": 1,
+             "numAtRisk": 585
+            }
+           ]
+          },
+          {
+           "term": "Cholecystitis",
+           "organSystem": "Hepatobiliary disorders",
+           "sourceVocabulary": "MedDRA Version 18.1",
+           "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+           "stats": [
+            {
+             "groupId": "EG000",
+             "numAffected": 1,
+             "numAtRisk": 871
+            },
+            {
+             "groupId": "EG001",
+             "numAffected": 0,
+             "numAtRisk": 135
+            },
+            {
+             "groupId": "EG002",
+             "numAffected": 0,
+             "numAtRisk": 133
+            },
+            {
+             "groupId": "EG003",
+             "numAffected": 0,
+             "numAtRisk": 585
+            }
+           ]
+          },
+          {
+           "term": "Anal Abscess",
+           "organSystem": "Infections and infestations",
+           "sourceVocabulary": "MedDRA Version 18.1",
+           "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+           "stats": [
+            {
+             "groupId": "EG000",
+             "numAffected": 1,
+             "numAtRisk": 871
+            },
+            {
+             "groupId": "EG001",
+             "numAffected": 0,
+             "numAtRisk": 135
+            },
+            {
+             "groupId": "EG002",
+             "numAffected": 0,
+             "numAtRisk": 133
+            },
+            {
+             "groupId": "EG003",
+             "numAffected": 0,
+             "numAtRisk": 585
+            }
+           ]
+          },
+          {
+           "term": "Diverticulitis",
+           "organSystem": "Infections and infestations",
+           "sourceVocabulary": "MedDRA Version 18.1",
+           "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+           "stats": [
+            {
+             "groupId": "EG000",
+             "numAffected": 1,
+             "numAtRisk": 871
+            },
+            {
+             "groupId": "EG001",
+             "numAffected": 0,
+             "numAtRisk": 135
+            },
+            {
+             "groupId": "EG002",
+             "numAffected": 0,
+             "numAtRisk": 133
+            },
+            {
+             "groupId": "EG003",
+             "numAffected": 0,
+             "numAtRisk": 585
+            }
+           ]
+          },
+          {
+           "term": "Paraspinal Abscess",
+           "organSystem": "Infections and infestations",
+           "sourceVocabulary": "MedDRA Version 18.1",
+           "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+           "stats": [
+            {
+             "groupId": "EG000",
+             "numAffected": 0,
+             "numAtRisk": 871
+            },
+            {
+             "groupId": "EG001",
+             "numAffected": 0,
+             "numAtRisk": 135
+            },
+            {
+             "groupId": "EG002",
+             "numAffected": 0,
+             "numAtRisk": 133
+            },
+            {
+             "groupId": "EG003",
+             "numAffected": 1,
+             "numAtRisk": 585
+            }
+           ]
+          },
+          {
+           "term": "Periodontitis",
+           "organSystem": "Infections and infestations",
+           "sourceVocabulary": "MedDRA Version 18.1",
+           "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+           "stats": [
+            {
+             "groupId": "EG000",
+             "numAffected": 0,
+             "numAtRisk": 871
+            },
+            {
+             "groupId": "EG001",
+             "numAffected": 0,
+             "numAtRisk": 135
+            },
+            {
+             "groupId": "EG002",
+             "numAffected": 0,
+             "numAtRisk": 133
+            },
+            {
+             "groupId": "EG003",
+             "numAffected": 1,
+             "numAtRisk": 585
+            }
+           ]
+          },
+          {
+           "term": "Pneumonia Bacterial",
+           "organSystem": "Infections and infestations",
+           "sourceVocabulary": "MedDRA Version 18.1",
+           "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+           "stats": [
+            {
+             "groupId": "EG000",
+             "numAffected": 1,
+             "numAtRisk": 871
+            },
+            {
+             "groupId": "EG001",
+             "numAffected": 0,
+             "numAtRisk": 135
+            },
+            {
+             "groupId": "EG002",
+             "numAffected": 0,
+             "numAtRisk": 133
+            },
+            {
+             "groupId": "EG003",
+             "numAffected": 0,
+             "numAtRisk": 585
+            }
+           ]
+          },
+          {
+           "term": "Alcohol Poisoning",
+           "organSystem": "Injury, poisoning and procedural complications",
+           "sourceVocabulary": "MedDRA Version 18.1",
+           "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+           "stats": [
+            {
+             "groupId": "EG000",
+             "numAffected": 1,
+             "numAtRisk": 871
+            },
+            {
+             "groupId": "EG001",
+             "numAffected": 0,
+             "numAtRisk": 135
+            },
+            {
+             "groupId": "EG002",
+             "numAffected": 0,
+             "numAtRisk": 133
+            },
+            {
+             "groupId": "EG003",
+             "numAffected": 0,
+             "numAtRisk": 585
+            }
+           ]
+          },
+          {
+           "term": "Contusion",
+           "organSystem": "Injury, poisoning and procedural complications",
+           "sourceVocabulary": "MedDRA Version 18.1",
+           "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+           "stats": [
+            {
+             "groupId": "EG000",
+             "numAffected": 0,
+             "numAtRisk": 871
+            },
+            {
+             "groupId": "EG001",
+             "numAffected": 0,
+             "numAtRisk": 135
+            },
+            {
+             "groupId": "EG002",
+             "numAffected": 0,
+             "numAtRisk": 133
+            },
+            {
+             "groupId": "EG003",
+             "numAffected": 1,
+             "numAtRisk": 585
+            }
+           ]
+          },
+          {
+           "term": "Scapula Fracture",
+           "organSystem": "Injury, poisoning and procedural complications",
+           "sourceVocabulary": "MedDRA Version 18.1",
+           "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+           "stats": [
+            {
+             "groupId": "EG000",
+             "numAffected": 1,
+             "numAtRisk": 871
+            },
+            {
+             "groupId": "EG001",
+             "numAffected": 0,
+             "numAtRisk": 135
+            },
+            {
+             "groupId": "EG002",
+             "numAffected": 0,
+             "numAtRisk": 133
+            },
+            {
+             "groupId": "EG003",
+             "numAffected": 0,
+             "numAtRisk": 585
+            }
+           ]
+          },
+          {
+           "term": "Tibia Fracture",
+           "organSystem": "Injury, poisoning and procedural complications",
+           "sourceVocabulary": "MedDRA Version 18.1",
+           "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+           "stats": [
+            {
+             "groupId": "EG000",
+             "numAffected": 0,
+             "numAtRisk": 871
+            },
+            {
+             "groupId": "EG001",
+             "numAffected": 0,
+             "numAtRisk": 135
+            },
+            {
+             "groupId": "EG002",
+             "numAffected": 0,
+             "numAtRisk": 133
+            },
+            {
+             "groupId": "EG003",
+             "numAffected": 1,
+             "numAtRisk": 585
+            }
+           ]
+          },
+          {
+           "term": "Toxicity to Various Agents",
+           "organSystem": "Injury, poisoning and procedural complications",
+           "sourceVocabulary": "MedDRA Version 18.1",
+           "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+           "stats": [
+            {
+             "groupId": "EG000",
+             "numAffected": 0,
+             "numAtRisk": 871
+            },
+            {
+             "groupId": "EG001",
+             "numAffected": 1,
+             "numAtRisk": 135
+            },
+            {
+             "groupId": "EG002",
+             "numAffected": 0,
+             "numAtRisk": 133
+            },
+            {
+             "groupId": "EG003",
+             "numAffected": 0,
+             "numAtRisk": 585
+            }
+           ]
+          },
+          {
+           "term": "Back Pain",
+           "organSystem": "Musculoskeletal and connective tissue disorders",
+           "sourceVocabulary": "MedDRA Version 18.1",
+           "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+           "stats": [
+            {
+             "groupId": "EG000",
+             "numAffected": 0,
+             "numAtRisk": 871
+            },
+            {
+             "groupId": "EG001",
+             "numAffected": 0,
+             "numAtRisk": 135
+            },
+            {
+             "groupId": "EG002",
+             "numAffected": 1,
+             "numAtRisk": 133
+            },
+            {
+             "groupId": "EG003",
+             "numAffected": 0,
+             "numAtRisk": 585
+            }
+           ]
+          },
+          {
+           "term": "Foot Deformity",
+           "organSystem": "Musculoskeletal and connective tissue disorders",
+           "sourceVocabulary": "MedDRA Version 18.1",
+           "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+           "stats": [
+            {
+             "groupId": "EG000",
+             "numAffected": 0,
+             "numAtRisk": 871
+            },
+            {
+             "groupId": "EG001",
+             "numAffected": 0,
+             "numAtRisk": 135
+            },
+            {
+             "groupId": "EG002",
+             "numAffected": 0,
+             "numAtRisk": 133
+            },
+            {
+             "groupId": "EG003",
+             "numAffected": 1,
+             "numAtRisk": 585
+            }
+           ]
+          },
+          {
+           "term": "Bile Duct Cancer",
+           "organSystem": "Neoplasms benign, malignant and unspecified (incl cysts and polyps)",
+           "sourceVocabulary": "MedDRA Version 18.1",
+           "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+           "stats": [
+            {
+             "groupId": "EG000",
+             "numAffected": 0,
+             "numAtRisk": 871
+            },
+            {
+             "groupId": "EG001",
+             "numAffected": 0,
+             "numAtRisk": 135
+            },
+            {
+             "groupId": "EG002",
+             "numAffected": 0,
+             "numAtRisk": 133
+            },
+            {
+             "groupId": "EG003",
+             "numAffected": 1,
+             "numAtRisk": 585
+            }
+           ]
+          },
+          {
+           "term": "Pancreatic Carcinoma Metastatic",
+           "organSystem": "Neoplasms benign, malignant and unspecified (incl cysts and polyps)",
+           "sourceVocabulary": "MedDRA Version 18.1",
+           "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+           "stats": [
+            {
+             "groupId": "EG000",
+             "numAffected": 0,
+             "numAtRisk": 871
+            },
+            {
+             "groupId": "EG001",
+             "numAffected": 0,
+             "numAtRisk": 135
+            },
+            {
+             "groupId": "EG002",
+             "numAffected": 0,
+             "numAtRisk": 133
+            },
+            {
+             "groupId": "EG003",
+             "numAffected": 1,
+             "numAtRisk": 585
+            }
+           ]
+          },
+          {
+           "term": "Transitional Cell Carcinoma",
+           "organSystem": "Neoplasms benign, malignant and unspecified (incl cysts and polyps)",
+           "sourceVocabulary": "MedDRA Version 18.1",
+           "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+           "stats": [
+            {
+             "groupId": "EG000",
+             "numAffected": 0,
+             "numAtRisk": 871
+            },
+            {
+             "groupId": "EG001",
+             "numAffected": 1,
+             "numAtRisk": 135
+            },
+            {
+             "groupId": "EG002",
+             "numAffected": 0,
+             "numAtRisk": 133
+            },
+            {
+             "groupId": "EG003",
+             "numAffected": 0,
+             "numAtRisk": 585
+            }
+           ]
+          },
+          {
+           "term": "Syncope",
+           "organSystem": "Nervous system disorders",
+           "sourceVocabulary": "MedDRA Version 18.1",
+           "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+           "stats": [
+            {
+             "groupId": "EG000",
+             "numAffected": 1,
+             "numAtRisk": 871
+            },
+            {
+             "groupId": "EG001",
+             "numAffected": 0,
+             "numAtRisk": 135
+            },
+            {
+             "groupId": "EG002",
+             "numAffected": 0,
+             "numAtRisk": 133
+            },
+            {
+             "groupId": "EG003",
+             "numAffected": 0,
+             "numAtRisk": 585
+            }
+           ]
+          },
+          {
+           "term": "Ectopic Pregnancy",
+           "organSystem": "Pregnancy, puerperium and perinatal conditions",
+           "sourceVocabulary": "MedDRA Version 18.1",
+           "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+           "stats": [
+            {
+             "groupId": "EG000",
+             "numAffected": 0,
+             "numAtRisk": 871
+            },
+            {
+             "groupId": "EG001",
+             "numAffected": 1,
+             "numAtRisk": 135
+            },
+            {
+             "groupId": "EG002",
+             "numAffected": 0,
+             "numAtRisk": 133
+            },
+            {
+             "groupId": "EG003",
+             "numAffected": 0,
+             "numAtRisk": 585
+            }
+           ]
+          },
+          {
+           "term": "Psoriasis",
+           "organSystem": "Skin and subcutaneous tissue disorders",
+           "sourceVocabulary": "MedDRA Version 18.1",
+           "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+           "stats": [
+            {
+             "groupId": "EG000",
+             "numAffected": 2,
+             "numAtRisk": 871
+            },
+            {
+             "groupId": "EG001",
+             "numAffected": 0,
+             "numAtRisk": 135
+            },
+            {
+             "groupId": "EG002",
+             "numAffected": 0,
+             "numAtRisk": 133
+            },
+            {
+             "groupId": "EG003",
+             "numAffected": 0,
+             "numAtRisk": 585
+            }
+           ]
+          },
+          {
+           "term": "Constipation",
+           "organSystem": "Gastrointestinal disorders",
+           "sourceVocabulary": "MedDRA Version 18.1",
+           "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+           "stats": [
+            {
+             "groupId": "EG000",
+             "numAffected": 0,
+             "numAtRisk": 871
+            },
+            {
+             "groupId": "EG001",
+             "numAffected": 0,
+             "numAtRisk": 135
+            },
+            {
+             "groupId": "EG002",
+             "numAffected": 0,
+             "numAtRisk": 133
+            },
+            {
+             "groupId": "EG003",
+             "numAffected": 1,
+             "numAtRisk": 585
+            }
+           ]
+          },
+          {
+           "term": "Large Intestinal Stenosis",
+           "organSystem": "Gastrointestinal disorders",
+           "sourceVocabulary": "MedDRA Version 18.1",
+           "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+           "stats": [
+            {
+             "groupId": "EG000",
+             "numAffected": 0,
+             "numAtRisk": 871
+            },
+            {
+             "groupId": "EG001",
+             "numAffected": 0,
+             "numAtRisk": 135
+            },
+            {
+             "groupId": "EG002",
+             "numAffected": 0,
+             "numAtRisk": 133
+            },
+            {
+             "groupId": "EG003",
+             "numAffected": 1,
+             "numAtRisk": 585
+            }
+           ]
+          },
+          {
+           "term": "Chest Discomfort",
+           "organSystem": "General disorders",
+           "sourceVocabulary": "MedDRA Version 18.1",
+           "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+           "stats": [
+            {
+             "groupId": "EG000",
+             "numAffected": 0,
+             "numAtRisk": 871
+            },
+            {
+             "groupId": "EG001",
+             "numAffected": 0,
+             "numAtRisk": 135
+            },
+            {
+             "groupId": "EG002",
+             "numAffected": 0,
+             "numAtRisk": 133
+            },
+            {
+             "groupId": "EG003",
+             "numAffected": 1,
+             "numAtRisk": 585
+            }
+           ]
+          },
+          {
+           "term": "Arthritis Bacterial",
+           "organSystem": "Infections and infestations",
+           "sourceVocabulary": "MedDRA Version 18.1",
+           "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+           "stats": [
+            {
+             "groupId": "EG000",
+             "numAffected": 0,
+             "numAtRisk": 871
+            },
+            {
+             "groupId": "EG001",
+             "numAffected": 1,
+             "numAtRisk": 135
+            },
+            {
+             "groupId": "EG002",
+             "numAffected": 0,
+             "numAtRisk": 133
+            },
+            {
+             "groupId": "EG003",
+             "numAffected": 0,
+             "numAtRisk": 585
+            }
+           ]
+          },
+          {
+           "term": "Appendicitis",
+           "organSystem": "Infections and infestations",
+           "sourceVocabulary": "MedDRA Version 18.1",
+           "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+           "stats": [
+            {
+             "groupId": "EG000",
+             "numAffected": 0,
+             "numAtRisk": 871
+            },
+            {
+             "groupId": "EG001",
+             "numAffected": 0,
+             "numAtRisk": 135
+            },
+            {
+             "groupId": "EG002",
+             "numAffected": 0,
+             "numAtRisk": 133
+            },
+            {
+             "groupId": "EG003",
+             "numAffected": 1,
+             "numAtRisk": 585
+            }
+           ]
+          },
+          {
+           "term": "Epididymitis",
+           "organSystem": "Infections and infestations",
+           "sourceVocabulary": "MedDRA Version 18.1",
+           "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+           "stats": [
+            {
+             "groupId": "EG000",
+             "numAffected": 0,
+             "numAtRisk": 871
+            },
+            {
+             "groupId": "EG001",
+             "numAffected": 0,
+             "numAtRisk": 135
+            },
+            {
+             "groupId": "EG002",
+             "numAffected": 0,
+             "numAtRisk": 133
+            },
+            {
+             "groupId": "EG003",
+             "numAffected": 1,
+             "numAtRisk": 585
+            }
+           ]
+          },
+          {
+           "term": "Salpingitis",
+           "organSystem": "Infections and infestations",
+           "sourceVocabulary": "MedDRA Version 18.1",
+           "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+           "stats": [
+            {
+             "groupId": "EG000",
+             "numAffected": 0,
+             "numAtRisk": 871
+            },
+            {
+             "groupId": "EG001",
+             "numAffected": 0,
+             "numAtRisk": 135
+            },
+            {
+             "groupId": "EG002",
+             "numAffected": 0,
+             "numAtRisk": 133
+            },
+            {
+             "groupId": "EG003",
+             "numAffected": 1,
+             "numAtRisk": 585
+            }
+           ]
+          },
+          {
+           "term": "Squamous Cell Carcinoma",
+           "organSystem": "Neoplasms benign, malignant and unspecified (incl cysts and polyps)",
+           "sourceVocabulary": "MedDRA Version 18.1",
+           "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+           "stats": [
+            {
+             "groupId": "EG000",
+             "numAffected": 0,
+             "numAtRisk": 871
+            },
+            {
+             "groupId": "EG001",
+             "numAffected": 1,
+             "numAtRisk": 135
+            },
+            {
+             "groupId": "EG002",
+             "numAffected": 0,
+             "numAtRisk": 133
+            },
+            {
+             "groupId": "EG003",
+             "numAffected": 0,
+             "numAtRisk": 585
+            }
+           ]
+          },
+          {
+           "term": "Migraine",
+           "organSystem": "Nervous system disorders",
+           "sourceVocabulary": "MedDRA Version 18.1",
+           "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+           "stats": [
+            {
+             "groupId": "EG000",
+             "numAffected": 0,
+             "numAtRisk": 871
+            },
+            {
+             "groupId": "EG001",
+             "numAffected": 1,
+             "numAtRisk": 135
+            },
+            {
+             "groupId": "EG002",
+             "numAffected": 0,
+             "numAtRisk": 133
+            },
+            {
+             "groupId": "EG003",
+             "numAffected": 0,
+             "numAtRisk": 585
+            }
+           ]
+          },
+          {
+           "term": "Abortion Spontaneous",
+           "organSystem": "Pregnancy, puerperium and perinatal conditions",
+           "sourceVocabulary": "MedDRA Version 18.1",
+           "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+           "stats": [
+            {
+             "groupId": "EG000",
+             "numAffected": 0,
+             "numAtRisk": 871
+            },
+            {
+             "groupId": "EG001",
+             "numAffected": 1,
+             "numAtRisk": 135
+            },
+            {
+             "groupId": "EG002",
+             "numAffected": 0,
+             "numAtRisk": 133
+            },
+            {
+             "groupId": "EG003",
+             "numAffected": 0,
+             "numAtRisk": 585
+            }
+           ]
+          },
+          {
+           "term": "Eczema",
+           "organSystem": "Skin and subcutaneous tissue disorders",
+           "sourceVocabulary": "MedDRA Version 18.1",
+           "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+           "stats": [
+            {
+             "groupId": "EG000",
+             "numAffected": 0,
+             "numAtRisk": 871
+            },
+            {
+             "groupId": "EG001",
+             "numAffected": 0,
+             "numAtRisk": 135
+            },
+            {
+             "groupId": "EG002",
+             "numAffected": 1,
+             "numAtRisk": 133
+            },
+            {
+             "groupId": "EG003",
+             "numAffected": 0,
+             "numAtRisk": 585
+            }
+           ]
+          },
+          {
+           "term": "Lymphadenopathy",
+           "organSystem": "Blood and lymphatic system disorders",
+           "sourceVocabulary": "MedDRA Version 18.1",
+           "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+           "stats": [
+            {
+             "groupId": "EG000",
+             "numAffected": 0,
+             "numAtRisk": 871
+            },
+            {
+             "groupId": "EG001",
+             "numAffected": 0,
+             "numAtRisk": 135
+            },
+            {
+             "groupId": "EG002",
+             "numAffected": 0,
+             "numAtRisk": 133
+            },
+            {
+             "groupId": "EG003",
+             "numAffected": 1,
+             "numAtRisk": 585
+            }
+           ]
+          },
+          {
+           "term": "Diabetes Mellitus",
+           "organSystem": "Metabolism and nutrition disorders",
+           "sourceVocabulary": "MedDRA Version 18.1",
+           "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+           "stats": [
+            {
+             "groupId": "EG000",
+             "numAffected": 0,
+             "numAtRisk": 871
+            },
+            {
+             "groupId": "EG001",
+             "numAffected": 0,
+             "numAtRisk": 135
+            },
+            {
+             "groupId": "EG002",
+             "numAffected": 1,
+             "numAtRisk": 133
+            },
+            {
+             "groupId": "EG003",
+             "numAffected": 0,
+             "numAtRisk": 585
+            }
+           ]
+          },
+          {
+           "term": "Type 2 Diabetes Mellitus",
+           "organSystem": "Metabolism and nutrition disorders",
+           "sourceVocabulary": "MedDRA Version 18.1",
+           "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+           "stats": [
+            {
+             "groupId": "EG000",
+             "numAffected": 0,
+             "numAtRisk": 871
+            },
+            {
+             "groupId": "EG001",
+             "numAffected": 0,
+             "numAtRisk": 135
+            },
+            {
+             "groupId": "EG002",
+             "numAffected": 1,
+             "numAtRisk": 133
+            },
+            {
+             "groupId": "EG003",
+             "numAffected": 0,
+             "numAtRisk": 585
+            }
+           ]
+          },
+          {
+           "term": "Retinal Detachment",
+           "organSystem": "Eye disorders",
+           "sourceVocabulary": "MedDRA Version 18.1",
+           "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+           "stats": [
+            {
+             "groupId": "EG000",
+             "numAffected": 0,
+             "numAtRisk": 871
+            },
+            {
+             "groupId": "EG001",
+             "numAffected": 0,
+             "numAtRisk": 135
+            },
+            {
+             "groupId": "EG002",
+             "numAffected": 1,
+             "numAtRisk": 133
+            },
+            {
+             "groupId": "EG003",
+             "numAffected": 0,
+             "numAtRisk": 585
+            }
+           ]
+          }
+         ],
+         "otherEvents": [
+          {
+           "term": "Nasopharyngitis",
+           "organSystem": "Infections and infestations",
+           "sourceVocabulary": "MedDRA Version 18.1",
+           "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+           "stats": [
+            {
+             "groupId": "EG000",
+             "numAffected": 47,
+             "numAtRisk": 871
+            },
+            {
+             "groupId": "EG001",
+             "numAffected": 23,
+             "numAtRisk": 135
+            },
+            {
+             "groupId": "EG002",
+             "numAffected": 23,
+             "numAtRisk": 133
+            },
+            {
+             "groupId": "EG003",
+             "numAffected": 33,
+             "numAtRisk": 585
+            }
+           ]
+          },
+          {
+           "term": "Upper Respiratory Tract Infection",
+           "organSystem": "Infections and infestations",
+           "sourceVocabulary": "MedDRA Version 18.1",
+           "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+           "stats": [
+            {
+             "groupId": "EG000",
+             "numAffected": 33,
+             "numAtRisk": 871
+            },
+            {
+             "groupId": "EG001",
+             "numAffected": 15,
+             "numAtRisk": 135
+            },
+            {
+             "groupId": "EG002",
+             "numAffected": 11,
+             "numAtRisk": 133
+            },
+            {
+             "groupId": "EG003",
+             "numAffected": 27,
+             "numAtRisk": 585
+            }
+           ]
+          }
+         ]
+        },
+        "moreInfoModule": {
+         "certainAgreement": {
+          "piSponsorEmployee": false,
+          "restrictionType": "OTHER",
+          "restrictiveAgreement": true,
+          "otherDetails": "A copy of the manuscript must be provided to the sponsor for review at least 60 days before submission for publication or presentation. If requested in writing, such publication will be withheld for up to an additional 60 days."
+         },
+         "pointOfContact": {
+          "title": "Senior Director",
+          "organization": "Janssen Research & Development, LLC",
+          "email": "ClinicalTrialDisclosure@its.jnj.com"
+         }
+        }
+       },
+       "derivedSection": {
+        "miscInfoModule": {
+         "versionHolder": "2026-11-03"
+        },
+        "conditionBrowseModule": {
+         "meshes": [
+          {
+           "id": "D011565",
+           "term": "Psoriasis"
+          }
+         ],
+         "ancestors": [
+          {
+           "id": "D017444",
+           "term": "Skin Diseases, Papulosquamous"
+          },
+          {
+           "id": "D012871",
+           "term": "Skin Diseases"
+          },
+          {
+           "id": "D017437",
+           "term": "Skin and Connective Tissue Diseases"
+          }
+         ]
+        },
+        "interventionBrowseModule": {
+         "meshes": [
+          {
+           "id": "D000069549",
+           "term": "Ustekinumab"
+          },
+          {
+           "id": "C000588857",
+           "term": "guselkumab"
+          }
+         ],
+         "ancestors": [
+          {
+           "id": "D061067",
+           "term": "Antibodies, Monoclonal, Humanized"
+          },
+          {
+           "id": "D000911",
+           "term": "Antibodies, Monoclonal"
+          },
+          {
+           "id": "D000906",
+           "term": "Antibodies"
+          },
+          {
+           "id": "D007136",
+           "term": "Immunoglobulins"
+          },
+          {
+           "id": "D007162",
+           "term": "Immunoproteins"
+          },
+          {
+           "id": "D001798",
+           "term": "Blood Proteins"
+          },
+          {
+           "id": "D011506",
+           "term": "Proteins"
+          },
+          {
+           "id": "D000602",
+           "term": "Amino Acids, Peptides, and Proteins"
+          },
+          {
+           "id": "D012712",
+           "term": "Serum Globulins"
+          },
+          {
+           "id": "D005916",
+           "term": "Globulins"
+          }
+         ]
+        }
+       },
+       "hasResults": true
+      },
+      "digest": "320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c"
+     }
+    ],
+    "observations": [
+     {
+      "id": "protocol-reported",
+      "source": "NAVIGATE",
+      "scope": {
+       "study": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c",
+       "version": "320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c",
+       "population": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c:run-in-started",
+       "arm": "run-in-all",
+       "time": "entry-to-run-in"
+      },
+      "count": {
+       "address": "/resultsSection/participantFlowModule/periods/0/dropWithdraws/4/reasons/0/numSubjects",
+       "expected": "4"
+      },
+      "category": {
+       "address": "/resultsSection/participantFlowModule/periods/0/dropWithdraws/4/type",
+       "expected": "Protocol Violation"
+      },
+      "denominator": {
+       "address": "/resultsSection/participantFlowModule/periods/0/milestones/0/achievements/0/numSubjects",
+       "expected": "872"
+      },
+      "context": [
+       {
+        "id": "full-flow-group",
+        "address": "/resultsSection/participantFlowModule/groups/0",
+        "expected": {
+         "id": "FG000",
+         "title": "Ustekinumab (Open Label Run-in)",
+         "description": "All participants received ustekinumab 45 milligram (mg) (participants weighing less than or equal to \\[\\<=\\]100 kilogram \\[kg\\]) or 90 mg (participants weighing \\>100 kg) at Weeks 0 and 4. At Week 16, participants with IGA \\>=2 were randomized to either switch to guselkumab 100 mg at Weeks 16 and 20 and then every 8 weeks thereafter or continue on ustekinumab every 12 weeks (q12w); participants with an IGA=0 or 1 were to continue to receive open-label ustekinumab q12w."
+        }
+       },
+       {
+        "id": "full-recording-period",
+        "address": "/resultsSection/participantFlowModule/periods/0",
+        "expected": {
+         "title": "Open Label Run-in (Week 0 to Week 16)",
+         "milestones": [
+          {
+           "type": "STARTED",
+           "achievements": [
+            {
+             "groupId": "FG000",
+             "numSubjects": "872"
+            },
+            {
+             "groupId": "FG001",
+             "numSubjects": "0"
+            },
+            {
+             "groupId": "FG002",
+             "numSubjects": "0"
+            },
+            {
+             "groupId": "FG003",
+             "numSubjects": "0"
+            }
+           ]
+          },
+          {
+           "type": "Treated",
+           "achievements": [
+            {
+             "groupId": "FG000",
+             "numSubjects": "871"
+            },
+            {
+             "groupId": "FG001",
+             "numSubjects": "0"
+            },
+            {
+             "groupId": "FG002",
+             "numSubjects": "0"
+            },
+            {
+             "groupId": "FG003",
+             "numSubjects": "0"
+            }
+           ]
+          },
+          {
+           "type": "COMPLETED",
+           "achievements": [
+            {
+             "groupId": "FG000",
+             "numSubjects": "853"
+            },
+            {
+             "groupId": "FG001",
+             "numSubjects": "0"
+            },
+            {
+             "groupId": "FG002",
+             "numSubjects": "0"
+            },
+            {
+             "groupId": "FG003",
+             "numSubjects": "0"
+            }
+           ]
+          },
+          {
+           "type": "NOT COMPLETED",
+           "achievements": [
+            {
+             "groupId": "FG000",
+             "numSubjects": "19"
+            },
+            {
+             "groupId": "FG001",
+             "numSubjects": "0"
+            },
+            {
+             "groupId": "FG002",
+             "numSubjects": "0"
+            },
+            {
+             "groupId": "FG003",
+             "numSubjects": "0"
+            }
+           ]
+          }
+         ],
+         "dropWithdraws": [
+          {
+           "type": "Adverse Event",
+           "reasons": [
+            {
+             "groupId": "FG000",
+             "numSubjects": "2"
+            },
+            {
+             "groupId": "FG001",
+             "numSubjects": "0"
+            },
+            {
+             "groupId": "FG002",
+             "numSubjects": "0"
+            },
+            {
+             "groupId": "FG003",
+             "numSubjects": "0"
+            }
+           ]
+          },
+          {
+           "type": "Lack of Efficacy",
+           "reasons": [
+            {
+             "groupId": "FG000",
+             "numSubjects": "1"
+            },
+            {
+             "groupId": "FG001",
+             "numSubjects": "0"
+            },
+            {
+             "groupId": "FG002",
+             "numSubjects": "0"
+            },
+            {
+             "groupId": "FG003",
+             "numSubjects": "0"
+            }
+           ]
+          },
+          {
+           "type": "Lost to Follow-up",
+           "reasons": [
+            {
+             "groupId": "FG000",
+             "numSubjects": "3"
+            },
+            {
+             "groupId": "FG001",
+             "numSubjects": "0"
+            },
+            {
+             "groupId": "FG002",
+             "numSubjects": "0"
+            },
+            {
+             "groupId": "FG003",
+             "numSubjects": "0"
+            }
+           ]
+          },
+          {
+           "type": "Withdrawal by Subject",
+           "reasons": [
+            {
+             "groupId": "FG000",
+             "numSubjects": "6"
+            },
+            {
+             "groupId": "FG001",
+             "numSubjects": "0"
+            },
+            {
+             "groupId": "FG002",
+             "numSubjects": "0"
+            },
+            {
+             "groupId": "FG003",
+             "numSubjects": "0"
+            }
+           ]
+          },
+          {
+           "type": "Protocol Violation",
+           "reasons": [
+            {
+             "groupId": "FG000",
+             "numSubjects": "4"
+            },
+            {
+             "groupId": "FG001",
+             "numSubjects": "0"
+            },
+            {
+             "groupId": "FG002",
+             "numSubjects": "0"
+            },
+            {
+             "groupId": "FG003",
+             "numSubjects": "0"
+            }
+           ]
+          },
+          {
+           "type": "Other",
+           "reasons": [
+            {
+             "groupId": "FG000",
+             "numSubjects": "2"
+            },
+            {
+             "groupId": "FG001",
+             "numSubjects": "0"
+            },
+            {
+             "groupId": "FG002",
+             "numSubjects": "0"
+            },
+            {
+             "groupId": "FG003",
+             "numSubjects": "0"
+            }
+           ]
+          },
+          {
+           "type": "Enrolled but not treated",
+           "reasons": [
+            {
+             "groupId": "FG000",
+             "numSubjects": "1"
+            },
+            {
+             "groupId": "FG001",
+             "numSubjects": "0"
+            },
+            {
+             "groupId": "FG002",
+             "numSubjects": "0"
+            },
+            {
+             "groupId": "FG003",
+             "numSubjects": "0"
+            }
+           ]
+          }
+         ]
+        }
+       }
+      ]
+     }
+    ],
+    "bindings": [
+     {
+      "id": "failure-target-reading",
+      "observation": "protocol-reported",
+      "scope": {
+       "study": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c",
+       "version": "320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c",
+       "population": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c:run-in-started",
+       "arm": "run-in-all",
+       "time": "entry-to-run-in"
+      },
+      "possible_targets": [
+       "entry_eligibility",
+       "treatment_adherence",
+       "assessment_adherence",
+       "other_protocol_requirement"
+      ],
+      "extent": "population",
+      "profile": null,
+      "status": "proposed",
+      "resolution": "resolved",
+      "basis": [
+       "assistant:protocol-violation-does-not-identify-its-failed-target"
+      ],
+      "rule": {
+       "id": "supplied-reading-not-registry-definition",
+       "version": "1"
+      }
+     }
+    ]
+   },
+   "observations": [
+    {
+     "id": "enrolled-run-in",
+     "count": 872,
+     "denominator": 872,
+     "population": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c:run-in-started",
+     "body": {
+      "class": "Literal",
+      "evidence": [],
+      "polarity": "positive",
+      "predicate": {
+       "class": "Predicate",
+       "key": "reported_started_run_in",
+       "kind": "demographic"
+      },
+      "qualifiers": {
+       "class": "Always"
+      },
+      "subject": {
+       "class": "Subject",
+       "kind": "participant",
+       "referent": ""
+      },
+      "time": null,
+      "value": {
+       "class": "Value",
+       "comparison": "eq",
+       "inclusivity": "unspecified",
+       "kind": "boolean",
+       "members": [],
+       "number": null,
+       "unit": "",
+       "upper": null
+      }
+     },
+     "context": {},
+     "status": "known",
+     "basis": [
+      "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/resultsSection/participantFlowModule/periods/0/milestones/0/achievements/0"
+     ],
+     "bridge": {
+      "status": "interpolated",
+      "resolution": "resolved",
+      "max_exceptions": null,
+      "basis": [
+       "investigation:eligibility-bridge-hypothesis-with-no-informative-ceiling-supplied"
+      ],
+      "exception_evidence": {
+       "bindings": [
+        "failure-target-reading"
+       ],
+       "scope": {
+        "study": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c",
+        "version": "320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c",
+        "population": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c:run-in-started",
+        "arm": "run-in-all",
+        "time": "entry-to-run-in"
+       },
+       "extent": "population",
+       "profile": null
+      }
+     }
+    }
+   ]
+  },
+  "candidates": [
+   {
+    "id": "adult-under65",
+    "state": "unresolved",
+    "observations": [
+     {
+      "observation": "enrolled-run-in",
+      "support": "binding_unresolved",
+      "state": "unresolved",
+      "status": "interpolated",
+      "basis": [
+       "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/resultsSection/participantFlowModule/periods/0/milestones/0/achievements/0",
+       "investigation:eligibility-bridge-hypothesis-with-no-informative-ceiling-supplied",
+       "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/resultsSection/participantFlowModule/periods/0/dropWithdraws/4/reasons/0/numSubjects",
+       "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/resultsSection/participantFlowModule/periods/0/dropWithdraws/4/type",
+       "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/resultsSection/participantFlowModule/periods/0/milestones/0/achievements/0/numSubjects",
+       "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/resultsSection/participantFlowModule/groups/0",
+       "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/resultsSection/participantFlowModule/periods/0",
+       "assistant:protocol-violation-does-not-identify-its-failed-target"
+      ],
+      "decision": {
+       "result": "UNDETERMINED",
+       "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"reported_started_run_in\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+       "status": null,
+       "proof": [],
+       "blockers": [
+        "exception_upper_unknown",
+        "no_constraint_mentions_query"
+       ]
+      },
+      "exception_check": "exception:enrolled-run-in",
+      "witness_threshold": {
+       "count_lower": 872,
+       "supplied_exception_upper": null,
+       "maximum_exceptions_for_witness": 871,
+       "requires": "accepted, resolved, same-predicate and same-scope bridge"
+      }
+     }
+    ],
+    "query_decision": {
+     "result": "ENTAILED",
+     "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+     "status": "known",
+     "proof": [
+      "registry-age-minimumAge"
+     ],
+     "blockers": []
+    }
+   },
+   {
+    "id": "adult-no-upper-added",
+    "state": "unresolved",
+    "observations": [
+     {
+      "observation": "enrolled-run-in",
+      "support": "binding_unresolved",
+      "state": "unresolved",
+      "status": "interpolated",
+      "basis": [
+       "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/resultsSection/participantFlowModule/periods/0/milestones/0/achievements/0",
+       "investigation:eligibility-bridge-hypothesis-with-no-informative-ceiling-supplied",
+       "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/resultsSection/participantFlowModule/periods/0/dropWithdraws/4/reasons/0/numSubjects",
+       "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/resultsSection/participantFlowModule/periods/0/dropWithdraws/4/type",
+       "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/resultsSection/participantFlowModule/periods/0/milestones/0/achievements/0/numSubjects",
+       "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/resultsSection/participantFlowModule/groups/0",
+       "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/resultsSection/participantFlowModule/periods/0",
+       "assistant:protocol-violation-does-not-identify-its-failed-target"
+      ],
+      "decision": {
+       "result": "UNDETERMINED",
+       "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"reported_started_run_in\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+       "status": null,
+       "proof": [],
+       "blockers": [
+        "exception_upper_unknown",
+        "no_constraint_mentions_query"
+       ]
+      },
+      "exception_check": "exception:enrolled-run-in",
+      "witness_threshold": {
+       "count_lower": 872,
+       "supplied_exception_upper": null,
+       "maximum_exceptions_for_witness": 871,
+       "requires": "accepted, resolved, same-predicate and same-scope bridge"
+      }
+     }
+    ],
+    "query_decision": {
+     "result": "ENTAILED",
+     "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+     "status": "known",
+     "proof": [
+      "registry-age-minimumAge"
+     ],
+     "blockers": []
+    }
+   }
+  ],
+  "remaining": [
+   "adult-under65",
+   "adult-no-upper-added"
+  ],
+  "consequence": {
+   "result": "UNDETERMINED",
+   "status": null,
+   "basis": "All remaining declared candidate designs; includes the support of eliminations."
+  },
+  "exception_checks": [
+   {
+    "target": "entry_eligibility",
+    "code": "unresolved",
+    "lower": 0,
+    "upper": null,
+    "structural_maximum": 872,
+    "interval_state": "unknown_ceiling",
+    "independent_lower": 0,
+    "independent_interval_state": "unknown_ceiling",
+    "possible_floor_upper": 4,
+    "possible_floor_meaning": "Largest lower-bound constraint supplied by these observations across represented target readings; not an upper bound on total exceptions.",
+    "conditional_lower": 0,
+    "conditional_interval_state": "unknown_ceiling",
+    "independent_conditional_lower": 0,
+    "extent": "population",
+    "scope": {
+     "arm": "run-in-all",
+     "population": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c:run-in-started",
+     "study": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c",
+     "time": "entry-to-run-in",
+     "version": "320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c"
+    },
+    "profile": null,
+    "attributions": [
+     {
+      "observation": "protocol-reported",
+      "bindings": [
+       "failure-target-reading"
+      ],
+      "scope": {
+       "arm": "run-in-all",
+       "population": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c:run-in-started",
+       "study": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c",
+       "time": "entry-to-run-in",
+       "version": "320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c"
+      },
+      "extent": "population",
+      "profile": null,
+      "reported_lower": 4,
+      "denominator": 872,
+      "state": "attribution_open",
+      "possible_targets": [
+       "assessment_adherence",
+       "entry_eligibility",
+       "other_protocol_requirement",
+       "treatment_adherence"
+      ],
+      "known_possible_targets": [
+       "assessment_adherence",
+       "entry_eligibility",
+       "other_protocol_requirement",
+       "treatment_adherence"
+      ],
+      "known_state": "attribution_open",
+      "status": null,
+      "accepted_bindings": [],
+      "known_bindings": [],
+      "applicable": true,
+      "lower": 0,
+      "conditional_lower": 0,
+      "independent_lower": 0,
+      "possible_floor_upper": 4,
+      "application_blockers": [],
+      "blockers": [
+       "missing_entry_attribution:failure-target-reading",
+       "binding_proposed:failure-target-reading"
+      ],
+      "pending_blockers": [
+       "binding_proposed:failure-target-reading"
+      ],
+      "contributions": [
+       {
+        "binding": "failure-target-reading",
+        "observation": "protocol-reported",
+        "count": 4,
+        "reported_lower": 4,
+        "possible_targets": [
+         "assessment_adherence",
+         "entry_eligibility",
+         "other_protocol_requirement",
+         "treatment_adherence"
+        ],
+        "accepted_possible_targets": [
+         "assessment_adherence",
+         "entry_eligibility",
+         "other_protocol_requirement",
+         "treatment_adherence"
+        ],
+        "conditional_possible_targets": [
+         "assessment_adherence",
+         "entry_eligibility",
+         "other_protocol_requirement",
+         "treatment_adherence"
+        ],
+        "conditional_state": "attribution_open",
+        "conditional_floor": 0,
+        "denominator": 872,
+        "transfer": "population_floor",
+        "floor": 0,
+        "status": "proposed",
+        "resolution": "resolved",
+        "scope": {
+         "arm": "run-in-all",
+         "population": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c:run-in-started",
+         "study": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c",
+         "time": "entry-to-run-in",
+         "version": "320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c"
+        },
+        "extent": "population",
+        "profile": null,
+        "source": "NAVIGATE",
+        "located": [
+         {
+          "id": "count",
+          "address": "/resultsSection/participantFlowModule/periods/0/dropWithdraws/4/reasons/0/numSubjects",
+          "digest": "320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c",
+          "value": "4",
+          "ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/resultsSection/participantFlowModule/periods/0/dropWithdraws/4/reasons/0/numSubjects",
+          "source": {
+           "ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c",
+           "version": "320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c",
+           "address": "/resultsSection/participantFlowModule/periods/0/dropWithdraws/4/reasons/0/numSubjects",
+           "digest": "320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c"
+          },
+          "code": "located"
+         },
+         {
+          "id": "category",
+          "address": "/resultsSection/participantFlowModule/periods/0/dropWithdraws/4/type",
+          "digest": "320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c",
+          "value": "Protocol Violation",
+          "ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/resultsSection/participantFlowModule/periods/0/dropWithdraws/4/type",
+          "source": {
+           "ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c",
+           "version": "320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c",
+           "address": "/resultsSection/participantFlowModule/periods/0/dropWithdraws/4/type",
+           "digest": "320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c"
+          },
+          "code": "located"
+         },
+         {
+          "id": "denominator",
+          "address": "/resultsSection/participantFlowModule/periods/0/milestones/0/achievements/0/numSubjects",
+          "digest": "320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c",
+          "value": "872",
+          "ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/resultsSection/participantFlowModule/periods/0/milestones/0/achievements/0/numSubjects",
+          "source": {
+           "ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c",
+           "version": "320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c",
+           "address": "/resultsSection/participantFlowModule/periods/0/milestones/0/achievements/0/numSubjects",
+           "digest": "320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c"
+          },
+          "code": "located"
+         },
+         {
+          "id": "full-flow-group",
+          "address": "/resultsSection/participantFlowModule/groups/0",
+          "digest": "320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c",
+          "value": {
+           "id": "FG000",
+           "title": "Ustekinumab (Open Label Run-in)",
+           "description": "All participants received ustekinumab 45 milligram (mg) (participants weighing less than or equal to \\[\\<=\\]100 kilogram \\[kg\\]) or 90 mg (participants weighing \\>100 kg) at Weeks 0 and 4. At Week 16, participants with IGA \\>=2 were randomized to either switch to guselkumab 100 mg at Weeks 16 and 20 and then every 8 weeks thereafter or continue on ustekinumab every 12 weeks (q12w); participants with an IGA=0 or 1 were to continue to receive open-label ustekinumab q12w."
+          },
+          "ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/resultsSection/participantFlowModule/groups/0",
+          "source": {
+           "ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c",
+           "version": "320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c",
+           "address": "/resultsSection/participantFlowModule/groups/0",
+           "digest": "320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c"
+          },
+          "code": "located"
+         },
+         {
+          "id": "full-recording-period",
+          "address": "/resultsSection/participantFlowModule/periods/0",
+          "digest": "320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c",
+          "value": {
+           "title": "Open Label Run-in (Week 0 to Week 16)",
+           "milestones": [
+            {
+             "type": "STARTED",
+             "achievements": [
+              {
+               "groupId": "FG000",
+               "numSubjects": "872"
+              },
+              {
+               "groupId": "FG001",
+               "numSubjects": "0"
+              },
+              {
+               "groupId": "FG002",
+               "numSubjects": "0"
+              },
+              {
+               "groupId": "FG003",
+               "numSubjects": "0"
+              }
+             ]
+            },
+            {
+             "type": "Treated",
+             "achievements": [
+              {
+               "groupId": "FG000",
+               "numSubjects": "871"
+              },
+              {
+               "groupId": "FG001",
+               "numSubjects": "0"
+              },
+              {
+               "groupId": "FG002",
+               "numSubjects": "0"
+              },
+              {
+               "groupId": "FG003",
+               "numSubjects": "0"
+              }
+             ]
+            },
+            {
+             "type": "COMPLETED",
+             "achievements": [
+              {
+               "groupId": "FG000",
+               "numSubjects": "853"
+              },
+              {
+               "groupId": "FG001",
+               "numSubjects": "0"
+              },
+              {
+               "groupId": "FG002",
+               "numSubjects": "0"
+              },
+              {
+               "groupId": "FG003",
+               "numSubjects": "0"
+              }
+             ]
+            },
+            {
+             "type": "NOT COMPLETED",
+             "achievements": [
+              {
+               "groupId": "FG000",
+               "numSubjects": "19"
+              },
+              {
+               "groupId": "FG001",
+               "numSubjects": "0"
+              },
+              {
+               "groupId": "FG002",
+               "numSubjects": "0"
+              },
+              {
+               "groupId": "FG003",
+               "numSubjects": "0"
+              }
+             ]
+            }
+           ],
+           "dropWithdraws": [
+            {
+             "type": "Adverse Event",
+             "reasons": [
+              {
+               "groupId": "FG000",
+               "numSubjects": "2"
+              },
+              {
+               "groupId": "FG001",
+               "numSubjects": "0"
+              },
+              {
+               "groupId": "FG002",
+               "numSubjects": "0"
+              },
+              {
+               "groupId": "FG003",
+               "numSubjects": "0"
+              }
+             ]
+            },
+            {
+             "type": "Lack of Efficacy",
+             "reasons": [
+              {
+               "groupId": "FG000",
+               "numSubjects": "1"
+              },
+              {
+               "groupId": "FG001",
+               "numSubjects": "0"
+              },
+              {
+               "groupId": "FG002",
+               "numSubjects": "0"
+              },
+              {
+               "groupId": "FG003",
+               "numSubjects": "0"
+              }
+             ]
+            },
+            {
+             "type": "Lost to Follow-up",
+             "reasons": [
+              {
+               "groupId": "FG000",
+               "numSubjects": "3"
+              },
+              {
+               "groupId": "FG001",
+               "numSubjects": "0"
+              },
+              {
+               "groupId": "FG002",
+               "numSubjects": "0"
+              },
+              {
+               "groupId": "FG003",
+               "numSubjects": "0"
+              }
+             ]
+            },
+            {
+             "type": "Withdrawal by Subject",
+             "reasons": [
+              {
+               "groupId": "FG000",
+               "numSubjects": "6"
+              },
+              {
+               "groupId": "FG001",
+               "numSubjects": "0"
+              },
+              {
+               "groupId": "FG002",
+               "numSubjects": "0"
+              },
+              {
+               "groupId": "FG003",
+               "numSubjects": "0"
+              }
+             ]
+            },
+            {
+             "type": "Protocol Violation",
+             "reasons": [
+              {
+               "groupId": "FG000",
+               "numSubjects": "4"
+              },
+              {
+               "groupId": "FG001",
+               "numSubjects": "0"
+              },
+              {
+               "groupId": "FG002",
+               "numSubjects": "0"
+              },
+              {
+               "groupId": "FG003",
+               "numSubjects": "0"
+              }
+             ]
+            },
+            {
+             "type": "Other",
+             "reasons": [
+              {
+               "groupId": "FG000",
+               "numSubjects": "2"
+              },
+              {
+               "groupId": "FG001",
+               "numSubjects": "0"
+              },
+              {
+               "groupId": "FG002",
+               "numSubjects": "0"
+              },
+              {
+               "groupId": "FG003",
+               "numSubjects": "0"
+              }
+             ]
+            },
+            {
+             "type": "Enrolled but not treated",
+             "reasons": [
+              {
+               "groupId": "FG000",
+               "numSubjects": "1"
+              },
+              {
+               "groupId": "FG001",
+               "numSubjects": "0"
+              },
+              {
+               "groupId": "FG002",
+               "numSubjects": "0"
+              },
+              {
+               "groupId": "FG003",
+               "numSubjects": "0"
+              }
+             ]
+            }
+           ]
+          },
+          "ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/resultsSection/participantFlowModule/periods/0",
+          "source": {
+           "ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c",
+           "version": "320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c",
+           "address": "/resultsSection/participantFlowModule/periods/0",
+           "digest": "320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c"
+          },
+          "code": "located"
+         }
+        ],
+        "basis": [
+         "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/resultsSection/participantFlowModule/periods/0/dropWithdraws/4/reasons/0/numSubjects",
+         "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/resultsSection/participantFlowModule/periods/0/dropWithdraws/4/type",
+         "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/resultsSection/participantFlowModule/periods/0/milestones/0/achievements/0/numSubjects",
+         "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/resultsSection/participantFlowModule/groups/0",
+         "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/resultsSection/participantFlowModule/periods/0",
+         "assistant:protocol-violation-does-not-identify-its-failed-target"
+        ],
+        "meaning_rule": {
+         "id": "supplied-reading-not-registry-definition",
+         "version": "1"
+        },
+        "blockers": [
+         "binding_proposed"
+        ]
+       }
+      ]
+     }
+    ],
+    "contributions": [
+     {
+      "binding": "failure-target-reading",
+      "observation": "protocol-reported",
+      "count": 4,
+      "reported_lower": 4,
+      "possible_targets": [
+       "assessment_adherence",
+       "entry_eligibility",
+       "other_protocol_requirement",
+       "treatment_adherence"
+      ],
+      "accepted_possible_targets": [
+       "assessment_adherence",
+       "entry_eligibility",
+       "other_protocol_requirement",
+       "treatment_adherence"
+      ],
+      "conditional_possible_targets": [
+       "assessment_adherence",
+       "entry_eligibility",
+       "other_protocol_requirement",
+       "treatment_adherence"
+      ],
+      "conditional_state": "attribution_open",
+      "conditional_floor": 0,
+      "denominator": 872,
+      "transfer": "population_floor",
+      "floor": 0,
+      "status": "proposed",
+      "resolution": "resolved",
+      "scope": {
+       "arm": "run-in-all",
+       "population": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c:run-in-started",
+       "study": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c",
+       "time": "entry-to-run-in",
+       "version": "320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c"
+      },
+      "extent": "population",
+      "profile": null,
+      "source": "NAVIGATE",
+      "located": [
+       {
+        "id": "count",
+        "address": "/resultsSection/participantFlowModule/periods/0/dropWithdraws/4/reasons/0/numSubjects",
+        "digest": "320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c",
+        "value": "4",
+        "ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/resultsSection/participantFlowModule/periods/0/dropWithdraws/4/reasons/0/numSubjects",
+        "source": {
+         "ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c",
+         "version": "320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c",
+         "address": "/resultsSection/participantFlowModule/periods/0/dropWithdraws/4/reasons/0/numSubjects",
+         "digest": "320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c"
+        },
+        "code": "located"
+       },
+       {
+        "id": "category",
+        "address": "/resultsSection/participantFlowModule/periods/0/dropWithdraws/4/type",
+        "digest": "320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c",
+        "value": "Protocol Violation",
+        "ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/resultsSection/participantFlowModule/periods/0/dropWithdraws/4/type",
+        "source": {
+         "ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c",
+         "version": "320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c",
+         "address": "/resultsSection/participantFlowModule/periods/0/dropWithdraws/4/type",
+         "digest": "320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c"
+        },
+        "code": "located"
+       },
+       {
+        "id": "denominator",
+        "address": "/resultsSection/participantFlowModule/periods/0/milestones/0/achievements/0/numSubjects",
+        "digest": "320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c",
+        "value": "872",
+        "ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/resultsSection/participantFlowModule/periods/0/milestones/0/achievements/0/numSubjects",
+        "source": {
+         "ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c",
+         "version": "320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c",
+         "address": "/resultsSection/participantFlowModule/periods/0/milestones/0/achievements/0/numSubjects",
+         "digest": "320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c"
+        },
+        "code": "located"
+       },
+       {
+        "id": "full-flow-group",
+        "address": "/resultsSection/participantFlowModule/groups/0",
+        "digest": "320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c",
+        "value": {
+         "id": "FG000",
+         "title": "Ustekinumab (Open Label Run-in)",
+         "description": "All participants received ustekinumab 45 milligram (mg) (participants weighing less than or equal to \\[\\<=\\]100 kilogram \\[kg\\]) or 90 mg (participants weighing \\>100 kg) at Weeks 0 and 4. At Week 16, participants with IGA \\>=2 were randomized to either switch to guselkumab 100 mg at Weeks 16 and 20 and then every 8 weeks thereafter or continue on ustekinumab every 12 weeks (q12w); participants with an IGA=0 or 1 were to continue to receive open-label ustekinumab q12w."
+        },
+        "ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/resultsSection/participantFlowModule/groups/0",
+        "source": {
+         "ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c",
+         "version": "320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c",
+         "address": "/resultsSection/participantFlowModule/groups/0",
+         "digest": "320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c"
+        },
+        "code": "located"
+       },
+       {
+        "id": "full-recording-period",
+        "address": "/resultsSection/participantFlowModule/periods/0",
+        "digest": "320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c",
+        "value": {
+         "title": "Open Label Run-in (Week 0 to Week 16)",
+         "milestones": [
+          {
+           "type": "STARTED",
+           "achievements": [
+            {
+             "groupId": "FG000",
+             "numSubjects": "872"
+            },
+            {
+             "groupId": "FG001",
+             "numSubjects": "0"
+            },
+            {
+             "groupId": "FG002",
+             "numSubjects": "0"
+            },
+            {
+             "groupId": "FG003",
+             "numSubjects": "0"
+            }
+           ]
+          },
+          {
+           "type": "Treated",
+           "achievements": [
+            {
+             "groupId": "FG000",
+             "numSubjects": "871"
+            },
+            {
+             "groupId": "FG001",
+             "numSubjects": "0"
+            },
+            {
+             "groupId": "FG002",
+             "numSubjects": "0"
+            },
+            {
+             "groupId": "FG003",
+             "numSubjects": "0"
+            }
+           ]
+          },
+          {
+           "type": "COMPLETED",
+           "achievements": [
+            {
+             "groupId": "FG000",
+             "numSubjects": "853"
+            },
+            {
+             "groupId": "FG001",
+             "numSubjects": "0"
+            },
+            {
+             "groupId": "FG002",
+             "numSubjects": "0"
+            },
+            {
+             "groupId": "FG003",
+             "numSubjects": "0"
+            }
+           ]
+          },
+          {
+           "type": "NOT COMPLETED",
+           "achievements": [
+            {
+             "groupId": "FG000",
+             "numSubjects": "19"
+            },
+            {
+             "groupId": "FG001",
+             "numSubjects": "0"
+            },
+            {
+             "groupId": "FG002",
+             "numSubjects": "0"
+            },
+            {
+             "groupId": "FG003",
+             "numSubjects": "0"
+            }
+           ]
+          }
+         ],
+         "dropWithdraws": [
+          {
+           "type": "Adverse Event",
+           "reasons": [
+            {
+             "groupId": "FG000",
+             "numSubjects": "2"
+            },
+            {
+             "groupId": "FG001",
+             "numSubjects": "0"
+            },
+            {
+             "groupId": "FG002",
+             "numSubjects": "0"
+            },
+            {
+             "groupId": "FG003",
+             "numSubjects": "0"
+            }
+           ]
+          },
+          {
+           "type": "Lack of Efficacy",
+           "reasons": [
+            {
+             "groupId": "FG000",
+             "numSubjects": "1"
+            },
+            {
+             "groupId": "FG001",
+             "numSubjects": "0"
+            },
+            {
+             "groupId": "FG002",
+             "numSubjects": "0"
+            },
+            {
+             "groupId": "FG003",
+             "numSubjects": "0"
+            }
+           ]
+          },
+          {
+           "type": "Lost to Follow-up",
+           "reasons": [
+            {
+             "groupId": "FG000",
+             "numSubjects": "3"
+            },
+            {
+             "groupId": "FG001",
+             "numSubjects": "0"
+            },
+            {
+             "groupId": "FG002",
+             "numSubjects": "0"
+            },
+            {
+             "groupId": "FG003",
+             "numSubjects": "0"
+            }
+           ]
+          },
+          {
+           "type": "Withdrawal by Subject",
+           "reasons": [
+            {
+             "groupId": "FG000",
+             "numSubjects": "6"
+            },
+            {
+             "groupId": "FG001",
+             "numSubjects": "0"
+            },
+            {
+             "groupId": "FG002",
+             "numSubjects": "0"
+            },
+            {
+             "groupId": "FG003",
+             "numSubjects": "0"
+            }
+           ]
+          },
+          {
+           "type": "Protocol Violation",
+           "reasons": [
+            {
+             "groupId": "FG000",
+             "numSubjects": "4"
+            },
+            {
+             "groupId": "FG001",
+             "numSubjects": "0"
+            },
+            {
+             "groupId": "FG002",
+             "numSubjects": "0"
+            },
+            {
+             "groupId": "FG003",
+             "numSubjects": "0"
+            }
+           ]
+          },
+          {
+           "type": "Other",
+           "reasons": [
+            {
+             "groupId": "FG000",
+             "numSubjects": "2"
+            },
+            {
+             "groupId": "FG001",
+             "numSubjects": "0"
+            },
+            {
+             "groupId": "FG002",
+             "numSubjects": "0"
+            },
+            {
+             "groupId": "FG003",
+             "numSubjects": "0"
+            }
+           ]
+          },
+          {
+           "type": "Enrolled but not treated",
+           "reasons": [
+            {
+             "groupId": "FG000",
+             "numSubjects": "1"
+            },
+            {
+             "groupId": "FG001",
+             "numSubjects": "0"
+            },
+            {
+             "groupId": "FG002",
+             "numSubjects": "0"
+            },
+            {
+             "groupId": "FG003",
+             "numSubjects": "0"
+            }
+           ]
+          }
+         ]
+        },
+        "ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/resultsSection/participantFlowModule/periods/0",
+        "source": {
+         "ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c",
+         "version": "320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c",
+         "address": "/resultsSection/participantFlowModule/periods/0",
+         "digest": "320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c"
+        },
+        "code": "located"
+       }
+      ],
+      "basis": [
+       "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/resultsSection/participantFlowModule/periods/0/dropWithdraws/4/reasons/0/numSubjects",
+       "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/resultsSection/participantFlowModule/periods/0/dropWithdraws/4/type",
+       "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/resultsSection/participantFlowModule/periods/0/milestones/0/achievements/0/numSubjects",
+       "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/resultsSection/participantFlowModule/groups/0",
+       "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/resultsSection/participantFlowModule/periods/0",
+       "assistant:protocol-violation-does-not-identify-its-failed-target"
+      ],
+      "meaning_rule": {
+       "id": "supplied-reading-not-registry-definition",
+       "version": "1"
+      },
+      "blockers": [
+       "binding_proposed"
+      ]
+     }
+    ],
+    "blockers": [
+     "exception_upper_unknown"
+    ],
+    "pending_blockers": [
+     "binding_proposed:failure-target-reading"
+    ],
+    "basis": [
+     "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/resultsSection/participantFlowModule/periods/0/dropWithdraws/4/reasons/0/numSubjects",
+     "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/resultsSection/participantFlowModule/periods/0/dropWithdraws/4/type",
+     "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/resultsSection/participantFlowModule/periods/0/milestones/0/achievements/0/numSubjects",
+     "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/resultsSection/participantFlowModule/groups/0",
+     "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/resultsSection/participantFlowModule/periods/0",
+     "assistant:protocol-violation-does-not-identify-its-failed-target"
+    ],
+    "rule": "exception-bounds:2",
+    "id": "exception:enrolled-run-in",
+    "observation": "enrolled-run-in",
+    "status": "interpolated"
+   }
+  ],
+  "limits": "Declared candidate family only; source meaning and eligibility bridges are not certified. No automatic table interpretation or source mutation."
+ },
+ "problems": [],
+ "metadata": {
+  "version": 1,
+  "kind": "reasoning",
+  "findings": [
+   {
+    "path": "/result/candidates/0",
+    "kind": "candidate",
+    "logical_result": "unresolved",
+    "standing": null,
+    "completion": "complete",
+    "causes": [
+     {
+      "code": "binding_unresolved",
+      "kind": "translation"
+     },
+     {
+      "code": "exception_upper_unknown",
+      "kind": "evidence"
+     },
+     {
+      "code": "no_constraint_mentions_query",
+      "kind": "coverage"
+     }
+    ],
+    "disposition": "open"
+   },
+   {
+    "path": "/result/candidates/0/query_decision",
+    "kind": "logical",
+    "logical_result": "ENTAILED",
+    "standing": "known",
+    "completion": "complete",
+    "causes": [],
+    "disposition": "settled"
+   },
+   {
+    "path": "/result/candidates/0/observations/0",
+    "kind": "witness",
+    "logical_result": "unresolved",
+    "standing": "interpolated",
+    "completion": "complete",
+    "causes": [
+     {
+      "code": "binding_unresolved",
+      "kind": "translation"
+     },
+     {
+      "code": "exception_upper_unknown",
+      "kind": "evidence"
+     },
+     {
+      "code": "no_constraint_mentions_query",
+      "kind": "coverage"
+     }
+    ],
+    "disposition": "open"
+   },
+   {
+    "path": "/result/candidates/1",
+    "kind": "candidate",
+    "logical_result": "unresolved",
+    "standing": null,
+    "completion": "complete",
+    "causes": [
+     {
+      "code": "binding_unresolved",
+      "kind": "translation"
+     },
+     {
+      "code": "exception_upper_unknown",
+      "kind": "evidence"
+     },
+     {
+      "code": "no_constraint_mentions_query",
+      "kind": "coverage"
+     }
+    ],
+    "disposition": "open"
+   },
+   {
+    "path": "/result/candidates/1/query_decision",
+    "kind": "logical",
+    "logical_result": "ENTAILED",
+    "standing": "known",
+    "completion": "complete",
+    "causes": [],
+    "disposition": "settled"
+   },
+   {
+    "path": "/result/candidates/1/observations/0",
+    "kind": "witness",
+    "logical_result": "unresolved",
+    "standing": "interpolated",
+    "completion": "complete",
+    "causes": [
+     {
+      "code": "binding_unresolved",
+      "kind": "translation"
+     },
+     {
+      "code": "exception_upper_unknown",
+      "kind": "evidence"
+     },
+     {
+      "code": "no_constraint_mentions_query",
+      "kind": "coverage"
+     }
+    ],
+    "disposition": "open"
+   },
+   {
+    "path": "/result/consequence",
+    "kind": "candidate_family_consequence",
+    "logical_result": "UNDETERMINED",
+    "standing": null,
+    "completion": "complete",
+    "causes": [
+     {
+      "code": "binding_unresolved",
+      "kind": "translation"
+     },
+     {
+      "code": "exception_upper_unknown",
+      "kind": "evidence"
+     },
+     {
+      "code": "no_constraint_mentions_query",
+      "kind": "coverage"
+     }
+    ],
+    "disposition": "open"
+   },
+   {
+    "path": "/result/exception_checks/0",
+    "kind": "exception_bridge",
+    "logical_result": "unresolved",
+    "standing": "interpolated",
+    "completion": "complete",
+    "causes": [
+     {
+      "code": "exception_upper_unknown",
+      "kind": "evidence"
+     }
+    ],
+    "disposition": "open",
+    "support_path": "/result/exception_checks/0"
+   }
+  ]
+ }
+}

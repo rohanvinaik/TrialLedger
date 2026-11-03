@@ -1,0 +1,82 @@
+{
+  "logs/ty.log": {
+    "stored": "logs/ty.log.gz",
+    "sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+  },
+  "logs/plan.log": {
+    "stored": "logs/plan.log.gz",
+    "sha256": "511474aad4c07c7cf2d4b8da26e058ff6bbdcb85df6d3e3b8c08e1dbbd26f008"
+  },
+  "logs/two-sign-final.log": {
+    "stored": "logs/two-sign-final.log.gz",
+    "sha256": "d2aab1b46618e036b85793d7a2efd73a33513a69437e99d935c67b34df6abfaf"
+  },
+  "logs/authored.log": {
+    "stored": "logs/authored.log.gz",
+    "sha256": "4d6e45c8783ea461699b76f3fd9dae26988323ce50bd5fce2ed36bc0a02c6276"
+  },
+  "logs/crosshair-initial-parse-refusal.log": {
+    "stored": "logs/crosshair-initial-parse-refusal.log.gz",
+    "sha256": "af4fb1f1000ea763df9d480feea9682d46190da6c2027063e68197356db6d05b"
+  },
+  "logs/help.log": {
+    "stored": "logs/help.log.gz",
+    "sha256": "1629b84ce31fc121fe2da5361946861273272397aebe227d5425a219461c5671"
+  },
+  "logs/decompose.log": {
+    "stored": "logs/decompose.log.gz",
+    "sha256": "b116d9027792e96563dc885d5ae05c2ab4cc189c44e97bc95a8b9b7f8429cc78"
+  },
+  "logs/final-ruff.log": {
+    "stored": "logs/final-ruff.log.gz",
+    "sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+  },
+  "logs/audit.log": {
+    "stored": "logs/audit.log.gz",
+    "sha256": "d3fb0627baa4b3422b538863b54a23cf586ed4618b9ff149e02e1b8a22d58833"
+  },
+  "logs/two-sign.log": {
+    "stored": "logs/two-sign.log.gz",
+    "sha256": "cd0e6b4d8897eb9bdfe682c73675cddc1c82be2788c81f7816f8903f62c01f54"
+  },
+  "logs/ruff.log": {
+    "stored": "logs/ruff.log.gz",
+    "sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+  },
+  "logs/crosshair.log": {
+    "stored": "logs/crosshair.log.gz",
+    "sha256": "af4fb1f1000ea763df9d480feea9682d46190da6c2027063e68197356db6d05b"
+  },
+  "logs/equivalence.log": {
+    "stored": "logs/equivalence.log.gz",
+    "sha256": "63889b3db46519c271cf58e145d4b05812de3c56cedaa40df4ba101ff3818ac3"
+  },
+  "logs/final-format.log": {
+    "stored": "logs/final-format.log.gz",
+    "sha256": "eee76f865de5a9f2456950f710ae5d5f9b5bd0ea02aa54f614c5eed6642a0bfd"
+  },
+  "logs/survey.log": {
+    "stored": "logs/survey.log.gz",
+    "sha256": "ea705d9a8b0711e43321472bc3e57e15e8a59eed4c61c367062f2823870999c3"
+  },
+  "logs/final-tests.log": {
+    "stored": "logs/final-tests.log.gz",
+    "sha256": "3803e212156e4c0ab6eec6b6c7e33aec1b9cbeb2f64a2e8f8567c2817b97cbdf"
+  },
+  "logs/regime.log": {
+    "stored": "logs/regime.log.gz",
+    "sha256": "5dce61dba5938a6db6e7e273d95754b75e6ed06d4b611b60d5f314033833d212"
+  },
+  "logs/crosshair-final.log": {
+    "stored": "logs/crosshair-final.log.gz",
+    "sha256": "ba36ea7e058be9cd0768299ca5ceef0436d090a50aa71ad24f03f7399a49cad6"
+  },
+  ".detective/equivalents.json": {
+    "stored": "detective-state/equivalents.json",
+    "sha256": "d7f54633d8378e70f4bfa996c599ca6bedc705cb33ee8911e3e5098eefa5afcd"
+  },
+  ".detective/pins.json": {
+    "stored": "detective-state/pins.json",
+    "sha256": "9cb02188989425a62552666a87f8eb915f86d8b720b8b81f0df7823c925d96d0"
+  }
+}

@@ -10,6 +10,32 @@ from collections.abc import Sequence
 from copy import deepcopy
 
 CAUSE_KINDS = {
+    "exception_upper_unknown": "evidence",
+    "exception_bridge_conflict": "conflict",
+    "attribution_conflict": "conflict",
+    "exception_budget_predicate_mismatch": "translation",
+    "missing_entry_attribution": "translation",
+    "negative_target_not_eligibility": "translation",
+    "profile_mismatch": "translation",
+    "population_mismatch": "translation",
+    "denominator_mismatch": "translation",
+    "source_study_mismatch": "translation",
+    "observation_study_mismatch": "translation",
+    "binding_study_mismatch": "translation",
+    "application_study_mismatch": "translation",
+    "observation_version_mismatch": "translation",
+    "binding_version_mismatch": "translation",
+    "application_version_mismatch": "translation",
+    "bridge_proposed": "premise",
+    "bridge_unresolved": "translation",
+    "binding_proposed": "premise",
+    "operator_mismatch": "translation",
+    "subjects_mismatch": "translation",
+    "subset_not_declared": "translation",
+    "partition_not_declared": "translation",
+    "definition_not_adopted": "translation",
+    "definition_not_found": "translation",
+    "definition_version_mismatch": "translation",
     "resource_bound": "computation",
     "proposed_refused": "premise",
     "resolution_unresolved": "premise",
@@ -367,6 +393,20 @@ def _design_bounds(result: dict, base: str) -> list[dict]:
         _signal(row, _path(_path(base, "signals"), index))
         for index, row in enumerate(result.get("signals", ()))
     )
+    findings.extend(_applications(result, base))
+    return findings
+
+
+def _applications(result: dict, base: str) -> list[dict]:
+    """Describe gates from their actual public owners, preserving every cause and warrant."""
+    findings = []
+    for field, kind in (("exception_checks", "exception_bridge"), ("binding_checks", "binding")):
+        for index, row in enumerate(result.get(field, ())):
+            code = "conflict" if row["code"] == "attribution_conflict" else row["code"]
+            path = _path(_path(base, field), index)
+            finding = _row(path, kind, code, row.get("status"), row.get("blockers", ()))
+            finding["support_path"] = path
+            findings.append(finding)
     return findings
 
 
@@ -490,6 +530,7 @@ def metadata(operation: str, result: object, problems: Sequence[str] = ()) -> di
             _signal(row, _path("/result/signals", index))
             for index, row in enumerate(result.get("signals", ()))
         ]
+        findings.extend(_applications(result, "/result"))
     elif operation in adapters:
         findings = adapters[operation](result, "/result")
     else:

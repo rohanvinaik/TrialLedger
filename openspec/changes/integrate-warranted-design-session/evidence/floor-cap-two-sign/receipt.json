@@ -1,0 +1,60 @@
+{
+  "function": "floor_cap_state",
+  "source_sha256": "f314797a6a389736497f2de4694c9653026121b8939b5c1c4831a994c8e63ac7",
+  "AST_sha256": "55a8e8fc63d44720fac9cf039d6cfd67cd0b500daa11d71c6167b43b67e6ee56",
+  "root_function_source_matches_at_export": true,
+  "policy": "9+neg.f5a15364c11d",
+  "two_sign": {
+    "verdict": "COMPLETE modulo1crash-onlyvaluegap",
+    "scored": 77,
+    "killed_value_or_crash": 76,
+    "value_pinned": 75,
+    "proven_equivalent": 1,
+    "unproven_equivalent": 0,
+    "crash_only_value_gaps": 1
+  },
+  "equivalence": "SWAP_08b381f0: min argument order; explicit integer case analysis retained in .detective/equivalents.json",
+  "CrossHair": {
+    "confirmed": 5,
+    "counterexample": false,
+    "log": "logs/crosshair-final.log"
+  },
+  "tests": {
+    "authored": 15,
+    "generated": 1,
+    "passed": 16,
+    "log": "logs/final-tests.log"
+  },
+  "ruff": {
+    "check": "passed",
+    "format": "3filesalreadyformatted",
+    "configuration_sha256": "4a0a5758a6a27eacb4967c2df79857ac6ca32485916b3acdc40974121685d074"
+  },
+  "ty": "passed",
+  "old_three_primitives_source_and_AST_unchanged": true,
+  "frozen_python": {
+    "TrialLedger/layer2/exception_bounds.py": {
+      "export": "TrialLedger/layer2/exception_bounds.py.txt",
+      "sha256": "aca6c608426d7136e9f91d60ef24c5d7f7ab64cf1e99762d29e21a8dba5d6684"
+    },
+    "tests/detective/test_TrialLedger_layer2_exception_bounds_floor_cap_state_a9bc48c851_synth.py": {
+      "export": "tests/detective/test_TrialLedger_layer2_exception_bounds_floor_cap_state_a9bc48c851_synth.py.txt",
+      "sha256": "556ecd92919a887c846e879b0ff8c64bae4baa214b4cd070cfb323470bd2a445"
+    },
+    "tests/test_floor_cap_state.py": {
+      "export": "tests/test_floor_cap_state.py.txt",
+      "sha256": "defa462886811854ec18b425d733c67b6ebc265038bda21b84ac3c61991af382"
+    }
+  },
+  "mathematical_scope": "Compatibility of a caller-supplied cap with selected evidence certain/possible floors only. possible is not an upper bound on total exceptions; consistent never certifies the cap.",
+  "facts": {
+    "certain0_possible1_cap5_N100": "consistent",
+    "certain0_possible1_cap0_N100": "attribution_dependent",
+    "certain1_possible1_cap0_N100": "ceiling_conflict"
+  },
+  "limits": [
+    "Root owns wrapper admission, standing and public integration.",
+    "No shared edits/commits by this task; complete frozen module includes its starting wrapper snapshot and is not a whole-module certificate.",
+    "Initial multiline PEP316 parse refusal is preserved as historical log; final single-line contracts were checked before the pin."
+  ]
+}

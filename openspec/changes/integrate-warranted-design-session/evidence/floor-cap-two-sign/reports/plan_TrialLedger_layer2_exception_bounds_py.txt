@@ -1,0 +1,124 @@
+──────────────────────────────────────────────────────────────────────────────
+TrialLedger/layer2/exception_bounds.py — plan (full) · 20 regions · budget 500 DOF-proxy · spent 0
+
+  TrialLedger/layer2/exception_bounds.py::_application_problems
+                       CONSTRUCTIVE · unpinned · status unpinned · not_clean · agreement 3
+                       smells: seam (1 seam(s)) · gamma_seam (5 crossing(s) at the cheapest seam (γ-bound proxy)) · interface_width (6 parameter(s))
+                       cost 57 (static_dof_proxy)
+    next               detective converge 'TrialLedger/layer2/exception_bounds.py::_application_problems'
+
+  TrialLedger/layer2/exception_bounds.py::_group_result
+                       CONSTRUCTIVE · unpinned · status unpinned · not_clean · agreement 3
+                       smells: seam (1 seam(s)) · gamma_seam (6 crossing(s) at the cheapest seam (γ-bound proxy)) · complexity (CC 15)
+                       cost 195 (static_dof_proxy)
+    next               detective converge 'TrialLedger/layer2/exception_bounds.py::_group_result'
+
+  TrialLedger/layer2/exception_bounds.py::_observations
+                       CONSTRUCTIVE · unpinned · status unpinned · not_clean · agreement 2
+                       smells: overload (125 DOF / 37 lines (static proxy)) · seam (1 seam(s))
+                       cost 125 (static_dof_proxy)
+    next               detective converge 'TrialLedger/layer2/exception_bounds.py::_observations'
+
+  TrialLedger/layer2/exception_bounds.py::_rows
+                       CONSTRUCTIVE · unpinned · status unpinned · not_clean · agreement 2
+                       smells: overload (27 DOF / 8 lines (static proxy)) · seam (1 seam(s))
+                       cost 27 (static_dof_proxy)
+    next               detective converge 'TrialLedger/layer2/exception_bounds.py::_rows'
+
+  TrialLedger/layer2/exception_bounds.py::apply
+                       CONSTRUCTIVE · unpinned · status unpinned · not_clean · agreement 2
+                       smells: seam (2 seam(s)) · interface_width (8 parameter(s))
+                       cost 214 (static_dof_proxy)
+    next               detective converge 'TrialLedger/layer2/exception_bounds.py::apply'
+
+  TrialLedger/layer2/exception_bounds.py::_attributions
+                       AMBIGUOUS · escalated · status unpinned · not_clean · agreement 1
+                       smells: overload (61 DOF / 24 lines (static proxy))
+                       cost 61 (static_dof_proxy)
+    next               detective flag 'TrialLedger/layer2/exception_bounds.py::_attributions' --style --leave --note "why"   # or --proceed; to ground it first: detective converge 'TrialLedger/layer2/exception_bounds.py::_attributions'
+
+  TrialLedger/layer2/exception_bounds.py::_bindings
+                       AMBIGUOUS · escalated · status unpinned · not_clean · agreement 1
+                       smells: seam (1 seam(s))
+                       cost 127 (static_dof_proxy)
+    next               detective flag 'TrialLedger/layer2/exception_bounds.py::_bindings' --style --leave --note "why"   # or --proceed; to ground it first: detective converge 'TrialLedger/layer2/exception_bounds.py::_bindings'
+
+  TrialLedger/layer2/exception_bounds.py::_extent
+                       AMBIGUOUS · escalated · status unpinned · not_clean · agreement 1
+                       smells: overload (35 DOF / 9 lines (static proxy))
+                       cost 35 (static_dof_proxy)
+    next               detective flag 'TrialLedger/layer2/exception_bounds.py::_extent' --style --leave --note "why"   # or --proceed; to ground it first: detective converge 'TrialLedger/layer2/exception_bounds.py::_extent'
+
+  TrialLedger/layer2/exception_bounds.py::_identity
+                       AMBIGUOUS · escalated · status unpinned · not_clean · agreement 1
+                       smells: overload (17 DOF / 6 lines (static proxy))
+                       cost 17 (static_dof_proxy)
+    next               detective flag 'TrialLedger/layer2/exception_bounds.py::_identity' --style --leave --note "why"   # or --proceed; to ground it first: detective converge 'TrialLedger/layer2/exception_bounds.py::_identity'
+
+  TrialLedger/layer2/exception_bounds.py::_integer
+                       AMBIGUOUS · escalated · status unpinned · not_clean · agreement 1
+                       smells: overload (18 DOF / 4 lines (static proxy))
+                       cost 18 (static_dof_proxy)
+    next               detective flag 'TrialLedger/layer2/exception_bounds.py::_integer' --style --leave --note "why"   # or --proceed; to ground it first: detective converge 'TrialLedger/layer2/exception_bounds.py::_integer'
+
+  TrialLedger/layer2/exception_bounds.py::_object
+                       AMBIGUOUS · escalated · status unpinned · not_clean · agreement 1
+                       smells: overload (19 DOF / 6 lines (static proxy))
+                       cost 19 (static_dof_proxy)
+    next               detective flag 'TrialLedger/layer2/exception_bounds.py::_object' --style --leave --note "why"   # or --proceed; to ground it first: detective converge 'TrialLedger/layer2/exception_bounds.py::_object'
+
+  TrialLedger/layer2/exception_bounds.py::_scope
+                       AMBIGUOUS · escalated · status unpinned · not_clean · agreement 1
+                       smells: overload (12 DOF / 3 lines (static proxy))
+                       cost 12 (static_dof_proxy)
+    next               detective flag 'TrialLedger/layer2/exception_bounds.py::_scope' --style --leave --note "why"   # or --proceed; to ground it first: detective converge 'TrialLedger/layer2/exception_bounds.py::_scope'
+
+  TrialLedger/layer2/exception_bounds.py::_sources
+                       AMBIGUOUS · escalated · status unpinned · not_clean · agreement 1
+                       smells: seam (1 seam(s))
+                       cost 48 (static_dof_proxy)
+    next               detective flag 'TrialLedger/layer2/exception_bounds.py::_sources' --style --leave --note "why"   # or --proceed; to ground it first: detective converge 'TrialLedger/layer2/exception_bounds.py::_sources'
+
+  TrialLedger/layer2/exception_bounds.py::_text
+                       AMBIGUOUS · escalated · status unpinned · not_clean · agreement 1
+                       smells: overload (12 DOF / 4 lines (static proxy))
+                       cost 12 (static_dof_proxy)
+    next               detective flag 'TrialLedger/layer2/exception_bounds.py::_text' --style --leave --note "why"   # or --proceed; to ground it first: detective converge 'TrialLedger/layer2/exception_bounds.py::_text'
+
+  TrialLedger/layer2/exception_bounds.py::prepare
+                       AMBIGUOUS · escalated · status unpinned · not_clean · agreement 1
+                       smells: overload (30 DOF / 8 lines (static proxy))
+                       cost 30 (static_dof_proxy)
+    next               detective flag 'TrialLedger/layer2/exception_bounds.py::prepare' --style --leave --note "why"   # or --proceed; to ground it first: detective converge 'TrialLedger/layer2/exception_bounds.py::prepare'
+
+  TrialLedger/layer2/exception_bounds.py::_profile
+                       SILENT · silent · status unpinned · clean · agreement 0
+                       smells: —
+                       cost 18 (static_dof_proxy)
+
+  TrialLedger/layer2/exception_bounds.py::attribution_state
+                       SILENT · silent · status unpinned · clean · agreement 0
+                       smells: —
+                       cost 19 (static_dof_proxy)
+
+  TrialLedger/layer2/exception_bounds.py::extent_transfer
+                       SILENT · silent · status unpinned · clean · agreement 0
+                       smells: —
+                       cost 17 (static_dof_proxy)
+
+  TrialLedger/layer2/exception_bounds.py::floor_cap_state
+                       SILENT · silent · status pinned · clean · agreement 0
+                       smells: —
+                       cost 31 (static_dof_proxy)
+
+  TrialLedger/layer2/exception_bounds.py::interval_state
+                       SILENT · silent · status unpinned · clean · agreement 0
+                       smells: —
+                       cost 21 (static_dof_proxy)
+
+  · unexamined         what this plan did not propose is UNEXAMINED, not approved
+                       regime — unread: it needs a live mutation profile this static plan never runs
+                       fences held at 0 — the form-censor spine (§5.3) is unbuilt, so DESTRUCTIVE is unexercised
+                       recognizers — 5 template(s); a region with no match is a library gap, not a clean bill
+
+FINAL plan TrialLedger/layer2/exception_bounds.py: 0 funded · 5 constructive · 10 escalated · 0 fenced · 5 silent (clean 5 · unread 0) · advisory — writes no project files

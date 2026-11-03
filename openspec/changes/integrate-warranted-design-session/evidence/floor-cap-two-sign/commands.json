@@ -1,0 +1,152 @@
+{
+  "cwd": "/tmp/trialledger-floor-cap-state-20261103-v1",
+  "Detective_calls": [
+    {
+      "argv": [
+        "/Users/rohanvinaik/Projects/SquishOS/ops/agents/bin/owned-run",
+        "--label",
+        "floor-cap-help",
+        "--",
+        "env",
+        "PYTHONPATH=/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker:/tmp/trialledger-floor-cap-state-20261103-v1",
+        "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+        "--help"
+      ],
+      "stdout_stderr": "logs/help.log"
+    },
+    {
+      "argv": [
+        "/Users/rohanvinaik/Projects/SquishOS/ops/agents/bin/owned-run",
+        "--label",
+        "floor-cap-regime",
+        "--",
+        "env",
+        "PYTHONPATH=/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker:/tmp/trialledger-floor-cap-state-20261103-v1",
+        "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+        "regime"
+      ],
+      "stdout_stderr": "logs/regime.log"
+    },
+    {
+      "argv": [
+        "/Users/rohanvinaik/Projects/SquishOS/ops/agents/bin/owned-run",
+        "--label",
+        "floor-cap-two-sign",
+        "--",
+        "env",
+        "PYTHONPATH=/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker:/tmp/trialledger-floor-cap-state-20261103-v1",
+        "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+        "converge",
+        "TrialLedger/layer2/exception_bounds.py::floor_cap_state",
+        "--two-sign"
+      ],
+      "stdout_stderr": "logs/two-sign.log"
+    },
+    {
+      "argv": [
+        "/Users/rohanvinaik/Projects/SquishOS/ops/agents/bin/owned-run",
+        "--label",
+        "floor-cap-plan",
+        "--",
+        "env",
+        "PYTHONPATH=/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker:/tmp/trialledger-floor-cap-state-20261103-v1",
+        "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+        "plan",
+        "TrialLedger/layer2/exception_bounds.py"
+      ],
+      "stdout_stderr": "logs/plan.log"
+    },
+    {
+      "argv": [
+        "/Users/rohanvinaik/Projects/SquishOS/ops/agents/bin/owned-run",
+        "--label",
+        "floor-cap-equivalence",
+        "--",
+        "env",
+        "PYTHONPATH=/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker:/tmp/trialledger-floor-cap-state-20261103-v1",
+        "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+        "flag",
+        "TrialLedger/layer2/exception_bounds.py::floor_cap_state",
+        "SWAP_08b381f0",
+        "--two-sign",
+        "--note",
+        "Equivalent on the declared integer domain: when upper is None the function returns before min. Otherwise upper and maximum are integers. If upper <= maximum, both min(upper, maximum) and min(maximum, upper) have the value upper; if upper > maximum, both have the value maximum. Equality has the same integer value in either order. The comparison with possible and every returned code are unchanged; evaluating these immutable arguments has no side effects."
+      ],
+      "stdout_stderr": "logs/equivalence.log"
+    },
+    {
+      "argv": [
+        "/Users/rohanvinaik/Projects/SquishOS/ops/agents/bin/owned-run",
+        "--label",
+        "floor-cap-audit",
+        "--",
+        "env",
+        "PYTHONPATH=/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker:/tmp/trialledger-floor-cap-state-20261103-v1",
+        "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+        "audit",
+        "TrialLedger/layer2/exception_bounds.py::floor_cap_state",
+        "--two-sign"
+      ],
+      "stdout_stderr": "logs/audit.log"
+    },
+    {
+      "argv": [
+        "/Users/rohanvinaik/Projects/SquishOS/ops/agents/bin/owned-run",
+        "--label",
+        "floor-cap-two-sign-final",
+        "--",
+        "env",
+        "PYTHONPATH=/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker:/tmp/trialledger-floor-cap-state-20261103-v1",
+        "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+        "converge",
+        "TrialLedger/layer2/exception_bounds.py::floor_cap_state",
+        "--two-sign"
+      ],
+      "stdout_stderr": "logs/two-sign-final.log"
+    },
+    {
+      "argv": [
+        "/Users/rohanvinaik/Projects/SquishOS/ops/agents/bin/owned-run",
+        "--label",
+        "floor-cap-decompose",
+        "--",
+        "env",
+        "PYTHONPATH=/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker:/tmp/trialledger-floor-cap-state-20261103-v1",
+        "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+        "decompose",
+        "TrialLedger/layer2/exception_bounds.py::floor_cap_state",
+        "--apply",
+        "--two-sign"
+      ],
+      "stdout_stderr": "logs/decompose.log"
+    },
+    {
+      "argv": [
+        "/Users/rohanvinaik/Projects/SquishOS/ops/agents/bin/owned-run",
+        "--label",
+        "floor-cap-survey",
+        "--",
+        "env",
+        "PYTHONPATH=/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker:/tmp/trialledger-floor-cap-state-20261103-v1",
+        "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+        "survey",
+        "TrialLedger/layer2/exception_bounds.py"
+      ],
+      "stdout_stderr": "logs/survey.log"
+    }
+  ],
+  "CrossHair": [
+    "uv",
+    "run",
+    "--project",
+    "/Users/rohanvinaik/tools/TrialLedger",
+    "--with",
+    "crosshair-tool",
+    "crosshair",
+    "check",
+    "TrialLedger.layer2.exception_bounds.floor_cap_state",
+    "--report_all",
+    "--per_condition_timeout",
+    "10"
+  ]
+}

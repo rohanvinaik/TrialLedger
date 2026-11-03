@@ -42,8 +42,8 @@ eligibility-exception floor. ICH E3 Q&A question 7 likewise describes protocol-r
 broadly than entry ineligibility; application of a reference definition to this source must itself be
 bound rather than assumed. [ICH E3 Q&A](https://www.hhs.gov/guidance/sites/default/files/hhs-guidance-documents/FDA/E3-Structure-and-Content-of-Clinical-Study-Reports---Questions-and-Answers-%28R1%29.pdf)
 
-The planned public exception bridge will retain a set of possible failure targets, rather than force a
-broad category into one label. The initial vocabulary will distinguish entry eligibility, treatment
+The public exception bridge retains a set of possible failure targets, rather than forcing a
+broad category into one label. Its initial vocabulary distinguishes entry eligibility, treatment
 adherence, assessment adherence and an explicit other-protocol-requirement residual. A broad failure can
 leave every target possible. The residual prevents that vocabulary from silently claiming that the first
 three exhaust protocol requirements. Source wording remains unchanged beside these supplied meanings.
@@ -55,8 +55,11 @@ an eligibility-exception floor for the bound count. A proposed singleton remains
 intersection of accepted target attributions is an attribution conflict, never a zero-exception result.
 Unknown or broader targets retain their count and support without supplying an eligibility floor.
 
-This target-set handoff is planned, not yet integrated into the public bridge. The existing participant
-witness engine already computes both accepted and rejected directions; it is not a new solver.
+This target-set handoff now feeds `design_bounds` through explicit exception-evidence references. The
+existing participant witness engine computes both accepted and rejected directions; it is not a new solver.
+An entry-ineligibility floor constrains exceptions to positive enrollment evidence. It cannot be transferred
+to a rejected witness's budget, whose exceptions mean observations not warranting ineligibility. That
+application retains the positive-budget check separately and returns `exception_budget_predicate_mismatch`.
 
 The vendored API schema's `DropWithdraw.type` is a free string. Its participant-flow metadata defines
 recording fields, not a label-to-entry-eligibility rule. Reading IPASS's eligibility-worded category as an

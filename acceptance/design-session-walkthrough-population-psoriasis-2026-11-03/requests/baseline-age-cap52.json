@@ -1,0 +1,430 @@
+{
+  "operation": "design_bounds",
+  "study_ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c",
+  "candidates": [
+    {
+      "id": "adult-under65",
+      "assertions": [
+        {
+          "applicability": {
+            "class": "Always"
+          },
+          "body": {
+            "class": "Literal",
+            "evidence": [
+              {
+                "class": "Evidence",
+                "kind": "record_field",
+                "ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/protocolSection/eligibilityModule/minimumAge"
+              }
+            ],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "age",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "ge",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 18.0,
+              "unit": "Years",
+              "upper": null
+            }
+          },
+          "branch": {
+            "class": "Branch",
+            "node": "unresolved",
+            "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+            "class": "Scope",
+            "kind": "all_participants",
+            "parts": [],
+            "ref": ""
+          },
+          "criterion_ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/protocolSection/eligibilityModule/minimumAge",
+          "id": "registry-age-minimumAge",
+          "modality": "required",
+          "resolution": "resolved",
+          "rule": {
+            "answers": [],
+            "class": "Rule",
+            "id": "ctg-structured-general-eligibility-age",
+            "premises": [
+              "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/protocolSection/eligibilityModule/minimumAge"
+            ],
+            "version": "1",
+            "warrants": []
+          },
+          "span": [],
+          "status": "known"
+        },
+        {
+          "applicability": {
+            "class": "Always"
+          },
+          "body": {
+            "class": "Literal",
+            "evidence": [
+              {
+                "class": "Evidence",
+                "kind": "record_field",
+                "ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/protocolSection/eligibilityModule/maximumAge"
+              }
+            ],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "age",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "le",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 99.0,
+              "unit": "Years",
+              "upper": null
+            }
+          },
+          "branch": {
+            "class": "Branch",
+            "node": "unresolved",
+            "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+            "class": "Scope",
+            "kind": "all_participants",
+            "parts": [],
+            "ref": ""
+          },
+          "criterion_ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/protocolSection/eligibilityModule/maximumAge",
+          "id": "registry-age-maximumAge",
+          "modality": "required",
+          "resolution": "resolved",
+          "rule": {
+            "answers": [],
+            "class": "Rule",
+            "id": "ctg-structured-general-eligibility-age",
+            "premises": [
+              "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/protocolSection/eligibilityModule/maximumAge"
+            ],
+            "version": "1",
+            "warrants": []
+          },
+          "span": [],
+          "status": "known"
+        },
+        {
+          "applicability": {
+            "class": "Always"
+          },
+          "body": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "age",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "lt",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 65.0,
+              "unit": "Years",
+              "upper": null
+            }
+          },
+          "branch": {
+            "class": "Branch",
+            "node": "unresolved",
+            "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+            "class": "Scope",
+            "kind": "all_participants",
+            "parts": [],
+            "ref": ""
+          },
+          "criterion_ref": "investigation:explicit-hypothetical-candidate-not-source-or-user-choice",
+          "id": "upper-age-below65",
+          "modality": "required",
+          "resolution": "resolved",
+          "rule": {
+            "answers": [],
+            "class": "Rule",
+            "id": "investigation-hypothesis",
+            "premises": [],
+            "version": "1",
+            "warrants": [
+              "investigation:not-clinically-confirmed"
+            ]
+          },
+          "span": [],
+          "status": "interpolated"
+        }
+      ]
+    },
+    {
+      "id": "adult-no-upper-added",
+      "assertions": [
+        {
+          "applicability": {
+            "class": "Always"
+          },
+          "body": {
+            "class": "Literal",
+            "evidence": [
+              {
+                "class": "Evidence",
+                "kind": "record_field",
+                "ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/protocolSection/eligibilityModule/minimumAge"
+              }
+            ],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "age",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "ge",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 18.0,
+              "unit": "Years",
+              "upper": null
+            }
+          },
+          "branch": {
+            "class": "Branch",
+            "node": "unresolved",
+            "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+            "class": "Scope",
+            "kind": "all_participants",
+            "parts": [],
+            "ref": ""
+          },
+          "criterion_ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/protocolSection/eligibilityModule/minimumAge",
+          "id": "registry-age-minimumAge",
+          "modality": "required",
+          "resolution": "resolved",
+          "rule": {
+            "answers": [],
+            "class": "Rule",
+            "id": "ctg-structured-general-eligibility-age",
+            "premises": [
+              "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/protocolSection/eligibilityModule/minimumAge"
+            ],
+            "version": "1",
+            "warrants": []
+          },
+          "span": [],
+          "status": "known"
+        },
+        {
+          "applicability": {
+            "class": "Always"
+          },
+          "body": {
+            "class": "Literal",
+            "evidence": [
+              {
+                "class": "Evidence",
+                "kind": "record_field",
+                "ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/protocolSection/eligibilityModule/maximumAge"
+              }
+            ],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "age",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "le",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 99.0,
+              "unit": "Years",
+              "upper": null
+            }
+          },
+          "branch": {
+            "class": "Branch",
+            "node": "unresolved",
+            "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+            "class": "Scope",
+            "kind": "all_participants",
+            "parts": [],
+            "ref": ""
+          },
+          "criterion_ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/protocolSection/eligibilityModule/maximumAge",
+          "id": "registry-age-maximumAge",
+          "modality": "required",
+          "resolution": "resolved",
+          "rule": {
+            "answers": [],
+            "class": "Rule",
+            "id": "ctg-structured-general-eligibility-age",
+            "premises": [
+              "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/protocolSection/eligibilityModule/maximumAge"
+            ],
+            "version": "1",
+            "warrants": []
+          },
+          "span": [],
+          "status": "known"
+        }
+      ]
+    }
+  ],
+  "query": {
+    "class": "Literal",
+    "evidence": [],
+    "polarity": "positive",
+    "predicate": {
+      "class": "Predicate",
+      "key": "age",
+      "kind": "measurement"
+    },
+    "qualifiers": {
+      "class": "Always"
+    },
+    "subject": {
+      "class": "Subject",
+      "kind": "participant",
+      "referent": ""
+    },
+    "time": null,
+    "value": {
+      "class": "Value",
+      "comparison": "lt",
+      "inclusivity": "unspecified",
+      "kind": "quantity",
+      "members": [],
+      "number": 65.0,
+      "unit": "Years",
+      "upper": null
+    }
+  },
+  "observations": [
+    {
+      "id": "age-at-least65",
+      "count": 53,
+      "denominator": 871,
+      "population": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c:baseline-treated",
+      "body": {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+          "class": "Predicate",
+          "key": "age",
+          "kind": "measurement"
+        },
+        "qualifiers": {
+          "class": "Always"
+        },
+        "subject": {
+          "class": "Subject",
+          "kind": "participant",
+          "referent": ""
+        },
+        "time": null,
+        "value": {
+          "class": "Value",
+          "comparison": "ge",
+          "inclusivity": "unspecified",
+          "kind": "quantity",
+          "members": [],
+          "number": 65.0,
+          "unit": "Years",
+          "upper": null
+        }
+      },
+      "context": {},
+      "status": "interpolated",
+      "basis": [
+        "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/resultsSection/baselineCharacteristicsModule/measures/0/classes/0/categories/2",
+        "assistant:reading-of-source-age-category-53-not-exact-individual-ages"
+      ],
+      "bridge": {
+        "status": "interpolated",
+        "resolution": "resolved",
+        "max_exceptions": 52,
+        "basis": [
+          "investigation:explicit-hypothetical-baseline-eligibility-and-cap-not-confirmed"
+        ]
+      }
+    }
+  ]
+}

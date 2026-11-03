@@ -35,6 +35,7 @@ class Signal:
     data: dict[str, Any]
     support: tuple[Support, ...]
     bindings: dict[str, a.Proposition]
+    application_blockers: tuple[str, ...] = ()
 
 
 def operator(kind: str):
@@ -72,13 +73,15 @@ def evaluate(signal: Signal, claims: list[dict] | None = None) -> dict:
     if not isinstance(calculation, dict) or set(calculation) != {"code", "value", "blockers", "rule"}:
         raise ValueError("invalid_signal_operator_result")
     state = support_state([p.status for p in signal.support], [p.resolution for p in signal.support])
-    blockers = list(calculation["blockers"])
+    blockers = list(calculation["blockers"]) + list(signal.application_blockers)
     if state != "accepted":
         blockers.append(state + ":" + signal.id)
     return {
         "id": signal.id,
         "kind": signal.kind,
-        "code": calculation["code"] if state == "accepted" else "unresolved",
+        "code": calculation["code"]
+        if state == "accepted" and not signal.application_blockers
+        else "unresolved",
         "calculation_code": calculation["code"],
         "value": calculation["value"],
         "rule": calculation["rule"],

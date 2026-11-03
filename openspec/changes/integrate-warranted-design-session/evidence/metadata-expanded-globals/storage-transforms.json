@@ -1,0 +1,22 @@
+[
+  {
+    "original": "logs/regime.log",
+    "stored": "logs/regime.log.gz",
+    "sha256": "5dce61dba5938a6db6e7e273d95754b75e6ed06d4b611b60d5f314033833d212"
+  },
+  {
+    "original": ".detective/judgments.json",
+    "stored": "detective-state/judgments.json",
+    "sha256": "5c37641696b2a90e09e8d41aa52e16fed77720e2bca1a41a55fa9438fbb6455a"
+  },
+  {
+    "original": ".detective/inputs.json",
+    "stored": "detective-state/inputs.json",
+    "sha256": "e08d8b898bd85a695ee141e76d759f5c8730dc8d374f056e982fbaeece7066aa"
+  },
+  {
+    "original": ".detective/pins.json",
+    "stored": "detective-state/pins.json",
+    "sha256": "e4a30b901b01265b7d0292ff3c4f089d5662cba19bf41800f2fb082ad79182fb"
+  }
+]

@@ -1,0 +1,103 @@
+{
+  "module_changed": true,
+  "files": {
+    "TrialLedger/layer2/exception_bounds.py": "da5f90fdb7f0056fa6e51734b01b3850c55a927171414d0ddd5e4ee99b8f988f",
+    "tests/test_exception_bounds.py": "417941799e68e54ef4bfb5702c6c77cc2c3d18d494652627d8bc5d65d611ae24"
+  },
+  "dependency_files": {
+    "TrialLedger/layer2/assertions.py": "9fc3de9086fb8d37cc9a1492657ff78e73c98ea40ea7d46170a5fdb61916000e",
+    "TrialLedger/layer2/source_evidence.py": "0cd06238c3a1b578ec873dc15e90745f684f6c4818522727e99ad9d494456bf0",
+    "TrialLedger/warrants.py": "03a2669ff257aaed33ec10e21669917c88d982837094b52876bd2523787d622a"
+  },
+  "primitive_identities": {
+    "interval_state": {
+      "source_sha256": "162c1416e7669075eb20ff92b17c237a54a64c72eeb734c95c5037f010efa006",
+      "ast_sha256": "ab70577aff954ed08f7de769326b245776ba1a1e335402230f691f7fe41413cf"
+    },
+    "extent_transfer": {
+      "source_sha256": "c157245cc3e9e6de1003a589ff9d82d77a2a37c0d1c79f1d50fa8786d738590b",
+      "ast_sha256": "741295d2de17316a86eb72a232c02ec0fc9aa145440e249f3610fa6791e2b46c"
+    },
+    "attribution_state": {
+      "source_sha256": "2d66817c18075679e946c88a84b389b39953eb8cd7adebd9151fbc42f0e2e8b0",
+      "ast_sha256": "ebef55be04b09a496a689ea5100ee634f6a54169a99fdb5cd82f2ecc2a46d3b0"
+    }
+  },
+  "previous_primitive_source_and_ast_unchanged": true,
+  "new_attribution_two_sign": {
+    "verdict": "COMPLETE",
+    "detected": 56,
+    "value_pinned": 56,
+    "policy": "9+neg.f5a15364c11d",
+    "scope": "attribution_state only"
+  },
+  "prior_primitive_two_sign": {
+    "receipt": "proof/existing-primitives/two-sign-receipt.json",
+    "interval_state": "58/58 detected;57/58valuepinned;onecrash-onlyvaluegap",
+    "extent_transfer": "54/54valuepinned"
+  },
+  "contracts": {
+    "reported_confirmed": 16,
+    "log": "logs/crosshair.log"
+  },
+  "authored_tests": {
+    "passed": 91,
+    "log": "logs/intent-tests-final.log"
+  },
+  "ruff": {
+    "check": "passed",
+    "format": "passed",
+    "configuration": "/Users/rohanvinaik/tools/TrialLedger/pyproject.toml",
+    "configuration_sha256": "4a0a5758a6a27eacb4967c2df79857ac6ca32485916b3acdc40974121685d074"
+  },
+  "ty": "passed;logs/ty-final.log",
+  "schema": "binding.possible_targets required nonempty unique subset of entry_eligibility,treatment_adherence,assessment_adherence,other_protocol_requirement;single target field refused",
+  "group_key": [
+    "observation_id",
+    "exact_scope",
+    "extent",
+    "canonical_profile"
+  ],
+  "attribution_conflict": "effective lower and conditional_lower null; independent_lower and independent_interval_state remain separate; conservative budget denominator",
+  "direction_precondition": "Positive participation-to-eligibility exception budget only. Parent owns public rejected-direction predicate-mismatch gate.",
+  "limits": [
+    "No shared repository files or commits.",
+    "No CLI/MCP or production consumer verification by this sub-agent.",
+    "Changed typed wrappers have authored tests; they do not inherit primitive mutation certificates.",
+    "Plan static report retains unpinned wrapper regions; no whole-module style/correctness certificate."
+  ],
+  "retained_proof_sha256": {
+    "logs/attribution-two-sign.log": "266187bef57129653b4b61ad50d70d21dd212f95f35493c45f08ea2b6aeed01a",
+    "logs/converge-help.log": "20d092b811fa0be2e86e5df8cc500f9eb8a3b611f944399de794e2e77d9a0e97",
+    "logs/crosshair.log": "f38e4276a53f8f61e0adfad21c23d9e44863cefd65944ed1f02cfb52d3967002",
+    "logs/decompose.log": "41c9dbd530f643c02d65631f73fd245a5229db5b121627c2beea31fe5b7713d2",
+    "logs/detective-help.log": "1629b84ce31fc121fe2da5361946861273272397aebe227d5425a219461c5671",
+    "logs/format-final.log": "3bc53bf3e981a98a34a852e175bf9b77af841edea74fca595d9aedcbaf9a4938",
+    "logs/intent-tests-expanded.log": "ffbdec279cfb9c37ebcb96b3fb5977863ca1486ff0a2c202557dac8589d83a5e",
+    "logs/intent-tests-final.log": "ffbdec279cfb9c37ebcb96b3fb5977863ca1486ff0a2c202557dac8589d83a5e",
+    "logs/intent-tests-first.log": "4cbe6e1f2874426eb713d1fb62c16946ffc17a797b0d9e3dfb7a9601f1c291e3",
+    "logs/plan.log": "20073390d7bb71ff7a95fc75ad64e85f075fb178f8eca53c4bcf60d30c57e78f",
+    "logs/regime.log": "5dce61dba5938a6db6e7e273d95754b75e6ed06d4b611b60d5f314033833d212",
+    "logs/ruff-final.log": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+    "logs/ruff.log": "aeb1ee387d3030ce54a7b9f442bcd2e7386af45e0762cdc877c96e752f037778",
+    "logs/survey.log": "ea705d9a8b0711e43321472bc3e57e15e8a59eed4c61c367062f2823870999c3",
+    "logs/ty-final.log": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+    "logs/ty.log": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18",
+    "proof/existing-primitives/.detective/reports/converge_extent_transfer.txt": "8d916b447e21456b0cb0aa50c573e9ebf9a224941caf30d803bc1aeea617c7ee",
+    "proof/existing-primitives/.detective/reports/converge_interval_state.txt": "836f031da1991cca75fbe07a7985a01b77378d9a5aec6ff9b8e476c525c4736d",
+    "proof/existing-primitives/TrialLedger/layer2/exception_bounds.py": "112a4277e860d158a96d67a3252380a0ca65955048a21cfd2402189dafc4dc52",
+    "proof/existing-primitives/commands.json": "0a19918a020fea4973ede21ec0da894ebf2f79f2de6787a48633af7a8cf20e68",
+    "proof/existing-primitives/logs/extent-two-sign.log": "cac6686725979a3ba1d9d4ca381e3e5ac118d033907b4578fdcf9b2b897018c8",
+    "proof/existing-primitives/logs/interval-two-sign.log": "b2429ba1b4920a4ae03278b1443791dfa7690f79668b386ac34234f4d0bd8990",
+    "proof/existing-primitives/tests/detective/test_TrialLedger_layer2_exception_bounds_interval_state_71bac56452_synth.py": "24fa9db2b68b2f1b631516a86dac1f373ec52b518afa498d57686c9f65cd4392",
+    "proof/existing-primitives/tests/test_exception_bounds.py": "215eb68102c24cfe1b87d093eb3cd3257b9dee05a23b34c261ccf09eb8fef032",
+    "proof/existing-primitives/two-sign-receipt.json": "93668662205b8b453acabe5c1a580d18cfe864030663b722c64c9d317e1afeb6",
+    "proof/new-attribution/.detective/reports/converge_attribution_state.txt": "3798b476f438141f4737a1789982136029d19a7c0e91b18c6e93164529436a17",
+    "proof/new-attribution/.detective/reports/decompose_attribution_state.txt": "2f72cfcf063ff7f799ca0c52687500ab0cf37dbf614eebb976e6829fc718ba21",
+    "proof/new-attribution/.detective/reports/plan_TrialLedger_layer2_exception_bounds_py.txt": "4d4ac5e6f21914ed1434bd5c56ac408850368426887603b01dc670a881d0a27d",
+    "proof/new-attribution/logs/attribution-two-sign.log": "266187bef57129653b4b61ad50d70d21dd212f95f35493c45f08ea2b6aeed01a",
+    "proof/new-attribution/logs/decompose.log": "41c9dbd530f643c02d65631f73fd245a5229db5b121627c2beea31fe5b7713d2",
+    "proof/new-attribution/logs/plan.log": "20073390d7bb71ff7a95fc75ad64e85f075fb178f8eca53c4bcf60d30c57e78f",
+    "proof/new-attribution/logs/survey.log": "ea705d9a8b0711e43321472bc3e57e15e8a59eed4c61c367062f2823870999c3"
+  }
+}

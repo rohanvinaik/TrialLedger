@@ -437,6 +437,19 @@ participation, conditional eligibility bounds and source-stated restrictions sep
 bounds to corpus `elements` as if eligibility text stated them. Put the bound, bridge premises and remaining
 choices on the decision list; save the request/result and rerun after any revision.
 
+`design_bounds` also accepts source-bound `exception_evidence`; its focused guide has the runnable
+invented `exception_example` and exact shapes. Reported failures keep their categories, counts and source
+addresses. A separate target-set attribution supplies any entry-eligibility meaning. Same-failure accepted
+attributions intersect; proposed rivals remain separate. A global floor never locates a subgroup failure.
+An unknown ceiling stays null; an admitted floor above the ceiling blocks the bridge before elimination.
+Read `exception_checks`, the witness's check reference and threshold, and the common consequence together.
+Entry-ineligibility floors apply to positive enrollment bridges, not a rejection's different exception budget.
+Never promote a registry withdrawal label to entry ineligibility because of its words alone.
+Uncertain attribution need not block every answer: if every represented possible floor fits a separately
+warranted cap, that cap check is consistent. `possible_floor_upper` bounds only the floor supplied by the
+selected observations, never total exceptions. Keep `conditional_interval_state` visible when a proposed
+bridge would conflict if adopted; the proposed bridge remains unaccepted.
+
 ### Partial evidence: `signals`
 
 Discover view `signals` for overlap, disjoint partitions/complements, exact summaries, population subsets,
@@ -457,6 +470,13 @@ dependencies need explicit references. Preserve scopes, versions, planned versus
 observed/imputed/derived modes. No automatic cross-signal joins or unit or scale conversions are made. Keep the
 result's rule, bounds and weakest standing on the decision list. Results never overwrite the source record or
 become source-stated corpus criteria. See SKILL.md for encoding duties.
+
+Use optional `bindings` and `binding_uses` in `signals` or `design_bounds` to test explicit population or
+definition applications before consuming a calculation. `signals` also requires `study_ref` on that path.
+The same gate reaches signal output, candidate claims and derived witnesses. Wrong arm/version/scope
+retains the raw arithmetic but withholds its dependent conclusion; proposed bindings remain refused outside
+frames. Keep `binding_checks` and its source declarations beside the answer. A compatible subset count
+does not establish population identity. The focused guides provide a runnable invented `binding_example`.
 
 ### Competing readings: `interpretations`
 

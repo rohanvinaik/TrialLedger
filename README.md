@@ -264,6 +264,21 @@ The [IPASS walkthrough](examples/source-bridge/) applies these ideas to the reta
 Each item keeps its source location and stays labelled as a reading until you confirm it. The registry
 record itself is never changed.
 
+The same reasoning can test the assumptions that make a count useful. Suppose a record reports a protocol
+violation, and a separately supported reading identifies one enrolled person who failed entry eligibility.
+That is incompatible with assuming **zero eligibility exceptions across that population**. It does not put
+the person in the WHO PS 2 subgroup, and it does not tell us the maximum number of exceptions. The system
+keeps the reported failure, its possible meanings, the scoped count and the unresolved ceiling together;
+it blocks conclusions that depend on a contradicted assumption. A broad withdrawal label alone supplies no
+entry-eligibility meaning.
+Uncertainty stays local: one ambiguous failure cannot contradict a separately warranted allowance of five
+under either reading. The system can retain that usable conclusion while leaving the failure's meaning open.
+
+Population comparisons receive the same check before their numbers reach design reasoning. Under an explicit
+same-arm interpretation, 609 people cannot be a subset of 590; 590 can fit within 609. Compatibility does not
+prove that those are the corresponding populations. A wrong arm or record version leaves the interpretation
+unresolved, with the arithmetic still visible. See [how these warrants reach their consumers](docs/REASONING_CONSUMERS.md).
+
 ## What isn't built yet
 
 - **Automatic reading of eligibility prose.** Today you and your assistant settle readings together;

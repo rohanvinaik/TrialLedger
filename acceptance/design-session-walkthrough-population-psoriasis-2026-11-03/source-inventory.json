@@ -1,0 +1,53 @@
+[
+  {
+    "id": "NCT02203032",
+    "raw_address": "/studies/3",
+    "digest": "320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c",
+    "study_ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c",
+    "compact_snapshot_bytes": 60188,
+    "reviewed_units": [
+      "protocolSection/identificationModule",
+      "protocolSection/descriptionModule",
+      "protocolSection/designModule",
+      "protocolSection/eligibilityModule",
+      "protocolSection/armsInterventionsModule",
+      "protocolSection/outcomesModule/primaryOutcomes",
+      "resultsSection/participantFlowModule",
+      "resultsSection/baselineCharacteristicsModule"
+    ]
+  },
+  {
+    "id": "NCT02905331",
+    "raw_address": "/studies/15",
+    "digest": "ab5063f8f68ceb6acca16823d6a3043f8b759c6a04b01aaff0ac2c415802842c",
+    "study_ref": "ctg:NCT02905331:ab5063f8f68ceb6acca16823d6a3043f8b759c6a04b01aaff0ac2c415802842c",
+    "compact_snapshot_bytes": 86602,
+    "reviewed_units": [
+      "protocolSection/identificationModule",
+      "protocolSection/descriptionModule",
+      "protocolSection/designModule",
+      "protocolSection/eligibilityModule",
+      "protocolSection/armsInterventionsModule",
+      "protocolSection/outcomesModule/primaryOutcomes",
+      "resultsSection/participantFlowModule",
+      "resultsSection/baselineCharacteristicsModule"
+    ]
+  },
+  {
+    "id": "NCT04936308",
+    "raw_address": "/studies/16",
+    "digest": "ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2",
+    "study_ref": "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2",
+    "compact_snapshot_bytes": 105502,
+    "reviewed_units": [
+      "protocolSection/identificationModule",
+      "protocolSection/descriptionModule",
+      "protocolSection/designModule",
+      "protocolSection/eligibilityModule",
+      "protocolSection/armsInterventionsModule",
+      "protocolSection/outcomesModule/primaryOutcomes",
+      "resultsSection/participantFlowModule",
+      "resultsSection/baselineCharacteristicsModule"
+    ]
+  }
+]

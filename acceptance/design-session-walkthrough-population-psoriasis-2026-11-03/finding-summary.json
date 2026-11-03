@@ -1,0 +1,3814 @@
+[
+  {
+    "name": "source-general-age",
+    "metadata": {
+      "version": 1,
+      "kind": "reasoning",
+      "findings": [
+        {
+          "path": "/result/analyses/0/result/decision",
+          "kind": "logical",
+          "logical_result": "ENTAILED",
+          "standing": "known",
+          "completion": "complete",
+          "causes": [],
+          "disposition": "settled"
+        }
+      ]
+    },
+    "fixed": {
+      "assertions": [
+        {
+          "applicability": {
+            "class": "Always"
+          },
+          "body": {
+            "class": "Literal",
+            "evidence": [
+              {
+                "class": "Evidence",
+                "kind": "record_field",
+                "ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/protocolSection/eligibilityModule/minimumAge"
+              }
+            ],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "age",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "ge",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 18.0,
+              "unit": "Years",
+              "upper": null
+            }
+          },
+          "branch": {
+            "class": "Branch",
+            "node": "unresolved",
+            "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+            "class": "Scope",
+            "kind": "all_participants",
+            "parts": [],
+            "ref": ""
+          },
+          "criterion_ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/protocolSection/eligibilityModule/minimumAge",
+          "id": "registry-age-minimumAge",
+          "modality": "required",
+          "resolution": "resolved",
+          "rule": {
+            "answers": [],
+            "class": "Rule",
+            "id": "ctg-structured-general-eligibility-age",
+            "premises": [
+              "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/protocolSection/eligibilityModule/minimumAge"
+            ],
+            "version": "1",
+            "warrants": []
+          },
+          "span": [],
+          "status": "known"
+        },
+        {
+          "applicability": {
+            "class": "Always"
+          },
+          "body": {
+            "class": "Literal",
+            "evidence": [
+              {
+                "class": "Evidence",
+                "kind": "record_field",
+                "ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/protocolSection/eligibilityModule/maximumAge"
+              }
+            ],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "age",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "le",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 99.0,
+              "unit": "Years",
+              "upper": null
+            }
+          },
+          "branch": {
+            "class": "Branch",
+            "node": "unresolved",
+            "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+            "class": "Scope",
+            "kind": "all_participants",
+            "parts": [],
+            "ref": ""
+          },
+          "criterion_ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/protocolSection/eligibilityModule/maximumAge",
+          "id": "registry-age-maximumAge",
+          "modality": "required",
+          "resolution": "resolved",
+          "rule": {
+            "answers": [],
+            "class": "Rule",
+            "id": "ctg-structured-general-eligibility-age",
+            "premises": [
+              "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/protocolSection/eligibilityModule/maximumAge"
+            ],
+            "version": "1",
+            "warrants": []
+          },
+          "span": [],
+          "status": "known"
+        }
+      ],
+      "signals": []
+    },
+    "analyses": [
+      {
+        "code": "complete",
+        "operation": "entailment",
+        "result": {
+          "basis": "Conditional on the supplied typed premises; their source meaning is not certified by this operation.",
+          "decision": {
+            "result": "ENTAILED",
+            "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+            "status": "known",
+            "proof": [
+              "registry-age-minimumAge"
+            ],
+            "blockers": []
+          },
+          "premises": [
+            {
+              "applicability": {
+                "class": "Always"
+              },
+              "body": {
+                "class": "Literal",
+                "evidence": [
+                  {
+                    "class": "Evidence",
+                    "kind": "record_field",
+                    "ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/protocolSection/eligibilityModule/minimumAge"
+                  }
+                ],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "age",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "ge",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 18.0,
+                  "unit": "Years",
+                  "upper": null
+                }
+              },
+              "branch": {
+                "class": "Branch",
+                "node": "unresolved",
+                "path": []
+              },
+              "class": "ScopedAssertion",
+              "cohort": {
+                "class": "Scope",
+                "kind": "all_participants",
+                "parts": [],
+                "ref": ""
+              },
+              "criterion_ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/protocolSection/eligibilityModule/minimumAge",
+              "id": "registry-age-minimumAge",
+              "modality": "required",
+              "resolution": "resolved",
+              "rule": {
+                "answers": [],
+                "class": "Rule",
+                "id": "ctg-structured-general-eligibility-age",
+                "premises": [
+                  "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/protocolSection/eligibilityModule/minimumAge"
+                ],
+                "version": "1",
+                "warrants": []
+              },
+              "span": [],
+              "status": "known"
+            },
+            {
+              "applicability": {
+                "class": "Always"
+              },
+              "body": {
+                "class": "Literal",
+                "evidence": [
+                  {
+                    "class": "Evidence",
+                    "kind": "record_field",
+                    "ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/protocolSection/eligibilityModule/maximumAge"
+                  }
+                ],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "age",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "le",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 99.0,
+                  "unit": "Years",
+                  "upper": null
+                }
+              },
+              "branch": {
+                "class": "Branch",
+                "node": "unresolved",
+                "path": []
+              },
+              "class": "ScopedAssertion",
+              "cohort": {
+                "class": "Scope",
+                "kind": "all_participants",
+                "parts": [],
+                "ref": ""
+              },
+              "criterion_ref": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/protocolSection/eligibilityModule/maximumAge",
+              "id": "registry-age-maximumAge",
+              "modality": "required",
+              "resolution": "resolved",
+              "rule": {
+                "answers": [],
+                "class": "Rule",
+                "id": "ctg-structured-general-eligibility-age",
+                "premises": [
+                  "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/protocolSection/eligibilityModule/maximumAge"
+                ],
+                "version": "1",
+                "warrants": []
+              },
+              "span": [],
+              "status": "known"
+            }
+          ]
+        },
+        "problems": [],
+        "metadata": {
+          "version": 1,
+          "kind": "reasoning",
+          "findings": [
+            {
+              "path": "/result/decision",
+              "kind": "logical",
+              "logical_result": "ENTAILED",
+              "standing": "known",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "settled"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "name": "exception-broad-proposed-unknown-ceiling",
+    "metadata": {
+      "version": 1,
+      "kind": "reasoning",
+      "findings": [
+        {
+          "path": "/result/candidates/0",
+          "kind": "candidate",
+          "logical_result": "unresolved",
+          "standing": null,
+          "completion": "complete",
+          "causes": [
+            {
+              "code": "binding_unresolved",
+              "kind": "translation"
+            },
+            {
+              "code": "exception_upper_unknown",
+              "kind": "evidence"
+            },
+            {
+              "code": "no_constraint_mentions_query",
+              "kind": "coverage"
+            }
+          ],
+          "disposition": "open"
+        },
+        {
+          "path": "/result/candidates/0/query_decision",
+          "kind": "logical",
+          "logical_result": "ENTAILED",
+          "standing": "known",
+          "completion": "complete",
+          "causes": [],
+          "disposition": "settled"
+        },
+        {
+          "path": "/result/candidates/0/observations/0",
+          "kind": "witness",
+          "logical_result": "unresolved",
+          "standing": "interpolated",
+          "completion": "complete",
+          "causes": [
+            {
+              "code": "binding_unresolved",
+              "kind": "translation"
+            },
+            {
+              "code": "exception_upper_unknown",
+              "kind": "evidence"
+            },
+            {
+              "code": "no_constraint_mentions_query",
+              "kind": "coverage"
+            }
+          ],
+          "disposition": "open"
+        },
+        {
+          "path": "/result/candidates/1",
+          "kind": "candidate",
+          "logical_result": "unresolved",
+          "standing": null,
+          "completion": "complete",
+          "causes": [
+            {
+              "code": "binding_unresolved",
+              "kind": "translation"
+            },
+            {
+              "code": "exception_upper_unknown",
+              "kind": "evidence"
+            },
+            {
+              "code": "no_constraint_mentions_query",
+              "kind": "coverage"
+            }
+          ],
+          "disposition": "open"
+        },
+        {
+          "path": "/result/candidates/1/query_decision",
+          "kind": "logical",
+          "logical_result": "ENTAILED",
+          "standing": "known",
+          "completion": "complete",
+          "causes": [],
+          "disposition": "settled"
+        },
+        {
+          "path": "/result/candidates/1/observations/0",
+          "kind": "witness",
+          "logical_result": "unresolved",
+          "standing": "interpolated",
+          "completion": "complete",
+          "causes": [
+            {
+              "code": "binding_unresolved",
+              "kind": "translation"
+            },
+            {
+              "code": "exception_upper_unknown",
+              "kind": "evidence"
+            },
+            {
+              "code": "no_constraint_mentions_query",
+              "kind": "coverage"
+            }
+          ],
+          "disposition": "open"
+        },
+        {
+          "path": "/result/consequence",
+          "kind": "candidate_family_consequence",
+          "logical_result": "UNDETERMINED",
+          "standing": null,
+          "completion": "complete",
+          "causes": [
+            {
+              "code": "binding_unresolved",
+              "kind": "translation"
+            },
+            {
+              "code": "exception_upper_unknown",
+              "kind": "evidence"
+            },
+            {
+              "code": "no_constraint_mentions_query",
+              "kind": "coverage"
+            }
+          ],
+          "disposition": "open"
+        },
+        {
+          "path": "/result/exception_checks/0",
+          "kind": "exception_bridge",
+          "logical_result": "unresolved",
+          "standing": "interpolated",
+          "completion": "complete",
+          "causes": [
+            {
+              "code": "exception_upper_unknown",
+              "kind": "evidence"
+            }
+          ],
+          "disposition": "open",
+          "support_path": "/result/exception_checks/0"
+        }
+      ]
+    },
+    "remaining": [
+      "adult-under65",
+      "adult-no-upper-added"
+    ],
+    "consequence": {
+      "result": "UNDETERMINED",
+      "status": null,
+      "basis": "All remaining declared candidate designs; includes the support of eliminations."
+    },
+    "candidates": [
+      {
+        "id": "adult-under65",
+        "state": "unresolved",
+        "elimination_status": null,
+        "query_decision": {
+          "result": "ENTAILED",
+          "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+          "status": "known",
+          "proof": [
+            "registry-age-minimumAge"
+          ],
+          "blockers": []
+        },
+        "observations": [
+          {
+            "support": "binding_unresolved",
+            "state": "unresolved",
+            "status": "interpolated",
+            "decision": {
+              "result": "UNDETERMINED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"reported_started_run_in\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+              "status": null,
+              "proof": [],
+              "blockers": [
+                "exception_upper_unknown",
+                "no_constraint_mentions_query"
+              ]
+            },
+            "witness_threshold": {
+              "count_lower": 872,
+              "supplied_exception_upper": null,
+              "maximum_exceptions_for_witness": 871,
+              "requires": "accepted, resolved, same-predicate and same-scope bridge"
+            }
+          }
+        ],
+        "signal_checks": []
+      },
+      {
+        "id": "adult-no-upper-added",
+        "state": "unresolved",
+        "elimination_status": null,
+        "query_decision": {
+          "result": "ENTAILED",
+          "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+          "status": "known",
+          "proof": [
+            "registry-age-minimumAge"
+          ],
+          "blockers": []
+        },
+        "observations": [
+          {
+            "support": "binding_unresolved",
+            "state": "unresolved",
+            "status": "interpolated",
+            "decision": {
+              "result": "UNDETERMINED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"reported_started_run_in\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+              "status": null,
+              "proof": [],
+              "blockers": [
+                "exception_upper_unknown",
+                "no_constraint_mentions_query"
+              ]
+            },
+            "witness_threshold": {
+              "count_lower": 872,
+              "supplied_exception_upper": null,
+              "maximum_exceptions_for_witness": 871,
+              "requires": "accepted, resolved, same-predicate and same-scope bridge"
+            }
+          }
+        ],
+        "signal_checks": []
+      }
+    ],
+    "exception_checks": [
+      {
+        "target": "entry_eligibility",
+        "code": "unresolved",
+        "lower": 0,
+        "upper": null,
+        "structural_maximum": 872,
+        "interval_state": "unknown_ceiling",
+        "independent_lower": 0,
+        "independent_interval_state": "unknown_ceiling",
+        "possible_floor_upper": 4,
+        "possible_floor_meaning": "Largest lower-bound constraint supplied by these observations across represented target readings; not an upper bound on total exceptions.",
+        "conditional_lower": 0,
+        "conditional_interval_state": "unknown_ceiling",
+        "independent_conditional_lower": 0,
+        "extent": "population",
+        "scope": {
+          "arm": "run-in-all",
+          "population": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c:run-in-started",
+          "study": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c",
+          "time": "entry-to-run-in",
+          "version": "320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c"
+        },
+        "profile": null,
+        "blockers": [
+          "exception_upper_unknown"
+        ],
+        "pending_blockers": [
+          "binding_proposed:failure-target-reading"
+        ],
+        "rule": "exception-bounds:2",
+        "id": "exception:enrolled-run-in",
+        "observation": "enrolled-run-in",
+        "status": "interpolated",
+        "attributions": [
+          {
+            "observation": "protocol-reported",
+            "bindings": [
+              "failure-target-reading"
+            ],
+            "scope": {
+              "arm": "run-in-all",
+              "population": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c:run-in-started",
+              "study": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c",
+              "time": "entry-to-run-in",
+              "version": "320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c"
+            },
+            "extent": "population",
+            "profile": null,
+            "reported_lower": 4,
+            "denominator": 872,
+            "state": "attribution_open",
+            "possible_targets": [
+              "assessment_adherence",
+              "entry_eligibility",
+              "other_protocol_requirement",
+              "treatment_adherence"
+            ],
+            "known_possible_targets": [
+              "assessment_adherence",
+              "entry_eligibility",
+              "other_protocol_requirement",
+              "treatment_adherence"
+            ],
+            "known_state": "attribution_open",
+            "status": null,
+            "accepted_bindings": [],
+            "known_bindings": [],
+            "applicable": true,
+            "lower": 0,
+            "conditional_lower": 0,
+            "independent_lower": 0,
+            "possible_floor_upper": 4,
+            "application_blockers": [],
+            "blockers": [
+              "missing_entry_attribution:failure-target-reading",
+              "binding_proposed:failure-target-reading"
+            ],
+            "pending_blockers": [
+              "binding_proposed:failure-target-reading"
+            ]
+          }
+        ]
+      }
+    ],
+    "signals": [],
+    "binding_checks": []
+  },
+  {
+    "name": "exception-broad-proposed-cap5",
+    "metadata": {
+      "version": 1,
+      "kind": "reasoning",
+      "findings": [
+        {
+          "path": "/result/candidates/0",
+          "kind": "candidate",
+          "logical_result": "not_ruled_out",
+          "standing": null,
+          "completion": "complete",
+          "causes": [],
+          "disposition": "open"
+        },
+        {
+          "path": "/result/candidates/0/query_decision",
+          "kind": "logical",
+          "logical_result": "ENTAILED",
+          "standing": "known",
+          "completion": "complete",
+          "causes": [],
+          "disposition": "settled"
+        },
+        {
+          "path": "/result/candidates/0/observations/0",
+          "kind": "witness",
+          "logical_result": "not_ruled_out",
+          "standing": "interpolated",
+          "completion": "complete",
+          "causes": [
+            {
+              "code": "no_constraint_mentions_query",
+              "kind": "coverage"
+            }
+          ],
+          "disposition": "open"
+        },
+        {
+          "path": "/result/candidates/1",
+          "kind": "candidate",
+          "logical_result": "not_ruled_out",
+          "standing": null,
+          "completion": "complete",
+          "causes": [],
+          "disposition": "open"
+        },
+        {
+          "path": "/result/candidates/1/query_decision",
+          "kind": "logical",
+          "logical_result": "ENTAILED",
+          "standing": "known",
+          "completion": "complete",
+          "causes": [],
+          "disposition": "settled"
+        },
+        {
+          "path": "/result/candidates/1/observations/0",
+          "kind": "witness",
+          "logical_result": "not_ruled_out",
+          "standing": "interpolated",
+          "completion": "complete",
+          "causes": [
+            {
+              "code": "no_constraint_mentions_query",
+              "kind": "coverage"
+            }
+          ],
+          "disposition": "open"
+        },
+        {
+          "path": "/result/consequence",
+          "kind": "candidate_family_consequence",
+          "logical_result": "ENTAILED",
+          "standing": "known",
+          "completion": "complete",
+          "causes": [],
+          "disposition": "settled"
+        },
+        {
+          "path": "/result/exception_checks/0",
+          "kind": "exception_bridge",
+          "logical_result": "consistent",
+          "standing": "interpolated",
+          "completion": "complete",
+          "causes": [],
+          "disposition": "conditional",
+          "support_path": "/result/exception_checks/0"
+        }
+      ]
+    },
+    "remaining": [
+      "adult-under65",
+      "adult-no-upper-added"
+    ],
+    "consequence": {
+      "result": "ENTAILED",
+      "status": "known",
+      "basis": "All remaining declared candidate designs; includes the support of eliminations."
+    },
+    "candidates": [
+      {
+        "id": "adult-under65",
+        "state": "not_ruled_out",
+        "elimination_status": null,
+        "query_decision": {
+          "result": "ENTAILED",
+          "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+          "status": "known",
+          "proof": [
+            "registry-age-minimumAge"
+          ],
+          "blockers": []
+        },
+        "observations": [
+          {
+            "support": "witness",
+            "state": "not_ruled_out",
+            "status": "interpolated",
+            "decision": {
+              "result": "UNDETERMINED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"reported_started_run_in\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+              "status": null,
+              "proof": [],
+              "blockers": [
+                "no_constraint_mentions_query"
+              ]
+            },
+            "witness_threshold": {
+              "count_lower": 872,
+              "supplied_exception_upper": 5,
+              "maximum_exceptions_for_witness": 871,
+              "requires": "accepted, resolved, same-predicate and same-scope bridge"
+            }
+          }
+        ],
+        "signal_checks": []
+      },
+      {
+        "id": "adult-no-upper-added",
+        "state": "not_ruled_out",
+        "elimination_status": null,
+        "query_decision": {
+          "result": "ENTAILED",
+          "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+          "status": "known",
+          "proof": [
+            "registry-age-minimumAge"
+          ],
+          "blockers": []
+        },
+        "observations": [
+          {
+            "support": "witness",
+            "state": "not_ruled_out",
+            "status": "interpolated",
+            "decision": {
+              "result": "UNDETERMINED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"reported_started_run_in\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+              "status": null,
+              "proof": [],
+              "blockers": [
+                "no_constraint_mentions_query"
+              ]
+            },
+            "witness_threshold": {
+              "count_lower": 872,
+              "supplied_exception_upper": 5,
+              "maximum_exceptions_for_witness": 871,
+              "requires": "accepted, resolved, same-predicate and same-scope bridge"
+            }
+          }
+        ],
+        "signal_checks": []
+      }
+    ],
+    "exception_checks": [
+      {
+        "target": "entry_eligibility",
+        "code": "consistent",
+        "lower": 0,
+        "upper": 5,
+        "structural_maximum": 872,
+        "interval_state": "consistent",
+        "independent_lower": 0,
+        "independent_interval_state": "consistent",
+        "possible_floor_upper": 4,
+        "possible_floor_meaning": "Largest lower-bound constraint supplied by these observations across represented target readings; not an upper bound on total exceptions.",
+        "conditional_lower": 0,
+        "conditional_interval_state": "consistent",
+        "independent_conditional_lower": 0,
+        "extent": "population",
+        "scope": {
+          "arm": "run-in-all",
+          "population": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c:run-in-started",
+          "study": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c",
+          "time": "entry-to-run-in",
+          "version": "320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c"
+        },
+        "profile": null,
+        "blockers": [],
+        "pending_blockers": [
+          "binding_proposed:failure-target-reading"
+        ],
+        "rule": "exception-bounds:2",
+        "id": "exception:enrolled-run-in",
+        "observation": "enrolled-run-in",
+        "status": "interpolated",
+        "attributions": [
+          {
+            "observation": "protocol-reported",
+            "bindings": [
+              "failure-target-reading"
+            ],
+            "scope": {
+              "arm": "run-in-all",
+              "population": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c:run-in-started",
+              "study": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c",
+              "time": "entry-to-run-in",
+              "version": "320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c"
+            },
+            "extent": "population",
+            "profile": null,
+            "reported_lower": 4,
+            "denominator": 872,
+            "state": "attribution_open",
+            "possible_targets": [
+              "assessment_adherence",
+              "entry_eligibility",
+              "other_protocol_requirement",
+              "treatment_adherence"
+            ],
+            "known_possible_targets": [
+              "assessment_adherence",
+              "entry_eligibility",
+              "other_protocol_requirement",
+              "treatment_adherence"
+            ],
+            "known_state": "attribution_open",
+            "status": null,
+            "accepted_bindings": [],
+            "known_bindings": [],
+            "applicable": true,
+            "lower": 0,
+            "conditional_lower": 0,
+            "independent_lower": 0,
+            "possible_floor_upper": 4,
+            "application_blockers": [],
+            "blockers": [
+              "missing_entry_attribution:failure-target-reading",
+              "binding_proposed:failure-target-reading"
+            ],
+            "pending_blockers": [
+              "binding_proposed:failure-target-reading"
+            ]
+          }
+        ]
+      }
+    ],
+    "signals": [],
+    "binding_checks": []
+  },
+  {
+    "name": "exception-entry-proposed-cap0",
+    "metadata": {
+      "version": 1,
+      "kind": "reasoning",
+      "findings": [
+        {
+          "path": "/result/candidates/0",
+          "kind": "candidate",
+          "logical_result": "unresolved",
+          "standing": null,
+          "completion": "complete",
+          "causes": [
+            {
+              "code": "binding_proposed:failure-target-reading",
+              "kind": "premise"
+            },
+            {
+              "code": "binding_unresolved",
+              "kind": "translation"
+            },
+            {
+              "code": "missing_entry_attribution:failure-target-reading",
+              "kind": "translation"
+            },
+            {
+              "code": "no_constraint_mentions_query",
+              "kind": "coverage"
+            }
+          ],
+          "disposition": "open"
+        },
+        {
+          "path": "/result/candidates/0/query_decision",
+          "kind": "logical",
+          "logical_result": "ENTAILED",
+          "standing": "known",
+          "completion": "complete",
+          "causes": [],
+          "disposition": "settled"
+        },
+        {
+          "path": "/result/candidates/0/observations/0",
+          "kind": "witness",
+          "logical_result": "unresolved",
+          "standing": "interpolated",
+          "completion": "complete",
+          "causes": [
+            {
+              "code": "binding_proposed:failure-target-reading",
+              "kind": "premise"
+            },
+            {
+              "code": "binding_unresolved",
+              "kind": "translation"
+            },
+            {
+              "code": "missing_entry_attribution:failure-target-reading",
+              "kind": "translation"
+            },
+            {
+              "code": "no_constraint_mentions_query",
+              "kind": "coverage"
+            }
+          ],
+          "disposition": "open"
+        },
+        {
+          "path": "/result/candidates/1",
+          "kind": "candidate",
+          "logical_result": "unresolved",
+          "standing": null,
+          "completion": "complete",
+          "causes": [
+            {
+              "code": "binding_proposed:failure-target-reading",
+              "kind": "premise"
+            },
+            {
+              "code": "binding_unresolved",
+              "kind": "translation"
+            },
+            {
+              "code": "missing_entry_attribution:failure-target-reading",
+              "kind": "translation"
+            },
+            {
+              "code": "no_constraint_mentions_query",
+              "kind": "coverage"
+            }
+          ],
+          "disposition": "open"
+        },
+        {
+          "path": "/result/candidates/1/query_decision",
+          "kind": "logical",
+          "logical_result": "ENTAILED",
+          "standing": "known",
+          "completion": "complete",
+          "causes": [],
+          "disposition": "settled"
+        },
+        {
+          "path": "/result/candidates/1/observations/0",
+          "kind": "witness",
+          "logical_result": "unresolved",
+          "standing": "interpolated",
+          "completion": "complete",
+          "causes": [
+            {
+              "code": "binding_proposed:failure-target-reading",
+              "kind": "premise"
+            },
+            {
+              "code": "binding_unresolved",
+              "kind": "translation"
+            },
+            {
+              "code": "missing_entry_attribution:failure-target-reading",
+              "kind": "translation"
+            },
+            {
+              "code": "no_constraint_mentions_query",
+              "kind": "coverage"
+            }
+          ],
+          "disposition": "open"
+        },
+        {
+          "path": "/result/consequence",
+          "kind": "candidate_family_consequence",
+          "logical_result": "UNDETERMINED",
+          "standing": null,
+          "completion": "complete",
+          "causes": [
+            {
+              "code": "binding_proposed:failure-target-reading",
+              "kind": "premise"
+            },
+            {
+              "code": "binding_unresolved",
+              "kind": "translation"
+            },
+            {
+              "code": "missing_entry_attribution:failure-target-reading",
+              "kind": "translation"
+            },
+            {
+              "code": "no_constraint_mentions_query",
+              "kind": "coverage"
+            }
+          ],
+          "disposition": "open"
+        },
+        {
+          "path": "/result/exception_checks/0",
+          "kind": "exception_bridge",
+          "logical_result": "unresolved",
+          "standing": "interpolated",
+          "completion": "complete",
+          "causes": [
+            {
+              "code": "binding_proposed:failure-target-reading",
+              "kind": "premise"
+            },
+            {
+              "code": "missing_entry_attribution:failure-target-reading",
+              "kind": "translation"
+            }
+          ],
+          "disposition": "open",
+          "support_path": "/result/exception_checks/0"
+        }
+      ]
+    },
+    "remaining": [
+      "adult-under65",
+      "adult-no-upper-added"
+    ],
+    "consequence": {
+      "result": "UNDETERMINED",
+      "status": null,
+      "basis": "All remaining declared candidate designs; includes the support of eliminations."
+    },
+    "candidates": [
+      {
+        "id": "adult-under65",
+        "state": "unresolved",
+        "elimination_status": null,
+        "query_decision": {
+          "result": "ENTAILED",
+          "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+          "status": "known",
+          "proof": [
+            "registry-age-minimumAge"
+          ],
+          "blockers": []
+        },
+        "observations": [
+          {
+            "support": "binding_unresolved",
+            "state": "unresolved",
+            "status": "interpolated",
+            "decision": {
+              "result": "UNDETERMINED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"reported_started_run_in\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+              "status": null,
+              "proof": [],
+              "blockers": [
+                "binding_proposed:failure-target-reading",
+                "missing_entry_attribution:failure-target-reading",
+                "no_constraint_mentions_query"
+              ]
+            },
+            "witness_threshold": {
+              "count_lower": 872,
+              "supplied_exception_upper": 0,
+              "maximum_exceptions_for_witness": 871,
+              "requires": "accepted, resolved, same-predicate and same-scope bridge"
+            }
+          }
+        ],
+        "signal_checks": []
+      },
+      {
+        "id": "adult-no-upper-added",
+        "state": "unresolved",
+        "elimination_status": null,
+        "query_decision": {
+          "result": "ENTAILED",
+          "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+          "status": "known",
+          "proof": [
+            "registry-age-minimumAge"
+          ],
+          "blockers": []
+        },
+        "observations": [
+          {
+            "support": "binding_unresolved",
+            "state": "unresolved",
+            "status": "interpolated",
+            "decision": {
+              "result": "UNDETERMINED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"reported_started_run_in\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+              "status": null,
+              "proof": [],
+              "blockers": [
+                "binding_proposed:failure-target-reading",
+                "missing_entry_attribution:failure-target-reading",
+                "no_constraint_mentions_query"
+              ]
+            },
+            "witness_threshold": {
+              "count_lower": 872,
+              "supplied_exception_upper": 0,
+              "maximum_exceptions_for_witness": 871,
+              "requires": "accepted, resolved, same-predicate and same-scope bridge"
+            }
+          }
+        ],
+        "signal_checks": []
+      }
+    ],
+    "exception_checks": [
+      {
+        "target": "entry_eligibility",
+        "code": "unresolved",
+        "lower": 0,
+        "upper": 0,
+        "structural_maximum": 872,
+        "interval_state": "attribution_dependent",
+        "independent_lower": 0,
+        "independent_interval_state": "consistent",
+        "possible_floor_upper": 4,
+        "possible_floor_meaning": "Largest lower-bound constraint supplied by these observations across represented target readings; not an upper bound on total exceptions.",
+        "conditional_lower": 4,
+        "conditional_interval_state": "ceiling_conflict",
+        "independent_conditional_lower": 4,
+        "extent": "population",
+        "scope": {
+          "arm": "run-in-all",
+          "population": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c:run-in-started",
+          "study": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c",
+          "time": "entry-to-run-in",
+          "version": "320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c"
+        },
+        "profile": null,
+        "blockers": [
+          "missing_entry_attribution:failure-target-reading",
+          "binding_proposed:failure-target-reading"
+        ],
+        "pending_blockers": [
+          "binding_proposed:failure-target-reading"
+        ],
+        "rule": "exception-bounds:2",
+        "id": "exception:enrolled-run-in",
+        "observation": "enrolled-run-in",
+        "status": "interpolated",
+        "attributions": [
+          {
+            "observation": "protocol-reported",
+            "bindings": [
+              "failure-target-reading"
+            ],
+            "scope": {
+              "arm": "run-in-all",
+              "population": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c:run-in-started",
+              "study": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c",
+              "time": "entry-to-run-in",
+              "version": "320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c"
+            },
+            "extent": "population",
+            "profile": null,
+            "reported_lower": 4,
+            "denominator": 872,
+            "state": "attribution_open",
+            "possible_targets": [
+              "assessment_adherence",
+              "entry_eligibility",
+              "other_protocol_requirement",
+              "treatment_adherence"
+            ],
+            "known_possible_targets": [
+              "assessment_adherence",
+              "entry_eligibility",
+              "other_protocol_requirement",
+              "treatment_adherence"
+            ],
+            "known_state": "attribution_open",
+            "status": null,
+            "accepted_bindings": [],
+            "known_bindings": [],
+            "applicable": true,
+            "lower": 0,
+            "conditional_lower": 4,
+            "independent_lower": 0,
+            "possible_floor_upper": 4,
+            "application_blockers": [],
+            "blockers": [
+              "missing_entry_attribution:failure-target-reading",
+              "binding_proposed:failure-target-reading"
+            ],
+            "pending_blockers": [
+              "binding_proposed:failure-target-reading"
+            ]
+          }
+        ]
+      }
+    ],
+    "signals": [],
+    "binding_checks": []
+  },
+  {
+    "name": "exception-entry-assumed-cap0",
+    "metadata": {
+      "version": 1,
+      "kind": "reasoning",
+      "findings": [
+        {
+          "path": "/result/candidates/0",
+          "kind": "candidate",
+          "logical_result": "unresolved",
+          "standing": null,
+          "completion": "complete",
+          "causes": [
+            {
+              "code": "binding_unresolved",
+              "kind": "translation"
+            },
+            {
+              "code": "exception_bridge_conflict:enrolled-run-in",
+              "kind": "conflict"
+            },
+            {
+              "code": "no_constraint_mentions_query",
+              "kind": "coverage"
+            }
+          ],
+          "disposition": "open"
+        },
+        {
+          "path": "/result/candidates/0/query_decision",
+          "kind": "logical",
+          "logical_result": "ENTAILED",
+          "standing": "known",
+          "completion": "complete",
+          "causes": [],
+          "disposition": "settled"
+        },
+        {
+          "path": "/result/candidates/0/observations/0",
+          "kind": "witness",
+          "logical_result": "unresolved",
+          "standing": "interpolated",
+          "completion": "complete",
+          "causes": [
+            {
+              "code": "binding_unresolved",
+              "kind": "translation"
+            },
+            {
+              "code": "exception_bridge_conflict:enrolled-run-in",
+              "kind": "conflict"
+            },
+            {
+              "code": "no_constraint_mentions_query",
+              "kind": "coverage"
+            }
+          ],
+          "disposition": "open"
+        },
+        {
+          "path": "/result/candidates/1",
+          "kind": "candidate",
+          "logical_result": "unresolved",
+          "standing": null,
+          "completion": "complete",
+          "causes": [
+            {
+              "code": "binding_unresolved",
+              "kind": "translation"
+            },
+            {
+              "code": "exception_bridge_conflict:enrolled-run-in",
+              "kind": "conflict"
+            },
+            {
+              "code": "no_constraint_mentions_query",
+              "kind": "coverage"
+            }
+          ],
+          "disposition": "open"
+        },
+        {
+          "path": "/result/candidates/1/query_decision",
+          "kind": "logical",
+          "logical_result": "ENTAILED",
+          "standing": "known",
+          "completion": "complete",
+          "causes": [],
+          "disposition": "settled"
+        },
+        {
+          "path": "/result/candidates/1/observations/0",
+          "kind": "witness",
+          "logical_result": "unresolved",
+          "standing": "interpolated",
+          "completion": "complete",
+          "causes": [
+            {
+              "code": "binding_unresolved",
+              "kind": "translation"
+            },
+            {
+              "code": "exception_bridge_conflict:enrolled-run-in",
+              "kind": "conflict"
+            },
+            {
+              "code": "no_constraint_mentions_query",
+              "kind": "coverage"
+            }
+          ],
+          "disposition": "open"
+        },
+        {
+          "path": "/result/consequence",
+          "kind": "candidate_family_consequence",
+          "logical_result": "CONFLICT",
+          "standing": "interpolated",
+          "completion": "complete",
+          "causes": [
+            {
+              "code": "exception_bridge_conflict:enrolled-run-in",
+              "kind": "conflict"
+            }
+          ],
+          "disposition": "conflict"
+        },
+        {
+          "path": "/result/exception_checks/0",
+          "kind": "exception_bridge",
+          "logical_result": "conflict",
+          "standing": "interpolated",
+          "completion": "complete",
+          "causes": [
+            {
+              "code": "exception_bridge_conflict:enrolled-run-in",
+              "kind": "conflict"
+            }
+          ],
+          "disposition": "conflict",
+          "support_path": "/result/exception_checks/0"
+        }
+      ]
+    },
+    "remaining": [
+      "adult-under65",
+      "adult-no-upper-added"
+    ],
+    "consequence": {
+      "result": "CONFLICT",
+      "status": "interpolated",
+      "basis": "Input exception-bridge conflict; not proof that every real protocol is impossible.",
+      "blockers": [
+        "exception_bridge_conflict:enrolled-run-in"
+      ]
+    },
+    "candidates": [
+      {
+        "id": "adult-under65",
+        "state": "unresolved",
+        "elimination_status": null,
+        "query_decision": {
+          "result": "ENTAILED",
+          "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+          "status": "known",
+          "proof": [
+            "registry-age-minimumAge"
+          ],
+          "blockers": []
+        },
+        "observations": [
+          {
+            "support": "binding_unresolved",
+            "state": "unresolved",
+            "status": "interpolated",
+            "decision": {
+              "result": "UNDETERMINED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"reported_started_run_in\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+              "status": null,
+              "proof": [],
+              "blockers": [
+                "exception_bridge_conflict:enrolled-run-in",
+                "no_constraint_mentions_query"
+              ]
+            },
+            "witness_threshold": {
+              "count_lower": 872,
+              "supplied_exception_upper": 0,
+              "maximum_exceptions_for_witness": 871,
+              "requires": "accepted, resolved, same-predicate and same-scope bridge"
+            }
+          }
+        ],
+        "signal_checks": []
+      },
+      {
+        "id": "adult-no-upper-added",
+        "state": "unresolved",
+        "elimination_status": null,
+        "query_decision": {
+          "result": "ENTAILED",
+          "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+          "status": "known",
+          "proof": [
+            "registry-age-minimumAge"
+          ],
+          "blockers": []
+        },
+        "observations": [
+          {
+            "support": "binding_unresolved",
+            "state": "unresolved",
+            "status": "interpolated",
+            "decision": {
+              "result": "UNDETERMINED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"reported_started_run_in\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+              "status": null,
+              "proof": [],
+              "blockers": [
+                "exception_bridge_conflict:enrolled-run-in",
+                "no_constraint_mentions_query"
+              ]
+            },
+            "witness_threshold": {
+              "count_lower": 872,
+              "supplied_exception_upper": 0,
+              "maximum_exceptions_for_witness": 871,
+              "requires": "accepted, resolved, same-predicate and same-scope bridge"
+            }
+          }
+        ],
+        "signal_checks": []
+      }
+    ],
+    "exception_checks": [
+      {
+        "target": "entry_eligibility",
+        "code": "conflict",
+        "lower": 4,
+        "upper": 0,
+        "structural_maximum": 872,
+        "interval_state": "ceiling_conflict",
+        "independent_lower": 4,
+        "independent_interval_state": "ceiling_conflict",
+        "possible_floor_upper": 4,
+        "possible_floor_meaning": "Largest lower-bound constraint supplied by these observations across represented target readings; not an upper bound on total exceptions.",
+        "conditional_lower": 4,
+        "conditional_interval_state": "ceiling_conflict",
+        "independent_conditional_lower": 4,
+        "extent": "population",
+        "scope": {
+          "arm": "run-in-all",
+          "population": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c:run-in-started",
+          "study": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c",
+          "time": "entry-to-run-in",
+          "version": "320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c"
+        },
+        "profile": null,
+        "blockers": [
+          "exception_bridge_conflict:enrolled-run-in"
+        ],
+        "pending_blockers": [],
+        "rule": "exception-bounds:2",
+        "id": "exception:enrolled-run-in",
+        "observation": "enrolled-run-in",
+        "status": "interpolated",
+        "attributions": [
+          {
+            "observation": "protocol-reported",
+            "bindings": [
+              "failure-target-reading"
+            ],
+            "scope": {
+              "arm": "run-in-all",
+              "population": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c:run-in-started",
+              "study": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c",
+              "time": "entry-to-run-in",
+              "version": "320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c"
+            },
+            "extent": "population",
+            "profile": null,
+            "reported_lower": 4,
+            "denominator": 872,
+            "state": "entry_eligibility",
+            "possible_targets": [
+              "entry_eligibility"
+            ],
+            "known_possible_targets": [
+              "assessment_adherence",
+              "entry_eligibility",
+              "other_protocol_requirement",
+              "treatment_adherence"
+            ],
+            "known_state": "attribution_open",
+            "status": "interpolated",
+            "accepted_bindings": [
+              "failure-target-reading"
+            ],
+            "known_bindings": [],
+            "applicable": true,
+            "lower": 4,
+            "conditional_lower": 4,
+            "independent_lower": 4,
+            "possible_floor_upper": 4,
+            "application_blockers": [],
+            "blockers": [],
+            "pending_blockers": []
+          }
+        ]
+      }
+    ],
+    "signals": [],
+    "binding_checks": []
+  },
+  {
+    "name": "exception-entry-assumed-cap4",
+    "metadata": {
+      "version": 1,
+      "kind": "reasoning",
+      "findings": [
+        {
+          "path": "/result/candidates/0",
+          "kind": "candidate",
+          "logical_result": "not_ruled_out",
+          "standing": null,
+          "completion": "complete",
+          "causes": [],
+          "disposition": "open"
+        },
+        {
+          "path": "/result/candidates/0/query_decision",
+          "kind": "logical",
+          "logical_result": "ENTAILED",
+          "standing": "known",
+          "completion": "complete",
+          "causes": [],
+          "disposition": "settled"
+        },
+        {
+          "path": "/result/candidates/0/observations/0",
+          "kind": "witness",
+          "logical_result": "not_ruled_out",
+          "standing": "interpolated",
+          "completion": "complete",
+          "causes": [
+            {
+              "code": "no_constraint_mentions_query",
+              "kind": "coverage"
+            }
+          ],
+          "disposition": "open"
+        },
+        {
+          "path": "/result/candidates/1",
+          "kind": "candidate",
+          "logical_result": "not_ruled_out",
+          "standing": null,
+          "completion": "complete",
+          "causes": [],
+          "disposition": "open"
+        },
+        {
+          "path": "/result/candidates/1/query_decision",
+          "kind": "logical",
+          "logical_result": "ENTAILED",
+          "standing": "known",
+          "completion": "complete",
+          "causes": [],
+          "disposition": "settled"
+        },
+        {
+          "path": "/result/candidates/1/observations/0",
+          "kind": "witness",
+          "logical_result": "not_ruled_out",
+          "standing": "interpolated",
+          "completion": "complete",
+          "causes": [
+            {
+              "code": "no_constraint_mentions_query",
+              "kind": "coverage"
+            }
+          ],
+          "disposition": "open"
+        },
+        {
+          "path": "/result/consequence",
+          "kind": "candidate_family_consequence",
+          "logical_result": "ENTAILED",
+          "standing": "known",
+          "completion": "complete",
+          "causes": [],
+          "disposition": "settled"
+        },
+        {
+          "path": "/result/exception_checks/0",
+          "kind": "exception_bridge",
+          "logical_result": "consistent",
+          "standing": "interpolated",
+          "completion": "complete",
+          "causes": [],
+          "disposition": "conditional",
+          "support_path": "/result/exception_checks/0"
+        }
+      ]
+    },
+    "remaining": [
+      "adult-under65",
+      "adult-no-upper-added"
+    ],
+    "consequence": {
+      "result": "ENTAILED",
+      "status": "known",
+      "basis": "All remaining declared candidate designs; includes the support of eliminations."
+    },
+    "candidates": [
+      {
+        "id": "adult-under65",
+        "state": "not_ruled_out",
+        "elimination_status": null,
+        "query_decision": {
+          "result": "ENTAILED",
+          "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+          "status": "known",
+          "proof": [
+            "registry-age-minimumAge"
+          ],
+          "blockers": []
+        },
+        "observations": [
+          {
+            "support": "witness",
+            "state": "not_ruled_out",
+            "status": "interpolated",
+            "decision": {
+              "result": "UNDETERMINED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"reported_started_run_in\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+              "status": null,
+              "proof": [],
+              "blockers": [
+                "no_constraint_mentions_query"
+              ]
+            },
+            "witness_threshold": {
+              "count_lower": 872,
+              "supplied_exception_upper": 4,
+              "maximum_exceptions_for_witness": 871,
+              "requires": "accepted, resolved, same-predicate and same-scope bridge"
+            }
+          }
+        ],
+        "signal_checks": []
+      },
+      {
+        "id": "adult-no-upper-added",
+        "state": "not_ruled_out",
+        "elimination_status": null,
+        "query_decision": {
+          "result": "ENTAILED",
+          "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+          "status": "known",
+          "proof": [
+            "registry-age-minimumAge"
+          ],
+          "blockers": []
+        },
+        "observations": [
+          {
+            "support": "witness",
+            "state": "not_ruled_out",
+            "status": "interpolated",
+            "decision": {
+              "result": "UNDETERMINED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"reported_started_run_in\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+              "status": null,
+              "proof": [],
+              "blockers": [
+                "no_constraint_mentions_query"
+              ]
+            },
+            "witness_threshold": {
+              "count_lower": 872,
+              "supplied_exception_upper": 4,
+              "maximum_exceptions_for_witness": 871,
+              "requires": "accepted, resolved, same-predicate and same-scope bridge"
+            }
+          }
+        ],
+        "signal_checks": []
+      }
+    ],
+    "exception_checks": [
+      {
+        "target": "entry_eligibility",
+        "code": "consistent",
+        "lower": 4,
+        "upper": 4,
+        "structural_maximum": 872,
+        "interval_state": "consistent",
+        "independent_lower": 4,
+        "independent_interval_state": "consistent",
+        "possible_floor_upper": 4,
+        "possible_floor_meaning": "Largest lower-bound constraint supplied by these observations across represented target readings; not an upper bound on total exceptions.",
+        "conditional_lower": 4,
+        "conditional_interval_state": "consistent",
+        "independent_conditional_lower": 4,
+        "extent": "population",
+        "scope": {
+          "arm": "run-in-all",
+          "population": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c:run-in-started",
+          "study": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c",
+          "time": "entry-to-run-in",
+          "version": "320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c"
+        },
+        "profile": null,
+        "blockers": [],
+        "pending_blockers": [],
+        "rule": "exception-bounds:2",
+        "id": "exception:enrolled-run-in",
+        "observation": "enrolled-run-in",
+        "status": "interpolated",
+        "attributions": [
+          {
+            "observation": "protocol-reported",
+            "bindings": [
+              "failure-target-reading"
+            ],
+            "scope": {
+              "arm": "run-in-all",
+              "population": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c:run-in-started",
+              "study": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c",
+              "time": "entry-to-run-in",
+              "version": "320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c"
+            },
+            "extent": "population",
+            "profile": null,
+            "reported_lower": 4,
+            "denominator": 872,
+            "state": "entry_eligibility",
+            "possible_targets": [
+              "entry_eligibility"
+            ],
+            "known_possible_targets": [
+              "assessment_adherence",
+              "entry_eligibility",
+              "other_protocol_requirement",
+              "treatment_adherence"
+            ],
+            "known_state": "attribution_open",
+            "status": "interpolated",
+            "accepted_bindings": [
+              "failure-target-reading"
+            ],
+            "known_bindings": [],
+            "applicable": true,
+            "lower": 4,
+            "conditional_lower": 4,
+            "independent_lower": 4,
+            "possible_floor_upper": 4,
+            "application_blockers": [],
+            "blockers": [],
+            "pending_blockers": []
+          }
+        ]
+      }
+    ],
+    "signals": [],
+    "binding_checks": []
+  },
+  {
+    "name": "baseline-age-cap52",
+    "metadata": {
+      "version": 1,
+      "kind": "reasoning",
+      "findings": [
+        {
+          "path": "/result/candidates/0",
+          "kind": "candidate",
+          "logical_result": "ruled_out",
+          "standing": "interpolated",
+          "completion": "complete",
+          "causes": [],
+          "disposition": "conditional"
+        },
+        {
+          "path": "/result/candidates/0/query_decision",
+          "kind": "logical",
+          "logical_result": "ENTAILED",
+          "standing": "interpolated",
+          "completion": "complete",
+          "causes": [],
+          "disposition": "conditional"
+        },
+        {
+          "path": "/result/candidates/0/observations/0",
+          "kind": "witness",
+          "logical_result": "ruled_out",
+          "standing": "interpolated",
+          "completion": "complete",
+          "causes": [],
+          "disposition": "conditional"
+        },
+        {
+          "path": "/result/candidates/1",
+          "kind": "candidate",
+          "logical_result": "not_ruled_out",
+          "standing": null,
+          "completion": "complete",
+          "causes": [],
+          "disposition": "open"
+        },
+        {
+          "path": "/result/candidates/1/query_decision",
+          "kind": "logical",
+          "logical_result": "UNDETERMINED",
+          "standing": null,
+          "completion": "complete",
+          "causes": [
+            {
+              "code": "undecided_by_constraints",
+              "kind": "constraint"
+            }
+          ],
+          "disposition": "open"
+        },
+        {
+          "path": "/result/candidates/1/observations/0",
+          "kind": "witness",
+          "logical_result": "not_ruled_out",
+          "standing": "interpolated",
+          "completion": "complete",
+          "causes": [
+            {
+              "code": "undecided_by_constraints",
+              "kind": "constraint"
+            }
+          ],
+          "disposition": "open"
+        },
+        {
+          "path": "/result/consequence",
+          "kind": "candidate_family_consequence",
+          "logical_result": "UNDETERMINED",
+          "standing": null,
+          "completion": "complete",
+          "causes": [
+            {
+              "code": "undecided_by_constraints",
+              "kind": "constraint"
+            }
+          ],
+          "disposition": "open"
+        }
+      ]
+    },
+    "remaining": [
+      "adult-no-upper-added"
+    ],
+    "consequence": {
+      "result": "UNDETERMINED",
+      "status": null,
+      "basis": "All remaining declared candidate designs; includes the support of eliminations."
+    },
+    "candidates": [
+      {
+        "id": "adult-under65",
+        "state": "ruled_out",
+        "elimination_status": "interpolated",
+        "query_decision": {
+          "result": "ENTAILED",
+          "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"lt\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":65.0,\"unit\":\"Years\",\"upper\":null}}",
+          "status": "interpolated",
+          "proof": [
+            "upper-age-below65"
+          ],
+          "blockers": []
+        },
+        "observations": [
+          {
+            "support": "witness",
+            "state": "ruled_out",
+            "status": "interpolated",
+            "decision": {
+              "result": "REFUTED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":65.0,\"unit\":\"Years\",\"upper\":null}}",
+              "status": "interpolated",
+              "proof": [
+                "upper-age-below65"
+              ],
+              "blockers": []
+            },
+            "witness_threshold": null
+          }
+        ],
+        "signal_checks": []
+      },
+      {
+        "id": "adult-no-upper-added",
+        "state": "not_ruled_out",
+        "elimination_status": null,
+        "query_decision": {
+          "result": "UNDETERMINED",
+          "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"lt\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":65.0,\"unit\":\"Years\",\"upper\":null}}",
+          "status": null,
+          "proof": [
+            "registry-age-maximumAge",
+            "registry-age-minimumAge"
+          ],
+          "blockers": [
+            "undecided_by_constraints"
+          ]
+        },
+        "observations": [
+          {
+            "support": "witness",
+            "state": "not_ruled_out",
+            "status": "interpolated",
+            "decision": {
+              "result": "UNDETERMINED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":65.0,\"unit\":\"Years\",\"upper\":null}}",
+              "status": null,
+              "proof": [
+                "registry-age-maximumAge",
+                "registry-age-minimumAge"
+              ],
+              "blockers": [
+                "undecided_by_constraints"
+              ]
+            },
+            "witness_threshold": null
+          }
+        ],
+        "signal_checks": []
+      }
+    ],
+    "exception_checks": [],
+    "signals": [],
+    "binding_checks": []
+  },
+  {
+    "name": "baseline-age-cap53",
+    "metadata": {
+      "version": 1,
+      "kind": "reasoning",
+      "findings": [
+        {
+          "path": "/result/candidates/0",
+          "kind": "candidate",
+          "logical_result": "not_ruled_out",
+          "standing": null,
+          "completion": "complete",
+          "causes": [],
+          "disposition": "open"
+        },
+        {
+          "path": "/result/candidates/0/query_decision",
+          "kind": "logical",
+          "logical_result": "ENTAILED",
+          "standing": "interpolated",
+          "completion": "complete",
+          "causes": [],
+          "disposition": "conditional"
+        },
+        {
+          "path": "/result/candidates/0/observations/0",
+          "kind": "witness",
+          "logical_result": "not_ruled_out",
+          "standing": "interpolated",
+          "completion": "complete",
+          "causes": [],
+          "disposition": "open"
+        },
+        {
+          "path": "/result/candidates/1",
+          "kind": "candidate",
+          "logical_result": "not_ruled_out",
+          "standing": null,
+          "completion": "complete",
+          "causes": [],
+          "disposition": "open"
+        },
+        {
+          "path": "/result/candidates/1/query_decision",
+          "kind": "logical",
+          "logical_result": "UNDETERMINED",
+          "standing": null,
+          "completion": "complete",
+          "causes": [
+            {
+              "code": "undecided_by_constraints",
+              "kind": "constraint"
+            }
+          ],
+          "disposition": "open"
+        },
+        {
+          "path": "/result/candidates/1/observations/0",
+          "kind": "witness",
+          "logical_result": "not_ruled_out",
+          "standing": "interpolated",
+          "completion": "complete",
+          "causes": [
+            {
+              "code": "undecided_by_constraints",
+              "kind": "constraint"
+            }
+          ],
+          "disposition": "open"
+        },
+        {
+          "path": "/result/consequence",
+          "kind": "candidate_family_consequence",
+          "logical_result": "UNDETERMINED",
+          "standing": null,
+          "completion": "complete",
+          "causes": [
+            {
+              "code": "undecided_by_constraints",
+              "kind": "constraint"
+            }
+          ],
+          "disposition": "open"
+        }
+      ]
+    },
+    "remaining": [
+      "adult-under65",
+      "adult-no-upper-added"
+    ],
+    "consequence": {
+      "result": "UNDETERMINED",
+      "status": null,
+      "basis": "All remaining declared candidate designs; includes the support of eliminations."
+    },
+    "candidates": [
+      {
+        "id": "adult-under65",
+        "state": "not_ruled_out",
+        "elimination_status": null,
+        "query_decision": {
+          "result": "ENTAILED",
+          "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"lt\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":65.0,\"unit\":\"Years\",\"upper\":null}}",
+          "status": "interpolated",
+          "proof": [
+            "upper-age-below65"
+          ],
+          "blockers": []
+        },
+        "observations": [
+          {
+            "support": "no_witness",
+            "state": "not_ruled_out",
+            "status": "interpolated",
+            "decision": {
+              "result": "REFUTED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":65.0,\"unit\":\"Years\",\"upper\":null}}",
+              "status": "interpolated",
+              "proof": [
+                "upper-age-below65"
+              ],
+              "blockers": []
+            },
+            "witness_threshold": null
+          }
+        ],
+        "signal_checks": []
+      },
+      {
+        "id": "adult-no-upper-added",
+        "state": "not_ruled_out",
+        "elimination_status": null,
+        "query_decision": {
+          "result": "UNDETERMINED",
+          "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"lt\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":65.0,\"unit\":\"Years\",\"upper\":null}}",
+          "status": null,
+          "proof": [
+            "registry-age-maximumAge",
+            "registry-age-minimumAge"
+          ],
+          "blockers": [
+            "undecided_by_constraints"
+          ]
+        },
+        "observations": [
+          {
+            "support": "no_witness",
+            "state": "not_ruled_out",
+            "status": "interpolated",
+            "decision": {
+              "result": "UNDETERMINED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":65.0,\"unit\":\"Years\",\"upper\":null}}",
+              "status": null,
+              "proof": [
+                "registry-age-maximumAge",
+                "registry-age-minimumAge"
+              ],
+              "blockers": [
+                "undecided_by_constraints"
+              ]
+            },
+            "witness_threshold": null
+          }
+        ],
+        "signal_checks": []
+      }
+    ],
+    "exception_checks": [],
+    "signals": [],
+    "binding_checks": []
+  },
+  {
+    "name": "population-proposed",
+    "metadata": {
+      "version": 1,
+      "kind": "reasoning",
+      "findings": [
+        {
+          "path": "/result/signals/0",
+          "kind": "signal",
+          "logical_result": "unresolved",
+          "standing": "proposed",
+          "completion": "complete",
+          "causes": [
+            {
+              "code": "proposed_refused:Q8W-FAS-coverage",
+              "kind": "premise"
+            },
+            {
+              "code": "proposed_refused:Q8W-FAS-subset",
+              "kind": "premise"
+            }
+          ],
+          "disposition": "open",
+          "raw_result": "bounded",
+          "raw_path": "/result/signals/0/calculation_code"
+        },
+        {
+          "path": "/result/binding_checks/0",
+          "kind": "binding",
+          "logical_result": "unresolved",
+          "standing": "proposed",
+          "completion": "complete",
+          "causes": [
+            {
+              "code": "proposed_refused:Q8W-FAS-subset",
+              "kind": "premise"
+            }
+          ],
+          "disposition": "open",
+          "support_path": "/result/binding_checks/0"
+        }
+      ]
+    },
+    "remaining": null,
+    "consequence": null,
+    "candidates": [],
+    "exception_checks": [],
+    "signals": [
+      {
+        "id": "Q8W-FAS-coverage",
+        "kind": "population",
+        "code": "unresolved",
+        "calculation_code": "bounded",
+        "value": {
+          "universe": "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2:Q8W-started",
+          "total": 152,
+          "counts": [
+            {
+              "id": "Q8W-started",
+              "lower": 152,
+              "upper": 152
+            },
+            {
+              "id": "Q8W-FAS",
+              "lower": 151,
+              "upper": 151
+            },
+            {
+              "id": "outside",
+              "lower": 1,
+              "upper": 1
+            }
+          ],
+          "witnesses": [
+            {
+              "id": "Q8W-started",
+              "lower": 152,
+              "upper": 152,
+              "expression": {
+                "kind": "all_of",
+                "refs": [
+                  "Q8W-started"
+                ]
+              }
+            },
+            {
+              "id": "Q8W-FAS",
+              "lower": 151,
+              "upper": 151,
+              "expression": {
+                "kind": "all_of",
+                "refs": [
+                  "Q8W-FAS"
+                ]
+              }
+            },
+            {
+              "id": "outside",
+              "lower": 1,
+              "upper": 1,
+              "expression": {
+                "kind": "difference",
+                "refs": [
+                  "Q8W-started",
+                  "Q8W-FAS"
+                ]
+              }
+            }
+          ]
+        },
+        "rule": "numeric.population:1",
+        "status": "proposed",
+        "basis": [
+          "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones/0/achievements/1",
+          "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones/1",
+          "assistant:within-Q8W-FAS-is-subset-of-started-not-a-crossarm-distinctness-claim",
+          "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2@ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones"
+        ],
+        "support": [
+          {
+            "id": "reported-arm-counts",
+            "status": "known",
+            "resolution": "resolved",
+            "basis": [
+              "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones/0/achievements/1",
+              "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones/1"
+            ]
+          },
+          {
+            "id": "binding-use:Q8W-FAS-subset",
+            "status": "proposed",
+            "resolution": "unresolved",
+            "basis": [
+              "assistant:within-Q8W-FAS-is-subset-of-started-not-a-crossarm-distinctness-claim",
+              "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2@ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones"
+            ]
+          }
+        ],
+        "blockers": [
+          "proposed_refused:Q8W-FAS-subset",
+          "proposed_refused:Q8W-FAS-coverage"
+        ]
+      }
+    ],
+    "binding_checks": [
+      {
+        "binding": "Q8W-FAS-subset",
+        "signal": "Q8W-FAS-coverage",
+        "code": "unresolved",
+        "status": "proposed",
+        "basis": [
+          "assistant:within-Q8W-FAS-is-subset-of-started-not-a-crossarm-distinctness-claim",
+          "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2@ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones"
+        ],
+        "blockers": [
+          "proposed_refused:Q8W-FAS-subset"
+        ],
+        "rule": "interpretation.binding-use:1",
+        "checked_code": "conditional",
+        "support_id": "binding-use:Q8W-FAS-subset",
+        "declaration": {
+          "id": "Q8W-FAS-subset",
+          "kind": "population",
+          "relation": "subset_of",
+          "subjects": [
+            "Q8W-started",
+            "Q8W-FAS"
+          ],
+          "scope": {
+            "arm": "guselkumab-Q8W",
+            "population": "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2:Q8W-started",
+            "study": "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2",
+            "time": "randomization",
+            "version": "ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2"
+          },
+          "sources": [
+            {
+              "ref": "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2",
+              "version": "ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2",
+              "address": "/resultsSection/participantFlowModule/periods/0/milestones",
+              "digest": "ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2"
+            }
+          ],
+          "status": "proposed",
+          "resolution": "resolved",
+          "basis": [
+            "assistant:within-Q8W-FAS-is-subset-of-started-not-a-crossarm-distinctness-claim"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "name": "population-assumed",
+    "metadata": {
+      "version": 1,
+      "kind": "reasoning",
+      "findings": [
+        {
+          "path": "/result/signals/0",
+          "kind": "signal",
+          "logical_result": "bounded",
+          "standing": "interpolated",
+          "completion": "complete",
+          "causes": [],
+          "disposition": "conditional"
+        },
+        {
+          "path": "/result/binding_checks/0",
+          "kind": "binding",
+          "logical_result": "conditional",
+          "standing": "interpolated",
+          "completion": "complete",
+          "causes": [],
+          "disposition": "conditional",
+          "support_path": "/result/binding_checks/0"
+        }
+      ]
+    },
+    "remaining": null,
+    "consequence": null,
+    "candidates": [],
+    "exception_checks": [],
+    "signals": [
+      {
+        "id": "Q8W-FAS-coverage",
+        "kind": "population",
+        "code": "bounded",
+        "calculation_code": "bounded",
+        "value": {
+          "universe": "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2:Q8W-started",
+          "total": 152,
+          "counts": [
+            {
+              "id": "Q8W-started",
+              "lower": 152,
+              "upper": 152
+            },
+            {
+              "id": "Q8W-FAS",
+              "lower": 151,
+              "upper": 151
+            },
+            {
+              "id": "outside",
+              "lower": 1,
+              "upper": 1
+            }
+          ],
+          "witnesses": [
+            {
+              "id": "Q8W-started",
+              "lower": 152,
+              "upper": 152,
+              "expression": {
+                "kind": "all_of",
+                "refs": [
+                  "Q8W-started"
+                ]
+              }
+            },
+            {
+              "id": "Q8W-FAS",
+              "lower": 151,
+              "upper": 151,
+              "expression": {
+                "kind": "all_of",
+                "refs": [
+                  "Q8W-FAS"
+                ]
+              }
+            },
+            {
+              "id": "outside",
+              "lower": 1,
+              "upper": 1,
+              "expression": {
+                "kind": "difference",
+                "refs": [
+                  "Q8W-started",
+                  "Q8W-FAS"
+                ]
+              }
+            }
+          ]
+        },
+        "rule": "numeric.population:1",
+        "status": "interpolated",
+        "basis": [
+          "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones/0/achievements/1",
+          "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones/1",
+          "investigation:explicit-hypothetical-within-arm-subset-not-user-confirmed",
+          "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2@ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones"
+        ],
+        "support": [
+          {
+            "id": "reported-arm-counts",
+            "status": "known",
+            "resolution": "resolved",
+            "basis": [
+              "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones/0/achievements/1",
+              "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones/1"
+            ]
+          },
+          {
+            "id": "binding-use:Q8W-FAS-subset",
+            "status": "interpolated",
+            "resolution": "resolved",
+            "basis": [
+              "investigation:explicit-hypothetical-within-arm-subset-not-user-confirmed",
+              "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2@ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones"
+            ]
+          }
+        ],
+        "blockers": []
+      }
+    ],
+    "binding_checks": [
+      {
+        "binding": "Q8W-FAS-subset",
+        "signal": "Q8W-FAS-coverage",
+        "code": "conditional",
+        "status": "interpolated",
+        "basis": [
+          "investigation:explicit-hypothetical-within-arm-subset-not-user-confirmed",
+          "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2@ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones"
+        ],
+        "blockers": [],
+        "rule": "interpretation.binding-use:1",
+        "checked_code": "conditional",
+        "support_id": "binding-use:Q8W-FAS-subset",
+        "declaration": {
+          "id": "Q8W-FAS-subset",
+          "kind": "population",
+          "relation": "subset_of",
+          "subjects": [
+            "Q8W-started",
+            "Q8W-FAS"
+          ],
+          "scope": {
+            "arm": "guselkumab-Q8W",
+            "population": "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2:Q8W-started",
+            "study": "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2",
+            "time": "randomization",
+            "version": "ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2"
+          },
+          "sources": [
+            {
+              "ref": "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2",
+              "version": "ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2",
+              "address": "/resultsSection/participantFlowModule/periods/0/milestones",
+              "digest": "ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2"
+            }
+          ],
+          "status": "interpolated",
+          "resolution": "resolved",
+          "basis": [
+            "investigation:explicit-hypothetical-within-arm-subset-not-user-confirmed"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "name": "population-subjects-mismatch",
+    "metadata": {
+      "version": 1,
+      "kind": "reasoning",
+      "findings": [
+        {
+          "path": "/result/signals/0",
+          "kind": "signal",
+          "logical_result": "unresolved",
+          "standing": "interpolated",
+          "completion": "complete",
+          "causes": [
+            {
+              "code": "binding_unresolved:Q8W-FAS-coverage",
+              "kind": "translation"
+            },
+            {
+              "code": "subjects_mismatch:Q8W-FAS-subset",
+              "kind": "translation"
+            }
+          ],
+          "disposition": "open",
+          "raw_result": "bounded",
+          "raw_path": "/result/signals/0/calculation_code"
+        },
+        {
+          "path": "/result/binding_checks/0",
+          "kind": "binding",
+          "logical_result": "unresolved",
+          "standing": "interpolated",
+          "completion": "complete",
+          "causes": [
+            {
+              "code": "subjects_mismatch:Q8W-FAS-subset",
+              "kind": "translation"
+            }
+          ],
+          "disposition": "open",
+          "support_path": "/result/binding_checks/0"
+        }
+      ]
+    },
+    "remaining": null,
+    "consequence": null,
+    "candidates": [],
+    "exception_checks": [],
+    "signals": [
+      {
+        "id": "Q8W-FAS-coverage",
+        "kind": "population",
+        "code": "unresolved",
+        "calculation_code": "bounded",
+        "value": {
+          "universe": "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2:Q8W-started",
+          "total": 152,
+          "counts": [
+            {
+              "id": "Q8W-started",
+              "lower": 152,
+              "upper": 152
+            },
+            {
+              "id": "Q8W-FAS",
+              "lower": 151,
+              "upper": 151
+            },
+            {
+              "id": "outside",
+              "lower": 1,
+              "upper": 1
+            }
+          ],
+          "witnesses": [
+            {
+              "id": "Q8W-started",
+              "lower": 152,
+              "upper": 152,
+              "expression": {
+                "kind": "all_of",
+                "refs": [
+                  "Q8W-started"
+                ]
+              }
+            },
+            {
+              "id": "Q8W-FAS",
+              "lower": 151,
+              "upper": 151,
+              "expression": {
+                "kind": "all_of",
+                "refs": [
+                  "Q8W-FAS"
+                ]
+              }
+            },
+            {
+              "id": "outside",
+              "lower": 1,
+              "upper": 1,
+              "expression": {
+                "kind": "difference",
+                "refs": [
+                  "Q8W-started",
+                  "Q8W-FAS"
+                ]
+              }
+            }
+          ]
+        },
+        "rule": "numeric.population:1",
+        "status": "interpolated",
+        "basis": [
+          "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones/0/achievements/1",
+          "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones/1",
+          "investigation:explicit-hypothetical-within-arm-subset-not-user-confirmed",
+          "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2@ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones"
+        ],
+        "support": [
+          {
+            "id": "reported-arm-counts",
+            "status": "known",
+            "resolution": "resolved",
+            "basis": [
+              "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones/0/achievements/1",
+              "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones/1"
+            ]
+          },
+          {
+            "id": "binding-use:Q8W-FAS-subset",
+            "status": "interpolated",
+            "resolution": "unresolved",
+            "basis": [
+              "investigation:explicit-hypothetical-within-arm-subset-not-user-confirmed",
+              "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2@ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones"
+            ]
+          }
+        ],
+        "blockers": [
+          "subjects_mismatch:Q8W-FAS-subset",
+          "binding_unresolved:Q8W-FAS-coverage"
+        ]
+      }
+    ],
+    "binding_checks": [
+      {
+        "binding": "Q8W-FAS-subset",
+        "signal": "Q8W-FAS-coverage",
+        "code": "unresolved",
+        "status": "interpolated",
+        "basis": [
+          "investigation:explicit-hypothetical-within-arm-subset-not-user-confirmed",
+          "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2@ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones"
+        ],
+        "blockers": [
+          "subjects_mismatch:Q8W-FAS-subset"
+        ],
+        "rule": "interpretation.binding-use:1",
+        "checked_code": "unresolved",
+        "support_id": "binding-use:Q8W-FAS-subset",
+        "declaration": {
+          "id": "Q8W-FAS-subset",
+          "kind": "population",
+          "relation": "subset_of",
+          "subjects": [
+            "Q8W-FAS",
+            "Q8W-started"
+          ],
+          "scope": {
+            "arm": "guselkumab-Q8W",
+            "population": "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2:Q8W-started",
+            "study": "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2",
+            "time": "randomization",
+            "version": "ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2"
+          },
+          "sources": [
+            {
+              "ref": "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2",
+              "version": "ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2",
+              "address": "/resultsSection/participantFlowModule/periods/0/milestones",
+              "digest": "ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2"
+            }
+          ],
+          "status": "interpolated",
+          "resolution": "resolved",
+          "basis": [
+            "investigation:explicit-hypothetical-within-arm-subset-not-user-confirmed"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "name": "population-reversed-direction",
+    "metadata": {
+      "version": 1,
+      "kind": "reasoning",
+      "findings": [
+        {
+          "path": "/result/signals/0",
+          "kind": "signal",
+          "logical_result": "conflict",
+          "standing": "interpolated",
+          "completion": "complete",
+          "causes": [
+            {
+              "code": "inconsistent_population_total",
+              "kind": "conflict"
+            }
+          ],
+          "disposition": "conflict"
+        },
+        {
+          "path": "/result/binding_checks/0",
+          "kind": "binding",
+          "logical_result": "conditional",
+          "standing": "interpolated",
+          "completion": "complete",
+          "causes": [],
+          "disposition": "conditional",
+          "support_path": "/result/binding_checks/0"
+        }
+      ]
+    },
+    "remaining": null,
+    "consequence": null,
+    "candidates": [],
+    "exception_checks": [],
+    "signals": [
+      {
+        "id": "Q8W-FAS-coverage",
+        "kind": "population",
+        "code": "conflict",
+        "calculation_code": "conflict",
+        "value": {
+          "universe": "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2:Q8W-FAS",
+          "total": 151,
+          "counts": [],
+          "witnesses": []
+        },
+        "rule": "numeric.population:1",
+        "status": "interpolated",
+        "basis": [
+          "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones/1/achievements/1",
+          "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones/0/achievements/1",
+          "investigation:hypothetical-reversed-subset-started-inside-FAS-not-source-or-user-choice",
+          "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2@ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones"
+        ],
+        "support": [
+          {
+            "id": "reported-arm-counts",
+            "status": "known",
+            "resolution": "resolved",
+            "basis": [
+              "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones/1/achievements/1",
+              "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones/0/achievements/1"
+            ]
+          },
+          {
+            "id": "binding-use:Q8W-FAS-subset",
+            "status": "interpolated",
+            "resolution": "resolved",
+            "basis": [
+              "investigation:hypothetical-reversed-subset-started-inside-FAS-not-source-or-user-choice",
+              "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2@ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones"
+            ]
+          }
+        ],
+        "blockers": [
+          "inconsistent_population_total"
+        ]
+      }
+    ],
+    "binding_checks": [
+      {
+        "binding": "Q8W-FAS-subset",
+        "signal": "Q8W-FAS-coverage",
+        "code": "conditional",
+        "status": "interpolated",
+        "basis": [
+          "investigation:hypothetical-reversed-subset-started-inside-FAS-not-source-or-user-choice",
+          "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2@ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones"
+        ],
+        "blockers": [],
+        "rule": "interpretation.binding-use:1",
+        "checked_code": "conditional",
+        "support_id": "binding-use:Q8W-FAS-subset",
+        "declaration": {
+          "id": "Q8W-FAS-subset",
+          "kind": "population",
+          "relation": "subset_of",
+          "subjects": [
+            "Q8W-FAS",
+            "Q8W-started"
+          ],
+          "scope": {
+            "arm": "guselkumab-Q8W",
+            "population": "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2:Q8W-FAS",
+            "study": "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2",
+            "time": "randomization",
+            "version": "ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2"
+          },
+          "sources": [
+            {
+              "ref": "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2",
+              "version": "ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2",
+              "address": "/resultsSection/participantFlowModule/periods/0/milestones",
+              "digest": "ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2"
+            }
+          ],
+          "status": "interpolated",
+          "resolution": "resolved",
+          "basis": [
+            "investigation:hypothetical-reversed-subset-started-inside-FAS-not-source-or-user-choice"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "name": "population-design-claims",
+    "metadata": {
+      "version": 1,
+      "kind": "reasoning",
+      "findings": [
+        {
+          "path": "/result/candidates/0",
+          "kind": "candidate",
+          "logical_result": "ruled_out",
+          "standing": "interpolated",
+          "completion": "complete",
+          "causes": [],
+          "disposition": "conditional"
+        },
+        {
+          "path": "/result/candidates/0/query_decision",
+          "kind": "logical",
+          "logical_result": "UNDETERMINED",
+          "standing": null,
+          "completion": "complete",
+          "causes": [
+            {
+              "code": "no_constraint_mentions_query",
+              "kind": "coverage"
+            }
+          ],
+          "disposition": "open"
+        },
+        {
+          "path": "/result/candidates/0/signal_checks/0",
+          "kind": "signal",
+          "logical_result": "conflict",
+          "standing": "interpolated",
+          "completion": "complete",
+          "causes": [
+            {
+              "code": "inconsistent_population_total",
+              "kind": "conflict"
+            }
+          ],
+          "disposition": "conflict"
+        },
+        {
+          "path": "/result/candidates/1",
+          "kind": "candidate",
+          "logical_result": "not_ruled_out",
+          "standing": null,
+          "completion": "complete",
+          "causes": [],
+          "disposition": "open"
+        },
+        {
+          "path": "/result/candidates/1/query_decision",
+          "kind": "logical",
+          "logical_result": "UNDETERMINED",
+          "standing": null,
+          "completion": "complete",
+          "causes": [
+            {
+              "code": "no_constraint_mentions_query",
+              "kind": "coverage"
+            }
+          ],
+          "disposition": "open"
+        },
+        {
+          "path": "/result/candidates/1/signal_checks/0",
+          "kind": "signal",
+          "logical_result": "bounded",
+          "standing": "interpolated",
+          "completion": "complete",
+          "causes": [],
+          "disposition": "conditional"
+        },
+        {
+          "path": "/result/consequence",
+          "kind": "candidate_family_consequence",
+          "logical_result": "UNDETERMINED",
+          "standing": null,
+          "completion": "complete",
+          "causes": [
+            {
+              "code": "no_constraint_mentions_query",
+              "kind": "coverage"
+            }
+          ],
+          "disposition": "open"
+        },
+        {
+          "path": "/result/signals/0",
+          "kind": "signal",
+          "logical_result": "bounded",
+          "standing": "interpolated",
+          "completion": "complete",
+          "causes": [],
+          "disposition": "conditional"
+        },
+        {
+          "path": "/result/binding_checks/0",
+          "kind": "binding",
+          "logical_result": "conditional",
+          "standing": "interpolated",
+          "completion": "complete",
+          "causes": [],
+          "disposition": "conditional",
+          "support_path": "/result/binding_checks/0"
+        }
+      ]
+    },
+    "remaining": [
+      "one-outside-FAS"
+    ],
+    "consequence": {
+      "result": "UNDETERMINED",
+      "status": null,
+      "basis": "All remaining declared candidate designs; includes the support of eliminations."
+    },
+    "candidates": [
+      {
+        "id": "all-started-in-FAS",
+        "state": "ruled_out",
+        "elimination_status": "interpolated",
+        "query_decision": {
+          "result": "UNDETERMINED",
+          "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"Q8W_in_FAS\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+          "status": null,
+          "proof": [],
+          "blockers": [
+            "no_constraint_mentions_query"
+          ]
+        },
+        "observations": [],
+        "signal_checks": [
+          {
+            "id": "Q8W-FAS-coverage",
+            "kind": "population",
+            "code": "conflict",
+            "calculation_code": "conflict",
+            "value": {
+              "universe": "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2:Q8W-started",
+              "total": 152,
+              "counts": [],
+              "witnesses": []
+            },
+            "rule": "numeric.population:1",
+            "status": "interpolated",
+            "basis": [
+              "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones/0/achievements/1",
+              "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones/1",
+              "investigation:explicit-hypothetical-within-arm-subset-not-user-confirmed",
+              "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2@ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones"
+            ],
+            "support": [
+              {
+                "id": "reported-arm-counts",
+                "status": "known",
+                "resolution": "resolved",
+                "basis": [
+                  "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones/0/achievements/1",
+                  "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones/1"
+                ]
+              },
+              {
+                "id": "binding-use:Q8W-FAS-subset",
+                "status": "interpolated",
+                "resolution": "resolved",
+                "basis": [
+                  "investigation:explicit-hypothetical-within-arm-subset-not-user-confirmed",
+                  "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2@ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones"
+                ]
+              }
+            ],
+            "blockers": [
+              "inconsistent_population_total"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "one-outside-FAS",
+        "state": "not_ruled_out",
+        "elimination_status": null,
+        "query_decision": {
+          "result": "UNDETERMINED",
+          "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"Q8W_in_FAS\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+          "status": null,
+          "proof": [],
+          "blockers": [
+            "no_constraint_mentions_query"
+          ]
+        },
+        "observations": [],
+        "signal_checks": [
+          {
+            "id": "Q8W-FAS-coverage",
+            "kind": "population",
+            "code": "bounded",
+            "calculation_code": "bounded",
+            "value": {
+              "universe": "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2:Q8W-started",
+              "total": 152,
+              "counts": [
+                {
+                  "id": "Q8W-started",
+                  "lower": 152,
+                  "upper": 152
+                },
+                {
+                  "id": "Q8W-FAS",
+                  "lower": 151,
+                  "upper": 151
+                },
+                {
+                  "id": "outside",
+                  "lower": 1,
+                  "upper": 1
+                }
+              ],
+              "witnesses": [
+                {
+                  "id": "Q8W-started",
+                  "lower": 152,
+                  "upper": 152,
+                  "expression": {
+                    "kind": "all_of",
+                    "refs": [
+                      "Q8W-started"
+                    ]
+                  }
+                },
+                {
+                  "id": "Q8W-FAS",
+                  "lower": 151,
+                  "upper": 151,
+                  "expression": {
+                    "kind": "all_of",
+                    "refs": [
+                      "Q8W-FAS"
+                    ]
+                  }
+                },
+                {
+                  "id": "outside",
+                  "lower": 1,
+                  "upper": 1,
+                  "expression": {
+                    "kind": "difference",
+                    "refs": [
+                      "Q8W-started",
+                      "Q8W-FAS"
+                    ]
+                  }
+                }
+              ]
+            },
+            "rule": "numeric.population:1",
+            "status": "interpolated",
+            "basis": [
+              "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones/0/achievements/1",
+              "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones/1",
+              "investigation:explicit-hypothetical-within-arm-subset-not-user-confirmed",
+              "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2@ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones"
+            ],
+            "support": [
+              {
+                "id": "reported-arm-counts",
+                "status": "known",
+                "resolution": "resolved",
+                "basis": [
+                  "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones/0/achievements/1",
+                  "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones/1"
+                ]
+              },
+              {
+                "id": "binding-use:Q8W-FAS-subset",
+                "status": "interpolated",
+                "resolution": "resolved",
+                "basis": [
+                  "investigation:explicit-hypothetical-within-arm-subset-not-user-confirmed",
+                  "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2@ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones"
+                ]
+              }
+            ],
+            "blockers": []
+          }
+        ]
+      }
+    ],
+    "exception_checks": [],
+    "signals": [
+      {
+        "id": "Q8W-FAS-coverage",
+        "kind": "population",
+        "code": "bounded",
+        "calculation_code": "bounded",
+        "value": {
+          "universe": "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2:Q8W-started",
+          "total": 152,
+          "counts": [
+            {
+              "id": "Q8W-started",
+              "lower": 152,
+              "upper": 152
+            },
+            {
+              "id": "Q8W-FAS",
+              "lower": 151,
+              "upper": 151
+            },
+            {
+              "id": "outside",
+              "lower": 1,
+              "upper": 1
+            }
+          ],
+          "witnesses": [
+            {
+              "id": "Q8W-started",
+              "lower": 152,
+              "upper": 152,
+              "expression": {
+                "kind": "all_of",
+                "refs": [
+                  "Q8W-started"
+                ]
+              }
+            },
+            {
+              "id": "Q8W-FAS",
+              "lower": 151,
+              "upper": 151,
+              "expression": {
+                "kind": "all_of",
+                "refs": [
+                  "Q8W-FAS"
+                ]
+              }
+            },
+            {
+              "id": "outside",
+              "lower": 1,
+              "upper": 1,
+              "expression": {
+                "kind": "difference",
+                "refs": [
+                  "Q8W-started",
+                  "Q8W-FAS"
+                ]
+              }
+            }
+          ]
+        },
+        "rule": "numeric.population:1",
+        "status": "interpolated",
+        "basis": [
+          "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones/0/achievements/1",
+          "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones/1",
+          "investigation:explicit-hypothetical-within-arm-subset-not-user-confirmed",
+          "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2@ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones"
+        ],
+        "support": [
+          {
+            "id": "reported-arm-counts",
+            "status": "known",
+            "resolution": "resolved",
+            "basis": [
+              "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones/0/achievements/1",
+              "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones/1"
+            ]
+          },
+          {
+            "id": "binding-use:Q8W-FAS-subset",
+            "status": "interpolated",
+            "resolution": "resolved",
+            "basis": [
+              "investigation:explicit-hypothetical-within-arm-subset-not-user-confirmed",
+              "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2@ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones"
+            ]
+          }
+        ],
+        "blockers": []
+      }
+    ],
+    "binding_checks": [
+      {
+        "binding": "Q8W-FAS-subset",
+        "signal": "Q8W-FAS-coverage",
+        "code": "conditional",
+        "status": "interpolated",
+        "basis": [
+          "investigation:explicit-hypothetical-within-arm-subset-not-user-confirmed",
+          "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2@ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones"
+        ],
+        "blockers": [],
+        "rule": "interpretation.binding-use:1",
+        "checked_code": "conditional",
+        "support_id": "binding-use:Q8W-FAS-subset",
+        "declaration": {
+          "id": "Q8W-FAS-subset",
+          "kind": "population",
+          "relation": "subset_of",
+          "subjects": [
+            "Q8W-started",
+            "Q8W-FAS"
+          ],
+          "scope": {
+            "arm": "guselkumab-Q8W",
+            "population": "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2:Q8W-started",
+            "study": "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2",
+            "time": "randomization",
+            "version": "ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2"
+          },
+          "sources": [
+            {
+              "ref": "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2",
+              "version": "ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2",
+              "address": "/resultsSection/participantFlowModule/periods/0/milestones",
+              "digest": "ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2"
+            }
+          ],
+          "status": "interpolated",
+          "resolution": "resolved",
+          "basis": [
+            "investigation:explicit-hypothetical-within-arm-subset-not-user-confirmed"
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "name": "population-design-wrong-arm",
+    "metadata": {
+      "version": 1,
+      "kind": "reasoning",
+      "findings": [
+        {
+          "path": "/result/candidates/0",
+          "kind": "candidate",
+          "logical_result": "unresolved",
+          "standing": null,
+          "completion": "complete",
+          "causes": [
+            {
+              "code": "binding_unresolved:Q8W-FAS-coverage",
+              "kind": "translation"
+            },
+            {
+              "code": "inconsistent_population_total",
+              "kind": "conflict"
+            },
+            {
+              "code": "no_constraint_mentions_query",
+              "kind": "coverage"
+            },
+            {
+              "code": "scope_mismatch:Q8W-FAS-subset",
+              "kind": "translation"
+            }
+          ],
+          "disposition": "open"
+        },
+        {
+          "path": "/result/candidates/0/query_decision",
+          "kind": "logical",
+          "logical_result": "UNDETERMINED",
+          "standing": null,
+          "completion": "complete",
+          "causes": [
+            {
+              "code": "no_constraint_mentions_query",
+              "kind": "coverage"
+            }
+          ],
+          "disposition": "open"
+        },
+        {
+          "path": "/result/candidates/0/signal_checks/0",
+          "kind": "signal",
+          "logical_result": "unresolved",
+          "standing": "interpolated",
+          "completion": "complete",
+          "causes": [
+            {
+              "code": "binding_unresolved:Q8W-FAS-coverage",
+              "kind": "translation"
+            },
+            {
+              "code": "inconsistent_population_total",
+              "kind": "conflict"
+            },
+            {
+              "code": "scope_mismatch:Q8W-FAS-subset",
+              "kind": "translation"
+            }
+          ],
+          "disposition": "open",
+          "raw_result": "conflict",
+          "raw_path": "/result/candidates/0/signal_checks/0/calculation_code"
+        },
+        {
+          "path": "/result/candidates/1",
+          "kind": "candidate",
+          "logical_result": "unresolved",
+          "standing": null,
+          "completion": "complete",
+          "causes": [
+            {
+              "code": "binding_unresolved:Q8W-FAS-coverage",
+              "kind": "translation"
+            },
+            {
+              "code": "no_constraint_mentions_query",
+              "kind": "coverage"
+            },
+            {
+              "code": "scope_mismatch:Q8W-FAS-subset",
+              "kind": "translation"
+            }
+          ],
+          "disposition": "open"
+        },
+        {
+          "path": "/result/candidates/1/query_decision",
+          "kind": "logical",
+          "logical_result": "UNDETERMINED",
+          "standing": null,
+          "completion": "complete",
+          "causes": [
+            {
+              "code": "no_constraint_mentions_query",
+              "kind": "coverage"
+            }
+          ],
+          "disposition": "open"
+        },
+        {
+          "path": "/result/candidates/1/signal_checks/0",
+          "kind": "signal",
+          "logical_result": "unresolved",
+          "standing": "interpolated",
+          "completion": "complete",
+          "causes": [
+            {
+              "code": "binding_unresolved:Q8W-FAS-coverage",
+              "kind": "translation"
+            },
+            {
+              "code": "scope_mismatch:Q8W-FAS-subset",
+              "kind": "translation"
+            }
+          ],
+          "disposition": "open",
+          "raw_result": "bounded",
+          "raw_path": "/result/candidates/1/signal_checks/0/calculation_code"
+        },
+        {
+          "path": "/result/consequence",
+          "kind": "candidate_family_consequence",
+          "logical_result": "UNDETERMINED",
+          "standing": null,
+          "completion": "complete",
+          "causes": [
+            {
+              "code": "binding_unresolved:Q8W-FAS-coverage",
+              "kind": "translation"
+            },
+            {
+              "code": "inconsistent_population_total",
+              "kind": "conflict"
+            },
+            {
+              "code": "no_constraint_mentions_query",
+              "kind": "coverage"
+            },
+            {
+              "code": "scope_mismatch:Q8W-FAS-subset",
+              "kind": "translation"
+            }
+          ],
+          "disposition": "open"
+        },
+        {
+          "path": "/result/signals/0",
+          "kind": "signal",
+          "logical_result": "unresolved",
+          "standing": "interpolated",
+          "completion": "complete",
+          "causes": [
+            {
+              "code": "binding_unresolved:Q8W-FAS-coverage",
+              "kind": "translation"
+            },
+            {
+              "code": "scope_mismatch:Q8W-FAS-subset",
+              "kind": "translation"
+            }
+          ],
+          "disposition": "open",
+          "raw_result": "bounded",
+          "raw_path": "/result/signals/0/calculation_code"
+        },
+        {
+          "path": "/result/binding_checks/0",
+          "kind": "binding",
+          "logical_result": "unresolved",
+          "standing": "interpolated",
+          "completion": "complete",
+          "causes": [
+            {
+              "code": "scope_mismatch:Q8W-FAS-subset",
+              "kind": "translation"
+            }
+          ],
+          "disposition": "open",
+          "support_path": "/result/binding_checks/0"
+        }
+      ]
+    },
+    "remaining": [
+      "all-started-in-FAS",
+      "one-outside-FAS"
+    ],
+    "consequence": {
+      "result": "UNDETERMINED",
+      "status": null,
+      "basis": "All remaining declared candidate designs; includes the support of eliminations."
+    },
+    "candidates": [
+      {
+        "id": "all-started-in-FAS",
+        "state": "unresolved",
+        "elimination_status": null,
+        "query_decision": {
+          "result": "UNDETERMINED",
+          "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"Q8W_in_FAS\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+          "status": null,
+          "proof": [],
+          "blockers": [
+            "no_constraint_mentions_query"
+          ]
+        },
+        "observations": [],
+        "signal_checks": [
+          {
+            "id": "Q8W-FAS-coverage",
+            "kind": "population",
+            "code": "unresolved",
+            "calculation_code": "conflict",
+            "value": {
+              "universe": "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2:Q8W-started",
+              "total": 152,
+              "counts": [],
+              "witnesses": []
+            },
+            "rule": "numeric.population:1",
+            "status": "interpolated",
+            "basis": [
+              "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones/0/achievements/1",
+              "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones/1",
+              "investigation:explicit-hypothetical-within-arm-subset-not-user-confirmed",
+              "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2@ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones"
+            ],
+            "support": [
+              {
+                "id": "reported-arm-counts",
+                "status": "known",
+                "resolution": "resolved",
+                "basis": [
+                  "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones/0/achievements/1",
+                  "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones/1"
+                ]
+              },
+              {
+                "id": "binding-use:Q8W-FAS-subset",
+                "status": "interpolated",
+                "resolution": "unresolved",
+                "basis": [
+                  "investigation:explicit-hypothetical-within-arm-subset-not-user-confirmed",
+                  "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2@ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones"
+                ]
+              }
+            ],
+            "blockers": [
+              "inconsistent_population_total",
+              "scope_mismatch:Q8W-FAS-subset",
+              "binding_unresolved:Q8W-FAS-coverage"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "one-outside-FAS",
+        "state": "unresolved",
+        "elimination_status": null,
+        "query_decision": {
+          "result": "UNDETERMINED",
+          "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"Q8W_in_FAS\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+          "status": null,
+          "proof": [],
+          "blockers": [
+            "no_constraint_mentions_query"
+          ]
+        },
+        "observations": [],
+        "signal_checks": [
+          {
+            "id": "Q8W-FAS-coverage",
+            "kind": "population",
+            "code": "unresolved",
+            "calculation_code": "bounded",
+            "value": {
+              "universe": "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2:Q8W-started",
+              "total": 152,
+              "counts": [
+                {
+                  "id": "Q8W-started",
+                  "lower": 152,
+                  "upper": 152
+                },
+                {
+                  "id": "Q8W-FAS",
+                  "lower": 151,
+                  "upper": 151
+                },
+                {
+                  "id": "outside",
+                  "lower": 1,
+                  "upper": 1
+                }
+              ],
+              "witnesses": [
+                {
+                  "id": "Q8W-started",
+                  "lower": 152,
+                  "upper": 152,
+                  "expression": {
+                    "kind": "all_of",
+                    "refs": [
+                      "Q8W-started"
+                    ]
+                  }
+                },
+                {
+                  "id": "Q8W-FAS",
+                  "lower": 151,
+                  "upper": 151,
+                  "expression": {
+                    "kind": "all_of",
+                    "refs": [
+                      "Q8W-FAS"
+                    ]
+                  }
+                },
+                {
+                  "id": "outside",
+                  "lower": 1,
+                  "upper": 1,
+                  "expression": {
+                    "kind": "difference",
+                    "refs": [
+                      "Q8W-started",
+                      "Q8W-FAS"
+                    ]
+                  }
+                }
+              ]
+            },
+            "rule": "numeric.population:1",
+            "status": "interpolated",
+            "basis": [
+              "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones/0/achievements/1",
+              "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones/1",
+              "investigation:explicit-hypothetical-within-arm-subset-not-user-confirmed",
+              "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2@ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones"
+            ],
+            "support": [
+              {
+                "id": "reported-arm-counts",
+                "status": "known",
+                "resolution": "resolved",
+                "basis": [
+                  "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones/0/achievements/1",
+                  "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones/1"
+                ]
+              },
+              {
+                "id": "binding-use:Q8W-FAS-subset",
+                "status": "interpolated",
+                "resolution": "unresolved",
+                "basis": [
+                  "investigation:explicit-hypothetical-within-arm-subset-not-user-confirmed",
+                  "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2@ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones"
+                ]
+              }
+            ],
+            "blockers": [
+              "scope_mismatch:Q8W-FAS-subset",
+              "binding_unresolved:Q8W-FAS-coverage"
+            ]
+          }
+        ]
+      }
+    ],
+    "exception_checks": [],
+    "signals": [
+      {
+        "id": "Q8W-FAS-coverage",
+        "kind": "population",
+        "code": "unresolved",
+        "calculation_code": "bounded",
+        "value": {
+          "universe": "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2:Q8W-started",
+          "total": 152,
+          "counts": [
+            {
+              "id": "Q8W-started",
+              "lower": 152,
+              "upper": 152
+            },
+            {
+              "id": "Q8W-FAS",
+              "lower": 151,
+              "upper": 151
+            },
+            {
+              "id": "outside",
+              "lower": 1,
+              "upper": 1
+            }
+          ],
+          "witnesses": [
+            {
+              "id": "Q8W-started",
+              "lower": 152,
+              "upper": 152,
+              "expression": {
+                "kind": "all_of",
+                "refs": [
+                  "Q8W-started"
+                ]
+              }
+            },
+            {
+              "id": "Q8W-FAS",
+              "lower": 151,
+              "upper": 151,
+              "expression": {
+                "kind": "all_of",
+                "refs": [
+                  "Q8W-FAS"
+                ]
+              }
+            },
+            {
+              "id": "outside",
+              "lower": 1,
+              "upper": 1,
+              "expression": {
+                "kind": "difference",
+                "refs": [
+                  "Q8W-started",
+                  "Q8W-FAS"
+                ]
+              }
+            }
+          ]
+        },
+        "rule": "numeric.population:1",
+        "status": "interpolated",
+        "basis": [
+          "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones/0/achievements/1",
+          "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones/1",
+          "investigation:explicit-hypothetical-within-arm-subset-not-user-confirmed",
+          "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2@ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones"
+        ],
+        "support": [
+          {
+            "id": "reported-arm-counts",
+            "status": "known",
+            "resolution": "resolved",
+            "basis": [
+              "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones/0/achievements/1",
+              "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones/1"
+            ]
+          },
+          {
+            "id": "binding-use:Q8W-FAS-subset",
+            "status": "interpolated",
+            "resolution": "unresolved",
+            "basis": [
+              "investigation:explicit-hypothetical-within-arm-subset-not-user-confirmed",
+              "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2@ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones"
+            ]
+          }
+        ],
+        "blockers": [
+          "scope_mismatch:Q8W-FAS-subset",
+          "binding_unresolved:Q8W-FAS-coverage"
+        ]
+      }
+    ],
+    "binding_checks": [
+      {
+        "binding": "Q8W-FAS-subset",
+        "signal": "Q8W-FAS-coverage",
+        "code": "unresolved",
+        "status": "interpolated",
+        "basis": [
+          "investigation:explicit-hypothetical-within-arm-subset-not-user-confirmed",
+          "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2@ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2#/resultsSection/participantFlowModule/periods/0/milestones"
+        ],
+        "blockers": [
+          "scope_mismatch:Q8W-FAS-subset"
+        ],
+        "rule": "interpretation.binding-use:1",
+        "checked_code": "unresolved",
+        "support_id": "binding-use:Q8W-FAS-subset",
+        "declaration": {
+          "id": "Q8W-FAS-subset",
+          "kind": "population",
+          "relation": "subset_of",
+          "subjects": [
+            "Q8W-started",
+            "Q8W-FAS"
+          ],
+          "scope": {
+            "arm": "guselkumab-Q8W",
+            "population": "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2:Q8W-started",
+            "study": "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2",
+            "time": "randomization",
+            "version": "ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2"
+          },
+          "sources": [
+            {
+              "ref": "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2",
+              "version": "ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2",
+              "address": "/resultsSection/participantFlowModule/periods/0/milestones",
+              "digest": "ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2"
+            }
+          ],
+          "status": "interpolated",
+          "resolution": "resolved",
+          "basis": [
+            "investigation:explicit-hypothetical-within-arm-subset-not-user-confirmed"
+          ]
+        }
+      }
+    ]
+  }
+]

@@ -51,6 +51,18 @@ The system SHALL represent reported reason counts separately from their eligibil
 - **WHEN** a global exception is reported without WHO PS or smoking attributes
 - **THEN** it does not establish an exception within the PS-2/never-smoker subgroup
 
+#### Scenario: An entry-ineligibility floor is attached to a rejection budget
+- **WHEN** a rejected witness references a floor for ineligible enrolled participants
+- **THEN** the positive-budget calculation remains inspectable but its floor does not transfer; a named predicate mismatch blocks dependent elimination and common consequence
+
+#### Scenario: Attribution uncertainty cannot affect an independently warranted cap
+- **WHEN** a one-participant failure is treatment-only, has open entry/treatment targets, or has only a proposed entry reading, while the bridge independently supplies cap five
+- **THEN** every represented selected floor fits the cap, so the check is consistent and independent eliminations survive; the possible-floor envelope does not become an upper bound on total exceptions
+
+#### Scenario: A proposed bridge would conflict if adopted
+- **WHEN** the bridge is proposed and its zero cap contradicts the conditional entry floor of one
+- **THEN** the result retains the conditional interval conflict without admitting the bridge or a dependent elimination
+
 #### Scenario: A failure has several possible targets
 - **WHEN** a protocol-related failure remains attributable to entry eligibility, treatment, assessment or another protocol requirement
 - **THEN** its count and possible targets remain available without an eligibility floor, and later narrowing retains its own evidence, scope and standing
@@ -118,6 +130,10 @@ The system SHALL test declared population relations against applicable scope and
 #### Scenario: Counts leave two correspondences possible
 - **WHEN** two declared bindings satisfy all represented count constraints
 - **THEN** both remain available and the result identifies the evidence or judgment needed to distinguish them
+
+#### Scenario: An ordinary signal carries an unaccepted or mismatched population use
+- **WHEN** a proposed binding or wrong arm/version applies to a signal used by a derived witness or candidate claim
+- **THEN** the same precise application blockers reach every dependent consumer while the raw arithmetic remains visible; isolated hypothetical frames retain their separate assumption behavior
 
 ### Requirement: Overlapping evidence cannot manufacture additional people
 The system SHALL retain the identity and dependence of count observations. Independent descriptions SHALL NOT be summed as disjoint populations without a partition warrant. Exception-floor combination SHALL respect possible overlap and incompatible scopes.

@@ -1,0 +1,12 @@
+E501 Line too long (115 > 110)
+   --> tests/test_exception_bounds.py:780:111
+    |
+778 |         possible_targets=["entry_eligibility"],
+779 |         basis=[
+780 |             "Accepted hypothetical evidence: the maintenance report identifies an entry violation discovered late."
+    |                                                                                                               ^^^^^
+781 |         ],
+782 |     )
+    |
+
+Found 1 error.

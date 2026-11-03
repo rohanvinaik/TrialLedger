@@ -1,0 +1,45 @@
+  … interval_state: tracing 52 function-routed tests
+  … interval_state: baseline traced · 52 tests · 0.2s
+  … interval_state: 1/58 mutants · 12.5/s · ETA estimating… (heartbeat)
+  … interval_state: 58/58 mutants · 309.7/s · done in 0.2s
+  ▸ pass 0: 1 value-survivor(s) — synthesizing killing tests…
+  ▸ pass 0: +7 new killing test(s) written [test_TrialLedger_layer2_exception_bounds_interval_state_71bac56452_synth.py]
+  … interval_state: tracing 59 function-routed tests
+  … interval_state: baseline traced · 59 tests · 0.0s
+  … interval_state: 58/58 mutants · 264.7/s · done in 0.2s
+  ▸ pass 1: 1 survivor(s) — no progress, at floor
+  ▸ witness pass: searching richer inputs for a distinguishing kill…
+  ▸ finalizing — re-profiling the full mutant universe against the written suite…
+  … interval_state: tracing 59 function-routed tests
+  … interval_state: baseline traced · 59 tests · 0.0s
+  … interval_state: 58/58 mutants · 281.4/s · done in 0.2s
+  ▸ minimizing — dropped 6 redundant test(s) our own cover flagged
+  … interval_state: tracing 53 function-routed tests
+  … interval_state: baseline traced · 53 tests · 0.0s
+  … interval_state: 58/58 mutants · 292.9/s · done in 0.2s
+  ▸ 1 survivor(s) remain — classifying (killable / equivalent / needs-input)…
+  ▸ verifying reproducibility — fresh isolated observation of the function's proof basis…
+  … interval_state: tracing 53 function-routed tests
+  … interval_state: baseline traced · 53 tests · 0.0s
+  ▸ reproducibility confirmed — the certificate rests on the isolated observation
+──────────────────────────────────────────────────────────────────────────────
+TrialLedger/layer2/exception_bounds.py::interval_state — converge · 58 behaviours · 57 pinned · 1 crash-only
+
+  ✓ wrote              1 test(s) → tests/detective/test_TrialLedger_layer2_exception_bounds_interval_state_71bac56452_synth.py
+  · crash-only-equiv   1 — detected by crash; no value pins them
+  · not consulted      4 collected test(s) have no static path to this function — not traced (a missed dynamic reacher costs a redundant generated test, never a certificate)
+  · full report        .detective/reports/converge_interval_state.txt
+
+DONE:  every killable behaviour Detective found is pinned.
+       What remains differs from your function only by a CRASH: an input
+       distinguishes each (the mutant raises where your function returns), so
+       none is an equivalence candidate and nothing is offered to `flag` — no
+       value assertion can pin a raise. They are detected, not equivalent.
+
+       NEXT — the style pass (behaviour is pinned; this is the self-evident next move):
+         detective plan 'TrialLedger/layer2/exception_bounds.py'
+         detective decompose 'TrialLedger/layer2/exception_bounds.py::interval_state' --apply --two-sign
+         detective survey 'TrialLedger/layer2/exception_bounds.py'
+         (efficiency: verify-rewrite --budget against a receipt from policy 9+neg.f5a15364c11d)
+
+FINAL TrialLedger/layer2/exception_bounds.py::interval_state: ✓ COMPLETE (operator universe · modulo 1 crash-only value gap) · 58/58 killed · 1 test(s) → tests/detective/test_TrialLedger_layer2_exception_bounds_interval_state_71bac56452_synth.py · policy 9+neg.f5a15364c11d

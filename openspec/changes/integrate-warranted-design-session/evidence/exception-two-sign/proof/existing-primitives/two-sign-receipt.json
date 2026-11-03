@@ -1,0 +1,39 @@
+{
+  "two_sign": true,
+  "policy": "9+neg.f5a15364c11d",
+  "targets": {
+    "interval_state": {
+      "detected": 58,
+      "scored": 58,
+      "value_pinned": 57,
+      "crash_only_value_gaps": 1,
+      "verdict": "COMPLETE modulo1crash-onlyvaluegap"
+    },
+    "extent_transfer": {
+      "detected": 54,
+      "scored": 54,
+      "value_pinned": 54,
+      "verdict": "COMPLETE"
+    }
+  },
+  "intent_tests": 56,
+  "scope": "These two pure primitives only; no whole-module two-sign certification. Source/context wrappers covered by authored tests.",
+  "files": {
+    "TrialLedger/layer2/exception_bounds.py": "112a4277e860d158a96d67a3252380a0ca65955048a21cfd2402189dafc4dc52",
+    "tests/test_exception_bounds.py": "215eb68102c24cfe1b87d093eb3cd3257b9dee05a23b34c261ccf09eb8fef032"
+  },
+  "proof_files": {
+    "logs/decompose-extent.log": "22ba30336861670cf161e2813543ee4bdc734afc0efc024bfa426c77ae6252d0",
+    "logs/decompose-interval.log": "ab4efd0aee0034d427168e5ee1b835400ad5edf4f32a2d49ca4ae63222285a24",
+    "logs/extent-two-sign.log": "cac6686725979a3ba1d9d4ca381e3e5ac118d033907b4578fdcf9b2b897018c8",
+    "logs/intent-tests.log": "5a6ae98bf5f2c8ea033f539991c6986edb89ba33f0acc02b265f89f8eeb950f0",
+    "logs/interval-two-sign.log": "b2429ba1b4920a4ae03278b1443791dfa7690f79668b386ac34234f4d0bd8990",
+    "logs/plan.log": "7c6fd0688de91531c60d8da742c7141ccfcbd45ceaff2c6e4acfc89c6dd97bf4",
+    "logs/survey.log": "ea705d9a8b0711e43321472bc3e57e15e8a59eed4c61c367062f2823870999c3",
+    ".detective/reports/converge_extent_transfer.txt": "8d916b447e21456b0cb0aa50c573e9ebf9a224941caf30d803bc1aeea617c7ee",
+    ".detective/reports/converge_interval_state.txt": "836f031da1991cca75fbe07a7985a01b77378d9a5aec6ff9b8e476c525c4736d",
+    ".detective/reports/decompose_extent_transfer.txt": "2e7bfee1502f5c7992fc01057d4883c4f92b73dd4c3896ab120835dbf0172349",
+    ".detective/reports/decompose_interval_state.txt": "2e23a7c3bec422252587b8937b52e63a8ecf243c35ddac523e1e6e7167496776",
+    ".detective/reports/plan_TrialLedger_layer2_exception_bounds_py.txt": "1191ecf8153dd57ce4b5f53edbf7edf03d2d7051d5d23978d50324edef038c27"
+  }
+}

@@ -1,0 +1,25 @@
+def floor_cap_state(certain: int, possible: int, upper: int | None, maximum: int) -> str:
+    """Compatibility with selected evidence, never certification of a total-exception ceiling (pure).
+
+    The possible floor is the largest floor available under the retained attribution alternatives;
+    it is not an upper bound on all exceptions. Only attribution uncertainty able to change the
+    compatibility result remains a blocker of that result.
+
+    pre: 0 <= certain <= possible
+    pre: maximum >= 0
+    pre: upper is None or upper >= 0
+    post: (__return__ == 'structural_maximum_conflict') == (certain > maximum)
+    post: (__return__ == 'unknown_ceiling') == (certain <= maximum and upper is None)
+    post: (__return__ == 'ceiling_conflict') == (upper is not None and upper < certain <= maximum)
+    post: (__return__=='attribution_dependent')==(upper is not None and certain<=min(upper,maximum)<possible)
+    post: (__return__ == 'consistent') == (upper is not None and possible <= min(upper, maximum))
+    """
+    if certain > maximum:
+        return "structural_maximum_conflict"
+    if upper is None:
+        return "unknown_ceiling"
+    if certain > upper:
+        return "ceiling_conflict"
+    if possible > min(upper, maximum):
+        return "attribution_dependent"
+    return "consistent"

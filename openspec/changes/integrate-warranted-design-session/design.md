@@ -68,8 +68,8 @@ other-protocol-requirement residual. Broader failures are not dead ends or silen
 ineligibility. Each narrowing retains its own warrant, standing and dependencies. Only an applicable,
 accepted singleton entry-eligibility attribution supplies an eligibility-exception floor for its bound
 count; proposed narrowing remains conditional. Empty accepted intersections are attribution conflicts.
-Recording during maintenance alone cannot exclude an entry violation discovered late. This target-set
-handoff is not yet integrated; the existing solver already handles both participant witness signs.
+Recording during maintenance alone cannot exclude an entry violation discovered late. The target-set
+handoff now reaches the public design-bounds bridge; the existing solver handles both participant witness signs.
 
 For a rejected profile P, the supported constraint is existence of a P participant outside candidate
 eligibility E, not universal exclusion of P. Accepted and rejected examples of the same partial profile
@@ -91,6 +91,21 @@ is a hypothetical consequence, not an admitted conflict; acceptance makes it a c
 premise, not a new registry fact.
 
 The prepared envelope has a nonnegative lower bound, optional informative upper bound, structural population maximum, scope, support and blockers. `upper: null` means no supported informative ceiling, not zero and not infinity. The structural population maximum stays separately visible. Intersect applicable bounds; report an empty intersection as a bridge conflict. Do not silently clamp or discard the evidence. A declared upper bound below an admitted same-scope floor cannot reach candidate elimination.
+
+The entry-ineligibility floor applies to exceptions to positive participation-to-eligibility evidence.
+A rejected witness has a different exception predicate: observations that do not warrant ineligibility.
+The public adapter retains a requested positive-budget calculation separately and reports
+`exception_budget_predicate_mismatch` if attached to a rejected witness. It supplies no transferred floor,
+candidate elimination or common consequence from that mismatched application. Legacy explicitly supplied
+negative-witness budgets remain supported.
+
+Check the cap across the retained target completions: a certain floor above the cap is a conflict;
+a largest possible selected floor at or below the cap is consistent; intermediate cases remain
+attribution-dependent. This possible-floor envelope does not bound total unreported exceptions or
+certify the supplied cap. Non-entry evidence and immaterial proposed readings retain their meaning
+uncertainty without suppressing independently warranted eliminations. Scope/application errors remain
+separate gates. A proposed bridge retains its conditional interval conflict, and inapplicable attribution
+conflicts cannot weaken the support of an independently established applicable conflict.
 
 Scope determines the valid transfer:
 
@@ -149,6 +164,12 @@ do not report an exact omitted count unless it was actually computed.
 Each population candidate names study, snapshot, modules, population, arm, time and relation. Reuse existing scope/application checks and numeric operations for the declared relation. For example, IPASS's 609-person gefitinib ITT population cannot be a subset of its 590-person EFQ population under the declared same-arm correspondence. The reverse relation is numerically compatible. Counts from the other treatment arm cannot be substituted into that check.
 
 A count conflict refutes the conditional relation under its binding premises. A wrong study/version/application is a translation or binding problem, not a clinical refutation. Passing these tests leaves a candidate compatible; it supplies neither identity nor exhaustive candidate coverage. Explanations identify what source evidence would distinguish the survivors. This moves warranted work before confirmation without replacing clinical judgment with equal-title/equal-count joins.
+
+Ordinary `signals` and `design_bounds` now accept the existing binding declarations and uses. The shared
+adapter appends their support and exact application blockers before evaluation, candidate claims and
+derived witnesses. Proposed uses remain refused here; isolated interpretation frames retain their
+conditional assumption behavior. `binding_checks` exposes the full declaration; `signals` also retains
+the submitted binding/application premises. No second population arithmetic engine is introduced.
 
 ### 4. One immutable session snapshot, existing solvers underneath
 

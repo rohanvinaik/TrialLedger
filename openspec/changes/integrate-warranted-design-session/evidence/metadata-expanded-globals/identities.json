@@ -1,0 +1,129 @@
+{
+  "proof_directory": "/tmp/trialledger-metadata-expanded-globals-20261103-v1",
+  "export_directory": "/tmp/trialledger-metadata-expanded-globals-20261103-v1/final-export",
+  "module_sha256": "91681c21fafeda67708a9a83ff11d40f81331ac2328ec75a7d55a62657dae2fd",
+  "current_shared_module_sha256_at_export": "91681c21fafeda67708a9a83ff11d40f81331ac2328ec75a7d55a62657dae2fd",
+  "shared_module_matches_at_export": true,
+  "project_config_matches_at_export": true,
+  "function_identities": {
+    "cause_kind": {
+      "source_sha256": "84e2634f00e58dbabef0780cf20cc5523ef8288bb414a9cb4016025a21a80d3a",
+      "ast_sha256": "684c348c1f0eb70adc47e75b540bfedfb04726818461ca5b6da6531e7d643c63"
+    },
+    "completion_code": {
+      "source_sha256": "d8fa754bd53d3ea41a3c251b03db566cdd9e143bae5d22e33a669733657416e8",
+      "ast_sha256": "f9b0a570f1a69ba100951b348f4d790732a7bdb91688e95c9aeb643d512237bc"
+    },
+    "disposition_code": {
+      "source_sha256": "740d198ce2fdac30669d0bbddce4204a3c804a68e4ea10826de7f47560e1f52f",
+      "ast_sha256": "4e40ede35b895f7268bb04411c227e26ea2563ac7d1a0fe07603b32f6b072d67"
+    }
+  },
+  "global_CAUSE_KINDS": {
+    "previous_count": 47,
+    "current_count": 73,
+    "added": {
+      "exception_upper_unknown": "evidence",
+      "exception_bridge_conflict": "conflict",
+      "attribution_conflict": "conflict",
+      "exception_budget_predicate_mismatch": "translation",
+      "missing_entry_attribution": "translation",
+      "negative_target_not_eligibility": "translation",
+      "profile_mismatch": "translation",
+      "population_mismatch": "translation",
+      "denominator_mismatch": "translation",
+      "source_study_mismatch": "translation",
+      "observation_study_mismatch": "translation",
+      "binding_study_mismatch": "translation",
+      "application_study_mismatch": "translation",
+      "observation_version_mismatch": "translation",
+      "binding_version_mismatch": "translation",
+      "application_version_mismatch": "translation",
+      "bridge_proposed": "premise",
+      "bridge_unresolved": "translation",
+      "binding_proposed": "premise",
+      "operator_mismatch": "translation",
+      "subjects_mismatch": "translation",
+      "subset_not_declared": "translation",
+      "partition_not_declared": "translation",
+      "definition_not_adopted": "translation",
+      "definition_not_found": "translation",
+      "definition_version_mismatch": "translation"
+    }
+  },
+  "certificate_scope": "Certificate entries contain function_digest, not a global-vocabulary digest. This export freezes the complete current module and does not relabel the old full-module proof as current.",
+  "two_sign_policy": "9+neg.f5a15364c11d",
+  "outcomes": {
+    "cause_kind": {
+      "detected": 18,
+      "value_pinned": 17,
+      "crash_only_value_gaps": 1,
+      "verdict": "COMPLETE modulo1crash-onlyvaluegap"
+    },
+    "completion_code": {
+      "detected": 87,
+      "value_pinned": 87,
+      "verdict": "COMPLETE"
+    },
+    "disposition_code": {
+      "detected": 189,
+      "value_pinned": 189,
+      "verdict": "COMPLETE"
+    }
+  },
+  "suite": {
+    "passed": 129,
+    "authored_cases": 113,
+    "generated_cases": 16,
+    "log": "logs/proof-suite.log"
+  },
+  "ruff": {
+    "version": "0.17.3",
+    "check": "passed",
+    "format_check": "6 files already formatted",
+    "config_sha256": "4a0a5758a6a27eacb4967c2df79857ac6ca32485916b3acdc40974121685d074"
+  },
+  "ty": "passed",
+  "CrossHair": {
+    "report_all": true,
+    "outcomes": [
+      "Not confirmed",
+      "Not confirmed",
+      "Not confirmed"
+    ],
+    "counterexample_printed": false,
+    "proof_claimed": false,
+    "log": "logs/crosshair.log"
+  },
+  "frozen_python": {
+    "TrialLedger/layer2/result_semantics.py": {
+      "export": "TrialLedger/layer2/result_semantics.py.txt",
+      "sha256": "91681c21fafeda67708a9a83ff11d40f81331ac2328ec75a7d55a62657dae2fd"
+    },
+    "tests/detective/test_TrialLedger_layer2_result_semantics_cause_kind_a38b8f3a25_synth.py": {
+      "export": "tests/detective/test_TrialLedger_layer2_result_semantics_cause_kind_a38b8f3a25_synth.py.txt",
+      "sha256": "7a56197b7752b0711c0e7852f14b666aee79a6dedac45196d44a0499c9d4311c"
+    },
+    "tests/detective/test_TrialLedger_layer2_result_semantics_completion_code_0f6f433d15_synth.py": {
+      "export": "tests/detective/test_TrialLedger_layer2_result_semantics_completion_code_0f6f433d15_synth.py.txt",
+      "sha256": "2b6a3748b4c8c7ffce4c18f1dae419754fee3cc179108525fd21bf0fde9ff0aa"
+    },
+    "tests/detective/test_TrialLedger_layer2_result_semantics_disposition_code_3741ce9eea_synth.py": {
+      "export": "tests/detective/test_TrialLedger_layer2_result_semantics_disposition_code_3741ce9eea_synth.py.txt",
+      "sha256": "240a086fb56ee28cd08250651f579c7a86598f0f2399cd7b97f21a80364bab34"
+    },
+    "tests/test_metadata_vocabulary.py": {
+      "export": "tests/test_metadata_vocabulary.py.txt",
+      "sha256": "c0788870490d683cc0bd7a9d479b92a2ab3373bd231ec3b59919eeb454e3a7c8"
+    },
+    "tests/test_result_semantics.py": {
+      "export": "tests/test_result_semantics.py.txt",
+      "sha256": "764bea2d3eab0b34437826909bc089c6e351cb59684996efa2f8185f58f27c3b"
+    }
+  },
+  "limits": [
+    "Three named metadata primitives only; no adapter-wide mutation certification.",
+    "Historical accepted pin limitations are unchanged.",
+    "No shared edits or commits. No source or generated-test edits occurred in this campaign."
+  ]
+}

@@ -1,0 +1,144 @@
+{
+  "local_report": "/Users/rohanvinaik/trialledger-runs/psoriasis-population-exceptions-20261103",
+  "writing_helper": "/Users/rohanvinaik/trialledger-runs/psoriasis-population-exceptions-20261103/walkthrough-support/prepare_and_run.py",
+  "files": {
+    "bodies/ids-001.json": {
+      "sha256": "ff3df30e572111c22a8e872e3ef4691fd331548e74c42273773230aa16359383",
+      "bytes": 1220
+    },
+    "bodies/studies-001.json": {
+      "sha256": "68321af7033bb6c329737e177fbcfd864fbf96803ec7925d19a4fd500cc706ba",
+      "bytes": 4278678
+    },
+    "bodies/version-end.json": {
+      "sha256": "9eb0e46583efc444c5877db64a361ff539a68ea4f56332958999a5acb39c8553",
+      "bytes": 71
+    },
+    "bodies/version-start.json": {
+      "sha256": "9eb0e46583efc444c5877db64a361ff539a68ea4f56332958999a5acb39c8553",
+      "bytes": 71
+    },
+    "classes.json": {
+      "sha256": "167f61c4722d04636ad8aad404d667996b1263c1b5c95a95884c019133dd323b",
+      "bytes": 111334
+    },
+    "fetches.json": {
+      "sha256": "8a980252afcd9d27adab6bac0a2a7fad886e6449a12eb63469895bfee3374532",
+      "bytes": 1909
+    },
+    "landscape.json": {
+      "sha256": "18ab331eb1390e7d706f03ab1823a967bbc0c6a99d7b8f299ba891a3c9e2ccd5",
+      "bytes": 11258383
+    },
+    "landscape.xlsx": {
+      "sha256": "45dff30112c529db1251420675ed420571b4e0c5c8e1b9a61e9615fe6cbca1bb",
+      "bytes": 2375367
+    },
+    "lookups/lookup-001.json": {
+      "sha256": "83e67e89f05d4128a7df68cab6d6f0c913f0981f1f96e77b8dc8823e516fdd30",
+      "bytes": 51
+    },
+    "lookups/lookup-002.json": {
+      "sha256": "16547fe81e64baf6d60e890a82e6952e43d1071ba58838354049365858cf867f",
+      "bytes": 38
+    },
+    "lookups/lookup-003.json": {
+      "sha256": "a8dfab2b7c70237155cc1325962f22b1bf0bd732991e48bb858743168b6cf054",
+      "bytes": 137
+    },
+    "lookups/release-end.json": {
+      "sha256": "83e67e89f05d4128a7df68cab6d6f0c913f0981f1f96e77b8dc8823e516fdd30",
+      "bytes": 51
+    },
+    "lookups.json": {
+      "sha256": "aa180f8c85dbc1ff3c91aa88a0e4feb0b8f67281c84315091ccc0f54b54d339b",
+      "bytes": 861
+    },
+    "manifest.json": {
+      "sha256": "df0a49eeb76abda8a687daffd1b9c6ba5c75fb2f046f68a28f280c573e6ed6f7",
+      "bytes": 2527
+    },
+    "request.json": {
+      "sha256": "7e2dea2fb6c873fc2f77c0ebed2370075ee74b2809de94d8cc8b8860f4b23d60",
+      "bytes": 118
+    },
+    "resolution.json": {
+      "sha256": "e432f175dbbe7c0f7b5ba609c484a327a76461d8afd30a78c0eaa5039cb96cdd",
+      "bytes": 1795
+    },
+    "scope.json": {
+      "sha256": "4ce7d20cae06aadf7e63ac0df046b4b9a1d752c21fae0cb858a96c907441fe82",
+      "bytes": 224
+    },
+    "walkthrough-id-preflight.json": {
+      "sha256": "ff3df30e572111c22a8e872e3ef4691fd331548e74c42273773230aa16359383",
+      "bytes": 1220
+    },
+    "walkthrough-support/prepare_and_run.py": {
+      "sha256": "bd0853fca0a99a72b2843d3cd209b40bc56878ec46410c172d98028ea8202ee0",
+      "bytes": 16610
+    },
+    "walkthrough-transport/baseline-age-cap52-mcp.jsonl": {
+      "sha256": "30dfbe0f17713b71808db2e63b27acc8998fd7454c21f960610e9558dea90cbc",
+      "bytes": 25111
+    },
+    "walkthrough-transport/baseline-age-cap53-mcp.jsonl": {
+      "sha256": "1590a186a2c43d5749e35f9fa6eac13f5338871a55f30283a2382f628e04d066",
+      "bytes": 25083
+    },
+    "walkthrough-transport/exception-broad-proposed-cap0-mcp.jsonl": {
+      "sha256": "99cf9e623fd819da7163599f2203d71788ee0cc40bd7376922a448a3c9b6f50a",
+      "bytes": 179048
+    },
+    "walkthrough-transport/exception-broad-proposed-cap5-mcp.jsonl": {
+      "sha256": "1f46522825f5a57812dbfcab714511bb6cefe401b6522d6871882b8f0b9d2dbf",
+      "bytes": 181773
+    },
+    "walkthrough-transport/exception-broad-proposed-unknown-ceiling-mcp.jsonl": {
+      "sha256": "45372e85d76153d54dfb5b59db7163ef08cbfd0294edc35d3f6259bf06a5fd3e",
+      "bytes": 183211
+    },
+    "walkthrough-transport/exception-entry-assumed-cap0-mcp.jsonl": {
+      "sha256": "bb4c2bc5db588f8239bc2b5568a5f4866ef163bd2e6a7ee5d295c7f5cfb25067",
+      "bytes": 182234
+    },
+    "walkthrough-transport/exception-entry-assumed-cap4-mcp.jsonl": {
+      "sha256": "d27bfcd00aec71d8530803dfaaedadf73f873beaf784fb57a040eabc98d23a6c",
+      "bytes": 180704
+    },
+    "walkthrough-transport/exception-entry-proposed-cap0-mcp.jsonl": {
+      "sha256": "4218b8071a08db4c377af0905353b946bdc22139755cc4279eda548c83823c1f",
+      "bytes": 183856
+    },
+    "walkthrough-transport/population-assumed-mcp.jsonl": {
+      "sha256": "22a3b1685f4a181c792cc4bbd61d3600e42fdee8f4f5a1d4bbdb39b56305504d",
+      "bytes": 14866
+    },
+    "walkthrough-transport/population-design-claims-mcp.jsonl": {
+      "sha256": "b3580ef260693ff2fbc965a6a5b69842997178259c777802b757760c66a63aed",
+      "bytes": 26299
+    },
+    "walkthrough-transport/population-design-wrong-arm-mcp.jsonl": {
+      "sha256": "fd4098370c5e03c5fcd49e92d598d94c58318c921bd0b0483af945b24cdcaddb",
+      "bytes": 28680
+    },
+    "walkthrough-transport/population-proposed-mcp.jsonl": {
+      "sha256": "b64ff32fa78260282ff2bdc757b6118c737287c137b7a7aae4bc73e7aed6ff6e",
+      "bytes": 15411
+    },
+    "walkthrough-transport/population-reversed-direction-mcp.jsonl": {
+      "sha256": "ed317dc842c3da62798886de00f8d97cb6361d400cc2d563d558214fbdd59de2",
+      "bytes": 14129
+    },
+    "walkthrough-transport/population-subjects-mismatch-mcp.jsonl": {
+      "sha256": "28ea20f0e5293b2af0046ba49b1e60edb39d2366b6f270c325f43f8d1fd1ff13",
+      "bytes": 15423
+    },
+    "walkthrough-transport/source-general-age-mcp.jsonl": {
+      "sha256": "ff0d135eadbd78183d61ccd63f6fff6d49a7a260424f5d3e90434bb59c43ebdf",
+      "bytes": 27783
+    }
+  },
+  "file_count": 34,
+  "bytes": 19334276
+}

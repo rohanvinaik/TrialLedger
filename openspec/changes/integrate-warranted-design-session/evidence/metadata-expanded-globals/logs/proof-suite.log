@@ -1,0 +1,18 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.14.7, pytest-9.2.0, pluggy-1.7.0
+rootdir: /private/tmp/trialledger-metadata-expanded-globals-20261103-v1
+configfile: pyproject.toml
+plugins: anyio-4.15.1
+collected 129 items
+
+tests/detective/test_TrialLedger_layer2_result_semantics_cause_kind_a38b8f3a25_synth.py . [  0%]
+                                                                         [  0%]
+tests/detective/test_TrialLedger_layer2_result_semantics_completion_code_0f6f433d15_synth.py . [  1%]
+..                                                                       [  3%]
+tests/detective/test_TrialLedger_layer2_result_semantics_disposition_code_3741ce9eea_synth.py . [  3%]
+...........                                                              [ 12%]
+tests/test_metadata_vocabulary.py ...................................... [ 41%]
+...................................                                      [ 68%]
+tests/test_result_semantics.py ........................................  [100%]
+
+============================= 129 passed in 0.27s ==============================

@@ -1,0 +1,65 @@
+  … completion_code: tracing 16 function-routed tests
+  … completion_code: baseline traced · 16 tests · 0.1s
+  … completion_code: 1/87 mutants · 9.6/s · ETA estimating… (heartbeat)
+  … completion_code: 87/87 mutants · 210.4/s · done in 0.4s
+  … completion_code: tracing 1 function-routed tests
+  … completion_code: baseline traced · 1 tests · 0.0s
+  … completion_code: tracing 1 function-routed tests
+  … completion_code: baseline traced · 1 tests · 0.0s
+  ▸ pass 0: 5 value-survivor(s) — synthesizing killing tests…
+  ▸ pass 0: +12 new killing test(s) written [test_TrialLedger_layer2_result_semantics_completion_code_0f6f433d15_synth.py]
+  … completion_code: tracing 28 function-routed tests
+  … completion_code: baseline traced · 28 tests · 0.0s
+  … completion_code: 87/87 mutants · 215.7/s · done in 0.4s
+  … completion_code: tracing 1 function-routed tests
+  … completion_code: baseline traced · 1 tests · 0.0s
+  … completion_code: tracing 1 function-routed tests
+  … completion_code: baseline traced · 1 tests · 0.0s
+  ▸ pass 1: 5 survivor(s) — no progress, at floor
+  ▸ witness pass: searching richer inputs for a distinguishing kill…
+  ▸ witness pass: +1 distinguishing kill test(s) auto-written
+  ▸ finalizing — re-profiling the full mutant universe against the written suite…
+  … completion_code: tracing 29 function-routed tests
+  … completion_code: baseline traced · 29 tests · 0.0s
+  … completion_code: 87/87 mutants · 219.3/s · done in 0.4s
+  … completion_code: tracing 1 function-routed tests
+  … completion_code: baseline traced · 1 tests · 0.0s
+  … completion_code: tracing 1 function-routed tests
+  … completion_code: baseline traced · 1 tests · 0.0s
+  ▸ minimizing — dropped 12 redundant test(s) our own cover flagged
+  … completion_code: tracing 17 function-routed tests
+  … completion_code: baseline traced · 17 tests · 0.0s
+  … completion_code: 87/87 mutants · 206.8/s · done in 0.4s
+  … completion_code: tracing 1 function-routed tests
+  … completion_code: baseline traced · 1 tests · 0.0s
+  … completion_code: tracing 1 function-routed tests
+  … completion_code: baseline traced · 1 tests · 0.0s
+  ▸ 3 survivor(s) remain — classifying (killable / equivalent / needs-input)…
+  ▸ verifying reproducibility — fresh isolated observation of the function's proof basis…
+  … completion_code: tracing 17 function-routed tests
+  … completion_code: baseline traced · 17 tests · 0.0s
+  … completion_code: tracing 2 function-routed tests
+  … completion_code: baseline traced · 2 tests · 0.0s
+  ▸ reproducibility confirmed — the certificate rests on the isolated observation
+──────────────────────────────────────────────────────────────────────────────
+TrialLedger/layer2/result_semantics.py::completion_code — converge · 87 behaviours · 84 pinned · 3 candidate-equivalent
+
+  ✓ wrote              1 test(s) → tests/detective/test_TrialLedger_layer2_result_semantics_completion_code_0f6f433d15_synth.py
+  · unproven-equiv     3 — the search found no distinguishing input
+  · not consulted      96 collected test(s) have no static path to this function — not traced (a missed dynamic reacher costs a redundant generated test, never a certificate)
+  · full report        .detective/reports/converge_completion_code.txt
+
+DONE:  every killable behaviour Detective found is pinned.
+       What remains was not distinguished by any input Detective TRIED — and it
+       probed this signature's boundaries (both sides of every comparison edge,
+       the None of every Optional). Still a bounded search, not a proof:
+       equivalence is undecidable in general, so the engine will not claim it.
+       If you can PROVE one equivalent: detective flag 'TrialLedger/layer2/result_semantics.py::completion_code' BOUNDARY_8be46adb --two-sign --note "why"  (2 more in the report)
+
+       NEXT — the style pass (behaviour is pinned; this is the self-evident next move):
+         detective plan 'TrialLedger/layer2/result_semantics.py'
+         detective decompose 'TrialLedger/layer2/result_semantics.py::completion_code' --apply --two-sign
+         detective survey 'TrialLedger/layer2/result_semantics.py'
+         (efficiency: verify-rewrite --budget against a receipt from policy 9+neg.f5a15364c11d)
+
+FINAL TrialLedger/layer2/result_semantics.py::completion_code: ✓ COMPLETE (operator universe · modulo 3 unproven-equivalent) · 84/87 killed · 1 test(s) → tests/detective/test_TrialLedger_layer2_result_semantics_completion_code_0f6f433d15_synth.py · policy 9+neg.f5a15364c11d

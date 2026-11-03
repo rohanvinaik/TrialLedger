@@ -1,0 +1,44 @@
+[
+ {
+  "file": "version-start.json",
+  "url": "https://clinicaltrials.gov/api/v2/version",
+  "save_as": "bodies/version-start.json",
+  "why": "version_start",
+  "params": {}
+ },
+ {
+  "file": "ids-001.json",
+  "url": "https://clinicaltrials.gov/api/v2/studies?filter.advanced=%28AREA%5BInterventionName%5D%22guselkumab%22+OR+AREA%5BInterventionOtherName%5D%22guselkumab%22%29+AND+AREA%5BPhase%5DPHASE3+AND+AREA%5BOverallStatus%5DCOMPLETED&query.cond=Psoriasis&format=json&markupFormat=markdown&countTotal=true&pageSize=1000&fields=NCTId",
+  "save_as": "bodies/ids-001.json",
+  "why": "id_page",
+  "params": {
+   "filter.advanced": "(AREA[InterventionName]\"guselkumab\" OR AREA[InterventionOtherName]\"guselkumab\") AND AREA[Phase]PHASE3 AND AREA[OverallStatus]COMPLETED",
+   "query.cond": "Psoriasis",
+   "format": "json",
+   "markupFormat": "markdown",
+   "countTotal": "true",
+   "pageSize": "1000",
+   "fields": "NCTId"
+  }
+ },
+ {
+  "file": "studies-001.json",
+  "url": "https://clinicaltrials.gov/api/v2/studies?filter.ids=NCT02207231%2CNCT02641730%2CNCT03090100%2CNCT02203032%2CNCT05272150%2CNCT02207244%2CNCT03818035%2CNCT02325219%2CNCT02951533%2CNCT02343744%2CNCT03162796%2CNCT03796858%2CNCT06039189%2CNCT03998683%2CNCT03158285%2CNCT02905331%2CNCT04936308&format=json&markupFormat=markdown&countTotal=true&pageSize=100",
+  "save_as": "bodies/studies-001.json",
+  "why": "studies_batch",
+  "params": {
+   "filter.ids": "NCT02207231,NCT02641730,NCT03090100,NCT02203032,NCT05272150,NCT02207244,NCT03818035,NCT02325219,NCT02951533,NCT02343744,NCT03162796,NCT03796858,NCT06039189,NCT03998683,NCT03158285,NCT02905331,NCT04936308",
+   "format": "json",
+   "markupFormat": "markdown",
+   "countTotal": "true",
+   "pageSize": "100"
+  }
+ },
+ {
+  "file": "version-end.json",
+  "url": "https://clinicaltrials.gov/api/v2/version",
+  "save_as": "bodies/version-end.json",
+  "why": "version_end",
+  "params": {}
+ }
+]
