@@ -47,6 +47,16 @@ unrelated symbolic changes and help text do not alter a report's derivation iden
 
 ## Layer two ownership and standing
 
+`layer2.design_bounds` owns baseline witness bounds over explicit candidate eligibility designs. Service
+validates observations, count/denominator, provenance and bridge contracts; `bounds_guide` exposes their
+focused discovery and runnable example. The module reuses scoped entailment for candidate compatibility
+and queries across surviving designs. Positive witnesses beyond a declared exception budget eliminate a
+candidate; observation populations never sum. Conclusions retain the weakest elimination support. Neither
+source text, scale identity, time alignment nor compliance is guessed. Reporting does not import this module.
+`tests/test_design_bounds_entrypoints.py` connects retained IPASS source -> report/address -> explicitly bound
+test premises -> CLI/MCP -> revised consequences. This is a development example, not independent protocol
+confirmation. Discovery and assistant guidance route these results into the continuing session's decision list.
+
 This is a current nontechnical user workflow as well as a set of components: the clinician chooses a
 question for their own work, the assistant elicits/encodes confirmed premises and explains the resulting
 proof, default, proposal or unresolved item. The structured analysis is reusable beside the unchanged source

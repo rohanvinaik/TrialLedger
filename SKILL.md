@@ -76,6 +76,13 @@ required). The describe `answer_guide` holds the complete mapping.
   criteria contradict each other (entailment).
 - Which NSCLC settings, prior lines and biomarker selections the criteria imply (coordinates; defaults shown
   as defaults).
+- What observed baseline participants rule out about missing eligibility restrictions (`design_bounds`).
+  Discover its focused guide. Confirm population/group, participant counts, measurement identity, time and
+  an exception allowance before accepting the eligibility bridge. Keep unconfirmed bridges proposed or
+  unresolved, and accepted defaults interpolated. Candidate eliminations feed a common-consequence query;
+  put the conditional bound and remaining choices on the decision list. Zero/missing categories do not
+  exclude, overlapping marginals never sum, and an observed maximum does not recover an exact cutoff.
+  WHO PS does not silently become ECOG. Derived bounds are separate from source-stated corpus elements.
 - Across a declared comparison set: how common a criterion is (rate with silence bounds), class patterns,
   what is unusual, what is notable, gaps (occupancy) and pairs differing in one feature (corpus).
 
@@ -142,7 +149,7 @@ fields; this works for an MCP-only agent without source-file access. `examples` 
 `capability_examples` entries wrap a runnable `request` with invented premise/expected-result notes.
 
 Then use `trialledger reason --request FILE`, or MCP `reason(request)`, with an `operation` of `entailment`,
-`coordinates` or `corpus`. The same public contract is `TrialLedger.layer2.run(request)`.
+`coordinates`, `corpus` or `design_bounds`. The same public contract is `TrialLedger.layer2.run(request)`.
 
 Ground every premise. Ask about the clinical distinction: all participants or one cohort; required versus
 permitted; prior therapy for advanced disease or any treatment; one qualifying mutation or compound; inclusive

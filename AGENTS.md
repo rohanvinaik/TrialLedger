@@ -308,6 +308,28 @@ answers. Use a separately identified layer-two operation for a supported reasoni
 
 ## Run the reasoning operations
 
+### Baseline witness bounds in a continuing design session
+
+If eligibility text is silent, inspect relevant baseline evidence before calling the design restriction
+unknowable. Discover `reason` view `design_bounds`. Prepare explicitly typed observations and candidate
+eligibility designs. Confirm population/local group, participant-count meaning, measurement identity,
+assessment-time alignment and the bridge's maximum exception count. Retain exact record/version addresses.
+The bridge's status and resolution are caller-supplied; an unconfirmed reading remains proposed or unresolved.
+Acceptance does not promote an interpolated bridge to known. No label matcher supplies these bindings.
+
+The operation tests each observation against each candidate using scoped entailment. A candidate refuting a
+positive count beyond its exception allowance is ruled out. Separate observations never sum, including total
+and arm rows or overlapping marginal tables. Zero and unobserved categories establish no exclusion. Surviving
+candidates feed the common-consequence query; eliminated candidates' support remains part of its status.
+No survivors is a conflict in the declared candidate family, never proof that every protocol is impossible.
+Read each candidate's complete decision/blockers. An unresolved candidate is retained, not treated as eliminated.
+
+For IPASS, WHO PS 2 participation can bound candidate cutoffs under an explicit eligibility witness bridge;
+it cannot recover an exact cutoff, certify all eligibility or silently become an ECOG restriction. Put the
+bound, bridge premises and remaining choices on the decision list. Keep observed participation, conditional
+eligibility bounds and source-stated restrictions separate. Do not add derived bounds to corpus `elements`
+as if the eligibility text stated them. Save the request/result and rerun after any bridge or design revision.
+
 `trialledger reason --request FILE` and MCP `reason(request)` call `TrialLedger.layer2.run(request)`.
 Start by calling MCP tool `reason` with arguments `{"request":{"operation":"describe"}}` for a short
 overview. Then request `{"operation":"describe","view":"entailment"}` (or `coordinates` / `corpus`) inside
@@ -316,7 +338,7 @@ overview. Then request `{"operation":"describe","view":"entailment"}` (or `coord
 Views `worked_session` and `full` retain the complete demonstration and manual for when needed; do not load
 them for every clinical question. Every worked-session request runs and returns its stated result.
 Use the described shapes rather than inventing fields; no source-code access is needed. The operations are
-`entailment`, `coordinates` (explicit NSCLC domain) and `corpus`. [SKILL.md](SKILL.md) also includes a
+`entailment`, `coordinates` (explicit NSCLC domain), `corpus` and `design_bounds`. [SKILL.md](SKILL.md) also includes a
 complete request.
 
 The full guide's `examples` values and each focused `example` are runnable requests. Each

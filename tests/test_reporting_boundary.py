@@ -11,6 +11,7 @@ import importlib.abc
 import sys
 
 forbidden = (
+    "TrialLedger.layer2",
     "TrialLedger.reading", "TrialLedger.coherence", "TrialLedger.universes",
     "TrialLedger.indications", "TrialLedger.assertion_compiler", "TrialLedger.banks",
 )

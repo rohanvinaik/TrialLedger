@@ -114,7 +114,7 @@ INSTRUCTIONS = (
     "not observed results. Handle paging and retries yourself, keeping complete evidence in files. "
     "The separate reason tool supports design restrictions, contradictions, NSCLC settings and patterns "
     'across a comparison set. Start with {"request":{"operation":"describe"}} for the overview, then '
-    "describe view entailment, coordinates or corpus for relevant formats, guides and an example; "
+    "describe view entailment, coordinates, corpus or design_bounds for formats, guides and an example; "
     "worked_session and full remain available on demand. Show material premises together in clinical "
     "words, settle ambiguities once and rerun when they change. Confirmation establishes the person's "
     "premise, not a registry fact. Give the answer, deciding basis and material open items naturally; "
@@ -126,7 +126,11 @@ INSTRUCTIONS = (
     "Update premises and rerun checks when choices change, and hand over the list at the end. "
     "With file access, save the decision list and actual request/result pairs separately. These files are "
     "maintained by you, not automatically by reason. You prepare typed inputs from agreed readings of "
-    "source text; the reasoning tools do not compile registry paragraphs automatically. A class pattern "
+    "source text; the reasoning tools do not compile registry paragraphs automatically. Baseline evidence "
+    "can bound candidate eligibility designs through design_bounds: "
+    "confirm population, scale, time and exception allowance, retain the bridge's status, and never turn "
+    "an observed maximum into an exact protocol cutoff. A derived bound is not a source-text statement. "
+    "A class pattern "
     "is descriptive and a near miss matches only the declared features. The complete automated trial "
     "writer is designed and partly built; these "
     "working reasoning operations do not generate a complete protocol."
@@ -485,9 +489,11 @@ TOOLS: dict[str, dict[str, Any]] = {
         "abstention, not failure. You translate: prepare the structured premises from what the person "
         "confirms; they need not know the format. First call with "
         '{"request":{"operation":"describe"}} for a short overview, then describe with view entailment, '
-        "coordinates or corpus for exact formats, a focused answer guide and runnable example. Views "
+        "coordinates, corpus or design_bounds for exact formats, answer guide and runnable example. Views "
         "worked_session and full provide the complete demonstration and manual on demand. Reasoning "
-        "requests name operation entailment, coordinates or corpus. Premises retain their "
+        "requests name operation entailment, coordinates, corpus or design_bounds. Baseline witnesses bound "
+        "declared candidate designs through explicit scoped eligibility bridges and exception allowances. "
+        "Premises retain their "
         "source/user status; an assistant's interpretation is never a registry fact. No trial text is "
         "interpreted, no source is fetched and no report is changed. The complete trial writer is designed "
         "and partly built; these results are not a generated protocol.",
@@ -499,7 +505,7 @@ TOOLS: dict[str, dict[str, Any]] = {
                     "properties": {
                         "operation": {
                             "type": "string",
-                            "enum": ["describe", "entailment", "coordinates", "corpus"],
+                            "enum": ["describe", "entailment", "coordinates", "corpus", "design_bounds"],
                         },
                         "view": {
                             "type": "string",
@@ -508,6 +514,7 @@ TOOLS: dict[str, dict[str, Any]] = {
                                 "entailment",
                                 "coordinates",
                                 "corpus",
+                                "design_bounds",
                                 "worked_session",
                                 "full",
                             ],
@@ -516,7 +523,7 @@ TOOLS: dict[str, dict[str, Any]] = {
                     },
                     "required": ["operation"],
                     "description": "Start with operation describe for the overview; view entailment, "
-                    "coordinates or corpus gives the relevant formats and example. Views worked_session "
+                    "coordinates, corpus or design_bounds gives formats and example. Views worked_session "
                     "and full give the complete demonstration/manual. Other operations need typed premises.",
                 }
             },

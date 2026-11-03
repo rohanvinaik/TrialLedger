@@ -12,16 +12,29 @@ import json
 from copy import deepcopy
 from typing import Any
 
-from TrialLedger.layer2 import assertions, coherence, entail, expectations, guide, nearmiss, profile
+from TrialLedger.layer2 import (
+    assertions,
+    bounds_guide,
+    coherence,
+    design_bounds,
+    entail,
+    expectations,
+    guide,
+    nearmiss,
+    profile,
+)
 
-OPERATIONS = ("describe", "entailment", "coordinates", "corpus")
+OPERATIONS = ("describe", "entailment", "coordinates", "corpus", "design_bounds")
 MAX_ITEMS = 1000
 BASIS = "Conditional on the supplied typed premises; their source meaning is not certified by this operation."
 # The same closed field sets drive request validation and the agent-facing description.
 INPUTS = {
+    **bounds_guide.INPUTS,
     "describe": {
         "required": (),
-        "fields": {"view": "overview (default), entailment, coordinates, corpus, worked_session or full"},
+        "fields": {
+            "view": "overview, entailment, coordinates, corpus, design_bounds, worked_session or full"
+        },
     },
     "entailment": {
         "required": ("assertions", "query"),
@@ -207,21 +220,112 @@ def _model(value: Any) -> object:
 
 def _entailment(request: dict[str, Any]) -> dict[str, Any]:
     _input(request, "entailment", "request")
-    given = []
-    for value in _list(request["assertions"], "assertions"):
+    given = _scoped_assertions(request["assertions"])
+    context = _reason_context(request.get("context", {}))
+    bound = _assignment_bound(request.get("bound", entail.MAX_ASSIGNMENTS))
+    decision = entail.decide(given, _model(request["query"]), context, bound)
+    return {"basis": BASIS, "decision": dataclasses.asdict(decision), "premises": request["assertions"]}
+
+
+def _reason_context(value: Any) -> entail.Context:
+    context = _input(value, "context", "context")
+    for key, item in context.items():
+        if item is not None:
+            _text(item, key)
+    return entail.Context(**context)
+
+
+def _assignment_bound(value: Any) -> int:
+    if type(value) is not int or not 1 <= value <= entail.MAX_ASSIGNMENTS:
+        raise RequestError("invalid_resource_bound")
+    return value
+
+
+def _bound_count(value: Any, maximum: int | None = None) -> int:
+    if type(value) is not int or value < 0 or (maximum is not None and value > maximum):
+        raise RequestError("invalid_participant_count")
+    return value
+
+
+def _bound_basis(value: Any) -> tuple[str, ...]:
+    refs = _texts(value, "basis")
+    if not refs:
+        raise RequestError("missing_witness_basis")
+    return tuple(refs)
+
+
+def _bound_observation(value: Any) -> design_bounds.Observation:
+    row = _input(value, "observation", "observation")
+    bridge = _input(row["bridge"], "bridge", "bridge")
+    denominator = _bound_count(row["denominator"])
+    if not denominator:
+        raise RequestError("empty_witness_denominator")
+    statuses = (row["status"], bridge["status"])
+    if any(not isinstance(s, str) or s not in assertions.STATUSES for s in statuses):
+        raise RequestError("invalid_witness_status")
+    if not isinstance(bridge["resolution"], str) or bridge["resolution"] not in assertions.RESOLUTIONS:
+        raise RequestError("invalid_bridge_resolution")
+    body = _model(row["body"])
+    if not isinstance(body, assertions.PROPOSITIONS):
+        raise RequestError("witness_proposition_required")
+    return design_bounds.Observation(
+        _text(row["id"], "observation:id"),
+        _bound_count(row["count"], denominator),
+        denominator,
+        _text(row["population"], "population"),
+        body,
+        _reason_context(row["context"]),
+        entail.weakest_status(statuses),
+        bridge["resolution"],
+        _bound_count(bridge["max_exceptions"], denominator),
+        _bound_basis(row["basis"]) + _bound_basis(bridge["basis"]),
+    )
+
+
+def _scoped_assertions(raw: Any) -> tuple[assertions.ScopedAssertion, ...]:
+    items = []
+    for value in _list(raw, "assertions"):
         item = _model(value)
         if not isinstance(item, assertions.ScopedAssertion):
             raise RequestError("assertions_required")
-        given.append(item)
-    context = _input(request.get("context", {}), "context", "context")
-    for key, value in context.items():
-        if value is not None:
-            _text(value, key)
-    bound = request.get("bound", entail.MAX_ASSIGNMENTS)
-    if type(bound) is not int or not 1 <= bound <= entail.MAX_ASSIGNMENTS:
-        raise RequestError("invalid_resource_bound")
-    decision = entail.decide(tuple(given), _model(request["query"]), entail.Context(**context), bound)
-    return {"basis": BASIS, "decision": dataclasses.asdict(decision), "premises": request["assertions"]}
+        items.append(item)
+    return tuple(items)
+
+
+def _design_bounds(request: dict[str, Any]) -> dict[str, Any]:
+    _input(request, "design_bounds", "request")
+    study = _text(request["study_ref"], "study_ref")
+    candidates = []
+    for raw in _list(request["candidates"], "candidates"):
+        row = _input(raw, "candidate", "candidate")
+        items = _scoped_assertions(row["assertions"])
+        candidates.append((_text(row["id"], "candidate:id"), items))
+    observations = [_bound_observation(raw) for raw in _list(request["observations"], "observations")]
+    if not candidates or not observations:
+        raise RequestError("empty_design_bounds_inputs")
+    for ids in ([identity for identity, _ in candidates], [o.id for o in observations]):
+        if len(set(ids)) != len(ids):
+            raise RequestError("duplicate_design_bounds_id")
+    bound = _assignment_bound(request.get("bound", entail.MAX_ASSIGNMENTS))
+    # Bound total repeated solver calls as well as each individual enumeration.
+    if len(candidates) * (len(observations) + 1) > MAX_ITEMS:
+        raise RequestError("resource_bound:design_bounds")
+    query = _model(request["query"])
+    if not isinstance(query, assertions.PROPOSITIONS):
+        raise RequestError("query_proposition_required")
+    result = design_bounds.bound_designs(
+        candidates, observations, query, _reason_context(request.get("context", {})), bound
+    )
+    return {
+        "basis": BASIS,
+        "study_ref": study,
+        "premises": request,
+        **result,
+        "limits": (
+            "Declared candidate family only; source meaning and eligibility bridges are not certified. "
+            "No automatic table interpretation or source mutation."
+        ),
+    }
 
 
 def _coordinates(request: dict[str, Any]) -> dict[str, Any]:
@@ -1070,10 +1174,11 @@ def _describe(request: dict[str, Any]) -> dict[str, Any]:
     """Discover just the next operation, or explicitly request the complete reference guide."""
     _input(request, "describe", "request")
     view = request.get("view", "overview")
-    views = ("overview", "entailment", "coordinates", "corpus", "worked_session", "full")
+    views = ("overview", "entailment", "coordinates", "corpus", "design_bounds", "worked_session", "full")
     if not isinstance(view, str) or view not in views:
         raise RequestError("request.view:unsupported_view")
     full = _full_description()
+    bounds_guide.extend(full)
     if view == "full":
         return full
     common = {key: full[key] for key in ("basis", "availability", "limits", "premise_status")}
@@ -1101,6 +1206,7 @@ def _describe(request: dict[str, Any]) -> dict[str, Any]:
         "entailment": ("entailment", "context"),
         "coordinates": ("coordinates", "evidence"),
         "corpus": ("corpus", "trial", "coverage", "expectation"),
+        "design_bounds": ("design_bounds", "candidate", "observation", "bridge", "context"),
     }[view]
     vocabulary = {
         "entailment": tuple(
@@ -1110,6 +1216,14 @@ def _describe(request: dict[str, Any]) -> dict[str, Any]:
         ),
         "coordinates": ("sections", "scopes", "coordinate_values"),
         "corpus": ("coverage_states", "observation_states"),
+        "design_bounds": (
+            "statuses",
+            "resolutions",
+            "modalities",
+            "subject_kinds",
+            "predicate_kinds",
+            "value_kinds",
+        ),
     }[view]
     result = common | {
         "operation": view,
@@ -1123,7 +1237,7 @@ def _describe(request: dict[str, Any]) -> dict[str, Any]:
         "example": full["examples"][view],
         "example_result": full["example_results"][view],
     }
-    if view == "entailment":
+    if view in ("entailment", "design_bounds"):
         result["tagged_model"] = full["tagged_model"]
     if view == "corpus":
         result["capability_examples"] = full["capability_examples"]
@@ -1144,6 +1258,7 @@ def run(request: object) -> dict[str, Any]:
             "entailment": _entailment,
             "coordinates": _coordinates,
             "corpus": _corpus,
+            "design_bounds": _design_bounds,
         }[operation]
         result = function(request)
         return {"code": "complete", "operation": operation, "result": result, "problems": []}

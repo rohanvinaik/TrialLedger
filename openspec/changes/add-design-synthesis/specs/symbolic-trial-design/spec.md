@@ -164,6 +164,43 @@ SHALL NOT replace a warrant of meaning.
 
 ## ADDED Requirements
 
+### Requirement: Baseline witnesses bound declared eligibility designs
+The system SHALL expose typed `design_bounds` reasoning over declared candidate designs, using scoped
+entailment. Observations SHALL retain population, denominator, count, proposition, context and sources.
+Explicit eligibility bridges SHALL retain standing, resolution, provenance and an exception bound.
+
+#### Scenario: Observed PS 2 constrains a cutoff family
+- **WHEN** an aligned participant count at WHO PS 2 exceeds a confirmed bridge's exception allowance
+- **THEN** candidate WHO PS upper cutoffs below 2 are ruled out with their proofs, while cutoffs 2 and above and no cutoff can remain
+- **AND** the exact cutoff remains unresolved and WHO PS is not silently mapped to ECOG
+
+### Requirement: Witness bounds preserve uncertainty and independence
+Only accepted positive witnesses beyond their exception allowance SHALL eliminate a candidate refuted by
+scoped entailment. Zero, silence, proposed or unresolved bindings SHALL NOT establish exclusion. Counts
+SHALL NOT sum across observations. Unknown computation SHALL retain a candidate as unresolved. Derived bounds
+SHALL remain separate from source text and source-statement frequencies.
+
+#### Scenario: Overlapping baseline observations
+- **WHEN** two observations might describe the same participants or an arm and its aggregate
+- **THEN** each is checked independently without adding their counts or inventing joint participant profiles
+
+#### Scenario: The bridge or candidate changes
+- **WHEN** the exception allowance reaches the positive count or binding becomes proposed/unresolved
+- **THEN** the witness no longer eliminates the candidate and downstream consequences are recomputed
+
+### Requirement: Surviving designs feed conditional consequences
+The system SHALL compute a common query consequence across all remaining declared candidates, retaining
+the weakest support used in eliminations. The candidate family SHALL NOT be claimed exhaustive of actual
+protocols. Empty survival SHALL be a named conflict rather than entailment by explosion.
+
+#### Scenario: No declared design survives
+- **WHEN** every candidate is ruled out or internally inconsistent
+- **THEN** the result is a conflict within that family, not entailment by explosion
+
+#### Scenario: The assistant operates the continuing design session
+- **WHEN** baseline witnesses inform a design choice through CLI or MCP reason
+- **THEN** focused discovery supplies runnable inputs, the answer names observation and bridge origins, and the decision list retains the conditional bound and remaining choices beside unchanged evidence
+
 ### Requirement: Answers are reported by epistemic category
 The discovery reply SHALL map every entailment decision and blocker, coordinate state and corpus status to
 one of settled, something wrong, your call or not knowable from this evidence, or mark it as a translation

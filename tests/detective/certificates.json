@@ -754,6 +754,30 @@
     "refusal": "",
     "standing": "complete"
   },
+  "TrialLedger/layer2/design_bounds.py::candidate_state": {
+    "cut_reasons": [],
+    "function_digest": "a2d810c556b20248",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/design_bounds.py::common_result": {
+    "cut_reasons": [],
+    "function_digest": "a711ad53e16ad484",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/design_bounds.py::witness_support": {
+    "cut_reasons": [],
+    "function_digest": "ae3adadf70d33d56",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/design_bounds.py::witness_verdict": {
+    "cut_reasons": [],
+    "function_digest": "70bcc869bd4520a1",
+    "refusal": "",
+    "standing": "complete"
+  },
   "TrialLedger/layer2/entail.py::_satisfiable": {
     "cut_reasons": [],
     "function_digest": "5796f636fe9aa497",

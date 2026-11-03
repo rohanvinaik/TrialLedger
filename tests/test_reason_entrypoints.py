@@ -236,7 +236,7 @@ def test_cli_discovery_delivers_every_worked_request_ready_to_run(reports, tmp_p
         *description["examples"].values(),
         *(example["request"] for example in description["capability_examples"].values()),
     ]
-    assert len(requests) == 7
+    assert len(requests) == 8
     for request in requests:
         code, result = invoke_cli(request, reports, tmp_path, capsys)
         assert code == 0 and result["code"] == "complete"
@@ -252,7 +252,7 @@ def test_mcp_discovery_delivers_every_worked_request_ready_to_run(reports, forbi
         *description["examples"].values(),
         *(example["request"] for example in description["capability_examples"].values()),
     ]
-    assert len(requests) == 7
+    assert len(requests) == 8
     for request in requests:
         error, result = invoke_mcp(request, reports, forbid_network)
         assert not error and result["code"] == "complete"

@@ -107,6 +107,34 @@ rather than resolved by choosing a preferred token, source or first answer.
 
 ### 6. Corpus descriptions and comparability
 
+#### Baseline witnesses constrain candidate designs
+
+The `design_bounds` operation tests declared candidate eligibility designs against typed baseline observations.
+One observation retains its population, denominator, positive count, source references, proposition and entry
+context. Its bridge explicitly binds observed participation to eligibility at the proposition's scope and
+time, with provenance, resolution, epistemic standing and a maximum number of exceptions. This is caller-supplied
+binding, never automatic interpretation of a table title. A bridge marked proposed or unresolved supplies no
+eligibility constraint. Known source observations do not promote an interpolated bridge.
+
+If a candidate's scoped constraints refute the observed proposition and count exceeds its bridge's exception
+bound, that candidate is ruled out. Missing or zero categories never exclude a value. Counts from separate
+observations are never added: marginal tables can overlap, as can aggregate and arm rows. Candidate restrictions
+use the existing entailment engine, preserving alternatives, qualifiers, applicability, scope and time. A
+resource bound or unresolved premise is not incompatibility. Internally inconsistent candidates are reported
+separately. No survivors is a conflict within the declared candidate set, never universal entailment or proof
+that the actual protocol is impossible.
+
+Surviving candidate designs feed a common-consequence query through the same engine. A conclusion holds only
+when every remaining candidate establishes it; its standing includes the support of candidate eliminations.
+The candidate family is explicit and not assumed exhaustive of real protocols. For a family WHO PS <= U,
+observed eligible PS 2 witnesses rule out U < 2; they do not establish U = 2. WHO PS is not silently ECOG.
+Observed participation remains a source fact while protocol admissibility remains conditional on the bridge.
+The operation neither rewrites eligibility text nor inserts derived bounds into corpus statement counts.
+
+This implements a bounded part of tasks 5–7 and 10 without claiming general source compilation, default conflict
+strata or complete protocol orchestration. Its public path is CLI/MCP reason -> service -> design_bounds ->
+scoped entailment -> candidate survival -> common consequence -> assistant decision list. Reporting remains isolated.
+
 A declared corpus and strata define every denominator. Known definite members and possible members remain
 separate. Statement rate is S/N over all records in the declared stratum; for eligibility, full-criteria
 frequency has identification interval [S/N, (S+U)/N], with unresolved silences counted and no rule match never

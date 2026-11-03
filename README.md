@@ -18,8 +18,8 @@ evidence and its consequences worked out.
 
 For a draft lung cancer trial compared with IPASS and ARCHER 1050, one decision looks like this:
 
-- **Evidence:** ARCHER 1050 requires ECOG performance status 0–1. IPASS's registry entry doesn't say; its
-  linked publications are the place to check.
+- **Evidence:** ARCHER 1050 requires ECOG performance status 0–1. IPASS's eligibility text gives no cutoff; its
+  baseline nevertheless reports 126/1,217 participants at WHO PS 2. These scales retain their own identities.
 - **Your decision:** What performance-status range do you intend?
 - **Consequence:** Widening your draft from ECOG 0–1 to 0–2 moves ECOG 2 patients from excluded to allowed.
 - **Still open:** Your draft says nothing about brain metastases. ARCHER 1050 excludes any history of them.
@@ -74,6 +74,14 @@ choices, what remains open and which evidence informed them. The original regist
 The session leaves you with a **decision list**: each choice you made or still face, the evidence behind it
 and what it changes, alongside the source workbook and record. Your assistant can save the list and the
 structured checks behind it, so you can revisit a decision, change it and see its consequences again.
+
+**When eligibility wording is silent, baseline participants can provide bounds.** IPASS's eligibility text
+does not give a performance-status cutoff, but its baseline includes participants at WHO PS 2. Your assistant
+can test candidate restrictions against that observation. You first settle the population, scale, assessment
+time and how many participants might be exceptions to the eligibility interpretation. Under that explicit
+bridge, positive witnesses can rule out incompatible restrictions. An interpolated bridge keeps the result
+interpolated. Observing PS 2 does not recover an exact cutoff of 2, and an unobserved category does not establish
+exclusion. The assistant adds the bound, its premise and the remaining cutoff choice to the decision list.
 
 Today, your assistant reads trial text with you, makes the agreed choices explicit and runs the checks;
 TrialLedger computes the supported comparisons and logical consequences. The complete automated trial
@@ -169,6 +177,11 @@ Reasoning uses `trialledger reason --request FILE` or MCP `reason(request)`. Sta
 `{"operation":"describe"}` for an overview. Ask for `{"operation":"describe","view":"entailment"}`,
 `coordinates` or `corpus` for the relevant formats, guide and runnable example. Views `worked_session` and
 `full` retain the demonstration and complete manual on demand.
+
+Use `{"operation":"describe","view":"design_bounds"}` for baseline witness bounds. It describes typed
+observations, explicit eligibility bridges and candidate designs, with a runnable invented example. Candidate
+eliminations feed a common-consequence query through the existing scoped solver. The operation does not read
+tables automatically, reconstruct a complete protocol or change source-text frequency counts.
 
 Entailment checks supplied scoped premises; coordinates uses the explicit NSCLC domain; corpus computes
 statement rates with silence bounds, class associations, rarity, occupancy and one-feature comparisons.
