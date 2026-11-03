@@ -1,0 +1,1897 @@
+{
+  "code": "complete",
+  "operation": "interpretations",
+  "result": {
+    "study_ref": "invented:adult-NSCLC-draft:v1",
+    "fixed": {
+      "assertions": [
+        {
+          "applicability": {
+            "class": "Always"
+          },
+          "body": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "age",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "ge",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 18.0,
+              "unit": "Years",
+              "upper": null
+            }
+          },
+          "branch": {
+            "class": "Branch",
+            "node": "unresolved",
+            "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+            "class": "Scope",
+            "kind": "all_participants",
+            "parts": [],
+            "ref": ""
+          },
+          "criterion_ref": "invented:trial-design-session-not-registry-evidence",
+          "id": "draft-adults",
+          "modality": "required",
+          "resolution": "resolved",
+          "rule": {
+            "answers": [],
+            "class": "Rule",
+            "id": "invented-session-premise",
+            "premises": [],
+            "version": "1",
+            "warrants": [
+              "invented:explicit-teaching-premise"
+            ]
+          },
+          "span": [],
+          "status": "known"
+        },
+        {
+          "applicability": {
+            "class": "Always"
+          },
+          "body": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "ECOG",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "ge",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 0.0,
+              "unit": "ECOG",
+              "upper": null
+            }
+          },
+          "branch": {
+            "class": "Branch",
+            "node": "unresolved",
+            "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+            "class": "Scope",
+            "kind": "all_participants",
+            "parts": [],
+            "ref": ""
+          },
+          "criterion_ref": "invented:trial-design-session-not-registry-evidence",
+          "id": "draft-PS-min",
+          "modality": "required",
+          "resolution": "resolved",
+          "rule": {
+            "answers": [],
+            "class": "Rule",
+            "id": "invented-session-premise",
+            "premises": [],
+            "version": "1",
+            "warrants": [
+              "invented:explicit-teaching-premise"
+            ]
+          },
+          "span": [],
+          "status": "known"
+        }
+      ],
+      "consistency": {
+        "result": "UNDETERMINED",
+        "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+        "status": null,
+        "proof": [],
+        "blockers": [
+          "no_constraint_mentions_query"
+        ]
+      },
+      "queries": [
+        {
+          "id": "adult",
+          "body": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "age",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "ge",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 18.0,
+              "unit": "Years",
+              "upper": null
+            }
+          },
+          "result": "ENTAILED",
+          "decision": {
+            "result": "ENTAILED",
+            "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+            "status": "known",
+            "proof": [
+              "draft-adults"
+            ],
+            "blockers": []
+          },
+          "warrant": {
+            "rule": "entail.decide:1",
+            "guarantee": "fixed_floor",
+            "status": "known",
+            "assumptions": [],
+            "proof": [
+              "draft-adults"
+            ],
+            "blockers": []
+          }
+        },
+        {
+          "id": "PS3",
+          "body": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "ECOG",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "eq",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 3.0,
+              "unit": "ECOG",
+              "upper": null
+            }
+          },
+          "result": "UNDETERMINED",
+          "decision": {
+            "result": "UNDETERMINED",
+            "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"ECOG\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":3.0,\"unit\":\"ECOG\",\"upper\":null}}",
+            "status": null,
+            "proof": [
+              "draft-PS-min"
+            ],
+            "blockers": [
+              "undecided_by_constraints"
+            ]
+          },
+          "warrant": {
+            "rule": "entail.decide:1",
+            "guarantee": "fixed_floor",
+            "status": "known",
+            "assumptions": [],
+            "proof": [
+              "draft-PS-min"
+            ],
+            "blockers": [
+              "undecided_by_constraints"
+            ]
+          }
+        }
+      ],
+      "signals": [
+        {
+          "id": "observed-change",
+          "kind": "dependencies",
+          "code": "unresolved",
+          "calculation_code": "unresolved",
+          "value": {
+            "rules": [
+              {
+                "id": "change",
+                "version": "invented:definition-v1",
+                "state": "unresolved",
+                "missing": [
+                  "week12:observed"
+                ],
+                "output": {
+                  "id": "change",
+                  "mode": "derived"
+                },
+                "alternatives": [
+                  [
+                    {
+                      "id": "baseline",
+                      "mode": "observed",
+                      "state": "available"
+                    },
+                    {
+                      "id": "week12",
+                      "mode": "observed",
+                      "state": "unknown"
+                    }
+                  ]
+                ],
+                "when": []
+              }
+            ],
+            "available": [
+              {
+                "id": "baseline",
+                "mode": "observed"
+              }
+            ],
+            "witnesses": [],
+            "scope": "invented:cohort-A:observed-change-definition",
+            "version": "1"
+          },
+          "rule": "dependencies.explicit_prerequisites.v1",
+          "status": "known",
+          "basis": [
+            "invented:explicit-demonstration-premise-not-trial-evidence"
+          ],
+          "support": [
+            {
+              "id": "observed-change-premise",
+              "status": "known",
+              "resolution": "resolved",
+              "basis": [
+                "invented:explicit-demonstration-premise-not-trial-evidence"
+              ]
+            }
+          ],
+          "blockers": [
+            "dependency_unresolved:change"
+          ]
+        }
+      ],
+      "blockers": []
+    },
+    "bindings": [
+      {
+        "id": "adopt-change",
+        "kind": "definition",
+        "relation": "adopts",
+        "subjects": [
+          "change"
+        ],
+        "scope": {
+          "arm": "all",
+          "population": "invented:cohort-A:observed-change-definition",
+          "study": "invented:adult-NSCLC-draft:v1",
+          "time": "baseline-to-week12",
+          "version": "invented:definition-v1"
+        },
+        "sources": [
+          {
+            "ref": "invented:comparator-protocol",
+            "version": "1",
+            "address": "/invented/definitions"
+          }
+        ],
+        "status": "known",
+        "resolution": "resolved",
+        "basis": [
+          "invented:explicit-reading-for-hypothetical-computation"
+        ]
+      }
+    ],
+    "interpretations": [
+      {
+        "id": "observed-week12",
+        "label": "Plan to supply an observed week-12 assessment",
+        "origin": "assistant",
+        "state": "compatible",
+        "premises": {
+          "basis": [
+            "invented:hypothesis-to-discuss-not-an-established-protocol"
+          ],
+          "assumptions": [
+            {
+              "applicability": {
+                "class": "Always"
+              },
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "ECOG",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "le",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 2.0,
+                  "unit": "ECOG",
+                  "upper": null
+                }
+              },
+              "branch": {
+                "class": "Branch",
+                "node": "unresolved",
+                "path": []
+              },
+              "class": "ScopedAssertion",
+              "cohort": {
+                "class": "Scope",
+                "kind": "all_participants",
+                "parts": [],
+                "ref": ""
+              },
+              "criterion_ref": "invented:trial-design-session-not-registry-evidence",
+              "id": "observed-week12-PS",
+              "modality": "required",
+              "resolution": "resolved",
+              "rule": {
+                "answers": [],
+                "class": "Rule",
+                "id": "invented-session-premise",
+                "premises": [],
+                "version": "1",
+                "warrants": [
+                  "invented:explicit-teaching-premise"
+                ]
+              },
+              "span": [],
+              "status": "proposed"
+            }
+          ],
+          "signals": [],
+          "signal_claims": [
+            {
+              "signal": "observed-change",
+              "claim": {
+                "available": [
+                  {
+                    "id": "week12",
+                    "mode": "observed"
+                  }
+                ]
+              }
+            }
+          ],
+          "binding_uses": [
+            {
+              "binding": "adopt-change",
+              "signal": "observed-change",
+              "scope": {
+                "arm": "all",
+                "population": "invented:cohort-A:observed-change-definition",
+                "study": "invented:adult-NSCLC-draft:v1",
+                "time": "baseline-to-week12",
+                "version": "invented:definition-v1"
+              }
+            }
+          ]
+        },
+        "bindings": [
+          {
+            "binding": "adopt-change",
+            "signal": "observed-change",
+            "code": "supported",
+            "status": "known",
+            "basis": [
+              "invented:explicit-reading-for-hypothetical-computation",
+              "invented:comparator-protocol@1#/invented/definitions"
+            ],
+            "blockers": [],
+            "rule": "interpretation.binding-use:1"
+          }
+        ],
+        "signals": [
+          {
+            "id": "observed-change",
+            "kind": "dependencies",
+            "code": "unresolved",
+            "calculation_code": "unresolved",
+            "value": {
+              "rules": [
+                {
+                  "id": "change",
+                  "version": "invented:definition-v1",
+                  "state": "unresolved",
+                  "missing": [
+                    "week12:observed"
+                  ],
+                  "output": {
+                    "id": "change",
+                    "mode": "derived"
+                  },
+                  "alternatives": [
+                    [
+                      {
+                        "id": "baseline",
+                        "mode": "observed",
+                        "state": "available"
+                      },
+                      {
+                        "id": "week12",
+                        "mode": "observed",
+                        "state": "unknown"
+                      }
+                    ]
+                  ],
+                  "when": []
+                }
+              ],
+              "available": [
+                {
+                  "id": "baseline",
+                  "mode": "observed"
+                }
+              ],
+              "witnesses": [],
+              "scope": "invented:cohort-A:observed-change-definition",
+              "version": "1"
+            },
+            "rule": "dependencies.explicit_prerequisites.v1",
+            "status": "known",
+            "basis": [
+              "invented:explicit-demonstration-premise-not-trial-evidence",
+              "invented:explicit-reading-for-hypothetical-computation",
+              "invented:comparator-protocol@1#/invented/definitions"
+            ],
+            "support": [
+              {
+                "id": "observed-change-premise",
+                "status": "known",
+                "resolution": "resolved",
+                "basis": [
+                  "invented:explicit-demonstration-premise-not-trial-evidence"
+                ]
+              }
+            ],
+            "blockers": [
+              "dependency_unresolved:change"
+            ],
+            "ungated_code": "unresolved",
+            "unbound_status": "known",
+            "guarantee": "conditional_on_interpretation",
+            "binding_refs": [
+              "adopt-change"
+            ],
+            "assumed_bindings": [],
+            "binding_basis": [
+              "invented:explicit-reading-for-hypothetical-computation",
+              "invented:comparator-protocol@1#/invented/definitions"
+            ],
+            "binding_support": [
+              {
+                "binding": "adopt-change",
+                "signal": "observed-change",
+                "code": "supported",
+                "status": "known",
+                "basis": [
+                  "invented:explicit-reading-for-hypothetical-computation",
+                  "invented:comparator-protocol@1#/invented/definitions"
+                ],
+                "blockers": [],
+                "rule": "interpretation.binding-use:1"
+              }
+            ],
+            "role": "baseline_context"
+          }
+        ],
+        "signal_checks": [
+          {
+            "id": "observed-change",
+            "kind": "dependencies",
+            "code": "consistent",
+            "calculation_code": "consistent",
+            "value": {
+              "rules": [
+                {
+                  "id": "change",
+                  "version": "invented:definition-v1",
+                  "state": "ready",
+                  "missing": [],
+                  "output": {
+                    "id": "change",
+                    "mode": "derived"
+                  },
+                  "alternatives": [
+                    [
+                      {
+                        "id": "baseline",
+                        "mode": "observed",
+                        "state": "available"
+                      },
+                      {
+                        "id": "week12",
+                        "mode": "observed",
+                        "state": "available"
+                      }
+                    ]
+                  ],
+                  "when": []
+                }
+              ],
+              "available": [
+                {
+                  "id": "baseline",
+                  "mode": "observed"
+                },
+                {
+                  "id": "change",
+                  "mode": "derived"
+                },
+                {
+                  "id": "week12",
+                  "mode": "observed"
+                }
+              ],
+              "witnesses": [],
+              "scope": "invented:cohort-A:observed-change-definition",
+              "version": "1"
+            },
+            "rule": "dependencies.explicit_prerequisites.v1",
+            "status": "known",
+            "basis": [
+              "invented:explicit-demonstration-premise-not-trial-evidence",
+              "invented:explicit-reading-for-hypothetical-computation",
+              "invented:comparator-protocol@1#/invented/definitions"
+            ],
+            "support": [
+              {
+                "id": "observed-change-premise",
+                "status": "known",
+                "resolution": "resolved",
+                "basis": [
+                  "invented:explicit-demonstration-premise-not-trial-evidence"
+                ]
+              }
+            ],
+            "blockers": [],
+            "ungated_code": "consistent",
+            "unbound_status": "known",
+            "guarantee": "conditional_on_interpretation",
+            "binding_refs": [
+              "adopt-change"
+            ],
+            "assumed_bindings": [],
+            "binding_basis": [
+              "invented:explicit-reading-for-hypothetical-computation",
+              "invented:comparator-protocol@1#/invented/definitions"
+            ],
+            "binding_support": [
+              {
+                "binding": "adopt-change",
+                "signal": "observed-change",
+                "code": "supported",
+                "status": "known",
+                "basis": [
+                  "invented:explicit-reading-for-hypothetical-computation",
+                  "invented:comparator-protocol@1#/invented/definitions"
+                ],
+                "blockers": [],
+                "rule": "interpretation.binding-use:1"
+              }
+            ],
+            "claims": [
+              {
+                "available": [
+                  {
+                    "id": "week12",
+                    "mode": "observed"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "queries": [
+          {
+            "id": "adult",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "age",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "ge",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 18.0,
+                "unit": "Years",
+                "upper": null
+              }
+            },
+            "result": "ENTAILED",
+            "decision": {
+              "result": "ENTAILED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+              "status": "known",
+              "proof": [
+                "draft-adults"
+              ],
+              "blockers": []
+            },
+            "warrant": {
+              "rule": "entail.decide:1",
+              "guarantee": "conditional_on_interpretation",
+              "status": "proposed",
+              "assumptions": [
+                "observed-week12-PS"
+              ],
+              "proof": [
+                "draft-adults"
+              ],
+              "blockers": []
+            }
+          },
+          {
+            "id": "PS3",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "ECOG",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "eq",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 3.0,
+                "unit": "ECOG",
+                "upper": null
+              }
+            },
+            "result": "REFUTED",
+            "decision": {
+              "result": "REFUTED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"ECOG\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":3.0,\"unit\":\"ECOG\",\"upper\":null}}",
+              "status": "interpolated",
+              "proof": [
+                "observed-week12-PS"
+              ],
+              "blockers": []
+            },
+            "warrant": {
+              "rule": "entail.decide:1",
+              "guarantee": "conditional_on_interpretation",
+              "status": "proposed",
+              "assumptions": [
+                "observed-week12-PS"
+              ],
+              "proof": [
+                "observed-week12-PS"
+              ],
+              "blockers": []
+            }
+          }
+        ],
+        "warrant": {
+          "rule": "interpretations.compatibility:1",
+          "guarantee": "conditional_on_fixed_and_interpretation_premises",
+          "fixed_status": "known",
+          "status": "proposed",
+          "fixed_premises": [],
+          "assumptions": [
+            "observed-week12-PS"
+          ],
+          "bindings": [
+            "adopt-change"
+          ],
+          "basis": [
+            "invented:hypothesis-to-discuss-not-an-established-protocol"
+          ],
+          "consistency": {
+            "result": "UNDETERMINED",
+            "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+            "status": null,
+            "proof": [],
+            "blockers": [
+              "no_constraint_mentions_query"
+            ]
+          },
+          "intrinsic_consistency": {
+            "result": "UNDETERMINED",
+            "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+            "status": null,
+            "proof": [],
+            "blockers": [
+              "no_constraint_mentions_query"
+            ]
+          },
+          "signal_rules": [
+            {
+              "id": "observed-change",
+              "rule": "dependencies.explicit_prerequisites.v1"
+            },
+            {
+              "id": "observed-change",
+              "rule": "dependencies.explicit_prerequisites.v1"
+            }
+          ],
+          "blockers": []
+        }
+      },
+      {
+        "id": "imputed-week12",
+        "label": "Supply an imputed value; observed availability still unknown",
+        "origin": "assistant",
+        "state": "unresolved",
+        "premises": {
+          "basis": [
+            "invented:hypothesis-to-discuss-not-an-established-protocol"
+          ],
+          "assumptions": [
+            {
+              "applicability": {
+                "class": "Always"
+              },
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "ECOG",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "le",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 2.0,
+                  "unit": "ECOG",
+                  "upper": null
+                }
+              },
+              "branch": {
+                "class": "Branch",
+                "node": "unresolved",
+                "path": []
+              },
+              "class": "ScopedAssertion",
+              "cohort": {
+                "class": "Scope",
+                "kind": "all_participants",
+                "parts": [],
+                "ref": ""
+              },
+              "criterion_ref": "invented:trial-design-session-not-registry-evidence",
+              "id": "imputed-week12-PS",
+              "modality": "required",
+              "resolution": "resolved",
+              "rule": {
+                "answers": [],
+                "class": "Rule",
+                "id": "invented-session-premise",
+                "premises": [],
+                "version": "1",
+                "warrants": [
+                  "invented:explicit-teaching-premise"
+                ]
+              },
+              "span": [],
+              "status": "proposed"
+            }
+          ],
+          "signals": [],
+          "signal_claims": [
+            {
+              "signal": "observed-change",
+              "claim": {
+                "available": [
+                  {
+                    "id": "week12",
+                    "mode": "imputed"
+                  }
+                ]
+              }
+            }
+          ],
+          "binding_uses": [
+            {
+              "binding": "adopt-change",
+              "signal": "observed-change",
+              "scope": {
+                "arm": "all",
+                "population": "invented:cohort-A:observed-change-definition",
+                "study": "invented:adult-NSCLC-draft:v1",
+                "time": "baseline-to-week12",
+                "version": "invented:definition-v1"
+              }
+            }
+          ]
+        },
+        "bindings": [
+          {
+            "binding": "adopt-change",
+            "signal": "observed-change",
+            "code": "supported",
+            "status": "known",
+            "basis": [
+              "invented:explicit-reading-for-hypothetical-computation",
+              "invented:comparator-protocol@1#/invented/definitions"
+            ],
+            "blockers": [],
+            "rule": "interpretation.binding-use:1"
+          }
+        ],
+        "signals": [
+          {
+            "id": "observed-change",
+            "kind": "dependencies",
+            "code": "unresolved",
+            "calculation_code": "unresolved",
+            "value": {
+              "rules": [
+                {
+                  "id": "change",
+                  "version": "invented:definition-v1",
+                  "state": "unresolved",
+                  "missing": [
+                    "week12:observed"
+                  ],
+                  "output": {
+                    "id": "change",
+                    "mode": "derived"
+                  },
+                  "alternatives": [
+                    [
+                      {
+                        "id": "baseline",
+                        "mode": "observed",
+                        "state": "available"
+                      },
+                      {
+                        "id": "week12",
+                        "mode": "observed",
+                        "state": "unknown"
+                      }
+                    ]
+                  ],
+                  "when": []
+                }
+              ],
+              "available": [
+                {
+                  "id": "baseline",
+                  "mode": "observed"
+                }
+              ],
+              "witnesses": [],
+              "scope": "invented:cohort-A:observed-change-definition",
+              "version": "1"
+            },
+            "rule": "dependencies.explicit_prerequisites.v1",
+            "status": "known",
+            "basis": [
+              "invented:explicit-demonstration-premise-not-trial-evidence",
+              "invented:explicit-reading-for-hypothetical-computation",
+              "invented:comparator-protocol@1#/invented/definitions"
+            ],
+            "support": [
+              {
+                "id": "observed-change-premise",
+                "status": "known",
+                "resolution": "resolved",
+                "basis": [
+                  "invented:explicit-demonstration-premise-not-trial-evidence"
+                ]
+              }
+            ],
+            "blockers": [
+              "dependency_unresolved:change"
+            ],
+            "ungated_code": "unresolved",
+            "unbound_status": "known",
+            "guarantee": "conditional_on_interpretation",
+            "binding_refs": [
+              "adopt-change"
+            ],
+            "assumed_bindings": [],
+            "binding_basis": [
+              "invented:explicit-reading-for-hypothetical-computation",
+              "invented:comparator-protocol@1#/invented/definitions"
+            ],
+            "binding_support": [
+              {
+                "binding": "adopt-change",
+                "signal": "observed-change",
+                "code": "supported",
+                "status": "known",
+                "basis": [
+                  "invented:explicit-reading-for-hypothetical-computation",
+                  "invented:comparator-protocol@1#/invented/definitions"
+                ],
+                "blockers": [],
+                "rule": "interpretation.binding-use:1"
+              }
+            ],
+            "role": "baseline_context"
+          }
+        ],
+        "signal_checks": [
+          {
+            "id": "observed-change",
+            "kind": "dependencies",
+            "code": "unresolved",
+            "calculation_code": "unresolved",
+            "value": {
+              "rules": [
+                {
+                  "id": "change",
+                  "version": "invented:definition-v1",
+                  "state": "unresolved",
+                  "missing": [
+                    "week12:observed"
+                  ],
+                  "output": {
+                    "id": "change",
+                    "mode": "derived"
+                  },
+                  "alternatives": [
+                    [
+                      {
+                        "id": "baseline",
+                        "mode": "observed",
+                        "state": "available"
+                      },
+                      {
+                        "id": "week12",
+                        "mode": "observed",
+                        "state": "unknown"
+                      }
+                    ]
+                  ],
+                  "when": []
+                }
+              ],
+              "available": [
+                {
+                  "id": "baseline",
+                  "mode": "observed"
+                },
+                {
+                  "id": "week12",
+                  "mode": "imputed"
+                }
+              ],
+              "witnesses": [],
+              "scope": "invented:cohort-A:observed-change-definition",
+              "version": "1"
+            },
+            "rule": "dependencies.explicit_prerequisites.v1",
+            "status": "known",
+            "basis": [
+              "invented:explicit-demonstration-premise-not-trial-evidence",
+              "invented:explicit-reading-for-hypothetical-computation",
+              "invented:comparator-protocol@1#/invented/definitions"
+            ],
+            "support": [
+              {
+                "id": "observed-change-premise",
+                "status": "known",
+                "resolution": "resolved",
+                "basis": [
+                  "invented:explicit-demonstration-premise-not-trial-evidence"
+                ]
+              }
+            ],
+            "blockers": [
+              "dependency_unresolved:change"
+            ],
+            "ungated_code": "unresolved",
+            "unbound_status": "known",
+            "guarantee": "conditional_on_interpretation",
+            "binding_refs": [
+              "adopt-change"
+            ],
+            "assumed_bindings": [],
+            "binding_basis": [
+              "invented:explicit-reading-for-hypothetical-computation",
+              "invented:comparator-protocol@1#/invented/definitions"
+            ],
+            "binding_support": [
+              {
+                "binding": "adopt-change",
+                "signal": "observed-change",
+                "code": "supported",
+                "status": "known",
+                "basis": [
+                  "invented:explicit-reading-for-hypothetical-computation",
+                  "invented:comparator-protocol@1#/invented/definitions"
+                ],
+                "blockers": [],
+                "rule": "interpretation.binding-use:1"
+              }
+            ],
+            "claims": [
+              {
+                "available": [
+                  {
+                    "id": "week12",
+                    "mode": "imputed"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "queries": [
+          {
+            "id": "adult",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "age",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "ge",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 18.0,
+                "unit": "Years",
+                "upper": null
+              }
+            },
+            "result": "UNDETERMINED",
+            "decision": {
+              "result": "ENTAILED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+              "status": "known",
+              "proof": [
+                "draft-adults"
+              ],
+              "blockers": []
+            },
+            "warrant": {
+              "rule": "entail.decide:1",
+              "guarantee": "conditional_on_interpretation",
+              "status": "proposed",
+              "assumptions": [
+                "imputed-week12-PS"
+              ],
+              "proof": [
+                "draft-adults"
+              ],
+              "blockers": [
+                "dependency_unresolved:change",
+                "interpretation_unresolved"
+              ]
+            }
+          },
+          {
+            "id": "PS3",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "ECOG",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "eq",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 3.0,
+                "unit": "ECOG",
+                "upper": null
+              }
+            },
+            "result": "UNDETERMINED",
+            "decision": {
+              "result": "REFUTED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"ECOG\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":3.0,\"unit\":\"ECOG\",\"upper\":null}}",
+              "status": "interpolated",
+              "proof": [
+                "imputed-week12-PS"
+              ],
+              "blockers": []
+            },
+            "warrant": {
+              "rule": "entail.decide:1",
+              "guarantee": "conditional_on_interpretation",
+              "status": "proposed",
+              "assumptions": [
+                "imputed-week12-PS"
+              ],
+              "proof": [
+                "imputed-week12-PS"
+              ],
+              "blockers": [
+                "dependency_unresolved:change",
+                "interpretation_unresolved"
+              ]
+            }
+          }
+        ],
+        "warrant": {
+          "rule": "interpretations.compatibility:1",
+          "guarantee": "conditional_on_fixed_and_interpretation_premises",
+          "fixed_status": "known",
+          "status": "proposed",
+          "fixed_premises": [],
+          "assumptions": [
+            "imputed-week12-PS"
+          ],
+          "bindings": [
+            "adopt-change"
+          ],
+          "basis": [
+            "invented:hypothesis-to-discuss-not-an-established-protocol"
+          ],
+          "consistency": {
+            "result": "UNDETERMINED",
+            "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+            "status": null,
+            "proof": [],
+            "blockers": [
+              "no_constraint_mentions_query"
+            ]
+          },
+          "intrinsic_consistency": {
+            "result": "UNDETERMINED",
+            "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+            "status": null,
+            "proof": [],
+            "blockers": [
+              "no_constraint_mentions_query"
+            ]
+          },
+          "signal_rules": [
+            {
+              "id": "observed-change",
+              "rule": "dependencies.explicit_prerequisites.v1"
+            },
+            {
+              "id": "observed-change",
+              "rule": "dependencies.explicit_prerequisites.v1"
+            }
+          ],
+          "blockers": [
+            "dependency_unresolved:change"
+          ]
+        }
+      },
+      {
+        "id": "no-observed-week12",
+        "label": "Observed week 12 is explicitly unavailable",
+        "origin": "assistant",
+        "state": "refuted",
+        "premises": {
+          "basis": [
+            "invented:hypothesis-to-discuss-not-an-established-protocol"
+          ],
+          "assumptions": [
+            {
+              "applicability": {
+                "class": "Always"
+              },
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "ECOG",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "le",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 2.0,
+                  "unit": "ECOG",
+                  "upper": null
+                }
+              },
+              "branch": {
+                "class": "Branch",
+                "node": "unresolved",
+                "path": []
+              },
+              "class": "ScopedAssertion",
+              "cohort": {
+                "class": "Scope",
+                "kind": "all_participants",
+                "parts": [],
+                "ref": ""
+              },
+              "criterion_ref": "invented:trial-design-session-not-registry-evidence",
+              "id": "no-observed-week12-PS",
+              "modality": "required",
+              "resolution": "resolved",
+              "rule": {
+                "answers": [],
+                "class": "Rule",
+                "id": "invented-session-premise",
+                "premises": [],
+                "version": "1",
+                "warrants": [
+                  "invented:explicit-teaching-premise"
+                ]
+              },
+              "span": [],
+              "status": "proposed"
+            }
+          ],
+          "signals": [],
+          "signal_claims": [
+            {
+              "signal": "observed-change",
+              "claim": {
+                "unavailable": [
+                  {
+                    "id": "week12",
+                    "mode": "observed"
+                  }
+                ]
+              }
+            }
+          ],
+          "binding_uses": [
+            {
+              "binding": "adopt-change",
+              "signal": "observed-change",
+              "scope": {
+                "arm": "all",
+                "population": "invented:cohort-A:observed-change-definition",
+                "study": "invented:adult-NSCLC-draft:v1",
+                "time": "baseline-to-week12",
+                "version": "invented:definition-v1"
+              }
+            }
+          ]
+        },
+        "bindings": [
+          {
+            "binding": "adopt-change",
+            "signal": "observed-change",
+            "code": "supported",
+            "status": "known",
+            "basis": [
+              "invented:explicit-reading-for-hypothetical-computation",
+              "invented:comparator-protocol@1#/invented/definitions"
+            ],
+            "blockers": [],
+            "rule": "interpretation.binding-use:1"
+          }
+        ],
+        "signals": [
+          {
+            "id": "observed-change",
+            "kind": "dependencies",
+            "code": "unresolved",
+            "calculation_code": "unresolved",
+            "value": {
+              "rules": [
+                {
+                  "id": "change",
+                  "version": "invented:definition-v1",
+                  "state": "unresolved",
+                  "missing": [
+                    "week12:observed"
+                  ],
+                  "output": {
+                    "id": "change",
+                    "mode": "derived"
+                  },
+                  "alternatives": [
+                    [
+                      {
+                        "id": "baseline",
+                        "mode": "observed",
+                        "state": "available"
+                      },
+                      {
+                        "id": "week12",
+                        "mode": "observed",
+                        "state": "unknown"
+                      }
+                    ]
+                  ],
+                  "when": []
+                }
+              ],
+              "available": [
+                {
+                  "id": "baseline",
+                  "mode": "observed"
+                }
+              ],
+              "witnesses": [],
+              "scope": "invented:cohort-A:observed-change-definition",
+              "version": "1"
+            },
+            "rule": "dependencies.explicit_prerequisites.v1",
+            "status": "known",
+            "basis": [
+              "invented:explicit-demonstration-premise-not-trial-evidence",
+              "invented:explicit-reading-for-hypothetical-computation",
+              "invented:comparator-protocol@1#/invented/definitions"
+            ],
+            "support": [
+              {
+                "id": "observed-change-premise",
+                "status": "known",
+                "resolution": "resolved",
+                "basis": [
+                  "invented:explicit-demonstration-premise-not-trial-evidence"
+                ]
+              }
+            ],
+            "blockers": [
+              "dependency_unresolved:change"
+            ],
+            "ungated_code": "unresolved",
+            "unbound_status": "known",
+            "guarantee": "conditional_on_interpretation",
+            "binding_refs": [
+              "adopt-change"
+            ],
+            "assumed_bindings": [],
+            "binding_basis": [
+              "invented:explicit-reading-for-hypothetical-computation",
+              "invented:comparator-protocol@1#/invented/definitions"
+            ],
+            "binding_support": [
+              {
+                "binding": "adopt-change",
+                "signal": "observed-change",
+                "code": "supported",
+                "status": "known",
+                "basis": [
+                  "invented:explicit-reading-for-hypothetical-computation",
+                  "invented:comparator-protocol@1#/invented/definitions"
+                ],
+                "blockers": [],
+                "rule": "interpretation.binding-use:1"
+              }
+            ],
+            "role": "baseline_context"
+          }
+        ],
+        "signal_checks": [
+          {
+            "id": "observed-change",
+            "kind": "dependencies",
+            "code": "conflict",
+            "calculation_code": "conflict",
+            "value": {
+              "rules": [
+                {
+                  "id": "change",
+                  "version": "invented:definition-v1",
+                  "state": "blocked",
+                  "missing": [
+                    "week12:observed"
+                  ],
+                  "output": {
+                    "id": "change",
+                    "mode": "derived"
+                  },
+                  "alternatives": [
+                    [
+                      {
+                        "id": "baseline",
+                        "mode": "observed",
+                        "state": "available"
+                      },
+                      {
+                        "id": "week12",
+                        "mode": "observed",
+                        "state": "unavailable"
+                      }
+                    ]
+                  ],
+                  "when": []
+                }
+              ],
+              "available": [
+                {
+                  "id": "baseline",
+                  "mode": "observed"
+                }
+              ],
+              "witnesses": [],
+              "scope": "invented:cohort-A:observed-change-definition",
+              "version": "1"
+            },
+            "rule": "dependencies.explicit_prerequisites.v1",
+            "status": "known",
+            "basis": [
+              "invented:explicit-demonstration-premise-not-trial-evidence",
+              "invented:explicit-reading-for-hypothetical-computation",
+              "invented:comparator-protocol@1#/invented/definitions"
+            ],
+            "support": [
+              {
+                "id": "observed-change-premise",
+                "status": "known",
+                "resolution": "resolved",
+                "basis": [
+                  "invented:explicit-demonstration-premise-not-trial-evidence"
+                ]
+              }
+            ],
+            "blockers": [
+              "dependency_blocked:change"
+            ],
+            "ungated_code": "conflict",
+            "unbound_status": "known",
+            "guarantee": "conditional_on_interpretation",
+            "binding_refs": [
+              "adopt-change"
+            ],
+            "assumed_bindings": [],
+            "binding_basis": [
+              "invented:explicit-reading-for-hypothetical-computation",
+              "invented:comparator-protocol@1#/invented/definitions"
+            ],
+            "binding_support": [
+              {
+                "binding": "adopt-change",
+                "signal": "observed-change",
+                "code": "supported",
+                "status": "known",
+                "basis": [
+                  "invented:explicit-reading-for-hypothetical-computation",
+                  "invented:comparator-protocol@1#/invented/definitions"
+                ],
+                "blockers": [],
+                "rule": "interpretation.binding-use:1"
+              }
+            ],
+            "claims": [
+              {
+                "unavailable": [
+                  {
+                    "id": "week12",
+                    "mode": "observed"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "queries": [
+          {
+            "id": "adult",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "age",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "ge",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 18.0,
+                "unit": "Years",
+                "upper": null
+              }
+            },
+            "result": "UNDETERMINED",
+            "decision": {
+              "result": "ENTAILED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+              "status": "known",
+              "proof": [
+                "draft-adults"
+              ],
+              "blockers": []
+            },
+            "warrant": {
+              "rule": "entail.decide:1",
+              "guarantee": "conditional_on_interpretation",
+              "status": "proposed",
+              "assumptions": [
+                "no-observed-week12-PS"
+              ],
+              "proof": [
+                "draft-adults"
+              ],
+              "blockers": [
+                "interpretation_refuted"
+              ]
+            }
+          },
+          {
+            "id": "PS3",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "ECOG",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "eq",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 3.0,
+                "unit": "ECOG",
+                "upper": null
+              }
+            },
+            "result": "UNDETERMINED",
+            "decision": {
+              "result": "REFUTED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"ECOG\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":3.0,\"unit\":\"ECOG\",\"upper\":null}}",
+              "status": "interpolated",
+              "proof": [
+                "no-observed-week12-PS"
+              ],
+              "blockers": []
+            },
+            "warrant": {
+              "rule": "entail.decide:1",
+              "guarantee": "conditional_on_interpretation",
+              "status": "proposed",
+              "assumptions": [
+                "no-observed-week12-PS"
+              ],
+              "proof": [
+                "no-observed-week12-PS"
+              ],
+              "blockers": [
+                "interpretation_refuted"
+              ]
+            }
+          }
+        ],
+        "warrant": {
+          "rule": "interpretations.compatibility:1",
+          "guarantee": "conditional_on_fixed_and_interpretation_premises",
+          "fixed_status": "known",
+          "status": "proposed",
+          "fixed_premises": [],
+          "assumptions": [
+            "no-observed-week12-PS"
+          ],
+          "bindings": [
+            "adopt-change"
+          ],
+          "basis": [
+            "invented:hypothesis-to-discuss-not-an-established-protocol"
+          ],
+          "consistency": {
+            "result": "UNDETERMINED",
+            "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+            "status": null,
+            "proof": [],
+            "blockers": [
+              "no_constraint_mentions_query"
+            ]
+          },
+          "intrinsic_consistency": {
+            "result": "UNDETERMINED",
+            "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+            "status": null,
+            "proof": [],
+            "blockers": [
+              "no_constraint_mentions_query"
+            ]
+          },
+          "signal_rules": [
+            {
+              "id": "observed-change",
+              "rule": "dependencies.explicit_prerequisites.v1"
+            },
+            {
+              "id": "observed-change",
+              "rule": "dependencies.explicit_prerequisites.v1"
+            }
+          ],
+          "blockers": []
+        }
+      }
+    ],
+    "remaining": [
+      "observed-week12",
+      "imputed-week12"
+    ],
+    "refuted": [
+      "no-observed-week12"
+    ],
+    "incoherent": [],
+    "unresolved": [
+      "imputed-week12"
+    ],
+    "selection": {
+      "id": null,
+      "state": "none",
+      "origin": null
+    },
+    "consequences": [
+      {
+        "id": "adult",
+        "body": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+            "class": "Predicate",
+            "key": "age",
+            "kind": "measurement"
+          },
+          "qualifiers": {
+            "class": "Always"
+          },
+          "subject": {
+            "class": "Subject",
+            "kind": "participant",
+            "referent": ""
+          },
+          "time": null,
+          "value": {
+            "class": "Value",
+            "comparison": "ge",
+            "inclusivity": "unspecified",
+            "kind": "quantity",
+            "members": [],
+            "number": 18.0,
+            "unit": "Years",
+            "upper": null
+          }
+        },
+        "result": "ENTAILED",
+        "decision": {
+          "result": "ENTAILED",
+          "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+          "status": "known",
+          "proof": [
+            "draft-adults"
+          ],
+          "blockers": []
+        },
+        "warrant": {
+          "rule": "entail.decide:1",
+          "guarantee": "fixed_floor",
+          "status": "known",
+          "assumptions": [],
+          "proof": [
+            "draft-adults"
+          ],
+          "blockers": []
+        },
+        "frames": [],
+        "basis": "fixed_floor"
+      },
+      {
+        "id": "PS3",
+        "body": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+            "class": "Predicate",
+            "key": "ECOG",
+            "kind": "measurement"
+          },
+          "qualifiers": {
+            "class": "Always"
+          },
+          "subject": {
+            "class": "Subject",
+            "kind": "participant",
+            "referent": ""
+          },
+          "time": null,
+          "value": {
+            "class": "Value",
+            "comparison": "eq",
+            "inclusivity": "unspecified",
+            "kind": "quantity",
+            "members": [],
+            "number": 3.0,
+            "unit": "ECOG",
+            "upper": null
+          }
+        },
+        "result": "UNDETERMINED",
+        "frames": [
+          "observed-week12",
+          "imputed-week12"
+        ],
+        "basis": "declared_interpretation_family",
+        "warrant": {
+          "rule": "interpretations.common:1",
+          "guarantee": "conditional_on_declared_family_not_exhaustive",
+          "status": "proposed",
+          "blockers": [
+            "dependency_unresolved:change",
+            "interpretation_unresolved"
+          ]
+        }
+      }
+    ],
+    "limits": "Exact conditional checks over declared readings; compatibility is not source truth or clinical recommendation. The interpretation family is not assumed exhaustive. No automatic text reading, source correction, source mutation or corpus-frequency admission."
+  },
+  "problems": []
+}

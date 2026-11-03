@@ -20,23 +20,36 @@ from TrialLedger.layer2 import (
     entail,
     expectations,
     guide,
+    interpretation_bindings,
+    interpretations,
+    interpretations_guide,
     nearmiss,
     profile,
     signals,
     signals_guide,
 )
 
-OPERATIONS = ("describe", "entailment", "coordinates", "corpus", "design_bounds", "signals")
+OPERATIONS = (
+    "describe",
+    "entailment",
+    "coordinates",
+    "corpus",
+    "design_bounds",
+    "signals",
+    "interpretations",
+)
 MAX_ITEMS = 1000
 BASIS = "Conditional on the supplied typed premises; their source meaning is not certified by this operation."
 # The same closed field sets drive request validation and the agent-facing description.
 INPUTS = {
     **bounds_guide.INPUTS,
     **signals_guide.INPUTS,
+    **interpretations_guide.INPUTS,
     "describe": {
         "required": (),
         "fields": {
-            "view": "overview, entailment, coordinates, corpus, design_bounds, worked_session or full"
+            "view": "overview, entailment, coordinates, corpus, design_bounds, signals, interpretations, "
+            "worked_session or full"
         },
     },
     "entailment": {
@@ -451,6 +464,96 @@ def _design_bounds(request: dict[str, Any]) -> dict[str, Any]:
             "No automatic table interpretation or source mutation."
         ),
     }
+
+
+def _interpretation(
+    raw: Any,
+    fixed: tuple[signals.Signal, ...],
+    bindings: tuple[interpretation_bindings.Binding, ...],
+    study_ref: str,
+) -> interpretations.Interpretation:
+    row = _input(raw, "interpretation", "interpretation")
+    origin = _text(row["origin"], "interpretation:origin")
+    if origin not in ("assistant", "user", "source"):
+        raise RequestError("unsupported_interpretation_origin")
+    local = tuple(_prepared_signals(row.get("signals", [])))
+    signal_ids = [signal.id for signal in (*fixed, *local)]
+    if len(set(signal_ids)) != len(signal_ids):
+        raise RequestError("duplicate_interpretation_signal_id")
+    claims = []
+    for value in _list(row.get("signal_claims", []), "signal_claims"):
+        claim = _input(value, "signal_claim", "signal_claim")
+        if _text(claim["signal"], "signal_claim:signal") not in signal_ids:
+            raise RequestError("unknown_interpretation_signal")
+        if not isinstance(claim["claim"], dict):
+            raise RequestError("signal_claim_not_object")
+        claims.append(claim)
+    uses = interpretation_bindings.parse_uses(
+        row.get("binding_uses", []), bindings, set(signal_ids), study_ref
+    )
+    return interpretations.Interpretation(
+        _text(row["id"], "interpretation:id"),
+        _text(row["label"], "interpretation:label"),
+        origin,
+        _bound_basis(row["basis"]),
+        _scoped_assertions(row.get("assumptions", [])),
+        local,
+        tuple(claims),
+        uses,
+    )
+
+
+def _interpretations(request: dict[str, Any]) -> dict[str, Any]:
+    """Translate explicit frames without admitting their assumptions to ordinary entailment."""
+    _input(request, "interpretations", "request")
+    study_ref = _text(request["study_ref"], "study_ref")
+    floor = _input(request["fixed"], "interpretation_floor", "fixed")
+    fixed_assertions = _scoped_assertions(floor.get("assertions", []))
+    fixed_signals = tuple(_prepared_signals(floor.get("signals", [])))
+    if any(item.status == "proposed" for item in fixed_assertions) or any(
+        support.status == "proposed" for signal in fixed_signals for support in signal.support
+    ):
+        raise RequestError("proposed_material_requires_interpretation_frame")
+    bindings = interpretation_bindings.parse_bindings(request.get("bindings", []), study_ref)
+    frames = tuple(
+        _interpretation(raw, fixed_signals, bindings, study_ref)
+        for raw in _list(request["interpretations"], "interpretations")
+    )
+    queries = []
+    for value in _list(request["queries"], "queries"):
+        row = _input(value, "interpretation_query", "interpretation_query")
+        body = _model(row["body"])
+        if not isinstance(body, assertions.PROPOSITIONS):
+            raise RequestError("query_proposition_required")
+        queries.append(interpretations.Query(_text(row["id"], "query:id"), body))
+    if not frames or not queries:
+        raise RequestError("empty_interpretation_inputs")
+    for identities in ([frame.id for frame in frames], [query.id for query in queries]):
+        if len(set(identities)) != len(identities):
+            raise RequestError("duplicate_interpretation_or_query_id")
+    items = len(fixed_assertions) + len(fixed_signals) + len(bindings) + len(queries)
+    items += sum(
+        len(frame.assumptions) + len(frame.signals) + len(frame.signal_claims) + len(frame.binding_uses)
+        for frame in frames
+    )
+    if items > MAX_ITEMS or len(queries) * (len(frames) + 1) > MAX_ITEMS:
+        raise RequestError("resource_bound:interpretations")
+    selected = request.get("selected")
+    if selected is not None:
+        _text(selected, "selected")
+        if selected not in {frame.id for frame in frames}:
+            raise RequestError("unknown_selected_interpretation")
+    return interpretations.resolve(
+        study_ref,
+        fixed_assertions,
+        fixed_signals,
+        frames,
+        tuple(queries),
+        bindings,
+        _reason_context(request.get("context", {})),
+        _assignment_bound(request.get("bound", entail.MAX_ASSIGNMENTS)),
+        selected,
+    )
 
 
 def _coordinates(request: dict[str, Any]) -> dict[str, Any]:
@@ -1306,6 +1409,7 @@ def _describe(request: dict[str, Any]) -> dict[str, Any]:
         "corpus",
         "design_bounds",
         "signals",
+        "interpretations",
         "worked_session",
         "full",
     )
@@ -1314,6 +1418,7 @@ def _describe(request: dict[str, Any]) -> dict[str, Any]:
     full = _full_description()
     bounds_guide.extend(full)
     signals_guide.extend(full)
+    interpretations_guide.extend(full)
     if view == "full":
         return full
     common = {key: full[key] for key in ("basis", "availability", "limits", "premise_status")}
@@ -1343,6 +1448,17 @@ def _describe(request: dict[str, Any]) -> dict[str, Any]:
         "corpus": ("corpus", "trial", "coverage", "expectation"),
         "design_bounds": ("design_bounds", "candidate", "observation", "bridge", "context"),
         "signals": ("signals", "signal", "support"),
+        "interpretations": (
+            "interpretations",
+            "interpretation_floor",
+            "interpretation",
+            "interpretation_query",
+            "interpretation_binding",
+            "interpretation_binding_use",
+            "signal",
+            "support",
+            "context",
+        ),
     }[view]
     vocabulary = {
         "entailment": tuple(
@@ -1353,6 +1469,14 @@ def _describe(request: dict[str, Any]) -> dict[str, Any]:
         "coordinates": ("sections", "scopes", "coordinate_values"),
         "corpus": ("coverage_states", "observation_states"),
         "signals": ("statuses", "resolutions"),
+        "interpretations": (
+            "statuses",
+            "resolutions",
+            "modalities",
+            "subject_kinds",
+            "predicate_kinds",
+            "value_kinds",
+        ),
         "design_bounds": (
             "statuses",
             "resolutions",
@@ -1374,9 +1498,9 @@ def _describe(request: dict[str, Any]) -> dict[str, Any]:
         "example": full["examples"][view],
         "example_result": full["example_results"][view],
     }
-    if view in ("entailment", "design_bounds"):
+    if view in ("entailment", "design_bounds", "interpretations"):
         result["tagged_model"] = full["tagged_model"]
-    if view in ("signals", "design_bounds"):
+    if view in ("signals", "design_bounds", "interpretations"):
         result["operator_inputs"] = full["operator_inputs"]
         result["signal_kinds"] = full["signal_kinds"]
         result["signal_examples"] = full["signal_examples"]
@@ -1404,6 +1528,7 @@ def run(request: object) -> dict[str, Any]:
             "corpus": _corpus,
             "design_bounds": _design_bounds,
             "signals": _signals,
+            "interpretations": _interpretations,
         }[operation]
         result = function(request)
         return {"code": "complete", "operation": operation, "result": result, "problems": []}

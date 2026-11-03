@@ -114,7 +114,8 @@ INSTRUCTIONS = (
     "not observed results. Handle paging and retries yourself, keeping complete evidence in files. "
     "The separate reason tool supports design restrictions, contradictions, NSCLC settings and patterns "
     'across a comparison set. Start with {"request":{"operation":"describe"}} for the overview, then '
-    "describe view entailment, coordinates, corpus, design_bounds or signals for formats and examples; "
+    "describe view entailment, coordinates, corpus, design_bounds, signals or interpretations for formats "
+    "and examples; "
     "worked_session and full remain available on demand. Show material premises together in clinical "
     "words, settle ambiguities once and rerun when they change. Confirmation establishes the person's "
     "premise, not a registry fact. Give the answer, deciding basis and material open items naturally; "
@@ -130,6 +131,9 @@ INSTRUCTIONS = (
     "can bound candidate eligibility designs through design_bounds: "
     "confirm population, scale, time and exception allowance, retain the bridge's status, and never turn "
     "an observed maximum into an exact protocol cutoff. A derived bound is not a source-text statement. "
+    "Use interpretations to explore unconfirmed readings as separate hypothetical frames with exact "
+    "conditional consequences. Keep fixed evidence, frame assumptions and binding/refutation warrants "
+    "distinct; surviving readings and user selections do not become source facts. "
     "A class pattern "
     "is descriptive and a near miss matches only the declared features. The complete automated trial "
     "writer is designed and partly built; these "
@@ -489,9 +493,12 @@ TOOLS: dict[str, dict[str, Any]] = {
         "abstention, not failure. You translate: prepare the structured premises from what the person "
         "confirms; they need not know the format. First call with "
         '{"request":{"operation":"describe"}} for a short overview, then describe with view entailment, '
-        "coordinates, corpus, design_bounds or signals for exact formats, guides and examples. Views "
+        "coordinates, corpus, design_bounds, signals or interpretations for exact formats, guides and "
+        "examples. Views "
         "worked_session and full provide the complete demonstration and manual on demand. Reasoning "
-        "requests name operation entailment, coordinates, corpus, design_bounds or signals. Witnesses bound "
+        "requests name operation entailment, coordinates, corpus, design_bounds, signals or interpretations. "
+        "Interpretations keep rival hypotheses and source-bound population/definition applications separate, "
+        "with exact conditional consequences and compatibility/refutation warrants. Witnesses bound "
         "declared candidate designs through explicit scoped eligibility bridges and exception allowances. "
         "Premises retain their "
         "source/user status; an assistant's interpretation is never a registry fact. No trial text is "
@@ -512,6 +519,7 @@ TOOLS: dict[str, dict[str, Any]] = {
                                 "corpus",
                                 "design_bounds",
                                 "signals",
+                                "interpretations",
                             ],
                         },
                         "view": {
@@ -523,6 +531,7 @@ TOOLS: dict[str, dict[str, Any]] = {
                                 "corpus",
                                 "design_bounds",
                                 "signals",
+                                "interpretations",
                                 "worked_session",
                                 "full",
                             ],
@@ -531,7 +540,8 @@ TOOLS: dict[str, dict[str, Any]] = {
                     },
                     "required": ["operation"],
                     "description": "Start with operation describe for the overview; view entailment, "
-                    "coordinates, corpus, design_bounds or signals gives formats and example. Views "
+                    "coordinates, corpus, design_bounds, signals or interpretations gives formats and "
+                    "example. Views "
                     "worked_session "
                     "and full give the complete demonstration/manual. Other operations need typed premises.",
                 }

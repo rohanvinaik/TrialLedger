@@ -1,0 +1,22 @@
+{
+  "kind": "synthetically-corrupted-copy-not-an-observed-NIH-error",
+  "original_hasResults": true,
+  "changed_hasResults": false,
+  "source_unchanged_by_check": true,
+  "inputs": {
+    "hasResults": false,
+    "resultsFirstSubmitDate": "2009-04-29"
+  },
+  "check": {
+    "id": "results_flag_first_submit",
+    "label": "hasResults true exactly when resultsFirstSubmitDate is present",
+    "outcome": "conflict",
+    "detail": "hasResults=False; statusModule.resultsFirstSubmitDate=2009-04-29",
+    "source": [
+      "hasResults",
+      "protocolSection.statusModule.resultsFirstSubmitDate"
+    ],
+    "rule": "API metadata, hasResults: «FUNC Present(ResultsFirstSubmitDate)»; «Flag that indicates if a study has posted results on public site»",
+    "basis": "registry function"
+  }
+}

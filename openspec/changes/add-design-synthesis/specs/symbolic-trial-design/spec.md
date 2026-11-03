@@ -33,8 +33,9 @@ protocol orchestration, with their input contracts, domains and limitations.
 
 ### Requirement: Assertions preserve logical structure
 The system SHALL preserve subject, predicate, value, force, alternatives, qualifiers, condition, cohort,
-branch, time and provenance. Recognized words SHALL be candidates only; unresolved binding SHALL block the
-conclusion rather than be completed by a token list.
+branch, time and provenance. Recognized words SHALL be candidates only; unresolved binding SHALL block an
+unconditional conclusion rather than be completed by a token list. Isolated hypothetical consequences SHALL
+remain available with the interpretation and unresolved binding explicitly named.
 
 #### Scenario: A requirement is disjunctive
 - **WHEN** an assertion requires A or B
@@ -64,7 +65,8 @@ distinct named outcomes.
 ### Requirement: Execution cannot promote epistemic standing
 The system SHALL distinguish facts and strict deductions, interpolated defaults, proposals, user choices
 and unresolved values. Conclusions SHALL retain their support's weakest standing. Approval or determinism
-SHALL NOT make defaults strict; proposals SHALL NOT become premises.
+SHALL NOT make defaults strict; proposals SHALL NOT become accepted premises. Explicit hypothetical frames
+MAY assume proposals locally without admitting them to the fixed floor or ordinary entailment.
 
 #### Scenario: An interpolated premise supports a conclusion
 - **WHEN** a strict rule derives from it
@@ -300,3 +302,71 @@ SHALL be conjoined jointly, and every elimination-dependent consequence SHALL re
 #### Scenario: Source constraints conflict
 - **WHEN** accepted input evidence is internally inconsistent
 - **THEN** a named source conflict blocks the common consequence without entailment by explosion
+
+### Requirement: Competing interpretations preserve conditional usefulness
+The separate `interpretations` operation SHALL retain each reading's identity, origin, clinical label,
+premises and alternatives. Fixed layer-one evidence and direct rules SHALL bound the represented admissible
+space. Exact consequences conditional on a reading SHALL remain distinct from confirmation of that reading.
+
+#### Scenario: Two plausible readings disagree
+- **WHEN** separate frames imply different parameter values without violating the fixed floor
+- **THEN** both readings and their conditional consequences remain available
+- **AND** neither becomes a source fact or a requirement of the new trial by surviving
+
+#### Scenario: A proposed reading is explored
+- **WHEN** an unconfirmed scoped assertion is explicitly assumed inside an interpretation
+- **THEN** its exact hypothetical consequences are computed with that assumption in the warrant
+- **AND** ordinary entailment still refuses that proposed assertion as an accepted premise
+
+### Requirement: Compatibility and refutation carry separate warrants
+The operation SHALL distinguish compatible, fixed-floor-refuted, internally incoherent, unresolved and
+fixed-floor-conflict states. Warrants SHALL identify rules, fixed premises, hypothetical premises, standing
+and blockers. Compatibility SHALL NOT certify intended meaning or clinical appropriateness.
+
+#### Scenario: A frame contradicts fixed evidence
+- **WHEN** the represented constraints admit no completion together but the fixed floor is satisfiable
+- **THEN** the frame is refuted with its deciding fixed and hypothetical premises
+- **AND** refutation depending on an interpolated floor remains conditional on that floor
+
+#### Scenario: The floor contradicts itself
+- **WHEN** the fixed premise set is inconsistent
+- **THEN** closure is blocked for every frame, without universal entailment
+
+#### Scenario: A planned window and an actual scan differ
+- **WHEN** a scheduled visit interpretation has a fixed interval and a separately represented actual unscheduled scan occurs outside it
+- **THEN** the different events do not conflict without a premise equating them
+
+### Requirement: Source bindings have typed and effective consumers
+Population and definition bindings SHALL retain source versions/locations and explicit study, population,
+arm, time and edition scope. Each application SHALL identify its target signal and check the declared
+relation and scope. Unknown bindings SHALL preserve conditional calculations while preventing unsupported
+admission, pooling or refutation.
+
+#### Scenario: An analysis subset is bound
+- **WHEN** a subset binding matches the target population operator's universe, parent and subset
+- **THEN** the binding check feeds the interpretation's admissibility and the computed difference retains that support
+- **AND** equal denominators or group titles alone never establish the binding
+
+#### Scenario: An endpoint definition has another edition
+- **WHEN** the binding's adopted rule edition differs from its application
+- **THEN** that application is unresolved and its conditional calculations remain inspectable
+- **AND** imputed and observed prerequisites remain distinct
+
+### Requirement: Surviving interpretations do not manufacture certainty
+The operation SHALL expose fixed-floor answers independently and common consequences across declared
+surviving frames, without assuming family exhaustiveness. Unresolved frames SHALL remain possible and block
+unsupported common closure. Selecting a frame SHALL remain a user choice and recompute the full snapshot.
+
+#### Scenario: Only one declared frame survives
+- **WHEN** a single candidate remains
+- **THEN** its consequences remain conditional on the declared family and assumptions
+- **AND** the actual protocol is not claimed uniquely identified
+
+#### Scenario: A selected frame is refuted
+- **WHEN** the requested selection conflicts with fixed evidence
+- **THEN** it is not admitted and the contradictory warrant is retained
+
+#### Scenario: A binding is revised
+- **WHEN** population alignment, definition edition or hypothesis support changes
+- **THEN** all dependent frame decisions and common consequences are recomputed from the revised request
+- **AND** retained source records and the original request remain unchanged

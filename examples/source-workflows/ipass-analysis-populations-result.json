@@ -1,0 +1,473 @@
+{
+  "code": "complete",
+  "operation": "signals",
+  "result": {
+    "basis": "Conditional on the supplied typed premises; their source meaning is not certified by this operation.",
+    "premises": [
+      {
+        "id": "EFS-OG000",
+        "kind": "population",
+        "data": {
+          "universe": "NCT00322452:outcome-0:ITT:OG000",
+          "alignment": "confirmed",
+          "total": 609,
+          "parent_ref": "ITT",
+          "subset_relation": "confirmed",
+          "subset": {
+            "ref": "EFS",
+            "universe": "NCT00322452:outcome-0:ITT:OG000",
+            "lower": 607,
+            "upper": 607
+          }
+        },
+        "support": [
+          {
+            "id": "source-and-explicit-binding",
+            "status": "interpolated",
+            "resolution": "resolved",
+            "basis": [
+              "sha256:dc5b4cb1f416420d38c93c444f5a7b5f93d35d1676dc9c1cfa0379a58fe53354#/resultsSection/outcomeMeasuresModule/outcomeMeasures/0/denoms/0/counts/0",
+              "sha256:dc5b4cb1f416420d38c93c444f5a7b5f93d35d1676dc9c1cfa0379a58fe53354#/resultsSection/outcomeMeasuresModule/outcomeMeasures/3/denoms/0/counts/0",
+              "sha256:dc5b4cb1f416420d38c93c444f5a7b5f93d35d1676dc9c1cfa0379a58fe53354#/resultsSection/outcomeMeasuresModule/outcomeMeasures/3/populationDescription",
+              "assistant:exploration-assumes-same-treatment-cohort-across-outcome-local-groups-not-user-confirmed"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "EFQ-OG000",
+        "kind": "population",
+        "data": {
+          "universe": "NCT00322452:outcome-0:ITT:OG000",
+          "alignment": "confirmed",
+          "total": 609,
+          "parent_ref": "ITT",
+          "subset_relation": "confirmed",
+          "subset": {
+            "ref": "EFQ",
+            "universe": "NCT00322452:outcome-0:ITT:OG000",
+            "lower": 590,
+            "upper": 590
+          }
+        },
+        "support": [
+          {
+            "id": "source-and-explicit-binding",
+            "status": "interpolated",
+            "resolution": "resolved",
+            "basis": [
+              "sha256:dc5b4cb1f416420d38c93c444f5a7b5f93d35d1676dc9c1cfa0379a58fe53354#/resultsSection/outcomeMeasuresModule/outcomeMeasures/0/denoms/0/counts/0",
+              "sha256:dc5b4cb1f416420d38c93c444f5a7b5f93d35d1676dc9c1cfa0379a58fe53354#/resultsSection/outcomeMeasuresModule/outcomeMeasures/13/denoms/0/counts/0",
+              "sha256:dc5b4cb1f416420d38c93c444f5a7b5f93d35d1676dc9c1cfa0379a58fe53354#/resultsSection/outcomeMeasuresModule/outcomeMeasures/13/populationDescription",
+              "assistant:exploration-assumes-same-treatment-cohort-across-outcome-local-groups-not-user-confirmed"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "EFS-OG001",
+        "kind": "population",
+        "data": {
+          "universe": "NCT00322452:outcome-0:ITT:OG001",
+          "alignment": "confirmed",
+          "total": 608,
+          "parent_ref": "ITT",
+          "subset_relation": "confirmed",
+          "subset": {
+            "ref": "EFS",
+            "universe": "NCT00322452:outcome-0:ITT:OG001",
+            "lower": 589,
+            "upper": 589
+          }
+        },
+        "support": [
+          {
+            "id": "source-and-explicit-binding",
+            "status": "interpolated",
+            "resolution": "resolved",
+            "basis": [
+              "sha256:dc5b4cb1f416420d38c93c444f5a7b5f93d35d1676dc9c1cfa0379a58fe53354#/resultsSection/outcomeMeasuresModule/outcomeMeasures/0/denoms/0/counts/1",
+              "sha256:dc5b4cb1f416420d38c93c444f5a7b5f93d35d1676dc9c1cfa0379a58fe53354#/resultsSection/outcomeMeasuresModule/outcomeMeasures/3/denoms/0/counts/1",
+              "sha256:dc5b4cb1f416420d38c93c444f5a7b5f93d35d1676dc9c1cfa0379a58fe53354#/resultsSection/outcomeMeasuresModule/outcomeMeasures/3/populationDescription",
+              "assistant:exploration-assumes-same-treatment-cohort-across-outcome-local-groups-not-user-confirmed"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "EFQ-OG001",
+        "kind": "population",
+        "data": {
+          "universe": "NCT00322452:outcome-0:ITT:OG001",
+          "alignment": "confirmed",
+          "total": 608,
+          "parent_ref": "ITT",
+          "subset_relation": "confirmed",
+          "subset": {
+            "ref": "EFQ",
+            "universe": "NCT00322452:outcome-0:ITT:OG001",
+            "lower": 561,
+            "upper": 561
+          }
+        },
+        "support": [
+          {
+            "id": "source-and-explicit-binding",
+            "status": "interpolated",
+            "resolution": "resolved",
+            "basis": [
+              "sha256:dc5b4cb1f416420d38c93c444f5a7b5f93d35d1676dc9c1cfa0379a58fe53354#/resultsSection/outcomeMeasuresModule/outcomeMeasures/0/denoms/0/counts/1",
+              "sha256:dc5b4cb1f416420d38c93c444f5a7b5f93d35d1676dc9c1cfa0379a58fe53354#/resultsSection/outcomeMeasuresModule/outcomeMeasures/13/denoms/0/counts/1",
+              "sha256:dc5b4cb1f416420d38c93c444f5a7b5f93d35d1676dc9c1cfa0379a58fe53354#/resultsSection/outcomeMeasuresModule/outcomeMeasures/13/populationDescription",
+              "assistant:exploration-assumes-same-treatment-cohort-across-outcome-local-groups-not-user-confirmed"
+            ]
+          }
+        ]
+      }
+    ],
+    "signals": [
+      {
+        "id": "EFS-OG000",
+        "kind": "population",
+        "code": "bounded",
+        "calculation_code": "bounded",
+        "value": {
+          "universe": "NCT00322452:outcome-0:ITT:OG000",
+          "total": 609,
+          "counts": [
+            {
+              "id": "ITT",
+              "lower": 609,
+              "upper": 609
+            },
+            {
+              "id": "EFS",
+              "lower": 607,
+              "upper": 607
+            },
+            {
+              "id": "outside",
+              "lower": 2,
+              "upper": 2
+            }
+          ],
+          "witnesses": [
+            {
+              "id": "ITT",
+              "lower": 609,
+              "upper": 609,
+              "expression": {
+                "kind": "all_of",
+                "refs": [
+                  "ITT"
+                ]
+              }
+            },
+            {
+              "id": "EFS",
+              "lower": 607,
+              "upper": 607,
+              "expression": {
+                "kind": "all_of",
+                "refs": [
+                  "EFS"
+                ]
+              }
+            },
+            {
+              "id": "outside",
+              "lower": 2,
+              "upper": 2,
+              "expression": {
+                "kind": "difference",
+                "refs": [
+                  "ITT",
+                  "EFS"
+                ]
+              }
+            }
+          ]
+        },
+        "rule": "numeric.population:1",
+        "status": "interpolated",
+        "basis": [
+          "sha256:dc5b4cb1f416420d38c93c444f5a7b5f93d35d1676dc9c1cfa0379a58fe53354#/resultsSection/outcomeMeasuresModule/outcomeMeasures/0/denoms/0/counts/0",
+          "sha256:dc5b4cb1f416420d38c93c444f5a7b5f93d35d1676dc9c1cfa0379a58fe53354#/resultsSection/outcomeMeasuresModule/outcomeMeasures/3/denoms/0/counts/0",
+          "sha256:dc5b4cb1f416420d38c93c444f5a7b5f93d35d1676dc9c1cfa0379a58fe53354#/resultsSection/outcomeMeasuresModule/outcomeMeasures/3/populationDescription",
+          "assistant:exploration-assumes-same-treatment-cohort-across-outcome-local-groups-not-user-confirmed"
+        ],
+        "support": [
+          {
+            "id": "source-and-explicit-binding",
+            "status": "interpolated",
+            "resolution": "resolved",
+            "basis": [
+              "sha256:dc5b4cb1f416420d38c93c444f5a7b5f93d35d1676dc9c1cfa0379a58fe53354#/resultsSection/outcomeMeasuresModule/outcomeMeasures/0/denoms/0/counts/0",
+              "sha256:dc5b4cb1f416420d38c93c444f5a7b5f93d35d1676dc9c1cfa0379a58fe53354#/resultsSection/outcomeMeasuresModule/outcomeMeasures/3/denoms/0/counts/0",
+              "sha256:dc5b4cb1f416420d38c93c444f5a7b5f93d35d1676dc9c1cfa0379a58fe53354#/resultsSection/outcomeMeasuresModule/outcomeMeasures/3/populationDescription",
+              "assistant:exploration-assumes-same-treatment-cohort-across-outcome-local-groups-not-user-confirmed"
+            ]
+          }
+        ],
+        "blockers": []
+      },
+      {
+        "id": "EFQ-OG000",
+        "kind": "population",
+        "code": "bounded",
+        "calculation_code": "bounded",
+        "value": {
+          "universe": "NCT00322452:outcome-0:ITT:OG000",
+          "total": 609,
+          "counts": [
+            {
+              "id": "ITT",
+              "lower": 609,
+              "upper": 609
+            },
+            {
+              "id": "EFQ",
+              "lower": 590,
+              "upper": 590
+            },
+            {
+              "id": "outside",
+              "lower": 19,
+              "upper": 19
+            }
+          ],
+          "witnesses": [
+            {
+              "id": "ITT",
+              "lower": 609,
+              "upper": 609,
+              "expression": {
+                "kind": "all_of",
+                "refs": [
+                  "ITT"
+                ]
+              }
+            },
+            {
+              "id": "EFQ",
+              "lower": 590,
+              "upper": 590,
+              "expression": {
+                "kind": "all_of",
+                "refs": [
+                  "EFQ"
+                ]
+              }
+            },
+            {
+              "id": "outside",
+              "lower": 19,
+              "upper": 19,
+              "expression": {
+                "kind": "difference",
+                "refs": [
+                  "ITT",
+                  "EFQ"
+                ]
+              }
+            }
+          ]
+        },
+        "rule": "numeric.population:1",
+        "status": "interpolated",
+        "basis": [
+          "sha256:dc5b4cb1f416420d38c93c444f5a7b5f93d35d1676dc9c1cfa0379a58fe53354#/resultsSection/outcomeMeasuresModule/outcomeMeasures/0/denoms/0/counts/0",
+          "sha256:dc5b4cb1f416420d38c93c444f5a7b5f93d35d1676dc9c1cfa0379a58fe53354#/resultsSection/outcomeMeasuresModule/outcomeMeasures/13/denoms/0/counts/0",
+          "sha256:dc5b4cb1f416420d38c93c444f5a7b5f93d35d1676dc9c1cfa0379a58fe53354#/resultsSection/outcomeMeasuresModule/outcomeMeasures/13/populationDescription",
+          "assistant:exploration-assumes-same-treatment-cohort-across-outcome-local-groups-not-user-confirmed"
+        ],
+        "support": [
+          {
+            "id": "source-and-explicit-binding",
+            "status": "interpolated",
+            "resolution": "resolved",
+            "basis": [
+              "sha256:dc5b4cb1f416420d38c93c444f5a7b5f93d35d1676dc9c1cfa0379a58fe53354#/resultsSection/outcomeMeasuresModule/outcomeMeasures/0/denoms/0/counts/0",
+              "sha256:dc5b4cb1f416420d38c93c444f5a7b5f93d35d1676dc9c1cfa0379a58fe53354#/resultsSection/outcomeMeasuresModule/outcomeMeasures/13/denoms/0/counts/0",
+              "sha256:dc5b4cb1f416420d38c93c444f5a7b5f93d35d1676dc9c1cfa0379a58fe53354#/resultsSection/outcomeMeasuresModule/outcomeMeasures/13/populationDescription",
+              "assistant:exploration-assumes-same-treatment-cohort-across-outcome-local-groups-not-user-confirmed"
+            ]
+          }
+        ],
+        "blockers": []
+      },
+      {
+        "id": "EFS-OG001",
+        "kind": "population",
+        "code": "bounded",
+        "calculation_code": "bounded",
+        "value": {
+          "universe": "NCT00322452:outcome-0:ITT:OG001",
+          "total": 608,
+          "counts": [
+            {
+              "id": "ITT",
+              "lower": 608,
+              "upper": 608
+            },
+            {
+              "id": "EFS",
+              "lower": 589,
+              "upper": 589
+            },
+            {
+              "id": "outside",
+              "lower": 19,
+              "upper": 19
+            }
+          ],
+          "witnesses": [
+            {
+              "id": "ITT",
+              "lower": 608,
+              "upper": 608,
+              "expression": {
+                "kind": "all_of",
+                "refs": [
+                  "ITT"
+                ]
+              }
+            },
+            {
+              "id": "EFS",
+              "lower": 589,
+              "upper": 589,
+              "expression": {
+                "kind": "all_of",
+                "refs": [
+                  "EFS"
+                ]
+              }
+            },
+            {
+              "id": "outside",
+              "lower": 19,
+              "upper": 19,
+              "expression": {
+                "kind": "difference",
+                "refs": [
+                  "ITT",
+                  "EFS"
+                ]
+              }
+            }
+          ]
+        },
+        "rule": "numeric.population:1",
+        "status": "interpolated",
+        "basis": [
+          "sha256:dc5b4cb1f416420d38c93c444f5a7b5f93d35d1676dc9c1cfa0379a58fe53354#/resultsSection/outcomeMeasuresModule/outcomeMeasures/0/denoms/0/counts/1",
+          "sha256:dc5b4cb1f416420d38c93c444f5a7b5f93d35d1676dc9c1cfa0379a58fe53354#/resultsSection/outcomeMeasuresModule/outcomeMeasures/3/denoms/0/counts/1",
+          "sha256:dc5b4cb1f416420d38c93c444f5a7b5f93d35d1676dc9c1cfa0379a58fe53354#/resultsSection/outcomeMeasuresModule/outcomeMeasures/3/populationDescription",
+          "assistant:exploration-assumes-same-treatment-cohort-across-outcome-local-groups-not-user-confirmed"
+        ],
+        "support": [
+          {
+            "id": "source-and-explicit-binding",
+            "status": "interpolated",
+            "resolution": "resolved",
+            "basis": [
+              "sha256:dc5b4cb1f416420d38c93c444f5a7b5f93d35d1676dc9c1cfa0379a58fe53354#/resultsSection/outcomeMeasuresModule/outcomeMeasures/0/denoms/0/counts/1",
+              "sha256:dc5b4cb1f416420d38c93c444f5a7b5f93d35d1676dc9c1cfa0379a58fe53354#/resultsSection/outcomeMeasuresModule/outcomeMeasures/3/denoms/0/counts/1",
+              "sha256:dc5b4cb1f416420d38c93c444f5a7b5f93d35d1676dc9c1cfa0379a58fe53354#/resultsSection/outcomeMeasuresModule/outcomeMeasures/3/populationDescription",
+              "assistant:exploration-assumes-same-treatment-cohort-across-outcome-local-groups-not-user-confirmed"
+            ]
+          }
+        ],
+        "blockers": []
+      },
+      {
+        "id": "EFQ-OG001",
+        "kind": "population",
+        "code": "bounded",
+        "calculation_code": "bounded",
+        "value": {
+          "universe": "NCT00322452:outcome-0:ITT:OG001",
+          "total": 608,
+          "counts": [
+            {
+              "id": "ITT",
+              "lower": 608,
+              "upper": 608
+            },
+            {
+              "id": "EFQ",
+              "lower": 561,
+              "upper": 561
+            },
+            {
+              "id": "outside",
+              "lower": 47,
+              "upper": 47
+            }
+          ],
+          "witnesses": [
+            {
+              "id": "ITT",
+              "lower": 608,
+              "upper": 608,
+              "expression": {
+                "kind": "all_of",
+                "refs": [
+                  "ITT"
+                ]
+              }
+            },
+            {
+              "id": "EFQ",
+              "lower": 561,
+              "upper": 561,
+              "expression": {
+                "kind": "all_of",
+                "refs": [
+                  "EFQ"
+                ]
+              }
+            },
+            {
+              "id": "outside",
+              "lower": 47,
+              "upper": 47,
+              "expression": {
+                "kind": "difference",
+                "refs": [
+                  "ITT",
+                  "EFQ"
+                ]
+              }
+            }
+          ]
+        },
+        "rule": "numeric.population:1",
+        "status": "interpolated",
+        "basis": [
+          "sha256:dc5b4cb1f416420d38c93c444f5a7b5f93d35d1676dc9c1cfa0379a58fe53354#/resultsSection/outcomeMeasuresModule/outcomeMeasures/0/denoms/0/counts/1",
+          "sha256:dc5b4cb1f416420d38c93c444f5a7b5f93d35d1676dc9c1cfa0379a58fe53354#/resultsSection/outcomeMeasuresModule/outcomeMeasures/13/denoms/0/counts/1",
+          "sha256:dc5b4cb1f416420d38c93c444f5a7b5f93d35d1676dc9c1cfa0379a58fe53354#/resultsSection/outcomeMeasuresModule/outcomeMeasures/13/populationDescription",
+          "assistant:exploration-assumes-same-treatment-cohort-across-outcome-local-groups-not-user-confirmed"
+        ],
+        "support": [
+          {
+            "id": "source-and-explicit-binding",
+            "status": "interpolated",
+            "resolution": "resolved",
+            "basis": [
+              "sha256:dc5b4cb1f416420d38c93c444f5a7b5f93d35d1676dc9c1cfa0379a58fe53354#/resultsSection/outcomeMeasuresModule/outcomeMeasures/0/denoms/0/counts/1",
+              "sha256:dc5b4cb1f416420d38c93c444f5a7b5f93d35d1676dc9c1cfa0379a58fe53354#/resultsSection/outcomeMeasuresModule/outcomeMeasures/13/denoms/0/counts/1",
+              "sha256:dc5b4cb1f416420d38c93c444f5a7b5f93d35d1676dc9c1cfa0379a58fe53354#/resultsSection/outcomeMeasuresModule/outcomeMeasures/13/populationDescription",
+              "assistant:exploration-assumes-same-treatment-cohort-across-outcome-local-groups-not-user-confirmed"
+            ]
+          }
+        ],
+        "blockers": []
+      }
+    ],
+    "limits": "Typed, source-bound partial evidence; no clinical text interpretation or source mutation."
+  },
+  "problems": []
+}

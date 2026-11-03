@@ -79,6 +79,21 @@ proof, default, proposal or unresolved item. The structured analysis is reusable
 record. Discovery and result descriptions must enable that interaction without source-code access or a
 complete future trial-writing pipeline.
 
+`interpretations` owns isolated hypothetical frames over a separately checked fixed floor. It reuses scoped
+entailment and signal operators; proposed hypotheses are assumed only in private branch copies and remain
+proposed in retained inputs. Compatibility, fixed-floor refutation, internal incoherence, unresolved checking
+and floor conflict are separate outcomes with formal warrants. Fixed query answers remain independent;
+conditional results survive unresolved admission, and a sole surviving frame never establishes protocol
+identity. Selection remains a user's choice and recomputes the whole snapshot.
+
+`interpretation_bindings` owns source-bound population/definition objects and effective use checks. Study,
+population, arm, time and edition scope and source addresses remain explicit; mismatched applications are
+unresolved rather than clinical refutations. `interpretations_guide` owns focused discovery. The public path
+is CLI/MCP reason -> service -> binding checks and isolated frames -> existing exact operators -> per-frame
+warrants and declared-family consequences -> assistant decision list. See
+`docs/INTERPRETATION_IMPLEMENTATION_PLAN.md` for ownership and negative obligations. Reporting never imports
+these components. No text compiler, source repair engine or external adapter is implied by this operation.
+
 `TrialLedger.layer2.run(request)` owns the public typed operation. Scoped assertion objects/finite entailment,
 explicit NSCLC coordinate closure and corpus calculations are reusable components. Full design, source binding,
 default semantics, information geometry/significance, differential evidence parsing, recommendation, user
@@ -87,7 +102,7 @@ separates current implemented components from missing integration; do not infer 
 pipeline wiring or claim an integrated writer from unit tests.
 
 The public discovery request is `{"operation":"describe"}` through reason; it returns an overview. Add
-`"view":"entailment"`, `coordinates`, `corpus`, `design_bounds` or `signals` for focused formats, vocabulary,
+`"view":"entailment"`, `coordinates`, `corpus`, `design_bounds`, `signals` or `interpretations` for focused formats, vocabulary,
 result meanings and an example; `worked_session` and `full` retain the complete demonstration and manual. Its input descriptions and
 examples must stay tied to actual validators, and its capability/result descriptions must reflect what an
 agent can invoke. User-facing surfaces should explain clinical explorations as well as operation names:

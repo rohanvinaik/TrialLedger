@@ -1,0 +1,697 @@
+{
+  "boundary": "Actual CLI entrypoint with runtime call profiling; invented teaching inputs, not clinical validation",
+  "modules": {
+    "TrialLedger/layer2/entail.py": "c6792e82514686a5e6af14e28b79b2a995e68750d15782cd8b86b3e1f5e06ab8",
+    "TrialLedger/layer2/interpretation_bindings.py": "ecb353c932964ad7011b6e8e504a540b22b001ee270b1c064bbb33514d488949",
+    "TrialLedger/layer2/interpretations.py": "7136665a52023fee067f112c4f98650b9798c6d56767bf040cb286b1566b5eda",
+    "TrialLedger/layer2/numeric_evidence.py": "ba85ff9b672c03d8cfdce0e4a483cbffd254ad1f0abef3d64e0c23cea0f42e2a",
+    "TrialLedger/layer2/service.py": "07277aead643d35bc44b3aa624f2a4afa7d988df1483140a63c9b0dcaec68832",
+    "TrialLedger/layer2/signals.py": "918de9165b577356320a086f952aa8ffe61137a15b6770023f4b559299eefc01"
+  },
+  "calls": {
+    "TrialLedger/layer2/entail.py::<genexpr>": 3976,
+    "TrialLedger/layer2/entail.py::<module>": 1,
+    "TrialLedger/layer2/entail.py::Context": 1,
+    "TrialLedger/layer2/entail.py::Decision": 1,
+    "TrialLedger/layer2/entail.py::_atoms": 625,
+    "TrialLedger/layer2/entail.py::_components": 56,
+    "TrialLedger/layer2/entail.py::_fold": 332,
+    "TrialLedger/layer2/entail.py::_holds": 965,
+    "TrialLedger/layer2/entail.py::_literal_formula": 209,
+    "TrialLedger/layer2/entail.py::_measured": 183,
+    "TrialLedger/layer2/entail.py::_negate": 198,
+    "TrialLedger/layer2/entail.py::_proof": 24,
+    "TrialLedger/layer2/entail.py::_satisfiable": 218,
+    "TrialLedger/layer2/entail.py::_scope_formula": 153,
+    "TrialLedger/layer2/entail.py::assertion_formula": 153,
+    "TrialLedger/layer2/entail.py::decide": 56,
+    "TrialLedger/layer2/entail.py::proposition_formula": 362,
+    "TrialLedger/layer2/entail.py::weakest_status": 113,
+    "TrialLedger/layer2/interpretation_bindings.py::<genexpr>": 28,
+    "TrialLedger/layer2/interpretation_bindings.py::<module>": 1,
+    "TrialLedger/layer2/interpretation_bindings.py::Binding": 1,
+    "TrialLedger/layer2/interpretation_bindings.py::BindingUse": 1,
+    "TrialLedger/layer2/interpretation_bindings.py::_object": 23,
+    "TrialLedger/layer2/interpretation_bindings.py::_rows": 24,
+    "TrialLedger/layer2/interpretation_bindings.py::_scope": 10,
+    "TrialLedger/layer2/interpretation_bindings.py::_sources": 3,
+    "TrialLedger/layer2/interpretation_bindings.py::_text": 105,
+    "TrialLedger/layer2/interpretation_bindings.py::_texts": 6,
+    "TrialLedger/layer2/interpretation_bindings.py::_use_problem": 7,
+    "TrialLedger/layer2/interpretation_bindings.py::binding_standing": 7,
+    "TrialLedger/layer2/interpretation_bindings.py::check_uses": 11,
+    "TrialLedger/layer2/interpretation_bindings.py::definition_compatibility": 3,
+    "TrialLedger/layer2/interpretation_bindings.py::parse_bindings": 4,
+    "TrialLedger/layer2/interpretation_bindings.py::parse_uses": 11,
+    "TrialLedger/layer2/interpretation_bindings.py::population_compatibility": 4,
+    "TrialLedger/layer2/interpretation_bindings.py::scope_compatibility": 7,
+    "TrialLedger/layer2/interpretations.py::<genexpr>": 270,
+    "TrialLedger/layer2/interpretations.py::<module>": 1,
+    "TrialLedger/layer2/interpretations.py::Interpretation": 1,
+    "TrialLedger/layer2/interpretations.py::Query": 1,
+    "TrialLedger/layer2/interpretations.py::_assume_assertions": 11,
+    "TrialLedger/layer2/interpretations.py::_claim_checks": 11,
+    "TrialLedger/layer2/interpretations.py::_consequences": 4,
+    "TrialLedger/layer2/interpretations.py::_consistency_query": 26,
+    "TrialLedger/layer2/interpretations.py::_frame_row": 11,
+    "TrialLedger/layer2/interpretations.py::_gate_calculation": 16,
+    "TrialLedger/layer2/interpretations.py::_plain": 49,
+    "TrialLedger/layer2/interpretations.py::_query_rows": 15,
+    "TrialLedger/layer2/interpretations.py::_supported_assertions": 15,
+    "TrialLedger/layer2/interpretations.py::compatibility_state": 11,
+    "TrialLedger/layer2/interpretations.py::resolve": 4,
+    "TrialLedger/layer2/interpretations.py::selection_state": 4,
+    "TrialLedger/layer2/numeric_evidence.py::<genexpr>": 62,
+    "TrialLedger/layer2/numeric_evidence.py::<module>": 1,
+    "TrialLedger/layer2/numeric_evidence.py::_alignment": 16,
+    "TrialLedger/layer2/numeric_evidence.py::_claims": 16,
+    "TrialLedger/layer2/numeric_evidence.py::_count": 28,
+    "TrialLedger/layer2/numeric_evidence.py::_finish": 8,
+    "TrialLedger/layer2/numeric_evidence.py::_interval": 10,
+    "TrialLedger/layer2/numeric_evidence.py::_list": 24,
+    "TrialLedger/layer2/numeric_evidence.py::_object": 18,
+    "TrialLedger/layer2/numeric_evidence.py::_population": 8,
+    "TrialLedger/layer2/numeric_evidence.py::_result": 8,
+    "TrialLedger/layer2/numeric_evidence.py::_rows": 8,
+    "TrialLedger/layer2/numeric_evidence.py::_text": 34,
+    "TrialLedger/layer2/numeric_evidence.py::check": 8,
+    "TrialLedger/layer2/numeric_evidence.py::evaluate": 6,
+    "TrialLedger/layer2/numeric_evidence.py::interval_state": 38,
+    "TrialLedger/layer2/numeric_evidence.py::partition_bounds": 8,
+    "TrialLedger/layer2/numeric_evidence.py::scope_state": 8,
+    "TrialLedger/layer2/service.py::<genexpr>": 51,
+    "TrialLedger/layer2/service.py::<module>": 1,
+    "TrialLedger/layer2/service.py::RequestError": 1,
+    "TrialLedger/layer2/service.py::_assignment_bound": 4,
+    "TrialLedger/layer2/service.py::_bound_basis": 16,
+    "TrialLedger/layer2/service.py::_input": 50,
+    "TrialLedger/layer2/service.py::_interpretation": 11,
+    "TrialLedger/layer2/service.py::_interpretations": 4,
+    "TrialLedger/layer2/service.py::_list": 70,
+    "TrialLedger/layer2/service.py::_model": 27,
+    "TrialLedger/layer2/service.py::_object": 50,
+    "TrialLedger/layer2/service.py::_prepared_signals": 15,
+    "TrialLedger/layer2/service.py::_reason_context": 4,
+    "TrialLedger/layer2/service.py::_scoped_assertions": 15,
+    "TrialLedger/layer2/service.py::_support_words": 5,
+    "TrialLedger/layer2/service.py::_text": 85,
+    "TrialLedger/layer2/service.py::_texts": 16,
+    "TrialLedger/layer2/service.py::run": 4,
+    "TrialLedger/layer2/signals.py::<genexpr>": 84,
+    "TrialLedger/layer2/signals.py::<module>": 1,
+    "TrialLedger/layer2/signals.py::Signal": 1,
+    "TrialLedger/layer2/signals.py::Support": 1,
+    "TrialLedger/layer2/signals.py::evaluate": 21,
+    "TrialLedger/layer2/signals.py::operator": 21,
+    "TrialLedger/layer2/signals.py::support_state": 21
+  },
+  "observations": [
+    {
+      "request": "examples/interpretations/population-unresolved-request.json",
+      "states": {
+        "aligned-EFQ": "unresolved",
+        "everyone-in-EFQ": "unresolved"
+      },
+      "binding_checks": [
+        {
+          "interpretation": "aligned-EFQ",
+          "checks": [
+            {
+              "binding": "EFQ-subset-binding",
+              "signal": "EFQ-coverage",
+              "code": "unresolved",
+              "status": "proposed",
+              "basis": [
+                "invented:explicit-reading-for-hypothetical-computation",
+                "invented:comparator-protocol@1#/invented/definitions"
+              ],
+              "blockers": [
+                "binding_unresolved:EFQ-subset-binding"
+              ],
+              "rule": "interpretation.binding-use:1"
+            }
+          ]
+        },
+        {
+          "interpretation": "everyone-in-EFQ",
+          "checks": [
+            {
+              "binding": "EFQ-subset-binding",
+              "signal": "EFQ-coverage",
+              "code": "unresolved",
+              "status": "proposed",
+              "basis": [
+                "invented:explicit-reading-for-hypothetical-computation",
+                "invented:comparator-protocol@1#/invented/definitions"
+              ],
+              "blockers": [
+                "binding_unresolved:EFQ-subset-binding"
+              ],
+              "rule": "interpretation.binding-use:1"
+            }
+          ]
+        }
+      ],
+      "consequences": [
+        {
+          "id": "adult",
+          "body": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "age",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "ge",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 18.0,
+              "unit": "Years",
+              "upper": null
+            }
+          },
+          "result": "ENTAILED",
+          "decision": {
+            "result": "ENTAILED",
+            "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+            "status": "known",
+            "proof": [
+              "draft-adults"
+            ],
+            "blockers": []
+          },
+          "warrant": {
+            "rule": "entail.decide:1",
+            "guarantee": "fixed_floor",
+            "status": "known",
+            "assumptions": [],
+            "proof": [
+              "draft-adults"
+            ],
+            "blockers": []
+          },
+          "frames": [],
+          "basis": "fixed_floor"
+        },
+        {
+          "id": "PS3",
+          "body": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "ECOG",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "eq",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 3.0,
+              "unit": "ECOG",
+              "upper": null
+            }
+          },
+          "result": "UNDETERMINED",
+          "frames": [
+            "aligned-EFQ",
+            "everyone-in-EFQ"
+          ],
+          "basis": "declared_interpretation_family",
+          "warrant": {
+            "rule": "interpretations.common:1",
+            "guarantee": "conditional_on_declared_family_not_exhaustive",
+            "status": "proposed",
+            "blockers": [
+              "binding_unresolved:EFQ-subset-binding",
+              "inconsistent_population_total",
+              "interpretation_unresolved"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "request": "examples/interpretations/population-resolved-request.json",
+      "states": {
+        "aligned-EFQ": "compatible",
+        "everyone-in-EFQ": "refuted"
+      },
+      "binding_checks": [
+        {
+          "interpretation": "aligned-EFQ",
+          "checks": [
+            {
+              "binding": "EFQ-subset-binding",
+              "signal": "EFQ-coverage",
+              "code": "conditional",
+              "status": "proposed",
+              "basis": [
+                "invented:explicit-reading-for-hypothetical-computation",
+                "invented:comparator-protocol@1#/invented/definitions"
+              ],
+              "blockers": [],
+              "rule": "interpretation.binding-use:1"
+            }
+          ]
+        },
+        {
+          "interpretation": "everyone-in-EFQ",
+          "checks": [
+            {
+              "binding": "EFQ-subset-binding",
+              "signal": "EFQ-coverage",
+              "code": "conditional",
+              "status": "proposed",
+              "basis": [
+                "invented:explicit-reading-for-hypothetical-computation",
+                "invented:comparator-protocol@1#/invented/definitions"
+              ],
+              "blockers": [],
+              "rule": "interpretation.binding-use:1"
+            }
+          ]
+        }
+      ],
+      "consequences": [
+        {
+          "id": "adult",
+          "body": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "age",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "ge",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 18.0,
+              "unit": "Years",
+              "upper": null
+            }
+          },
+          "result": "ENTAILED",
+          "decision": {
+            "result": "ENTAILED",
+            "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+            "status": "known",
+            "proof": [
+              "draft-adults"
+            ],
+            "blockers": []
+          },
+          "warrant": {
+            "rule": "entail.decide:1",
+            "guarantee": "fixed_floor",
+            "status": "known",
+            "assumptions": [],
+            "proof": [
+              "draft-adults"
+            ],
+            "blockers": []
+          },
+          "frames": [],
+          "basis": "fixed_floor"
+        },
+        {
+          "id": "PS3",
+          "body": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "ECOG",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "eq",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 3.0,
+              "unit": "ECOG",
+              "upper": null
+            }
+          },
+          "result": "REFUTED",
+          "frames": [
+            "aligned-EFQ"
+          ],
+          "basis": "declared_interpretation_family",
+          "warrant": {
+            "rule": "interpretations.common:1",
+            "guarantee": "conditional_on_declared_family_not_exhaustive",
+            "status": "proposed",
+            "blockers": []
+          }
+        }
+      ]
+    },
+    {
+      "request": "examples/interpretations/endpoint-inputs-request.json",
+      "states": {
+        "observed-week12": "compatible",
+        "imputed-week12": "unresolved",
+        "no-observed-week12": "refuted"
+      },
+      "binding_checks": [
+        {
+          "interpretation": "observed-week12",
+          "checks": [
+            {
+              "binding": "adopt-change",
+              "signal": "observed-change",
+              "code": "supported",
+              "status": "known",
+              "basis": [
+                "invented:explicit-reading-for-hypothetical-computation",
+                "invented:comparator-protocol@1#/invented/definitions"
+              ],
+              "blockers": [],
+              "rule": "interpretation.binding-use:1"
+            }
+          ]
+        },
+        {
+          "interpretation": "imputed-week12",
+          "checks": [
+            {
+              "binding": "adopt-change",
+              "signal": "observed-change",
+              "code": "supported",
+              "status": "known",
+              "basis": [
+                "invented:explicit-reading-for-hypothetical-computation",
+                "invented:comparator-protocol@1#/invented/definitions"
+              ],
+              "blockers": [],
+              "rule": "interpretation.binding-use:1"
+            }
+          ]
+        },
+        {
+          "interpretation": "no-observed-week12",
+          "checks": [
+            {
+              "binding": "adopt-change",
+              "signal": "observed-change",
+              "code": "supported",
+              "status": "known",
+              "basis": [
+                "invented:explicit-reading-for-hypothetical-computation",
+                "invented:comparator-protocol@1#/invented/definitions"
+              ],
+              "blockers": [],
+              "rule": "interpretation.binding-use:1"
+            }
+          ]
+        }
+      ],
+      "consequences": [
+        {
+          "id": "adult",
+          "body": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "age",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "ge",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 18.0,
+              "unit": "Years",
+              "upper": null
+            }
+          },
+          "result": "ENTAILED",
+          "decision": {
+            "result": "ENTAILED",
+            "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+            "status": "known",
+            "proof": [
+              "draft-adults"
+            ],
+            "blockers": []
+          },
+          "warrant": {
+            "rule": "entail.decide:1",
+            "guarantee": "fixed_floor",
+            "status": "known",
+            "assumptions": [],
+            "proof": [
+              "draft-adults"
+            ],
+            "blockers": []
+          },
+          "frames": [],
+          "basis": "fixed_floor"
+        },
+        {
+          "id": "PS3",
+          "body": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "ECOG",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "eq",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 3.0,
+              "unit": "ECOG",
+              "upper": null
+            }
+          },
+          "result": "UNDETERMINED",
+          "frames": [
+            "observed-week12",
+            "imputed-week12"
+          ],
+          "basis": "declared_interpretation_family",
+          "warrant": {
+            "rule": "interpretations.common:1",
+            "guarantee": "conditional_on_declared_family_not_exhaustive",
+            "status": "proposed",
+            "blockers": [
+              "dependency_unresolved:change",
+              "interpretation_unresolved"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "request": "examples/interpretations/assessment-roles-request.json",
+      "states": {
+        "scheduled-42": "compatible",
+        "scheduled-49": "compatible",
+        "scheduled-28": "refuted",
+        "unscheduled-28": "compatible"
+      },
+      "binding_checks": [
+        {
+          "interpretation": "scheduled-42",
+          "checks": []
+        },
+        {
+          "interpretation": "scheduled-49",
+          "checks": []
+        },
+        {
+          "interpretation": "scheduled-28",
+          "checks": []
+        },
+        {
+          "interpretation": "unscheduled-28",
+          "checks": []
+        }
+      ],
+      "consequences": [
+        {
+          "id": "adult",
+          "body": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "age",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "ge",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 18.0,
+              "unit": "Years",
+              "upper": null
+            }
+          },
+          "result": "ENTAILED",
+          "decision": {
+            "result": "ENTAILED",
+            "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+            "status": "known",
+            "proof": [
+              "draft-adults"
+            ],
+            "blockers": []
+          },
+          "warrant": {
+            "rule": "entail.decide:1",
+            "guarantee": "fixed_floor",
+            "status": "known",
+            "assumptions": [],
+            "proof": [
+              "draft-adults"
+            ],
+            "blockers": []
+          },
+          "frames": [],
+          "basis": "fixed_floor"
+        },
+        {
+          "id": "PS3",
+          "body": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "ECOG",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "eq",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 3.0,
+              "unit": "ECOG",
+              "upper": null
+            }
+          },
+          "result": "UNDETERMINED",
+          "frames": [
+            "scheduled-42",
+            "scheduled-49",
+            "unscheduled-28"
+          ],
+          "basis": "declared_interpretation_family",
+          "warrant": {
+            "rule": "interpretations.common:1",
+            "guarantee": "conditional_on_declared_family_not_exhaustive",
+            "status": "proposed",
+            "blockers": [
+              "undecided_by_constraints"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

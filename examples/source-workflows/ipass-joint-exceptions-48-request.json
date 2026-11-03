@@ -1,0 +1,334 @@
+{
+  "operation": "design_bounds",
+  "study_ref": "NCT00322452:sha256:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a",
+  "candidates": [
+    {
+      "id": "no_joint",
+      "assertions": [
+        {
+          "applicability": {
+            "class": "Always"
+          },
+          "body": {
+            "class": "AllOf",
+            "parts": [
+              {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "WHO_PS",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 2.0,
+                  "unit": "WHO_PS",
+                  "upper": null
+                }
+              },
+              {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "never_smoker",
+                  "kind": "demographic"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "boolean",
+                  "members": [],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                }
+              }
+            ]
+          },
+          "branch": {
+            "class": "Branch",
+            "node": "unresolved",
+            "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+            "class": "Scope",
+            "kind": "all_participants",
+            "parts": [],
+            "ref": ""
+          },
+          "criterion_ref": "test:declared-not-protocol",
+          "id": "no_joint",
+          "modality": "excluded",
+          "resolution": "resolved",
+          "rule": {
+            "answers": [],
+            "class": "Rule",
+            "id": "test-candidate",
+            "premises": [],
+            "version": "1",
+            "warrants": [
+              "test:finite-candidates"
+            ]
+          },
+          "span": [],
+          "status": "known"
+        }
+      ]
+    },
+    {
+      "id": "requires_never",
+      "assertions": [
+        {
+          "applicability": {
+            "class": "Always"
+          },
+          "body": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "never_smoker",
+              "kind": "demographic"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "eq",
+              "inclusivity": "unspecified",
+              "kind": "boolean",
+              "members": [],
+              "number": null,
+              "unit": "",
+              "upper": null
+            }
+          },
+          "branch": {
+            "class": "Branch",
+            "node": "unresolved",
+            "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+            "class": "Scope",
+            "kind": "all_participants",
+            "parts": [],
+            "ref": ""
+          },
+          "criterion_ref": "test:declared-not-protocol",
+          "id": "requires_never",
+          "modality": "required",
+          "resolution": "resolved",
+          "rule": {
+            "answers": [],
+            "class": "Rule",
+            "id": "test-candidate",
+            "premises": [],
+            "version": "1",
+            "warrants": [
+              "test:finite-candidates"
+            ]
+          },
+          "span": [],
+          "status": "known"
+        }
+      ]
+    },
+    {
+      "id": "unrestricted",
+      "assertions": []
+    }
+  ],
+  "observations": [
+    {
+      "id": "joint-witness",
+      "denominator": 1217,
+      "population": "NCT00322452:baseline:BG002",
+      "context": {},
+      "bridge": {
+        "status": "interpolated",
+        "resolution": "resolved",
+        "max_exceptions": 48,
+        "basis": [
+          "test:assume-PS-category-is-participant-count-and-aligned-to-eligibility-assessment",
+          "test:assume-at-least-one-PS2-participant-met-applicable-criteria-via-zero-exceptions"
+        ]
+      },
+      "derivation": {
+        "signal": "joint-count",
+        "witness": "intersection"
+      }
+    }
+  ],
+  "query": {
+    "class": "Literal",
+    "evidence": [],
+    "polarity": "positive",
+    "predicate": {
+      "class": "Predicate",
+      "key": "never_smoker",
+      "kind": "demographic"
+    },
+    "qualifiers": {
+      "class": "Always"
+    },
+    "subject": {
+      "class": "Subject",
+      "kind": "participant",
+      "referent": ""
+    },
+    "time": null,
+    "value": {
+      "class": "Value",
+      "comparison": "eq",
+      "inclusivity": "unspecified",
+      "kind": "boolean",
+      "members": [],
+      "number": null,
+      "unit": "",
+      "upper": null
+    }
+  },
+  "signals": [
+    {
+      "id": "joint-count",
+      "kind": "overlap",
+      "data": {
+        "universe": "NCT00322452:baseline:BG002",
+        "alignment": "confirmed",
+        "total": 1217,
+        "marginals": [
+          {
+            "ref": "ps2",
+            "universe": "NCT00322452:baseline:BG002",
+            "lower": 126,
+            "upper": 126
+          },
+          {
+            "ref": "never",
+            "universe": "NCT00322452:baseline:BG002",
+            "lower": 1140,
+            "upper": 1140
+          }
+        ]
+      },
+      "bindings": {
+        "ps2": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+            "class": "Predicate",
+            "key": "WHO_PS",
+            "kind": "measurement"
+          },
+          "qualifiers": {
+            "class": "Always"
+          },
+          "subject": {
+            "class": "Subject",
+            "kind": "participant",
+            "referent": ""
+          },
+          "time": null,
+          "value": {
+            "class": "Value",
+            "comparison": "eq",
+            "inclusivity": "unspecified",
+            "kind": "quantity",
+            "members": [],
+            "number": 2.0,
+            "unit": "WHO_PS",
+            "upper": null
+          }
+        },
+        "never": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+            "class": "Predicate",
+            "key": "never_smoker",
+            "kind": "demographic"
+          },
+          "qualifiers": {
+            "class": "Always"
+          },
+          "subject": {
+            "class": "Subject",
+            "kind": "participant",
+            "referent": ""
+          },
+          "time": null,
+          "value": {
+            "class": "Value",
+            "comparison": "eq",
+            "inclusivity": "unspecified",
+            "kind": "boolean",
+            "members": [],
+            "number": null,
+            "unit": "",
+            "upper": null
+          }
+        }
+      },
+      "support": [
+        {
+          "id": "retained-counts",
+          "status": "known",
+          "resolution": "resolved",
+          "basis": [
+            "/studies/0/baseline/measures/5/classes/2/categories/0/measurements/2/value",
+            "/studies/0/baseline/denominators/0/counts/2",
+            "/studies/0/digest",
+            "/studies/0/baseline/measures/4/classes/0/categories/0/measurements/2/value"
+          ]
+        },
+        {
+          "id": "same-universe",
+          "status": "interpolated",
+          "resolution": "resolved",
+          "basis": [
+            "test:assume-exact-participant-counts-in-one-baseline-universe"
+          ]
+        }
+      ]
+    }
+  ]
+}

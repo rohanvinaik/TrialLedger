@@ -1,0 +1,12 @@
+{
+  "source": "tests/fixtures/ipass-registry.json",
+  "sha256": "dc5b4cb1f416420d38c93c444f5a7b5f93d35d1676dc9c1cfa0379a58fe53354",
+  "source_status": "retained-development-example-not-live-revalidation",
+  "interpretation_status": "assistant-authored-exploration-not-user-confirmed",
+  "limits": [
+    "These are conditional demonstrations, not a clinical design session or recovered protocol.",
+    "Helpers prepare typed inputs; each saved reason response is produced by the public CLI.",
+    "Cross-module cohort correspondence is an explicit premise, not a title join.",
+    "No registry value, source report or terminology store is modified."
+  ]
+}

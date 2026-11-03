@@ -832,6 +832,42 @@
     "refusal": "",
     "standing": "complete"
   },
+  "TrialLedger/layer2/interpretation_bindings.py::binding_standing": {
+    "cut_reasons": [],
+    "function_digest": "07e2ca43b6f49255",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/interpretation_bindings.py::definition_compatibility": {
+    "cut_reasons": [],
+    "function_digest": "a60a6ab0a1c8d63a",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/interpretation_bindings.py::population_compatibility": {
+    "cut_reasons": [],
+    "function_digest": "f9765d7290d5495d",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/interpretation_bindings.py::scope_compatibility": {
+    "cut_reasons": [],
+    "function_digest": "3b4ce3708296ac8f",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/interpretations.py::compatibility_state": {
+    "cut_reasons": [],
+    "function_digest": "a5ae239e893280ba",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/interpretations.py::selection_state": {
+    "cut_reasons": [],
+    "function_digest": "e2d694ca5698fc99",
+    "refusal": "",
+    "standing": "complete"
+  },
   "TrialLedger/layer2/numeric_evidence.py::interval_state": {
     "cut_reasons": [],
     "function_digest": "a09baf93d31ca1dc",

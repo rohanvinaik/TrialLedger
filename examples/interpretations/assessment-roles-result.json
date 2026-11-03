@@ -1,0 +1,1661 @@
+{
+  "code": "complete",
+  "operation": "interpretations",
+  "result": {
+    "study_ref": "invented:adult-NSCLC-draft:v1",
+    "fixed": {
+      "assertions": [
+        {
+          "applicability": {
+            "class": "Always"
+          },
+          "body": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "age",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "ge",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 18.0,
+              "unit": "Years",
+              "upper": null
+            }
+          },
+          "branch": {
+            "class": "Branch",
+            "node": "unresolved",
+            "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+            "class": "Scope",
+            "kind": "all_participants",
+            "parts": [],
+            "ref": ""
+          },
+          "criterion_ref": "invented:trial-design-session-not-registry-evidence",
+          "id": "draft-adults",
+          "modality": "required",
+          "resolution": "resolved",
+          "rule": {
+            "answers": [],
+            "class": "Rule",
+            "id": "invented-session-premise",
+            "premises": [],
+            "version": "1",
+            "warrants": [
+              "invented:explicit-teaching-premise"
+            ]
+          },
+          "span": [],
+          "status": "known"
+        },
+        {
+          "applicability": {
+            "class": "Always"
+          },
+          "body": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "ECOG",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "ge",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 0.0,
+              "unit": "ECOG",
+              "upper": null
+            }
+          },
+          "branch": {
+            "class": "Branch",
+            "node": "unresolved",
+            "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+            "class": "Scope",
+            "kind": "all_participants",
+            "parts": [],
+            "ref": ""
+          },
+          "criterion_ref": "invented:trial-design-session-not-registry-evidence",
+          "id": "draft-PS-min",
+          "modality": "required",
+          "resolution": "resolved",
+          "rule": {
+            "answers": [],
+            "class": "Rule",
+            "id": "invented-session-premise",
+            "premises": [],
+            "version": "1",
+            "warrants": [
+              "invented:explicit-teaching-premise"
+            ]
+          },
+          "span": [],
+          "status": "known"
+        }
+      ],
+      "consistency": {
+        "result": "UNDETERMINED",
+        "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+        "status": null,
+        "proof": [],
+        "blockers": [
+          "no_constraint_mentions_query"
+        ]
+      },
+      "queries": [
+        {
+          "id": "adult",
+          "body": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "age",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "ge",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 18.0,
+              "unit": "Years",
+              "upper": null
+            }
+          },
+          "result": "ENTAILED",
+          "decision": {
+            "result": "ENTAILED",
+            "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+            "status": "known",
+            "proof": [
+              "draft-adults"
+            ],
+            "blockers": []
+          },
+          "warrant": {
+            "rule": "entail.decide:1",
+            "guarantee": "fixed_floor",
+            "status": "known",
+            "assumptions": [],
+            "proof": [
+              "draft-adults"
+            ],
+            "blockers": []
+          }
+        },
+        {
+          "id": "PS3",
+          "body": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "ECOG",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "eq",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 3.0,
+              "unit": "ECOG",
+              "upper": null
+            }
+          },
+          "result": "UNDETERMINED",
+          "decision": {
+            "result": "UNDETERMINED",
+            "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"ECOG\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":3.0,\"unit\":\"ECOG\",\"upper\":null}}",
+            "status": null,
+            "proof": [
+              "draft-PS-min"
+            ],
+            "blockers": [
+              "undecided_by_constraints"
+            ]
+          },
+          "warrant": {
+            "rule": "entail.decide:1",
+            "guarantee": "fixed_floor",
+            "status": "known",
+            "assumptions": [],
+            "proof": [
+              "draft-PS-min"
+            ],
+            "blockers": [
+              "undecided_by_constraints"
+            ]
+          }
+        }
+      ],
+      "signals": [
+        {
+          "id": "planned-schedule",
+          "kind": "temporal",
+          "code": "consistent",
+          "calculation_code": "consistent",
+          "value": {
+            "scope": "invented:planned-routine-assessments:v1",
+            "unit": "day",
+            "origin": "randomization",
+            "bounds": [
+              {
+                "before": "randomization",
+                "after": "first_scheduled_assessment",
+                "lower": 35,
+                "upper": 49,
+                "lower_inclusive": true,
+                "upper_inclusive": true
+              },
+              {
+                "before": "first_scheduled_assessment",
+                "after": "randomization",
+                "lower": -49,
+                "upper": -35,
+                "lower_inclusive": true,
+                "upper_inclusive": true
+              }
+            ]
+          },
+          "rule": "graph.temporal:1",
+          "status": "known",
+          "basis": [
+            "invented:explicit-demonstration-premise-not-trial-evidence"
+          ],
+          "support": [
+            {
+              "id": "planned-schedule-premise",
+              "status": "known",
+              "resolution": "resolved",
+              "basis": [
+                "invented:explicit-demonstration-premise-not-trial-evidence"
+              ]
+            }
+          ],
+          "blockers": []
+        },
+        {
+          "id": "observed-scan",
+          "kind": "temporal",
+          "code": "consistent",
+          "calculation_code": "consistent",
+          "value": {
+            "scope": "invented:observed-unscheduled-scan-log:v1",
+            "unit": "day",
+            "origin": "randomization",
+            "bounds": [
+              {
+                "before": "randomization",
+                "after": "actual_unscheduled_scan",
+                "lower": 28,
+                "upper": 28,
+                "lower_inclusive": true,
+                "upper_inclusive": true
+              },
+              {
+                "before": "actual_unscheduled_scan",
+                "after": "randomization",
+                "lower": -28,
+                "upper": -28,
+                "lower_inclusive": true,
+                "upper_inclusive": true
+              }
+            ]
+          },
+          "rule": "graph.temporal:1",
+          "status": "known",
+          "basis": [
+            "invented:explicit-demonstration-premise-not-trial-evidence"
+          ],
+          "support": [
+            {
+              "id": "observed-scan-premise",
+              "status": "known",
+              "resolution": "resolved",
+              "basis": [
+                "invented:explicit-demonstration-premise-not-trial-evidence"
+              ]
+            }
+          ],
+          "blockers": []
+        }
+      ],
+      "blockers": []
+    },
+    "bindings": [],
+    "interpretations": [
+      {
+        "id": "scheduled-42",
+        "label": "Routine first assessment on day 42, ECOG 0–2",
+        "origin": "assistant",
+        "state": "compatible",
+        "premises": {
+          "basis": [
+            "invented:hypothesis-to-discuss-not-an-established-protocol"
+          ],
+          "assumptions": [
+            {
+              "applicability": {
+                "class": "Always"
+              },
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "ECOG",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "le",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 2.0,
+                  "unit": "ECOG",
+                  "upper": null
+                }
+              },
+              "branch": {
+                "class": "Branch",
+                "node": "unresolved",
+                "path": []
+              },
+              "class": "ScopedAssertion",
+              "cohort": {
+                "class": "Scope",
+                "kind": "all_participants",
+                "parts": [],
+                "ref": ""
+              },
+              "criterion_ref": "invented:trial-design-session-not-registry-evidence",
+              "id": "scheduled-42-PS",
+              "modality": "required",
+              "resolution": "resolved",
+              "rule": {
+                "answers": [],
+                "class": "Rule",
+                "id": "invented-session-premise",
+                "premises": [],
+                "version": "1",
+                "warrants": [
+                  "invented:explicit-teaching-premise"
+                ]
+              },
+              "span": [],
+              "status": "proposed"
+            }
+          ],
+          "signals": [],
+          "signal_claims": [
+            {
+              "signal": "planned-schedule",
+              "claim": {
+                "before": "randomization",
+                "after": "first_scheduled_assessment",
+                "lower": 42,
+                "upper": 42,
+                "lower_inclusive": true,
+                "upper_inclusive": true
+              }
+            }
+          ],
+          "binding_uses": []
+        },
+        "bindings": [],
+        "signals": [],
+        "signal_checks": [
+          {
+            "id": "planned-schedule",
+            "kind": "temporal",
+            "code": "consistent",
+            "calculation_code": "consistent",
+            "value": {
+              "scope": "invented:planned-routine-assessments:v1",
+              "unit": "day",
+              "origin": "randomization",
+              "bounds": [
+                {
+                  "before": "randomization",
+                  "after": "first_scheduled_assessment",
+                  "lower": 42,
+                  "upper": 42,
+                  "lower_inclusive": true,
+                  "upper_inclusive": true
+                },
+                {
+                  "before": "first_scheduled_assessment",
+                  "after": "randomization",
+                  "lower": -42,
+                  "upper": -42,
+                  "lower_inclusive": true,
+                  "upper_inclusive": true
+                }
+              ]
+            },
+            "rule": "graph.temporal:1",
+            "status": "known",
+            "basis": [
+              "invented:explicit-demonstration-premise-not-trial-evidence"
+            ],
+            "support": [
+              {
+                "id": "planned-schedule-premise",
+                "status": "known",
+                "resolution": "resolved",
+                "basis": [
+                  "invented:explicit-demonstration-premise-not-trial-evidence"
+                ]
+              }
+            ],
+            "blockers": [],
+            "claims": [
+              {
+                "before": "randomization",
+                "after": "first_scheduled_assessment",
+                "lower": 42,
+                "upper": 42,
+                "lower_inclusive": true,
+                "upper_inclusive": true
+              }
+            ]
+          }
+        ],
+        "queries": [
+          {
+            "id": "adult",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "age",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "ge",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 18.0,
+                "unit": "Years",
+                "upper": null
+              }
+            },
+            "result": "ENTAILED",
+            "decision": {
+              "result": "ENTAILED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+              "status": "known",
+              "proof": [
+                "draft-adults"
+              ],
+              "blockers": []
+            },
+            "warrant": {
+              "rule": "entail.decide:1",
+              "guarantee": "conditional_on_interpretation",
+              "status": "proposed",
+              "assumptions": [
+                "scheduled-42-PS"
+              ],
+              "proof": [
+                "draft-adults"
+              ],
+              "blockers": []
+            }
+          },
+          {
+            "id": "PS3",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "ECOG",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "eq",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 3.0,
+                "unit": "ECOG",
+                "upper": null
+              }
+            },
+            "result": "REFUTED",
+            "decision": {
+              "result": "REFUTED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"ECOG\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":3.0,\"unit\":\"ECOG\",\"upper\":null}}",
+              "status": "interpolated",
+              "proof": [
+                "scheduled-42-PS"
+              ],
+              "blockers": []
+            },
+            "warrant": {
+              "rule": "entail.decide:1",
+              "guarantee": "conditional_on_interpretation",
+              "status": "proposed",
+              "assumptions": [
+                "scheduled-42-PS"
+              ],
+              "proof": [
+                "scheduled-42-PS"
+              ],
+              "blockers": []
+            }
+          }
+        ],
+        "warrant": {
+          "rule": "interpretations.compatibility:1",
+          "guarantee": "conditional_on_fixed_and_interpretation_premises",
+          "fixed_status": "known",
+          "status": "proposed",
+          "fixed_premises": [],
+          "assumptions": [
+            "scheduled-42-PS"
+          ],
+          "bindings": [],
+          "basis": [
+            "invented:hypothesis-to-discuss-not-an-established-protocol"
+          ],
+          "consistency": {
+            "result": "UNDETERMINED",
+            "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+            "status": null,
+            "proof": [],
+            "blockers": [
+              "no_constraint_mentions_query"
+            ]
+          },
+          "intrinsic_consistency": {
+            "result": "UNDETERMINED",
+            "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+            "status": null,
+            "proof": [],
+            "blockers": [
+              "no_constraint_mentions_query"
+            ]
+          },
+          "signal_rules": [
+            {
+              "id": "planned-schedule",
+              "rule": "graph.temporal:1"
+            }
+          ],
+          "blockers": []
+        }
+      },
+      {
+        "id": "scheduled-49",
+        "label": "Routine first assessment at the day-49 boundary, ECOG 0–3",
+        "origin": "assistant",
+        "state": "compatible",
+        "premises": {
+          "basis": [
+            "invented:hypothesis-to-discuss-not-an-established-protocol"
+          ],
+          "assumptions": [
+            {
+              "applicability": {
+                "class": "Always"
+              },
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "ECOG",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "le",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 3.0,
+                  "unit": "ECOG",
+                  "upper": null
+                }
+              },
+              "branch": {
+                "class": "Branch",
+                "node": "unresolved",
+                "path": []
+              },
+              "class": "ScopedAssertion",
+              "cohort": {
+                "class": "Scope",
+                "kind": "all_participants",
+                "parts": [],
+                "ref": ""
+              },
+              "criterion_ref": "invented:trial-design-session-not-registry-evidence",
+              "id": "scheduled-49-PS",
+              "modality": "required",
+              "resolution": "resolved",
+              "rule": {
+                "answers": [],
+                "class": "Rule",
+                "id": "invented-session-premise",
+                "premises": [],
+                "version": "1",
+                "warrants": [
+                  "invented:explicit-teaching-premise"
+                ]
+              },
+              "span": [],
+              "status": "proposed"
+            }
+          ],
+          "signals": [],
+          "signal_claims": [
+            {
+              "signal": "planned-schedule",
+              "claim": {
+                "before": "randomization",
+                "after": "first_scheduled_assessment",
+                "lower": 49,
+                "upper": 49,
+                "lower_inclusive": true,
+                "upper_inclusive": true
+              }
+            }
+          ],
+          "binding_uses": []
+        },
+        "bindings": [],
+        "signals": [],
+        "signal_checks": [
+          {
+            "id": "planned-schedule",
+            "kind": "temporal",
+            "code": "consistent",
+            "calculation_code": "consistent",
+            "value": {
+              "scope": "invented:planned-routine-assessments:v1",
+              "unit": "day",
+              "origin": "randomization",
+              "bounds": [
+                {
+                  "before": "randomization",
+                  "after": "first_scheduled_assessment",
+                  "lower": 49,
+                  "upper": 49,
+                  "lower_inclusive": true,
+                  "upper_inclusive": true
+                },
+                {
+                  "before": "first_scheduled_assessment",
+                  "after": "randomization",
+                  "lower": -49,
+                  "upper": -49,
+                  "lower_inclusive": true,
+                  "upper_inclusive": true
+                }
+              ]
+            },
+            "rule": "graph.temporal:1",
+            "status": "known",
+            "basis": [
+              "invented:explicit-demonstration-premise-not-trial-evidence"
+            ],
+            "support": [
+              {
+                "id": "planned-schedule-premise",
+                "status": "known",
+                "resolution": "resolved",
+                "basis": [
+                  "invented:explicit-demonstration-premise-not-trial-evidence"
+                ]
+              }
+            ],
+            "blockers": [],
+            "claims": [
+              {
+                "before": "randomization",
+                "after": "first_scheduled_assessment",
+                "lower": 49,
+                "upper": 49,
+                "lower_inclusive": true,
+                "upper_inclusive": true
+              }
+            ]
+          }
+        ],
+        "queries": [
+          {
+            "id": "adult",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "age",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "ge",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 18.0,
+                "unit": "Years",
+                "upper": null
+              }
+            },
+            "result": "ENTAILED",
+            "decision": {
+              "result": "ENTAILED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+              "status": "known",
+              "proof": [
+                "draft-adults"
+              ],
+              "blockers": []
+            },
+            "warrant": {
+              "rule": "entail.decide:1",
+              "guarantee": "conditional_on_interpretation",
+              "status": "proposed",
+              "assumptions": [
+                "scheduled-49-PS"
+              ],
+              "proof": [
+                "draft-adults"
+              ],
+              "blockers": []
+            }
+          },
+          {
+            "id": "PS3",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "ECOG",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "eq",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 3.0,
+                "unit": "ECOG",
+                "upper": null
+              }
+            },
+            "result": "UNDETERMINED",
+            "decision": {
+              "result": "UNDETERMINED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"ECOG\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":3.0,\"unit\":\"ECOG\",\"upper\":null}}",
+              "status": null,
+              "proof": [
+                "draft-PS-min",
+                "scheduled-49-PS"
+              ],
+              "blockers": [
+                "undecided_by_constraints"
+              ]
+            },
+            "warrant": {
+              "rule": "entail.decide:1",
+              "guarantee": "conditional_on_interpretation",
+              "status": "proposed",
+              "assumptions": [
+                "scheduled-49-PS"
+              ],
+              "proof": [
+                "draft-PS-min",
+                "scheduled-49-PS"
+              ],
+              "blockers": [
+                "undecided_by_constraints"
+              ]
+            }
+          }
+        ],
+        "warrant": {
+          "rule": "interpretations.compatibility:1",
+          "guarantee": "conditional_on_fixed_and_interpretation_premises",
+          "fixed_status": "known",
+          "status": "proposed",
+          "fixed_premises": [],
+          "assumptions": [
+            "scheduled-49-PS"
+          ],
+          "bindings": [],
+          "basis": [
+            "invented:hypothesis-to-discuss-not-an-established-protocol"
+          ],
+          "consistency": {
+            "result": "UNDETERMINED",
+            "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+            "status": null,
+            "proof": [],
+            "blockers": [
+              "no_constraint_mentions_query"
+            ]
+          },
+          "intrinsic_consistency": {
+            "result": "UNDETERMINED",
+            "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+            "status": null,
+            "proof": [],
+            "blockers": [
+              "no_constraint_mentions_query"
+            ]
+          },
+          "signal_rules": [
+            {
+              "id": "planned-schedule",
+              "rule": "graph.temporal:1"
+            }
+          ],
+          "blockers": []
+        }
+      },
+      {
+        "id": "scheduled-28",
+        "label": "Treat day 28 as the routine scheduled first assessment",
+        "origin": "assistant",
+        "state": "refuted",
+        "premises": {
+          "basis": [
+            "invented:hypothesis-to-discuss-not-an-established-protocol"
+          ],
+          "assumptions": [
+            {
+              "applicability": {
+                "class": "Always"
+              },
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "ECOG",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "le",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 2.0,
+                  "unit": "ECOG",
+                  "upper": null
+                }
+              },
+              "branch": {
+                "class": "Branch",
+                "node": "unresolved",
+                "path": []
+              },
+              "class": "ScopedAssertion",
+              "cohort": {
+                "class": "Scope",
+                "kind": "all_participants",
+                "parts": [],
+                "ref": ""
+              },
+              "criterion_ref": "invented:trial-design-session-not-registry-evidence",
+              "id": "scheduled-28-PS",
+              "modality": "required",
+              "resolution": "resolved",
+              "rule": {
+                "answers": [],
+                "class": "Rule",
+                "id": "invented-session-premise",
+                "premises": [],
+                "version": "1",
+                "warrants": [
+                  "invented:explicit-teaching-premise"
+                ]
+              },
+              "span": [],
+              "status": "proposed"
+            }
+          ],
+          "signals": [],
+          "signal_claims": [
+            {
+              "signal": "planned-schedule",
+              "claim": {
+                "before": "randomization",
+                "after": "first_scheduled_assessment",
+                "lower": 28,
+                "upper": 28,
+                "lower_inclusive": true,
+                "upper_inclusive": true
+              }
+            }
+          ],
+          "binding_uses": []
+        },
+        "bindings": [],
+        "signals": [],
+        "signal_checks": [
+          {
+            "id": "planned-schedule",
+            "kind": "temporal",
+            "code": "conflict",
+            "calculation_code": "conflict",
+            "value": {
+              "scope": "invented:planned-routine-assessments:v1",
+              "unit": "day",
+              "origin": "randomization",
+              "bounds": []
+            },
+            "rule": "graph.temporal:1",
+            "status": "known",
+            "basis": [
+              "invented:explicit-demonstration-premise-not-trial-evidence"
+            ],
+            "support": [
+              {
+                "id": "planned-schedule-premise",
+                "status": "known",
+                "resolution": "resolved",
+                "basis": [
+                  "invented:explicit-demonstration-premise-not-trial-evidence"
+                ]
+              }
+            ],
+            "blockers": [],
+            "claims": [
+              {
+                "before": "randomization",
+                "after": "first_scheduled_assessment",
+                "lower": 28,
+                "upper": 28,
+                "lower_inclusive": true,
+                "upper_inclusive": true
+              }
+            ]
+          }
+        ],
+        "queries": [
+          {
+            "id": "adult",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "age",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "ge",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 18.0,
+                "unit": "Years",
+                "upper": null
+              }
+            },
+            "result": "UNDETERMINED",
+            "decision": {
+              "result": "ENTAILED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+              "status": "known",
+              "proof": [
+                "draft-adults"
+              ],
+              "blockers": []
+            },
+            "warrant": {
+              "rule": "entail.decide:1",
+              "guarantee": "conditional_on_interpretation",
+              "status": "proposed",
+              "assumptions": [
+                "scheduled-28-PS"
+              ],
+              "proof": [
+                "draft-adults"
+              ],
+              "blockers": [
+                "interpretation_refuted"
+              ]
+            }
+          },
+          {
+            "id": "PS3",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "ECOG",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "eq",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 3.0,
+                "unit": "ECOG",
+                "upper": null
+              }
+            },
+            "result": "UNDETERMINED",
+            "decision": {
+              "result": "REFUTED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"ECOG\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":3.0,\"unit\":\"ECOG\",\"upper\":null}}",
+              "status": "interpolated",
+              "proof": [
+                "scheduled-28-PS"
+              ],
+              "blockers": []
+            },
+            "warrant": {
+              "rule": "entail.decide:1",
+              "guarantee": "conditional_on_interpretation",
+              "status": "proposed",
+              "assumptions": [
+                "scheduled-28-PS"
+              ],
+              "proof": [
+                "scheduled-28-PS"
+              ],
+              "blockers": [
+                "interpretation_refuted"
+              ]
+            }
+          }
+        ],
+        "warrant": {
+          "rule": "interpretations.compatibility:1",
+          "guarantee": "conditional_on_fixed_and_interpretation_premises",
+          "fixed_status": "known",
+          "status": "proposed",
+          "fixed_premises": [],
+          "assumptions": [
+            "scheduled-28-PS"
+          ],
+          "bindings": [],
+          "basis": [
+            "invented:hypothesis-to-discuss-not-an-established-protocol"
+          ],
+          "consistency": {
+            "result": "UNDETERMINED",
+            "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+            "status": null,
+            "proof": [],
+            "blockers": [
+              "no_constraint_mentions_query"
+            ]
+          },
+          "intrinsic_consistency": {
+            "result": "UNDETERMINED",
+            "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+            "status": null,
+            "proof": [],
+            "blockers": [
+              "no_constraint_mentions_query"
+            ]
+          },
+          "signal_rules": [
+            {
+              "id": "planned-schedule",
+              "rule": "graph.temporal:1"
+            }
+          ],
+          "blockers": []
+        }
+      },
+      {
+        "id": "unscheduled-28",
+        "label": "Keep day 28 as a separate actual unscheduled scan, ECOG 0–3",
+        "origin": "assistant",
+        "state": "compatible",
+        "premises": {
+          "basis": [
+            "invented:hypothesis-to-discuss-not-an-established-protocol"
+          ],
+          "assumptions": [
+            {
+              "applicability": {
+                "class": "Always"
+              },
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "ECOG",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "le",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 3.0,
+                  "unit": "ECOG",
+                  "upper": null
+                }
+              },
+              "branch": {
+                "class": "Branch",
+                "node": "unresolved",
+                "path": []
+              },
+              "class": "ScopedAssertion",
+              "cohort": {
+                "class": "Scope",
+                "kind": "all_participants",
+                "parts": [],
+                "ref": ""
+              },
+              "criterion_ref": "invented:trial-design-session-not-registry-evidence",
+              "id": "unscheduled-28-PS",
+              "modality": "required",
+              "resolution": "resolved",
+              "rule": {
+                "answers": [],
+                "class": "Rule",
+                "id": "invented-session-premise",
+                "premises": [],
+                "version": "1",
+                "warrants": [
+                  "invented:explicit-teaching-premise"
+                ]
+              },
+              "span": [],
+              "status": "proposed"
+            }
+          ],
+          "signals": [],
+          "signal_claims": [
+            {
+              "signal": "observed-scan",
+              "claim": {
+                "before": "randomization",
+                "after": "actual_unscheduled_scan",
+                "lower": 28,
+                "upper": 28,
+                "lower_inclusive": true,
+                "upper_inclusive": true
+              }
+            }
+          ],
+          "binding_uses": []
+        },
+        "bindings": [],
+        "signals": [],
+        "signal_checks": [
+          {
+            "id": "observed-scan",
+            "kind": "temporal",
+            "code": "consistent",
+            "calculation_code": "consistent",
+            "value": {
+              "scope": "invented:observed-unscheduled-scan-log:v1",
+              "unit": "day",
+              "origin": "randomization",
+              "bounds": [
+                {
+                  "before": "randomization",
+                  "after": "actual_unscheduled_scan",
+                  "lower": 28,
+                  "upper": 28,
+                  "lower_inclusive": true,
+                  "upper_inclusive": true
+                },
+                {
+                  "before": "actual_unscheduled_scan",
+                  "after": "randomization",
+                  "lower": -28,
+                  "upper": -28,
+                  "lower_inclusive": true,
+                  "upper_inclusive": true
+                }
+              ]
+            },
+            "rule": "graph.temporal:1",
+            "status": "known",
+            "basis": [
+              "invented:explicit-demonstration-premise-not-trial-evidence"
+            ],
+            "support": [
+              {
+                "id": "observed-scan-premise",
+                "status": "known",
+                "resolution": "resolved",
+                "basis": [
+                  "invented:explicit-demonstration-premise-not-trial-evidence"
+                ]
+              }
+            ],
+            "blockers": [],
+            "claims": [
+              {
+                "before": "randomization",
+                "after": "actual_unscheduled_scan",
+                "lower": 28,
+                "upper": 28,
+                "lower_inclusive": true,
+                "upper_inclusive": true
+              }
+            ]
+          }
+        ],
+        "queries": [
+          {
+            "id": "adult",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "age",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "ge",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 18.0,
+                "unit": "Years",
+                "upper": null
+              }
+            },
+            "result": "ENTAILED",
+            "decision": {
+              "result": "ENTAILED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+              "status": "known",
+              "proof": [
+                "draft-adults"
+              ],
+              "blockers": []
+            },
+            "warrant": {
+              "rule": "entail.decide:1",
+              "guarantee": "conditional_on_interpretation",
+              "status": "proposed",
+              "assumptions": [
+                "unscheduled-28-PS"
+              ],
+              "proof": [
+                "draft-adults"
+              ],
+              "blockers": []
+            }
+          },
+          {
+            "id": "PS3",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "ECOG",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "eq",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 3.0,
+                "unit": "ECOG",
+                "upper": null
+              }
+            },
+            "result": "UNDETERMINED",
+            "decision": {
+              "result": "UNDETERMINED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"ECOG\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":3.0,\"unit\":\"ECOG\",\"upper\":null}}",
+              "status": null,
+              "proof": [
+                "draft-PS-min",
+                "unscheduled-28-PS"
+              ],
+              "blockers": [
+                "undecided_by_constraints"
+              ]
+            },
+            "warrant": {
+              "rule": "entail.decide:1",
+              "guarantee": "conditional_on_interpretation",
+              "status": "proposed",
+              "assumptions": [
+                "unscheduled-28-PS"
+              ],
+              "proof": [
+                "draft-PS-min",
+                "unscheduled-28-PS"
+              ],
+              "blockers": [
+                "undecided_by_constraints"
+              ]
+            }
+          }
+        ],
+        "warrant": {
+          "rule": "interpretations.compatibility:1",
+          "guarantee": "conditional_on_fixed_and_interpretation_premises",
+          "fixed_status": "known",
+          "status": "proposed",
+          "fixed_premises": [],
+          "assumptions": [
+            "unscheduled-28-PS"
+          ],
+          "bindings": [],
+          "basis": [
+            "invented:hypothesis-to-discuss-not-an-established-protocol"
+          ],
+          "consistency": {
+            "result": "UNDETERMINED",
+            "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+            "status": null,
+            "proof": [],
+            "blockers": [
+              "no_constraint_mentions_query"
+            ]
+          },
+          "intrinsic_consistency": {
+            "result": "UNDETERMINED",
+            "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+            "status": null,
+            "proof": [],
+            "blockers": [
+              "no_constraint_mentions_query"
+            ]
+          },
+          "signal_rules": [
+            {
+              "id": "observed-scan",
+              "rule": "graph.temporal:1"
+            }
+          ],
+          "blockers": []
+        }
+      }
+    ],
+    "remaining": [
+      "scheduled-42",
+      "scheduled-49",
+      "unscheduled-28"
+    ],
+    "refuted": [
+      "scheduled-28"
+    ],
+    "incoherent": [],
+    "unresolved": [],
+    "selection": {
+      "id": null,
+      "state": "none",
+      "origin": null
+    },
+    "consequences": [
+      {
+        "id": "adult",
+        "body": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+            "class": "Predicate",
+            "key": "age",
+            "kind": "measurement"
+          },
+          "qualifiers": {
+            "class": "Always"
+          },
+          "subject": {
+            "class": "Subject",
+            "kind": "participant",
+            "referent": ""
+          },
+          "time": null,
+          "value": {
+            "class": "Value",
+            "comparison": "ge",
+            "inclusivity": "unspecified",
+            "kind": "quantity",
+            "members": [],
+            "number": 18.0,
+            "unit": "Years",
+            "upper": null
+          }
+        },
+        "result": "ENTAILED",
+        "decision": {
+          "result": "ENTAILED",
+          "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+          "status": "known",
+          "proof": [
+            "draft-adults"
+          ],
+          "blockers": []
+        },
+        "warrant": {
+          "rule": "entail.decide:1",
+          "guarantee": "fixed_floor",
+          "status": "known",
+          "assumptions": [],
+          "proof": [
+            "draft-adults"
+          ],
+          "blockers": []
+        },
+        "frames": [],
+        "basis": "fixed_floor"
+      },
+      {
+        "id": "PS3",
+        "body": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+            "class": "Predicate",
+            "key": "ECOG",
+            "kind": "measurement"
+          },
+          "qualifiers": {
+            "class": "Always"
+          },
+          "subject": {
+            "class": "Subject",
+            "kind": "participant",
+            "referent": ""
+          },
+          "time": null,
+          "value": {
+            "class": "Value",
+            "comparison": "eq",
+            "inclusivity": "unspecified",
+            "kind": "quantity",
+            "members": [],
+            "number": 3.0,
+            "unit": "ECOG",
+            "upper": null
+          }
+        },
+        "result": "UNDETERMINED",
+        "frames": [
+          "scheduled-42",
+          "scheduled-49",
+          "unscheduled-28"
+        ],
+        "basis": "declared_interpretation_family",
+        "warrant": {
+          "rule": "interpretations.common:1",
+          "guarantee": "conditional_on_declared_family_not_exhaustive",
+          "status": "proposed",
+          "blockers": [
+            "undecided_by_constraints"
+          ]
+        }
+      }
+    ],
+    "limits": "Exact conditional checks over declared readings; compatibility is not source truth or clinical recommendation. The interpretation family is not assumed exhaustive. No automatic text reading, source correction, source mutation or corpus-frequency admission."
+  },
+  "problems": []
+}

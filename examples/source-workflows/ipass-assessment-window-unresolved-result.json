@@ -1,0 +1,97 @@
+{
+  "code": "complete",
+  "operation": "signals",
+  "result": {
+    "basis": "Conditional on the supplied typed premises; their source meaning is not certified by this operation.",
+    "premises": [
+      {
+        "id": "ipass-first-scheduled-tumour-assessment",
+        "kind": "temporal",
+        "data": {
+          "scope": "NCT00322452:registered-PFS:planned-first-postbaseline:v1",
+          "unit": "day",
+          "origin": "randomization",
+          "resolution": "resolved",
+          "events": [
+            "randomization",
+            "first_scheduled_assessment"
+          ],
+          "constraints": [
+            {
+              "before": "randomization",
+              "after": "first_scheduled_assessment",
+              "lower": 35,
+              "upper": 49,
+              "lower_inclusive": true,
+              "upper_inclusive": true
+            }
+          ]
+        },
+        "support": [
+          {
+            "id": "source-plus-reading",
+            "status": "interpolated",
+            "resolution": "unresolved",
+            "basis": [
+              "sha256:dc5b4cb1f416420d38c93c444f5a7b5f93d35d1676dc9c1cfa0379a58fe53354#/protocolSection/outcomesModule/primaryOutcomes/0/timeFrame",
+              "assistant:exploration-reading-first-42-plus-or-minus-7-day-window-inclusive-not-user-confirmed"
+            ]
+          }
+        ]
+      }
+    ],
+    "signals": [
+      {
+        "id": "ipass-first-scheduled-tumour-assessment",
+        "kind": "temporal",
+        "code": "unresolved",
+        "calculation_code": "consistent",
+        "value": {
+          "scope": "NCT00322452:registered-PFS:planned-first-postbaseline:v1",
+          "unit": "day",
+          "origin": "randomization",
+          "bounds": [
+            {
+              "before": "randomization",
+              "after": "first_scheduled_assessment",
+              "lower": 35,
+              "upper": 49,
+              "lower_inclusive": true,
+              "upper_inclusive": true
+            },
+            {
+              "before": "first_scheduled_assessment",
+              "after": "randomization",
+              "lower": -49,
+              "upper": -35,
+              "lower_inclusive": true,
+              "upper_inclusive": true
+            }
+          ]
+        },
+        "rule": "graph.temporal:1",
+        "status": "interpolated",
+        "basis": [
+          "sha256:dc5b4cb1f416420d38c93c444f5a7b5f93d35d1676dc9c1cfa0379a58fe53354#/protocolSection/outcomesModule/primaryOutcomes/0/timeFrame",
+          "assistant:exploration-reading-first-42-plus-or-minus-7-day-window-inclusive-not-user-confirmed"
+        ],
+        "support": [
+          {
+            "id": "source-plus-reading",
+            "status": "interpolated",
+            "resolution": "unresolved",
+            "basis": [
+              "sha256:dc5b4cb1f416420d38c93c444f5a7b5f93d35d1676dc9c1cfa0379a58fe53354#/protocolSection/outcomesModule/primaryOutcomes/0/timeFrame",
+              "assistant:exploration-reading-first-42-plus-or-minus-7-day-window-inclusive-not-user-confirmed"
+            ]
+          }
+        ],
+        "blockers": [
+          "binding_unresolved:ipass-first-scheduled-tumour-assessment"
+        ]
+      }
+    ],
+    "limits": "Typed, source-bound partial evidence; no clinical text interpretation or source mutation."
+  },
+  "problems": []
+}

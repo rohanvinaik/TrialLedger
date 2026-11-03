@@ -1,0 +1,619 @@
+{
+  "operation": "interpretations",
+  "study_ref": "invented:adult-NSCLC-draft:v1",
+  "fixed": {
+    "assertions": [
+      {
+        "applicability": {
+          "class": "Always"
+        },
+        "body": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+            "class": "Predicate",
+            "key": "age",
+            "kind": "measurement"
+          },
+          "qualifiers": {
+            "class": "Always"
+          },
+          "subject": {
+            "class": "Subject",
+            "kind": "participant",
+            "referent": ""
+          },
+          "time": null,
+          "value": {
+            "class": "Value",
+            "comparison": "ge",
+            "inclusivity": "unspecified",
+            "kind": "quantity",
+            "members": [],
+            "number": 18.0,
+            "unit": "Years",
+            "upper": null
+          }
+        },
+        "branch": {
+          "class": "Branch",
+          "node": "unresolved",
+          "path": []
+        },
+        "class": "ScopedAssertion",
+        "cohort": {
+          "class": "Scope",
+          "kind": "all_participants",
+          "parts": [],
+          "ref": ""
+        },
+        "criterion_ref": "invented:trial-design-session-not-registry-evidence",
+        "id": "draft-adults",
+        "modality": "required",
+        "resolution": "resolved",
+        "rule": {
+          "answers": [],
+          "class": "Rule",
+          "id": "invented-session-premise",
+          "premises": [],
+          "version": "1",
+          "warrants": [
+            "invented:explicit-teaching-premise"
+          ]
+        },
+        "span": [],
+        "status": "known"
+      },
+      {
+        "applicability": {
+          "class": "Always"
+        },
+        "body": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+            "class": "Predicate",
+            "key": "ECOG",
+            "kind": "measurement"
+          },
+          "qualifiers": {
+            "class": "Always"
+          },
+          "subject": {
+            "class": "Subject",
+            "kind": "participant",
+            "referent": ""
+          },
+          "time": null,
+          "value": {
+            "class": "Value",
+            "comparison": "ge",
+            "inclusivity": "unspecified",
+            "kind": "quantity",
+            "members": [],
+            "number": 0.0,
+            "unit": "ECOG",
+            "upper": null
+          }
+        },
+        "branch": {
+          "class": "Branch",
+          "node": "unresolved",
+          "path": []
+        },
+        "class": "ScopedAssertion",
+        "cohort": {
+          "class": "Scope",
+          "kind": "all_participants",
+          "parts": [],
+          "ref": ""
+        },
+        "criterion_ref": "invented:trial-design-session-not-registry-evidence",
+        "id": "draft-PS-min",
+        "modality": "required",
+        "resolution": "resolved",
+        "rule": {
+          "answers": [],
+          "class": "Rule",
+          "id": "invented-session-premise",
+          "premises": [],
+          "version": "1",
+          "warrants": [
+            "invented:explicit-teaching-premise"
+          ]
+        },
+        "span": [],
+        "status": "known"
+      }
+    ],
+    "signals": [
+      {
+        "id": "planned-schedule",
+        "kind": "temporal",
+        "data": {
+          "scope": "invented:planned-routine-assessments:v1",
+          "unit": "day",
+          "origin": "randomization",
+          "resolution": "resolved",
+          "events": [
+            "randomization",
+            "first_scheduled_assessment"
+          ],
+          "constraints": [
+            {
+              "before": "randomization",
+              "after": "first_scheduled_assessment",
+              "lower": 35,
+              "upper": 49,
+              "lower_inclusive": true,
+              "upper_inclusive": true
+            }
+          ]
+        },
+        "support": [
+          {
+            "id": "planned-schedule-premise",
+            "status": "known",
+            "resolution": "resolved",
+            "basis": [
+              "invented:explicit-demonstration-premise-not-trial-evidence"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "observed-scan",
+        "kind": "temporal",
+        "data": {
+          "scope": "invented:observed-unscheduled-scan-log:v1",
+          "unit": "day",
+          "origin": "randomization",
+          "resolution": "resolved",
+          "events": [
+            "randomization",
+            "actual_unscheduled_scan"
+          ],
+          "constraints": [
+            {
+              "before": "randomization",
+              "after": "actual_unscheduled_scan",
+              "lower": 28,
+              "upper": 28,
+              "lower_inclusive": true,
+              "upper_inclusive": true
+            }
+          ]
+        },
+        "support": [
+          {
+            "id": "observed-scan-premise",
+            "status": "known",
+            "resolution": "resolved",
+            "basis": [
+              "invented:explicit-demonstration-premise-not-trial-evidence"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "bindings": [],
+  "interpretations": [
+    {
+      "id": "scheduled-42",
+      "label": "Routine first assessment on day 42, ECOG 0–2",
+      "origin": "assistant",
+      "basis": [
+        "invented:hypothesis-to-discuss-not-an-established-protocol"
+      ],
+      "assumptions": [
+        {
+          "applicability": {
+            "class": "Always"
+          },
+          "body": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "ECOG",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "le",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 2.0,
+              "unit": "ECOG",
+              "upper": null
+            }
+          },
+          "branch": {
+            "class": "Branch",
+            "node": "unresolved",
+            "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+            "class": "Scope",
+            "kind": "all_participants",
+            "parts": [],
+            "ref": ""
+          },
+          "criterion_ref": "invented:trial-design-session-not-registry-evidence",
+          "id": "scheduled-42-PS",
+          "modality": "required",
+          "resolution": "resolved",
+          "rule": {
+            "answers": [],
+            "class": "Rule",
+            "id": "invented-session-premise",
+            "premises": [],
+            "version": "1",
+            "warrants": [
+              "invented:explicit-teaching-premise"
+            ]
+          },
+          "span": [],
+          "status": "proposed"
+        }
+      ],
+      "signals": [],
+      "signal_claims": [
+        {
+          "signal": "planned-schedule",
+          "claim": {
+            "before": "randomization",
+            "after": "first_scheduled_assessment",
+            "lower": 42,
+            "upper": 42,
+            "lower_inclusive": true,
+            "upper_inclusive": true
+          }
+        }
+      ],
+      "binding_uses": []
+    },
+    {
+      "id": "scheduled-49",
+      "label": "Routine first assessment at the day-49 boundary, ECOG 0–3",
+      "origin": "assistant",
+      "basis": [
+        "invented:hypothesis-to-discuss-not-an-established-protocol"
+      ],
+      "assumptions": [
+        {
+          "applicability": {
+            "class": "Always"
+          },
+          "body": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "ECOG",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "le",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 3.0,
+              "unit": "ECOG",
+              "upper": null
+            }
+          },
+          "branch": {
+            "class": "Branch",
+            "node": "unresolved",
+            "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+            "class": "Scope",
+            "kind": "all_participants",
+            "parts": [],
+            "ref": ""
+          },
+          "criterion_ref": "invented:trial-design-session-not-registry-evidence",
+          "id": "scheduled-49-PS",
+          "modality": "required",
+          "resolution": "resolved",
+          "rule": {
+            "answers": [],
+            "class": "Rule",
+            "id": "invented-session-premise",
+            "premises": [],
+            "version": "1",
+            "warrants": [
+              "invented:explicit-teaching-premise"
+            ]
+          },
+          "span": [],
+          "status": "proposed"
+        }
+      ],
+      "signals": [],
+      "signal_claims": [
+        {
+          "signal": "planned-schedule",
+          "claim": {
+            "before": "randomization",
+            "after": "first_scheduled_assessment",
+            "lower": 49,
+            "upper": 49,
+            "lower_inclusive": true,
+            "upper_inclusive": true
+          }
+        }
+      ],
+      "binding_uses": []
+    },
+    {
+      "id": "scheduled-28",
+      "label": "Treat day 28 as the routine scheduled first assessment",
+      "origin": "assistant",
+      "basis": [
+        "invented:hypothesis-to-discuss-not-an-established-protocol"
+      ],
+      "assumptions": [
+        {
+          "applicability": {
+            "class": "Always"
+          },
+          "body": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "ECOG",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "le",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 2.0,
+              "unit": "ECOG",
+              "upper": null
+            }
+          },
+          "branch": {
+            "class": "Branch",
+            "node": "unresolved",
+            "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+            "class": "Scope",
+            "kind": "all_participants",
+            "parts": [],
+            "ref": ""
+          },
+          "criterion_ref": "invented:trial-design-session-not-registry-evidence",
+          "id": "scheduled-28-PS",
+          "modality": "required",
+          "resolution": "resolved",
+          "rule": {
+            "answers": [],
+            "class": "Rule",
+            "id": "invented-session-premise",
+            "premises": [],
+            "version": "1",
+            "warrants": [
+              "invented:explicit-teaching-premise"
+            ]
+          },
+          "span": [],
+          "status": "proposed"
+        }
+      ],
+      "signals": [],
+      "signal_claims": [
+        {
+          "signal": "planned-schedule",
+          "claim": {
+            "before": "randomization",
+            "after": "first_scheduled_assessment",
+            "lower": 28,
+            "upper": 28,
+            "lower_inclusive": true,
+            "upper_inclusive": true
+          }
+        }
+      ],
+      "binding_uses": []
+    },
+    {
+      "id": "unscheduled-28",
+      "label": "Keep day 28 as a separate actual unscheduled scan, ECOG 0–3",
+      "origin": "assistant",
+      "basis": [
+        "invented:hypothesis-to-discuss-not-an-established-protocol"
+      ],
+      "assumptions": [
+        {
+          "applicability": {
+            "class": "Always"
+          },
+          "body": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "ECOG",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "le",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 3.0,
+              "unit": "ECOG",
+              "upper": null
+            }
+          },
+          "branch": {
+            "class": "Branch",
+            "node": "unresolved",
+            "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+            "class": "Scope",
+            "kind": "all_participants",
+            "parts": [],
+            "ref": ""
+          },
+          "criterion_ref": "invented:trial-design-session-not-registry-evidence",
+          "id": "unscheduled-28-PS",
+          "modality": "required",
+          "resolution": "resolved",
+          "rule": {
+            "answers": [],
+            "class": "Rule",
+            "id": "invented-session-premise",
+            "premises": [],
+            "version": "1",
+            "warrants": [
+              "invented:explicit-teaching-premise"
+            ]
+          },
+          "span": [],
+          "status": "proposed"
+        }
+      ],
+      "signals": [],
+      "signal_claims": [
+        {
+          "signal": "observed-scan",
+          "claim": {
+            "before": "randomization",
+            "after": "actual_unscheduled_scan",
+            "lower": 28,
+            "upper": 28,
+            "lower_inclusive": true,
+            "upper_inclusive": true
+          }
+        }
+      ],
+      "binding_uses": []
+    }
+  ],
+  "queries": [
+    {
+      "id": "adult",
+      "body": {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+          "class": "Predicate",
+          "key": "age",
+          "kind": "measurement"
+        },
+        "qualifiers": {
+          "class": "Always"
+        },
+        "subject": {
+          "class": "Subject",
+          "kind": "participant",
+          "referent": ""
+        },
+        "time": null,
+        "value": {
+          "class": "Value",
+          "comparison": "ge",
+          "inclusivity": "unspecified",
+          "kind": "quantity",
+          "members": [],
+          "number": 18.0,
+          "unit": "Years",
+          "upper": null
+        }
+      }
+    },
+    {
+      "id": "PS3",
+      "body": {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+          "class": "Predicate",
+          "key": "ECOG",
+          "kind": "measurement"
+        },
+        "qualifiers": {
+          "class": "Always"
+        },
+        "subject": {
+          "class": "Subject",
+          "kind": "participant",
+          "referent": ""
+        },
+        "time": null,
+        "value": {
+          "class": "Value",
+          "comparison": "eq",
+          "inclusivity": "unspecified",
+          "kind": "quantity",
+          "members": [],
+          "number": 3.0,
+          "unit": "ECOG",
+          "upper": null
+        }
+      }
+    }
+  ]
+}

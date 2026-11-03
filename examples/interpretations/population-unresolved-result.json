@@ -1,0 +1,1337 @@
+{
+  "code": "complete",
+  "operation": "interpretations",
+  "result": {
+    "study_ref": "invented:adult-NSCLC-draft:v1",
+    "fixed": {
+      "assertions": [
+        {
+          "applicability": {
+            "class": "Always"
+          },
+          "body": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "age",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "ge",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 18.0,
+              "unit": "Years",
+              "upper": null
+            }
+          },
+          "branch": {
+            "class": "Branch",
+            "node": "unresolved",
+            "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+            "class": "Scope",
+            "kind": "all_participants",
+            "parts": [],
+            "ref": ""
+          },
+          "criterion_ref": "invented:trial-design-session-not-registry-evidence",
+          "id": "draft-adults",
+          "modality": "required",
+          "resolution": "resolved",
+          "rule": {
+            "answers": [],
+            "class": "Rule",
+            "id": "invented-session-premise",
+            "premises": [],
+            "version": "1",
+            "warrants": [
+              "invented:explicit-teaching-premise"
+            ]
+          },
+          "span": [],
+          "status": "known"
+        },
+        {
+          "applicability": {
+            "class": "Always"
+          },
+          "body": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "ECOG",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "ge",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 0.0,
+              "unit": "ECOG",
+              "upper": null
+            }
+          },
+          "branch": {
+            "class": "Branch",
+            "node": "unresolved",
+            "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+            "class": "Scope",
+            "kind": "all_participants",
+            "parts": [],
+            "ref": ""
+          },
+          "criterion_ref": "invented:trial-design-session-not-registry-evidence",
+          "id": "draft-PS-min",
+          "modality": "required",
+          "resolution": "resolved",
+          "rule": {
+            "answers": [],
+            "class": "Rule",
+            "id": "invented-session-premise",
+            "premises": [],
+            "version": "1",
+            "warrants": [
+              "invented:explicit-teaching-premise"
+            ]
+          },
+          "span": [],
+          "status": "known"
+        }
+      ],
+      "consistency": {
+        "result": "UNDETERMINED",
+        "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+        "status": null,
+        "proof": [],
+        "blockers": [
+          "no_constraint_mentions_query"
+        ]
+      },
+      "queries": [
+        {
+          "id": "adult",
+          "body": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "age",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "ge",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 18.0,
+              "unit": "Years",
+              "upper": null
+            }
+          },
+          "result": "ENTAILED",
+          "decision": {
+            "result": "ENTAILED",
+            "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+            "status": "known",
+            "proof": [
+              "draft-adults"
+            ],
+            "blockers": []
+          },
+          "warrant": {
+            "rule": "entail.decide:1",
+            "guarantee": "fixed_floor",
+            "status": "known",
+            "assumptions": [],
+            "proof": [
+              "draft-adults"
+            ],
+            "blockers": []
+          }
+        },
+        {
+          "id": "PS3",
+          "body": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "ECOG",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "eq",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 3.0,
+              "unit": "ECOG",
+              "upper": null
+            }
+          },
+          "result": "UNDETERMINED",
+          "decision": {
+            "result": "UNDETERMINED",
+            "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"ECOG\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":3.0,\"unit\":\"ECOG\",\"upper\":null}}",
+            "status": null,
+            "proof": [
+              "draft-PS-min"
+            ],
+            "blockers": [
+              "undecided_by_constraints"
+            ]
+          },
+          "warrant": {
+            "rule": "entail.decide:1",
+            "guarantee": "fixed_floor",
+            "status": "known",
+            "assumptions": [],
+            "proof": [
+              "draft-PS-min"
+            ],
+            "blockers": [
+              "undecided_by_constraints"
+            ]
+          }
+        }
+      ],
+      "signals": [
+        {
+          "id": "EFQ-coverage",
+          "kind": "population",
+          "code": "bounded",
+          "calculation_code": "bounded",
+          "value": {
+            "universe": "invented:comparator:ITT:cohort-A:v1",
+            "total": 200,
+            "counts": [
+              {
+                "id": "ITT",
+                "lower": 200,
+                "upper": 200
+              },
+              {
+                "id": "EFQ",
+                "lower": 160,
+                "upper": 160
+              },
+              {
+                "id": "outside",
+                "lower": 40,
+                "upper": 40
+              }
+            ],
+            "witnesses": [
+              {
+                "id": "ITT",
+                "lower": 200,
+                "upper": 200,
+                "expression": {
+                  "kind": "all_of",
+                  "refs": [
+                    "ITT"
+                  ]
+                }
+              },
+              {
+                "id": "EFQ",
+                "lower": 160,
+                "upper": 160,
+                "expression": {
+                  "kind": "all_of",
+                  "refs": [
+                    "EFQ"
+                  ]
+                }
+              },
+              {
+                "id": "outside",
+                "lower": 40,
+                "upper": 40,
+                "expression": {
+                  "kind": "difference",
+                  "refs": [
+                    "ITT",
+                    "EFQ"
+                  ]
+                }
+              }
+            ]
+          },
+          "rule": "numeric.population:1",
+          "status": "known",
+          "basis": [
+            "invented:explicit-demonstration-premise-not-trial-evidence"
+          ],
+          "support": [
+            {
+              "id": "EFQ-coverage-premise",
+              "status": "known",
+              "resolution": "resolved",
+              "basis": [
+                "invented:explicit-demonstration-premise-not-trial-evidence"
+              ]
+            }
+          ],
+          "blockers": []
+        }
+      ],
+      "blockers": []
+    },
+    "bindings": [
+      {
+        "id": "EFQ-subset-binding",
+        "kind": "population",
+        "relation": "subset_of",
+        "subjects": [
+          "ITT",
+          "EFQ"
+        ],
+        "scope": {
+          "arm": "all",
+          "population": "invented:comparator:ITT:cohort-A:v1",
+          "study": "invented:adult-NSCLC-draft:v1",
+          "time": "baseline-to-week12",
+          "version": "invented:population-v1"
+        },
+        "sources": [
+          {
+            "ref": "invented:comparator-protocol",
+            "version": "1",
+            "address": "/invented/definitions"
+          }
+        ],
+        "status": "proposed",
+        "resolution": "unresolved",
+        "basis": [
+          "invented:explicit-reading-for-hypothetical-computation"
+        ]
+      }
+    ],
+    "interpretations": [
+      {
+        "id": "aligned-EFQ",
+        "label": "Interpret EFQ as the declared 160-person subset of ITT 200",
+        "origin": "assistant",
+        "state": "unresolved",
+        "premises": {
+          "basis": [
+            "invented:hypothesis-to-discuss-not-an-established-protocol"
+          ],
+          "assumptions": [
+            {
+              "applicability": {
+                "class": "Always"
+              },
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "ECOG",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "le",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 2.0,
+                  "unit": "ECOG",
+                  "upper": null
+                }
+              },
+              "branch": {
+                "class": "Branch",
+                "node": "unresolved",
+                "path": []
+              },
+              "class": "ScopedAssertion",
+              "cohort": {
+                "class": "Scope",
+                "kind": "all_participants",
+                "parts": [],
+                "ref": ""
+              },
+              "criterion_ref": "invented:trial-design-session-not-registry-evidence",
+              "id": "aligned-EFQ-PS",
+              "modality": "required",
+              "resolution": "resolved",
+              "rule": {
+                "answers": [],
+                "class": "Rule",
+                "id": "invented-session-premise",
+                "premises": [],
+                "version": "1",
+                "warrants": [
+                  "invented:explicit-teaching-premise"
+                ]
+              },
+              "span": [],
+              "status": "proposed"
+            }
+          ],
+          "signals": [],
+          "signal_claims": [],
+          "binding_uses": [
+            {
+              "binding": "EFQ-subset-binding",
+              "signal": "EFQ-coverage",
+              "scope": {
+                "arm": "all",
+                "population": "invented:comparator:ITT:cohort-A:v1",
+                "study": "invented:adult-NSCLC-draft:v1",
+                "time": "baseline-to-week12",
+                "version": "invented:population-v1"
+              }
+            }
+          ]
+        },
+        "bindings": [
+          {
+            "binding": "EFQ-subset-binding",
+            "signal": "EFQ-coverage",
+            "code": "unresolved",
+            "status": "proposed",
+            "basis": [
+              "invented:explicit-reading-for-hypothetical-computation",
+              "invented:comparator-protocol@1#/invented/definitions"
+            ],
+            "blockers": [
+              "binding_unresolved:EFQ-subset-binding"
+            ],
+            "rule": "interpretation.binding-use:1"
+          }
+        ],
+        "signals": [
+          {
+            "id": "EFQ-coverage",
+            "kind": "population",
+            "code": "unresolved",
+            "calculation_code": "bounded",
+            "value": {
+              "universe": "invented:comparator:ITT:cohort-A:v1",
+              "total": 200,
+              "counts": [
+                {
+                  "id": "ITT",
+                  "lower": 200,
+                  "upper": 200
+                },
+                {
+                  "id": "EFQ",
+                  "lower": 160,
+                  "upper": 160
+                },
+                {
+                  "id": "outside",
+                  "lower": 40,
+                  "upper": 40
+                }
+              ],
+              "witnesses": [
+                {
+                  "id": "ITT",
+                  "lower": 200,
+                  "upper": 200,
+                  "expression": {
+                    "kind": "all_of",
+                    "refs": [
+                      "ITT"
+                    ]
+                  }
+                },
+                {
+                  "id": "EFQ",
+                  "lower": 160,
+                  "upper": 160,
+                  "expression": {
+                    "kind": "all_of",
+                    "refs": [
+                      "EFQ"
+                    ]
+                  }
+                },
+                {
+                  "id": "outside",
+                  "lower": 40,
+                  "upper": 40,
+                  "expression": {
+                    "kind": "difference",
+                    "refs": [
+                      "ITT",
+                      "EFQ"
+                    ]
+                  }
+                }
+              ]
+            },
+            "rule": "numeric.population:1",
+            "status": "proposed",
+            "basis": [
+              "invented:explicit-demonstration-premise-not-trial-evidence",
+              "invented:explicit-reading-for-hypothetical-computation",
+              "invented:comparator-protocol@1#/invented/definitions"
+            ],
+            "support": [
+              {
+                "id": "EFQ-coverage-premise",
+                "status": "known",
+                "resolution": "resolved",
+                "basis": [
+                  "invented:explicit-demonstration-premise-not-trial-evidence"
+                ]
+              }
+            ],
+            "blockers": [
+              "binding_unresolved:EFQ-subset-binding"
+            ],
+            "ungated_code": "bounded",
+            "unbound_status": "known",
+            "guarantee": "conditional_on_interpretation",
+            "binding_refs": [
+              "EFQ-subset-binding"
+            ],
+            "assumed_bindings": [
+              "EFQ-subset-binding"
+            ],
+            "binding_basis": [
+              "invented:explicit-reading-for-hypothetical-computation",
+              "invented:comparator-protocol@1#/invented/definitions"
+            ],
+            "binding_support": [
+              {
+                "binding": "EFQ-subset-binding",
+                "signal": "EFQ-coverage",
+                "code": "unresolved",
+                "status": "proposed",
+                "basis": [
+                  "invented:explicit-reading-for-hypothetical-computation",
+                  "invented:comparator-protocol@1#/invented/definitions"
+                ],
+                "blockers": [
+                  "binding_unresolved:EFQ-subset-binding"
+                ],
+                "rule": "interpretation.binding-use:1"
+              }
+            ],
+            "role": "active_premise"
+          }
+        ],
+        "signal_checks": [],
+        "queries": [
+          {
+            "id": "adult",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "age",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "ge",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 18.0,
+                "unit": "Years",
+                "upper": null
+              }
+            },
+            "result": "UNDETERMINED",
+            "decision": {
+              "result": "ENTAILED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+              "status": "known",
+              "proof": [
+                "draft-adults"
+              ],
+              "blockers": []
+            },
+            "warrant": {
+              "rule": "entail.decide:1",
+              "guarantee": "conditional_on_interpretation",
+              "status": "proposed",
+              "assumptions": [
+                "aligned-EFQ-PS"
+              ],
+              "proof": [
+                "draft-adults"
+              ],
+              "blockers": [
+                "binding_unresolved:EFQ-subset-binding",
+                "interpretation_unresolved"
+              ]
+            }
+          },
+          {
+            "id": "PS3",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "ECOG",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "eq",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 3.0,
+                "unit": "ECOG",
+                "upper": null
+              }
+            },
+            "result": "UNDETERMINED",
+            "decision": {
+              "result": "REFUTED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"ECOG\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":3.0,\"unit\":\"ECOG\",\"upper\":null}}",
+              "status": "interpolated",
+              "proof": [
+                "aligned-EFQ-PS"
+              ],
+              "blockers": []
+            },
+            "warrant": {
+              "rule": "entail.decide:1",
+              "guarantee": "conditional_on_interpretation",
+              "status": "proposed",
+              "assumptions": [
+                "aligned-EFQ-PS"
+              ],
+              "proof": [
+                "aligned-EFQ-PS"
+              ],
+              "blockers": [
+                "binding_unresolved:EFQ-subset-binding",
+                "interpretation_unresolved"
+              ]
+            }
+          }
+        ],
+        "warrant": {
+          "rule": "interpretations.compatibility:1",
+          "guarantee": "conditional_on_fixed_and_interpretation_premises",
+          "fixed_status": "known",
+          "status": "proposed",
+          "fixed_premises": [],
+          "assumptions": [
+            "aligned-EFQ-PS"
+          ],
+          "bindings": [
+            "EFQ-subset-binding"
+          ],
+          "basis": [
+            "invented:hypothesis-to-discuss-not-an-established-protocol"
+          ],
+          "consistency": {
+            "result": "UNDETERMINED",
+            "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+            "status": null,
+            "proof": [],
+            "blockers": [
+              "no_constraint_mentions_query"
+            ]
+          },
+          "intrinsic_consistency": {
+            "result": "UNDETERMINED",
+            "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+            "status": null,
+            "proof": [],
+            "blockers": [
+              "no_constraint_mentions_query"
+            ]
+          },
+          "signal_rules": [
+            {
+              "id": "EFQ-coverage",
+              "rule": "numeric.population:1"
+            }
+          ],
+          "blockers": [
+            "binding_unresolved:EFQ-subset-binding"
+          ]
+        }
+      },
+      {
+        "id": "everyone-in-EFQ",
+        "label": "Assume every ITT participant was in EFQ",
+        "origin": "assistant",
+        "state": "unresolved",
+        "premises": {
+          "basis": [
+            "invented:hypothesis-to-discuss-not-an-established-protocol"
+          ],
+          "assumptions": [
+            {
+              "applicability": {
+                "class": "Always"
+              },
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "ECOG",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "le",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 2.0,
+                  "unit": "ECOG",
+                  "upper": null
+                }
+              },
+              "branch": {
+                "class": "Branch",
+                "node": "unresolved",
+                "path": []
+              },
+              "class": "ScopedAssertion",
+              "cohort": {
+                "class": "Scope",
+                "kind": "all_participants",
+                "parts": [],
+                "ref": ""
+              },
+              "criterion_ref": "invented:trial-design-session-not-registry-evidence",
+              "id": "everyone-in-EFQ-PS",
+              "modality": "required",
+              "resolution": "resolved",
+              "rule": {
+                "answers": [],
+                "class": "Rule",
+                "id": "invented-session-premise",
+                "premises": [],
+                "version": "1",
+                "warrants": [
+                  "invented:explicit-teaching-premise"
+                ]
+              },
+              "span": [],
+              "status": "proposed"
+            }
+          ],
+          "signals": [],
+          "signal_claims": [
+            {
+              "signal": "EFQ-coverage",
+              "claim": {
+                "count": "outside",
+                "lower": 0,
+                "upper": 0
+              }
+            }
+          ],
+          "binding_uses": [
+            {
+              "binding": "EFQ-subset-binding",
+              "signal": "EFQ-coverage",
+              "scope": {
+                "arm": "all",
+                "population": "invented:comparator:ITT:cohort-A:v1",
+                "study": "invented:adult-NSCLC-draft:v1",
+                "time": "baseline-to-week12",
+                "version": "invented:population-v1"
+              }
+            }
+          ]
+        },
+        "bindings": [
+          {
+            "binding": "EFQ-subset-binding",
+            "signal": "EFQ-coverage",
+            "code": "unresolved",
+            "status": "proposed",
+            "basis": [
+              "invented:explicit-reading-for-hypothetical-computation",
+              "invented:comparator-protocol@1#/invented/definitions"
+            ],
+            "blockers": [
+              "binding_unresolved:EFQ-subset-binding"
+            ],
+            "rule": "interpretation.binding-use:1"
+          }
+        ],
+        "signals": [
+          {
+            "id": "EFQ-coverage",
+            "kind": "population",
+            "code": "unresolved",
+            "calculation_code": "bounded",
+            "value": {
+              "universe": "invented:comparator:ITT:cohort-A:v1",
+              "total": 200,
+              "counts": [
+                {
+                  "id": "ITT",
+                  "lower": 200,
+                  "upper": 200
+                },
+                {
+                  "id": "EFQ",
+                  "lower": 160,
+                  "upper": 160
+                },
+                {
+                  "id": "outside",
+                  "lower": 40,
+                  "upper": 40
+                }
+              ],
+              "witnesses": [
+                {
+                  "id": "ITT",
+                  "lower": 200,
+                  "upper": 200,
+                  "expression": {
+                    "kind": "all_of",
+                    "refs": [
+                      "ITT"
+                    ]
+                  }
+                },
+                {
+                  "id": "EFQ",
+                  "lower": 160,
+                  "upper": 160,
+                  "expression": {
+                    "kind": "all_of",
+                    "refs": [
+                      "EFQ"
+                    ]
+                  }
+                },
+                {
+                  "id": "outside",
+                  "lower": 40,
+                  "upper": 40,
+                  "expression": {
+                    "kind": "difference",
+                    "refs": [
+                      "ITT",
+                      "EFQ"
+                    ]
+                  }
+                }
+              ]
+            },
+            "rule": "numeric.population:1",
+            "status": "proposed",
+            "basis": [
+              "invented:explicit-demonstration-premise-not-trial-evidence",
+              "invented:explicit-reading-for-hypothetical-computation",
+              "invented:comparator-protocol@1#/invented/definitions"
+            ],
+            "support": [
+              {
+                "id": "EFQ-coverage-premise",
+                "status": "known",
+                "resolution": "resolved",
+                "basis": [
+                  "invented:explicit-demonstration-premise-not-trial-evidence"
+                ]
+              }
+            ],
+            "blockers": [
+              "binding_unresolved:EFQ-subset-binding"
+            ],
+            "ungated_code": "bounded",
+            "unbound_status": "known",
+            "guarantee": "conditional_on_interpretation",
+            "binding_refs": [
+              "EFQ-subset-binding"
+            ],
+            "assumed_bindings": [
+              "EFQ-subset-binding"
+            ],
+            "binding_basis": [
+              "invented:explicit-reading-for-hypothetical-computation",
+              "invented:comparator-protocol@1#/invented/definitions"
+            ],
+            "binding_support": [
+              {
+                "binding": "EFQ-subset-binding",
+                "signal": "EFQ-coverage",
+                "code": "unresolved",
+                "status": "proposed",
+                "basis": [
+                  "invented:explicit-reading-for-hypothetical-computation",
+                  "invented:comparator-protocol@1#/invented/definitions"
+                ],
+                "blockers": [
+                  "binding_unresolved:EFQ-subset-binding"
+                ],
+                "rule": "interpretation.binding-use:1"
+              }
+            ],
+            "role": "baseline_context"
+          }
+        ],
+        "signal_checks": [
+          {
+            "id": "EFQ-coverage",
+            "kind": "population",
+            "code": "unresolved",
+            "calculation_code": "conflict",
+            "value": {
+              "universe": "invented:comparator:ITT:cohort-A:v1",
+              "total": 200,
+              "counts": [],
+              "witnesses": []
+            },
+            "rule": "numeric.population:1",
+            "status": "proposed",
+            "basis": [
+              "invented:explicit-demonstration-premise-not-trial-evidence",
+              "invented:explicit-reading-for-hypothetical-computation",
+              "invented:comparator-protocol@1#/invented/definitions"
+            ],
+            "support": [
+              {
+                "id": "EFQ-coverage-premise",
+                "status": "known",
+                "resolution": "resolved",
+                "basis": [
+                  "invented:explicit-demonstration-premise-not-trial-evidence"
+                ]
+              }
+            ],
+            "blockers": [
+              "binding_unresolved:EFQ-subset-binding",
+              "inconsistent_population_total"
+            ],
+            "ungated_code": "conflict",
+            "unbound_status": "known",
+            "guarantee": "conditional_on_interpretation",
+            "binding_refs": [
+              "EFQ-subset-binding"
+            ],
+            "assumed_bindings": [
+              "EFQ-subset-binding"
+            ],
+            "binding_basis": [
+              "invented:explicit-reading-for-hypothetical-computation",
+              "invented:comparator-protocol@1#/invented/definitions"
+            ],
+            "binding_support": [
+              {
+                "binding": "EFQ-subset-binding",
+                "signal": "EFQ-coverage",
+                "code": "unresolved",
+                "status": "proposed",
+                "basis": [
+                  "invented:explicit-reading-for-hypothetical-computation",
+                  "invented:comparator-protocol@1#/invented/definitions"
+                ],
+                "blockers": [
+                  "binding_unresolved:EFQ-subset-binding"
+                ],
+                "rule": "interpretation.binding-use:1"
+              }
+            ],
+            "claims": [
+              {
+                "count": "outside",
+                "lower": 0,
+                "upper": 0
+              }
+            ]
+          }
+        ],
+        "queries": [
+          {
+            "id": "adult",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "age",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "ge",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 18.0,
+                "unit": "Years",
+                "upper": null
+              }
+            },
+            "result": "UNDETERMINED",
+            "decision": {
+              "result": "ENTAILED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+              "status": "known",
+              "proof": [
+                "draft-adults"
+              ],
+              "blockers": []
+            },
+            "warrant": {
+              "rule": "entail.decide:1",
+              "guarantee": "conditional_on_interpretation",
+              "status": "proposed",
+              "assumptions": [
+                "everyone-in-EFQ-PS"
+              ],
+              "proof": [
+                "draft-adults"
+              ],
+              "blockers": [
+                "binding_unresolved:EFQ-subset-binding",
+                "inconsistent_population_total",
+                "interpretation_unresolved"
+              ]
+            }
+          },
+          {
+            "id": "PS3",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "ECOG",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "eq",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 3.0,
+                "unit": "ECOG",
+                "upper": null
+              }
+            },
+            "result": "UNDETERMINED",
+            "decision": {
+              "result": "REFUTED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"ECOG\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":3.0,\"unit\":\"ECOG\",\"upper\":null}}",
+              "status": "interpolated",
+              "proof": [
+                "everyone-in-EFQ-PS"
+              ],
+              "blockers": []
+            },
+            "warrant": {
+              "rule": "entail.decide:1",
+              "guarantee": "conditional_on_interpretation",
+              "status": "proposed",
+              "assumptions": [
+                "everyone-in-EFQ-PS"
+              ],
+              "proof": [
+                "everyone-in-EFQ-PS"
+              ],
+              "blockers": [
+                "binding_unresolved:EFQ-subset-binding",
+                "inconsistent_population_total",
+                "interpretation_unresolved"
+              ]
+            }
+          }
+        ],
+        "warrant": {
+          "rule": "interpretations.compatibility:1",
+          "guarantee": "conditional_on_fixed_and_interpretation_premises",
+          "fixed_status": "proposed",
+          "status": "proposed",
+          "fixed_premises": [],
+          "assumptions": [
+            "everyone-in-EFQ-PS"
+          ],
+          "bindings": [
+            "EFQ-subset-binding"
+          ],
+          "basis": [
+            "invented:hypothesis-to-discuss-not-an-established-protocol"
+          ],
+          "consistency": {
+            "result": "UNDETERMINED",
+            "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+            "status": null,
+            "proof": [],
+            "blockers": [
+              "no_constraint_mentions_query"
+            ]
+          },
+          "intrinsic_consistency": {
+            "result": "UNDETERMINED",
+            "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+            "status": null,
+            "proof": [],
+            "blockers": [
+              "no_constraint_mentions_query"
+            ]
+          },
+          "signal_rules": [
+            {
+              "id": "EFQ-coverage",
+              "rule": "numeric.population:1"
+            },
+            {
+              "id": "EFQ-coverage",
+              "rule": "numeric.population:1"
+            }
+          ],
+          "blockers": [
+            "binding_unresolved:EFQ-subset-binding",
+            "inconsistent_population_total"
+          ]
+        }
+      }
+    ],
+    "remaining": [
+      "aligned-EFQ",
+      "everyone-in-EFQ"
+    ],
+    "refuted": [],
+    "incoherent": [],
+    "unresolved": [
+      "aligned-EFQ",
+      "everyone-in-EFQ"
+    ],
+    "selection": {
+      "id": null,
+      "state": "none",
+      "origin": null
+    },
+    "consequences": [
+      {
+        "id": "adult",
+        "body": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+            "class": "Predicate",
+            "key": "age",
+            "kind": "measurement"
+          },
+          "qualifiers": {
+            "class": "Always"
+          },
+          "subject": {
+            "class": "Subject",
+            "kind": "participant",
+            "referent": ""
+          },
+          "time": null,
+          "value": {
+            "class": "Value",
+            "comparison": "ge",
+            "inclusivity": "unspecified",
+            "kind": "quantity",
+            "members": [],
+            "number": 18.0,
+            "unit": "Years",
+            "upper": null
+          }
+        },
+        "result": "ENTAILED",
+        "decision": {
+          "result": "ENTAILED",
+          "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+          "status": "known",
+          "proof": [
+            "draft-adults"
+          ],
+          "blockers": []
+        },
+        "warrant": {
+          "rule": "entail.decide:1",
+          "guarantee": "fixed_floor",
+          "status": "known",
+          "assumptions": [],
+          "proof": [
+            "draft-adults"
+          ],
+          "blockers": []
+        },
+        "frames": [],
+        "basis": "fixed_floor"
+      },
+      {
+        "id": "PS3",
+        "body": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+            "class": "Predicate",
+            "key": "ECOG",
+            "kind": "measurement"
+          },
+          "qualifiers": {
+            "class": "Always"
+          },
+          "subject": {
+            "class": "Subject",
+            "kind": "participant",
+            "referent": ""
+          },
+          "time": null,
+          "value": {
+            "class": "Value",
+            "comparison": "eq",
+            "inclusivity": "unspecified",
+            "kind": "quantity",
+            "members": [],
+            "number": 3.0,
+            "unit": "ECOG",
+            "upper": null
+          }
+        },
+        "result": "UNDETERMINED",
+        "frames": [
+          "aligned-EFQ",
+          "everyone-in-EFQ"
+        ],
+        "basis": "declared_interpretation_family",
+        "warrant": {
+          "rule": "interpretations.common:1",
+          "guarantee": "conditional_on_declared_family_not_exhaustive",
+          "status": "proposed",
+          "blockers": [
+            "binding_unresolved:EFQ-subset-binding",
+            "inconsistent_population_total",
+            "interpretation_unresolved"
+          ]
+        }
+      }
+    ],
+    "limits": "Exact conditional checks over declared readings; compatibility is not source truth or clinical recommendation. The interpretation family is not assumed exhaustive. No automatic text reading, source correction, source mutation or corpus-frequency admission."
+  },
+  "problems": []
+}

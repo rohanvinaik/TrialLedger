@@ -70,8 +70,8 @@ not annotations to discard after recognition.
 Compilation consists of bounded decisions over structure: item/list boundaries; coordination and alternatives;
 referents; predicate identity; qualifier and measurement attachment; temporal attachment; local normative
 force; conditional applicability; cohort scope and resets; definition/reference binding; consumer projection.
-Each retains all supported alternatives, names ambiguity and emits no bare projection while its binding is
-unresolved. A grammar rule can support known only when its construction and bindings actually warrant that
+Each retains all supported alternatives, names ambiguity and emits no unconditional projection while its binding is
+unresolved. Named hypothetical projections remain usable inside isolated interpretation frames. A grammar rule can support known only when its construction and bindings actually warrant that
 conclusion; test accuracy alone does not supply the warrant.
 
 Required(A or B) entails neither A nor B separately. Excluded(A and Q) does not exclude every A. Required
@@ -99,11 +99,61 @@ Rule kind is strict, default or proposal, independently of approval. Strict conc
 premises. Defaults have explicit applicability/defeaters and declared strata; their joint consequences are
 checked, implicated conflicts suspend them and trigger recomputation, and unsupported cycles are named.
 Anything depending on a default remains interpolated. Proposals are shown independently and never used as
-premises. A user override retains provenance and recomputes dependants; it does not change source evidence.
+accepted premises. An explicitly hypothetical interpretation may assume a proposal locally, retaining that
+assumption in every warrant; it never inserts it into the fixed floor, ordinary entailment or source corpus.
+A user override retains provenance and recomputes dependants; it does not change source evidence.
 
 Independent sources constrain the admissible space. Their identities and dependencies are retained, so the
 same underlying evidence cannot be counted twice. Concurrence is not majority voting; disagreement is kept
 rather than resolved by choosing a preferred token, source or first answer.
+
+#### 5a. Competing interpretations and conditional warrants
+
+Layer one explicitly supplies the rigid evidential/definitional floor and ceiling: retained source facts,
+source-defined direct transformations and their scopes. Layer two operates within those bounds, preserving
+separate possible interpretations, suggestions and exact consequences conditional on a declared reading.
+Uncertainty of a reading and exactness of reasoning under that reading are separate axes. A useful reading
+need not be uniquely established before its consequences can be explored. Compatibility is satisfiability,
+not proof of intended meaning or a recommendation.
+
+The `interpretations` operation receives a study reference, fixed scoped assertions/signals, source-bound
+population/definition bindings, isolated interpretations and named proposition queries. An interpretation
+retains id, clinical label, origin, basis, hypothetical scoped assertions, local signals, grouped signal
+claims and binding uses. Each use names the target signal and exact study/population/arm/time/version scope.
+Population bindings distinguish same-universe, subset and exhaustive-partition relations. Definition bindings
+identify the adopted rule and its edition. Source references retain version, address and optional digest.
+Matching titles/counts or retrieval success cannot manufacture any relation.
+
+The operation first checks the fixed floor independently, then each interpretation in isolation using the
+existing entailment and partial-evidence operators. Explicitly assumed proposals can be compiled in a private
+hypothetical environment; original status and premise identities remain in the output. Nothing is admitted
+to the source record. A fixed-floor contradiction blocks closure without explosion. Assumption-only
+inconsistency is distinct from a reading refuted by fixed evidence. An interpolated floor can support only
+an explicitly conditional refutation. Resource limits, unresolved scopes and binding mismatches retain the
+reading as unresolved, rather than proving the clinical design impossible.
+
+Every frame returns its conditional calculations and query answers beside compatibility, binding checks and
+warrants naming rules, fixed premises, assumptions and blockers. Unresolved binding must not discard the raw
+counts or conditional arithmetic. Fixed-floor answers remain separately available. Consequences shared by
+all surviving readings are labelled relative to that declared family; an unresolved survivor prevents
+overconfident closure, and a sole survivor never certifies an exhaustive reconstruction of the actual trial.
+Selection records a user's choice, rejects admission of a refuted frame, preserves rival results and
+recomputes from the full revised snapshot without changing standing.
+
+Work the clinical question before wiring a new inference. For a proposed adult NSCLC trial, WHO PS source
+observations do not choose an ECOG range. An interpretation of a first scheduled 42 ±7-day assessment yields
+[35,49] exactly within its frame; an actual unscheduled scan is a different event and cannot refute that
+schedule merely by occurring outside it. ITT, EFS and EFQ remain distinct populations; a cohort binding can
+enable subset/overlap arithmetic without explaining missing assessments. An adopted observed-only endpoint
+requires its declared inputs; imputation is not an observed measurement. The assistant uses these contrasts
+to ask consequential questions and update the decision list rather than insist on an already recovered
+protocol before offering useful analysis.
+
+This implements the semantic-specification pattern of candidate readings constrained within explicit frames,
+with retained plurality and a contradiction channel capable of breaking the working interpretation. It does
+not claim a PAC error bound, an exact-learning identification certificate for the whole protocol, or a
+complete enumeration of clinical meanings. The implementation plan and ownership contracts are persisted
+in `docs/INTERPRETATION_IMPLEMENTATION_PLAN.md`.
 
 ### 6. Corpus descriptions and comparability
 
@@ -312,10 +362,19 @@ An unresolved field stays visible or drives an evidence request; the requested o
 fabricated answer. Corrections and user annotations remain assertions beside source facts and recompute the
 design; automatic workbook-edit import is designed, not claimed available today.
 
+The present partial operations must also be legible conversationally to a nontechnical person. Lead with a
+clinical question and its computed answer, deciding evidence/premise, material uncertainty and next choice.
+Use compact executed examples as explanatory objects: a missing cross-tabulation bounded by marginals,
+positive and negative eligibility witnesses that can coexist, and scheduled versus actual event roles that
+distinguish real from apparent contradictions. Keep real retained evidence and invented teaching premises
+visibly distinct. `docs/POWERFUL_QUESTIONS.md` and the continuing interpretation session link the runnable
+inputs/results; assistant context routes to them without making the person choose internal module names.
+
 ## Current component and integration state
 
 The separate public operation is `TrialLedger.layer2.run(request)`, served by `trialledger reason --request
-FILE` and MCP `reason`. Requests select `entailment`, `coordinates` or `corpus`; responses distinguish complete
+FILE` and MCP `reason`. Requests select `entailment`, `coordinates`, `corpus`, `design_bounds`, `signals` or
+`interpretations`; responses distinguish complete
 from refused and return results/problems. These operations answer from supplied typed premises; they do not
 automatically interpret eligibility or claim a newly written protocol. Exact supported request shapes and
 examples live with the public operation.

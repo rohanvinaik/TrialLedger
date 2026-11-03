@@ -205,7 +205,14 @@ def test_describe_returns_runnable_examples_for_every_working_operation():
     described = run({"operation": "describe", "view": "full"})
     assert described["code"] == "complete"
     description = described["result"]
-    assert set(description["examples"]) == {"entailment", "coordinates", "corpus", "design_bounds", "signals"}
+    assert set(description["examples"]) == {
+        "entailment",
+        "coordinates",
+        "corpus",
+        "design_bounds",
+        "signals",
+        "interpretations",
+    }
     results = {name: run(payload) for name, payload in description["examples"].items()}
     assert all(reply["code"] == "complete" for reply in results.values())
     assert results["entailment"]["result"]["decision"]["result"] == "REFUTED"
@@ -339,6 +346,7 @@ def test_described_developer_blocks_exist_without_becoming_public_operations():
         "corpus",
         "design_bounds",
         "signals",
+        "interpretations",
     }
     for block in description["developer_building_blocks"]["entries"]:
         assert block["purpose"] and block["precondition"]
@@ -347,6 +355,7 @@ def test_described_developer_blocks_exist_without_becoming_public_operations():
             assert callable(getattr(importlib.import_module(module_name), name))
     assert run({"operation": "deviation_status", "status": "explicitly_negated"})["code"] == "refused"
     assert all(
-        case["operation"] in {"entailment", "coordinates", "corpus", "design_bounds", "signals"}
+        case["operation"]
+        in {"entailment", "coordinates", "corpus", "design_bounds", "signals", "interpretations"}
         for case in description["use_cases"]
     )

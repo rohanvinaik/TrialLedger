@@ -1,0 +1,947 @@
+{
+  "input": "Number of patients with a thromboctyopenia event, identified from the lab data as a worsening in platelet count from baseline to a CTC grade 3 or above.",
+  "corrected": "Number of patients with a thrombocytopenia event, identified from the lab data as a worsening in platelet count from baseline to a CTC grade 3 or above.",
+  "original_corrected": "Number of patients with a thrombocytopenia event, identified from the lab data as a worsening in platelet count from baseline to a CTC grade 3 or above.",
+  "deterministic": true,
+  "state": "read",
+  "tokens": [
+    {
+      "surface": "Number",
+      "misspelled": false,
+      "suggestions": [],
+      "span": [
+        0,
+        6
+      ],
+      "decision": "kept",
+      "reason": "valid_word"
+    },
+    {
+      "surface": "of",
+      "misspelled": false,
+      "suggestions": [],
+      "span": [
+        7,
+        9
+      ],
+      "decision": "kept",
+      "reason": "valid_word"
+    },
+    {
+      "surface": "patients",
+      "misspelled": false,
+      "suggestions": [],
+      "span": [
+        10,
+        18
+      ],
+      "decision": "kept",
+      "reason": "valid_word"
+    },
+    {
+      "surface": "with",
+      "misspelled": false,
+      "suggestions": [],
+      "span": [
+        19,
+        23
+      ],
+      "decision": "kept",
+      "reason": "valid_word"
+    },
+    {
+      "surface": "a",
+      "misspelled": false,
+      "suggestions": [],
+      "span": [
+        24,
+        25
+      ],
+      "decision": "kept",
+      "reason": "short_surface"
+    },
+    {
+      "surface": "thromboctyopenia",
+      "misspelled": true,
+      "top": "thrombocytopenia",
+      "ambiguous": false,
+      "suggestions": [
+        {
+          "word": "thrombocytopenia",
+          "score": 2.564,
+          "edit_frequency": 2.575,
+          "structural_defects": 0,
+          "gloss_overlap": 0.011
+        }
+      ],
+      "note": "committed",
+      "span": [
+        26,
+        42
+      ],
+      "decision": "applied",
+      "reason": "committed"
+    },
+    {
+      "surface": "event",
+      "misspelled": false,
+      "suggestions": [],
+      "span": [
+        43,
+        48
+      ],
+      "decision": "kept",
+      "reason": "valid_word"
+    },
+    {
+      "surface": "identified",
+      "misspelled": false,
+      "suggestions": [],
+      "span": [
+        50,
+        60
+      ],
+      "decision": "kept",
+      "reason": "valid_word"
+    },
+    {
+      "surface": "from",
+      "misspelled": false,
+      "suggestions": [],
+      "span": [
+        61,
+        65
+      ],
+      "decision": "kept",
+      "reason": "valid_word"
+    },
+    {
+      "surface": "the",
+      "misspelled": false,
+      "suggestions": [],
+      "span": [
+        66,
+        69
+      ],
+      "decision": "kept",
+      "reason": "valid_word"
+    },
+    {
+      "surface": "lab",
+      "misspelled": false,
+      "suggestions": [],
+      "span": [
+        70,
+        73
+      ],
+      "decision": "kept",
+      "reason": "valid_word"
+    },
+    {
+      "surface": "data",
+      "misspelled": false,
+      "suggestions": [],
+      "span": [
+        74,
+        78
+      ],
+      "decision": "kept",
+      "reason": "valid_word"
+    },
+    {
+      "surface": "as",
+      "misspelled": false,
+      "suggestions": [],
+      "span": [
+        79,
+        81
+      ],
+      "decision": "kept",
+      "reason": "valid_word"
+    },
+    {
+      "surface": "a",
+      "misspelled": false,
+      "suggestions": [],
+      "span": [
+        82,
+        83
+      ],
+      "decision": "kept",
+      "reason": "short_surface"
+    },
+    {
+      "surface": "worsening",
+      "misspelled": false,
+      "suggestions": [],
+      "span": [
+        84,
+        93
+      ],
+      "decision": "kept",
+      "reason": "valid_word"
+    },
+    {
+      "surface": "in",
+      "misspelled": false,
+      "suggestions": [],
+      "span": [
+        94,
+        96
+      ],
+      "decision": "kept",
+      "reason": "valid_word"
+    },
+    {
+      "surface": "platelet",
+      "misspelled": false,
+      "suggestions": [],
+      "span": [
+        97,
+        105
+      ],
+      "decision": "kept",
+      "reason": "valid_word"
+    },
+    {
+      "surface": "count",
+      "misspelled": false,
+      "suggestions": [],
+      "span": [
+        106,
+        111
+      ],
+      "decision": "kept",
+      "reason": "valid_word"
+    },
+    {
+      "surface": "from",
+      "misspelled": false,
+      "suggestions": [],
+      "span": [
+        112,
+        116
+      ],
+      "decision": "kept",
+      "reason": "valid_word"
+    },
+    {
+      "surface": "baseline",
+      "misspelled": false,
+      "suggestions": [],
+      "span": [
+        117,
+        125
+      ],
+      "decision": "kept",
+      "reason": "valid_word"
+    },
+    {
+      "surface": "to",
+      "misspelled": false,
+      "suggestions": [],
+      "span": [
+        126,
+        128
+      ],
+      "decision": "kept",
+      "reason": "valid_word"
+    },
+    {
+      "surface": "a",
+      "misspelled": false,
+      "suggestions": [],
+      "span": [
+        129,
+        130
+      ],
+      "decision": "kept",
+      "reason": "short_surface"
+    },
+    {
+      "surface": "CTC",
+      "misspelled": false,
+      "suggestions": [],
+      "span": [
+        131,
+        134
+      ],
+      "decision": "kept",
+      "reason": "valid_word"
+    },
+    {
+      "surface": "grade",
+      "misspelled": false,
+      "suggestions": [],
+      "span": [
+        135,
+        140
+      ],
+      "decision": "kept",
+      "reason": "valid_word"
+    },
+    {
+      "surface": "3",
+      "misspelled": false,
+      "suggestions": [],
+      "span": [
+        141,
+        142
+      ],
+      "decision": "kept",
+      "reason": "non_ascii_or_unit_or_digit"
+    },
+    {
+      "surface": "or",
+      "misspelled": false,
+      "suggestions": [],
+      "span": [
+        143,
+        145
+      ],
+      "decision": "kept",
+      "reason": "valid_word"
+    },
+    {
+      "surface": "above",
+      "misspelled": false,
+      "suggestions": [],
+      "span": [
+        146,
+        151
+      ],
+      "decision": "kept",
+      "reason": "valid_word"
+    }
+  ],
+  "ledger": [
+    {
+      "span": [
+        0,
+        6
+      ],
+      "original_span": [
+        0,
+        6
+      ],
+      "original": "Number",
+      "replacement": null,
+      "leg": "policy",
+      "evidence": [],
+      "decision": "kept",
+      "reason": "valid_word",
+      "coordinate": "input",
+      "dictionary": {
+        "state": "absent",
+        "entry": null
+      }
+    },
+    {
+      "span": [
+        7,
+        9
+      ],
+      "original_span": [
+        7,
+        9
+      ],
+      "original": "of",
+      "replacement": null,
+      "leg": "policy",
+      "evidence": [],
+      "decision": "kept",
+      "reason": "valid_word",
+      "coordinate": "input",
+      "dictionary": {
+        "state": "absent",
+        "entry": null
+      }
+    },
+    {
+      "span": [
+        10,
+        18
+      ],
+      "original_span": [
+        10,
+        18
+      ],
+      "original": "patients",
+      "replacement": null,
+      "leg": "policy",
+      "evidence": [],
+      "decision": "kept",
+      "reason": "valid_word",
+      "coordinate": "input",
+      "dictionary": {
+        "state": "absent",
+        "entry": null
+      }
+    },
+    {
+      "span": [
+        19,
+        23
+      ],
+      "original_span": [
+        19,
+        23
+      ],
+      "original": "with",
+      "replacement": null,
+      "leg": "policy",
+      "evidence": [],
+      "decision": "kept",
+      "reason": "valid_word",
+      "coordinate": "input",
+      "dictionary": {
+        "state": "absent",
+        "entry": null
+      }
+    },
+    {
+      "span": [
+        24,
+        25
+      ],
+      "original_span": [
+        24,
+        25
+      ],
+      "original": "a",
+      "replacement": null,
+      "leg": "policy",
+      "evidence": [],
+      "decision": "kept",
+      "reason": "short_surface",
+      "coordinate": "input",
+      "dictionary": {
+        "state": "absent",
+        "entry": null
+      }
+    },
+    {
+      "span": [
+        26,
+        42
+      ],
+      "original_span": [
+        26,
+        42
+      ],
+      "original": "thromboctyopenia",
+      "replacement": "thrombocytopenia",
+      "leg": "context",
+      "evidence": [
+        {
+          "source": "context",
+          "note": "committed",
+          "suggestions": [
+            {
+              "word": "thrombocytopenia",
+              "score": 2.564,
+              "edit_frequency": 2.575,
+              "structural_defects": 0,
+              "gloss_overlap": 0.011
+            }
+          ]
+        }
+      ],
+      "decision": "applied",
+      "reason": "committed",
+      "coordinate": "input",
+      "dictionary": {
+        "state": "absent",
+        "entry": null
+      }
+    },
+    {
+      "span": [
+        43,
+        48
+      ],
+      "original_span": [
+        43,
+        48
+      ],
+      "original": "event",
+      "replacement": null,
+      "leg": "policy",
+      "evidence": [],
+      "decision": "kept",
+      "reason": "valid_word",
+      "coordinate": "input",
+      "dictionary": {
+        "state": "absent",
+        "entry": null
+      }
+    },
+    {
+      "span": [
+        50,
+        60
+      ],
+      "original_span": [
+        50,
+        60
+      ],
+      "original": "identified",
+      "replacement": null,
+      "leg": "policy",
+      "evidence": [],
+      "decision": "kept",
+      "reason": "valid_word",
+      "coordinate": "input",
+      "dictionary": {
+        "state": "absent",
+        "entry": null
+      }
+    },
+    {
+      "span": [
+        61,
+        65
+      ],
+      "original_span": [
+        61,
+        65
+      ],
+      "original": "from",
+      "replacement": null,
+      "leg": "policy",
+      "evidence": [],
+      "decision": "kept",
+      "reason": "valid_word",
+      "coordinate": "input",
+      "dictionary": {
+        "state": "absent",
+        "entry": null
+      }
+    },
+    {
+      "span": [
+        66,
+        69
+      ],
+      "original_span": [
+        66,
+        69
+      ],
+      "original": "the",
+      "replacement": null,
+      "leg": "policy",
+      "evidence": [],
+      "decision": "kept",
+      "reason": "valid_word",
+      "coordinate": "input",
+      "dictionary": {
+        "state": "absent",
+        "entry": null
+      }
+    },
+    {
+      "span": [
+        70,
+        73
+      ],
+      "original_span": [
+        70,
+        73
+      ],
+      "original": "lab",
+      "replacement": null,
+      "leg": "policy",
+      "evidence": [],
+      "decision": "kept",
+      "reason": "valid_word",
+      "coordinate": "input",
+      "dictionary": {
+        "state": "absent",
+        "entry": null
+      }
+    },
+    {
+      "span": [
+        74,
+        78
+      ],
+      "original_span": [
+        74,
+        78
+      ],
+      "original": "data",
+      "replacement": null,
+      "leg": "policy",
+      "evidence": [],
+      "decision": "kept",
+      "reason": "valid_word",
+      "coordinate": "input",
+      "dictionary": {
+        "state": "absent",
+        "entry": null
+      }
+    },
+    {
+      "span": [
+        79,
+        81
+      ],
+      "original_span": [
+        79,
+        81
+      ],
+      "original": "as",
+      "replacement": null,
+      "leg": "policy",
+      "evidence": [],
+      "decision": "kept",
+      "reason": "valid_word",
+      "coordinate": "input",
+      "dictionary": {
+        "state": "absent",
+        "entry": null
+      }
+    },
+    {
+      "span": [
+        82,
+        83
+      ],
+      "original_span": [
+        82,
+        83
+      ],
+      "original": "a",
+      "replacement": null,
+      "leg": "policy",
+      "evidence": [],
+      "decision": "kept",
+      "reason": "short_surface",
+      "coordinate": "input",
+      "dictionary": {
+        "state": "absent",
+        "entry": null
+      }
+    },
+    {
+      "span": [
+        84,
+        93
+      ],
+      "original_span": [
+        84,
+        93
+      ],
+      "original": "worsening",
+      "replacement": null,
+      "leg": "policy",
+      "evidence": [],
+      "decision": "kept",
+      "reason": "valid_word",
+      "coordinate": "input",
+      "dictionary": {
+        "state": "absent",
+        "entry": null
+      }
+    },
+    {
+      "span": [
+        94,
+        96
+      ],
+      "original_span": [
+        94,
+        96
+      ],
+      "original": "in",
+      "replacement": null,
+      "leg": "policy",
+      "evidence": [],
+      "decision": "kept",
+      "reason": "valid_word",
+      "coordinate": "input",
+      "dictionary": {
+        "state": "absent",
+        "entry": null
+      }
+    },
+    {
+      "span": [
+        97,
+        105
+      ],
+      "original_span": [
+        97,
+        105
+      ],
+      "original": "platelet",
+      "replacement": null,
+      "leg": "policy",
+      "evidence": [],
+      "decision": "kept",
+      "reason": "valid_word",
+      "coordinate": "input",
+      "dictionary": {
+        "state": "absent",
+        "entry": null
+      }
+    },
+    {
+      "span": [
+        106,
+        111
+      ],
+      "original_span": [
+        106,
+        111
+      ],
+      "original": "count",
+      "replacement": null,
+      "leg": "policy",
+      "evidence": [],
+      "decision": "kept",
+      "reason": "valid_word",
+      "coordinate": "input",
+      "dictionary": {
+        "state": "absent",
+        "entry": null
+      }
+    },
+    {
+      "span": [
+        112,
+        116
+      ],
+      "original_span": [
+        112,
+        116
+      ],
+      "original": "from",
+      "replacement": null,
+      "leg": "policy",
+      "evidence": [],
+      "decision": "kept",
+      "reason": "valid_word",
+      "coordinate": "input",
+      "dictionary": {
+        "state": "absent",
+        "entry": null
+      }
+    },
+    {
+      "span": [
+        117,
+        125
+      ],
+      "original_span": [
+        117,
+        125
+      ],
+      "original": "baseline",
+      "replacement": null,
+      "leg": "policy",
+      "evidence": [],
+      "decision": "kept",
+      "reason": "valid_word",
+      "coordinate": "input",
+      "dictionary": {
+        "state": "absent",
+        "entry": null
+      }
+    },
+    {
+      "span": [
+        126,
+        128
+      ],
+      "original_span": [
+        126,
+        128
+      ],
+      "original": "to",
+      "replacement": null,
+      "leg": "policy",
+      "evidence": [],
+      "decision": "kept",
+      "reason": "valid_word",
+      "coordinate": "input",
+      "dictionary": {
+        "state": "absent",
+        "entry": null
+      }
+    },
+    {
+      "span": [
+        129,
+        130
+      ],
+      "original_span": [
+        129,
+        130
+      ],
+      "original": "a",
+      "replacement": null,
+      "leg": "policy",
+      "evidence": [],
+      "decision": "kept",
+      "reason": "short_surface",
+      "coordinate": "input",
+      "dictionary": {
+        "state": "absent",
+        "entry": null
+      }
+    },
+    {
+      "span": [
+        131,
+        134
+      ],
+      "original_span": [
+        131,
+        134
+      ],
+      "original": "CTC",
+      "replacement": null,
+      "leg": "policy",
+      "evidence": [],
+      "decision": "kept",
+      "reason": "valid_word",
+      "coordinate": "input",
+      "dictionary": {
+        "state": "absent",
+        "entry": null
+      }
+    },
+    {
+      "span": [
+        135,
+        140
+      ],
+      "original_span": [
+        135,
+        140
+      ],
+      "original": "grade",
+      "replacement": null,
+      "leg": "policy",
+      "evidence": [],
+      "decision": "kept",
+      "reason": "valid_word",
+      "coordinate": "input",
+      "dictionary": {
+        "state": "absent",
+        "entry": null
+      }
+    },
+    {
+      "span": [
+        141,
+        142
+      ],
+      "original_span": [
+        141,
+        142
+      ],
+      "original": "3",
+      "replacement": null,
+      "leg": "policy",
+      "evidence": [],
+      "decision": "kept",
+      "reason": "non_ascii_or_unit_or_digit",
+      "coordinate": "input",
+      "dictionary": {
+        "state": "absent",
+        "entry": null
+      }
+    },
+    {
+      "span": [
+        143,
+        145
+      ],
+      "original_span": [
+        143,
+        145
+      ],
+      "original": "or",
+      "replacement": null,
+      "leg": "policy",
+      "evidence": [],
+      "decision": "kept",
+      "reason": "valid_word",
+      "coordinate": "input",
+      "dictionary": {
+        "state": "absent",
+        "entry": null
+      }
+    },
+    {
+      "span": [
+        146,
+        151
+      ],
+      "original_span": [
+        146,
+        151
+      ],
+      "original": "above",
+      "replacement": null,
+      "leg": "policy",
+      "evidence": [],
+      "decision": "kept",
+      "reason": "valid_word",
+      "coordinate": "input",
+      "dictionary": {
+        "state": "absent",
+        "entry": null
+      }
+    }
+  ],
+  "policy": "gse.heal/1",
+  "dictionary": {
+    "schema": "gse.protected-dictionary/1",
+    "path": "/Users/rohanvinaik/Projects/gse/gse/nlp/data/personal_dictionary.json",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "state": "absent",
+    "n": 0
+  },
+  "original_sha256": "fdb86080ee456d35a2cdf934f0ae7ebef4dc4d9b16b6cf58a373b1d2027839fc",
+  "input_sha256": "fdb86080ee456d35a2cdf934f0ae7ebef4dc4d9b16b6cf58a373b1d2027839fc",
+  "measured_sha256": "d4455677c8cc2df775dad8a86320c2f37d832c30a51b120b72c484f5dfba5519",
+  "encoding": "utf-8",
+  "source_map": [
+    {
+      "reduced": [
+        0,
+        152
+      ],
+      "original": [
+        0,
+        152
+      ]
+    }
+  ],
+  "context": {
+    "state": "read"
+  },
+  "before_sentences": [
+    {
+      "id": 0,
+      "span": [
+        0,
+        152
+      ],
+      "text": "Number of patients with a thromboctyopenia event, identified from the lab data as a worsening in platelet count from baseline to a CTC grade 3 or above."
+    }
+  ],
+  "after_sentences": [
+    {
+      "id": 0,
+      "span": [
+        0,
+        152
+      ],
+      "text": "Number of patients with a thrombocytopenia event, identified from the lab data as a worsening in platelet count from baseline to a CTC grade 3 or above."
+    }
+  ]
+}

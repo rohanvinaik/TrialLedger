@@ -12,11 +12,18 @@ revise it. They make the clinical judgments; you keep the evidence, accepted cho
 connected in the decision list.
 The reference workbook is both a standalone deliverable and a base for continuing design work.
 
+Make the full capacity legible through clinical questions. The [worked questions](docs/POWERFUL_QUESTIONS.md)
+show a missing cross-tabulation bounded by marginals, positive and negative eligibility witnesses that can
+coexist, distinct scheduled/actual events and useful partial answers despite unresolved bindings. Use one
+when it illuminates the person's task; name which premises are real retained evidence and which are invented.
+Give the answer and the next consequential choice, not a module inventory or a status report about the build.
+
 Read AGENTS.md for the complete procedure. Layer one is mechanical: registry facts and fixed direct rules in
 `landscape.xlsx` and `landscape.json`, answered from the saved record. Layer two is symbolic reasoning about
 trial design: you translate, the `reason` operations reason. Restate the person's criteria and questions as
-typed premises, show them back in plain words, ask about each ambiguity, encode only what they confirm, and
-report the computed result in the person's terms with the premise that decided it. Do not reason about the
+typed premises, show them back in plain words, and encode confirmed readings as accepted premises. Explore
+unconfirmed readings in explicitly separate `interpretations` frames, retaining their assumptions and exact
+conditional consequences. Report the computed result in the person's terms with the premise that decided it. Do not reason about the
 design yourself or apply an operation's rules by hand and call the outcome computed.
 
 Start with the requested clinical task, check capabilities before promising delivery, and handle internal
@@ -117,6 +124,28 @@ No automatic cross-signal join, scale conversion or source-field interpretation 
 rule, sources and weakest standing on the relevant decision entry; revise premises and rerun. Derived bounds
 never become source-stated criteria in corpus frequency calculations.
 
+## Competing readings are useful before confirmation
+
+Discover `interpretations` to explore possible readings of a source or alternative choices for the new
+trial. Keep fixed evidence/direct rules separate from each frame's hypothetical premises. Mark origins and
+retain proposed standing; the operation may assume a proposal only inside its named frame. Ordinary
+entailment continues to refuse proposed premises. A conditional proof does not certify the intended reading.
+
+Return the fixed-floor answers, each reading's consequences, its compatibility/refutation warrant and the
+specific remaining question. Compatible means it fits the represented constraints, not that it is the true
+protocol or the right clinical choice. A sole survivor is still relative to the declared family. Keep
+unresolved readings possible and their partial calculations visible; never replace unknown with false.
+
+Population/definition bindings retain source versions/addresses and study/population/arm/time/edition.
+Apply them only to the named signal and matching scope. A wrong application is unresolved, not proof that
+the design is impossible. Distinguish scheduled from actual events, ITT from safety/QoL populations and
+observed from imputed inputs. A selection is the person's choice and cannot override a fixed contradiction.
+On revision rerun the complete request; keep rivals and original evidence alongside the result.
+
+Ask the distinguishing clinical question rather than demand confirmation before offering any analysis:
+“Here is what each reading would permit; which population or interval do you intend?” Feed the answers
+into the decision list and keep useful conditional results while that distinction remains open.
+
 ## Reference sheet
 
 For an assistant-operated local run, first inspect whether this environment has local execution, network,
@@ -170,7 +199,7 @@ fields; this works for an MCP-only agent without source-file access. `examples` 
 `capability_examples` entries wrap a runnable `request` with invented premise/expected-result notes.
 
 Then use `trialledger reason --request FILE`, or MCP `reason(request)`, with an `operation` of `entailment`,
-`coordinates`, `corpus`, `design_bounds` or `signals`. The same public contract is `TrialLedger.layer2.run(request)`.
+`coordinates`, `corpus`, `design_bounds`, `signals` or `interpretations`. The same public contract is `TrialLedger.layer2.run(request)`.
 
 Ground every premise. Ask about the clinical distinction: all participants or one cohort; required versus
 permitted; prior therapy for advanced disease or any treatment; one qualifying mutation or compound; inclusive

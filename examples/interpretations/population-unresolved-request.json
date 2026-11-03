@@ -1,0 +1,442 @@
+{
+  "operation": "interpretations",
+  "study_ref": "invented:adult-NSCLC-draft:v1",
+  "fixed": {
+    "assertions": [
+      {
+        "applicability": {
+          "class": "Always"
+        },
+        "body": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+            "class": "Predicate",
+            "key": "age",
+            "kind": "measurement"
+          },
+          "qualifiers": {
+            "class": "Always"
+          },
+          "subject": {
+            "class": "Subject",
+            "kind": "participant",
+            "referent": ""
+          },
+          "time": null,
+          "value": {
+            "class": "Value",
+            "comparison": "ge",
+            "inclusivity": "unspecified",
+            "kind": "quantity",
+            "members": [],
+            "number": 18.0,
+            "unit": "Years",
+            "upper": null
+          }
+        },
+        "branch": {
+          "class": "Branch",
+          "node": "unresolved",
+          "path": []
+        },
+        "class": "ScopedAssertion",
+        "cohort": {
+          "class": "Scope",
+          "kind": "all_participants",
+          "parts": [],
+          "ref": ""
+        },
+        "criterion_ref": "invented:trial-design-session-not-registry-evidence",
+        "id": "draft-adults",
+        "modality": "required",
+        "resolution": "resolved",
+        "rule": {
+          "answers": [],
+          "class": "Rule",
+          "id": "invented-session-premise",
+          "premises": [],
+          "version": "1",
+          "warrants": [
+            "invented:explicit-teaching-premise"
+          ]
+        },
+        "span": [],
+        "status": "known"
+      },
+      {
+        "applicability": {
+          "class": "Always"
+        },
+        "body": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+            "class": "Predicate",
+            "key": "ECOG",
+            "kind": "measurement"
+          },
+          "qualifiers": {
+            "class": "Always"
+          },
+          "subject": {
+            "class": "Subject",
+            "kind": "participant",
+            "referent": ""
+          },
+          "time": null,
+          "value": {
+            "class": "Value",
+            "comparison": "ge",
+            "inclusivity": "unspecified",
+            "kind": "quantity",
+            "members": [],
+            "number": 0.0,
+            "unit": "ECOG",
+            "upper": null
+          }
+        },
+        "branch": {
+          "class": "Branch",
+          "node": "unresolved",
+          "path": []
+        },
+        "class": "ScopedAssertion",
+        "cohort": {
+          "class": "Scope",
+          "kind": "all_participants",
+          "parts": [],
+          "ref": ""
+        },
+        "criterion_ref": "invented:trial-design-session-not-registry-evidence",
+        "id": "draft-PS-min",
+        "modality": "required",
+        "resolution": "resolved",
+        "rule": {
+          "answers": [],
+          "class": "Rule",
+          "id": "invented-session-premise",
+          "premises": [],
+          "version": "1",
+          "warrants": [
+            "invented:explicit-teaching-premise"
+          ]
+        },
+        "span": [],
+        "status": "known"
+      }
+    ],
+    "signals": [
+      {
+        "id": "EFQ-coverage",
+        "kind": "population",
+        "data": {
+          "universe": "invented:comparator:ITT:cohort-A:v1",
+          "alignment": "confirmed",
+          "total": 200,
+          "parent_ref": "ITT",
+          "subset_relation": "confirmed",
+          "subset": {
+            "ref": "EFQ",
+            "universe": "invented:comparator:ITT:cohort-A:v1",
+            "lower": 160,
+            "upper": 160
+          }
+        },
+        "support": [
+          {
+            "id": "EFQ-coverage-premise",
+            "status": "known",
+            "resolution": "resolved",
+            "basis": [
+              "invented:explicit-demonstration-premise-not-trial-evidence"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "bindings": [
+    {
+      "id": "EFQ-subset-binding",
+      "kind": "population",
+      "relation": "subset_of",
+      "subjects": [
+        "ITT",
+        "EFQ"
+      ],
+      "scope": {
+        "study": "invented:adult-NSCLC-draft:v1",
+        "population": "invented:comparator:ITT:cohort-A:v1",
+        "arm": "all",
+        "time": "baseline-to-week12",
+        "version": "invented:population-v1"
+      },
+      "sources": [
+        {
+          "ref": "invented:comparator-protocol",
+          "version": "1",
+          "address": "/invented/definitions"
+        }
+      ],
+      "status": "proposed",
+      "resolution": "unresolved",
+      "basis": [
+        "invented:explicit-reading-for-hypothetical-computation"
+      ]
+    }
+  ],
+  "interpretations": [
+    {
+      "id": "aligned-EFQ",
+      "label": "Interpret EFQ as the declared 160-person subset of ITT 200",
+      "origin": "assistant",
+      "basis": [
+        "invented:hypothesis-to-discuss-not-an-established-protocol"
+      ],
+      "assumptions": [
+        {
+          "applicability": {
+            "class": "Always"
+          },
+          "body": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "ECOG",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "le",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 2.0,
+              "unit": "ECOG",
+              "upper": null
+            }
+          },
+          "branch": {
+            "class": "Branch",
+            "node": "unresolved",
+            "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+            "class": "Scope",
+            "kind": "all_participants",
+            "parts": [],
+            "ref": ""
+          },
+          "criterion_ref": "invented:trial-design-session-not-registry-evidence",
+          "id": "aligned-EFQ-PS",
+          "modality": "required",
+          "resolution": "resolved",
+          "rule": {
+            "answers": [],
+            "class": "Rule",
+            "id": "invented-session-premise",
+            "premises": [],
+            "version": "1",
+            "warrants": [
+              "invented:explicit-teaching-premise"
+            ]
+          },
+          "span": [],
+          "status": "proposed"
+        }
+      ],
+      "signals": [],
+      "signal_claims": [],
+      "binding_uses": [
+        {
+          "binding": "EFQ-subset-binding",
+          "signal": "EFQ-coverage",
+          "scope": {
+            "study": "invented:adult-NSCLC-draft:v1",
+            "population": "invented:comparator:ITT:cohort-A:v1",
+            "arm": "all",
+            "time": "baseline-to-week12",
+            "version": "invented:population-v1"
+          }
+        }
+      ]
+    },
+    {
+      "id": "everyone-in-EFQ",
+      "label": "Assume every ITT participant was in EFQ",
+      "origin": "assistant",
+      "basis": [
+        "invented:hypothesis-to-discuss-not-an-established-protocol"
+      ],
+      "assumptions": [
+        {
+          "applicability": {
+            "class": "Always"
+          },
+          "body": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "ECOG",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "le",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 2.0,
+              "unit": "ECOG",
+              "upper": null
+            }
+          },
+          "branch": {
+            "class": "Branch",
+            "node": "unresolved",
+            "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+            "class": "Scope",
+            "kind": "all_participants",
+            "parts": [],
+            "ref": ""
+          },
+          "criterion_ref": "invented:trial-design-session-not-registry-evidence",
+          "id": "everyone-in-EFQ-PS",
+          "modality": "required",
+          "resolution": "resolved",
+          "rule": {
+            "answers": [],
+            "class": "Rule",
+            "id": "invented-session-premise",
+            "premises": [],
+            "version": "1",
+            "warrants": [
+              "invented:explicit-teaching-premise"
+            ]
+          },
+          "span": [],
+          "status": "proposed"
+        }
+      ],
+      "signals": [],
+      "signal_claims": [
+        {
+          "signal": "EFQ-coverage",
+          "claim": {
+            "count": "outside",
+            "lower": 0,
+            "upper": 0
+          }
+        }
+      ],
+      "binding_uses": [
+        {
+          "binding": "EFQ-subset-binding",
+          "signal": "EFQ-coverage",
+          "scope": {
+            "study": "invented:adult-NSCLC-draft:v1",
+            "population": "invented:comparator:ITT:cohort-A:v1",
+            "arm": "all",
+            "time": "baseline-to-week12",
+            "version": "invented:population-v1"
+          }
+        }
+      ]
+    }
+  ],
+  "queries": [
+    {
+      "id": "adult",
+      "body": {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+          "class": "Predicate",
+          "key": "age",
+          "kind": "measurement"
+        },
+        "qualifiers": {
+          "class": "Always"
+        },
+        "subject": {
+          "class": "Subject",
+          "kind": "participant",
+          "referent": ""
+        },
+        "time": null,
+        "value": {
+          "class": "Value",
+          "comparison": "ge",
+          "inclusivity": "unspecified",
+          "kind": "quantity",
+          "members": [],
+          "number": 18.0,
+          "unit": "Years",
+          "upper": null
+        }
+      }
+    },
+    {
+      "id": "PS3",
+      "body": {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+          "class": "Predicate",
+          "key": "ECOG",
+          "kind": "measurement"
+        },
+        "qualifiers": {
+          "class": "Always"
+        },
+        "subject": {
+          "class": "Subject",
+          "kind": "participant",
+          "referent": ""
+        },
+        "time": null,
+        "value": {
+          "class": "Value",
+          "comparison": "eq",
+          "inclusivity": "unspecified",
+          "kind": "quantity",
+          "members": [],
+          "number": 3.0,
+          "unit": "ECOG",
+          "upper": null
+        }
+      }
+    }
+  ]
+}

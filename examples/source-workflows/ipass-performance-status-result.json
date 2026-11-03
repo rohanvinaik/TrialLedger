@@ -1,0 +1,682 @@
+{
+  "code": "complete",
+  "operation": "design_bounds",
+  "result": {
+    "basis": "Conditional on the supplied typed premises; their source meaning is not certified by this operation.",
+    "study_ref": "NCT00322452:sha256:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a",
+    "premises": {
+      "operation": "design_bounds",
+      "study_ref": "NCT00322452:sha256:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a",
+      "candidates": [
+        {
+          "id": "upper_0",
+          "assertions": [
+            {
+              "applicability": {
+                "class": "Always"
+              },
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "WHO_PS",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "le",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 0.0,
+                  "unit": "WHO_PS",
+                  "upper": null
+                }
+              },
+              "branch": {
+                "class": "Branch",
+                "node": "unresolved",
+                "path": []
+              },
+              "class": "ScopedAssertion",
+              "cohort": {
+                "class": "Scope",
+                "kind": "all_participants",
+                "parts": [],
+                "ref": ""
+              },
+              "criterion_ref": "test:declared-candidate-not-protocol-fact",
+              "id": "upper_0",
+              "modality": "required",
+              "resolution": "resolved",
+              "rule": {
+                "answers": [],
+                "class": "Rule",
+                "id": "test-candidate",
+                "premises": [],
+                "version": "1",
+                "warrants": [
+                  "test:finite-candidate-family"
+                ]
+              },
+              "span": [],
+              "status": "known"
+            }
+          ]
+        },
+        {
+          "id": "upper_1",
+          "assertions": [
+            {
+              "applicability": {
+                "class": "Always"
+              },
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "WHO_PS",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "le",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 1.0,
+                  "unit": "WHO_PS",
+                  "upper": null
+                }
+              },
+              "branch": {
+                "class": "Branch",
+                "node": "unresolved",
+                "path": []
+              },
+              "class": "ScopedAssertion",
+              "cohort": {
+                "class": "Scope",
+                "kind": "all_participants",
+                "parts": [],
+                "ref": ""
+              },
+              "criterion_ref": "test:declared-candidate-not-protocol-fact",
+              "id": "upper_1",
+              "modality": "required",
+              "resolution": "resolved",
+              "rule": {
+                "answers": [],
+                "class": "Rule",
+                "id": "test-candidate",
+                "premises": [],
+                "version": "1",
+                "warrants": [
+                  "test:finite-candidate-family"
+                ]
+              },
+              "span": [],
+              "status": "known"
+            }
+          ]
+        },
+        {
+          "id": "upper_2",
+          "assertions": [
+            {
+              "applicability": {
+                "class": "Always"
+              },
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "WHO_PS",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "le",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 2.0,
+                  "unit": "WHO_PS",
+                  "upper": null
+                }
+              },
+              "branch": {
+                "class": "Branch",
+                "node": "unresolved",
+                "path": []
+              },
+              "class": "ScopedAssertion",
+              "cohort": {
+                "class": "Scope",
+                "kind": "all_participants",
+                "parts": [],
+                "ref": ""
+              },
+              "criterion_ref": "test:declared-candidate-not-protocol-fact",
+              "id": "upper_2",
+              "modality": "required",
+              "resolution": "resolved",
+              "rule": {
+                "answers": [],
+                "class": "Rule",
+                "id": "test-candidate",
+                "premises": [],
+                "version": "1",
+                "warrants": [
+                  "test:finite-candidate-family"
+                ]
+              },
+              "span": [],
+              "status": "known"
+            }
+          ]
+        },
+        {
+          "id": "upper_3",
+          "assertions": [
+            {
+              "applicability": {
+                "class": "Always"
+              },
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "WHO_PS",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "le",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 3.0,
+                  "unit": "WHO_PS",
+                  "upper": null
+                }
+              },
+              "branch": {
+                "class": "Branch",
+                "node": "unresolved",
+                "path": []
+              },
+              "class": "ScopedAssertion",
+              "cohort": {
+                "class": "Scope",
+                "kind": "all_participants",
+                "parts": [],
+                "ref": ""
+              },
+              "criterion_ref": "test:declared-candidate-not-protocol-fact",
+              "id": "upper_3",
+              "modality": "required",
+              "resolution": "resolved",
+              "rule": {
+                "answers": [],
+                "class": "Rule",
+                "id": "test-candidate",
+                "premises": [],
+                "version": "1",
+                "warrants": [
+                  "test:finite-candidate-family"
+                ]
+              },
+              "span": [],
+              "status": "known"
+            }
+          ]
+        },
+        {
+          "id": "upper_4",
+          "assertions": [
+            {
+              "applicability": {
+                "class": "Always"
+              },
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "WHO_PS",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "le",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 4.0,
+                  "unit": "WHO_PS",
+                  "upper": null
+                }
+              },
+              "branch": {
+                "class": "Branch",
+                "node": "unresolved",
+                "path": []
+              },
+              "class": "ScopedAssertion",
+              "cohort": {
+                "class": "Scope",
+                "kind": "all_participants",
+                "parts": [],
+                "ref": ""
+              },
+              "criterion_ref": "test:declared-candidate-not-protocol-fact",
+              "id": "upper_4",
+              "modality": "required",
+              "resolution": "resolved",
+              "rule": {
+                "answers": [],
+                "class": "Rule",
+                "id": "test-candidate",
+                "premises": [],
+                "version": "1",
+                "warrants": [
+                  "test:finite-candidate-family"
+                ]
+              },
+              "span": [],
+              "status": "known"
+            }
+          ]
+        },
+        {
+          "id": "no_ps_restriction",
+          "assertions": []
+        }
+      ],
+      "observations": [
+        {
+          "id": "WHO_PS_2",
+          "count": 126,
+          "denominator": 1217,
+          "population": "NCT00322452:baseline:BG002",
+          "context": {},
+          "status": "known",
+          "body": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "WHO_PS",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "eq",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 2.0,
+              "unit": "WHO_PS",
+              "upper": null
+            }
+          },
+          "basis": [
+            "/studies/0/baseline/measures/5/classes/2/categories/0/measurements/2/value",
+            "/studies/0/baseline/denominators/0/counts/2",
+            "/studies/0/digest"
+          ],
+          "bridge": {
+            "status": "interpolated",
+            "resolution": "resolved",
+            "max_exceptions": 0,
+            "basis": [
+              "test:assume-PS-category-is-participant-count-and-aligned-to-eligibility-assessment",
+              "test:assume-at-least-one-PS2-participant-met-applicable-criteria-via-zero-exceptions"
+            ]
+          }
+        }
+      ],
+      "query": {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+          "class": "Predicate",
+          "key": "WHO_PS",
+          "kind": "measurement"
+        },
+        "qualifiers": {
+          "class": "Always"
+        },
+        "subject": {
+          "class": "Subject",
+          "kind": "participant",
+          "referent": ""
+        },
+        "time": null,
+        "value": {
+          "class": "Value",
+          "comparison": "le",
+          "inclusivity": "unspecified",
+          "kind": "quantity",
+          "members": [],
+          "number": 2.0,
+          "unit": "WHO_PS",
+          "upper": null
+        }
+      }
+    },
+    "candidates": [
+      {
+        "id": "upper_0",
+        "state": "ruled_out",
+        "observations": [
+          {
+            "observation": "WHO_PS_2",
+            "support": "witness",
+            "state": "ruled_out",
+            "status": "interpolated",
+            "basis": [
+              "/studies/0/baseline/measures/5/classes/2/categories/0/measurements/2/value",
+              "/studies/0/baseline/denominators/0/counts/2",
+              "/studies/0/digest",
+              "test:assume-PS-category-is-participant-count-and-aligned-to-eligibility-assessment",
+              "test:assume-at-least-one-PS2-participant-met-applicable-criteria-via-zero-exceptions"
+            ],
+            "decision": {
+              "result": "REFUTED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"WHO_PS\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":2.0,\"unit\":\"WHO_PS\",\"upper\":null}}",
+              "status": "known",
+              "proof": [
+                "upper_0"
+              ],
+              "blockers": []
+            }
+          }
+        ],
+        "query_decision": {
+          "result": "ENTAILED",
+          "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"WHO_PS\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"le\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":2.0,\"unit\":\"WHO_PS\",\"upper\":null}}",
+          "status": "known",
+          "proof": [
+            "upper_0"
+          ],
+          "blockers": []
+        }
+      },
+      {
+        "id": "upper_1",
+        "state": "ruled_out",
+        "observations": [
+          {
+            "observation": "WHO_PS_2",
+            "support": "witness",
+            "state": "ruled_out",
+            "status": "interpolated",
+            "basis": [
+              "/studies/0/baseline/measures/5/classes/2/categories/0/measurements/2/value",
+              "/studies/0/baseline/denominators/0/counts/2",
+              "/studies/0/digest",
+              "test:assume-PS-category-is-participant-count-and-aligned-to-eligibility-assessment",
+              "test:assume-at-least-one-PS2-participant-met-applicable-criteria-via-zero-exceptions"
+            ],
+            "decision": {
+              "result": "REFUTED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"WHO_PS\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":2.0,\"unit\":\"WHO_PS\",\"upper\":null}}",
+              "status": "known",
+              "proof": [
+                "upper_1"
+              ],
+              "blockers": []
+            }
+          }
+        ],
+        "query_decision": {
+          "result": "ENTAILED",
+          "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"WHO_PS\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"le\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":2.0,\"unit\":\"WHO_PS\",\"upper\":null}}",
+          "status": "known",
+          "proof": [
+            "upper_1"
+          ],
+          "blockers": []
+        }
+      },
+      {
+        "id": "upper_2",
+        "state": "not_ruled_out",
+        "observations": [
+          {
+            "observation": "WHO_PS_2",
+            "support": "witness",
+            "state": "not_ruled_out",
+            "status": "interpolated",
+            "basis": [
+              "/studies/0/baseline/measures/5/classes/2/categories/0/measurements/2/value",
+              "/studies/0/baseline/denominators/0/counts/2",
+              "/studies/0/digest",
+              "test:assume-PS-category-is-participant-count-and-aligned-to-eligibility-assessment",
+              "test:assume-at-least-one-PS2-participant-met-applicable-criteria-via-zero-exceptions"
+            ],
+            "decision": {
+              "result": "UNDETERMINED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"WHO_PS\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":2.0,\"unit\":\"WHO_PS\",\"upper\":null}}",
+              "status": null,
+              "proof": [
+                "upper_2"
+              ],
+              "blockers": [
+                "undecided_by_constraints"
+              ]
+            }
+          }
+        ],
+        "query_decision": {
+          "result": "ENTAILED",
+          "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"WHO_PS\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"le\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":2.0,\"unit\":\"WHO_PS\",\"upper\":null}}",
+          "status": "known",
+          "proof": [
+            "upper_2"
+          ],
+          "blockers": []
+        }
+      },
+      {
+        "id": "upper_3",
+        "state": "not_ruled_out",
+        "observations": [
+          {
+            "observation": "WHO_PS_2",
+            "support": "witness",
+            "state": "not_ruled_out",
+            "status": "interpolated",
+            "basis": [
+              "/studies/0/baseline/measures/5/classes/2/categories/0/measurements/2/value",
+              "/studies/0/baseline/denominators/0/counts/2",
+              "/studies/0/digest",
+              "test:assume-PS-category-is-participant-count-and-aligned-to-eligibility-assessment",
+              "test:assume-at-least-one-PS2-participant-met-applicable-criteria-via-zero-exceptions"
+            ],
+            "decision": {
+              "result": "UNDETERMINED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"WHO_PS\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":2.0,\"unit\":\"WHO_PS\",\"upper\":null}}",
+              "status": null,
+              "proof": [
+                "upper_3"
+              ],
+              "blockers": [
+                "undecided_by_constraints"
+              ]
+            }
+          }
+        ],
+        "query_decision": {
+          "result": "UNDETERMINED",
+          "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"WHO_PS\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"le\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":2.0,\"unit\":\"WHO_PS\",\"upper\":null}}",
+          "status": null,
+          "proof": [
+            "upper_3"
+          ],
+          "blockers": [
+            "undecided_by_constraints"
+          ]
+        }
+      },
+      {
+        "id": "upper_4",
+        "state": "not_ruled_out",
+        "observations": [
+          {
+            "observation": "WHO_PS_2",
+            "support": "witness",
+            "state": "not_ruled_out",
+            "status": "interpolated",
+            "basis": [
+              "/studies/0/baseline/measures/5/classes/2/categories/0/measurements/2/value",
+              "/studies/0/baseline/denominators/0/counts/2",
+              "/studies/0/digest",
+              "test:assume-PS-category-is-participant-count-and-aligned-to-eligibility-assessment",
+              "test:assume-at-least-one-PS2-participant-met-applicable-criteria-via-zero-exceptions"
+            ],
+            "decision": {
+              "result": "UNDETERMINED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"WHO_PS\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":2.0,\"unit\":\"WHO_PS\",\"upper\":null}}",
+              "status": null,
+              "proof": [
+                "upper_4"
+              ],
+              "blockers": [
+                "undecided_by_constraints"
+              ]
+            }
+          }
+        ],
+        "query_decision": {
+          "result": "UNDETERMINED",
+          "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"WHO_PS\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"le\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":2.0,\"unit\":\"WHO_PS\",\"upper\":null}}",
+          "status": null,
+          "proof": [
+            "upper_4"
+          ],
+          "blockers": [
+            "undecided_by_constraints"
+          ]
+        }
+      },
+      {
+        "id": "no_ps_restriction",
+        "state": "not_ruled_out",
+        "observations": [
+          {
+            "observation": "WHO_PS_2",
+            "support": "witness",
+            "state": "not_ruled_out",
+            "status": "interpolated",
+            "basis": [
+              "/studies/0/baseline/measures/5/classes/2/categories/0/measurements/2/value",
+              "/studies/0/baseline/denominators/0/counts/2",
+              "/studies/0/digest",
+              "test:assume-PS-category-is-participant-count-and-aligned-to-eligibility-assessment",
+              "test:assume-at-least-one-PS2-participant-met-applicable-criteria-via-zero-exceptions"
+            ],
+            "decision": {
+              "result": "UNDETERMINED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"WHO_PS\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":2.0,\"unit\":\"WHO_PS\",\"upper\":null}}",
+              "status": null,
+              "proof": [],
+              "blockers": [
+                "no_constraint_mentions_query"
+              ]
+            }
+          }
+        ],
+        "query_decision": {
+          "result": "UNDETERMINED",
+          "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"WHO_PS\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"le\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":2.0,\"unit\":\"WHO_PS\",\"upper\":null}}",
+          "status": null,
+          "proof": [],
+          "blockers": [
+            "no_constraint_mentions_query"
+          ]
+        }
+      }
+    ],
+    "remaining": [
+      "upper_2",
+      "upper_3",
+      "upper_4",
+      "no_ps_restriction"
+    ],
+    "consequence": {
+      "result": "UNDETERMINED",
+      "status": null,
+      "basis": "All remaining declared candidate designs; includes the support of eliminations."
+    },
+    "limits": "Declared candidate family only; source meaning and eligibility bridges are not certified. No automatic table interpretation or source mutation."
+  },
+  "problems": []
+}

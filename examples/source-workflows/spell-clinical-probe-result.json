@@ -1,0 +1,946 @@
+{
+  "input": "Patients must not recieve gefitinib 250 mg/day; ECOG 0–2, WHO PS 2, EGFR L858R, NCT00322452. Baseline ≤0.5 mg/dL; week-12 observed, not imputed.",
+  "corrected": "Patients must not receive gefitinib 250 mg/day; ECOG 0–2, WHO PS 2, EGFR L858R, NCT00322452. Baseline ≤0.5 mg/dL; week-12 observed, not imputed.",
+  "original_corrected": "Patients must not receive gefitinib 250 mg/day; ECOG 0–2, WHO PS 2, EGFR L858R, NCT00322452. Baseline ≤0.5 mg/dL; week-12 observed, not imputed.",
+  "deterministic": true,
+  "state": "partial",
+  "tokens": [
+    {
+      "surface": "Patients",
+      "misspelled": false,
+      "suggestions": [],
+      "span": [
+        0,
+        8
+      ],
+      "decision": "kept",
+      "reason": "valid_word"
+    },
+    {
+      "surface": "must",
+      "misspelled": false,
+      "suggestions": [],
+      "span": [
+        9,
+        13
+      ],
+      "decision": "kept",
+      "reason": "valid_word"
+    },
+    {
+      "surface": "not",
+      "misspelled": false,
+      "suggestions": [],
+      "span": [
+        14,
+        17
+      ],
+      "decision": "kept",
+      "reason": "valid_word"
+    },
+    {
+      "surface": "recieve",
+      "misspelled": true,
+      "top": "receive",
+      "ambiguous": false,
+      "suggestions": [
+        {
+          "word": "receive",
+          "edit_cost": 1,
+          "frequency": "rare/unranked",
+          "score": -0.425
+        }
+      ],
+      "note": "committed",
+      "span": [
+        18,
+        25
+      ],
+      "decision": "applied",
+      "reason": "committed"
+    },
+    {
+      "surface": "gefitinib",
+      "misspelled": false,
+      "suggestions": [],
+      "span": [
+        26,
+        35
+      ],
+      "decision": "kept",
+      "reason": "valid_word"
+    },
+    {
+      "surface": "250",
+      "misspelled": false,
+      "suggestions": [],
+      "span": [
+        36,
+        39
+      ],
+      "decision": "kept",
+      "reason": "non_ascii_or_unit_or_digit"
+    },
+    {
+      "surface": "mg",
+      "misspelled": false,
+      "suggestions": [],
+      "span": [
+        40,
+        42
+      ],
+      "decision": "kept",
+      "reason": "valid_word"
+    },
+    {
+      "surface": "day",
+      "misspelled": false,
+      "suggestions": [],
+      "span": [
+        43,
+        46
+      ],
+      "decision": "kept",
+      "reason": "valid_word"
+    },
+    {
+      "surface": "ECOG",
+      "misspelled": false,
+      "suggestions": [],
+      "span": [
+        48,
+        52
+      ],
+      "decision": "kept",
+      "reason": "valid_word"
+    },
+    {
+      "surface": "0",
+      "misspelled": false,
+      "suggestions": [],
+      "span": [
+        53,
+        54
+      ],
+      "decision": "kept",
+      "reason": "non_ascii_or_unit_or_digit"
+    },
+    {
+      "surface": "2",
+      "misspelled": false,
+      "suggestions": [],
+      "span": [
+        55,
+        56
+      ],
+      "decision": "kept",
+      "reason": "non_ascii_or_unit_or_digit"
+    },
+    {
+      "surface": "WHO",
+      "misspelled": false,
+      "suggestions": [],
+      "span": [
+        58,
+        61
+      ],
+      "decision": "kept",
+      "reason": "valid_word"
+    },
+    {
+      "surface": "PS",
+      "misspelled": false,
+      "suggestions": [],
+      "span": [
+        62,
+        64
+      ],
+      "decision": "kept",
+      "reason": "valid_word"
+    },
+    {
+      "surface": "2",
+      "misspelled": false,
+      "suggestions": [],
+      "span": [
+        65,
+        66
+      ],
+      "decision": "kept",
+      "reason": "non_ascii_or_unit_or_digit"
+    },
+    {
+      "surface": "EGFR",
+      "misspelled": false,
+      "suggestions": [],
+      "span": [
+        68,
+        72
+      ],
+      "decision": "kept",
+      "reason": "valid_word"
+    },
+    {
+      "surface": "L858R",
+      "misspelled": false,
+      "suggestions": [],
+      "span": [
+        73,
+        78
+      ],
+      "decision": "kept",
+      "reason": "non_ascii_or_unit_or_digit"
+    },
+    {
+      "surface": "NCT00322452",
+      "misspelled": false,
+      "suggestions": [],
+      "span": [
+        80,
+        91
+      ],
+      "decision": "kept",
+      "reason": "non_ascii_or_unit_or_digit"
+    },
+    {
+      "surface": "Baseline",
+      "misspelled": false,
+      "suggestions": [],
+      "span": [
+        93,
+        101
+      ],
+      "decision": "kept",
+      "reason": "valid_word"
+    },
+    {
+      "surface": "0",
+      "misspelled": false,
+      "suggestions": [],
+      "span": [
+        103,
+        104
+      ],
+      "decision": "kept",
+      "reason": "non_ascii_or_unit_or_digit"
+    },
+    {
+      "surface": "5",
+      "misspelled": false,
+      "suggestions": [],
+      "span": [
+        105,
+        106
+      ],
+      "decision": "kept",
+      "reason": "non_ascii_or_unit_or_digit"
+    },
+    {
+      "surface": "mg",
+      "misspelled": false,
+      "suggestions": [],
+      "span": [
+        107,
+        109
+      ],
+      "decision": "kept",
+      "reason": "valid_word"
+    },
+    {
+      "surface": "dL",
+      "misspelled": false,
+      "suggestions": [],
+      "span": [
+        110,
+        112
+      ],
+      "decision": "kept",
+      "reason": "valid_word"
+    },
+    {
+      "surface": "week-12",
+      "misspelled": false,
+      "suggestions": [],
+      "span": [
+        114,
+        121
+      ],
+      "decision": "kept",
+      "reason": "non_ascii_or_unit_or_digit"
+    },
+    {
+      "surface": "observed",
+      "misspelled": false,
+      "suggestions": [],
+      "span": [
+        122,
+        130
+      ],
+      "decision": "kept",
+      "reason": "valid_word"
+    },
+    {
+      "surface": "not",
+      "misspelled": false,
+      "suggestions": [],
+      "span": [
+        132,
+        135
+      ],
+      "decision": "kept",
+      "reason": "valid_word"
+    },
+    {
+      "surface": "imputed",
+      "misspelled": false,
+      "suggestions": [],
+      "span": [
+        136,
+        143
+      ],
+      "decision": "kept",
+      "reason": "valid_word"
+    }
+  ],
+  "ledger": [
+    {
+      "span": [
+        0,
+        8
+      ],
+      "original_span": [
+        0,
+        8
+      ],
+      "original": "Patients",
+      "replacement": null,
+      "leg": "policy",
+      "evidence": [],
+      "decision": "kept",
+      "reason": "valid_word",
+      "coordinate": "input",
+      "dictionary": {
+        "state": "absent",
+        "entry": null
+      }
+    },
+    {
+      "span": [
+        9,
+        13
+      ],
+      "original_span": [
+        9,
+        13
+      ],
+      "original": "must",
+      "replacement": null,
+      "leg": "policy",
+      "evidence": [],
+      "decision": "kept",
+      "reason": "valid_word",
+      "coordinate": "input",
+      "dictionary": {
+        "state": "absent",
+        "entry": null
+      }
+    },
+    {
+      "span": [
+        14,
+        17
+      ],
+      "original_span": [
+        14,
+        17
+      ],
+      "original": "not",
+      "replacement": null,
+      "leg": "policy",
+      "evidence": [],
+      "decision": "kept",
+      "reason": "valid_word",
+      "coordinate": "input",
+      "dictionary": {
+        "state": "absent",
+        "entry": null
+      }
+    },
+    {
+      "span": [
+        18,
+        25
+      ],
+      "original_span": [
+        18,
+        25
+      ],
+      "original": "recieve",
+      "replacement": "receive",
+      "leg": "word",
+      "evidence": [
+        {
+          "source": "word",
+          "note": "committed",
+          "suggestions": [
+            {
+              "word": "receive",
+              "edit_cost": 1,
+              "frequency": "rare/unranked",
+              "score": -0.425
+            }
+          ]
+        }
+      ],
+      "decision": "applied",
+      "reason": "committed",
+      "coordinate": "input",
+      "dictionary": {
+        "state": "absent",
+        "entry": null
+      }
+    },
+    {
+      "span": [
+        26,
+        35
+      ],
+      "original_span": [
+        26,
+        35
+      ],
+      "original": "gefitinib",
+      "replacement": null,
+      "leg": "policy",
+      "evidence": [],
+      "decision": "kept",
+      "reason": "valid_word",
+      "coordinate": "input",
+      "dictionary": {
+        "state": "absent",
+        "entry": null
+      }
+    },
+    {
+      "span": [
+        36,
+        39
+      ],
+      "original_span": [
+        36,
+        39
+      ],
+      "original": "250",
+      "replacement": null,
+      "leg": "policy",
+      "evidence": [],
+      "decision": "kept",
+      "reason": "non_ascii_or_unit_or_digit",
+      "coordinate": "input",
+      "dictionary": {
+        "state": "absent",
+        "entry": null
+      }
+    },
+    {
+      "span": [
+        40,
+        42
+      ],
+      "original_span": [
+        40,
+        42
+      ],
+      "original": "mg",
+      "replacement": null,
+      "leg": "policy",
+      "evidence": [],
+      "decision": "kept",
+      "reason": "valid_word",
+      "coordinate": "input",
+      "dictionary": {
+        "state": "absent",
+        "entry": null
+      }
+    },
+    {
+      "span": [
+        43,
+        46
+      ],
+      "original_span": [
+        43,
+        46
+      ],
+      "original": "day",
+      "replacement": null,
+      "leg": "policy",
+      "evidence": [],
+      "decision": "kept",
+      "reason": "valid_word",
+      "coordinate": "input",
+      "dictionary": {
+        "state": "absent",
+        "entry": null
+      }
+    },
+    {
+      "span": [
+        48,
+        52
+      ],
+      "original_span": [
+        48,
+        52
+      ],
+      "original": "ECOG",
+      "replacement": null,
+      "leg": "policy",
+      "evidence": [],
+      "decision": "kept",
+      "reason": "valid_word",
+      "coordinate": "input",
+      "dictionary": {
+        "state": "absent",
+        "entry": null
+      }
+    },
+    {
+      "span": [
+        53,
+        54
+      ],
+      "original_span": [
+        53,
+        54
+      ],
+      "original": "0",
+      "replacement": null,
+      "leg": "policy",
+      "evidence": [],
+      "decision": "kept",
+      "reason": "non_ascii_or_unit_or_digit",
+      "coordinate": "input",
+      "dictionary": {
+        "state": "absent",
+        "entry": null
+      }
+    },
+    {
+      "span": [
+        55,
+        56
+      ],
+      "original_span": [
+        55,
+        56
+      ],
+      "original": "2",
+      "replacement": null,
+      "leg": "policy",
+      "evidence": [],
+      "decision": "kept",
+      "reason": "non_ascii_or_unit_or_digit",
+      "coordinate": "input",
+      "dictionary": {
+        "state": "absent",
+        "entry": null
+      }
+    },
+    {
+      "span": [
+        58,
+        61
+      ],
+      "original_span": [
+        58,
+        61
+      ],
+      "original": "WHO",
+      "replacement": null,
+      "leg": "policy",
+      "evidence": [],
+      "decision": "kept",
+      "reason": "valid_word",
+      "coordinate": "input",
+      "dictionary": {
+        "state": "absent",
+        "entry": null
+      }
+    },
+    {
+      "span": [
+        62,
+        64
+      ],
+      "original_span": [
+        62,
+        64
+      ],
+      "original": "PS",
+      "replacement": null,
+      "leg": "policy",
+      "evidence": [],
+      "decision": "kept",
+      "reason": "valid_word",
+      "coordinate": "input",
+      "dictionary": {
+        "state": "absent",
+        "entry": null
+      }
+    },
+    {
+      "span": [
+        65,
+        66
+      ],
+      "original_span": [
+        65,
+        66
+      ],
+      "original": "2",
+      "replacement": null,
+      "leg": "policy",
+      "evidence": [],
+      "decision": "kept",
+      "reason": "non_ascii_or_unit_or_digit",
+      "coordinate": "input",
+      "dictionary": {
+        "state": "absent",
+        "entry": null
+      }
+    },
+    {
+      "span": [
+        68,
+        72
+      ],
+      "original_span": [
+        68,
+        72
+      ],
+      "original": "EGFR",
+      "replacement": null,
+      "leg": "policy",
+      "evidence": [],
+      "decision": "kept",
+      "reason": "valid_word",
+      "coordinate": "input",
+      "dictionary": {
+        "state": "absent",
+        "entry": null
+      }
+    },
+    {
+      "span": [
+        73,
+        78
+      ],
+      "original_span": [
+        73,
+        78
+      ],
+      "original": "L858R",
+      "replacement": null,
+      "leg": "policy",
+      "evidence": [],
+      "decision": "kept",
+      "reason": "non_ascii_or_unit_or_digit",
+      "coordinate": "input",
+      "dictionary": {
+        "state": "absent",
+        "entry": null
+      }
+    },
+    {
+      "span": [
+        80,
+        91
+      ],
+      "original_span": [
+        80,
+        91
+      ],
+      "original": "NCT00322452",
+      "replacement": null,
+      "leg": "policy",
+      "evidence": [],
+      "decision": "kept",
+      "reason": "non_ascii_or_unit_or_digit",
+      "coordinate": "input",
+      "dictionary": {
+        "state": "absent",
+        "entry": null
+      }
+    },
+    {
+      "span": [
+        93,
+        101
+      ],
+      "original_span": [
+        93,
+        101
+      ],
+      "original": "Baseline",
+      "replacement": null,
+      "leg": "policy",
+      "evidence": [],
+      "decision": "kept",
+      "reason": "valid_word",
+      "coordinate": "input",
+      "dictionary": {
+        "state": "absent",
+        "entry": null
+      }
+    },
+    {
+      "span": [
+        103,
+        104
+      ],
+      "original_span": [
+        103,
+        104
+      ],
+      "original": "0",
+      "replacement": null,
+      "leg": "policy",
+      "evidence": [],
+      "decision": "kept",
+      "reason": "non_ascii_or_unit_or_digit",
+      "coordinate": "input",
+      "dictionary": {
+        "state": "absent",
+        "entry": null
+      }
+    },
+    {
+      "span": [
+        105,
+        106
+      ],
+      "original_span": [
+        105,
+        106
+      ],
+      "original": "5",
+      "replacement": null,
+      "leg": "policy",
+      "evidence": [],
+      "decision": "kept",
+      "reason": "non_ascii_or_unit_or_digit",
+      "coordinate": "input",
+      "dictionary": {
+        "state": "absent",
+        "entry": null
+      }
+    },
+    {
+      "span": [
+        107,
+        109
+      ],
+      "original_span": [
+        107,
+        109
+      ],
+      "original": "mg",
+      "replacement": null,
+      "leg": "policy",
+      "evidence": [],
+      "decision": "kept",
+      "reason": "valid_word",
+      "coordinate": "input",
+      "dictionary": {
+        "state": "absent",
+        "entry": null
+      }
+    },
+    {
+      "span": [
+        110,
+        112
+      ],
+      "original_span": [
+        110,
+        112
+      ],
+      "original": "dL",
+      "replacement": null,
+      "leg": "policy",
+      "evidence": [],
+      "decision": "kept",
+      "reason": "valid_word",
+      "coordinate": "input",
+      "dictionary": {
+        "state": "absent",
+        "entry": null
+      }
+    },
+    {
+      "span": [
+        114,
+        121
+      ],
+      "original_span": [
+        114,
+        121
+      ],
+      "original": "week-12",
+      "replacement": null,
+      "leg": "policy",
+      "evidence": [],
+      "decision": "kept",
+      "reason": "non_ascii_or_unit_or_digit",
+      "coordinate": "input",
+      "dictionary": {
+        "state": "absent",
+        "entry": null
+      }
+    },
+    {
+      "span": [
+        122,
+        130
+      ],
+      "original_span": [
+        122,
+        130
+      ],
+      "original": "observed",
+      "replacement": null,
+      "leg": "policy",
+      "evidence": [],
+      "decision": "kept",
+      "reason": "valid_word",
+      "coordinate": "input",
+      "dictionary": {
+        "state": "absent",
+        "entry": null
+      }
+    },
+    {
+      "span": [
+        132,
+        135
+      ],
+      "original_span": [
+        132,
+        135
+      ],
+      "original": "not",
+      "replacement": null,
+      "leg": "policy",
+      "evidence": [],
+      "decision": "kept",
+      "reason": "valid_word",
+      "coordinate": "input",
+      "dictionary": {
+        "state": "absent",
+        "entry": null
+      }
+    },
+    {
+      "span": [
+        136,
+        143
+      ],
+      "original_span": [
+        136,
+        143
+      ],
+      "original": "imputed",
+      "replacement": null,
+      "leg": "policy",
+      "evidence": [],
+      "decision": "kept",
+      "reason": "valid_word",
+      "coordinate": "input",
+      "dictionary": {
+        "state": "absent",
+        "entry": null
+      }
+    }
+  ],
+  "policy": "gse.heal/1",
+  "dictionary": {
+    "schema": "gse.protected-dictionary/1",
+    "path": "/Users/rohanvinaik/Projects/gse/gse/nlp/data/personal_dictionary.json",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "state": "absent",
+    "n": 0
+  },
+  "original_sha256": "8bc74acba782e8253df1add5998e6cee6bcc30edcfde2206759766e6516b7ce7",
+  "input_sha256": "8bc74acba782e8253df1add5998e6cee6bcc30edcfde2206759766e6516b7ce7",
+  "measured_sha256": "cef204adbc5401acdf483613b658690daef266ea11a583f13100554dbb600171",
+  "encoding": "utf-8",
+  "source_map": [
+    {
+      "reduced": [
+        0,
+        144
+      ],
+      "original": [
+        0,
+        144
+      ]
+    }
+  ],
+  "context": {
+    "state": "unread",
+    "reason": "GrammaticalDefinitionError"
+  },
+  "before_sentences": [
+    {
+      "id": 0,
+      "span": [
+        0,
+        92
+      ],
+      "text": "Patients must not recieve gefitinib 250 mg/day; ECOG 0–2, WHO PS 2, EGFR L858R, NCT00322452."
+    },
+    {
+      "id": 1,
+      "span": [
+        92,
+        105
+      ],
+      "text": " Baseline ≤0."
+    },
+    {
+      "id": 2,
+      "span": [
+        105,
+        144
+      ],
+      "text": "5 mg/dL; week-12 observed, not imputed."
+    }
+  ],
+  "after_sentences": [
+    {
+      "id": 0,
+      "span": [
+        0,
+        92
+      ],
+      "text": "Patients must not receive gefitinib 250 mg/day; ECOG 0–2, WHO PS 2, EGFR L858R, NCT00322452."
+    },
+    {
+      "id": 1,
+      "span": [
+        92,
+        105
+      ],
+      "text": " Baseline ≤0."
+    },
+    {
+      "id": 2,
+      "span": [
+        105,
+        144
+      ],
+      "text": "5 mg/dL; week-12 observed, not imputed."
+    }
+  ]
+}

@@ -1,0 +1,539 @@
+{
+  "input": "Patients must now receive 5 mg, not 0.5 mg. EGFR L858R is required.",
+  "corrected": "Patients must now receive 5 mg, not 0.5 mg. EGFR L858R is required.",
+  "original_corrected": "Patients must now receive 5 mg, not 0.5 mg. EGFR L858R is required.",
+  "deterministic": true,
+  "state": "partial",
+  "tokens": [
+    {
+      "surface": "Patients",
+      "misspelled": false,
+      "suggestions": [],
+      "span": [
+        0,
+        8
+      ],
+      "decision": "kept",
+      "reason": "valid_word"
+    },
+    {
+      "surface": "must",
+      "misspelled": false,
+      "suggestions": [],
+      "span": [
+        9,
+        13
+      ],
+      "decision": "kept",
+      "reason": "valid_word"
+    },
+    {
+      "surface": "now",
+      "misspelled": false,
+      "suggestions": [],
+      "span": [
+        14,
+        17
+      ],
+      "decision": "kept",
+      "reason": "valid_word"
+    },
+    {
+      "surface": "receive",
+      "misspelled": false,
+      "suggestions": [],
+      "span": [
+        18,
+        25
+      ],
+      "decision": "kept",
+      "reason": "valid_word"
+    },
+    {
+      "surface": "5",
+      "misspelled": false,
+      "suggestions": [],
+      "span": [
+        26,
+        27
+      ],
+      "decision": "kept",
+      "reason": "non_ascii_or_unit_or_digit"
+    },
+    {
+      "surface": "mg",
+      "misspelled": false,
+      "suggestions": [],
+      "span": [
+        28,
+        30
+      ],
+      "decision": "kept",
+      "reason": "valid_word"
+    },
+    {
+      "surface": "not",
+      "misspelled": false,
+      "suggestions": [],
+      "span": [
+        32,
+        35
+      ],
+      "decision": "kept",
+      "reason": "valid_word"
+    },
+    {
+      "surface": "0",
+      "misspelled": false,
+      "suggestions": [],
+      "span": [
+        36,
+        37
+      ],
+      "decision": "kept",
+      "reason": "non_ascii_or_unit_or_digit"
+    },
+    {
+      "surface": "5",
+      "misspelled": false,
+      "suggestions": [],
+      "span": [
+        38,
+        39
+      ],
+      "decision": "kept",
+      "reason": "non_ascii_or_unit_or_digit"
+    },
+    {
+      "surface": "mg",
+      "misspelled": false,
+      "suggestions": [],
+      "span": [
+        40,
+        42
+      ],
+      "decision": "kept",
+      "reason": "valid_word"
+    },
+    {
+      "surface": "EGFR",
+      "misspelled": false,
+      "suggestions": [],
+      "span": [
+        44,
+        48
+      ],
+      "decision": "kept",
+      "reason": "valid_word"
+    },
+    {
+      "surface": "L858R",
+      "misspelled": false,
+      "suggestions": [],
+      "span": [
+        49,
+        54
+      ],
+      "decision": "kept",
+      "reason": "non_ascii_or_unit_or_digit"
+    },
+    {
+      "surface": "is",
+      "misspelled": false,
+      "suggestions": [],
+      "span": [
+        55,
+        57
+      ],
+      "decision": "kept",
+      "reason": "valid_word"
+    },
+    {
+      "surface": "required",
+      "misspelled": false,
+      "suggestions": [],
+      "span": [
+        58,
+        66
+      ],
+      "decision": "kept",
+      "reason": "valid_word"
+    }
+  ],
+  "ledger": [
+    {
+      "span": [
+        0,
+        8
+      ],
+      "original_span": [
+        0,
+        8
+      ],
+      "original": "Patients",
+      "replacement": null,
+      "leg": "policy",
+      "evidence": [],
+      "decision": "kept",
+      "reason": "valid_word",
+      "coordinate": "input",
+      "dictionary": {
+        "state": "absent",
+        "entry": null
+      }
+    },
+    {
+      "span": [
+        9,
+        13
+      ],
+      "original_span": [
+        9,
+        13
+      ],
+      "original": "must",
+      "replacement": null,
+      "leg": "policy",
+      "evidence": [],
+      "decision": "kept",
+      "reason": "valid_word",
+      "coordinate": "input",
+      "dictionary": {
+        "state": "absent",
+        "entry": null
+      }
+    },
+    {
+      "span": [
+        14,
+        17
+      ],
+      "original_span": [
+        14,
+        17
+      ],
+      "original": "now",
+      "replacement": null,
+      "leg": "policy",
+      "evidence": [],
+      "decision": "kept",
+      "reason": "valid_word",
+      "coordinate": "input",
+      "dictionary": {
+        "state": "absent",
+        "entry": null
+      }
+    },
+    {
+      "span": [
+        18,
+        25
+      ],
+      "original_span": [
+        18,
+        25
+      ],
+      "original": "receive",
+      "replacement": null,
+      "leg": "policy",
+      "evidence": [],
+      "decision": "kept",
+      "reason": "valid_word",
+      "coordinate": "input",
+      "dictionary": {
+        "state": "absent",
+        "entry": null
+      }
+    },
+    {
+      "span": [
+        26,
+        27
+      ],
+      "original_span": [
+        26,
+        27
+      ],
+      "original": "5",
+      "replacement": null,
+      "leg": "policy",
+      "evidence": [],
+      "decision": "kept",
+      "reason": "non_ascii_or_unit_or_digit",
+      "coordinate": "input",
+      "dictionary": {
+        "state": "absent",
+        "entry": null
+      }
+    },
+    {
+      "span": [
+        28,
+        30
+      ],
+      "original_span": [
+        28,
+        30
+      ],
+      "original": "mg",
+      "replacement": null,
+      "leg": "policy",
+      "evidence": [],
+      "decision": "kept",
+      "reason": "valid_word",
+      "coordinate": "input",
+      "dictionary": {
+        "state": "absent",
+        "entry": null
+      }
+    },
+    {
+      "span": [
+        32,
+        35
+      ],
+      "original_span": [
+        32,
+        35
+      ],
+      "original": "not",
+      "replacement": null,
+      "leg": "policy",
+      "evidence": [],
+      "decision": "kept",
+      "reason": "valid_word",
+      "coordinate": "input",
+      "dictionary": {
+        "state": "absent",
+        "entry": null
+      }
+    },
+    {
+      "span": [
+        36,
+        37
+      ],
+      "original_span": [
+        36,
+        37
+      ],
+      "original": "0",
+      "replacement": null,
+      "leg": "policy",
+      "evidence": [],
+      "decision": "kept",
+      "reason": "non_ascii_or_unit_or_digit",
+      "coordinate": "input",
+      "dictionary": {
+        "state": "absent",
+        "entry": null
+      }
+    },
+    {
+      "span": [
+        38,
+        39
+      ],
+      "original_span": [
+        38,
+        39
+      ],
+      "original": "5",
+      "replacement": null,
+      "leg": "policy",
+      "evidence": [],
+      "decision": "kept",
+      "reason": "non_ascii_or_unit_or_digit",
+      "coordinate": "input",
+      "dictionary": {
+        "state": "absent",
+        "entry": null
+      }
+    },
+    {
+      "span": [
+        40,
+        42
+      ],
+      "original_span": [
+        40,
+        42
+      ],
+      "original": "mg",
+      "replacement": null,
+      "leg": "policy",
+      "evidence": [],
+      "decision": "kept",
+      "reason": "valid_word",
+      "coordinate": "input",
+      "dictionary": {
+        "state": "absent",
+        "entry": null
+      }
+    },
+    {
+      "span": [
+        44,
+        48
+      ],
+      "original_span": [
+        44,
+        48
+      ],
+      "original": "EGFR",
+      "replacement": null,
+      "leg": "policy",
+      "evidence": [],
+      "decision": "kept",
+      "reason": "valid_word",
+      "coordinate": "input",
+      "dictionary": {
+        "state": "absent",
+        "entry": null
+      }
+    },
+    {
+      "span": [
+        49,
+        54
+      ],
+      "original_span": [
+        49,
+        54
+      ],
+      "original": "L858R",
+      "replacement": null,
+      "leg": "policy",
+      "evidence": [],
+      "decision": "kept",
+      "reason": "non_ascii_or_unit_or_digit",
+      "coordinate": "input",
+      "dictionary": {
+        "state": "absent",
+        "entry": null
+      }
+    },
+    {
+      "span": [
+        55,
+        57
+      ],
+      "original_span": [
+        55,
+        57
+      ],
+      "original": "is",
+      "replacement": null,
+      "leg": "policy",
+      "evidence": [],
+      "decision": "kept",
+      "reason": "valid_word",
+      "coordinate": "input",
+      "dictionary": {
+        "state": "absent",
+        "entry": null
+      }
+    },
+    {
+      "span": [
+        58,
+        66
+      ],
+      "original_span": [
+        58,
+        66
+      ],
+      "original": "required",
+      "replacement": null,
+      "leg": "policy",
+      "evidence": [],
+      "decision": "kept",
+      "reason": "valid_word",
+      "coordinate": "input",
+      "dictionary": {
+        "state": "absent",
+        "entry": null
+      }
+    }
+  ],
+  "policy": "gse.heal/1",
+  "dictionary": {
+    "schema": "gse.protected-dictionary/1",
+    "path": "/Users/rohanvinaik/Projects/gse/gse/nlp/data/personal_dictionary.json",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "state": "absent",
+    "n": 0
+  },
+  "original_sha256": "bb5d95c15b5b1f365db2b90ed0a9ddbc0d45cc3524608432d4f7bbfca4305354",
+  "input_sha256": "bb5d95c15b5b1f365db2b90ed0a9ddbc0d45cc3524608432d4f7bbfca4305354",
+  "measured_sha256": "bb5d95c15b5b1f365db2b90ed0a9ddbc0d45cc3524608432d4f7bbfca4305354",
+  "encoding": "utf-8",
+  "source_map": [
+    {
+      "reduced": [
+        0,
+        67
+      ],
+      "original": [
+        0,
+        67
+      ]
+    }
+  ],
+  "context": {
+    "state": "unread",
+    "reason": "GrammaticalDefinitionError"
+  },
+  "before_sentences": [
+    {
+      "id": 0,
+      "span": [
+        0,
+        38
+      ],
+      "text": "Patients must now receive 5 mg, not 0."
+    },
+    {
+      "id": 1,
+      "span": [
+        38,
+        43
+      ],
+      "text": "5 mg."
+    },
+    {
+      "id": 2,
+      "span": [
+        43,
+        67
+      ],
+      "text": " EGFR L858R is required."
+    }
+  ],
+  "after_sentences": [
+    {
+      "id": 0,
+      "span": [
+        0,
+        38
+      ],
+      "text": "Patients must now receive 5 mg, not 0."
+    },
+    {
+      "id": 1,
+      "span": [
+        38,
+        43
+      ],
+      "text": "5 mg."
+    },
+    {
+      "id": 2,
+      "span": [
+        43,
+        67
+      ],
+      "text": " EGFR L858R is required."
+    }
+  ]
+}

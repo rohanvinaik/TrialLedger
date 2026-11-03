@@ -14,6 +14,12 @@ plans into one layer-two design. Preserve executable reasoning components, make 
 availability clear, and complete the source-to-protocol pipeline along the existing design. Keep every
 inference, default, proposal and choice out of ordinary layer-one reporting.
 
+Add isolated competing interpretations as a usable layer-two operation. The layer-one source facts and
+strict direct rules supply the fixed evidential bounds; layer two can explore plausible readings, including
+unconfirmed ones, and compute exact consequences conditional on each reading. Population/definition bindings
+and formal compatibility/refutation warrants retain useful partial information without promoting a reading
+to a registry fact or narrowing a new trial to whichever candidate happened to survive.
+
 ## Capabilities
 
 - `symbolic-trial-design`: scoped evidence and entailment, domain constraints, corpus geometry and

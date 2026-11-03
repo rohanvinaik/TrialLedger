@@ -1,0 +1,203 @@
+{
+  "projection": "check rows only; full inputs remain in the retained source",
+  "checks": [
+    {
+      "id": "closed_primary_completion_actual",
+      "label": "Overall status COMPLETED or TERMINATED → primary completion date typed ACTUAL",
+      "outcome": "consistent",
+      "detail": "overallStatus=COMPLETED; primaryCompletionDateStruct.type=ACTUAL; primaryCompletionDateStruct.date=2008-04",
+      "source": [
+        "protocolSection.statusModule.overallStatus",
+        "protocolSection.statusModule.primaryCompletionDateStruct"
+      ],
+      "rule": "P#OverallStatus «Completed: The study has concluded normally; participants are no longer receiving an intervention or being examined (that is, last participant’s last visit has occurred)»; «Terminated: Study halted prematurely and will not resume; participants are no longer being examined or receiving intervention». P#LastFollowUpDate «Once the clinical study has reached the primary completion date, the responsible party must update the Primary Completion Date to reflect the actual primary completion date.»",
+      "basis": "stated rule"
+    },
+    {
+      "id": "closed_completion_actual",
+      "label": "Overall status COMPLETED or TERMINATED → study completion date typed ACTUAL",
+      "outcome": "consistent",
+      "detail": "overallStatus=COMPLETED; completionDateStruct.type=ACTUAL; completionDateStruct.date=2010-06",
+      "source": [
+        "protocolSection.statusModule.overallStatus",
+        "protocolSection.statusModule.completionDateStruct"
+      ],
+      "rule": "The status definitions above. P#LastFollowUpDate «Once the clinical study has reached the study completion date, the responsible party must update the Study Completion Date to reflect the actual study completion date.»",
+      "basis": "stated rule"
+    },
+    {
+      "id": "withdrawn_actual_enrollment_zero",
+      "label": "Overall status WITHDRAWN and enrollment typed ACTUAL → enrollment 0",
+      "outcome": "not_applicable",
+      "detail": "overallStatus=COMPLETED; enrollmentInfo.type=ACTUAL; enrollmentInfo.count=1329",
+      "source": [
+        "protocolSection.statusModule.overallStatus",
+        "protocolSection.designModule.enrollmentInfo"
+      ],
+      "rule": "P#OverallStatus «Withdrawn: Study halted prematurely, prior to enrollment of first participant»; P#IntEnrollment «the actual total number of participants that are enrolled in the clinical study»",
+      "basis": "entailed by definitions"
+    },
+    {
+      "id": "phase_interventional_only",
+      "label": "Study type other than INTERVENTIONAL → no phase other than NA",
+      "outcome": "not_applicable",
+      "detail": "studyType=INTERVENTIONAL; phases=['PHASE3']",
+      "source": [
+        "protocolSection.designModule.studyType",
+        "protocolSection.designModule.phases"
+      ],
+      "rule": "P#IntStudyDesign «Interventional Study Design (For interventional studies only)», containing P#StudyPhase «For a clinical trial of a drug product (including a biological product), the numerical phase of such clinical trial»",
+      "basis": "stated scope"
+    },
+    {
+      "id": "results_flag_first_submit",
+      "label": "hasResults true exactly when resultsFirstSubmitDate is present",
+      "outcome": "consistent",
+      "detail": "hasResults=True; statusModule.resultsFirstSubmitDate=2009-04-29",
+      "source": [
+        "hasResults",
+        "protocolSection.statusModule.resultsFirstSubmitDate"
+      ],
+      "rule": "API metadata, hasResults: «FUNC Present(ResultsFirstSubmitDate)»; «Flag that indicates if a study has posted results on public site»",
+      "basis": "registry function"
+    },
+    {
+      "id": "recruiting_site_recruiting_study",
+      "label": "Two or more locations, one RECRUITING → overall status RECRUITING",
+      "outcome": "not_checkable",
+      "detail": "overallStatus=COMPLETED; 56 locations, 0 RECRUITING",
+      "source": [
+        "protocolSection.statusModule.overallStatus",
+        "protocolSection.contactsLocationsModule.locations"
+      ],
+      "rule": "P#OverallStatus «If at least one facility in a multi-site clinical study has an Individual Site Status of \"Recruiting,\" then the Overall Recruitment Status for the study must be \"Recruiting.\"» An overall UNKNOWN is the registry's own assignment (glossary, «Last verified»).",
+      "basis": "stated rule"
+    },
+    {
+      "id": "arm_interventions_declared",
+      "label": "Every intervention an arm names is '<type label>: <name>' of a declared intervention",
+      "outcome": "consistent",
+      "detail": "3 consistent",
+      "source": [
+        "protocolSection.armsInterventionsModule.armGroups",
+        "protocolSection.armsInterventionsModule.interventions"
+      ],
+      "rule": "P#InterventionName «If multiple Arms or Groups have been specified, indicate which Interventions (or exposures) are in each Arm or Group of the study, using the Cross-Reference check boxes.» The label is the registry's enum table's legacyValue for the intervention's type.",
+      "basis": "entailed by definitions"
+    },
+    {
+      "id": "intervention_arms_defined",
+      "label": "Every arm label an intervention names is the label of a defined arm",
+      "outcome": "consistent",
+      "detail": "3 consistent",
+      "source": [
+        "protocolSection.armsInterventionsModule.armGroups",
+        "protocolSection.armsInterventionsModule.interventions"
+      ],
+      "rule": "P#InterventionName, as above (Arm or Group/Interventional Cross-Reference).",
+      "basis": "entailed by definitions"
+    },
+    {
+      "id": "ae_counts_name_groups",
+      "label": "Every adverse-event count names one of the module's event groups",
+      "outcome": "consistent",
+      "detail": "322 consistent",
+      "source": [
+        "resultsSection.adverseEventsModule"
+      ],
+      "rule": "API metadata: stats.groupId «Internal Arm/Group ID»; eventGroups.id «Internal group id». R#AdverseEventAffected «Number of participants, in each arm/group».",
+      "basis": "entailed by definitions"
+    },
+    {
+      "id": "ae_affected_within_at_risk",
+      "label": "Per event and group: participants affected ≤ participants at risk",
+      "outcome": "consistent",
+      "detail": "322 consistent",
+      "source": [
+        "resultsSection.adverseEventsModule"
+      ],
+      "rule": "R#AdverseEventAffected «Number of participants, in each arm/group, experiencing at least one event being reported.» R#AdverseEventAtRisk «Number of participants assessed, in each arm/group, for adverse events (that is, the denominator for calculating frequency of adverse events). Leave blank to indicate that the value specified as the total at risk in the arm/group for the table should be used.»",
+      "basis": "entailed by definitions"
+    },
+    {
+      "id": "ae_event_within_group_total",
+      "label": "Per event and group: participants affected ≤ the group's total affected in that table",
+      "outcome": "consistent",
+      "detail": "322 consistent",
+      "source": [
+        "resultsSection.adverseEventsModule"
+      ],
+      "rule": "R#SeriousTotalAffected «Overall number of participants affected by one or more Serious Adverse Events, for each arm/group.» R#OtherAE_Affected «Overall number of participants affected, for each arm/group, by at least one Other (Not Including Serious) Adverse Event(s) reported in the table.»",
+      "basis": "entailed by definitions"
+    },
+    {
+      "id": "ae_events_at_least_affected",
+      "label": "Per event and group, where events are reported: events ≥ participants affected",
+      "outcome": "not_applicable",
+      "detail": "no entries",
+      "source": [
+        "resultsSection.adverseEventsModule"
+      ],
+      "rule": "R#OtherAEEvents «Number of occurrences, in each arm/group, of the adverse event being reported.» R#AdverseEventAffected «experiencing at least one event being reported».",
+      "basis": "entailed by definitions"
+    },
+    {
+      "id": "ae_group_totals_within_at_risk",
+      "label": "Per group: deaths, serious and other totals affected ≤ the matching total at risk",
+      "outcome": "not_checkable",
+      "detail": "2 consistent, 2 not checkable",
+      "source": [
+        "resultsSection.adverseEventsModule.eventGroups"
+      ],
+      "rule": "R#Mortality_Affected «Overall number of participants, in each arm/group, who died due to any cause»; R#Mortality_AtRisk «included in the assessment of deaths due to any cause (that is, the denominator for calculating frequency of all-cause mortality)»; R#SeriousTotalAffected / R#SeriousAE_AtRisk and R#OtherAE_Affected / R#OtherAE_AtRisk likewise, each «(that is, the denominator for calculating frequency [...])».",
+      "basis": "entailed by definitions"
+    },
+    {
+      "id": "flow_reasons_account",
+      "label": "Per period and group, where reasons are given: their participants sum to those not completed",
+      "outcome": "consistent",
+      "detail": "2 consistent",
+      "source": [
+        "resultsSection.participantFlowModule.periods"
+      ],
+      "rule": "R#DWReason «If reasons are provided, the total number of participants listed as Not Completed must be accounted for by all reasons for non-completion.» R: Not Completed is «calculated automatically by subtracting Completed from Started».",
+      "basis": "stated rule"
+    },
+    {
+      "id": "age_limits_ordered",
+      "label": "Minimum age ≤ maximum age, where the units convert exactly",
+      "outcome": "not_checkable",
+      "detail": "minimumAge=18 Years; maximumAge=None",
+      "source": [
+        "protocolSection.eligibilityModule.minimumAge",
+        "protocolSection.eligibilityModule.maximumAge"
+      ],
+      "rule": "P#EligibilityMinAge «The numerical value, if any, for the minimum age a potential participant must meet to be eligible for the clinical study.» P#EligibilityMaxAge «The numerical value, if any, for the maximum age a potential participant can be to be eligible for the clinical study.»",
+      "basis": "entailed by definitions"
+    },
+    {
+      "id": "start_before_primary_completion",
+      "label": "Study start date ≤ primary completion date, both typed ACTUAL, partial dates read as intervals",
+      "outcome": "not_checkable",
+      "detail": "startDateStruct.date=2006-03; startDateStruct.type=None; primaryCompletionDateStruct.date=2008-04; primaryCompletionDateStruct.type=ACTUAL",
+      "source": [
+        "protocolSection.statusModule.startDateStruct",
+        "protocolSection.statusModule.primaryCompletionDateStruct"
+      ],
+      "rule": "P#StartDate «the actual date on which the first participant was enrolled»; P#LastFollowUpDate «The date that the final participant was examined or received an intervention for the purposes of final collection of data for the primary outcome»",
+      "basis": "entailed by definitions"
+    },
+    {
+      "id": "primary_completion_before_completion",
+      "label": "Primary completion date ≤ study completion date, both typed ACTUAL, partial dates read as intervals",
+      "outcome": "consistent",
+      "detail": "primaryCompletionDateStruct.date=2008-04; primaryCompletionDateStruct.type=ACTUAL; completionDateStruct.date=2010-06; completionDateStruct.type=ACTUAL",
+      "source": [
+        "protocolSection.statusModule.primaryCompletionDateStruct",
+        "protocolSection.statusModule.completionDateStruct"
+      ],
+      "rule": "P#LastFollowUpDate: primary completion is final collection of data «for the primary outcome»; study completion is final collection «for the primary and secondary outcome measures and adverse events».",
+      "basis": "entailed by definitions"
+    }
+  ]
+}

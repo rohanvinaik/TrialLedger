@@ -40,6 +40,70 @@ You make the clinical judgments. TrialLedger's job is to make them visible: what
 choices, what contradicts itself, what is genuinely yours to decide, and what the evidence cannot tell you. The reference workbook is useful on its own,
 and it provides the evidence base for a continuing design conversation.
 
+## Information is also in the constraints
+
+A trial record carries information beyond its explicit sentences. Eligibility, baseline distributions,
+participant flow, assigned treatments and endpoint definitions describe related parts of the same study.
+Once their populations, scopes and meanings are bound, their constraints can be combined. Designs compatible
+with one field can become impossible when another field is considered. The remaining alternatives show both
+what follows and which choices still need judgment.
+
+That is TrialLedger's information-theoretic thesis: **make the information already carried by the evidence
+available as constraints on an explicit space of possibilities.** A missing statement can leave a question
+partly identified. For example, among the same 1,217 IPASS participants, 126 at WHO PS 2 and 1,140 never smokers
+require at least `126 + 1,140 − 1,217 = 49` participants with both attributes, and at most 126. This bound needs
+no assumption that the attributes are independent. It exposes a consequence of the reported counts without
+inventing a cross-tabulation or an exact count.
+
+Each inference needs a **formal warrant**: typed premises, the rule connecting them, its applicability
+conditions and an inspectable conclusion. The overlap bound requires a shared participant universe. Using
+that overlap to constrain eligibility additionally requires a bridge from observed participants to eligible
+participants, with an explicit allowance for exceptions. If fewer than 49 could be exceptions, at least one
+eligible joint-profile witness remains; a design excluding that entire profile is incompatible with those
+premises. The exact performance-status cutoff still does not follow.
+
+The conclusion keeps the standing of its weakest premise. Strict deductions from known premises are known;
+an eligibility bridge adopted as an interpolation makes its consequences interpolated, even when the
+arithmetic and logic are exact. An unconfirmed proposal can be assumed within its explicitly hypothetical
+frame; it cannot constrain an accepted design outside that frame. Every result keeps its
+source or accepted premise, population, scale, units, time, rule and blockers. Conflicts and unresolved
+bindings remain visible, and changed premises require recomputation. This is what makes the reasoning
+reviewable for clinical work: the person can inspect what supports an answer and precisely what would change it.
+
+**An uncertain interpretation can still be useful.** Layer one supplies the fixed source facts and direct
+rules that bound the represented possibilities. Layer two can keep competing readings, explore what follows
+if each holds, and show a formal warrant wherever a reading violates those fixed constraints. The uncertainty
+of a reading and the exactness of its conditional consequences are separate. Your assistant can discuss
+those possibilities with you without turning a plausible reading into a registry fact or forcing a choice
+before its consequences can be examined.
+
+For example, reading “every 42 ±7 days from randomization” as the first scheduled assessment window yields
+35–49 days exactly within that interpretation. Whether that is the intended reading remains a separate
+question. An actual unscheduled scan outside the window is a different event. The system keeps these roles
+and alternative readings separate, so evidence can break a working interpretation and leave useful partial
+information available for the next question.
+
+The worked session below demonstrates this composition across counts, sets, time, ingredients, class
+relations and adopted definitions. Each contributes its own constraint; together they eliminate incompatible
+designs and expose the decisions left open. Corpus frequency and rarity are separate measurements, and
+derivational significance remains a planned component; this example does not assign a probability to the
+surviving designs.
+
+## Questions that reveal the method
+
+The system can answer questions that initially seem to require missing data or clinical guesswork:
+
+| A person's question | What the reasoning can recover | What stays open |
+|---|---|---|
+| “Neither table gives the joint population. Can we still bound it?” | IPASS counts of 607 safety-evaluable and 590 QoL-evaluable among the same 609 gefitinib participants bound their overlap at **588–590**, under explicit cohort correspondence | Exact identities and the reason for missing coverage |
+| “PS 2 people were both randomized and rejected. Is that a contradiction?” | In the invented session, positive and attributed negative witnesses eliminate different eligibility explanations without turning rejection into a universal exclusion | Which additional criterion explains the rejection |
+| “Does an early scan invalidate the schedule?” | A scheduled day-28 visit conflicts with a stipulated days-35–49 routine window; a separate actual unscheduled scan can coexist with it | Which event and reading the person intends |
+
+Each is a small demonstration of the same thesis: related evidence can constrain more than any one field
+states, while the remaining uncertainty still belongs in the conversation. The
+[worked questions](docs/POWERFUL_QUESTIONS.md) link the complete executed inputs and results, distinguish
+real retained evidence from invented teaching cases, and show the consequential question to ask next.
+
 ## A design session in practice
 
 > “The comparator's eligibility entry is thin. Can we work out what it actually constrains before we
@@ -121,10 +185,34 @@ The real IPASS example follows the same discipline: its 126 WHO PS 2 participant
 The eligibility interpretation needs its own bridge; WHO PS retains its own scale, and an observed category
 does not recover an exact eligibility cutoff.
 
+For source-based questions about analysis populations, assessment windows and conservative data cleanup,
+see the [workflow investigation](docs/SOURCE_INFORMATION_RESOLUTION.md) and its
+[executed request/result pairs](examples/source-workflows/). They distinguish today's conditional
+computations from the source-binding and correction integrations proposed next.
+
 Today, your assistant reads and structures evidence with you; TrialLedger computes these bounds,
 compatibility checks and consequences. Automatic conversion of clinical text into reasoning inputs and
 complete protocol writing remain unintegrated. See the [full design](openspec/changes/add-design-synthesis/design.md)
 and [theory](docs/THEORY_OF_THE_CASE.md) for the component map.
+
+## Explore competing readings without losing the evidence
+
+“Could this wording mean either option, and what would each option permit?” is a supported question.
+The separate `interpretations` operation checks an explicit fixed floor and keeps each proposed reading
+in its own frame. It returns fixed-evidence answers, consequences under each reading, compatibility or
+refutation warrants, unresolved applications and the choices left open. Proposed assumptions remain visible;
+ordinary entailment still refuses to use them as accepted premises.
+
+The [executable continuing session](examples/interpretations/) starts with an invented adult NSCLC draft.
+ECOG 0–2 and 0–3 both fit its fixed choices but answer the ECOG 3 question differently. A scheduled assessment
+outside a stipulated window is refuted, while a separately represented unscheduled scan can coexist with
+that schedule. Population bindings and adopted endpoint editions affect their actual checks; unresolved
+bindings retain conditional counts, and an imputed input does not become an observed measurement.
+
+Your assistant can discuss these alternatives before asking you to settle a reading. Selecting one remains
+your choice, with its assumptions intact. Even a single compatible survivor leaves conclusions conditional
+on the declared family; the system does not claim it has recovered the whole protocol. Changed evidence or choices call for
+a fresh check, and fixed contradictions remain visible even when you prefer a particular option.
 
 ## What you receive
 
@@ -224,6 +312,11 @@ runnable invented request per kind. `signals` evaluates those supplied inputs in
 design, include them in `design_bounds.signals`, select a derived observation with explicit predicate bindings,
 or attach typed `signal_claims` to a candidate. Claims against one signal are checked together. Relations,
 regimens and temporal graphs keep their own scopes; the operation does not invent joins between them.
+
+Use `{"operation":"describe","view":"interpretations"}` for isolated hypothetical frames, population
+and definition bindings, named queries and compatibility/refutation warrants. Fixed facts and rules are
+checked separately from each frame's assumptions. Partial calculations remain inspectable when admission
+is unresolved; selection never promotes a hypothesis to a source fact.
 
 Entailment checks supplied scoped premises; coordinates uses the explicit NSCLC domain; corpus computes
 statement rates with silence bounds, class associations, rarity, occupancy and one-feature comparisons.
