@@ -1,0 +1,1428 @@
+{
+ "code": "complete",
+ "operation": "describe",
+ "result": {
+  "basis": "Conditional on the supplied typed premises; their source meaning is not certified by this operation.",
+  "availability": {
+   "built": [
+    "scoped entailment with proof/blockers",
+    "explicit NSCLC coordinate closure",
+    "typed corpus calculations",
+    "baseline witness bounds over declared candidate designs",
+    "typed partial-evidence bounds and graph/dependency checks",
+    "competing interpretation frames with conditional warrants and source-bound applications",
+    "raw-study source anchors and exact age facts feeding isolated proposed interpretation frames"
+   ],
+   "designed_not_integrated": [
+    "automatic source-to-assertion compilation",
+    "complete brief-to-warranted-protocol workflow"
+   ]
+  },
+  "limits": {
+   "maximum_list_items": 1000,
+   "maximum_corpus_features": 10000,
+   "maximum_assignments": 65536,
+   "unknown_fields": "refused"
+  },
+  "premise_status": {
+   "known": "Given or deduced relative to explicitly supplied premises; this operation does not certify their source meaning.",
+   "interpolated": "A default remains a default; a consequence cannot become stronger than its premises.",
+   "proposed": "A proposal is shown separately and is not an entailment premise."
+  },
+  "discovery": {
+   "overview": {
+    "operation": "describe",
+    "view": "overview"
+   },
+   "entailment": {
+    "operation": "describe",
+    "view": "entailment"
+   },
+   "coordinates": {
+    "operation": "describe",
+    "view": "coordinates"
+   },
+   "corpus": {
+    "operation": "describe",
+    "view": "corpus"
+   },
+   "design_bounds": {
+    "operation": "describe",
+    "view": "design_bounds"
+   },
+   "signals": {
+    "operation": "describe",
+    "view": "signals"
+   },
+   "interpretations": {
+    "operation": "describe",
+    "view": "interpretations"
+   },
+   "source_assertions": {
+    "operation": "describe",
+    "view": "source_assertions"
+   },
+   "worked_session": {
+    "operation": "describe",
+    "view": "worked_session"
+   },
+   "full": {
+    "operation": "describe",
+    "view": "full"
+   }
+  },
+  "response_metadata": {
+   "location": "Every reason envelope has additive metadata; original clinical results remain intact.",
+   "version": 1,
+   "kinds": [
+    "reasoning",
+    "discovery",
+    "inspection",
+    "refusal"
+   ],
+   "dispositions": [
+    "conditional",
+    "conflict",
+    "descriptive",
+    "not_computed",
+    "open",
+    "settled",
+    "translation_question",
+    "unclassified",
+    "unsupported"
+   ],
+   "finding_fields": [
+    "path",
+    "kind",
+    "logical_result",
+    "standing",
+    "completion",
+    "causes",
+    "disposition"
+   ],
+   "meaning": "Each finding points to its actual result using a JSON pointer. Read the effective result and its warrant; raw_result/raw_path retain an ungated calculation when different. Completion and support are independent: a resource limit is unfinished computation, not missing evidence. Unknown reasoning causes remain unclassified. Refused requests are invalid translation tasks, unsupported operations, or computation-limited work; their exact codes remain. Completed corpus descriptions are descriptive, not clinical decisions. No metadata field establishes source truth or makes an open question a clinical choice. Discovery and empty source inspection have no clinical findings."
+  },
+  "operation": "source_assertions",
+  "input_shapes": {
+   "source_assertions": {
+    "required": [
+     "study"
+    ],
+    "fields": {
+     "study": "one complete raw NIH study object; retained unchanged, not landscape.json's projection",
+     "expected_digest": "optional digest of that exact study; stale content is a translation refusal",
+     "anchors": "optional source_anchor array; exact typed values and optional Unicode text spans",
+     "interpretations": "optional source_interpretation array; rivals stay isolated and proposed",
+     "bindings": "optional source_binding array; correspondence remains a proposed premise",
+     "queries": "optional named tagged propositions; empty means inspection only, with analyses []",
+     "context": "optional existing cohort/arm/phase context; never inferred from text",
+     "bound": "optional integer assignment bound 1..65536 per solver decision",
+     "selected": "optional user-selected frame; selection cannot promote its source standing"
+    }
+   },
+   "source_anchor": {
+    "required": [
+     "id",
+     "address",
+     "digest",
+     "expected"
+    ],
+    "fields": {
+     "id": "distinct nonempty anchor identity",
+     "address": "exact RFC 6901 JSON pointer into the supplied raw study",
+     "digest": "current warrants.study_digest(study), binding the anchor to the complete input",
+     "expected": "exact JSON value at address, including its JSON type; no coercion",
+     "span": "optional source_span, permitted only for a string-valued address"
+    }
+   },
+   "source_span": {
+    "required": [
+     "start",
+     "end",
+     "text"
+    ],
+    "fields": {
+     "start": "zero-based inclusive Unicode code-point offset in the original string",
+     "end": "exclusive Unicode code-point offset; exact original[start:end] must equal text",
+     "text": "exact unchanged passage; offsets are not UTF-8 bytes or normalized text"
+    }
+   },
+   "source_template": {
+    "required": [
+     "$source",
+     "as"
+    ],
+    "fields": {
+     "$source": "existing anchor id; recursively substitutes that anchor's value or exact span text",
+     "as": "integer, text or json; integers allow no decimals, commas or units"
+    }
+   },
+   "source_interpretation": {
+    "required": [
+     "id",
+     "label",
+     "origin",
+     "basis",
+     "anchors"
+    ],
+    "fields": {
+     "id": "distinct frame id, as in interpretation",
+     "label": "clinical reading or design option, as in interpretation",
+     "origin": "assistant, user or source; attribution does not certify the reading",
+     "basis": "declared rationale; compiler adds the actual source-anchor provenance",
+     "anchors": "nonempty existing anchor ids; every template dependency must be declared here",
+     "assumptions": "optional tagged ScopedAssertion templates, always forced to proposed",
+     "signals": "optional local signal templates; every support is forced to proposed",
+     "signal_claims": "optional existing signal claims, evaluated jointly within this frame",
+     "binding_uses": "optional existing binding-use array; exact scope and edition remain material"
+    }
+   },
+   "source_binding": {
+    "required": [
+     "id",
+     "kind",
+     "relation",
+     "subjects",
+     "scope",
+     "sources",
+     "status",
+     "resolution",
+     "basis",
+     "anchors"
+    ],
+    "fields": {
+     "id": "existing interpretation_binding identity",
+     "kind": "population or definition",
+     "relation": "subset_of, same_universe or partition_of; definition uses adopts",
+     "subjects": "explicit ordered references consumed by the target operator",
+     "scope": "study, population, arm, time and version; content digest is not a protocol edition",
+     "sources": "declared source objects; compiler retains actual anchor provenance",
+     "status": "always forced to proposed; exact quotation does not prove population correspondence",
+     "resolution": "existing resolution; unresolved or mismatched applications remain unresolved",
+     "basis": "declared rationale plus actual anchored source references",
+     "anchors": "nonempty existing anchor ids; every binding template dependency must be declared"
+    }
+   },
+   "interpretation_query": {
+    "required": [
+     "id",
+     "body"
+    ],
+    "fields": {
+     "id": "distinct nonempty question id",
+     "body": "tagged participant proposition"
+    }
+   },
+   "interpretation_binding_use": {
+    "required": [
+     "binding",
+     "signal",
+     "scope"
+    ],
+    "fields": {
+     "binding": "existing binding id",
+     "signal": "existing fixed or local signal id",
+     "scope": "declared application scope checked against the binding and target signal"
+    }
+   },
+   "signal": {
+    "required": [
+     "id",
+     "kind",
+     "data",
+     "support"
+    ],
+    "fields": {
+     "id": "distinct nonempty string",
+     "kind": "one of signal_kinds",
+     "data": "kind-specific typed input; see operator_inputs",
+     "support": "nonempty array of independently identified support objects",
+     "bindings": "optional object mapping mathematical ref ids to tagged participant propositions"
+    }
+   },
+   "support": {
+    "required": [
+     "id",
+     "status",
+     "resolution",
+     "basis"
+    ],
+    "fields": {
+     "id": "distinct premise/source-binding id",
+     "status": "known/interpolated/proposed",
+     "resolution": "resolved/partially_resolved/unresolved/conflicting",
+     "basis": "nonempty exact source/version or user-premise references"
+    }
+   },
+   "context": {
+    "required": [],
+    "fields": {
+     "cohort": "nonempty string or null",
+     "phase": "nonempty string or null",
+     "arm": "nonempty string or null"
+    }
+   }
+  },
+  "vocabularies": {
+   "statuses": [
+    "interpolated",
+    "known",
+    "proposed"
+   ],
+   "resolutions": [
+    "conflicting",
+    "partially_resolved",
+    "resolved",
+    "unresolved"
+   ],
+   "modalities": [
+    "definitional",
+    "descriptive",
+    "excluded",
+    "permitted",
+    "required",
+    "unresolved"
+   ],
+   "subject_kinds": [
+    "caregiver",
+    "encounter",
+    "other_person",
+    "participant",
+    "partner",
+    "source_case",
+    "specimen",
+    "study_intervention",
+    "study_procedure",
+    "unresolved"
+   ],
+   "predicate_kinds": [
+    "condition_status",
+    "consent",
+    "defined_term",
+    "demographic",
+    "disease_attribute",
+    "encounter_purpose",
+    "exposure",
+    "measurement",
+    "medication_stability",
+    "medication_use",
+    "procedure_event",
+    "reproductive_status",
+    "treatment_history",
+    "unresolved"
+   ],
+   "value_kinds": [
+    "boolean",
+    "definition_ref",
+    "entity_ref",
+    "enum",
+    "enum_set",
+    "interval",
+    "quantity",
+    "unresolved"
+   ]
+  },
+  "result_guide": {
+   "fields": {
+    "source": "input-content identity, exact digest and version metadata; input stays unchanged",
+    "anchors": "validated exact source values and optional unchanged Unicode spans",
+    "fixed": "only source-defined direct facts; currently exact structured minimum/maximum age",
+    "interpretations": "hydrated isolated frames with assumptions and signal support forced proposed",
+    "bindings": "source-bound correspondence premises forced proposed",
+    "coverage": "compiled locations and retained uncompiled content/gaps; not a complete text reader",
+    "submitted": "the supplied representations retained for inspection",
+    "requests": "public reasoning requests generated from the fixed floor and proposed frames",
+    "analyses": "complete downstream run envelopes in request order; empty for inspection-only input",
+    "limits": "source preservation, direct rules, proposed standing and compilation coverage"
+   },
+   "standing": "Exact anchors establish source alignment, never a clinical reading's intended meaning.",
+   "source_identity": "The digest identifies content, not a protocol edition or current registry truth.",
+   "direct_rules": "Exact NIH integer age grammar is supported; unsupported syntax is not normalized.",
+   "conditional": "A sole survivor remains conditional on the declared family and its bindings.",
+   "clinical_use": "Keep source evidence, conditional consequences and choices on the decision list."
+  },
+  "answer_guide": {
+   "roles": {
+    "record": "Layer-one source facts and fixed direct rules, cited by their workbook/record address. No language model supplies them.",
+    "computed": "A reason result over premises the person confirmed, cited with the premise or rule that decided it. The logic is computed, not composed by the assistant.",
+    "translation": "The assistant's restatement of the person's words as typed premises, and of results as plain language. Show material premises together in plain words; an unconfirmed reading stays proposed and is never presented as a fact or a computed result."
+   },
+   "categories": {
+    "settled": "The premises require it or rule it out (ENTAILED or REFUTED), or explicit evidence narrowed a coordinate. Name the deciding premise. A conclusion whose weakest premise is interpolated is 'settled by default' and can be overridden.",
+    "something_wrong": "A contradiction: the person's criteria conflict (INCONSISTENT), explicit evidence empties a coordinate (state conflict), or a registry record disagrees with itself (registry_checks conflict). Name both sides. A contradiction blocks every entailment answer until it is resolved.",
+    "your_call": "Genuine design freedom or a choice only the person can make: allowed but not required, a proposal or proposed pattern, comparable trials that chose differently, which cohort is meant, whether to confirm a reading, or whether the criteria should address something they are silent on. Ask, offer the computed basis, and record the person's choice as theirs.",
+    "not_knowable_here": "This evidence cannot settle it: registry silence, too few trials or sponsors, unknown membership or abstained rarity. Say what is missing; silence is not absence and an unknown is not false."
+   },
+   "standing": "For conditional metadata, choose wording from standing and the effective warrant: interpolated means settled by default or under an overridable working assumption; proposed means an unconfirmed reading, refused by ordinary entailment and explored only in its named hypothetical frame. Conditional alone does not make those states interchangeable. Open alone establishes neither design freedom nor an evidence gap; inspect the question and all blockers.",
+   "source_assertions": {
+    "fixed": [
+     "settled",
+     "Name the exact structured source field and its direct rule; retain its scope."
+    ],
+    "anchor": [
+     "source",
+     "The quotation matches this snapshot; its clinical meaning is a separate premise."
+    ],
+    "proposed": [
+     "your_call",
+     "Show each reading's conditional consequences and ask the material distinguishing question."
+    ],
+    "coverage_gap": [
+     "not_knowable_here",
+     "Uncompiled content is retained; missing compilation is not clinical absence."
+    ],
+    "refused": [
+     "translation",
+     "Repair the named missing, stale, mistyped or misaligned source anchor and rerun."
+    ],
+    "binding": [
+     "your_call",
+     "Population, time and edition correspondence remain explicit proposed premises."
+    ]
+   },
+   "decision_list": {
+    "purpose": "TrialLedger does not make the person's clinical decisions; it finds them. The decision list is a design session's main deliverable: each choice that needs clinical judgment, with its evidence assembled and its consequences computed. Keep it as the session proceeds; hand it over at the end.",
+    "entry": {
+     "decision": "The choice in clinical words, e.g. 'What ECOG range do we intend?'",
+     "evidence": "What the compared trials document, with record addresses, and where the registry is silent.",
+     "consequence": "The computed result for each option under consideration, with its deciding premises.",
+     "status": "Open, or chosen by the person (their premise, with its origin)."
+    },
+    "routing": {
+     "something_wrong": "Listed first, as a blocker to resolve before other answers are relied on.",
+     "your_call": "Becomes an entry.",
+     "not_knowable_here": "Recorded as an evidence gap on the entry it affects.",
+     "settled": "Cited as context from the entry it informs."
+    },
+    "revision": "When the person settles a decision, record it as their premise and recompute what depends on it."
+   },
+   "confirmation": "Entailment refuses a proposed premise, based on the caller-supplied status flag; it does not independently verify confirmation or source truth. Confirming a reading makes it the person's accepted premise, never a registry fact. Coordinates and corpus now require explicit standing: omitted support stays pending. Coordinates keep interpolated support separate; corpus factual calculations consume known/resolved inputs only, with per-feature overrides and pending ledgers. A declared standing does not independently verify source truth: confirm with the person before running when the premise depends on their interpretation, and keep its true origin in basis.",
+   "computation": "A computation task is separate from the four clinical categories. Keep its limit and affected query visible; narrow or complete the computation without calling it an evidence gap. Retain every simultaneous blocker and independently settled result. The response metadata describes individual findings; request completion is not solver completion."
+  },
+  "example": {
+   "operation": "source_assertions",
+   "study": {
+    "protocolSection": {
+     "identificationModule": {
+      "nctId": "NCT00000001"
+     },
+     "eligibilityModule": {
+      "minimumAge": "18 Years",
+      "eligibilityCriteria": "Participants must be adults. Performance status is not specified here."
+     }
+    }
+   },
+   "expected_digest": "d931783115dbb2feacfac3836e12a43b48a52426c8cc526316aea73c8b8518f2",
+   "anchors": [
+    {
+     "id": "eligibility-passage",
+     "address": "/protocolSection/eligibilityModule/eligibilityCriteria",
+     "digest": "d931783115dbb2feacfac3836e12a43b48a52426c8cc526316aea73c8b8518f2",
+     "expected": "Participants must be adults. Performance status is not specified here.",
+     "span": {
+      "start": 0,
+      "end": 70,
+      "text": "Participants must be adults. Performance status is not specified here."
+     }
+    }
+   ],
+   "interpretations": [
+    {
+     "id": "adults",
+     "label": "Read this as requiring adults",
+     "origin": "assistant",
+     "basis": [
+      "invented:teaching-reading-not-established-protocol"
+     ],
+     "assumptions": [
+      {
+       "applicability": {
+        "class": "Always"
+       },
+       "body": {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "age",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "participant",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "ge",
+         "inclusivity": "unspecified",
+         "kind": "quantity",
+         "members": [],
+         "number": 18.0,
+         "unit": "Years",
+         "upper": null
+        }
+       },
+       "branch": {
+        "class": "Branch",
+        "node": "unresolved",
+        "path": []
+       },
+       "class": "ScopedAssertion",
+       "cohort": {
+        "class": "Scope",
+        "kind": "all_participants",
+        "parts": [],
+        "ref": ""
+       },
+       "criterion_ref": "invented:trial-design-session-not-registry-evidence",
+       "id": "adult-reading",
+       "modality": "required",
+       "resolution": "resolved",
+       "rule": {
+        "answers": [],
+        "class": "Rule",
+        "id": "invented-session-premise",
+        "premises": [],
+        "version": "1",
+        "warrants": [
+         "invented:explicit-teaching-premise"
+        ]
+       },
+       "span": [],
+       "status": "proposed"
+      }
+     ],
+     "signals": [],
+     "signal_claims": [],
+     "binding_uses": [],
+     "anchors": [
+      "eligibility-passage"
+     ]
+    },
+    {
+     "id": "under-18",
+     "label": "Hypothetically require everyone to be under 18",
+     "origin": "assistant",
+     "basis": [
+      "invented:teaching-reading-not-established-protocol"
+     ],
+     "assumptions": [
+      {
+       "applicability": {
+        "class": "Always"
+       },
+       "body": {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "age",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "participant",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "lt",
+         "inclusivity": "unspecified",
+         "kind": "quantity",
+         "members": [],
+         "number": 18.0,
+         "unit": "Years",
+         "upper": null
+        }
+       },
+       "branch": {
+        "class": "Branch",
+        "node": "unresolved",
+        "path": []
+       },
+       "class": "ScopedAssertion",
+       "cohort": {
+        "class": "Scope",
+        "kind": "all_participants",
+        "parts": [],
+        "ref": ""
+       },
+       "criterion_ref": "invented:trial-design-session-not-registry-evidence",
+       "id": "child-reading",
+       "modality": "required",
+       "resolution": "resolved",
+       "rule": {
+        "answers": [],
+        "class": "Rule",
+        "id": "invented-session-premise",
+        "premises": [],
+        "version": "1",
+        "warrants": [
+         "invented:explicit-teaching-premise"
+        ]
+       },
+       "span": [],
+       "status": "proposed"
+      }
+     ],
+     "signals": [],
+     "signal_claims": [],
+     "binding_uses": [],
+     "anchors": [
+      "eligibility-passage"
+     ]
+    }
+   ],
+   "queries": [
+    {
+     "id": "adult",
+     "body": {
+      "class": "Literal",
+      "evidence": [],
+      "polarity": "positive",
+      "predicate": {
+       "class": "Predicate",
+       "key": "age",
+       "kind": "measurement"
+      },
+      "qualifiers": {
+       "class": "Always"
+      },
+      "subject": {
+       "class": "Subject",
+       "kind": "participant",
+       "referent": ""
+      },
+      "time": null,
+      "value": {
+       "class": "Value",
+       "comparison": "ge",
+       "inclusivity": "unspecified",
+       "kind": "quantity",
+       "members": [],
+       "number": 18.0,
+       "unit": "Years",
+       "upper": null
+      }
+     }
+    }
+   ]
+  },
+  "example_result": "Invented source: exact structured minimumAge establishes age >=18 Years under the registry's general eligibility field rule. The under-18 hypothesis conflicts with that floor. The adult hypothesis remains proposed. Neither the quotation nor this check certifies a complete protocol.",
+  "tagged_model": {
+   "encoding": "An object has a class tag from this table; JSON arrays become immutable tuples. Model defaults apply to omitted optional fields, then all values are validated. Quantities need finite numbers; intervals need ordered bounds; enumerations need members fitting the comparison. A boolean literal states that its predicate holds: give no members or number (otherwise boolean_with_operand); use polarity negative or Not for 'does not hold'. Units are compared as written, never converted; time scopes match only when identical.",
+   "classes": {
+    "Evidence": {
+     "fields": {
+      "kind": "str",
+      "ref": "str"
+     },
+     "required": [
+      "kind",
+      "ref"
+     ]
+    },
+    "Subject": {
+     "fields": {
+      "kind": "str",
+      "referent": "str"
+     },
+     "required": [
+      "kind"
+     ]
+    },
+    "Predicate": {
+     "fields": {
+      "kind": "str",
+      "key": "str"
+     },
+     "required": [
+      "kind"
+     ]
+    },
+    "Value": {
+     "fields": {
+      "kind": "str",
+      "comparison": "str",
+      "members": "tuple[str, ...]",
+      "number": "float | None",
+      "upper": "float | None",
+      "unit": "str",
+      "inclusivity": "str"
+     },
+     "required": [
+      "kind"
+     ]
+    },
+    "TemporalScope": {
+     "fields": {
+      "orientation": "str",
+      "anchor": "str",
+      "anchor_ref": "str",
+      "lower": "float | None",
+      "upper": "float | None",
+      "unit": "str",
+      "inclusivity": "str",
+      "certainty": "str",
+      "evidence": "tuple[Evidence, ...]"
+     },
+     "required": [
+      "orientation",
+      "anchor"
+     ]
+    },
+    "Always": {
+     "fields": {},
+     "required": []
+    },
+    "Literal": {
+     "fields": {
+      "subject": "Subject",
+      "predicate": "Predicate",
+      "value": "Value",
+      "polarity": "str",
+      "time": "TemporalScope | None",
+      "qualifiers": "Condition",
+      "evidence": "tuple[Evidence, ...]"
+     },
+     "required": [
+      "subject",
+      "predicate",
+      "value"
+     ]
+    },
+    "AllOf": {
+     "fields": {
+      "parts": "tuple[Proposition, ...]"
+     },
+     "required": [
+      "parts"
+     ]
+    },
+    "AnyOf": {
+     "fields": {
+      "parts": "tuple[Proposition, ...]"
+     },
+     "required": [
+      "parts"
+     ]
+    },
+    "Not": {
+     "fields": {
+      "part": "Proposition"
+     },
+     "required": [
+      "part"
+     ]
+    },
+    "Opaque": {
+     "fields": {
+      "ref": "str"
+     },
+     "required": [
+      "ref"
+     ]
+    },
+    "Scope": {
+     "fields": {
+      "kind": "str",
+      "ref": "str",
+      "parts": "tuple[Scope, ...]"
+     },
+     "required": [
+      "kind"
+     ]
+    },
+    "Branch": {
+     "fields": {
+      "node": "str",
+      "path": "tuple[int, ...]"
+     },
+     "required": [
+      "node"
+     ]
+    },
+    "Span": {
+     "fields": {
+      "start": "int",
+      "end": "int"
+     },
+     "required": [
+      "start",
+      "end"
+     ]
+    },
+    "Rule": {
+     "fields": {
+      "id": "str",
+      "version": "str",
+      "premises": "tuple[str, ...]",
+      "warrants": "tuple[str, ...]",
+      "answers": "tuple[str, ...]"
+     },
+     "required": [
+      "id",
+      "version"
+     ]
+    },
+    "ScopedAssertion": {
+     "fields": {
+      "id": "str",
+      "criterion_ref": "str",
+      "modality": "str",
+      "body": "Proposition",
+      "applicability": "Condition",
+      "cohort": "Scope",
+      "branch": "Branch",
+      "span": "tuple[Span, ...]",
+      "rule": "Rule | None",
+      "status": "str",
+      "resolution": "str"
+     },
+     "required": [
+      "id",
+      "criterion_ref",
+      "modality",
+      "body",
+      "rule"
+     ]
+    }
+   }
+  },
+  "operator_inputs": {
+   "overlap": {
+    "required": [
+     "universe",
+     "alignment",
+     "total",
+     "marginals"
+    ],
+    "fields": {
+     "universe": "nonempty study/version/population/assessment identity, not merely a denominator",
+     "alignment": "confirmed, unresolved or conflicting; matching counts never establish alignment",
+     "total": "nonnegative integer universe size",
+     "marginals": "at least two distinct scoped_count objects; no statistical independence assumed"
+    },
+    "scoped_count": {
+     "required": [
+      "ref",
+      "universe",
+      "lower",
+      "upper"
+     ],
+     "fields": {
+      "ref": "distinct nonempty bound predicate reference",
+      "universe": "same study/version/population/assessment universe as the enclosing input",
+      "lower": "nonnegative integer or null (unknown lower bound)",
+      "upper": "nonnegative integer or null (unknown upper bound)"
+     }
+    },
+    "claim": {
+     "required": [
+      "count",
+      "lower",
+      "upper"
+     ],
+     "fields": {
+      "count": "one output count id",
+      "lower": "nonnegative integer or null (no added lower restriction)",
+      "upper": "nonnegative integer or null (no added upper restriction)"
+     }
+    },
+    "count_ids": "intersection"
+   },
+   "partition": {
+    "required": [
+     "universe",
+     "alignment",
+     "total",
+     "disjoint",
+     "exhaustive",
+     "parts"
+    ],
+    "fields": {
+     "universe": "nonempty study/version/population/assessment identity",
+     "alignment": "confirmed, unresolved or conflicting",
+     "total": "nonnegative integer universe size",
+     "disjoint": "boolean: explicit mutual exclusivity premise",
+     "exhaustive": "boolean: explicit coverage premise; false retains a separate remainder",
+     "parts": "nonempty array of scoped_count objects, refs distinct and not remainder"
+    },
+    "scoped_count": {
+     "required": [
+      "ref",
+      "universe",
+      "lower",
+      "upper"
+     ],
+     "fields": {
+      "ref": "distinct nonempty bound predicate reference",
+      "universe": "same study/version/population/assessment universe as the enclosing input",
+      "lower": "nonnegative integer or null (unknown lower bound)",
+      "upper": "nonnegative integer or null (unknown upper bound)"
+     }
+    },
+    "claim": {
+     "required": [
+      "count",
+      "lower",
+      "upper"
+     ],
+     "fields": {
+      "count": "one output count id",
+      "lower": "nonnegative integer or null (no added lower restriction)",
+      "upper": "nonnegative integer or null (no added upper restriction)"
+     }
+    },
+    "count_ids": "each part ref plus remainder (none of the represented parts)"
+   },
+   "summary": {
+    "required": [
+     "universe",
+     "alignment",
+     "total",
+     "ref",
+     "unit",
+     "statistic",
+     "median_definition",
+     "number",
+     "comparison",
+     "exact"
+    ],
+    "fields": {
+     "universe": "nonempty identity of the participants actually assessed for this summary",
+     "alignment": "confirmed, unresolved or conflicting",
+     "total": "nonnegative integer assessed population size; zero gives no summary witness",
+     "ref": "nonempty measurement binding reference",
+     "unit": "measurement unit as written; never converted",
+     "statistic": "minimum, maximum or median; other statistics are explicitly unresolved",
+     "median_definition": "midpoint, unresolved or not_applicable; median requires explicit midpoint convention; minimum/maximum requires not_applicable",
+     "number": "finite number as encoded; no string/boolean coercion",
+     "comparison": "eq, le or ge for the requested count relative to number",
+     "exact": "boolean: false refuses witness derivation from rounded/uncertain summary values"
+    },
+    "claim": {
+     "required": [
+      "count",
+      "lower",
+      "upper"
+     ],
+     "fields": {
+      "count": "one output count id",
+      "lower": "nonnegative integer or null (no added lower restriction)",
+      "upper": "nonnegative integer or null (no added upper restriction)"
+     }
+    },
+    "count_ids": "summary"
+   },
+   "population": {
+    "required": [
+     "universe",
+     "alignment",
+     "total",
+     "parent_ref",
+     "subset",
+     "subset_relation"
+    ],
+    "fields": {
+     "universe": "nonempty study/version/population/assessment identity of the parent population",
+     "alignment": "confirmed, unresolved or conflicting",
+     "total": "nonnegative integer parent size",
+     "parent_ref": "nonempty parent-membership binding, distinct from subset ref and outside",
+     "subset": "scoped_count object, ref distinct from parent_ref and outside",
+     "subset_relation": "confirmed, unresolved or conflicting; denominator/title agreement is insufficient"
+    },
+    "scoped_count": {
+     "required": [
+      "ref",
+      "universe",
+      "lower",
+      "upper"
+     ],
+     "fields": {
+      "ref": "distinct nonempty bound predicate reference",
+      "universe": "same study/version/population/assessment universe as the enclosing input",
+      "lower": "nonnegative integer or null (unknown lower bound)",
+      "upper": "nonnegative integer or null (unknown upper bound)"
+     }
+    },
+    "claim": {
+     "required": [
+      "count",
+      "lower",
+      "upper"
+     ],
+     "fields": {
+      "count": "one output count id",
+      "lower": "nonnegative integer or null (no added lower restriction)",
+      "upper": "nonnegative integer or null (no added upper restriction)"
+     }
+    },
+    "count_ids": "parent_ref, subset.ref and outside (parent AND NOT subset)"
+   },
+   "temporal": {
+    "required": [
+     "scope",
+     "unit",
+     "origin",
+     "resolution",
+     "events",
+     "constraints"
+    ],
+    "fields": {
+     "scope": "bound study/cohort/participant-course identity; no calendar-to-followup projection",
+     "unit": "nonempty exact unit identity; units are never converted",
+     "origin": "declared event id anchoring this one timeline",
+     "resolution": "resolved, partially_resolved, unresolved or conflicting",
+     "events": "distinct nonempty event ids, maximum 32",
+     "constraints": "records: before, after, lower, upper, lower_inclusive, upper_inclusive"
+    },
+    "claims": "same constraint records; all claims are conjoined. Bounds mean lower <= t(after)-t(before) <= upper with explicit inclusive flags; null is unbounded. Numbers are integers or exact decimal/rational strings, never binary floats. Unknown events remain unresolved.",
+    "limits": {
+     "nodes": 32,
+     "rows_including_claims": 256,
+     "numeric_string_characters": 512,
+     "integer_bits": 2048
+    }
+   },
+   "regimen": {
+    "required": [
+     "scope",
+     "stage",
+     "resolution",
+     "arms",
+     "products"
+    ],
+    "fields": {
+     "scope": "nonempty identity binding local arms, products, time and source version",
+     "stage": "planned or observed; no implicit transfer between them",
+     "resolution": "resolved, partially_resolved, unresolved or conflicting",
+     "arms": "{id,role,products,products_complete}; role assigned/aggregate/observational/unresolved",
+     "products": "{id,ingredients,ingredients_complete}; exact identities, no alias expansion",
+     "absent_products": "optional array of {arm,product} explicit negatives"
+    },
+    "claims": "records with arm and products, ingredients, absent_products or absent_ingredients; optional products_complete/ingredients_complete require their corresponding list. False completeness means only known members. Claims against non-assigned/unbound groups remain unresolved.",
+    "limits": {
+     "arms": 32,
+     "products": 32,
+     "claims": 256
+    }
+   },
+   "relations": {
+    "required": [
+     "scope",
+     "version",
+     "resolution",
+     "triples",
+     "disjoint"
+    ],
+    "fields": {
+     "scope": "nonempty identity binding entities, indication and population",
+     "version": "nonempty terminology/rule edition identity, never inferred from words",
+     "resolution": "resolved, partially_resolved, unresolved or conflicting",
+     "triples": "at most 256 {subject,relation,object,polarity}; positive or negative",
+     "disjoint": "two distinct class ids per pair; disjointness alone does not assert existence"
+    },
+    "claims": "additional triples, jointly conjoined. is_a is reflexive/transitive over declared classes; instance_of inherits only upward. has_ingredient and associated stay direct. No negative membership is inferred from absence. At most 32 distinct identifiers and 256 total triples.",
+    "limits": {
+     "identifiers": 32,
+     "rows_including_claims": 256
+    }
+   },
+   "dependencies": {
+    "required": [
+     "scope",
+     "version",
+     "rules",
+     "adopted",
+     "available",
+     "unavailable",
+     "conditions"
+    ],
+    "fields": {
+     "scope": "nonempty reference binding all rules, inputs and conditions to one applicable scope",
+     "version": "nonempty version of the declared dependency representation",
+     "rules": "array of distinct {id,version,output,alternatives,when} rule objects",
+     "adopted": "distinct ids of explicitly adopted rules; an unadopted rule imposes nothing",
+     "available": "array of {id,mode} inputs; mode observed, imputed or derived",
+     "unavailable": "array of explicitly unavailable {id,mode} inputs; missing is unknown",
+     "conditions": "object of condition ids to true/false/unknown strings; missing ids are unknown"
+    },
+    "rule": {
+     "id": "distinct nonempty rule id",
+     "version": "nonempty source/definition version",
+     "output": "{id,mode:derived}; calculations cannot create observed or imputed measurements",
+     "alternatives": "nonempty OR of AND arrays of {id,mode} prerequisite objects",
+     "when": "AND array of {id,is:true|false}; explicit [] is unconditional"
+    },
+    "claim": {
+     "fields": [
+      "available",
+      "unavailable",
+      "adopted",
+      "conditions"
+     ],
+     "meaning": "add facts jointly; conditions refine unknown, never overwrite dissent"
+    }
+   }
+  },
+  "signal_kinds": [
+   "overlap",
+   "partition",
+   "summary",
+   "population",
+   "temporal",
+   "regimen",
+   "relations",
+   "dependencies"
+  ],
+  "signal_examples": {
+   "overlap": {
+    "operation": "signals",
+    "signals": [
+     {
+      "id": "invented-overlap",
+      "kind": "overlap",
+      "data": {
+       "universe": "invented:baseline",
+       "alignment": "confirmed",
+       "total": 100,
+       "marginals": [
+        {
+         "ref": "a",
+         "universe": "invented:baseline",
+         "lower": 70,
+         "upper": 70
+        },
+        {
+         "ref": "b",
+         "universe": "invented:baseline",
+         "lower": 60,
+         "upper": 60
+        }
+       ]
+      },
+      "support": [
+       {
+        "id": "invented-inputs",
+        "status": "known",
+        "resolution": "resolved",
+        "basis": [
+         "user:invented-typed-demonstration-not-clinical-evidence"
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   "partition": {
+    "operation": "signals",
+    "signals": [
+     {
+      "id": "invented-partition",
+      "kind": "partition",
+      "data": {
+       "universe": "invented:baseline",
+       "alignment": "confirmed",
+       "total": 100,
+       "disjoint": true,
+       "exhaustive": true,
+       "parts": [
+        {
+         "ref": "a",
+         "universe": "invented:baseline",
+         "lower": 70,
+         "upper": 70
+        },
+        {
+         "ref": "b",
+         "universe": "invented:baseline",
+         "lower": null,
+         "upper": null
+        }
+       ]
+      },
+      "support": [
+       {
+        "id": "invented-inputs",
+        "status": "known",
+        "resolution": "resolved",
+        "basis": [
+         "user:invented-typed-demonstration-not-clinical-evidence"
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   "summary": {
+    "operation": "signals",
+    "signals": [
+     {
+      "id": "invented-summary",
+      "kind": "summary",
+      "data": {
+       "universe": "invented:assessed",
+       "alignment": "confirmed",
+       "total": 101,
+       "ref": "age",
+       "unit": "Years",
+       "statistic": "median",
+       "median_definition": "midpoint",
+       "number": 60,
+       "comparison": "ge",
+       "exact": true
+      },
+      "support": [
+       {
+        "id": "invented-inputs",
+        "status": "known",
+        "resolution": "resolved",
+        "basis": [
+         "user:invented-typed-demonstration-not-clinical-evidence"
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   "population": {
+    "operation": "signals",
+    "signals": [
+     {
+      "id": "invented-population",
+      "kind": "population",
+      "data": {
+       "universe": "invented:randomized",
+       "alignment": "confirmed",
+       "total": 100,
+       "parent_ref": "randomized",
+       "subset_relation": "confirmed",
+       "subset": {
+        "ref": "analysed",
+        "universe": "invented:randomized",
+        "lower": 70,
+        "upper": 70
+       }
+      },
+      "support": [
+       {
+        "id": "invented-inputs",
+        "status": "known",
+        "resolution": "resolved",
+        "basis": [
+         "user:invented-typed-demonstration-not-clinical-evidence"
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   "temporal": {
+    "operation": "signals",
+    "signals": [
+     {
+      "id": "invented-temporal",
+      "kind": "temporal",
+      "data": {
+       "scope": "invented:cohort-A:participant-course:v1",
+       "unit": "day",
+       "origin": "randomization",
+       "resolution": "resolved",
+       "events": [
+        "induction_end",
+        "randomization",
+        "dose"
+       ],
+       "constraints": [
+        {
+         "before": "induction_end",
+         "after": "randomization",
+         "lower": 0,
+         "upper": null,
+         "lower_inclusive": false,
+         "upper_inclusive": true
+        },
+        {
+         "before": "randomization",
+         "after": "dose",
+         "lower": 0,
+         "upper": 7,
+         "lower_inclusive": true,
+         "upper_inclusive": true
+        }
+       ]
+      },
+      "support": [
+       {
+        "id": "invented-inputs",
+        "status": "known",
+        "resolution": "resolved",
+        "basis": [
+         "user:invented-typed-demonstration-not-clinical-evidence"
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   "regimen": {
+    "operation": "signals",
+    "signals": [
+     {
+      "id": "invented-regimen",
+      "kind": "regimen",
+      "data": {
+       "scope": "invented:study:protocol-v1:cohort-A",
+       "stage": "planned",
+       "resolution": "resolved",
+       "arms": [
+        {
+         "id": "arm-A",
+         "role": "assigned",
+         "products": [
+          "product-AB"
+         ],
+         "products_complete": true
+        }
+       ],
+       "products": [
+        {
+         "id": "product-AB",
+         "ingredients": [
+          "ingredient-A",
+          "ingredient-B"
+         ],
+         "ingredients_complete": true
+        }
+       ]
+      },
+      "support": [
+       {
+        "id": "invented-inputs",
+        "status": "known",
+        "resolution": "resolved",
+        "basis": [
+         "user:invented-typed-demonstration-not-clinical-evidence"
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   "relations": {
+    "operation": "signals",
+    "signals": [
+     {
+      "id": "invented-relations",
+      "kind": "relations",
+      "data": {
+       "scope": "invented:condition-universe",
+       "version": "invented:edition-1",
+       "resolution": "resolved",
+       "triples": [
+        {
+         "subject": "child",
+         "relation": "is_a",
+         "object": "parent",
+         "polarity": "positive"
+        },
+        {
+         "subject": "person",
+         "relation": "instance_of",
+         "object": "child",
+         "polarity": "positive"
+        }
+       ],
+       "disjoint": []
+      },
+      "support": [
+       {
+        "id": "invented-inputs",
+        "status": "known",
+        "resolution": "resolved",
+        "basis": [
+         "user:invented-typed-demonstration-not-clinical-evidence"
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   "dependencies": {
+    "operation": "signals",
+    "signals": [
+     {
+      "id": "invented-dependencies",
+      "kind": "dependencies",
+      "data": {
+       "scope": "invented:cohort-and-assessment-window",
+       "version": "1",
+       "rules": [
+        {
+         "id": "change",
+         "version": "invented-definition-1",
+         "output": {
+          "id": "change",
+          "mode": "derived"
+         },
+         "alternatives": [
+          [
+           {
+            "id": "baseline",
+            "mode": "observed"
+           },
+           {
+            "id": "week12",
+            "mode": "observed"
+           }
+          ]
+         ],
+         "when": []
+        }
+       ],
+       "adopted": [
+        "change"
+       ],
+       "available": [
+        {
+         "id": "baseline",
+         "mode": "observed"
+        }
+       ],
+       "unavailable": [],
+       "conditions": {}
+      },
+      "support": [
+       {
+        "id": "invented-inputs",
+        "status": "known",
+        "resolution": "resolved",
+        "basis": [
+         "user:invented-typed-demonstration-not-clinical-evidence"
+        ]
+       }
+      ]
+     }
+    ]
+   }
+  }
+ },
+ "problems": [],
+ "metadata": {
+  "version": 1,
+  "kind": "discovery",
+  "findings": []
+ }
+}

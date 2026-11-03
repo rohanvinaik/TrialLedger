@@ -1,0 +1,5 @@
+{
+  "tests/detective/test_TrialLedger_layer2_result_semantics_cause_kind_a38b8f3a25_synth.py": "7a56197b7752b0711c0e7852f14b666aee79a6dedac45196d44a0499c9d4311c",
+  "tests/detective/test_TrialLedger_layer2_result_semantics_completion_code_0f6f433d15_synth.py": "46c08aa1b43e7b2bf6d16e805c5f12680436133e22fbb10a9c5c60e3af6abecd",
+  "tests/detective/test_TrialLedger_layer2_result_semantics_disposition_code_3741ce9eea_synth.py": "240a086fb56ee28cd08250651f579c7a86598f0f2399cd7b97f21a80364bab34"
+}

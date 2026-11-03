@@ -1,0 +1,150 @@
+{
+  "scope": "Four retained source_assertions children plus two hypothetical cap variants and a new two-record structured-age corpus projection. Counts are an explicit authoring inventory, not Shannon information or a semantic-completeness metric.",
+  "source_occurrences": [
+    {
+      "analysis": "ipass-registered-age",
+      "source": "ipass"
+    },
+    {
+      "analysis": "archer-registered-age",
+      "source": "archer"
+    },
+    {
+      "analysis": "ipass-baseline-overlap",
+      "source": "ipass"
+    },
+    {
+      "analysis": "ipass-schedule-readings",
+      "source": "ipass"
+    }
+  ],
+  "question_occurrences": [
+    {
+      "analysis": "ipass-registered-age",
+      "question_ref": "ipass:registered-adult-age"
+    },
+    {
+      "analysis": "ipass-registered-age",
+      "question_ref": "ipass:under-18"
+    },
+    {
+      "analysis": "archer-registered-age",
+      "question_ref": "archer:adult"
+    },
+    {
+      "analysis": "archer-registered-age",
+      "question_ref": "archer:upper"
+    },
+    {
+      "analysis": "ipass-baseline-overlap",
+      "question_ref": "ipass:registered-adult-age"
+    },
+    {
+      "analysis": "ipass-baseline-overlap",
+      "question_ref": "ipass:registered-PS-at-most-two"
+    },
+    {
+      "analysis": "ipass-schedule-readings",
+      "question_ref": "ipass:registered-adult-age"
+    }
+  ],
+  "semantic_declaration_groups": [
+    {
+      "group": "baseline-common-population reading",
+      "independent_definitions": 1,
+      "retained_locations": [
+        "ipass-baseline-overlap.bindings[0]"
+      ],
+      "unchanged": true
+    },
+    {
+      "group": "baseline overlap signal and participant-count interpretation",
+      "independent_definitions": 1,
+      "retained_locations": [
+        "ipass-baseline-overlap.interpretations[0].signals[0]"
+      ],
+      "unchanged": true
+    },
+    {
+      "group": "rival schedule meanings",
+      "independent_definitions": 2,
+      "retained_locations": [
+        "ipass-schedule-readings.interpretations[0]",
+        "ipass-schedule-readings.interpretations[1]"
+      ],
+      "unchanged": true
+    },
+    {
+      "group": "hypothetical candidate eligibility formulas",
+      "independent_definitions": 3,
+      "retained_locations": [
+        "sensitivity.base_request.candidates"
+      ],
+      "unchanged": true
+    },
+    {
+      "group": "hypothetical witness bridge: acceptance at eligibility time",
+      "independent_definitions": 1,
+      "retained_locations": [
+        "sensitivity.base_request.observations[0].bridge"
+      ],
+      "unchanged": true
+    },
+    {
+      "group": "hypothetical maximum-exception alternatives",
+      "independent_definitions": 2,
+      "retained_locations": [
+        "sensitivity.variants.cap48",
+        "sensitivity.variants.cap49"
+      ],
+      "unchanged": true
+    },
+    {
+      "group": "hypothetical overlap signal with its own support standing",
+      "independent_definitions": 1,
+      "retained_locations": [
+        "sensitivity.base_request.signals[0]"
+      ],
+      "unchanged": true
+    }
+  ],
+  "derived_corpus_declarations": [
+    {
+      "kind": "per-source age feature standing",
+      "old_explicit_occurrences": 2,
+      "prototype_caller_occurrences": 0,
+      "derivation": "accepted named direct-age fixed assertion, origin/ref/rule/shape checked"
+    },
+    {
+      "kind": "per-trial structural typed flag",
+      "old_explicit_occurrences": 2,
+      "prototype_caller_occurrences": 0,
+      "derivation": "nonempty prepared typed eligibility elements; not complete source coverage"
+    }
+  ],
+  "added_administration": [
+    "prototype identity/version/revision",
+    "analysis IDs",
+    "source refs",
+    "question refs",
+    "active sensitivity variant",
+    "projection member refs",
+    "parent snapshot digest",
+    "open design question IDs/labels"
+  ],
+  "clinical_choices": 0,
+  "unresolved_acceptance_questions": [
+    "Actual historical exception ceiling and eligibility-time bridge remain unconfirmed.",
+    "Baseline participant-count and common-population semantics remain proposed in the source bridge.",
+    "Comparator schedule anchor remains a competing interpretation.",
+    "No WHO/ECOG relation or comparator restriction adoption is introduced."
+  ],
+  "computed_summary": {
+    "distinct_source_snapshots": 2,
+    "separate_source_snapshot_occurrences": 4,
+    "distinct_scoped_question_objects": 5,
+    "separate_question_occurrences": 7,
+    "independent_semantic_definitions_in_listed_groups": 11,
+    "derived_corpus_declarations_removed_from_caller": 4
+  }
+}

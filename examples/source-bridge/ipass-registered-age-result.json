@@ -505,7 +505,22 @@
             }
           ]
         },
-        "problems": []
+        "problems": [],
+        "metadata": {
+          "version": 1,
+          "kind": "reasoning",
+          "findings": [
+            {
+              "path": "/result/decision",
+              "kind": "logical",
+              "logical_result": "ENTAILED",
+              "standing": "known",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "settled"
+            }
+          ]
+        }
       },
       {
         "code": "complete",
@@ -592,9 +607,48 @@
             }
           ]
         },
-        "problems": []
+        "problems": [],
+        "metadata": {
+          "version": 1,
+          "kind": "reasoning",
+          "findings": [
+            {
+              "path": "/result/decision",
+              "kind": "logical",
+              "logical_result": "REFUTED",
+              "standing": "known",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "settled"
+            }
+          ]
+        }
       }
     ]
   },
-  "problems": []
+  "problems": [],
+  "metadata": {
+    "version": 1,
+    "kind": "reasoning",
+    "findings": [
+      {
+        "path": "/result/analyses/0/result/decision",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled"
+      },
+      {
+        "path": "/result/analyses/1/result/decision",
+        "kind": "logical",
+        "logical_result": "REFUTED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled"
+      }
+    ]
+  }
 }

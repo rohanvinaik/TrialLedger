@@ -248,5 +248,20 @@
       }
     ]
   },
-  "problems": []
+  "problems": [],
+  "metadata": {
+    "version": 1,
+    "kind": "reasoning",
+    "findings": [
+      {
+        "path": "/result/decision",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "standing": "interpolated",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional"
+      }
+    ]
+  }
 }

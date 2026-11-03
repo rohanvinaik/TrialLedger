@@ -1,0 +1,7 @@
+{
+  "artifact_kind": "finite-prototype-revision-not-a-public-edit-API",
+  "parent_digest": "f2efd2635a9383a6986db31edaad9c7adf63bbaed98de41c6e7c17a2e163401b",
+  "revision": 2,
+  "active_exception_variant": "cap49",
+  "meaning": "Change only the investigation exception cap. No real clinical choice has been made."
+}

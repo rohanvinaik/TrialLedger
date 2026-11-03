@@ -51,6 +51,7 @@ class CandidateResult(TypedDict):
     observations: list[WitnessResult]
     query_decision: dict[str, Any]
     signal_checks: NotRequired[list[dict]]
+    elimination_status: NotRequired[str]
 
 
 def witness_support(count: int, exceptions: int, status: str, resolution: str) -> str:
@@ -211,16 +212,16 @@ def bound_designs(
             for b in consequence.blockers
         ):
             state = "unresolved"
+        elimination_status = None
         if state in ("ruled_out", "inconsistent"):
             reasons = [row["status"] for row in evidence if row["state"] == state]
-            elimination_statuses.append(
-                entail.weakest_status(
-                    tuple(
-                        reasons + [check["status"] for check in checks if check["code"] == "conflict"]
-                        or [consequence.status or "known"]
-                    )
+            elimination_status = entail.weakest_status(
+                tuple(
+                    reasons + [check["status"] for check in checks if check["code"] == "conflict"]
+                    or [consequence.status or "known"]
                 )
             )
+            elimination_statuses.append(elimination_status)
         rows.append(
             {
                 "id": identity,
@@ -231,6 +232,8 @@ def bound_designs(
         )
         if signals:
             rows[-1]["signal_checks"] = checks
+        if elimination_status is not None:
+            rows[-1]["elimination_status"] = elimination_status
     remaining = [row for row in rows if row["state"] not in ("ruled_out", "inconsistent")]
     result = common_result(
         [row["state"] for row in remaining], [row["query_decision"]["result"] for row in remaining]

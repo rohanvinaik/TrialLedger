@@ -1893,5 +1893,327 @@
     ],
     "limits": "Exact conditional checks over declared readings; compatibility is not source truth or clinical recommendation. The interpretation family is not assumed exhaustive. No automatic text reading, source correction, source mutation or corpus-frequency admission."
   },
-  "problems": []
+  "problems": [],
+  "metadata": {
+    "version": 1,
+    "kind": "reasoning",
+    "findings": [
+      {
+        "path": "/result/fixed/consistency",
+        "kind": "consistency",
+        "logical_result": "UNDETERMINED",
+        "standing": null,
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          }
+        ],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/fixed/queries/0",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled",
+        "support_path": "/result/fixed/queries/0/warrant"
+      },
+      {
+        "path": "/result/fixed/queries/1",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "undecided_by_constraints",
+            "kind": "constraint"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/fixed/queries/1/warrant"
+      },
+      {
+        "path": "/result/fixed/signals/0",
+        "kind": "signal",
+        "logical_result": "unresolved",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "dependency_unresolved:change",
+            "kind": "evidence"
+          }
+        ],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/interpretations/0",
+        "kind": "interpretation",
+        "logical_result": "compatible",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional"
+      },
+      {
+        "path": "/result/interpretations/0/queries/0",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional",
+        "support_path": "/result/interpretations/0/queries/0/warrant"
+      },
+      {
+        "path": "/result/interpretations/0/queries/1",
+        "kind": "logical",
+        "logical_result": "REFUTED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional",
+        "support_path": "/result/interpretations/0/queries/1/warrant"
+      },
+      {
+        "path": "/result/interpretations/0/signals/0",
+        "kind": "signal",
+        "logical_result": "unresolved",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "dependency_unresolved:change",
+            "kind": "evidence"
+          }
+        ],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/interpretations/0/signal_checks/0",
+        "kind": "signal",
+        "logical_result": "consistent",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled"
+      },
+      {
+        "path": "/result/interpretations/0/bindings/0",
+        "kind": "binding",
+        "logical_result": "supported",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled"
+      },
+      {
+        "path": "/result/interpretations/1",
+        "kind": "interpretation",
+        "logical_result": "unresolved",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "dependency_unresolved:change",
+            "kind": "evidence"
+          }
+        ],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/interpretations/1/queries/0",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "dependency_unresolved:change",
+            "kind": "evidence"
+          },
+          {
+            "code": "interpretation_unresolved",
+            "kind": "premise"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/interpretations/1/queries/0/warrant",
+        "raw_result": "ENTAILED",
+        "raw_path": "/result/interpretations/1/queries/0/decision"
+      },
+      {
+        "path": "/result/interpretations/1/queries/1",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "dependency_unresolved:change",
+            "kind": "evidence"
+          },
+          {
+            "code": "interpretation_unresolved",
+            "kind": "premise"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/interpretations/1/queries/1/warrant",
+        "raw_result": "REFUTED",
+        "raw_path": "/result/interpretations/1/queries/1/decision"
+      },
+      {
+        "path": "/result/interpretations/1/signals/0",
+        "kind": "signal",
+        "logical_result": "unresolved",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "dependency_unresolved:change",
+            "kind": "evidence"
+          }
+        ],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/interpretations/1/signal_checks/0",
+        "kind": "signal",
+        "logical_result": "unresolved",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "dependency_unresolved:change",
+            "kind": "evidence"
+          }
+        ],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/interpretations/1/bindings/0",
+        "kind": "binding",
+        "logical_result": "supported",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled"
+      },
+      {
+        "path": "/result/interpretations/2",
+        "kind": "interpretation",
+        "logical_result": "refuted",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conflict"
+      },
+      {
+        "path": "/result/interpretations/2/queries/0",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "interpretation_refuted",
+            "kind": "conflict"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/interpretations/2/queries/0/warrant",
+        "raw_result": "ENTAILED",
+        "raw_path": "/result/interpretations/2/queries/0/decision"
+      },
+      {
+        "path": "/result/interpretations/2/queries/1",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "interpretation_refuted",
+            "kind": "conflict"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/interpretations/2/queries/1/warrant",
+        "raw_result": "REFUTED",
+        "raw_path": "/result/interpretations/2/queries/1/decision"
+      },
+      {
+        "path": "/result/interpretations/2/signals/0",
+        "kind": "signal",
+        "logical_result": "unresolved",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "dependency_unresolved:change",
+            "kind": "evidence"
+          }
+        ],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/interpretations/2/signal_checks/0",
+        "kind": "signal",
+        "logical_result": "conflict",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "dependency_blocked:change",
+            "kind": "conflict"
+          }
+        ],
+        "disposition": "conflict"
+      },
+      {
+        "path": "/result/interpretations/2/bindings/0",
+        "kind": "binding",
+        "logical_result": "supported",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled"
+      },
+      {
+        "path": "/result/consequences/0",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled",
+        "support_path": "/result/consequences/0/warrant"
+      },
+      {
+        "path": "/result/consequences/1",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "dependency_unresolved:change",
+            "kind": "evidence"
+          },
+          {
+            "code": "interpretation_unresolved",
+            "kind": "premise"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/consequences/1/warrant"
+      }
+    ]
+  }
 }

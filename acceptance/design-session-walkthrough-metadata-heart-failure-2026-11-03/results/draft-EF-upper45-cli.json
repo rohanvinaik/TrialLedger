@@ -1,0 +1,432 @@
+{
+ "code": "complete",
+ "operation": "interpretations",
+ "result": {
+  "study_ref": "draft:heart-failure:investigation-only",
+  "fixed": {
+   "assertions": [],
+   "consistency": {
+    "result": "UNDETERMINED",
+    "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+    "status": null,
+    "proof": [],
+    "blockers": [
+     "no_constraint_mentions_query"
+    ]
+   },
+   "queries": [
+    {
+     "id": "EF45",
+     "body": {
+      "class": "Literal",
+      "evidence": [],
+      "polarity": "positive",
+      "predicate": {
+       "class": "Predicate",
+       "key": "LVEF_ECHO",
+       "kind": "measurement"
+      },
+      "qualifiers": {
+       "class": "Always"
+      },
+      "subject": {
+       "class": "Subject",
+       "kind": "participant",
+       "referent": ""
+      },
+      "time": {
+       "anchor": "named_event",
+       "anchor_ref": "draft:heart-failure:investigation-only:screening",
+       "certainty": "explicit",
+       "class": "TemporalScope",
+       "evidence": [],
+       "inclusivity": "unspecified",
+       "lower": null,
+       "orientation": "at",
+       "unit": "",
+       "upper": null
+      },
+      "value": {
+       "class": "Value",
+       "comparison": "eq",
+       "inclusivity": "unspecified",
+       "kind": "quantity",
+       "members": [],
+       "number": 45.0,
+       "unit": "%",
+       "upper": null
+      }
+     },
+     "result": "UNDETERMINED",
+     "decision": {
+      "result": "UNDETERMINED",
+      "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"LVEF_ECHO\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":{\"anchor\":\"named_event\",\"anchor_ref\":\"draft:heart-failure:investigation-only:screening\",\"certainty\":\"explicit\",\"class\":\"TemporalScope\",\"evidence\":[],\"inclusivity\":\"unspecified\",\"lower\":null,\"orientation\":\"at\",\"unit\":\"\",\"upper\":null},\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":45.0,\"unit\":\"%\",\"upper\":null}}",
+      "status": null,
+      "proof": [],
+      "blockers": [
+       "no_constraint_mentions_query"
+      ]
+     },
+     "warrant": {
+      "rule": "entail.decide:1",
+      "guarantee": "fixed_floor",
+      "status": "known",
+      "assumptions": [],
+      "proof": [],
+      "blockers": [
+       "no_constraint_mentions_query"
+      ]
+     }
+    }
+   ],
+   "signals": [],
+   "blockers": []
+  },
+  "bindings": [],
+  "interpretations": [
+   {
+    "id": "draft-EF-policy",
+    "label": "Hypothetical new-draft upper EF boundary 45",
+    "origin": "assistant",
+    "state": "compatible",
+    "premises": {
+     "basis": [
+      "investigation:new-trial-hypothesis-not-a-source-edit-or-clinician-choice"
+     ],
+     "assumptions": [
+      {
+       "applicability": {
+        "class": "Always"
+       },
+       "body": {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "LVEF_ECHO",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "participant",
+         "referent": ""
+        },
+        "time": {
+         "anchor": "named_event",
+         "anchor_ref": "draft:heart-failure:investigation-only:screening",
+         "certainty": "explicit",
+         "class": "TemporalScope",
+         "evidence": [],
+         "inclusivity": "unspecified",
+         "lower": null,
+         "orientation": "at",
+         "unit": "",
+         "upper": null
+        },
+        "value": {
+         "class": "Value",
+         "comparison": "le",
+         "inclusivity": "unspecified",
+         "kind": "quantity",
+         "members": [],
+         "number": 45.0,
+         "unit": "%",
+         "upper": null
+        }
+       },
+       "branch": {
+        "class": "Branch",
+        "node": "unresolved",
+        "path": []
+       },
+       "class": "ScopedAssertion",
+       "cohort": {
+        "class": "Scope",
+        "kind": "all_participants",
+        "parts": [],
+        "ref": ""
+       },
+       "criterion_ref": "investigation:new-draft-alternative",
+       "id": "draft-EF-upper",
+       "modality": "required",
+       "resolution": "resolved",
+       "rule": {
+        "answers": [],
+        "class": "Rule",
+        "id": "investigation-source-reading",
+        "premises": [],
+        "version": "1",
+        "warrants": [
+         "investigation:new-draft-alternative",
+         "investigation:not-clinician-confirmed"
+        ]
+       },
+       "span": [],
+       "status": "proposed"
+      }
+     ],
+     "signals": [],
+     "signal_claims": [],
+     "binding_uses": []
+    },
+    "bindings": [],
+    "signals": [],
+    "signal_checks": [],
+    "queries": [
+     {
+      "id": "EF45",
+      "body": {
+       "class": "Literal",
+       "evidence": [],
+       "polarity": "positive",
+       "predicate": {
+        "class": "Predicate",
+        "key": "LVEF_ECHO",
+        "kind": "measurement"
+       },
+       "qualifiers": {
+        "class": "Always"
+       },
+       "subject": {
+        "class": "Subject",
+        "kind": "participant",
+        "referent": ""
+       },
+       "time": {
+        "anchor": "named_event",
+        "anchor_ref": "draft:heart-failure:investigation-only:screening",
+        "certainty": "explicit",
+        "class": "TemporalScope",
+        "evidence": [],
+        "inclusivity": "unspecified",
+        "lower": null,
+        "orientation": "at",
+        "unit": "",
+        "upper": null
+       },
+       "value": {
+        "class": "Value",
+        "comparison": "eq",
+        "inclusivity": "unspecified",
+        "kind": "quantity",
+        "members": [],
+        "number": 45.0,
+        "unit": "%",
+        "upper": null
+       }
+      },
+      "result": "UNDETERMINED",
+      "decision": {
+       "result": "UNDETERMINED",
+       "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"LVEF_ECHO\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":{\"anchor\":\"named_event\",\"anchor_ref\":\"draft:heart-failure:investigation-only:screening\",\"certainty\":\"explicit\",\"class\":\"TemporalScope\",\"evidence\":[],\"inclusivity\":\"unspecified\",\"lower\":null,\"orientation\":\"at\",\"unit\":\"\",\"upper\":null},\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":45.0,\"unit\":\"%\",\"upper\":null}}",
+       "status": null,
+       "proof": [
+        "draft-EF-upper"
+       ],
+       "blockers": [
+        "undecided_by_constraints"
+       ]
+      },
+      "warrant": {
+       "rule": "entail.decide:1",
+       "guarantee": "conditional_on_interpretation",
+       "status": "proposed",
+       "assumptions": [
+        "draft-EF-upper"
+       ],
+       "proof": [
+        "draft-EF-upper"
+       ],
+       "blockers": [
+        "undecided_by_constraints"
+       ]
+      }
+     }
+    ],
+    "warrant": {
+     "rule": "interpretations.compatibility:1",
+     "guarantee": "conditional_on_fixed_and_interpretation_premises",
+     "fixed_status": "known",
+     "status": "proposed",
+     "fixed_premises": [],
+     "assumptions": [
+      "draft-EF-upper"
+     ],
+     "bindings": [],
+     "basis": [
+      "investigation:new-trial-hypothesis-not-a-source-edit-or-clinician-choice"
+     ],
+     "consistency": {
+      "result": "UNDETERMINED",
+      "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+      "status": null,
+      "proof": [],
+      "blockers": [
+       "no_constraint_mentions_query"
+      ]
+     },
+     "intrinsic_consistency": {
+      "result": "UNDETERMINED",
+      "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+      "status": null,
+      "proof": [],
+      "blockers": [
+       "no_constraint_mentions_query"
+      ]
+     },
+     "signal_rules": [],
+     "blockers": []
+    }
+   }
+  ],
+  "remaining": [
+   "draft-EF-policy"
+  ],
+  "refuted": [],
+  "incoherent": [],
+  "unresolved": [],
+  "selection": {
+   "id": null,
+   "state": "none",
+   "origin": null
+  },
+  "consequences": [
+   {
+    "id": "EF45",
+    "body": {
+     "class": "Literal",
+     "evidence": [],
+     "polarity": "positive",
+     "predicate": {
+      "class": "Predicate",
+      "key": "LVEF_ECHO",
+      "kind": "measurement"
+     },
+     "qualifiers": {
+      "class": "Always"
+     },
+     "subject": {
+      "class": "Subject",
+      "kind": "participant",
+      "referent": ""
+     },
+     "time": {
+      "anchor": "named_event",
+      "anchor_ref": "draft:heart-failure:investigation-only:screening",
+      "certainty": "explicit",
+      "class": "TemporalScope",
+      "evidence": [],
+      "inclusivity": "unspecified",
+      "lower": null,
+      "orientation": "at",
+      "unit": "",
+      "upper": null
+     },
+     "value": {
+      "class": "Value",
+      "comparison": "eq",
+      "inclusivity": "unspecified",
+      "kind": "quantity",
+      "members": [],
+      "number": 45.0,
+      "unit": "%",
+      "upper": null
+     }
+    },
+    "result": "UNDETERMINED",
+    "frames": [
+     "draft-EF-policy"
+    ],
+    "basis": "declared_interpretation_family",
+    "warrant": {
+     "rule": "interpretations.common:1",
+     "guarantee": "conditional_on_declared_family_not_exhaustive",
+     "status": "proposed",
+     "blockers": [
+      "undecided_by_constraints"
+     ]
+    }
+   }
+  ],
+  "limits": "Exact conditional checks over declared readings; compatibility is not source truth or clinical recommendation. The interpretation family is not assumed exhaustive. No automatic text reading, source correction, source mutation or corpus-frequency admission."
+ },
+ "problems": [],
+ "metadata": {
+  "version": 1,
+  "kind": "reasoning",
+  "findings": [
+   {
+    "path": "/result/fixed/consistency",
+    "kind": "consistency",
+    "logical_result": "UNDETERMINED",
+    "standing": null,
+    "completion": "complete",
+    "causes": [
+     {
+      "code": "no_constraint_mentions_query",
+      "kind": "coverage"
+     }
+    ],
+    "disposition": "open"
+   },
+   {
+    "path": "/result/fixed/queries/0",
+    "kind": "logical",
+    "logical_result": "UNDETERMINED",
+    "standing": "known",
+    "completion": "complete",
+    "causes": [
+     {
+      "code": "no_constraint_mentions_query",
+      "kind": "coverage"
+     }
+    ],
+    "disposition": "open",
+    "support_path": "/result/fixed/queries/0/warrant"
+   },
+   {
+    "path": "/result/interpretations/0",
+    "kind": "interpretation",
+    "logical_result": "compatible",
+    "standing": "proposed",
+    "completion": "complete",
+    "causes": [],
+    "disposition": "conditional"
+   },
+   {
+    "path": "/result/interpretations/0/queries/0",
+    "kind": "logical",
+    "logical_result": "UNDETERMINED",
+    "standing": "proposed",
+    "completion": "complete",
+    "causes": [
+     {
+      "code": "undecided_by_constraints",
+      "kind": "constraint"
+     }
+    ],
+    "disposition": "open",
+    "support_path": "/result/interpretations/0/queries/0/warrant"
+   },
+   {
+    "path": "/result/consequences/0",
+    "kind": "logical",
+    "logical_result": "UNDETERMINED",
+    "standing": "proposed",
+    "completion": "complete",
+    "causes": [
+     {
+      "code": "undecided_by_constraints",
+      "kind": "constraint"
+     }
+    ],
+    "disposition": "open",
+    "support_path": "/result/consequences/0/warrant"
+   }
+  ]
+ }
+}

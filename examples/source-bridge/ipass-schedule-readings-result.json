@@ -1785,9 +1785,201 @@
           ],
           "limits": "Exact conditional checks over declared readings; compatibility is not source truth or clinical recommendation. The interpretation family is not assumed exhaustive. No automatic text reading, source correction, source mutation or corpus-frequency admission."
         },
-        "problems": []
+        "problems": [],
+        "metadata": {
+          "version": 1,
+          "kind": "reasoning",
+          "findings": [
+            {
+              "path": "/result/fixed/consistency",
+              "kind": "consistency",
+              "logical_result": "UNDETERMINED",
+              "standing": null,
+              "completion": "complete",
+              "causes": [
+                {
+                  "code": "no_constraint_mentions_query",
+                  "kind": "coverage"
+                }
+              ],
+              "disposition": "open"
+            },
+            {
+              "path": "/result/fixed/queries/0",
+              "kind": "logical",
+              "logical_result": "ENTAILED",
+              "standing": "known",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "settled",
+              "support_path": "/result/fixed/queries/0/warrant"
+            },
+            {
+              "path": "/result/interpretations/0",
+              "kind": "interpretation",
+              "logical_result": "compatible",
+              "standing": "proposed",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "conditional"
+            },
+            {
+              "path": "/result/interpretations/0/queries/0",
+              "kind": "logical",
+              "logical_result": "ENTAILED",
+              "standing": "known",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "settled",
+              "support_path": "/result/interpretations/0/queries/0/warrant"
+            },
+            {
+              "path": "/result/interpretations/0/signals/0",
+              "kind": "signal",
+              "logical_result": "consistent",
+              "standing": "proposed",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "conditional"
+            },
+            {
+              "path": "/result/interpretations/1",
+              "kind": "interpretation",
+              "logical_result": "compatible",
+              "standing": "proposed",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "conditional"
+            },
+            {
+              "path": "/result/interpretations/1/queries/0",
+              "kind": "logical",
+              "logical_result": "ENTAILED",
+              "standing": "known",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "settled",
+              "support_path": "/result/interpretations/1/queries/0/warrant"
+            },
+            {
+              "path": "/result/interpretations/1/signals/0",
+              "kind": "signal",
+              "logical_result": "consistent",
+              "standing": "proposed",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "conditional"
+            },
+            {
+              "path": "/result/consequences/0",
+              "kind": "logical",
+              "logical_result": "ENTAILED",
+              "standing": "known",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "settled",
+              "support_path": "/result/consequences/0/warrant"
+            }
+          ]
+        }
       }
     ]
   },
-  "problems": []
+  "problems": [],
+  "metadata": {
+    "version": 1,
+    "kind": "reasoning",
+    "findings": [
+      {
+        "path": "/result/analyses/0/result/fixed/consistency",
+        "kind": "consistency",
+        "logical_result": "UNDETERMINED",
+        "standing": null,
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          }
+        ],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/analyses/0/result/fixed/queries/0",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled",
+        "support_path": "/result/analyses/0/result/fixed/queries/0/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/0",
+        "kind": "interpretation",
+        "logical_result": "compatible",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/0/queries/0",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled",
+        "support_path": "/result/analyses/0/result/interpretations/0/queries/0/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/0/signals/0",
+        "kind": "signal",
+        "logical_result": "consistent",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/1",
+        "kind": "interpretation",
+        "logical_result": "compatible",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/1/queries/0",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled",
+        "support_path": "/result/analyses/0/result/interpretations/1/queries/0/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/1/signals/0",
+        "kind": "signal",
+        "logical_result": "consistent",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional"
+      },
+      {
+        "path": "/result/analyses/0/result/consequences/0",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled",
+        "support_path": "/result/analyses/0/result/consequences/0/warrant"
+      }
+    ]
+  }
 }

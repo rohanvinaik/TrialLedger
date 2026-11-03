@@ -1,0 +1,1786 @@
+{
+ "code": "complete",
+ "operation": "source_assertions",
+ "result": {
+  "source": {
+   "nct": "NCT03057977",
+   "digest": "651d50db132a20a8261fdfcbcddd46ad377d98a32d477c3d4094c19a0ee65f11",
+   "study_ref": "ctg:NCT03057977:651d50db132a20a8261fdfcbcddd46ad377d98a32d477c3d4094c19a0ee65f11",
+   "version": "651d50db132a20a8261fdfcbcddd46ad377d98a32d477c3d4094c19a0ee65f11",
+   "last_update": {
+    "date": "2021-05-18",
+    "type": "ACTUAL"
+   }
+  },
+  "anchors": [
+   {
+    "id": "whole-eligibility",
+    "address": "/protocolSection/eligibilityModule/eligibilityCriteria",
+    "digest": "651d50db132a20a8261fdfcbcddd46ad377d98a32d477c3d4094c19a0ee65f11",
+    "value": "Inclusion criteria:\n\n* Male or female patient age \\>= 18 years at screening. For Japan only: Age \\>= 20 years at screening\n* Patients with chronic HF (Chronic Heart Failure) NYHA (New York Heart Association Classification) class II-IV and reduced EF (Ejection Fraction) (LVEF (Left Ventricular Ejection Fraction) \\<=40%) and elevated NT-proBNP (N-terminal of the prohormone brain natriuretic peptide)\n\n  * If EF \\>= 36% to \\<= 40%: NT-proBNP \\>= 2500 pg/ml or patients without AF (atrial fibrillation/atrial flutter) and NT-proBNP \\>= 5000 pg/ml for patients with AF\n  * If EF \\>= 31% to \\<= 35%: NT-proBNP \\>= 1000 pg/ml for patients without AF and NT-proBNP \\>=2000 pg/ml for patients with AF\n  * If EF\\<= 30%: NT-proBNP \\>= 600 pg/ml for patients without AF and NT-proBNP \\>=1200 pg/ml for patients with AF\n  * EF ≤ 40% and hospitalization for heart failure in the past 12 months: NTproBNP ≥ 600 pg/ml for patients without AF and NT-proBNP \\>= 1200 pg/ml for patients with AF\n* Appropriate dose of medical therapy for HF consistent with prevailing local and international CV (Cardiovascular) guidelines, stable for at least 1 week prior to Visit 1\n* Appropriate use of medical devices such as cardioverter defibrillator (ICD) or a cardiac resynchronization therapy (CRT) consistent with prevailing local or international CV guidelines\n* Signed and dated written ICF (Informed Consent Form)\n* Further inclusion criteria apply\n\nExclusion criteria:\n\n* Myocardial infarction, coronary artery bypass graft surgery, or other major cardiovascular surgery, stroke or TIA (Transient Ischaemic Attack) in past 90 days prior to Visit 1\n* Heart transplant recipient, or listed for heart transplant\n* Acute decompensated HF\n* Systolic blood pressure (SBP) \\>= 180 mmHg at Visit 2.\n* Symptomatic hypotension and/or a SBP \\< 100 mmHg\n* Indication of liver disease\n* Impaired renal function, defined as eGFR (Estimated Glomerular Filtration Rate) \\< 20 mL/min/1.73 m2 (CKD-EPI (Chronic Kidney Disease - Epidemiology Collaboration Equation)) or requiring dialysis\n* History of ketoacidosis\n* Current use or prior use of a SGLT (Sodium-glucose co-transporter)-2 inhibitor or combined SGLT-1 and 2 inhibitor\n* Currently enrolled in another investigational device or drug study\n* Known allergy or hypersensitivity to empagliflozin or other SGLT-2 inhibitors\n* Women who are pregnant, nursing, or who plan to become pregnant while in the trial\n* Further exclusion criteria apply",
+    "ref": "ctg:NCT03057977:651d50db132a20a8261fdfcbcddd46ad377d98a32d477c3d4094c19a0ee65f11#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:2460",
+    "source": {
+     "ref": "ctg:NCT03057977:651d50db132a20a8261fdfcbcddd46ad377d98a32d477c3d4094c19a0ee65f11",
+     "version": "651d50db132a20a8261fdfcbcddd46ad377d98a32d477c3d4094c19a0ee65f11",
+     "address": "/protocolSection/eligibilityModule/eligibilityCriteria",
+     "digest": "651d50db132a20a8261fdfcbcddd46ad377d98a32d477c3d4094c19a0ee65f11"
+    },
+    "code": "located",
+    "span": {
+     "start": 0,
+     "end": 2460,
+     "text": "Inclusion criteria:\n\n* Male or female patient age \\>= 18 years at screening. For Japan only: Age \\>= 20 years at screening\n* Patients with chronic HF (Chronic Heart Failure) NYHA (New York Heart Association Classification) class II-IV and reduced EF (Ejection Fraction) (LVEF (Left Ventricular Ejection Fraction) \\<=40%) and elevated NT-proBNP (N-terminal of the prohormone brain natriuretic peptide)\n\n  * If EF \\>= 36% to \\<= 40%: NT-proBNP \\>= 2500 pg/ml or patients without AF (atrial fibrillation/atrial flutter) and NT-proBNP \\>= 5000 pg/ml for patients with AF\n  * If EF \\>= 31% to \\<= 35%: NT-proBNP \\>= 1000 pg/ml for patients without AF and NT-proBNP \\>=2000 pg/ml for patients with AF\n  * If EF\\<= 30%: NT-proBNP \\>= 600 pg/ml for patients without AF and NT-proBNP \\>=1200 pg/ml for patients with AF\n  * EF ≤ 40% and hospitalization for heart failure in the past 12 months: NTproBNP ≥ 600 pg/ml for patients without AF and NT-proBNP \\>= 1200 pg/ml for patients with AF\n* Appropriate dose of medical therapy for HF consistent with prevailing local and international CV (Cardiovascular) guidelines, stable for at least 1 week prior to Visit 1\n* Appropriate use of medical devices such as cardioverter defibrillator (ICD) or a cardiac resynchronization therapy (CRT) consistent with prevailing local or international CV guidelines\n* Signed and dated written ICF (Informed Consent Form)\n* Further inclusion criteria apply\n\nExclusion criteria:\n\n* Myocardial infarction, coronary artery bypass graft surgery, or other major cardiovascular surgery, stroke or TIA (Transient Ischaemic Attack) in past 90 days prior to Visit 1\n* Heart transplant recipient, or listed for heart transplant\n* Acute decompensated HF\n* Systolic blood pressure (SBP) \\>= 180 mmHg at Visit 2.\n* Symptomatic hypotension and/or a SBP \\< 100 mmHg\n* Indication of liver disease\n* Impaired renal function, defined as eGFR (Estimated Glomerular Filtration Rate) \\< 20 mL/min/1.73 m2 (CKD-EPI (Chronic Kidney Disease - Epidemiology Collaboration Equation)) or requiring dialysis\n* History of ketoacidosis\n* Current use or prior use of a SGLT (Sodium-glucose co-transporter)-2 inhibitor or combined SGLT-1 and 2 inhibitor\n* Currently enrolled in another investigational device or drug study\n* Known allergy or hypersensitivity to empagliflozin or other SGLT-2 inhibitors\n* Women who are pregnant, nursing, or who plan to become pregnant while in the trial\n* Further exclusion criteria apply"
+    }
+   }
+  ],
+  "fixed": {
+   "assertions": [
+    {
+     "applicability": {
+      "class": "Always"
+     },
+     "body": {
+      "class": "Literal",
+      "evidence": [
+       {
+        "class": "Evidence",
+        "kind": "record_field",
+        "ref": "ctg:NCT03057977:651d50db132a20a8261fdfcbcddd46ad377d98a32d477c3d4094c19a0ee65f11#/protocolSection/eligibilityModule/minimumAge"
+       }
+      ],
+      "polarity": "positive",
+      "predicate": {
+       "class": "Predicate",
+       "key": "age",
+       "kind": "measurement"
+      },
+      "qualifiers": {
+       "class": "Always"
+      },
+      "subject": {
+       "class": "Subject",
+       "kind": "participant",
+       "referent": ""
+      },
+      "time": null,
+      "value": {
+       "class": "Value",
+       "comparison": "ge",
+       "inclusivity": "unspecified",
+       "kind": "quantity",
+       "members": [],
+       "number": 18.0,
+       "unit": "Years",
+       "upper": null
+      }
+     },
+     "branch": {
+      "class": "Branch",
+      "node": "unresolved",
+      "path": []
+     },
+     "class": "ScopedAssertion",
+     "cohort": {
+      "class": "Scope",
+      "kind": "all_participants",
+      "parts": [],
+      "ref": ""
+     },
+     "criterion_ref": "ctg:NCT03057977:651d50db132a20a8261fdfcbcddd46ad377d98a32d477c3d4094c19a0ee65f11#/protocolSection/eligibilityModule/minimumAge",
+     "id": "registry-age-minimumAge",
+     "modality": "required",
+     "resolution": "resolved",
+     "rule": {
+      "answers": [],
+      "class": "Rule",
+      "id": "ctg-structured-general-eligibility-age",
+      "premises": [
+       "ctg:NCT03057977:651d50db132a20a8261fdfcbcddd46ad377d98a32d477c3d4094c19a0ee65f11#/protocolSection/eligibilityModule/minimumAge"
+      ],
+      "version": "1",
+      "warrants": []
+     },
+     "span": [],
+     "status": "known"
+    }
+   ],
+   "signals": []
+  },
+  "interpretations": [
+   {
+    "id": "selected-restrictions",
+    "label": "Proposed selected EF/background restrictions",
+    "origin": "assistant",
+    "basis": [
+     "ctg:NCT03057977:651d50db132a20a8261fdfcbcddd46ad377d98a32d477c3d4094c19a0ee65f11#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:2460",
+     "hypothesis:source-location-is-not-semantic-warrant"
+    ],
+    "assumptions": [
+     {
+      "applicability": {
+       "class": "Always"
+      },
+      "body": {
+       "class": "Literal",
+       "evidence": [
+        {
+         "class": "Evidence",
+         "kind": "text_span",
+         "ref": "ctg:NCT03057977:651d50db132a20a8261fdfcbcddd46ad377d98a32d477c3d4094c19a0ee65f11#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:2460"
+        }
+       ],
+       "polarity": "positive",
+       "predicate": {
+        "class": "Predicate",
+        "key": "LVEF",
+        "kind": "measurement"
+       },
+       "qualifiers": {
+        "class": "Always"
+       },
+       "subject": {
+        "class": "Subject",
+        "kind": "participant",
+        "referent": ""
+       },
+       "time": null,
+       "value": {
+        "class": "Value",
+        "comparison": "le",
+        "inclusivity": "unspecified",
+        "kind": "quantity",
+        "members": [],
+        "number": 40.0,
+        "unit": "%",
+        "upper": null
+       }
+      },
+      "branch": {
+       "class": "Branch",
+       "node": "unresolved",
+       "path": []
+      },
+      "class": "ScopedAssertion",
+      "cohort": {
+       "class": "Scope",
+       "kind": "all_participants",
+       "parts": [],
+       "ref": ""
+      },
+      "criterion_ref": "ctg:NCT03057977:651d50db132a20a8261fdfcbcddd46ad377d98a32d477c3d4094c19a0ee65f11#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:2460",
+      "id": "EF-range",
+      "modality": "required",
+      "resolution": "resolved",
+      "rule": {
+       "answers": [],
+       "class": "Rule",
+       "id": "source-anchored-hypothesis",
+       "premises": [
+        "ctg:NCT03057977:651d50db132a20a8261fdfcbcddd46ad377d98a32d477c3d4094c19a0ee65f11#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:2460"
+       ],
+       "version": "1",
+       "warrants": [
+        "hypothesis:source-location-is-not-semantic-warrant"
+       ]
+      },
+      "span": [
+       {
+        "class": "Span",
+        "end": 2460.0,
+        "start": 0.0
+       }
+      ],
+      "status": "proposed"
+     }
+    ],
+    "signals": [],
+    "signal_claims": [],
+    "binding_uses": []
+   }
+  ],
+  "bindings": [],
+  "coverage": [
+   {
+    "address": "/protocolSection/eligibilityModule/minimumAge",
+    "code": "compiled",
+    "value": "18 Years",
+    "assertion": "registry-age-minimumAge",
+    "rule": "ctg-structured-general-eligibility-age",
+    "ref": "ctg:NCT03057977:651d50db132a20a8261fdfcbcddd46ad377d98a32d477c3d4094c19a0ee65f11#/protocolSection/eligibilityModule/minimumAge"
+   },
+   {
+    "address": "/protocolSection/eligibilityModule/maximumAge",
+    "code": "missing",
+    "value": null
+   },
+   {
+    "address": "/protocolSection/eligibilityModule/eligibilityCriteria",
+    "code": "unresolved_retained",
+    "value": "Inclusion criteria:\n\n* Male or female patient age \\>= 18 years at screening. For Japan only: Age \\>= 20 years at screening\n* Patients with chronic HF (Chronic Heart Failure) NYHA (New York Heart Association Classification) class II-IV and reduced EF (Ejection Fraction) (LVEF (Left Ventricular Ejection Fraction) \\<=40%) and elevated NT-proBNP (N-terminal of the prohormone brain natriuretic peptide)\n\n  * If EF \\>= 36% to \\<= 40%: NT-proBNP \\>= 2500 pg/ml or patients without AF (atrial fibrillation/atrial flutter) and NT-proBNP \\>= 5000 pg/ml for patients with AF\n  * If EF \\>= 31% to \\<= 35%: NT-proBNP \\>= 1000 pg/ml for patients without AF and NT-proBNP \\>=2000 pg/ml for patients with AF\n  * If EF\\<= 30%: NT-proBNP \\>= 600 pg/ml for patients without AF and NT-proBNP \\>=1200 pg/ml for patients with AF\n  * EF ≤ 40% and hospitalization for heart failure in the past 12 months: NTproBNP ≥ 600 pg/ml for patients without AF and NT-proBNP \\>= 1200 pg/ml for patients with AF\n* Appropriate dose of medical therapy for HF consistent with prevailing local and international CV (Cardiovascular) guidelines, stable for at least 1 week prior to Visit 1\n* Appropriate use of medical devices such as cardioverter defibrillator (ICD) or a cardiac resynchronization therapy (CRT) consistent with prevailing local or international CV guidelines\n* Signed and dated written ICF (Informed Consent Form)\n* Further inclusion criteria apply\n\nExclusion criteria:\n\n* Myocardial infarction, coronary artery bypass graft surgery, or other major cardiovascular surgery, stroke or TIA (Transient Ischaemic Attack) in past 90 days prior to Visit 1\n* Heart transplant recipient, or listed for heart transplant\n* Acute decompensated HF\n* Systolic blood pressure (SBP) \\>= 180 mmHg at Visit 2.\n* Symptomatic hypotension and/or a SBP \\< 100 mmHg\n* Indication of liver disease\n* Impaired renal function, defined as eGFR (Estimated Glomerular Filtration Rate) \\< 20 mL/min/1.73 m2 (CKD-EPI (Chronic Kidney Disease - Epidemiology Collaboration Equation)) or requiring dialysis\n* History of ketoacidosis\n* Current use or prior use of a SGLT (Sodium-glucose co-transporter)-2 inhibitor or combined SGLT-1 and 2 inhibitor\n* Currently enrolled in another investigational device or drug study\n* Known allergy or hypersensitivity to empagliflozin or other SGLT-2 inhibitors\n* Women who are pregnant, nursing, or who plan to become pregnant while in the trial\n* Further exclusion criteria apply"
+   },
+   {
+    "address": "/protocolSection/eligibilityModule/healthyVolunteers",
+    "code": "unresolved_retained",
+    "value": false
+   },
+   {
+    "address": "/protocolSection/eligibilityModule/sex",
+    "code": "unresolved_retained",
+    "value": "ALL"
+   },
+   {
+    "address": "/protocolSection/eligibilityModule/stdAges",
+    "code": "unresolved_retained",
+    "value": [
+     "ADULT",
+     "OLDER_ADULT"
+    ]
+   },
+   {
+    "address": "/resultsSection",
+    "ref": "ctg:NCT03057977:651d50db132a20a8261fdfcbcddd46ad377d98a32d477c3d4094c19a0ee65f11#/resultsSection",
+    "code": "unresolved_retained",
+    "reason": "outside_structured_age_direct_rules"
+   },
+   {
+    "address": "/documentSection",
+    "ref": "ctg:NCT03057977:651d50db132a20a8261fdfcbcddd46ad377d98a32d477c3d4094c19a0ee65f11#/documentSection",
+    "code": "unresolved_retained",
+    "reason": "outside_structured_age_direct_rules"
+   },
+   {
+    "address": "/derivedSection",
+    "ref": "ctg:NCT03057977:651d50db132a20a8261fdfcbcddd46ad377d98a32d477c3d4094c19a0ee65f11#/derivedSection",
+    "code": "unresolved_retained",
+    "reason": "outside_structured_age_direct_rules"
+   },
+   {
+    "address": "/hasResults",
+    "ref": "ctg:NCT03057977:651d50db132a20a8261fdfcbcddd46ad377d98a32d477c3d4094c19a0ee65f11#/hasResults",
+    "code": "unresolved_retained",
+    "reason": "outside_structured_age_direct_rules"
+   },
+   {
+    "address": "/protocolSection/identificationModule",
+    "ref": "ctg:NCT03057977:651d50db132a20a8261fdfcbcddd46ad377d98a32d477c3d4094c19a0ee65f11#/protocolSection/identificationModule",
+    "code": "unresolved_retained",
+    "reason": "outside_structured_age_direct_rules"
+   },
+   {
+    "address": "/protocolSection/statusModule",
+    "ref": "ctg:NCT03057977:651d50db132a20a8261fdfcbcddd46ad377d98a32d477c3d4094c19a0ee65f11#/protocolSection/statusModule",
+    "code": "unresolved_retained",
+    "reason": "outside_structured_age_direct_rules"
+   },
+   {
+    "address": "/protocolSection/sponsorCollaboratorsModule",
+    "ref": "ctg:NCT03057977:651d50db132a20a8261fdfcbcddd46ad377d98a32d477c3d4094c19a0ee65f11#/protocolSection/sponsorCollaboratorsModule",
+    "code": "unresolved_retained",
+    "reason": "outside_structured_age_direct_rules"
+   },
+   {
+    "address": "/protocolSection/oversightModule",
+    "ref": "ctg:NCT03057977:651d50db132a20a8261fdfcbcddd46ad377d98a32d477c3d4094c19a0ee65f11#/protocolSection/oversightModule",
+    "code": "unresolved_retained",
+    "reason": "outside_structured_age_direct_rules"
+   },
+   {
+    "address": "/protocolSection/descriptionModule",
+    "ref": "ctg:NCT03057977:651d50db132a20a8261fdfcbcddd46ad377d98a32d477c3d4094c19a0ee65f11#/protocolSection/descriptionModule",
+    "code": "unresolved_retained",
+    "reason": "outside_structured_age_direct_rules"
+   },
+   {
+    "address": "/protocolSection/conditionsModule",
+    "ref": "ctg:NCT03057977:651d50db132a20a8261fdfcbcddd46ad377d98a32d477c3d4094c19a0ee65f11#/protocolSection/conditionsModule",
+    "code": "unresolved_retained",
+    "reason": "outside_structured_age_direct_rules"
+   },
+   {
+    "address": "/protocolSection/designModule",
+    "ref": "ctg:NCT03057977:651d50db132a20a8261fdfcbcddd46ad377d98a32d477c3d4094c19a0ee65f11#/protocolSection/designModule",
+    "code": "unresolved_retained",
+    "reason": "outside_structured_age_direct_rules"
+   },
+   {
+    "address": "/protocolSection/armsInterventionsModule",
+    "ref": "ctg:NCT03057977:651d50db132a20a8261fdfcbcddd46ad377d98a32d477c3d4094c19a0ee65f11#/protocolSection/armsInterventionsModule",
+    "code": "unresolved_retained",
+    "reason": "outside_structured_age_direct_rules"
+   },
+   {
+    "address": "/protocolSection/outcomesModule",
+    "ref": "ctg:NCT03057977:651d50db132a20a8261fdfcbcddd46ad377d98a32d477c3d4094c19a0ee65f11#/protocolSection/outcomesModule",
+    "code": "unresolved_retained",
+    "reason": "outside_structured_age_direct_rules"
+   },
+   {
+    "address": "/protocolSection/contactsLocationsModule",
+    "ref": "ctg:NCT03057977:651d50db132a20a8261fdfcbcddd46ad377d98a32d477c3d4094c19a0ee65f11#/protocolSection/contactsLocationsModule",
+    "code": "unresolved_retained",
+    "reason": "outside_structured_age_direct_rules"
+   },
+   {
+    "address": "/protocolSection/referencesModule",
+    "ref": "ctg:NCT03057977:651d50db132a20a8261fdfcbcddd46ad377d98a32d477c3d4094c19a0ee65f11#/protocolSection/referencesModule",
+    "code": "unresolved_retained",
+    "reason": "outside_structured_age_direct_rules"
+   }
+  ],
+  "submitted": {
+   "interpretations": [
+    {
+     "id": "selected-restrictions",
+     "label": "Proposed selected EF/background restrictions",
+     "origin": "assistant",
+     "basis": [
+      "investigation:selected-source-readings-not-complete-eligibility-or-clinical-confirmation"
+     ],
+     "assumptions": [
+      {
+       "applicability": {
+        "class": "Always"
+       },
+       "body": {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "LVEF",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "participant",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "le",
+         "inclusivity": "unspecified",
+         "kind": "quantity",
+         "members": [],
+         "number": 40.0,
+         "unit": "%",
+         "upper": null
+        }
+       },
+       "branch": {
+        "class": "Branch",
+        "node": "unresolved",
+        "path": []
+       },
+       "class": "ScopedAssertion",
+       "cohort": {
+        "class": "Scope",
+        "kind": "all_participants",
+        "parts": [],
+        "ref": ""
+       },
+       "criterion_ref": "ctg:NCT03057977:651d50db132a20a8261fdfcbcddd46ad377d98a32d477c3d4094c19a0ee65f11#/protocolSection/eligibilityModule/eligibilityCriteria",
+       "id": "EF-range",
+       "modality": "required",
+       "resolution": "resolved",
+       "rule": {
+        "class": "Rule",
+        "id": "investigation-source-reading",
+        "version": "1",
+        "warrants": [
+         "ctg:NCT03057977:651d50db132a20a8261fdfcbcddd46ad377d98a32d477c3d4094c19a0ee65f11#/protocolSection/eligibilityModule/eligibilityCriteria",
+         "investigation:not-clinician-confirmed"
+        ]
+       },
+       "span": [],
+       "status": "proposed"
+      }
+     ],
+     "signals": [],
+     "signal_claims": [],
+     "binding_uses": [],
+     "anchors": [
+      "whole-eligibility"
+     ]
+    }
+   ],
+   "bindings": []
+  },
+  "requests": [
+   {
+    "operation": "interpretations",
+    "study_ref": "ctg:NCT03057977:651d50db132a20a8261fdfcbcddd46ad377d98a32d477c3d4094c19a0ee65f11",
+    "fixed": {
+     "assertions": [
+      {
+       "applicability": {
+        "class": "Always"
+       },
+       "body": {
+        "class": "Literal",
+        "evidence": [
+         {
+          "class": "Evidence",
+          "kind": "record_field",
+          "ref": "ctg:NCT03057977:651d50db132a20a8261fdfcbcddd46ad377d98a32d477c3d4094c19a0ee65f11#/protocolSection/eligibilityModule/minimumAge"
+         }
+        ],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "age",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "participant",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "ge",
+         "inclusivity": "unspecified",
+         "kind": "quantity",
+         "members": [],
+         "number": 18.0,
+         "unit": "Years",
+         "upper": null
+        }
+       },
+       "branch": {
+        "class": "Branch",
+        "node": "unresolved",
+        "path": []
+       },
+       "class": "ScopedAssertion",
+       "cohort": {
+        "class": "Scope",
+        "kind": "all_participants",
+        "parts": [],
+        "ref": ""
+       },
+       "criterion_ref": "ctg:NCT03057977:651d50db132a20a8261fdfcbcddd46ad377d98a32d477c3d4094c19a0ee65f11#/protocolSection/eligibilityModule/minimumAge",
+       "id": "registry-age-minimumAge",
+       "modality": "required",
+       "resolution": "resolved",
+       "rule": {
+        "answers": [],
+        "class": "Rule",
+        "id": "ctg-structured-general-eligibility-age",
+        "premises": [
+         "ctg:NCT03057977:651d50db132a20a8261fdfcbcddd46ad377d98a32d477c3d4094c19a0ee65f11#/protocolSection/eligibilityModule/minimumAge"
+        ],
+        "version": "1",
+        "warrants": []
+       },
+       "span": [],
+       "status": "known"
+      }
+     ],
+     "signals": []
+    },
+    "bindings": [],
+    "interpretations": [
+     {
+      "id": "selected-restrictions",
+      "label": "Proposed selected EF/background restrictions",
+      "origin": "assistant",
+      "basis": [
+       "ctg:NCT03057977:651d50db132a20a8261fdfcbcddd46ad377d98a32d477c3d4094c19a0ee65f11#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:2460",
+       "hypothesis:source-location-is-not-semantic-warrant"
+      ],
+      "assumptions": [
+       {
+        "applicability": {
+         "class": "Always"
+        },
+        "body": {
+         "class": "Literal",
+         "evidence": [
+          {
+           "class": "Evidence",
+           "kind": "text_span",
+           "ref": "ctg:NCT03057977:651d50db132a20a8261fdfcbcddd46ad377d98a32d477c3d4094c19a0ee65f11#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:2460"
+          }
+         ],
+         "polarity": "positive",
+         "predicate": {
+          "class": "Predicate",
+          "key": "LVEF",
+          "kind": "measurement"
+         },
+         "qualifiers": {
+          "class": "Always"
+         },
+         "subject": {
+          "class": "Subject",
+          "kind": "participant",
+          "referent": ""
+         },
+         "time": null,
+         "value": {
+          "class": "Value",
+          "comparison": "le",
+          "inclusivity": "unspecified",
+          "kind": "quantity",
+          "members": [],
+          "number": 40.0,
+          "unit": "%",
+          "upper": null
+         }
+        },
+        "branch": {
+         "class": "Branch",
+         "node": "unresolved",
+         "path": []
+        },
+        "class": "ScopedAssertion",
+        "cohort": {
+         "class": "Scope",
+         "kind": "all_participants",
+         "parts": [],
+         "ref": ""
+        },
+        "criterion_ref": "ctg:NCT03057977:651d50db132a20a8261fdfcbcddd46ad377d98a32d477c3d4094c19a0ee65f11#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:2460",
+        "id": "EF-range",
+        "modality": "required",
+        "resolution": "resolved",
+        "rule": {
+         "answers": [],
+         "class": "Rule",
+         "id": "source-anchored-hypothesis",
+         "premises": [
+          "ctg:NCT03057977:651d50db132a20a8261fdfcbcddd46ad377d98a32d477c3d4094c19a0ee65f11#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:2460"
+         ],
+         "version": "1",
+         "warrants": [
+          "hypothesis:source-location-is-not-semantic-warrant"
+         ]
+        },
+        "span": [
+         {
+          "class": "Span",
+          "end": 2460.0,
+          "start": 0.0
+         }
+        ],
+        "status": "proposed"
+       }
+      ],
+      "signals": [],
+      "signal_claims": [],
+      "binding_uses": []
+     }
+    ],
+    "queries": [
+     {
+      "id": "registered-age-18",
+      "body": {
+       "class": "Literal",
+       "evidence": [],
+       "polarity": "positive",
+       "predicate": {
+        "class": "Predicate",
+        "key": "age",
+        "kind": "measurement"
+       },
+       "qualifiers": {
+        "class": "Always"
+       },
+       "subject": {
+        "class": "Subject",
+        "kind": "participant",
+        "referent": ""
+       },
+       "time": null,
+       "value": {
+        "class": "Value",
+        "comparison": "ge",
+        "inclusivity": "unspecified",
+        "kind": "quantity",
+        "members": [],
+        "number": 18.0,
+        "unit": "Years",
+        "upper": null
+       }
+      }
+     },
+     {
+      "id": "EF45",
+      "body": {
+       "class": "Literal",
+       "evidence": [],
+       "polarity": "positive",
+       "predicate": {
+        "class": "Predicate",
+        "key": "LVEF",
+        "kind": "measurement"
+       },
+       "qualifiers": {
+        "class": "Always"
+       },
+       "subject": {
+        "class": "Subject",
+        "kind": "participant",
+        "referent": ""
+       },
+       "time": null,
+       "value": {
+        "class": "Value",
+        "comparison": "eq",
+        "inclusivity": "unspecified",
+        "kind": "quantity",
+        "members": [],
+        "number": 45.0,
+        "unit": "%",
+        "upper": null
+       }
+      }
+     },
+     {
+      "id": "EF40",
+      "body": {
+       "class": "Literal",
+       "evidence": [],
+       "polarity": "positive",
+       "predicate": {
+        "class": "Predicate",
+        "key": "LVEF",
+        "kind": "measurement"
+       },
+       "qualifiers": {
+        "class": "Always"
+       },
+       "subject": {
+        "class": "Subject",
+        "kind": "participant",
+        "referent": ""
+       },
+       "time": null,
+       "value": {
+        "class": "Value",
+        "comparison": "eq",
+        "inclusivity": "unspecified",
+        "kind": "quantity",
+        "members": [],
+        "number": 40.0,
+        "unit": "%",
+        "upper": null
+       }
+      }
+     }
+    ],
+    "bound": 1
+   }
+  ],
+  "limits": [
+   "Structured ages describe registry general eligibility, not verified actual protocol.",
+   "A located quotation proves quotation only; clinical readings remain hypothetical.",
+   "No unit conversion, automatic binding joins, clinical text interpretation or source mutation."
+  ],
+  "analyses": [
+   {
+    "code": "complete",
+    "operation": "interpretations",
+    "result": {
+     "study_ref": "ctg:NCT03057977:651d50db132a20a8261fdfcbcddd46ad377d98a32d477c3d4094c19a0ee65f11",
+     "fixed": {
+      "assertions": [
+       {
+        "applicability": {
+         "class": "Always"
+        },
+        "body": {
+         "class": "Literal",
+         "evidence": [
+          {
+           "class": "Evidence",
+           "kind": "record_field",
+           "ref": "ctg:NCT03057977:651d50db132a20a8261fdfcbcddd46ad377d98a32d477c3d4094c19a0ee65f11#/protocolSection/eligibilityModule/minimumAge"
+          }
+         ],
+         "polarity": "positive",
+         "predicate": {
+          "class": "Predicate",
+          "key": "age",
+          "kind": "measurement"
+         },
+         "qualifiers": {
+          "class": "Always"
+         },
+         "subject": {
+          "class": "Subject",
+          "kind": "participant",
+          "referent": ""
+         },
+         "time": null,
+         "value": {
+          "class": "Value",
+          "comparison": "ge",
+          "inclusivity": "unspecified",
+          "kind": "quantity",
+          "members": [],
+          "number": 18.0,
+          "unit": "Years",
+          "upper": null
+         }
+        },
+        "branch": {
+         "class": "Branch",
+         "node": "unresolved",
+         "path": []
+        },
+        "class": "ScopedAssertion",
+        "cohort": {
+         "class": "Scope",
+         "kind": "all_participants",
+         "parts": [],
+         "ref": ""
+        },
+        "criterion_ref": "ctg:NCT03057977:651d50db132a20a8261fdfcbcddd46ad377d98a32d477c3d4094c19a0ee65f11#/protocolSection/eligibilityModule/minimumAge",
+        "id": "registry-age-minimumAge",
+        "modality": "required",
+        "resolution": "resolved",
+        "rule": {
+         "answers": [],
+         "class": "Rule",
+         "id": "ctg-structured-general-eligibility-age",
+         "premises": [
+          "ctg:NCT03057977:651d50db132a20a8261fdfcbcddd46ad377d98a32d477c3d4094c19a0ee65f11#/protocolSection/eligibilityModule/minimumAge"
+         ],
+         "version": "1",
+         "warrants": []
+        },
+        "span": [],
+        "status": "known"
+       }
+      ],
+      "consistency": {
+       "result": "UNDETERMINED",
+       "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+       "status": null,
+       "proof": [],
+       "blockers": [
+        "resource_bound"
+       ]
+      },
+      "queries": [
+       {
+        "id": "registered-age-18",
+        "body": {
+         "class": "Literal",
+         "evidence": [],
+         "polarity": "positive",
+         "predicate": {
+          "class": "Predicate",
+          "key": "age",
+          "kind": "measurement"
+         },
+         "qualifiers": {
+          "class": "Always"
+         },
+         "subject": {
+          "class": "Subject",
+          "kind": "participant",
+          "referent": ""
+         },
+         "time": null,
+         "value": {
+          "class": "Value",
+          "comparison": "ge",
+          "inclusivity": "unspecified",
+          "kind": "quantity",
+          "members": [],
+          "number": 18.0,
+          "unit": "Years",
+          "upper": null
+         }
+        },
+        "result": "UNDETERMINED",
+        "decision": {
+         "result": "UNDETERMINED",
+         "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+         "status": null,
+         "proof": [],
+         "blockers": [
+          "resource_bound"
+         ]
+        },
+        "warrant": {
+         "rule": "entail.decide:1",
+         "guarantee": "fixed_floor",
+         "status": "known",
+         "assumptions": [],
+         "proof": [],
+         "blockers": [
+          "resource_bound"
+         ]
+        }
+       },
+       {
+        "id": "EF45",
+        "body": {
+         "class": "Literal",
+         "evidence": [],
+         "polarity": "positive",
+         "predicate": {
+          "class": "Predicate",
+          "key": "LVEF",
+          "kind": "measurement"
+         },
+         "qualifiers": {
+          "class": "Always"
+         },
+         "subject": {
+          "class": "Subject",
+          "kind": "participant",
+          "referent": ""
+         },
+         "time": null,
+         "value": {
+          "class": "Value",
+          "comparison": "eq",
+          "inclusivity": "unspecified",
+          "kind": "quantity",
+          "members": [],
+          "number": 45.0,
+          "unit": "%",
+          "upper": null
+         }
+        },
+        "result": "UNDETERMINED",
+        "decision": {
+         "result": "UNDETERMINED",
+         "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"LVEF\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":45.0,\"unit\":\"%\",\"upper\":null}}",
+         "status": null,
+         "proof": [],
+         "blockers": [
+          "resource_bound"
+         ]
+        },
+        "warrant": {
+         "rule": "entail.decide:1",
+         "guarantee": "fixed_floor",
+         "status": "known",
+         "assumptions": [],
+         "proof": [],
+         "blockers": [
+          "resource_bound"
+         ]
+        }
+       },
+       {
+        "id": "EF40",
+        "body": {
+         "class": "Literal",
+         "evidence": [],
+         "polarity": "positive",
+         "predicate": {
+          "class": "Predicate",
+          "key": "LVEF",
+          "kind": "measurement"
+         },
+         "qualifiers": {
+          "class": "Always"
+         },
+         "subject": {
+          "class": "Subject",
+          "kind": "participant",
+          "referent": ""
+         },
+         "time": null,
+         "value": {
+          "class": "Value",
+          "comparison": "eq",
+          "inclusivity": "unspecified",
+          "kind": "quantity",
+          "members": [],
+          "number": 40.0,
+          "unit": "%",
+          "upper": null
+         }
+        },
+        "result": "UNDETERMINED",
+        "decision": {
+         "result": "UNDETERMINED",
+         "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"LVEF\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":40.0,\"unit\":\"%\",\"upper\":null}}",
+         "status": null,
+         "proof": [],
+         "blockers": [
+          "resource_bound"
+         ]
+        },
+        "warrant": {
+         "rule": "entail.decide:1",
+         "guarantee": "fixed_floor",
+         "status": "known",
+         "assumptions": [],
+         "proof": [],
+         "blockers": [
+          "resource_bound"
+         ]
+        }
+       }
+      ],
+      "signals": [],
+      "blockers": [
+       "resource_bound"
+      ]
+     },
+     "bindings": [],
+     "interpretations": [
+      {
+       "id": "selected-restrictions",
+       "label": "Proposed selected EF/background restrictions",
+       "origin": "assistant",
+       "state": "unresolved",
+       "premises": {
+        "basis": [
+         "ctg:NCT03057977:651d50db132a20a8261fdfcbcddd46ad377d98a32d477c3d4094c19a0ee65f11#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:2460",
+         "hypothesis:source-location-is-not-semantic-warrant"
+        ],
+        "assumptions": [
+         {
+          "applicability": {
+           "class": "Always"
+          },
+          "body": {
+           "class": "Literal",
+           "evidence": [
+            {
+             "class": "Evidence",
+             "kind": "text_span",
+             "ref": "ctg:NCT03057977:651d50db132a20a8261fdfcbcddd46ad377d98a32d477c3d4094c19a0ee65f11#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:2460"
+            }
+           ],
+           "polarity": "positive",
+           "predicate": {
+            "class": "Predicate",
+            "key": "LVEF",
+            "kind": "measurement"
+           },
+           "qualifiers": {
+            "class": "Always"
+           },
+           "subject": {
+            "class": "Subject",
+            "kind": "participant",
+            "referent": ""
+           },
+           "time": null,
+           "value": {
+            "class": "Value",
+            "comparison": "le",
+            "inclusivity": "unspecified",
+            "kind": "quantity",
+            "members": [],
+            "number": 40.0,
+            "unit": "%",
+            "upper": null
+           }
+          },
+          "branch": {
+           "class": "Branch",
+           "node": "unresolved",
+           "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+           "class": "Scope",
+           "kind": "all_participants",
+           "parts": [],
+           "ref": ""
+          },
+          "criterion_ref": "ctg:NCT03057977:651d50db132a20a8261fdfcbcddd46ad377d98a32d477c3d4094c19a0ee65f11#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:2460",
+          "id": "EF-range",
+          "modality": "required",
+          "resolution": "resolved",
+          "rule": {
+           "answers": [],
+           "class": "Rule",
+           "id": "source-anchored-hypothesis",
+           "premises": [
+            "ctg:NCT03057977:651d50db132a20a8261fdfcbcddd46ad377d98a32d477c3d4094c19a0ee65f11#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:2460"
+           ],
+           "version": "1",
+           "warrants": [
+            "hypothesis:source-location-is-not-semantic-warrant"
+           ]
+          },
+          "span": [
+           {
+            "class": "Span",
+            "end": 2460.0,
+            "start": 0.0
+           }
+          ],
+          "status": "proposed"
+         }
+        ],
+        "signals": [],
+        "signal_claims": [],
+        "binding_uses": []
+       },
+       "bindings": [],
+       "signals": [],
+       "signal_checks": [],
+       "queries": [
+        {
+         "id": "registered-age-18",
+         "body": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+           "class": "Predicate",
+           "key": "age",
+           "kind": "measurement"
+          },
+          "qualifiers": {
+           "class": "Always"
+          },
+          "subject": {
+           "class": "Subject",
+           "kind": "participant",
+           "referent": ""
+          },
+          "time": null,
+          "value": {
+           "class": "Value",
+           "comparison": "ge",
+           "inclusivity": "unspecified",
+           "kind": "quantity",
+           "members": [],
+           "number": 18.0,
+           "unit": "Years",
+           "upper": null
+          }
+         },
+         "result": "UNDETERMINED",
+         "decision": {
+          "result": "UNDETERMINED",
+          "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+          "status": null,
+          "proof": [],
+          "blockers": [
+           "resource_bound"
+          ]
+         },
+         "warrant": {
+          "rule": "entail.decide:1",
+          "guarantee": "conditional_on_interpretation",
+          "status": "proposed",
+          "assumptions": [
+           "EF-range"
+          ],
+          "proof": [],
+          "blockers": [
+           "interpretation_unresolved",
+           "resource_bound"
+          ]
+         }
+        },
+        {
+         "id": "EF45",
+         "body": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+           "class": "Predicate",
+           "key": "LVEF",
+           "kind": "measurement"
+          },
+          "qualifiers": {
+           "class": "Always"
+          },
+          "subject": {
+           "class": "Subject",
+           "kind": "participant",
+           "referent": ""
+          },
+          "time": null,
+          "value": {
+           "class": "Value",
+           "comparison": "eq",
+           "inclusivity": "unspecified",
+           "kind": "quantity",
+           "members": [],
+           "number": 45.0,
+           "unit": "%",
+           "upper": null
+          }
+         },
+         "result": "UNDETERMINED",
+         "decision": {
+          "result": "UNDETERMINED",
+          "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"LVEF\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":45.0,\"unit\":\"%\",\"upper\":null}}",
+          "status": null,
+          "proof": [],
+          "blockers": [
+           "resource_bound"
+          ]
+         },
+         "warrant": {
+          "rule": "entail.decide:1",
+          "guarantee": "conditional_on_interpretation",
+          "status": "proposed",
+          "assumptions": [
+           "EF-range"
+          ],
+          "proof": [],
+          "blockers": [
+           "interpretation_unresolved",
+           "resource_bound"
+          ]
+         }
+        },
+        {
+         "id": "EF40",
+         "body": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+           "class": "Predicate",
+           "key": "LVEF",
+           "kind": "measurement"
+          },
+          "qualifiers": {
+           "class": "Always"
+          },
+          "subject": {
+           "class": "Subject",
+           "kind": "participant",
+           "referent": ""
+          },
+          "time": null,
+          "value": {
+           "class": "Value",
+           "comparison": "eq",
+           "inclusivity": "unspecified",
+           "kind": "quantity",
+           "members": [],
+           "number": 40.0,
+           "unit": "%",
+           "upper": null
+          }
+         },
+         "result": "UNDETERMINED",
+         "decision": {
+          "result": "UNDETERMINED",
+          "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"LVEF\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":40.0,\"unit\":\"%\",\"upper\":null}}",
+          "status": null,
+          "proof": [],
+          "blockers": [
+           "resource_bound"
+          ]
+         },
+         "warrant": {
+          "rule": "entail.decide:1",
+          "guarantee": "conditional_on_interpretation",
+          "status": "proposed",
+          "assumptions": [
+           "EF-range"
+          ],
+          "proof": [],
+          "blockers": [
+           "interpretation_unresolved",
+           "resource_bound"
+          ]
+         }
+        }
+       ],
+       "warrant": {
+        "rule": "interpretations.compatibility:1",
+        "guarantee": "conditional_on_fixed_and_interpretation_premises",
+        "fixed_status": "known",
+        "status": "proposed",
+        "fixed_premises": [],
+        "assumptions": [
+         "EF-range"
+        ],
+        "bindings": [],
+        "basis": [
+         "ctg:NCT03057977:651d50db132a20a8261fdfcbcddd46ad377d98a32d477c3d4094c19a0ee65f11#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:2460",
+         "hypothesis:source-location-is-not-semantic-warrant"
+        ],
+        "consistency": {
+         "result": "UNDETERMINED",
+         "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+         "status": null,
+         "proof": [],
+         "blockers": [
+          "resource_bound"
+         ]
+        },
+        "intrinsic_consistency": {
+         "result": "UNDETERMINED",
+         "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+         "status": null,
+         "proof": [],
+         "blockers": [
+          "resource_bound"
+         ]
+        },
+        "signal_rules": [],
+        "blockers": [
+         "resource_bound"
+        ]
+       }
+      }
+     ],
+     "remaining": [
+      "selected-restrictions"
+     ],
+     "refuted": [],
+     "incoherent": [],
+     "unresolved": [
+      "selected-restrictions"
+     ],
+     "selection": {
+      "id": null,
+      "state": "none",
+      "origin": null
+     },
+     "consequences": [
+      {
+       "id": "registered-age-18",
+       "body": {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "age",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "participant",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "ge",
+         "inclusivity": "unspecified",
+         "kind": "quantity",
+         "members": [],
+         "number": 18.0,
+         "unit": "Years",
+         "upper": null
+        }
+       },
+       "result": "UNDETERMINED",
+       "frames": [
+        "selected-restrictions"
+       ],
+       "basis": "declared_interpretation_family",
+       "warrant": {
+        "rule": "interpretations.common:1",
+        "guarantee": "conditional_on_declared_family_not_exhaustive",
+        "status": "proposed",
+        "blockers": [
+         "interpretation_unresolved",
+         "resource_bound"
+        ]
+       }
+      },
+      {
+       "id": "EF45",
+       "body": {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "LVEF",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "participant",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "quantity",
+         "members": [],
+         "number": 45.0,
+         "unit": "%",
+         "upper": null
+        }
+       },
+       "result": "UNDETERMINED",
+       "frames": [
+        "selected-restrictions"
+       ],
+       "basis": "declared_interpretation_family",
+       "warrant": {
+        "rule": "interpretations.common:1",
+        "guarantee": "conditional_on_declared_family_not_exhaustive",
+        "status": "proposed",
+        "blockers": [
+         "interpretation_unresolved",
+         "resource_bound"
+        ]
+       }
+      },
+      {
+       "id": "EF40",
+       "body": {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "LVEF",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "participant",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "quantity",
+         "members": [],
+         "number": 40.0,
+         "unit": "%",
+         "upper": null
+        }
+       },
+       "result": "UNDETERMINED",
+       "frames": [
+        "selected-restrictions"
+       ],
+       "basis": "declared_interpretation_family",
+       "warrant": {
+        "rule": "interpretations.common:1",
+        "guarantee": "conditional_on_declared_family_not_exhaustive",
+        "status": "proposed",
+        "blockers": [
+         "interpretation_unresolved",
+         "resource_bound"
+        ]
+       }
+      }
+     ],
+     "limits": "Exact conditional checks over declared readings; compatibility is not source truth or clinical recommendation. The interpretation family is not assumed exhaustive. No automatic text reading, source correction, source mutation or corpus-frequency admission."
+    },
+    "problems": [],
+    "metadata": {
+     "version": 1,
+     "kind": "reasoning",
+     "findings": [
+      {
+       "path": "/result/fixed/consistency",
+       "kind": "consistency",
+       "logical_result": "UNDETERMINED",
+       "standing": null,
+       "completion": "limited",
+       "causes": [
+        {
+         "code": "resource_bound",
+         "kind": "computation"
+        }
+       ],
+       "disposition": "not_computed"
+      },
+      {
+       "path": "/result/fixed/queries/0",
+       "kind": "logical",
+       "logical_result": "UNDETERMINED",
+       "standing": "known",
+       "completion": "limited",
+       "causes": [
+        {
+         "code": "resource_bound",
+         "kind": "computation"
+        }
+       ],
+       "disposition": "not_computed",
+       "support_path": "/result/fixed/queries/0/warrant"
+      },
+      {
+       "path": "/result/fixed/queries/1",
+       "kind": "logical",
+       "logical_result": "UNDETERMINED",
+       "standing": "known",
+       "completion": "limited",
+       "causes": [
+        {
+         "code": "resource_bound",
+         "kind": "computation"
+        }
+       ],
+       "disposition": "not_computed",
+       "support_path": "/result/fixed/queries/1/warrant"
+      },
+      {
+       "path": "/result/fixed/queries/2",
+       "kind": "logical",
+       "logical_result": "UNDETERMINED",
+       "standing": "known",
+       "completion": "limited",
+       "causes": [
+        {
+         "code": "resource_bound",
+         "kind": "computation"
+        }
+       ],
+       "disposition": "not_computed",
+       "support_path": "/result/fixed/queries/2/warrant"
+      },
+      {
+       "path": "/result/interpretations/0",
+       "kind": "interpretation",
+       "logical_result": "unresolved",
+       "standing": "proposed",
+       "completion": "limited",
+       "causes": [
+        {
+         "code": "resource_bound",
+         "kind": "computation"
+        }
+       ],
+       "disposition": "not_computed"
+      },
+      {
+       "path": "/result/interpretations/0/queries/0",
+       "kind": "logical",
+       "logical_result": "UNDETERMINED",
+       "standing": "proposed",
+       "completion": "limited",
+       "causes": [
+        {
+         "code": "interpretation_unresolved",
+         "kind": "premise"
+        },
+        {
+         "code": "resource_bound",
+         "kind": "computation"
+        }
+       ],
+       "disposition": "not_computed",
+       "support_path": "/result/interpretations/0/queries/0/warrant"
+      },
+      {
+       "path": "/result/interpretations/0/queries/1",
+       "kind": "logical",
+       "logical_result": "UNDETERMINED",
+       "standing": "proposed",
+       "completion": "limited",
+       "causes": [
+        {
+         "code": "interpretation_unresolved",
+         "kind": "premise"
+        },
+        {
+         "code": "resource_bound",
+         "kind": "computation"
+        }
+       ],
+       "disposition": "not_computed",
+       "support_path": "/result/interpretations/0/queries/1/warrant"
+      },
+      {
+       "path": "/result/interpretations/0/queries/2",
+       "kind": "logical",
+       "logical_result": "UNDETERMINED",
+       "standing": "proposed",
+       "completion": "limited",
+       "causes": [
+        {
+         "code": "interpretation_unresolved",
+         "kind": "premise"
+        },
+        {
+         "code": "resource_bound",
+         "kind": "computation"
+        }
+       ],
+       "disposition": "not_computed",
+       "support_path": "/result/interpretations/0/queries/2/warrant"
+      },
+      {
+       "path": "/result/consequences/0",
+       "kind": "logical",
+       "logical_result": "UNDETERMINED",
+       "standing": "proposed",
+       "completion": "limited",
+       "causes": [
+        {
+         "code": "interpretation_unresolved",
+         "kind": "premise"
+        },
+        {
+         "code": "resource_bound",
+         "kind": "computation"
+        }
+       ],
+       "disposition": "not_computed",
+       "support_path": "/result/consequences/0/warrant"
+      },
+      {
+       "path": "/result/consequences/1",
+       "kind": "logical",
+       "logical_result": "UNDETERMINED",
+       "standing": "proposed",
+       "completion": "limited",
+       "causes": [
+        {
+         "code": "interpretation_unresolved",
+         "kind": "premise"
+        },
+        {
+         "code": "resource_bound",
+         "kind": "computation"
+        }
+       ],
+       "disposition": "not_computed",
+       "support_path": "/result/consequences/1/warrant"
+      },
+      {
+       "path": "/result/consequences/2",
+       "kind": "logical",
+       "logical_result": "UNDETERMINED",
+       "standing": "proposed",
+       "completion": "limited",
+       "causes": [
+        {
+         "code": "interpretation_unresolved",
+         "kind": "premise"
+        },
+        {
+         "code": "resource_bound",
+         "kind": "computation"
+        }
+       ],
+       "disposition": "not_computed",
+       "support_path": "/result/consequences/2/warrant"
+      }
+     ]
+    }
+   }
+  ]
+ },
+ "problems": [],
+ "metadata": {
+  "version": 1,
+  "kind": "reasoning",
+  "findings": [
+   {
+    "path": "/result/analyses/0/result/fixed/consistency",
+    "kind": "consistency",
+    "logical_result": "UNDETERMINED",
+    "standing": null,
+    "completion": "limited",
+    "causes": [
+     {
+      "code": "resource_bound",
+      "kind": "computation"
+     }
+    ],
+    "disposition": "not_computed"
+   },
+   {
+    "path": "/result/analyses/0/result/fixed/queries/0",
+    "kind": "logical",
+    "logical_result": "UNDETERMINED",
+    "standing": "known",
+    "completion": "limited",
+    "causes": [
+     {
+      "code": "resource_bound",
+      "kind": "computation"
+     }
+    ],
+    "disposition": "not_computed",
+    "support_path": "/result/analyses/0/result/fixed/queries/0/warrant"
+   },
+   {
+    "path": "/result/analyses/0/result/fixed/queries/1",
+    "kind": "logical",
+    "logical_result": "UNDETERMINED",
+    "standing": "known",
+    "completion": "limited",
+    "causes": [
+     {
+      "code": "resource_bound",
+      "kind": "computation"
+     }
+    ],
+    "disposition": "not_computed",
+    "support_path": "/result/analyses/0/result/fixed/queries/1/warrant"
+   },
+   {
+    "path": "/result/analyses/0/result/fixed/queries/2",
+    "kind": "logical",
+    "logical_result": "UNDETERMINED",
+    "standing": "known",
+    "completion": "limited",
+    "causes": [
+     {
+      "code": "resource_bound",
+      "kind": "computation"
+     }
+    ],
+    "disposition": "not_computed",
+    "support_path": "/result/analyses/0/result/fixed/queries/2/warrant"
+   },
+   {
+    "path": "/result/analyses/0/result/interpretations/0",
+    "kind": "interpretation",
+    "logical_result": "unresolved",
+    "standing": "proposed",
+    "completion": "limited",
+    "causes": [
+     {
+      "code": "resource_bound",
+      "kind": "computation"
+     }
+    ],
+    "disposition": "not_computed"
+   },
+   {
+    "path": "/result/analyses/0/result/interpretations/0/queries/0",
+    "kind": "logical",
+    "logical_result": "UNDETERMINED",
+    "standing": "proposed",
+    "completion": "limited",
+    "causes": [
+     {
+      "code": "interpretation_unresolved",
+      "kind": "premise"
+     },
+     {
+      "code": "resource_bound",
+      "kind": "computation"
+     }
+    ],
+    "disposition": "not_computed",
+    "support_path": "/result/analyses/0/result/interpretations/0/queries/0/warrant"
+   },
+   {
+    "path": "/result/analyses/0/result/interpretations/0/queries/1",
+    "kind": "logical",
+    "logical_result": "UNDETERMINED",
+    "standing": "proposed",
+    "completion": "limited",
+    "causes": [
+     {
+      "code": "interpretation_unresolved",
+      "kind": "premise"
+     },
+     {
+      "code": "resource_bound",
+      "kind": "computation"
+     }
+    ],
+    "disposition": "not_computed",
+    "support_path": "/result/analyses/0/result/interpretations/0/queries/1/warrant"
+   },
+   {
+    "path": "/result/analyses/0/result/interpretations/0/queries/2",
+    "kind": "logical",
+    "logical_result": "UNDETERMINED",
+    "standing": "proposed",
+    "completion": "limited",
+    "causes": [
+     {
+      "code": "interpretation_unresolved",
+      "kind": "premise"
+     },
+     {
+      "code": "resource_bound",
+      "kind": "computation"
+     }
+    ],
+    "disposition": "not_computed",
+    "support_path": "/result/analyses/0/result/interpretations/0/queries/2/warrant"
+   },
+   {
+    "path": "/result/analyses/0/result/consequences/0",
+    "kind": "logical",
+    "logical_result": "UNDETERMINED",
+    "standing": "proposed",
+    "completion": "limited",
+    "causes": [
+     {
+      "code": "interpretation_unresolved",
+      "kind": "premise"
+     },
+     {
+      "code": "resource_bound",
+      "kind": "computation"
+     }
+    ],
+    "disposition": "not_computed",
+    "support_path": "/result/analyses/0/result/consequences/0/warrant"
+   },
+   {
+    "path": "/result/analyses/0/result/consequences/1",
+    "kind": "logical",
+    "logical_result": "UNDETERMINED",
+    "standing": "proposed",
+    "completion": "limited",
+    "causes": [
+     {
+      "code": "interpretation_unresolved",
+      "kind": "premise"
+     },
+     {
+      "code": "resource_bound",
+      "kind": "computation"
+     }
+    ],
+    "disposition": "not_computed",
+    "support_path": "/result/analyses/0/result/consequences/1/warrant"
+   },
+   {
+    "path": "/result/analyses/0/result/consequences/2",
+    "kind": "logical",
+    "logical_result": "UNDETERMINED",
+    "standing": "proposed",
+    "completion": "limited",
+    "causes": [
+     {
+      "code": "interpretation_unresolved",
+      "kind": "premise"
+     },
+     {
+      "code": "resource_bound",
+      "kind": "computation"
+     }
+    ],
+    "disposition": "not_computed",
+    "support_path": "/result/analyses/0/result/consequences/2/warrant"
+   }
+  ]
+ }
+}

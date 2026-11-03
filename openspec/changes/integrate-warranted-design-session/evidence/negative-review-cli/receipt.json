@@ -1,0 +1,271 @@
+[
+  {
+    "case": "accepted_only",
+    "remaining": [
+      "at_most_2",
+      "at_most_3"
+    ],
+    "consequence": {
+      "result": "ENTAILED",
+      "status": "interpolated",
+      "basis": "All remaining declared candidate designs; includes the support of eliminations."
+    },
+    "candidates": [
+      {
+        "id": "at_least_3",
+        "state": "ruled_out",
+        "elimination_status": "interpolated"
+      },
+      {
+        "id": "at_most_2",
+        "state": "not_ruled_out",
+        "elimination_status": null
+      },
+      {
+        "id": "at_most_3",
+        "state": "not_ruled_out",
+        "elimination_status": null
+      }
+    ],
+    "candidate_metadata": [
+      {
+        "path": "/result/candidates/0",
+        "kind": "candidate",
+        "logical_result": "ruled_out",
+        "standing": "interpolated",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional"
+      },
+      {
+        "path": "/result/candidates/1",
+        "kind": "candidate",
+        "logical_result": "not_ruled_out",
+        "standing": null,
+        "completion": "complete",
+        "causes": [],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/candidates/2",
+        "kind": "candidate",
+        "logical_result": "not_ruled_out",
+        "standing": null,
+        "completion": "complete",
+        "causes": [],
+        "disposition": "open"
+      }
+    ]
+  },
+  {
+    "case": "one_survivor",
+    "remaining": [
+      "at_most_2"
+    ],
+    "consequence": {
+      "result": "ENTAILED",
+      "status": "interpolated",
+      "basis": "All remaining declared candidate designs; includes the support of eliminations."
+    },
+    "candidates": [
+      {
+        "id": "at_least_3",
+        "state": "ruled_out",
+        "elimination_status": "interpolated"
+      },
+      {
+        "id": "at_most_2",
+        "state": "not_ruled_out",
+        "elimination_status": null
+      },
+      {
+        "id": "at_most_3",
+        "state": "ruled_out",
+        "elimination_status": "interpolated"
+      }
+    ],
+    "candidate_metadata": [
+      {
+        "path": "/result/candidates/0",
+        "kind": "candidate",
+        "logical_result": "ruled_out",
+        "standing": "interpolated",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional"
+      },
+      {
+        "path": "/result/candidates/1",
+        "kind": "candidate",
+        "logical_result": "not_ruled_out",
+        "standing": null,
+        "completion": "complete",
+        "causes": [],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/candidates/2",
+        "kind": "candidate",
+        "logical_result": "ruled_out",
+        "standing": "interpolated",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional"
+      }
+    ]
+  },
+  {
+    "case": "no_survivors",
+    "remaining": [],
+    "consequence": {
+      "result": "CONFLICT",
+      "status": "interpolated",
+      "basis": "All remaining declared candidate designs; includes the support of eliminations."
+    },
+    "candidates": [
+      {
+        "id": "at_least_3",
+        "state": "ruled_out",
+        "elimination_status": "interpolated"
+      },
+      {
+        "id": "at_most_2",
+        "state": "ruled_out",
+        "elimination_status": "interpolated"
+      },
+      {
+        "id": "at_most_3",
+        "state": "ruled_out",
+        "elimination_status": "interpolated"
+      }
+    ],
+    "candidate_metadata": [
+      {
+        "path": "/result/candidates/0",
+        "kind": "candidate",
+        "logical_result": "ruled_out",
+        "standing": "interpolated",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional"
+      },
+      {
+        "path": "/result/candidates/1",
+        "kind": "candidate",
+        "logical_result": "ruled_out",
+        "standing": "interpolated",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional"
+      },
+      {
+        "path": "/result/candidates/2",
+        "kind": "candidate",
+        "logical_result": "ruled_out",
+        "standing": "interpolated",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional"
+      }
+    ]
+  },
+  {
+    "case": "proposed_negative",
+    "remaining": [
+      "at_most_2",
+      "at_most_3"
+    ],
+    "consequence": {
+      "result": "UNDETERMINED",
+      "status": null,
+      "basis": "All remaining declared candidate designs; includes the support of eliminations."
+    },
+    "candidates": [
+      {
+        "id": "at_least_3",
+        "state": "ruled_out",
+        "elimination_status": "interpolated"
+      },
+      {
+        "id": "at_most_2",
+        "state": "unresolved",
+        "elimination_status": null
+      },
+      {
+        "id": "at_most_3",
+        "state": "unresolved",
+        "elimination_status": null
+      }
+    ],
+    "candidate_metadata": [
+      {
+        "path": "/result/candidates/0",
+        "kind": "candidate",
+        "logical_result": "ruled_out",
+        "standing": "interpolated",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional"
+      },
+      {
+        "path": "/result/candidates/1",
+        "kind": "candidate",
+        "logical_result": "unresolved",
+        "standing": null,
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "proposed_refused",
+            "kind": "premise"
+          }
+        ],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/candidates/2",
+        "kind": "candidate",
+        "logical_result": "unresolved",
+        "standing": null,
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "proposed_refused",
+            "kind": "premise"
+          }
+        ],
+        "disposition": "open"
+      }
+    ]
+  },
+  {
+    "case": "partial_profile_both_signs",
+    "remaining": [
+      "at_most_2_plus_marker"
+    ],
+    "consequence": {
+      "result": "ENTAILED",
+      "status": "interpolated",
+      "basis": "All remaining declared candidate designs; includes the support of eliminations."
+    },
+    "candidate_metadata": [
+      {
+        "path": "/result/candidates/0",
+        "kind": "candidate",
+        "logical_result": "ruled_out",
+        "standing": "interpolated",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional"
+      },
+      {
+        "path": "/result/candidates/1",
+        "kind": "candidate",
+        "logical_result": "not_ruled_out",
+        "standing": null,
+        "completion": "complete",
+        "causes": [],
+        "disposition": "open"
+      }
+    ]
+  }
+]

@@ -201,5 +201,25 @@
       }
     ]
   },
-  "problems": []
+  "problems": [],
+  "metadata": {
+    "version": 1,
+    "kind": "reasoning",
+    "findings": [
+      {
+        "path": "/result/decision",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": null,
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          }
+        ],
+        "disposition": "open"
+      }
+    ]
+  }
 }

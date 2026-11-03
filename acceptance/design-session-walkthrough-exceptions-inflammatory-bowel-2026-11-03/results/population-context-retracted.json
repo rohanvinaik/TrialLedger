@@ -1,0 +1,826 @@
+{
+ "code": "complete",
+ "operation": "interpretations",
+ "result": {
+  "study_ref": "ctg:NCT01369355:e88dd2edd3a6d63bf6a7d10c8b304315497cfb90e2dadf36a259dc0d8ef75be2",
+  "fixed": {
+   "assertions": [
+    {
+     "applicability": {
+      "class": "Always"
+     },
+     "body": {
+      "class": "Literal",
+      "evidence": [
+       {
+        "class": "Evidence",
+        "kind": "record_field",
+        "ref": "ctg:NCT01369355:e88dd2edd3a6d63bf6a7d10c8b304315497cfb90e2dadf36a259dc0d8ef75be2#/protocolSection/eligibilityModule/minimumAge"
+       }
+      ],
+      "polarity": "positive",
+      "predicate": {
+       "class": "Predicate",
+       "key": "age",
+       "kind": "measurement"
+      },
+      "qualifiers": {
+       "class": "Always"
+      },
+      "subject": {
+       "class": "Subject",
+       "kind": "participant",
+       "referent": ""
+      },
+      "time": null,
+      "value": {
+       "class": "Value",
+       "comparison": "ge",
+       "inclusivity": "unspecified",
+       "kind": "quantity",
+       "members": [],
+       "number": 18.0,
+       "unit": "Years",
+       "upper": null
+      }
+     },
+     "branch": {
+      "class": "Branch",
+      "node": "unresolved",
+      "path": []
+     },
+     "class": "ScopedAssertion",
+     "cohort": {
+      "class": "Scope",
+      "kind": "all_participants",
+      "parts": [],
+      "ref": ""
+     },
+     "criterion_ref": "ctg:NCT01369355:e88dd2edd3a6d63bf6a7d10c8b304315497cfb90e2dadf36a259dc0d8ef75be2#/protocolSection/eligibilityModule/minimumAge",
+     "id": "registry-age-minimumAge",
+     "modality": "required",
+     "resolution": "resolved",
+     "rule": {
+      "answers": [],
+      "class": "Rule",
+      "id": "ctg-structured-general-eligibility-age",
+      "premises": [
+       "ctg:NCT01369355:e88dd2edd3a6d63bf6a7d10c8b304315497cfb90e2dadf36a259dc0d8ef75be2#/protocolSection/eligibilityModule/minimumAge"
+      ],
+      "version": "1",
+      "warrants": []
+     },
+     "span": [],
+     "status": "known"
+    },
+    {
+     "applicability": {
+      "class": "Always"
+     },
+     "body": {
+      "class": "Literal",
+      "evidence": [
+       {
+        "class": "Evidence",
+        "kind": "record_field",
+        "ref": "ctg:NCT01369355:e88dd2edd3a6d63bf6a7d10c8b304315497cfb90e2dadf36a259dc0d8ef75be2#/protocolSection/eligibilityModule/maximumAge"
+       }
+      ],
+      "polarity": "positive",
+      "predicate": {
+       "class": "Predicate",
+       "key": "age",
+       "kind": "measurement"
+      },
+      "qualifiers": {
+       "class": "Always"
+      },
+      "subject": {
+       "class": "Subject",
+       "kind": "participant",
+       "referent": ""
+      },
+      "time": null,
+      "value": {
+       "class": "Value",
+       "comparison": "le",
+       "inclusivity": "unspecified",
+       "kind": "quantity",
+       "members": [],
+       "number": 99.0,
+       "unit": "Years",
+       "upper": null
+      }
+     },
+     "branch": {
+      "class": "Branch",
+      "node": "unresolved",
+      "path": []
+     },
+     "class": "ScopedAssertion",
+     "cohort": {
+      "class": "Scope",
+      "kind": "all_participants",
+      "parts": [],
+      "ref": ""
+     },
+     "criterion_ref": "ctg:NCT01369355:e88dd2edd3a6d63bf6a7d10c8b304315497cfb90e2dadf36a259dc0d8ef75be2#/protocolSection/eligibilityModule/maximumAge",
+     "id": "registry-age-maximumAge",
+     "modality": "required",
+     "resolution": "resolved",
+     "rule": {
+      "answers": [],
+      "class": "Rule",
+      "id": "ctg-structured-general-eligibility-age",
+      "premises": [
+       "ctg:NCT01369355:e88dd2edd3a6d63bf6a7d10c8b304315497cfb90e2dadf36a259dc0d8ef75be2#/protocolSection/eligibilityModule/maximumAge"
+      ],
+      "version": "1",
+      "warrants": []
+     },
+     "span": [],
+     "status": "known"
+    }
+   ],
+   "consistency": {
+    "result": "UNDETERMINED",
+    "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+    "status": null,
+    "proof": [],
+    "blockers": [
+     "no_constraint_mentions_query"
+    ]
+   },
+   "queries": [
+    {
+     "id": "adult-general-floor",
+     "body": {
+      "class": "Literal",
+      "evidence": [],
+      "polarity": "positive",
+      "predicate": {
+       "class": "Predicate",
+       "key": "age",
+       "kind": "measurement"
+      },
+      "qualifiers": {
+       "class": "Always"
+      },
+      "subject": {
+       "class": "Subject",
+       "kind": "participant",
+       "referent": ""
+      },
+      "time": null,
+      "value": {
+       "class": "Value",
+       "comparison": "ge",
+       "inclusivity": "unspecified",
+       "kind": "quantity",
+       "members": [],
+       "number": 18.0,
+       "unit": "Years",
+       "upper": null
+      }
+     },
+     "result": "ENTAILED",
+     "decision": {
+      "result": "ENTAILED",
+      "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+      "status": "known",
+      "proof": [
+       "registry-age-minimumAge"
+      ],
+      "blockers": []
+     },
+     "warrant": {
+      "rule": "entail.decide:1",
+      "guarantee": "fixed_floor",
+      "status": "known",
+      "assumptions": [],
+      "proof": [
+       "registry-age-minimumAge"
+      ],
+      "blockers": []
+     }
+    },
+    {
+     "id": "induction-response-required",
+     "body": {
+      "class": "Literal",
+      "evidence": [],
+      "polarity": "positive",
+      "predicate": {
+       "class": "Predicate",
+       "key": "IV_UST_induction_response",
+       "kind": "treatment_history"
+      },
+      "qualifiers": {
+       "class": "Always"
+      },
+      "subject": {
+       "class": "Subject",
+       "kind": "participant",
+       "referent": ""
+      },
+      "time": {
+       "anchor": "named_event",
+       "anchor_ref": "ctg:NCT01369355:e88dd2edd3a6d63bf6a7d10c8b304315497cfb90e2dadf36a259dc0d8ef75be2:induction-week8",
+       "certainty": "explicit",
+       "class": "TemporalScope",
+       "evidence": [],
+       "inclusivity": "unspecified",
+       "lower": null,
+       "orientation": "at",
+       "unit": "",
+       "upper": null
+      },
+      "value": {
+       "class": "Value",
+       "comparison": "eq",
+       "inclusivity": "unspecified",
+       "kind": "boolean",
+       "members": [],
+       "number": null,
+       "unit": "",
+       "upper": null
+      }
+     },
+     "result": "UNDETERMINED",
+     "decision": {
+      "result": "UNDETERMINED",
+      "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"IV_UST_induction_response\",\"kind\":\"treatment_history\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":{\"anchor\":\"named_event\",\"anchor_ref\":\"ctg:NCT01369355:e88dd2edd3a6d63bf6a7d10c8b304315497cfb90e2dadf36a259dc0d8ef75be2:induction-week8\",\"certainty\":\"explicit\",\"class\":\"TemporalScope\",\"evidence\":[],\"inclusivity\":\"unspecified\",\"lower\":null,\"orientation\":\"at\",\"unit\":\"\",\"upper\":null},\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+      "status": null,
+      "proof": [],
+      "blockers": [
+       "no_constraint_mentions_query"
+      ]
+     },
+     "warrant": {
+      "rule": "entail.decide:1",
+      "guarantee": "fixed_floor",
+      "status": "known",
+      "assumptions": [],
+      "proof": [],
+      "blockers": [
+       "no_constraint_mentions_query"
+      ]
+     }
+    }
+   ],
+   "signals": [],
+   "blockers": []
+  },
+  "bindings": [],
+  "interpretations": [
+   {
+    "id": "randomized-maintenance-reading",
+    "label": "Proposed response restriction for randomized maintenance only",
+    "origin": "assistant",
+    "state": "unresolved",
+    "premises": {
+     "basis": [
+      "ctg:NCT01369355:e88dd2edd3a6d63bf6a7d10c8b304315497cfb90e2dadf36a259dc0d8ef75be2#/protocolSection/armsInterventionsModule/armGroups",
+      "ctg:NCT01369355:e88dd2edd3a6d63bf6a7d10c8b304315497cfb90e2dadf36a259dc0d8ef75be2#/protocolSection/descriptionModule/detailedDescription",
+      "hypothesis:source-location-is-not-semantic-warrant"
+     ],
+     "assumptions": [
+      {
+       "applicability": {
+        "class": "Always"
+       },
+       "body": {
+        "class": "Literal",
+        "evidence": [
+         {
+          "class": "Evidence",
+          "kind": "record_field",
+          "ref": "ctg:NCT01369355:e88dd2edd3a6d63bf6a7d10c8b304315497cfb90e2dadf36a259dc0d8ef75be2#/protocolSection/armsInterventionsModule/armGroups"
+         },
+         {
+          "class": "Evidence",
+          "kind": "record_field",
+          "ref": "ctg:NCT01369355:e88dd2edd3a6d63bf6a7d10c8b304315497cfb90e2dadf36a259dc0d8ef75be2#/protocolSection/descriptionModule/detailedDescription"
+         }
+        ],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "IV_UST_induction_response",
+         "kind": "treatment_history"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "participant",
+         "referent": ""
+        },
+        "time": {
+         "anchor": "named_event",
+         "anchor_ref": "ctg:NCT01369355:e88dd2edd3a6d63bf6a7d10c8b304315497cfb90e2dadf36a259dc0d8ef75be2:induction-week8",
+         "certainty": "explicit",
+         "class": "TemporalScope",
+         "evidence": [
+          {
+           "class": "Evidence",
+           "kind": "record_field",
+           "ref": "ctg:NCT01369355:e88dd2edd3a6d63bf6a7d10c8b304315497cfb90e2dadf36a259dc0d8ef75be2#/protocolSection/armsInterventionsModule/armGroups"
+          },
+          {
+           "class": "Evidence",
+           "kind": "record_field",
+           "ref": "ctg:NCT01369355:e88dd2edd3a6d63bf6a7d10c8b304315497cfb90e2dadf36a259dc0d8ef75be2#/protocolSection/descriptionModule/detailedDescription"
+          }
+         ],
+         "inclusivity": "unspecified",
+         "lower": null,
+         "orientation": "at",
+         "unit": "",
+         "upper": null
+        },
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       },
+       "branch": {
+        "class": "Branch",
+        "node": "unresolved",
+        "path": []
+       },
+       "class": "ScopedAssertion",
+       "cohort": {
+        "class": "Scope",
+        "kind": "cohort_ref",
+        "parts": [],
+        "ref": "randomized-maintenance"
+       },
+       "criterion_ref": "ctg:NCT01369355:e88dd2edd3a6d63bf6a7d10c8b304315497cfb90e2dadf36a259dc0d8ef75be2#/protocolSection/armsInterventionsModule/armGroups|ctg:NCT01369355:e88dd2edd3a6d63bf6a7d10c8b304315497cfb90e2dadf36a259dc0d8ef75be2#/protocolSection/descriptionModule/detailedDescription",
+       "id": "response-required-for-randomized-maintenance",
+       "modality": "required",
+       "resolution": "resolved",
+       "rule": {
+        "answers": [],
+        "class": "Rule",
+        "id": "source-anchored-hypothesis",
+        "premises": [
+         "ctg:NCT01369355:e88dd2edd3a6d63bf6a7d10c8b304315497cfb90e2dadf36a259dc0d8ef75be2#/protocolSection/armsInterventionsModule/armGroups",
+         "ctg:NCT01369355:e88dd2edd3a6d63bf6a7d10c8b304315497cfb90e2dadf36a259dc0d8ef75be2#/protocolSection/descriptionModule/detailedDescription"
+        ],
+        "version": "1",
+        "warrants": [
+         "hypothesis:source-location-is-not-semantic-warrant"
+        ]
+       },
+       "span": [],
+       "status": "proposed"
+      }
+     ],
+     "signals": [],
+     "signal_claims": [],
+     "binding_uses": []
+    },
+    "bindings": [],
+    "signals": [],
+    "signal_checks": [],
+    "queries": [
+     {
+      "id": "adult-general-floor",
+      "body": {
+       "class": "Literal",
+       "evidence": [],
+       "polarity": "positive",
+       "predicate": {
+        "class": "Predicate",
+        "key": "age",
+        "kind": "measurement"
+       },
+       "qualifiers": {
+        "class": "Always"
+       },
+       "subject": {
+        "class": "Subject",
+        "kind": "participant",
+        "referent": ""
+       },
+       "time": null,
+       "value": {
+        "class": "Value",
+        "comparison": "ge",
+        "inclusivity": "unspecified",
+        "kind": "quantity",
+        "members": [],
+        "number": 18.0,
+        "unit": "Years",
+        "upper": null
+       }
+      },
+      "result": "UNDETERMINED",
+      "decision": {
+       "result": "ENTAILED",
+       "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+       "status": "known",
+       "proof": [
+        "registry-age-minimumAge"
+       ],
+       "blockers": []
+      },
+      "warrant": {
+       "rule": "entail.decide:1",
+       "guarantee": "conditional_on_interpretation",
+       "status": "proposed",
+       "assumptions": [
+        "response-required-for-randomized-maintenance"
+       ],
+       "proof": [
+        "registry-age-minimumAge"
+       ],
+       "blockers": [
+        "interpretation_unresolved",
+        "open_scope:cohort_ref:randomized-maintenance"
+       ]
+      }
+     },
+     {
+      "id": "induction-response-required",
+      "body": {
+       "class": "Literal",
+       "evidence": [],
+       "polarity": "positive",
+       "predicate": {
+        "class": "Predicate",
+        "key": "IV_UST_induction_response",
+        "kind": "treatment_history"
+       },
+       "qualifiers": {
+        "class": "Always"
+       },
+       "subject": {
+        "class": "Subject",
+        "kind": "participant",
+        "referent": ""
+       },
+       "time": {
+        "anchor": "named_event",
+        "anchor_ref": "ctg:NCT01369355:e88dd2edd3a6d63bf6a7d10c8b304315497cfb90e2dadf36a259dc0d8ef75be2:induction-week8",
+        "certainty": "explicit",
+        "class": "TemporalScope",
+        "evidence": [],
+        "inclusivity": "unspecified",
+        "lower": null,
+        "orientation": "at",
+        "unit": "",
+        "upper": null
+       },
+       "value": {
+        "class": "Value",
+        "comparison": "eq",
+        "inclusivity": "unspecified",
+        "kind": "boolean",
+        "members": [],
+        "number": null,
+        "unit": "",
+        "upper": null
+       }
+      },
+      "result": "UNDETERMINED",
+      "decision": {
+       "result": "UNDETERMINED",
+       "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"IV_UST_induction_response\",\"kind\":\"treatment_history\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":{\"anchor\":\"named_event\",\"anchor_ref\":\"ctg:NCT01369355:e88dd2edd3a6d63bf6a7d10c8b304315497cfb90e2dadf36a259dc0d8ef75be2:induction-week8\",\"certainty\":\"explicit\",\"class\":\"TemporalScope\",\"evidence\":[],\"inclusivity\":\"unspecified\",\"lower\":null,\"orientation\":\"at\",\"unit\":\"\",\"upper\":null},\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+       "status": null,
+       "proof": [],
+       "blockers": [
+        "no_constraint_mentions_query"
+       ]
+      },
+      "warrant": {
+       "rule": "entail.decide:1",
+       "guarantee": "conditional_on_interpretation",
+       "status": "proposed",
+       "assumptions": [
+        "response-required-for-randomized-maintenance"
+       ],
+       "proof": [],
+       "blockers": [
+        "interpretation_unresolved",
+        "no_constraint_mentions_query",
+        "open_scope:cohort_ref:randomized-maintenance"
+       ]
+      }
+     }
+    ],
+    "warrant": {
+     "rule": "interpretations.compatibility:1",
+     "guarantee": "conditional_on_fixed_and_interpretation_premises",
+     "fixed_status": "known",
+     "status": "proposed",
+     "fixed_premises": [],
+     "assumptions": [
+      "response-required-for-randomized-maintenance"
+     ],
+     "bindings": [],
+     "basis": [
+      "ctg:NCT01369355:e88dd2edd3a6d63bf6a7d10c8b304315497cfb90e2dadf36a259dc0d8ef75be2#/protocolSection/armsInterventionsModule/armGroups",
+      "ctg:NCT01369355:e88dd2edd3a6d63bf6a7d10c8b304315497cfb90e2dadf36a259dc0d8ef75be2#/protocolSection/descriptionModule/detailedDescription",
+      "hypothesis:source-location-is-not-semantic-warrant"
+     ],
+     "consistency": {
+      "result": "UNDETERMINED",
+      "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+      "status": null,
+      "proof": [],
+      "blockers": [
+       "no_constraint_mentions_query"
+      ]
+     },
+     "intrinsic_consistency": {
+      "result": "UNDETERMINED",
+      "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+      "status": null,
+      "proof": [],
+      "blockers": [
+       "no_constraint_mentions_query"
+      ]
+     },
+     "signal_rules": [],
+     "blockers": [
+      "open_scope:cohort_ref:randomized-maintenance"
+     ]
+    }
+   }
+  ],
+  "remaining": [
+   "randomized-maintenance-reading"
+  ],
+  "refuted": [],
+  "incoherent": [],
+  "unresolved": [
+   "randomized-maintenance-reading"
+  ],
+  "selection": {
+   "id": null,
+   "state": "none",
+   "origin": null
+  },
+  "consequences": [
+   {
+    "id": "adult-general-floor",
+    "body": {
+     "class": "Literal",
+     "evidence": [],
+     "polarity": "positive",
+     "predicate": {
+      "class": "Predicate",
+      "key": "age",
+      "kind": "measurement"
+     },
+     "qualifiers": {
+      "class": "Always"
+     },
+     "subject": {
+      "class": "Subject",
+      "kind": "participant",
+      "referent": ""
+     },
+     "time": null,
+     "value": {
+      "class": "Value",
+      "comparison": "ge",
+      "inclusivity": "unspecified",
+      "kind": "quantity",
+      "members": [],
+      "number": 18.0,
+      "unit": "Years",
+      "upper": null
+     }
+    },
+    "result": "ENTAILED",
+    "decision": {
+     "result": "ENTAILED",
+     "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+     "status": "known",
+     "proof": [
+      "registry-age-minimumAge"
+     ],
+     "blockers": []
+    },
+    "warrant": {
+     "rule": "entail.decide:1",
+     "guarantee": "fixed_floor",
+     "status": "known",
+     "assumptions": [],
+     "proof": [
+      "registry-age-minimumAge"
+     ],
+     "blockers": []
+    },
+    "frames": [],
+    "basis": "fixed_floor"
+   },
+   {
+    "id": "induction-response-required",
+    "body": {
+     "class": "Literal",
+     "evidence": [],
+     "polarity": "positive",
+     "predicate": {
+      "class": "Predicate",
+      "key": "IV_UST_induction_response",
+      "kind": "treatment_history"
+     },
+     "qualifiers": {
+      "class": "Always"
+     },
+     "subject": {
+      "class": "Subject",
+      "kind": "participant",
+      "referent": ""
+     },
+     "time": {
+      "anchor": "named_event",
+      "anchor_ref": "ctg:NCT01369355:e88dd2edd3a6d63bf6a7d10c8b304315497cfb90e2dadf36a259dc0d8ef75be2:induction-week8",
+      "certainty": "explicit",
+      "class": "TemporalScope",
+      "evidence": [],
+      "inclusivity": "unspecified",
+      "lower": null,
+      "orientation": "at",
+      "unit": "",
+      "upper": null
+     },
+     "value": {
+      "class": "Value",
+      "comparison": "eq",
+      "inclusivity": "unspecified",
+      "kind": "boolean",
+      "members": [],
+      "number": null,
+      "unit": "",
+      "upper": null
+     }
+    },
+    "result": "UNDETERMINED",
+    "frames": [
+     "randomized-maintenance-reading"
+    ],
+    "basis": "declared_interpretation_family",
+    "warrant": {
+     "rule": "interpretations.common:1",
+     "guarantee": "conditional_on_declared_family_not_exhaustive",
+     "status": "proposed",
+     "blockers": [
+      "interpretation_unresolved",
+      "no_constraint_mentions_query",
+      "open_scope:cohort_ref:randomized-maintenance"
+     ]
+    }
+   }
+  ],
+  "limits": "Exact conditional checks over declared readings; compatibility is not source truth or clinical recommendation. The interpretation family is not assumed exhaustive. No automatic text reading, source correction, source mutation or corpus-frequency admission."
+ },
+ "problems": [],
+ "metadata": {
+  "version": 1,
+  "kind": "reasoning",
+  "findings": [
+   {
+    "path": "/result/fixed/consistency",
+    "kind": "consistency",
+    "logical_result": "UNDETERMINED",
+    "standing": null,
+    "completion": "complete",
+    "causes": [
+     {
+      "code": "no_constraint_mentions_query",
+      "kind": "coverage"
+     }
+    ],
+    "disposition": "open"
+   },
+   {
+    "path": "/result/fixed/queries/0",
+    "kind": "logical",
+    "logical_result": "ENTAILED",
+    "standing": "known",
+    "completion": "complete",
+    "causes": [],
+    "disposition": "settled",
+    "support_path": "/result/fixed/queries/0/warrant"
+   },
+   {
+    "path": "/result/fixed/queries/1",
+    "kind": "logical",
+    "logical_result": "UNDETERMINED",
+    "standing": "known",
+    "completion": "complete",
+    "causes": [
+     {
+      "code": "no_constraint_mentions_query",
+      "kind": "coverage"
+     }
+    ],
+    "disposition": "open",
+    "support_path": "/result/fixed/queries/1/warrant"
+   },
+   {
+    "path": "/result/interpretations/0",
+    "kind": "interpretation",
+    "logical_result": "unresolved",
+    "standing": "proposed",
+    "completion": "complete",
+    "causes": [
+     {
+      "code": "open_scope:cohort_ref:randomized-maintenance",
+      "kind": "translation"
+     }
+    ],
+    "disposition": "open"
+   },
+   {
+    "path": "/result/interpretations/0/queries/0",
+    "kind": "logical",
+    "logical_result": "UNDETERMINED",
+    "standing": "proposed",
+    "completion": "complete",
+    "causes": [
+     {
+      "code": "interpretation_unresolved",
+      "kind": "premise"
+     },
+     {
+      "code": "open_scope:cohort_ref:randomized-maintenance",
+      "kind": "translation"
+     }
+    ],
+    "disposition": "open",
+    "support_path": "/result/interpretations/0/queries/0/warrant",
+    "raw_result": "ENTAILED",
+    "raw_path": "/result/interpretations/0/queries/0/decision"
+   },
+   {
+    "path": "/result/interpretations/0/queries/1",
+    "kind": "logical",
+    "logical_result": "UNDETERMINED",
+    "standing": "proposed",
+    "completion": "complete",
+    "causes": [
+     {
+      "code": "interpretation_unresolved",
+      "kind": "premise"
+     },
+     {
+      "code": "no_constraint_mentions_query",
+      "kind": "coverage"
+     },
+     {
+      "code": "open_scope:cohort_ref:randomized-maintenance",
+      "kind": "translation"
+     }
+    ],
+    "disposition": "open",
+    "support_path": "/result/interpretations/0/queries/1/warrant"
+   },
+   {
+    "path": "/result/consequences/0",
+    "kind": "logical",
+    "logical_result": "ENTAILED",
+    "standing": "known",
+    "completion": "complete",
+    "causes": [],
+    "disposition": "settled",
+    "support_path": "/result/consequences/0/warrant"
+   },
+   {
+    "path": "/result/consequences/1",
+    "kind": "logical",
+    "logical_result": "UNDETERMINED",
+    "standing": "proposed",
+    "completion": "complete",
+    "causes": [
+     {
+      "code": "interpretation_unresolved",
+      "kind": "premise"
+     },
+     {
+      "code": "no_constraint_mentions_query",
+      "kind": "coverage"
+     },
+     {
+      "code": "open_scope:cohort_ref:randomized-maintenance",
+      "kind": "translation"
+     }
+    ],
+    "disposition": "open",
+    "support_path": "/result/consequences/1/warrant"
+   }
+  ]
+ }
+}

@@ -27,6 +27,7 @@ from TrialLedger.layer2 import (
     interpretations_guide,
     nearmiss,
     profile,
+    result_semantics,
     signals,
     signals_guide,
     source_assertions,
@@ -1114,6 +1115,9 @@ def _full_description() -> dict[str, Any]:
                 "operation": "the requested operation",
                 "result": "the operation result, or null on refusal",
                 "problems": "named refusal reasons; empty on completion",
+                "metadata": (
+                    "additive per-finding completion, support and cause descriptions; not source truth"
+                ),
             },
             "entailment": {
                 "fields": {
@@ -1519,11 +1523,39 @@ def _describe(request: dict[str, Any]) -> dict[str, Any]:
     signals_guide.extend(full)
     interpretations_guide.extend(full)
     source_assertions_guide.extend(full)
+    full["response_metadata"] = {
+        "location": "Every reason envelope has additive metadata; original clinical results remain intact.",
+        "version": 1,
+        "kinds": ["reasoning", "discovery", "inspection", "refusal"],
+        "dispositions": sorted(result_semantics.DISPOSITIONS),
+        "finding_fields": [
+            "path",
+            "kind",
+            "logical_result",
+            "standing",
+            "completion",
+            "causes",
+            "disposition",
+        ],
+        "meaning": (
+            "Each finding points to its actual result using a JSON pointer. Read the effective result and "
+            "its warrant; raw_result/raw_path retain an ungated calculation when different. Completion "
+            "and support are independent: a resource limit is unfinished computation, not missing evidence. "
+            "Unknown reasoning causes remain unclassified. Refused requests are invalid translation "
+            "tasks, unsupported operations, or computation-limited work; their exact codes remain. "
+            "Completed corpus descriptions are descriptive, not clinical decisions. No metadata field "
+            "establishes source truth or makes an "
+            "open question a clinical choice. Discovery and empty source inspection have no clinical "
+            "findings."
+        ),
+    }
     if view == "full":
         return full
     common = {key: full[key] for key in ("basis", "availability", "limits", "premise_status")}
     common["discovery"] = {name: {"operation": "describe", "view": name} for name in views}
+    common["response_metadata"] = full["response_metadata"]
     if view == "overview":
+        common["response_metadata"] = "Per-finding status; details in the focused describe guides."
         return common | {
             "clinical_use": (
                 "TrialLedger does not make the person's clinical decisions; it finds them. Help the person "
@@ -1610,7 +1642,15 @@ def _describe(request: dict[str, Any]) -> dict[str, Any]:
         "result_guide": full["result_guides"][view],
         "answer_guide": {
             key: full["answer_guide"][key]
-            for key in ("roles", "categories", view, "decision_list", "confirmation")
+            for key in (
+                "roles",
+                "categories",
+                "standing",
+                view,
+                "decision_list",
+                "confirmation",
+                "computation",
+            )
         },
         "example": full["examples"][view],
         "example_result": full["example_results"][view],
@@ -1649,11 +1689,20 @@ def run(request: object) -> dict[str, Any]:
             "source_assertions": _source_assertions,
         }[operation]
         result = function(request)
-        return {"code": "complete", "operation": operation, "result": result, "problems": []}
+        return {
+            "code": "complete",
+            "operation": operation,
+            "result": result,
+            "problems": [],
+            "metadata": result_semantics.metadata(operation, result),
+        }
     except (ValueError, TypeError, KeyError, RecursionError, OverflowError) as error:
         return {
             "code": "refused",
             "operation": operation if isinstance(operation, str) else "",
             "result": None,
             "problems": [str(error)],
+            "metadata": result_semantics.metadata(
+                operation if isinstance(operation, str) else "", None, [str(error)]
+            ),
         }

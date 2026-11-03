@@ -1,0 +1,140 @@
+{
+  "operation": "interpretations",
+  "study_ref": "draft:heart-failure:investigation-only",
+  "fixed": {
+    "assertions": [],
+    "signals": []
+  },
+  "interpretations": [
+    {
+      "id": "draft-EF-policy",
+      "label": "Hypothetical new-draft upper EF boundary 45",
+      "origin": "assistant",
+      "basis": [
+        "investigation:new-trial-hypothesis-not-a-source-edit-or-clinician-choice"
+      ],
+      "assumptions": [
+        {
+          "applicability": {
+            "class": "Always"
+          },
+          "body": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "LVEF_ECHO",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": {
+              "anchor": "named_event",
+              "anchor_ref": "draft:heart-failure:investigation-only:screening",
+              "certainty": "explicit",
+              "class": "TemporalScope",
+              "evidence": [],
+              "inclusivity": "unspecified",
+              "lower": null,
+              "orientation": "at",
+              "unit": "",
+              "upper": null
+            },
+            "value": {
+              "class": "Value",
+              "comparison": "le",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 45.0,
+              "unit": "%",
+              "upper": null
+            }
+          },
+          "branch": {
+            "class": "Branch",
+            "node": "unresolved",
+            "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+            "class": "Scope",
+            "kind": "all_participants",
+            "parts": [],
+            "ref": ""
+          },
+          "criterion_ref": "investigation:new-draft-alternative",
+          "id": "draft-EF-upper",
+          "modality": "required",
+          "resolution": "resolved",
+          "rule": {
+            "class": "Rule",
+            "id": "investigation-source-reading",
+            "version": "1",
+            "warrants": [
+              "investigation:new-draft-alternative",
+              "investigation:not-clinician-confirmed"
+            ]
+          },
+          "span": [],
+          "status": "proposed"
+        }
+      ],
+      "signals": [],
+      "signal_claims": [],
+      "binding_uses": []
+    }
+  ],
+  "queries": [
+    {
+      "id": "EF45",
+      "body": {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+          "class": "Predicate",
+          "key": "LVEF_ECHO",
+          "kind": "measurement"
+        },
+        "qualifiers": {
+          "class": "Always"
+        },
+        "subject": {
+          "class": "Subject",
+          "kind": "participant",
+          "referent": ""
+        },
+        "time": {
+          "anchor": "named_event",
+          "anchor_ref": "draft:heart-failure:investigation-only:screening",
+          "certainty": "explicit",
+          "class": "TemporalScope",
+          "evidence": [],
+          "inclusivity": "unspecified",
+          "lower": null,
+          "orientation": "at",
+          "unit": "",
+          "upper": null
+        },
+        "value": {
+          "class": "Value",
+          "comparison": "eq",
+          "inclusivity": "unspecified",
+          "kind": "quantity",
+          "members": [],
+          "number": 45.0,
+          "unit": "%",
+          "upper": null
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "scope": "finite prototype adapter, not a production API certificate",
+  "cases": [
+    {
+      "case": "cross-study-question",
+      "code": "prototype_question_source_mismatch"
+    },
+    {
+      "case": "cross-study-age-output",
+      "code": "prototype_age_projection_not_warranted"
+    },
+    {
+      "case": "pending-age-support",
+      "code": "prototype_age_projection_not_warranted"
+    },
+    {
+      "case": "known-user-choice-as-source-feature",
+      "code": "prototype_age_projection_not_warranted"
+    },
+    {
+      "case": "unsupported-projection",
+      "code": "unsupported_prototype_projection"
+    }
+  ]
+}

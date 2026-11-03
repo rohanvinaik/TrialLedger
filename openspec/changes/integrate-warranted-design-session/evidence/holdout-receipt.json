@@ -1,0 +1,159 @@
+{
+  "revision": "a3987b05db21f0cf3f871cc36f272ddc516c1ec2",
+  "date": "2026-11-03",
+  "source_run": "/tmp/trialledger-thesis-holdout-20261103",
+  "retained_run": "holdout-run",
+  "query": {
+    "drug": [
+      "osimertinib"
+    ],
+    "condition": "Non-Small Cell Lung Cancer",
+    "phase": [
+      "PHASE3"
+    ],
+    "status": [
+      "COMPLETED"
+    ]
+  },
+  "selection": {
+    "question": "For a proposed first-line advanced EGFR-selected NSCLC trial, which completed phase-3 osimertinib studies actually address the same treatment setting, and what mutation/prior-therapy choices remain?",
+    "seed": 4492926297228073722,
+    "sample_size": 3,
+    "selection": "random.Random(seed).sample(sorted(retrieved NCT IDs), min(3,pool size)); retain heterogeneous settings; seed written before selected study review",
+    "prior_development_trials": [
+      "NCT00322452",
+      "NCT01774721"
+    ],
+    "pool": [
+      "NCT02151981",
+      "NCT02296125",
+      "NCT02454933",
+      "NCT02474355",
+      "NCT02959749",
+      "NCT05015608"
+    ],
+    "sample": [
+      "NCT05015608",
+      "NCT02474355",
+      "NCT02296125"
+    ]
+  },
+  "manifest": {
+    "api_version": "2.0.5",
+    "data_timestamp": "2026-11-03T10:00:05",
+    "study_digests": [
+      "89a6a5c0ee59ab163dbeb8c7207253d532b29014bf7fb78ed3cbfce2d559879c",
+      "14409173071a383272f757e72e3bc51e322b7ec206a709205d1e1b714b87a01e",
+      "d4585aa4cf55db3aac50148d5c09d81ca6bc403900237de91cd6d331232f6d65",
+      "48749ee7b34a9a90142d75373a2769d055c4fd6df72105294a6c189ad57b66fc",
+      "c73e88b3edd5db3ff45fea5050eea2e711d931b92cfe4321ec1abb5cd42be43c",
+      "7946632a0110c3dc7619f7e5ee0a0efe714d1624a58423aa2bd4b166be15aee4"
+    ],
+    "merkle_root": "6d1ede62d0dcd5c5b8814c3130d17c56b63660dbad6f8ec56ec8cd01c3cf620d",
+    "code_commit": "a3987b05db21f0cf3f871cc36f272ddc516c1ec2",
+    "rule_versions": {
+      "landscape_schema": 4,
+      "contract": "4.1",
+      "trialledger": "0.1.0",
+      "derivation_code_root": "bdbe6253f6db6c7a9798911734f519edf556af1ce1afa51c89d04e8895caa0ef",
+      "display": "display-1",
+      "eligibility_sections": "registry-headings-source-passages/1",
+      "registry_checks": 3
+    },
+    "retrieval": {
+      "mode": "direct",
+      "matched": 6,
+      "read": 6,
+      "drug_classes": {
+        "state": "looked_up",
+        "source": "NLM RxClass asked for the EPC and MoA classes of every drug, biological and genetic intervention of the studies read, and RxNav for the RxNorm identity, ATC classes and structure of each experimental arm's drug, biological or genetic intervention only; cached in the run folder's classes.json"
+      }
+    },
+    "input_digests": {
+      "request.json": "7a30c83435fdc39b53bf3fc13c8b494b7e4efd8dc0aa92cf440ba9e4442efde0",
+      "resolution.json": "ec3a5be9da9d0990256ad1830e9f9a78e065b538b37c8ec5f94cc95bd20c87c6",
+      "scope.json": "cc6aeb8c4c913febf3f996fd90d3625c94a0feaa88823e5d072e38f63e5b7cb2",
+      "classes.json": "1573500f2c45370f615991b720280ca803d4399416e600ab6bbaeeece42ce130"
+    }
+  },
+  "pairs": [
+    {
+      "request": "reasoning/NCT02296125-PS-reading-withdrawn-request.json",
+      "result": "reasoning/NCT02296125-PS-reading-withdrawn-result.json",
+      "code": "complete",
+      "problems": []
+    },
+    {
+      "request": "reasoning/NCT02296125-setting-request.json",
+      "result": "reasoning/NCT02296125-setting-result.json",
+      "code": "complete",
+      "problems": []
+    },
+    {
+      "request": "reasoning/NCT02474355-setting-request.json",
+      "result": "reasoning/NCT02474355-setting-result.json",
+      "code": "complete",
+      "problems": []
+    },
+    {
+      "request": "reasoning/NCT05015608-setting-request.json",
+      "result": "reasoning/NCT05015608-setting-result.json",
+      "code": "complete",
+      "problems": []
+    },
+    {
+      "request": "reasoning/partial-source-corpus-request.json",
+      "result": "reasoning/partial-source-corpus-result.json",
+      "code": "refused",
+      "problems": [
+        "elements_without_typed_premises:0"
+      ]
+    },
+    {
+      "request": "reasoning/source-age-and-pending-readings-corpus-request.json",
+      "result": "reasoning/source-age-and-pending-readings-corpus-result.json",
+      "code": "complete",
+      "problems": []
+    }
+  ],
+  "clinical_bindings": "All clinical readings are analyst-authored proposed interpretations, not clinician-confirmed premises. Age is a named structured source rule.",
+  "replay_verification": "trialledger verify source_run: verified; record/workbook reproduce from retained evidence, not a clinical-truth certificate.",
+  "limitations": [
+    "Small random sample within one declared drug/condition/phase/status search, not statistical validation.",
+    "First corpus request refused an inconsistent structural typed declaration; retained alongside the explained correction.",
+    "The complete proposed session is not yet implemented.",
+    "No code changes, new Detective pin, performance claim or full suite run in this planning pass."
+  ],
+  "files": {
+    "bodies/ids-001.json": "69877d1d557ac9b5f6c1bba9b58723ef8622ab9db36733995ce2874060f33d11",
+    "bodies/studies-001.json": "bcd98e71e75bbe210a8d7cf0d66732ce3e0a3d45fa0840ef16242f18cd6c6450",
+    "bodies/version-end.json": "9eb0e46583efc444c5877db64a361ff539a68ea4f56332958999a5acb39c8553",
+    "bodies/version-start.json": "9eb0e46583efc444c5877db64a361ff539a68ea4f56332958999a5acb39c8553",
+    "classes.json": "1573500f2c45370f615991b720280ca803d4399416e600ab6bbaeeece42ce130",
+    "fetches.json": "76a27effd93e2bc1a7975276bae6d3171a02b837277f7d3d31920e15dd1003b9",
+    "landscape.json": "b7bb6d2b53985277f94e90ffa3106173c0e0de5d449f55a1932199b20b990ec5",
+    "landscape.xlsx": "1fdaee35b5c99ba6a939fe00d76905945ab282f717fe3191326511516c51bfa3",
+    "lookups/lookup-001.json": "83e67e89f05d4128a7df68cab6d6f0c913f0981f1f96e77b8dc8823e516fdd30",
+    "lookups/lookup-002.json": "dbf776d7b658983a8af9b9d099f3d73e8cbdc647ce39de0bd01fc19620463983",
+    "lookups/lookup-003.json": "5bf27a2a613b879d76a813d7a29682e45d76abeadcc1fbe98ec396a23e62a8ba",
+    "lookups/release-end.json": "83e67e89f05d4128a7df68cab6d6f0c913f0981f1f96e77b8dc8823e516fdd30",
+    "lookups.json": "1c6e974d24884ce6a1fb361c26008ac2f5d505cf514227fce2dee1c79cfdce25",
+    "manifest.json": "a2263c80582016985dc04f8d67645add7ddf1bef34213c196d5c0542154d8bdb",
+    "reasoning/NCT02296125-PS-reading-withdrawn-request.json": "796976ca9d701c49fea2aeb48d94d249558e6e64f0abe68cc84e05fbbc4df560",
+    "reasoning/NCT02296125-PS-reading-withdrawn-result.json": "9f46c813223530491bcdcad286d909ea8d559e5560045ba4fc8dbc7c584a3e09",
+    "reasoning/NCT02296125-setting-request.json": "7c38aa0f440f292bff07c226c7902039acb379e5fa773591642f166199e61576",
+    "reasoning/NCT02296125-setting-result.json": "5e5746ec15d202630fd74d011cce95cc1d11b13ec136ef9dba66d4f719ade715",
+    "reasoning/NCT02474355-setting-request.json": "a32cc5c5ef2aa91dc7b6270878b4be11961e2df408bdcc2f099a8fff7edc3c3e",
+    "reasoning/NCT02474355-setting-result.json": "3ae432d5c27d17c71df0beff19a18fbdcde33132c7fac38568bd170be0827096",
+    "reasoning/NCT05015608-setting-request.json": "7c78c3bd809b59b6810fb84f565d85fb43131247e1f2a37665510efcf8a6048e",
+    "reasoning/NCT05015608-setting-result.json": "30687a38e670f315a53681e9ce6c25611af7b5a67ea30944c62198c167c3fd1a",
+    "reasoning/partial-source-corpus-request.json": "48e320a9a0be2cfb8113a1b8aa7bd1cd4e78b67e3addbce52399cf7d5b78fdf0",
+    "reasoning/partial-source-corpus-result.json": "eac8e6dd738c992483423918a5b99738f5a51e4f91ca3ebeae2bc2a9ea905cca",
+    "reasoning/source-age-and-pending-readings-corpus-request.json": "fd8953567c049ba7e92232aa058c305496271adf13d0603628f8bf0f44db451f",
+    "reasoning/source-age-and-pending-readings-corpus-result.json": "9955a625b87e5b9bf8db3237200b8db308b6b2a0073a8a9888126369c67906d4",
+    "reasoning/summary.json": "43781dc0feca8e4a618c75cd111bdfaec2ff4f0a95456b71b62dea8a2b3676fe",
+    "request.json": "7a30c83435fdc39b53bf3fc13c8b494b7e4efd8dc0aa92cf440ba9e4442efde0",
+    "resolution.json": "ec3a5be9da9d0990256ad1830e9f9a78e065b538b37c8ec5f94cc95bd20c87c6",
+    "scope.json": "cc6aeb8c4c913febf3f996fd90d3625c94a0feaa88823e5d072e38f63e5b7cb2"
+  }
+}

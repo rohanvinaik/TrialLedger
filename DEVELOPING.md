@@ -180,6 +180,81 @@ source/admission sessions, comparing complete JSON and recording call edges plus
 reachability receipt, not semantic proof. Adversarial tests provide separate behavior evidence. Reporting
 partial outcomes use only source-defined conventions and never import the clinical reasoning layer.
 
+## Model-operated clinical workflow check
+
+After each substantial implementation change or documentation-focused semantic change, the assistant works
+through a sensible clinical question on a fresh registry sample. Coherent edits can be checked as one change;
+an arbitrary task-group boundary does not replace this trigger. This is a model-operated development action
+outside CI, not a new software gate or an automatic clinical encoder. Use a different trial category from
+the preceding walkthrough, such as another indication or study type, and record the category. Rotate beyond
+NSCLC without applying its coordinate rules outside their declared domain.
+
+The purpose is to test the available path from the person's question to evidence, typed reasoning, a
+meaningful revision and a usable decision handoff. Look for a documented promise the person cannot carry out,
+a missing consumer, a silently narrowed interpretation or information lost between stages. Fixed teaching
+examples and green tests do not perform this check.
+
+1. **Choose the question before inspecting favorable records.** State an ordinary clinical-development task:
+   population selection, treatment setting, comparator eligibility, assessment plan, analysis coverage or
+   endpoint prerequisites. State what a useful answer would look like.
+2. **Retrieve through TrialLedger.** Check capabilities when the environment changed, preview a coherent
+   registry search and gather its complete declared scope or a separately declared ID sample. Preserve exact
+   requests, scope, raw bodies and source identities. A partial page is not a complete search. If retrieval is
+   unavailable, retain the specific gap and identify any retained-evidence fallback as such, not a fresh pull.
+3. **Draw and record a fresh sample.** Write a random seed before reading the selected studies and sample from
+   the retrieved identifier pool. Retain the pool and selection rule. Two or three trials usually suffice for
+   the walkthrough. Keep clinically heterogeneous or awkward selections; if a clinical filter changes the
+   sample, retain the exclusions and reasons. Randomness guards against fitting to familiar examples; it does
+   not establish representative clinical validation.
+4. **Read complete clinical units.** Read the selected studies' eligibility and relevant population/group
+   definitions, measures, denominators, time and flow context. Work out what a trial designer would ask next.
+   Matching names or totals do not establish population, scale, event or endpoint identity. Preserve material
+   alternatives and unexplained conflicts.
+5. **Use the relevant available system.** Compile named direct source rules, inspect source checks and anchor
+   passages/readings. Run the applicable assertion, signal, interpretation, coordinate and corpus operations;
+   unrelated calls do not improve the check. Read the actual prepared premises and complete deciding result
+   units, and retain full request/result files. Record unavailable integrations as findings rather than supply
+   their missing conclusions yourself.
+6. **Revise one consequential premise.** Change a design choice, retract a binding, move a boundary or leave a
+   disputed reading proposed, then rerun the actual operations. Check that dependent answers change or reopen
+   while independent information remains. Never rewrite the source to fit the revision.
+7. **Hand off the decision.** Present the clinical question, source evidence, exact conditional consequences,
+   remaining choices and evidence/translation/computation tasks. Check that the person can tell which next
+   action helps. One restriction is not whole-patient eligibility; compatibility is not protocol identity;
+   historical frequency is not a design obligation.
+8. **Retain findings and their remedies.** Save the question, scope, category, seed, pool, sample, source
+   identities, operations, changed premise, observed consequence and open issues. Distinguish a wiring defect,
+   unsupported capability, unresolved interpretation, evidence gap and unfinished computation. Link each
+   actionable finding to its counterexample and owner. Do not replace a failed sample or silently amend its
+   evidence. Resolve in-scope findings or retain them for the next bounded change.
+
+Report one short clinical walkthrough and the concrete findings. Keep formal test and mutation receipts
+separate from the model's reading. A walkthrough tests the thesis at the user-facing boundaries exercised;
+it does not certify the whole system or automatic encoding accuracy. `verify` checks reproduction of an
+existing saved record and workbook; missing artifacts require a separately established regeneration path.
+
+### Walkthrough retention
+
+Decide retention before acquisition. Capture complete raw responses locally, but commit the reviewable
+clinical README/decision list, query and sampling record, complete reasoning request/result pairs (including
+the consequential revision), and a receipt. The receipt records source IDs, retrieval time and locators,
+raw-body and snapshot fingerprints, writing code/rule versions, commands, parity/verification outcomes,
+file hashes and retained byte counts. A needed source snapshot embedded in a request remains part of that
+complete input; do not remove it to reduce size. Do not truncate results or silently shorten source text.
+
+Keep one canonical returned result where CLI/MCP results were compared for equality, recording both
+entry-point checks and their identities in the receipt. Duplicate wire captures, intermediate exports,
+full workbook/report copies and unrelated raw search bodies stay in the local retained packet, with a
+checksum and retrieval location. Preserve that packet and verify its bytes before removing redundant
+repository copies. Use expanded files for authored prototypes and other artifacts reviewers must inspect;
+do not hide implementation or schema choices in an archive.
+
+State the distinction in each README: the committed complete inputs support layer-two replay under the
+writing version; layer-one workbook verification additionally needs the retained full report and source
+packet. A registry re-fetch by NCT ID and time is a new observation, not guaranteed recovery of historical
+bytes. If exact evidence is unavailable, report that limitation rather than relabel the new pull as replay.
+Record actual file/byte counts and avoid committing the same raw capture beside every derived artifact.
+
 ## Verification
 
 Trace production consumers and duplicate paths before behavior edits. Use symbolic/AST inspection, read

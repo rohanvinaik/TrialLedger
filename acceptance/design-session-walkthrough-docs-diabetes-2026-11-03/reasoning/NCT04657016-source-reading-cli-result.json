@@ -1,0 +1,2887 @@
+{
+ "code": "complete",
+ "operation": "source_assertions",
+ "result": {
+  "source": {
+   "nct": "NCT04657016",
+   "digest": "f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b",
+   "study_ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b",
+   "version": "f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b",
+   "last_update": {
+    "date": "2024-05-16",
+    "type": "ACTUAL"
+   }
+  },
+  "anchors": [
+   {
+    "id": "whole-eligibility",
+    "address": "/protocolSection/eligibilityModule/eligibilityCriteria",
+    "digest": "f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b",
+    "value": "Inclusion Criteria:\n\n* Have a body mass index (BMI) ≥30 kg/m2 or ≥27 kg/m2 and previously diagnosed with at least 1 of the following comorbidities: hypertension, dyslipidemia, obstructive sleep apnea or cardiovascular disease\n* History of at least one unsuccessful dietary effort to lose body weight\n\nExclusion Criteria:\n\n* Diabetes mellitus\n* Change in body weight greater than 5 kg within 3 months prior to starting study\n* Obesity induced by other endocrinologic disorders or monogenetic or syndromic forms of obesity\n* History of pancreatitis\n* Family or personal history of medullary thyroid carcinoma (MTC) or multiple endocrine neoplasia syndrome type 2 (MEN-2)\n* History of significant active or unstable major depressive disorder (MDD) or other severe psychiatric disorder within the last 2 years\n* Any lifetime history of a suicide attempt",
+    "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:849",
+    "source": {
+     "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b",
+     "version": "f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b",
+     "address": "/protocolSection/eligibilityModule/eligibilityCriteria",
+     "digest": "f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b"
+    },
+    "code": "located",
+    "span": {
+     "start": 0,
+     "end": 849,
+     "text": "Inclusion Criteria:\n\n* Have a body mass index (BMI) ≥30 kg/m2 or ≥27 kg/m2 and previously diagnosed with at least 1 of the following comorbidities: hypertension, dyslipidemia, obstructive sleep apnea or cardiovascular disease\n* History of at least one unsuccessful dietary effort to lose body weight\n\nExclusion Criteria:\n\n* Diabetes mellitus\n* Change in body weight greater than 5 kg within 3 months prior to starting study\n* Obesity induced by other endocrinologic disorders or monogenetic or syndromic forms of obesity\n* History of pancreatitis\n* Family or personal history of medullary thyroid carcinoma (MTC) or multiple endocrine neoplasia syndrome type 2 (MEN-2)\n* History of significant active or unstable major depressive disorder (MDD) or other severe psychiatric disorder within the last 2 years\n* Any lifetime history of a suicide attempt"
+    }
+   },
+   {
+    "id": "complete-arms",
+    "address": "/protocolSection/armsInterventionsModule/armGroups",
+    "digest": "f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b",
+    "value": [
+     {
+      "label": "Tirzepatide",
+      "type": "EXPERIMENTAL",
+      "description": "Participants received weekly doses of tirzepatide subcutaneously (SC) for 72 weeks, starting at 2.5 milligrams (mg) for 4 weeks. Subsequently, the dose was increased by 2.5 mg every 4 weeks up to the maximum tolerated dose (MTD) of either 10 mg or 15 mg.",
+      "interventionNames": [
+       "Drug: Tirzepatide"
+      ]
+     },
+     {
+      "label": "Placebo",
+      "type": "PLACEBO_COMPARATOR",
+      "description": "Participants received matching placebo SC once weekly (QW).",
+      "interventionNames": [
+       "Other: Placebo"
+      ]
+     }
+    ],
+    "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/armsInterventionsModule/armGroups",
+    "source": {
+     "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b",
+     "version": "f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b",
+     "address": "/protocolSection/armsInterventionsModule/armGroups",
+     "digest": "f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b"
+    },
+    "code": "located"
+   },
+   {
+    "id": "registered-primary-outcomes",
+    "address": "/protocolSection/outcomesModule/primaryOutcomes",
+    "digest": "f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b",
+    "value": [
+     {
+      "measure": "Percent Change From Baseline in Body Weight",
+      "description": "Percent change from baseline in body weight. Least Squares (LS) mean was determined by mixed-model repeated measures (MMRM) model for post-baseline measures: Variable = Baseline + Analysis Country + Sex + Treatment + Time + Treatment\\*Time (Type III sum of squares).",
+      "timeFrame": "Baseline, 72 Weeks"
+     },
+     {
+      "measure": "Percentage of Participants With Greater Than or Equal to (≥) 5% Body Weight Reduction",
+      "description": "Percentage of participants with ≥5% body weight reduction was analysed by Logistic regression model using imputed data with baseline body weight, Analysis Country, Sex, Treatment as factors.",
+      "timeFrame": "Week 72"
+     }
+    ],
+    "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/outcomesModule/primaryOutcomes",
+    "source": {
+     "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b",
+     "version": "f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b",
+     "address": "/protocolSection/outcomesModule/primaryOutcomes",
+     "digest": "f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b"
+    },
+    "code": "located"
+   }
+  ],
+  "fixed": {
+   "assertions": [
+    {
+     "applicability": {
+      "class": "Always"
+     },
+     "body": {
+      "class": "Literal",
+      "evidence": [
+       {
+        "class": "Evidence",
+        "kind": "record_field",
+        "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/eligibilityModule/minimumAge"
+       }
+      ],
+      "polarity": "positive",
+      "predicate": {
+       "class": "Predicate",
+       "key": "age",
+       "kind": "measurement"
+      },
+      "qualifiers": {
+       "class": "Always"
+      },
+      "subject": {
+       "class": "Subject",
+       "kind": "participant",
+       "referent": ""
+      },
+      "time": null,
+      "value": {
+       "class": "Value",
+       "comparison": "ge",
+       "inclusivity": "unspecified",
+       "kind": "quantity",
+       "members": [],
+       "number": 18.0,
+       "unit": "Years",
+       "upper": null
+      }
+     },
+     "branch": {
+      "class": "Branch",
+      "node": "unresolved",
+      "path": []
+     },
+     "class": "ScopedAssertion",
+     "cohort": {
+      "class": "Scope",
+      "kind": "all_participants",
+      "parts": [],
+      "ref": ""
+     },
+     "criterion_ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/eligibilityModule/minimumAge",
+     "id": "registry-age-minimumAge",
+     "modality": "required",
+     "resolution": "resolved",
+     "rule": {
+      "answers": [],
+      "class": "Rule",
+      "id": "ctg-structured-general-eligibility-age",
+      "premises": [
+       "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/eligibilityModule/minimumAge"
+      ],
+      "version": "1",
+      "warrants": []
+     },
+     "span": [],
+     "status": "known"
+    }
+   ],
+   "signals": []
+  },
+  "interpretations": [
+   {
+    "id": "source-reading",
+    "label": "Proposed eligibility reading; comparator and endpoint context retained separately",
+    "origin": "assistant",
+    "basis": [
+     "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:849",
+     "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/armsInterventionsModule/armGroups",
+     "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/outcomesModule/primaryOutcomes",
+     "hypothesis:source-location-is-not-semantic-warrant"
+    ],
+    "assumptions": [
+     {
+      "applicability": {
+       "class": "Always"
+      },
+      "body": {
+       "class": "Literal",
+       "evidence": [
+        {
+         "class": "Evidence",
+         "kind": "text_span",
+         "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:849"
+        },
+        {
+         "class": "Evidence",
+         "kind": "record_field",
+         "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/armsInterventionsModule/armGroups"
+        },
+        {
+         "class": "Evidence",
+         "kind": "record_field",
+         "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/outcomesModule/primaryOutcomes"
+        }
+       ],
+       "polarity": "positive",
+       "predicate": {
+        "class": "Predicate",
+        "key": "diabetes_mellitus_present",
+        "kind": "condition_status"
+       },
+       "qualifiers": {
+        "class": "Always"
+       },
+       "subject": {
+        "class": "Subject",
+        "kind": "participant",
+        "referent": ""
+       },
+       "time": null,
+       "value": {
+        "class": "Value",
+        "comparison": "eq",
+        "inclusivity": "unspecified",
+        "kind": "boolean",
+        "members": [],
+        "number": null,
+        "unit": "",
+        "upper": null
+       }
+      },
+      "branch": {
+       "class": "Branch",
+       "node": "unresolved",
+       "path": []
+      },
+      "class": "ScopedAssertion",
+      "cohort": {
+       "class": "Scope",
+       "kind": "all_participants",
+       "parts": [],
+       "ref": ""
+      },
+      "criterion_ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:849|ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/armsInterventionsModule/armGroups|ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/outcomesModule/primaryOutcomes",
+      "id": "diabetes-exclusion",
+      "modality": "excluded",
+      "resolution": "resolved",
+      "rule": {
+       "answers": [],
+       "class": "Rule",
+       "id": "source-anchored-hypothesis",
+       "premises": [
+        "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:849",
+        "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/armsInterventionsModule/armGroups",
+        "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/outcomesModule/primaryOutcomes"
+       ],
+       "version": "1",
+       "warrants": [
+        "hypothesis:source-location-is-not-semantic-warrant"
+       ]
+      },
+      "span": [
+       {
+        "class": "Span",
+        "end": 849.0,
+        "start": 0.0
+       }
+      ],
+      "status": "proposed"
+     },
+     {
+      "applicability": {
+       "class": "Always"
+      },
+      "body": {
+       "class": "AnyOf",
+       "parts": [
+        {
+         "class": "Literal",
+         "evidence": [
+          {
+           "class": "Evidence",
+           "kind": "text_span",
+           "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:849"
+          },
+          {
+           "class": "Evidence",
+           "kind": "record_field",
+           "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/armsInterventionsModule/armGroups"
+          },
+          {
+           "class": "Evidence",
+           "kind": "record_field",
+           "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/outcomesModule/primaryOutcomes"
+          }
+         ],
+         "polarity": "positive",
+         "predicate": {
+          "class": "Predicate",
+          "key": "BMI",
+          "kind": "measurement"
+         },
+         "qualifiers": {
+          "class": "Always"
+         },
+         "subject": {
+          "class": "Subject",
+          "kind": "participant",
+          "referent": ""
+         },
+         "time": null,
+         "value": {
+          "class": "Value",
+          "comparison": "ge",
+          "inclusivity": "unspecified",
+          "kind": "quantity",
+          "members": [],
+          "number": 30.0,
+          "unit": "kg/m2",
+          "upper": null
+         }
+        },
+        {
+         "class": "AllOf",
+         "parts": [
+          {
+           "class": "Literal",
+           "evidence": [
+            {
+             "class": "Evidence",
+             "kind": "text_span",
+             "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:849"
+            },
+            {
+             "class": "Evidence",
+             "kind": "record_field",
+             "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/armsInterventionsModule/armGroups"
+            },
+            {
+             "class": "Evidence",
+             "kind": "record_field",
+             "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/outcomesModule/primaryOutcomes"
+            }
+           ],
+           "polarity": "positive",
+           "predicate": {
+            "class": "Predicate",
+            "key": "BMI",
+            "kind": "measurement"
+           },
+           "qualifiers": {
+            "class": "Always"
+           },
+           "subject": {
+            "class": "Subject",
+            "kind": "participant",
+            "referent": ""
+           },
+           "time": null,
+           "value": {
+            "class": "Value",
+            "comparison": "ge",
+            "inclusivity": "unspecified",
+            "kind": "quantity",
+            "members": [],
+            "number": 27.0,
+            "unit": "kg/m2",
+            "upper": null
+           }
+          },
+          {
+           "class": "AnyOf",
+           "parts": [
+            {
+             "class": "Literal",
+             "evidence": [
+              {
+               "class": "Evidence",
+               "kind": "text_span",
+               "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:849"
+              },
+              {
+               "class": "Evidence",
+               "kind": "record_field",
+               "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/armsInterventionsModule/armGroups"
+              },
+              {
+               "class": "Evidence",
+               "kind": "record_field",
+               "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/outcomesModule/primaryOutcomes"
+              }
+             ],
+             "polarity": "positive",
+             "predicate": {
+              "class": "Predicate",
+              "key": "hypertension",
+              "kind": "condition_status"
+             },
+             "qualifiers": {
+              "class": "Always"
+             },
+             "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+             },
+             "time": null,
+             "value": {
+              "class": "Value",
+              "comparison": "eq",
+              "inclusivity": "unspecified",
+              "kind": "boolean",
+              "members": [],
+              "number": null,
+              "unit": "",
+              "upper": null
+             }
+            },
+            {
+             "class": "Literal",
+             "evidence": [
+              {
+               "class": "Evidence",
+               "kind": "text_span",
+               "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:849"
+              },
+              {
+               "class": "Evidence",
+               "kind": "record_field",
+               "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/armsInterventionsModule/armGroups"
+              },
+              {
+               "class": "Evidence",
+               "kind": "record_field",
+               "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/outcomesModule/primaryOutcomes"
+              }
+             ],
+             "polarity": "positive",
+             "predicate": {
+              "class": "Predicate",
+              "key": "dyslipidemia",
+              "kind": "condition_status"
+             },
+             "qualifiers": {
+              "class": "Always"
+             },
+             "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+             },
+             "time": null,
+             "value": {
+              "class": "Value",
+              "comparison": "eq",
+              "inclusivity": "unspecified",
+              "kind": "boolean",
+              "members": [],
+              "number": null,
+              "unit": "",
+              "upper": null
+             }
+            },
+            {
+             "class": "Literal",
+             "evidence": [
+              {
+               "class": "Evidence",
+               "kind": "text_span",
+               "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:849"
+              },
+              {
+               "class": "Evidence",
+               "kind": "record_field",
+               "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/armsInterventionsModule/armGroups"
+              },
+              {
+               "class": "Evidence",
+               "kind": "record_field",
+               "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/outcomesModule/primaryOutcomes"
+              }
+             ],
+             "polarity": "positive",
+             "predicate": {
+              "class": "Predicate",
+              "key": "obstructive_sleep_apnea",
+              "kind": "condition_status"
+             },
+             "qualifiers": {
+              "class": "Always"
+             },
+             "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+             },
+             "time": null,
+             "value": {
+              "class": "Value",
+              "comparison": "eq",
+              "inclusivity": "unspecified",
+              "kind": "boolean",
+              "members": [],
+              "number": null,
+              "unit": "",
+              "upper": null
+             }
+            },
+            {
+             "class": "Literal",
+             "evidence": [
+              {
+               "class": "Evidence",
+               "kind": "text_span",
+               "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:849"
+              },
+              {
+               "class": "Evidence",
+               "kind": "record_field",
+               "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/armsInterventionsModule/armGroups"
+              },
+              {
+               "class": "Evidence",
+               "kind": "record_field",
+               "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/outcomesModule/primaryOutcomes"
+              }
+             ],
+             "polarity": "positive",
+             "predicate": {
+              "class": "Predicate",
+              "key": "cardiovascular_disease",
+              "kind": "condition_status"
+             },
+             "qualifiers": {
+              "class": "Always"
+             },
+             "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+             },
+             "time": null,
+             "value": {
+              "class": "Value",
+              "comparison": "eq",
+              "inclusivity": "unspecified",
+              "kind": "boolean",
+              "members": [],
+              "number": null,
+              "unit": "",
+              "upper": null
+             }
+            }
+           ]
+          }
+         ]
+        }
+       ]
+      },
+      "branch": {
+       "class": "Branch",
+       "node": "unresolved",
+       "path": []
+      },
+      "class": "ScopedAssertion",
+      "cohort": {
+       "class": "Scope",
+       "kind": "all_participants",
+       "parts": [],
+       "ref": ""
+      },
+      "criterion_ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:849|ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/armsInterventionsModule/armGroups|ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/outcomesModule/primaryOutcomes",
+      "id": "BMI-or-comorbidity",
+      "modality": "required",
+      "resolution": "resolved",
+      "rule": {
+       "answers": [],
+       "class": "Rule",
+       "id": "source-anchored-hypothesis",
+       "premises": [
+        "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:849",
+        "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/armsInterventionsModule/armGroups",
+        "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/outcomesModule/primaryOutcomes"
+       ],
+       "version": "1",
+       "warrants": [
+        "hypothesis:source-location-is-not-semantic-warrant"
+       ]
+      },
+      "span": [
+       {
+        "class": "Span",
+        "end": 849.0,
+        "start": 0.0
+       }
+      ],
+      "status": "proposed"
+     }
+    ],
+    "signals": [],
+    "signal_claims": [],
+    "binding_uses": []
+   }
+  ],
+  "bindings": [],
+  "coverage": [
+   {
+    "address": "/protocolSection/eligibilityModule/minimumAge",
+    "code": "compiled",
+    "value": "18 Years",
+    "assertion": "registry-age-minimumAge",
+    "rule": "ctg-structured-general-eligibility-age",
+    "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/eligibilityModule/minimumAge"
+   },
+   {
+    "address": "/protocolSection/eligibilityModule/maximumAge",
+    "code": "missing",
+    "value": null
+   },
+   {
+    "address": "/protocolSection/eligibilityModule/eligibilityCriteria",
+    "code": "unresolved_retained",
+    "value": "Inclusion Criteria:\n\n* Have a body mass index (BMI) ≥30 kg/m2 or ≥27 kg/m2 and previously diagnosed with at least 1 of the following comorbidities: hypertension, dyslipidemia, obstructive sleep apnea or cardiovascular disease\n* History of at least one unsuccessful dietary effort to lose body weight\n\nExclusion Criteria:\n\n* Diabetes mellitus\n* Change in body weight greater than 5 kg within 3 months prior to starting study\n* Obesity induced by other endocrinologic disorders or monogenetic or syndromic forms of obesity\n* History of pancreatitis\n* Family or personal history of medullary thyroid carcinoma (MTC) or multiple endocrine neoplasia syndrome type 2 (MEN-2)\n* History of significant active or unstable major depressive disorder (MDD) or other severe psychiatric disorder within the last 2 years\n* Any lifetime history of a suicide attempt"
+   },
+   {
+    "address": "/protocolSection/eligibilityModule/healthyVolunteers",
+    "code": "unresolved_retained",
+    "value": false
+   },
+   {
+    "address": "/protocolSection/eligibilityModule/sex",
+    "code": "unresolved_retained",
+    "value": "ALL"
+   },
+   {
+    "address": "/protocolSection/eligibilityModule/stdAges",
+    "code": "unresolved_retained",
+    "value": [
+     "ADULT",
+     "OLDER_ADULT"
+    ]
+   },
+   {
+    "address": "/resultsSection",
+    "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/resultsSection",
+    "code": "unresolved_retained",
+    "reason": "outside_structured_age_direct_rules"
+   },
+   {
+    "address": "/documentSection",
+    "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/documentSection",
+    "code": "unresolved_retained",
+    "reason": "outside_structured_age_direct_rules"
+   },
+   {
+    "address": "/derivedSection",
+    "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/derivedSection",
+    "code": "unresolved_retained",
+    "reason": "outside_structured_age_direct_rules"
+   },
+   {
+    "address": "/hasResults",
+    "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/hasResults",
+    "code": "unresolved_retained",
+    "reason": "outside_structured_age_direct_rules"
+   },
+   {
+    "address": "/protocolSection/identificationModule",
+    "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/identificationModule",
+    "code": "unresolved_retained",
+    "reason": "outside_structured_age_direct_rules"
+   },
+   {
+    "address": "/protocolSection/statusModule",
+    "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/statusModule",
+    "code": "unresolved_retained",
+    "reason": "outside_structured_age_direct_rules"
+   },
+   {
+    "address": "/protocolSection/sponsorCollaboratorsModule",
+    "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/sponsorCollaboratorsModule",
+    "code": "unresolved_retained",
+    "reason": "outside_structured_age_direct_rules"
+   },
+   {
+    "address": "/protocolSection/oversightModule",
+    "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/oversightModule",
+    "code": "unresolved_retained",
+    "reason": "outside_structured_age_direct_rules"
+   },
+   {
+    "address": "/protocolSection/descriptionModule",
+    "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/descriptionModule",
+    "code": "unresolved_retained",
+    "reason": "outside_structured_age_direct_rules"
+   },
+   {
+    "address": "/protocolSection/conditionsModule",
+    "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/conditionsModule",
+    "code": "unresolved_retained",
+    "reason": "outside_structured_age_direct_rules"
+   },
+   {
+    "address": "/protocolSection/designModule",
+    "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/designModule",
+    "code": "unresolved_retained",
+    "reason": "outside_structured_age_direct_rules"
+   },
+   {
+    "address": "/protocolSection/armsInterventionsModule",
+    "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/armsInterventionsModule",
+    "code": "unresolved_retained",
+    "reason": "outside_structured_age_direct_rules"
+   },
+   {
+    "address": "/protocolSection/outcomesModule",
+    "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/outcomesModule",
+    "code": "unresolved_retained",
+    "reason": "outside_structured_age_direct_rules"
+   },
+   {
+    "address": "/protocolSection/contactsLocationsModule",
+    "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/contactsLocationsModule",
+    "code": "unresolved_retained",
+    "reason": "outside_structured_age_direct_rules"
+   },
+   {
+    "address": "/protocolSection/referencesModule",
+    "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/referencesModule",
+    "code": "unresolved_retained",
+    "reason": "outside_structured_age_direct_rules"
+   },
+   {
+    "address": "/protocolSection/ipdSharingStatementModule",
+    "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/ipdSharingStatementModule",
+    "code": "unresolved_retained",
+    "reason": "outside_structured_age_direct_rules"
+   }
+  ],
+  "submitted": {
+   "interpretations": [
+    {
+     "id": "source-reading",
+     "label": "Proposed eligibility reading; comparator and endpoint context retained separately",
+     "origin": "assistant",
+     "basis": [
+      "investigation:source-bound-selected-reading-not-complete-eligibility-compilation",
+      "investigation:not-confirmed-by-a-clinical-user"
+     ],
+     "assumptions": [
+      {
+       "applicability": {
+        "class": "Always"
+       },
+       "body": {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "diabetes_mellitus_present",
+         "kind": "condition_status"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "participant",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       },
+       "branch": {
+        "class": "Branch",
+        "node": "unresolved",
+        "path": []
+       },
+       "class": "ScopedAssertion",
+       "cohort": {
+        "class": "Scope",
+        "kind": "all_participants",
+        "parts": [],
+        "ref": ""
+       },
+       "criterion_ref": "source:whole-eligibility",
+       "id": "diabetes-exclusion",
+       "modality": "excluded",
+       "resolution": "resolved",
+       "rule": {
+        "answers": [],
+        "class": "Rule",
+        "id": "source-anchored-interpretation",
+        "premises": [],
+        "version": "1",
+        "warrants": [
+         "investigation:clinical-reading-not-clinician-confirmed"
+        ]
+       },
+       "span": [],
+       "status": "proposed"
+      },
+      {
+       "applicability": {
+        "class": "Always"
+       },
+       "body": {
+        "class": "AnyOf",
+        "parts": [
+         {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+           "class": "Predicate",
+           "key": "BMI",
+           "kind": "measurement"
+          },
+          "qualifiers": {
+           "class": "Always"
+          },
+          "subject": {
+           "class": "Subject",
+           "kind": "participant",
+           "referent": ""
+          },
+          "time": null,
+          "value": {
+           "class": "Value",
+           "comparison": "ge",
+           "inclusivity": "unspecified",
+           "kind": "quantity",
+           "members": [],
+           "number": 30.0,
+           "unit": "kg/m2",
+           "upper": null
+          }
+         },
+         {
+          "class": "AllOf",
+          "parts": [
+           {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+             "class": "Predicate",
+             "key": "BMI",
+             "kind": "measurement"
+            },
+            "qualifiers": {
+             "class": "Always"
+            },
+            "subject": {
+             "class": "Subject",
+             "kind": "participant",
+             "referent": ""
+            },
+            "time": null,
+            "value": {
+             "class": "Value",
+             "comparison": "ge",
+             "inclusivity": "unspecified",
+             "kind": "quantity",
+             "members": [],
+             "number": 27.0,
+             "unit": "kg/m2",
+             "upper": null
+            }
+           },
+           {
+            "class": "AnyOf",
+            "parts": [
+             {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+               "class": "Predicate",
+               "key": "hypertension",
+               "kind": "condition_status"
+              },
+              "qualifiers": {
+               "class": "Always"
+              },
+              "subject": {
+               "class": "Subject",
+               "kind": "participant",
+               "referent": ""
+              },
+              "time": null,
+              "value": {
+               "class": "Value",
+               "comparison": "eq",
+               "inclusivity": "unspecified",
+               "kind": "boolean",
+               "members": [],
+               "number": null,
+               "unit": "",
+               "upper": null
+              }
+             },
+             {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+               "class": "Predicate",
+               "key": "dyslipidemia",
+               "kind": "condition_status"
+              },
+              "qualifiers": {
+               "class": "Always"
+              },
+              "subject": {
+               "class": "Subject",
+               "kind": "participant",
+               "referent": ""
+              },
+              "time": null,
+              "value": {
+               "class": "Value",
+               "comparison": "eq",
+               "inclusivity": "unspecified",
+               "kind": "boolean",
+               "members": [],
+               "number": null,
+               "unit": "",
+               "upper": null
+              }
+             },
+             {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+               "class": "Predicate",
+               "key": "obstructive_sleep_apnea",
+               "kind": "condition_status"
+              },
+              "qualifiers": {
+               "class": "Always"
+              },
+              "subject": {
+               "class": "Subject",
+               "kind": "participant",
+               "referent": ""
+              },
+              "time": null,
+              "value": {
+               "class": "Value",
+               "comparison": "eq",
+               "inclusivity": "unspecified",
+               "kind": "boolean",
+               "members": [],
+               "number": null,
+               "unit": "",
+               "upper": null
+              }
+             },
+             {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+               "class": "Predicate",
+               "key": "cardiovascular_disease",
+               "kind": "condition_status"
+              },
+              "qualifiers": {
+               "class": "Always"
+              },
+              "subject": {
+               "class": "Subject",
+               "kind": "participant",
+               "referent": ""
+              },
+              "time": null,
+              "value": {
+               "class": "Value",
+               "comparison": "eq",
+               "inclusivity": "unspecified",
+               "kind": "boolean",
+               "members": [],
+               "number": null,
+               "unit": "",
+               "upper": null
+              }
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       "branch": {
+        "class": "Branch",
+        "node": "unresolved",
+        "path": []
+       },
+       "class": "ScopedAssertion",
+       "cohort": {
+        "class": "Scope",
+        "kind": "all_participants",
+        "parts": [],
+        "ref": ""
+       },
+       "criterion_ref": "source:whole-eligibility",
+       "id": "BMI-or-comorbidity",
+       "modality": "required",
+       "resolution": "resolved",
+       "rule": {
+        "answers": [],
+        "class": "Rule",
+        "id": "source-anchored-interpretation",
+        "premises": [],
+        "version": "1",
+        "warrants": [
+         "investigation:clinical-reading-not-clinician-confirmed"
+        ]
+       },
+       "span": [],
+       "status": "proposed"
+      }
+     ],
+     "signals": [],
+     "signal_claims": [],
+     "binding_uses": [],
+     "anchors": [
+      "whole-eligibility",
+      "complete-arms",
+      "registered-primary-outcomes"
+     ]
+    }
+   ],
+   "bindings": []
+  },
+  "requests": [
+   {
+    "operation": "interpretations",
+    "study_ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b",
+    "fixed": {
+     "assertions": [
+      {
+       "applicability": {
+        "class": "Always"
+       },
+       "body": {
+        "class": "Literal",
+        "evidence": [
+         {
+          "class": "Evidence",
+          "kind": "record_field",
+          "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/eligibilityModule/minimumAge"
+         }
+        ],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "age",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "participant",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "ge",
+         "inclusivity": "unspecified",
+         "kind": "quantity",
+         "members": [],
+         "number": 18.0,
+         "unit": "Years",
+         "upper": null
+        }
+       },
+       "branch": {
+        "class": "Branch",
+        "node": "unresolved",
+        "path": []
+       },
+       "class": "ScopedAssertion",
+       "cohort": {
+        "class": "Scope",
+        "kind": "all_participants",
+        "parts": [],
+        "ref": ""
+       },
+       "criterion_ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/eligibilityModule/minimumAge",
+       "id": "registry-age-minimumAge",
+       "modality": "required",
+       "resolution": "resolved",
+       "rule": {
+        "answers": [],
+        "class": "Rule",
+        "id": "ctg-structured-general-eligibility-age",
+        "premises": [
+         "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/eligibilityModule/minimumAge"
+        ],
+        "version": "1",
+        "warrants": []
+       },
+       "span": [],
+       "status": "known"
+      }
+     ],
+     "signals": []
+    },
+    "bindings": [],
+    "interpretations": [
+     {
+      "id": "source-reading",
+      "label": "Proposed eligibility reading; comparator and endpoint context retained separately",
+      "origin": "assistant",
+      "basis": [
+       "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:849",
+       "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/armsInterventionsModule/armGroups",
+       "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/outcomesModule/primaryOutcomes",
+       "hypothesis:source-location-is-not-semantic-warrant"
+      ],
+      "assumptions": [
+       {
+        "applicability": {
+         "class": "Always"
+        },
+        "body": {
+         "class": "Literal",
+         "evidence": [
+          {
+           "class": "Evidence",
+           "kind": "text_span",
+           "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:849"
+          },
+          {
+           "class": "Evidence",
+           "kind": "record_field",
+           "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/armsInterventionsModule/armGroups"
+          },
+          {
+           "class": "Evidence",
+           "kind": "record_field",
+           "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/outcomesModule/primaryOutcomes"
+          }
+         ],
+         "polarity": "positive",
+         "predicate": {
+          "class": "Predicate",
+          "key": "diabetes_mellitus_present",
+          "kind": "condition_status"
+         },
+         "qualifiers": {
+          "class": "Always"
+         },
+         "subject": {
+          "class": "Subject",
+          "kind": "participant",
+          "referent": ""
+         },
+         "time": null,
+         "value": {
+          "class": "Value",
+          "comparison": "eq",
+          "inclusivity": "unspecified",
+          "kind": "boolean",
+          "members": [],
+          "number": null,
+          "unit": "",
+          "upper": null
+         }
+        },
+        "branch": {
+         "class": "Branch",
+         "node": "unresolved",
+         "path": []
+        },
+        "class": "ScopedAssertion",
+        "cohort": {
+         "class": "Scope",
+         "kind": "all_participants",
+         "parts": [],
+         "ref": ""
+        },
+        "criterion_ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:849|ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/armsInterventionsModule/armGroups|ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/outcomesModule/primaryOutcomes",
+        "id": "diabetes-exclusion",
+        "modality": "excluded",
+        "resolution": "resolved",
+        "rule": {
+         "answers": [],
+         "class": "Rule",
+         "id": "source-anchored-hypothesis",
+         "premises": [
+          "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:849",
+          "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/armsInterventionsModule/armGroups",
+          "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/outcomesModule/primaryOutcomes"
+         ],
+         "version": "1",
+         "warrants": [
+          "hypothesis:source-location-is-not-semantic-warrant"
+         ]
+        },
+        "span": [
+         {
+          "class": "Span",
+          "end": 849.0,
+          "start": 0.0
+         }
+        ],
+        "status": "proposed"
+       },
+       {
+        "applicability": {
+         "class": "Always"
+        },
+        "body": {
+         "class": "AnyOf",
+         "parts": [
+          {
+           "class": "Literal",
+           "evidence": [
+            {
+             "class": "Evidence",
+             "kind": "text_span",
+             "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:849"
+            },
+            {
+             "class": "Evidence",
+             "kind": "record_field",
+             "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/armsInterventionsModule/armGroups"
+            },
+            {
+             "class": "Evidence",
+             "kind": "record_field",
+             "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/outcomesModule/primaryOutcomes"
+            }
+           ],
+           "polarity": "positive",
+           "predicate": {
+            "class": "Predicate",
+            "key": "BMI",
+            "kind": "measurement"
+           },
+           "qualifiers": {
+            "class": "Always"
+           },
+           "subject": {
+            "class": "Subject",
+            "kind": "participant",
+            "referent": ""
+           },
+           "time": null,
+           "value": {
+            "class": "Value",
+            "comparison": "ge",
+            "inclusivity": "unspecified",
+            "kind": "quantity",
+            "members": [],
+            "number": 30.0,
+            "unit": "kg/m2",
+            "upper": null
+           }
+          },
+          {
+           "class": "AllOf",
+           "parts": [
+            {
+             "class": "Literal",
+             "evidence": [
+              {
+               "class": "Evidence",
+               "kind": "text_span",
+               "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:849"
+              },
+              {
+               "class": "Evidence",
+               "kind": "record_field",
+               "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/armsInterventionsModule/armGroups"
+              },
+              {
+               "class": "Evidence",
+               "kind": "record_field",
+               "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/outcomesModule/primaryOutcomes"
+              }
+             ],
+             "polarity": "positive",
+             "predicate": {
+              "class": "Predicate",
+              "key": "BMI",
+              "kind": "measurement"
+             },
+             "qualifiers": {
+              "class": "Always"
+             },
+             "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+             },
+             "time": null,
+             "value": {
+              "class": "Value",
+              "comparison": "ge",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 27.0,
+              "unit": "kg/m2",
+              "upper": null
+             }
+            },
+            {
+             "class": "AnyOf",
+             "parts": [
+              {
+               "class": "Literal",
+               "evidence": [
+                {
+                 "class": "Evidence",
+                 "kind": "text_span",
+                 "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:849"
+                },
+                {
+                 "class": "Evidence",
+                 "kind": "record_field",
+                 "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/armsInterventionsModule/armGroups"
+                },
+                {
+                 "class": "Evidence",
+                 "kind": "record_field",
+                 "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/outcomesModule/primaryOutcomes"
+                }
+               ],
+               "polarity": "positive",
+               "predicate": {
+                "class": "Predicate",
+                "key": "hypertension",
+                "kind": "condition_status"
+               },
+               "qualifiers": {
+                "class": "Always"
+               },
+               "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+               },
+               "time": null,
+               "value": {
+                "class": "Value",
+                "comparison": "eq",
+                "inclusivity": "unspecified",
+                "kind": "boolean",
+                "members": [],
+                "number": null,
+                "unit": "",
+                "upper": null
+               }
+              },
+              {
+               "class": "Literal",
+               "evidence": [
+                {
+                 "class": "Evidence",
+                 "kind": "text_span",
+                 "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:849"
+                },
+                {
+                 "class": "Evidence",
+                 "kind": "record_field",
+                 "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/armsInterventionsModule/armGroups"
+                },
+                {
+                 "class": "Evidence",
+                 "kind": "record_field",
+                 "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/outcomesModule/primaryOutcomes"
+                }
+               ],
+               "polarity": "positive",
+               "predicate": {
+                "class": "Predicate",
+                "key": "dyslipidemia",
+                "kind": "condition_status"
+               },
+               "qualifiers": {
+                "class": "Always"
+               },
+               "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+               },
+               "time": null,
+               "value": {
+                "class": "Value",
+                "comparison": "eq",
+                "inclusivity": "unspecified",
+                "kind": "boolean",
+                "members": [],
+                "number": null,
+                "unit": "",
+                "upper": null
+               }
+              },
+              {
+               "class": "Literal",
+               "evidence": [
+                {
+                 "class": "Evidence",
+                 "kind": "text_span",
+                 "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:849"
+                },
+                {
+                 "class": "Evidence",
+                 "kind": "record_field",
+                 "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/armsInterventionsModule/armGroups"
+                },
+                {
+                 "class": "Evidence",
+                 "kind": "record_field",
+                 "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/outcomesModule/primaryOutcomes"
+                }
+               ],
+               "polarity": "positive",
+               "predicate": {
+                "class": "Predicate",
+                "key": "obstructive_sleep_apnea",
+                "kind": "condition_status"
+               },
+               "qualifiers": {
+                "class": "Always"
+               },
+               "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+               },
+               "time": null,
+               "value": {
+                "class": "Value",
+                "comparison": "eq",
+                "inclusivity": "unspecified",
+                "kind": "boolean",
+                "members": [],
+                "number": null,
+                "unit": "",
+                "upper": null
+               }
+              },
+              {
+               "class": "Literal",
+               "evidence": [
+                {
+                 "class": "Evidence",
+                 "kind": "text_span",
+                 "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:849"
+                },
+                {
+                 "class": "Evidence",
+                 "kind": "record_field",
+                 "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/armsInterventionsModule/armGroups"
+                },
+                {
+                 "class": "Evidence",
+                 "kind": "record_field",
+                 "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/outcomesModule/primaryOutcomes"
+                }
+               ],
+               "polarity": "positive",
+               "predicate": {
+                "class": "Predicate",
+                "key": "cardiovascular_disease",
+                "kind": "condition_status"
+               },
+               "qualifiers": {
+                "class": "Always"
+               },
+               "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+               },
+               "time": null,
+               "value": {
+                "class": "Value",
+                "comparison": "eq",
+                "inclusivity": "unspecified",
+                "kind": "boolean",
+                "members": [],
+                "number": null,
+                "unit": "",
+                "upper": null
+               }
+              }
+             ]
+            }
+           ]
+          }
+         ]
+        },
+        "branch": {
+         "class": "Branch",
+         "node": "unresolved",
+         "path": []
+        },
+        "class": "ScopedAssertion",
+        "cohort": {
+         "class": "Scope",
+         "kind": "all_participants",
+         "parts": [],
+         "ref": ""
+        },
+        "criterion_ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:849|ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/armsInterventionsModule/armGroups|ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/outcomesModule/primaryOutcomes",
+        "id": "BMI-or-comorbidity",
+        "modality": "required",
+        "resolution": "resolved",
+        "rule": {
+         "answers": [],
+         "class": "Rule",
+         "id": "source-anchored-hypothesis",
+         "premises": [
+          "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:849",
+          "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/armsInterventionsModule/armGroups",
+          "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/outcomesModule/primaryOutcomes"
+         ],
+         "version": "1",
+         "warrants": [
+          "hypothesis:source-location-is-not-semantic-warrant"
+         ]
+        },
+        "span": [
+         {
+          "class": "Span",
+          "end": 849.0,
+          "start": 0.0
+         }
+        ],
+        "status": "proposed"
+       }
+      ],
+      "signals": [],
+      "signal_claims": [],
+      "binding_uses": []
+     }
+    ],
+    "queries": [
+     {
+      "id": "registered-adult-minimum",
+      "body": {
+       "class": "Literal",
+       "evidence": [],
+       "polarity": "positive",
+       "predicate": {
+        "class": "Predicate",
+        "key": "age",
+        "kind": "measurement"
+       },
+       "qualifiers": {
+        "class": "Always"
+       },
+       "subject": {
+        "class": "Subject",
+        "kind": "participant",
+        "referent": ""
+       },
+       "time": null,
+       "value": {
+        "class": "Value",
+        "comparison": "ge",
+        "inclusivity": "unspecified",
+        "kind": "quantity",
+        "members": [],
+        "number": 18.0,
+        "unit": "Years",
+        "upper": null
+       }
+      }
+     },
+     {
+      "id": "diabetes",
+      "body": {
+       "class": "Literal",
+       "subject": {
+        "class": "Subject",
+        "kind": "participant"
+       },
+       "predicate": {
+        "class": "Predicate",
+        "kind": "condition_status",
+        "key": "diabetes_mellitus_present"
+       },
+       "value": {
+        "class": "Value",
+        "kind": "boolean"
+       }
+      }
+     },
+     {
+      "id": "BMI-under-27",
+      "body": {
+       "class": "Literal",
+       "evidence": [],
+       "polarity": "positive",
+       "predicate": {
+        "class": "Predicate",
+        "key": "BMI",
+        "kind": "measurement"
+       },
+       "qualifiers": {
+        "class": "Always"
+       },
+       "subject": {
+        "class": "Subject",
+        "kind": "participant",
+        "referent": ""
+       },
+       "time": null,
+       "value": {
+        "class": "Value",
+        "comparison": "lt",
+        "inclusivity": "unspecified",
+        "kind": "quantity",
+        "members": [],
+        "number": 27.0,
+        "unit": "kg/m2",
+        "upper": null
+       }
+      }
+     },
+     {
+      "id": "must-BMI-at-least-30",
+      "body": {
+       "class": "Literal",
+       "evidence": [],
+       "polarity": "positive",
+       "predicate": {
+        "class": "Predicate",
+        "key": "BMI",
+        "kind": "measurement"
+       },
+       "qualifiers": {
+        "class": "Always"
+       },
+       "subject": {
+        "class": "Subject",
+        "kind": "participant",
+        "referent": ""
+       },
+       "time": null,
+       "value": {
+        "class": "Value",
+        "comparison": "ge",
+        "inclusivity": "unspecified",
+        "kind": "quantity",
+        "members": [],
+        "number": 30.0,
+        "unit": "kg/m2",
+        "upper": null
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "limits": [
+   "Structured ages describe registry general eligibility, not verified actual protocol.",
+   "A located quotation proves quotation only; clinical readings remain hypothetical.",
+   "No unit conversion, automatic binding joins, clinical text interpretation or source mutation."
+  ],
+  "analyses": [
+   {
+    "code": "complete",
+    "operation": "interpretations",
+    "result": {
+     "study_ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b",
+     "fixed": {
+      "assertions": [
+       {
+        "applicability": {
+         "class": "Always"
+        },
+        "body": {
+         "class": "Literal",
+         "evidence": [
+          {
+           "class": "Evidence",
+           "kind": "record_field",
+           "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/eligibilityModule/minimumAge"
+          }
+         ],
+         "polarity": "positive",
+         "predicate": {
+          "class": "Predicate",
+          "key": "age",
+          "kind": "measurement"
+         },
+         "qualifiers": {
+          "class": "Always"
+         },
+         "subject": {
+          "class": "Subject",
+          "kind": "participant",
+          "referent": ""
+         },
+         "time": null,
+         "value": {
+          "class": "Value",
+          "comparison": "ge",
+          "inclusivity": "unspecified",
+          "kind": "quantity",
+          "members": [],
+          "number": 18.0,
+          "unit": "Years",
+          "upper": null
+         }
+        },
+        "branch": {
+         "class": "Branch",
+         "node": "unresolved",
+         "path": []
+        },
+        "class": "ScopedAssertion",
+        "cohort": {
+         "class": "Scope",
+         "kind": "all_participants",
+         "parts": [],
+         "ref": ""
+        },
+        "criterion_ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/eligibilityModule/minimumAge",
+        "id": "registry-age-minimumAge",
+        "modality": "required",
+        "resolution": "resolved",
+        "rule": {
+         "answers": [],
+         "class": "Rule",
+         "id": "ctg-structured-general-eligibility-age",
+         "premises": [
+          "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/eligibilityModule/minimumAge"
+         ],
+         "version": "1",
+         "warrants": []
+        },
+        "span": [],
+        "status": "known"
+       }
+      ],
+      "consistency": {
+       "result": "UNDETERMINED",
+       "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+       "status": null,
+       "proof": [],
+       "blockers": [
+        "no_constraint_mentions_query"
+       ]
+      },
+      "queries": [
+       {
+        "id": "registered-adult-minimum",
+        "body": {
+         "class": "Literal",
+         "evidence": [],
+         "polarity": "positive",
+         "predicate": {
+          "class": "Predicate",
+          "key": "age",
+          "kind": "measurement"
+         },
+         "qualifiers": {
+          "class": "Always"
+         },
+         "subject": {
+          "class": "Subject",
+          "kind": "participant",
+          "referent": ""
+         },
+         "time": null,
+         "value": {
+          "class": "Value",
+          "comparison": "ge",
+          "inclusivity": "unspecified",
+          "kind": "quantity",
+          "members": [],
+          "number": 18.0,
+          "unit": "Years",
+          "upper": null
+         }
+        },
+        "result": "ENTAILED",
+        "decision": {
+         "result": "ENTAILED",
+         "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+         "status": "known",
+         "proof": [
+          "registry-age-minimumAge"
+         ],
+         "blockers": []
+        },
+        "warrant": {
+         "rule": "entail.decide:1",
+         "guarantee": "fixed_floor",
+         "status": "known",
+         "assumptions": [],
+         "proof": [
+          "registry-age-minimumAge"
+         ],
+         "blockers": []
+        }
+       },
+       {
+        "id": "diabetes",
+        "body": {
+         "class": "Literal",
+         "evidence": [],
+         "polarity": "positive",
+         "predicate": {
+          "class": "Predicate",
+          "key": "diabetes_mellitus_present",
+          "kind": "condition_status"
+         },
+         "qualifiers": {
+          "class": "Always"
+         },
+         "subject": {
+          "class": "Subject",
+          "kind": "participant",
+          "referent": ""
+         },
+         "time": null,
+         "value": {
+          "class": "Value",
+          "comparison": "eq",
+          "inclusivity": "unspecified",
+          "kind": "boolean",
+          "members": [],
+          "number": null,
+          "unit": "",
+          "upper": null
+         }
+        },
+        "result": "UNDETERMINED",
+        "decision": {
+         "result": "UNDETERMINED",
+         "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"diabetes_mellitus_present\",\"kind\":\"condition_status\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+         "status": null,
+         "proof": [],
+         "blockers": [
+          "no_constraint_mentions_query"
+         ]
+        },
+        "warrant": {
+         "rule": "entail.decide:1",
+         "guarantee": "fixed_floor",
+         "status": "known",
+         "assumptions": [],
+         "proof": [],
+         "blockers": [
+          "no_constraint_mentions_query"
+         ]
+        }
+       },
+       {
+        "id": "BMI-under-27",
+        "body": {
+         "class": "Literal",
+         "evidence": [],
+         "polarity": "positive",
+         "predicate": {
+          "class": "Predicate",
+          "key": "BMI",
+          "kind": "measurement"
+         },
+         "qualifiers": {
+          "class": "Always"
+         },
+         "subject": {
+          "class": "Subject",
+          "kind": "participant",
+          "referent": ""
+         },
+         "time": null,
+         "value": {
+          "class": "Value",
+          "comparison": "lt",
+          "inclusivity": "unspecified",
+          "kind": "quantity",
+          "members": [],
+          "number": 27.0,
+          "unit": "kg/m2",
+          "upper": null
+         }
+        },
+        "result": "UNDETERMINED",
+        "decision": {
+         "result": "UNDETERMINED",
+         "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"BMI\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"lt\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":27.0,\"unit\":\"kg/m2\",\"upper\":null}}",
+         "status": null,
+         "proof": [],
+         "blockers": [
+          "no_constraint_mentions_query"
+         ]
+        },
+        "warrant": {
+         "rule": "entail.decide:1",
+         "guarantee": "fixed_floor",
+         "status": "known",
+         "assumptions": [],
+         "proof": [],
+         "blockers": [
+          "no_constraint_mentions_query"
+         ]
+        }
+       },
+       {
+        "id": "must-BMI-at-least-30",
+        "body": {
+         "class": "Literal",
+         "evidence": [],
+         "polarity": "positive",
+         "predicate": {
+          "class": "Predicate",
+          "key": "BMI",
+          "kind": "measurement"
+         },
+         "qualifiers": {
+          "class": "Always"
+         },
+         "subject": {
+          "class": "Subject",
+          "kind": "participant",
+          "referent": ""
+         },
+         "time": null,
+         "value": {
+          "class": "Value",
+          "comparison": "ge",
+          "inclusivity": "unspecified",
+          "kind": "quantity",
+          "members": [],
+          "number": 30.0,
+          "unit": "kg/m2",
+          "upper": null
+         }
+        },
+        "result": "UNDETERMINED",
+        "decision": {
+         "result": "UNDETERMINED",
+         "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"BMI\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":30.0,\"unit\":\"kg/m2\",\"upper\":null}}",
+         "status": null,
+         "proof": [],
+         "blockers": [
+          "no_constraint_mentions_query"
+         ]
+        },
+        "warrant": {
+         "rule": "entail.decide:1",
+         "guarantee": "fixed_floor",
+         "status": "known",
+         "assumptions": [],
+         "proof": [],
+         "blockers": [
+          "no_constraint_mentions_query"
+         ]
+        }
+       }
+      ],
+      "signals": [],
+      "blockers": []
+     },
+     "bindings": [],
+     "interpretations": [
+      {
+       "id": "source-reading",
+       "label": "Proposed eligibility reading; comparator and endpoint context retained separately",
+       "origin": "assistant",
+       "state": "compatible",
+       "premises": {
+        "basis": [
+         "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:849",
+         "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/armsInterventionsModule/armGroups",
+         "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/outcomesModule/primaryOutcomes",
+         "hypothesis:source-location-is-not-semantic-warrant"
+        ],
+        "assumptions": [
+         {
+          "applicability": {
+           "class": "Always"
+          },
+          "body": {
+           "class": "Literal",
+           "evidence": [
+            {
+             "class": "Evidence",
+             "kind": "text_span",
+             "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:849"
+            },
+            {
+             "class": "Evidence",
+             "kind": "record_field",
+             "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/armsInterventionsModule/armGroups"
+            },
+            {
+             "class": "Evidence",
+             "kind": "record_field",
+             "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/outcomesModule/primaryOutcomes"
+            }
+           ],
+           "polarity": "positive",
+           "predicate": {
+            "class": "Predicate",
+            "key": "diabetes_mellitus_present",
+            "kind": "condition_status"
+           },
+           "qualifiers": {
+            "class": "Always"
+           },
+           "subject": {
+            "class": "Subject",
+            "kind": "participant",
+            "referent": ""
+           },
+           "time": null,
+           "value": {
+            "class": "Value",
+            "comparison": "eq",
+            "inclusivity": "unspecified",
+            "kind": "boolean",
+            "members": [],
+            "number": null,
+            "unit": "",
+            "upper": null
+           }
+          },
+          "branch": {
+           "class": "Branch",
+           "node": "unresolved",
+           "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+           "class": "Scope",
+           "kind": "all_participants",
+           "parts": [],
+           "ref": ""
+          },
+          "criterion_ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:849|ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/armsInterventionsModule/armGroups|ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/outcomesModule/primaryOutcomes",
+          "id": "diabetes-exclusion",
+          "modality": "excluded",
+          "resolution": "resolved",
+          "rule": {
+           "answers": [],
+           "class": "Rule",
+           "id": "source-anchored-hypothesis",
+           "premises": [
+            "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:849",
+            "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/armsInterventionsModule/armGroups",
+            "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/outcomesModule/primaryOutcomes"
+           ],
+           "version": "1",
+           "warrants": [
+            "hypothesis:source-location-is-not-semantic-warrant"
+           ]
+          },
+          "span": [
+           {
+            "class": "Span",
+            "end": 849.0,
+            "start": 0.0
+           }
+          ],
+          "status": "proposed"
+         },
+         {
+          "applicability": {
+           "class": "Always"
+          },
+          "body": {
+           "class": "AnyOf",
+           "parts": [
+            {
+             "class": "Literal",
+             "evidence": [
+              {
+               "class": "Evidence",
+               "kind": "text_span",
+               "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:849"
+              },
+              {
+               "class": "Evidence",
+               "kind": "record_field",
+               "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/armsInterventionsModule/armGroups"
+              },
+              {
+               "class": "Evidence",
+               "kind": "record_field",
+               "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/outcomesModule/primaryOutcomes"
+              }
+             ],
+             "polarity": "positive",
+             "predicate": {
+              "class": "Predicate",
+              "key": "BMI",
+              "kind": "measurement"
+             },
+             "qualifiers": {
+              "class": "Always"
+             },
+             "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+             },
+             "time": null,
+             "value": {
+              "class": "Value",
+              "comparison": "ge",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 30.0,
+              "unit": "kg/m2",
+              "upper": null
+             }
+            },
+            {
+             "class": "AllOf",
+             "parts": [
+              {
+               "class": "Literal",
+               "evidence": [
+                {
+                 "class": "Evidence",
+                 "kind": "text_span",
+                 "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:849"
+                },
+                {
+                 "class": "Evidence",
+                 "kind": "record_field",
+                 "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/armsInterventionsModule/armGroups"
+                },
+                {
+                 "class": "Evidence",
+                 "kind": "record_field",
+                 "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/outcomesModule/primaryOutcomes"
+                }
+               ],
+               "polarity": "positive",
+               "predicate": {
+                "class": "Predicate",
+                "key": "BMI",
+                "kind": "measurement"
+               },
+               "qualifiers": {
+                "class": "Always"
+               },
+               "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+               },
+               "time": null,
+               "value": {
+                "class": "Value",
+                "comparison": "ge",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 27.0,
+                "unit": "kg/m2",
+                "upper": null
+               }
+              },
+              {
+               "class": "AnyOf",
+               "parts": [
+                {
+                 "class": "Literal",
+                 "evidence": [
+                  {
+                   "class": "Evidence",
+                   "kind": "text_span",
+                   "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:849"
+                  },
+                  {
+                   "class": "Evidence",
+                   "kind": "record_field",
+                   "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/armsInterventionsModule/armGroups"
+                  },
+                  {
+                   "class": "Evidence",
+                   "kind": "record_field",
+                   "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/outcomesModule/primaryOutcomes"
+                  }
+                 ],
+                 "polarity": "positive",
+                 "predicate": {
+                  "class": "Predicate",
+                  "key": "hypertension",
+                  "kind": "condition_status"
+                 },
+                 "qualifiers": {
+                  "class": "Always"
+                 },
+                 "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                 },
+                 "time": null,
+                 "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "boolean",
+                  "members": [],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                 }
+                },
+                {
+                 "class": "Literal",
+                 "evidence": [
+                  {
+                   "class": "Evidence",
+                   "kind": "text_span",
+                   "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:849"
+                  },
+                  {
+                   "class": "Evidence",
+                   "kind": "record_field",
+                   "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/armsInterventionsModule/armGroups"
+                  },
+                  {
+                   "class": "Evidence",
+                   "kind": "record_field",
+                   "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/outcomesModule/primaryOutcomes"
+                  }
+                 ],
+                 "polarity": "positive",
+                 "predicate": {
+                  "class": "Predicate",
+                  "key": "dyslipidemia",
+                  "kind": "condition_status"
+                 },
+                 "qualifiers": {
+                  "class": "Always"
+                 },
+                 "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                 },
+                 "time": null,
+                 "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "boolean",
+                  "members": [],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                 }
+                },
+                {
+                 "class": "Literal",
+                 "evidence": [
+                  {
+                   "class": "Evidence",
+                   "kind": "text_span",
+                   "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:849"
+                  },
+                  {
+                   "class": "Evidence",
+                   "kind": "record_field",
+                   "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/armsInterventionsModule/armGroups"
+                  },
+                  {
+                   "class": "Evidence",
+                   "kind": "record_field",
+                   "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/outcomesModule/primaryOutcomes"
+                  }
+                 ],
+                 "polarity": "positive",
+                 "predicate": {
+                  "class": "Predicate",
+                  "key": "obstructive_sleep_apnea",
+                  "kind": "condition_status"
+                 },
+                 "qualifiers": {
+                  "class": "Always"
+                 },
+                 "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                 },
+                 "time": null,
+                 "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "boolean",
+                  "members": [],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                 }
+                },
+                {
+                 "class": "Literal",
+                 "evidence": [
+                  {
+                   "class": "Evidence",
+                   "kind": "text_span",
+                   "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:849"
+                  },
+                  {
+                   "class": "Evidence",
+                   "kind": "record_field",
+                   "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/armsInterventionsModule/armGroups"
+                  },
+                  {
+                   "class": "Evidence",
+                   "kind": "record_field",
+                   "ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/outcomesModule/primaryOutcomes"
+                  }
+                 ],
+                 "polarity": "positive",
+                 "predicate": {
+                  "class": "Predicate",
+                  "key": "cardiovascular_disease",
+                  "kind": "condition_status"
+                 },
+                 "qualifiers": {
+                  "class": "Always"
+                 },
+                 "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                 },
+                 "time": null,
+                 "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "boolean",
+                  "members": [],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                 }
+                }
+               ]
+              }
+             ]
+            }
+           ]
+          },
+          "branch": {
+           "class": "Branch",
+           "node": "unresolved",
+           "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+           "class": "Scope",
+           "kind": "all_participants",
+           "parts": [],
+           "ref": ""
+          },
+          "criterion_ref": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:849|ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/armsInterventionsModule/armGroups|ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/outcomesModule/primaryOutcomes",
+          "id": "BMI-or-comorbidity",
+          "modality": "required",
+          "resolution": "resolved",
+          "rule": {
+           "answers": [],
+           "class": "Rule",
+           "id": "source-anchored-hypothesis",
+           "premises": [
+            "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:849",
+            "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/armsInterventionsModule/armGroups",
+            "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/outcomesModule/primaryOutcomes"
+           ],
+           "version": "1",
+           "warrants": [
+            "hypothesis:source-location-is-not-semantic-warrant"
+           ]
+          },
+          "span": [
+           {
+            "class": "Span",
+            "end": 849.0,
+            "start": 0.0
+           }
+          ],
+          "status": "proposed"
+         }
+        ],
+        "signals": [],
+        "signal_claims": [],
+        "binding_uses": []
+       },
+       "bindings": [],
+       "signals": [],
+       "signal_checks": [],
+       "queries": [
+        {
+         "id": "registered-adult-minimum",
+         "body": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+           "class": "Predicate",
+           "key": "age",
+           "kind": "measurement"
+          },
+          "qualifiers": {
+           "class": "Always"
+          },
+          "subject": {
+           "class": "Subject",
+           "kind": "participant",
+           "referent": ""
+          },
+          "time": null,
+          "value": {
+           "class": "Value",
+           "comparison": "ge",
+           "inclusivity": "unspecified",
+           "kind": "quantity",
+           "members": [],
+           "number": 18.0,
+           "unit": "Years",
+           "upper": null
+          }
+         },
+         "result": "ENTAILED",
+         "decision": {
+          "result": "ENTAILED",
+          "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+          "status": "known",
+          "proof": [
+           "registry-age-minimumAge"
+          ],
+          "blockers": []
+         },
+         "warrant": {
+          "rule": "entail.decide:1",
+          "guarantee": "conditional_on_interpretation",
+          "status": "proposed",
+          "assumptions": [
+           "diabetes-exclusion",
+           "BMI-or-comorbidity"
+          ],
+          "proof": [
+           "registry-age-minimumAge"
+          ],
+          "blockers": []
+         }
+        },
+        {
+         "id": "diabetes",
+         "body": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+           "class": "Predicate",
+           "key": "diabetes_mellitus_present",
+           "kind": "condition_status"
+          },
+          "qualifiers": {
+           "class": "Always"
+          },
+          "subject": {
+           "class": "Subject",
+           "kind": "participant",
+           "referent": ""
+          },
+          "time": null,
+          "value": {
+           "class": "Value",
+           "comparison": "eq",
+           "inclusivity": "unspecified",
+           "kind": "boolean",
+           "members": [],
+           "number": null,
+           "unit": "",
+           "upper": null
+          }
+         },
+         "result": "REFUTED",
+         "decision": {
+          "result": "REFUTED",
+          "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"diabetes_mellitus_present\",\"kind\":\"condition_status\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+          "status": "interpolated",
+          "proof": [
+           "diabetes-exclusion"
+          ],
+          "blockers": []
+         },
+         "warrant": {
+          "rule": "entail.decide:1",
+          "guarantee": "conditional_on_interpretation",
+          "status": "proposed",
+          "assumptions": [
+           "diabetes-exclusion",
+           "BMI-or-comorbidity"
+          ],
+          "proof": [
+           "diabetes-exclusion"
+          ],
+          "blockers": []
+         }
+        },
+        {
+         "id": "BMI-under-27",
+         "body": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+           "class": "Predicate",
+           "key": "BMI",
+           "kind": "measurement"
+          },
+          "qualifiers": {
+           "class": "Always"
+          },
+          "subject": {
+           "class": "Subject",
+           "kind": "participant",
+           "referent": ""
+          },
+          "time": null,
+          "value": {
+           "class": "Value",
+           "comparison": "lt",
+           "inclusivity": "unspecified",
+           "kind": "quantity",
+           "members": [],
+           "number": 27.0,
+           "unit": "kg/m2",
+           "upper": null
+          }
+         },
+         "result": "REFUTED",
+         "decision": {
+          "result": "REFUTED",
+          "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"BMI\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"lt\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":27.0,\"unit\":\"kg/m2\",\"upper\":null}}",
+          "status": "interpolated",
+          "proof": [
+           "BMI-or-comorbidity"
+          ],
+          "blockers": []
+         },
+         "warrant": {
+          "rule": "entail.decide:1",
+          "guarantee": "conditional_on_interpretation",
+          "status": "proposed",
+          "assumptions": [
+           "diabetes-exclusion",
+           "BMI-or-comorbidity"
+          ],
+          "proof": [
+           "BMI-or-comorbidity"
+          ],
+          "blockers": []
+         }
+        },
+        {
+         "id": "must-BMI-at-least-30",
+         "body": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+           "class": "Predicate",
+           "key": "BMI",
+           "kind": "measurement"
+          },
+          "qualifiers": {
+           "class": "Always"
+          },
+          "subject": {
+           "class": "Subject",
+           "kind": "participant",
+           "referent": ""
+          },
+          "time": null,
+          "value": {
+           "class": "Value",
+           "comparison": "ge",
+           "inclusivity": "unspecified",
+           "kind": "quantity",
+           "members": [],
+           "number": 30.0,
+           "unit": "kg/m2",
+           "upper": null
+          }
+         },
+         "result": "UNDETERMINED",
+         "decision": {
+          "result": "UNDETERMINED",
+          "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"BMI\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":30.0,\"unit\":\"kg/m2\",\"upper\":null}}",
+          "status": null,
+          "proof": [
+           "BMI-or-comorbidity"
+          ],
+          "blockers": [
+           "undecided_by_constraints"
+          ]
+         },
+         "warrant": {
+          "rule": "entail.decide:1",
+          "guarantee": "conditional_on_interpretation",
+          "status": "proposed",
+          "assumptions": [
+           "diabetes-exclusion",
+           "BMI-or-comorbidity"
+          ],
+          "proof": [
+           "BMI-or-comorbidity"
+          ],
+          "blockers": [
+           "undecided_by_constraints"
+          ]
+         }
+        }
+       ],
+       "warrant": {
+        "rule": "interpretations.compatibility:1",
+        "guarantee": "conditional_on_fixed_and_interpretation_premises",
+        "fixed_status": "known",
+        "status": "proposed",
+        "fixed_premises": [],
+        "assumptions": [
+         "diabetes-exclusion",
+         "BMI-or-comorbidity"
+        ],
+        "bindings": [],
+        "basis": [
+         "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:849",
+         "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/armsInterventionsModule/armGroups",
+         "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b#/protocolSection/outcomesModule/primaryOutcomes",
+         "hypothesis:source-location-is-not-semantic-warrant"
+        ],
+        "consistency": {
+         "result": "UNDETERMINED",
+         "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+         "status": null,
+         "proof": [],
+         "blockers": [
+          "no_constraint_mentions_query"
+         ]
+        },
+        "intrinsic_consistency": {
+         "result": "UNDETERMINED",
+         "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+         "status": null,
+         "proof": [],
+         "blockers": [
+          "no_constraint_mentions_query"
+         ]
+        },
+        "signal_rules": [],
+        "blockers": []
+       }
+      }
+     ],
+     "remaining": [
+      "source-reading"
+     ],
+     "refuted": [],
+     "incoherent": [],
+     "unresolved": [],
+     "selection": {
+      "id": null,
+      "state": "none",
+      "origin": null
+     },
+     "consequences": [
+      {
+       "id": "registered-adult-minimum",
+       "body": {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "age",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "participant",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "ge",
+         "inclusivity": "unspecified",
+         "kind": "quantity",
+         "members": [],
+         "number": 18.0,
+         "unit": "Years",
+         "upper": null
+        }
+       },
+       "result": "ENTAILED",
+       "decision": {
+        "result": "ENTAILED",
+        "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+        "status": "known",
+        "proof": [
+         "registry-age-minimumAge"
+        ],
+        "blockers": []
+       },
+       "warrant": {
+        "rule": "entail.decide:1",
+        "guarantee": "fixed_floor",
+        "status": "known",
+        "assumptions": [],
+        "proof": [
+         "registry-age-minimumAge"
+        ],
+        "blockers": []
+       },
+       "frames": [],
+       "basis": "fixed_floor"
+      },
+      {
+       "id": "diabetes",
+       "body": {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "diabetes_mellitus_present",
+         "kind": "condition_status"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "participant",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "eq",
+         "inclusivity": "unspecified",
+         "kind": "boolean",
+         "members": [],
+         "number": null,
+         "unit": "",
+         "upper": null
+        }
+       },
+       "result": "REFUTED",
+       "frames": [
+        "source-reading"
+       ],
+       "basis": "declared_interpretation_family",
+       "warrant": {
+        "rule": "interpretations.common:1",
+        "guarantee": "conditional_on_declared_family_not_exhaustive",
+        "status": "proposed",
+        "blockers": []
+       }
+      },
+      {
+       "id": "BMI-under-27",
+       "body": {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "BMI",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "participant",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "lt",
+         "inclusivity": "unspecified",
+         "kind": "quantity",
+         "members": [],
+         "number": 27.0,
+         "unit": "kg/m2",
+         "upper": null
+        }
+       },
+       "result": "REFUTED",
+       "frames": [
+        "source-reading"
+       ],
+       "basis": "declared_interpretation_family",
+       "warrant": {
+        "rule": "interpretations.common:1",
+        "guarantee": "conditional_on_declared_family_not_exhaustive",
+        "status": "proposed",
+        "blockers": []
+       }
+      },
+      {
+       "id": "must-BMI-at-least-30",
+       "body": {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "BMI",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "participant",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "ge",
+         "inclusivity": "unspecified",
+         "kind": "quantity",
+         "members": [],
+         "number": 30.0,
+         "unit": "kg/m2",
+         "upper": null
+        }
+       },
+       "result": "UNDETERMINED",
+       "frames": [
+        "source-reading"
+       ],
+       "basis": "declared_interpretation_family",
+       "warrant": {
+        "rule": "interpretations.common:1",
+        "guarantee": "conditional_on_declared_family_not_exhaustive",
+        "status": "proposed",
+        "blockers": [
+         "undecided_by_constraints"
+        ]
+       }
+      }
+     ],
+     "limits": "Exact conditional checks over declared readings; compatibility is not source truth or clinical recommendation. The interpretation family is not assumed exhaustive. No automatic text reading, source correction, source mutation or corpus-frequency admission."
+    },
+    "problems": []
+   }
+  ]
+ },
+ "problems": []
+}

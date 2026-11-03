@@ -1,0 +1,59 @@
+{
+  "purpose": "Frozen proof inputs are reviewable source documents, not a second active Python package/test suite. Original manifests retain original proof paths and writing identities. Live generated tests are separately installed under tests/detective and remain collected.",
+  "byte_preserving_source_documents": [
+    {
+      "original_path": "carried-basis-first-check/TrialLedger/layer2/result_semantics.py",
+      "retained_path": "carried-basis-first-check/TrialLedger/layer2/result_semantics.py.txt",
+      "sha256": "42f8c36330d1b10f2f4875191f1b093a0c4fe7bcc62e60b1b75c81ed885b06ed"
+    },
+    {
+      "original_path": "carried-basis-first-check/tests/detective/test_TrialLedger_layer2_result_semantics_disposition_code_3741ce9eea_synth.py",
+      "retained_path": "carried-basis-first-check/tests/detective/test_TrialLedger_layer2_result_semantics_disposition_code_3741ce9eea_synth.py.txt",
+      "sha256": "ad63def993e3f2e85ef5fe1aab05b8aaae655dcf22c42ebac19194d478ae0f32"
+    },
+    {
+      "original_path": "final-export/TrialLedger/layer2/result_semantics.py",
+      "retained_path": "final-export/TrialLedger/layer2/result_semantics.py.txt",
+      "sha256": "42f8c36330d1b10f2f4875191f1b093a0c4fe7bcc62e60b1b75c81ed885b06ed"
+    },
+    {
+      "original_path": "final-export/tests/detective/test_TrialLedger_layer2_result_semantics_cause_kind_a38b8f3a25_synth.py",
+      "retained_path": "final-export/tests/detective/test_TrialLedger_layer2_result_semantics_cause_kind_a38b8f3a25_synth.py.txt",
+      "sha256": "7a56197b7752b0711c0e7852f14b666aee79a6dedac45196d44a0499c9d4311c"
+    },
+    {
+      "original_path": "final-export/tests/detective/test_TrialLedger_layer2_result_semantics_completion_code_0f6f433d15_synth.py",
+      "retained_path": "final-export/tests/detective/test_TrialLedger_layer2_result_semantics_completion_code_0f6f433d15_synth.py.txt",
+      "sha256": "46c08aa1b43e7b2bf6d16e805c5f12680436133e22fbb10a9c5c60e3af6abecd"
+    },
+    {
+      "original_path": "final-export/tests/detective/test_TrialLedger_layer2_result_semantics_disposition_code_3741ce9eea_synth.py",
+      "retained_path": "final-export/tests/detective/test_TrialLedger_layer2_result_semantics_disposition_code_3741ce9eea_synth.py.txt",
+      "sha256": "240a086fb56ee28cd08250651f579c7a86598f0f2399cd7b97f21a80364bab34"
+    },
+    {
+      "original_path": "final-export/tests/test_metadata_vocabulary.py",
+      "retained_path": "final-export/tests/test_metadata_vocabulary.py.txt",
+      "sha256": "c0788870490d683cc0bd7a9d479b92a2ab3373bd231ec3b59919eeb454e3a7c8"
+    },
+    {
+      "original_path": "final-export/tests/test_result_semantics.py",
+      "retained_path": "final-export/tests/test_result_semantics.py.txt",
+      "sha256": "764bea2d3eab0b34437826909bc089c6e351cb59684996efa2f8185f58f27c3b"
+    }
+  ],
+  "lossless_regime_logs": [
+    {
+      "original_path": "carried-basis-first-check/regime.log",
+      "retained_path": "carried-basis-first-check/regime.log.gz",
+      "original_sha256": "5dce61dba5938a6db6e7e273d95754b75e6ed06d4b611b60d5f314033833d212",
+      "compressed_sha256": "c1f59f7c1c5cf5c039af363a9858d8c9dfba06aa3ef2f0406f1413a30e60be64"
+    },
+    {
+      "original_path": "final-export/regime.log",
+      "retained_path": "final-export/regime.log.gz",
+      "original_sha256": "5dce61dba5938a6db6e7e273d95754b75e6ed06d4b611b60d5f314033833d212",
+      "compressed_sha256": "c1f59f7c1c5cf5c039af363a9858d8c9dfba06aa3ef2f0406f1413a30e60be64"
+    }
+  ]
+}

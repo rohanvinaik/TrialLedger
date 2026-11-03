@@ -1,0 +1,44 @@
+[
+ {
+  "file": "version-start.json",
+  "url": "https://clinicaltrials.gov/api/v2/version",
+  "save_as": "bodies/version-start.json",
+  "why": "version_start",
+  "params": {}
+ },
+ {
+  "file": "ids-001.json",
+  "url": "https://clinicaltrials.gov/api/v2/studies?filter.advanced=%28AREA%5BInterventionName%5D%22ustekinumab%22+OR+AREA%5BInterventionOtherName%5D%22ustekinumab%22%29+AND+AREA%5BPhase%5DPHASE3+AND+AREA%5BOverallStatus%5DCOMPLETED&query.cond=Crohn+Disease&format=json&markupFormat=markdown&countTotal=true&pageSize=1000&fields=NCTId",
+  "save_as": "bodies/ids-001.json",
+  "why": "id_page",
+  "params": {
+   "filter.advanced": "(AREA[InterventionName]\"ustekinumab\" OR AREA[InterventionOtherName]\"ustekinumab\") AND AREA[Phase]PHASE3 AND AREA[OverallStatus]COMPLETED",
+   "query.cond": "Crohn Disease",
+   "format": "json",
+   "markupFormat": "markdown",
+   "countTotal": "true",
+   "pageSize": "1000",
+   "fields": "NCTId"
+  }
+ },
+ {
+  "file": "studies-001.json",
+  "url": "https://clinicaltrials.gov/api/v2/studies?filter.ids=NCT03782376%2CNCT03107793%2CNCT01369329%2CNCT04245215%2CNCT05299931%2CNCT03464136%2CNCT01369355%2CNCT01369342%2CNCT03926130%2CNCT04673357&format=json&markupFormat=markdown&countTotal=true&pageSize=100",
+  "save_as": "bodies/studies-001.json",
+  "why": "studies_batch",
+  "params": {
+   "filter.ids": "NCT03782376,NCT03107793,NCT01369329,NCT04245215,NCT05299931,NCT03464136,NCT01369355,NCT01369342,NCT03926130,NCT04673357",
+   "format": "json",
+   "markupFormat": "markdown",
+   "countTotal": "true",
+   "pageSize": "100"
+  }
+ },
+ {
+  "file": "version-end.json",
+  "url": "https://clinicaltrials.gov/api/v2/version",
+  "save_as": "bodies/version-end.json",
+  "why": "version_end",
+  "params": {}
+ }
+]

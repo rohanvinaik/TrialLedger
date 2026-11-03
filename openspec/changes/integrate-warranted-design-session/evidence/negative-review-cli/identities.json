@@ -1,0 +1,29 @@
+{
+  "kind": "invented-premise CLI contract check, not registry evidence",
+  "command": [
+    ".venv/bin/trialledger",
+    "reason",
+    "--request",
+    "<case>-request.json"
+  ],
+  "module_sha256": {
+    "TrialLedger/layer2/design_bounds.py": "b3c6a5cee75cbed7283196da3fa897b1d1378ba31f1e5d3da8b7b5e5dd1989cc",
+    "TrialLedger/layer2/entail.py": "c6792e82514686a5e6af14e28b79b2a995e68750d15782cd8b86b3e1f5e06ab8",
+    "TrialLedger/layer2/service.py": "192caf185d159b3aefc489684a61d0f754a0ece455c8be11b8059a288f61b17f",
+    "TrialLedger/layer2/result_semantics.py": "42f8c36330d1b10f2f4875191f1b093a0c4fe7bcc62e60b1b75c81ed885b06ed"
+  },
+  "files": {
+    "no_survivors-request.json": "0e49c8e8bdbea50f89772f6a7c4332fdc648bdf3602bc4a1324e922063cc482b",
+    "proposed_negative-result.json": "3ce95a8e241cccbd38c6fe4b09709cafc31df9d65fc2795db290b152ca6bc41a",
+    "one_survivor-request.json": "29d436f3c7ef83ccf3c5f6ba05efd521551ceb51d147825b6fd77529ea881873",
+    "no_survivors-result.json": "0abc369c31a4ebc43db0e9433cf6dab674ebc161682e3bf584204d93aae78929",
+    "one_survivor-result.json": "f76a503016e80c78de477c0cc0412c5c3aea1bc242e5b54d6174611d95ad722d",
+    "README.md": "1f666a3269c949c8863bf7bb1e0a7ec2f366811aebc1d31bf433a603be3d0b76",
+    "partial_profile_both_signs-result.json": "247288626ab172c7911e595532eed43ab2605f51f396954bcbbd5bbe0d873638",
+    "accepted_only-request.json": "28bb81eef91015aa981961dca984ffd6b6ecbc1b4f62be8681d31c84b15c4bb0",
+    "partial_profile_both_signs-request.json": "7ca952a34decfa07f13a1396f730586a65a6674e32ee9bcf3741fdb957059c6b",
+    "accepted_only-result.json": "82031b92b25178ea88acca8148e3a30ca80f7db55f46204a3ac76c4e0bdd4e06",
+    "proposed_negative-request.json": "1ad0388de75d26b80fada1e7c637db5a21ec82a4e0eddd65b0d41607c835312d",
+    "receipt.json": "db09e278a39e7d95252bee0b32c7e39e9d82a80578111ec89e235f4036386091"
+  }
+}

@@ -1,0 +1,134 @@
+{
+  "purpose": "Guide-only metadata clinical acceptance; does not complete exception integration/task2.8.",
+  "completed_at_utc": "2026-11-03T20:53:00.567256+00:00",
+  "clinical_category": "Crohn Disease; ustekinumab maintenance/induction/rescue population settings",
+  "retained_fresh_acquisition_from_this_increment": true,
+  "new_registry_pull_during_guide_acceptance": false,
+  "original_local_capture_mtime_utc": "2026-11-03T20:00:32.007450+00:00",
+  "capture_time_kind": "Original local response-body filesystem write time, not an independently recorded network response timestamp.",
+  "source_batch_sha256": "ca9d12ac7a05f83256c7b4741cc502ec8a3f3547e8240e3e381706c09ae1cfd6",
+  "selected_studies": [
+    {
+      "id": "NCT03107793",
+      "raw_address": "/studies/1",
+      "study_digest": "6a8c4867b545f9e385c11297b341635cfb31aa139ba4e405a1bc5edf1bfbc0b2"
+    },
+    {
+      "id": "NCT04245215",
+      "raw_address": "/studies/3",
+      "study_digest": "4f09ff7d9ae723459d6a48a1d47488bc65999d5b5b5572d01ec0093475c4c4a1"
+    },
+    {
+      "id": "NCT01369355",
+      "raw_address": "/studies/6",
+      "study_digest": "e88dd2edd3a6d63bf6a7d10c8b304315497cfb90e2dadf36a259dc0d8ef75be2"
+    }
+  ],
+  "writing_version": "a3987b05db21f0cf3f871cc36f272ddc516c1ec2",
+  "runtime_fingerprints_and_commands": "runtime-receipt.json",
+  "source_locators_and_local_hash_inventory": "local-retention.json",
+  "actual_cli_mcp_pairs": 4,
+  "focused_standing_views": [
+    "source_assertions",
+    "interpretations"
+  ],
+  "original_and_retained_report_verification_exit_codes": [
+    0,
+    0
+  ],
+  "reviewable_payload_files": {
+    "README.md": {
+      "sha256": "334786e2f147c995a2aa63b0cc5eb56150d7eb42e1e25dbb948c9d8cd2a7c377",
+      "bytes": 10511
+    },
+    "finding-summary.json": {
+      "sha256": "768e3b56498c1ef09978240e753ed16d9a9421f70cd3d5234e695dfc7f338cdd",
+      "bytes": 17499
+    },
+    "gather-fetches.json": {
+      "sha256": "b50fab88563e0f71c20140c8dc3192055925c6773722311436ce0d1d22ce8686",
+      "bytes": 1739
+    },
+    "gather-manifest.json": {
+      "sha256": "e6cf0a17a90392f2f45438d0095871cc02b1816dd186d759f4deb68eefef997a",
+      "bytes": 2037
+    },
+    "gather-request.json": {
+      "sha256": "9da2357912b6e8508b650e9648288e5428c6ef31d33f808c43d4cc668b70ecda",
+      "bytes": 123
+    },
+    "gather-resolution.json": {
+      "sha256": "d8149e2d04ef1b83fe8f48a2ecfdda0056976caf6473fa8a7d9b1f8cc92bf879",
+      "bytes": 1814
+    },
+    "gather-scope.json": {
+      "sha256": "9c5b482b8c51873355f365be3dfc7106806a3c55ba73d54b5c239af1ceedbb3c",
+      "bytes": 230
+    },
+    "local-retention.json": {
+      "sha256": "738d8696c2f533c31718c5f2cab4b7162581834a7a43c9f5d2866aead8b837d0",
+      "bytes": 7578
+    },
+    "requests/describe-interpretations.json": {
+      "sha256": "80473a807b51a414651feec36adeed5fadca294a77b547ef8f6825725b3ed4a3",
+      "bytes": 59
+    },
+    "requests/describe-source_assertions.json": {
+      "sha256": "43f30c03332ffa528b978620c1de65577b3f54c864476f69afa75cf540354bc9",
+      "bytes": 61
+    },
+    "requests/population-context-retracted.json": {
+      "sha256": "932c8959f3ada7ab13a79aef7d853812320fec442110f84b6c267006c0077f94",
+      "bytes": 10568
+    },
+    "requests/scoped-randomized-maintenance.json": {
+      "sha256": "f610ee9426b84e0c3aeea111f9688461fa9998a62fc2a344bc3f0903dde65714",
+      "bytes": 685579
+    },
+    "results/describe-interpretations.json": {
+      "sha256": "cf266cf283d847ce01fc8ceb928be94a9a059eea8968fe3264cda1fdedbe7f57",
+      "bytes": 47156
+    },
+    "results/describe-source_assertions.json": {
+      "sha256": "ccc417d0594d10bc2638ac409c2f80569b15ad2f0e602df67c80e261ce1a4a79",
+      "bytes": 43509
+    },
+    "results/population-context-retracted.json": {
+      "sha256": "c955e55ea906f05b5a673d0061eaa33928408dbb0c7840223da77e82fbd167c0",
+      "bytes": 25893
+    },
+    "results/scoped-randomized-maintenance.json": {
+      "sha256": "f31fe2320f2399031ed1259f6cce592a4c42d0496c393f0692a795f9cf4c5a4d",
+      "bytes": 63435
+    },
+    "runtime-receipt.json": {
+      "sha256": "07b4828f6c769a3384ffecd43c1f5a707ddf99d42571d6cc173e5a66d0f0c63f",
+      "bytes": 10684
+    },
+    "selection.json": {
+      "sha256": "18e67f0dfa7823a05df92c5bfcf45db11709d66184bddfe0e0ce2ef2eca66596",
+      "bytes": 2634
+    },
+    "source-inventory.json": {
+      "sha256": "986a3918e6de0a000489ec8cd67d608e5de7e06d745c70c6deba47948882e7d6",
+      "bytes": 7903
+    },
+    "verification-receipt.json": {
+      "sha256": "5f8eb7a7ad0d076dff2b8447a185b35defbe816724635a3207ebe63a2923b330",
+      "bytes": 995
+    },
+    "working-brief.md": {
+      "sha256": "05a7e98191a200c6853b623fbee3e419806633a9683a33679515ace6cda1974b",
+      "bytes": 6504
+    }
+  },
+  "reviewable_payload_file_count": 21,
+  "reviewable_payload_bytes": 946511,
+  "canonical_results": 4,
+  "local_packet_file_count": 27,
+  "local_packet_bytes": 7149970,
+  "all_runtime_fingerprints_still_match": true,
+  "packet_hash_inventory_excludes_only_itself": true,
+  "complete_packet_file_count": 23,
+  "complete_packet_bytes": 953795
+}

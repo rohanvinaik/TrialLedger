@@ -54,11 +54,11 @@ treated as settled at all.
 ### 2. Certainty comes from ruling things out
 
 TrialLedger becomes certain of a computed answer only when the evidence leaves no alternative. A real
-example: IPASS reports 1,217 baseline participants, 126 at WHO PS 2 and 1,140 who never smoked. Neither
-count says how many patients are both. **If** both counts describe the same 1,217 patients, at least 49 must
-be both (126 + 1,140 is 49 more than 1,217) and at most 126 can be. Nothing is assumed about whether the two
-traits are related. What becomes certain is what has been ruled out: fewer than 49 is impossible. The exact
-number stays open.
+example: IPASS's baseline tables list a total of 1,217, a WHO PS 2 value of 126 and a never-smoker value of
+1,140. Neither table gives the joint number. **If** those values are participant counts describing the same
+1,217 patients, at least 49 must be both (126 + 1,140 is 49 more than 1,217) and at most 126 can be. Nothing is
+assumed about whether the two traits are related. What becomes certain is what has been ruled out: fewer than
+49 is impossible. The exact number stays open.
 
 Some conclusions rest on a declared default rather than on evidence, such as a standard convention for
 describing an NSCLC treatment setting, or on a working assumption you have accepted. These are labelled
@@ -99,8 +99,9 @@ denominators, and silence is counted separately from absence. But "most trials d
 anything required or forbidden in your design. Weighing what matters is expert judgment, and it stays with
 you.
 
-This is also why the reasoning can be exact. It works with reported counts and stated criteria, not with
-estimates about biology: 126 of 1,217 is what IPASS reported, so a bound on that count is arithmetic.
+This is also why the reasoning can be exact. Once the source values are established as participant counts
+for the same population, the overlap bounds follow by arithmetic. The count roles and population binding
+remain premises; the numeric field type alone does not settle them.
 
 ## How the work divides
 
@@ -249,9 +250,9 @@ The [IPASS walkthrough](examples/source-bridge/) applies these ideas to the reta
 - **Directly from a structured field:** the registered minimum age of 18 years settles the registry's
   restriction to participants aged 18 or older. The eligibility prose stays as written. It is silent about
   performance status, so it supplies no cutoff.
-- **Overlap of two baseline counts:** if the WHO PS 2 count, the never-smoker count and the total describe
-  the same patients, a reading for you to confirm, their overlap is **49–126**. This does not recover an
-  eligibility cutoff, and WHO PS stays WHO PS.
+- **Overlap of two baseline counts:** if the WHO PS 2 value, the never-smoker value and the total are
+  participant counts describing the same patients, a reading for you to confirm, their overlap is
+  **49–126**. This does not recover an eligibility cutoff, and WHO PS stays WHO PS.
 - **Two analysis populations:** 607 safety-evaluable and 590 QoL-evaluable patients among 609 on gefitinib
   give **588–590** in both, if both tables describe the same cohort. The
   [workflow investigation](docs/SOURCE_INFORMATION_RESOLUTION.md) and its

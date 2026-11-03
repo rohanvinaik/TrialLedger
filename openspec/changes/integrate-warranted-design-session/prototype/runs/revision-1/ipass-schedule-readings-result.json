@@ -1,0 +1,1985 @@
+{
+  "code": "complete",
+  "operation": "source_assertions",
+  "result": {
+    "source": {
+      "nct": "NCT00322452",
+      "digest": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+      "study_ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+      "version": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+      "last_update": {
+        "date": "2013-11-07",
+        "type": "ESTIMATED"
+      }
+    },
+    "anchors": [
+      {
+        "id": "whole-schedule-passage",
+        "address": "/protocolSection/outcomesModule/primaryOutcomes/0/timeFrame",
+        "digest": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+        "value": "Tumour assessments as per RECIST were performed at baseline and then every 42 days ± 7 days from randomization until data cut off (14th April 2008).",
+        "ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/protocolSection/outcomesModule/primaryOutcomes/0/timeFrame:chars:0:148",
+        "source": {
+          "ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+          "version": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+          "address": "/protocolSection/outcomesModule/primaryOutcomes/0/timeFrame",
+          "digest": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0"
+        },
+        "code": "located",
+        "span": {
+          "start": 0,
+          "end": 148,
+          "text": "Tumour assessments as per RECIST were performed at baseline and then every 42 days ± 7 days from randomization until data cut off (14th April 2008)."
+        }
+      }
+    ],
+    "fixed": {
+      "assertions": [
+        {
+          "applicability": {
+            "class": "Always"
+          },
+          "body": {
+            "class": "Literal",
+            "evidence": [
+              {
+                "class": "Evidence",
+                "kind": "record_field",
+                "ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/protocolSection/eligibilityModule/minimumAge"
+              }
+            ],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "age",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "ge",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 18.0,
+              "unit": "Years",
+              "upper": null
+            }
+          },
+          "branch": {
+            "class": "Branch",
+            "node": "unresolved",
+            "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+            "class": "Scope",
+            "kind": "all_participants",
+            "parts": [],
+            "ref": ""
+          },
+          "criterion_ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/protocolSection/eligibilityModule/minimumAge",
+          "id": "registry-age-minimumAge",
+          "modality": "required",
+          "resolution": "resolved",
+          "rule": {
+            "answers": [],
+            "class": "Rule",
+            "id": "ctg-structured-general-eligibility-age",
+            "premises": [
+              "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/protocolSection/eligibilityModule/minimumAge"
+            ],
+            "version": "1",
+            "warrants": []
+          },
+          "span": [],
+          "status": "known"
+        }
+      ],
+      "signals": []
+    },
+    "interpretations": [
+      {
+        "id": "randomization-anchored",
+        "label": "Apply each 42-day assessment tolerance around nominal days measured from randomization",
+        "origin": "assistant",
+        "basis": [
+          "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/protocolSection/outcomesModule/primaryOutcomes/0/timeFrame:chars:0:148",
+          "hypothesis:source-location-is-not-semantic-warrant"
+        ],
+        "assumptions": [],
+        "signals": [
+          {
+            "id": "scheduled-assessments",
+            "kind": "temporal",
+            "data": {
+              "scope": "NCT00322452:registered-PFS:proposed-first-two-postbaseline",
+              "unit": "day",
+              "origin": "randomization",
+              "resolution": "resolved",
+              "events": [
+                "randomization",
+                "first_nominal_target",
+                "second_nominal_target",
+                "first_permitted_assessment",
+                "second_permitted_assessment"
+              ],
+              "constraints": [
+                {
+                  "before": "randomization",
+                  "after": "first_nominal_target",
+                  "lower": 42,
+                  "upper": 42,
+                  "lower_inclusive": true,
+                  "upper_inclusive": true
+                },
+                {
+                  "before": "first_nominal_target",
+                  "after": "second_nominal_target",
+                  "lower": 42,
+                  "upper": 42,
+                  "lower_inclusive": true,
+                  "upper_inclusive": true
+                },
+                {
+                  "before": "randomization",
+                  "after": "first_permitted_assessment",
+                  "lower": 35,
+                  "upper": 49,
+                  "lower_inclusive": true,
+                  "upper_inclusive": true
+                },
+                {
+                  "before": "randomization",
+                  "after": "second_permitted_assessment",
+                  "lower": 77,
+                  "upper": 91,
+                  "lower_inclusive": true,
+                  "upper_inclusive": true
+                }
+              ]
+            },
+            "support": [
+              {
+                "id": "randomization-anchored-schedule-reading",
+                "status": "proposed",
+                "resolution": "resolved",
+                "basis": [
+                  "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/protocolSection/outcomesModule/primaryOutcomes/0/timeFrame:chars:0:148",
+                  "hypothesis:source-location-is-not-semantic-warrant"
+                ]
+              }
+            ],
+            "bindings": {}
+          }
+        ],
+        "signal_claims": [],
+        "binding_uses": []
+      },
+      {
+        "id": "successive-gaps",
+        "label": "Apply each 42-day assessment tolerance as a gap after the preceding assessment",
+        "origin": "assistant",
+        "basis": [
+          "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/protocolSection/outcomesModule/primaryOutcomes/0/timeFrame:chars:0:148",
+          "hypothesis:source-location-is-not-semantic-warrant"
+        ],
+        "assumptions": [],
+        "signals": [
+          {
+            "id": "scheduled-assessments",
+            "kind": "temporal",
+            "data": {
+              "scope": "NCT00322452:registered-PFS:proposed-first-two-postbaseline",
+              "unit": "day",
+              "origin": "randomization",
+              "resolution": "resolved",
+              "events": [
+                "randomization",
+                "first_nominal_target",
+                "second_nominal_target",
+                "first_permitted_assessment",
+                "second_permitted_assessment"
+              ],
+              "constraints": [
+                {
+                  "before": "randomization",
+                  "after": "first_nominal_target",
+                  "lower": 42,
+                  "upper": 42,
+                  "lower_inclusive": true,
+                  "upper_inclusive": true
+                },
+                {
+                  "before": "first_nominal_target",
+                  "after": "second_nominal_target",
+                  "lower": 42,
+                  "upper": 42,
+                  "lower_inclusive": true,
+                  "upper_inclusive": true
+                },
+                {
+                  "before": "randomization",
+                  "after": "first_permitted_assessment",
+                  "lower": 35,
+                  "upper": 49,
+                  "lower_inclusive": true,
+                  "upper_inclusive": true
+                },
+                {
+                  "before": "first_permitted_assessment",
+                  "after": "second_permitted_assessment",
+                  "lower": 35,
+                  "upper": 49,
+                  "lower_inclusive": true,
+                  "upper_inclusive": true
+                }
+              ]
+            },
+            "support": [
+              {
+                "id": "successive-gaps-schedule-reading",
+                "status": "proposed",
+                "resolution": "resolved",
+                "basis": [
+                  "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/protocolSection/outcomesModule/primaryOutcomes/0/timeFrame:chars:0:148",
+                  "hypothesis:source-location-is-not-semantic-warrant"
+                ]
+              }
+            ],
+            "bindings": {}
+          }
+        ],
+        "signal_claims": [],
+        "binding_uses": []
+      }
+    ],
+    "bindings": [],
+    "coverage": [
+      {
+        "address": "/protocolSection/eligibilityModule/minimumAge",
+        "code": "compiled",
+        "value": "18 Years",
+        "assertion": "registry-age-minimumAge",
+        "rule": "ctg-structured-general-eligibility-age",
+        "ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/protocolSection/eligibilityModule/minimumAge"
+      },
+      {
+        "address": "/protocolSection/eligibilityModule/maximumAge",
+        "code": "missing",
+        "value": null
+      },
+      {
+        "address": "/protocolSection/eligibilityModule/eligibilityCriteria",
+        "code": "unresolved_retained",
+        "value": "Inclusion Criteria:\n\n* Locally advanced Stage IIIB not amenable to local therapy or Stage IV (metastatic) NSCLC with adenocarcinoma histology.\n* Never smokers or light ex-smokers.(ceased smoking at least 15 years before Day 1 of study treatment and 10 pack-years or fewer)\n\nExclusion Criteria:\n\n* Had prior chemotherapy, biological (including targeted therapies such as EGFR and vascular epidermal growth factor (VEGF) inhibitors) or immunological therapy.\n* Pre-existing idiopathic pulmonary fibrosis evidence by CT scan at baseline."
+      },
+      {
+        "address": "/protocolSection/eligibilityModule/healthyVolunteers",
+        "code": "unresolved_retained",
+        "value": false
+      },
+      {
+        "address": "/protocolSection/eligibilityModule/sex",
+        "code": "unresolved_retained",
+        "value": "ALL"
+      },
+      {
+        "address": "/protocolSection/eligibilityModule/stdAges",
+        "code": "unresolved_retained",
+        "value": [
+          "ADULT",
+          "OLDER_ADULT"
+        ]
+      },
+      {
+        "address": "/resultsSection",
+        "ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/derivedSection",
+        "ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/derivedSection",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/hasResults",
+        "ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/hasResults",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/identificationModule",
+        "ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/protocolSection/identificationModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/statusModule",
+        "ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/protocolSection/statusModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/sponsorCollaboratorsModule",
+        "ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/protocolSection/sponsorCollaboratorsModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/descriptionModule",
+        "ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/protocolSection/descriptionModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/conditionsModule",
+        "ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/protocolSection/conditionsModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/designModule",
+        "ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/protocolSection/designModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/armsInterventionsModule",
+        "ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/protocolSection/armsInterventionsModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/outcomesModule",
+        "ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/protocolSection/outcomesModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/contactsLocationsModule",
+        "ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/protocolSection/contactsLocationsModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/referencesModule",
+        "ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/protocolSection/referencesModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      }
+    ],
+    "submitted": {
+      "interpretations": [
+        {
+          "id": "randomization-anchored",
+          "label": "Apply each 42-day assessment tolerance around nominal days measured from randomization",
+          "origin": "assistant",
+          "basis": [
+            "assistant:exploration-reading-not-confirmed-by-a-clinical-user",
+            {
+              "$source": "whole-schedule-passage",
+              "as": "text"
+            }
+          ],
+          "assumptions": [],
+          "signals": [
+            {
+              "id": "scheduled-assessments",
+              "kind": "temporal",
+              "data": {
+                "scope": "NCT00322452:registered-PFS:proposed-first-two-postbaseline",
+                "unit": "day",
+                "origin": "randomization",
+                "resolution": "resolved",
+                "events": [
+                  "randomization",
+                  "first_nominal_target",
+                  "second_nominal_target",
+                  "first_permitted_assessment",
+                  "second_permitted_assessment"
+                ],
+                "constraints": [
+                  {
+                    "before": "randomization",
+                    "after": "first_nominal_target",
+                    "lower": 42,
+                    "upper": 42,
+                    "lower_inclusive": true,
+                    "upper_inclusive": true
+                  },
+                  {
+                    "before": "first_nominal_target",
+                    "after": "second_nominal_target",
+                    "lower": 42,
+                    "upper": 42,
+                    "lower_inclusive": true,
+                    "upper_inclusive": true
+                  },
+                  {
+                    "before": "randomization",
+                    "after": "first_permitted_assessment",
+                    "lower": 35,
+                    "upper": 49,
+                    "lower_inclusive": true,
+                    "upper_inclusive": true
+                  },
+                  {
+                    "before": "randomization",
+                    "after": "second_permitted_assessment",
+                    "lower": 77,
+                    "upper": 91,
+                    "lower_inclusive": true,
+                    "upper_inclusive": true
+                  }
+                ]
+              },
+              "support": [
+                {
+                  "id": "randomization-anchored-schedule-reading",
+                  "status": "proposed",
+                  "resolution": "resolved",
+                  "basis": [
+                    "assistant:proposed-inclusive-first-and-subsequent-tolerance-reading",
+                    "assistant:nominal-targets-and-permitted-windows-are-distinct-information-channels",
+                    "assistant:not-actual-attendance-or-endpoint-confirmation"
+                  ]
+                }
+              ]
+            }
+          ],
+          "signal_claims": [],
+          "binding_uses": [],
+          "anchors": [
+            "whole-schedule-passage"
+          ]
+        },
+        {
+          "id": "successive-gaps",
+          "label": "Apply each 42-day assessment tolerance as a gap after the preceding assessment",
+          "origin": "assistant",
+          "basis": [
+            "assistant:exploration-reading-not-confirmed-by-a-clinical-user",
+            {
+              "$source": "whole-schedule-passage",
+              "as": "text"
+            }
+          ],
+          "assumptions": [],
+          "signals": [
+            {
+              "id": "scheduled-assessments",
+              "kind": "temporal",
+              "data": {
+                "scope": "NCT00322452:registered-PFS:proposed-first-two-postbaseline",
+                "unit": "day",
+                "origin": "randomization",
+                "resolution": "resolved",
+                "events": [
+                  "randomization",
+                  "first_nominal_target",
+                  "second_nominal_target",
+                  "first_permitted_assessment",
+                  "second_permitted_assessment"
+                ],
+                "constraints": [
+                  {
+                    "before": "randomization",
+                    "after": "first_nominal_target",
+                    "lower": 42,
+                    "upper": 42,
+                    "lower_inclusive": true,
+                    "upper_inclusive": true
+                  },
+                  {
+                    "before": "first_nominal_target",
+                    "after": "second_nominal_target",
+                    "lower": 42,
+                    "upper": 42,
+                    "lower_inclusive": true,
+                    "upper_inclusive": true
+                  },
+                  {
+                    "before": "randomization",
+                    "after": "first_permitted_assessment",
+                    "lower": 35,
+                    "upper": 49,
+                    "lower_inclusive": true,
+                    "upper_inclusive": true
+                  },
+                  {
+                    "before": "first_permitted_assessment",
+                    "after": "second_permitted_assessment",
+                    "lower": 35,
+                    "upper": 49,
+                    "lower_inclusive": true,
+                    "upper_inclusive": true
+                  }
+                ]
+              },
+              "support": [
+                {
+                  "id": "successive-gaps-schedule-reading",
+                  "status": "proposed",
+                  "resolution": "resolved",
+                  "basis": [
+                    "assistant:proposed-inclusive-first-and-subsequent-tolerance-reading",
+                    "assistant:nominal-targets-and-permitted-windows-are-distinct-information-channels",
+                    "assistant:not-actual-attendance-or-endpoint-confirmation"
+                  ]
+                }
+              ]
+            }
+          ],
+          "signal_claims": [],
+          "binding_uses": [],
+          "anchors": [
+            "whole-schedule-passage"
+          ]
+        }
+      ],
+      "bindings": []
+    },
+    "requests": [
+      {
+        "operation": "interpretations",
+        "study_ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+        "fixed": {
+          "assertions": [
+            {
+              "applicability": {
+                "class": "Always"
+              },
+              "body": {
+                "class": "Literal",
+                "evidence": [
+                  {
+                    "class": "Evidence",
+                    "kind": "record_field",
+                    "ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/protocolSection/eligibilityModule/minimumAge"
+                  }
+                ],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "age",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "ge",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 18.0,
+                  "unit": "Years",
+                  "upper": null
+                }
+              },
+              "branch": {
+                "class": "Branch",
+                "node": "unresolved",
+                "path": []
+              },
+              "class": "ScopedAssertion",
+              "cohort": {
+                "class": "Scope",
+                "kind": "all_participants",
+                "parts": [],
+                "ref": ""
+              },
+              "criterion_ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/protocolSection/eligibilityModule/minimumAge",
+              "id": "registry-age-minimumAge",
+              "modality": "required",
+              "resolution": "resolved",
+              "rule": {
+                "answers": [],
+                "class": "Rule",
+                "id": "ctg-structured-general-eligibility-age",
+                "premises": [
+                  "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/protocolSection/eligibilityModule/minimumAge"
+                ],
+                "version": "1",
+                "warrants": []
+              },
+              "span": [],
+              "status": "known"
+            }
+          ],
+          "signals": []
+        },
+        "bindings": [],
+        "interpretations": [
+          {
+            "id": "randomization-anchored",
+            "label": "Apply each 42-day assessment tolerance around nominal days measured from randomization",
+            "origin": "assistant",
+            "basis": [
+              "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/protocolSection/outcomesModule/primaryOutcomes/0/timeFrame:chars:0:148",
+              "hypothesis:source-location-is-not-semantic-warrant"
+            ],
+            "assumptions": [],
+            "signals": [
+              {
+                "id": "scheduled-assessments",
+                "kind": "temporal",
+                "data": {
+                  "scope": "NCT00322452:registered-PFS:proposed-first-two-postbaseline",
+                  "unit": "day",
+                  "origin": "randomization",
+                  "resolution": "resolved",
+                  "events": [
+                    "randomization",
+                    "first_nominal_target",
+                    "second_nominal_target",
+                    "first_permitted_assessment",
+                    "second_permitted_assessment"
+                  ],
+                  "constraints": [
+                    {
+                      "before": "randomization",
+                      "after": "first_nominal_target",
+                      "lower": 42,
+                      "upper": 42,
+                      "lower_inclusive": true,
+                      "upper_inclusive": true
+                    },
+                    {
+                      "before": "first_nominal_target",
+                      "after": "second_nominal_target",
+                      "lower": 42,
+                      "upper": 42,
+                      "lower_inclusive": true,
+                      "upper_inclusive": true
+                    },
+                    {
+                      "before": "randomization",
+                      "after": "first_permitted_assessment",
+                      "lower": 35,
+                      "upper": 49,
+                      "lower_inclusive": true,
+                      "upper_inclusive": true
+                    },
+                    {
+                      "before": "randomization",
+                      "after": "second_permitted_assessment",
+                      "lower": 77,
+                      "upper": 91,
+                      "lower_inclusive": true,
+                      "upper_inclusive": true
+                    }
+                  ]
+                },
+                "support": [
+                  {
+                    "id": "randomization-anchored-schedule-reading",
+                    "status": "proposed",
+                    "resolution": "resolved",
+                    "basis": [
+                      "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/protocolSection/outcomesModule/primaryOutcomes/0/timeFrame:chars:0:148",
+                      "hypothesis:source-location-is-not-semantic-warrant"
+                    ]
+                  }
+                ],
+                "bindings": {}
+              }
+            ],
+            "signal_claims": [],
+            "binding_uses": []
+          },
+          {
+            "id": "successive-gaps",
+            "label": "Apply each 42-day assessment tolerance as a gap after the preceding assessment",
+            "origin": "assistant",
+            "basis": [
+              "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/protocolSection/outcomesModule/primaryOutcomes/0/timeFrame:chars:0:148",
+              "hypothesis:source-location-is-not-semantic-warrant"
+            ],
+            "assumptions": [],
+            "signals": [
+              {
+                "id": "scheduled-assessments",
+                "kind": "temporal",
+                "data": {
+                  "scope": "NCT00322452:registered-PFS:proposed-first-two-postbaseline",
+                  "unit": "day",
+                  "origin": "randomization",
+                  "resolution": "resolved",
+                  "events": [
+                    "randomization",
+                    "first_nominal_target",
+                    "second_nominal_target",
+                    "first_permitted_assessment",
+                    "second_permitted_assessment"
+                  ],
+                  "constraints": [
+                    {
+                      "before": "randomization",
+                      "after": "first_nominal_target",
+                      "lower": 42,
+                      "upper": 42,
+                      "lower_inclusive": true,
+                      "upper_inclusive": true
+                    },
+                    {
+                      "before": "first_nominal_target",
+                      "after": "second_nominal_target",
+                      "lower": 42,
+                      "upper": 42,
+                      "lower_inclusive": true,
+                      "upper_inclusive": true
+                    },
+                    {
+                      "before": "randomization",
+                      "after": "first_permitted_assessment",
+                      "lower": 35,
+                      "upper": 49,
+                      "lower_inclusive": true,
+                      "upper_inclusive": true
+                    },
+                    {
+                      "before": "first_permitted_assessment",
+                      "after": "second_permitted_assessment",
+                      "lower": 35,
+                      "upper": 49,
+                      "lower_inclusive": true,
+                      "upper_inclusive": true
+                    }
+                  ]
+                },
+                "support": [
+                  {
+                    "id": "successive-gaps-schedule-reading",
+                    "status": "proposed",
+                    "resolution": "resolved",
+                    "basis": [
+                      "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/protocolSection/outcomesModule/primaryOutcomes/0/timeFrame:chars:0:148",
+                      "hypothesis:source-location-is-not-semantic-warrant"
+                    ]
+                  }
+                ],
+                "bindings": {}
+              }
+            ],
+            "signal_claims": [],
+            "binding_uses": []
+          }
+        ],
+        "queries": [
+          {
+            "id": "registered-adult-age",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "age",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "ge",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 18.0,
+                "unit": "Years",
+                "upper": null
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "limits": [
+      "Structured ages describe registry general eligibility, not verified actual protocol.",
+      "A located quotation proves quotation only; clinical readings remain hypothetical.",
+      "No unit conversion, automatic binding joins, clinical text interpretation or source mutation."
+    ],
+    "analyses": [
+      {
+        "code": "complete",
+        "operation": "interpretations",
+        "result": {
+          "study_ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+          "fixed": {
+            "assertions": [
+              {
+                "applicability": {
+                  "class": "Always"
+                },
+                "body": {
+                  "class": "Literal",
+                  "evidence": [
+                    {
+                      "class": "Evidence",
+                      "kind": "record_field",
+                      "ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/protocolSection/eligibilityModule/minimumAge"
+                    }
+                  ],
+                  "polarity": "positive",
+                  "predicate": {
+                    "class": "Predicate",
+                    "key": "age",
+                    "kind": "measurement"
+                  },
+                  "qualifiers": {
+                    "class": "Always"
+                  },
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "participant",
+                    "referent": ""
+                  },
+                  "time": null,
+                  "value": {
+                    "class": "Value",
+                    "comparison": "ge",
+                    "inclusivity": "unspecified",
+                    "kind": "quantity",
+                    "members": [],
+                    "number": 18.0,
+                    "unit": "Years",
+                    "upper": null
+                  }
+                },
+                "branch": {
+                  "class": "Branch",
+                  "node": "unresolved",
+                  "path": []
+                },
+                "class": "ScopedAssertion",
+                "cohort": {
+                  "class": "Scope",
+                  "kind": "all_participants",
+                  "parts": [],
+                  "ref": ""
+                },
+                "criterion_ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/protocolSection/eligibilityModule/minimumAge",
+                "id": "registry-age-minimumAge",
+                "modality": "required",
+                "resolution": "resolved",
+                "rule": {
+                  "answers": [],
+                  "class": "Rule",
+                  "id": "ctg-structured-general-eligibility-age",
+                  "premises": [
+                    "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/protocolSection/eligibilityModule/minimumAge"
+                  ],
+                  "version": "1",
+                  "warrants": []
+                },
+                "span": [],
+                "status": "known"
+              }
+            ],
+            "consistency": {
+              "result": "UNDETERMINED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+              "status": null,
+              "proof": [],
+              "blockers": [
+                "no_constraint_mentions_query"
+              ]
+            },
+            "queries": [
+              {
+                "id": "registered-adult-age",
+                "body": {
+                  "class": "Literal",
+                  "evidence": [],
+                  "polarity": "positive",
+                  "predicate": {
+                    "class": "Predicate",
+                    "key": "age",
+                    "kind": "measurement"
+                  },
+                  "qualifiers": {
+                    "class": "Always"
+                  },
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "participant",
+                    "referent": ""
+                  },
+                  "time": null,
+                  "value": {
+                    "class": "Value",
+                    "comparison": "ge",
+                    "inclusivity": "unspecified",
+                    "kind": "quantity",
+                    "members": [],
+                    "number": 18.0,
+                    "unit": "Years",
+                    "upper": null
+                  }
+                },
+                "result": "ENTAILED",
+                "decision": {
+                  "result": "ENTAILED",
+                  "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+                  "status": "known",
+                  "proof": [
+                    "registry-age-minimumAge"
+                  ],
+                  "blockers": []
+                },
+                "warrant": {
+                  "rule": "entail.decide:1",
+                  "guarantee": "fixed_floor",
+                  "status": "known",
+                  "assumptions": [],
+                  "proof": [
+                    "registry-age-minimumAge"
+                  ],
+                  "blockers": []
+                }
+              }
+            ],
+            "signals": [],
+            "blockers": []
+          },
+          "bindings": [],
+          "interpretations": [
+            {
+              "id": "randomization-anchored",
+              "label": "Apply each 42-day assessment tolerance around nominal days measured from randomization",
+              "origin": "assistant",
+              "state": "compatible",
+              "premises": {
+                "basis": [
+                  "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/protocolSection/outcomesModule/primaryOutcomes/0/timeFrame:chars:0:148",
+                  "hypothesis:source-location-is-not-semantic-warrant"
+                ],
+                "assumptions": [],
+                "signals": [
+                  {
+                    "id": "scheduled-assessments",
+                    "kind": "temporal",
+                    "data": {
+                      "scope": "NCT00322452:registered-PFS:proposed-first-two-postbaseline",
+                      "unit": "day",
+                      "origin": "randomization",
+                      "resolution": "resolved",
+                      "events": [
+                        "randomization",
+                        "first_nominal_target",
+                        "second_nominal_target",
+                        "first_permitted_assessment",
+                        "second_permitted_assessment"
+                      ],
+                      "constraints": [
+                        {
+                          "before": "randomization",
+                          "after": "first_nominal_target",
+                          "lower": 42,
+                          "upper": 42,
+                          "lower_inclusive": true,
+                          "upper_inclusive": true
+                        },
+                        {
+                          "before": "first_nominal_target",
+                          "after": "second_nominal_target",
+                          "lower": 42,
+                          "upper": 42,
+                          "lower_inclusive": true,
+                          "upper_inclusive": true
+                        },
+                        {
+                          "before": "randomization",
+                          "after": "first_permitted_assessment",
+                          "lower": 35,
+                          "upper": 49,
+                          "lower_inclusive": true,
+                          "upper_inclusive": true
+                        },
+                        {
+                          "before": "randomization",
+                          "after": "second_permitted_assessment",
+                          "lower": 77,
+                          "upper": 91,
+                          "lower_inclusive": true,
+                          "upper_inclusive": true
+                        }
+                      ]
+                    },
+                    "support": [
+                      {
+                        "id": "randomization-anchored-schedule-reading",
+                        "status": "proposed",
+                        "resolution": "resolved",
+                        "basis": [
+                          "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/protocolSection/outcomesModule/primaryOutcomes/0/timeFrame:chars:0:148",
+                          "hypothesis:source-location-is-not-semantic-warrant"
+                        ]
+                      }
+                    ],
+                    "bindings": {}
+                  }
+                ],
+                "signal_claims": [],
+                "binding_uses": []
+              },
+              "bindings": [],
+              "signals": [
+                {
+                  "id": "scheduled-assessments",
+                  "kind": "temporal",
+                  "code": "consistent",
+                  "calculation_code": "consistent",
+                  "value": {
+                    "scope": "NCT00322452:registered-PFS:proposed-first-two-postbaseline",
+                    "unit": "day",
+                    "origin": "randomization",
+                    "bounds": [
+                      {
+                        "before": "randomization",
+                        "after": "first_nominal_target",
+                        "lower": 42,
+                        "upper": 42,
+                        "lower_inclusive": true,
+                        "upper_inclusive": true
+                      },
+                      {
+                        "before": "randomization",
+                        "after": "second_nominal_target",
+                        "lower": 84,
+                        "upper": 84,
+                        "lower_inclusive": true,
+                        "upper_inclusive": true
+                      },
+                      {
+                        "before": "randomization",
+                        "after": "first_permitted_assessment",
+                        "lower": 35,
+                        "upper": 49,
+                        "lower_inclusive": true,
+                        "upper_inclusive": true
+                      },
+                      {
+                        "before": "randomization",
+                        "after": "second_permitted_assessment",
+                        "lower": 77,
+                        "upper": 91,
+                        "lower_inclusive": true,
+                        "upper_inclusive": true
+                      },
+                      {
+                        "before": "first_nominal_target",
+                        "after": "randomization",
+                        "lower": -42,
+                        "upper": -42,
+                        "lower_inclusive": true,
+                        "upper_inclusive": true
+                      },
+                      {
+                        "before": "first_nominal_target",
+                        "after": "second_nominal_target",
+                        "lower": 42,
+                        "upper": 42,
+                        "lower_inclusive": true,
+                        "upper_inclusive": true
+                      },
+                      {
+                        "before": "first_nominal_target",
+                        "after": "first_permitted_assessment",
+                        "lower": -7,
+                        "upper": 7,
+                        "lower_inclusive": true,
+                        "upper_inclusive": true
+                      },
+                      {
+                        "before": "first_nominal_target",
+                        "after": "second_permitted_assessment",
+                        "lower": 35,
+                        "upper": 49,
+                        "lower_inclusive": true,
+                        "upper_inclusive": true
+                      },
+                      {
+                        "before": "second_nominal_target",
+                        "after": "randomization",
+                        "lower": -84,
+                        "upper": -84,
+                        "lower_inclusive": true,
+                        "upper_inclusive": true
+                      },
+                      {
+                        "before": "second_nominal_target",
+                        "after": "first_nominal_target",
+                        "lower": -42,
+                        "upper": -42,
+                        "lower_inclusive": true,
+                        "upper_inclusive": true
+                      },
+                      {
+                        "before": "second_nominal_target",
+                        "after": "first_permitted_assessment",
+                        "lower": -49,
+                        "upper": -35,
+                        "lower_inclusive": true,
+                        "upper_inclusive": true
+                      },
+                      {
+                        "before": "second_nominal_target",
+                        "after": "second_permitted_assessment",
+                        "lower": -7,
+                        "upper": 7,
+                        "lower_inclusive": true,
+                        "upper_inclusive": true
+                      },
+                      {
+                        "before": "first_permitted_assessment",
+                        "after": "randomization",
+                        "lower": -49,
+                        "upper": -35,
+                        "lower_inclusive": true,
+                        "upper_inclusive": true
+                      },
+                      {
+                        "before": "first_permitted_assessment",
+                        "after": "first_nominal_target",
+                        "lower": -7,
+                        "upper": 7,
+                        "lower_inclusive": true,
+                        "upper_inclusive": true
+                      },
+                      {
+                        "before": "first_permitted_assessment",
+                        "after": "second_nominal_target",
+                        "lower": 35,
+                        "upper": 49,
+                        "lower_inclusive": true,
+                        "upper_inclusive": true
+                      },
+                      {
+                        "before": "first_permitted_assessment",
+                        "after": "second_permitted_assessment",
+                        "lower": 28,
+                        "upper": 56,
+                        "lower_inclusive": true,
+                        "upper_inclusive": true
+                      },
+                      {
+                        "before": "second_permitted_assessment",
+                        "after": "randomization",
+                        "lower": -91,
+                        "upper": -77,
+                        "lower_inclusive": true,
+                        "upper_inclusive": true
+                      },
+                      {
+                        "before": "second_permitted_assessment",
+                        "after": "first_nominal_target",
+                        "lower": -49,
+                        "upper": -35,
+                        "lower_inclusive": true,
+                        "upper_inclusive": true
+                      },
+                      {
+                        "before": "second_permitted_assessment",
+                        "after": "second_nominal_target",
+                        "lower": -7,
+                        "upper": 7,
+                        "lower_inclusive": true,
+                        "upper_inclusive": true
+                      },
+                      {
+                        "before": "second_permitted_assessment",
+                        "after": "first_permitted_assessment",
+                        "lower": -56,
+                        "upper": -28,
+                        "lower_inclusive": true,
+                        "upper_inclusive": true
+                      }
+                    ]
+                  },
+                  "rule": "graph.temporal:1",
+                  "status": "proposed",
+                  "basis": [
+                    "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/protocolSection/outcomesModule/primaryOutcomes/0/timeFrame:chars:0:148",
+                    "hypothesis:source-location-is-not-semantic-warrant"
+                  ],
+                  "support": [
+                    {
+                      "id": "randomization-anchored-schedule-reading",
+                      "status": "proposed",
+                      "resolution": "resolved",
+                      "basis": [
+                        "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/protocolSection/outcomesModule/primaryOutcomes/0/timeFrame:chars:0:148",
+                        "hypothesis:source-location-is-not-semantic-warrant"
+                      ]
+                    }
+                  ],
+                  "blockers": [],
+                  "guarantee": "conditional_on_interpretation",
+                  "assumed_support": [
+                    "randomization-anchored-schedule-reading"
+                  ],
+                  "role": "active_premise"
+                }
+              ],
+              "signal_checks": [],
+              "queries": [
+                {
+                  "id": "registered-adult-age",
+                  "body": {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "age",
+                      "kind": "measurement"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "participant",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "ge",
+                      "inclusivity": "unspecified",
+                      "kind": "quantity",
+                      "members": [],
+                      "number": 18.0,
+                      "unit": "Years",
+                      "upper": null
+                    }
+                  },
+                  "result": "ENTAILED",
+                  "decision": {
+                    "result": "ENTAILED",
+                    "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+                    "status": "known",
+                    "proof": [
+                      "registry-age-minimumAge"
+                    ],
+                    "blockers": []
+                  },
+                  "warrant": {
+                    "rule": "entail.decide:1",
+                    "guarantee": "conditional_on_interpretation",
+                    "status": "known",
+                    "assumptions": [],
+                    "proof": [
+                      "registry-age-minimumAge"
+                    ],
+                    "blockers": []
+                  }
+                }
+              ],
+              "warrant": {
+                "rule": "interpretations.compatibility:1",
+                "guarantee": "conditional_on_fixed_and_interpretation_premises",
+                "fixed_status": "known",
+                "status": "proposed",
+                "fixed_premises": [],
+                "assumptions": [],
+                "bindings": [],
+                "basis": [
+                  "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/protocolSection/outcomesModule/primaryOutcomes/0/timeFrame:chars:0:148",
+                  "hypothesis:source-location-is-not-semantic-warrant"
+                ],
+                "consistency": {
+                  "result": "UNDETERMINED",
+                  "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+                  "status": null,
+                  "proof": [],
+                  "blockers": [
+                    "no_constraint_mentions_query"
+                  ]
+                },
+                "intrinsic_consistency": {
+                  "result": "UNDETERMINED",
+                  "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+                  "status": null,
+                  "proof": [],
+                  "blockers": [
+                    "no_constraint_mentions_query"
+                  ]
+                },
+                "signal_rules": [
+                  {
+                    "id": "scheduled-assessments",
+                    "rule": "graph.temporal:1"
+                  }
+                ],
+                "blockers": []
+              }
+            },
+            {
+              "id": "successive-gaps",
+              "label": "Apply each 42-day assessment tolerance as a gap after the preceding assessment",
+              "origin": "assistant",
+              "state": "compatible",
+              "premises": {
+                "basis": [
+                  "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/protocolSection/outcomesModule/primaryOutcomes/0/timeFrame:chars:0:148",
+                  "hypothesis:source-location-is-not-semantic-warrant"
+                ],
+                "assumptions": [],
+                "signals": [
+                  {
+                    "id": "scheduled-assessments",
+                    "kind": "temporal",
+                    "data": {
+                      "scope": "NCT00322452:registered-PFS:proposed-first-two-postbaseline",
+                      "unit": "day",
+                      "origin": "randomization",
+                      "resolution": "resolved",
+                      "events": [
+                        "randomization",
+                        "first_nominal_target",
+                        "second_nominal_target",
+                        "first_permitted_assessment",
+                        "second_permitted_assessment"
+                      ],
+                      "constraints": [
+                        {
+                          "before": "randomization",
+                          "after": "first_nominal_target",
+                          "lower": 42,
+                          "upper": 42,
+                          "lower_inclusive": true,
+                          "upper_inclusive": true
+                        },
+                        {
+                          "before": "first_nominal_target",
+                          "after": "second_nominal_target",
+                          "lower": 42,
+                          "upper": 42,
+                          "lower_inclusive": true,
+                          "upper_inclusive": true
+                        },
+                        {
+                          "before": "randomization",
+                          "after": "first_permitted_assessment",
+                          "lower": 35,
+                          "upper": 49,
+                          "lower_inclusive": true,
+                          "upper_inclusive": true
+                        },
+                        {
+                          "before": "first_permitted_assessment",
+                          "after": "second_permitted_assessment",
+                          "lower": 35,
+                          "upper": 49,
+                          "lower_inclusive": true,
+                          "upper_inclusive": true
+                        }
+                      ]
+                    },
+                    "support": [
+                      {
+                        "id": "successive-gaps-schedule-reading",
+                        "status": "proposed",
+                        "resolution": "resolved",
+                        "basis": [
+                          "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/protocolSection/outcomesModule/primaryOutcomes/0/timeFrame:chars:0:148",
+                          "hypothesis:source-location-is-not-semantic-warrant"
+                        ]
+                      }
+                    ],
+                    "bindings": {}
+                  }
+                ],
+                "signal_claims": [],
+                "binding_uses": []
+              },
+              "bindings": [],
+              "signals": [
+                {
+                  "id": "scheduled-assessments",
+                  "kind": "temporal",
+                  "code": "consistent",
+                  "calculation_code": "consistent",
+                  "value": {
+                    "scope": "NCT00322452:registered-PFS:proposed-first-two-postbaseline",
+                    "unit": "day",
+                    "origin": "randomization",
+                    "bounds": [
+                      {
+                        "before": "randomization",
+                        "after": "first_nominal_target",
+                        "lower": 42,
+                        "upper": 42,
+                        "lower_inclusive": true,
+                        "upper_inclusive": true
+                      },
+                      {
+                        "before": "randomization",
+                        "after": "second_nominal_target",
+                        "lower": 84,
+                        "upper": 84,
+                        "lower_inclusive": true,
+                        "upper_inclusive": true
+                      },
+                      {
+                        "before": "randomization",
+                        "after": "first_permitted_assessment",
+                        "lower": 35,
+                        "upper": 49,
+                        "lower_inclusive": true,
+                        "upper_inclusive": true
+                      },
+                      {
+                        "before": "randomization",
+                        "after": "second_permitted_assessment",
+                        "lower": 70,
+                        "upper": 98,
+                        "lower_inclusive": true,
+                        "upper_inclusive": true
+                      },
+                      {
+                        "before": "first_nominal_target",
+                        "after": "randomization",
+                        "lower": -42,
+                        "upper": -42,
+                        "lower_inclusive": true,
+                        "upper_inclusive": true
+                      },
+                      {
+                        "before": "first_nominal_target",
+                        "after": "second_nominal_target",
+                        "lower": 42,
+                        "upper": 42,
+                        "lower_inclusive": true,
+                        "upper_inclusive": true
+                      },
+                      {
+                        "before": "first_nominal_target",
+                        "after": "first_permitted_assessment",
+                        "lower": -7,
+                        "upper": 7,
+                        "lower_inclusive": true,
+                        "upper_inclusive": true
+                      },
+                      {
+                        "before": "first_nominal_target",
+                        "after": "second_permitted_assessment",
+                        "lower": 28,
+                        "upper": 56,
+                        "lower_inclusive": true,
+                        "upper_inclusive": true
+                      },
+                      {
+                        "before": "second_nominal_target",
+                        "after": "randomization",
+                        "lower": -84,
+                        "upper": -84,
+                        "lower_inclusive": true,
+                        "upper_inclusive": true
+                      },
+                      {
+                        "before": "second_nominal_target",
+                        "after": "first_nominal_target",
+                        "lower": -42,
+                        "upper": -42,
+                        "lower_inclusive": true,
+                        "upper_inclusive": true
+                      },
+                      {
+                        "before": "second_nominal_target",
+                        "after": "first_permitted_assessment",
+                        "lower": -49,
+                        "upper": -35,
+                        "lower_inclusive": true,
+                        "upper_inclusive": true
+                      },
+                      {
+                        "before": "second_nominal_target",
+                        "after": "second_permitted_assessment",
+                        "lower": -14,
+                        "upper": 14,
+                        "lower_inclusive": true,
+                        "upper_inclusive": true
+                      },
+                      {
+                        "before": "first_permitted_assessment",
+                        "after": "randomization",
+                        "lower": -49,
+                        "upper": -35,
+                        "lower_inclusive": true,
+                        "upper_inclusive": true
+                      },
+                      {
+                        "before": "first_permitted_assessment",
+                        "after": "first_nominal_target",
+                        "lower": -7,
+                        "upper": 7,
+                        "lower_inclusive": true,
+                        "upper_inclusive": true
+                      },
+                      {
+                        "before": "first_permitted_assessment",
+                        "after": "second_nominal_target",
+                        "lower": 35,
+                        "upper": 49,
+                        "lower_inclusive": true,
+                        "upper_inclusive": true
+                      },
+                      {
+                        "before": "first_permitted_assessment",
+                        "after": "second_permitted_assessment",
+                        "lower": 35,
+                        "upper": 49,
+                        "lower_inclusive": true,
+                        "upper_inclusive": true
+                      },
+                      {
+                        "before": "second_permitted_assessment",
+                        "after": "randomization",
+                        "lower": -98,
+                        "upper": -70,
+                        "lower_inclusive": true,
+                        "upper_inclusive": true
+                      },
+                      {
+                        "before": "second_permitted_assessment",
+                        "after": "first_nominal_target",
+                        "lower": -56,
+                        "upper": -28,
+                        "lower_inclusive": true,
+                        "upper_inclusive": true
+                      },
+                      {
+                        "before": "second_permitted_assessment",
+                        "after": "second_nominal_target",
+                        "lower": -14,
+                        "upper": 14,
+                        "lower_inclusive": true,
+                        "upper_inclusive": true
+                      },
+                      {
+                        "before": "second_permitted_assessment",
+                        "after": "first_permitted_assessment",
+                        "lower": -49,
+                        "upper": -35,
+                        "lower_inclusive": true,
+                        "upper_inclusive": true
+                      }
+                    ]
+                  },
+                  "rule": "graph.temporal:1",
+                  "status": "proposed",
+                  "basis": [
+                    "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/protocolSection/outcomesModule/primaryOutcomes/0/timeFrame:chars:0:148",
+                    "hypothesis:source-location-is-not-semantic-warrant"
+                  ],
+                  "support": [
+                    {
+                      "id": "successive-gaps-schedule-reading",
+                      "status": "proposed",
+                      "resolution": "resolved",
+                      "basis": [
+                        "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/protocolSection/outcomesModule/primaryOutcomes/0/timeFrame:chars:0:148",
+                        "hypothesis:source-location-is-not-semantic-warrant"
+                      ]
+                    }
+                  ],
+                  "blockers": [],
+                  "guarantee": "conditional_on_interpretation",
+                  "assumed_support": [
+                    "successive-gaps-schedule-reading"
+                  ],
+                  "role": "active_premise"
+                }
+              ],
+              "signal_checks": [],
+              "queries": [
+                {
+                  "id": "registered-adult-age",
+                  "body": {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "age",
+                      "kind": "measurement"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "participant",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "ge",
+                      "inclusivity": "unspecified",
+                      "kind": "quantity",
+                      "members": [],
+                      "number": 18.0,
+                      "unit": "Years",
+                      "upper": null
+                    }
+                  },
+                  "result": "ENTAILED",
+                  "decision": {
+                    "result": "ENTAILED",
+                    "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+                    "status": "known",
+                    "proof": [
+                      "registry-age-minimumAge"
+                    ],
+                    "blockers": []
+                  },
+                  "warrant": {
+                    "rule": "entail.decide:1",
+                    "guarantee": "conditional_on_interpretation",
+                    "status": "known",
+                    "assumptions": [],
+                    "proof": [
+                      "registry-age-minimumAge"
+                    ],
+                    "blockers": []
+                  }
+                }
+              ],
+              "warrant": {
+                "rule": "interpretations.compatibility:1",
+                "guarantee": "conditional_on_fixed_and_interpretation_premises",
+                "fixed_status": "known",
+                "status": "proposed",
+                "fixed_premises": [],
+                "assumptions": [],
+                "bindings": [],
+                "basis": [
+                  "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/protocolSection/outcomesModule/primaryOutcomes/0/timeFrame:chars:0:148",
+                  "hypothesis:source-location-is-not-semantic-warrant"
+                ],
+                "consistency": {
+                  "result": "UNDETERMINED",
+                  "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+                  "status": null,
+                  "proof": [],
+                  "blockers": [
+                    "no_constraint_mentions_query"
+                  ]
+                },
+                "intrinsic_consistency": {
+                  "result": "UNDETERMINED",
+                  "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+                  "status": null,
+                  "proof": [],
+                  "blockers": [
+                    "no_constraint_mentions_query"
+                  ]
+                },
+                "signal_rules": [
+                  {
+                    "id": "scheduled-assessments",
+                    "rule": "graph.temporal:1"
+                  }
+                ],
+                "blockers": []
+              }
+            }
+          ],
+          "remaining": [
+            "randomization-anchored",
+            "successive-gaps"
+          ],
+          "refuted": [],
+          "incoherent": [],
+          "unresolved": [],
+          "selection": {
+            "id": null,
+            "state": "none",
+            "origin": null
+          },
+          "consequences": [
+            {
+              "id": "registered-adult-age",
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "age",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "ge",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 18.0,
+                  "unit": "Years",
+                  "upper": null
+                }
+              },
+              "result": "ENTAILED",
+              "decision": {
+                "result": "ENTAILED",
+                "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+                "status": "known",
+                "proof": [
+                  "registry-age-minimumAge"
+                ],
+                "blockers": []
+              },
+              "warrant": {
+                "rule": "entail.decide:1",
+                "guarantee": "fixed_floor",
+                "status": "known",
+                "assumptions": [],
+                "proof": [
+                  "registry-age-minimumAge"
+                ],
+                "blockers": []
+              },
+              "frames": [],
+              "basis": "fixed_floor"
+            }
+          ],
+          "limits": "Exact conditional checks over declared readings; compatibility is not source truth or clinical recommendation. The interpretation family is not assumed exhaustive. No automatic text reading, source correction, source mutation or corpus-frequency admission."
+        },
+        "problems": [],
+        "metadata": {
+          "version": 1,
+          "kind": "reasoning",
+          "findings": [
+            {
+              "path": "/result/fixed/consistency",
+              "kind": "consistency",
+              "logical_result": "UNDETERMINED",
+              "standing": null,
+              "completion": "complete",
+              "causes": [
+                {
+                  "code": "no_constraint_mentions_query",
+                  "kind": "coverage"
+                }
+              ],
+              "disposition": "open"
+            },
+            {
+              "path": "/result/fixed/queries/0",
+              "kind": "logical",
+              "logical_result": "ENTAILED",
+              "standing": "known",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "settled",
+              "support_path": "/result/fixed/queries/0/warrant"
+            },
+            {
+              "path": "/result/interpretations/0",
+              "kind": "interpretation",
+              "logical_result": "compatible",
+              "standing": "proposed",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "conditional"
+            },
+            {
+              "path": "/result/interpretations/0/queries/0",
+              "kind": "logical",
+              "logical_result": "ENTAILED",
+              "standing": "known",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "settled",
+              "support_path": "/result/interpretations/0/queries/0/warrant"
+            },
+            {
+              "path": "/result/interpretations/0/signals/0",
+              "kind": "signal",
+              "logical_result": "consistent",
+              "standing": "proposed",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "conditional"
+            },
+            {
+              "path": "/result/interpretations/1",
+              "kind": "interpretation",
+              "logical_result": "compatible",
+              "standing": "proposed",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "conditional"
+            },
+            {
+              "path": "/result/interpretations/1/queries/0",
+              "kind": "logical",
+              "logical_result": "ENTAILED",
+              "standing": "known",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "settled",
+              "support_path": "/result/interpretations/1/queries/0/warrant"
+            },
+            {
+              "path": "/result/interpretations/1/signals/0",
+              "kind": "signal",
+              "logical_result": "consistent",
+              "standing": "proposed",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "conditional"
+            },
+            {
+              "path": "/result/consequences/0",
+              "kind": "logical",
+              "logical_result": "ENTAILED",
+              "standing": "known",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "settled",
+              "support_path": "/result/consequences/0/warrant"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "problems": [],
+  "metadata": {
+    "version": 1,
+    "kind": "reasoning",
+    "findings": [
+      {
+        "path": "/result/analyses/0/result/fixed/consistency",
+        "kind": "consistency",
+        "logical_result": "UNDETERMINED",
+        "standing": null,
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          }
+        ],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/analyses/0/result/fixed/queries/0",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled",
+        "support_path": "/result/analyses/0/result/fixed/queries/0/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/0",
+        "kind": "interpretation",
+        "logical_result": "compatible",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/0/queries/0",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled",
+        "support_path": "/result/analyses/0/result/interpretations/0/queries/0/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/0/signals/0",
+        "kind": "signal",
+        "logical_result": "consistent",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/1",
+        "kind": "interpretation",
+        "logical_result": "compatible",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/1/queries/0",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled",
+        "support_path": "/result/analyses/0/result/interpretations/1/queries/0/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/1/signals/0",
+        "kind": "signal",
+        "logical_result": "consistent",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional"
+      },
+      {
+        "path": "/result/analyses/0/result/consequences/0",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled",
+        "support_path": "/result/analyses/0/result/consequences/0/warrant"
+      }
+    ]
+  }
+}

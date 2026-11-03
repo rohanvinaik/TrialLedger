@@ -91,5 +91,20 @@
     ],
     "limits": "Typed, source-bound partial evidence; no clinical text interpretation or source mutation."
   },
-  "problems": []
+  "problems": [],
+  "metadata": {
+    "version": 1,
+    "kind": "reasoning",
+    "findings": [
+      {
+        "path": "/result/signals/0",
+        "kind": "signal",
+        "logical_result": "consistent",
+        "standing": "interpolated",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional"
+      }
+    ]
+  }
 }

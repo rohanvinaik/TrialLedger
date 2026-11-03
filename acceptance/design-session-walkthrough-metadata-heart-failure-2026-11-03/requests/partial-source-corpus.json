@@ -1,0 +1,104 @@
+{
+  "operation": "corpus",
+  "trials": [
+    {
+      "id": "NCT03332212",
+      "sponsor": "Boehringer Ingelheim",
+      "stratum": "random-HF-source-sample-not-a-common-endpoint-or-EF-cell",
+      "elements": [
+        "inclusion:minimum_age=18_Years",
+        "inclusion:LVEF_boundary=selected_reading"
+      ],
+      "typed": true,
+      "basis": [
+        "investigation:direct-age-element-typed-not-whole-eligibility-coverage"
+      ],
+      "standing": {
+        "status": "proposed",
+        "resolution": "resolved",
+        "basis": [
+          "investigation:clinical-comparability-and-EF-readings-not-confirmed"
+        ]
+      },
+      "feature_standings": {
+        "elements": {
+          "inclusion:minimum_age=18_Years": {
+            "status": "known",
+            "resolution": "resolved",
+            "basis": [
+              "ctg:NCT03332212:6bbfa6623b3c42e62756daeafaa841488494fe4cbbd4a2a904506a9fe76de6c6#/protocolSection/eligibilityModule/minimumAge",
+              "ctg-structured-general-eligibility-age:1"
+            ]
+          }
+        }
+      },
+      "class_unresolved": true
+    },
+    {
+      "id": "NCT03057977",
+      "sponsor": "Boehringer Ingelheim",
+      "stratum": "random-HF-source-sample-not-a-common-endpoint-or-EF-cell",
+      "elements": [
+        "inclusion:minimum_age=18_Years",
+        "inclusion:LVEF_boundary=selected_reading"
+      ],
+      "typed": true,
+      "basis": [
+        "investigation:direct-age-element-typed-not-whole-eligibility-coverage"
+      ],
+      "standing": {
+        "status": "proposed",
+        "resolution": "resolved",
+        "basis": [
+          "investigation:clinical-comparability-and-EF-readings-not-confirmed"
+        ]
+      },
+      "feature_standings": {
+        "elements": {
+          "inclusion:minimum_age=18_Years": {
+            "status": "known",
+            "resolution": "resolved",
+            "basis": [
+              "ctg:NCT03057977:651d50db132a20a8261fdfcbcddd46ad377d98a32d477c3d4094c19a0ee65f11#/protocolSection/eligibilityModule/minimumAge",
+              "ctg-structured-general-eligibility-age:1"
+            ]
+          }
+        }
+      },
+      "class_unresolved": true
+    },
+    {
+      "id": "NCT03448406",
+      "sponsor": "Boehringer Ingelheim",
+      "stratum": "random-HF-source-sample-not-a-common-endpoint-or-EF-cell",
+      "elements": [
+        "inclusion:minimum_age=18_Years",
+        "inclusion:LVEF_boundary=selected_reading"
+      ],
+      "typed": true,
+      "basis": [
+        "investigation:direct-age-element-typed-not-whole-eligibility-coverage"
+      ],
+      "standing": {
+        "status": "proposed",
+        "resolution": "resolved",
+        "basis": [
+          "investigation:clinical-comparability-and-EF-readings-not-confirmed"
+        ]
+      },
+      "feature_standings": {
+        "elements": {
+          "inclusion:minimum_age=18_Years": {
+            "status": "known",
+            "resolution": "resolved",
+            "basis": [
+              "ctg:NCT03448406:619c275b11f3e6ea8c049fb63484166c967d19fa0d725c81580c1f8b01153a48#/protocolSection/eligibilityModule/minimumAge",
+              "ctg-structured-general-eligibility-age:1"
+            ]
+          }
+        }
+      },
+      "class_unresolved": true
+    }
+  ]
+}

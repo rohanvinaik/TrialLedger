@@ -1,0 +1,51 @@
+{
+  "question": "For a proposed adult heart-failure trial considering LVEF 45%, how do sampled completed phase-3 empagliflozin records constrain EF range, background therapy and comparability?",
+  "query": {
+    "drug": [
+      "empagliflozin"
+    ],
+    "condition": "Heart Failure",
+    "phase": [
+      "PHASE3"
+    ],
+    "status": [
+      "COMPLETED"
+    ]
+  },
+  "seed": 3968812432375741721,
+  "selection_rule": "Sample three IDs without replacement from sorted complete query pool, or all if fewer than three. Seed recorded before reading selected study content.",
+  "scope_limit_before_gather": 30,
+  "reasoning_status": "Completed eight actual CLI/MCP request pairs after root confirmed runtime metadata integration; clinical readings remain proposed.",
+  "clinical_readings": "Will remain proposed; no clinical user has confirmed trial readings.",
+  "pool": [
+    "NCT03057951",
+    "NCT03057977",
+    "NCT03087773",
+    "NCT03332212",
+    "NCT03448406",
+    "NCT03448419",
+    "NCT04157751",
+    "NCT04509674",
+    "NCT05364190"
+  ],
+  "preflight": {
+    "url": "https://clinicaltrials.gov/api/v2/studies?filter.advanced=%28AREA%5BInterventionName%5D%22empagliflozin%22+OR+AREA%5BInterventionOtherName%5D%22empagliflozin%22%29+AND+AREA%5BPhase%5DPHASE3+AND+AREA%5BOverallStatus%5DCOMPLETED&query.cond=Heart+Failure&format=json&fields=NCTId&countTotal=true&pageSize=1000",
+    "sha256": "37675de36ef376e36a098e879ddf4af00c90be80da251ecf29e90ed31a500b5a",
+    "total_count": 9,
+    "complete": true,
+    "within_scope_limit": true
+  },
+  "sample": [
+    "NCT03332212",
+    "NCT03057977",
+    "NCT03448406"
+  ],
+  "gather": {
+    "matched": 9,
+    "raw_batch_sha256": "7ef227d191bbfa6a9532a0e8b601a669fba573390e4539079d8d229c2d48d914",
+    "original_run": "/tmp/trialledger-heart-failure-metadata-20261103",
+    "retained_source_body": "raw-studies.json",
+    "temporary_workbook": "/tmp/trialledger-heart-failure-metadata-20261103/landscape.xlsx",
+    "duplicate_landscape_and_workbook_not_copied": true
+  }
+}

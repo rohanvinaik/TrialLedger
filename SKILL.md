@@ -70,13 +70,19 @@ real retained evidence and which are invented.
   `registry_checks` conflict. Name both sides.
 - **Your call:** allowed but not required, proposals, comparable trials that chose differently, which cohort,
   confirming a reading, or whether criteria silent on something should address it.
-- **Not knowable from this evidence:** silence, too little support, unknown membership, abstention, a
-  computation limit.
+- **Not knowable from this evidence:** silence, too little support, unknown membership or abstention from
+  insufficient support.
+
+A computation limit is separate: say **"not resolved within the computation limit"** and retain a
+computation task, such as narrowing the question or rerunning with an adequate supported limit. It does not
+establish an evidence gap or a free design choice. Keep simultaneous evidence, translation and computation
+causes visible, with their separate remedies and any independently settled results.
 
 UNDETERMINED is exact abstention, not failure. "Must everyone be at least 65?" against a brief requiring 18 or
 older is **allowed but not required**. Read every blocker and report the most specific: `proposed_refused`
 (confirm the reading), `open_scope` (which cohort), `unresolved_*`/`unspecified_boundary`/`opaque` (settle the
-wording), `resource_bound` (narrow the question), `no_constraint_mentions_query` (check units and time windows,
+wording), `resource_bound` (not resolved within the computation limit; narrow or rerun with an adequate
+supported limit), `no_constraint_mentions_query` (check units and time windows,
 then ask whether the criteria should address it), and `undecided_by_constraints` alone (allowed but not
 required). The describe `answer_guide` holds the complete mapping.
 
@@ -116,8 +122,9 @@ your work with the person; `corpus` and `entailment` do not automatically ingest
 Each decision-list entry holds the decision in clinical words, the evidence (record addresses, or registry
 silence), the computed consequence of each option with its deciding premises, and its status (open, or chosen
 by the person). Something's wrong goes first as a blocker; your call becomes an entry; not knowable becomes an
-evidence gap; settled results are cited as context. When the person settles a decision, record it as their
-premise and recompute what depends on it, and hand over the list at the end. With file-writing access, save the
+evidence gap; a computation limit becomes a separate computation task; settled results are cited as context.
+When the person settles a decision, record it as their premise and recompute what depends on it, and hand over
+the list at the end. With file-writing access, save the
 list in `working-brief.md` and the actual request/result pairs separately from the source record. Brief notes
 are not extra fields in the validated reasoning request. Those files are maintained by you, not automatically by
 `reason`; without file access, return the decision list and results for reuse. A revised premise needs a fresh

@@ -1,0 +1,30 @@
+{
+  "seed": 3281138219941444813,
+  "question": "For a proposed adult type-2 diabetes tirzepatide trial, do sampled completed phase-3 studies share background-therapy and comparator context, and what eligibility choices stay open?",
+  "category": "type-2 diabetes pharmacologic intervention",
+  "sample_size": 3,
+  "rule": "random.Random(seed).sample(sorted complete ID pool, min(3,pool size)); no sample replacement",
+  "pool": [
+    "NCT04255433",
+    "NCT04537923",
+    "NCT04657003",
+    "NCT04657016",
+    "NCT04660643",
+    "NCT05024032",
+    "NCT05260021"
+  ],
+  "sample": [
+    "NCT04657016",
+    "NCT04255433",
+    "NCT05260021"
+  ],
+  "requests": [
+    {
+      "url": "https://clinicaltrials.gov/api/v2/studies?filter.advanced=%28AREA%5BInterventionName%5D%22tirzepatide%22+OR+AREA%5BInterventionOtherName%5D%22tirzepatide%22%29+AND+AREA%5BPhase%5DPHASE3+AND+AREA%5BOverallStatus%5DCOMPLETED+AND+AREA%5BStartDate%5DRANGE%5B2020-01-01%2C2022-12-31%5D&query.cond=Type+2+Diabetes&format=json&fields=NCTId&countTotal=true&pageSize=1000",
+      "file": "id-pool-001.json",
+      "status_code": 200
+    }
+  ],
+  "total_count": 7,
+  "pool_complete": true
+}

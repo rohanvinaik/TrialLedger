@@ -1,0 +1,79 @@
+{
+ "code": "resolved",
+ "check": [
+  "ok",
+  []
+ ],
+ "join": "the names of one slot are joined by OR, the slots by AND",
+ "slots": [
+  {
+   "slot": "drug",
+   "value": [
+    "ustekinumab"
+   ],
+   "clause": "(AREA[InterventionName]\"ustekinumab\" OR AREA[InterventionOtherName]\"ustekinumab\")"
+  },
+  {
+   "slot": "condition",
+   "value": "Crohn Disease",
+   "clause": "Crohn Disease"
+  },
+  {
+   "slot": "phase",
+   "value": [
+    "PHASE3"
+   ],
+   "clause": "AREA[Phase]PHASE3"
+  },
+  {
+   "slot": "status",
+   "value": [
+    "COMPLETED"
+   ],
+   "clause": "AREA[OverallStatus]COMPLETED"
+  }
+ ],
+ "expansions": [
+  {
+   "slot": "drug",
+   "kind": "drug_names",
+   "drug": "ustekinumab",
+   "source": "RxNorm",
+   "requests": [
+    "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=ustekinumab&search=0",
+    "https://rxnav.nlm.nih.gov/REST/rxcui/847083/properties.json"
+   ],
+   "code": "ingredient",
+   "names": [
+    [
+     "ustekinumab",
+     "request"
+    ]
+   ],
+   "candidates": [],
+   "release": "02-Nov-2026"
+  }
+ ],
+ "lookups": [
+  "https://rxnav.nlm.nih.gov/REST/version.json",
+  "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=ustekinumab&search=0",
+  "https://rxnav.nlm.nih.gov/REST/rxcui/847083/properties.json"
+ ],
+ "pending": [],
+ "stops": [],
+ "query": {
+  "filter.advanced": "(AREA[InterventionName]\"ustekinumab\" OR AREA[InterventionOtherName]\"ustekinumab\") AND AREA[Phase]PHASE3 AND AREA[OverallStatus]COMPLETED",
+  "query.cond": "Crohn Disease"
+ },
+ "release": [
+  "found",
+  "02-Nov-2026",
+  "https://rxnav.nlm.nih.gov/REST/version.json"
+ ],
+ "release_basis": "version.json asked in the first round and again after the last; release_check holds the code of the comparison (operate.release_check) and both releases",
+ "release_check": [
+  "unchanged",
+  "02-Nov-2026",
+  "02-Nov-2026"
+ ]
+}

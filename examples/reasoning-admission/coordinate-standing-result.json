@@ -595,5 +595,250 @@
       }
     ]
   },
-  "problems": []
+  "problems": [],
+  "metadata": {
+    "version": 1,
+    "kind": "reasoning",
+    "findings": [
+      {
+        "path": "/result/coordinates/setting",
+        "kind": "coordinate",
+        "logical_result": "unnarrowed",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/coordinates/setting/interpolated",
+        "kind": "coordinate",
+        "logical_result": "resolved",
+        "standing": "interpolated",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional"
+      },
+      {
+        "path": "/result/coordinates/prior_advanced_lines",
+        "kind": "coordinate",
+        "logical_result": "unnarrowed",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/coordinates/prior_advanced_lines/interpolated",
+        "kind": "coordinate",
+        "logical_result": "resolved",
+        "standing": "interpolated",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional"
+      },
+      {
+        "path": "/result/coordinates/selection:EGFR",
+        "kind": "coordinate",
+        "logical_result": "resolved",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled"
+      },
+      {
+        "path": "/result/coordinates/selection:EGFR/interpolated",
+        "kind": "coordinate",
+        "logical_result": "resolved",
+        "standing": "interpolated",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional"
+      },
+      {
+        "path": "/result/coordinates/selection:ALK",
+        "kind": "coordinate",
+        "logical_result": "unnarrowed",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/coordinates/selection:ALK/interpolated",
+        "kind": "coordinate",
+        "logical_result": "unnarrowed",
+        "standing": "interpolated",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/coordinates/selection:ROS1",
+        "kind": "coordinate",
+        "logical_result": "unnarrowed",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/coordinates/selection:ROS1/interpolated",
+        "kind": "coordinate",
+        "logical_result": "unnarrowed",
+        "standing": "interpolated",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/coordinates/selection:KRAS",
+        "kind": "coordinate",
+        "logical_result": "unnarrowed",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/coordinates/selection:KRAS/interpolated",
+        "kind": "coordinate",
+        "logical_result": "unnarrowed",
+        "standing": "interpolated",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/coordinates/selection:BRAF",
+        "kind": "coordinate",
+        "logical_result": "unnarrowed",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/coordinates/selection:BRAF/interpolated",
+        "kind": "coordinate",
+        "logical_result": "unnarrowed",
+        "standing": "interpolated",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/coordinates/selection:MET",
+        "kind": "coordinate",
+        "logical_result": "unnarrowed",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/coordinates/selection:MET/interpolated",
+        "kind": "coordinate",
+        "logical_result": "unnarrowed",
+        "standing": "interpolated",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/coordinates/selection:RET",
+        "kind": "coordinate",
+        "logical_result": "unnarrowed",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/coordinates/selection:RET/interpolated",
+        "kind": "coordinate",
+        "logical_result": "unnarrowed",
+        "standing": "interpolated",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/coordinates/selection:NTRK",
+        "kind": "coordinate",
+        "logical_result": "unnarrowed",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/coordinates/selection:NTRK/interpolated",
+        "kind": "coordinate",
+        "logical_result": "unnarrowed",
+        "standing": "interpolated",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/coordinates/selection:HER2",
+        "kind": "coordinate",
+        "logical_result": "unnarrowed",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/coordinates/selection:HER2/interpolated",
+        "kind": "coordinate",
+        "logical_result": "unnarrowed",
+        "standing": "interpolated",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/admission/0",
+        "kind": "admission",
+        "logical_result": "accepted",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled"
+      },
+      {
+        "path": "/result/admission/1",
+        "kind": "admission",
+        "logical_result": "accepted",
+        "standing": "interpolated",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional"
+      },
+      {
+        "path": "/result/admission/2",
+        "kind": "admission",
+        "logical_result": "accepted",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled"
+      },
+      {
+        "path": "/result/admission/3",
+        "kind": "admission",
+        "logical_result": "unresolved",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "proposed_refused",
+            "kind": "premise"
+          }
+        ],
+        "disposition": "open"
+      }
+    ]
+  }
 }

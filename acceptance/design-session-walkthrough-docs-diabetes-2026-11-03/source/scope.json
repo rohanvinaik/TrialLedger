@@ -1,0 +1,7 @@
+{
+ "query": {
+  "filter.advanced": "(AREA[InterventionName]\"tirzepatide\" OR AREA[InterventionOtherName]\"tirzepatide\") AND AREA[Phase]PHASE3 AND AREA[OverallStatus]COMPLETED AND AREA[StartDate]RANGE[2020-01-01,2022-12-31]",
+  "query.cond": "Type 2 Diabetes"
+ },
+ "rxnav": []
+}

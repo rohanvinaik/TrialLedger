@@ -1,0 +1,91 @@
+{
+  "normal_gate": {
+    "exit_code": 0,
+    "passed": 4761,
+    "live_deselected": 10,
+    "log": "metadata-final-normal-gate.log",
+    "log_sha256": "81322371850ba18cbab94810df0db5c05a530523aa86d4e238ab8094797965ca",
+    "tree_stamp": "Not obtained: evidence/index changed during run; no push claim."
+  },
+  "module_sha256": {
+    "TrialLedger/layer2/result_semantics.py": "42f8c36330d1b10f2f4875191f1b093a0c4fe7bcc62e60b1b75c81ed885b06ed",
+    "TrialLedger/layer2/design_bounds.py": "b3c6a5cee75cbed7283196da3fa897b1d1378ba31f1e5d3da8b7b5e5dd1989cc",
+    "TrialLedger/layer2/guide.py": "7d2b5a166616ad3047201be2f4238d10c6e52ff7e04077a3b11621f90a6aed90",
+    "TrialLedger/layer2/service.py": "027120550f803ecca124a4c3f2bf82e5cca8a7bc29eca14ed6274e58a9bc1eec"
+  },
+  "guide_checks": [
+    {
+      "request": {
+        "operation": "describe",
+        "view": "entailment"
+      },
+      "cli_mcp_equal": true,
+      "result_sha256": "ebfb3c3bd3e66ac2f1f7bd6a5194b801d6d12242517b7b8911c26afbd088f33c",
+      "standing_guide": "For conditional metadata, choose wording from standing and the effective warrant: interpolated means settled by default or under an overridable working assumption; proposed means an unconfirmed reading, refused by ordinary entailment and explored only in its named hypothetical frame. Conditional alone does not make those states interchangeable. Open alone establishes neither design freedom nor an evidence gap; inspect the question and all blockers."
+    },
+    {
+      "request": {
+        "operation": "describe",
+        "view": "coordinates"
+      },
+      "cli_mcp_equal": true,
+      "result_sha256": "578354a50b4f25adcb5bb663edd3116f2593c60b3df55eb532872e62e7a36180",
+      "standing_guide": "For conditional metadata, choose wording from standing and the effective warrant: interpolated means settled by default or under an overridable working assumption; proposed means an unconfirmed reading, refused by ordinary entailment and explored only in its named hypothetical frame. Conditional alone does not make those states interchangeable. Open alone establishes neither design freedom nor an evidence gap; inspect the question and all blockers."
+    },
+    {
+      "request": {
+        "operation": "describe",
+        "view": "corpus"
+      },
+      "cli_mcp_equal": true,
+      "result_sha256": "1cda3eafcc3aaff2ed9e2e1ce9b456c205beed1de31763538f1ddbef2cd41375",
+      "standing_guide": "For conditional metadata, choose wording from standing and the effective warrant: interpolated means settled by default or under an overridable working assumption; proposed means an unconfirmed reading, refused by ordinary entailment and explored only in its named hypothetical frame. Conditional alone does not make those states interchangeable. Open alone establishes neither design freedom nor an evidence gap; inspect the question and all blockers."
+    },
+    {
+      "request": {
+        "operation": "describe",
+        "view": "design_bounds"
+      },
+      "cli_mcp_equal": true,
+      "result_sha256": "2603d8b4f8eb7e870da19a6494b79432594a6000e3f01cfafefe6b1824d5396a",
+      "standing_guide": "For conditional metadata, choose wording from standing and the effective warrant: interpolated means settled by default or under an overridable working assumption; proposed means an unconfirmed reading, refused by ordinary entailment and explored only in its named hypothetical frame. Conditional alone does not make those states interchangeable. Open alone establishes neither design freedom nor an evidence gap; inspect the question and all blockers."
+    },
+    {
+      "request": {
+        "operation": "describe",
+        "view": "signals"
+      },
+      "cli_mcp_equal": true,
+      "result_sha256": "bce42d9a176db18a9307a676231ddfca0211579ac25ec126adc4b7b45216d3e0",
+      "standing_guide": "For conditional metadata, choose wording from standing and the effective warrant: interpolated means settled by default or under an overridable working assumption; proposed means an unconfirmed reading, refused by ordinary entailment and explored only in its named hypothetical frame. Conditional alone does not make those states interchangeable. Open alone establishes neither design freedom nor an evidence gap; inspect the question and all blockers."
+    },
+    {
+      "request": {
+        "operation": "describe",
+        "view": "interpretations"
+      },
+      "cli_mcp_equal": true,
+      "result_sha256": "a5f4ef4caa14aa79104749d5615c01615c3dd2f2897a05378a72dc657a658894",
+      "standing_guide": "For conditional metadata, choose wording from standing and the effective warrant: interpolated means settled by default or under an overridable working assumption; proposed means an unconfirmed reading, refused by ordinary entailment and explored only in its named hypothetical frame. Conditional alone does not make those states interchangeable. Open alone establishes neither design freedom nor an evidence gap; inspect the question and all blockers."
+    },
+    {
+      "request": {
+        "operation": "describe",
+        "view": "source_assertions"
+      },
+      "cli_mcp_equal": true,
+      "result_sha256": "a08af4d4001c2b99bfe6a770ded265d4448fe7687f2b2c0d0e5eb3930d4a0a18",
+      "standing_guide": "For conditional metadata, choose wording from standing and the effective warrant: interpolated means settled by default or under an overridable working assumption; proposed means an unconfirmed reading, refused by ordinary entailment and explored only in its named hypothetical frame. Conditional alone does not make those states interchangeable. Open alone establishes neither design freedom nor an evidence gap; inspect the question and all blockers."
+    },
+    {
+      "request": {
+        "operation": "describe",
+        "view": "full"
+      },
+      "cli_mcp_equal": true,
+      "result_sha256": "6be7edf805f8d030d3e4bf9835bf78aa958d6248a646278a5f006c12308b88a5",
+      "standing_guide": "For conditional metadata, choose wording from standing and the effective warrant: interpolated means settled by default or under an overridable working assumption; proposed means an unconfirmed reading, refused by ordinary entailment and explored only in its named hypothetical frame. Conditional alone does not make those states interchangeable. Open alone establishes neither design freedom nor an evidence gap; inspect the question and all blockers."
+    }
+  ],
+  "proof_boundary": "Metadata primitive bytes unchanged from current project-regime two-sign export; discovery wording changed. This is not a pin of service wrappers or clinical source meanings."
+}

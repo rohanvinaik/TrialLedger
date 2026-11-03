@@ -62,7 +62,7 @@ def test_the_answer_guide_covers_every_entailment_decision_and_emitted_blocker()
         re.findall(r'\("([a-z_]+)",\)', ENTAIL_SOURCE)
     )
     assert emitted == set(answer["entailment"]["blockers"])
-    allowed = {*guide.CATEGORIES, "translation", "by_blocker"}
+    allowed = {*guide.CATEGORIES, "translation", "computation", "by_blocker"}
     for category, meaning in [
         *answer["entailment"]["decisions"].values(),
         *answer["entailment"]["blockers"].values(),
@@ -134,3 +134,12 @@ def test_the_decision_list_routes_every_category_and_reaches_every_operation_vie
         result = run({"operation": "describe", "view": view})["result"]
         found = result.get("decision_list") or result["answer_guide"]["decision_list"]
         assert found == full, view
+
+
+def test_resource_limits_are_operational_tasks_not_evidence_gaps():
+    full = describe()["answer_guide"]
+    assert full["entailment"]["blockers"]["resource_bound"][0] == "computation"
+    assert "computation limit" not in full["categories"]["not_knowable_here"]
+    assert "independently settled" in full["computation"]
+    focused = run({"operation": "describe", "view": "entailment"})["result"]
+    assert focused["answer_guide"]["computation"] == full["computation"]

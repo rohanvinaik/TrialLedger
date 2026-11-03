@@ -1,0 +1,44 @@
+[
+ {
+  "file": "version-start.json",
+  "url": "https://clinicaltrials.gov/api/v2/version",
+  "save_as": "bodies/version-start.json",
+  "why": "version_start",
+  "params": {}
+ },
+ {
+  "file": "ids-001.json",
+  "url": "https://clinicaltrials.gov/api/v2/studies?filter.advanced=%28AREA%5BInterventionName%5D%22empagliflozin%22+OR+AREA%5BInterventionOtherName%5D%22empagliflozin%22%29+AND+AREA%5BPhase%5DPHASE3+AND+AREA%5BOverallStatus%5DCOMPLETED&query.cond=Heart+Failure&format=json&markupFormat=markdown&countTotal=true&pageSize=1000&fields=NCTId",
+  "save_as": "bodies/ids-001.json",
+  "why": "id_page",
+  "params": {
+   "filter.advanced": "(AREA[InterventionName]\"empagliflozin\" OR AREA[InterventionOtherName]\"empagliflozin\") AND AREA[Phase]PHASE3 AND AREA[OverallStatus]COMPLETED",
+   "query.cond": "Heart Failure",
+   "format": "json",
+   "markupFormat": "markdown",
+   "countTotal": "true",
+   "pageSize": "1000",
+   "fields": "NCTId"
+  }
+ },
+ {
+  "file": "studies-001.json",
+  "url": "https://clinicaltrials.gov/api/v2/studies?filter.ids=NCT04157751%2CNCT03448419%2CNCT03087773%2CNCT03332212%2CNCT03057977%2CNCT05364190%2CNCT03448406%2CNCT04509674%2CNCT03057951&format=json&markupFormat=markdown&countTotal=true&pageSize=100",
+  "save_as": "bodies/studies-001.json",
+  "why": "studies_batch",
+  "params": {
+   "filter.ids": "NCT04157751,NCT03448419,NCT03087773,NCT03332212,NCT03057977,NCT05364190,NCT03448406,NCT04509674,NCT03057951",
+   "format": "json",
+   "markupFormat": "markdown",
+   "countTotal": "true",
+   "pageSize": "100"
+  }
+ },
+ {
+  "file": "version-end.json",
+  "url": "https://clinicaltrials.gov/api/v2/version",
+  "save_as": "bodies/version-end.json",
+  "why": "version_end",
+  "params": {}
+ }
+]

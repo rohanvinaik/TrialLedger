@@ -1,0 +1,73 @@
+{
+  "revision": "a3987b05db21f0cf3f871cc36f272ddc516c1ec2",
+  "date": "2026-11-03",
+  "source_run": "/tmp/trialledger-thesis-live-20261103",
+  "retained_run": "registry-run",
+  "source_request": {
+    "ids": [
+      "NCT00322452",
+      "NCT01774721"
+    ]
+  },
+  "requested_ids_found": 2,
+  "python": "3.14.7",
+  "direct_mode": true,
+  "registry_api": "2.0.5",
+  "registry_timestamp": "2026-11-03T10:00:05",
+  "reason_request_pairs": 12,
+  "clinical_bindings": "Investigation hypotheses, not confirmed by a clinical user. Accepted interpolated bridge variants are sensitivity probes only.",
+  "verification": "trialledger verify source_run: verified; record and workbook reproduced; does not certify meaning.",
+  "commands": [
+    "uv run trialledger doctor --run /tmp/trialledger-thesis-live-20261103",
+    "uv run trialledger landscape --run /tmp/trialledger-thesis-live-20261103 --ids NCT00322452,NCT01774721 --preview",
+    "uv run trialledger landscape --run /tmp/trialledger-thesis-live-20261103 --ids NCT00322452,NCT01774721",
+    "uv run trialledger reason --request FILE (each reasoning/*-request.json)",
+    "uv run trialledger verify /tmp/trialledger-thesis-live-20261103"
+  ],
+  "inspection_limits": [
+    "Only the named clinical modules/passages and traced code units were inspected; this is not a full clinical review.",
+    "An initial oversized multi-module display was truncated; relevant modules were reread separately.",
+    "One supplemental probe was first launched with system Python rather than the project environment and failed before a reasoning result; it was rerun successfully in uv.",
+    "No runtime code changed and no new Detective pin or full project gate was run for this planning pass."
+  ],
+  "files": {
+    "NCT00322452-raw-study.json": "d7bdcca7bbc497f13b070223ac4ed6d0cfc3a3824a92040388ce6131984bf521",
+    "NCT01774721-raw-study.json": "734495650c549a7566a84ce5f6eae8440efab292a4528e195c17e46d5ecc1a25",
+    "bodies/ids-001.json": "064f4b75d7696042051af4a6a6971cb530d2f692ae10d063c128fa41aff251e7",
+    "bodies/studies-001.json": "80a58a1714c23d3d1209778c8983d88f9b914e5b74be7e46664903a4c1ef1ac0",
+    "bodies/version-end.json": "9eb0e46583efc444c5877db64a361ff539a68ea4f56332958999a5acb39c8553",
+    "bodies/version-start.json": "9eb0e46583efc444c5877db64a361ff539a68ea4f56332958999a5acb39c8553",
+    "classes.json": "bf5ab718a27e7aae3f1adf9a0262a2ceb138205f82a1415f27695eaef5456a52",
+    "fetches.json": "d0f287d4295a316c62dbd5f360b6353f5b48e3095bc5bb30951a85b8d1024f0b",
+    "landscape.json": "b6a52f0d137fe07c47da4f42a52c6f18d567c7d74d4d8d21f064ff38e1f1c58c",
+    "landscape.xlsx": "b13b246b19c6bd200d6c30a6d1b971e336d8a5601d48ead0af15a906f62d9e48",
+    "manifest.json": "051ca72e2e467d5d7eec326eee06b1b0ce4898bbca72e409c04d1c610c6d641e",
+    "reasoning/archer-registered-age-request.json": "e5631fb4b8b10a706bb17dd648c8ac6a0927d304519a1bacf305cc19d927c9ee",
+    "reasoning/archer-registered-age-result.json": "c2c2507cf7033e3762476b98f22e24aa2405fcff2652e0732e38b81a7bad1ee5",
+    "reasoning/draft-age-bound-1-request.json": "d4ff10676997dec2237a2e436436989aaed230d1800e31693a8b0fc09614b27d",
+    "reasoning/draft-age-bound-1-result.json": "7f11d1edee3dcbbda0246281bfd0af4d478a688c0544a654edc289cbf4eed817",
+    "reasoning/draft-age-bound-100-request.json": "b97ba06ba2e36e163ceba51c549c0580d5f038a1ad0df9b9497dfa50a6aa93e5",
+    "reasoning/draft-age-bound-100-result.json": "16d0df449c831c8b28581da2c8b510a6b18e5ec4813aca07d182aa1b9c5224f2",
+    "reasoning/ipass-baseline-overlap-request.json": "753c8edcad425ca30d3f6fb22c9ea6b549e27ec010dfd4d00094881f2de94444",
+    "reasoning/ipass-baseline-overlap-result.json": "c95a9b4ac47ec336f02c5a3da5902cba13d2aa089724679e9f4bcd5ae827ef7e",
+    "reasoning/ipass-hypothetical-exceptions-0-request.json": "0ab508c1f82a0d8569d187a0c177a3fa075bf780a56b5dcd057c2a4d82dd7612",
+    "reasoning/ipass-hypothetical-exceptions-0-result.json": "b48cf66a5e647c5b49c2f5ba049247f9b4b629c7646a9330fc5a18a991e0b557",
+    "reasoning/ipass-hypothetical-exceptions-1-request.json": "018d4e6247cc5ce00cce49cd6a80569fd126669a7d9715a1ce28da5bdb6ae4cc",
+    "reasoning/ipass-hypothetical-exceptions-1-result.json": "75d72194dc19b8c5eb0fcd2ae0273a485d2c6459d25da5d8474680baa13c95d8",
+    "reasoning/ipass-hypothetical-exceptions-48-request.json": "2bfaae6d26160f113196961657bf15d83c2871f4ee0c0a3c153329a4b127af7e",
+    "reasoning/ipass-hypothetical-exceptions-48-result.json": "2c84a70d9b2b1cd67cceb02830d40329363150b48283db3e6a978b28161dc3ae",
+    "reasoning/ipass-hypothetical-exceptions-49-request.json": "a985d8d4b16a443b34385aa338ced1342eb58066ca4b88ca78dc8b11c9b3fb48",
+    "reasoning/ipass-hypothetical-exceptions-49-result.json": "5449481b01652456421ad91ecd7747ba6c7f75e3e8ee91f17f0df7cee8a51d63",
+    "reasoning/ipass-proposed-bridge-request.json": "b95698a124c58042ea183e9d4d297b909f554c92aa630893fdb83009b44fccd0",
+    "reasoning/ipass-proposed-bridge-result.json": "03d6f53102ef418e92bb3e3ab267095294530a52217b2b7cddf37aa5be33ddfe",
+    "reasoning/ipass-registered-age-request.json": "b7556441882326c5a78f0a5e9678de91780f68ac1b26335a6163fece7079af51",
+    "reasoning/ipass-registered-age-result.json": "c7e42d29e8c9eae0fbddfada4449a6b18b240958122f805f8528489a5874a8d4",
+    "reasoning/ipass-schedule-readings-request.json": "9f39e57c3c3cd1c24e1e5344d2d08c142b1614631304da25179c0cce6d96c264",
+    "reasoning/ipass-schedule-readings-result.json": "ae0d4df553c127b41a723268bb13b3c06e79fd66ff0a2c39ea8beb05aca3ef25",
+    "reasoning/ipass-two-count-channels-request.json": "0976cd57c7451da1c4ecd6087d142741702b67f83642c33ae4487cf471036718",
+    "reasoning/ipass-two-count-channels-result.json": "d4d5039c8086659147f5862569482e6d6bda3394f43dbd55305de4b4f34a0ece",
+    "request.json": "244a67a068eb0c585db4a267b1b7c08ea6f1c81ff7e2f900b4ff508e1c4ce3e2",
+    "resolution.json": "827370223f69760f96ad8fe81128f439ee9bb490d486c83ab5b4913cd0e3706c",
+    "scope.json": "2cd8b1645058c78e5946e646c4b44d191efd7a31c40761db004034e61aedd925"
+  }
+}

@@ -1,0 +1,326 @@
+{
+  "operation": "interpretations",
+  "study_ref": "ctg:NCT01369355:e88dd2edd3a6d63bf6a7d10c8b304315497cfb90e2dadf36a259dc0d8ef75be2",
+  "fixed": {
+    "assertions": [
+      {
+        "applicability": {
+          "class": "Always"
+        },
+        "body": {
+          "class": "Literal",
+          "evidence": [
+            {
+              "class": "Evidence",
+              "kind": "record_field",
+              "ref": "ctg:NCT01369355:e88dd2edd3a6d63bf6a7d10c8b304315497cfb90e2dadf36a259dc0d8ef75be2#/protocolSection/eligibilityModule/minimumAge"
+            }
+          ],
+          "polarity": "positive",
+          "predicate": {
+            "class": "Predicate",
+            "key": "age",
+            "kind": "measurement"
+          },
+          "qualifiers": {
+            "class": "Always"
+          },
+          "subject": {
+            "class": "Subject",
+            "kind": "participant",
+            "referent": ""
+          },
+          "time": null,
+          "value": {
+            "class": "Value",
+            "comparison": "ge",
+            "inclusivity": "unspecified",
+            "kind": "quantity",
+            "members": [],
+            "number": 18.0,
+            "unit": "Years",
+            "upper": null
+          }
+        },
+        "branch": {
+          "class": "Branch",
+          "node": "unresolved",
+          "path": []
+        },
+        "class": "ScopedAssertion",
+        "cohort": {
+          "class": "Scope",
+          "kind": "all_participants",
+          "parts": [],
+          "ref": ""
+        },
+        "criterion_ref": "ctg:NCT01369355:e88dd2edd3a6d63bf6a7d10c8b304315497cfb90e2dadf36a259dc0d8ef75be2#/protocolSection/eligibilityModule/minimumAge",
+        "id": "registry-age-minimumAge",
+        "modality": "required",
+        "resolution": "resolved",
+        "rule": {
+          "answers": [],
+          "class": "Rule",
+          "id": "ctg-structured-general-eligibility-age",
+          "premises": [
+            "ctg:NCT01369355:e88dd2edd3a6d63bf6a7d10c8b304315497cfb90e2dadf36a259dc0d8ef75be2#/protocolSection/eligibilityModule/minimumAge"
+          ],
+          "version": "1",
+          "warrants": []
+        },
+        "span": [],
+        "status": "known"
+      },
+      {
+        "applicability": {
+          "class": "Always"
+        },
+        "body": {
+          "class": "Literal",
+          "evidence": [
+            {
+              "class": "Evidence",
+              "kind": "record_field",
+              "ref": "ctg:NCT01369355:e88dd2edd3a6d63bf6a7d10c8b304315497cfb90e2dadf36a259dc0d8ef75be2#/protocolSection/eligibilityModule/maximumAge"
+            }
+          ],
+          "polarity": "positive",
+          "predicate": {
+            "class": "Predicate",
+            "key": "age",
+            "kind": "measurement"
+          },
+          "qualifiers": {
+            "class": "Always"
+          },
+          "subject": {
+            "class": "Subject",
+            "kind": "participant",
+            "referent": ""
+          },
+          "time": null,
+          "value": {
+            "class": "Value",
+            "comparison": "le",
+            "inclusivity": "unspecified",
+            "kind": "quantity",
+            "members": [],
+            "number": 99.0,
+            "unit": "Years",
+            "upper": null
+          }
+        },
+        "branch": {
+          "class": "Branch",
+          "node": "unresolved",
+          "path": []
+        },
+        "class": "ScopedAssertion",
+        "cohort": {
+          "class": "Scope",
+          "kind": "all_participants",
+          "parts": [],
+          "ref": ""
+        },
+        "criterion_ref": "ctg:NCT01369355:e88dd2edd3a6d63bf6a7d10c8b304315497cfb90e2dadf36a259dc0d8ef75be2#/protocolSection/eligibilityModule/maximumAge",
+        "id": "registry-age-maximumAge",
+        "modality": "required",
+        "resolution": "resolved",
+        "rule": {
+          "answers": [],
+          "class": "Rule",
+          "id": "ctg-structured-general-eligibility-age",
+          "premises": [
+            "ctg:NCT01369355:e88dd2edd3a6d63bf6a7d10c8b304315497cfb90e2dadf36a259dc0d8ef75be2#/protocolSection/eligibilityModule/maximumAge"
+          ],
+          "version": "1",
+          "warrants": []
+        },
+        "span": [],
+        "status": "known"
+      }
+    ],
+    "signals": []
+  },
+  "bindings": [],
+  "interpretations": [
+    {
+      "id": "randomized-maintenance-reading",
+      "label": "Proposed response restriction for randomized maintenance only",
+      "origin": "assistant",
+      "basis": [
+        "ctg:NCT01369355:e88dd2edd3a6d63bf6a7d10c8b304315497cfb90e2dadf36a259dc0d8ef75be2#/protocolSection/armsInterventionsModule/armGroups",
+        "ctg:NCT01369355:e88dd2edd3a6d63bf6a7d10c8b304315497cfb90e2dadf36a259dc0d8ef75be2#/protocolSection/descriptionModule/detailedDescription",
+        "hypothesis:source-location-is-not-semantic-warrant"
+      ],
+      "assumptions": [
+        {
+          "applicability": {
+            "class": "Always"
+          },
+          "body": {
+            "class": "Literal",
+            "evidence": [
+              {
+                "class": "Evidence",
+                "kind": "record_field",
+                "ref": "ctg:NCT01369355:e88dd2edd3a6d63bf6a7d10c8b304315497cfb90e2dadf36a259dc0d8ef75be2#/protocolSection/armsInterventionsModule/armGroups"
+              },
+              {
+                "class": "Evidence",
+                "kind": "record_field",
+                "ref": "ctg:NCT01369355:e88dd2edd3a6d63bf6a7d10c8b304315497cfb90e2dadf36a259dc0d8ef75be2#/protocolSection/descriptionModule/detailedDescription"
+              }
+            ],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "IV_UST_induction_response",
+              "kind": "treatment_history"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": {
+              "anchor": "named_event",
+              "anchor_ref": "ctg:NCT01369355:e88dd2edd3a6d63bf6a7d10c8b304315497cfb90e2dadf36a259dc0d8ef75be2:induction-week8",
+              "certainty": "explicit",
+              "class": "TemporalScope",
+              "evidence": [
+                {
+                  "class": "Evidence",
+                  "kind": "record_field",
+                  "ref": "ctg:NCT01369355:e88dd2edd3a6d63bf6a7d10c8b304315497cfb90e2dadf36a259dc0d8ef75be2#/protocolSection/armsInterventionsModule/armGroups"
+                },
+                {
+                  "class": "Evidence",
+                  "kind": "record_field",
+                  "ref": "ctg:NCT01369355:e88dd2edd3a6d63bf6a7d10c8b304315497cfb90e2dadf36a259dc0d8ef75be2#/protocolSection/descriptionModule/detailedDescription"
+                }
+              ],
+              "inclusivity": "unspecified",
+              "lower": null,
+              "orientation": "at",
+              "unit": "",
+              "upper": null
+            },
+            "value": {
+              "class": "Value",
+              "comparison": "eq",
+              "inclusivity": "unspecified",
+              "kind": "boolean",
+              "members": [],
+              "number": null,
+              "unit": "",
+              "upper": null
+            }
+          },
+          "branch": {
+            "class": "Branch",
+            "node": "unresolved",
+            "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+            "class": "Scope",
+            "kind": "cohort_ref",
+            "parts": [],
+            "ref": "randomized-maintenance"
+          },
+          "criterion_ref": "ctg:NCT01369355:e88dd2edd3a6d63bf6a7d10c8b304315497cfb90e2dadf36a259dc0d8ef75be2#/protocolSection/armsInterventionsModule/armGroups|ctg:NCT01369355:e88dd2edd3a6d63bf6a7d10c8b304315497cfb90e2dadf36a259dc0d8ef75be2#/protocolSection/descriptionModule/detailedDescription",
+          "id": "response-required-for-randomized-maintenance",
+          "modality": "required",
+          "resolution": "resolved",
+          "rule": {
+            "answers": [],
+            "class": "Rule",
+            "id": "source-anchored-hypothesis",
+            "premises": [
+              "ctg:NCT01369355:e88dd2edd3a6d63bf6a7d10c8b304315497cfb90e2dadf36a259dc0d8ef75be2#/protocolSection/armsInterventionsModule/armGroups",
+              "ctg:NCT01369355:e88dd2edd3a6d63bf6a7d10c8b304315497cfb90e2dadf36a259dc0d8ef75be2#/protocolSection/descriptionModule/detailedDescription"
+            ],
+            "version": "1",
+            "warrants": [
+              "hypothesis:source-location-is-not-semantic-warrant"
+            ]
+          },
+          "span": [],
+          "status": "proposed"
+        }
+      ],
+      "signals": [],
+      "signal_claims": [],
+      "binding_uses": []
+    }
+  ],
+  "queries": [
+    {
+      "id": "adult-general-floor",
+      "body": {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+          "class": "Predicate",
+          "key": "age",
+          "kind": "measurement"
+        },
+        "qualifiers": {
+          "class": "Always"
+        },
+        "subject": {
+          "class": "Subject",
+          "kind": "participant",
+          "referent": ""
+        },
+        "time": null,
+        "value": {
+          "class": "Value",
+          "comparison": "ge",
+          "inclusivity": "unspecified",
+          "kind": "quantity",
+          "members": [],
+          "number": 18.0,
+          "unit": "Years",
+          "upper": null
+        }
+      }
+    },
+    {
+      "id": "induction-response-required",
+      "body": {
+        "class": "Literal",
+        "subject": {
+          "class": "Subject",
+          "kind": "participant"
+        },
+        "predicate": {
+          "class": "Predicate",
+          "kind": "treatment_history",
+          "key": "IV_UST_induction_response"
+        },
+        "value": {
+          "class": "Value",
+          "kind": "boolean"
+        },
+        "time": {
+          "anchor": "named_event",
+          "anchor_ref": "ctg:NCT01369355:e88dd2edd3a6d63bf6a7d10c8b304315497cfb90e2dadf36a259dc0d8ef75be2:induction-week8",
+          "certainty": "explicit",
+          "class": "TemporalScope",
+          "evidence": [],
+          "inclusivity": "unspecified",
+          "lower": null,
+          "orientation": "at",
+          "unit": "",
+          "upper": null
+        }
+      }
+    }
+  ]
+}

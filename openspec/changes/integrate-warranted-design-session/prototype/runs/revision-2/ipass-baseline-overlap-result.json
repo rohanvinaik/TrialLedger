@@ -1,0 +1,1998 @@
+{
+  "code": "complete",
+  "operation": "source_assertions",
+  "result": {
+    "source": {
+      "nct": "NCT00322452",
+      "digest": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+      "study_ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+      "version": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+      "last_update": {
+        "date": "2013-11-07",
+        "type": "ESTIMATED"
+      }
+    },
+    "anchors": [
+      {
+        "id": "PS2-count",
+        "address": "/resultsSection/baselineCharacteristicsModule/measures/5/classes/2/categories/0/measurements/2/value",
+        "digest": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+        "value": "126",
+        "ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/5/classes/2/categories/0/measurements/2/value",
+        "source": {
+          "ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+          "version": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+          "address": "/resultsSection/baselineCharacteristicsModule/measures/5/classes/2/categories/0/measurements/2/value",
+          "digest": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0"
+        },
+        "code": "located"
+      },
+      {
+        "id": "never-count",
+        "address": "/resultsSection/baselineCharacteristicsModule/measures/4/classes/0/categories/0/measurements/2/value",
+        "digest": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+        "value": "1140",
+        "ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/4/classes/0/categories/0/measurements/2/value",
+        "source": {
+          "ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+          "version": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+          "address": "/resultsSection/baselineCharacteristicsModule/measures/4/classes/0/categories/0/measurements/2/value",
+          "digest": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0"
+        },
+        "code": "located"
+      },
+      {
+        "id": "total-count",
+        "address": "/resultsSection/baselineCharacteristicsModule/denoms/0/counts/2/value",
+        "digest": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+        "value": "1217",
+        "ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/denoms/0/counts/2/value",
+        "source": {
+          "ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+          "version": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+          "address": "/resultsSection/baselineCharacteristicsModule/denoms/0/counts/2/value",
+          "digest": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0"
+        },
+        "code": "located"
+      },
+      {
+        "id": "PS-table",
+        "address": "/resultsSection/baselineCharacteristicsModule/measures/5",
+        "digest": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+        "value": {
+          "title": "WHO performance status",
+          "paramType": "NUMBER",
+          "unitOfMeasure": "Participants",
+          "classes": [
+            {
+              "title": "0 (normal activity)",
+              "categories": [
+                {
+                  "measurements": [
+                    {
+                      "groupId": "BG000",
+                      "value": "157"
+                    },
+                    {
+                      "groupId": "BG001",
+                      "value": "161"
+                    },
+                    {
+                      "groupId": "BG002",
+                      "value": "318"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "1 (restricted activity)",
+              "categories": [
+                {
+                  "measurements": [
+                    {
+                      "groupId": "BG000",
+                      "value": "391"
+                    },
+                    {
+                      "groupId": "BG001",
+                      "value": "382"
+                    },
+                    {
+                      "groupId": "BG002",
+                      "value": "773"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "2 (in bed =< 50% of the time)",
+              "categories": [
+                {
+                  "measurements": [
+                    {
+                      "groupId": "BG000",
+                      "value": "61"
+                    },
+                    {
+                      "groupId": "BG001",
+                      "value": "65"
+                    },
+                    {
+                      "groupId": "BG002",
+                      "value": "126"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/5",
+        "source": {
+          "ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+          "version": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+          "address": "/resultsSection/baselineCharacteristicsModule/measures/5",
+          "digest": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0"
+        },
+        "code": "located"
+      },
+      {
+        "id": "smoking-table",
+        "address": "/resultsSection/baselineCharacteristicsModule/measures/4",
+        "digest": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+        "value": {
+          "title": "Smoking history",
+          "paramType": "NUMBER",
+          "unitOfMeasure": "Participants",
+          "classes": [
+            {
+              "title": "Never Smoker",
+              "categories": [
+                {
+                  "measurements": [
+                    {
+                      "groupId": "BG000",
+                      "value": "571"
+                    },
+                    {
+                      "groupId": "BG001",
+                      "value": "569"
+                    },
+                    {
+                      "groupId": "BG002",
+                      "value": "1140"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "Light ex-smoker",
+              "categories": [
+                {
+                  "measurements": [
+                    {
+                      "groupId": "BG000",
+                      "value": "37"
+                    },
+                    {
+                      "groupId": "BG001",
+                      "value": "38"
+                    },
+                    {
+                      "groupId": "BG002",
+                      "value": "75"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "Ex-smoker (non-light)",
+              "categories": [
+                {
+                  "measurements": [
+                    {
+                      "groupId": "BG000",
+                      "value": "1"
+                    },
+                    {
+                      "groupId": "BG001",
+                      "value": "1"
+                    },
+                    {
+                      "groupId": "BG002",
+                      "value": "2"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/4",
+        "source": {
+          "ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+          "version": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+          "address": "/resultsSection/baselineCharacteristicsModule/measures/4",
+          "digest": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0"
+        },
+        "code": "located"
+      },
+      {
+        "id": "denominator-table",
+        "address": "/resultsSection/baselineCharacteristicsModule/denoms/0",
+        "digest": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+        "value": {
+          "units": "Participants",
+          "counts": [
+            {
+              "groupId": "BG000",
+              "value": "609"
+            },
+            {
+              "groupId": "BG001",
+              "value": "608"
+            },
+            {
+              "groupId": "BG002",
+              "value": "1217"
+            }
+          ]
+        },
+        "ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/denoms/0",
+        "source": {
+          "ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+          "version": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+          "address": "/resultsSection/baselineCharacteristicsModule/denoms/0",
+          "digest": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0"
+        },
+        "code": "located"
+      }
+    ],
+    "fixed": {
+      "assertions": [
+        {
+          "applicability": {
+            "class": "Always"
+          },
+          "body": {
+            "class": "Literal",
+            "evidence": [
+              {
+                "class": "Evidence",
+                "kind": "record_field",
+                "ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/protocolSection/eligibilityModule/minimumAge"
+              }
+            ],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "age",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "ge",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 18.0,
+              "unit": "Years",
+              "upper": null
+            }
+          },
+          "branch": {
+            "class": "Branch",
+            "node": "unresolved",
+            "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+            "class": "Scope",
+            "kind": "all_participants",
+            "parts": [],
+            "ref": ""
+          },
+          "criterion_ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/protocolSection/eligibilityModule/minimumAge",
+          "id": "registry-age-minimumAge",
+          "modality": "required",
+          "resolution": "resolved",
+          "rule": {
+            "answers": [],
+            "class": "Rule",
+            "id": "ctg-structured-general-eligibility-age",
+            "premises": [
+              "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/protocolSection/eligibilityModule/minimumAge"
+            ],
+            "version": "1",
+            "warrants": []
+          },
+          "span": [],
+          "status": "known"
+        }
+      ],
+      "signals": []
+    },
+    "interpretations": [
+      {
+        "id": "aligned-baseline-counts",
+        "label": "If WHO PS 2 and never-smoking counts describe one exact BG002 baseline population",
+        "origin": "assistant",
+        "basis": [
+          "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/5/classes/2/categories/0/measurements/2/value",
+          "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/4/classes/0/categories/0/measurements/2/value",
+          "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/denoms/0/counts/2/value",
+          "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/5",
+          "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/4",
+          "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/denoms/0",
+          "hypothesis:source-location-is-not-semantic-warrant"
+        ],
+        "assumptions": [],
+        "signals": [
+          {
+            "id": "PS2-and-never-smoking",
+            "kind": "overlap",
+            "data": {
+              "universe": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0:baseline:BG002",
+              "alignment": "confirmed",
+              "total": 1217,
+              "marginals": [
+                {
+                  "ref": "WHO_PS2",
+                  "universe": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0:baseline:BG002",
+                  "lower": 126,
+                  "upper": 126
+                },
+                {
+                  "ref": "never_smoker",
+                  "universe": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0:baseline:BG002",
+                  "lower": 1140,
+                  "upper": 1140
+                }
+              ]
+            },
+            "support": [
+              {
+                "id": "counts-plus-common-universe-reading",
+                "status": "proposed",
+                "resolution": "resolved",
+                "basis": [
+                  "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/5/classes/2/categories/0/measurements/2/value",
+                  "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/4/classes/0/categories/0/measurements/2/value",
+                  "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/denoms/0/counts/2/value",
+                  "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/5",
+                  "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/4",
+                  "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/denoms/0",
+                  "hypothesis:source-location-is-not-semantic-warrant"
+                ]
+              }
+            ],
+            "bindings": {}
+          }
+        ],
+        "signal_claims": [],
+        "binding_uses": [
+          {
+            "binding": "same-baseline-universe",
+            "signal": "PS2-and-never-smoking",
+            "scope": {
+              "study": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+              "population": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0:baseline:BG002",
+              "arm": "baseline-module:BG002-total",
+              "time": "baseline-assessment-not-eligibility-time",
+              "version": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0"
+            }
+          }
+        ]
+      }
+    ],
+    "bindings": [
+      {
+        "scope": {
+          "study": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+          "population": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0:baseline:BG002",
+          "arm": "baseline-module:BG002-total",
+          "time": "baseline-assessment-not-eligibility-time",
+          "version": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0"
+        },
+        "sources": [
+          {
+            "ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+            "version": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+            "address": "/resultsSection/baselineCharacteristicsModule/measures/5/classes/2/categories/0/measurements/2/value",
+            "digest": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0"
+          },
+          {
+            "ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+            "version": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+            "address": "/resultsSection/baselineCharacteristicsModule/measures/4/classes/0/categories/0/measurements/2/value",
+            "digest": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0"
+          },
+          {
+            "ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+            "version": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+            "address": "/resultsSection/baselineCharacteristicsModule/denoms/0/counts/2/value",
+            "digest": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0"
+          },
+          {
+            "ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+            "version": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+            "address": "/resultsSection/baselineCharacteristicsModule/measures/5",
+            "digest": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0"
+          },
+          {
+            "ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+            "version": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+            "address": "/resultsSection/baselineCharacteristicsModule/measures/4",
+            "digest": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0"
+          },
+          {
+            "ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+            "version": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+            "address": "/resultsSection/baselineCharacteristicsModule/denoms/0",
+            "digest": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0"
+          }
+        ],
+        "subjects": [
+          "WHO_PS2",
+          "never_smoker"
+        ],
+        "id": "same-baseline-universe",
+        "relation": "same_universe",
+        "resolution": "resolved",
+        "status": "proposed",
+        "basis": [
+          "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/5/classes/2/categories/0/measurements/2/value",
+          "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/4/classes/0/categories/0/measurements/2/value",
+          "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/denoms/0/counts/2/value",
+          "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/5",
+          "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/4",
+          "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/denoms/0",
+          "hypothesis:source-location-is-not-semantic-warrant"
+        ],
+        "kind": "population"
+      }
+    ],
+    "coverage": [
+      {
+        "address": "/protocolSection/eligibilityModule/minimumAge",
+        "code": "compiled",
+        "value": "18 Years",
+        "assertion": "registry-age-minimumAge",
+        "rule": "ctg-structured-general-eligibility-age",
+        "ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/protocolSection/eligibilityModule/minimumAge"
+      },
+      {
+        "address": "/protocolSection/eligibilityModule/maximumAge",
+        "code": "missing",
+        "value": null
+      },
+      {
+        "address": "/protocolSection/eligibilityModule/eligibilityCriteria",
+        "code": "unresolved_retained",
+        "value": "Inclusion Criteria:\n\n* Locally advanced Stage IIIB not amenable to local therapy or Stage IV (metastatic) NSCLC with adenocarcinoma histology.\n* Never smokers or light ex-smokers.(ceased smoking at least 15 years before Day 1 of study treatment and 10 pack-years or fewer)\n\nExclusion Criteria:\n\n* Had prior chemotherapy, biological (including targeted therapies such as EGFR and vascular epidermal growth factor (VEGF) inhibitors) or immunological therapy.\n* Pre-existing idiopathic pulmonary fibrosis evidence by CT scan at baseline."
+      },
+      {
+        "address": "/protocolSection/eligibilityModule/healthyVolunteers",
+        "code": "unresolved_retained",
+        "value": false
+      },
+      {
+        "address": "/protocolSection/eligibilityModule/sex",
+        "code": "unresolved_retained",
+        "value": "ALL"
+      },
+      {
+        "address": "/protocolSection/eligibilityModule/stdAges",
+        "code": "unresolved_retained",
+        "value": [
+          "ADULT",
+          "OLDER_ADULT"
+        ]
+      },
+      {
+        "address": "/resultsSection",
+        "ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/derivedSection",
+        "ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/derivedSection",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/hasResults",
+        "ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/hasResults",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/identificationModule",
+        "ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/protocolSection/identificationModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/statusModule",
+        "ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/protocolSection/statusModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/sponsorCollaboratorsModule",
+        "ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/protocolSection/sponsorCollaboratorsModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/descriptionModule",
+        "ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/protocolSection/descriptionModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/conditionsModule",
+        "ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/protocolSection/conditionsModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/designModule",
+        "ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/protocolSection/designModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/armsInterventionsModule",
+        "ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/protocolSection/armsInterventionsModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/outcomesModule",
+        "ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/protocolSection/outcomesModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/contactsLocationsModule",
+        "ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/protocolSection/contactsLocationsModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/referencesModule",
+        "ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/protocolSection/referencesModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      }
+    ],
+    "submitted": {
+      "interpretations": [
+        {
+          "id": "aligned-baseline-counts",
+          "label": "If WHO PS 2 and never-smoking counts describe one exact BG002 baseline population",
+          "origin": "assistant",
+          "basis": [
+            "assistant:exploration-reading-not-confirmed-by-a-clinical-user"
+          ],
+          "assumptions": [],
+          "signals": [
+            {
+              "id": "PS2-and-never-smoking",
+              "kind": "overlap",
+              "data": {
+                "universe": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0:baseline:BG002",
+                "alignment": "confirmed",
+                "total": {
+                  "$source": "total-count",
+                  "as": "integer"
+                },
+                "marginals": [
+                  {
+                    "ref": "WHO_PS2",
+                    "universe": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0:baseline:BG002",
+                    "lower": {
+                      "$source": "PS2-count",
+                      "as": "integer"
+                    },
+                    "upper": {
+                      "$source": "PS2-count",
+                      "as": "integer"
+                    }
+                  },
+                  {
+                    "ref": "never_smoker",
+                    "universe": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0:baseline:BG002",
+                    "lower": {
+                      "$source": "never-count",
+                      "as": "integer"
+                    },
+                    "upper": {
+                      "$source": "never-count",
+                      "as": "integer"
+                    }
+                  }
+                ]
+              },
+              "support": [
+                {
+                  "id": "counts-plus-common-universe-reading",
+                  "status": "proposed",
+                  "resolution": "resolved",
+                  "basis": [
+                    "assistant:exact-values-do-not-establish-their-joint-population-or-clinical-meaning"
+                  ]
+                }
+              ]
+            }
+          ],
+          "signal_claims": [],
+          "binding_uses": [
+            {
+              "binding": "same-baseline-universe",
+              "signal": "PS2-and-never-smoking",
+              "scope": {
+                "study": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+                "population": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0:baseline:BG002",
+                "arm": "baseline-module:BG002-total",
+                "time": "baseline-assessment-not-eligibility-time",
+                "version": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0"
+              }
+            }
+          ],
+          "anchors": [
+            "PS2-count",
+            "never-count",
+            "total-count",
+            "PS-table",
+            "smoking-table",
+            "denominator-table"
+          ]
+        }
+      ],
+      "bindings": [
+        {
+          "id": "same-baseline-universe",
+          "kind": "population",
+          "relation": "same_universe",
+          "subjects": [
+            "WHO_PS2",
+            "never_smoker"
+          ],
+          "scope": {
+            "study": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+            "population": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0:baseline:BG002",
+            "arm": "baseline-module:BG002-total",
+            "time": "baseline-assessment-not-eligibility-time",
+            "version": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0"
+          },
+          "sources": [
+            {
+              "ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+              "version": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+              "address": "/resultsSection/baselineCharacteristicsModule",
+              "digest": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0"
+            }
+          ],
+          "status": "proposed",
+          "resolution": "resolved",
+          "basis": [
+            "assistant:assume-these-are-exact-participant-counts-in-the-same-BG002-baseline-universe",
+            "assistant:baseline-population-description-is-not-stated",
+            "assistant:no-eligibility-time-alignment-is-asserted"
+          ],
+          "anchors": [
+            "PS2-count",
+            "never-count",
+            "total-count",
+            "PS-table",
+            "smoking-table",
+            "denominator-table"
+          ]
+        }
+      ]
+    },
+    "requests": [
+      {
+        "operation": "interpretations",
+        "study_ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+        "fixed": {
+          "assertions": [
+            {
+              "applicability": {
+                "class": "Always"
+              },
+              "body": {
+                "class": "Literal",
+                "evidence": [
+                  {
+                    "class": "Evidence",
+                    "kind": "record_field",
+                    "ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/protocolSection/eligibilityModule/minimumAge"
+                  }
+                ],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "age",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "ge",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 18.0,
+                  "unit": "Years",
+                  "upper": null
+                }
+              },
+              "branch": {
+                "class": "Branch",
+                "node": "unresolved",
+                "path": []
+              },
+              "class": "ScopedAssertion",
+              "cohort": {
+                "class": "Scope",
+                "kind": "all_participants",
+                "parts": [],
+                "ref": ""
+              },
+              "criterion_ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/protocolSection/eligibilityModule/minimumAge",
+              "id": "registry-age-minimumAge",
+              "modality": "required",
+              "resolution": "resolved",
+              "rule": {
+                "answers": [],
+                "class": "Rule",
+                "id": "ctg-structured-general-eligibility-age",
+                "premises": [
+                  "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/protocolSection/eligibilityModule/minimumAge"
+                ],
+                "version": "1",
+                "warrants": []
+              },
+              "span": [],
+              "status": "known"
+            }
+          ],
+          "signals": []
+        },
+        "bindings": [
+          {
+            "scope": {
+              "study": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+              "population": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0:baseline:BG002",
+              "arm": "baseline-module:BG002-total",
+              "time": "baseline-assessment-not-eligibility-time",
+              "version": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0"
+            },
+            "sources": [
+              {
+                "ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+                "version": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+                "address": "/resultsSection/baselineCharacteristicsModule/measures/5/classes/2/categories/0/measurements/2/value",
+                "digest": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0"
+              },
+              {
+                "ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+                "version": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+                "address": "/resultsSection/baselineCharacteristicsModule/measures/4/classes/0/categories/0/measurements/2/value",
+                "digest": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0"
+              },
+              {
+                "ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+                "version": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+                "address": "/resultsSection/baselineCharacteristicsModule/denoms/0/counts/2/value",
+                "digest": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0"
+              },
+              {
+                "ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+                "version": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+                "address": "/resultsSection/baselineCharacteristicsModule/measures/5",
+                "digest": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0"
+              },
+              {
+                "ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+                "version": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+                "address": "/resultsSection/baselineCharacteristicsModule/measures/4",
+                "digest": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0"
+              },
+              {
+                "ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+                "version": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+                "address": "/resultsSection/baselineCharacteristicsModule/denoms/0",
+                "digest": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0"
+              }
+            ],
+            "subjects": [
+              "WHO_PS2",
+              "never_smoker"
+            ],
+            "id": "same-baseline-universe",
+            "relation": "same_universe",
+            "resolution": "resolved",
+            "status": "proposed",
+            "basis": [
+              "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/5/classes/2/categories/0/measurements/2/value",
+              "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/4/classes/0/categories/0/measurements/2/value",
+              "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/denoms/0/counts/2/value",
+              "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/5",
+              "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/4",
+              "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/denoms/0",
+              "hypothesis:source-location-is-not-semantic-warrant"
+            ],
+            "kind": "population"
+          }
+        ],
+        "interpretations": [
+          {
+            "id": "aligned-baseline-counts",
+            "label": "If WHO PS 2 and never-smoking counts describe one exact BG002 baseline population",
+            "origin": "assistant",
+            "basis": [
+              "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/5/classes/2/categories/0/measurements/2/value",
+              "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/4/classes/0/categories/0/measurements/2/value",
+              "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/denoms/0/counts/2/value",
+              "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/5",
+              "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/4",
+              "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/denoms/0",
+              "hypothesis:source-location-is-not-semantic-warrant"
+            ],
+            "assumptions": [],
+            "signals": [
+              {
+                "id": "PS2-and-never-smoking",
+                "kind": "overlap",
+                "data": {
+                  "universe": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0:baseline:BG002",
+                  "alignment": "confirmed",
+                  "total": 1217,
+                  "marginals": [
+                    {
+                      "ref": "WHO_PS2",
+                      "universe": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0:baseline:BG002",
+                      "lower": 126,
+                      "upper": 126
+                    },
+                    {
+                      "ref": "never_smoker",
+                      "universe": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0:baseline:BG002",
+                      "lower": 1140,
+                      "upper": 1140
+                    }
+                  ]
+                },
+                "support": [
+                  {
+                    "id": "counts-plus-common-universe-reading",
+                    "status": "proposed",
+                    "resolution": "resolved",
+                    "basis": [
+                      "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/5/classes/2/categories/0/measurements/2/value",
+                      "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/4/classes/0/categories/0/measurements/2/value",
+                      "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/denoms/0/counts/2/value",
+                      "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/5",
+                      "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/4",
+                      "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/denoms/0",
+                      "hypothesis:source-location-is-not-semantic-warrant"
+                    ]
+                  }
+                ],
+                "bindings": {}
+              }
+            ],
+            "signal_claims": [],
+            "binding_uses": [
+              {
+                "binding": "same-baseline-universe",
+                "signal": "PS2-and-never-smoking",
+                "scope": {
+                  "study": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+                  "population": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0:baseline:BG002",
+                  "arm": "baseline-module:BG002-total",
+                  "time": "baseline-assessment-not-eligibility-time",
+                  "version": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0"
+                }
+              }
+            ]
+          }
+        ],
+        "queries": [
+          {
+            "id": "registered-adult-age",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "age",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "ge",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 18.0,
+                "unit": "Years",
+                "upper": null
+              }
+            }
+          },
+          {
+            "id": "registered-PS-at-most-two",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "WHO_PS",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "le",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 2.0,
+                "unit": "WHO_PS",
+                "upper": null
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "limits": [
+      "Structured ages describe registry general eligibility, not verified actual protocol.",
+      "A located quotation proves quotation only; clinical readings remain hypothetical.",
+      "No unit conversion, automatic binding joins, clinical text interpretation or source mutation."
+    ],
+    "analyses": [
+      {
+        "code": "complete",
+        "operation": "interpretations",
+        "result": {
+          "study_ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+          "fixed": {
+            "assertions": [
+              {
+                "applicability": {
+                  "class": "Always"
+                },
+                "body": {
+                  "class": "Literal",
+                  "evidence": [
+                    {
+                      "class": "Evidence",
+                      "kind": "record_field",
+                      "ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/protocolSection/eligibilityModule/minimumAge"
+                    }
+                  ],
+                  "polarity": "positive",
+                  "predicate": {
+                    "class": "Predicate",
+                    "key": "age",
+                    "kind": "measurement"
+                  },
+                  "qualifiers": {
+                    "class": "Always"
+                  },
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "participant",
+                    "referent": ""
+                  },
+                  "time": null,
+                  "value": {
+                    "class": "Value",
+                    "comparison": "ge",
+                    "inclusivity": "unspecified",
+                    "kind": "quantity",
+                    "members": [],
+                    "number": 18.0,
+                    "unit": "Years",
+                    "upper": null
+                  }
+                },
+                "branch": {
+                  "class": "Branch",
+                  "node": "unresolved",
+                  "path": []
+                },
+                "class": "ScopedAssertion",
+                "cohort": {
+                  "class": "Scope",
+                  "kind": "all_participants",
+                  "parts": [],
+                  "ref": ""
+                },
+                "criterion_ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/protocolSection/eligibilityModule/minimumAge",
+                "id": "registry-age-minimumAge",
+                "modality": "required",
+                "resolution": "resolved",
+                "rule": {
+                  "answers": [],
+                  "class": "Rule",
+                  "id": "ctg-structured-general-eligibility-age",
+                  "premises": [
+                    "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/protocolSection/eligibilityModule/minimumAge"
+                  ],
+                  "version": "1",
+                  "warrants": []
+                },
+                "span": [],
+                "status": "known"
+              }
+            ],
+            "consistency": {
+              "result": "UNDETERMINED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+              "status": null,
+              "proof": [],
+              "blockers": [
+                "no_constraint_mentions_query"
+              ]
+            },
+            "queries": [
+              {
+                "id": "registered-adult-age",
+                "body": {
+                  "class": "Literal",
+                  "evidence": [],
+                  "polarity": "positive",
+                  "predicate": {
+                    "class": "Predicate",
+                    "key": "age",
+                    "kind": "measurement"
+                  },
+                  "qualifiers": {
+                    "class": "Always"
+                  },
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "participant",
+                    "referent": ""
+                  },
+                  "time": null,
+                  "value": {
+                    "class": "Value",
+                    "comparison": "ge",
+                    "inclusivity": "unspecified",
+                    "kind": "quantity",
+                    "members": [],
+                    "number": 18.0,
+                    "unit": "Years",
+                    "upper": null
+                  }
+                },
+                "result": "ENTAILED",
+                "decision": {
+                  "result": "ENTAILED",
+                  "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+                  "status": "known",
+                  "proof": [
+                    "registry-age-minimumAge"
+                  ],
+                  "blockers": []
+                },
+                "warrant": {
+                  "rule": "entail.decide:1",
+                  "guarantee": "fixed_floor",
+                  "status": "known",
+                  "assumptions": [],
+                  "proof": [
+                    "registry-age-minimumAge"
+                  ],
+                  "blockers": []
+                }
+              },
+              {
+                "id": "registered-PS-at-most-two",
+                "body": {
+                  "class": "Literal",
+                  "evidence": [],
+                  "polarity": "positive",
+                  "predicate": {
+                    "class": "Predicate",
+                    "key": "WHO_PS",
+                    "kind": "measurement"
+                  },
+                  "qualifiers": {
+                    "class": "Always"
+                  },
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "participant",
+                    "referent": ""
+                  },
+                  "time": null,
+                  "value": {
+                    "class": "Value",
+                    "comparison": "le",
+                    "inclusivity": "unspecified",
+                    "kind": "quantity",
+                    "members": [],
+                    "number": 2.0,
+                    "unit": "WHO_PS",
+                    "upper": null
+                  }
+                },
+                "result": "UNDETERMINED",
+                "decision": {
+                  "result": "UNDETERMINED",
+                  "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"WHO_PS\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"le\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":2.0,\"unit\":\"WHO_PS\",\"upper\":null}}",
+                  "status": null,
+                  "proof": [],
+                  "blockers": [
+                    "no_constraint_mentions_query"
+                  ]
+                },
+                "warrant": {
+                  "rule": "entail.decide:1",
+                  "guarantee": "fixed_floor",
+                  "status": "known",
+                  "assumptions": [],
+                  "proof": [],
+                  "blockers": [
+                    "no_constraint_mentions_query"
+                  ]
+                }
+              }
+            ],
+            "signals": [],
+            "blockers": []
+          },
+          "bindings": [
+            {
+              "id": "same-baseline-universe",
+              "kind": "population",
+              "relation": "same_universe",
+              "subjects": [
+                "WHO_PS2",
+                "never_smoker"
+              ],
+              "scope": {
+                "arm": "baseline-module:BG002-total",
+                "population": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0:baseline:BG002",
+                "study": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+                "time": "baseline-assessment-not-eligibility-time",
+                "version": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0"
+              },
+              "sources": [
+                {
+                  "ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+                  "version": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+                  "address": "/resultsSection/baselineCharacteristicsModule/measures/5/classes/2/categories/0/measurements/2/value",
+                  "digest": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0"
+                },
+                {
+                  "ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+                  "version": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+                  "address": "/resultsSection/baselineCharacteristicsModule/measures/4/classes/0/categories/0/measurements/2/value",
+                  "digest": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0"
+                },
+                {
+                  "ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+                  "version": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+                  "address": "/resultsSection/baselineCharacteristicsModule/denoms/0/counts/2/value",
+                  "digest": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0"
+                },
+                {
+                  "ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+                  "version": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+                  "address": "/resultsSection/baselineCharacteristicsModule/measures/5",
+                  "digest": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0"
+                },
+                {
+                  "ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+                  "version": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+                  "address": "/resultsSection/baselineCharacteristicsModule/measures/4",
+                  "digest": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0"
+                },
+                {
+                  "ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+                  "version": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+                  "address": "/resultsSection/baselineCharacteristicsModule/denoms/0",
+                  "digest": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0"
+                }
+              ],
+              "status": "proposed",
+              "resolution": "resolved",
+              "basis": [
+                "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/5/classes/2/categories/0/measurements/2/value",
+                "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/4/classes/0/categories/0/measurements/2/value",
+                "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/denoms/0/counts/2/value",
+                "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/5",
+                "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/4",
+                "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/denoms/0",
+                "hypothesis:source-location-is-not-semantic-warrant"
+              ]
+            }
+          ],
+          "interpretations": [
+            {
+              "id": "aligned-baseline-counts",
+              "label": "If WHO PS 2 and never-smoking counts describe one exact BG002 baseline population",
+              "origin": "assistant",
+              "state": "compatible",
+              "premises": {
+                "basis": [
+                  "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/5/classes/2/categories/0/measurements/2/value",
+                  "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/4/classes/0/categories/0/measurements/2/value",
+                  "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/denoms/0/counts/2/value",
+                  "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/5",
+                  "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/4",
+                  "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/denoms/0",
+                  "hypothesis:source-location-is-not-semantic-warrant"
+                ],
+                "assumptions": [],
+                "signals": [
+                  {
+                    "id": "PS2-and-never-smoking",
+                    "kind": "overlap",
+                    "data": {
+                      "universe": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0:baseline:BG002",
+                      "alignment": "confirmed",
+                      "total": 1217,
+                      "marginals": [
+                        {
+                          "ref": "WHO_PS2",
+                          "universe": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0:baseline:BG002",
+                          "lower": 126,
+                          "upper": 126
+                        },
+                        {
+                          "ref": "never_smoker",
+                          "universe": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0:baseline:BG002",
+                          "lower": 1140,
+                          "upper": 1140
+                        }
+                      ]
+                    },
+                    "support": [
+                      {
+                        "id": "counts-plus-common-universe-reading",
+                        "status": "proposed",
+                        "resolution": "resolved",
+                        "basis": [
+                          "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/5/classes/2/categories/0/measurements/2/value",
+                          "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/4/classes/0/categories/0/measurements/2/value",
+                          "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/denoms/0/counts/2/value",
+                          "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/5",
+                          "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/4",
+                          "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/denoms/0",
+                          "hypothesis:source-location-is-not-semantic-warrant"
+                        ]
+                      }
+                    ],
+                    "bindings": {}
+                  }
+                ],
+                "signal_claims": [],
+                "binding_uses": [
+                  {
+                    "binding": "same-baseline-universe",
+                    "signal": "PS2-and-never-smoking",
+                    "scope": {
+                      "arm": "baseline-module:BG002-total",
+                      "population": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0:baseline:BG002",
+                      "study": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+                      "time": "baseline-assessment-not-eligibility-time",
+                      "version": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0"
+                    }
+                  }
+                ]
+              },
+              "bindings": [
+                {
+                  "binding": "same-baseline-universe",
+                  "signal": "PS2-and-never-smoking",
+                  "code": "conditional",
+                  "status": "proposed",
+                  "basis": [
+                    "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/5/classes/2/categories/0/measurements/2/value",
+                    "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/4/classes/0/categories/0/measurements/2/value",
+                    "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/denoms/0/counts/2/value",
+                    "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/5",
+                    "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/4",
+                    "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/denoms/0",
+                    "hypothesis:source-location-is-not-semantic-warrant",
+                    "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0@2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/5/classes/2/categories/0/measurements/2/value",
+                    "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0@2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/4/classes/0/categories/0/measurements/2/value",
+                    "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0@2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/denoms/0/counts/2/value",
+                    "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0@2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/5",
+                    "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0@2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/4",
+                    "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0@2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/denoms/0"
+                  ],
+                  "blockers": [],
+                  "rule": "interpretation.binding-use:1"
+                }
+              ],
+              "signals": [
+                {
+                  "id": "PS2-and-never-smoking",
+                  "kind": "overlap",
+                  "code": "bounded",
+                  "calculation_code": "bounded",
+                  "value": {
+                    "universe": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0:baseline:BG002",
+                    "total": 1217,
+                    "counts": [
+                      {
+                        "id": "intersection",
+                        "lower": 49,
+                        "upper": 126
+                      }
+                    ],
+                    "witnesses": [
+                      {
+                        "id": "intersection",
+                        "lower": 49,
+                        "upper": 126,
+                        "expression": {
+                          "kind": "all_of",
+                          "refs": [
+                            "WHO_PS2",
+                            "never_smoker"
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  "rule": "numeric.overlap:1",
+                  "status": "proposed",
+                  "basis": [
+                    "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/5/classes/2/categories/0/measurements/2/value",
+                    "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/4/classes/0/categories/0/measurements/2/value",
+                    "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/denoms/0/counts/2/value",
+                    "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/5",
+                    "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/4",
+                    "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/denoms/0",
+                    "hypothesis:source-location-is-not-semantic-warrant",
+                    "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0@2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/5/classes/2/categories/0/measurements/2/value",
+                    "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0@2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/4/classes/0/categories/0/measurements/2/value",
+                    "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0@2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/denoms/0/counts/2/value",
+                    "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0@2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/5",
+                    "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0@2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/4",
+                    "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0@2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/denoms/0"
+                  ],
+                  "support": [
+                    {
+                      "id": "counts-plus-common-universe-reading",
+                      "status": "proposed",
+                      "resolution": "resolved",
+                      "basis": [
+                        "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/5/classes/2/categories/0/measurements/2/value",
+                        "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/4/classes/0/categories/0/measurements/2/value",
+                        "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/denoms/0/counts/2/value",
+                        "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/5",
+                        "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/4",
+                        "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/denoms/0",
+                        "hypothesis:source-location-is-not-semantic-warrant"
+                      ]
+                    }
+                  ],
+                  "blockers": [],
+                  "guarantee": "conditional_on_interpretation",
+                  "assumed_support": [
+                    "counts-plus-common-universe-reading"
+                  ],
+                  "ungated_code": "bounded",
+                  "unbound_status": "proposed",
+                  "binding_refs": [
+                    "same-baseline-universe"
+                  ],
+                  "assumed_bindings": [
+                    "same-baseline-universe"
+                  ],
+                  "binding_basis": [
+                    "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/5/classes/2/categories/0/measurements/2/value",
+                    "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/4/classes/0/categories/0/measurements/2/value",
+                    "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/denoms/0/counts/2/value",
+                    "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/5",
+                    "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/4",
+                    "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/denoms/0",
+                    "hypothesis:source-location-is-not-semantic-warrant",
+                    "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0@2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/5/classes/2/categories/0/measurements/2/value",
+                    "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0@2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/4/classes/0/categories/0/measurements/2/value",
+                    "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0@2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/denoms/0/counts/2/value",
+                    "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0@2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/5",
+                    "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0@2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/4",
+                    "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0@2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/denoms/0"
+                  ],
+                  "binding_support": [
+                    {
+                      "binding": "same-baseline-universe",
+                      "signal": "PS2-and-never-smoking",
+                      "code": "conditional",
+                      "status": "proposed",
+                      "basis": [
+                        "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/5/classes/2/categories/0/measurements/2/value",
+                        "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/4/classes/0/categories/0/measurements/2/value",
+                        "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/denoms/0/counts/2/value",
+                        "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/5",
+                        "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/4",
+                        "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/denoms/0",
+                        "hypothesis:source-location-is-not-semantic-warrant",
+                        "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0@2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/5/classes/2/categories/0/measurements/2/value",
+                        "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0@2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/4/classes/0/categories/0/measurements/2/value",
+                        "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0@2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/denoms/0/counts/2/value",
+                        "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0@2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/5",
+                        "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0@2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/4",
+                        "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0@2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/denoms/0"
+                      ],
+                      "blockers": [],
+                      "rule": "interpretation.binding-use:1"
+                    }
+                  ],
+                  "role": "active_premise"
+                }
+              ],
+              "signal_checks": [],
+              "queries": [
+                {
+                  "id": "registered-adult-age",
+                  "body": {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "age",
+                      "kind": "measurement"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "participant",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "ge",
+                      "inclusivity": "unspecified",
+                      "kind": "quantity",
+                      "members": [],
+                      "number": 18.0,
+                      "unit": "Years",
+                      "upper": null
+                    }
+                  },
+                  "result": "ENTAILED",
+                  "decision": {
+                    "result": "ENTAILED",
+                    "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+                    "status": "known",
+                    "proof": [
+                      "registry-age-minimumAge"
+                    ],
+                    "blockers": []
+                  },
+                  "warrant": {
+                    "rule": "entail.decide:1",
+                    "guarantee": "conditional_on_interpretation",
+                    "status": "known",
+                    "assumptions": [],
+                    "proof": [
+                      "registry-age-minimumAge"
+                    ],
+                    "blockers": []
+                  }
+                },
+                {
+                  "id": "registered-PS-at-most-two",
+                  "body": {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "WHO_PS",
+                      "kind": "measurement"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "participant",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "le",
+                      "inclusivity": "unspecified",
+                      "kind": "quantity",
+                      "members": [],
+                      "number": 2.0,
+                      "unit": "WHO_PS",
+                      "upper": null
+                    }
+                  },
+                  "result": "UNDETERMINED",
+                  "decision": {
+                    "result": "UNDETERMINED",
+                    "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"WHO_PS\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"le\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":2.0,\"unit\":\"WHO_PS\",\"upper\":null}}",
+                    "status": null,
+                    "proof": [],
+                    "blockers": [
+                      "no_constraint_mentions_query"
+                    ]
+                  },
+                  "warrant": {
+                    "rule": "entail.decide:1",
+                    "guarantee": "conditional_on_interpretation",
+                    "status": "known",
+                    "assumptions": [],
+                    "proof": [],
+                    "blockers": [
+                      "no_constraint_mentions_query"
+                    ]
+                  }
+                }
+              ],
+              "warrant": {
+                "rule": "interpretations.compatibility:1",
+                "guarantee": "conditional_on_fixed_and_interpretation_premises",
+                "fixed_status": "known",
+                "status": "proposed",
+                "fixed_premises": [],
+                "assumptions": [],
+                "bindings": [
+                  "same-baseline-universe"
+                ],
+                "basis": [
+                  "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/5/classes/2/categories/0/measurements/2/value",
+                  "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/4/classes/0/categories/0/measurements/2/value",
+                  "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/denoms/0/counts/2/value",
+                  "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/5",
+                  "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/measures/4",
+                  "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/resultsSection/baselineCharacteristicsModule/denoms/0",
+                  "hypothesis:source-location-is-not-semantic-warrant"
+                ],
+                "consistency": {
+                  "result": "UNDETERMINED",
+                  "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+                  "status": null,
+                  "proof": [],
+                  "blockers": [
+                    "no_constraint_mentions_query"
+                  ]
+                },
+                "intrinsic_consistency": {
+                  "result": "UNDETERMINED",
+                  "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+                  "status": null,
+                  "proof": [],
+                  "blockers": [
+                    "no_constraint_mentions_query"
+                  ]
+                },
+                "signal_rules": [
+                  {
+                    "id": "PS2-and-never-smoking",
+                    "rule": "numeric.overlap:1"
+                  }
+                ],
+                "blockers": []
+              }
+            }
+          ],
+          "remaining": [
+            "aligned-baseline-counts"
+          ],
+          "refuted": [],
+          "incoherent": [],
+          "unresolved": [],
+          "selection": {
+            "id": null,
+            "state": "none",
+            "origin": null
+          },
+          "consequences": [
+            {
+              "id": "registered-adult-age",
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "age",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "ge",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 18.0,
+                  "unit": "Years",
+                  "upper": null
+                }
+              },
+              "result": "ENTAILED",
+              "decision": {
+                "result": "ENTAILED",
+                "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+                "status": "known",
+                "proof": [
+                  "registry-age-minimumAge"
+                ],
+                "blockers": []
+              },
+              "warrant": {
+                "rule": "entail.decide:1",
+                "guarantee": "fixed_floor",
+                "status": "known",
+                "assumptions": [],
+                "proof": [
+                  "registry-age-minimumAge"
+                ],
+                "blockers": []
+              },
+              "frames": [],
+              "basis": "fixed_floor"
+            },
+            {
+              "id": "registered-PS-at-most-two",
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "WHO_PS",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "le",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 2.0,
+                  "unit": "WHO_PS",
+                  "upper": null
+                }
+              },
+              "result": "UNDETERMINED",
+              "frames": [
+                "aligned-baseline-counts"
+              ],
+              "basis": "declared_interpretation_family",
+              "warrant": {
+                "rule": "interpretations.common:1",
+                "guarantee": "conditional_on_declared_family_not_exhaustive",
+                "status": "proposed",
+                "blockers": [
+                  "no_constraint_mentions_query"
+                ]
+              }
+            }
+          ],
+          "limits": "Exact conditional checks over declared readings; compatibility is not source truth or clinical recommendation. The interpretation family is not assumed exhaustive. No automatic text reading, source correction, source mutation or corpus-frequency admission."
+        },
+        "problems": [],
+        "metadata": {
+          "version": 1,
+          "kind": "reasoning",
+          "findings": [
+            {
+              "path": "/result/fixed/consistency",
+              "kind": "consistency",
+              "logical_result": "UNDETERMINED",
+              "standing": null,
+              "completion": "complete",
+              "causes": [
+                {
+                  "code": "no_constraint_mentions_query",
+                  "kind": "coverage"
+                }
+              ],
+              "disposition": "open"
+            },
+            {
+              "path": "/result/fixed/queries/0",
+              "kind": "logical",
+              "logical_result": "ENTAILED",
+              "standing": "known",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "settled",
+              "support_path": "/result/fixed/queries/0/warrant"
+            },
+            {
+              "path": "/result/fixed/queries/1",
+              "kind": "logical",
+              "logical_result": "UNDETERMINED",
+              "standing": "known",
+              "completion": "complete",
+              "causes": [
+                {
+                  "code": "no_constraint_mentions_query",
+                  "kind": "coverage"
+                }
+              ],
+              "disposition": "open",
+              "support_path": "/result/fixed/queries/1/warrant"
+            },
+            {
+              "path": "/result/interpretations/0",
+              "kind": "interpretation",
+              "logical_result": "compatible",
+              "standing": "proposed",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "conditional"
+            },
+            {
+              "path": "/result/interpretations/0/queries/0",
+              "kind": "logical",
+              "logical_result": "ENTAILED",
+              "standing": "known",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "settled",
+              "support_path": "/result/interpretations/0/queries/0/warrant"
+            },
+            {
+              "path": "/result/interpretations/0/queries/1",
+              "kind": "logical",
+              "logical_result": "UNDETERMINED",
+              "standing": "known",
+              "completion": "complete",
+              "causes": [
+                {
+                  "code": "no_constraint_mentions_query",
+                  "kind": "coverage"
+                }
+              ],
+              "disposition": "open",
+              "support_path": "/result/interpretations/0/queries/1/warrant"
+            },
+            {
+              "path": "/result/interpretations/0/signals/0",
+              "kind": "signal",
+              "logical_result": "bounded",
+              "standing": "proposed",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "conditional"
+            },
+            {
+              "path": "/result/interpretations/0/bindings/0",
+              "kind": "binding",
+              "logical_result": "conditional",
+              "standing": "proposed",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "conditional"
+            },
+            {
+              "path": "/result/consequences/0",
+              "kind": "logical",
+              "logical_result": "ENTAILED",
+              "standing": "known",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "settled",
+              "support_path": "/result/consequences/0/warrant"
+            },
+            {
+              "path": "/result/consequences/1",
+              "kind": "logical",
+              "logical_result": "UNDETERMINED",
+              "standing": "proposed",
+              "completion": "complete",
+              "causes": [
+                {
+                  "code": "no_constraint_mentions_query",
+                  "kind": "coverage"
+                }
+              ],
+              "disposition": "open",
+              "support_path": "/result/consequences/1/warrant"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "problems": [],
+  "metadata": {
+    "version": 1,
+    "kind": "reasoning",
+    "findings": [
+      {
+        "path": "/result/analyses/0/result/fixed/consistency",
+        "kind": "consistency",
+        "logical_result": "UNDETERMINED",
+        "standing": null,
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          }
+        ],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/analyses/0/result/fixed/queries/0",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled",
+        "support_path": "/result/analyses/0/result/fixed/queries/0/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/fixed/queries/1",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/analyses/0/result/fixed/queries/1/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/0",
+        "kind": "interpretation",
+        "logical_result": "compatible",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/0/queries/0",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled",
+        "support_path": "/result/analyses/0/result/interpretations/0/queries/0/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/0/queries/1",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/analyses/0/result/interpretations/0/queries/1/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/0/signals/0",
+        "kind": "signal",
+        "logical_result": "bounded",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/0/bindings/0",
+        "kind": "binding",
+        "logical_result": "conditional",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional"
+      },
+      {
+        "path": "/result/analyses/0/result/consequences/0",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled",
+        "support_path": "/result/analyses/0/result/consequences/0/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/consequences/1",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/analyses/0/result/consequences/1/warrant"
+      }
+    ]
+  }
+}

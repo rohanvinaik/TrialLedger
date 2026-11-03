@@ -1,0 +1,23 @@
+{
+  "command": [
+    "uv",
+    "run",
+    "trialledger",
+    "verify",
+    "/tmp/trialledger-bowel-exceptions-20261103"
+  ],
+  "exit_code": 0,
+  "observed_stdout": "/tmp/trialledger-bowel-exceptions-20261103: verified — the clinical record and workbook reproduce from the retained sources. This checks derivation, not clinical interpretation.\n",
+  "trimmed_packet_is_not_complete_verify_folder": true,
+  "retained_copy_verify": {
+    "command": [
+      "uv",
+      "run",
+      "trialledger",
+      "verify",
+      "/Users/rohanvinaik/.local/share/TrialLedger/acceptance/design-session-walkthrough-exceptions-inflammatory-bowel-2026-11-03/retained-report"
+    ],
+    "exit_code": 0,
+    "observed_stdout": "/Users/rohanvinaik/.local/share/TrialLedger/acceptance/design-session-walkthrough-exceptions-inflammatory-bowel-2026-11-03/retained-report: verified — the clinical record and workbook reproduce from the retained sources. This checks derivation, not clinical interpretation.\n"
+  }
+}

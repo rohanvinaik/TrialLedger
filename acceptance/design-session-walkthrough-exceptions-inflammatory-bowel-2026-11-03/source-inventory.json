@@ -1,0 +1,254 @@
+[
+  {
+    "id": "NCT03107793",
+    "raw_address": "/studies/1",
+    "study_digest": "6a8c4867b545f9e385c11297b341635cfb31aa139ba4e405a1bc5edf1bfbc0b2",
+    "source_entry_count": {
+      "count": 500,
+      "type": "ACTUAL"
+    },
+    "structured_minimum_age": "18 Years",
+    "baseline_denoms": [
+      {
+        "units": "Participants",
+        "counts": [
+          {
+            "groupId": "BG000",
+            "value": "498"
+          }
+        ]
+      }
+    ],
+    "flow_periods": [
+      {
+        "address": "/studies/1/resultsSection/participantFlowModule/periods/0",
+        "title": "Induction Period (16 Weeks)",
+        "milestone_categories": [
+          "STARTED",
+          "Participants Who Entered the Maintenance Period",
+          "Participants Who Entered the Extension Period",
+          "COMPLETED",
+          "NOT COMPLETED"
+        ],
+        "withdrawal_categories": [
+          "Adverse Event",
+          "Physician Decision",
+          "Progressive disease",
+          "Withdrawal by Subject"
+        ]
+      },
+      {
+        "address": "/studies/1/resultsSection/participantFlowModule/periods/1",
+        "title": "Maintenance Period (Week 16-Week 48)",
+        "milestone_categories": [
+          "STARTED",
+          "COMPLETED",
+          "NOT COMPLETED"
+        ],
+        "withdrawal_categories": [
+          "Adverse Event",
+          "Physician Decision",
+          "Progressive disease",
+          "Lack of Efficacy",
+          "Death",
+          "Disease relapse",
+          "Lost to Follow-up",
+          "Pregnancy",
+          "Received a disallowed concomitant treatment",
+          "Withdrawal by Subject"
+        ]
+      },
+      {
+        "address": "/studies/1/resultsSection/participantFlowModule/periods/2",
+        "title": "Extension Period (Week 48- Week 104)",
+        "milestone_categories": [
+          "STARTED",
+          "COMPLETED",
+          "NOT COMPLETED"
+        ],
+        "withdrawal_categories": [
+          "Adverse Event",
+          "Physician Decision",
+          "Lack of Efficacy",
+          "Death",
+          "Disease relapse",
+          "Lost to Follow-up",
+          "Pregnancy",
+          "Did not re-consent to protocol amendment 3",
+          "Non-compliance with study drug",
+          "Other",
+          "Withdrawal by Subject"
+        ]
+      }
+    ],
+    "reviewed_units": [
+      "protocolSection/identificationModule",
+      "protocolSection/descriptionModule",
+      "protocolSection/designModule",
+      "protocolSection/eligibilityModule",
+      "protocolSection/armsInterventionsModule",
+      "protocolSection/outcomesModule/primaryOutcomes",
+      "resultsSection/participantFlowModule",
+      "resultsSection/baselineCharacteristicsModule"
+    ],
+    "eligibility_exception_assessment": {
+      "finding": "No count explicitly attributed to entry-eligibility exceptions identified in these reviewed units.",
+      "standing": "model reading of reviewed source units, not a proved absence across all possible information",
+      "prohibited_promotion": "Withdrawal reasons, protocol violations, site compliance issues and missing tables do not establish a bounded entry-eligibility exception allowance."
+    }
+  },
+  {
+    "id": "NCT04245215",
+    "raw_address": "/studies/3",
+    "study_digest": "4f09ff7d9ae723459d6a48a1d47488bc65999d5b5b5572d01ec0093475c4c4a1",
+    "source_entry_count": {
+      "count": 108,
+      "type": "ACTUAL"
+    },
+    "structured_minimum_age": "18 Years",
+    "baseline_denoms": [
+      {
+        "units": "Participants",
+        "counts": [
+          {
+            "groupId": "BG000",
+            "value": "54"
+          },
+          {
+            "groupId": "BG001",
+            "value": "54"
+          },
+          {
+            "groupId": "BG002",
+            "value": "108"
+          }
+        ]
+      }
+    ],
+    "flow_periods": [
+      {
+        "address": "/studies/3/resultsSection/participantFlowModule/periods/0",
+        "title": "Overall Study",
+        "milestone_categories": [
+          "STARTED",
+          "COMPLETED",
+          "NOT COMPLETED"
+        ],
+        "withdrawal_categories": []
+      }
+    ],
+    "reviewed_units": [
+      "protocolSection/identificationModule",
+      "protocolSection/descriptionModule",
+      "protocolSection/designModule",
+      "protocolSection/eligibilityModule",
+      "protocolSection/armsInterventionsModule",
+      "protocolSection/outcomesModule/primaryOutcomes",
+      "resultsSection/participantFlowModule",
+      "resultsSection/baselineCharacteristicsModule"
+    ],
+    "eligibility_exception_assessment": {
+      "finding": "No count explicitly attributed to entry-eligibility exceptions identified in these reviewed units.",
+      "standing": "model reading of reviewed source units, not a proved absence across all possible information",
+      "prohibited_promotion": "Withdrawal reasons, protocol violations, site compliance issues and missing tables do not establish a bounded entry-eligibility exception allowance."
+    }
+  },
+  {
+    "id": "NCT01369355",
+    "raw_address": "/studies/6",
+    "study_digest": "e88dd2edd3a6d63bf6a7d10c8b304315497cfb90e2dadf36a259dc0d8ef75be2",
+    "source_entry_count": {
+      "count": 1282,
+      "type": "ACTUAL"
+    },
+    "structured_minimum_age": "18 Years",
+    "baseline_denoms": [
+      {
+        "units": "Participants",
+        "counts": [
+          {
+            "groupId": "BG000",
+            "value": "133"
+          },
+          {
+            "groupId": "BG001",
+            "value": "132"
+          },
+          {
+            "groupId": "BG002",
+            "value": "132"
+          },
+          {
+            "groupId": "BG003",
+            "value": "123"
+          },
+          {
+            "groupId": "BG004",
+            "value": "285"
+          },
+          {
+            "groupId": "BG005",
+            "value": "476"
+          },
+          {
+            "groupId": "BG006",
+            "value": "1281"
+          }
+        ]
+      }
+    ],
+    "flow_periods": [
+      {
+        "address": "/studies/6/resultsSection/participantFlowModule/periods/0",
+        "title": "Week 0 - Week 44 (Maintenance)",
+        "milestone_categories": [
+          "STARTED",
+          "COMPLETED",
+          "NOT COMPLETED"
+        ],
+        "withdrawal_categories": [
+          "Adverse Event",
+          "Lack of Efficacy",
+          "Protocol Violation",
+          "Lost to Follow-up",
+          "Withdrawal by Subject",
+          "Other"
+        ]
+      },
+      {
+        "address": "/studies/6/resultsSection/participantFlowModule/periods/1",
+        "title": "Long-term Extension (Week 44-272)",
+        "milestone_categories": [
+          "STARTED",
+          "COMPLETED",
+          "NOT COMPLETED"
+        ],
+        "withdrawal_categories": [
+          "Adverse Event",
+          "Death",
+          "Lack of Efficacy",
+          "Protocol Violation",
+          "Physician Decision",
+          "Lost to Follow-up",
+          "Withdrawal by Subject",
+          "Other"
+        ]
+      }
+    ],
+    "reviewed_units": [
+      "protocolSection/identificationModule",
+      "protocolSection/descriptionModule",
+      "protocolSection/designModule",
+      "protocolSection/eligibilityModule",
+      "protocolSection/armsInterventionsModule",
+      "protocolSection/outcomesModule/primaryOutcomes",
+      "resultsSection/participantFlowModule",
+      "resultsSection/baselineCharacteristicsModule"
+    ],
+    "eligibility_exception_assessment": {
+      "finding": "No count explicitly attributed to entry-eligibility exceptions identified in these reviewed units.",
+      "standing": "model reading of reviewed source units, not a proved absence across all possible information",
+      "prohibited_promotion": "Withdrawal reasons, protocol violations, site compliance issues and missing tables do not establish a bounded entry-eligibility exception allowance."
+    }
+  }
+]

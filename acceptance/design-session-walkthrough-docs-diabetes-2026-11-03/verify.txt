@@ -1,0 +1,1 @@
+/tmp/trialledger-docs-diabetes-20261103: verified — the clinical record and workbook reproduce from the retained sources. This checks derivation, not clinical interpretation.

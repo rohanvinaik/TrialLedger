@@ -1,0 +1,14 @@
+{
+ "drug": [
+  "tirzepatide"
+ ],
+ "condition": "Type 2 Diabetes",
+ "phase": [
+  "PHASE3"
+ ],
+ "status": [
+  "COMPLETED"
+ ],
+ "start_from": "2020-01-01",
+ "start_to": "2022-12-31"
+}

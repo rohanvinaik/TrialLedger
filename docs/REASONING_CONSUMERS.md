@@ -4,6 +4,45 @@ A source tells us what was recorded. A clinical reading supplies a possible mean
 what follows under those premises. Each handoff must retain all three, with the scope that makes it valid.
 The complete automatic clinical-text compiler and trial writer are still unbuilt.
 
+## Read each finding's answer and completion separately
+
+Every public `reason` envelope now carries additive `metadata`, version 1. Its `findings` point to the
+actual results with JSON pointers; the original operation payload remains available. Discovery is marked
+`discovery`; a source inspection with no analysis is `inspection`, with no clinical findings.
+
+Each finding retains its effective logical result, support standing, computation completion and all named
+causes. A completed request can contain an unfinished calculation. `resource_bound` means not resolved
+within the computation limit, not that more medical evidence is required. Premise, translation, coverage
+and evidence causes remain distinct; unfamiliar codes are retained as `unclassified` rather than guessed.
+
+An interpretation's raw solver result can differ from its effective answer after a binding or frame gate.
+Read `logical_result` and its deciding warrant; `raw_result`/`raw_path` preserve a different ungated answer
+without promoting it. A fixed adult-age answer can stay settled while another frame is computation-limited
+and a third has an unconfirmed reading. Conversely, an established contradiction is not erased because a
+different check ran out of resources: its conflict and the unfinished check both remain visible.
+
+Metadata is computed from the existing operation results. It does not certify their source meanings,
+recover missing premise origins, declare an open historical fact a clinical choice, or make corpus counts
+clinical recommendations. The focused `describe` replies document the envelope and metadata fields.
+
+Eliminated candidates retain `elimination_status` from the deciding witness or signal checks; their query's
+support cannot replace that support. Known eliminations are settled, and weaker eliminations remain
+conditional. Unresolved candidates receive no invented standing. Exact corpus counts and comparisons use
+`descriptive`: their arithmetic describes the declared set without settling a clinical choice. Pending
+features, unknown occupancy and proposed associations keep their open or conditional states.
+
+Choose wording for `conditional` from `standing` and the effective warrant. Interpolated support means
+an overridable default or working assumption; proposed support means an unconfirmed reading, refused by
+ordinary entailment and explored only within its hypothetical frame. `open` alone establishes neither a
+clinical choice nor an evidence gap. Current metadata has `causes`, not `uncertainty_causes`, and carries no
+normalized `origin` or `coverage` fields; inspect the actual premises and operation-specific scope. Planned
+session projections will add those distinctions from declared questions and dependencies.
+
+A refused request has supplied no clinical finding. Its metadata identifies an invalid translation task,
+unsupported operation or computation limit, retaining the complete refusal code. An unfamiliar detailed
+refusal reason remains a request-repair task by that envelope's contract; unfamiliar reasoning codes outside
+that context still remain `unclassified`.
+
 ## Existing public consumers
 
 | Input channel | Actual consumer | Admission and preserved limit |

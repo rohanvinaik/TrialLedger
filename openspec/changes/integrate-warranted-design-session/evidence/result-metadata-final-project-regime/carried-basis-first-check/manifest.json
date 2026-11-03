@@ -1,0 +1,12 @@
+{
+  ".detective/reports/converge_disposition_code.txt": "fa05d2136f291a67037d66680d04bc198d110db5ed05e0402412b9f0a2bcc1b9",
+  "README.md": "c6fcb86029f5a35393ac343a100ed21834a745d1d0765d0ccd3ddd07f8e03ec6",
+  "TrialLedger/layer2/result_semantics.py": "42f8c36330d1b10f2f4875191f1b093a0c4fe7bcc62e60b1b75c81ed885b06ed",
+  "crosshair.log": "e5c33f2f2df093274a76c25ebc964ca8898a288ae42f3ecab334aa5085021512",
+  "disposition-converge.log": "fd0ed6d992dcdeffa205c14c49f5792a5647db8fd5cdd99b637119745ae1a47f",
+  "first-format-check.log": "1836068cc7d1dc70e4884d0873bb9e05ce10deaa9dd8077b0c82a188c143d66d",
+  "help.log": "1629b84ce31fc121fe2da5361946861273272397aebe227d5425a219461c5671",
+  "pyproject.toml": "d95656495ea319a1122e66824e5f846249d8faf2d28c27afe9e22b6f2871c42f",
+  "regime.log": "5dce61dba5938a6db6e7e273d95754b75e6ed06d4b611b60d5f314033833d212",
+  "tests/detective/test_TrialLedger_layer2_result_semantics_disposition_code_3741ce9eea_synth.py": "ad63def993e3f2e85ef5fe1aab05b8aaae655dcf22c42ebac19194d478ae0f32"
+}

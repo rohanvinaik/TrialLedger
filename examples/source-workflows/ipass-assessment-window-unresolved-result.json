@@ -93,5 +93,27 @@
     ],
     "limits": "Typed, source-bound partial evidence; no clinical text interpretation or source mutation."
   },
-  "problems": []
+  "problems": [],
+  "metadata": {
+    "version": 1,
+    "kind": "reasoning",
+    "findings": [
+      {
+        "path": "/result/signals/0",
+        "kind": "signal",
+        "logical_result": "unresolved",
+        "standing": "interpolated",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "binding_unresolved:ipass-first-scheduled-tumour-assessment",
+            "kind": "translation"
+          }
+        ],
+        "disposition": "open",
+        "raw_result": "consistent",
+        "raw_path": "/result/signals/0/calculation_code"
+      }
+    ]
+  }
 }

@@ -1064,5 +1064,181 @@
     ],
     "limits": "Exact conditional checks over declared readings; compatibility is not source truth or clinical recommendation. The interpretation family is not assumed exhaustive. No automatic text reading, source correction, source mutation or corpus-frequency admission."
   },
-  "problems": []
+  "problems": [],
+  "metadata": {
+    "version": 1,
+    "kind": "reasoning",
+    "findings": [
+      {
+        "path": "/result/fixed/consistency",
+        "kind": "consistency",
+        "logical_result": "UNDETERMINED",
+        "standing": null,
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          }
+        ],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/fixed/queries/0",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled",
+        "support_path": "/result/fixed/queries/0/warrant"
+      },
+      {
+        "path": "/result/fixed/queries/1",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "undecided_by_constraints",
+            "kind": "constraint"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/fixed/queries/1/warrant"
+      },
+      {
+        "path": "/result/interpretations/0",
+        "kind": "interpretation",
+        "logical_result": "compatible",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional"
+      },
+      {
+        "path": "/result/interpretations/0/queries/0",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional",
+        "support_path": "/result/interpretations/0/queries/0/warrant"
+      },
+      {
+        "path": "/result/interpretations/0/queries/1",
+        "kind": "logical",
+        "logical_result": "REFUTED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional",
+        "support_path": "/result/interpretations/0/queries/1/warrant"
+      },
+      {
+        "path": "/result/interpretations/1",
+        "kind": "interpretation",
+        "logical_result": "compatible",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional"
+      },
+      {
+        "path": "/result/interpretations/1/queries/0",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional",
+        "support_path": "/result/interpretations/1/queries/0/warrant"
+      },
+      {
+        "path": "/result/interpretations/1/queries/1",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "undecided_by_constraints",
+            "kind": "constraint"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/interpretations/1/queries/1/warrant"
+      },
+      {
+        "path": "/result/interpretations/2",
+        "kind": "interpretation",
+        "logical_result": "refuted",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conflict"
+      },
+      {
+        "path": "/result/interpretations/2/queries/0",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "interpretation_refuted",
+            "kind": "conflict"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/interpretations/2/queries/0/warrant",
+        "raw_result": "INCONSISTENT",
+        "raw_path": "/result/interpretations/2/queries/0/decision"
+      },
+      {
+        "path": "/result/interpretations/2/queries/1",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "interpretation_refuted",
+            "kind": "conflict"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/interpretations/2/queries/1/warrant",
+        "raw_result": "INCONSISTENT",
+        "raw_path": "/result/interpretations/2/queries/1/decision"
+      },
+      {
+        "path": "/result/consequences/0",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled",
+        "support_path": "/result/consequences/0/warrant"
+      },
+      {
+        "path": "/result/consequences/1",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "undecided_by_constraints",
+            "kind": "constraint"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/consequences/1/warrant"
+      }
+    ]
+  }
 }

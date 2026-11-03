@@ -1,0 +1,937 @@
+{
+  "code": "complete",
+  "operation": "corpus",
+  "result": {
+    "basis": "Conditional on the supplied typed premises; their source meaning is not certified by this operation.",
+    "premises": [
+      {
+        "id": "NCT00322452",
+        "sponsor": "AstraZeneca",
+        "stratum": "explicit-two-record-structured-age-comparison-not-full-clinical-comparability",
+        "elements": [
+          "inclusion:minimum_age=18_Years"
+        ],
+        "typed": true,
+        "basis": [
+          "prototype:direct-structured-age-only-no-complete-eligibility-encoding"
+        ],
+        "standing": {
+          "status": "proposed",
+          "resolution": "unresolved",
+          "basis": [
+            "prototype:other-source-content-and-comparability-not-encoded"
+          ]
+        },
+        "feature_standings": {
+          "elements": {
+            "inclusion:minimum_age=18_Years": {
+              "status": "known",
+              "resolution": "resolved",
+              "basis": [
+                "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/protocolSection/eligibilityModule/minimumAge",
+                "ctg-structured-general-eligibility-age:1"
+              ]
+            }
+          }
+        },
+        "class_unresolved": true
+      },
+      {
+        "id": "NCT01774721",
+        "sponsor": "Pfizer",
+        "stratum": "explicit-two-record-structured-age-comparison-not-full-clinical-comparability",
+        "elements": [
+          "inclusion:minimum_age=18_Years"
+        ],
+        "typed": true,
+        "basis": [
+          "prototype:direct-structured-age-only-no-complete-eligibility-encoding"
+        ],
+        "standing": {
+          "status": "proposed",
+          "resolution": "unresolved",
+          "basis": [
+            "prototype:other-source-content-and-comparability-not-encoded"
+          ]
+        },
+        "feature_standings": {
+          "elements": {
+            "inclusion:minimum_age=18_Years": {
+              "status": "known",
+              "resolution": "resolved",
+              "basis": [
+                "ctg:NCT01774721:3c36eb9ab86ea1b30b764fec80c4e08504f9103533db6d3c69b31c0ada6147b1#/protocolSection/eligibilityModule/minimumAge",
+                "ctg-structured-general-eligibility-age:1"
+              ]
+            }
+          }
+        },
+        "class_unresolved": true
+      }
+    ],
+    "admission": [
+      {
+        "id": "NCT00322452",
+        "standing": {
+          "status": "proposed",
+          "resolution": "unresolved",
+          "basis": [
+            "prototype:other-source-content-and-comparability-not-encoded"
+          ]
+        },
+        "features": [
+          {
+            "trial": "NCT00322452",
+            "stratum": "explicit-two-record-structured-age-comparison-not-full-clinical-comparability",
+            "feature": [
+              "classes"
+            ],
+            "value": [],
+            "standing": {
+              "status": "proposed",
+              "resolution": "unresolved",
+              "basis": [
+                "prototype:other-source-content-and-comparability-not-encoded"
+              ]
+            },
+            "code": "proposed_refused",
+            "basis": [
+              "prototype:direct-structured-age-only-no-complete-eligibility-encoding"
+            ]
+          },
+          {
+            "trial": "NCT00322452",
+            "stratum": "explicit-two-record-structured-age-comparison-not-full-clinical-comparability",
+            "feature": [
+              "coverage"
+            ],
+            "value": {},
+            "standing": {
+              "status": "proposed",
+              "resolution": "unresolved",
+              "basis": [
+                "prototype:other-source-content-and-comparability-not-encoded"
+              ]
+            },
+            "code": "proposed_refused",
+            "basis": [
+              "prototype:direct-structured-age-only-no-complete-eligibility-encoding"
+            ]
+          },
+          {
+            "trial": "NCT00322452",
+            "stratum": "explicit-two-record-structured-age-comparison-not-full-clinical-comparability",
+            "feature": [
+              "elements",
+              "inclusion:minimum_age=18_Years"
+            ],
+            "value": "inclusion:minimum_age=18_Years",
+            "standing": {
+              "status": "known",
+              "resolution": "resolved",
+              "basis": [
+                "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/protocolSection/eligibilityModule/minimumAge",
+                "ctg-structured-general-eligibility-age:1"
+              ]
+            },
+            "code": "accepted",
+            "basis": [
+              "prototype:direct-structured-age-only-no-complete-eligibility-encoding"
+            ]
+          },
+          {
+            "trial": "NCT00322452",
+            "stratum": "explicit-two-record-structured-age-comparison-not-full-clinical-comparability",
+            "feature": [
+              "eligibility_content"
+            ],
+            "value": "present",
+            "standing": {
+              "status": "proposed",
+              "resolution": "unresolved",
+              "basis": [
+                "prototype:other-source-content-and-comparability-not-encoded"
+              ]
+            },
+            "code": "proposed_refused",
+            "basis": [
+              "prototype:direct-structured-age-only-no-complete-eligibility-encoding"
+            ]
+          },
+          {
+            "trial": "NCT00322452",
+            "stratum": "explicit-two-record-structured-age-comparison-not-full-clinical-comparability",
+            "feature": [
+              "setting_domain"
+            ],
+            "value": [],
+            "standing": {
+              "status": "proposed",
+              "resolution": "unresolved",
+              "basis": [
+                "prototype:other-source-content-and-comparability-not-encoded"
+              ]
+            },
+            "code": "proposed_refused",
+            "basis": [
+              "prototype:direct-structured-age-only-no-complete-eligibility-encoding"
+            ]
+          },
+          {
+            "trial": "NCT00322452",
+            "stratum": "explicit-two-record-structured-age-comparison-not-full-clinical-comparability",
+            "feature": [
+              "typed"
+            ],
+            "value": true,
+            "standing": {
+              "status": "proposed",
+              "resolution": "unresolved",
+              "basis": [
+                "prototype:other-source-content-and-comparability-not-encoded"
+              ]
+            },
+            "code": "proposed_refused",
+            "basis": [
+              "prototype:direct-structured-age-only-no-complete-eligibility-encoding"
+            ]
+          }
+        ]
+      },
+      {
+        "id": "NCT01774721",
+        "standing": {
+          "status": "proposed",
+          "resolution": "unresolved",
+          "basis": [
+            "prototype:other-source-content-and-comparability-not-encoded"
+          ]
+        },
+        "features": [
+          {
+            "trial": "NCT01774721",
+            "stratum": "explicit-two-record-structured-age-comparison-not-full-clinical-comparability",
+            "feature": [
+              "classes"
+            ],
+            "value": [],
+            "standing": {
+              "status": "proposed",
+              "resolution": "unresolved",
+              "basis": [
+                "prototype:other-source-content-and-comparability-not-encoded"
+              ]
+            },
+            "code": "proposed_refused",
+            "basis": [
+              "prototype:direct-structured-age-only-no-complete-eligibility-encoding"
+            ]
+          },
+          {
+            "trial": "NCT01774721",
+            "stratum": "explicit-two-record-structured-age-comparison-not-full-clinical-comparability",
+            "feature": [
+              "coverage"
+            ],
+            "value": {},
+            "standing": {
+              "status": "proposed",
+              "resolution": "unresolved",
+              "basis": [
+                "prototype:other-source-content-and-comparability-not-encoded"
+              ]
+            },
+            "code": "proposed_refused",
+            "basis": [
+              "prototype:direct-structured-age-only-no-complete-eligibility-encoding"
+            ]
+          },
+          {
+            "trial": "NCT01774721",
+            "stratum": "explicit-two-record-structured-age-comparison-not-full-clinical-comparability",
+            "feature": [
+              "elements",
+              "inclusion:minimum_age=18_Years"
+            ],
+            "value": "inclusion:minimum_age=18_Years",
+            "standing": {
+              "status": "known",
+              "resolution": "resolved",
+              "basis": [
+                "ctg:NCT01774721:3c36eb9ab86ea1b30b764fec80c4e08504f9103533db6d3c69b31c0ada6147b1#/protocolSection/eligibilityModule/minimumAge",
+                "ctg-structured-general-eligibility-age:1"
+              ]
+            },
+            "code": "accepted",
+            "basis": [
+              "prototype:direct-structured-age-only-no-complete-eligibility-encoding"
+            ]
+          },
+          {
+            "trial": "NCT01774721",
+            "stratum": "explicit-two-record-structured-age-comparison-not-full-clinical-comparability",
+            "feature": [
+              "eligibility_content"
+            ],
+            "value": "present",
+            "standing": {
+              "status": "proposed",
+              "resolution": "unresolved",
+              "basis": [
+                "prototype:other-source-content-and-comparability-not-encoded"
+              ]
+            },
+            "code": "proposed_refused",
+            "basis": [
+              "prototype:direct-structured-age-only-no-complete-eligibility-encoding"
+            ]
+          },
+          {
+            "trial": "NCT01774721",
+            "stratum": "explicit-two-record-structured-age-comparison-not-full-clinical-comparability",
+            "feature": [
+              "setting_domain"
+            ],
+            "value": [],
+            "standing": {
+              "status": "proposed",
+              "resolution": "unresolved",
+              "basis": [
+                "prototype:other-source-content-and-comparability-not-encoded"
+              ]
+            },
+            "code": "proposed_refused",
+            "basis": [
+              "prototype:direct-structured-age-only-no-complete-eligibility-encoding"
+            ]
+          },
+          {
+            "trial": "NCT01774721",
+            "stratum": "explicit-two-record-structured-age-comparison-not-full-clinical-comparability",
+            "feature": [
+              "typed"
+            ],
+            "value": true,
+            "standing": {
+              "status": "proposed",
+              "resolution": "unresolved",
+              "basis": [
+                "prototype:other-source-content-and-comparability-not-encoded"
+              ]
+            },
+            "code": "proposed_refused",
+            "basis": [
+              "prototype:direct-structured-age-only-no-complete-eligibility-encoding"
+            ]
+          }
+        ]
+      }
+    ],
+    "pending": [
+      {
+        "trial": "NCT00322452",
+        "stratum": "explicit-two-record-structured-age-comparison-not-full-clinical-comparability",
+        "feature": [
+          "classes"
+        ],
+        "value": [],
+        "standing": {
+          "status": "proposed",
+          "resolution": "unresolved",
+          "basis": [
+            "prototype:other-source-content-and-comparability-not-encoded"
+          ]
+        },
+        "code": "proposed_refused",
+        "basis": [
+          "prototype:direct-structured-age-only-no-complete-eligibility-encoding"
+        ]
+      },
+      {
+        "trial": "NCT00322452",
+        "stratum": "explicit-two-record-structured-age-comparison-not-full-clinical-comparability",
+        "feature": [
+          "coverage"
+        ],
+        "value": {},
+        "standing": {
+          "status": "proposed",
+          "resolution": "unresolved",
+          "basis": [
+            "prototype:other-source-content-and-comparability-not-encoded"
+          ]
+        },
+        "code": "proposed_refused",
+        "basis": [
+          "prototype:direct-structured-age-only-no-complete-eligibility-encoding"
+        ]
+      },
+      {
+        "trial": "NCT00322452",
+        "stratum": "explicit-two-record-structured-age-comparison-not-full-clinical-comparability",
+        "feature": [
+          "eligibility_content"
+        ],
+        "value": "present",
+        "standing": {
+          "status": "proposed",
+          "resolution": "unresolved",
+          "basis": [
+            "prototype:other-source-content-and-comparability-not-encoded"
+          ]
+        },
+        "code": "proposed_refused",
+        "basis": [
+          "prototype:direct-structured-age-only-no-complete-eligibility-encoding"
+        ]
+      },
+      {
+        "trial": "NCT00322452",
+        "stratum": "explicit-two-record-structured-age-comparison-not-full-clinical-comparability",
+        "feature": [
+          "setting_domain"
+        ],
+        "value": [],
+        "standing": {
+          "status": "proposed",
+          "resolution": "unresolved",
+          "basis": [
+            "prototype:other-source-content-and-comparability-not-encoded"
+          ]
+        },
+        "code": "proposed_refused",
+        "basis": [
+          "prototype:direct-structured-age-only-no-complete-eligibility-encoding"
+        ]
+      },
+      {
+        "trial": "NCT00322452",
+        "stratum": "explicit-two-record-structured-age-comparison-not-full-clinical-comparability",
+        "feature": [
+          "typed"
+        ],
+        "value": true,
+        "standing": {
+          "status": "proposed",
+          "resolution": "unresolved",
+          "basis": [
+            "prototype:other-source-content-and-comparability-not-encoded"
+          ]
+        },
+        "code": "proposed_refused",
+        "basis": [
+          "prototype:direct-structured-age-only-no-complete-eligibility-encoding"
+        ]
+      },
+      {
+        "trial": "NCT01774721",
+        "stratum": "explicit-two-record-structured-age-comparison-not-full-clinical-comparability",
+        "feature": [
+          "classes"
+        ],
+        "value": [],
+        "standing": {
+          "status": "proposed",
+          "resolution": "unresolved",
+          "basis": [
+            "prototype:other-source-content-and-comparability-not-encoded"
+          ]
+        },
+        "code": "proposed_refused",
+        "basis": [
+          "prototype:direct-structured-age-only-no-complete-eligibility-encoding"
+        ]
+      },
+      {
+        "trial": "NCT01774721",
+        "stratum": "explicit-two-record-structured-age-comparison-not-full-clinical-comparability",
+        "feature": [
+          "coverage"
+        ],
+        "value": {},
+        "standing": {
+          "status": "proposed",
+          "resolution": "unresolved",
+          "basis": [
+            "prototype:other-source-content-and-comparability-not-encoded"
+          ]
+        },
+        "code": "proposed_refused",
+        "basis": [
+          "prototype:direct-structured-age-only-no-complete-eligibility-encoding"
+        ]
+      },
+      {
+        "trial": "NCT01774721",
+        "stratum": "explicit-two-record-structured-age-comparison-not-full-clinical-comparability",
+        "feature": [
+          "eligibility_content"
+        ],
+        "value": "present",
+        "standing": {
+          "status": "proposed",
+          "resolution": "unresolved",
+          "basis": [
+            "prototype:other-source-content-and-comparability-not-encoded"
+          ]
+        },
+        "code": "proposed_refused",
+        "basis": [
+          "prototype:direct-structured-age-only-no-complete-eligibility-encoding"
+        ]
+      },
+      {
+        "trial": "NCT01774721",
+        "stratum": "explicit-two-record-structured-age-comparison-not-full-clinical-comparability",
+        "feature": [
+          "setting_domain"
+        ],
+        "value": [],
+        "standing": {
+          "status": "proposed",
+          "resolution": "unresolved",
+          "basis": [
+            "prototype:other-source-content-and-comparability-not-encoded"
+          ]
+        },
+        "code": "proposed_refused",
+        "basis": [
+          "prototype:direct-structured-age-only-no-complete-eligibility-encoding"
+        ]
+      },
+      {
+        "trial": "NCT01774721",
+        "stratum": "explicit-two-record-structured-age-comparison-not-full-clinical-comparability",
+        "feature": [
+          "typed"
+        ],
+        "value": true,
+        "standing": {
+          "status": "proposed",
+          "resolution": "unresolved",
+          "basis": [
+            "prototype:other-source-content-and-comparability-not-encoded"
+          ]
+        },
+        "code": "proposed_refused",
+        "basis": [
+          "prototype:direct-structured-age-only-no-complete-eligibility-encoding"
+        ]
+      }
+    ],
+    "frequency": [
+      {
+        "stratum": "explicit-two-record-structured-age-comparison-not-full-clinical-comparability",
+        "element": "inclusion:minimum_age=18_Years",
+        "stating": 2,
+        "absence_established": 0,
+        "unresolved_empty": 0,
+        "unresolved_untyped": 0,
+        "unresolved_abbreviated": 0,
+        "unresolved_unspecified": 0,
+        "unresolved": 0,
+        "trials": 2,
+        "statement_rate": 1.0,
+        "lower": 1.0,
+        "upper": 1.0,
+        "surprisal_bits": -0.0,
+        "sponsors": 2,
+        "tier": "met",
+        "estimand": "statement rate and full-criteria interval",
+        "pending_stating": 0,
+        "pending_statement_lower": 1.0,
+        "pending_statement_upper": 1.0,
+        "unresolved_pending": 0
+      }
+    ],
+    "associations": [],
+    "association_abstentions": [
+      {
+        "stratum": "explicit-two-record-structured-age-comparison-not-full-clinical-comparability",
+        "code": "pending_support",
+        "trials": [
+          "NCT00322452",
+          "NCT01774721"
+        ],
+        "features": [
+          {
+            "trial": "NCT00322452",
+            "stratum": "explicit-two-record-structured-age-comparison-not-full-clinical-comparability",
+            "feature": [
+              "classes"
+            ],
+            "value": [],
+            "standing": {
+              "status": "proposed",
+              "resolution": "unresolved",
+              "basis": [
+                "prototype:other-source-content-and-comparability-not-encoded"
+              ]
+            },
+            "code": "proposed_refused",
+            "basis": [
+              "prototype:direct-structured-age-only-no-complete-eligibility-encoding"
+            ]
+          },
+          {
+            "trial": "NCT00322452",
+            "stratum": "explicit-two-record-structured-age-comparison-not-full-clinical-comparability",
+            "feature": [
+              "coverage"
+            ],
+            "value": {},
+            "standing": {
+              "status": "proposed",
+              "resolution": "unresolved",
+              "basis": [
+                "prototype:other-source-content-and-comparability-not-encoded"
+              ]
+            },
+            "code": "proposed_refused",
+            "basis": [
+              "prototype:direct-structured-age-only-no-complete-eligibility-encoding"
+            ]
+          },
+          {
+            "trial": "NCT00322452",
+            "stratum": "explicit-two-record-structured-age-comparison-not-full-clinical-comparability",
+            "feature": [
+              "eligibility_content"
+            ],
+            "value": "present",
+            "standing": {
+              "status": "proposed",
+              "resolution": "unresolved",
+              "basis": [
+                "prototype:other-source-content-and-comparability-not-encoded"
+              ]
+            },
+            "code": "proposed_refused",
+            "basis": [
+              "prototype:direct-structured-age-only-no-complete-eligibility-encoding"
+            ]
+          },
+          {
+            "trial": "NCT00322452",
+            "stratum": "explicit-two-record-structured-age-comparison-not-full-clinical-comparability",
+            "feature": [
+              "typed"
+            ],
+            "value": true,
+            "standing": {
+              "status": "proposed",
+              "resolution": "unresolved",
+              "basis": [
+                "prototype:other-source-content-and-comparability-not-encoded"
+              ]
+            },
+            "code": "proposed_refused",
+            "basis": [
+              "prototype:direct-structured-age-only-no-complete-eligibility-encoding"
+            ]
+          },
+          {
+            "trial": "NCT00322452",
+            "stratum": "explicit-two-record-structured-age-comparison-not-full-clinical-comparability",
+            "feature": [
+              "class_unresolved"
+            ],
+            "value": true,
+            "classes": [],
+            "standing": {
+              "status": "proposed",
+              "resolution": "unresolved",
+              "basis": [
+                "prototype:other-source-content-and-comparability-not-encoded"
+              ]
+            },
+            "code": "class_membership_unresolved",
+            "basis": [
+              "prototype:direct-structured-age-only-no-complete-eligibility-encoding"
+            ]
+          },
+          {
+            "trial": "NCT01774721",
+            "stratum": "explicit-two-record-structured-age-comparison-not-full-clinical-comparability",
+            "feature": [
+              "classes"
+            ],
+            "value": [],
+            "standing": {
+              "status": "proposed",
+              "resolution": "unresolved",
+              "basis": [
+                "prototype:other-source-content-and-comparability-not-encoded"
+              ]
+            },
+            "code": "proposed_refused",
+            "basis": [
+              "prototype:direct-structured-age-only-no-complete-eligibility-encoding"
+            ]
+          },
+          {
+            "trial": "NCT01774721",
+            "stratum": "explicit-two-record-structured-age-comparison-not-full-clinical-comparability",
+            "feature": [
+              "coverage"
+            ],
+            "value": {},
+            "standing": {
+              "status": "proposed",
+              "resolution": "unresolved",
+              "basis": [
+                "prototype:other-source-content-and-comparability-not-encoded"
+              ]
+            },
+            "code": "proposed_refused",
+            "basis": [
+              "prototype:direct-structured-age-only-no-complete-eligibility-encoding"
+            ]
+          },
+          {
+            "trial": "NCT01774721",
+            "stratum": "explicit-two-record-structured-age-comparison-not-full-clinical-comparability",
+            "feature": [
+              "eligibility_content"
+            ],
+            "value": "present",
+            "standing": {
+              "status": "proposed",
+              "resolution": "unresolved",
+              "basis": [
+                "prototype:other-source-content-and-comparability-not-encoded"
+              ]
+            },
+            "code": "proposed_refused",
+            "basis": [
+              "prototype:direct-structured-age-only-no-complete-eligibility-encoding"
+            ]
+          },
+          {
+            "trial": "NCT01774721",
+            "stratum": "explicit-two-record-structured-age-comparison-not-full-clinical-comparability",
+            "feature": [
+              "typed"
+            ],
+            "value": true,
+            "standing": {
+              "status": "proposed",
+              "resolution": "unresolved",
+              "basis": [
+                "prototype:other-source-content-and-comparability-not-encoded"
+              ]
+            },
+            "code": "proposed_refused",
+            "basis": [
+              "prototype:direct-structured-age-only-no-complete-eligibility-encoding"
+            ]
+          },
+          {
+            "trial": "NCT01774721",
+            "stratum": "explicit-two-record-structured-age-comparison-not-full-clinical-comparability",
+            "feature": [
+              "class_unresolved"
+            ],
+            "value": true,
+            "classes": [],
+            "standing": {
+              "status": "proposed",
+              "resolution": "unresolved",
+              "basis": [
+                "prototype:other-source-content-and-comparability-not-encoded"
+              ]
+            },
+            "code": "class_membership_unresolved",
+            "basis": [
+              "prototype:direct-structured-age-only-no-complete-eligibility-encoding"
+            ]
+          }
+        ]
+      }
+    ],
+    "near_misses": [],
+    "near_miss_abstentions": [],
+    "occupancy": [],
+    "expectations": [],
+    "limits": "Known/resolved support admits factual corpus inputs; other readings remain pending. Standing is declared, not independently certified. Statement rates and proposed associations are not clinical importance, causation, or permission to reuse protocol language."
+  },
+  "problems": [],
+  "metadata": {
+    "version": 1,
+    "kind": "reasoning",
+    "findings": [
+      {
+        "path": "/result/frequency/0",
+        "kind": "corpus_statistic",
+        "logical_result": "computed",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled"
+      },
+      {
+        "path": "/result/frequency/0/tier",
+        "kind": "corpus_eligibility_interval",
+        "logical_result": "met",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled"
+      },
+      {
+        "path": "/result/association_abstentions/0",
+        "kind": "admission",
+        "logical_result": "unresolved",
+        "standing": null,
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "pending_support",
+            "kind": "premise"
+          }
+        ],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/pending/0",
+        "kind": "admission",
+        "logical_result": "unresolved",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "proposed_refused",
+            "kind": "premise"
+          }
+        ],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/pending/1",
+        "kind": "admission",
+        "logical_result": "unresolved",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "proposed_refused",
+            "kind": "premise"
+          }
+        ],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/pending/2",
+        "kind": "admission",
+        "logical_result": "unresolved",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "proposed_refused",
+            "kind": "premise"
+          }
+        ],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/pending/3",
+        "kind": "admission",
+        "logical_result": "unresolved",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "proposed_refused",
+            "kind": "premise"
+          }
+        ],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/pending/4",
+        "kind": "admission",
+        "logical_result": "unresolved",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "proposed_refused",
+            "kind": "premise"
+          }
+        ],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/pending/5",
+        "kind": "admission",
+        "logical_result": "unresolved",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "proposed_refused",
+            "kind": "premise"
+          }
+        ],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/pending/6",
+        "kind": "admission",
+        "logical_result": "unresolved",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "proposed_refused",
+            "kind": "premise"
+          }
+        ],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/pending/7",
+        "kind": "admission",
+        "logical_result": "unresolved",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "proposed_refused",
+            "kind": "premise"
+          }
+        ],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/pending/8",
+        "kind": "admission",
+        "logical_result": "unresolved",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "proposed_refused",
+            "kind": "premise"
+          }
+        ],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/pending/9",
+        "kind": "admission",
+        "logical_result": "unresolved",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "proposed_refused",
+            "kind": "premise"
+          }
+        ],
+        "disposition": "open"
+      }
+    ]
+  }
+}

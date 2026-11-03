@@ -1,0 +1,5691 @@
+{
+  "operation": "source_assertions",
+  "anchors": [
+    {
+      "id": "PS2-count",
+      "address": "/resultsSection/baselineCharacteristicsModule/measures/5/classes/2/categories/0/measurements/2/value",
+      "digest": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+      "expected": "126"
+    },
+    {
+      "id": "never-count",
+      "address": "/resultsSection/baselineCharacteristicsModule/measures/4/classes/0/categories/0/measurements/2/value",
+      "digest": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+      "expected": "1140"
+    },
+    {
+      "id": "total-count",
+      "address": "/resultsSection/baselineCharacteristicsModule/denoms/0/counts/2/value",
+      "digest": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+      "expected": "1217"
+    },
+    {
+      "id": "PS-table",
+      "address": "/resultsSection/baselineCharacteristicsModule/measures/5",
+      "digest": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+      "expected": {
+        "title": "WHO performance status",
+        "paramType": "NUMBER",
+        "unitOfMeasure": "Participants",
+        "classes": [
+          {
+            "title": "0 (normal activity)",
+            "categories": [
+              {
+                "measurements": [
+                  {
+                    "groupId": "BG000",
+                    "value": "157"
+                  },
+                  {
+                    "groupId": "BG001",
+                    "value": "161"
+                  },
+                  {
+                    "groupId": "BG002",
+                    "value": "318"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "title": "1 (restricted activity)",
+            "categories": [
+              {
+                "measurements": [
+                  {
+                    "groupId": "BG000",
+                    "value": "391"
+                  },
+                  {
+                    "groupId": "BG001",
+                    "value": "382"
+                  },
+                  {
+                    "groupId": "BG002",
+                    "value": "773"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "title": "2 (in bed =< 50% of the time)",
+            "categories": [
+              {
+                "measurements": [
+                  {
+                    "groupId": "BG000",
+                    "value": "61"
+                  },
+                  {
+                    "groupId": "BG001",
+                    "value": "65"
+                  },
+                  {
+                    "groupId": "BG002",
+                    "value": "126"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "smoking-table",
+      "address": "/resultsSection/baselineCharacteristicsModule/measures/4",
+      "digest": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+      "expected": {
+        "title": "Smoking history",
+        "paramType": "NUMBER",
+        "unitOfMeasure": "Participants",
+        "classes": [
+          {
+            "title": "Never Smoker",
+            "categories": [
+              {
+                "measurements": [
+                  {
+                    "groupId": "BG000",
+                    "value": "571"
+                  },
+                  {
+                    "groupId": "BG001",
+                    "value": "569"
+                  },
+                  {
+                    "groupId": "BG002",
+                    "value": "1140"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Light ex-smoker",
+            "categories": [
+              {
+                "measurements": [
+                  {
+                    "groupId": "BG000",
+                    "value": "37"
+                  },
+                  {
+                    "groupId": "BG001",
+                    "value": "38"
+                  },
+                  {
+                    "groupId": "BG002",
+                    "value": "75"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Ex-smoker (non-light)",
+            "categories": [
+              {
+                "measurements": [
+                  {
+                    "groupId": "BG000",
+                    "value": "1"
+                  },
+                  {
+                    "groupId": "BG001",
+                    "value": "1"
+                  },
+                  {
+                    "groupId": "BG002",
+                    "value": "2"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "denominator-table",
+      "address": "/resultsSection/baselineCharacteristicsModule/denoms/0",
+      "digest": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+      "expected": {
+        "units": "Participants",
+        "counts": [
+          {
+            "groupId": "BG000",
+            "value": "609"
+          },
+          {
+            "groupId": "BG001",
+            "value": "608"
+          },
+          {
+            "groupId": "BG002",
+            "value": "1217"
+          }
+        ]
+      }
+    }
+  ],
+  "bindings": [
+    {
+      "id": "same-baseline-universe",
+      "kind": "population",
+      "relation": "same_universe",
+      "subjects": [
+        "WHO_PS2",
+        "never_smoker"
+      ],
+      "scope": {
+        "study": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+        "population": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0:baseline:BG002",
+        "arm": "baseline-module:BG002-total",
+        "time": "baseline-assessment-not-eligibility-time",
+        "version": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0"
+      },
+      "sources": [
+        {
+          "ref": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+          "version": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+          "address": "/resultsSection/baselineCharacteristicsModule",
+          "digest": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0"
+        }
+      ],
+      "status": "proposed",
+      "resolution": "resolved",
+      "basis": [
+        "assistant:assume-these-are-exact-participant-counts-in-the-same-BG002-baseline-universe",
+        "assistant:baseline-population-description-is-not-stated",
+        "assistant:no-eligibility-time-alignment-is-asserted"
+      ],
+      "anchors": [
+        "PS2-count",
+        "never-count",
+        "total-count",
+        "PS-table",
+        "smoking-table",
+        "denominator-table"
+      ]
+    }
+  ],
+  "interpretations": [
+    {
+      "id": "aligned-baseline-counts",
+      "label": "If WHO PS 2 and never-smoking counts describe one exact BG002 baseline population",
+      "origin": "assistant",
+      "basis": [
+        "assistant:exploration-reading-not-confirmed-by-a-clinical-user"
+      ],
+      "assumptions": [],
+      "signals": [
+        {
+          "id": "PS2-and-never-smoking",
+          "kind": "overlap",
+          "data": {
+            "universe": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0:baseline:BG002",
+            "alignment": "confirmed",
+            "total": {
+              "$source": "total-count",
+              "as": "integer"
+            },
+            "marginals": [
+              {
+                "ref": "WHO_PS2",
+                "universe": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0:baseline:BG002",
+                "lower": {
+                  "$source": "PS2-count",
+                  "as": "integer"
+                },
+                "upper": {
+                  "$source": "PS2-count",
+                  "as": "integer"
+                }
+              },
+              {
+                "ref": "never_smoker",
+                "universe": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0:baseline:BG002",
+                "lower": {
+                  "$source": "never-count",
+                  "as": "integer"
+                },
+                "upper": {
+                  "$source": "never-count",
+                  "as": "integer"
+                }
+              }
+            ]
+          },
+          "support": [
+            {
+              "id": "counts-plus-common-universe-reading",
+              "status": "proposed",
+              "resolution": "resolved",
+              "basis": [
+                "assistant:exact-values-do-not-establish-their-joint-population-or-clinical-meaning"
+              ]
+            }
+          ]
+        }
+      ],
+      "signal_claims": [],
+      "binding_uses": [
+        {
+          "binding": "same-baseline-universe",
+          "signal": "PS2-and-never-smoking",
+          "scope": {
+            "study": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+            "population": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0:baseline:BG002",
+            "arm": "baseline-module:BG002-total",
+            "time": "baseline-assessment-not-eligibility-time",
+            "version": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0"
+          }
+        }
+      ],
+      "anchors": [
+        "PS2-count",
+        "never-count",
+        "total-count",
+        "PS-table",
+        "smoking-table",
+        "denominator-table"
+      ]
+    }
+  ],
+  "study": {
+    "protocolSection": {
+      "identificationModule": {
+        "nctId": "NCT00322452",
+        "orgStudyIdInfo": {
+          "id": "D791AC00007"
+        },
+        "secondaryIdInfos": [
+          {
+            "id": "Iressa Pan Asian Study (IPASS)"
+          }
+        ],
+        "organization": {
+          "fullName": "AstraZeneca",
+          "class": "INDUSTRY"
+        },
+        "briefTitle": "First Line IRESSA™ Versus Carboplatin/Paclitaxel in Asia",
+        "officialTitle": "Open Label, Randomised, Parallel Group, Multicentre, Ph III Study To Assess Efficacy, Safety & Tolerability Of Gefitinib (IRESSA™) Versus Carboplatin/Paclitaxel DC As 1st-Line Treatment In Selected Patients With Stage IIIB / IV NSCLC In Asia",
+        "acronym": "IPASS"
+      },
+      "statusModule": {
+        "statusVerifiedDate": "2013-10",
+        "overallStatus": "COMPLETED",
+        "expandedAccessInfo": {
+          "hasExpandedAccess": false
+        },
+        "startDateStruct": {
+          "date": "2006-03"
+        },
+        "primaryCompletionDateStruct": {
+          "date": "2008-04",
+          "type": "ACTUAL"
+        },
+        "completionDateStruct": {
+          "date": "2010-06",
+          "type": "ACTUAL"
+        },
+        "studyFirstSubmitDate": "2006-05-05",
+        "studyFirstSubmitQcDate": "2006-05-05",
+        "studyFirstPostDateStruct": {
+          "date": "2006-05-08",
+          "type": "ESTIMATED"
+        },
+        "resultsFirstSubmitDate": "2009-04-29",
+        "resultsFirstSubmitQcDate": "2010-04-21",
+        "resultsFirstPostDateStruct": {
+          "date": "2010-05-17",
+          "type": "ESTIMATED"
+        },
+        "lastUpdateSubmitDate": "2013-10-14",
+        "lastUpdatePostDateStruct": {
+          "date": "2013-11-07",
+          "type": "ESTIMATED"
+        }
+      },
+      "sponsorCollaboratorsModule": {
+        "responsibleParty": {
+          "type": "SPONSOR"
+        },
+        "leadSponsor": {
+          "name": "AstraZeneca",
+          "class": "INDUSTRY"
+        }
+      },
+      "descriptionModule": {
+        "briefSummary": "The purpose of this study is to compare gefitinib with carboplatin / paclitaxel doublet chemotherapy given as first line treatment in terms of progression free survival in selected NSCLC patients with the objective of demonstrating non-inferiority."
+      },
+      "conditionsModule": {
+        "conditions": [
+          "Non-Small Cell Lung Cancer"
+        ],
+        "keywords": [
+          "NSCLC",
+          "Gefitinib"
+        ]
+      },
+      "designModule": {
+        "studyType": "INTERVENTIONAL",
+        "phases": [
+          "PHASE3"
+        ],
+        "designInfo": {
+          "allocation": "RANDOMIZED",
+          "interventionModel": "PARALLEL",
+          "primaryPurpose": "TREATMENT",
+          "maskingInfo": {
+            "masking": "NONE"
+          }
+        },
+        "enrollmentInfo": {
+          "count": 1329,
+          "type": "ACTUAL"
+        }
+      },
+      "armsInterventionsModule": {
+        "armGroups": [
+          {
+            "label": "1",
+            "type": "EXPERIMENTAL",
+            "description": "gefitinib",
+            "interventionNames": [
+              "Drug: Gefitinib"
+            ]
+          },
+          {
+            "label": "2",
+            "type": "ACTIVE_COMPARATOR",
+            "description": "Carboplatin/Paclitaxel",
+            "interventionNames": [
+              "Drug: Carboplatin",
+              "Drug: Paclitaxel"
+            ]
+          }
+        ],
+        "interventions": [
+          {
+            "type": "DRUG",
+            "name": "Gefitinib",
+            "description": "oral tablet",
+            "armGroupLabels": [
+              "1"
+            ],
+            "otherNames": [
+              "Iressa",
+              "ZD1839"
+            ]
+          },
+          {
+            "type": "DRUG",
+            "name": "Carboplatin",
+            "description": "IV",
+            "armGroupLabels": [
+              "2"
+            ]
+          },
+          {
+            "type": "DRUG",
+            "name": "Paclitaxel",
+            "description": "IV",
+            "armGroupLabels": [
+              "2"
+            ]
+          }
+        ]
+      },
+      "outcomesModule": {
+        "primaryOutcomes": [
+          {
+            "measure": "Median Progression Free Survival (PFS) in Months",
+            "description": "PFS was defined as the interval from the date of randomization to the date of objective disease progression (as per RECIST) or the date of death (from any cause) in the absence of objective disease progression. The median PFS in months is presented here.",
+            "timeFrame": "Tumour assessments as per RECIST were performed at baseline and then every 42 days ± 7 days from randomization until data cut off (14th April 2008)."
+          }
+        ],
+        "secondaryOutcomes": [
+          {
+            "measure": "Median Overall Survival (OS) in Months at OS Data Cut Off (14th June 2010)",
+            "description": "Overall Survival was assessed via calculation of the time to death due to any cause. If a participant was known to have died, the time to death was defined as the time from the date of randomization to the date of death. Otherwise, a participant was censored at the last date they were known to be alive. Median Overall Survival in months is presented here.",
+            "timeFrame": "Following the PFS DCO on 14th April 2008 information on survival status was collected every 8 weeks."
+          },
+          {
+            "measure": "Objective Tumour Response Rate According to RECIST",
+            "description": "Number of participants with an objective response. An objective response (OR) was defined as a patient having a best overall response of either complete response (CR) or partial response (PR) according to RECIST, confirmed at least 28 days following the date of the initial response.",
+            "timeFrame": "Tumour assessments as per RECIST were performed at baseline and then every 42 days ± 7 days from randomization until data cut off (14th April 2008)."
+          },
+          {
+            "measure": "Common Toxicity Criteria (CTC) Grade 3, 4, or 5 Neutropenia",
+            "description": "Number of patients with a neutropenia event, identified from the lab data as a worsening in absolute neutrophil count from baseline to a CTC grade 3 or above which Based on the evaluable-for-safety population, which included all patients who received at least 1 dose of study medication (gefitinib, or carboplatin or paclitaxel).",
+            "timeFrame": "Includes events that occurred whilst a patient was receiving first-line randomized treatment: defined as date of first dose to date of last dose +1 day for gefitinib, and date of first infusion to date of last infusion + 21 days for carboplatin/paclitaxel"
+          },
+          {
+            "measure": "Common Toxicity Criteria (CTC) Grade 3, 4, or 5 Thrombocytopenia",
+            "description": "Number of patients with a thromboctyopenia event, identified from the lab data as a worsening in platelet count from baseline to a CTC grade 3 or above. Based on the evaluable-for-safety population, which included all patients who received at least 1 dose of study medication (gefitinib, or carboplatin or paclitaxel).",
+            "timeFrame": "Includes events that occurred whilst a patient was receiving first-line randomized treatment: defined as date of first dose to date of last dose +1 day for gefitinib, and date of first infusion to date of last infusion + 21 days for carboplatin/paclitaxel"
+          },
+          {
+            "measure": "Common Toxicity Criteria (CTC) Grade 3, 4, or 5 Leukopenia",
+            "description": "Number of patients with a leukopenia event, identified from the lab data as a worsening in white blood cell count from baseline to a CTC grade 3 or above. Based on the evaluable for-safety-population, which included all patients who received at least 1 dose of study medication (gefitinib, or carboplatin or paclitaxel).",
+            "timeFrame": "Includes events that occurred whilst a patient was receiving first-line randomized treatment: defined as date of first dose to date of last dose +1 day for gefitinib, and date of first infusion to date of last infusion + 21 days for carboplatin/paclitaxel"
+          },
+          {
+            "measure": "Common Toxicity Criteria (CTC) Grade 3, 4, or 5 Anaemia",
+            "description": "Number of patients with an anaemia event, identified from the lab data as a worsening in haemoglobin from baseline to a CTC grade 3 or above. Based on the evaluable-for-safety population, which included all patients who received at least 1 dose of study medication (gefitinib, or carboplatin or paclitaxel).",
+            "timeFrame": "Includes events that occurred whilst a patient was receiving first-line randomized treatment: defined as date of first dose to date of last dose +1 day for gefitinib, and date of first infusion to date of last infusion + 21 days for carboplatin/paclitaxel"
+          },
+          {
+            "measure": "Neurotoxicity",
+            "description": "Number of patients with a neurotoxicity event. Based on the evaluable-for-safety population, which included all patients who received at least 1 dose of study medication (gefitinib, or carboplatin or paclitaxel)",
+            "timeFrame": "Includes events that occurred whilst a patient was receiving first-line randomized treatment: defined as date of first dose to date of last dose +1 day for gefitinib, and date of first infusion to date of last infusion + 21 days for carboplatin/paclitaxel"
+          },
+          {
+            "measure": "Rashes/Acnes",
+            "description": "Number of patients with a rashes/acnes event. Based on the evaluable-for-safety population, which included all patients who received at least 1 dose of study medication (gefitinib, or carboplatin or paclitaxel)",
+            "timeFrame": "Includes events that occurred whilst a patient was receiving first-line randomized treatment: defined as date of first dose to date of last dose +1 day for gefitinib, and date of first infusion to date of last infusion + 21 days for carboplatin/paclitaxel"
+          },
+          {
+            "measure": "Diarrhoea",
+            "description": "Number of patients with a diarrhoea event. Based on the evaluable-for-safety population, which included all patients who received at least 1 dose of study medication (gefitinib, or carboplatin or paclitaxel)",
+            "timeFrame": "Includes events that occurred whilst a patient was receiving first-line randomized treatment: defined as date of first dose to date of last dose +1 day for gefitinib, and date of first infusion to date of last infusion + 21 days for carboplatin/paclitaxel"
+          },
+          {
+            "measure": "Nausea",
+            "description": "Number of patients with a nausea event. Based on the evaluable for-safety-population, which included all patients who received at least 1 dose of study medication (gefitinib, or carboplatin or paclitaxel)",
+            "timeFrame": "Includes events that occurred whilst a patient was receiving first-line randomized treatment: defined as date of first dose to date of last dose +1 day for gefitinib, and date of first infusion to date of last infusion + 21 days for carboplatin/paclitaxel"
+          },
+          {
+            "measure": "Vomiting",
+            "description": "Number of patients with a vomiting event. Based on the evaluable-for-safety population, which included all patients who received at least 1 dose of study medication (gefitinib, or carboplatin or paclitaxel)",
+            "timeFrame": "Includes events that occurred whilst a patient was receiving first-line randomized treatment: defined as date of first dose to date of last dose +1 day for gefitinib, and date of first infusion to date of last infusion + 21 days for carboplatin/paclitaxel"
+          },
+          {
+            "measure": "Common Toxicity Criteria (CTC) Grade 3, 4, or 5 Liver Transaminases",
+            "description": "Number of patients with an elevated liver transaminase event, identified from the lab data as a worsening in ALT or AST from baseline to a CTC grade 3 or above. Based on the evaluable-for-safety population, which included all patients who received at least 1 dose of study medication (gefitinib, or carboplatin or paclitaxel).",
+            "timeFrame": "Includes events that occurred whilst a patient was receiving first-line randomized treatment: defined as date of first dose to date of last dose +1 day for gefitinib, and date of first infusion to date of last infusion + 21 days for carboplatin/paclitaxel"
+          },
+          {
+            "measure": "Quality of Life (QoL) as Measured by the Total Score of the Functional Assessment of Cancer Therapy - Lung Cancer (FACT-L) Questionnaire",
+            "description": "Number of patients improving: a patient was described as improved if they had 2 visits (at least 21 days apart) where there was an increase in FACT-L score (from baseline) of 6 or more, and there were no intervening visits showing a decrease from baseline of 6 or more. Includes all patients with QoL data at baseline \\& at least 1 post-baseline visit",
+            "timeFrame": "FACT-L data were collected at baseline, week 1, every 3 weeks (from baseline) until day 127, then every 42 days until the patient was confirmed as having objectively progressed (via RECIST), and at treatment discontinuation."
+          },
+          {
+            "measure": "Quality of Life (QoL) as Measured by the Trial Outcome Index (TOI) of the Functional Assessment of Cancer Therapy - Lung Cancer (FACT-L) Questionnaire",
+            "description": "Number of patients improving: a patient was described as improved if they had 2 visits (at least 21 days apart) where there was an increase in TOI score (from baseline) of 6 or more, and there were no intervening visits showing a decrease from baseline of 6 or more. Includes all patients with QoL data at baseline \\& at least 1 post-baseline visit",
+            "timeFrame": "FACT-L data were collected at baseline, week 1, every 3 weeks (from baseline) until day 127, then every 42 days until the patient was confirmed as having objectively progressed (via RECIST), and at treatment discontinuation."
+          },
+          {
+            "measure": "Symptom Improvement as Measured by the Lung Cancer Subscale (LCS) of the FACT-L Questionnaire",
+            "description": "Number of patients improving: a patient was described as improved if they had 2 visits (at least 21 days apart) where there was an increase in LCS score (from baseline) of 2 or more, and there were no intervening visits showing a decrease from baseline of 2 or more. Includes all patients with QoL data at baseline \\& at least 1 post-baseline visit",
+            "timeFrame": "FACT-L data were collected at baseline, week 1, every 3 weeks (from baseline) until day 127, then every 42 days until the patient was confirmed as having objectively progressed (via RECIST), and at treatment discontinuation."
+          }
+        ]
+      },
+      "eligibilityModule": {
+        "eligibilityCriteria": "Inclusion Criteria:\n\n* Locally advanced Stage IIIB not amenable to local therapy or Stage IV (metastatic) NSCLC with adenocarcinoma histology.\n* Never smokers or light ex-smokers.(ceased smoking at least 15 years before Day 1 of study treatment and 10 pack-years or fewer)\n\nExclusion Criteria:\n\n* Had prior chemotherapy, biological (including targeted therapies such as EGFR and vascular epidermal growth factor (VEGF) inhibitors) or immunological therapy.\n* Pre-existing idiopathic pulmonary fibrosis evidence by CT scan at baseline.",
+        "healthyVolunteers": false,
+        "sex": "ALL",
+        "minimumAge": "18 Years",
+        "stdAges": [
+          "ADULT",
+          "OLDER_ADULT"
+        ]
+      },
+      "contactsLocationsModule": {
+        "overallOfficials": [
+          {
+            "name": "Alison Armour, MD",
+            "affiliation": "AstraZeneca",
+            "role": "STUDY_DIRECTOR"
+          }
+        ],
+        "locations": [
+          {
+            "facility": "Research Site",
+            "city": "Fuzhou",
+            "state": "Fujian",
+            "country": "China",
+            "geoPoint": {
+              "lat": 26.06139,
+              "lon": 119.30611
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Guangzhou",
+            "state": "Guangdong",
+            "country": "China",
+            "geoPoint": {
+              "lat": 23.11667,
+              "lon": 113.25
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Wuhan",
+            "state": "Hubei",
+            "country": "China",
+            "geoPoint": {
+              "lat": 30.58333,
+              "lon": 114.26667
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Nanjing",
+            "state": "Jiangsu",
+            "country": "China",
+            "geoPoint": {
+              "lat": 32.06167,
+              "lon": 118.77778
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Dalian",
+            "state": "Liaoning",
+            "country": "China",
+            "geoPoint": {
+              "lat": 38.91222,
+              "lon": 121.60222
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Chongqing",
+            "state": "Sichuan",
+            "country": "China"
+          },
+          {
+            "facility": "Research Site",
+            "city": "Beijing",
+            "country": "China",
+            "geoPoint": {
+              "lat": 39.9075,
+              "lon": 116.39723
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Chengdu",
+            "country": "China",
+            "geoPoint": {
+              "lat": 30.66667,
+              "lon": 104.06667
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Hangzhou",
+            "country": "China",
+            "geoPoint": {
+              "lat": 30.29365,
+              "lon": 120.16142
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Shanghai",
+            "country": "China",
+            "geoPoint": {
+              "lat": 31.22222,
+              "lon": 121.45806
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Hong Kong",
+            "country": "Hong Kong",
+            "geoPoint": {
+              "lat": 22.27832,
+              "lon": 114.17469
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Semarang",
+            "state": "Central Java",
+            "country": "Indonesia",
+            "geoPoint": {
+              "lat": -6.99306,
+              "lon": 110.42083
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Malang",
+            "state": "East Java",
+            "country": "Indonesia",
+            "geoPoint": {
+              "lat": -7.9797,
+              "lon": 112.6304
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Jakarta",
+            "country": "Indonesia",
+            "geoPoint": {
+              "lat": -6.21462,
+              "lon": 106.84513
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Solo",
+            "country": "Indonesia",
+            "geoPoint": {
+              "lat": -4.22861,
+              "lon": 120.22472
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Surabaya",
+            "country": "Indonesia",
+            "geoPoint": {
+              "lat": -7.24917,
+              "lon": 112.75083
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Yogyakarta",
+            "country": "Indonesia",
+            "geoPoint": {
+              "lat": -7.80139,
+              "lon": 110.36472
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Nagoya",
+            "state": "Aichi-ken",
+            "country": "Japan",
+            "geoPoint": {
+              "lat": 35.18147,
+              "lon": 136.90641
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Okazaki",
+            "state": "Aichi-ken",
+            "country": "Japan",
+            "geoPoint": {
+              "lat": 34.95,
+              "lon": 137.16667
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Kashiwa",
+            "state": "Chiba",
+            "country": "Japan",
+            "geoPoint": {
+              "lat": 35.86224,
+              "lon": 139.97732
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Matsuyama",
+            "state": "Ehime",
+            "country": "Japan",
+            "geoPoint": {
+              "lat": 33.83916,
+              "lon": 132.76574
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Fukuoka",
+            "state": "Fukuoka",
+            "country": "Japan",
+            "geoPoint": {
+              "lat": 33.6,
+              "lon": 130.41667
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Sapporo",
+            "state": "Hokkaido",
+            "country": "Japan",
+            "geoPoint": {
+              "lat": 43.06667,
+              "lon": 141.35
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Akashi",
+            "state": "Hyōgo",
+            "country": "Japan",
+            "geoPoint": {
+              "lat": 34.65524,
+              "lon": 135.00687
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Kobe",
+            "state": "Hyōgo",
+            "country": "Japan",
+            "geoPoint": {
+              "lat": 34.6913,
+              "lon": 135.183
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Kanazawa",
+            "state": "Ishikawa-ken",
+            "country": "Japan",
+            "geoPoint": {
+              "lat": 36.6,
+              "lon": 136.61667
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Yokohama",
+            "state": "Kanagawa",
+            "country": "Japan",
+            "geoPoint": {
+              "lat": 35.43333,
+              "lon": 139.65
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Kumamoto",
+            "state": "Kumamoto",
+            "country": "Japan",
+            "geoPoint": {
+              "lat": 32.80589,
+              "lon": 130.69181
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Ōmura",
+            "state": "Nagasaki",
+            "country": "Japan",
+            "geoPoint": {
+              "lat": 32.92139,
+              "lon": 129.95389
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Okayama",
+            "state": "Okayama-ken",
+            "country": "Japan",
+            "geoPoint": {
+              "lat": 34.65,
+              "lon": 133.93333
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Izumisano",
+            "state": "Osaka",
+            "country": "Japan",
+            "geoPoint": {
+              "lat": 34.41667,
+              "lon": 135.31667
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Osaka",
+            "state": "Osaka",
+            "country": "Japan",
+            "geoPoint": {
+              "lat": 34.69379,
+              "lon": 135.50107
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Sakai",
+            "state": "Osaka",
+            "country": "Japan",
+            "geoPoint": {
+              "lat": 34.58216,
+              "lon": 135.46653
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Sayama",
+            "state": "Osaka",
+            "country": "Japan",
+            "geoPoint": {
+              "lat": 34.51685,
+              "lon": 135.56298
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Sunto-gun",
+            "state": "Shizuoka",
+            "country": "Japan"
+          },
+          {
+            "facility": "Research Site",
+            "city": "Bunkyo-ku",
+            "state": "Tokyo",
+            "country": "Japan"
+          },
+          {
+            "facility": "Research Site",
+            "city": "Koto-ku",
+            "state": "Tokyo",
+            "country": "Japan"
+          },
+          {
+            "facility": "Research Site",
+            "city": "Shinjuku",
+            "state": "Tokyo",
+            "country": "Japan",
+            "geoPoint": {
+              "lat": 35.69115,
+              "lon": 139.70854
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Ube",
+            "state": "Yamaguchi",
+            "country": "Japan",
+            "geoPoint": {
+              "lat": 33.94306,
+              "lon": 131.25111
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Kota Kinabalu",
+            "state": "Sabah",
+            "country": "Malaysia",
+            "geoPoint": {
+              "lat": 5.9749,
+              "lon": 116.0724
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "George Town",
+            "country": "Malaysia",
+            "geoPoint": {
+              "lat": 5.41123,
+              "lon": 100.33543
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Kampung Baharu Nilai",
+            "country": "Malaysia",
+            "geoPoint": {
+              "lat": 2.8033,
+              "lon": 101.7972
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Kuala Lumpur",
+            "country": "Malaysia",
+            "geoPoint": {
+              "lat": 3.1412,
+              "lon": 101.68653
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Petaling Jaya",
+            "country": "Malaysia",
+            "geoPoint": {
+              "lat": 3.10726,
+              "lon": 101.60671
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Cebu City",
+            "country": "Philippines",
+            "geoPoint": {
+              "lat": 10.31672,
+              "lon": 123.89071
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Manila",
+            "country": "Philippines",
+            "geoPoint": {
+              "lat": 14.6042,
+              "lon": 120.9822
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Quezon City",
+            "country": "Philippines",
+            "geoPoint": {
+              "lat": 14.6488,
+              "lon": 121.0509
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Singapore",
+            "country": "Singapore",
+            "geoPoint": {
+              "lat": 1.28967,
+              "lon": 103.85007
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Changhua",
+            "country": "Taiwan",
+            "geoPoint": {
+              "lat": 24.0692,
+              "lon": 120.5512
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Kaohsiung City",
+            "country": "Taiwan",
+            "geoPoint": {
+              "lat": 22.61626,
+              "lon": 120.31333
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Taipei",
+            "country": "Taiwan",
+            "geoPoint": {
+              "lat": 25.05306,
+              "lon": 121.52639
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Taoyuan",
+            "country": "Taiwan",
+            "geoPoint": {
+              "lat": 23.60361,
+              "lon": 120.59056
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Bangkok",
+            "country": "Thailand",
+            "geoPoint": {
+              "lat": 13.75398,
+              "lon": 100.50144
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Chiang Mai",
+            "country": "Thailand",
+            "geoPoint": {
+              "lat": 18.79038,
+              "lon": 98.98468
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Khon Kaen",
+            "country": "Thailand",
+            "geoPoint": {
+              "lat": 16.44671,
+              "lon": 102.833
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Songkhla",
+            "country": "Thailand",
+            "geoPoint": {
+              "lat": 7.19882,
+              "lon": 100.5951
+            }
+          }
+        ]
+      },
+      "referencesModule": {
+        "references": [
+          {
+            "pmid": "31920008",
+            "type": "DERIVED",
+            "citation": "Nagase M, Aksenov S, Yan H, Dunyak J, Al-Huniti N. Modeling Tumor Growth and Treatment Resistance Dynamics Characterizes Different Response to Gefitinib or Chemotherapy in Non-Small Cell Lung Cancer. CPT Pharmacometrics Syst Pharmacol. 2020 Mar;9(3):143-152. doi: 10.1002/psp4.12490. Epub 2020 Feb 7."
+          },
+          {
+            "pmid": "28212993",
+            "type": "DERIVED",
+            "citation": "Wu YL, Saijo N, Thongprasert S, Yang JC, Han B, Margono B, Chewaskulyong B, Sunpaweravong P, Ohe Y, Ichinose Y, Yang JJ, Mok TS, Young H, Haddad V, Rukazenkov Y, Fukuoka M. Efficacy according to blind independent central review: Post-hoc analyses from the phase III, randomized, multicenter, IPASS study of first-line gefitinib versus carboplatin/paclitaxel in Asian patients with EGFR mutation-positive advanced NSCLC. Lung Cancer. 2017 Feb;104:119-125. doi: 10.1016/j.lungcan.2016.11.022. Epub 2016 Nov 30."
+          },
+          {
+            "pmid": "24361280",
+            "type": "DERIVED",
+            "citation": "Yang JC, Wu YL, Chan V, Kurnianda J, Nakagawa K, Saijo N, Fukuoka M, McWalter G, McCormack R, Mok TS. Epidermal growth factor receptor mutation analysis in previously unanalyzed histology samples and cytology samples from the phase III Iressa Pan-ASia Study (IPASS). Lung Cancer. 2014 Feb;83(2):174-81. doi: 10.1016/j.lungcan.2013.11.021. Epub 2013 Dec 1."
+          },
+          {
+            "pmid": "23540718",
+            "type": "DERIVED",
+            "citation": "Wu YL, Fukuoka M, Mok TS, Saijo N, Thongprasert S, Yang JC, Chu DT, Yang JJ, Rukazenkov Y. Tumor response and health-related quality of life in clinically selected patients from Asia with advanced non-small-cell lung cancer treated with first-line gefitinib: post hoc analyses from the IPASS study. Lung Cancer. 2013 Aug;81(2):280-7. doi: 10.1016/j.lungcan.2013.03.004. Epub 2013 Mar 26."
+          },
+          {
+            "pmid": "22897752",
+            "type": "DERIVED",
+            "citation": "Wu YL, Chu DT, Han B, Liu X, Zhang L, Zhou C, Liao M, Mok T, Jiang H, Duffield E, Fukuoka M. Phase III, randomized, open-label, first-line study in Asia of gefitinib versus carboplatin/paclitaxel in clinically selected patients with advanced non-small-cell lung cancer: evaluation of patients recruited from mainland China. Asia Pac J Clin Oncol. 2012 Sep;8(3):232-43. doi: 10.1111/j.1743-7563.2012.01518.x. Epub 2012 Apr 23."
+          },
+          {
+            "pmid": "19692680",
+            "type": "DERIVED",
+            "citation": "Mok TS, Wu YL, Thongprasert S, Yang CH, Chu DT, Saijo N, Sunpaweravong P, Han B, Margono B, Ichinose Y, Nishiwaki Y, Ohe Y, Yang JJ, Chewaskulyong B, Jiang H, Duffield EL, Watkins CL, Armour AA, Fukuoka M. Gefitinib or carboplatin-paclitaxel in pulmonary adenocarcinoma. N Engl J Med. 2009 Sep 3;361(10):947-57. doi: 10.1056/NEJMoa0810699. Epub 2009 Aug 19."
+          }
+        ]
+      }
+    },
+    "resultsSection": {
+      "participantFlowModule": {
+        "preAssignmentDetails": "112 patients (out of 1329) failed screening and were not randomized, the majority of patients who failed screening did not comply with inclusion / exclusion criteria. Other reasons were: patient withdrew informed consent; patient lost to follow up. One patient was not randomized for 'other' (non-specified) reason.",
+        "recruitmentDetails": "Males or females that had never smoked or were light ex-smokers, who had Stage IIIB or Stage IV adenocarcinoma of the lung and had not received any previous chemotherapy excluding non-platinum based adjuvant chemotherapy were randomised between 30 March 2006 and 9 October 2007. The study was carried out in Asian countries (including Japan \\& China).",
+        "groups": [
+          {
+            "id": "FG000",
+            "title": "Gefitinib",
+            "description": "Gefitinib 250mg daily"
+          },
+          {
+            "id": "FG001",
+            "title": "Carboplatin/Paclitaxel",
+            "description": "Carboplatin AUC 5.0 or 6.0 and Paclitaxel 200 mg/m\\^2 doublet chemotherapy every 3 weeks"
+          }
+        ],
+        "periods": [
+          {
+            "title": "Overall Study",
+            "milestones": [
+              {
+                "type": "STARTED",
+                "achievements": [
+                  {
+                    "groupId": "FG000",
+                    "comment": "Number of patients randomized",
+                    "numSubjects": "609"
+                  },
+                  {
+                    "groupId": "FG001",
+                    "comment": "Number of patients randomized",
+                    "numSubjects": "608"
+                  }
+                ]
+              },
+              {
+                "type": "COMPLETED",
+                "achievements": [
+                  {
+                    "groupId": "FG000",
+                    "comment": "Patients still in study at PFS Data Cut Off (14 April 2008), 97 remained at OS DCO (14 June 2010)",
+                    "numSubjects": "362"
+                  },
+                  {
+                    "groupId": "FG001",
+                    "comment": "Patients still in study at PFS Data Cut Off (14 April 2008), 84 remained at OS DCO (14 June 2010)",
+                    "numSubjects": "332"
+                  }
+                ]
+              },
+              {
+                "type": "NOT COMPLETED",
+                "achievements": [
+                  {
+                    "groupId": "FG000",
+                    "numSubjects": "247"
+                  },
+                  {
+                    "groupId": "FG001",
+                    "numSubjects": "276"
+                  }
+                ]
+              }
+            ],
+            "dropWithdraws": [
+              {
+                "type": "Eligibility criteria not fulfilled",
+                "reasons": [
+                  {
+                    "groupId": "FG000",
+                    "numSubjects": "0"
+                  },
+                  {
+                    "groupId": "FG001",
+                    "numSubjects": "1"
+                  }
+                ]
+              },
+              {
+                "type": "Lost to Follow-up",
+                "reasons": [
+                  {
+                    "groupId": "FG000",
+                    "numSubjects": "5"
+                  },
+                  {
+                    "groupId": "FG001",
+                    "numSubjects": "2"
+                  }
+                ]
+              },
+              {
+                "type": "Withdrawal by Subject",
+                "reasons": [
+                  {
+                    "groupId": "FG000",
+                    "numSubjects": "19"
+                  },
+                  {
+                    "groupId": "FG001",
+                    "numSubjects": "46"
+                  }
+                ]
+              },
+              {
+                "type": "Death",
+                "reasons": [
+                  {
+                    "groupId": "FG000",
+                    "numSubjects": "223"
+                  },
+                  {
+                    "groupId": "FG001",
+                    "numSubjects": "227"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "baselineCharacteristicsModule": {
+        "groups": [
+          {
+            "id": "BG000",
+            "title": "Gefitinib",
+            "description": "Gefitinib 250mg daily"
+          },
+          {
+            "id": "BG001",
+            "title": "Carboplatin/Paclitaxel",
+            "description": "Carboplatin AUC 5.0 or 6.0 and Paclitaxel 200 mg/m\\^2 doublet chemotherapy every 3 weeks"
+          },
+          {
+            "id": "BG002",
+            "title": "Total",
+            "description": "Total of all reporting groups"
+          }
+        ],
+        "denoms": [
+          {
+            "units": "Participants",
+            "counts": [
+              {
+                "groupId": "BG000",
+                "value": "609"
+              },
+              {
+                "groupId": "BG001",
+                "value": "608"
+              },
+              {
+                "groupId": "BG002",
+                "value": "1217"
+              }
+            ]
+          }
+        ],
+        "measures": [
+          {
+            "title": "Age Continuous",
+            "paramType": "MEDIAN",
+            "dispersionType": "FULL_RANGE",
+            "unitOfMeasure": "Years",
+            "classes": [
+              {
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "BG000",
+                        "value": "57",
+                        "lowerLimit": "24",
+                        "upperLimit": "84"
+                      },
+                      {
+                        "groupId": "BG001",
+                        "value": "57",
+                        "lowerLimit": "25",
+                        "upperLimit": "84"
+                      },
+                      {
+                        "groupId": "BG002",
+                        "value": "57",
+                        "lowerLimit": "24",
+                        "upperLimit": "84"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Sex: Female, Male",
+            "paramType": "COUNT_OF_PARTICIPANTS",
+            "unitOfMeasure": "Participants",
+            "classes": [
+              {
+                "categories": [
+                  {
+                    "title": "Female",
+                    "measurements": [
+                      {
+                        "groupId": "BG000",
+                        "value": "484"
+                      },
+                      {
+                        "groupId": "BG001",
+                        "value": "481"
+                      },
+                      {
+                        "groupId": "BG002",
+                        "value": "965"
+                      }
+                    ]
+                  },
+                  {
+                    "title": "Male",
+                    "measurements": [
+                      {
+                        "groupId": "BG000",
+                        "value": "125"
+                      },
+                      {
+                        "groupId": "BG001",
+                        "value": "127"
+                      },
+                      {
+                        "groupId": "BG002",
+                        "value": "252"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Race/Ethnicity, Customized",
+            "paramType": "NUMBER",
+            "unitOfMeasure": "Participants",
+            "classes": [
+              {
+                "title": "Caucasian",
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "BG000",
+                        "value": "3"
+                      },
+                      {
+                        "groupId": "BG001",
+                        "value": "1"
+                      },
+                      {
+                        "groupId": "BG002",
+                        "value": "4"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "Oriental",
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "BG000",
+                        "value": "603"
+                      },
+                      {
+                        "groupId": "BG001",
+                        "value": "606"
+                      },
+                      {
+                        "groupId": "BG002",
+                        "value": "1209"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "Other",
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "BG000",
+                        "value": "3"
+                      },
+                      {
+                        "groupId": "BG001",
+                        "value": "1"
+                      },
+                      {
+                        "groupId": "BG002",
+                        "value": "4"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Race/Ethnicity, Customized",
+            "paramType": "NUMBER",
+            "unitOfMeasure": "Participants",
+            "classes": [
+              {
+                "title": "Asian (other than Chinese or Japanese)",
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "BG000",
+                        "value": "179"
+                      },
+                      {
+                        "groupId": "BG001",
+                        "value": "184"
+                      },
+                      {
+                        "groupId": "BG002",
+                        "value": "363"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "Chinese",
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "BG000",
+                        "value": "314"
+                      },
+                      {
+                        "groupId": "BG001",
+                        "value": "304"
+                      },
+                      {
+                        "groupId": "BG002",
+                        "value": "618"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "Japanese",
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "BG000",
+                        "value": "114"
+                      },
+                      {
+                        "groupId": "BG001",
+                        "value": "119"
+                      },
+                      {
+                        "groupId": "BG002",
+                        "value": "233"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "Other",
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "BG000",
+                        "value": "2"
+                      },
+                      {
+                        "groupId": "BG001",
+                        "value": "1"
+                      },
+                      {
+                        "groupId": "BG002",
+                        "value": "3"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Smoking history",
+            "paramType": "NUMBER",
+            "unitOfMeasure": "Participants",
+            "classes": [
+              {
+                "title": "Never Smoker",
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "BG000",
+                        "value": "571"
+                      },
+                      {
+                        "groupId": "BG001",
+                        "value": "569"
+                      },
+                      {
+                        "groupId": "BG002",
+                        "value": "1140"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "Light ex-smoker",
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "BG000",
+                        "value": "37"
+                      },
+                      {
+                        "groupId": "BG001",
+                        "value": "38"
+                      },
+                      {
+                        "groupId": "BG002",
+                        "value": "75"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "Ex-smoker (non-light)",
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "BG000",
+                        "value": "1"
+                      },
+                      {
+                        "groupId": "BG001",
+                        "value": "1"
+                      },
+                      {
+                        "groupId": "BG002",
+                        "value": "2"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "title": "WHO performance status",
+            "paramType": "NUMBER",
+            "unitOfMeasure": "Participants",
+            "classes": [
+              {
+                "title": "0 (normal activity)",
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "BG000",
+                        "value": "157"
+                      },
+                      {
+                        "groupId": "BG001",
+                        "value": "161"
+                      },
+                      {
+                        "groupId": "BG002",
+                        "value": "318"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "1 (restricted activity)",
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "BG000",
+                        "value": "391"
+                      },
+                      {
+                        "groupId": "BG001",
+                        "value": "382"
+                      },
+                      {
+                        "groupId": "BG002",
+                        "value": "773"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "2 (in bed =< 50% of the time)",
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "BG000",
+                        "value": "61"
+                      },
+                      {
+                        "groupId": "BG001",
+                        "value": "65"
+                      },
+                      {
+                        "groupId": "BG002",
+                        "value": "126"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "outcomeMeasuresModule": {
+        "outcomeMeasures": [
+          {
+            "type": "PRIMARY",
+            "title": "Median Progression Free Survival (PFS) in Months",
+            "description": "PFS was defined as the interval from the date of randomization to the date of objective disease progression (as per RECIST) or the date of death (from any cause) in the absence of objective disease progression. The median PFS in months is presented here.",
+            "populationDescription": "Analysis was carried out on Intention-to-treat (ITT) population.",
+            "reportingStatus": "POSTED",
+            "paramType": "MEDIAN",
+            "dispersionType": "95% Confidence Interval",
+            "unitOfMeasure": "Months",
+            "timeFrame": "Tumour assessments as per RECIST were performed at baseline and then every 42 days ± 7 days from randomization until data cut off (14th April 2008).",
+            "groups": [
+              {
+                "id": "OG000",
+                "title": "Gefitinib",
+                "description": "Gefitinib 250mg daily"
+              },
+              {
+                "id": "OG001",
+                "title": "Carboplatin/Paclitaxel",
+                "description": "Carboplatin AUC 5.0 or 6.0 and Paclitaxel 200 mg/m\\^2 doublet chemotherapy every 3 weeks"
+              }
+            ],
+            "denoms": [
+              {
+                "units": "Participants",
+                "counts": [
+                  {
+                    "groupId": "OG000",
+                    "value": "609"
+                  },
+                  {
+                    "groupId": "OG001",
+                    "value": "608"
+                  }
+                ]
+              }
+            ],
+            "classes": [
+              {
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "5.7",
+                        "lowerLimit": "5.4",
+                        "upperLimit": "6.8"
+                      },
+                      {
+                        "groupId": "OG001",
+                        "value": "5.8",
+                        "lowerLimit": "5.6",
+                        "upperLimit": "6.4"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "SECONDARY",
+            "title": "Median Overall Survival (OS) in Months at OS Data Cut Off (14th June 2010)",
+            "description": "Overall Survival was assessed via calculation of the time to death due to any cause. If a participant was known to have died, the time to death was defined as the time from the date of randomization to the date of death. Otherwise, a participant was censored at the last date they were known to be alive. Median Overall Survival in months is presented here.",
+            "populationDescription": "Analysis was carried out on Intention-to-treat (ITT) population.",
+            "reportingStatus": "POSTED",
+            "paramType": "MEDIAN",
+            "dispersionType": "95% Confidence Interval",
+            "unitOfMeasure": "Months",
+            "timeFrame": "Following the PFS DCO on 14th April 2008 information on survival status was collected every 8 weeks.",
+            "groups": [
+              {
+                "id": "OG000",
+                "title": "Gefitinib",
+                "description": "Gefitinib 250mg daily"
+              },
+              {
+                "id": "OG001",
+                "title": "Carboplatin/Paclitaxel",
+                "description": "Carboplatin AUC 5.0 or 6.0 and Paclitaxel 200 mg/m\\^2 doublet chemotherapy every 3 weeks"
+              }
+            ],
+            "denoms": [
+              {
+                "units": "Participants",
+                "counts": [
+                  {
+                    "groupId": "OG000",
+                    "value": "609"
+                  },
+                  {
+                    "groupId": "OG001",
+                    "value": "608"
+                  }
+                ]
+              }
+            ],
+            "classes": [
+              {
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "18.8",
+                        "lowerLimit": "17.3",
+                        "upperLimit": "20.4"
+                      },
+                      {
+                        "groupId": "OG001",
+                        "value": "17.4",
+                        "lowerLimit": "16.2",
+                        "upperLimit": "18.7"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "SECONDARY",
+            "title": "Objective Tumour Response Rate According to RECIST",
+            "description": "Number of participants with an objective response. An objective response (OR) was defined as a patient having a best overall response of either complete response (CR) or partial response (PR) according to RECIST, confirmed at least 28 days following the date of the initial response.",
+            "populationDescription": "Analysis was carried out on Intention-to-treat (ITT) population.",
+            "reportingStatus": "POSTED",
+            "paramType": "NUMBER",
+            "unitOfMeasure": "Participants",
+            "timeFrame": "Tumour assessments as per RECIST were performed at baseline and then every 42 days ± 7 days from randomization until data cut off (14th April 2008).",
+            "groups": [
+              {
+                "id": "OG000",
+                "title": "Gefitinib",
+                "description": "Gefitinib 250mg daily"
+              },
+              {
+                "id": "OG001",
+                "title": "Carboplatin/Paclitaxel",
+                "description": "Carboplatin AUC 5.0 or 6.0 and Paclitaxel 200 mg/m\\^2 doublet chemotherapy every 3 weeks"
+              }
+            ],
+            "denoms": [
+              {
+                "units": "Participants",
+                "counts": [
+                  {
+                    "groupId": "OG000",
+                    "value": "609"
+                  },
+                  {
+                    "groupId": "OG001",
+                    "value": "608"
+                  }
+                ]
+              }
+            ],
+            "classes": [
+              {
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "262"
+                      },
+                      {
+                        "groupId": "OG001",
+                        "value": "196"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "SECONDARY",
+            "title": "Common Toxicity Criteria (CTC) Grade 3, 4, or 5 Neutropenia",
+            "description": "Number of patients with a neutropenia event, identified from the lab data as a worsening in absolute neutrophil count from baseline to a CTC grade 3 or above which Based on the evaluable-for-safety population, which included all patients who received at least 1 dose of study medication (gefitinib, or carboplatin or paclitaxel).",
+            "populationDescription": "Analysis was carried out on the Evaluable-for-safety (EFS) population. The EFS population is a subset of the ITT population which includes all patients who received at least 1 dose of study medication (gefitinib, or carboplatin or paclitaxel).",
+            "reportingStatus": "POSTED",
+            "paramType": "NUMBER",
+            "unitOfMeasure": "Participants",
+            "timeFrame": "Includes events that occurred whilst a patient was receiving first-line randomized treatment: defined as date of first dose to date of last dose +1 day for gefitinib, and date of first infusion to date of last infusion + 21 days for carboplatin/paclitaxel",
+            "groups": [
+              {
+                "id": "OG000",
+                "title": "Gefitinib",
+                "description": "Gefitinib 250mg daily"
+              },
+              {
+                "id": "OG001",
+                "title": "Carboplatin/Paclitaxel",
+                "description": "Carboplatin AUC 5.0 or 6.0 and Paclitaxel 200 mg/m\\^2 doublet chemotherapy every 3 weeks"
+              }
+            ],
+            "denoms": [
+              {
+                "units": "Participants",
+                "counts": [
+                  {
+                    "groupId": "OG000",
+                    "value": "607"
+                  },
+                  {
+                    "groupId": "OG001",
+                    "value": "589"
+                  }
+                ]
+              }
+            ],
+            "classes": [
+              {
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "4"
+                      },
+                      {
+                        "groupId": "OG001",
+                        "value": "385"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "SECONDARY",
+            "title": "Common Toxicity Criteria (CTC) Grade 3, 4, or 5 Thrombocytopenia",
+            "description": "Number of patients with a thromboctyopenia event, identified from the lab data as a worsening in platelet count from baseline to a CTC grade 3 or above. Based on the evaluable-for-safety population, which included all patients who received at least 1 dose of study medication (gefitinib, or carboplatin or paclitaxel).",
+            "populationDescription": "Analysis was carried out on the Evaluable-for-safety (EFS) population. The EFS population is a subset of the ITT population which includes all patients who received at least 1 dose of study medication (gefitinib, or carboplatin or paclitaxel).",
+            "reportingStatus": "POSTED",
+            "paramType": "NUMBER",
+            "unitOfMeasure": "Participants",
+            "timeFrame": "Includes events that occurred whilst a patient was receiving first-line randomized treatment: defined as date of first dose to date of last dose +1 day for gefitinib, and date of first infusion to date of last infusion + 21 days for carboplatin/paclitaxel",
+            "groups": [
+              {
+                "id": "OG000",
+                "title": "Gefitinib",
+                "description": "Gefitinib 250mg daily"
+              },
+              {
+                "id": "OG001",
+                "title": "Carboplatin/Paclitaxel",
+                "description": "Carboplatin AUC 5.0 or 6.0 and Paclitaxel 200 mg/m\\^2 doublet chemotherapy every 3 weeks"
+              }
+            ],
+            "denoms": [
+              {
+                "units": "Participants",
+                "counts": [
+                  {
+                    "groupId": "OG000",
+                    "value": "607"
+                  },
+                  {
+                    "groupId": "OG001",
+                    "value": "589"
+                  }
+                ]
+              }
+            ],
+            "classes": [
+              {
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "5"
+                      },
+                      {
+                        "groupId": "OG001",
+                        "value": "29"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "SECONDARY",
+            "title": "Common Toxicity Criteria (CTC) Grade 3, 4, or 5 Leukopenia",
+            "description": "Number of patients with a leukopenia event, identified from the lab data as a worsening in white blood cell count from baseline to a CTC grade 3 or above. Based on the evaluable for-safety-population, which included all patients who received at least 1 dose of study medication (gefitinib, or carboplatin or paclitaxel).",
+            "populationDescription": "Analysis was carried out on the Evaluable-for-safety (EFS) population. The EFS population is a subset of the ITT population which includes all patients who received at least 1 dose of study medication (gefitinib, or carboplatin or paclitaxel).",
+            "reportingStatus": "POSTED",
+            "paramType": "NUMBER",
+            "unitOfMeasure": "Participants",
+            "timeFrame": "Includes events that occurred whilst a patient was receiving first-line randomized treatment: defined as date of first dose to date of last dose +1 day for gefitinib, and date of first infusion to date of last infusion + 21 days for carboplatin/paclitaxel",
+            "groups": [
+              {
+                "id": "OG000",
+                "title": "Gefitinib",
+                "description": "Gefitinib 250mg daily"
+              },
+              {
+                "id": "OG001",
+                "title": "Carboplatin/Paclitaxel",
+                "description": "Carboplatin AUC 5.0 or 6.0 and Paclitaxel 200 mg/m\\^2 doublet chemotherapy every 3 weeks"
+              }
+            ],
+            "denoms": [
+              {
+                "units": "Participants",
+                "counts": [
+                  {
+                    "groupId": "OG000",
+                    "value": "607"
+                  },
+                  {
+                    "groupId": "OG001",
+                    "value": "589"
+                  }
+                ]
+              }
+            ],
+            "classes": [
+              {
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "1"
+                      },
+                      {
+                        "groupId": "OG001",
+                        "value": "202"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "SECONDARY",
+            "title": "Common Toxicity Criteria (CTC) Grade 3, 4, or 5 Anaemia",
+            "description": "Number of patients with an anaemia event, identified from the lab data as a worsening in haemoglobin from baseline to a CTC grade 3 or above. Based on the evaluable-for-safety population, which included all patients who received at least 1 dose of study medication (gefitinib, or carboplatin or paclitaxel).",
+            "populationDescription": "Analysis was carried out on the Evaluable-for-safety (EFS) population. The EFS population is a subset of the ITT population which includes all patients who received at least 1 dose of study medication (gefitinib, or carboplatin or paclitaxel).",
+            "reportingStatus": "POSTED",
+            "paramType": "NUMBER",
+            "unitOfMeasure": "Participants",
+            "timeFrame": "Includes events that occurred whilst a patient was receiving first-line randomized treatment: defined as date of first dose to date of last dose +1 day for gefitinib, and date of first infusion to date of last infusion + 21 days for carboplatin/paclitaxel",
+            "groups": [
+              {
+                "id": "OG000",
+                "title": "Gefitinib",
+                "description": "Gefitinib 250mg daily"
+              },
+              {
+                "id": "OG001",
+                "title": "Carboplatin/Paclitaxel",
+                "description": "Carboplatin AUC 5.0 or 6.0 and Paclitaxel 200 mg/m\\^2 doublet chemotherapy every 3 weeks"
+              }
+            ],
+            "denoms": [
+              {
+                "units": "Participants",
+                "counts": [
+                  {
+                    "groupId": "OG000",
+                    "value": "607"
+                  },
+                  {
+                    "groupId": "OG001",
+                    "value": "589"
+                  }
+                ]
+              }
+            ],
+            "classes": [
+              {
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "11"
+                      },
+                      {
+                        "groupId": "OG001",
+                        "value": "56"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "SECONDARY",
+            "title": "Neurotoxicity",
+            "description": "Number of patients with a neurotoxicity event. Based on the evaluable-for-safety population, which included all patients who received at least 1 dose of study medication (gefitinib, or carboplatin or paclitaxel)",
+            "populationDescription": "Analysis was carried out on the Evaluable-for-safety (EFS) population. The EFS population is a subset of the ITT population which includes all patients who received at least 1 dose of study medication (gefitinib, or carboplatin or paclitaxel).",
+            "reportingStatus": "POSTED",
+            "paramType": "NUMBER",
+            "unitOfMeasure": "Participants",
+            "timeFrame": "Includes events that occurred whilst a patient was receiving first-line randomized treatment: defined as date of first dose to date of last dose +1 day for gefitinib, and date of first infusion to date of last infusion + 21 days for carboplatin/paclitaxel",
+            "groups": [
+              {
+                "id": "OG000",
+                "title": "Gefitinib",
+                "description": "Gefitinib 250mg daily"
+              },
+              {
+                "id": "OG001",
+                "title": "Carboplatin/Paclitaxel",
+                "description": "Carboplatin AUC 5.0 or 6.0 and Paclitaxel 200 mg/m\\^2 doublet chemotherapy every 3 weeks"
+              }
+            ],
+            "denoms": [
+              {
+                "units": "Participants",
+                "counts": [
+                  {
+                    "groupId": "OG000",
+                    "value": "607"
+                  },
+                  {
+                    "groupId": "OG001",
+                    "value": "589"
+                  }
+                ]
+              }
+            ],
+            "classes": [
+              {
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "30"
+                      },
+                      {
+                        "groupId": "OG001",
+                        "value": "411"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "SECONDARY",
+            "title": "Rashes/Acnes",
+            "description": "Number of patients with a rashes/acnes event. Based on the evaluable-for-safety population, which included all patients who received at least 1 dose of study medication (gefitinib, or carboplatin or paclitaxel)",
+            "populationDescription": "Analysis was carried out on the Evaluable-for-safety (EFS) population. The EFS population is a subset of the ITT population which includes all patients who received at least 1 dose of study medication (gefitinib, or carboplatin or paclitaxel).",
+            "reportingStatus": "POSTED",
+            "paramType": "NUMBER",
+            "unitOfMeasure": "Participants",
+            "timeFrame": "Includes events that occurred whilst a patient was receiving first-line randomized treatment: defined as date of first dose to date of last dose +1 day for gefitinib, and date of first infusion to date of last infusion + 21 days for carboplatin/paclitaxel",
+            "groups": [
+              {
+                "id": "OG000",
+                "title": "Gefitinib",
+                "description": "Gefitinib 250mg daily"
+              },
+              {
+                "id": "OG001",
+                "title": "Carboplatin/Paclitaxel",
+                "description": "Carboplatin AUC 5.0 or 6.0 and Paclitaxel 200 mg/m\\^2 doublet chemotherapy every 3 weeks"
+              }
+            ],
+            "denoms": [
+              {
+                "units": "Participants",
+                "counts": [
+                  {
+                    "groupId": "OG000",
+                    "value": "607"
+                  },
+                  {
+                    "groupId": "OG001",
+                    "value": "589"
+                  }
+                ]
+              }
+            ],
+            "classes": [
+              {
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "398"
+                      },
+                      {
+                        "groupId": "OG001",
+                        "value": "132"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "SECONDARY",
+            "title": "Diarrhoea",
+            "description": "Number of patients with a diarrhoea event. Based on the evaluable-for-safety population, which included all patients who received at least 1 dose of study medication (gefitinib, or carboplatin or paclitaxel)",
+            "populationDescription": "Analysis was carried out on the Evaluable-for-safety (EFS) population. The EFS population is a subset of the ITT population which includes all patients who received at least 1 dose of study medication (gefitinib, or carboplatin or paclitaxel).",
+            "reportingStatus": "POSTED",
+            "paramType": "NUMBER",
+            "unitOfMeasure": "Participants",
+            "timeFrame": "Includes events that occurred whilst a patient was receiving first-line randomized treatment: defined as date of first dose to date of last dose +1 day for gefitinib, and date of first infusion to date of last infusion + 21 days for carboplatin/paclitaxel",
+            "groups": [
+              {
+                "id": "OG000",
+                "title": "Gefitinib",
+                "description": "Gefitinib 250mg daily"
+              },
+              {
+                "id": "OG001",
+                "title": "Carboplatin/Paclitaxel",
+                "description": "Carboplatin AUC 5.0 or 6.0 and Paclitaxel 200 mg/m\\^2 doublet chemotherapy every 3 weeks"
+              }
+            ],
+            "denoms": [
+              {
+                "units": "Participants",
+                "counts": [
+                  {
+                    "groupId": "OG000",
+                    "value": "607"
+                  },
+                  {
+                    "groupId": "OG001",
+                    "value": "589"
+                  }
+                ]
+              }
+            ],
+            "classes": [
+              {
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "274"
+                      },
+                      {
+                        "groupId": "OG001",
+                        "value": "128"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "SECONDARY",
+            "title": "Nausea",
+            "description": "Number of patients with a nausea event. Based on the evaluable for-safety-population, which included all patients who received at least 1 dose of study medication (gefitinib, or carboplatin or paclitaxel)",
+            "populationDescription": "Analysis was carried out on the Evaluable-for-safety (EFS) population. The EFS population is a subset of the ITT population which includes all patients who received at least 1 dose of study medication (gefitinib, or carboplatin or paclitaxel).",
+            "reportingStatus": "POSTED",
+            "paramType": "NUMBER",
+            "unitOfMeasure": "Participants",
+            "timeFrame": "Includes events that occurred whilst a patient was receiving first-line randomized treatment: defined as date of first dose to date of last dose +1 day for gefitinib, and date of first infusion to date of last infusion + 21 days for carboplatin/paclitaxel",
+            "groups": [
+              {
+                "id": "OG000",
+                "title": "Gefitinib",
+                "description": "Gefitinib 250mg daily"
+              },
+              {
+                "id": "OG001",
+                "title": "Carboplatin/Paclitaxel",
+                "description": "Carboplatin AUC 5.0 or 6.0 and Paclitaxel 200 mg/m\\^2 doublet chemotherapy every 3 weeks"
+              }
+            ],
+            "denoms": [
+              {
+                "units": "Participants",
+                "counts": [
+                  {
+                    "groupId": "OG000",
+                    "value": "607"
+                  },
+                  {
+                    "groupId": "OG001",
+                    "value": "589"
+                  }
+                ]
+              }
+            ],
+            "classes": [
+              {
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "74"
+                      },
+                      {
+                        "groupId": "OG001",
+                        "value": "260"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "SECONDARY",
+            "title": "Vomiting",
+            "description": "Number of patients with a vomiting event. Based on the evaluable-for-safety population, which included all patients who received at least 1 dose of study medication (gefitinib, or carboplatin or paclitaxel)",
+            "populationDescription": "Analysis was carried out on the Evaluable-for-safety (EFS) population. The EFS population is a subset of the ITT population which includes all patients who received at least 1 dose of study medication (gefitinib, or carboplatin or paclitaxel).",
+            "reportingStatus": "POSTED",
+            "paramType": "NUMBER",
+            "unitOfMeasure": "Participants",
+            "timeFrame": "Includes events that occurred whilst a patient was receiving first-line randomized treatment: defined as date of first dose to date of last dose +1 day for gefitinib, and date of first infusion to date of last infusion + 21 days for carboplatin/paclitaxel",
+            "groups": [
+              {
+                "id": "OG000",
+                "title": "Gefitinib",
+                "description": "Gefitinib 250mg daily"
+              },
+              {
+                "id": "OG001",
+                "title": "Carboplatin/Paclitaxel",
+                "description": "Carboplatin AUC 5.0 or 6.0 and Paclitaxel 200 mg/m\\^2 doublet chemotherapy every 3 weeks"
+              }
+            ],
+            "denoms": [
+              {
+                "units": "Participants",
+                "counts": [
+                  {
+                    "groupId": "OG000",
+                    "value": "607"
+                  },
+                  {
+                    "groupId": "OG001",
+                    "value": "589"
+                  }
+                ]
+              }
+            ],
+            "classes": [
+              {
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "59"
+                      },
+                      {
+                        "groupId": "OG001",
+                        "value": "193"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "SECONDARY",
+            "title": "Common Toxicity Criteria (CTC) Grade 3, 4, or 5 Liver Transaminases",
+            "description": "Number of patients with an elevated liver transaminase event, identified from the lab data as a worsening in ALT or AST from baseline to a CTC grade 3 or above. Based on the evaluable-for-safety population, which included all patients who received at least 1 dose of study medication (gefitinib, or carboplatin or paclitaxel).",
+            "populationDescription": "Analysis was carried out on the Evaluable-for-safety (EFS) population. The EFS population is a subset of the ITT population which includes all patients who received at least 1 dose of study medication (gefitinib, or carboplatin or paclitaxel).",
+            "reportingStatus": "POSTED",
+            "paramType": "NUMBER",
+            "unitOfMeasure": "Participants",
+            "timeFrame": "Includes events that occurred whilst a patient was receiving first-line randomized treatment: defined as date of first dose to date of last dose +1 day for gefitinib, and date of first infusion to date of last infusion + 21 days for carboplatin/paclitaxel",
+            "groups": [
+              {
+                "id": "OG000",
+                "title": "Gefitinib",
+                "description": "Gefitinib 250mg daily"
+              },
+              {
+                "id": "OG001",
+                "title": "Carboplatin/Paclitaxel",
+                "description": "Carboplatin AUC 5.0 or 6.0 and Paclitaxel 200 mg/m\\^2 doublet chemotherapy every 3 weeks"
+              }
+            ],
+            "denoms": [
+              {
+                "units": "Participants",
+                "counts": [
+                  {
+                    "groupId": "OG000",
+                    "value": "607"
+                  },
+                  {
+                    "groupId": "OG001",
+                    "value": "589"
+                  }
+                ]
+              }
+            ],
+            "classes": [
+              {
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "57"
+                      },
+                      {
+                        "groupId": "OG001",
+                        "value": "6"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "SECONDARY",
+            "title": "Quality of Life (QoL) as Measured by the Total Score of the Functional Assessment of Cancer Therapy - Lung Cancer (FACT-L) Questionnaire",
+            "description": "Number of patients improving: a patient was described as improved if they had 2 visits (at least 21 days apart) where there was an increase in FACT-L score (from baseline) of 6 or more, and there were no intervening visits showing a decrease from baseline of 6 or more. Includes all patients with QoL data at baseline \\& at least 1 post-baseline visit",
+            "populationDescription": "Analysis was carried out on the Evaluable-for-QoL (EFQ) population. The EFQ population is a subset of the ITT population containing patients with an evaluable baseline QoL assessment and at least 1 evaluable post-baseline QoL assessment.",
+            "reportingStatus": "POSTED",
+            "paramType": "NUMBER",
+            "unitOfMeasure": "Participants",
+            "timeFrame": "FACT-L data were collected at baseline, week 1, every 3 weeks (from baseline) until day 127, then every 42 days until the patient was confirmed as having objectively progressed (via RECIST), and at treatment discontinuation.",
+            "groups": [
+              {
+                "id": "OG000",
+                "title": "Gefitinib",
+                "description": "Gefitinib 250mg daily"
+              },
+              {
+                "id": "OG001",
+                "title": "Carboplatin/Paclitaxel",
+                "description": "Carboplatin AUC 5.0 or 6.0 and Paclitaxel 200 mg/m\\^2 doublet chemotherapy every 3 weeks"
+              }
+            ],
+            "denoms": [
+              {
+                "units": "Participants",
+                "counts": [
+                  {
+                    "groupId": "OG000",
+                    "value": "590"
+                  },
+                  {
+                    "groupId": "OG001",
+                    "value": "561"
+                  }
+                ]
+              }
+            ],
+            "classes": [
+              {
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "283"
+                      },
+                      {
+                        "groupId": "OG001",
+                        "value": "229"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "SECONDARY",
+            "title": "Quality of Life (QoL) as Measured by the Trial Outcome Index (TOI) of the Functional Assessment of Cancer Therapy - Lung Cancer (FACT-L) Questionnaire",
+            "description": "Number of patients improving: a patient was described as improved if they had 2 visits (at least 21 days apart) where there was an increase in TOI score (from baseline) of 6 or more, and there were no intervening visits showing a decrease from baseline of 6 or more. Includes all patients with QoL data at baseline \\& at least 1 post-baseline visit",
+            "populationDescription": "Analysis was carried out on the Evaluable-for-QoL (EFQ) population. The EFQ population is a subset of the ITT population containing patients with an evaluable baseline QoL assessment and at least 1 evaluable post-baseline QoL assessment.",
+            "reportingStatus": "POSTED",
+            "paramType": "NUMBER",
+            "unitOfMeasure": "Participants",
+            "timeFrame": "FACT-L data were collected at baseline, week 1, every 3 weeks (from baseline) until day 127, then every 42 days until the patient was confirmed as having objectively progressed (via RECIST), and at treatment discontinuation.",
+            "groups": [
+              {
+                "id": "OG000",
+                "title": "Gefitinib",
+                "description": "Gefitinib 250mg daily"
+              },
+              {
+                "id": "OG001",
+                "title": "Carboplatin/Paclitaxel",
+                "description": "Carboplatin AUC 5.0 or 6.0 and Paclitaxel 200 mg/m\\^2 doublet chemotherapy every 3 weeks"
+              }
+            ],
+            "denoms": [
+              {
+                "units": "Participants",
+                "counts": [
+                  {
+                    "groupId": "OG000",
+                    "value": "590"
+                  },
+                  {
+                    "groupId": "OG001",
+                    "value": "561"
+                  }
+                ]
+              }
+            ],
+            "classes": [
+              {
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "274"
+                      },
+                      {
+                        "groupId": "OG001",
+                        "value": "184"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "SECONDARY",
+            "title": "Symptom Improvement as Measured by the Lung Cancer Subscale (LCS) of the FACT-L Questionnaire",
+            "description": "Number of patients improving: a patient was described as improved if they had 2 visits (at least 21 days apart) where there was an increase in LCS score (from baseline) of 2 or more, and there were no intervening visits showing a decrease from baseline of 2 or more. Includes all patients with QoL data at baseline \\& at least 1 post-baseline visit",
+            "populationDescription": "Analysis was carried out on the Evaluable-for-QoL (EFQ) population. The EFQ population is a subset of the ITT population containing patients with an evaluable baseline QoL assessment and at least 1 evaluable post-baseline QoL assessment.",
+            "reportingStatus": "POSTED",
+            "paramType": "NUMBER",
+            "unitOfMeasure": "Participants",
+            "timeFrame": "FACT-L data were collected at baseline, week 1, every 3 weeks (from baseline) until day 127, then every 42 days until the patient was confirmed as having objectively progressed (via RECIST), and at treatment discontinuation.",
+            "groups": [
+              {
+                "id": "OG000",
+                "title": "Gefitinib",
+                "description": "Gefitinib 250mg daily"
+              },
+              {
+                "id": "OG001",
+                "title": "Carboplatin/Paclitaxel",
+                "description": "Carboplatin AUC 5.0 or 6.0 and Paclitaxel 200 mg/m\\^2 doublet chemotherapy every 3 weeks"
+              }
+            ],
+            "denoms": [
+              {
+                "units": "Participants",
+                "counts": [
+                  {
+                    "groupId": "OG000",
+                    "value": "590"
+                  },
+                  {
+                    "groupId": "OG001",
+                    "value": "561"
+                  }
+                ]
+              }
+            ],
+            "classes": [
+              {
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "304"
+                      },
+                      {
+                        "groupId": "OG001",
+                        "value": "272"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "adverseEventsModule": {
+        "frequencyThreshold": "5",
+        "eventGroups": [
+          {
+            "id": "EG000",
+            "title": "Gefitinib",
+            "description": "Gefitinib 250mg daily",
+            "seriousNumAffected": 110,
+            "seriousNumAtRisk": 607,
+            "otherNumAffected": 574
+          },
+          {
+            "id": "EG001",
+            "title": "Carboplatin/Paclitaxel",
+            "description": "Carboplatin AUC 5.0 or 6.0 and Paclitaxel 200 mg/m\\^2 doublet chemotherapy every 3 weeks",
+            "seriousNumAffected": 92,
+            "seriousNumAtRisk": 589,
+            "otherNumAffected": 573
+          }
+        ],
+        "seriousEvents": [
+          {
+            "term": "Abdominal Pain",
+            "organSystem": "Gastrointestinal disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 1,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 0,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Abdominal Pain Upper",
+            "organSystem": "Gastrointestinal disorders",
+            "sourceVocabulary": "MedDRA 12.1",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 1,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 0,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Acute Myocardial Infarction",
+            "organSystem": "Cardiac disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 1,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 1,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Acute Pulmonary Oedema",
+            "organSystem": "Respiratory, thoracic and mediastinal disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 0,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 1,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Acute Respiratory Distress Syndrome",
+            "organSystem": "Respiratory, thoracic and mediastinal disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 1,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 1,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Alanine Aminotransferase Increased",
+            "organSystem": "Investigations",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 1,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 0,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Altered State Of Consciousness",
+            "organSystem": "Nervous system disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 1,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 1,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Anaemia",
+            "organSystem": "Blood and lymphatic system disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 1,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 5,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Anaphylactic Shock",
+            "organSystem": "Immune system disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 0,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 1,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Angina Pectoris",
+            "organSystem": "Cardiac disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 1,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 1,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Angle Closure Glaucoma",
+            "organSystem": "Eye disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 0,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 1,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Anorexia",
+            "organSystem": "Metabolism and nutrition disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 3,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 2,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Asthma",
+            "organSystem": "Respiratory, thoracic and mediastinal disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 1,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 0,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Back Pain",
+            "organSystem": "Musculoskeletal and connective tissue disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 2,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 0,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Blood Alkaline Phosphatase Increased",
+            "organSystem": "Investigations",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 1,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 0,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Bone Marrow Failure",
+            "organSystem": "Blood and lymphatic system disorders",
+            "sourceVocabulary": "MedDRA 12.1",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 1,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 0,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Brain Herniation",
+            "organSystem": "Injury, poisoning and procedural complications",
+            "sourceVocabulary": "MedDRA 12.1",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 1,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 0,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Bronchitis",
+            "organSystem": "Infections and infestations",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 1,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 0,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Bronchopneumonia",
+            "organSystem": "Infections and infestations",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 1,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 0,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Calculus Urinary",
+            "organSystem": "Renal and urinary disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 2,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 0,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Cardiac Arrest",
+            "organSystem": "Cardiac disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 0,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 1,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Cardiac Failure",
+            "organSystem": "Cardiac disorders",
+            "sourceVocabulary": "MedDRA 12.1",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 1,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 0,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Cardio-Respiratory Arrest",
+            "organSystem": "Cardiac disorders",
+            "sourceVocabulary": "MedDRA 12.1",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 1,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 0,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Cellulitis",
+            "organSystem": "Infections and infestations",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 1,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 0,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Cerebral Artery Embolism",
+            "organSystem": "Nervous system disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 1,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 0,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Cerebral Haemorrhage",
+            "organSystem": "Nervous system disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 2,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 0,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Chest Pain",
+            "organSystem": "General disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 3,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 0,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Cholangitis",
+            "organSystem": "Hepatobiliary disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 0,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 1,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Cholecystitis",
+            "organSystem": "Hepatobiliary disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 0,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 1,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Concussion",
+            "organSystem": "Injury, poisoning and procedural complications",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 0,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 1,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Constipation",
+            "organSystem": "Gastrointestinal disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 0,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 1,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Death",
+            "organSystem": "General disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 1,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 1,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Deep Vein Thrombosis",
+            "organSystem": "Vascular disorders",
+            "sourceVocabulary": "MedDRA 12.1",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 1,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 0,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Dehydration",
+            "organSystem": "Metabolism and nutrition disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 1,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 0,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Depressed Level Of Consciousness",
+            "organSystem": "Nervous system disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 1,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 0,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Diarrhoea",
+            "organSystem": "Gastrointestinal disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 2,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 2,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Dizziness",
+            "organSystem": "Nervous system disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 2,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 2,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Drug Hypersensitivity",
+            "organSystem": "Immune system disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 1,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 3,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Duodenitis",
+            "organSystem": "Gastrointestinal disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 0,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 1,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Dysfunctional Uterine Bleeding",
+            "organSystem": "Reproductive system and breast disorders",
+            "sourceVocabulary": "MedDRA 12.1",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 1,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 0,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Dyspepsia",
+            "organSystem": "Gastrointestinal disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 1,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 0,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Dyspnoea",
+            "organSystem": "Respiratory, thoracic and mediastinal disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 7,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 7,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Embolism",
+            "organSystem": "Vascular disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 0,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 1,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Encephalitis",
+            "organSystem": "Nervous system disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 1,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 0,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Endocarditis",
+            "organSystem": "Infections and infestations",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 1,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 0,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Fatigue",
+            "organSystem": "General disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 0,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 2,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Febrile Neutropenia",
+            "organSystem": "Blood and lymphatic system disorders",
+            "sourceVocabulary": "MedDRA 12.1",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 1,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 0,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Femur Fracture",
+            "organSystem": "Injury, poisoning and procedural complications",
+            "sourceVocabulary": "MedDRA 12.1",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 1,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 0,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Gastric Ulcer Perforation",
+            "organSystem": "Gastrointestinal disorders",
+            "sourceVocabulary": "MedDRA 12.1",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 1,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 0,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Gastroenteritis",
+            "organSystem": "Infections and infestations",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 2,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 0,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Gastrointestinal Haemorrhage",
+            "organSystem": "Gastrointestinal disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 2,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 2,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Haematuria",
+            "organSystem": "Renal and urinary disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 1,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 0,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Haemoglobin Decreased",
+            "organSystem": "Investigations",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 0,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 2,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Haemoptysis",
+            "organSystem": "Respiratory, thoracic and mediastinal disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 0,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 1,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Haemothorax",
+            "organSystem": "Respiratory, thoracic and mediastinal disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 1,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 0,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Hemiplegia",
+            "organSystem": "Nervous system disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 1,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 0,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Hepatic Failure",
+            "organSystem": "Hepatobiliary disorders",
+            "sourceVocabulary": "MedDRA 12.1",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 1,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 0,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Hepatic Function Abnormal",
+            "organSystem": "Hepatobiliary disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 4,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 1,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Herpes Zoster",
+            "organSystem": "Infections and infestations",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 0,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 1,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Hydronephrosis",
+            "organSystem": "Renal and urinary disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 1,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 0,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Hydropneumothorax",
+            "organSystem": "Respiratory, thoracic and mediastinal disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 1,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 0,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Hyperventilation",
+            "organSystem": "Respiratory, thoracic and mediastinal disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 1,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 0,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Hyponatraemia",
+            "organSystem": "Metabolism and nutrition disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 2,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 1,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Hypotension",
+            "organSystem": "Vascular disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 0,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 1,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Hypoxia",
+            "organSystem": "Respiratory, thoracic and mediastinal disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 0,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 1,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Iiird Nerve Paralysis",
+            "organSystem": "Nervous system disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 1,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 0,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Ileus",
+            "organSystem": "Gastrointestinal disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 1,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 0,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Interstitial Lung Disease",
+            "organSystem": "Respiratory, thoracic and mediastinal disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 6,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 0,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Ischaemic Stroke",
+            "organSystem": "Nervous system disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 1,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 0,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Jaundice",
+            "organSystem": "Hepatobiliary disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 0,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 1,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Lacunar Infarction",
+            "organSystem": "Nervous system disorders",
+            "sourceVocabulary": "MedDRA 12.1",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 1,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 0,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Laryngeal Granuloma",
+            "organSystem": "Respiratory, thoracic and mediastinal disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 1,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 0,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Lower Respiratory Tract Infection",
+            "organSystem": "Infections and infestations",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 1,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 1,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Lung Infection",
+            "organSystem": "Infections and infestations",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 0,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 1,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Malaise",
+            "organSystem": "General disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 0,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 2,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Muscular Weakness",
+            "organSystem": "Musculoskeletal and connective tissue disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 1,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 1,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Musculoskeletal Pain",
+            "organSystem": "Musculoskeletal and connective tissue disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 2,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 0,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Myocardial Infarction",
+            "organSystem": "Cardiac disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 0,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 1,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Nausea",
+            "organSystem": "Gastrointestinal disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 0,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 2,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Neuroendocrine tumour",
+            "organSystem": "Neoplasms benign, malignant and unspecified (incl cysts and polyps)",
+            "sourceVocabulary": "MedDRA 12.1",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 1,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 0,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Neutropenia",
+            "organSystem": "Blood and lymphatic system disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 0,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 10,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Neutrophil Count Decreased",
+            "organSystem": "Investigations",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 0,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 2,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Oral Intake Reduced",
+            "organSystem": "Metabolism and nutrition disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 0,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 1,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Osteoporotic Fracture",
+            "organSystem": "Musculoskeletal and connective tissue disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 1,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 0,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Pain",
+            "organSystem": "General disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 0,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 1,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Parotitis",
+            "organSystem": "Infections and infestations",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 0,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 1,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Pathological Fracture",
+            "organSystem": "Musculoskeletal and connective tissue disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 0,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 2,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Pericardial Effusion",
+            "organSystem": "Cardiac disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 1,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 0,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Pleural Effusion",
+            "organSystem": "Respiratory, thoracic and mediastinal disorders",
+            "sourceVocabulary": "MedDRA 12.1",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 1,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 0,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Pneumonia",
+            "organSystem": "Infections and infestations",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 9,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 9,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Pneumonitis",
+            "organSystem": "Respiratory, thoracic and mediastinal disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 0,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 1,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Pneumothorax",
+            "organSystem": "Respiratory, thoracic and mediastinal disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 0,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 2,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Pseudomonal Sepsis",
+            "organSystem": "Infections and infestations",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 1,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 0,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Pulmonary Embolism",
+            "organSystem": "Respiratory, thoracic and mediastinal disorders",
+            "sourceVocabulary": "MedDRA 12.1",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 1,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 0,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Pulmonary Haemorrhage",
+            "organSystem": "Respiratory, thoracic and mediastinal disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 1,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 1,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Pupils Unequal",
+            "organSystem": "Eye disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 1,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 0,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Pyothorax",
+            "organSystem": "Infections and infestations",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 2,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 0,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Pyrexia",
+            "organSystem": "General disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 3,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 2,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Radius Fracture",
+            "organSystem": "Injury, poisoning and procedural complications",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 0,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 1,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Rectal Haemorrhage",
+            "organSystem": "Gastrointestinal disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 1,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 0,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Renal Failure Acute",
+            "organSystem": "Renal and urinary disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 1,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 1,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Respiratory Failure",
+            "organSystem": "Respiratory, thoracic and mediastinal disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 2,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 0,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Sciatica",
+            "organSystem": "Nervous system disorders",
+            "sourceVocabulary": "MedDRA 12.1",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 1,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 0,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Sepsis",
+            "organSystem": "Infections and infestations",
+            "sourceVocabulary": "MedDRA 12.1",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 2,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 0,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Septic Shock",
+            "organSystem": "Infections and infestations",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 0,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 3,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Sinus Bradycardia",
+            "organSystem": "Cardiac disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 1,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 0,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Spinal Compression Fracture",
+            "organSystem": "Injury, poisoning and procedural complications",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 1,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 0,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Syncope Vasovagal",
+            "organSystem": "Nervous system disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 0,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 1,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Tibia Fracture",
+            "organSystem": "Injury, poisoning and procedural complications",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 1,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 0,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Upper Gastrointestinal Haemorrhage",
+            "organSystem": "Gastrointestinal disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 0,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 1,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Upper Respiratory Tract Infection",
+            "organSystem": "Infections and infestations",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 1,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 0,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Urinary Retention",
+            "organSystem": "Renal and urinary disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 1,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 0,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Urinary Tract Infection",
+            "organSystem": "Infections and infestations",
+            "sourceVocabulary": "MedDRA 12.1",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 1,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 0,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Urosepsis",
+            "organSystem": "Infections and infestations",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 0,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 1,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Ventricular Tachycardia",
+            "organSystem": "Cardiac disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 0,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 1,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Vertigo",
+            "organSystem": "Ear and labyrinth disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 0,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 1,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Vomiting",
+            "organSystem": "Gastrointestinal disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 2,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 6,
+                "numAtRisk": 589
+              }
+            ]
+          }
+        ],
+        "otherEvents": [
+          {
+            "term": "Acne",
+            "organSystem": "Skin and subcutaneous tissue disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 66,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 4,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Alanine Aminotransferase Increased",
+            "organSystem": "Investigations",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 61,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 31,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Alopecia",
+            "organSystem": "Skin and subcutaneous tissue disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 42,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 343,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Anaemia",
+            "organSystem": "Blood and lymphatic system disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 36,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 146,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Anorexia",
+            "organSystem": "Metabolism and nutrition disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 92,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 232,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Arthralgia",
+            "organSystem": "Musculoskeletal and connective tissue disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 22,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 112,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Aspartate Aminotransferase Increased",
+            "organSystem": "Investigations",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 52,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 19,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Back Pain",
+            "organSystem": "Musculoskeletal and connective tissue disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 32,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 26,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Constipation",
+            "organSystem": "Gastrointestinal disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 47,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 170,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Cough",
+            "organSystem": "Respiratory, thoracic and mediastinal disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 53,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 62,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Dermatitis Acneiform",
+            "organSystem": "Skin and subcutaneous tissue disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 35,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 2,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Diarrhoea",
+            "organSystem": "Gastrointestinal disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 273,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 127,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Dizziness",
+            "organSystem": "Nervous system disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 31,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 35,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Dry Skin",
+            "organSystem": "Skin and subcutaneous tissue disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 144,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 17,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Dyspepsia",
+            "organSystem": "Gastrointestinal disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 32,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 26,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Dyspnoea",
+            "organSystem": "Respiratory, thoracic and mediastinal disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 35,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 49,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Fatigue",
+            "organSystem": "General disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 72,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 217,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Haemoglobin Decreased",
+            "organSystem": "Investigations",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 1,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 30,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Headache",
+            "organSystem": "Nervous system disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 39,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 43,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Hepatic Function Abnormal",
+            "organSystem": "Hepatobiliary disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 48,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 23,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Hypoaesthesia",
+            "organSystem": "Nervous system disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 7,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 153,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Hypokalaemia",
+            "organSystem": "Metabolism and nutrition disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 20,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 30,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Insomnia",
+            "organSystem": "Psychiatric disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 72,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 107,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Leukopenia",
+            "organSystem": "Blood and lymphatic system disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 5,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 146,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Myalgia",
+            "organSystem": "Musculoskeletal and connective tissue disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 24,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 186,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Nasopharyngitis",
+            "organSystem": "Infections and infestations",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 52,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 22,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Nausea",
+            "organSystem": "Gastrointestinal disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 74,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 259,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Neuropathy Peripheral",
+            "organSystem": "Nervous system disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 5,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 97,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Neutropenia",
+            "organSystem": "Blood and lymphatic system disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 3,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 218,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Neutrophil Count Decreased",
+            "organSystem": "Investigations",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 0,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 39,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Pain In Extremity",
+            "organSystem": "Musculoskeletal and connective tissue disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 24,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 40,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Paraesthesia",
+            "organSystem": "Nervous system disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 8,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 30,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Paronychia",
+            "organSystem": "Infections and infestations",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 82,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 0,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Peripheral Sensory Neuropathy",
+            "organSystem": "Nervous system disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 9,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 141,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Pharyngolaryngeal Pain",
+            "organSystem": "Respiratory, thoracic and mediastinal disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 36,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 28,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Pruritus",
+            "organSystem": "Skin and subcutaneous tissue disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 103,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 69,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Pyrexia",
+            "organSystem": "General disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 38,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 56,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Rash",
+            "organSystem": "Skin and subcutaneous tissue disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 308,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 120,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Skin Exfoliation",
+            "organSystem": "Skin and subcutaneous tissue disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 31,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 1,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Stomatitis",
+            "organSystem": "Gastrointestinal disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 78,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 42,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Thrombocytopenia",
+            "organSystem": "Blood and lymphatic system disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 7,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 70,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Upper Respiratory Tract Infection",
+            "organSystem": "Infections and infestations",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 34,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 23,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "Vomiting",
+            "organSystem": "Gastrointestinal disorders",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 58,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 190,
+                "numAtRisk": 589
+              }
+            ]
+          },
+          {
+            "term": "White Blood Cell Count Decreased",
+            "organSystem": "Investigations",
+            "sourceVocabulary": "MedDRA 11.0",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numAffected": 3,
+                "numAtRisk": 607
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 52,
+                "numAtRisk": 589
+              }
+            ]
+          }
+        ]
+      },
+      "moreInfoModule": {
+        "certainAgreement": {
+          "piSponsorEmployee": false,
+          "restrictionType": "OTHER",
+          "restrictiveAgreement": true,
+          "otherDetails": "The Principal Investigator (PI) agrees to collaborate on the contents and formation of any publication and to pay due consideration to comments and opinions offered. AstraZeneca have 30 days for final manuscript review and may require that submission for publication be delayed in order to file patent applications."
+        },
+        "pointOfContact": {
+          "title": "Gerard Lynch",
+          "organization": "AstraZeneca",
+          "email": "AZTrial_results_posting@AstraZeneca.com"
+        }
+      }
+    },
+    "derivedSection": {
+      "miscInfoModule": {
+        "versionHolder": "2026-11-03"
+      },
+      "conditionBrowseModule": {
+        "meshes": [
+          {
+            "id": "D002289",
+            "term": "Carcinoma, Non-Small-Cell Lung"
+          }
+        ],
+        "ancestors": [
+          {
+            "id": "D002283",
+            "term": "Carcinoma, Bronchogenic"
+          },
+          {
+            "id": "D001984",
+            "term": "Bronchial Neoplasms"
+          },
+          {
+            "id": "D008175",
+            "term": "Lung Neoplasms"
+          },
+          {
+            "id": "D012142",
+            "term": "Respiratory Tract Neoplasms"
+          },
+          {
+            "id": "D013899",
+            "term": "Thoracic Neoplasms"
+          },
+          {
+            "id": "D009371",
+            "term": "Neoplasms by Site"
+          },
+          {
+            "id": "D009369",
+            "term": "Neoplasms"
+          },
+          {
+            "id": "D008171",
+            "term": "Lung Diseases"
+          },
+          {
+            "id": "D012140",
+            "term": "Respiratory Tract Diseases"
+          }
+        ]
+      },
+      "interventionBrowseModule": {
+        "meshes": [
+          {
+            "id": "D000077156",
+            "term": "Gefitinib"
+          },
+          {
+            "id": "D016190",
+            "term": "Carboplatin"
+          },
+          {
+            "id": "D017239",
+            "term": "Paclitaxel"
+          }
+        ],
+        "ancestors": [
+          {
+            "id": "D011799",
+            "term": "Quinazolines"
+          },
+          {
+            "id": "D006574",
+            "term": "Heterocyclic Compounds, 2-Ring"
+          },
+          {
+            "id": "D000072471",
+            "term": "Heterocyclic Compounds, Fused-Ring"
+          },
+          {
+            "id": "D006571",
+            "term": "Heterocyclic Compounds"
+          },
+          {
+            "id": "D056831",
+            "term": "Coordination Complexes"
+          },
+          {
+            "id": "D009930",
+            "term": "Organic Chemicals"
+          },
+          {
+            "id": "D043823",
+            "term": "Taxoids"
+          },
+          {
+            "id": "D043822",
+            "term": "Cyclodecanes"
+          },
+          {
+            "id": "D003516",
+            "term": "Cycloparaffins"
+          },
+          {
+            "id": "D006840",
+            "term": "Hydrocarbons, Alicyclic"
+          },
+          {
+            "id": "D006844",
+            "term": "Hydrocarbons, Cyclic"
+          },
+          {
+            "id": "D006838",
+            "term": "Hydrocarbons"
+          },
+          {
+            "id": "D004224",
+            "term": "Diterpenes"
+          },
+          {
+            "id": "D013729",
+            "term": "Terpenes"
+          }
+        ]
+      }
+    },
+    "hasResults": true
+  },
+  "expected_digest": "2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+  "queries": [
+    {
+      "id": "registered-adult-age",
+      "body": {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+          "class": "Predicate",
+          "key": "age",
+          "kind": "measurement"
+        },
+        "qualifiers": {
+          "class": "Always"
+        },
+        "subject": {
+          "class": "Subject",
+          "kind": "participant",
+          "referent": ""
+        },
+        "time": null,
+        "value": {
+          "class": "Value",
+          "comparison": "ge",
+          "inclusivity": "unspecified",
+          "kind": "quantity",
+          "members": [],
+          "number": 18.0,
+          "unit": "Years",
+          "upper": null
+        }
+      }
+    },
+    {
+      "id": "registered-PS-at-most-two",
+      "body": {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+          "class": "Predicate",
+          "key": "WHO_PS",
+          "kind": "measurement"
+        },
+        "qualifiers": {
+          "class": "Always"
+        },
+        "subject": {
+          "class": "Subject",
+          "kind": "participant",
+          "referent": ""
+        },
+        "time": null,
+        "value": {
+          "class": "Value",
+          "comparison": "le",
+          "inclusivity": "unspecified",
+          "kind": "quantity",
+          "members": [],
+          "number": 2.0,
+          "unit": "WHO_PS",
+          "upper": null
+        }
+      }
+    }
+  ]
+}

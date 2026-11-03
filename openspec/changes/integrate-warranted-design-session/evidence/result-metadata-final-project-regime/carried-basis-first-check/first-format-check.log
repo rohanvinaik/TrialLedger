@@ -1,0 +1,89 @@
+unformatted: File would be reformatted
+  --> tests/detective/test_TrialLedger_layer2_result_semantics_disposition_code_3741ce9eea_synth.py:16:31
+   |
+15 |     """VALUE survivor — distinguishing witness (equivalence search)."""
+   -     result = disposition_code(
+   -         logical_result="INCONSISTENT", standing="proposed", completion=""
+   -     )
+16 +     result = disposition_code(logical_result="INCONSISTENT", standing="proposed", completion="")
+17 |     assert result == "unclassified"
+--------------------------------------------------------------------------------
+22 |     """VALUE survivor — distinguishing witness (equivalence search)."""
+   -     result = disposition_code(
+   -         logical_result="conditional", standing="", completion="complete"
+   -     )
+23 +     result = disposition_code(logical_result="conditional", standing="", completion="complete")
+24 |     assert result == "conditional"
+--------------------------------------------------------------------------------
+29 |     """VALUE survivor — distinguishing witness (equivalence search)."""
+   -     result = disposition_code(
+   -         logical_result="CONFLICT", standing="proposed", completion="complete"
+   -     )
+30 +     result = disposition_code(logical_result="CONFLICT", standing="proposed", completion="complete")
+31 |     assert result == "conflict"
+--------------------------------------------------------------------------------
+36 |     """VALUE survivor — distinguishing witness (equivalence search)."""
+   -     result = disposition_code(
+   -         logical_result="conflict", standing="proposed", completion="limited"
+   -     )
+37 +     result = disposition_code(logical_result="conflict", standing="proposed", completion="limited")
+38 |     assert result == "conflict"
+--------------------------------------------------------------------------------
+43 |     """VALUE survivor — distinguishing witness (equivalence search)."""
+   -     result = disposition_code(
+   -         logical_result="inconsistent", standing="known", completion="complete"
+   -     )
+44 +     result = disposition_code(logical_result="inconsistent", standing="known", completion="complete")
+45 |     assert result == "conflict"
+--------------------------------------------------------------------------------
+50 |     """VALUE survivor — distinguishing witness (equivalence search)."""
+   -     result = disposition_code(
+   -         logical_result="floor_conflict", standing="proposed", completion="complete"
+   -     )
+51 +     result = disposition_code(logical_result="floor_conflict", standing="proposed", completion="complete")
+52 |     assert result == "conflict"
+--------------------------------------------------------------------------------
+57 |     """VALUE survivor — distinguishing witness (equivalence search)."""
+   -     result = disposition_code(
+   -         logical_result="ruled_out", standing="", completion="limited"
+   -     )
+58 +     result = disposition_code(logical_result="ruled_out", standing="", completion="limited")
+59 |     assert result == "unclassified"
+--------------------------------------------------------------------------------
+64 |     """VALUE survivor — distinguishing witness (equivalence search)."""
+   -     result = disposition_code(
+   -         logical_result="OUT_OF_SCOPE", standing="", completion="complete"
+   -     )
+65 +     result = disposition_code(logical_result="OUT_OF_SCOPE", standing="", completion="complete")
+66 |     assert result == "open"
+--------------------------------------------------------------------------------
+71 |     """VALUE survivor — distinguishing witness (equivalence search)."""
+   -     result = disposition_code(
+   -         logical_result="not_ruled_out", standing="", completion="complete"
+   -     )
+72 +     result = disposition_code(logical_result="not_ruled_out", standing="", completion="complete")
+73 |     assert result == "open"
+--------------------------------------------------------------------------------
+78 |     """VALUE survivor — distinguishing witness (equivalence search)."""
+   -     result = disposition_code(
+   -         logical_result="no_witness", standing="", completion="complete"
+   -     )
+79 +     result = disposition_code(logical_result="no_witness", standing="", completion="complete")
+80 |     assert result == "open"
+--------------------------------------------------------------------------------
+85 |     """VALUE survivor — distinguishing witness (equivalence search)."""
+   -     result = disposition_code(
+   -         logical_result="proposed", standing="", completion="complete"
+   -     )
+86 +     result = disposition_code(logical_result="proposed", standing="", completion="complete")
+87 |     assert result == "conditional"
+--------------------------------------------------------------------------------
+92 |     """VALUE survivor — golden capture (pure + deterministic)."""
+   -     result = disposition_code(
+   -         logical_result="computed", standing="", completion="complete"
+   -     )
+93 +     result = disposition_code(logical_result="computed", standing="", completion="complete")
+94 |     assert result == "unclassified"
+   |
+
+1 file would be reformatted

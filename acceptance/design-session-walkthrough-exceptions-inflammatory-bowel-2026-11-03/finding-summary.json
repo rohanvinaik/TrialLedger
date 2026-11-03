@@ -1,0 +1,513 @@
+[
+  {
+    "request": "scoped-randomized-maintenance",
+    "fixed_queries": [
+      {
+        "id": "adult-general-floor",
+        "result": "ENTAILED",
+        "warrant": {
+          "rule": "entail.decide:1",
+          "guarantee": "fixed_floor",
+          "status": "known",
+          "assumptions": [],
+          "proof": [
+            "registry-age-minimumAge"
+          ],
+          "blockers": []
+        }
+      },
+      {
+        "id": "induction-response-required",
+        "result": "UNDETERMINED",
+        "warrant": {
+          "rule": "entail.decide:1",
+          "guarantee": "fixed_floor",
+          "status": "known",
+          "assumptions": [],
+          "proof": [],
+          "blockers": [
+            "no_constraint_mentions_query"
+          ]
+        }
+      }
+    ],
+    "frames": [
+      {
+        "id": "randomized-maintenance-reading",
+        "state": "compatible",
+        "warrant": {
+          "rule": "interpretations.compatibility:1",
+          "guarantee": "conditional_on_fixed_and_interpretation_premises",
+          "fixed_status": "known",
+          "status": "proposed",
+          "fixed_premises": [],
+          "assumptions": [
+            "response-required-for-randomized-maintenance"
+          ],
+          "bindings": [],
+          "basis": [
+            "ctg:NCT01369355:e88dd2edd3a6d63bf6a7d10c8b304315497cfb90e2dadf36a259dc0d8ef75be2#/protocolSection/armsInterventionsModule/armGroups",
+            "ctg:NCT01369355:e88dd2edd3a6d63bf6a7d10c8b304315497cfb90e2dadf36a259dc0d8ef75be2#/protocolSection/descriptionModule/detailedDescription",
+            "hypothesis:source-location-is-not-semantic-warrant"
+          ],
+          "consistency": {
+            "result": "UNDETERMINED",
+            "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+            "status": null,
+            "proof": [],
+            "blockers": [
+              "no_constraint_mentions_query"
+            ]
+          },
+          "intrinsic_consistency": {
+            "result": "UNDETERMINED",
+            "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+            "status": null,
+            "proof": [],
+            "blockers": [
+              "no_constraint_mentions_query"
+            ]
+          },
+          "signal_rules": [],
+          "blockers": []
+        },
+        "queries": [
+          {
+            "id": "adult-general-floor",
+            "result": "ENTAILED",
+            "warrant": {
+              "rule": "entail.decide:1",
+              "guarantee": "conditional_on_interpretation",
+              "status": "proposed",
+              "assumptions": [
+                "response-required-for-randomized-maintenance"
+              ],
+              "proof": [
+                "registry-age-minimumAge"
+              ],
+              "blockers": []
+            }
+          },
+          {
+            "id": "induction-response-required",
+            "result": "ENTAILED",
+            "warrant": {
+              "rule": "entail.decide:1",
+              "guarantee": "conditional_on_interpretation",
+              "status": "proposed",
+              "assumptions": [
+                "response-required-for-randomized-maintenance"
+              ],
+              "proof": [
+                "response-required-for-randomized-maintenance"
+              ],
+              "blockers": []
+            }
+          }
+        ]
+      }
+    ],
+    "consequences": [
+      {
+        "id": "adult-general-floor",
+        "result": "ENTAILED",
+        "warrant": {
+          "rule": "entail.decide:1",
+          "guarantee": "fixed_floor",
+          "status": "known",
+          "assumptions": [],
+          "proof": [
+            "registry-age-minimumAge"
+          ],
+          "blockers": []
+        }
+      },
+      {
+        "id": "induction-response-required",
+        "result": "ENTAILED",
+        "warrant": {
+          "rule": "interpretations.common:1",
+          "guarantee": "conditional_on_declared_family_not_exhaustive",
+          "status": "proposed",
+          "blockers": []
+        }
+      }
+    ],
+    "metadata": {
+      "version": 1,
+      "kind": "reasoning",
+      "findings": [
+        {
+          "path": "/result/analyses/0/result/fixed/consistency",
+          "kind": "consistency",
+          "logical_result": "UNDETERMINED",
+          "standing": null,
+          "completion": "complete",
+          "causes": [
+            {
+              "code": "no_constraint_mentions_query",
+              "kind": "coverage"
+            }
+          ],
+          "disposition": "open"
+        },
+        {
+          "path": "/result/analyses/0/result/fixed/queries/0",
+          "kind": "logical",
+          "logical_result": "ENTAILED",
+          "standing": "known",
+          "completion": "complete",
+          "causes": [],
+          "disposition": "settled",
+          "support_path": "/result/analyses/0/result/fixed/queries/0/warrant"
+        },
+        {
+          "path": "/result/analyses/0/result/fixed/queries/1",
+          "kind": "logical",
+          "logical_result": "UNDETERMINED",
+          "standing": "known",
+          "completion": "complete",
+          "causes": [
+            {
+              "code": "no_constraint_mentions_query",
+              "kind": "coverage"
+            }
+          ],
+          "disposition": "open",
+          "support_path": "/result/analyses/0/result/fixed/queries/1/warrant"
+        },
+        {
+          "path": "/result/analyses/0/result/interpretations/0",
+          "kind": "interpretation",
+          "logical_result": "compatible",
+          "standing": "proposed",
+          "completion": "complete",
+          "causes": [],
+          "disposition": "conditional"
+        },
+        {
+          "path": "/result/analyses/0/result/interpretations/0/queries/0",
+          "kind": "logical",
+          "logical_result": "ENTAILED",
+          "standing": "proposed",
+          "completion": "complete",
+          "causes": [],
+          "disposition": "conditional",
+          "support_path": "/result/analyses/0/result/interpretations/0/queries/0/warrant"
+        },
+        {
+          "path": "/result/analyses/0/result/interpretations/0/queries/1",
+          "kind": "logical",
+          "logical_result": "ENTAILED",
+          "standing": "proposed",
+          "completion": "complete",
+          "causes": [],
+          "disposition": "conditional",
+          "support_path": "/result/analyses/0/result/interpretations/0/queries/1/warrant"
+        },
+        {
+          "path": "/result/analyses/0/result/consequences/0",
+          "kind": "logical",
+          "logical_result": "ENTAILED",
+          "standing": "known",
+          "completion": "complete",
+          "causes": [],
+          "disposition": "settled",
+          "support_path": "/result/analyses/0/result/consequences/0/warrant"
+        },
+        {
+          "path": "/result/analyses/0/result/consequences/1",
+          "kind": "logical",
+          "logical_result": "ENTAILED",
+          "standing": "proposed",
+          "completion": "complete",
+          "causes": [],
+          "disposition": "conditional",
+          "support_path": "/result/analyses/0/result/consequences/1/warrant"
+        }
+      ]
+    }
+  },
+  {
+    "request": "population-context-retracted",
+    "fixed_queries": [
+      {
+        "id": "adult-general-floor",
+        "result": "ENTAILED",
+        "warrant": {
+          "rule": "entail.decide:1",
+          "guarantee": "fixed_floor",
+          "status": "known",
+          "assumptions": [],
+          "proof": [
+            "registry-age-minimumAge"
+          ],
+          "blockers": []
+        }
+      },
+      {
+        "id": "induction-response-required",
+        "result": "UNDETERMINED",
+        "warrant": {
+          "rule": "entail.decide:1",
+          "guarantee": "fixed_floor",
+          "status": "known",
+          "assumptions": [],
+          "proof": [],
+          "blockers": [
+            "no_constraint_mentions_query"
+          ]
+        }
+      }
+    ],
+    "frames": [
+      {
+        "id": "randomized-maintenance-reading",
+        "state": "unresolved",
+        "warrant": {
+          "rule": "interpretations.compatibility:1",
+          "guarantee": "conditional_on_fixed_and_interpretation_premises",
+          "fixed_status": "known",
+          "status": "proposed",
+          "fixed_premises": [],
+          "assumptions": [
+            "response-required-for-randomized-maintenance"
+          ],
+          "bindings": [],
+          "basis": [
+            "ctg:NCT01369355:e88dd2edd3a6d63bf6a7d10c8b304315497cfb90e2dadf36a259dc0d8ef75be2#/protocolSection/armsInterventionsModule/armGroups",
+            "ctg:NCT01369355:e88dd2edd3a6d63bf6a7d10c8b304315497cfb90e2dadf36a259dc0d8ef75be2#/protocolSection/descriptionModule/detailedDescription",
+            "hypothesis:source-location-is-not-semantic-warrant"
+          ],
+          "consistency": {
+            "result": "UNDETERMINED",
+            "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+            "status": null,
+            "proof": [],
+            "blockers": [
+              "no_constraint_mentions_query"
+            ]
+          },
+          "intrinsic_consistency": {
+            "result": "UNDETERMINED",
+            "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+            "status": null,
+            "proof": [],
+            "blockers": [
+              "no_constraint_mentions_query"
+            ]
+          },
+          "signal_rules": [],
+          "blockers": [
+            "open_scope:cohort_ref:randomized-maintenance"
+          ]
+        },
+        "queries": [
+          {
+            "id": "adult-general-floor",
+            "result": "UNDETERMINED",
+            "warrant": {
+              "rule": "entail.decide:1",
+              "guarantee": "conditional_on_interpretation",
+              "status": "proposed",
+              "assumptions": [
+                "response-required-for-randomized-maintenance"
+              ],
+              "proof": [
+                "registry-age-minimumAge"
+              ],
+              "blockers": [
+                "interpretation_unresolved",
+                "open_scope:cohort_ref:randomized-maintenance"
+              ]
+            }
+          },
+          {
+            "id": "induction-response-required",
+            "result": "UNDETERMINED",
+            "warrant": {
+              "rule": "entail.decide:1",
+              "guarantee": "conditional_on_interpretation",
+              "status": "proposed",
+              "assumptions": [
+                "response-required-for-randomized-maintenance"
+              ],
+              "proof": [],
+              "blockers": [
+                "interpretation_unresolved",
+                "no_constraint_mentions_query",
+                "open_scope:cohort_ref:randomized-maintenance"
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "consequences": [
+      {
+        "id": "adult-general-floor",
+        "result": "ENTAILED",
+        "warrant": {
+          "rule": "entail.decide:1",
+          "guarantee": "fixed_floor",
+          "status": "known",
+          "assumptions": [],
+          "proof": [
+            "registry-age-minimumAge"
+          ],
+          "blockers": []
+        }
+      },
+      {
+        "id": "induction-response-required",
+        "result": "UNDETERMINED",
+        "warrant": {
+          "rule": "interpretations.common:1",
+          "guarantee": "conditional_on_declared_family_not_exhaustive",
+          "status": "proposed",
+          "blockers": [
+            "interpretation_unresolved",
+            "no_constraint_mentions_query",
+            "open_scope:cohort_ref:randomized-maintenance"
+          ]
+        }
+      }
+    ],
+    "metadata": {
+      "version": 1,
+      "kind": "reasoning",
+      "findings": [
+        {
+          "path": "/result/fixed/consistency",
+          "kind": "consistency",
+          "logical_result": "UNDETERMINED",
+          "standing": null,
+          "completion": "complete",
+          "causes": [
+            {
+              "code": "no_constraint_mentions_query",
+              "kind": "coverage"
+            }
+          ],
+          "disposition": "open"
+        },
+        {
+          "path": "/result/fixed/queries/0",
+          "kind": "logical",
+          "logical_result": "ENTAILED",
+          "standing": "known",
+          "completion": "complete",
+          "causes": [],
+          "disposition": "settled",
+          "support_path": "/result/fixed/queries/0/warrant"
+        },
+        {
+          "path": "/result/fixed/queries/1",
+          "kind": "logical",
+          "logical_result": "UNDETERMINED",
+          "standing": "known",
+          "completion": "complete",
+          "causes": [
+            {
+              "code": "no_constraint_mentions_query",
+              "kind": "coverage"
+            }
+          ],
+          "disposition": "open",
+          "support_path": "/result/fixed/queries/1/warrant"
+        },
+        {
+          "path": "/result/interpretations/0",
+          "kind": "interpretation",
+          "logical_result": "unresolved",
+          "standing": "proposed",
+          "completion": "complete",
+          "causes": [
+            {
+              "code": "open_scope:cohort_ref:randomized-maintenance",
+              "kind": "translation"
+            }
+          ],
+          "disposition": "open"
+        },
+        {
+          "path": "/result/interpretations/0/queries/0",
+          "kind": "logical",
+          "logical_result": "UNDETERMINED",
+          "standing": "proposed",
+          "completion": "complete",
+          "causes": [
+            {
+              "code": "interpretation_unresolved",
+              "kind": "premise"
+            },
+            {
+              "code": "open_scope:cohort_ref:randomized-maintenance",
+              "kind": "translation"
+            }
+          ],
+          "disposition": "open",
+          "support_path": "/result/interpretations/0/queries/0/warrant",
+          "raw_result": "ENTAILED",
+          "raw_path": "/result/interpretations/0/queries/0/decision"
+        },
+        {
+          "path": "/result/interpretations/0/queries/1",
+          "kind": "logical",
+          "logical_result": "UNDETERMINED",
+          "standing": "proposed",
+          "completion": "complete",
+          "causes": [
+            {
+              "code": "interpretation_unresolved",
+              "kind": "premise"
+            },
+            {
+              "code": "no_constraint_mentions_query",
+              "kind": "coverage"
+            },
+            {
+              "code": "open_scope:cohort_ref:randomized-maintenance",
+              "kind": "translation"
+            }
+          ],
+          "disposition": "open",
+          "support_path": "/result/interpretations/0/queries/1/warrant"
+        },
+        {
+          "path": "/result/consequences/0",
+          "kind": "logical",
+          "logical_result": "ENTAILED",
+          "standing": "known",
+          "completion": "complete",
+          "causes": [],
+          "disposition": "settled",
+          "support_path": "/result/consequences/0/warrant"
+        },
+        {
+          "path": "/result/consequences/1",
+          "kind": "logical",
+          "logical_result": "UNDETERMINED",
+          "standing": "proposed",
+          "completion": "complete",
+          "causes": [
+            {
+              "code": "interpretation_unresolved",
+              "kind": "premise"
+            },
+            {
+              "code": "no_constraint_mentions_query",
+              "kind": "coverage"
+            },
+            {
+              "code": "open_scope:cohort_ref:randomized-maintenance",
+              "kind": "translation"
+            }
+          ],
+          "disposition": "open",
+          "support_path": "/result/consequences/1/warrant"
+        }
+      ]
+    }
+  }
+]

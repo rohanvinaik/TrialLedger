@@ -400,11 +400,15 @@
     ],
     "bindings": [
       {
-        "kind": "population",
-        "relation": "same_universe",
         "resolution": "resolved",
-        "status": "proposed",
         "id": "same-baseline-universe",
+        "relation": "same_universe",
+        "kind": "population",
+        "status": "proposed",
+        "subjects": [
+          "WHO_PS2",
+          "never_smoker"
+        ],
         "basis": [
           "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/resultsSection/baselineCharacteristicsModule/measures/5/classes/2/categories/0/measurements/2/value",
           "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/resultsSection/baselineCharacteristicsModule/measures/4/classes/0/categories/0/measurements/2/value",
@@ -458,10 +462,6 @@
             "address": "/resultsSection/baselineCharacteristicsModule/denoms/0",
             "digest": "c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a"
           }
-        ],
-        "subjects": [
-          "WHO_PS2",
-          "never_smoker"
         ]
       }
     ],
@@ -786,11 +786,15 @@
         },
         "bindings": [
           {
-            "kind": "population",
-            "relation": "same_universe",
             "resolution": "resolved",
-            "status": "proposed",
             "id": "same-baseline-universe",
+            "relation": "same_universe",
+            "kind": "population",
+            "status": "proposed",
+            "subjects": [
+              "WHO_PS2",
+              "never_smoker"
+            ],
             "basis": [
               "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/resultsSection/baselineCharacteristicsModule/measures/5/classes/2/categories/0/measurements/2/value",
               "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/resultsSection/baselineCharacteristicsModule/measures/4/classes/0/categories/0/measurements/2/value",
@@ -844,10 +848,6 @@
                 "address": "/resultsSection/baselineCharacteristicsModule/denoms/0",
                 "digest": "c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a"
               }
-            ],
-            "subjects": [
-              "WHO_PS2",
-              "never_smoker"
             ]
           }
         ],
@@ -1746,9 +1746,253 @@
           ],
           "limits": "Exact conditional checks over declared readings; compatibility is not source truth or clinical recommendation. The interpretation family is not assumed exhaustive. No automatic text reading, source correction, source mutation or corpus-frequency admission."
         },
-        "problems": []
+        "problems": [],
+        "metadata": {
+          "version": 1,
+          "kind": "reasoning",
+          "findings": [
+            {
+              "path": "/result/fixed/consistency",
+              "kind": "consistency",
+              "logical_result": "UNDETERMINED",
+              "standing": null,
+              "completion": "complete",
+              "causes": [
+                {
+                  "code": "no_constraint_mentions_query",
+                  "kind": "coverage"
+                }
+              ],
+              "disposition": "open"
+            },
+            {
+              "path": "/result/fixed/queries/0",
+              "kind": "logical",
+              "logical_result": "ENTAILED",
+              "standing": "known",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "settled",
+              "support_path": "/result/fixed/queries/0/warrant"
+            },
+            {
+              "path": "/result/fixed/queries/1",
+              "kind": "logical",
+              "logical_result": "UNDETERMINED",
+              "standing": "known",
+              "completion": "complete",
+              "causes": [
+                {
+                  "code": "no_constraint_mentions_query",
+                  "kind": "coverage"
+                }
+              ],
+              "disposition": "open",
+              "support_path": "/result/fixed/queries/1/warrant"
+            },
+            {
+              "path": "/result/interpretations/0",
+              "kind": "interpretation",
+              "logical_result": "compatible",
+              "standing": "proposed",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "conditional"
+            },
+            {
+              "path": "/result/interpretations/0/queries/0",
+              "kind": "logical",
+              "logical_result": "ENTAILED",
+              "standing": "known",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "settled",
+              "support_path": "/result/interpretations/0/queries/0/warrant"
+            },
+            {
+              "path": "/result/interpretations/0/queries/1",
+              "kind": "logical",
+              "logical_result": "UNDETERMINED",
+              "standing": "known",
+              "completion": "complete",
+              "causes": [
+                {
+                  "code": "no_constraint_mentions_query",
+                  "kind": "coverage"
+                }
+              ],
+              "disposition": "open",
+              "support_path": "/result/interpretations/0/queries/1/warrant"
+            },
+            {
+              "path": "/result/interpretations/0/signals/0",
+              "kind": "signal",
+              "logical_result": "bounded",
+              "standing": "proposed",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "conditional"
+            },
+            {
+              "path": "/result/interpretations/0/bindings/0",
+              "kind": "binding",
+              "logical_result": "conditional",
+              "standing": "proposed",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "conditional"
+            },
+            {
+              "path": "/result/consequences/0",
+              "kind": "logical",
+              "logical_result": "ENTAILED",
+              "standing": "known",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "settled",
+              "support_path": "/result/consequences/0/warrant"
+            },
+            {
+              "path": "/result/consequences/1",
+              "kind": "logical",
+              "logical_result": "UNDETERMINED",
+              "standing": "proposed",
+              "completion": "complete",
+              "causes": [
+                {
+                  "code": "no_constraint_mentions_query",
+                  "kind": "coverage"
+                }
+              ],
+              "disposition": "open",
+              "support_path": "/result/consequences/1/warrant"
+            }
+          ]
+        }
       }
     ]
   },
-  "problems": []
+  "problems": [],
+  "metadata": {
+    "version": 1,
+    "kind": "reasoning",
+    "findings": [
+      {
+        "path": "/result/analyses/0/result/fixed/consistency",
+        "kind": "consistency",
+        "logical_result": "UNDETERMINED",
+        "standing": null,
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          }
+        ],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/analyses/0/result/fixed/queries/0",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled",
+        "support_path": "/result/analyses/0/result/fixed/queries/0/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/fixed/queries/1",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/analyses/0/result/fixed/queries/1/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/0",
+        "kind": "interpretation",
+        "logical_result": "compatible",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/0/queries/0",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled",
+        "support_path": "/result/analyses/0/result/interpretations/0/queries/0/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/0/queries/1",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/analyses/0/result/interpretations/0/queries/1/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/0/signals/0",
+        "kind": "signal",
+        "logical_result": "bounded",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/0/bindings/0",
+        "kind": "binding",
+        "logical_result": "conditional",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional"
+      },
+      {
+        "path": "/result/analyses/0/result/consequences/0",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled",
+        "support_path": "/result/analyses/0/result/consequences/0/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/consequences/1",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/analyses/0/result/consequences/1/warrant"
+      }
+    ]
+  }
 }

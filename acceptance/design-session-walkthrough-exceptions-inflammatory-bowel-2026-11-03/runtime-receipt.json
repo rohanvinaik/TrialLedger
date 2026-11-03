@@ -1,0 +1,174 @@
+{
+  "revision": "a3987b05db21f0cf3f871cc36f272ddc516c1ec2",
+  "before": {
+    "TrialLedger/layer2/service.py": "027120550f803ecca124a4c3f2bf82e5cca8a7bc29eca14ed6274e58a9bc1eec",
+    "TrialLedger/layer2/result_semantics.py": "42f8c36330d1b10f2f4875191f1b093a0c4fe7bcc62e60b1b75c81ed885b06ed",
+    "TrialLedger/layer2/guide.py": "7d2b5a166616ad3047201be2f4238d10c6e52ff7e04077a3b11621f90a6aed90",
+    "TrialLedger/layer2/source_assertions.py": "8c2783ddc8044feff2de25c387460292edca46876a536f5cd39a625bb079d7bc",
+    "TrialLedger/layer2/source_assertions_guide.py": "3f898156ba601e4d3821f94ff01c74f7face05807e19cce4231578850fb131f6",
+    "TrialLedger/layer2/interpretations.py": "7136665a52023fee067f112c4f98650b9798c6d56767bf040cb286b1566b5eda",
+    "TrialLedger/layer2/interpretations_guide.py": "28099c926d429fa4375bc25338bc6968b017ce000f0ad41f2d80d68fb779fd96"
+  },
+  "after": {
+    "TrialLedger/layer2/service.py": "027120550f803ecca124a4c3f2bf82e5cca8a7bc29eca14ed6274e58a9bc1eec",
+    "TrialLedger/layer2/result_semantics.py": "42f8c36330d1b10f2f4875191f1b093a0c4fe7bcc62e60b1b75c81ed885b06ed",
+    "TrialLedger/layer2/guide.py": "7d2b5a166616ad3047201be2f4238d10c6e52ff7e04077a3b11621f90a6aed90",
+    "TrialLedger/layer2/source_assertions.py": "8c2783ddc8044feff2de25c387460292edca46876a536f5cd39a625bb079d7bc",
+    "TrialLedger/layer2/source_assertions_guide.py": "3f898156ba601e4d3821f94ff01c74f7face05807e19cce4231578850fb131f6",
+    "TrialLedger/layer2/interpretations.py": "7136665a52023fee067f112c4f98650b9798c6d56767bf040cb286b1566b5eda",
+    "TrialLedger/layer2/interpretations_guide.py": "28099c926d429fa4375bc25338bc6968b017ce000f0ad41f2d80d68fb779fd96"
+  },
+  "stable_during_calls": true,
+  "source_digest": "e88dd2edd3a6d63bf6a7d10c8b304315497cfb90e2dadf36a259dc0d8ef75be2",
+  "local_capture_helper": "/Users/rohanvinaik/.local/share/TrialLedger/acceptance/design-session-walkthrough-exceptions-inflammatory-bowel-2026-11-03/capture.py",
+  "local_capture_helper_sha256": "945224d5211056a7f1a280c45d7c0f8d25c54744c4d812d6183fce8e7ad19b0a",
+  "transports": [
+    {
+      "name": "scoped-randomized-maintenance",
+      "cli_command": [
+        "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/python3",
+        "-m",
+        "TrialLedger",
+        "reason",
+        "--request",
+        "/Users/rohanvinaik/tools/TrialLedger/acceptance/design-session-walkthrough-exceptions-inflammatory-bowel-2026-11-03/requests/scoped-randomized-maintenance.json"
+      ],
+      "mcp_command": [
+        "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/python3",
+        "-m",
+        "TrialLedger",
+        "mcp",
+        "--root",
+        "/Users/rohanvinaik/.local/share/TrialLedger/acceptance/design-session-walkthrough-exceptions-inflammatory-bowel-2026-11-03/mcp-root"
+      ],
+      "cli_exit_code": 0,
+      "mcp_exit_code": 0,
+      "complete_json_equal_excluding_tool_wrapper": true,
+      "request_sha256": "f610ee9426b84e0c3aeea111f9688461fa9998a62fc2a344bc3f0903dde65714",
+      "canonical_result_sha256": "f31fe2320f2399031ed1259f6cce592a4c42d0496c393f0692a795f9cf4c5a4d",
+      "mcp_payload_sha256": "f7d1ef4b2420db417ae2c5ba2a915021cc9fae05ffa8d01df6b868634f9f1909",
+      "local_mcp_capture": "/Users/rohanvinaik/.local/share/TrialLedger/acceptance/design-session-walkthrough-exceptions-inflammatory-bowel-2026-11-03/scoped-randomized-maintenance-mcp-wire.jsonl",
+      "mcp_capture_sha256": "52d1c800009963d8e3804d4a166da92c4048a4a01bab3b5d3f0b1ae6aa876dc0"
+    },
+    {
+      "name": "population-context-retracted",
+      "cli_command": [
+        "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/python3",
+        "-m",
+        "TrialLedger",
+        "reason",
+        "--request",
+        "/Users/rohanvinaik/tools/TrialLedger/acceptance/design-session-walkthrough-exceptions-inflammatory-bowel-2026-11-03/requests/population-context-retracted.json"
+      ],
+      "mcp_command": [
+        "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/python3",
+        "-m",
+        "TrialLedger",
+        "mcp",
+        "--root",
+        "/Users/rohanvinaik/.local/share/TrialLedger/acceptance/design-session-walkthrough-exceptions-inflammatory-bowel-2026-11-03/mcp-root"
+      ],
+      "cli_exit_code": 0,
+      "mcp_exit_code": 0,
+      "complete_json_equal_excluding_tool_wrapper": true,
+      "request_sha256": "932c8959f3ada7ab13a79aef7d853812320fec442110f84b6c267006c0077f94",
+      "canonical_result_sha256": "c955e55ea906f05b5a673d0061eaa33928408dbb0c7840223da77e82fbd167c0",
+      "mcp_payload_sha256": "4893c8c97ac0635073148c6641e189e3b662f5c683fa2e731378f2d07eab322a",
+      "local_mcp_capture": "/Users/rohanvinaik/.local/share/TrialLedger/acceptance/design-session-walkthrough-exceptions-inflammatory-bowel-2026-11-03/population-context-retracted-mcp-wire.jsonl",
+      "mcp_capture_sha256": "3c842bb5768b6418101b6a45a71e37102867619021d945fb28c8ecae8fe7b3cb"
+    },
+    {
+      "name": "describe-source_assertions",
+      "cli_command": [
+        "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/python3",
+        "-m",
+        "TrialLedger",
+        "reason",
+        "--request",
+        "/Users/rohanvinaik/tools/TrialLedger/acceptance/design-session-walkthrough-exceptions-inflammatory-bowel-2026-11-03/requests/describe-source_assertions.json"
+      ],
+      "mcp_command": [
+        "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/python3",
+        "-m",
+        "TrialLedger",
+        "mcp",
+        "--root",
+        "/Users/rohanvinaik/.local/share/TrialLedger/acceptance/design-session-walkthrough-exceptions-inflammatory-bowel-2026-11-03/mcp-root"
+      ],
+      "cli_exit_code": 0,
+      "mcp_exit_code": 0,
+      "complete_json_equal_excluding_tool_wrapper": true,
+      "request_sha256": "43f30c03332ffa528b978620c1de65577b3f54c864476f69afa75cf540354bc9",
+      "canonical_result_sha256": "ccc417d0594d10bc2638ac409c2f80569b15ad2f0e602df67c80e261ce1a4a79",
+      "mcp_payload_sha256": "c284c06f23ea3dc806267449243e017fa8457d2f9067e11cb392c21120cb13fb",
+      "local_mcp_capture": "/Users/rohanvinaik/.local/share/TrialLedger/acceptance/design-session-walkthrough-exceptions-inflammatory-bowel-2026-11-03/describe-source_assertions-mcp-wire.jsonl",
+      "mcp_capture_sha256": "3cf31190e11d2ab9894f46ed80c25f8225bc12a228bb4e037dc8b7f6a38826b4"
+    },
+    {
+      "name": "describe-interpretations",
+      "cli_command": [
+        "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/python3",
+        "-m",
+        "TrialLedger",
+        "reason",
+        "--request",
+        "/Users/rohanvinaik/tools/TrialLedger/acceptance/design-session-walkthrough-exceptions-inflammatory-bowel-2026-11-03/requests/describe-interpretations.json"
+      ],
+      "mcp_command": [
+        "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/python3",
+        "-m",
+        "TrialLedger",
+        "mcp",
+        "--root",
+        "/Users/rohanvinaik/.local/share/TrialLedger/acceptance/design-session-walkthrough-exceptions-inflammatory-bowel-2026-11-03/mcp-root"
+      ],
+      "cli_exit_code": 0,
+      "mcp_exit_code": 0,
+      "complete_json_equal_excluding_tool_wrapper": true,
+      "request_sha256": "80473a807b51a414651feec36adeed5fadca294a77b547ef8f6825725b3ed4a3",
+      "canonical_result_sha256": "cf266cf283d847ce01fc8ceb928be94a9a059eea8968fe3264cda1fdedbe7f57",
+      "mcp_payload_sha256": "f9eae97f9c16507c3518523115b44a5472c0e7cee0bb7a20e1cc0bd10f3d72de",
+      "local_mcp_capture": "/Users/rohanvinaik/.local/share/TrialLedger/acceptance/design-session-walkthrough-exceptions-inflammatory-bowel-2026-11-03/describe-interpretations-mcp-wire.jsonl",
+      "mcp_capture_sha256": "2240961273d9b54db59ea97b36e47784a5a930e5827eed1026df24b3afd31164"
+    }
+  ],
+  "focused_standing_observed": [
+    {
+      "view": "source_assertions",
+      "answer_guide_standing": "For conditional metadata, choose wording from standing and the effective warrant: interpolated means settled by default or under an overridable working assumption; proposed means an unconfirmed reading, refused by ordinary entailment and explored only in its named hypothetical frame. Conditional alone does not make those states interchangeable. Open alone establishes neither design freedom nor an evidence gap; inspect the question and all blockers."
+    },
+    {
+      "view": "interpretations",
+      "answer_guide_standing": "For conditional metadata, choose wording from standing and the effective warrant: interpolated means settled by default or under an overridable working assumption; proposed means an unconfirmed reading, refused by ordinary entailment and explored only in its named hypothetical frame. Conditional alone does not make those states interchangeable. Open alone establishes neither design freedom nor an evidence gap; inspect the question and all blockers."
+    }
+  ],
+  "completed_at_utc": "2026-11-03T20:51:15.996248+00:00",
+  "retained_acquisition": {
+    "local_packet": "/Users/rohanvinaik/.local/share/TrialLedger/acceptance/design-session-walkthrough-exceptions-inflammatory-bowel-2026-11-03",
+    "full_report": "/Users/rohanvinaik/.local/share/TrialLedger/acceptance/design-session-walkthrough-exceptions-inflammatory-bowel-2026-11-03/retained-report",
+    "raw_body": "/Users/rohanvinaik/.local/share/TrialLedger/acceptance/design-session-walkthrough-exceptions-inflammatory-bowel-2026-11-03/retained-report/bodies/studies-001.json",
+    "raw_sha256": "ca9d12ac7a05f83256c7b4741cc502ec8a3f3547e8240e3e381706c09ae1cfd6",
+    "original_local_capture_mtime_utc": "2026-11-03T20:00:32.007450+00:00",
+    "capture_time_kind": "Original local response-body filesystem write time, not an independently recorded network response timestamp.",
+    "registry_data_timestamp": "2026-11-03T10:00:05",
+    "report_file_count": 17,
+    "report_bytes": 6922037,
+    "retained_copy_verified_equal": true,
+    "report_files_inventory_in": "local-retention.json"
+  },
+  "rule_versions": {
+    "landscape_schema": 4,
+    "contract": "4.1",
+    "trialledger": "0.1.0",
+    "derivation_code_root": "bdbe6253f6db6c7a9798911734f519edf556af1ce1afa51c89d04e8895caa0ef",
+    "display": "display-1",
+    "eligibility_sections": "registry-headings-source-passages/1",
+    "registry_checks": 3
+  },
+  "limits": [
+    "Guide-only metadata acceptance; target-set exception bridge and task2.8 remain unintegrated.",
+    "No clinician-confirmed clinical interpretation or selected new-trial policy.",
+    "Current reasoning uses retained fresh acquisition from this increment, not a new registry pull at acceptance time.",
+    "Complete reasoning inputs/results support layer-two replay under this writing version; layer-one report verification also requires the local retained full report."
+  ]
+}

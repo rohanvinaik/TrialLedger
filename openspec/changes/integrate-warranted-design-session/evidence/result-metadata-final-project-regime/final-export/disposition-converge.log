@@ -1,0 +1,95 @@
+  … disposition_code: tracing 18 function-routed tests
+  … disposition_code: baseline traced · 18 tests · 0.0s
+  … disposition_code: 1/189 mutants · 3.5/s · ETA estimating… (heartbeat)
+  … disposition_code: 189/189 mutants · 230.4/s · done in 0.8s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.1s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  ▸ pass 0: 25 value-survivor(s) — synthesizing killing tests…
+  ▸ pass 0: +9 new killing test(s) written [test_TrialLedger_layer2_result_semantics_disposition_code_3741ce9eea_synth.py]
+  … disposition_code: tracing 40 function-routed tests
+  … disposition_code: baseline traced · 40 tests · 0.0s
+  … disposition_code: 189/189 mutants · 155.3/s · done in 1.2s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  ▸ pass 1: 25 survivor(s) — no progress, at floor
+  ▸ witness pass: searching richer inputs for a distinguishing kill…
+  ▸ witness pass: +11 distinguishing kill test(s) auto-written
+  ▸ finalizing — re-profiling the full mutant universe against the written suite…
+  … disposition_code: tracing 51 function-routed tests
+  … disposition_code: baseline traced · 51 tests · 0.0s
+  … disposition_code: 189/189 mutants · 149.9/s · done in 1.3s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  ▸ minimizing — dropped 9 redundant test(s) our own cover flagged
+  … disposition_code: tracing 42 function-routed tests
+  … disposition_code: baseline traced · 42 tests · 0.0s
+  … disposition_code: 189/189 mutants · 155.0/s · done in 1.2s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  … disposition_code: tracing 1 function-routed tests
+  … disposition_code: baseline traced · 1 tests · 0.0s
+  ▸ 12 survivor(s) remain — classifying (killable / equivalent / needs-input)…
+  ▸ verifying reproducibility — fresh isolated observation of the function's proof basis…
+  … disposition_code: tracing 42 function-routed tests
+  … disposition_code: baseline traced · 42 tests · 0.0s
+  … disposition_code: tracing 2 function-routed tests
+  … disposition_code: baseline traced · 2 tests · 0.0s
+  ▸ reproducibility confirmed — the certificate rests on the isolated observation
+──────────────────────────────────────────────────────────────────────────────
+TrialLedger/layer2/result_semantics.py::disposition_code — converge · 189 behaviours · 177 pinned · 12 candidate-equivalent
+
+  ✓ wrote              11 test(s) → tests/detective/test_TrialLedger_layer2_result_semantics_disposition_code_3741ce9eea_synth.py
+  ✗ uncovered          1 line(s): 183
+                       line 183 runs only when: standing != 'known'
+  · unproven-equiv     12 — the search found no distinguishing input
+  ⚠ structural         a survivor above may be KILLABLE, not equivalent — confirm over a nested/cross-referential --input (or a branch no input reached) before you `flag` (full report)
+  · not consulted      80 collected test(s) have no static path to this function — not traced (a missed dynamic reacher costs a redundant generated test, never a certificate)
+  · full report        .detective/reports/converge_disposition_code.txt
+
+AUTHOR INPUTS:  write the calls that reach the uncovered lines below
+
+  · Signature          disposition_code(logical_result: str, standing: str, completion: str)
+  · Template           --input "(<logical_result>, <standing>, <completion>)"  (replace every <...> slot before running)
+
+  · Task               Author 1 call(s) — one per line below — each as
+                       its own --input. Detective derives every test from them.
+  · Why                Every killable mutant is already dead. What is left is
+                       lines no test executes; a mutant on a line that never
+                       runs cannot be killed, so reach these first.
+  · Uncovered          1. line 183 — reached only when: standing != 'known'
+
+THEN RUN:  detective converge 'TrialLedger/layer2/result_semantics.py::disposition_code' --two-sign
+
+FINAL TrialLedger/layer2/result_semantics.py::disposition_code: Incomplete: 1-line gap · 177/189 killed · 11 test(s) → tests/detective/test_TrialLedger_layer2_result_semantics_disposition_code_3741ce9eea_synth.py · policy 9+neg.f5a15364c11d

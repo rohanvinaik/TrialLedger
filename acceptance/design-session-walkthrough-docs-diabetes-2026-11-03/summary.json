@@ -1,0 +1,283 @@
+[
+  {
+    "case": "NCT04657016-source-reading",
+    "fixed": [
+      {
+        "id": "registered-adult-minimum",
+        "result": "ENTAILED"
+      },
+      {
+        "id": "diabetes",
+        "result": "UNDETERMINED"
+      },
+      {
+        "id": "BMI-under-27",
+        "result": "UNDETERMINED"
+      },
+      {
+        "id": "must-BMI-at-least-30",
+        "result": "UNDETERMINED"
+      }
+    ],
+    "frames": [
+      {
+        "id": "source-reading",
+        "state": "compatible",
+        "queries": [
+          {
+            "id": "registered-adult-minimum",
+            "result": "ENTAILED"
+          },
+          {
+            "id": "diabetes",
+            "result": "REFUTED"
+          },
+          {
+            "id": "BMI-under-27",
+            "result": "REFUTED"
+          },
+          {
+            "id": "must-BMI-at-least-30",
+            "result": "UNDETERMINED"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "case": "NCT04255433-source-reading",
+    "fixed": [
+      {
+        "id": "registered-adult-minimum",
+        "result": "ENTAILED"
+      },
+      {
+        "id": "registered-age-below-40",
+        "result": "REFUTED"
+      },
+      {
+        "id": "requires-T2D",
+        "result": "UNDETERMINED"
+      },
+      {
+        "id": "requires-defined-CVD",
+        "result": "UNDETERMINED"
+      },
+      {
+        "id": "screening-HbA1c-11",
+        "result": "UNDETERMINED"
+      }
+    ],
+    "frames": [
+      {
+        "id": "source-reading",
+        "state": "compatible",
+        "queries": [
+          {
+            "id": "registered-adult-minimum",
+            "result": "ENTAILED"
+          },
+          {
+            "id": "registered-age-below-40",
+            "result": "REFUTED"
+          },
+          {
+            "id": "requires-T2D",
+            "result": "ENTAILED"
+          },
+          {
+            "id": "requires-defined-CVD",
+            "result": "ENTAILED"
+          },
+          {
+            "id": "screening-HbA1c-11",
+            "result": "REFUTED"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "case": "NCT05260021-source-reading",
+    "fixed": [
+      {
+        "id": "registered-minimum-10",
+        "result": "ENTAILED"
+      },
+      {
+        "id": "registered-age-18",
+        "result": "UNDETERMINED"
+      },
+      {
+        "id": "age-18-at-screening",
+        "result": "UNDETERMINED"
+      },
+      {
+        "id": "requires-metformin",
+        "result": "UNDETERMINED"
+      },
+      {
+        "id": "requires-basal-insulin",
+        "result": "UNDETERMINED"
+      },
+      {
+        "id": "requires-some-background",
+        "result": "UNDETERMINED"
+      }
+    ],
+    "frames": [
+      {
+        "id": "source-reading",
+        "state": "compatible",
+        "queries": [
+          {
+            "id": "registered-minimum-10",
+            "result": "ENTAILED"
+          },
+          {
+            "id": "registered-age-18",
+            "result": "UNDETERMINED"
+          },
+          {
+            "id": "age-18-at-screening",
+            "result": "REFUTED"
+          },
+          {
+            "id": "requires-metformin",
+            "result": "UNDETERMINED"
+          },
+          {
+            "id": "requires-basal-insulin",
+            "result": "UNDETERMINED"
+          },
+          {
+            "id": "requires-some-background",
+            "result": "ENTAILED"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "case": "NCT05260021-age-reading-withdrawn",
+    "fixed": [
+      {
+        "id": "registered-minimum-10",
+        "result": "ENTAILED"
+      },
+      {
+        "id": "registered-age-18",
+        "result": "UNDETERMINED"
+      },
+      {
+        "id": "age-18-at-screening",
+        "result": "UNDETERMINED"
+      },
+      {
+        "id": "requires-metformin",
+        "result": "UNDETERMINED"
+      },
+      {
+        "id": "requires-basal-insulin",
+        "result": "UNDETERMINED"
+      },
+      {
+        "id": "requires-some-background",
+        "result": "UNDETERMINED"
+      }
+    ],
+    "frames": [
+      {
+        "id": "screening-age-reading-withdrawn",
+        "state": "compatible",
+        "queries": [
+          {
+            "id": "registered-minimum-10",
+            "result": "ENTAILED"
+          },
+          {
+            "id": "registered-age-18",
+            "result": "UNDETERMINED"
+          },
+          {
+            "id": "age-18-at-screening",
+            "result": "UNDETERMINED"
+          },
+          {
+            "id": "requires-metformin",
+            "result": "UNDETERMINED"
+          },
+          {
+            "id": "requires-basal-insulin",
+            "result": "UNDETERMINED"
+          },
+          {
+            "id": "requires-some-background",
+            "result": "ENTAILED"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "case": "NCT05260021-hypothetical-both-drugs",
+    "fixed": [
+      {
+        "id": "registered-minimum-10",
+        "result": "ENTAILED"
+      },
+      {
+        "id": "registered-age-18",
+        "result": "UNDETERMINED"
+      },
+      {
+        "id": "age-18-at-screening",
+        "result": "UNDETERMINED"
+      },
+      {
+        "id": "requires-metformin",
+        "result": "UNDETERMINED"
+      },
+      {
+        "id": "requires-basal-insulin",
+        "result": "UNDETERMINED"
+      },
+      {
+        "id": "requires-some-background",
+        "result": "UNDETERMINED"
+      }
+    ],
+    "frames": [
+      {
+        "id": "hypothetical-both-background-drugs",
+        "state": "compatible",
+        "queries": [
+          {
+            "id": "registered-minimum-10",
+            "result": "ENTAILED"
+          },
+          {
+            "id": "registered-age-18",
+            "result": "UNDETERMINED"
+          },
+          {
+            "id": "age-18-at-screening",
+            "result": "REFUTED"
+          },
+          {
+            "id": "requires-metformin",
+            "result": "ENTAILED"
+          },
+          {
+            "id": "requires-basal-insulin",
+            "result": "ENTAILED"
+          },
+          {
+            "id": "requires-some-background",
+            "result": "ENTAILED"
+          }
+        ]
+      }
+    ]
+  }
+]

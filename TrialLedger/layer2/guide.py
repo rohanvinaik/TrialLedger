@@ -2,7 +2,8 @@
 
 The assistant translates; the operations reason. It restates the person's criteria and questions as typed
 premises, shows them back in plain words, runs the operation and reports the computed answer in one of
-four categories, citing the premise that decided it. This module holds that guide: the answer categories
+four clinical categories, with separate translation and computation tasks, citing the deciding premise.
+This module holds that guide: the answer categories
 and how each operation's results map to them, the clinical words that name a computed object, and a
 worked session whose every request runs and returns the result stated beside it. It reads nothing,
 writes nothing and decides nothing; the operations in `service` do the reasoning.
@@ -49,7 +50,7 @@ CATEGORIES = {
     ),
     "not_knowable_here": (
         "This evidence cannot settle it: registry silence, too few trials or sponsors, unknown "
-        "membership, abstained rarity or a computation limit. Say what is missing; silence is not "
+        "membership or abstained rarity. Say what is missing; silence is not "
         "absence and an unknown is not false."
     ),
 }
@@ -85,8 +86,9 @@ ENTAILMENT_BLOCKERS = {
         "The participant profile contradicts itself; repair it before using it as an eligibility witness.",
     ),
     "resource_bound": (
-        "not_knowable_here",
-        "Too large to settle within the computation limit; narrow the question.",
+        "computation",
+        "Not resolved within the computation limit; narrow the question or use a sufficient limit. "
+        "This is unfinished computation, not evidence that the source cannot settle it.",
     ),
     "proposed_refused": (
         "your_call",
@@ -542,10 +544,18 @@ def worked_session() -> dict[str, Any]:
 
 
 def answer_guide() -> dict[str, Any]:
-    """The roles, the four categories and how every operation's results map to them."""
+    """Clinical categories and separate translation/computation tasks for actual operation results."""
     return {
         "roles": ROLES,
         "categories": CATEGORIES,
+        "standing": (
+            "For conditional metadata, choose wording from standing and the effective warrant: "
+            "interpolated means settled by default or under an overridable working assumption; proposed "
+            "means an unconfirmed reading, refused by ordinary entailment and explored only in its named "
+            "hypothetical frame. Conditional alone does not make those states interchangeable. Open "
+            "alone establishes neither design freedom nor an evidence gap; inspect the question and "
+            "all blockers."
+        ),
         "entailment": {
             "decisions": {name: list(value) for name, value in ENTAILMENT_DECISIONS.items()},
             "translation_diagnostics": (
@@ -566,6 +576,12 @@ def answer_guide() -> dict[str, Any]:
         "translation": (
             "Items marked translation are encoding problems for the assistant to settle with the person "
             "before answering. They are not clinical answers and fall in none of the four categories."
+        ),
+        "computation": (
+            "A computation task is separate from the four clinical categories. Keep its limit and "
+            "affected query visible; narrow or complete the computation without calling it an evidence "
+            "gap. Retain every simultaneous blocker and independently settled result. The response "
+            "metadata describes individual findings; request completion is not solver completion."
         ),
         "coordinates": {name: list(value) for name, value in COORDINATE_STATES.items()},
         "corpus": {name: list(value) for name, value in CORPUS_RESULTS.items()},

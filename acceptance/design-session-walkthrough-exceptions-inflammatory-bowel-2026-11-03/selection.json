@@ -1,0 +1,53 @@
+{
+  "question": "For a proposed new ustekinumab maintenance study, which induction-response, eligibility and population assumptions are needed before baseline or participant-flow information can constrain entry restrictions?",
+  "query": {
+    "drug": [
+      "ustekinumab"
+    ],
+    "condition": "Crohn Disease",
+    "phase": [
+      "PHASE3"
+    ],
+    "status": [
+      "COMPLETED"
+    ]
+  },
+  "seed": 4203754419260876930,
+  "selection_rule": "Sample three identifiers without replacement from the sorted complete query pool, or all if fewer than three. No replacement based on clinical content. Seed recorded before reading selected study content.",
+  "scope_limit_before_gather": 30,
+  "clinical_readings": "Proposed unless a source-defined direct rule actually applies. Flow dropouts and protocol deviations are not automatically eligibility exceptions.",
+  "reasoning_status": "Completed guide-only metadata acceptance: four actual CLI/MCP pairs, scoped population revision and independent known age. Target-set exception bridge/task2.8 remain pending.",
+  "pool": [
+    "NCT01369329",
+    "NCT01369342",
+    "NCT01369355",
+    "NCT03107793",
+    "NCT03464136",
+    "NCT03782376",
+    "NCT03926130",
+    "NCT04245215",
+    "NCT04673357",
+    "NCT05299931"
+  ],
+  "preflight": {
+    "url": "https://clinicaltrials.gov/api/v2/studies?filter.advanced=%28AREA%5BInterventionName%5D%22ustekinumab%22+OR+AREA%5BInterventionOtherName%5D%22ustekinumab%22%29+AND+AREA%5BPhase%5DPHASE3+AND+AREA%5BOverallStatus%5DCOMPLETED&query.cond=Crohn+Disease&format=json&fields=NCTId&countTotal=true&pageSize=1000",
+    "sha256": "f6ce7d586c6bc088c54681fe62ba70154ad10290e95c6d493bcf6114fbba9272",
+    "total_count": 10,
+    "complete": true,
+    "within_scope_limit": true,
+    "retained_body": "/Users/rohanvinaik/.local/share/TrialLedger/acceptance/design-session-walkthrough-exceptions-inflammatory-bowel-2026-11-03/id-preflight.json"
+  },
+  "sample": [
+    "NCT03107793",
+    "NCT01369355",
+    "NCT04245215"
+  ],
+  "gather": {
+    "matched": 10,
+    "original_run": "/tmp/trialledger-bowel-exceptions-20261103",
+    "raw_batch_sha256": "ca9d12ac7a05f83256c7b4741cc502ec8a3f3547e8240e3e381706c09ae1cfd6",
+    "retained_source_body": "/Users/rohanvinaik/.local/share/TrialLedger/acceptance/design-session-walkthrough-exceptions-inflammatory-bowel-2026-11-03/retained-report/bodies/studies-001.json",
+    "duplicate_workbook_and_lookup_cache_not_copied": true,
+    "original_report_retained_at": "/Users/rohanvinaik/.local/share/TrialLedger/acceptance/design-session-walkthrough-exceptions-inflammatory-bowel-2026-11-03/retained-report"
+  }
+}

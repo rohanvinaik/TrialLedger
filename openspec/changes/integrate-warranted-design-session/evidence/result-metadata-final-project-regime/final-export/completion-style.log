@@ -1,0 +1,9 @@
+TrialLedger/layer2/result_semantics.py::completion_code — flag --style
+
+  ✓ recorded           style judgment — leave (One total decision assigns completion with explicit precedence: computation limit, unsupported, malformed refusal, unknown result/cause, then complete. Each branch is a different remedy; extracting branches would hide that precedence without introducing an independent policy. Public mixed-cause tests exercise the consumer separately. This is a scoped style judgment, not semantic certification of adapters.)
+                       keyed to this exact definition and its current reading (AMBIGUOUS) —
+                       an edit, or a changed verdict, REOPENS it; a fence outranks it.
+
+DONE:  `plan` excludes this region by your decision (judged_leave) until the code
+       or its reading moves. It never touches the behavior layer.
+       Next: detective plan 'TrialLedger/layer2/result_semantics.py::completion_code'

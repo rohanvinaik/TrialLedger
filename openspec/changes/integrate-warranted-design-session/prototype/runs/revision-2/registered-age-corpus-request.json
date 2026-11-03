@@ -1,0 +1,69 @@
+{
+  "operation": "corpus",
+  "trials": [
+    {
+      "id": "NCT00322452",
+      "sponsor": "AstraZeneca",
+      "stratum": "explicit-two-record-structured-age-comparison-not-full-clinical-comparability",
+      "elements": [
+        "inclusion:minimum_age=18_Years"
+      ],
+      "typed": true,
+      "basis": [
+        "prototype:direct-structured-age-only-no-complete-eligibility-encoding"
+      ],
+      "standing": {
+        "status": "proposed",
+        "resolution": "unresolved",
+        "basis": [
+          "prototype:other-source-content-and-comparability-not-encoded"
+        ]
+      },
+      "feature_standings": {
+        "elements": {
+          "inclusion:minimum_age=18_Years": {
+            "status": "known",
+            "resolution": "resolved",
+            "basis": [
+              "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/protocolSection/eligibilityModule/minimumAge",
+              "ctg-structured-general-eligibility-age:1"
+            ]
+          }
+        }
+      },
+      "class_unresolved": true
+    },
+    {
+      "id": "NCT01774721",
+      "sponsor": "Pfizer",
+      "stratum": "explicit-two-record-structured-age-comparison-not-full-clinical-comparability",
+      "elements": [
+        "inclusion:minimum_age=18_Years"
+      ],
+      "typed": true,
+      "basis": [
+        "prototype:direct-structured-age-only-no-complete-eligibility-encoding"
+      ],
+      "standing": {
+        "status": "proposed",
+        "resolution": "unresolved",
+        "basis": [
+          "prototype:other-source-content-and-comparability-not-encoded"
+        ]
+      },
+      "feature_standings": {
+        "elements": {
+          "inclusion:minimum_age=18_Years": {
+            "status": "known",
+            "resolution": "resolved",
+            "basis": [
+              "ctg:NCT01774721:3c36eb9ab86ea1b30b764fec80c4e08504f9103533db6d3c69b31c0ada6147b1#/protocolSection/eligibilityModule/minimumAge",
+              "ctg-structured-general-eligibility-age:1"
+            ]
+          }
+        }
+      },
+      "class_unresolved": true
+    }
+  ]
+}

@@ -153,7 +153,19 @@ Route every result into the decision list by category:
   comparable trials that chose differently, which cohort is meant, whether to confirm a reading, or whether
   the criteria should address something they are silent on.
 - **Not knowable from this evidence:** registry silence, too few trials or sponsors, unknown membership,
-  abstained rarity or a computation limit. Record it as an evidence gap on the relevant entry.
+  or abstained rarity because support is insufficient. Record it as an evidence gap on the relevant entry.
+
+Separately, a computation limit means **not resolved within the computation limit**. Record a computation
+task, such as narrowing the question or rerunning with an adequate supported limit, rather than an evidence
+gap. It establishes neither that evidence is insufficient nor that a design option is free. Several causes
+can affect one answer; keep every material cause and its remedy visible alongside independently settled
+results.
+
+When metadata says `conditional`, choose the clinical wording from `standing` and the effective warrant:
+`interpolated` means an overridable default or working assumption; `proposed` means an unconfirmed reading,
+refused by ordinary entailment and usable only conditionally inside a named hypothetical frame. The
+disposition alone does not make those two states interchangeable. Per-finding `open` does not establish
+design freedom; inspect the question, blockers and feasible alternatives before calling it the person's choice.
 
 UNDETERMINED is not a failure. When "must everyone be at least 65?" is asked of a brief requiring 18 or older,
 the answer is **allowed but not required**: say "Your draft does not require age 65 or older; its age
@@ -161,7 +173,7 @@ restriction allows both ranges." This checks the encoded age restriction, not ev
 particular patient's enrollment. A positive answer about one restriction likewise means only that restriction
 fits.
 
-Read every blocker of an UNDETERMINED result and report the most specific:
+Read every blocker of an UNDETERMINED result and report every material cause, using its most specific wording:
 
 | Blocker | Say | Category |
 |---|---|---|
@@ -169,7 +181,7 @@ Read every blocker of an UNDETERMINED result and report the most specific:
 | `open_scope:<kind>:<ref>` | "It depends on which cohort/arm/phase you mean." Rerun with that context. | Your call |
 | `conflicting:<id>` | "That criterion has conflicting readings; which applies?" | Your call |
 | `unresolved_rule`, `unresolved_assertion`, `unresolved_scope`, `unresolved_literal`, `unspecified_boundary`, `opaque` | Nothing clinical yet: a premise is incompletely stated. Settle the wording, origin, group or limit inclusivity with the person. | Translation |
-| `resource_bound` | "Too large to settle within the computation limit"; narrow the question. | Not knowable here |
+| `resource_bound` | "Not resolved within the computation limit"; narrow the question or rerun with an adequate supported limit. | Computation task |
 | `no_constraint_mentions_query` | First check your encoding (units are never converted; time windows match only when identical). If the encoding is right: "Your criteria don't address this. Should they?" | Your call |
 | `undecided_by_constraints` (alone) | "Allowed but not required by criterion X." | Your call |
 
@@ -237,9 +249,9 @@ Keep one entry per consequential choice:
 - **Status:** open, or chosen by the person (their premise, with its origin).
 
 Something's wrong goes first, as a blocker. Your call becomes an entry. Not knowable becomes an evidence gap
-on the relevant entry. Settled results are context cited from the entry they inform. When the person settles
-a decision, record it as their premise and recompute everything that depends on it. End a session by handing
-over the list, not only the answers.
+on the relevant entry; a computation limit becomes a separate computation task. Settled results are context
+cited from the entry they inform. When the person settles a decision, record it as their premise and recompute
+everything that depends on it. End a session by handing over the list, not only the answers.
 
 Alongside the list keep the clinical question, the chosen comparison set and references to the latest
 request/result pairs. With file-writing access, keep the list in a human-readable `working-brief.md` with
@@ -540,3 +552,7 @@ or clinical meaning. `pull` separately preserves complete source JSON/CSV with a
 current `design`/`edits` command or automatic workbook annotation import. The unsafe `resolve`/`profile` raw
 clinical readers are retired, not alternative entry points. Contributors read DEVELOPING.md and
 openspec/README.md.
+
+For development work, follow the [model-operated clinical workflow check](DEVELOPING.md#model-operated-clinical-workflow-check)
+after each substantial implementation or documentation-focused change. It is outside CI and is not a
+required tour for a person requesting clinical reference sheets.

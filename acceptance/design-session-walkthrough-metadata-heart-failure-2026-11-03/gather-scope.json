@@ -1,0 +1,7 @@
+{
+ "query": {
+  "filter.advanced": "(AREA[InterventionName]\"empagliflozin\" OR AREA[InterventionOtherName]\"empagliflozin\") AND AREA[Phase]PHASE3 AND AREA[OverallStatus]COMPLETED",
+  "query.cond": "Heart Failure"
+ },
+ "rxnav": []
+}

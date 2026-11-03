@@ -1,0 +1,41 @@
+{
+ "api_version": "2.0.5",
+ "data_timestamp": "2026-11-03T10:00:05",
+ "study_digests": [
+  "6157530c3f671318ae92abfbd9b075e80f447856228453eeb1a0fc5771b593c0",
+  "8df85cfe3256de5c7d26bb822d7a87494ffc0ca3dc7f79e9a327058c90c765d8",
+  "03073ece77ecd0cd36815a72422867329d2446dd162d52a33b072a7c1bdc3452",
+  "6bbfa6623b3c42e62756daeafaa841488494fe4cbbd4a2a904506a9fe76de6c6",
+  "651d50db132a20a8261fdfcbcddd46ad377d98a32d477c3d4094c19a0ee65f11",
+  "c087e3424f8fd2bc0d0bc14f9b72990437ed3dbe34c9b4db9365216a1e27ed65",
+  "619c275b11f3e6ea8c049fb63484166c967d19fa0d725c81580c1f8b01153a48",
+  "ff42ee9dde4b0c66cb16970433a35eacc4339b1dd13ec92ece3cbefbc5f57644",
+  "15551162b076d4561e03ee20a625ad75521a72af6bf12a460c90d4838d750aab"
+ ],
+ "merkle_root": "03c3c8fbfa7af32148d69a3f6e32ba6b7da141879bd0943d9244c3230a7995db",
+ "code_commit": "a3987b05db21f0cf3f871cc36f272ddc516c1ec2",
+ "rule_versions": {
+  "landscape_schema": 4,
+  "contract": "4.1",
+  "trialledger": "0.1.0",
+  "derivation_code_root": "bdbe6253f6db6c7a9798911734f519edf556af1ce1afa51c89d04e8895caa0ef",
+  "display": "display-1",
+  "eligibility_sections": "registry-headings-source-passages/1",
+  "registry_checks": 3
+ },
+ "retrieval": {
+  "mode": "direct",
+  "matched": 9,
+  "read": 9,
+  "drug_classes": {
+   "state": "looked_up",
+   "source": "NLM RxClass asked for the EPC and MoA classes of every drug, biological and genetic intervention of the studies read, and RxNav for the RxNorm identity, ATC classes and structure of each experimental arm's drug, biological or genetic intervention only; cached in the run folder's classes.json"
+  }
+ },
+ "input_digests": {
+  "request.json": "f79b587341cfe58e0cd8f787e6cfd34a7d595c90b9d28e46099f3ffbca703e66",
+  "resolution.json": "b21aec92130f982749fde21306e47933f4ef950ba5db98d4e11fe4de3a177c9f",
+  "scope.json": "30fe8a37b1e4c5a85513866339f085a2ba5332561fcf1f85114758b9c8f7429b",
+  "classes.json": "e86e3bfd42cf6a7b814c43f895b5c4ef62435ab4390d14e3fe178ac3991310ab"
+ }
+}

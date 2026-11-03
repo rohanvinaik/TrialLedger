@@ -1,0 +1,87 @@
+[
+  {
+    "case": "NCT04657016-source-reading",
+    "entry": "CLI",
+    "exit_code": 0,
+    "code_before": "618c55a93f2add2e4b945b0587de4ae42e287ff2651a87554ee6cac7729610b5",
+    "code_after": "618c55a93f2add2e4b945b0587de4ae42e287ff2651a87554ee6cac7729610b5",
+    "code": "complete"
+  },
+  {
+    "case": "NCT04657016-source-reading",
+    "entry": "MCP stdio",
+    "exit_code": 0,
+    "code_before": "618c55a93f2add2e4b945b0587de4ae42e287ff2651a87554ee6cac7729610b5",
+    "code_after": "618c55a93f2add2e4b945b0587de4ae42e287ff2651a87554ee6cac7729610b5",
+    "code": "complete",
+    "matches_cli": true
+  },
+  {
+    "case": "NCT04255433-source-reading",
+    "entry": "CLI",
+    "exit_code": 0,
+    "code_before": "618c55a93f2add2e4b945b0587de4ae42e287ff2651a87554ee6cac7729610b5",
+    "code_after": "618c55a93f2add2e4b945b0587de4ae42e287ff2651a87554ee6cac7729610b5",
+    "code": "complete"
+  },
+  {
+    "case": "NCT04255433-source-reading",
+    "entry": "MCP stdio",
+    "exit_code": 0,
+    "code_before": "618c55a93f2add2e4b945b0587de4ae42e287ff2651a87554ee6cac7729610b5",
+    "code_after": "618c55a93f2add2e4b945b0587de4ae42e287ff2651a87554ee6cac7729610b5",
+    "code": "complete",
+    "matches_cli": true
+  },
+  {
+    "case": "NCT05260021-source-reading",
+    "entry": "CLI",
+    "exit_code": 0,
+    "code_before": "618c55a93f2add2e4b945b0587de4ae42e287ff2651a87554ee6cac7729610b5",
+    "code_after": "618c55a93f2add2e4b945b0587de4ae42e287ff2651a87554ee6cac7729610b5",
+    "code": "complete"
+  },
+  {
+    "case": "NCT05260021-source-reading",
+    "entry": "MCP stdio",
+    "exit_code": 0,
+    "code_before": "618c55a93f2add2e4b945b0587de4ae42e287ff2651a87554ee6cac7729610b5",
+    "code_after": "618c55a93f2add2e4b945b0587de4ae42e287ff2651a87554ee6cac7729610b5",
+    "code": "complete",
+    "matches_cli": true
+  },
+  {
+    "case": "NCT05260021-age-reading-withdrawn",
+    "entry": "CLI",
+    "exit_code": 0,
+    "code_before": "618c55a93f2add2e4b945b0587de4ae42e287ff2651a87554ee6cac7729610b5",
+    "code_after": "618c55a93f2add2e4b945b0587de4ae42e287ff2651a87554ee6cac7729610b5",
+    "code": "complete"
+  },
+  {
+    "case": "NCT05260021-age-reading-withdrawn",
+    "entry": "MCP stdio",
+    "exit_code": 0,
+    "code_before": "618c55a93f2add2e4b945b0587de4ae42e287ff2651a87554ee6cac7729610b5",
+    "code_after": "618c55a93f2add2e4b945b0587de4ae42e287ff2651a87554ee6cac7729610b5",
+    "code": "complete",
+    "matches_cli": true
+  },
+  {
+    "case": "NCT05260021-hypothetical-both-drugs",
+    "entry": "CLI",
+    "exit_code": 0,
+    "code_before": "618c55a93f2add2e4b945b0587de4ae42e287ff2651a87554ee6cac7729610b5",
+    "code_after": "618c55a93f2add2e4b945b0587de4ae42e287ff2651a87554ee6cac7729610b5",
+    "code": "complete"
+  },
+  {
+    "case": "NCT05260021-hypothetical-both-drugs",
+    "entry": "MCP stdio",
+    "exit_code": 0,
+    "code_before": "618c55a93f2add2e4b945b0587de4ae42e287ff2651a87554ee6cac7729610b5",
+    "code_after": "618c55a93f2add2e4b945b0587de4ae42e287ff2651a87554ee6cac7729610b5",
+    "code": "complete",
+    "matches_cli": true
+  }
+]

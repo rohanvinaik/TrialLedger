@@ -1,0 +1,7 @@
+{
+ "query": {
+  "filter.advanced": "(AREA[InterventionName]\"ustekinumab\" OR AREA[InterventionOtherName]\"ustekinumab\") AND AREA[Phase]PHASE3 AND AREA[OverallStatus]COMPLETED",
+  "query.cond": "Crohn Disease"
+ },
+ "rxnav": []
+}
