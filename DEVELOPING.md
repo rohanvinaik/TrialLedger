@@ -166,6 +166,20 @@ material is not a premise; defaults remain interpolated through strict consequen
 alternatives, not a vote; duplicate encodings are not independent evidence. Every result remains conditional
 on its supplied premises and retains their source/user/agent origin.
 
+## Admission and information handoffs
+
+`layer2.admission` validates explicit standing; `coordinate_admission` keeps known/interpolated evidence
+separate; `corpus_admission` projects per-feature support for every public corpus consumer. Missing support
+is pending. Original values, provenance and reasons remain alongside accepted computations. Unknown class
+membership and pending readings can withhold associations; independent known dimensions still constrain
+occupancy. Translation diagnostics describe exact typed-identity differences, never clinical aliases.
+See `docs/REASONING_CONSUMERS.md` and the executable `examples/reasoning-admission/` session.
+
+`scripts/trace_reasoning_consumers.py` runs actual CLI/MCP dispatch for all discovery examples and retained
+source/admission sessions, comparing complete JSON and recording call edges plus source hashes. It is a
+reachability receipt, not semantic proof. Adversarial tests provide separate behavior evidence. Reporting
+partial outcomes use only source-defined conventions and never import the clinical reasoning layer.
+
 ## Verification
 
 Trace production consumers and duplicate paths before behavior edits. Use symbolic/AST inspection, read

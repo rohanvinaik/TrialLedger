@@ -30,6 +30,10 @@ partial components. Reporting completion does not require finishing these tasks.
 - [x] 4m. Expose source_assertions through CLI/MCP/discovery and execute real retained NIH examples through existing reasoning, updating conversational documentation and assistant context.
 - [x] 4n. Verify real consumers, adversarial admission boundaries, per-class identified/abstained/wrong results, scoped two-sign/contract checks, full gate and installed entry points; persist exact limitations and receipts. See acceptance/source-bridge-2026-11-03.md.
 
+- [x] 4o. Guard every public coordinate/corpus consumer with explicit standing and per-feature support, preserve pending information and known dimensions, add structural translation diagnostics, and verify cross-operation handoffs through real entrypoints.
+
+- [x] 4p. Preserve source-defined partial date outcomes and independent reporting calculations/conflicts through JSON and workbook consumers, with codebook scope, source identity and malformed-input limits.
+
 - [ ] 5. Integrate versioned concept/measurement registries and independent identity/ontology sources, with resolved bindings, scope, editions, licenses and explicit ambiguity.
 - [ ] 6. Implement source-to-scoped-assertion compilation, preserving alternatives, referents, qualifiers, local force, conditions, definitions, cohorts and time; refuse unresolved projections and remove every flat-atom fallback.
 - [ ] 7. Integrate domain applicability and full strict/default strata semantics, conflict suspension, user override/recomputation and explicit consumer projections.

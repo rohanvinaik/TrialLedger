@@ -1,0 +1,4900 @@
+{
+  "audit": "signal-to-design-bound handoff",
+  "date": "2026-11-03",
+  "scope": "Seven exact repeat cases authorized by root after original twelve-probe display truncation; no new hypotheses",
+  "clinical_status": "All premises invented; no clinical claims or registry facts",
+  "cases": [
+    {
+      "case": "02_derived_lower30_exception0",
+      "premise_origin": "Entirely invented typed audit premises; no clinical claims",
+      "request": {
+        "operation": "design_bounds",
+        "study_ref": "invented:study:v1",
+        "signals": [
+          {
+            "id": "audit-overlap",
+            "kind": "overlap",
+            "data": {
+              "universe": "invented:baseline",
+              "alignment": "confirmed",
+              "total": 100,
+              "marginals": [
+                {
+                  "ref": "a",
+                  "universe": "invented:baseline",
+                  "lower": 70,
+                  "upper": 70
+                },
+                {
+                  "ref": "b",
+                  "universe": "invented:baseline",
+                  "lower": 60,
+                  "upper": 60
+                }
+              ]
+            },
+            "support": [
+              {
+                "id": "source",
+                "status": "known",
+                "resolution": "resolved",
+                "basis": [
+                  "invented:exact-input:v1"
+                ]
+              },
+              {
+                "id": "binding",
+                "status": "interpolated",
+                "resolution": "resolved",
+                "basis": [
+                  "invented:binding:v1"
+                ]
+              }
+            ],
+            "bindings": {
+              "a": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "invented-A",
+                  "kind": "condition_status"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "boolean",
+                  "members": [],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                }
+              },
+              "b": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "invented-B",
+                  "kind": "condition_status"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "boolean",
+                  "members": [],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                }
+              }
+            }
+          }
+        ],
+        "observations": [
+          {
+            "id": "joint-witness",
+            "denominator": 100,
+            "population": "invented:baseline",
+            "context": {},
+            "bridge": {
+              "status": "interpolated",
+              "resolution": "resolved",
+              "max_exceptions": 0,
+              "basis": [
+                "invented:eligibility-witness-bridge"
+              ]
+            },
+            "derivation": {
+              "signal": "audit-overlap",
+              "witness": "intersection"
+            }
+          }
+        ],
+        "candidates": [
+          {
+            "id": "no_joint",
+            "assertions": [
+              {
+                "applicability": {
+                  "class": "Always"
+                },
+                "body": {
+                  "class": "AllOf",
+                  "parts": [
+                    {
+                      "class": "Literal",
+                      "evidence": [],
+                      "polarity": "positive",
+                      "predicate": {
+                        "class": "Predicate",
+                        "key": "invented-A",
+                        "kind": "condition_status"
+                      },
+                      "qualifiers": {
+                        "class": "Always"
+                      },
+                      "subject": {
+                        "class": "Subject",
+                        "kind": "participant",
+                        "referent": ""
+                      },
+                      "time": null,
+                      "value": {
+                        "class": "Value",
+                        "comparison": "eq",
+                        "inclusivity": "unspecified",
+                        "kind": "boolean",
+                        "members": [],
+                        "number": null,
+                        "unit": "",
+                        "upper": null
+                      }
+                    },
+                    {
+                      "class": "Literal",
+                      "evidence": [],
+                      "polarity": "positive",
+                      "predicate": {
+                        "class": "Predicate",
+                        "key": "invented-B",
+                        "kind": "condition_status"
+                      },
+                      "qualifiers": {
+                        "class": "Always"
+                      },
+                      "subject": {
+                        "class": "Subject",
+                        "kind": "participant",
+                        "referent": ""
+                      },
+                      "time": null,
+                      "value": {
+                        "class": "Value",
+                        "comparison": "eq",
+                        "inclusivity": "unspecified",
+                        "kind": "boolean",
+                        "members": [],
+                        "number": null,
+                        "unit": "",
+                        "upper": null
+                      }
+                    }
+                  ]
+                },
+                "branch": {
+                  "class": "Branch",
+                  "node": "unresolved",
+                  "path": []
+                },
+                "class": "ScopedAssertion",
+                "cohort": {
+                  "class": "Scope",
+                  "kind": "all_participants",
+                  "parts": [],
+                  "ref": ""
+                },
+                "criterion_ref": "invented:candidate:v1",
+                "id": "excludes-joint",
+                "modality": "excluded",
+                "resolution": "resolved",
+                "rule": {
+                  "answers": [],
+                  "class": "Rule",
+                  "id": "invented-explicit",
+                  "premises": [],
+                  "version": "1",
+                  "warrants": [
+                    "invented:design:v1"
+                  ]
+                },
+                "span": [],
+                "status": "known"
+              }
+            ]
+          },
+          {
+            "id": "requires_A",
+            "assertions": [
+              {
+                "applicability": {
+                  "class": "Always"
+                },
+                "body": {
+                  "class": "Literal",
+                  "evidence": [],
+                  "polarity": "positive",
+                  "predicate": {
+                    "class": "Predicate",
+                    "key": "invented-A",
+                    "kind": "condition_status"
+                  },
+                  "qualifiers": {
+                    "class": "Always"
+                  },
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "participant",
+                    "referent": ""
+                  },
+                  "time": null,
+                  "value": {
+                    "class": "Value",
+                    "comparison": "eq",
+                    "inclusivity": "unspecified",
+                    "kind": "boolean",
+                    "members": [],
+                    "number": null,
+                    "unit": "",
+                    "upper": null
+                  }
+                },
+                "branch": {
+                  "class": "Branch",
+                  "node": "unresolved",
+                  "path": []
+                },
+                "class": "ScopedAssertion",
+                "cohort": {
+                  "class": "Scope",
+                  "kind": "all_participants",
+                  "parts": [],
+                  "ref": ""
+                },
+                "criterion_ref": "invented:candidate:v1",
+                "id": "requires-A",
+                "modality": "required",
+                "resolution": "resolved",
+                "rule": {
+                  "answers": [],
+                  "class": "Rule",
+                  "id": "invented-explicit",
+                  "premises": [],
+                  "version": "1",
+                  "warrants": [
+                    "invented:design:v1"
+                  ]
+                },
+                "span": [],
+                "status": "known"
+              }
+            ]
+          }
+        ],
+        "query": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+            "class": "Predicate",
+            "key": "invented-A",
+            "kind": "condition_status"
+          },
+          "qualifiers": {
+            "class": "Always"
+          },
+          "subject": {
+            "class": "Subject",
+            "kind": "participant",
+            "referent": ""
+          },
+          "time": null,
+          "value": {
+            "class": "Value",
+            "comparison": "eq",
+            "inclusivity": "unspecified",
+            "kind": "boolean",
+            "members": [],
+            "number": null,
+            "unit": "",
+            "upper": null
+          }
+        }
+      },
+      "response": {
+        "code": "complete",
+        "operation": "design_bounds",
+        "result": {
+          "basis": "Conditional on the supplied typed premises; their source meaning is not certified by this operation.",
+          "study_ref": "invented:study:v1",
+          "premises": {
+            "operation": "design_bounds",
+            "study_ref": "invented:study:v1",
+            "signals": [
+              {
+                "id": "audit-overlap",
+                "kind": "overlap",
+                "data": {
+                  "universe": "invented:baseline",
+                  "alignment": "confirmed",
+                  "total": 100,
+                  "marginals": [
+                    {
+                      "ref": "a",
+                      "universe": "invented:baseline",
+                      "lower": 70,
+                      "upper": 70
+                    },
+                    {
+                      "ref": "b",
+                      "universe": "invented:baseline",
+                      "lower": 60,
+                      "upper": 60
+                    }
+                  ]
+                },
+                "support": [
+                  {
+                    "id": "source",
+                    "status": "known",
+                    "resolution": "resolved",
+                    "basis": [
+                      "invented:exact-input:v1"
+                    ]
+                  },
+                  {
+                    "id": "binding",
+                    "status": "interpolated",
+                    "resolution": "resolved",
+                    "basis": [
+                      "invented:binding:v1"
+                    ]
+                  }
+                ],
+                "bindings": {
+                  "a": {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "invented-A",
+                      "kind": "condition_status"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "participant",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "eq",
+                      "inclusivity": "unspecified",
+                      "kind": "boolean",
+                      "members": [],
+                      "number": null,
+                      "unit": "",
+                      "upper": null
+                    }
+                  },
+                  "b": {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "invented-B",
+                      "kind": "condition_status"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "participant",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "eq",
+                      "inclusivity": "unspecified",
+                      "kind": "boolean",
+                      "members": [],
+                      "number": null,
+                      "unit": "",
+                      "upper": null
+                    }
+                  }
+                }
+              }
+            ],
+            "observations": [
+              {
+                "id": "joint-witness",
+                "denominator": 100,
+                "population": "invented:baseline",
+                "context": {},
+                "bridge": {
+                  "status": "interpolated",
+                  "resolution": "resolved",
+                  "max_exceptions": 0,
+                  "basis": [
+                    "invented:eligibility-witness-bridge"
+                  ]
+                },
+                "derivation": {
+                  "signal": "audit-overlap",
+                  "witness": "intersection"
+                }
+              }
+            ],
+            "candidates": [
+              {
+                "id": "no_joint",
+                "assertions": [
+                  {
+                    "applicability": {
+                      "class": "Always"
+                    },
+                    "body": {
+                      "class": "AllOf",
+                      "parts": [
+                        {
+                          "class": "Literal",
+                          "evidence": [],
+                          "polarity": "positive",
+                          "predicate": {
+                            "class": "Predicate",
+                            "key": "invented-A",
+                            "kind": "condition_status"
+                          },
+                          "qualifiers": {
+                            "class": "Always"
+                          },
+                          "subject": {
+                            "class": "Subject",
+                            "kind": "participant",
+                            "referent": ""
+                          },
+                          "time": null,
+                          "value": {
+                            "class": "Value",
+                            "comparison": "eq",
+                            "inclusivity": "unspecified",
+                            "kind": "boolean",
+                            "members": [],
+                            "number": null,
+                            "unit": "",
+                            "upper": null
+                          }
+                        },
+                        {
+                          "class": "Literal",
+                          "evidence": [],
+                          "polarity": "positive",
+                          "predicate": {
+                            "class": "Predicate",
+                            "key": "invented-B",
+                            "kind": "condition_status"
+                          },
+                          "qualifiers": {
+                            "class": "Always"
+                          },
+                          "subject": {
+                            "class": "Subject",
+                            "kind": "participant",
+                            "referent": ""
+                          },
+                          "time": null,
+                          "value": {
+                            "class": "Value",
+                            "comparison": "eq",
+                            "inclusivity": "unspecified",
+                            "kind": "boolean",
+                            "members": [],
+                            "number": null,
+                            "unit": "",
+                            "upper": null
+                          }
+                        }
+                      ]
+                    },
+                    "branch": {
+                      "class": "Branch",
+                      "node": "unresolved",
+                      "path": []
+                    },
+                    "class": "ScopedAssertion",
+                    "cohort": {
+                      "class": "Scope",
+                      "kind": "all_participants",
+                      "parts": [],
+                      "ref": ""
+                    },
+                    "criterion_ref": "invented:candidate:v1",
+                    "id": "excludes-joint",
+                    "modality": "excluded",
+                    "resolution": "resolved",
+                    "rule": {
+                      "answers": [],
+                      "class": "Rule",
+                      "id": "invented-explicit",
+                      "premises": [],
+                      "version": "1",
+                      "warrants": [
+                        "invented:design:v1"
+                      ]
+                    },
+                    "span": [],
+                    "status": "known"
+                  }
+                ]
+              },
+              {
+                "id": "requires_A",
+                "assertions": [
+                  {
+                    "applicability": {
+                      "class": "Always"
+                    },
+                    "body": {
+                      "class": "Literal",
+                      "evidence": [],
+                      "polarity": "positive",
+                      "predicate": {
+                        "class": "Predicate",
+                        "key": "invented-A",
+                        "kind": "condition_status"
+                      },
+                      "qualifiers": {
+                        "class": "Always"
+                      },
+                      "subject": {
+                        "class": "Subject",
+                        "kind": "participant",
+                        "referent": ""
+                      },
+                      "time": null,
+                      "value": {
+                        "class": "Value",
+                        "comparison": "eq",
+                        "inclusivity": "unspecified",
+                        "kind": "boolean",
+                        "members": [],
+                        "number": null,
+                        "unit": "",
+                        "upper": null
+                      }
+                    },
+                    "branch": {
+                      "class": "Branch",
+                      "node": "unresolved",
+                      "path": []
+                    },
+                    "class": "ScopedAssertion",
+                    "cohort": {
+                      "class": "Scope",
+                      "kind": "all_participants",
+                      "parts": [],
+                      "ref": ""
+                    },
+                    "criterion_ref": "invented:candidate:v1",
+                    "id": "requires-A",
+                    "modality": "required",
+                    "resolution": "resolved",
+                    "rule": {
+                      "answers": [],
+                      "class": "Rule",
+                      "id": "invented-explicit",
+                      "premises": [],
+                      "version": "1",
+                      "warrants": [
+                        "invented:design:v1"
+                      ]
+                    },
+                    "span": [],
+                    "status": "known"
+                  }
+                ]
+              }
+            ],
+            "query": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "invented-A",
+                "kind": "condition_status"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "eq",
+                "inclusivity": "unspecified",
+                "kind": "boolean",
+                "members": [],
+                "number": null,
+                "unit": "",
+                "upper": null
+              }
+            }
+          },
+          "candidates": [
+            {
+              "id": "no_joint",
+              "state": "ruled_out",
+              "observations": [
+                {
+                  "observation": "joint-witness",
+                  "support": "witness",
+                  "state": "ruled_out",
+                  "status": "interpolated",
+                  "basis": [
+                    "invented:exact-input:v1",
+                    "invented:binding:v1",
+                    "invented:eligibility-witness-bridge"
+                  ],
+                  "decision": {
+                    "result": "REFUTED",
+                    "query": "{\"class\":\"AllOf\",\"parts\":[{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"invented-A\",\"kind\":\"condition_status\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"invented-B\",\"kind\":\"condition_status\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}]}",
+                    "status": "known",
+                    "proof": [
+                      "excludes-joint"
+                    ],
+                    "blockers": []
+                  },
+                  "bounds": {
+                    "lower": 30,
+                    "upper": 60
+                  },
+                  "derivation": {
+                    "signal": "audit-overlap",
+                    "witness": "intersection",
+                    "lower": 30,
+                    "upper": 60,
+                    "expression": {
+                      "kind": "all_of",
+                      "refs": [
+                        "a",
+                        "b"
+                      ]
+                    },
+                    "rule": "numeric.overlap:1"
+                  }
+                }
+              ],
+              "query_decision": {
+                "result": "UNDETERMINED",
+                "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"invented-A\",\"kind\":\"condition_status\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+                "status": null,
+                "proof": [
+                  "excludes-joint"
+                ],
+                "blockers": [
+                  "undecided_by_constraints"
+                ]
+              },
+              "signal_checks": []
+            },
+            {
+              "id": "requires_A",
+              "state": "not_ruled_out",
+              "observations": [
+                {
+                  "observation": "joint-witness",
+                  "support": "witness",
+                  "state": "not_ruled_out",
+                  "status": "interpolated",
+                  "basis": [
+                    "invented:exact-input:v1",
+                    "invented:binding:v1",
+                    "invented:eligibility-witness-bridge"
+                  ],
+                  "decision": {
+                    "result": "UNDETERMINED",
+                    "query": "{\"class\":\"AllOf\",\"parts\":[{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"invented-A\",\"kind\":\"condition_status\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"invented-B\",\"kind\":\"condition_status\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}]}",
+                    "status": null,
+                    "proof": [
+                      "requires-A"
+                    ],
+                    "blockers": [
+                      "undecided_by_constraints"
+                    ]
+                  },
+                  "bounds": {
+                    "lower": 30,
+                    "upper": 60
+                  },
+                  "derivation": {
+                    "signal": "audit-overlap",
+                    "witness": "intersection",
+                    "lower": 30,
+                    "upper": 60,
+                    "expression": {
+                      "kind": "all_of",
+                      "refs": [
+                        "a",
+                        "b"
+                      ]
+                    },
+                    "rule": "numeric.overlap:1"
+                  }
+                }
+              ],
+              "query_decision": {
+                "result": "ENTAILED",
+                "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"invented-A\",\"kind\":\"condition_status\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+                "status": "known",
+                "proof": [
+                  "requires-A"
+                ],
+                "blockers": []
+              },
+              "signal_checks": []
+            }
+          ],
+          "remaining": [
+            "requires_A"
+          ],
+          "consequence": {
+            "result": "ENTAILED",
+            "status": "interpolated",
+            "basis": "All remaining declared candidate designs; includes the support of eliminations."
+          },
+          "signals": [
+            {
+              "id": "audit-overlap",
+              "kind": "overlap",
+              "code": "bounded",
+              "calculation_code": "bounded",
+              "value": {
+                "universe": "invented:baseline",
+                "total": 100,
+                "counts": [
+                  {
+                    "id": "intersection",
+                    "lower": 30,
+                    "upper": 60
+                  }
+                ],
+                "witnesses": [
+                  {
+                    "id": "intersection",
+                    "lower": 30,
+                    "upper": 60,
+                    "expression": {
+                      "kind": "all_of",
+                      "refs": [
+                        "a",
+                        "b"
+                      ]
+                    }
+                  }
+                ]
+              },
+              "rule": "numeric.overlap:1",
+              "status": "interpolated",
+              "basis": [
+                "invented:exact-input:v1",
+                "invented:binding:v1"
+              ],
+              "support": [
+                {
+                  "id": "source",
+                  "status": "known",
+                  "resolution": "resolved",
+                  "basis": [
+                    "invented:exact-input:v1"
+                  ]
+                },
+                {
+                  "id": "binding",
+                  "status": "interpolated",
+                  "resolution": "resolved",
+                  "basis": [
+                    "invented:binding:v1"
+                  ]
+                }
+              ],
+              "blockers": []
+            }
+          ],
+          "limits": "Declared candidate family only; source meaning and eligibility bridges are not certified. No automatic table interpretation or source mutation."
+        },
+        "problems": []
+      },
+      "input_unchanged": true
+    },
+    {
+      "case": "03_derived_exception30",
+      "premise_origin": "Entirely invented typed audit premises; no clinical claims",
+      "request": {
+        "operation": "design_bounds",
+        "study_ref": "invented:study:v1",
+        "signals": [
+          {
+            "id": "audit-overlap",
+            "kind": "overlap",
+            "data": {
+              "universe": "invented:baseline",
+              "alignment": "confirmed",
+              "total": 100,
+              "marginals": [
+                {
+                  "ref": "a",
+                  "universe": "invented:baseline",
+                  "lower": 70,
+                  "upper": 70
+                },
+                {
+                  "ref": "b",
+                  "universe": "invented:baseline",
+                  "lower": 60,
+                  "upper": 60
+                }
+              ]
+            },
+            "support": [
+              {
+                "id": "source",
+                "status": "known",
+                "resolution": "resolved",
+                "basis": [
+                  "invented:exact-input:v1"
+                ]
+              },
+              {
+                "id": "binding",
+                "status": "interpolated",
+                "resolution": "resolved",
+                "basis": [
+                  "invented:binding:v1"
+                ]
+              }
+            ],
+            "bindings": {
+              "a": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "invented-A",
+                  "kind": "condition_status"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "boolean",
+                  "members": [],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                }
+              },
+              "b": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "invented-B",
+                  "kind": "condition_status"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "boolean",
+                  "members": [],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                }
+              }
+            }
+          }
+        ],
+        "observations": [
+          {
+            "id": "joint-witness",
+            "denominator": 100,
+            "population": "invented:baseline",
+            "context": {},
+            "bridge": {
+              "status": "interpolated",
+              "resolution": "resolved",
+              "max_exceptions": 30,
+              "basis": [
+                "invented:eligibility-witness-bridge"
+              ]
+            },
+            "derivation": {
+              "signal": "audit-overlap",
+              "witness": "intersection"
+            }
+          }
+        ],
+        "candidates": [
+          {
+            "id": "no_joint",
+            "assertions": [
+              {
+                "applicability": {
+                  "class": "Always"
+                },
+                "body": {
+                  "class": "AllOf",
+                  "parts": [
+                    {
+                      "class": "Literal",
+                      "evidence": [],
+                      "polarity": "positive",
+                      "predicate": {
+                        "class": "Predicate",
+                        "key": "invented-A",
+                        "kind": "condition_status"
+                      },
+                      "qualifiers": {
+                        "class": "Always"
+                      },
+                      "subject": {
+                        "class": "Subject",
+                        "kind": "participant",
+                        "referent": ""
+                      },
+                      "time": null,
+                      "value": {
+                        "class": "Value",
+                        "comparison": "eq",
+                        "inclusivity": "unspecified",
+                        "kind": "boolean",
+                        "members": [],
+                        "number": null,
+                        "unit": "",
+                        "upper": null
+                      }
+                    },
+                    {
+                      "class": "Literal",
+                      "evidence": [],
+                      "polarity": "positive",
+                      "predicate": {
+                        "class": "Predicate",
+                        "key": "invented-B",
+                        "kind": "condition_status"
+                      },
+                      "qualifiers": {
+                        "class": "Always"
+                      },
+                      "subject": {
+                        "class": "Subject",
+                        "kind": "participant",
+                        "referent": ""
+                      },
+                      "time": null,
+                      "value": {
+                        "class": "Value",
+                        "comparison": "eq",
+                        "inclusivity": "unspecified",
+                        "kind": "boolean",
+                        "members": [],
+                        "number": null,
+                        "unit": "",
+                        "upper": null
+                      }
+                    }
+                  ]
+                },
+                "branch": {
+                  "class": "Branch",
+                  "node": "unresolved",
+                  "path": []
+                },
+                "class": "ScopedAssertion",
+                "cohort": {
+                  "class": "Scope",
+                  "kind": "all_participants",
+                  "parts": [],
+                  "ref": ""
+                },
+                "criterion_ref": "invented:candidate:v1",
+                "id": "excludes-joint",
+                "modality": "excluded",
+                "resolution": "resolved",
+                "rule": {
+                  "answers": [],
+                  "class": "Rule",
+                  "id": "invented-explicit",
+                  "premises": [],
+                  "version": "1",
+                  "warrants": [
+                    "invented:design:v1"
+                  ]
+                },
+                "span": [],
+                "status": "known"
+              }
+            ]
+          },
+          {
+            "id": "requires_A",
+            "assertions": [
+              {
+                "applicability": {
+                  "class": "Always"
+                },
+                "body": {
+                  "class": "Literal",
+                  "evidence": [],
+                  "polarity": "positive",
+                  "predicate": {
+                    "class": "Predicate",
+                    "key": "invented-A",
+                    "kind": "condition_status"
+                  },
+                  "qualifiers": {
+                    "class": "Always"
+                  },
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "participant",
+                    "referent": ""
+                  },
+                  "time": null,
+                  "value": {
+                    "class": "Value",
+                    "comparison": "eq",
+                    "inclusivity": "unspecified",
+                    "kind": "boolean",
+                    "members": [],
+                    "number": null,
+                    "unit": "",
+                    "upper": null
+                  }
+                },
+                "branch": {
+                  "class": "Branch",
+                  "node": "unresolved",
+                  "path": []
+                },
+                "class": "ScopedAssertion",
+                "cohort": {
+                  "class": "Scope",
+                  "kind": "all_participants",
+                  "parts": [],
+                  "ref": ""
+                },
+                "criterion_ref": "invented:candidate:v1",
+                "id": "requires-A",
+                "modality": "required",
+                "resolution": "resolved",
+                "rule": {
+                  "answers": [],
+                  "class": "Rule",
+                  "id": "invented-explicit",
+                  "premises": [],
+                  "version": "1",
+                  "warrants": [
+                    "invented:design:v1"
+                  ]
+                },
+                "span": [],
+                "status": "known"
+              }
+            ]
+          }
+        ],
+        "query": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+            "class": "Predicate",
+            "key": "invented-A",
+            "kind": "condition_status"
+          },
+          "qualifiers": {
+            "class": "Always"
+          },
+          "subject": {
+            "class": "Subject",
+            "kind": "participant",
+            "referent": ""
+          },
+          "time": null,
+          "value": {
+            "class": "Value",
+            "comparison": "eq",
+            "inclusivity": "unspecified",
+            "kind": "boolean",
+            "members": [],
+            "number": null,
+            "unit": "",
+            "upper": null
+          }
+        }
+      },
+      "response": {
+        "code": "complete",
+        "operation": "design_bounds",
+        "result": {
+          "basis": "Conditional on the supplied typed premises; their source meaning is not certified by this operation.",
+          "study_ref": "invented:study:v1",
+          "premises": {
+            "operation": "design_bounds",
+            "study_ref": "invented:study:v1",
+            "signals": [
+              {
+                "id": "audit-overlap",
+                "kind": "overlap",
+                "data": {
+                  "universe": "invented:baseline",
+                  "alignment": "confirmed",
+                  "total": 100,
+                  "marginals": [
+                    {
+                      "ref": "a",
+                      "universe": "invented:baseline",
+                      "lower": 70,
+                      "upper": 70
+                    },
+                    {
+                      "ref": "b",
+                      "universe": "invented:baseline",
+                      "lower": 60,
+                      "upper": 60
+                    }
+                  ]
+                },
+                "support": [
+                  {
+                    "id": "source",
+                    "status": "known",
+                    "resolution": "resolved",
+                    "basis": [
+                      "invented:exact-input:v1"
+                    ]
+                  },
+                  {
+                    "id": "binding",
+                    "status": "interpolated",
+                    "resolution": "resolved",
+                    "basis": [
+                      "invented:binding:v1"
+                    ]
+                  }
+                ],
+                "bindings": {
+                  "a": {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "invented-A",
+                      "kind": "condition_status"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "participant",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "eq",
+                      "inclusivity": "unspecified",
+                      "kind": "boolean",
+                      "members": [],
+                      "number": null,
+                      "unit": "",
+                      "upper": null
+                    }
+                  },
+                  "b": {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "invented-B",
+                      "kind": "condition_status"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "participant",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "eq",
+                      "inclusivity": "unspecified",
+                      "kind": "boolean",
+                      "members": [],
+                      "number": null,
+                      "unit": "",
+                      "upper": null
+                    }
+                  }
+                }
+              }
+            ],
+            "observations": [
+              {
+                "id": "joint-witness",
+                "denominator": 100,
+                "population": "invented:baseline",
+                "context": {},
+                "bridge": {
+                  "status": "interpolated",
+                  "resolution": "resolved",
+                  "max_exceptions": 30,
+                  "basis": [
+                    "invented:eligibility-witness-bridge"
+                  ]
+                },
+                "derivation": {
+                  "signal": "audit-overlap",
+                  "witness": "intersection"
+                }
+              }
+            ],
+            "candidates": [
+              {
+                "id": "no_joint",
+                "assertions": [
+                  {
+                    "applicability": {
+                      "class": "Always"
+                    },
+                    "body": {
+                      "class": "AllOf",
+                      "parts": [
+                        {
+                          "class": "Literal",
+                          "evidence": [],
+                          "polarity": "positive",
+                          "predicate": {
+                            "class": "Predicate",
+                            "key": "invented-A",
+                            "kind": "condition_status"
+                          },
+                          "qualifiers": {
+                            "class": "Always"
+                          },
+                          "subject": {
+                            "class": "Subject",
+                            "kind": "participant",
+                            "referent": ""
+                          },
+                          "time": null,
+                          "value": {
+                            "class": "Value",
+                            "comparison": "eq",
+                            "inclusivity": "unspecified",
+                            "kind": "boolean",
+                            "members": [],
+                            "number": null,
+                            "unit": "",
+                            "upper": null
+                          }
+                        },
+                        {
+                          "class": "Literal",
+                          "evidence": [],
+                          "polarity": "positive",
+                          "predicate": {
+                            "class": "Predicate",
+                            "key": "invented-B",
+                            "kind": "condition_status"
+                          },
+                          "qualifiers": {
+                            "class": "Always"
+                          },
+                          "subject": {
+                            "class": "Subject",
+                            "kind": "participant",
+                            "referent": ""
+                          },
+                          "time": null,
+                          "value": {
+                            "class": "Value",
+                            "comparison": "eq",
+                            "inclusivity": "unspecified",
+                            "kind": "boolean",
+                            "members": [],
+                            "number": null,
+                            "unit": "",
+                            "upper": null
+                          }
+                        }
+                      ]
+                    },
+                    "branch": {
+                      "class": "Branch",
+                      "node": "unresolved",
+                      "path": []
+                    },
+                    "class": "ScopedAssertion",
+                    "cohort": {
+                      "class": "Scope",
+                      "kind": "all_participants",
+                      "parts": [],
+                      "ref": ""
+                    },
+                    "criterion_ref": "invented:candidate:v1",
+                    "id": "excludes-joint",
+                    "modality": "excluded",
+                    "resolution": "resolved",
+                    "rule": {
+                      "answers": [],
+                      "class": "Rule",
+                      "id": "invented-explicit",
+                      "premises": [],
+                      "version": "1",
+                      "warrants": [
+                        "invented:design:v1"
+                      ]
+                    },
+                    "span": [],
+                    "status": "known"
+                  }
+                ]
+              },
+              {
+                "id": "requires_A",
+                "assertions": [
+                  {
+                    "applicability": {
+                      "class": "Always"
+                    },
+                    "body": {
+                      "class": "Literal",
+                      "evidence": [],
+                      "polarity": "positive",
+                      "predicate": {
+                        "class": "Predicate",
+                        "key": "invented-A",
+                        "kind": "condition_status"
+                      },
+                      "qualifiers": {
+                        "class": "Always"
+                      },
+                      "subject": {
+                        "class": "Subject",
+                        "kind": "participant",
+                        "referent": ""
+                      },
+                      "time": null,
+                      "value": {
+                        "class": "Value",
+                        "comparison": "eq",
+                        "inclusivity": "unspecified",
+                        "kind": "boolean",
+                        "members": [],
+                        "number": null,
+                        "unit": "",
+                        "upper": null
+                      }
+                    },
+                    "branch": {
+                      "class": "Branch",
+                      "node": "unresolved",
+                      "path": []
+                    },
+                    "class": "ScopedAssertion",
+                    "cohort": {
+                      "class": "Scope",
+                      "kind": "all_participants",
+                      "parts": [],
+                      "ref": ""
+                    },
+                    "criterion_ref": "invented:candidate:v1",
+                    "id": "requires-A",
+                    "modality": "required",
+                    "resolution": "resolved",
+                    "rule": {
+                      "answers": [],
+                      "class": "Rule",
+                      "id": "invented-explicit",
+                      "premises": [],
+                      "version": "1",
+                      "warrants": [
+                        "invented:design:v1"
+                      ]
+                    },
+                    "span": [],
+                    "status": "known"
+                  }
+                ]
+              }
+            ],
+            "query": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "invented-A",
+                "kind": "condition_status"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "eq",
+                "inclusivity": "unspecified",
+                "kind": "boolean",
+                "members": [],
+                "number": null,
+                "unit": "",
+                "upper": null
+              }
+            }
+          },
+          "candidates": [
+            {
+              "id": "no_joint",
+              "state": "not_ruled_out",
+              "observations": [
+                {
+                  "observation": "joint-witness",
+                  "support": "no_witness",
+                  "state": "not_ruled_out",
+                  "status": "interpolated",
+                  "basis": [
+                    "invented:exact-input:v1",
+                    "invented:binding:v1",
+                    "invented:eligibility-witness-bridge"
+                  ],
+                  "decision": {
+                    "result": "REFUTED",
+                    "query": "{\"class\":\"AllOf\",\"parts\":[{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"invented-A\",\"kind\":\"condition_status\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"invented-B\",\"kind\":\"condition_status\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}]}",
+                    "status": "known",
+                    "proof": [
+                      "excludes-joint"
+                    ],
+                    "blockers": []
+                  },
+                  "bounds": {
+                    "lower": 30,
+                    "upper": 60
+                  },
+                  "derivation": {
+                    "signal": "audit-overlap",
+                    "witness": "intersection",
+                    "lower": 30,
+                    "upper": 60,
+                    "expression": {
+                      "kind": "all_of",
+                      "refs": [
+                        "a",
+                        "b"
+                      ]
+                    },
+                    "rule": "numeric.overlap:1"
+                  }
+                }
+              ],
+              "query_decision": {
+                "result": "UNDETERMINED",
+                "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"invented-A\",\"kind\":\"condition_status\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+                "status": null,
+                "proof": [
+                  "excludes-joint"
+                ],
+                "blockers": [
+                  "undecided_by_constraints"
+                ]
+              },
+              "signal_checks": []
+            },
+            {
+              "id": "requires_A",
+              "state": "not_ruled_out",
+              "observations": [
+                {
+                  "observation": "joint-witness",
+                  "support": "no_witness",
+                  "state": "not_ruled_out",
+                  "status": "interpolated",
+                  "basis": [
+                    "invented:exact-input:v1",
+                    "invented:binding:v1",
+                    "invented:eligibility-witness-bridge"
+                  ],
+                  "decision": {
+                    "result": "UNDETERMINED",
+                    "query": "{\"class\":\"AllOf\",\"parts\":[{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"invented-A\",\"kind\":\"condition_status\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"invented-B\",\"kind\":\"condition_status\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}]}",
+                    "status": null,
+                    "proof": [
+                      "requires-A"
+                    ],
+                    "blockers": [
+                      "undecided_by_constraints"
+                    ]
+                  },
+                  "bounds": {
+                    "lower": 30,
+                    "upper": 60
+                  },
+                  "derivation": {
+                    "signal": "audit-overlap",
+                    "witness": "intersection",
+                    "lower": 30,
+                    "upper": 60,
+                    "expression": {
+                      "kind": "all_of",
+                      "refs": [
+                        "a",
+                        "b"
+                      ]
+                    },
+                    "rule": "numeric.overlap:1"
+                  }
+                }
+              ],
+              "query_decision": {
+                "result": "ENTAILED",
+                "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"invented-A\",\"kind\":\"condition_status\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+                "status": "known",
+                "proof": [
+                  "requires-A"
+                ],
+                "blockers": []
+              },
+              "signal_checks": []
+            }
+          ],
+          "remaining": [
+            "no_joint",
+            "requires_A"
+          ],
+          "consequence": {
+            "result": "UNDETERMINED",
+            "status": null,
+            "basis": "All remaining declared candidate designs; includes the support of eliminations."
+          },
+          "signals": [
+            {
+              "id": "audit-overlap",
+              "kind": "overlap",
+              "code": "bounded",
+              "calculation_code": "bounded",
+              "value": {
+                "universe": "invented:baseline",
+                "total": 100,
+                "counts": [
+                  {
+                    "id": "intersection",
+                    "lower": 30,
+                    "upper": 60
+                  }
+                ],
+                "witnesses": [
+                  {
+                    "id": "intersection",
+                    "lower": 30,
+                    "upper": 60,
+                    "expression": {
+                      "kind": "all_of",
+                      "refs": [
+                        "a",
+                        "b"
+                      ]
+                    }
+                  }
+                ]
+              },
+              "rule": "numeric.overlap:1",
+              "status": "interpolated",
+              "basis": [
+                "invented:exact-input:v1",
+                "invented:binding:v1"
+              ],
+              "support": [
+                {
+                  "id": "source",
+                  "status": "known",
+                  "resolution": "resolved",
+                  "basis": [
+                    "invented:exact-input:v1"
+                  ]
+                },
+                {
+                  "id": "binding",
+                  "status": "interpolated",
+                  "resolution": "resolved",
+                  "basis": [
+                    "invented:binding:v1"
+                  ]
+                }
+              ],
+              "blockers": []
+            }
+          ],
+          "limits": "Declared candidate family only; source meaning and eligibility bridges are not certified. No automatic table interpretation or source mutation."
+        },
+        "problems": []
+      },
+      "input_unchanged": true
+    },
+    {
+      "case": "04_derived_exception29",
+      "premise_origin": "Entirely invented typed audit premises; no clinical claims",
+      "request": {
+        "operation": "design_bounds",
+        "study_ref": "invented:study:v1",
+        "signals": [
+          {
+            "id": "audit-overlap",
+            "kind": "overlap",
+            "data": {
+              "universe": "invented:baseline",
+              "alignment": "confirmed",
+              "total": 100,
+              "marginals": [
+                {
+                  "ref": "a",
+                  "universe": "invented:baseline",
+                  "lower": 70,
+                  "upper": 70
+                },
+                {
+                  "ref": "b",
+                  "universe": "invented:baseline",
+                  "lower": 60,
+                  "upper": 60
+                }
+              ]
+            },
+            "support": [
+              {
+                "id": "source",
+                "status": "known",
+                "resolution": "resolved",
+                "basis": [
+                  "invented:exact-input:v1"
+                ]
+              },
+              {
+                "id": "binding",
+                "status": "interpolated",
+                "resolution": "resolved",
+                "basis": [
+                  "invented:binding:v1"
+                ]
+              }
+            ],
+            "bindings": {
+              "a": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "invented-A",
+                  "kind": "condition_status"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "boolean",
+                  "members": [],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                }
+              },
+              "b": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "invented-B",
+                  "kind": "condition_status"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "boolean",
+                  "members": [],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                }
+              }
+            }
+          }
+        ],
+        "observations": [
+          {
+            "id": "joint-witness",
+            "denominator": 100,
+            "population": "invented:baseline",
+            "context": {},
+            "bridge": {
+              "status": "interpolated",
+              "resolution": "resolved",
+              "max_exceptions": 29,
+              "basis": [
+                "invented:eligibility-witness-bridge"
+              ]
+            },
+            "derivation": {
+              "signal": "audit-overlap",
+              "witness": "intersection"
+            }
+          }
+        ],
+        "candidates": [
+          {
+            "id": "no_joint",
+            "assertions": [
+              {
+                "applicability": {
+                  "class": "Always"
+                },
+                "body": {
+                  "class": "AllOf",
+                  "parts": [
+                    {
+                      "class": "Literal",
+                      "evidence": [],
+                      "polarity": "positive",
+                      "predicate": {
+                        "class": "Predicate",
+                        "key": "invented-A",
+                        "kind": "condition_status"
+                      },
+                      "qualifiers": {
+                        "class": "Always"
+                      },
+                      "subject": {
+                        "class": "Subject",
+                        "kind": "participant",
+                        "referent": ""
+                      },
+                      "time": null,
+                      "value": {
+                        "class": "Value",
+                        "comparison": "eq",
+                        "inclusivity": "unspecified",
+                        "kind": "boolean",
+                        "members": [],
+                        "number": null,
+                        "unit": "",
+                        "upper": null
+                      }
+                    },
+                    {
+                      "class": "Literal",
+                      "evidence": [],
+                      "polarity": "positive",
+                      "predicate": {
+                        "class": "Predicate",
+                        "key": "invented-B",
+                        "kind": "condition_status"
+                      },
+                      "qualifiers": {
+                        "class": "Always"
+                      },
+                      "subject": {
+                        "class": "Subject",
+                        "kind": "participant",
+                        "referent": ""
+                      },
+                      "time": null,
+                      "value": {
+                        "class": "Value",
+                        "comparison": "eq",
+                        "inclusivity": "unspecified",
+                        "kind": "boolean",
+                        "members": [],
+                        "number": null,
+                        "unit": "",
+                        "upper": null
+                      }
+                    }
+                  ]
+                },
+                "branch": {
+                  "class": "Branch",
+                  "node": "unresolved",
+                  "path": []
+                },
+                "class": "ScopedAssertion",
+                "cohort": {
+                  "class": "Scope",
+                  "kind": "all_participants",
+                  "parts": [],
+                  "ref": ""
+                },
+                "criterion_ref": "invented:candidate:v1",
+                "id": "excludes-joint",
+                "modality": "excluded",
+                "resolution": "resolved",
+                "rule": {
+                  "answers": [],
+                  "class": "Rule",
+                  "id": "invented-explicit",
+                  "premises": [],
+                  "version": "1",
+                  "warrants": [
+                    "invented:design:v1"
+                  ]
+                },
+                "span": [],
+                "status": "known"
+              }
+            ]
+          },
+          {
+            "id": "requires_A",
+            "assertions": [
+              {
+                "applicability": {
+                  "class": "Always"
+                },
+                "body": {
+                  "class": "Literal",
+                  "evidence": [],
+                  "polarity": "positive",
+                  "predicate": {
+                    "class": "Predicate",
+                    "key": "invented-A",
+                    "kind": "condition_status"
+                  },
+                  "qualifiers": {
+                    "class": "Always"
+                  },
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "participant",
+                    "referent": ""
+                  },
+                  "time": null,
+                  "value": {
+                    "class": "Value",
+                    "comparison": "eq",
+                    "inclusivity": "unspecified",
+                    "kind": "boolean",
+                    "members": [],
+                    "number": null,
+                    "unit": "",
+                    "upper": null
+                  }
+                },
+                "branch": {
+                  "class": "Branch",
+                  "node": "unresolved",
+                  "path": []
+                },
+                "class": "ScopedAssertion",
+                "cohort": {
+                  "class": "Scope",
+                  "kind": "all_participants",
+                  "parts": [],
+                  "ref": ""
+                },
+                "criterion_ref": "invented:candidate:v1",
+                "id": "requires-A",
+                "modality": "required",
+                "resolution": "resolved",
+                "rule": {
+                  "answers": [],
+                  "class": "Rule",
+                  "id": "invented-explicit",
+                  "premises": [],
+                  "version": "1",
+                  "warrants": [
+                    "invented:design:v1"
+                  ]
+                },
+                "span": [],
+                "status": "known"
+              }
+            ]
+          }
+        ],
+        "query": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+            "class": "Predicate",
+            "key": "invented-A",
+            "kind": "condition_status"
+          },
+          "qualifiers": {
+            "class": "Always"
+          },
+          "subject": {
+            "class": "Subject",
+            "kind": "participant",
+            "referent": ""
+          },
+          "time": null,
+          "value": {
+            "class": "Value",
+            "comparison": "eq",
+            "inclusivity": "unspecified",
+            "kind": "boolean",
+            "members": [],
+            "number": null,
+            "unit": "",
+            "upper": null
+          }
+        }
+      },
+      "response": {
+        "code": "complete",
+        "operation": "design_bounds",
+        "result": {
+          "basis": "Conditional on the supplied typed premises; their source meaning is not certified by this operation.",
+          "study_ref": "invented:study:v1",
+          "premises": {
+            "operation": "design_bounds",
+            "study_ref": "invented:study:v1",
+            "signals": [
+              {
+                "id": "audit-overlap",
+                "kind": "overlap",
+                "data": {
+                  "universe": "invented:baseline",
+                  "alignment": "confirmed",
+                  "total": 100,
+                  "marginals": [
+                    {
+                      "ref": "a",
+                      "universe": "invented:baseline",
+                      "lower": 70,
+                      "upper": 70
+                    },
+                    {
+                      "ref": "b",
+                      "universe": "invented:baseline",
+                      "lower": 60,
+                      "upper": 60
+                    }
+                  ]
+                },
+                "support": [
+                  {
+                    "id": "source",
+                    "status": "known",
+                    "resolution": "resolved",
+                    "basis": [
+                      "invented:exact-input:v1"
+                    ]
+                  },
+                  {
+                    "id": "binding",
+                    "status": "interpolated",
+                    "resolution": "resolved",
+                    "basis": [
+                      "invented:binding:v1"
+                    ]
+                  }
+                ],
+                "bindings": {
+                  "a": {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "invented-A",
+                      "kind": "condition_status"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "participant",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "eq",
+                      "inclusivity": "unspecified",
+                      "kind": "boolean",
+                      "members": [],
+                      "number": null,
+                      "unit": "",
+                      "upper": null
+                    }
+                  },
+                  "b": {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "invented-B",
+                      "kind": "condition_status"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "participant",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "eq",
+                      "inclusivity": "unspecified",
+                      "kind": "boolean",
+                      "members": [],
+                      "number": null,
+                      "unit": "",
+                      "upper": null
+                    }
+                  }
+                }
+              }
+            ],
+            "observations": [
+              {
+                "id": "joint-witness",
+                "denominator": 100,
+                "population": "invented:baseline",
+                "context": {},
+                "bridge": {
+                  "status": "interpolated",
+                  "resolution": "resolved",
+                  "max_exceptions": 29,
+                  "basis": [
+                    "invented:eligibility-witness-bridge"
+                  ]
+                },
+                "derivation": {
+                  "signal": "audit-overlap",
+                  "witness": "intersection"
+                }
+              }
+            ],
+            "candidates": [
+              {
+                "id": "no_joint",
+                "assertions": [
+                  {
+                    "applicability": {
+                      "class": "Always"
+                    },
+                    "body": {
+                      "class": "AllOf",
+                      "parts": [
+                        {
+                          "class": "Literal",
+                          "evidence": [],
+                          "polarity": "positive",
+                          "predicate": {
+                            "class": "Predicate",
+                            "key": "invented-A",
+                            "kind": "condition_status"
+                          },
+                          "qualifiers": {
+                            "class": "Always"
+                          },
+                          "subject": {
+                            "class": "Subject",
+                            "kind": "participant",
+                            "referent": ""
+                          },
+                          "time": null,
+                          "value": {
+                            "class": "Value",
+                            "comparison": "eq",
+                            "inclusivity": "unspecified",
+                            "kind": "boolean",
+                            "members": [],
+                            "number": null,
+                            "unit": "",
+                            "upper": null
+                          }
+                        },
+                        {
+                          "class": "Literal",
+                          "evidence": [],
+                          "polarity": "positive",
+                          "predicate": {
+                            "class": "Predicate",
+                            "key": "invented-B",
+                            "kind": "condition_status"
+                          },
+                          "qualifiers": {
+                            "class": "Always"
+                          },
+                          "subject": {
+                            "class": "Subject",
+                            "kind": "participant",
+                            "referent": ""
+                          },
+                          "time": null,
+                          "value": {
+                            "class": "Value",
+                            "comparison": "eq",
+                            "inclusivity": "unspecified",
+                            "kind": "boolean",
+                            "members": [],
+                            "number": null,
+                            "unit": "",
+                            "upper": null
+                          }
+                        }
+                      ]
+                    },
+                    "branch": {
+                      "class": "Branch",
+                      "node": "unresolved",
+                      "path": []
+                    },
+                    "class": "ScopedAssertion",
+                    "cohort": {
+                      "class": "Scope",
+                      "kind": "all_participants",
+                      "parts": [],
+                      "ref": ""
+                    },
+                    "criterion_ref": "invented:candidate:v1",
+                    "id": "excludes-joint",
+                    "modality": "excluded",
+                    "resolution": "resolved",
+                    "rule": {
+                      "answers": [],
+                      "class": "Rule",
+                      "id": "invented-explicit",
+                      "premises": [],
+                      "version": "1",
+                      "warrants": [
+                        "invented:design:v1"
+                      ]
+                    },
+                    "span": [],
+                    "status": "known"
+                  }
+                ]
+              },
+              {
+                "id": "requires_A",
+                "assertions": [
+                  {
+                    "applicability": {
+                      "class": "Always"
+                    },
+                    "body": {
+                      "class": "Literal",
+                      "evidence": [],
+                      "polarity": "positive",
+                      "predicate": {
+                        "class": "Predicate",
+                        "key": "invented-A",
+                        "kind": "condition_status"
+                      },
+                      "qualifiers": {
+                        "class": "Always"
+                      },
+                      "subject": {
+                        "class": "Subject",
+                        "kind": "participant",
+                        "referent": ""
+                      },
+                      "time": null,
+                      "value": {
+                        "class": "Value",
+                        "comparison": "eq",
+                        "inclusivity": "unspecified",
+                        "kind": "boolean",
+                        "members": [],
+                        "number": null,
+                        "unit": "",
+                        "upper": null
+                      }
+                    },
+                    "branch": {
+                      "class": "Branch",
+                      "node": "unresolved",
+                      "path": []
+                    },
+                    "class": "ScopedAssertion",
+                    "cohort": {
+                      "class": "Scope",
+                      "kind": "all_participants",
+                      "parts": [],
+                      "ref": ""
+                    },
+                    "criterion_ref": "invented:candidate:v1",
+                    "id": "requires-A",
+                    "modality": "required",
+                    "resolution": "resolved",
+                    "rule": {
+                      "answers": [],
+                      "class": "Rule",
+                      "id": "invented-explicit",
+                      "premises": [],
+                      "version": "1",
+                      "warrants": [
+                        "invented:design:v1"
+                      ]
+                    },
+                    "span": [],
+                    "status": "known"
+                  }
+                ]
+              }
+            ],
+            "query": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "invented-A",
+                "kind": "condition_status"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "eq",
+                "inclusivity": "unspecified",
+                "kind": "boolean",
+                "members": [],
+                "number": null,
+                "unit": "",
+                "upper": null
+              }
+            }
+          },
+          "candidates": [
+            {
+              "id": "no_joint",
+              "state": "ruled_out",
+              "observations": [
+                {
+                  "observation": "joint-witness",
+                  "support": "witness",
+                  "state": "ruled_out",
+                  "status": "interpolated",
+                  "basis": [
+                    "invented:exact-input:v1",
+                    "invented:binding:v1",
+                    "invented:eligibility-witness-bridge"
+                  ],
+                  "decision": {
+                    "result": "REFUTED",
+                    "query": "{\"class\":\"AllOf\",\"parts\":[{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"invented-A\",\"kind\":\"condition_status\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"invented-B\",\"kind\":\"condition_status\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}]}",
+                    "status": "known",
+                    "proof": [
+                      "excludes-joint"
+                    ],
+                    "blockers": []
+                  },
+                  "bounds": {
+                    "lower": 30,
+                    "upper": 60
+                  },
+                  "derivation": {
+                    "signal": "audit-overlap",
+                    "witness": "intersection",
+                    "lower": 30,
+                    "upper": 60,
+                    "expression": {
+                      "kind": "all_of",
+                      "refs": [
+                        "a",
+                        "b"
+                      ]
+                    },
+                    "rule": "numeric.overlap:1"
+                  }
+                }
+              ],
+              "query_decision": {
+                "result": "UNDETERMINED",
+                "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"invented-A\",\"kind\":\"condition_status\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+                "status": null,
+                "proof": [
+                  "excludes-joint"
+                ],
+                "blockers": [
+                  "undecided_by_constraints"
+                ]
+              },
+              "signal_checks": []
+            },
+            {
+              "id": "requires_A",
+              "state": "not_ruled_out",
+              "observations": [
+                {
+                  "observation": "joint-witness",
+                  "support": "witness",
+                  "state": "not_ruled_out",
+                  "status": "interpolated",
+                  "basis": [
+                    "invented:exact-input:v1",
+                    "invented:binding:v1",
+                    "invented:eligibility-witness-bridge"
+                  ],
+                  "decision": {
+                    "result": "UNDETERMINED",
+                    "query": "{\"class\":\"AllOf\",\"parts\":[{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"invented-A\",\"kind\":\"condition_status\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"invented-B\",\"kind\":\"condition_status\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}]}",
+                    "status": null,
+                    "proof": [
+                      "requires-A"
+                    ],
+                    "blockers": [
+                      "undecided_by_constraints"
+                    ]
+                  },
+                  "bounds": {
+                    "lower": 30,
+                    "upper": 60
+                  },
+                  "derivation": {
+                    "signal": "audit-overlap",
+                    "witness": "intersection",
+                    "lower": 30,
+                    "upper": 60,
+                    "expression": {
+                      "kind": "all_of",
+                      "refs": [
+                        "a",
+                        "b"
+                      ]
+                    },
+                    "rule": "numeric.overlap:1"
+                  }
+                }
+              ],
+              "query_decision": {
+                "result": "ENTAILED",
+                "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"invented-A\",\"kind\":\"condition_status\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+                "status": "known",
+                "proof": [
+                  "requires-A"
+                ],
+                "blockers": []
+              },
+              "signal_checks": []
+            }
+          ],
+          "remaining": [
+            "requires_A"
+          ],
+          "consequence": {
+            "result": "ENTAILED",
+            "status": "interpolated",
+            "basis": "All remaining declared candidate designs; includes the support of eliminations."
+          },
+          "signals": [
+            {
+              "id": "audit-overlap",
+              "kind": "overlap",
+              "code": "bounded",
+              "calculation_code": "bounded",
+              "value": {
+                "universe": "invented:baseline",
+                "total": 100,
+                "counts": [
+                  {
+                    "id": "intersection",
+                    "lower": 30,
+                    "upper": 60
+                  }
+                ],
+                "witnesses": [
+                  {
+                    "id": "intersection",
+                    "lower": 30,
+                    "upper": 60,
+                    "expression": {
+                      "kind": "all_of",
+                      "refs": [
+                        "a",
+                        "b"
+                      ]
+                    }
+                  }
+                ]
+              },
+              "rule": "numeric.overlap:1",
+              "status": "interpolated",
+              "basis": [
+                "invented:exact-input:v1",
+                "invented:binding:v1"
+              ],
+              "support": [
+                {
+                  "id": "source",
+                  "status": "known",
+                  "resolution": "resolved",
+                  "basis": [
+                    "invented:exact-input:v1"
+                  ]
+                },
+                {
+                  "id": "binding",
+                  "status": "interpolated",
+                  "resolution": "resolved",
+                  "basis": [
+                    "invented:binding:v1"
+                  ]
+                }
+              ],
+              "blockers": []
+            }
+          ],
+          "limits": "Declared candidate family only; source meaning and eligibility bridges are not certified. No automatic table interpretation or source mutation."
+        },
+        "problems": []
+      },
+      "input_unchanged": true
+    },
+    {
+      "case": "05_derived_proposed_support",
+      "premise_origin": "Entirely invented typed audit premises; no clinical claims",
+      "request": {
+        "operation": "design_bounds",
+        "study_ref": "invented:study:v1",
+        "signals": [
+          {
+            "id": "audit-overlap",
+            "kind": "overlap",
+            "data": {
+              "universe": "invented:baseline",
+              "alignment": "confirmed",
+              "total": 100,
+              "marginals": [
+                {
+                  "ref": "a",
+                  "universe": "invented:baseline",
+                  "lower": 70,
+                  "upper": 70
+                },
+                {
+                  "ref": "b",
+                  "universe": "invented:baseline",
+                  "lower": 60,
+                  "upper": 60
+                }
+              ]
+            },
+            "support": [
+              {
+                "id": "source",
+                "status": "known",
+                "resolution": "resolved",
+                "basis": [
+                  "invented:exact-input:v1"
+                ]
+              },
+              {
+                "id": "binding",
+                "status": "proposed",
+                "resolution": "resolved",
+                "basis": [
+                  "invented:binding:v1"
+                ]
+              }
+            ],
+            "bindings": {
+              "a": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "invented-A",
+                  "kind": "condition_status"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "boolean",
+                  "members": [],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                }
+              },
+              "b": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "invented-B",
+                  "kind": "condition_status"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "boolean",
+                  "members": [],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                }
+              }
+            }
+          }
+        ],
+        "observations": [
+          {
+            "id": "joint-witness",
+            "denominator": 100,
+            "population": "invented:baseline",
+            "context": {},
+            "bridge": {
+              "status": "interpolated",
+              "resolution": "resolved",
+              "max_exceptions": 0,
+              "basis": [
+                "invented:eligibility-witness-bridge"
+              ]
+            },
+            "derivation": {
+              "signal": "audit-overlap",
+              "witness": "intersection"
+            }
+          }
+        ],
+        "candidates": [
+          {
+            "id": "no_joint",
+            "assertions": [
+              {
+                "applicability": {
+                  "class": "Always"
+                },
+                "body": {
+                  "class": "AllOf",
+                  "parts": [
+                    {
+                      "class": "Literal",
+                      "evidence": [],
+                      "polarity": "positive",
+                      "predicate": {
+                        "class": "Predicate",
+                        "key": "invented-A",
+                        "kind": "condition_status"
+                      },
+                      "qualifiers": {
+                        "class": "Always"
+                      },
+                      "subject": {
+                        "class": "Subject",
+                        "kind": "participant",
+                        "referent": ""
+                      },
+                      "time": null,
+                      "value": {
+                        "class": "Value",
+                        "comparison": "eq",
+                        "inclusivity": "unspecified",
+                        "kind": "boolean",
+                        "members": [],
+                        "number": null,
+                        "unit": "",
+                        "upper": null
+                      }
+                    },
+                    {
+                      "class": "Literal",
+                      "evidence": [],
+                      "polarity": "positive",
+                      "predicate": {
+                        "class": "Predicate",
+                        "key": "invented-B",
+                        "kind": "condition_status"
+                      },
+                      "qualifiers": {
+                        "class": "Always"
+                      },
+                      "subject": {
+                        "class": "Subject",
+                        "kind": "participant",
+                        "referent": ""
+                      },
+                      "time": null,
+                      "value": {
+                        "class": "Value",
+                        "comparison": "eq",
+                        "inclusivity": "unspecified",
+                        "kind": "boolean",
+                        "members": [],
+                        "number": null,
+                        "unit": "",
+                        "upper": null
+                      }
+                    }
+                  ]
+                },
+                "branch": {
+                  "class": "Branch",
+                  "node": "unresolved",
+                  "path": []
+                },
+                "class": "ScopedAssertion",
+                "cohort": {
+                  "class": "Scope",
+                  "kind": "all_participants",
+                  "parts": [],
+                  "ref": ""
+                },
+                "criterion_ref": "invented:candidate:v1",
+                "id": "excludes-joint",
+                "modality": "excluded",
+                "resolution": "resolved",
+                "rule": {
+                  "answers": [],
+                  "class": "Rule",
+                  "id": "invented-explicit",
+                  "premises": [],
+                  "version": "1",
+                  "warrants": [
+                    "invented:design:v1"
+                  ]
+                },
+                "span": [],
+                "status": "known"
+              }
+            ]
+          },
+          {
+            "id": "requires_A",
+            "assertions": [
+              {
+                "applicability": {
+                  "class": "Always"
+                },
+                "body": {
+                  "class": "Literal",
+                  "evidence": [],
+                  "polarity": "positive",
+                  "predicate": {
+                    "class": "Predicate",
+                    "key": "invented-A",
+                    "kind": "condition_status"
+                  },
+                  "qualifiers": {
+                    "class": "Always"
+                  },
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "participant",
+                    "referent": ""
+                  },
+                  "time": null,
+                  "value": {
+                    "class": "Value",
+                    "comparison": "eq",
+                    "inclusivity": "unspecified",
+                    "kind": "boolean",
+                    "members": [],
+                    "number": null,
+                    "unit": "",
+                    "upper": null
+                  }
+                },
+                "branch": {
+                  "class": "Branch",
+                  "node": "unresolved",
+                  "path": []
+                },
+                "class": "ScopedAssertion",
+                "cohort": {
+                  "class": "Scope",
+                  "kind": "all_participants",
+                  "parts": [],
+                  "ref": ""
+                },
+                "criterion_ref": "invented:candidate:v1",
+                "id": "requires-A",
+                "modality": "required",
+                "resolution": "resolved",
+                "rule": {
+                  "answers": [],
+                  "class": "Rule",
+                  "id": "invented-explicit",
+                  "premises": [],
+                  "version": "1",
+                  "warrants": [
+                    "invented:design:v1"
+                  ]
+                },
+                "span": [],
+                "status": "known"
+              }
+            ]
+          }
+        ],
+        "query": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+            "class": "Predicate",
+            "key": "invented-A",
+            "kind": "condition_status"
+          },
+          "qualifiers": {
+            "class": "Always"
+          },
+          "subject": {
+            "class": "Subject",
+            "kind": "participant",
+            "referent": ""
+          },
+          "time": null,
+          "value": {
+            "class": "Value",
+            "comparison": "eq",
+            "inclusivity": "unspecified",
+            "kind": "boolean",
+            "members": [],
+            "number": null,
+            "unit": "",
+            "upper": null
+          }
+        }
+      },
+      "response": {
+        "code": "complete",
+        "operation": "design_bounds",
+        "result": {
+          "basis": "Conditional on the supplied typed premises; their source meaning is not certified by this operation.",
+          "study_ref": "invented:study:v1",
+          "premises": {
+            "operation": "design_bounds",
+            "study_ref": "invented:study:v1",
+            "signals": [
+              {
+                "id": "audit-overlap",
+                "kind": "overlap",
+                "data": {
+                  "universe": "invented:baseline",
+                  "alignment": "confirmed",
+                  "total": 100,
+                  "marginals": [
+                    {
+                      "ref": "a",
+                      "universe": "invented:baseline",
+                      "lower": 70,
+                      "upper": 70
+                    },
+                    {
+                      "ref": "b",
+                      "universe": "invented:baseline",
+                      "lower": 60,
+                      "upper": 60
+                    }
+                  ]
+                },
+                "support": [
+                  {
+                    "id": "source",
+                    "status": "known",
+                    "resolution": "resolved",
+                    "basis": [
+                      "invented:exact-input:v1"
+                    ]
+                  },
+                  {
+                    "id": "binding",
+                    "status": "proposed",
+                    "resolution": "resolved",
+                    "basis": [
+                      "invented:binding:v1"
+                    ]
+                  }
+                ],
+                "bindings": {
+                  "a": {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "invented-A",
+                      "kind": "condition_status"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "participant",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "eq",
+                      "inclusivity": "unspecified",
+                      "kind": "boolean",
+                      "members": [],
+                      "number": null,
+                      "unit": "",
+                      "upper": null
+                    }
+                  },
+                  "b": {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "invented-B",
+                      "kind": "condition_status"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "participant",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "eq",
+                      "inclusivity": "unspecified",
+                      "kind": "boolean",
+                      "members": [],
+                      "number": null,
+                      "unit": "",
+                      "upper": null
+                    }
+                  }
+                }
+              }
+            ],
+            "observations": [
+              {
+                "id": "joint-witness",
+                "denominator": 100,
+                "population": "invented:baseline",
+                "context": {},
+                "bridge": {
+                  "status": "interpolated",
+                  "resolution": "resolved",
+                  "max_exceptions": 0,
+                  "basis": [
+                    "invented:eligibility-witness-bridge"
+                  ]
+                },
+                "derivation": {
+                  "signal": "audit-overlap",
+                  "witness": "intersection"
+                }
+              }
+            ],
+            "candidates": [
+              {
+                "id": "no_joint",
+                "assertions": [
+                  {
+                    "applicability": {
+                      "class": "Always"
+                    },
+                    "body": {
+                      "class": "AllOf",
+                      "parts": [
+                        {
+                          "class": "Literal",
+                          "evidence": [],
+                          "polarity": "positive",
+                          "predicate": {
+                            "class": "Predicate",
+                            "key": "invented-A",
+                            "kind": "condition_status"
+                          },
+                          "qualifiers": {
+                            "class": "Always"
+                          },
+                          "subject": {
+                            "class": "Subject",
+                            "kind": "participant",
+                            "referent": ""
+                          },
+                          "time": null,
+                          "value": {
+                            "class": "Value",
+                            "comparison": "eq",
+                            "inclusivity": "unspecified",
+                            "kind": "boolean",
+                            "members": [],
+                            "number": null,
+                            "unit": "",
+                            "upper": null
+                          }
+                        },
+                        {
+                          "class": "Literal",
+                          "evidence": [],
+                          "polarity": "positive",
+                          "predicate": {
+                            "class": "Predicate",
+                            "key": "invented-B",
+                            "kind": "condition_status"
+                          },
+                          "qualifiers": {
+                            "class": "Always"
+                          },
+                          "subject": {
+                            "class": "Subject",
+                            "kind": "participant",
+                            "referent": ""
+                          },
+                          "time": null,
+                          "value": {
+                            "class": "Value",
+                            "comparison": "eq",
+                            "inclusivity": "unspecified",
+                            "kind": "boolean",
+                            "members": [],
+                            "number": null,
+                            "unit": "",
+                            "upper": null
+                          }
+                        }
+                      ]
+                    },
+                    "branch": {
+                      "class": "Branch",
+                      "node": "unresolved",
+                      "path": []
+                    },
+                    "class": "ScopedAssertion",
+                    "cohort": {
+                      "class": "Scope",
+                      "kind": "all_participants",
+                      "parts": [],
+                      "ref": ""
+                    },
+                    "criterion_ref": "invented:candidate:v1",
+                    "id": "excludes-joint",
+                    "modality": "excluded",
+                    "resolution": "resolved",
+                    "rule": {
+                      "answers": [],
+                      "class": "Rule",
+                      "id": "invented-explicit",
+                      "premises": [],
+                      "version": "1",
+                      "warrants": [
+                        "invented:design:v1"
+                      ]
+                    },
+                    "span": [],
+                    "status": "known"
+                  }
+                ]
+              },
+              {
+                "id": "requires_A",
+                "assertions": [
+                  {
+                    "applicability": {
+                      "class": "Always"
+                    },
+                    "body": {
+                      "class": "Literal",
+                      "evidence": [],
+                      "polarity": "positive",
+                      "predicate": {
+                        "class": "Predicate",
+                        "key": "invented-A",
+                        "kind": "condition_status"
+                      },
+                      "qualifiers": {
+                        "class": "Always"
+                      },
+                      "subject": {
+                        "class": "Subject",
+                        "kind": "participant",
+                        "referent": ""
+                      },
+                      "time": null,
+                      "value": {
+                        "class": "Value",
+                        "comparison": "eq",
+                        "inclusivity": "unspecified",
+                        "kind": "boolean",
+                        "members": [],
+                        "number": null,
+                        "unit": "",
+                        "upper": null
+                      }
+                    },
+                    "branch": {
+                      "class": "Branch",
+                      "node": "unresolved",
+                      "path": []
+                    },
+                    "class": "ScopedAssertion",
+                    "cohort": {
+                      "class": "Scope",
+                      "kind": "all_participants",
+                      "parts": [],
+                      "ref": ""
+                    },
+                    "criterion_ref": "invented:candidate:v1",
+                    "id": "requires-A",
+                    "modality": "required",
+                    "resolution": "resolved",
+                    "rule": {
+                      "answers": [],
+                      "class": "Rule",
+                      "id": "invented-explicit",
+                      "premises": [],
+                      "version": "1",
+                      "warrants": [
+                        "invented:design:v1"
+                      ]
+                    },
+                    "span": [],
+                    "status": "known"
+                  }
+                ]
+              }
+            ],
+            "query": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "invented-A",
+                "kind": "condition_status"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "eq",
+                "inclusivity": "unspecified",
+                "kind": "boolean",
+                "members": [],
+                "number": null,
+                "unit": "",
+                "upper": null
+              }
+            }
+          },
+          "candidates": [
+            {
+              "id": "no_joint",
+              "state": "unresolved",
+              "observations": [
+                {
+                  "observation": "joint-witness",
+                  "support": "binding_unresolved",
+                  "state": "unresolved",
+                  "status": "proposed",
+                  "basis": [
+                    "invented:exact-input:v1",
+                    "invented:binding:v1",
+                    "invented:eligibility-witness-bridge"
+                  ],
+                  "decision": {
+                    "result": "REFUTED",
+                    "query": "{\"class\":\"AllOf\",\"parts\":[{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"invented-A\",\"kind\":\"condition_status\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"invented-B\",\"kind\":\"condition_status\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}]}",
+                    "status": "known",
+                    "proof": [
+                      "excludes-joint"
+                    ],
+                    "blockers": [
+                      "proposed_refused:audit-overlap"
+                    ]
+                  },
+                  "bounds": {
+                    "lower": 30,
+                    "upper": 60
+                  },
+                  "derivation": {
+                    "signal": "audit-overlap",
+                    "witness": "intersection",
+                    "lower": 30,
+                    "upper": 60,
+                    "expression": {
+                      "kind": "all_of",
+                      "refs": [
+                        "a",
+                        "b"
+                      ]
+                    },
+                    "rule": "numeric.overlap:1"
+                  }
+                }
+              ],
+              "query_decision": {
+                "result": "UNDETERMINED",
+                "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"invented-A\",\"kind\":\"condition_status\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+                "status": null,
+                "proof": [
+                  "excludes-joint"
+                ],
+                "blockers": [
+                  "undecided_by_constraints"
+                ]
+              },
+              "signal_checks": []
+            },
+            {
+              "id": "requires_A",
+              "state": "unresolved",
+              "observations": [
+                {
+                  "observation": "joint-witness",
+                  "support": "binding_unresolved",
+                  "state": "unresolved",
+                  "status": "proposed",
+                  "basis": [
+                    "invented:exact-input:v1",
+                    "invented:binding:v1",
+                    "invented:eligibility-witness-bridge"
+                  ],
+                  "decision": {
+                    "result": "UNDETERMINED",
+                    "query": "{\"class\":\"AllOf\",\"parts\":[{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"invented-A\",\"kind\":\"condition_status\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"invented-B\",\"kind\":\"condition_status\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}]}",
+                    "status": null,
+                    "proof": [
+                      "requires-A"
+                    ],
+                    "blockers": [
+                      "proposed_refused:audit-overlap",
+                      "undecided_by_constraints"
+                    ]
+                  },
+                  "bounds": {
+                    "lower": 30,
+                    "upper": 60
+                  },
+                  "derivation": {
+                    "signal": "audit-overlap",
+                    "witness": "intersection",
+                    "lower": 30,
+                    "upper": 60,
+                    "expression": {
+                      "kind": "all_of",
+                      "refs": [
+                        "a",
+                        "b"
+                      ]
+                    },
+                    "rule": "numeric.overlap:1"
+                  }
+                }
+              ],
+              "query_decision": {
+                "result": "ENTAILED",
+                "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"invented-A\",\"kind\":\"condition_status\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+                "status": "known",
+                "proof": [
+                  "requires-A"
+                ],
+                "blockers": []
+              },
+              "signal_checks": []
+            }
+          ],
+          "remaining": [
+            "no_joint",
+            "requires_A"
+          ],
+          "consequence": {
+            "result": "UNDETERMINED",
+            "status": null,
+            "basis": "All remaining declared candidate designs; includes the support of eliminations."
+          },
+          "signals": [
+            {
+              "id": "audit-overlap",
+              "kind": "overlap",
+              "code": "unresolved",
+              "calculation_code": "bounded",
+              "value": {
+                "universe": "invented:baseline",
+                "total": 100,
+                "counts": [
+                  {
+                    "id": "intersection",
+                    "lower": 30,
+                    "upper": 60
+                  }
+                ],
+                "witnesses": [
+                  {
+                    "id": "intersection",
+                    "lower": 30,
+                    "upper": 60,
+                    "expression": {
+                      "kind": "all_of",
+                      "refs": [
+                        "a",
+                        "b"
+                      ]
+                    }
+                  }
+                ]
+              },
+              "rule": "numeric.overlap:1",
+              "status": "proposed",
+              "basis": [
+                "invented:exact-input:v1",
+                "invented:binding:v1"
+              ],
+              "support": [
+                {
+                  "id": "source",
+                  "status": "known",
+                  "resolution": "resolved",
+                  "basis": [
+                    "invented:exact-input:v1"
+                  ]
+                },
+                {
+                  "id": "binding",
+                  "status": "proposed",
+                  "resolution": "resolved",
+                  "basis": [
+                    "invented:binding:v1"
+                  ]
+                }
+              ],
+              "blockers": [
+                "proposed_refused:audit-overlap"
+              ]
+            }
+          ],
+          "limits": "Declared candidate family only; source meaning and eligibility bridges are not certified. No automatic table interpretation or source mutation."
+        },
+        "problems": []
+      },
+      "input_unchanged": true
+    },
+    {
+      "case": "06_derived_unresolved_alignment",
+      "premise_origin": "Entirely invented typed audit premises; no clinical claims",
+      "request": {
+        "operation": "design_bounds",
+        "study_ref": "invented:study:v1",
+        "signals": [
+          {
+            "id": "audit-overlap",
+            "kind": "overlap",
+            "data": {
+              "universe": "invented:baseline",
+              "alignment": "unresolved",
+              "total": 100,
+              "marginals": [
+                {
+                  "ref": "a",
+                  "universe": "invented:baseline",
+                  "lower": 70,
+                  "upper": 70
+                },
+                {
+                  "ref": "b",
+                  "universe": "invented:baseline",
+                  "lower": 60,
+                  "upper": 60
+                }
+              ]
+            },
+            "support": [
+              {
+                "id": "source",
+                "status": "known",
+                "resolution": "resolved",
+                "basis": [
+                  "invented:exact-input:v1"
+                ]
+              },
+              {
+                "id": "binding",
+                "status": "interpolated",
+                "resolution": "resolved",
+                "basis": [
+                  "invented:binding:v1"
+                ]
+              }
+            ],
+            "bindings": {
+              "a": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "invented-A",
+                  "kind": "condition_status"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "boolean",
+                  "members": [],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                }
+              },
+              "b": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "invented-B",
+                  "kind": "condition_status"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "boolean",
+                  "members": [],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                }
+              }
+            }
+          }
+        ],
+        "observations": [
+          {
+            "id": "joint-witness",
+            "denominator": 100,
+            "population": "invented:baseline",
+            "context": {},
+            "bridge": {
+              "status": "interpolated",
+              "resolution": "resolved",
+              "max_exceptions": 0,
+              "basis": [
+                "invented:eligibility-witness-bridge"
+              ]
+            },
+            "derivation": {
+              "signal": "audit-overlap",
+              "witness": "intersection"
+            }
+          }
+        ],
+        "candidates": [
+          {
+            "id": "no_joint",
+            "assertions": [
+              {
+                "applicability": {
+                  "class": "Always"
+                },
+                "body": {
+                  "class": "AllOf",
+                  "parts": [
+                    {
+                      "class": "Literal",
+                      "evidence": [],
+                      "polarity": "positive",
+                      "predicate": {
+                        "class": "Predicate",
+                        "key": "invented-A",
+                        "kind": "condition_status"
+                      },
+                      "qualifiers": {
+                        "class": "Always"
+                      },
+                      "subject": {
+                        "class": "Subject",
+                        "kind": "participant",
+                        "referent": ""
+                      },
+                      "time": null,
+                      "value": {
+                        "class": "Value",
+                        "comparison": "eq",
+                        "inclusivity": "unspecified",
+                        "kind": "boolean",
+                        "members": [],
+                        "number": null,
+                        "unit": "",
+                        "upper": null
+                      }
+                    },
+                    {
+                      "class": "Literal",
+                      "evidence": [],
+                      "polarity": "positive",
+                      "predicate": {
+                        "class": "Predicate",
+                        "key": "invented-B",
+                        "kind": "condition_status"
+                      },
+                      "qualifiers": {
+                        "class": "Always"
+                      },
+                      "subject": {
+                        "class": "Subject",
+                        "kind": "participant",
+                        "referent": ""
+                      },
+                      "time": null,
+                      "value": {
+                        "class": "Value",
+                        "comparison": "eq",
+                        "inclusivity": "unspecified",
+                        "kind": "boolean",
+                        "members": [],
+                        "number": null,
+                        "unit": "",
+                        "upper": null
+                      }
+                    }
+                  ]
+                },
+                "branch": {
+                  "class": "Branch",
+                  "node": "unresolved",
+                  "path": []
+                },
+                "class": "ScopedAssertion",
+                "cohort": {
+                  "class": "Scope",
+                  "kind": "all_participants",
+                  "parts": [],
+                  "ref": ""
+                },
+                "criterion_ref": "invented:candidate:v1",
+                "id": "excludes-joint",
+                "modality": "excluded",
+                "resolution": "resolved",
+                "rule": {
+                  "answers": [],
+                  "class": "Rule",
+                  "id": "invented-explicit",
+                  "premises": [],
+                  "version": "1",
+                  "warrants": [
+                    "invented:design:v1"
+                  ]
+                },
+                "span": [],
+                "status": "known"
+              }
+            ]
+          },
+          {
+            "id": "requires_A",
+            "assertions": [
+              {
+                "applicability": {
+                  "class": "Always"
+                },
+                "body": {
+                  "class": "Literal",
+                  "evidence": [],
+                  "polarity": "positive",
+                  "predicate": {
+                    "class": "Predicate",
+                    "key": "invented-A",
+                    "kind": "condition_status"
+                  },
+                  "qualifiers": {
+                    "class": "Always"
+                  },
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "participant",
+                    "referent": ""
+                  },
+                  "time": null,
+                  "value": {
+                    "class": "Value",
+                    "comparison": "eq",
+                    "inclusivity": "unspecified",
+                    "kind": "boolean",
+                    "members": [],
+                    "number": null,
+                    "unit": "",
+                    "upper": null
+                  }
+                },
+                "branch": {
+                  "class": "Branch",
+                  "node": "unresolved",
+                  "path": []
+                },
+                "class": "ScopedAssertion",
+                "cohort": {
+                  "class": "Scope",
+                  "kind": "all_participants",
+                  "parts": [],
+                  "ref": ""
+                },
+                "criterion_ref": "invented:candidate:v1",
+                "id": "requires-A",
+                "modality": "required",
+                "resolution": "resolved",
+                "rule": {
+                  "answers": [],
+                  "class": "Rule",
+                  "id": "invented-explicit",
+                  "premises": [],
+                  "version": "1",
+                  "warrants": [
+                    "invented:design:v1"
+                  ]
+                },
+                "span": [],
+                "status": "known"
+              }
+            ]
+          }
+        ],
+        "query": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+            "class": "Predicate",
+            "key": "invented-A",
+            "kind": "condition_status"
+          },
+          "qualifiers": {
+            "class": "Always"
+          },
+          "subject": {
+            "class": "Subject",
+            "kind": "participant",
+            "referent": ""
+          },
+          "time": null,
+          "value": {
+            "class": "Value",
+            "comparison": "eq",
+            "inclusivity": "unspecified",
+            "kind": "boolean",
+            "members": [],
+            "number": null,
+            "unit": "",
+            "upper": null
+          }
+        }
+      },
+      "response": {
+        "code": "complete",
+        "operation": "design_bounds",
+        "result": {
+          "basis": "Conditional on the supplied typed premises; their source meaning is not certified by this operation.",
+          "study_ref": "invented:study:v1",
+          "premises": {
+            "operation": "design_bounds",
+            "study_ref": "invented:study:v1",
+            "signals": [
+              {
+                "id": "audit-overlap",
+                "kind": "overlap",
+                "data": {
+                  "universe": "invented:baseline",
+                  "alignment": "unresolved",
+                  "total": 100,
+                  "marginals": [
+                    {
+                      "ref": "a",
+                      "universe": "invented:baseline",
+                      "lower": 70,
+                      "upper": 70
+                    },
+                    {
+                      "ref": "b",
+                      "universe": "invented:baseline",
+                      "lower": 60,
+                      "upper": 60
+                    }
+                  ]
+                },
+                "support": [
+                  {
+                    "id": "source",
+                    "status": "known",
+                    "resolution": "resolved",
+                    "basis": [
+                      "invented:exact-input:v1"
+                    ]
+                  },
+                  {
+                    "id": "binding",
+                    "status": "interpolated",
+                    "resolution": "resolved",
+                    "basis": [
+                      "invented:binding:v1"
+                    ]
+                  }
+                ],
+                "bindings": {
+                  "a": {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "invented-A",
+                      "kind": "condition_status"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "participant",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "eq",
+                      "inclusivity": "unspecified",
+                      "kind": "boolean",
+                      "members": [],
+                      "number": null,
+                      "unit": "",
+                      "upper": null
+                    }
+                  },
+                  "b": {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "invented-B",
+                      "kind": "condition_status"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "participant",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "eq",
+                      "inclusivity": "unspecified",
+                      "kind": "boolean",
+                      "members": [],
+                      "number": null,
+                      "unit": "",
+                      "upper": null
+                    }
+                  }
+                }
+              }
+            ],
+            "observations": [
+              {
+                "id": "joint-witness",
+                "denominator": 100,
+                "population": "invented:baseline",
+                "context": {},
+                "bridge": {
+                  "status": "interpolated",
+                  "resolution": "resolved",
+                  "max_exceptions": 0,
+                  "basis": [
+                    "invented:eligibility-witness-bridge"
+                  ]
+                },
+                "derivation": {
+                  "signal": "audit-overlap",
+                  "witness": "intersection"
+                }
+              }
+            ],
+            "candidates": [
+              {
+                "id": "no_joint",
+                "assertions": [
+                  {
+                    "applicability": {
+                      "class": "Always"
+                    },
+                    "body": {
+                      "class": "AllOf",
+                      "parts": [
+                        {
+                          "class": "Literal",
+                          "evidence": [],
+                          "polarity": "positive",
+                          "predicate": {
+                            "class": "Predicate",
+                            "key": "invented-A",
+                            "kind": "condition_status"
+                          },
+                          "qualifiers": {
+                            "class": "Always"
+                          },
+                          "subject": {
+                            "class": "Subject",
+                            "kind": "participant",
+                            "referent": ""
+                          },
+                          "time": null,
+                          "value": {
+                            "class": "Value",
+                            "comparison": "eq",
+                            "inclusivity": "unspecified",
+                            "kind": "boolean",
+                            "members": [],
+                            "number": null,
+                            "unit": "",
+                            "upper": null
+                          }
+                        },
+                        {
+                          "class": "Literal",
+                          "evidence": [],
+                          "polarity": "positive",
+                          "predicate": {
+                            "class": "Predicate",
+                            "key": "invented-B",
+                            "kind": "condition_status"
+                          },
+                          "qualifiers": {
+                            "class": "Always"
+                          },
+                          "subject": {
+                            "class": "Subject",
+                            "kind": "participant",
+                            "referent": ""
+                          },
+                          "time": null,
+                          "value": {
+                            "class": "Value",
+                            "comparison": "eq",
+                            "inclusivity": "unspecified",
+                            "kind": "boolean",
+                            "members": [],
+                            "number": null,
+                            "unit": "",
+                            "upper": null
+                          }
+                        }
+                      ]
+                    },
+                    "branch": {
+                      "class": "Branch",
+                      "node": "unresolved",
+                      "path": []
+                    },
+                    "class": "ScopedAssertion",
+                    "cohort": {
+                      "class": "Scope",
+                      "kind": "all_participants",
+                      "parts": [],
+                      "ref": ""
+                    },
+                    "criterion_ref": "invented:candidate:v1",
+                    "id": "excludes-joint",
+                    "modality": "excluded",
+                    "resolution": "resolved",
+                    "rule": {
+                      "answers": [],
+                      "class": "Rule",
+                      "id": "invented-explicit",
+                      "premises": [],
+                      "version": "1",
+                      "warrants": [
+                        "invented:design:v1"
+                      ]
+                    },
+                    "span": [],
+                    "status": "known"
+                  }
+                ]
+              },
+              {
+                "id": "requires_A",
+                "assertions": [
+                  {
+                    "applicability": {
+                      "class": "Always"
+                    },
+                    "body": {
+                      "class": "Literal",
+                      "evidence": [],
+                      "polarity": "positive",
+                      "predicate": {
+                        "class": "Predicate",
+                        "key": "invented-A",
+                        "kind": "condition_status"
+                      },
+                      "qualifiers": {
+                        "class": "Always"
+                      },
+                      "subject": {
+                        "class": "Subject",
+                        "kind": "participant",
+                        "referent": ""
+                      },
+                      "time": null,
+                      "value": {
+                        "class": "Value",
+                        "comparison": "eq",
+                        "inclusivity": "unspecified",
+                        "kind": "boolean",
+                        "members": [],
+                        "number": null,
+                        "unit": "",
+                        "upper": null
+                      }
+                    },
+                    "branch": {
+                      "class": "Branch",
+                      "node": "unresolved",
+                      "path": []
+                    },
+                    "class": "ScopedAssertion",
+                    "cohort": {
+                      "class": "Scope",
+                      "kind": "all_participants",
+                      "parts": [],
+                      "ref": ""
+                    },
+                    "criterion_ref": "invented:candidate:v1",
+                    "id": "requires-A",
+                    "modality": "required",
+                    "resolution": "resolved",
+                    "rule": {
+                      "answers": [],
+                      "class": "Rule",
+                      "id": "invented-explicit",
+                      "premises": [],
+                      "version": "1",
+                      "warrants": [
+                        "invented:design:v1"
+                      ]
+                    },
+                    "span": [],
+                    "status": "known"
+                  }
+                ]
+              }
+            ],
+            "query": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "invented-A",
+                "kind": "condition_status"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "eq",
+                "inclusivity": "unspecified",
+                "kind": "boolean",
+                "members": [],
+                "number": null,
+                "unit": "",
+                "upper": null
+              }
+            }
+          },
+          "candidates": [
+            {
+              "id": "no_joint",
+              "state": "unresolved",
+              "observations": [
+                {
+                  "observation": "joint-witness",
+                  "support": "binding_unresolved",
+                  "state": "unresolved",
+                  "status": "interpolated",
+                  "basis": [
+                    "invented:exact-input:v1",
+                    "invented:binding:v1",
+                    "invented:eligibility-witness-bridge"
+                  ],
+                  "decision": {
+                    "result": "UNSUPPORTED_QUERY",
+                    "query": "{\"class\":\"Opaque\",\"ref\":\"unresolved-signal:audit-overlap\"}",
+                    "status": null,
+                    "proof": [],
+                    "blockers": [
+                      "alignment_unresolved",
+                      "opaque:unresolved-signal:audit-overlap"
+                    ]
+                  },
+                  "bounds": {
+                    "lower": null,
+                    "upper": null
+                  },
+                  "derivation": {
+                    "signal": "audit-overlap",
+                    "witness": "intersection",
+                    "lower": null,
+                    "upper": null,
+                    "expression": null,
+                    "rule": "numeric.overlap:1"
+                  }
+                }
+              ],
+              "query_decision": {
+                "result": "UNDETERMINED",
+                "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"invented-A\",\"kind\":\"condition_status\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+                "status": null,
+                "proof": [
+                  "excludes-joint"
+                ],
+                "blockers": [
+                  "undecided_by_constraints"
+                ]
+              },
+              "signal_checks": []
+            },
+            {
+              "id": "requires_A",
+              "state": "unresolved",
+              "observations": [
+                {
+                  "observation": "joint-witness",
+                  "support": "binding_unresolved",
+                  "state": "unresolved",
+                  "status": "interpolated",
+                  "basis": [
+                    "invented:exact-input:v1",
+                    "invented:binding:v1",
+                    "invented:eligibility-witness-bridge"
+                  ],
+                  "decision": {
+                    "result": "UNSUPPORTED_QUERY",
+                    "query": "{\"class\":\"Opaque\",\"ref\":\"unresolved-signal:audit-overlap\"}",
+                    "status": null,
+                    "proof": [],
+                    "blockers": [
+                      "alignment_unresolved",
+                      "opaque:unresolved-signal:audit-overlap"
+                    ]
+                  },
+                  "bounds": {
+                    "lower": null,
+                    "upper": null
+                  },
+                  "derivation": {
+                    "signal": "audit-overlap",
+                    "witness": "intersection",
+                    "lower": null,
+                    "upper": null,
+                    "expression": null,
+                    "rule": "numeric.overlap:1"
+                  }
+                }
+              ],
+              "query_decision": {
+                "result": "ENTAILED",
+                "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"invented-A\",\"kind\":\"condition_status\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+                "status": "known",
+                "proof": [
+                  "requires-A"
+                ],
+                "blockers": []
+              },
+              "signal_checks": []
+            }
+          ],
+          "remaining": [
+            "no_joint",
+            "requires_A"
+          ],
+          "consequence": {
+            "result": "UNDETERMINED",
+            "status": null,
+            "basis": "All remaining declared candidate designs; includes the support of eliminations."
+          },
+          "signals": [
+            {
+              "id": "audit-overlap",
+              "kind": "overlap",
+              "code": "unresolved",
+              "calculation_code": "unresolved",
+              "value": {
+                "universe": "invented:baseline",
+                "total": 100,
+                "counts": [],
+                "witnesses": []
+              },
+              "rule": "numeric.overlap:1",
+              "status": "interpolated",
+              "basis": [
+                "invented:exact-input:v1",
+                "invented:binding:v1"
+              ],
+              "support": [
+                {
+                  "id": "source",
+                  "status": "known",
+                  "resolution": "resolved",
+                  "basis": [
+                    "invented:exact-input:v1"
+                  ]
+                },
+                {
+                  "id": "binding",
+                  "status": "interpolated",
+                  "resolution": "resolved",
+                  "basis": [
+                    "invented:binding:v1"
+                  ]
+                }
+              ],
+              "blockers": [
+                "alignment_unresolved"
+              ]
+            }
+          ],
+          "limits": "Declared candidate family only; source meaning and eligibility bridges are not certified. No automatic table interpretation or source mutation."
+        },
+        "problems": []
+      },
+      "input_unchanged": true
+    },
+    {
+      "case": "07_population_mismatch",
+      "premise_origin": "Entirely invented typed audit premises; no clinical claims",
+      "request": {
+        "operation": "design_bounds",
+        "study_ref": "invented:study:v1",
+        "signals": [
+          {
+            "id": "audit-overlap",
+            "kind": "overlap",
+            "data": {
+              "universe": "invented:baseline",
+              "alignment": "confirmed",
+              "total": 100,
+              "marginals": [
+                {
+                  "ref": "a",
+                  "universe": "invented:baseline",
+                  "lower": 70,
+                  "upper": 70
+                },
+                {
+                  "ref": "b",
+                  "universe": "invented:baseline",
+                  "lower": 60,
+                  "upper": 60
+                }
+              ]
+            },
+            "support": [
+              {
+                "id": "source",
+                "status": "known",
+                "resolution": "resolved",
+                "basis": [
+                  "invented:exact-input:v1"
+                ]
+              },
+              {
+                "id": "binding",
+                "status": "interpolated",
+                "resolution": "resolved",
+                "basis": [
+                  "invented:binding:v1"
+                ]
+              }
+            ],
+            "bindings": {
+              "a": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "invented-A",
+                  "kind": "condition_status"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "boolean",
+                  "members": [],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                }
+              },
+              "b": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "invented-B",
+                  "kind": "condition_status"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "boolean",
+                  "members": [],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                }
+              }
+            }
+          }
+        ],
+        "observations": [
+          {
+            "id": "joint-witness",
+            "denominator": 100,
+            "population": "invented:other-population-same-count",
+            "context": {},
+            "bridge": {
+              "status": "interpolated",
+              "resolution": "resolved",
+              "max_exceptions": 0,
+              "basis": [
+                "invented:eligibility-witness-bridge"
+              ]
+            },
+            "derivation": {
+              "signal": "audit-overlap",
+              "witness": "intersection"
+            }
+          }
+        ],
+        "candidates": [
+          {
+            "id": "no_joint",
+            "assertions": [
+              {
+                "applicability": {
+                  "class": "Always"
+                },
+                "body": {
+                  "class": "AllOf",
+                  "parts": [
+                    {
+                      "class": "Literal",
+                      "evidence": [],
+                      "polarity": "positive",
+                      "predicate": {
+                        "class": "Predicate",
+                        "key": "invented-A",
+                        "kind": "condition_status"
+                      },
+                      "qualifiers": {
+                        "class": "Always"
+                      },
+                      "subject": {
+                        "class": "Subject",
+                        "kind": "participant",
+                        "referent": ""
+                      },
+                      "time": null,
+                      "value": {
+                        "class": "Value",
+                        "comparison": "eq",
+                        "inclusivity": "unspecified",
+                        "kind": "boolean",
+                        "members": [],
+                        "number": null,
+                        "unit": "",
+                        "upper": null
+                      }
+                    },
+                    {
+                      "class": "Literal",
+                      "evidence": [],
+                      "polarity": "positive",
+                      "predicate": {
+                        "class": "Predicate",
+                        "key": "invented-B",
+                        "kind": "condition_status"
+                      },
+                      "qualifiers": {
+                        "class": "Always"
+                      },
+                      "subject": {
+                        "class": "Subject",
+                        "kind": "participant",
+                        "referent": ""
+                      },
+                      "time": null,
+                      "value": {
+                        "class": "Value",
+                        "comparison": "eq",
+                        "inclusivity": "unspecified",
+                        "kind": "boolean",
+                        "members": [],
+                        "number": null,
+                        "unit": "",
+                        "upper": null
+                      }
+                    }
+                  ]
+                },
+                "branch": {
+                  "class": "Branch",
+                  "node": "unresolved",
+                  "path": []
+                },
+                "class": "ScopedAssertion",
+                "cohort": {
+                  "class": "Scope",
+                  "kind": "all_participants",
+                  "parts": [],
+                  "ref": ""
+                },
+                "criterion_ref": "invented:candidate:v1",
+                "id": "excludes-joint",
+                "modality": "excluded",
+                "resolution": "resolved",
+                "rule": {
+                  "answers": [],
+                  "class": "Rule",
+                  "id": "invented-explicit",
+                  "premises": [],
+                  "version": "1",
+                  "warrants": [
+                    "invented:design:v1"
+                  ]
+                },
+                "span": [],
+                "status": "known"
+              }
+            ]
+          },
+          {
+            "id": "requires_A",
+            "assertions": [
+              {
+                "applicability": {
+                  "class": "Always"
+                },
+                "body": {
+                  "class": "Literal",
+                  "evidence": [],
+                  "polarity": "positive",
+                  "predicate": {
+                    "class": "Predicate",
+                    "key": "invented-A",
+                    "kind": "condition_status"
+                  },
+                  "qualifiers": {
+                    "class": "Always"
+                  },
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "participant",
+                    "referent": ""
+                  },
+                  "time": null,
+                  "value": {
+                    "class": "Value",
+                    "comparison": "eq",
+                    "inclusivity": "unspecified",
+                    "kind": "boolean",
+                    "members": [],
+                    "number": null,
+                    "unit": "",
+                    "upper": null
+                  }
+                },
+                "branch": {
+                  "class": "Branch",
+                  "node": "unresolved",
+                  "path": []
+                },
+                "class": "ScopedAssertion",
+                "cohort": {
+                  "class": "Scope",
+                  "kind": "all_participants",
+                  "parts": [],
+                  "ref": ""
+                },
+                "criterion_ref": "invented:candidate:v1",
+                "id": "requires-A",
+                "modality": "required",
+                "resolution": "resolved",
+                "rule": {
+                  "answers": [],
+                  "class": "Rule",
+                  "id": "invented-explicit",
+                  "premises": [],
+                  "version": "1",
+                  "warrants": [
+                    "invented:design:v1"
+                  ]
+                },
+                "span": [],
+                "status": "known"
+              }
+            ]
+          }
+        ],
+        "query": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+            "class": "Predicate",
+            "key": "invented-A",
+            "kind": "condition_status"
+          },
+          "qualifiers": {
+            "class": "Always"
+          },
+          "subject": {
+            "class": "Subject",
+            "kind": "participant",
+            "referent": ""
+          },
+          "time": null,
+          "value": {
+            "class": "Value",
+            "comparison": "eq",
+            "inclusivity": "unspecified",
+            "kind": "boolean",
+            "members": [],
+            "number": null,
+            "unit": "",
+            "upper": null
+          }
+        }
+      },
+      "response": {
+        "code": "refused",
+        "operation": "design_bounds",
+        "result": null,
+        "problems": [
+          "derived_witness_population_mismatch"
+        ]
+      },
+      "input_unchanged": true
+    },
+    {
+      "case": "08_denominator_mismatch",
+      "premise_origin": "Entirely invented typed audit premises; no clinical claims",
+      "request": {
+        "operation": "design_bounds",
+        "study_ref": "invented:study:v1",
+        "signals": [
+          {
+            "id": "audit-overlap",
+            "kind": "overlap",
+            "data": {
+              "universe": "invented:baseline",
+              "alignment": "confirmed",
+              "total": 100,
+              "marginals": [
+                {
+                  "ref": "a",
+                  "universe": "invented:baseline",
+                  "lower": 70,
+                  "upper": 70
+                },
+                {
+                  "ref": "b",
+                  "universe": "invented:baseline",
+                  "lower": 60,
+                  "upper": 60
+                }
+              ]
+            },
+            "support": [
+              {
+                "id": "source",
+                "status": "known",
+                "resolution": "resolved",
+                "basis": [
+                  "invented:exact-input:v1"
+                ]
+              },
+              {
+                "id": "binding",
+                "status": "interpolated",
+                "resolution": "resolved",
+                "basis": [
+                  "invented:binding:v1"
+                ]
+              }
+            ],
+            "bindings": {
+              "a": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "invented-A",
+                  "kind": "condition_status"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "boolean",
+                  "members": [],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                }
+              },
+              "b": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "invented-B",
+                  "kind": "condition_status"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "boolean",
+                  "members": [],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                }
+              }
+            }
+          }
+        ],
+        "observations": [
+          {
+            "id": "joint-witness",
+            "denominator": 99,
+            "population": "invented:baseline",
+            "context": {},
+            "bridge": {
+              "status": "interpolated",
+              "resolution": "resolved",
+              "max_exceptions": 0,
+              "basis": [
+                "invented:eligibility-witness-bridge"
+              ]
+            },
+            "derivation": {
+              "signal": "audit-overlap",
+              "witness": "intersection"
+            }
+          }
+        ],
+        "candidates": [
+          {
+            "id": "no_joint",
+            "assertions": [
+              {
+                "applicability": {
+                  "class": "Always"
+                },
+                "body": {
+                  "class": "AllOf",
+                  "parts": [
+                    {
+                      "class": "Literal",
+                      "evidence": [],
+                      "polarity": "positive",
+                      "predicate": {
+                        "class": "Predicate",
+                        "key": "invented-A",
+                        "kind": "condition_status"
+                      },
+                      "qualifiers": {
+                        "class": "Always"
+                      },
+                      "subject": {
+                        "class": "Subject",
+                        "kind": "participant",
+                        "referent": ""
+                      },
+                      "time": null,
+                      "value": {
+                        "class": "Value",
+                        "comparison": "eq",
+                        "inclusivity": "unspecified",
+                        "kind": "boolean",
+                        "members": [],
+                        "number": null,
+                        "unit": "",
+                        "upper": null
+                      }
+                    },
+                    {
+                      "class": "Literal",
+                      "evidence": [],
+                      "polarity": "positive",
+                      "predicate": {
+                        "class": "Predicate",
+                        "key": "invented-B",
+                        "kind": "condition_status"
+                      },
+                      "qualifiers": {
+                        "class": "Always"
+                      },
+                      "subject": {
+                        "class": "Subject",
+                        "kind": "participant",
+                        "referent": ""
+                      },
+                      "time": null,
+                      "value": {
+                        "class": "Value",
+                        "comparison": "eq",
+                        "inclusivity": "unspecified",
+                        "kind": "boolean",
+                        "members": [],
+                        "number": null,
+                        "unit": "",
+                        "upper": null
+                      }
+                    }
+                  ]
+                },
+                "branch": {
+                  "class": "Branch",
+                  "node": "unresolved",
+                  "path": []
+                },
+                "class": "ScopedAssertion",
+                "cohort": {
+                  "class": "Scope",
+                  "kind": "all_participants",
+                  "parts": [],
+                  "ref": ""
+                },
+                "criterion_ref": "invented:candidate:v1",
+                "id": "excludes-joint",
+                "modality": "excluded",
+                "resolution": "resolved",
+                "rule": {
+                  "answers": [],
+                  "class": "Rule",
+                  "id": "invented-explicit",
+                  "premises": [],
+                  "version": "1",
+                  "warrants": [
+                    "invented:design:v1"
+                  ]
+                },
+                "span": [],
+                "status": "known"
+              }
+            ]
+          },
+          {
+            "id": "requires_A",
+            "assertions": [
+              {
+                "applicability": {
+                  "class": "Always"
+                },
+                "body": {
+                  "class": "Literal",
+                  "evidence": [],
+                  "polarity": "positive",
+                  "predicate": {
+                    "class": "Predicate",
+                    "key": "invented-A",
+                    "kind": "condition_status"
+                  },
+                  "qualifiers": {
+                    "class": "Always"
+                  },
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "participant",
+                    "referent": ""
+                  },
+                  "time": null,
+                  "value": {
+                    "class": "Value",
+                    "comparison": "eq",
+                    "inclusivity": "unspecified",
+                    "kind": "boolean",
+                    "members": [],
+                    "number": null,
+                    "unit": "",
+                    "upper": null
+                  }
+                },
+                "branch": {
+                  "class": "Branch",
+                  "node": "unresolved",
+                  "path": []
+                },
+                "class": "ScopedAssertion",
+                "cohort": {
+                  "class": "Scope",
+                  "kind": "all_participants",
+                  "parts": [],
+                  "ref": ""
+                },
+                "criterion_ref": "invented:candidate:v1",
+                "id": "requires-A",
+                "modality": "required",
+                "resolution": "resolved",
+                "rule": {
+                  "answers": [],
+                  "class": "Rule",
+                  "id": "invented-explicit",
+                  "premises": [],
+                  "version": "1",
+                  "warrants": [
+                    "invented:design:v1"
+                  ]
+                },
+                "span": [],
+                "status": "known"
+              }
+            ]
+          }
+        ],
+        "query": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+            "class": "Predicate",
+            "key": "invented-A",
+            "kind": "condition_status"
+          },
+          "qualifiers": {
+            "class": "Always"
+          },
+          "subject": {
+            "class": "Subject",
+            "kind": "participant",
+            "referent": ""
+          },
+          "time": null,
+          "value": {
+            "class": "Value",
+            "comparison": "eq",
+            "inclusivity": "unspecified",
+            "kind": "boolean",
+            "members": [],
+            "number": null,
+            "unit": "",
+            "upper": null
+          }
+        }
+      },
+      "response": {
+        "code": "refused",
+        "operation": "design_bounds",
+        "result": null,
+        "problems": [
+          "derived_witness_population_mismatch"
+        ]
+      },
+      "input_unchanged": true
+    }
+  ]
+}

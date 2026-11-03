@@ -24,7 +24,7 @@ from TrialLedger.ledger import get as _get
 from TrialLedger.ledger import location
 from TrialLedger.registry import enum_labels
 
-CHECKS_VERSION = 2
+CHECKS_VERSION = 3
 CLOSED_STATUSES = ("COMPLETED", "TERMINATED")
 # Statuses the registry assigns itself (glossary, «Last verified»; metadata overallStatus rules on Withheld),
 # so they are not the responsible party's statement about recruitment.
@@ -365,6 +365,7 @@ class CheckResult:
     check_id: str
     outcome: str
     detail: str  # the fields and values involved, as the record holds them
+    information: dict[str, Any] | None = None
 
 
 CHECKS = (
@@ -711,19 +712,47 @@ def _event_groups(study: Any) -> tuple[dict[str, dict[str, Any]], int]:
     return by_id, len(ids) - len(named)
 
 
-def _event_counts(study: Any) -> Iterator[tuple[str, str, str | None, dict[str, Any]]]:
-    """Every count of the adverse-event tables: its table's prefix, where it is, its group id and itself."""
+def _partial_objects_at(study: Any, *path: str | int) -> Iterator[tuple[int, dict[str, Any] | Malformed]]:
+    """Visit every independent object; malformed siblings remain explicit, never silently skipped."""
+    try:
+        items = _list_at(study, *path)
+    except Malformed as malformed:
+        yield -1, malformed
+        return
+    for index, item in enumerate(items):
+        yield (
+            index,
+            item if isinstance(item, dict) else Malformed(f"{location((*path, index))} is not an object"),
+        )
+
+
+def _event_counts(study: Any) -> Iterator[tuple[str, str, str | None, dict[str, Any] | None]]:
+    """Every independent event count, or a named malformed entry, without erasing other findings."""
     for table, prefix in (("seriousEvents", "serious"), ("otherEvents", "other")):
-        for e, event in enumerate(_objects_at(study, *EVENTS, table)):
-            for s, stats in enumerate(_objects_at(study, *EVENTS, table, e, "stats")):
-                group_id = _text_at(study, *EVENTS, table, e, "stats", s, "groupId")
+        for e, event in _partial_objects_at(study, *EVENTS, table):
+            if isinstance(event, Malformed):
+                yield prefix, f"malformed input: {event}", None, None
+                continue
+            for j, stats in _partial_objects_at(study, *EVENTS, table, e, "stats"):
+                if isinstance(stats, Malformed):
+                    yield prefix, f"malformed input: {stats}", None, None
+                    continue
+                try:
+                    group_id = _text_at(study, *EVENTS, table, e, "stats", j, "groupId")
+                except Malformed as malformed:
+                    yield prefix, f"malformed input: {malformed}", None, None
+                    continue
                 yield prefix, f"{table}[{e}] {event.get('term')!r} group {group_id}", group_id, stats
 
 
 def _gather_ae_names(study: Any) -> tuple[str, str]:
     groups, unnamed = _event_groups(study)
     outcomes, offenders = [], []
-    for _, where, group_id, _ in _event_counts(study):
+    for _, where, group_id, stats in _event_counts(study):
+        if stats is None:
+            outcomes.append("not_checkable")
+            offenders.append(where)
+            continue
         outcome = member(group_id, list(groups))
         if outcome == "conflict" and unnamed:
             outcome = "not_checkable"  # it may belong to a group whose id is not reported
@@ -737,6 +766,10 @@ def _gather_ae_at_risk(study: Any) -> tuple[str, str]:
     groups, _ = _event_groups(study)
     outcomes, offenders = [], []
     for prefix, where, group_id, stats in _event_counts(study):
+        if stats is None:
+            outcomes.append("not_checkable")
+            offenders.append(where)
+            continue
         affected = stats.get("numAffected")
         source, risk = at_risk(stats.get("numAtRisk"), groups.get(group_id, {}).get(f"{prefix}NumAtRisk"))
         outcome = bounded(affected, risk)
@@ -750,6 +783,10 @@ def _gather_ae_group_total(study: Any) -> tuple[str, str]:
     groups, _ = _event_groups(study)
     outcomes, offenders = [], []
     for prefix, where, group_id, stats in _event_counts(study):
+        if stats is None:
+            outcomes.append("not_checkable")
+            offenders.append(where)
+            continue
         affected = stats.get("numAffected")
         total = groups.get(group_id, {}).get(f"{prefix}NumAffected")
         outcome = bounded(affected, total)
@@ -762,6 +799,10 @@ def _gather_ae_group_total(study: Any) -> tuple[str, str]:
 def _gather_ae_events(study: Any) -> tuple[str, str]:
     outcomes, offenders = [], []
     for _, where, _, stats in _event_counts(study):
+        if stats is None:
+            outcomes.append("not_checkable")
+            offenders.append(where)
+            continue
         occurrences = stats.get("numEvents")
         if occurrences is None:
             continue  # not reported, which is not zero
@@ -788,8 +829,9 @@ def _gather_ae_group_totals(study: Any) -> tuple[str, str]:
     return combine(outcomes), _tally(outcomes, offenders)
 
 
-def _gather_flow_reasons(study: Any) -> tuple[str, str]:
+def _gather_flow_reasons(study: Any) -> tuple[str, str, dict]:
     outcomes, offenders = [], []
+    calculations = []
     for p, period in enumerate(_objects_at(study, *FLOW)):
         milestones: dict[str | None, tuple[str | int, ...]] = {}
         for m in range(len(_objects_at(study, *FLOW, p, "milestones"))):
@@ -811,17 +853,42 @@ def _gather_flow_reasons(study: Any) -> tuple[str, str]:
             listed.append(here)
         for group_id, counts in by_group.items():
             not_completed = _not_completed(study, milestones, group_id)
+            reported = _milestone_count(study, milestones, "NOT COMPLETED", group_id)[0] != "absent"
+            calculation = {
+                "period": p,
+                "group": group_id,
+                "kind": "not_completed",
+                "value": not_completed,
+                "code": "conflict"
+                if not_completed is not None and not_completed < 0
+                else "known"
+                if not_completed is not None
+                else "not_checkable",
+                "rule": "reported NOT COMPLETED" if reported else "STARTED minus COMPLETED",
+                "inputs": [location((*FLOW, p, "milestones"))],
+            }
+            calculations.append(calculation)
             if any(group_id not in here for here in listed):
                 outcome = "not_checkable"  # a reason the period lists gives this group no count
             else:
                 outcome = reasons_account(not_completed, counts)
+            if not_completed is not None and not_completed < 0:
+                outcome = "conflict"
             outcomes.append(outcome)
             if outcome == "conflict":
                 offenders.append(
                     f"period[{p}] {period.get('title')!r} group {group_id}: reasons sum to "
                     f"{sum(c for c in counts if c is not None)}, not completed {not_completed}"
                 )
-    return combine(outcomes), _tally(outcomes, offenders)
+    context = [
+        f"period[{c['period']}] group {c['group']}: not completed {c['value']} ({c['rule']})"
+        for c in calculations
+        if c["value"] is not None
+    ]
+    detail = _tally(outcomes, offenders)
+    if context:
+        detail += "; " + "; ".join(context)
+    return combine(outcomes), detail, {"calculations": calculations}
 
 
 def _milestone_count(
@@ -888,7 +955,7 @@ def _gather_primary_before_completion(study: Any) -> tuple[str, str]:
 
 
 # Each check's gatherer: it reads the check's facts from one record and applies the check's decisions.
-GATHERERS: dict[str, Callable[[Any], tuple[str, str]]] = {
+GATHERERS: dict[str, Callable[[Any], tuple[str, str] | tuple[str, str, dict]]] = {
     "closed_primary_completion_actual": _gather_closed_primary_completion,
     "closed_completion_actual": _gather_closed_completion,
     "withdrawn_actual_enrollment_zero": _gather_withdrawn,
@@ -960,9 +1027,34 @@ def run_checks(study: Any, *, include_proposed: bool = False) -> list[CheckResul
     for check in CHECKS:
         if not include_proposed and check.approval != "approved":
             continue
+        information = None
         try:
-            outcome, detail = GATHERERS[check.id](study)
+            gathered = GATHERERS[check.id](study)
+            outcome, detail = gathered[:2]
+            if len(gathered) == 3:
+                information = gathered[2]
         except Malformed as malformed:
             outcome, detail = "not_checkable", f"malformed input: {malformed}"
-        results.append(CheckResult(check.id, outcome, detail))
+        date_structs = {
+            "start_before_primary_completion": ("startDateStruct", "primaryCompletionDateStruct"),
+            "primary_completion_before_completion": ("primaryCompletionDateStruct", "completionDateStruct"),
+        }
+        if check.id in date_structs:
+            from TrialLedger.date_possibilities import date_order_possibilities
+
+            first, second = date_structs[check.id]
+            completion = date_order_possibilities(
+                _get(study, P, "statusModule", first, "date"),
+                _get(study, P, "statusModule", first, "type"),
+                _get(study, P, "statusModule", second, "date"),
+                _get(study, P, "statusModule", second, "type"),
+            )
+            information = {"completion": completion}
+            if completion["code"] == "bounded":
+                detail += "; valid-completion outcomes: " + ", ".join(completion["possible_outcomes"])
+                detail += "; excluded: " + (", ".join(completion["excluded_outcomes"]) or "none")
+            else:
+                outcome = "not_checkable"
+                detail += "; completion unresolved: " + ", ".join(completion["blockers"])
+        results.append(CheckResult(check.id, outcome, detail, information))
     return results

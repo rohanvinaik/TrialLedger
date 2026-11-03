@@ -1,0 +1,96 @@
+{
+  "operation": "entailment",
+  "assertions": [
+    {
+      "applicability": {
+        "class": "Always"
+      },
+      "body": {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+          "class": "Predicate",
+          "key": "performance_status",
+          "kind": "measurement"
+        },
+        "qualifiers": {
+          "class": "Always"
+        },
+        "subject": {
+          "class": "Subject",
+          "kind": "participant",
+          "referent": ""
+        },
+        "time": null,
+        "value": {
+          "class": "Value",
+          "comparison": "le",
+          "inclusivity": "unspecified",
+          "kind": "quantity",
+          "members": [],
+          "number": 1.0,
+          "unit": "ECOG",
+          "upper": null
+        }
+      },
+      "branch": {
+        "class": "Branch",
+        "node": "unresolved",
+        "path": []
+      },
+      "class": "ScopedAssertion",
+      "cohort": {
+        "class": "Scope",
+        "kind": "all_participants",
+        "parts": [],
+        "ref": ""
+      },
+      "criterion_ref": "invented:trial-design-session-not-registry-evidence",
+      "id": "invented-ECOG-criterion",
+      "modality": "required",
+      "resolution": "resolved",
+      "rule": {
+        "answers": [],
+        "class": "Rule",
+        "id": "invented-session-premise",
+        "premises": [],
+        "version": "1",
+        "warrants": [
+          "invented:explicit-teaching-premise"
+        ]
+      },
+      "span": [],
+      "status": "known"
+    }
+  ],
+  "query": {
+    "class": "Literal",
+    "evidence": [],
+    "polarity": "positive",
+    "predicate": {
+      "class": "Predicate",
+      "key": "performance_status",
+      "kind": "measurement"
+    },
+    "qualifiers": {
+      "class": "Always"
+    },
+    "subject": {
+      "class": "Subject",
+      "kind": "participant",
+      "referent": ""
+    },
+    "time": null,
+    "value": {
+      "class": "Value",
+      "comparison": "le",
+      "inclusivity": "unspecified",
+      "kind": "quantity",
+      "members": [],
+      "number": 1.0,
+      "unit": "WHO",
+      "upper": null
+    }
+  }
+}

@@ -26,7 +26,7 @@ from openpyxl.utils import get_column_letter
 from openpyxl.worksheet.hyperlink import Hyperlink
 from openpyxl.worksheet.pagebreak import Break
 
-from TrialLedger import __version__, contract
+from TrialLedger import __version__, checks, contract
 from TrialLedger.cells import ROW_LIMIT, cell_number_state, cell_text_state
 from TrialLedger.links import pubmed_link
 
@@ -805,6 +805,20 @@ def availability_rows(study: dict[str, Any], heading: str) -> list[tuple[str, An
         "/resultsSection/adverseEventsModule/otherEvents",
     )
     if collection_state(study, pointers) != "stated":
+        states = [collection_state(study, (pointer,)) for pointer in pointers]
+        if "stated" in states:
+            rows.append(("Adverse events", *collection_summary(study, pointers, "")))
+            for table, pointer, label in zip(
+                ("serious", "other"),
+                pointers,
+                ("Serious adverse-event terms", "Other adverse-event terms"),
+                strict=True,
+            ):
+                count = sum(event.get("table") == table for event in listed)
+                rows.append(
+                    (label, *collection_summary(study, (pointer,), f"{count} {table} terms (Safety)"))
+                )
+            return rows
         return rows + [("Adverse events", *collection_summary(study, pointers, ""))]
     serious = sum(1 for event in listed if event.get("table") == "serious")
     words = f"{serious} serious and {len(listed) - serious} other terms (Safety)"
@@ -1231,8 +1245,9 @@ def safety_rows(study: dict[str, Any], number: int, n: int) -> list[tuple]:
     """One Safety row per event and source count or group in this trial's adverse-events module.
 
     Group IDs are resolved within that module; no group is matched across studies or results modules. A
-    missing count stays "Not reported", while a listed zero stays zero. `n` is retained for callers that
-    also build workbook sheets with run-wide layout parameters.
+    blank event denominator uses its uniquely bound group's table total under checks.at_risk, with visible
+    provenance in Notes. An absent event count row supplies no denominator; explicit zero wins. `n` is
+    retained for callers that also build workbook sheets with run-wide layout parameters.
     """
     held = study.get("adverse_events")
     events = held if isinstance(held, dict) else {}
@@ -1257,6 +1272,34 @@ def safety_rows(study: dict[str, Any], number: int, n: int) -> list[tuple]:
             else:
                 group_title = value_words(group.get("title"))
                 group_description = value_words(group.get("description"))
+            risk = stat_cell(count if isinstance(count, dict) else None, "at_risk")
+            risk_source, risk_rule, risk_inputs = address, "", ""
+            notes = value_words(event.get("notes"))
+            risk_key = {"serious": "serious_at_risk", "other": "other_at_risk"}.get(event.get("table"))
+            if (
+                isinstance(count, dict)
+                and count.get("at_risk") is None
+                and group is not None
+                and isinstance(group_id, str)
+                and group_id != ""
+                and risk_key
+            ):
+                group_risk = group.get(risk_key)
+                if type(group_risk) is int and group_risk >= 0:
+                    origin, effective_risk = checks.at_risk(None, group_risk)
+                    if origin == "group_total":
+                        risk = effective_risk
+                        group_index = next(
+                            i for i, candidate in enumerate(events.get("groups") or []) if candidate is group
+                        )
+                        risk_source = f"/studies/{number}/adverse_events/groups/{group_index}/{risk_key}"
+                        risk_rule = "checks.at_risk"
+                        risk_inputs = f"{address}/at_risk; {risk_source}"
+                        provenance = (
+                            f"At risk uses the {event['table']} group total (event denominator not stated). "
+                            f"Source: {risk_source}; rule: {risk_rule}."
+                        )
+                        notes = f"{notes}\n{provenance}" if stated(event.get("notes")) else provenance
             values = (
                 study["nct"],
                 address,
@@ -1264,7 +1307,7 @@ def safety_rows(study: dict[str, Any], number: int, n: int) -> list[tuple]:
                 value_words(event.get("term")),
                 group_title,
                 stat_cell(count if isinstance(count, dict) else None, "affected"),
-                stat_cell(count if isinstance(count, dict) else None, "at_risk"),
+                risk,
                 stat_cell(count if isinstance(count, dict) else None, "events"),
                 value_words(events.get("time_frame")),
                 value_words(event.get("organ_system")),
@@ -1273,9 +1316,16 @@ def safety_rows(study: dict[str, Any], number: int, n: int) -> list[tuple]:
                 value_words(events.get("frequency_threshold")),
                 value_words(event.get("vocabulary")),
                 value_words(event.get("assessment"), "EventAssessment"),
-                value_words(event.get("notes")),
+                notes,
             )
-            rows.append(tuple(cell(value, "known", address) for value in values))
+            cells = [cell(value, "known", address) for value in values]
+            cells[6] = cell(
+                risk,
+                "known",
+                risk_source,
+                inputs=f"{risk_rule}: {risk_inputs}" if risk_rule else "",
+            )
+            rows.append(tuple(cells))
 
         for c, count in enumerate(counts):
             count_group = count.get("group") if isinstance(count, dict) else None

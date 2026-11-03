@@ -170,6 +170,7 @@ def test_the_real_derivation_is_the_workbook_and_what_it_imports():
         "__init__.py",
         "cells.py",
         "checks.py",
+        "date_possibilities.py",
         "eligibility.py",
         "ledger.py",
         "links.py",

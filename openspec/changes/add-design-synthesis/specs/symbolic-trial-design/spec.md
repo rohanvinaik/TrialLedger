@@ -417,3 +417,37 @@ unsupported common closure. Selecting a frame SHALL remain a user choice and rec
 - **WHEN** population alignment, definition edition or hypothesis support changes
 - **THEN** all dependent frame decisions and common consequences are recomputed from the revised request
 - **AND** retained source records and the original request remain unchanged
+
+### Requirement: Every public consumer declares admission
+Coordinate evidence and corpus representations SHALL retain explicit standing and provenance. Missing
+standing SHALL remain pending; typing and a reference SHALL NOT confer factual standing. Mixed records
+SHALL retain independently warranted features, and pending information SHALL remain inspectable.
+
+#### Scenario: A trial has one accepted and one pending feature
+- **WHEN** age is known/resolved and a brain-metastasis reading is proposed
+- **THEN** age can enter a count while the other feature remains pending with its denominator and bounds
+- **AND** a pending-only feature is retained rather than disappearing or becoming an observed absence
+
+#### Scenario: Pending membership affects a comparison
+- **WHEN** an association, near miss, occupancy or expectation depends on unadmitted inputs
+- **THEN** that consumer withholds the unsupported conclusion or retains possible membership explicitly
+- **AND** known information in independent dimensions remains available
+
+#### Scenario: A scale or event identity differs
+- **WHEN** exact same-predicate literals differ in subject, unit or temporal identity
+- **THEN** an entailment abstention can retain a structural translation diagnostic
+- **AND** no diagnostic supplies an equivalence, changes a decision, or merges WHO PS with ECOG
+
+### Requirement: Reporting preserves source-defined partial conclusions
+Layer one SHALL retain directly warranted partial check information without invoking clinical reasoning,
+repairing source fields or hiding known results behind independent malformed entries.
+
+#### Scenario: A missing date type leaves several check outcomes
+- **WHEN** all valid completions of the stored date codebook exclude conflict but leave applicability open
+- **THEN** those possible and excluded outcomes remain explicit beside the unchanged missing field
+- **AND** malformed observed values establish no exclusions
+
+#### Scenario: An independent safety entry is malformed
+- **WHEN** another entry establishes a contradiction under the approved registry rule
+- **THEN** the contradiction and malformed entry remain visible together
+- **AND** independently known denominators, collection counts and flow calculations keep their scope and origin

@@ -455,6 +455,12 @@
     "refusal": "",
     "standing": "complete"
   },
+  "TrialLedger/date_possibilities.py::completion_outcomes": {
+    "cut_reasons": [],
+    "function_digest": "828261af3a3c6fd6",
+    "refusal": "",
+    "standing": "complete"
+  },
   "TrialLedger/doctor.py::http_probe_status": {
     "cut_reasons": [],
     "function_digest": "8d1f5ded93b7cbc0",

@@ -1,0 +1,699 @@
+[
+  {
+    "id": "corpus-unconfirmed",
+    "request": {
+      "operation": "corpus",
+      "trials": [
+        {
+          "id": "invented-A",
+          "sponsor": "invented-S1",
+          "stratum": "invented-comparison",
+          "typed": true,
+          "elements": [
+            "exclusion:brain_metastases=present"
+          ],
+          "basis": [
+            "invented:assistant-unconfirmed-reading"
+          ]
+        },
+        {
+          "id": "invented-B",
+          "sponsor": "invented-S2",
+          "stratum": "invented-comparison",
+          "typed": true,
+          "elements": [],
+          "basis": [
+            "invented:assistant-unconfirmed-reading"
+          ]
+        }
+      ]
+    },
+    "response": {
+      "code": "complete",
+      "operation": "corpus",
+      "result": {
+        "basis": "Conditional on the supplied typed premises; their source meaning is not certified by this operation.",
+        "premises": [
+          {
+            "id": "invented-A",
+            "sponsor": "invented-S1",
+            "stratum": "invented-comparison",
+            "typed": true,
+            "elements": [
+              "exclusion:brain_metastases=present"
+            ],
+            "basis": [
+              "invented:assistant-unconfirmed-reading"
+            ]
+          },
+          {
+            "id": "invented-B",
+            "sponsor": "invented-S2",
+            "stratum": "invented-comparison",
+            "typed": true,
+            "elements": [],
+            "basis": [
+              "invented:assistant-unconfirmed-reading"
+            ]
+          }
+        ],
+        "frequency": [
+          {
+            "stratum": "invented-comparison",
+            "element": "exclusion:brain_metastases=present",
+            "stating": 1,
+            "absence_established": 0,
+            "unresolved_empty": 0,
+            "unresolved_untyped": 1,
+            "unresolved_abbreviated": 0,
+            "unresolved_unspecified": 0,
+            "unresolved": 1,
+            "trials": 2,
+            "statement_rate": 0.5,
+            "lower": 0.5,
+            "upper": 1.0,
+            "surprisal_bits": 1.0,
+            "sponsors": 1,
+            "tier": "unresolved",
+            "estimand": "statement rate and full-criteria interval"
+          }
+        ],
+        "associations": [],
+        "near_misses": [],
+        "occupancy": [],
+        "expectations": [],
+        "limits": "Statement rates and proposed associations are not clinical importance, causation, or permission to reuse protocol language."
+      },
+      "problems": []
+    }
+  },
+  {
+    "id": "coordinate-unconfirmed",
+    "request": {
+      "operation": "coordinates",
+      "domain": "nsclc",
+      "evidence": [
+        {
+          "section": "inclusion",
+          "concept": "prior_lines",
+          "values": [
+            "0"
+          ],
+          "scope": "advanced",
+          "ref": "invented:assistant-unconfirmed-reading"
+        }
+      ]
+    },
+    "response": {
+      "code": "complete",
+      "operation": "coordinates",
+      "result": {
+        "basis": "Conditional on the supplied typed premises; their source meaning is not certified by this operation.",
+        "domain": "nsclc",
+        "premises": [
+          {
+            "section": "inclusion",
+            "concept": "prior_lines",
+            "values": [
+              "0"
+            ],
+            "scope": "advanced",
+            "ref": "invented:assistant-unconfirmed-reading"
+          }
+        ],
+        "coordinates": {
+          "setting": {
+            "domain": [
+              "neoadjuvant",
+              "adjuvant",
+              "perioperative",
+              "definitive_chemoradiation",
+              "consolidation_after_chemoradiation",
+              "advanced_first_line",
+              "advanced_previously_treated",
+              "maintenance",
+              "local_consolidative_therapy"
+            ],
+            "state": "unnarrowed",
+            "causes": [],
+            "interpolated": {
+              "domain": [
+                "neoadjuvant",
+                "adjuvant",
+                "perioperative",
+                "definitive_chemoradiation",
+                "consolidation_after_chemoradiation",
+                "advanced_first_line",
+                "advanced_previously_treated",
+                "maintenance",
+                "local_consolidative_therapy"
+              ],
+              "state": "unnarrowed",
+              "causes": []
+            },
+            "proposals": []
+          },
+          "prior_advanced_lines": {
+            "domain": [
+              "0"
+            ],
+            "state": "resolved",
+            "causes": [
+              [
+                "prior_advanced_lines",
+                [
+                  "1",
+                  "2",
+                  "3+"
+                ],
+                "invented:assistant-unconfirmed-reading"
+              ]
+            ],
+            "interpolated": {
+              "domain": [
+                "0"
+              ],
+              "state": "resolved",
+              "causes": []
+            },
+            "proposals": []
+          },
+          "selection:EGFR": {
+            "domain": [
+              "negative",
+              "positive",
+              "unknown"
+            ],
+            "state": "unnarrowed",
+            "causes": [],
+            "interpolated": {
+              "domain": [
+                "negative",
+                "positive",
+                "unknown"
+              ],
+              "state": "unnarrowed",
+              "causes": []
+            },
+            "proposals": []
+          },
+          "selection:ALK": {
+            "domain": [
+              "negative",
+              "positive",
+              "unknown"
+            ],
+            "state": "unnarrowed",
+            "causes": [],
+            "interpolated": {
+              "domain": [
+                "negative",
+                "positive",
+                "unknown"
+              ],
+              "state": "unnarrowed",
+              "causes": []
+            },
+            "proposals": []
+          },
+          "selection:ROS1": {
+            "domain": [
+              "negative",
+              "positive",
+              "unknown"
+            ],
+            "state": "unnarrowed",
+            "causes": [],
+            "interpolated": {
+              "domain": [
+                "negative",
+                "positive",
+                "unknown"
+              ],
+              "state": "unnarrowed",
+              "causes": []
+            },
+            "proposals": []
+          },
+          "selection:KRAS": {
+            "domain": [
+              "negative",
+              "positive",
+              "unknown"
+            ],
+            "state": "unnarrowed",
+            "causes": [],
+            "interpolated": {
+              "domain": [
+                "negative",
+                "positive",
+                "unknown"
+              ],
+              "state": "unnarrowed",
+              "causes": []
+            },
+            "proposals": []
+          },
+          "selection:BRAF": {
+            "domain": [
+              "negative",
+              "positive",
+              "unknown"
+            ],
+            "state": "unnarrowed",
+            "causes": [],
+            "interpolated": {
+              "domain": [
+                "negative",
+                "positive",
+                "unknown"
+              ],
+              "state": "unnarrowed",
+              "causes": []
+            },
+            "proposals": []
+          },
+          "selection:MET": {
+            "domain": [
+              "negative",
+              "positive",
+              "unknown"
+            ],
+            "state": "unnarrowed",
+            "causes": [],
+            "interpolated": {
+              "domain": [
+                "negative",
+                "positive",
+                "unknown"
+              ],
+              "state": "unnarrowed",
+              "causes": []
+            },
+            "proposals": []
+          },
+          "selection:RET": {
+            "domain": [
+              "negative",
+              "positive",
+              "unknown"
+            ],
+            "state": "unnarrowed",
+            "causes": [],
+            "interpolated": {
+              "domain": [
+                "negative",
+                "positive",
+                "unknown"
+              ],
+              "state": "unnarrowed",
+              "causes": []
+            },
+            "proposals": []
+          },
+          "selection:NTRK": {
+            "domain": [
+              "negative",
+              "positive",
+              "unknown"
+            ],
+            "state": "unnarrowed",
+            "causes": [],
+            "interpolated": {
+              "domain": [
+                "negative",
+                "positive",
+                "unknown"
+              ],
+              "state": "unnarrowed",
+              "causes": []
+            },
+            "proposals": []
+          },
+          "selection:HER2": {
+            "domain": [
+              "negative",
+              "positive",
+              "unknown"
+            ],
+            "state": "unnarrowed",
+            "causes": [],
+            "interpolated": {
+              "domain": [
+                "negative",
+                "positive",
+                "unknown"
+              ],
+              "state": "unnarrowed",
+              "causes": []
+            },
+            "proposals": []
+          }
+        },
+        "relations": [
+          {
+            "id": "first_line_when_no_prior_advanced_therapy",
+            "statement": "A trial of advanced disease (metastatic, stage IV, recurrent or advanced, not locally advanced alone) that requires no prior systemic therapy for advanced disease, and plans no surgery around its treatment, is a first-line advanced trial.",
+            "basis": "definition of line of therapy",
+            "approval": "approved",
+            "kind": "default",
+            "needs": [],
+            "lines_within": [
+              "0"
+            ],
+            "narrows": "setting",
+            "allowed": [
+              "advanced_first_line"
+            ],
+            "needs_any": [
+              "inclusion:extent:metastatic",
+              "inclusion:stage:IV",
+              "inclusion:extent:recurrent",
+              "inclusion:extent:advanced"
+            ],
+            "forbids": [
+              "inclusion:resection:resected",
+              "inclusion:resection:resectable",
+              "inclusion:setting_word:neoadjuvant",
+              "inclusion:setting_word:adjuvant",
+              "inclusion:setting_word:perioperative"
+            ]
+          },
+          {
+            "id": "previously_treated_when_prior_advanced_therapy_required",
+            "statement": "A trial requiring at least one prior line for advanced disease, other than chemoradiation, is a previously treated or maintenance advanced trial.",
+            "basis": "definition of line of therapy; maintenance follows first-line induction",
+            "approval": "approved",
+            "kind": "default",
+            "needs": [],
+            "lines_within": [
+              "1",
+              "2",
+              "3+"
+            ],
+            "narrows": "setting",
+            "allowed": [
+              "advanced_previously_treated",
+              "maintenance"
+            ],
+            "needs_any": [],
+            "forbids": [
+              "inclusion:prior_agent:radiotherapy",
+              "inclusion:setting_word:consolidation"
+            ]
+          },
+          {
+            "id": "adjuvant_or_perioperative_when_resection_required",
+            "statement": "A trial requiring a completed resection of the lung tumour treats in the adjuvant or perioperative setting.",
+            "basis": "the meaning of adjuvant therapy; ambiguous: advanced trials admit recurrence after resection",
+            "approval": "proposed",
+            "kind": "proposal",
+            "needs": [
+              "inclusion:resection:resected"
+            ],
+            "lines_within": [],
+            "narrows": "setting",
+            "allowed": [
+              "adjuvant",
+              "perioperative"
+            ],
+            "needs_any": [],
+            "forbids": []
+          },
+          {
+            "id": "neoadjuvant_or_perioperative_when_resectable_required",
+            "statement": "A trial requiring resectable disease treats before surgery, in the neoadjuvant or perioperative setting.",
+            "basis": "the meaning of neoadjuvant therapy; ambiguous: resectability is feasibility, not planned treatment",
+            "approval": "proposed",
+            "kind": "proposal",
+            "needs": [
+              "inclusion:resection:resectable"
+            ],
+            "lines_within": [],
+            "narrows": "setting",
+            "allowed": [
+              "neoadjuvant",
+              "perioperative"
+            ],
+            "needs_any": [],
+            "forbids": []
+          },
+          {
+            "id": "advanced_when_metastatic_disease_required",
+            "statement": "A trial requiring metastatic disease, with no resection or perioperative treatment, treats in an advanced setting.",
+            "basis": "staging (AJCC 8th edition: stage IV is metastatic)",
+            "approval": "approved",
+            "kind": "default",
+            "needs": [
+              "inclusion:extent:metastatic"
+            ],
+            "lines_within": [],
+            "narrows": "setting",
+            "allowed": [
+              "advanced_first_line",
+              "advanced_previously_treated",
+              "maintenance",
+              "local_consolidative_therapy"
+            ],
+            "needs_any": [],
+            "forbids": [
+              "inclusion:resection:resected",
+              "inclusion:resection:resectable",
+              "inclusion:setting_word:neoadjuvant",
+              "inclusion:setting_word:adjuvant",
+              "inclusion:setting_word:perioperative"
+            ]
+          },
+          {
+            "id": "advanced_when_stage_iv_required",
+            "statement": "A trial whose inclusion admits stage IV and no earlier stage, with no resection or perioperative treatment, treats in an advanced setting.",
+            "basis": "staging (AJCC 8th edition)",
+            "approval": "approved",
+            "kind": "default",
+            "needs": [
+              "inclusion:stage:IV"
+            ],
+            "lines_within": [],
+            "narrows": "setting",
+            "allowed": [
+              "advanced_first_line",
+              "advanced_previously_treated",
+              "maintenance",
+              "local_consolidative_therapy"
+            ],
+            "needs_any": [],
+            "forbids": [
+              "inclusion:resection:resected",
+              "inclusion:resection:resectable",
+              "inclusion:setting_word:neoadjuvant",
+              "inclusion:setting_word:adjuvant",
+              "inclusion:setting_word:perioperative",
+              "inclusion:stage:I",
+              "inclusion:stage:II",
+              "inclusion:stage:III"
+            ]
+          },
+          {
+            "id": "consolidation_when_named",
+            "statement": "A trial whose inclusion criteria name consolidation gives consolidation, after chemoradiation or local consolidative therapy of metastatic disease.",
+            "basis": "the trial's own words; ambiguous: a criterion may name earlier consolidation",
+            "approval": "proposed",
+            "kind": "proposal",
+            "needs": [
+              "inclusion:setting_word:consolidation"
+            ],
+            "lines_within": [],
+            "narrows": "setting",
+            "allowed": [
+              "consolidation_after_chemoradiation",
+              "local_consolidative_therapy"
+            ],
+            "needs_any": [],
+            "forbids": []
+          }
+        ]
+      },
+      "problems": []
+    }
+  },
+  {
+    "id": "unbound-unit",
+    "request": {
+      "operation": "entailment",
+      "assertions": [
+        {
+          "applicability": {
+            "class": "Always"
+          },
+          "body": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "performance_status",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "le",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 1.0,
+              "unit": "ECOG",
+              "upper": null
+            }
+          },
+          "branch": {
+            "class": "Branch",
+            "node": "unresolved",
+            "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+            "class": "Scope",
+            "kind": "all_participants",
+            "parts": [],
+            "ref": ""
+          },
+          "criterion_ref": "invented:trial-design-session-not-registry-evidence",
+          "id": "invented-PS",
+          "modality": "required",
+          "resolution": "resolved",
+          "rule": {
+            "answers": [],
+            "class": "Rule",
+            "id": "invented-session-premise",
+            "premises": [],
+            "version": "1",
+            "warrants": [
+              "invented:explicit-teaching-premise"
+            ]
+          },
+          "span": [],
+          "status": "known"
+        }
+      ],
+      "query": {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+          "class": "Predicate",
+          "key": "performance_status",
+          "kind": "measurement"
+        },
+        "qualifiers": {
+          "class": "Always"
+        },
+        "subject": {
+          "class": "Subject",
+          "kind": "participant",
+          "referent": ""
+        },
+        "time": null,
+        "value": {
+          "class": "Value",
+          "comparison": "le",
+          "inclusivity": "unspecified",
+          "kind": "quantity",
+          "members": [],
+          "number": 1.0,
+          "unit": "WHO",
+          "upper": null
+        }
+      }
+    },
+    "response": {
+      "code": "complete",
+      "operation": "entailment",
+      "result": {
+        "basis": "Conditional on the supplied typed premises; their source meaning is not certified by this operation.",
+        "decision": {
+          "result": "UNDETERMINED",
+          "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"performance_status\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"le\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":1.0,\"unit\":\"WHO\",\"upper\":null}}",
+          "status": null,
+          "proof": [],
+          "blockers": [
+            "no_constraint_mentions_query"
+          ]
+        },
+        "premises": [
+          {
+            "applicability": {
+              "class": "Always"
+            },
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "performance_status",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "le",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 1.0,
+                "unit": "ECOG",
+                "upper": null
+              }
+            },
+            "branch": {
+              "class": "Branch",
+              "node": "unresolved",
+              "path": []
+            },
+            "class": "ScopedAssertion",
+            "cohort": {
+              "class": "Scope",
+              "kind": "all_participants",
+              "parts": [],
+              "ref": ""
+            },
+            "criterion_ref": "invented:trial-design-session-not-registry-evidence",
+            "id": "invented-PS",
+            "modality": "required",
+            "resolution": "resolved",
+            "rule": {
+              "answers": [],
+              "class": "Rule",
+              "id": "invented-session-premise",
+              "premises": [],
+              "version": "1",
+              "warrants": [
+                "invented:explicit-teaching-premise"
+              ]
+            },
+            "span": [],
+            "status": "known"
+          }
+        ]
+      },
+      "problems": []
+    }
+  }
+]

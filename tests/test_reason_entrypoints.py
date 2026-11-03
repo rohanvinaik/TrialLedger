@@ -58,6 +58,7 @@ COORDINATES = {
             "values": ["0"],
             "scope": "advanced",
             "ref": "user:lines",
+            "standing": {"status": "known", "resolution": "resolved", "basis": ["user:lines"]},
         },
         {
             "section": "inclusion",
@@ -65,6 +66,7 @@ COORDINATES = {
             "values": ["advanced"],
             "scope": "",
             "ref": "user:extent",
+            "standing": {"status": "known", "resolution": "resolved", "basis": ["user:extent"]},
         },
     ],
 }

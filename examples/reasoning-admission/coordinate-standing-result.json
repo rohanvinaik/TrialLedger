@@ -1,0 +1,599 @@
+{
+  "code": "complete",
+  "operation": "coordinates",
+  "result": {
+    "basis": "Conditional on the supplied typed premises; their source meaning is not certified by this operation.",
+    "domain": "nsclc",
+    "premises": [
+      {
+        "section": "inclusion",
+        "concept": "biomarker:EGFR",
+        "values": [
+          "positive"
+        ],
+        "scope": "",
+        "ref": "invented:biomarker:EGFRknown",
+        "standing": {
+          "status": "known",
+          "resolution": "resolved",
+          "basis": [
+            "invented:accepted-teaching-premise"
+          ]
+        }
+      },
+      {
+        "section": "inclusion",
+        "concept": "prior_lines",
+        "values": [
+          "0"
+        ],
+        "scope": "advanced",
+        "ref": "invented:prior_linesinterpolated",
+        "standing": {
+          "status": "interpolated",
+          "resolution": "resolved",
+          "basis": [
+            "invented:accepted-teaching-premise"
+          ]
+        }
+      },
+      {
+        "section": "inclusion",
+        "concept": "extent",
+        "values": [
+          "advanced"
+        ],
+        "scope": "",
+        "ref": "invented:extentknown",
+        "standing": {
+          "status": "known",
+          "resolution": "resolved",
+          "basis": [
+            "invented:accepted-teaching-premise"
+          ]
+        }
+      },
+      {
+        "section": "inclusion",
+        "concept": "biomarker:EGFR",
+        "values": [
+          "negative"
+        ],
+        "scope": "",
+        "ref": "invented:biomarker:EGFRproposed",
+        "standing": {
+          "status": "proposed",
+          "resolution": "resolved",
+          "basis": [
+            "invented:accepted-teaching-premise"
+          ]
+        }
+      }
+    ],
+    "coordinates": {
+      "setting": {
+        "domain": [
+          "neoadjuvant",
+          "adjuvant",
+          "perioperative",
+          "definitive_chemoradiation",
+          "consolidation_after_chemoradiation",
+          "advanced_first_line",
+          "advanced_previously_treated",
+          "maintenance",
+          "local_consolidative_therapy"
+        ],
+        "state": "unnarrowed",
+        "causes": [],
+        "interpolated": {
+          "domain": [
+            "advanced_first_line"
+          ],
+          "state": "resolved",
+          "causes": [
+            [
+              "setting",
+              [
+                "neoadjuvant",
+                "adjuvant",
+                "perioperative",
+                "definitive_chemoradiation",
+                "consolidation_after_chemoradiation",
+                "advanced_previously_treated",
+                "maintenance",
+                "local_consolidative_therapy"
+              ],
+              "first_line_when_no_prior_advanced_therapy"
+            ]
+          ]
+        },
+        "proposals": []
+      },
+      "prior_advanced_lines": {
+        "domain": [
+          "0",
+          "1",
+          "2",
+          "3+"
+        ],
+        "state": "unnarrowed",
+        "causes": [],
+        "interpolated": {
+          "domain": [
+            "0"
+          ],
+          "state": "resolved",
+          "causes": [
+            [
+              "prior_advanced_lines",
+              [
+                "1",
+                "2",
+                "3+"
+              ],
+              "invented:prior_linesinterpolated"
+            ]
+          ]
+        },
+        "proposals": []
+      },
+      "selection:EGFR": {
+        "domain": [
+          "positive"
+        ],
+        "state": "resolved",
+        "causes": [
+          [
+            "selection:EGFR",
+            [
+              "negative",
+              "unknown"
+            ],
+            "invented:biomarker:EGFRknown"
+          ]
+        ],
+        "interpolated": {
+          "domain": [
+            "positive"
+          ],
+          "state": "resolved",
+          "causes": []
+        },
+        "proposals": []
+      },
+      "selection:ALK": {
+        "domain": [
+          "negative",
+          "positive",
+          "unknown"
+        ],
+        "state": "unnarrowed",
+        "causes": [],
+        "interpolated": {
+          "domain": [
+            "negative",
+            "positive",
+            "unknown"
+          ],
+          "state": "unnarrowed",
+          "causes": []
+        },
+        "proposals": []
+      },
+      "selection:ROS1": {
+        "domain": [
+          "negative",
+          "positive",
+          "unknown"
+        ],
+        "state": "unnarrowed",
+        "causes": [],
+        "interpolated": {
+          "domain": [
+            "negative",
+            "positive",
+            "unknown"
+          ],
+          "state": "unnarrowed",
+          "causes": []
+        },
+        "proposals": []
+      },
+      "selection:KRAS": {
+        "domain": [
+          "negative",
+          "positive",
+          "unknown"
+        ],
+        "state": "unnarrowed",
+        "causes": [],
+        "interpolated": {
+          "domain": [
+            "negative",
+            "positive",
+            "unknown"
+          ],
+          "state": "unnarrowed",
+          "causes": []
+        },
+        "proposals": []
+      },
+      "selection:BRAF": {
+        "domain": [
+          "negative",
+          "positive",
+          "unknown"
+        ],
+        "state": "unnarrowed",
+        "causes": [],
+        "interpolated": {
+          "domain": [
+            "negative",
+            "positive",
+            "unknown"
+          ],
+          "state": "unnarrowed",
+          "causes": []
+        },
+        "proposals": []
+      },
+      "selection:MET": {
+        "domain": [
+          "negative",
+          "positive",
+          "unknown"
+        ],
+        "state": "unnarrowed",
+        "causes": [],
+        "interpolated": {
+          "domain": [
+            "negative",
+            "positive",
+            "unknown"
+          ],
+          "state": "unnarrowed",
+          "causes": []
+        },
+        "proposals": []
+      },
+      "selection:RET": {
+        "domain": [
+          "negative",
+          "positive",
+          "unknown"
+        ],
+        "state": "unnarrowed",
+        "causes": [],
+        "interpolated": {
+          "domain": [
+            "negative",
+            "positive",
+            "unknown"
+          ],
+          "state": "unnarrowed",
+          "causes": []
+        },
+        "proposals": []
+      },
+      "selection:NTRK": {
+        "domain": [
+          "negative",
+          "positive",
+          "unknown"
+        ],
+        "state": "unnarrowed",
+        "causes": [],
+        "interpolated": {
+          "domain": [
+            "negative",
+            "positive",
+            "unknown"
+          ],
+          "state": "unnarrowed",
+          "causes": []
+        },
+        "proposals": []
+      },
+      "selection:HER2": {
+        "domain": [
+          "negative",
+          "positive",
+          "unknown"
+        ],
+        "state": "unnarrowed",
+        "causes": [],
+        "interpolated": {
+          "domain": [
+            "negative",
+            "positive",
+            "unknown"
+          ],
+          "state": "unnarrowed",
+          "causes": []
+        },
+        "proposals": []
+      }
+    },
+    "admission": [
+      {
+        "index": 0,
+        "ref": "invented:biomarker:EGFRknown",
+        "standing": {
+          "status": "known",
+          "resolution": "resolved",
+          "basis": [
+            "invented:accepted-teaching-premise"
+          ]
+        },
+        "code": "accepted",
+        "level": "known",
+        "evidence": {
+          "section": "inclusion",
+          "concept": "biomarker:EGFR",
+          "values": [
+            "positive"
+          ],
+          "scope": "",
+          "ref": "invented:biomarker:EGFRknown",
+          "standing": {
+            "status": "known",
+            "resolution": "resolved",
+            "basis": [
+              "invented:accepted-teaching-premise"
+            ]
+          }
+        }
+      },
+      {
+        "index": 1,
+        "ref": "invented:prior_linesinterpolated",
+        "standing": {
+          "status": "interpolated",
+          "resolution": "resolved",
+          "basis": [
+            "invented:accepted-teaching-premise"
+          ]
+        },
+        "code": "accepted",
+        "level": "interpolated",
+        "evidence": {
+          "section": "inclusion",
+          "concept": "prior_lines",
+          "values": [
+            "0"
+          ],
+          "scope": "advanced",
+          "ref": "invented:prior_linesinterpolated",
+          "standing": {
+            "status": "interpolated",
+            "resolution": "resolved",
+            "basis": [
+              "invented:accepted-teaching-premise"
+            ]
+          }
+        }
+      },
+      {
+        "index": 2,
+        "ref": "invented:extentknown",
+        "standing": {
+          "status": "known",
+          "resolution": "resolved",
+          "basis": [
+            "invented:accepted-teaching-premise"
+          ]
+        },
+        "code": "accepted",
+        "level": "known",
+        "evidence": {
+          "section": "inclusion",
+          "concept": "extent",
+          "values": [
+            "advanced"
+          ],
+          "scope": "",
+          "ref": "invented:extentknown",
+          "standing": {
+            "status": "known",
+            "resolution": "resolved",
+            "basis": [
+              "invented:accepted-teaching-premise"
+            ]
+          }
+        }
+      },
+      {
+        "index": 3,
+        "ref": "invented:biomarker:EGFRproposed",
+        "standing": {
+          "status": "proposed",
+          "resolution": "resolved",
+          "basis": [
+            "invented:accepted-teaching-premise"
+          ]
+        },
+        "code": "proposed_refused",
+        "level": "pending",
+        "evidence": {
+          "section": "inclusion",
+          "concept": "biomarker:EGFR",
+          "values": [
+            "negative"
+          ],
+          "scope": "",
+          "ref": "invented:biomarker:EGFRproposed",
+          "standing": {
+            "status": "proposed",
+            "resolution": "resolved",
+            "basis": [
+              "invented:accepted-teaching-premise"
+            ]
+          }
+        }
+      }
+    ],
+    "relations": [
+      {
+        "id": "first_line_when_no_prior_advanced_therapy",
+        "statement": "A trial of advanced disease (metastatic, stage IV, recurrent or advanced, not locally advanced alone) that requires no prior systemic therapy for advanced disease, and plans no surgery around its treatment, is a first-line advanced trial.",
+        "basis": "definition of line of therapy",
+        "approval": "approved",
+        "kind": "default",
+        "needs": [],
+        "lines_within": [
+          "0"
+        ],
+        "narrows": "setting",
+        "allowed": [
+          "advanced_first_line"
+        ],
+        "needs_any": [
+          "inclusion:extent:metastatic",
+          "inclusion:stage:IV",
+          "inclusion:extent:recurrent",
+          "inclusion:extent:advanced"
+        ],
+        "forbids": [
+          "inclusion:resection:resected",
+          "inclusion:resection:resectable",
+          "inclusion:setting_word:neoadjuvant",
+          "inclusion:setting_word:adjuvant",
+          "inclusion:setting_word:perioperative"
+        ]
+      },
+      {
+        "id": "previously_treated_when_prior_advanced_therapy_required",
+        "statement": "A trial requiring at least one prior line for advanced disease, other than chemoradiation, is a previously treated or maintenance advanced trial.",
+        "basis": "definition of line of therapy; maintenance follows first-line induction",
+        "approval": "approved",
+        "kind": "default",
+        "needs": [],
+        "lines_within": [
+          "1",
+          "2",
+          "3+"
+        ],
+        "narrows": "setting",
+        "allowed": [
+          "advanced_previously_treated",
+          "maintenance"
+        ],
+        "needs_any": [],
+        "forbids": [
+          "inclusion:prior_agent:radiotherapy",
+          "inclusion:setting_word:consolidation"
+        ]
+      },
+      {
+        "id": "adjuvant_or_perioperative_when_resection_required",
+        "statement": "A trial requiring a completed resection of the lung tumour treats in the adjuvant or perioperative setting.",
+        "basis": "the meaning of adjuvant therapy; ambiguous: advanced trials admit recurrence after resection",
+        "approval": "proposed",
+        "kind": "proposal",
+        "needs": [
+          "inclusion:resection:resected"
+        ],
+        "lines_within": [],
+        "narrows": "setting",
+        "allowed": [
+          "adjuvant",
+          "perioperative"
+        ],
+        "needs_any": [],
+        "forbids": []
+      },
+      {
+        "id": "neoadjuvant_or_perioperative_when_resectable_required",
+        "statement": "A trial requiring resectable disease treats before surgery, in the neoadjuvant or perioperative setting.",
+        "basis": "the meaning of neoadjuvant therapy; ambiguous: resectability is feasibility, not planned treatment",
+        "approval": "proposed",
+        "kind": "proposal",
+        "needs": [
+          "inclusion:resection:resectable"
+        ],
+        "lines_within": [],
+        "narrows": "setting",
+        "allowed": [
+          "neoadjuvant",
+          "perioperative"
+        ],
+        "needs_any": [],
+        "forbids": []
+      },
+      {
+        "id": "advanced_when_metastatic_disease_required",
+        "statement": "A trial requiring metastatic disease, with no resection or perioperative treatment, treats in an advanced setting.",
+        "basis": "staging (AJCC 8th edition: stage IV is metastatic)",
+        "approval": "approved",
+        "kind": "default",
+        "needs": [
+          "inclusion:extent:metastatic"
+        ],
+        "lines_within": [],
+        "narrows": "setting",
+        "allowed": [
+          "advanced_first_line",
+          "advanced_previously_treated",
+          "maintenance",
+          "local_consolidative_therapy"
+        ],
+        "needs_any": [],
+        "forbids": [
+          "inclusion:resection:resected",
+          "inclusion:resection:resectable",
+          "inclusion:setting_word:neoadjuvant",
+          "inclusion:setting_word:adjuvant",
+          "inclusion:setting_word:perioperative"
+        ]
+      },
+      {
+        "id": "advanced_when_stage_iv_required",
+        "statement": "A trial whose inclusion admits stage IV and no earlier stage, with no resection or perioperative treatment, treats in an advanced setting.",
+        "basis": "staging (AJCC 8th edition)",
+        "approval": "approved",
+        "kind": "default",
+        "needs": [
+          "inclusion:stage:IV"
+        ],
+        "lines_within": [],
+        "narrows": "setting",
+        "allowed": [
+          "advanced_first_line",
+          "advanced_previously_treated",
+          "maintenance",
+          "local_consolidative_therapy"
+        ],
+        "needs_any": [],
+        "forbids": [
+          "inclusion:resection:resected",
+          "inclusion:resection:resectable",
+          "inclusion:setting_word:neoadjuvant",
+          "inclusion:setting_word:adjuvant",
+          "inclusion:setting_word:perioperative",
+          "inclusion:stage:I",
+          "inclusion:stage:II",
+          "inclusion:stage:III"
+        ]
+      },
+      {
+        "id": "consolidation_when_named",
+        "statement": "A trial whose inclusion criteria name consolidation gives consolidation, after chemoradiation or local consolidative therapy of metastatic disease.",
+        "basis": "the trial's own words; ambiguous: a criterion may name earlier consolidation",
+        "approval": "proposed",
+        "kind": "proposal",
+        "needs": [
+          "inclusion:setting_word:consolidation"
+        ],
+        "lines_within": [],
+        "narrows": "setting",
+        "allowed": [
+          "consolidation_after_chemoradiation",
+          "local_consolidative_therapy"
+        ],
+        "needs_any": [],
+        "forbids": []
+      }
+    ]
+  },
+  "problems": []
+}

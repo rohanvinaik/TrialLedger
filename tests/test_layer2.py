@@ -102,6 +102,7 @@ def test_coordinates_require_explicit_domain_and_keep_default_separate():
             "values": ["0"],
             "scope": "advanced",
             "ref": "user:no-prior",
+            "standing": {"status": "known", "resolution": "resolved", "basis": ["user:no-prior"]},
         },
         {
             "section": "inclusion",
@@ -109,6 +110,7 @@ def test_coordinates_require_explicit_domain_and_keep_default_separate():
             "values": ["advanced"],
             "scope": "",
             "ref": "user:advanced",
+            "standing": {"status": "known", "resolution": "resolved", "basis": ["user:advanced"]},
         },
     ]
     result = run({"operation": "coordinates", "domain": "nsclc", "evidence": evidence})
@@ -137,6 +139,7 @@ def trial(identity, elements, klass="Class A"):
         "stratum": "declared-comparable-set",
         "elements": elements,
         "basis": ["user:typed-trials"],
+        "standing": {"status": "known", "resolution": "resolved", "basis": ["user:typed-trials"]},
         "typed": bool(elements),
         "classes": [klass],
         "class_unresolved": False,

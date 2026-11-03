@@ -1,0 +1,151 @@
+{
+  "operation": "corpus",
+  "trials": [
+    {
+      "id": "invented-A",
+      "sponsor": "invented-A",
+      "stratum": "invented-comparison-set",
+      "elements": [
+        "inclusion:age=adult",
+        "exclusion:brain_metastases=present"
+      ],
+      "typed": true,
+      "basis": [
+        "invented:teaching-only"
+      ],
+      "standing": {
+        "status": "known",
+        "resolution": "resolved",
+        "basis": [
+          "invented:accepted-teaching-premise"
+        ]
+      },
+      "classes": [
+        "invented-class-A"
+      ],
+      "class_unresolved": false,
+      "setting_domain": [
+        "invented-setting-X"
+      ],
+      "representation": {
+        "setting": "invented-X"
+      },
+      "predicates": {
+        "PS": "0-1"
+      }
+    },
+    {
+      "id": "invented-B",
+      "sponsor": "invented-B",
+      "stratum": "invented-comparison-set",
+      "elements": [
+        "inclusion:age=adult",
+        "exclusion:brain_metastases=present"
+      ],
+      "typed": true,
+      "basis": [
+        "invented:teaching-only"
+      ],
+      "standing": {
+        "status": "known",
+        "resolution": "resolved",
+        "basis": [
+          "invented:accepted-teaching-premise"
+        ]
+      },
+      "classes": [
+        "invented-class-A"
+      ],
+      "class_unresolved": false,
+      "setting_domain": [
+        "invented-setting-X"
+      ],
+      "representation": {
+        "setting": "invented-X"
+      },
+      "predicates": {
+        "PS": "0-2"
+      },
+      "feature_standings": {
+        "elements": {
+          "exclusion:brain_metastases=present": {
+            "status": "proposed",
+            "resolution": "resolved",
+            "basis": [
+              "invented:accepted-teaching-premise"
+            ]
+          }
+        },
+        "predicates": {
+          "PS": {
+            "status": "proposed",
+            "resolution": "resolved",
+            "basis": [
+              "invented:accepted-teaching-premise"
+            ]
+          }
+        },
+        "setting_domain": {
+          "status": "proposed",
+          "resolution": "resolved",
+          "basis": [
+            "invented:accepted-teaching-premise"
+          ]
+        }
+      }
+    }
+  ],
+  "cells": [
+    [
+      "invented-setting-X",
+      "invented-class-A"
+    ],
+    [
+      "invented-setting-X",
+      "invented-class-B"
+    ]
+  ],
+  "expectations": [
+    {
+      "id": "invented-expectation",
+      "cell": "invented-cell",
+      "support": 2,
+      "basis": [
+        "invented:teaching-only"
+      ],
+      "standing": {
+        "status": "known",
+        "resolution": "resolved",
+        "basis": [
+          "invented:accepted-teaching-premise"
+        ]
+      },
+      "observations": [
+        [
+          "invented-cell",
+          "present"
+        ],
+        [
+          "invented-cell",
+          "explicitly_negated"
+        ]
+      ],
+      "observation_standings": [
+        {
+          "status": "known",
+          "resolution": "resolved",
+          "basis": [
+            "invented:accepted-teaching-premise"
+          ]
+        },
+        {
+          "status": "proposed",
+          "resolution": "resolved",
+          "basis": [
+            "invented:accepted-teaching-premise"
+          ]
+        }
+      ]
+    }
+  ]
+}

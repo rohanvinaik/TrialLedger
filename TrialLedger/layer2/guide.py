@@ -154,12 +154,41 @@ COORDINATE_STATES = {
     "interpolated.conflict": ("something_wrong", "Defaults leave no value; name the conflicting causes."),
     "interpolated.unnarrowed": ("not_knowable_here", "Even with defaults, the evidence does not narrow it."),
     "proposals": ("your_call", "A suggested narrowing, shown separately; never used as a premise."),
+    "admission.pending": (
+        "your_call",
+        (
+            "This evidence item has pending support. Keep its reading visible and settle its warrant; it "
+            "narrowed neither the known nor interpolated domain."
+        ),
+    ),
 }
 
 CORPUS_RESULTS = {
     "frequency.statement_rate": (
         "settled",
-        "As counted: stating trials over trials in the declared set, with distinct sponsors.",
+        (
+            "Admitted known/resolved statements over all trials in the declared set, with distinct sponsors. "
+            "This is not an exact source-statement prevalence when candidate readings remain pending."
+        ),
+    ),
+    "frequency.pending": (
+        "not_knowable_here",
+        (
+            "Report admitted and pending counts together. pending_statement_lower/upper bound the supplied "
+            "candidate statements only, including primary endpoints; missing source text remains separate. A "
+            "zero admitted count is not established absence."
+        ),
+    ),
+    "association_abstentions": (
+        "not_knowable_here",
+        (
+            "Pending relevant support or unresolved class membership withholds this stratum's comparison. No "
+            "association row does not establish no pattern."
+        ),
+    ),
+    "near_miss_abstentions": (
+        "not_knowable_here",
+        "Pending declared representation or predicate fields withhold this trial from near-miss matching.",
     ),
     "frequency.range": (
         "not_knowable_here",
@@ -342,7 +371,9 @@ def _premise(
 
 def _age(comparison: str, years: float) -> dict[str, Any]:
     return _literal(
-        "demographic", "age", {"kind": "quantity", "comparison": comparison, "number": years, "unit": "years"}
+        "demographic",
+        "age",
+        {"kind": "quantity", "comparison": comparison, "number": years, "unit": "years"},
     )
 
 
@@ -517,6 +548,12 @@ def answer_guide() -> dict[str, Any]:
         "categories": CATEGORIES,
         "entailment": {
             "decisions": {name: list(value) for name, value in ENTAILMENT_DECISIONS.items()},
+            "translation_diagnostics": (
+                "Optional candidates on no_constraint_mentions_query: exact same predicate but different "
+                "subject, unit or time. These explain identity differences, not equivalence or source "
+                "meaning. Different predicate names are never matched automatically; WHO/ECOG needs an "
+                "explicit scoped bridge premise."
+            ),
             "blockers": {name: list(value) for name, value in ENTAILMENT_BLOCKERS.items()},
             "precedence": (
                 "Refused envelope first (fix the request; never a clinical answer). Then INCONSISTENT. For "
@@ -535,11 +572,13 @@ def answer_guide() -> dict[str, Any]:
         "decision_list": DECISION_LIST,
         "notable": NOTABLE,
         "confirmation": (
-            "Entailment refuses a proposed premise, based on the caller-supplied status flag; it does not "
-            "independently verify confirmation or source truth. Confirming a reading makes it the person's "
-            "accepted premise, never a registry fact. Coordinates evidence and corpus trials carry only a "
-            "reference and a caller-set typed flag, so the operation cannot tell a confirmed premise from "
-            "an unconfirmed reading there: confirm with the person before running, and keep the origin in "
-            "ref/basis."
+            "Entailment refuses a proposed premise, based on the caller-supplied status flag; it does not"
+            " independently verify confirmation or source truth. Confirming a reading makes it the "
+            "person's accepted premise, never a registry fact. Coordinates and corpus now require "
+            "explicit standing: omitted support stays pending. Coordinates keep interpolated support "
+            "separate; corpus factual calculations consume known/resolved inputs only, with per-feature "
+            "overrides and pending ledgers. A declared standing does not independently verify source "
+            "truth: confirm with the person before running when the premise depends on their "
+            "interpretation, and keep its true origin in basis."
         ),
     }

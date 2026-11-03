@@ -275,6 +275,23 @@ three objects. A threshold for the new trial requires its explicit decision rule
 at-risk and event counts, ascertainment, period and grades under their stated terminology version; seriousness
 alone supplies no grade.
 
+#### Consumer admission and translation diagnostics
+
+Every public coordinate evidence item has explicit standing; missing standing remains pending. Known and
+interpolated evidence have separate closures and provenance; proposed/unresolved rows constrain neither.
+Corpus trials declare standing with per-feature overrides so mixed records retain independently usable
+facts. Counts admit known/resolved support only. Zero-admitted candidate features stay visible, and pending
+readings have their own counts/bounds rather than becoming source absence or abbreviation. Association
+strata and near-miss trials with pending relevant inputs have named abstentions. Occupancy retains known
+class information while separately widening pending settings. Expectation observations require inherited
+or per-row support before entering rarity denominators. Standings are accepted premises, not independent
+certification of source truth; no automatic source compiler is implied.
+
+An exact same-predicate mismatch of subject, unit or temporal identity may explain an entailment abstention.
+Such diagnostics never establish clinical equivalence or alter logical decisions. WHO PS/ECOG transfer
+requires an explicit scoped relation with its own warrant, not a lexical alias. The public consumer map,
+remaining integration work and migration are in `docs/REASONING_CONSUMERS.md`.
+
 ### 7. Information geometry, expectations and significance
 
 Logical state, frequency, association, rarity and question-specific relevance remain separate. The geometry
@@ -456,3 +473,14 @@ Costly or unsupported reasoning returns a named partial/refused result. Thin evi
 choices rather than defaults hidden as facts. Domain coverage grows by warranted concepts and bindings, not
 by fitting phrase lists to a set of trials. Existing designs constrain future implementation; finishing a
 missing pipeline component is not permission to redesign the thesis.
+
+## Reporting partial information remains independent
+
+Mechanical reporting decodes source-defined conventions rather than estimating clinical meaning. A date
+check retains exact possible/excluded outcomes over valid DateType and PartialDate completions, alongside
+its headline and missing source fields. Malformed inputs yield no exclusions. Check aggregation preserves
+independent contradictions beside malformed entries. Safety retains warranted group-denominator fallbacks
+with visible origin and independent collection availability; flow accounting retains separately computable
+not-completed quantities beside unknown reasons. These source-defined computations do not import layer two,
+identify missing source values or complete the general clinical compiler. Their reach is bounded by the
+published conventions available for the domain, not by calling all ambiguous text mechanical.

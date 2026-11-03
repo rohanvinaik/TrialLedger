@@ -197,9 +197,14 @@ belongs to the person.
 
 Entailment refuses premises marked `proposed`; the status is supplied by you, not an independent check of
 the person's confirmation or source truth. Confirmation establishes their accepted premise, not a registry
-fact. Coordinates evidence carries a free-text `ref` and corpus trials carry a caller-set `typed` flag and
-`basis`; those operations cannot tell a confirmed premise from your
-unconfirmed reading. You must confirm before running them and keep the true origin in `ref`/`basis`.
+fact. Coordinates evidence now carries an explicit `standing` object; corpus trials carry `standing`
+with `feature_standings` overrides, and expectation observations can override their inherited standing.
+Omitted standing stays pending. Known/resolved coordinate inputs narrow the known layer; interpolated ones
+remain in the interpolated layer. Corpus factual calculations admit only known/resolved inputs. `typed`,
+`ref` and `basis` alone never confer standing. A standing declaration is still supplied by you, not an
+independent check of truth or confirmation. Keep the actual origin in its basis and never mark an unsettled
+reading known to make a calculation run. Read [the consumer guide](docs/REASONING_CONSUMERS.md) for migration,
+per-feature overrides, pending counts and consumer-specific abstention.
 
 ## Questions the person can ask, and what computes them
 
@@ -459,6 +464,11 @@ Encoding obligations the operations do not do for you:
 - A boolean literal states that its predicate holds: give no `members` or `number` (otherwise
   `boolean_with_operand`); use `"polarity": "negative"` or `Not` for "does not hold".
 - Units are compared as written and never converted: put a criterion and a question in the same unit.
+  WHO PS versus ECOG is the canonical scale-binding example: neither the name nor clinical similarity
+  supplies an equivalence. Encode an explicitly warranted scoped implication/equivalence for the exact
+  propositions, or keep them separate. On `no_constraint_mentions_query`, inspect optional
+  `translation_diagnostics`: same-predicate subject/unit/time differences identify a translation question,
+  not a clinical equivalence; different predicate names are never automatically matched.
 - Time scopes match only when identical; a 21-day washout does not answer a question about 10 days. Encode
   the question with the criterion's own window, or say the window comparison is not computed.
 - The Python interface returns tuples; convert them to lists before feeding one result into another request.
@@ -495,3 +505,18 @@ missing or incompatible inputs. This establishes preservation/reproducibility, n
 meaning. `pull` separately preserves complete source JSON/CSV with archival workbooks. There is no current
 `design`/`edits` command or automatic workbook annotation import. The unsafe `resolve`/`profile` raw clinical
 readers are retired, not alternative entry points. Contributors read DEVELOPING.md and openspec/README.md.
+
+## Preserve partial reporting conclusions
+
+Layer-one checks now retain source-defined partial information as well as their headline outcome. For date
+ordering inspect `registry_checks.result.checks[*].information.completion`: its possible/excluded outcomes
+range over valid completions under the stored codebook. IPASS can exclude conflict while leaving consistent
+versus not applicable open. Do not fill its missing date type or promote the headline to consistent. Malformed
+inputs retain blockers and no exclusions. These are direct codebook consequences, not clinical interpretations.
+
+A malformed independent event must not erase an already established registry contradiction. Safety display
+can use the existing uniquely bound group-total denominator fallback; its visible Notes name that origin,
+while an explicit event denominator (including zero) wins. Known serious/other collection counts remain
+separate when the other collection is unknown. Reason-accounting results retain independently computed
+not-completed counts under `information.calculations`, with group, period, source and rule. An unknown reason
+count does not erase a known subtraction, and the subtraction does not explain the reason for noncompletion.

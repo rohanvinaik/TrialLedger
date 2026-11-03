@@ -25,6 +25,10 @@ bridge. Named direct rules compile supported structured fields; exact pointers/s
 hydration support explicitly proposed clinical readings. Source location never certifies a reading's
 meaning. Uncompiled material, rival frames, source versions and independent fixed consequences remain visible.
 
+Make admission explicit at every existing public comparison consumer: per-item standing, retained pending
+information and consumer-specific abstention. Add structural translation diagnostics without introducing
+clinical equivalence by name. These repairs do not complete general clinical-text compilation or the writer.
+
 ## Capabilities
 
 - `symbolic-trial-design`: scoped evidence and entailment, domain constraints, corpus geometry and

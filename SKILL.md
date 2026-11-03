@@ -221,13 +221,18 @@ permitted; prior therapy for advanced disease or any treatment; one qualifying m
 limit or not; exposure versus follow-up time. Two readings can give opposite answers (the worked session's
 exon 20 steps); that choice is the person's. Mark an unconfirmed reading `"status": "proposed"`, which
 entailment refuses to conclude from. This is a caller-supplied status, not independent verification of
-confirmation. An agreed interpretation is the person's premise, never a registry fact. Coordinates and
-corpus do not enforce confirmation: confirm before
-running and keep the true origin in `ref`/`basis`; never mark a trial `typed` just to pass. For corpus work,
-confirm the comparison set and represented features.
+confirmation. An agreed interpretation is the person's premise, never a registry fact. Coordinates
+and corpus require explicit `standing` (status, resolution, basis); omission stays pending. Corpus accepts
+known/resolved support only, with trial-wide declarations and per-feature overrides. Coordinates keep
+interpolated support separate. Expectation observations also retain inherited/per-row standing. Never mark
+an unsettled reading known or a trial typed just to pass. Keep the true origin in basis; confirm the
+comparison set and represented features. See [consumer admission](docs/REASONING_CONSUMERS.md).
 
 Encoding obligations: a boolean literal takes no `members` or `number`; units are never converted; time scopes
 match only when identical; convert Python tuples to lists before reusing a result in a request.
+WHO PS/ECOG needs an explicitly warranted scoped relation, never name matching or implicit scale conversion.
+Inspect optional entailment `translation_diagnostics` for same-predicate subject/unit/time differences; the
+diagnostic identifies a translation question and never establishes equivalence.
 
 Deliver the clinical question, confirmed premises and origins, the result in its category with its basis,
 open items and the unchanged structured response, saved separately (for example `reason-result.json`) beside
@@ -286,3 +291,11 @@ retrieval completeness or logical outcomes, and do not bound the entire process'
 `reason` is a separate typed request. `verify FOLDER` replays saved reporting/archival inputs under their
 writing version; it establishes reproduction rather than clinical truth. `pull` preserves complete source
 JSON/CSV and archival workbooks.
+
+## Read the information inside an abstention
+
+For date-order checks, `information.completion` preserves possible and excluded outcomes over valid codebook
+completions. Explain those bounds without choosing missing source values; malformed inputs establish no
+exclusions. A noncheckable withdrawal-reason account can still retain a known group/period not-completed
+calculation. Safety denominator fallbacks name their group-total origin in visible Notes. Read these partial
+results beside the headline and original evidence; never turn an unknown reason, type or collection into zero.

@@ -16,6 +16,8 @@ from TrialLedger.layer2 import (
     assertions,
     bounds_guide,
     coherence,
+    coordinate_admission,
+    corpus_admission,
     design_bounds,
     entail,
     expectations,
@@ -29,6 +31,7 @@ from TrialLedger.layer2 import (
     signals_guide,
     source_assertions,
     source_assertions_guide,
+    translation_diagnostics,
 )
 
 OPERATIONS = (
@@ -93,6 +96,7 @@ INPUTS = {
             "values": "array of that concept's allowed strings",
             "scope": "string from scopes",
             "ref": "nonempty premise/source reference string",
+            "standing": "standing object; omitted support stays pending",
         },
     },
     "trial": {
@@ -112,6 +116,11 @@ INPUTS = {
             "predicates": "object of nonempty keys to string values; default {}",
             "start_year": "string; default empty",
             "setting_domain": "array of setting strings; required nonempty if cells are requested",
+            "standing": "standing object for the explicitly accepted representation; omitted means pending",
+            "feature_standings": (
+                "overrides: elements/representation/predicates map exact keys to standing; classes, "
+                "setting_domain, typed, eligibility_content, coverage each take a standing"
+            ),
         },
     },
     "coverage": {
@@ -125,6 +134,16 @@ INPUTS = {
             "observations": "array of [cell string, observation-state string] pairs",
             "cell": "nonempty string",
             "support": "positive integer",
+            "basis": "nonempty array of nonempty premise/source references",
+            "standing": "standing object; omitted observations stay pending",
+            "observation_standings": "array of standing objects, one per observation; overrides standing",
+        },
+    },
+    "standing": {
+        "required": ("status", "resolution", "basis"),
+        "fields": {
+            "status": "known, interpolated or proposed",
+            "resolution": "string from resolutions; only resolved can be admitted",
             "basis": "nonempty array of nonempty premise/source references",
         },
     },
@@ -243,8 +262,12 @@ def _entailment(request: dict[str, Any]) -> dict[str, Any]:
     given = _scoped_assertions(request["assertions"])
     context = _reason_context(request.get("context", {}))
     bound = _assignment_bound(request.get("bound", entail.MAX_ASSIGNMENTS))
-    decision = entail.decide(given, _model(request["query"]), context, bound)
-    return {"basis": BASIS, "decision": dataclasses.asdict(decision), "premises": request["assertions"]}
+    query = _model(request["query"])
+    decision = entail.decide(given, query, context, bound)
+    result = {"basis": BASIS, "decision": dataclasses.asdict(decision), "premises": request["assertions"]}
+    if "no_constraint_mentions_query" in decision.blockers and isinstance(query, assertions.PROPOSITIONS):
+        result["translation_diagnostics"] = translation_diagnostics.diagnose(given, query)
+    return result
 
 
 def _reason_context(value: Any) -> entail.Context:
@@ -325,7 +348,9 @@ def _signals(request: dict[str, Any]) -> dict[str, Any]:
         "basis": BASIS,
         "premises": request["signals"],
         "signals": [signals.evaluate(signal) for signal in prepared],
-        "limits": "Typed, source-bound partial evidence; no clinical text interpretation or source mutation.",
+        "limits": (
+            "Typed, source-bound partial evidence; no clinical text interpretation or source mutation."
+        ),
     }
 
 
@@ -603,18 +628,23 @@ def _coordinates(request: dict[str, Any]) -> dict[str, Any]:
         if scope not in SCOPES:
             raise RequestError(f"unsupported_scope:{index}")
         evidence.append((section, concept, tuple(values), scope, _text(item["ref"], f"evidence:{index}:ref")))
-    coordinates = coherence.resolve(evidence)
+    admitted = coordinate_admission.resolve(given, evidence)
     return {
         "basis": BASIS,
         "domain": "nsclc",
         "premises": given,
-        "coordinates": coordinates,
+        **admitted,
         "relations": [dataclasses.asdict(item) for item in coherence.RELATIONS],
     }
 
 
 def _trial(raw: Any, index: int) -> dict[str, Any]:
     item = _input(raw, "trial", f"trial:{index}")
+    overrides = item.get("feature_standings", {})
+    if isinstance(overrides, dict):
+        for key in corpus_admission.SCALARS:
+            if key in overrides and key not in item:
+                raise RequestError(f"missing_override_target:trial:{item['id']}:{key}")
     for key in ("id", "sponsor", "stratum"):
         _text(item[key], f"trial:{index}:{key}")
     _texts(item["basis"], f"trial:{index}:basis")
@@ -658,33 +688,13 @@ def _corpus(request: dict[str, Any]) -> dict[str, Any]:
     ids = [item["id"] for item in trials]
     if len(set(ids)) != len(ids):
         raise RequestError("duplicate_trial_id")
-    typed = [
-        (
-            t["id"],
-            t["sponsor"],
-            t["stratum"],
-            t["typed"],
-            t["elements"],
-            t["classes"],
-            t["class_unresolved"],
-            t["eligibility_content"],
-            tuple(t["coverage"].items()),
-        )
-        for t in trials
-    ]
-    pairs = [(t["id"], t["representation"], t["predicates"], t["sponsor"], t["start_year"]) for t in trials]
     cells = []
     for raw in _list(request.get("cells", []), "cells"):
         held = _texts(raw, "cell")
         if len(held) != 2:
             raise RequestError("cell_needs_setting_and_class")
         cells.append((held[0], held[1]))
-    if cells and any(not t["setting_domain"] for t in trials):
-        raise RequestError("occupancy_requires_nonempty_setting_domains")
-    occupancy_trials = [
-        (t["id"], tuple(t["setting_domain"]), () if t["class_unresolved"] else tuple(t["classes"]))
-        for t in trials
-    ]
+    prepared = corpus_admission.prepare(trials, cells)
     observations = []
     for raw in _list(request.get("expectations", []), "expectations"):
         item = _input(raw, "expectation", "expectation")
@@ -700,29 +710,40 @@ def _corpus(request: dict[str, Any]) -> dict[str, Any]:
             if len(pair) != 2 or pair[1] not in expectations.STATUSES:
                 raise RequestError("invalid_observation")
             rows.append((pair[0], pair[1]))
+        admitted = corpus_admission.expectations(item, rows)
         observations.append(
             {
                 "id": item["id"],
                 "basis": item["basis"],
-                "rarity": expectations.conditional_rarity(rows, item["cell"], item["support"]),
+                "rarity": expectations.conditional_rarity(
+                    admitted["observations"], item["cell"], item["support"]
+                ),
+                "admission": admitted["admission"],
+                "pending": admitted["pending"],
+                "admitted_count": admitted["admitted_count"],
             }
         )
     return {
         "basis": BASIS,
         "premises": given,
-        "frequency": [dict(zip(FREQUENCY_FIELDS, row, strict=True)) for row in profile.frequency_rows(typed)],
+        "admission": prepared["admission"],
+        "pending": prepared["pending"],
+        "frequency": prepared["frequency"],
         "associations": [
-            dict(zip(ASSOCIATION_FIELDS, row, strict=True)) for row in profile.mechanism_rows(typed)
+            dict(zip(ASSOCIATION_FIELDS, row, strict=True))
+            for row in profile.mechanism_rows(prepared["association_trials"])
         ],
-        "near_misses": [dict(zip(PAIR_FIELDS, row, strict=True)) for row in nearmiss.near_misses(pairs)],
-        "occupancy": [
-            dict(zip(("setting", "class", "occupants", "possible", "state"), row, strict=True))
-            for row in profile.occupancy_rows(cells, occupancy_trials)
+        "association_abstentions": prepared["association_abstentions"],
+        "near_misses": [
+            dict(zip(PAIR_FIELDS, row, strict=True)) for row in nearmiss.near_misses(prepared["pairs"])
         ],
+        "near_miss_abstentions": prepared["near_miss_abstentions"],
+        "occupancy": prepared["occupancy"],
         "expectations": observations,
         "limits": (
-            "Statement rates and proposed associations are not clinical importance, causation, "
-            "or permission to reuse protocol language."
+            "Known/resolved support admits factual corpus inputs; other readings remain pending. Standing"
+            " is declared, not independently certified. Statement rates and proposed associations are not"
+            " clinical importance, causation, or permission to reuse protocol language."
         ),
     }
 
@@ -760,6 +781,11 @@ def _examples() -> dict[str, dict[str, Any]]:
                     "values": ["0"],
                     "scope": "advanced",
                     "ref": "user:example-no-prior",
+                    "standing": {
+                        "status": "known",
+                        "resolution": "resolved",
+                        "basis": ["user:example-no-prior"],
+                    },
                 },
                 {
                     "section": "inclusion",
@@ -767,6 +793,11 @@ def _examples() -> dict[str, dict[str, Any]]:
                     "values": ["advanced"],
                     "scope": "",
                     "ref": "user:example-advanced",
+                    "standing": {
+                        "status": "known",
+                        "resolution": "resolved",
+                        "basis": ["user:example-advanced"],
+                    },
                 },
             ],
         },
@@ -780,6 +811,11 @@ def _examples() -> dict[str, dict[str, Any]]:
                     "elements": ["inclusion:ecog_ps=0|1"],
                     "typed": True,
                     "basis": ["user:example-typed-premises"],
+                    "standing": {
+                        "status": "known",
+                        "resolution": "resolved",
+                        "basis": [("user:example-typed-premises")],
+                    },
                 },
                 {
                     "id": "example-b",
@@ -787,6 +823,11 @@ def _examples() -> dict[str, dict[str, Any]]:
                     "stratum": "user-declared-example-set",
                     "elements": [],
                     "basis": ["user:example-typed-premises"],
+                    "standing": {
+                        "status": "known",
+                        "resolution": "resolved",
+                        "basis": [("user:example-typed-premises")],
+                    },
                 },
             ],
         },
@@ -808,6 +849,7 @@ def _full_description() -> dict[str, Any]:
                 "classes": ["invented-class-a"],
                 "class_unresolved": False,
                 "basis": example_basis,
+                "standing": {"status": "known", "resolution": "resolved", "basis": example_basis},
             }
             for index in range(profile.SIGNAL_MIN_TRIALS)
         ]
@@ -821,6 +863,7 @@ def _full_description() -> dict[str, Any]:
                 "classes": ["invented-class-b"],
                 "class_unresolved": False,
                 "basis": example_basis,
+                "standing": {"status": "known", "resolution": "resolved", "basis": example_basis},
             }
         ],
     }
@@ -833,6 +876,7 @@ def _full_description() -> dict[str, Any]:
                 "stratum": "invented-comparison-set",
                 "elements": [],
                 "basis": example_basis,
+                "standing": {"status": "known", "resolution": "resolved", "basis": example_basis},
                 "representation": {"setting": "example-setting", "drug_class": "example-class"},
                 "predicates": {"example_score_limit": value, "example_other_choice": "same"},
                 "start_year": str(2020 + index),
@@ -849,6 +893,7 @@ def _full_description() -> dict[str, Any]:
                 "stratum": "invented-comparison-set",
                 "elements": [],
                 "basis": example_basis,
+                "standing": {"status": "known", "resolution": "resolved", "basis": example_basis},
                 "classes": ["invented-class"],
                 "class_unresolved": False,
                 "setting_domain": ["example-setting-a"],
@@ -859,6 +904,7 @@ def _full_description() -> dict[str, Any]:
                 "stratum": "invented-comparison-set",
                 "elements": [],
                 "basis": example_basis,
+                "standing": {"status": "known", "resolution": "resolved", "basis": example_basis},
                 "setting_domain": ["example-setting-a", "example-setting-b"],
             },
         ],
@@ -882,6 +928,7 @@ def _full_description() -> dict[str, Any]:
                 "cell": "example-cell",
                 "support": 2,
                 "basis": example_basis,
+                "standing": {"status": "known", "resolution": "resolved", "basis": example_basis},
             }
         ],
     }
@@ -919,6 +966,7 @@ def _full_description() -> dict[str, Any]:
         "input_shapes": deepcopy(INPUTS),
         "limits": {
             "maximum_list_items": MAX_ITEMS,
+            "maximum_corpus_features": corpus_admission.MAX_FEATURES,
             "maximum_assignments": entail.MAX_ASSIGNMENTS,
             "unknown_fields": "refused",
         },
@@ -992,12 +1040,14 @@ def _full_description() -> dict[str, Any]:
                 ),
             },
             {
-                "question": "Which NSCLC setting, prior-treatment and gene-selection values remain possible?",
+                "question": (
+                    "Which NSCLC setting, prior-treatment and gene-selection values remain possible?"
+                ),
                 "operation": "coordinates",
                 "read": "coordinates: known domains, interpolated domains and each separate proposal",
                 "meaning": (
-                    "Explicit applicable evidence narrows the space; defaults and proposals retain their "
-                    "own standing."
+                    "Only admitted known evidence narrows the known space; interpolated evidence, "
+                    "defaults and proposals retain their own standing."
                 ),
             },
             {
@@ -1100,6 +1150,9 @@ def _full_description() -> dict[str, Any]:
                     "basis": BASIS,
                     "domain": "nsclc only; the caller declares applicability",
                     "premises": "supplied evidence objects, retained unchanged",
+                    "admission": (
+                        "per-item standing, admission code and known/interpolated/pending destination"
+                    ),
                     "coordinates": "setting, prior_advanced_lines and selection:<gene> for each gene",
                     "relations": (
                         "each actual rule's id, statement, basis, approval, kind, needs, lines_within, "
@@ -1128,6 +1181,10 @@ def _full_description() -> dict[str, Any]:
                 "fields": [
                     "basis",
                     "premises",
+                    "admission",
+                    "pending",
+                    "association_abstentions",
+                    "near_miss_abstentions",
                     "frequency",
                     "associations",
                     "near_misses",
@@ -1136,9 +1193,18 @@ def _full_description() -> dict[str, Any]:
                     "limits",
                 ],
                 "frequency": {
-                    "row_fields": FREQUENCY_FIELDS,
+                    "row_fields": (
+                        *FREQUENCY_FIELDS,
+                        "unresolved_pending",
+                        "pending_stating",
+                        "pending_statement_lower",
+                        "pending_statement_upper",
+                    ),
                     "meaning": (
-                        "Within each declared stratum, stating/trials is the statement rate. Eligibility "
+                        "Within each declared stratum, stating/trials counts admitted known/resolved "
+                        "inputs. pending_stating retains unadmitted readings; "
+                        "pending_statement_lower/upper bound their effect on supplied statements, not "
+                        "missing source text. Zero admitted counts have null surprisal. Eligibility "
                         "lower/upper bound full-criteria frequency; absence_established is currently "
                         "zero. Empty, untyped, abbreviated and unspecified silences remain unresolved. "
                         "Non-eligibility elements have no eligibility bounds or tier. Surprisal is "
@@ -1153,10 +1219,12 @@ def _full_description() -> dict[str, Any]:
                 "associations": {
                     "row_fields": ASSOCIATION_FIELDS,
                     "meaning": (
-                        "Within each stratum's typed, resolved-class trials, compare inside/outside "
-                        "statement rates. Unresolved-class trials are counted separately; abbreviated "
-                        "silences give the least-favourable difference. Only positive or potentially "
-                        "positive comparisons are listed; no row is not proof of no relation."
+                        "Pending relevant inputs withhold their stratum and are named in "
+                        "association_abstentions. Within each stratum's typed, resolved-class trials, "
+                        "compare inside/outside statement rates. Unresolved-class trials are counted "
+                        "separately; abbreviated silences give the least-favourable difference. Only "
+                        "positive or potentially positive comparisons are listed; no row is not proof of "
+                        "no relation."
                     ),
                     "support": {
                         "stating_trials": profile.SIGNAL_MIN_TRIALS,
@@ -1171,10 +1239,12 @@ def _full_description() -> dict[str, Any]:
                 "near_misses": {
                     "row_fields": PAIR_FIELDS,
                     "meaning": (
-                        "Representation must be nonempty, have identical keys and known equal values. "
-                        "Exactly one shared known predicate differs; other_predicates_agreeing counts the"
-                        " shared known equal predicates. Sponsor and year accompany each pair. The "
-                        "representation, not stratum, determines matching; no causal conclusion is made."
+                        "Pending declared representation/predicate fields withhold the trial and are "
+                        "named in near_miss_abstentions. Representation must be nonempty, have identical "
+                        "keys and known equal values. Exactly one shared known predicate differs; "
+                        "other_predicates_agreeing counts the shared known equal predicates. Sponsor and "
+                        "year accompany each pair. The representation, not stratum, determines matching; "
+                        "no causal conclusion is made."
                     ),
                 },
                 "occupancy": {
@@ -1186,7 +1256,7 @@ def _full_description() -> dict[str, Any]:
                     ),
                 },
                 "expectations": {
-                    "row_fields": ["id", "basis", "rarity"],
+                    "row_fields": ["id", "basis", "rarity", "admission", "pending", "admitted_count"],
                     "rarity_positions": [
                         "source",
                         "P(present)",
@@ -1195,12 +1265,13 @@ def _full_description() -> dict[str, Any]:
                         "non_present_bits",
                     ],
                     "meaning": (
-                        "source is cell if its support is met, otherwise parent over all supplied known "
-                        "observations, otherwise abstain. present, explicitly_negated and not_documented "
-                        "count as known; unresolved/not_applicable do not. Non-present here includes "
-                        "not_documented: it is not proof of admission or clinical absence. A "
-                        "never-observed event has null bits. Observation rows are supplied independently,"
-                        " not automatically derived from trials."
+                        "Only known/resolved admitted observations enter. source is cell if its support "
+                        "is met, otherwise parent over all supplied known observations, otherwise "
+                        "abstain. present, explicitly_negated and not_documented count as known; "
+                        "unresolved/not_applicable do not. Non-present here includes not_documented: it "
+                        "is not proof of admission or clinical absence. A never-observed event has null "
+                        "bits. Observation rows are supplied independently, not automatically derived "
+                        "from trials."
                     ),
                 },
                 "input_notes": {
@@ -1474,8 +1545,8 @@ def _describe(request: dict[str, Any]) -> dict[str, Any]:
         return common | {"worked_session": full["worked_session"]}
     shapes = {
         "entailment": ("entailment", "context"),
-        "coordinates": ("coordinates", "evidence"),
-        "corpus": ("corpus", "trial", "coverage", "expectation"),
+        "coordinates": ("coordinates", "evidence", "standing"),
+        "corpus": ("corpus", "trial", "coverage", "expectation", "standing"),
         "design_bounds": ("design_bounds", "candidate", "observation", "bridge", "context"),
         "signals": ("signals", "signal", "support"),
         "interpretations": (
@@ -1504,8 +1575,8 @@ def _describe(request: dict[str, Any]) -> dict[str, Any]:
             for key in full["vocabularies"]
             if key not in {"sections", "scopes", "coordinate_values", "coverage_states", "observation_states"}
         ),
-        "coordinates": ("sections", "scopes", "coordinate_values"),
-        "corpus": ("coverage_states", "observation_states"),
+        "coordinates": ("sections", "scopes", "coordinate_values", "statuses", "resolutions"),
+        "corpus": ("coverage_states", "observation_states", "statuses", "resolutions"),
         "signals": ("statuses", "resolutions"),
         "interpretations": (
             "statuses",

@@ -1,0 +1,70 @@
+{
+  "operation": "coordinates",
+  "domain": "nsclc",
+  "evidence": [
+    {
+      "section": "inclusion",
+      "concept": "biomarker:EGFR",
+      "values": [
+        "positive"
+      ],
+      "scope": "",
+      "ref": "invented:biomarker:EGFRknown",
+      "standing": {
+        "status": "known",
+        "resolution": "resolved",
+        "basis": [
+          "invented:accepted-teaching-premise"
+        ]
+      }
+    },
+    {
+      "section": "inclusion",
+      "concept": "prior_lines",
+      "values": [
+        "0"
+      ],
+      "scope": "advanced",
+      "ref": "invented:prior_linesinterpolated",
+      "standing": {
+        "status": "interpolated",
+        "resolution": "resolved",
+        "basis": [
+          "invented:accepted-teaching-premise"
+        ]
+      }
+    },
+    {
+      "section": "inclusion",
+      "concept": "extent",
+      "values": [
+        "advanced"
+      ],
+      "scope": "",
+      "ref": "invented:extentknown",
+      "standing": {
+        "status": "known",
+        "resolution": "resolved",
+        "basis": [
+          "invented:accepted-teaching-premise"
+        ]
+      }
+    },
+    {
+      "section": "inclusion",
+      "concept": "biomarker:EGFR",
+      "values": [
+        "negative"
+      ],
+      "scope": "",
+      "ref": "invented:biomarker:EGFRproposed",
+      "standing": {
+        "status": "proposed",
+        "resolution": "resolved",
+        "basis": [
+          "invented:accepted-teaching-premise"
+        ]
+      }
+    }
+  ]
+}

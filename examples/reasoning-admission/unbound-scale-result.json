@@ -1,0 +1,205 @@
+{
+  "code": "complete",
+  "operation": "entailment",
+  "result": {
+    "basis": "Conditional on the supplied typed premises; their source meaning is not certified by this operation.",
+    "decision": {
+      "result": "UNDETERMINED",
+      "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"performance_status\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"le\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":1.0,\"unit\":\"WHO\",\"upper\":null}}",
+      "status": null,
+      "proof": [],
+      "blockers": [
+        "no_constraint_mentions_query"
+      ]
+    },
+    "premises": [
+      {
+        "applicability": {
+          "class": "Always"
+        },
+        "body": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+            "class": "Predicate",
+            "key": "performance_status",
+            "kind": "measurement"
+          },
+          "qualifiers": {
+            "class": "Always"
+          },
+          "subject": {
+            "class": "Subject",
+            "kind": "participant",
+            "referent": ""
+          },
+          "time": null,
+          "value": {
+            "class": "Value",
+            "comparison": "le",
+            "inclusivity": "unspecified",
+            "kind": "quantity",
+            "members": [],
+            "number": 1.0,
+            "unit": "ECOG",
+            "upper": null
+          }
+        },
+        "branch": {
+          "class": "Branch",
+          "node": "unresolved",
+          "path": []
+        },
+        "class": "ScopedAssertion",
+        "cohort": {
+          "class": "Scope",
+          "kind": "all_participants",
+          "parts": [],
+          "ref": ""
+        },
+        "criterion_ref": "invented:trial-design-session-not-registry-evidence",
+        "id": "invented-ECOG-criterion",
+        "modality": "required",
+        "resolution": "resolved",
+        "rule": {
+          "answers": [],
+          "class": "Rule",
+          "id": "invented-session-premise",
+          "premises": [],
+          "version": "1",
+          "warrants": [
+            "invented:explicit-teaching-premise"
+          ]
+        },
+        "span": [],
+        "status": "known"
+      }
+    ],
+    "translation_diagnostics": [
+      {
+        "code": "candidate_translation_mismatch",
+        "premise": "invented-ECOG-criterion",
+        "dimensions": [
+          "unit"
+        ],
+        "predicate": {
+          "class": "Predicate",
+          "key": "performance_status",
+          "kind": "measurement"
+        },
+        "premise_path": [
+          "body"
+        ],
+        "query_path": [],
+        "premise_identity": {
+          "subject": {
+            "class": "Subject",
+            "kind": "participant",
+            "referent": ""
+          },
+          "predicate": {
+            "class": "Predicate",
+            "key": "performance_status",
+            "kind": "measurement"
+          },
+          "unit": "ECOG",
+          "time": null
+        },
+        "query_identity": {
+          "subject": {
+            "class": "Subject",
+            "kind": "participant",
+            "referent": ""
+          },
+          "predicate": {
+            "class": "Predicate",
+            "key": "performance_status",
+            "kind": "measurement"
+          },
+          "unit": "WHO",
+          "time": null
+        },
+        "premise_literal": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+            "class": "Predicate",
+            "key": "performance_status",
+            "kind": "measurement"
+          },
+          "qualifiers": {
+            "class": "Always"
+          },
+          "subject": {
+            "class": "Subject",
+            "kind": "participant",
+            "referent": ""
+          },
+          "time": null,
+          "value": {
+            "class": "Value",
+            "comparison": "le",
+            "inclusivity": "unspecified",
+            "kind": "quantity",
+            "members": [],
+            "number": 1.0,
+            "unit": "ECOG",
+            "upper": null
+          }
+        },
+        "query_literal": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+            "class": "Predicate",
+            "key": "performance_status",
+            "kind": "measurement"
+          },
+          "qualifiers": {
+            "class": "Always"
+          },
+          "subject": {
+            "class": "Subject",
+            "kind": "participant",
+            "referent": ""
+          },
+          "time": null,
+          "value": {
+            "class": "Value",
+            "comparison": "le",
+            "inclusivity": "unspecified",
+            "kind": "quantity",
+            "members": [],
+            "number": 1.0,
+            "unit": "WHO",
+            "upper": null
+          }
+        },
+        "status": "known",
+        "resolution": "resolved",
+        "modality": "required",
+        "criterion_ref": "invented:trial-design-session-not-registry-evidence",
+        "cohort": {
+          "class": "Scope",
+          "kind": "all_participants",
+          "parts": [],
+          "ref": ""
+        },
+        "rule": {
+          "answers": [],
+          "class": "Rule",
+          "id": "invented-session-premise",
+          "premises": [],
+          "version": "1",
+          "warrants": [
+            "invented:explicit-teaching-premise"
+          ]
+        }
+      }
+    ]
+  },
+  "problems": []
+}

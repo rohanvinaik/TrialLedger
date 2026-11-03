@@ -390,6 +390,7 @@ def registry_check_reading(study: dict[str, Any]) -> dict[str, Any]:
             "source": list(checks.READS[result.check_id]),
             "rule": definitions[result.check_id].rule,
             "basis": definitions[result.check_id].basis,
+            **({"information": result.information} if result.information is not None else {}),
         }
         for result in checks.run_checks(study)
     ]

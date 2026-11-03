@@ -40,6 +40,24 @@ You make the clinical judgments. TrialLedger's job is to make them visible: what
 choices, what contradicts itself, what is genuinely yours to decide, and what the evidence cannot tell you. The reference workbook is useful on its own,
 and it provides the evidence base for a continuing design conversation.
 
+## What the published conventions let us recover
+
+A registry record is more than prose to summarize. It is written in a published language: field meanings,
+code lists, population/group conventions, date precision and rules connecting reported quantities.
+TrialLedger uses those conventions to recover information that is already present but easy to overlook.
+“Mechanical” means that the warrant is fixed and inspectable; the work can still be clinically useful.
+
+For example, IPASS supplies a month-level start date without saying whether it is actual or estimated.
+Its start and primary-completion spans are ordered. Under the stored registry codebook, an actual start
+makes the ordering check consistent; an estimated start makes that check inapplicable. The missing type
+remains unknown, but **conflict is excluded across those valid completions**. Keeping the remaining
+outcomes conveys more than a single “not checkable” label without filling in the missing field.
+
+How much can be recovered depends on what the domain has specified. Structured age fields provide exact
+bounds in declared unit families. A performance-status sentence may still require a scoped clinical
+reading. The method draws the same boundary in either case: use the published convention wherever it
+warrants a conclusion, and retain the unresolved alternatives wherever it does not.
+
 ## Information is also in the constraints
 
 A trial record carries information beyond its explicit sentences. Eligibility, baseline distributions,
@@ -240,6 +258,28 @@ Stale values or misaligned quotations stop translation. An exact quotation prove
 clinical interpretation needs its own premises. Uncompiled content remains an open reading task, and the
 source record stays unchanged. The bridge's direct rules are deliberately explicit and bounded; it is not
 a general automatic clinical text reader or a complete protocol writer.
+
+## Compare trials without turning readings into facts
+
+Suppose one trial clearly documents an adult age restriction, while its brain-metastasis wording still has
+competing readings. The age restriction can enter a count immediately under its explicit warrant. The
+unsettled brain-metastasis reading remains visible as pending; it supplies neither a positive count nor an
+absence. The comparison keeps its original denominator and reports the unresolved range. A proposed-only
+feature stays visible even when no accepted trial yet states it.
+
+The same distinction applies downstream. Pending class or setting membership can keep a design-space cell
+possible. Pending comparison features withhold a near-miss claim, and pending observation readings stay out
+of rarity denominators. These are item-specific admission checks: one unsettled reading does not erase
+independent evidence. Counts use explicit known/resolved support; coordinate defaults and interpolated
+premises stay in their separate layer. An accepted interpretation remains an attributed premise, not an
+independently verified registry fact.
+
+WHO PS and ECOG illustrate a different problem: a representation can fail to connect even when it is useful
+to discuss both measures together. The program never equates the scales from their names. A comparison needs
+an explicit, scoped relation for the particular propositions being transferred, with its own standing and
+warrant. Entailment now reports structurally detectable subject, unit and time mismatches alongside its
+abstention. That diagnostic does not supply the missing equivalence. The [consumer guide](docs/REASONING_CONSUMERS.md)
+explains the declaration, migration and retained limits.
 
 ## What you receive
 
