@@ -94,15 +94,25 @@ warrants and declared-family consequences -> assistant decision list. See
 `docs/INTERPRETATION_IMPLEMENTATION_PLAN.md` for ownership and negative obligations. Reporting never imports
 these components. No text compiler, source repair engine or external adapter is implied by this operation.
 
-`TrialLedger.layer2.run(request)` owns the public typed operation. Scoped assertion objects/finite entailment,
-explicit NSCLC coordinate closure and corpus calculations are reusable components. Full design, source binding,
+`TrialLedger.layer2.run(request)` owns the public typed operation.
+
+`source_evidence` owns finite strict-JSON snapshots, exact pointer/value/span anchors and explicit value
+hydration. `source_assertions` owns named structured-field rules and source-anchored proposed frames, with
+submitted inputs and uncompiled coverage retained. The service validates and runs generated ordinary requests;
+the compiler never calls the service. Exact source location cannot certify meaning. Content version and
+clinical definition/protocol edition stay separate. See `docs/SOURCE_ASSERTION_BRIDGE_PLAN.md` for ownership
+and admission obligations. General clinical text compilation remains unfinished.
+
+Scoped assertion objects/finite entailment, explicit NSCLC coordinate closure and corpus calculations are
+reusable components. Full design, source binding,
 default semantics, information geometry/significance, differential evidence parsing, recommendation, user
 closure and protocol output are specified in openspec/changes/add-design-synthesis/design.md. Its task file
 separates current implemented components from missing integration; do not infer missing logic from missing
 pipeline wiring or claim an integrated writer from unit tests.
 
 The public discovery request is `{"operation":"describe"}` through reason; it returns an overview. Add
-`"view":"entailment"`, `coordinates`, `corpus`, `design_bounds`, `signals` or `interpretations` for focused formats, vocabulary,
+`"view":"entailment"`, `coordinates`, `corpus`, `design_bounds`, `signals`, `interpretations` or
+`source_assertions` for focused formats, vocabulary,
 result meanings and an example; `worked_session` and `full` retain the complete demonstration and manual. Its input descriptions and
 examples must stay tied to actual validators, and its capability/result descriptions must reflect what an
 agent can invoke. User-facing surfaces should explain clinical explorations as well as operation names:

@@ -287,7 +287,51 @@ executed examples to reuse when relevant:
 
 Use one such example when it illuminates the question; never pass invented teaching premises off as source
 evidence. Keep the decision list as the handoff. The assistant prepares clinical representations; no automatic
-source-to-assertion compiler, source repair engine or complete protocol writer is implied.
+general source-to-assertion compiler, source repair engine or complete protocol writer is implied.
+
+## Bring source evidence into the reasoning without promoting a reading
+
+Discover `reason` view `source_assertions` for one complete retained raw NIH API v2 study, rather than the
+selected landscape projection. Start with inspection if needed. The content digest identifies this exact
+input; it is distinct from raw-body SHA-256 and is not a clinical protocol edition. Do not ask the person to
+manage hashes or JSON: prepare the bridge request yourself from the retained source.
+
+Named direct rules currently compile supported structured minimum/maximum age fields as the registry's
+general eligibility bounds. They do not verify the actual protocol, recover a missing cutoff from age groups,
+or reinterpret prose. All other source content remains available for explicitly hypothetical readings.
+Use exact pointer, expected typed value, digest and optional Unicode character span; keep complete passages.
+Matching text establishes quotation, not meaning. A stale anchor is a translation problem to repair, not a
+clinical conclusion. Explicit source markers copy selected values without manual retyping or unit conversion.
+
+Work the clinical decision through the information channels it needs. A nominal day-42 target and allowable
+days 35–49 are distinct channels informing one schedule decision: preserve both, attach them to different
+roles and ask what anchors later tolerances. Never turn the target into a point-only allowance or discard
+the target when keeping its tolerance. The source-bridge example tests these consequences through the
+real operation; domain conversations are tests of the representation as well as its explanation.
+
+Apply that check to every inference channel, including accepted/rejected witnesses, overlap and partitions,
+summary statistics, population lineage, temporal structure, regimen/identity relations and adopted endpoint
+dependencies. Name the clinical choice each informs and its deciding binding. Several channels may inform
+one decision; they do not become one predicate. Preserve what each independently establishes and the exact
+remaining question. The [bridge plan's domain audit](docs/SOURCE_ASSERTION_BRIDGE_PLAN.md) records these
+boundaries. Do not apply a schedule-specific repair as a substitute for checking the other channels.
+
+Every reading or relationship binding names its source anchors. Hydration may use only those declared
+dependencies. Preserve subjects, qualifiers, alternatives, negation, conditionality, cohort, branch, time and
+resolution. Submitted inputs remain visible; prepared clinical assumptions, local signal support and
+population/definition bindings remain proposed regardless of a caller's known label. An unresolved derivation
+stays unresolved. The bridge runs generated requests through the existing solvers; it supplies no replacement
+clinical classifier. Empty queries are inspection only.
+
+The generated fixed floor belongs to the source study being read. A comparator's restriction is context for
+a new trial, not an automatically binding requirement of that draft. Record adoption as a separate premise
+in the new trial's own reasoning context.
+
+Use the [real-record walkthrough](examples/source-bridge/) conversationally: “The structured record gives
+this age bound. Under this population reading, these counts imply this overlap. These rival schedule readings
+remain possible. Here is the question we still need to settle.” Keep independent fixed answers beside
+unresolved interpretations, retain the decision list and rerun on source or premise changes. No source repair,
+automatic general text compiler, corpus insertion or protocol generation is implied.
 
 ## Notable and significance
 
@@ -400,7 +444,8 @@ overview. Then request `{"operation":"describe","view":"entailment"}` (or `coord
 Views `worked_session` and `full` retain the complete demonstration and manual for when needed; do not load
 them for every clinical question. Every worked-session request runs and returns its stated result.
 Use the described shapes rather than inventing fields; no source-code access is needed. The operations are
-`entailment`, `coordinates` (explicit NSCLC domain), `corpus`, `design_bounds`, `signals` and `interpretations`.
+`entailment`, `coordinates` (explicit NSCLC domain), `corpus`, `design_bounds`, `signals`, `interpretations`
+and `source_assertions`.
 [SKILL.md](SKILL.md) also includes a
 complete request.
 

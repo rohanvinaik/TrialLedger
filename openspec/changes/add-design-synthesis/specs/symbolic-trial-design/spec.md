@@ -166,6 +166,53 @@ SHALL NOT replace a warrant of meaning.
 
 ## ADDED Requirements
 
+### Requirement: Source admission is content-bound and warrant-specific
+The `source_assertions` bridge SHALL preserve a retained NIH study's canonical content identity and exact
+locations. Named structured direct rules alone SHALL produce fixed assertions. Anchored clinical readings
+and relationship bindings SHALL remain proposed with their full logical/scope structure and original input.
+
+#### Scenario: A supported structured age is present
+- **WHEN** a minimum age uses complete supported NIH integer/unit syntax
+- **THEN** its registered eligibility bound becomes a fixed scoped assertion with the exact field and rule
+- **AND** missing, malformed or unsupported sibling fields do not create additional constraints
+
+#### Scenario: A source passage is located exactly
+- **WHEN** pointer, expected typed value, digest and optional Unicode span agree
+- **THEN** the bridge records a quotation warrant, not a warrant of every proposed clinical interpretation
+- **AND** rival readings preserve alternatives, qualifiers, actors, applicability, cohorts and event times
+
+#### Scenario: A source annotation is stale
+- **WHEN** its content digest or expected value disagrees, or the selected span is misaligned
+- **THEN** a named translation refusal prevents stale premises without claiming a clinical impossibility
+
+#### Scenario: A literal count supplies a hypothetical signal
+- **WHEN** an exact selected integer cell is hydrated into a frame-local signal
+- **THEN** the existing operator receives the copied value and proposed binding provenance
+- **AND** numeric similarity, local group IDs and successful parsing cannot establish population alignment
+
+### Requirement: Source compilation reaches real reasoning consumers
+The bridge SHALL return reusable generated requests and complete existing reason responses, preserve source
+bytes/objects, retain uncompiled information and distinguish inspection from a completed design check.
+
+#### Scenario: A clinical reading is falsely labelled known
+- **WHEN** its submitted source-anchored assumption or relationship carries known status
+- **THEN** the prepared frame retains proposed standing and the original submission remains inspectable
+
+#### Scenario: A bound is independent of an unresolved reading
+- **WHEN** a structured source bound is decidable but another source interpretation is unresolved
+- **THEN** the fixed answer remains available beside conditional values and the specific unresolved binding
+
+#### Scenario: A clinical source interpretation changes
+- **WHEN** the source, selected group, logical alternative, condition, actor or time changes
+- **THEN** affected checks are recomputed through real CLI/MCP consumers without editing the source record
+- **AND** no direct transformation silently becomes a general clinical meaning recognizer
+
+#### Scenario: Several information channels inform one clinical decision
+- **WHEN** source-backed quantities, populations, time roles, relations or definitions are composed
+- **THEN** each retains its measured object, source, clinical binding, standing and independent consequences
+- **AND** nominal targets and permitted windows, accepted and rejected profiles, analysis membership and its causes, and observed and imputed inputs are never silently equated
+- **AND** every supported structural signal kind is verified through the source bridge's actual public consumer
+
 ### Requirement: Baseline witnesses bound declared eligibility designs
 The system SHALL expose typed `design_bounds` reasoning over declared candidate designs, using scoped
 entailment. Observations SHALL retain population, denominator, count, proposition, context and sources.

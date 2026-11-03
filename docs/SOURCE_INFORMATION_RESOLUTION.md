@@ -3,7 +3,9 @@
 This investigation applies TrialLedger's [theory](THEORY_OF_THE_CASE.md) to a retained IPASS record,
 the public reasoning operations and SymbolicSpellCheck. Its binding and competing-reading recommendations
 now have an explicit layer-two representation in the [interpretation workflow](../examples/interpretations/).
-Automatic source compilation, clinical text repair and external adapters remain proposed integrations.
+The [retained-source bridge](../examples/source-bridge/) now compiles named structured rules and anchors
+proposed readings to exact NIH values/passages. General clinical text compilation, clinical text repair
+and external adapters remain proposed integrations.
 
 The [executable packet](../examples/source-workflows/) separates source data, assistant-authored
 interpretations and computed responses. All clinical bindings here are exploration premises, **not

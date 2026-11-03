@@ -114,8 +114,8 @@ INSTRUCTIONS = (
     "not observed results. Handle paging and retries yourself, keeping complete evidence in files. "
     "The separate reason tool supports design restrictions, contradictions, NSCLC settings and patterns "
     'across a comparison set. Start with {"request":{"operation":"describe"}} for the overview, then '
-    "describe view entailment, coordinates, corpus, design_bounds, signals or interpretations for formats "
-    "and examples; "
+    "describe view entailment, coordinates, corpus, design_bounds, signals, interpretations or "
+    "source_assertions for formats and examples; "
     "worked_session and full remain available on demand. Show material premises together in clinical "
     "words, settle ambiguities once and rerun when they change. Confirmation establishes the person's "
     "premise, not a registry fact. Give the answer, deciding basis and material open items naturally; "
@@ -134,6 +134,8 @@ INSTRUCTIONS = (
     "Use interpretations to explore unconfirmed readings as separate hypothetical frames with exact "
     "conditional consequences. Keep fixed evidence, frame assumptions and binding/refutation warrants "
     "distinct; surviving readings and user selections do not become source facts. "
+    "Use source_assertions for a retained raw NIH study: named structured rules supply fixed bounds; "
+    "exact pointers and spans anchor proposed readings without certifying their clinical meaning. "
     "A class pattern "
     "is descriptive and a near miss matches only the declared features. The complete automated trial "
     "writer is designed and partly built; these "
@@ -493,16 +495,19 @@ TOOLS: dict[str, dict[str, Any]] = {
         "abstention, not failure. You translate: prepare the structured premises from what the person "
         "confirms; they need not know the format. First call with "
         '{"request":{"operation":"describe"}} for a short overview, then describe with view entailment, '
-        "coordinates, corpus, design_bounds, signals or interpretations for exact formats, guides and "
-        "examples. Views "
+        "coordinates, corpus, design_bounds, signals, interpretations or source_assertions for exact "
+        "formats, guides and examples. Views "
         "worked_session and full provide the complete demonstration and manual on demand. Reasoning "
-        "requests name operation entailment, coordinates, corpus, design_bounds, signals or interpretations. "
+        "requests name operation entailment, coordinates, corpus, design_bounds, signals, interpretations "
+        "or source_assertions. "
         "Interpretations keep rival hypotheses and source-bound population/definition applications separate, "
         "with exact conditional consequences and compatibility/refutation warrants. Witnesses bound "
         "declared candidate designs through explicit scoped eligibility bridges and exception allowances. "
         "Premises retain their "
-        "source/user status; an assistant's interpretation is never a registry fact. No trial text is "
-        "interpreted, no source is fetched and no report is changed. The complete trial writer is designed "
+        "source/user status; an assistant's interpretation is never a registry fact. The source_assertions "
+        "bridge compiles named structured fields and anchors explicitly proposed readings; it does not "
+        "automatically interpret clinical paragraphs. No source is fetched and no report is changed. "
+        "The complete trial writer is designed "
         "and partly built; these results are not a generated protocol.",
         "inputSchema": {
             "type": "object",
@@ -520,6 +525,7 @@ TOOLS: dict[str, dict[str, Any]] = {
                                 "design_bounds",
                                 "signals",
                                 "interpretations",
+                                "source_assertions",
                             ],
                         },
                         "view": {
@@ -532,6 +538,7 @@ TOOLS: dict[str, dict[str, Any]] = {
                                 "design_bounds",
                                 "signals",
                                 "interpretations",
+                                "source_assertions",
                                 "worked_session",
                                 "full",
                             ],
@@ -540,8 +547,8 @@ TOOLS: dict[str, dict[str, Any]] = {
                     },
                     "required": ["operation"],
                     "description": "Start with operation describe for the overview; view entailment, "
-                    "coordinates, corpus, design_bounds, signals or interpretations gives formats and "
-                    "example. Views "
+                    "coordinates, corpus, design_bounds, signals, interpretations or source_assertions "
+                    "gives formats and example. Views "
                     "worked_session "
                     "and full give the complete demonstration/manual. Other operations need typed premises.",
                 }

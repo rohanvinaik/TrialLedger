@@ -212,6 +212,7 @@ def test_describe_returns_runnable_examples_for_every_working_operation():
         "design_bounds",
         "signals",
         "interpretations",
+        "source_assertions",
     }
     results = {name: run(payload) for name, payload in description["examples"].items()}
     assert all(reply["code"] == "complete" for reply in results.values())
@@ -347,6 +348,7 @@ def test_described_developer_blocks_exist_without_becoming_public_operations():
         "design_bounds",
         "signals",
         "interpretations",
+        "source_assertions",
     }
     for block in description["developer_building_blocks"]["entries"]:
         assert block["purpose"] and block["precondition"]
@@ -356,6 +358,14 @@ def test_described_developer_blocks_exist_without_becoming_public_operations():
     assert run({"operation": "deviation_status", "status": "explicitly_negated"})["code"] == "refused"
     assert all(
         case["operation"]
-        in {"entailment", "coordinates", "corpus", "design_bounds", "signals", "interpretations"}
+        in {
+            "entailment",
+            "coordinates",
+            "corpus",
+            "design_bounds",
+            "signals",
+            "interpretations",
+            "source_assertions",
+        }
         for case in description["use_cases"]
     )

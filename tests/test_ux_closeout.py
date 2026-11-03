@@ -29,11 +29,20 @@ def test_default_discovery_is_small_and_points_to_every_focused_guide():
         "design_bounds",
         "signals",
         "interpretations",
+        "source_assertions",
         "worked_session",
         "full",
     }
-    assert len(overview["availability"]["built"]) == 6
-    operations = {"entailment", "coordinates", "corpus", "design_bounds", "signals", "interpretations"}
+    assert len(overview["availability"]["built"]) == 7
+    operations = {
+        "entailment",
+        "coordinates",
+        "corpus",
+        "design_bounds",
+        "signals",
+        "interpretations",
+        "source_assertions",
+    }
     for operation in sorted(operations):
         focused = run(overview["discovery"][operation])["result"]
         assert run(focused["example"])["code"] == "complete"

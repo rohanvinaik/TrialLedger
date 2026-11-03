@@ -27,6 +27,8 @@ from TrialLedger.layer2 import (
     profile,
     signals,
     signals_guide,
+    source_assertions,
+    source_assertions_guide,
 )
 
 OPERATIONS = (
@@ -37,6 +39,7 @@ OPERATIONS = (
     "design_bounds",
     "signals",
     "interpretations",
+    "source_assertions",
 )
 MAX_ITEMS = 1000
 BASIS = "Conditional on the supplied typed premises; their source meaning is not certified by this operation."
@@ -45,11 +48,12 @@ INPUTS = {
     **bounds_guide.INPUTS,
     **signals_guide.INPUTS,
     **interpretations_guide.INPUTS,
+    **source_assertions_guide.INPUTS,
     "describe": {
         "required": (),
         "fields": {
             "view": "overview, entailment, coordinates, corpus, design_bounds, signals, interpretations, "
-            "worked_session or full"
+            "source_assertions, worked_session or full"
         },
     },
     "entailment": {
@@ -554,6 +558,29 @@ def _interpretations(request: dict[str, Any]) -> dict[str, Any]:
         _assignment_bound(request.get("bound", entail.MAX_ASSIGNMENTS)),
         selected,
     )
+
+
+def _source_assertions(request: dict[str, Any]) -> dict[str, Any]:
+    """Anchor retained evidence, then consume generated premises through the existing public operations."""
+    _input(request, "source_assertions", "request")
+    if "context" in request:
+        _reason_context(request["context"])
+    if "bound" in request:
+        _assignment_bound(request["bound"])
+    prepared = source_assertions.prepare(request)
+    # Inspection validates the same representation as a queried request without running a synthetic query.
+    fixed = tuple(_prepared_signals(prepared["fixed"]["signals"]))
+    _scoped_assertions(prepared["fixed"]["assertions"])
+    bindings = interpretation_bindings.parse_bindings(prepared["bindings"], prepared["source"]["study_ref"])
+    for frame in prepared["interpretations"]:
+        _interpretation(frame, fixed, bindings, prepared["source"]["study_ref"])
+    analyses = []
+    for child in prepared["requests"]:
+        answer = run(child)
+        if answer["code"] != "complete":
+            raise RequestError("source_assertions:downstream:" + ";".join(answer["problems"]))
+        analyses.append(answer)
+    return prepared | {"analyses": analyses}
 
 
 def _coordinates(request: dict[str, Any]) -> dict[str, Any]:
@@ -1410,6 +1437,7 @@ def _describe(request: dict[str, Any]) -> dict[str, Any]:
         "design_bounds",
         "signals",
         "interpretations",
+        "source_assertions",
         "worked_session",
         "full",
     )
@@ -1419,6 +1447,7 @@ def _describe(request: dict[str, Any]) -> dict[str, Any]:
     bounds_guide.extend(full)
     signals_guide.extend(full)
     interpretations_guide.extend(full)
+    source_assertions_guide.extend(full)
     if view == "full":
         return full
     common = {key: full[key] for key in ("basis", "availability", "limits", "premise_status")}
@@ -1434,7 +1463,8 @@ def _describe(request: dict[str, Any]) -> dict[str, Any]:
                 "guide, run the appropriate operation and explain the deciding basis and open choices. "
                 "Update the premises and rerun when a choice changes; save the list and request/result "
                 "pairs separately when file access permits. The person makes the clinical judgments. "
-                "Automatic text compilation and complete protocol generation are not integrated."
+                "The source bridge compiles named structured fields and anchors hypothetical readings; "
+                "general automatic text compilation and complete protocol generation remain unintegrated."
             ),
             "decision_list": full["answer_guide"]["decision_list"],
             "use_cases": full["use_cases"],
@@ -1459,6 +1489,14 @@ def _describe(request: dict[str, Any]) -> dict[str, Any]:
             "support",
             "context",
         ),
+        "source_assertions": (
+            *source_assertions_guide.INPUTS,
+            "interpretation_query",
+            "interpretation_binding_use",
+            "signal",
+            "support",
+            "context",
+        ),
     }[view]
     vocabulary = {
         "entailment": tuple(
@@ -1470,6 +1508,14 @@ def _describe(request: dict[str, Any]) -> dict[str, Any]:
         "corpus": ("coverage_states", "observation_states"),
         "signals": ("statuses", "resolutions"),
         "interpretations": (
+            "statuses",
+            "resolutions",
+            "modalities",
+            "subject_kinds",
+            "predicate_kinds",
+            "value_kinds",
+        ),
+        "source_assertions": (
             "statuses",
             "resolutions",
             "modalities",
@@ -1498,9 +1544,9 @@ def _describe(request: dict[str, Any]) -> dict[str, Any]:
         "example": full["examples"][view],
         "example_result": full["example_results"][view],
     }
-    if view in ("entailment", "design_bounds", "interpretations"):
+    if view in ("entailment", "design_bounds", "interpretations", "source_assertions"):
         result["tagged_model"] = full["tagged_model"]
-    if view in ("signals", "design_bounds", "interpretations"):
+    if view in ("signals", "design_bounds", "interpretations", "source_assertions"):
         result["operator_inputs"] = full["operator_inputs"]
         result["signal_kinds"] = full["signal_kinds"]
         result["signal_examples"] = full["signal_examples"]
@@ -1529,6 +1575,7 @@ def run(request: object) -> dict[str, Any]:
             "design_bounds": _design_bounds,
             "signals": _signals,
             "interpretations": _interpretations,
+            "source_assertions": _source_assertions,
         }[operation]
         result = function(request)
         return {"code": "complete", "operation": operation, "result": result, "problems": []}

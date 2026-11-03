@@ -108,6 +108,11 @@ or leave this plan open?” The program shows the consequences of those options;
 
 ## Use the examples in a real conversation
 
+The [retained-source walkthrough](../examples/source-bridge/) connects these questions to actual NIH input:
+direct structured age bounds, exact baseline cells feeding a hypothetical overlap calculation, and rival
+readings of the schedule passage. Source anchors establish the text/cell and snapshot; clinical meaning
+remains the reading's premise. Revisions rerun the existing reasoner, preserving the original evidence.
+
 Start with the person's task: reference evidence, a draft restriction, a comparison, or a choice that needs
 clarification. Gather the relevant record and keep its exact passages. Show material premises together in
 ordinary clinical words. Run the appropriate operation and answer the question with its deciding source,

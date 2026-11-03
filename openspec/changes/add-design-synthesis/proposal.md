@@ -20,6 +20,11 @@ unconfirmed ones, and compute exact consequences conditional on each reading. Po
 and formal compatibility/refutation warrants retain useful partial information without promoting a reading
 to a registry fact or narrowing a new trial to whichever candidate happened to survive.
 
+Connect retained NIH API v2 studies to that representation through a content-bound source-to-assertion
+bridge. Named direct rules compile supported structured fields; exact pointers/spans and typed value
+hydration support explicitly proposed clinical readings. Source location never certifies a reading's
+meaning. Uncompiled material, rival frames, source versions and independent fixed consequences remain visible.
+
 ## Capabilities
 
 - `symbolic-trial-design`: scoped evidence and entailment, domain constraints, corpus geometry and

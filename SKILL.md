@@ -146,6 +146,20 @@ Ask the distinguishing clinical question rather than demand confirmation before 
 “Here is what each reading would permit; which population or interval do you intend?” Feed the answers
 into the decision list and keep useful conditional results while that distinction remains open.
 
+## A retained source can feed those checks
+
+Discover `source_assertions` for a complete retained raw NIH study. It compiles only named structured direct
+rules (currently minimum/maximum age), anchors exact passages/cells and carries proposed readings into the
+existing reasoner. The [real-record walkthrough](examples/source-bridge/) demonstrates the clinical handoff.
+Prepare technical source locations yourself; the person should discuss cohorts, definitions and choices.
+
+Each source selection has a matching content digest, exact pointer/typed expectation and optional Unicode
+span. Each reading or binding declares every anchor it uses. A quotation warrants its location, never the
+clinical meaning of the reading. Submitted known labels cannot promote prepared hypotheses or local signal
+support. Preserve alternatives, actors, qualifiers, conditions, cohorts, event times and unresolved rules.
+Keep fixed answers, conditional calculations and the remaining question together. Uncompiled means a reading
+task remains, not that the clinical information is absent. Empty queries are source inspection only.
+
 ## Reference sheet
 
 For an assistant-operated local run, first inspect whether this environment has local execution, network,
@@ -199,7 +213,8 @@ fields; this works for an MCP-only agent without source-file access. `examples` 
 `capability_examples` entries wrap a runnable `request` with invented premise/expected-result notes.
 
 Then use `trialledger reason --request FILE`, or MCP `reason(request)`, with an `operation` of `entailment`,
-`coordinates`, `corpus`, `design_bounds`, `signals` or `interpretations`. The same public contract is `TrialLedger.layer2.run(request)`.
+`coordinates`, `corpus`, `design_bounds`, `signals`, `interpretations` or `source_assertions`.
+The same public contract is `TrialLedger.layer2.run(request)`.
 
 Ground every premise. Ask about the clinical distinction: all participants or one cohort; required versus
 permitted; prior therapy for advanced disease or any treatment; one qualifying mutation or compound; inclusive

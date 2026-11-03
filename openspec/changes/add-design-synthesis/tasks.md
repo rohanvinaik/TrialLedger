@@ -25,6 +25,11 @@ partial components. Reporting completion does not require finishing these tasks.
 - [x] 4i. Expose interpretations through reason CLI/MCP and focused discovery; persist a continuing clinical-design example with rival PS/schedule/population/definition readings, user selection, revision, decision list and adversarial source-isolation checks.
 - [x] 4j. Verify the new representation through its real consumers, finite countermodel oracles, authored two-sign intent cases, scoped Detective receipts, normal project gate and fresh installed entry points; reconcile README, OpenSpec and assistant/developer guidance. See acceptance/interpretations-2026-11-03.md for observed checks and exact mechanized residuals.
 
+- [x] 4k. Implement bounded NIH snapshot identity, exact pointer/typed-value/span anchors and strict source-value hydration without semantic promotion or mutation.
+- [x] 4l. Compile named structured eligibility age rules and source-anchored rival frames/bindings, preserving submitted inputs, all logical/scope structure, unresolved coverage and reusable downstream requests.
+- [x] 4m. Expose source_assertions through CLI/MCP/discovery and execute real retained NIH examples through existing reasoning, updating conversational documentation and assistant context.
+- [x] 4n. Verify real consumers, adversarial admission boundaries, per-class identified/abstained/wrong results, scoped two-sign/contract checks, full gate and installed entry points; persist exact limitations and receipts. See acceptance/source-bridge-2026-11-03.md.
+
 - [ ] 5. Integrate versioned concept/measurement registries and independent identity/ontology sources, with resolved bindings, scope, editions, licenses and explicit ambiguity.
 - [ ] 6. Implement source-to-scoped-assertion compilation, preserving alternatives, referents, qualifiers, local force, conditions, definitions, cohorts and time; refuse unresolved projections and remove every flat-atom fallback.
 - [ ] 7. Integrate domain applicability and full strict/default strata semantics, conflict suspension, user override/recomputation and explicit consumer projections.

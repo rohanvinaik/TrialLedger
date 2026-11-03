@@ -904,6 +904,30 @@
     "refusal": "",
     "standing": "complete"
   },
+  "TrialLedger/layer2/source_assertions.py::age_state": {
+    "cut_reasons": [],
+    "function_digest": "e5f627fe484ac4a6",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/source_evidence.py::exact_json_equal": {
+    "cut_reasons": [],
+    "function_digest": "dc8fbfa8357fdb97",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/source_evidence.py::integer_state": {
+    "cut_reasons": [],
+    "function_digest": "d7e730e03a64c767",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/source_evidence.py::pointer_state": {
+    "cut_reasons": [],
+    "function_digest": "c343f8d8582ad001",
+    "refusal": "",
+    "standing": "complete"
+  },
   "TrialLedger/ledger.py::absence_state": {
     "cut_reasons": [],
     "function_digest": "3065865055084acd",

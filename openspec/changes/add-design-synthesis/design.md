@@ -80,6 +80,32 @@ condition without a relation that establishes it. A caregiver's or partner's att
 the participant. Cohort labels are not an exhaustive partition unless the source says so. Event-relative time
 stays attached to its event; unspecified boundaries and anchors remain unspecified.
 
+#### 4a. Retained-source bridge and admission
+
+`source_assertions` accepts one complete retained NIH API v2 study. It binds identity using the existing
+canonical study digest, distinct from an HTTP-body hash, and retains last-update metadata separately.
+Content identity is not a clinical protocol edition. Exact JSON pointers, expected typed values, matching
+content digests and optional half-open Unicode spans locate source evidence; invalid/stale anchors are
+translation refusals, not clinical refutations. Missing, null, empty and malformed remain distinct.
+
+Only a named source-defined direct rule can create a fixed assertion. The initial structured rules cover
+minimum/maximum age with complete NIH integer/unit syntax, preserving units and registered eligibility role.
+They establish what the registry encodes, not independent truth of the actual protocol. Unsupported syntax
+and other source fields remain retained/uncompiled; age groups or nearby prose cannot fill a missing bound.
+
+Clinical readings use exact anchors and the existing scoped logical objects. Their bodies, alternative
+structure, subject, modality, conditions, qualifiers, cohort, branch and time remain intact. All prepared
+readings, local signal support and population/definition bindings remain proposed regardless of submitted
+labels. The submitted objects remain inspectable beside prepared objects. An unresolved derivation remains
+unresolved. Exact value hydration copies a selected source cell into a hypothetical signal without guessing
+its population, scale, role or denominator correspondence. Local IDs never join modules automatically.
+
+The bridge returns reusable requests and runs them through existing entailment/interpretation consumers,
+retaining complete responses. Empty queries are inspection only. It does not fetch sources, mutate reports,
+repair registry values or insert derived statements into corpus counts. Coverage identifies compiled rules
+and unresolved source content without claiming a complete clinical text compiler. The persisted ownership,
+negative obligations and clinical workflow are in `docs/SOURCE_ASSERTION_BRIDGE_PLAN.md`.
+
 ### 5. Strict reasoning, defaults and proposals
 
 For a context, a requirement constrains scope and applicability to imply its body; an exclusion implies the
@@ -388,8 +414,9 @@ examples live with the public operation.
 - Corpus statement rates, silence bounds, proposed association, occupancy and near-miss calculations are
   retained as separate operations over explicitly represented inputs.
 - The canonical drug lookup machinery is shared source infrastructure; it is not a clinical reader.
-- Automatic source-to-scoped-assertion compilation is not integrated. The faulty flat word-matching path is
-  removed rather than kept as a fallback.
+- The bounded retained-source bridge compiles named structured rules and anchors hypothetical readings to
+  exact source values/passages. General automatic clinical-prose compilation remains unintegrated. The faulty
+  flat word-matching path is removed rather than kept as a fallback.
 - General clinical ontology bindings, full default-stratum semantics, gap-directed publication/label
   adapters, derivational-significance integration (section 7a), recommendation/closing orchestration and
   complete brief-to-protocol outputs remain implementation work under this design.

@@ -214,6 +214,33 @@ your choice, with its assumptions intact. Even a single compatible survivor leav
 on the declared family; the system does not claim it has recovered the whole protocol. Changed evidence or choices call for
 a fresh check, and fixed contradictions remain visible even when you prefer a particular option.
 
+## Bring a retained NIH record into the reasoning
+
+Your assistant can now use `source_assertions` to connect a complete retained NIH study to these checks.
+The bridge distinguishes a field's direct meaning from a proposed reading of clinical prose. For IPASS,
+the structured minimum age supplies the registry's **18 Years or older** restriction. Its uncompiled
+eligibility wording stays available; silence about performance status supplies no PS cutoff.
+
+For a more demanding question, the assistant selects the exact baseline cells for PS 2, never smoking and
+their denominator. The bridge copies their values into a proposed common-population reading, and the
+existing operator computes **49–126** in their overlap. That interpretation and its source locations remain
+attached. A separately proposed schedule reading can be examined alongside it, without treating either
+reading as a registry fact. The [real-record walkthrough](examples/source-bridge/) keeps the complete
+requests, responses and decision list.
+
+The schedule example keeps **nominal day 42** and the **allowable days 35–49** as separate information
+channels informing one decision. It then asks whether later tolerances stay anchored to randomization or
+restart from the preceding visit. Under the two proposed readings, the second window is [77,91] or [70,98].
+Each preserves the nominal target and the tolerance; the choice is about how the schedule should work.
+
+Every selected cell or passage is checked against the whole input's content identity and exact location.
+These checks describe the source study. A comparator's restriction informs a new trial's choice; adopting
+that restriction in the new trial remains a separate premise.
+Stale values or misaligned quotations stop translation. An exact quotation proves what was written; the
+clinical interpretation needs its own premises. Uncompiled content remains an open reading task, and the
+source record stays unchanged. The bridge's direct rules are deliberately explicit and bounded; it is not
+a general automatic clinical text reader or a complete protocol writer.
+
 ## What you receive
 
 **`landscape.xlsx`** is the clinical reference workbook. Start with Trial index and Trial review, then explore
@@ -317,6 +344,11 @@ Use `{"operation":"describe","view":"interpretations"}` for isolated hypothetica
 and definition bindings, named queries and compatibility/refutation warrants. Fixed facts and rules are
 checked separately from each frame's assumptions. Partial calculations remain inspectable when admission
 is unresolved; selection never promotes a hypothesis to a source fact.
+
+Use `{"operation":"describe","view":"source_assertions"}` for retained NIH study inputs, exact source
+anchors and proposed readings. The bridge returns reusable reasoning requests and their complete results.
+Empty queries inspect source admission without claiming a design check. Content digests identify snapshots;
+they do not establish clinical protocol editions.
 
 Entailment checks supplied scoped premises; coordinates uses the explicit NSCLC domain; corpus computes
 statement rates with silence bounds, class associations, rarity, occupancy and one-feature comparisons.
