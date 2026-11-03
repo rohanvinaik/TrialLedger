@@ -12,293 +12,269 @@
 **TrialLedger doesn't make your clinical decisions. It finds them.**
 
 Much of designing a trial is documentary and logical work: finding what comparable trials did, copying it out
-accurately, and working out what a draft restriction does and doesn't allow. TrialLedger, run by your
-assistant, does that work and hands you the choices that genuinely need your clinical judgment, each with its
+accurately, and working out what a draft restriction does and doesn't allow. TrialLedger, run by your AI
+assistant, does that work. It hands you the choices that genuinely need clinical judgment, each with its
 evidence and its consequences worked out.
 
 For a draft lung cancer trial compared with IPASS and ARCHER 1050, one decision looks like this:
 
-- **Evidence:** ARCHER 1050 requires ECOG performance status 0–1. IPASS's eligibility text gives no cutoff; its
-  baseline nevertheless reports 126/1,217 participants at WHO PS 2. These scales retain their own identities.
+- **Evidence:** ARCHER 1050 requires ECOG performance status 0–1. IPASS's registered eligibility gives no
+  cutoff; its baseline nevertheless reports 126 of 1,217 participants at WHO PS 2. WHO PS and ECOG are kept
+  as separate scales.
 - **Your decision:** What performance-status range do you intend?
 - **Consequence:** Widening your draft from ECOG 0–1 to 0–2 moves ECOG 2 patients from excluded to allowed.
 - **Still open:** Your draft says nothing about brain metastases. ARCHER 1050 excludes any history of them.
 
-Your attention goes to the decisions, with the evidence assembled and the consequences computed rather than
-guessed. The evidence comes from the studies you care about: TrialLedger gathers their ClinicalTrials.gov
-records into a readable reference workbook and a matching evidence record, so you can examine who could
-enroll, what was measured, when it was assessed, and what results and safety information were reported.
+You talk to your assistant in ordinary clinical language. Behind the conversation, every answer is either
+copied from the registry, calculated by TrialLedger from statements you have confirmed, or plainly marked as
+a reading or as your choice. This page explains how that works, what you can ask, and how far to trust each
+kind of answer.
 
-Then ask: “What have these studies done here—and what would happen if we chose something different?”
+## How it thinks
 
-Your assistant brings the relevant evidence into the conversation, helps make your intended choices
-explicit, and runs TrialLedger's comparison and reasoning tools. You can examine documented patterns, check
-whether your draft restrictions conflict, explore alternatives, and revise a choice with its consequences
-in view.
+Many AI tools fill the gaps in a clinical record with what is probably true. TrialLedger does the opposite.
+It works out exactly what the evidence settles, keeps everything else open, and brings the open parts to you
+as questions. Five ideas explain nearly everything it does.
 
-You make the clinical judgments. TrialLedger's job is to make them visible: what is already settled by your
-choices, what contradicts itself, what is genuinely yours to decide, and what the evidence cannot tell you. The reference workbook is useful on its own,
-and it provides the evidence base for a continuing design conversation.
+### 1. Every answer carries its source
 
-## What the published conventions let us recover
+Each statement you receive comes from one of four places:
 
-A registry record is more than prose to summarize. It is written in a published language: field meanings,
-code lists, population/group conventions, date precision and rules connecting reported quantities.
-TrialLedger uses those conventions to recover information that is already present but easy to overlook.
-“Mechanical” means that the warrant is fixed and inspectable; the work can still be clinically useful.
+- **The record:** what ClinicalTrials.gov says, with a link to where it says it.
+- **Computed:** what follows, by exact calculation, from statements you have confirmed. These confirmed
+  statements are called *premises*.
+- **A reading:** an interpretation of wording, by your assistant or proposed for discussion. It can be
+  explored, but it is not relied on as a premise until you confirm it.
+- **Your choice:** a design decision you have made, recorded as yours.
 
-For example, IPASS supplies a month-level start date without saying whether it is actual or estimated.
-Its start and primary-completion spans are ordered. Under the stored registry codebook, an actual start
-makes the ordering check consistent; an estimated start makes that check inapplicable. The missing type
-remains unknown, but **conflict is excluded across those valid completions**. Keeping the remaining
-outcomes conveys more than a single “not checkable” label without filling in the missing field.
+A computed answer is never stronger than its weakest premise. If it depends on a default convention or a
+working assumption, it is labelled that way. If it depends on a reading you haven't confirmed, it is not
+treated as settled at all.
 
-How much can be recovered depends on what the domain has specified. Structured age fields provide exact
-bounds in declared unit families. A performance-status sentence may still require a scoped clinical
-reading. The method draws the same boundary in either case: use the published convention wherever it
-warrants a conclusion, and retain the unresolved alternatives wherever it does not.
+### 2. Certainty comes from ruling things out
 
-## Information is also in the constraints
+TrialLedger becomes certain of a computed answer only when the evidence leaves no alternative. A real
+example: IPASS reports 1,217 baseline participants, 126 at WHO PS 2 and 1,140 who never smoked. Neither
+count says how many patients are both. **If** both counts describe the same 1,217 patients, at least 49 must
+be both (126 + 1,140 is 49 more than 1,217) and at most 126 can be. Nothing is assumed about whether the two
+traits are related. What becomes certain is what has been ruled out: fewer than 49 is impossible. The exact
+number stays open.
 
-A trial record carries information beyond its explicit sentences. Eligibility, baseline distributions,
-participant flow, assigned treatments and endpoint definitions describe related parts of the same study.
-Once their populations, scopes and meanings are bound, their constraints can be combined. Designs compatible
-with one field can become impossible when another field is considered. The remaining alternatives show both
-what follows and which choices still need judgment.
+Some conclusions rest on a declared default rather than on evidence, such as a standard convention for
+describing an NSCLC treatment setting, or on a working assumption you have accepted. These are labelled
+**settled by default**, and you can override them.
 
-That is TrialLedger's information-theoretic thesis: **make the information already carried by the evidence
-available as constraints on an explicit space of possibilities.** A missing statement can leave a question
-partly identified. For example, among the same 1,217 IPASS participants, 126 at WHO PS 2 and 1,140 never smokers
-require at least `126 + 1,140 − 1,217 = 49` participants with both attributes, and at most 126. This bound needs
-no assumption that the attributes are independent. It exposes a consequence of the reported counts without
-inventing a cross-tabulation or an exact count.
+### 3. Open questions are held, not filled
 
-Each inference needs a **formal warrant**: typed premises, the rule connecting them, its applicability
-conditions and an inspectable conclusion. The overlap bound requires a shared participant universe. Using
-that overlap to constrain eligibility additionally requires a bridge from observed participants to eligible
-participants, with an explicit allowance for exceptions. If fewer than 49 could be exceptions, at least one
-eligible joint-profile witness remains; a design excluding that entire profile is incompatible with those
-premises. The exact performance-status cutoff still does not follow.
+When the evidence leaves something open, TrialLedger neither guesses nor throws the question away. It keeps
+it, because an open piece can combine with another piece later. Think of sudoku: a square that could be 3
+or 7 isn't guessed. If two squares in the same row can each only be 3 or 7, then no other square in that row
+can be 3 or 7, even though neither of the two is solved yet.
 
-The conclusion keeps the standing of its weakest premise. Strict deductions from known premises are known;
-an eligibility bridge adopted as an interpolation makes its consequences interpolated, even when the
-arithmetic and logic are exact. An unconfirmed proposal can be assumed within its explicitly hypothetical
-frame; it cannot constrain an accepted design outside that frame. Every result keeps its
-source or accepted premise, population, scale, units, time, rule and blockers. Conflicts and unresolved
-bindings remain visible, and changed premises require recomputation. This is what makes the reasoning
-reviewable for clinical work: the person can inspect what supports an answer and precisely what would change it.
+Trial records behave the same way. IPASS gives a month-level start date without saying whether it is actual or
+estimated. TrialLedger can't supply the missing label. Under the registry's own rules, though, an actual start
+makes the date-order check consistent and an estimated start makes it not applicable, so either way a conflict
+is ruled out. In the invented teaching session below, patients at ECOG 2 were enrolled and one person at ECOG
+2 was rejected as ineligible. Assuming enrolled patients met eligibility, the enrollments rule out any
+performance-status cutoff below 2, and the rejection rules out "ECOG ≤2 and nothing else". Together they show
+that no rule based on performance status alone explains both, without saying what else was involved.
 
-**An uncertain interpretation can still be useful.** Layer one supplies the fixed source facts and direct
-rules that bound the represented possibilities. Layer two can keep competing readings, explore what follows
-if each holds, and show a formal warrant wherever a reading violates those fixed constraints. The uncertainty
-of a reading and the exactness of its conditional consequences are separate. Your assistant can discuss
-those possibilities with you without turning a plausible reading into a registry fact or forcing a choice
-before its consequences can be examined.
+Unlike sudoku, a trial design has no single correct solution. The squares still open at the end are your
+decisions. TrialLedger collects them in a **decision list**.
 
-For example, reading “every 42 ±7 days from randomization” as the first scheduled assessment window yields
-35–49 days exactly within that interpretation. Whether that is the intended reading remains a separate
-question. An actual unscheduled scan outside the window is a different event. The system keeps these roles
-and alternative readings separate, so evidence can break a working interpretation and leave useful partial
-information available for the next question.
+### 4. Sameness is your call
 
-The worked session below demonstrates this composition across counts, sets, time, ingredients, class
-relations and adopted definitions. Each contributes its own constraint; together they eliminate incompatible
-designs and expose the decisions left open. Corpus frequency and rarity are separate measurements, and
-derivational significance remains a planned component; this example does not assign a probability to the
-surviving designs.
+The premises you confirm are combined automatically. A claim that two things are the same, though, is a
+clinical judgment, and TrialLedger never makes one on its own: that two tables describe the same patients;
+that WHO PS 2 corresponds to ECOG 2; that a scan was the scheduled assessment rather than an unscheduled one;
+that a comparator's restriction should apply to your trial. Matching names or matching totals are not
+enough. Until you confirm a sameness claim, its arithmetic stays visible as "if these are the same patients,
+then …" and nothing settled depends on it.
 
-## Questions that reveal the method
+### 5. Counts describe; they never decide
 
-The system can answer questions that initially seem to require missing data or clinical guesswork:
+TrialLedger can tell you how often comparable trials state a criterion, how many are silent on it, whether
+it is more common with a drug class and what is unusual among them. These counts come with their
+denominators, and silence is counted separately from absence. But "most trials do this" never makes
+anything required or forbidden in your design. Weighing what matters is expert judgment, and it stays with
+you.
 
-| A person's question | What the reasoning can recover | What stays open |
+This is also why the reasoning can be exact. It works with reported counts and stated criteria, not with
+estimates about biology: 126 of 1,217 is what IPASS reported, so a bound on that count is arithmetic.
+
+## How the work divides
+
+| Stage | What happens | Who does it | Why it can be trusted |
+|---|---|---|---|
+| **Gathering** (bookkeeping) | Registry records are retrieved, preserved and laid out in a reference workbook. The registry's own published rules are applied, such as date-order checks. | TrialLedger, operated by your assistant | Values are faithful copies, and checks follow published registry rules. The workbook can be rebuilt from the saved records. Nothing is interpreted. |
+| **Translation** | Your criteria, your questions and readings of trial text become precise premises. | Your assistant, with you | Registry values are used as recorded. Every reading, sameness claim and choice is restated to you in clinical words before it is relied on. This is the only stage where an AI's reading enters the reasoning. |
+| **Computation** (inference) | Confirmed premises and evidence are combined to rule possibilities out. The result says what follows, what conflicts and what stays open. | TrialLedger | The calculation is exact and gives the same answer every time. Each result names what decided it. |
+
+The open decisions then come back to you. The reference workbook is useful on its own: you can stop after
+gathering.
+
+## What you can ask
+
+| You might ask | What you get | Kind of answer |
 |---|---|---|
-| “Neither table gives the joint population. Can we still bound it?” | IPASS counts of 607 safety-evaluable and 590 QoL-evaluable among the same 609 gefitinib participants bound their overlap at **588–590**, under explicit cohort correspondence | Exact identities and the reason for missing coverage |
-| “PS 2 people were both randomized and rejected. Is that a contradiction?” | In the invented session, positive and attributed negative witnesses eliminate different eligibility explanations without turning rejection into a universal exclusion | Which additional criterion explains the rejection |
-| “Does an early scan invalidate the schedule?” | A scheduled day-28 visit conflicts with a stipulated days-35–49 routine window; a separate actual unscheduled scan can coexist with it | Which event and reading the person intends |
+| "Make reference sheets for IPASS and ARCHER 1050." "Find completed Phase 3 EGFR-inhibitor trials in NSCLC." | A workbook with a dossier per trial and shared listings, plus a matching evidence file | From the record |
+| "Who could enroll? What was measured, and when? What were the results and safety by group?" | Exact registry wording, with groups, denominators, units and time frames | From the record |
+| "Does this record contradict itself?" | The registry's own consistency checks, with the fields compared | From the record, by published rules |
+| "Does our draft exclude ECOG 2 patients?" "Could this patient enroll?" | Excluded, allowed, or allowed but not required, naming the deciding criterion | Computed from your criteria |
+| "Do our criteria contradict each other?" | The conflicting criteria, side by side | Computed |
+| "This wording could mean two things. What would each allow?" | Each reading's consequences, and which readings the fixed evidence rules out | Computed under each reading, kept separate |
+| "The comparator's eligibility text is thin. What does its baseline data tell us?" | Which candidate restrictions its enrolled patients rule out | Computed, under the sameness claims you confirm |
+| "Neither table gives the joint numbers. Can we bound them?" | A range, such as 49–126 | Computed, under the sameness claims you confirm |
+| "What treatment setting do these NSCLC criteria imply?" | Disease extent, prior treatment and line of therapy, with defaults labelled | Computed, with defaults labelled |
+| "How common is this exclusion in these trials? Is it more common with this class? Which trials differ only in this? Where are the gaps?" | Counts and ranges over a comparison set you agree, with silent trials shown | Description of the comparison set |
+| "Is this a good choice?" | The computable parts (does it fit, how common is it, what does it rule out), separated from judgment | Mixed, each part labelled |
+| "Did the drug work?" | The posted results, read from the record; any interpretation is marked as your assistant's reading | From the record, plus a labelled reading |
 
-Each is a small demonstration of the same thesis: related evidence can constrain more than any one field
-states, while the remaining uncertainty still belongs in the conversation. The
-[worked questions](docs/POWERFUL_QUESTIONS.md) link the complete executed inputs and results, distinguish
-real retained evidence from invented teaching cases, and show the consequential question to ask next.
+The [worked questions](docs/POWERFUL_QUESTIONS.md) show several of these executed, with real and invented
+examples labelled. Not available yet: writing a complete protocol, reading linked publications and checking
+the registry against the real world.
+
+## What you receive
+
+- **`landscape.xlsx`**, the reference workbook. Start with Trial index and Trial review, then explore
+  eligibility, interventions, planned outcomes, posted results, statistical analyses, baseline, participant
+  flow, groups and safety. Numbers keep their study groups, denominators, units and reporting periods.
+  Planned outcomes stay separate from posted results, and observational and expanded-access studies keep
+  their own details. Missing information stays visible: "not stated" never becomes "none".
+- **`landscape.json`**, the matching evidence record your assistant answers from, linked back to the
+  registry. The complete registry responses are kept too.
+- **The decision list.** For each consequential choice: the decision in clinical words, the evidence from the
+  compared trials (including where the registry is silent), the computed consequence of each option, and its
+  status, open or chosen by you. Your assistant can keep it in a `working-brief.md` file beside the saved
+  checks, so the design can be revised and rechecked later.
+
+## How far to trust each answer
+
+| Kind of answer | Right when… | What could still be wrong | How to check it |
+|---|---|---|---|
+| From the record | It is a faithful copy, which is checked and can be replayed | The registry entry itself; anything the registry doesn't contain | Follow the source link |
+| Published-rule check | The registry's own rules say so | Only what those rules cover | Ask which rule and fields were compared |
+| Computed | Its premises are right; the calculation is exact and tested | A premise confirmed in error | Ask "which premises decided that?" |
+| Settled by default | The default or working assumption fits your trial | The default may not fit | Override it and rerun |
+| A reading | Never certified; used only inside a labelled "if this reading holds" check | The interpretation itself | Confirm it, reject it, or compare readings |
+| Description of a comparison set | The counts are exact for the set you agreed | Whether those trials are truly comparable; silence isn't absence | Ask how many trials were silent |
+| Your choice | It is yours, recorded as yours | Not applicable | Change it and rerun |
+
+### Why a casual conversation can carry exact reasoning
+
+Your assistant does not do the reasoning. It translates between your words and TrialLedger's premises.
+Registry values are used as recorded; every reading, sameness claim and choice is restated to you in clinical
+words, taken from the check actually being run, before anything relies on it. TrialLedger does the
+calculation, the same way every time. The question of trust therefore shifts from "do I trust the AI?" to "are
+these statements about my trial right?", which you are qualified to answer. When you change a premise, the
+checks are rerun; an old answer is never relabelled as if it had checked the new one.
+
+Two limits matter. First, TrialLedger supplies logic, not medical knowledge. It knows only what the registry
+records and what you have confirmed: nothing about pharmacology, biology or today's standard of care. Second,
+translation can go wrong. A misread criterion yields an exact answer to the wrong question, which is why you
+always see the premises restated. Each check is also saved as a file that a technical colleague can audit, and
+at any point you can ask which premise decided an answer.
 
 ## A design session in practice
 
 > “The comparator's eligibility entry is thin. Can we work out what it actually constrains before we
 > choose our population, treatment sequence and assessments?”
 
-Here is an executable teaching case. Every study datum, drug identity and definition in this session is
-**invented**. Its [inputs and saved results](examples/partial-evidence/) run through the same reasoning
-operations your assistant uses with retained registry evidence.
+This is an executable teaching case. Every study datum, drug identity and definition in it is **invented**.
+Its [inputs and saved results](examples/partial-evidence/) run through the same operations your assistant
+uses with real registry evidence.
 
-**1. Assemble the evidence and settle its meaning.** The comparator reports 200 randomized participants:
-40 at ECOG 2 and 180 never smokers. Its two mutually exclusive, exhaustive cohorts include 140 in cohort A,
-with cohort B's count omitted. The exact midpoint median age is 65. An explicitly bound analysis population
-contains 160 of the 200 randomized participants. A screening log records an eligibility-attributed rejection
-of one person at ECOG 2, without their other attributes.
+**1. Gather the evidence and settle what it means.** The comparator reports 200 randomized participants: 40
+at ECOG 2 and 180 never smokers. Its two cohorts together include everyone, with no overlap; cohort A has
+140 and cohort B's count is omitted. The median age, an exact midpoint, is 65. An analysis population
+contains 160 of the 200 randomized participants. A screening log records one person at ECOG 2 rejected as
+ineligible, with no other details. Other records place the end of induction before randomization and the
+first dose within seven days after it. One arm's product contains ingredients A and B. A dated definition
+places marker A within family F, and family F within the qualifying-marker class. The adopted change-score
+endpoint needs observed measurements at baseline and week 12; baseline is recorded and week 12 is unknown.
 
-Other structured evidence places induction's end before randomization and the first dose within seven days
-afterward; an assigned arm contains a combination product with ingredients A and B. A versioned definition
-places marker A within family F, and F within the qualifying-marker class. An adopted change-score definition
-requires observed baseline and week-12 measurements; the evidence supplies baseline and leaves week 12 unknown.
+Your assistant keeps each source location, population, time point and definition. You settle what the
+evidence means: which counts describe the same patients, whether the summaries are exact, and how many
+enrolled patients might have been exceptions to eligibility. Here you accept, as a working assumption, that
+there were no exceptions, so results depending on it are labelled settled by default.
 
-Your assistant retains each source address, population, assessment time and definition. You settle which
-baseline counts describe the same participants, whether the summaries are exact, and how many participants
-might be exceptions to an eligibility interpretation. In this example, the eligibility bridges allow zero
-exceptions and remain interpolated premises.
+**2. Test competing explanations together.** TrialLedger checks twelve candidate designs against that
+evidence. Each piece of partial evidence does different work:
 
-**2. Test competing explanations together.** TrialLedger checks twelve declared candidate designs against
-those premises. Different pieces of partial evidence do different work:
-
-| Evidence | Computed constraint | Candidate it rules out |
+| Evidence | What it forces | Candidate it rules out |
 |---|---|---|
-| 40 ECOG 2 and 180 never smokers among the same 200 people | **20–40** have both attributes | Excludes every person with that joint profile |
-| Cohort A has 140; A and B partition 200 | Cohort B has **60** | Admits cohort A only |
-| Exact midpoint median age 65 among 200 assessed people | **At least 100** are 65 or older | Requires everyone to be under 65 |
-| Analysis population is an explicit 160-person subset of 200 | **40** randomized people are outside that analysis | Assumes everyone randomized was analysed |
-| Induction ends before randomization | Reversing that order contradicts the bound timeline | Randomizes before induction ends |
-| Assigned product contains A and B | Its ingredient set includes both | Represents the arm as ingredient A alone |
-| Marker A → family F → qualifying-marker class | Marker A is in the qualifying class under that edition | Places marker A outside that class |
-| Adopted change score requires two observed measurements | Explicitly unavailable week-12 observation conflicts with that definition | Uses that definition with no possible week-12 observation |
-| An ECOG 2 profile was rejected for eligibility | Performance status alone cannot explain that rejection | Defines eligibility solely as ECOG ≤2 |
+| 40 ECOG 2 and 180 never smokers among the same 200 people | **20–40** have both | Excludes everyone with that combination |
+| Cohort A has 140; cohorts A and B make up all 200 | Cohort B has **60** | Admits cohort A only |
+| Exact midpoint median age 65 among 200 assessed | **At least 100** are 65 or older | Requires everyone to be under 65 |
+| An analysis population is a stated 160-person subset of the 200 | **40** randomized people are outside that analysis | Assumes everyone randomized was analysed |
+| Induction ends before randomization | Reversing that order contradicts the timeline | Randomizes before induction ends |
+| The assigned product contains A and B | Its ingredients include both | Represents the arm as ingredient A alone |
+| Marker A → family F → qualifying class | Marker A qualifies under that edition of the definition | Places marker A outside the class |
+| The endpoint needs two observed measurements | An unavailable week-12 measurement conflicts with it | Uses the endpoint with no possible week-12 observation |
+| One ECOG 2 patient was rejected as ineligible | ECOG alone can't explain that rejection | Defines eligibility solely as ECOG ≤2 |
 
-These results preserve their limits. Forty people outside an analysis are not thereby forty dropouts or
-ineligible participants. An unknown week-12 measurement stays unknown; the compatible candidates explicitly
-hypothesize its availability, which does not turn it into posted data. An imputed value does not satisfy this
-observed-only definition. The rejected partial profile does not establish that every ECOG 2 person is excluded.
+Each result keeps its limits. Forty people outside an analysis are not thereby forty dropouts. The unknown
+week-12 measurement stays unknown, and an imputed value does not count as observed under this definition.
+One rejected ECOG 2 patient does not mean every ECOG 2 patient is excluded.
 
-**3. See what remains genuinely open.** Nine candidates are ruled out. Three remain: an adult population
-requiring a qualifying marker with ECOG 0–2; the same with ECOG 0–3; and an adult ECOG 0–2 population without
-that marker requirement. Each assumes the observed measurements needed by the adopted endpoint definition.
-The common-consequence question “Must ECOG be ≤2?” returns **undetermined**. The exact cutoff and marker
-requirement remain open; these declared candidates do not exhaust every possible real protocol.
+**3. See what remains open.** Nine candidates are ruled out. Three remain: adults requiring the qualifying
+marker with ECOG 0–2; the same with ECOG 0–3; and adults with ECOG 0–2 and no marker requirement. Asked "Must
+ECOG be ≤2?", TrialLedger answers **undetermined**: the surviving designs disagree, so the choice is yours.
+The twelve candidates were declared for this exercise and don't cover every possible real protocol, so
+surviving the checks is not proof of the comparator's actual criteria.
 
-The assistant carries those open choices into the decision list, keeping them separate from what the
-source constraints have settled.
+**4. Make a choice and check it.** You choose adults with ECOG 0–2. A separate
+[check of your draft](examples/partial-evidence/draft-request.json) confirms that it rules out ECOG 3, naming
+your performance-status criterion. Widen it to 0–3 and rerun: ECOG 3 is now allowed but not required. That
+checks this one restriction, not every requirement for enrollment.
 
-**4. Make a choice and check its consequence.** You choose adults with ECOG 0–2 for your draft. A separate
-[brief check](examples/partial-evidence/draft-request.json) returns **refuted** for ECOG 3, naming your
-performance-status premise. Widen that premise to 0–3 and rerun: the range allows ECOG 3 without requiring it.
-That checks the encoded restriction; other eligibility requirements remain separate.
+**5. Revise the evidence, too.** If the screening rejection can't be attributed to eligibility, the
+"ECOG only" candidate is no longer ruled out; it is kept as unresolved. If up to 20 enrolled patients could
+have been exceptions, an overlap of at least 20 no longer guarantees an eligible patient with both traits;
+with up to 19 exceptions it still does. Your assistant reruns the checks and updates the decision list. The
+original evidence never changes.
 
-**5. Revise the evidence, too.** If the screening rejection cannot be attributed to eligibility, its bridge
-becomes unresolved and the performance-status-only candidate is retained as unresolved. If the joint
-baseline bridge permits 20 exceptions, its lower bound no longer guarantees an eligible joint-profile witness;
-19 exceptions still leave one. The assistant reruns the checks and updates the decision list, keeping the
-original evidence intact.
-
-At handoff, the updated **decision list** makes the human choices and computed consequences visible:
+The handoff is the decision list:
 
 | Decision | Evidence and computed consequence | Status |
 |---|---|---|
-| Performance-status range | Comparator witnesses include ECOG 2; your selected 0–2 restriction excludes ECOG 3. Widening it to 0–3 allows 3. | **Chosen by you: 0–2**, with the checked brief retained |
-| Marker selection | The class relation is resolved; surviving designs differ on requiring the marker, and the partial rejection does not settle it. | **Open:** should the new population require it? |
-| Endpoint assessments | The adopted definition needs observed baseline and week-12 inputs. Week 12 remains unknown; imputation alone does not satisfy that definition. | **Open:** settle the assessment plan or explicitly change the definition |
+| Performance-status range | The comparator enrolled ECOG 2 patients. Your 0–2 restriction excludes ECOG 3; widening it to 0–3 allows it. | **Chosen by you: 0–2**, with the check saved |
+| Marker selection | The class relation is settled. Surviving designs differ on requiring the marker, and the single rejection doesn't decide it. | **Open:** should your population require it? |
+| Endpoint assessments | The adopted definition needs observed baseline and week-12 measurements. Week 12 is unknown, and imputation alone doesn't satisfy the definition. | **Open:** settle the assessment plan or change the definition |
 
-The assistant retains the workbook, decision list and request/result pairs separately. Revising a choice
-updates the checks and list, while the source record remains intact.
+## The same method on a real record
 
-The real IPASS example follows the same discipline: its 126 WHO PS 2 participants and 1,140 never smokers among
-1,217 baseline participants bound their overlap to **49–126** only under a confirmed common-universe binding.
-The eligibility interpretation needs its own bridge; WHO PS retains its own scale, and an observed category
-does not recover an exact eligibility cutoff.
+The [IPASS walkthrough](examples/source-bridge/) applies these ideas to the retained registry record:
 
-For source-based questions about analysis populations, assessment windows and conservative data cleanup,
-see the [workflow investigation](docs/SOURCE_INFORMATION_RESOLUTION.md) and its
-[executed request/result pairs](examples/source-workflows/). They distinguish today's conditional
-computations from the source-binding and correction integrations proposed next.
+- **Directly from a structured field:** the registered minimum age of 18 years settles the registry's
+  restriction to participants aged 18 or older. The eligibility prose stays as written. It is silent about
+  performance status, so it supplies no cutoff.
+- **Overlap of two baseline counts:** if the WHO PS 2 count, the never-smoker count and the total describe
+  the same patients, a reading for you to confirm, their overlap is **49–126**. This does not recover an
+  eligibility cutoff, and WHO PS stays WHO PS.
+- **Two analysis populations:** 607 safety-evaluable and 590 QoL-evaluable patients among 609 on gefitinib
+  give **588–590** in both, if both tables describe the same cohort. The
+  [workflow investigation](docs/SOURCE_INFORMATION_RESOLUTION.md) and its
+  [saved checks](examples/source-workflows/) cover this and other analysis-population questions.
+- **A schedule with two readings:** "every 42 ±7 days from randomization" gives a first window of days 35–49
+  under either reading. The second window is days 77–91 if every tolerance is measured from randomization, or
+  70–98 if each interval restarts at the previous visit. That choice is about how your schedule should work.
 
-Today, your assistant reads and structures evidence with you; TrialLedger computes these bounds,
-compatibility checks and consequences. Automatic conversion of clinical text into reasoning inputs and
-complete protocol writing remain unintegrated. See the [full design](openspec/changes/add-design-synthesis/design.md)
-and [theory](docs/THEORY_OF_THE_CASE.md) for the component map.
+Each item keeps its source location and stays labelled as a reading until you confirm it. The registry
+record itself is never changed.
 
-## Explore competing readings without losing the evidence
+## What isn't built yet
 
-“Could this wording mean either option, and what would each option permit?” is a supported question.
-The separate `interpretations` operation checks an explicit fixed floor and keeps each proposed reading
-in its own frame. It returns fixed-evidence answers, consequences under each reading, compatibility or
-refutation warrants, unresolved applications and the choices left open. Proposed assumptions remain visible;
-ordinary entailment still refuses to use them as accepted premises.
+- **Automatic reading of eligibility prose.** Today you and your assistant settle readings together;
+  TrialLedger compiles only the structured minimum and maximum age directly.
+- **Complete protocol writing from a brief.** It is designed and partly built; the operations above are its
+  working core.
+- **Scoring how significant a line of design reasoning is.** This is designed. Today's "unusual" measure
+  is a simpler count within a comparison set.
+- **Reading linked publications.** A link marks a place to look, not something TrialLedger has read.
 
-The [executable continuing session](examples/interpretations/) starts with an invented adult NSCLC draft.
-ECOG 0–2 and 0–3 both fit its fixed choices but answer the ECOG 3 question differently. A scheduled assessment
-outside a stipulated window is refuted, while a separately represented unscheduled scan can coexist with
-that schedule. Population bindings and adopted endpoint editions affect their actual checks; unresolved
-bindings retain conditional counts, and an imputed input does not become an observed measurement.
-
-Your assistant can discuss these alternatives before asking you to settle a reading. Selecting one remains
-your choice, with its assumptions intact. Even a single compatible survivor leaves conclusions conditional
-on the declared family; the system does not claim it has recovered the whole protocol. Changed evidence or choices call for
-a fresh check, and fixed contradictions remain visible even when you prefer a particular option.
-
-## Bring a retained NIH record into the reasoning
-
-Your assistant can now use `source_assertions` to connect a complete retained NIH study to these checks.
-The bridge distinguishes a field's direct meaning from a proposed reading of clinical prose. For IPASS,
-the structured minimum age supplies the registry's **18 Years or older** restriction. Its uncompiled
-eligibility wording stays available; silence about performance status supplies no PS cutoff.
-
-For a more demanding question, the assistant selects the exact baseline cells for PS 2, never smoking and
-their denominator. The bridge copies their values into a proposed common-population reading, and the
-existing operator computes **49–126** in their overlap. That interpretation and its source locations remain
-attached. A separately proposed schedule reading can be examined alongside it, without treating either
-reading as a registry fact. The [real-record walkthrough](examples/source-bridge/) keeps the complete
-requests, responses and decision list.
-
-The schedule example keeps **nominal day 42** and the **allowable days 35–49** as separate information
-channels informing one decision. It then asks whether later tolerances stay anchored to randomization or
-restart from the preceding visit. Under the two proposed readings, the second window is [77,91] or [70,98].
-Each preserves the nominal target and the tolerance; the choice is about how the schedule should work.
-
-Every selected cell or passage is checked against the whole input's content identity and exact location.
-These checks describe the source study. A comparator's restriction informs a new trial's choice; adopting
-that restriction in the new trial remains a separate premise.
-Stale values or misaligned quotations stop translation. An exact quotation proves what was written; the
-clinical interpretation needs its own premises. Uncompiled content remains an open reading task, and the
-source record stays unchanged. The bridge's direct rules are deliberately explicit and bounded; it is not
-a general automatic clinical text reader or a complete protocol writer.
-
-## Compare trials without turning readings into facts
-
-Suppose one trial clearly documents an adult age restriction, while its brain-metastasis wording still has
-competing readings. The age restriction can enter a count immediately under its explicit warrant. The
-unsettled brain-metastasis reading remains visible as pending; it supplies neither a positive count nor an
-absence. The comparison keeps its original denominator and reports the unresolved range. A proposed-only
-feature stays visible even when no accepted trial yet states it.
-
-The same distinction applies downstream. Pending class or setting membership can keep a design-space cell
-possible. Pending comparison features withhold a near-miss claim, and pending observation readings stay out
-of rarity denominators. These are item-specific admission checks: one unsettled reading does not erase
-independent evidence. Counts use explicit known/resolved support; coordinate defaults and interpolated
-premises stay in their separate layer. An accepted interpretation remains an attributed premise, not an
-independently verified registry fact.
-
-WHO PS and ECOG illustrate a different problem: a representation can fail to connect even when it is useful
-to discuss both measures together. The program never equates the scales from their names. A comparison needs
-an explicit, scoped relation for the particular propositions being transferred, with its own standing and
-warrant. Entailment now reports structurally detectable subject, unit and time mismatches alongside its
-abstention. That diagnostic does not supply the missing equivalence. The [consumer guide](docs/REASONING_CONSUMERS.md)
-explains the declaration, migration and retained limits.
-
-## What you receive
-
-**`landscape.xlsx`** is the clinical reference workbook. Start with Trial index and Trial review, then explore
-eligibility, interventions, planned outcomes, posted results, statistical analyses, baseline, participant
-flow, groups and safety. Numbers keep their study groups, denominators, units and reporting periods.
-Observational and expanded-access studies retain their own applicable details.
-
-**`landscape.json`** contains the matching selected clinical evidence your assistant uses for questions.
-Complete registry responses are also retained. The workbook and record preserve source wording, with links
-back to the evidence behind an answer. Planned outcomes remain separate from posted results, and missing
-information stays visible. A source link gives you a place to investigate further when an answer needs
-information beyond the registry.
-
-You can also stop at the reference sheet. For example:
-
-- “Give me the reference sheets for IPASS and ARCHER 1050.”
-- “Find completed Phase 3 EGFR inhibitor studies in non-small cell lung cancer.”
-- “Show me who could enroll, the outcome time points and the reported safety by treatment group.”
+The [full design](openspec/changes/add-design-synthesis/design.md) and [theory](docs/THEORY_OF_THE_CASE.md)
+give the complete map.
 
 ## Getting started with your assistant
 

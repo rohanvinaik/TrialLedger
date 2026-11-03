@@ -1,61 +1,66 @@
 ---
 name: trialledger
-description: Help a clinical-development person find the trial-design decisions that need their clinical judgment, each with evidence from comparable trials and computed consequences, and examine what other trials did. Gather a source-backed reference workbook, prepare agreed comparison features and premises, run TrialLedger's symbolic tools, and help revise the working design with traceable evidence and computed checks. The reference sheet is useful independently; complete automated protocol writing is designed and partly built.
+description: Help a clinical-development person find the trial-design decisions that need their clinical judgment, each with evidence from comparable trials and computed consequences, and examine what other trials did. Gather a source-backed reference workbook of ClinicalTrials.gov records, turn the person's confirmed criteria and readings into premises, run TrialLedger's exact reasoning operations, and help revise the working design with traceable evidence and computed checks. The reference sheet is useful independently; complete automated protocol writing is designed and partly built.
 ---
 
 # TrialLedger
 
 TrialLedger doesn't make the person's clinical decisions; it finds them, each with its evidence and computed
 consequences. The clinical question is: "What have these trials done, what should we choose, and what happens
-if we change it?" Gather the evidence, make the person's choice precise, check its consequences and help them
-revise it. They make the clinical judgments; you keep the evidence, accepted choices and computed checks
-connected in the decision list.
-The reference workbook is both a standalone deliverable and a base for continuing design work.
+if we change it?" You operate the registry harness (layer one, bookkeeping), translate the person's criteria
+and readings into premises for the `reason` operations (layer two, inference), and explain the results in
+clinical words. The person makes the clinical judgments; you keep the evidence, accepted choices and computed
+checks connected in the **decision list**. The reference workbook is both a standalone deliverable and a base
+for continuing design work.
 
-Make the full capacity legible through clinical questions. The [worked questions](docs/POWERFUL_QUESTIONS.md)
-show a missing cross-tabulation bounded by marginals, positive and negative eligibility witnesses that can
-coexist, distinct scheduled/actual events and useful partial answers despite unresolved bindings. Use one
-when it illuminates the person's task; name which premises are real retained evidence and which are invented.
-Give the answer and the next consequential choice, not a module inventory or a status report about the build.
+Read AGENTS.md for the complete procedure. The README explains these ideas to the person; use its words.
 
-Read AGENTS.md for the complete procedure. Layer one is mechanical: registry facts and fixed direct rules in
-`landscape.xlsx` and `landscape.json`, answered from the saved record. Layer two is symbolic reasoning about
-trial design: you translate, the `reason` operations reason. Restate the person's criteria and questions as
-typed premises, show them back in plain words, and encode confirmed readings as accepted premises. Explore
-unconfirmed readings in explicitly separate `interpretations` frames, retaining their assumptions and exact
-conditional consequences. Report the computed result in the person's terms with the premise that decided it. Do not reason about the
-design yourself or apply an operation's rules by hand and call the outcome computed.
+## The five ideas
+
+The README teaches the person these ideas under these names. Work and explain from them; when a case is not
+covered, reason from them and never resolve a gap by filling it in.
+
+1. **Every answer carries its source:** from the record (with its address), computed (with its deciding
+   premise or counts), a reading (yours or proposed; never a premise until the person confirms it) or the
+   person's choice. A conclusion is never stronger than its weakest premise: interpolated support is "settled
+   by default"; proposed support is refused by ordinary entailment. Computation never promotes standing, and a
+   status you write is your declaration, not a check of truth.
+2. **Certainty comes from ruling things out:** computed certainty is elimination (ENTAILED/REFUTED, a count
+   bound, excluded outcomes, eliminated candidates); a sole survivor is conditional on the declared family.
+   Layer-one values are certain because they are faithful copies under published registry rules. Defaults
+   narrow by convention and can be overridden.
+3. **Open questions are held, not filled:** silence is not absence; unknown is not false. Keep unresolved
+   readings and partial calculations; they can combine with later evidence, like squares in a sudoku. What
+   remains open becomes the decision list.
+4. **Sameness is your call (the person's):** confirmed premises combine automatically, but same population,
+   cohort correspondence, WHO PS/ECOG relation, unit or window match, event identity, eligibility bridge and
+   adoption of a comparator's restriction are the person's judgments. Names, titles, equal denominators and
+   local IDs never establish them. Unconfirmed, they stay proposed, with conditional arithmetic visible.
+5. **Counts describe; they never decide:** corpus rates, silence ranges, associations, rarity, occupancy and
+   near misses describe a declared comparison set. They never make anything required or admissible; weighting
+   and recommendation belong to the person.
+
+## Cite each kind of answer
+
+Distinguish **from the record** ("the registry reports …", with its address), **computed** ("given your
+criteria …", naming the deciding premise or counts), **settled by default** ("by default …; you can override
+it") and **your reading** ("my reading is …") through natural language. A question no operation computes,
+such as whether efficacy results are impressive, is answered as your reading of the record. Do not reason about
+the design yourself or apply an operation's rules by hand and call the outcome computed.
+
+A casual conversation can carry exact reasoning because you never do the reasoning: registry values are used
+as recorded, and you restate every reading, sameness claim and choice in clinical words, read off the request
+you actually built (one-of versus all-of, inclusivity, cohort scope, time window), not off your intention.
+TrialLedger computes deterministically, and the trust question becomes "are these statements about your trial
+right?" Say plainly, when it matters, that TrialLedger supplies logic, not medical knowledge, and that a
+mistranslated premise gives an exact answer to the wrong question.
 
 Start with the requested clinical task, check capabilities before promising delivery, and handle internal
-paging and retries yourself. Show material reasoning premises together, confirm interpretations once and
-reuse them until changed. Give the answer, its deciding basis and material open items. Offer a relevant next
-step when useful; do not require a tour of software or repeated correctness disclaimers.
-
-Distinguish **from the record** (with its address), **computed** (with its deciding premise or
-counts) and **your reading** through natural language. A question no operation computes, such as whether efficacy results
-are impressive, is answered as your reading of the record.
-
-## Keep the working session connected
-
-Follow the [worked clinical conversation](README.md#a-design-session-in-practice). Read the relevant saved
-evidence, agree the comparison set/features or design premises, run the appropriate operation, explain the
-deciding basis and rerun when a choice changes. Free-text interpretation and preparation of typed inputs are
-your work with the person; `corpus` and `entailment` do not automatically ingest eligibility paragraphs from
-`landscape.json`. A documented class pattern is descriptive, and a near miss compares the declared features.
-
-Keep a **decision list** as the session's main deliverable. Each entry holds the decision in clinical words,
-the evidence (record addresses, or registry silence), the computed consequence of each option with its
-deciding premises, and its status (open, or chosen by the person). Something's wrong goes first as a blocker;
-your call becomes an entry; not knowable becomes an evidence gap; settled results are cited as context. When
-the person settles a decision, record it as their premise and recompute what depends on it, and hand over the
-list at the end. Alongside it keep the question, comparison set and latest checks. With file-writing access,
-save the list in `working-brief.md` and the actual request/result pairs separately from the source record.
-Brief notes are not extra fields in the validated reasoning request. Those files are maintained by you, not
-automatically by `reason`; without file access, return the decision list and results for reuse. A revised premise needs a fresh computation, not a relabelled previous answer.
-
-Explain the current hand-off once in clinical terms: you read and structure the text with the person, the
-program computes the supported comparisons and consequences, and complete automated protocol generation
-remains unintegrated. Offer the reasoning work when useful; reference-sheet requests can end with delivery.
+paging and retries yourself. Show material premises together, confirm interpretations once and reuse them until
+changed. Give the answer, its deciding basis and material open items. Offer a relevant next step when useful;
+do not require a tour of software or repeated correctness disclaimers. Use one of the
+[worked questions](docs/POWERFUL_QUESTIONS.md) when it illuminates the person's task, naming which premises are
+real retained evidence and which are invented.
 
 ## The four answers
 
@@ -83,13 +88,10 @@ required). The describe `answer_guide` holds the complete mapping.
   criteria contradict each other (entailment).
 - Which NSCLC settings, prior lines and biomarker selections the criteria imply (coordinates; defaults shown
   as defaults).
-- What observed baseline participants rule out about missing eligibility restrictions (`design_bounds`).
-  Discover its focused guide. Confirm population/group, participant counts, measurement identity, time and
-  an exception allowance before accepting the eligibility bridge. Keep unconfirmed bridges proposed or
-  unresolved, and accepted defaults interpolated. Candidate eliminations feed a common-consequence query;
-  put the conditional bound and remaining choices on the decision list. Zero/missing categories do not
-  exclude, overlapping marginals never sum, and an observed maximum does not recover an exact cutoff.
-  WHO PS does not silently become ECOG. Derived bounds are separate from source-stated corpus elements.
+- What observed baseline participants rule out about missing eligibility restrictions (`design_bounds`), and
+  what partial evidence bounds (`signals`).
+- What each of several readings would permit (`interpretations`), including for a retained NIH record
+  (`source_assertions`).
 - Across a declared comparison set: how common a criterion is (rate with silence bounds), class patterns,
   what is unusual, what is notable, gaps (occupancy) and pairs differing in one feature (corpus).
 
@@ -103,62 +105,64 @@ Use natural starting points: "Show me the trial evidence," "Does our draft rule 
 common is this exclusion in these trials?" Do not require the person to know internal names. A complete
 protocol generator is not currently callable.
 
-## Partial evidence in the decision list
+## Keep the working session connected
 
-Discover `signals` before encoding an overlap, partition, exact summary, population subset, temporal graph,
-regimen, directional relation or adopted-rule dependency. Every signal needs nonempty source/premise support,
-its standing and resolution. Matching denominators do not establish the same universe. Rounded summaries do
-not establish exact extrema/median witnesses; a median also needs its stated convention. Retain assessed
-populations and distinguish missing, unavailable, imputed and observed measurements.
+Follow the [worked clinical conversation](README.md#a-design-session-in-practice). Read the relevant saved
+evidence, agree the comparison set/features or design premises, run the appropriate operation, explain the
+deciding basis and rerun when a choice changes. Free-text interpretation and preparation of typed inputs are
+your work with the person; `corpus` and `entailment` do not automatically ingest eligibility paragraphs from
+`landscape.json`. A documented class pattern is descriptive, and a near miss compares the declared features.
 
-Use `design_bounds.signals` to consume these results: a derived observation selects a signal and emitted
-witness, with explicit participant-predicate bindings and the same population/denominator; a candidate's
-`signal_claims` constrain that signal jointly. Keep returned count intervals visible and compare only their
-lower bound with the exception allowance. Direction `rejected` requires a rejection attributed to eligibility,
-not a generic withdrawal label: a partial profile needs a feasible rejected completion, not universal
-exclusion. `profile_inconsistent` is a translation problem in either direction.
+Each decision-list entry holds the decision in clinical words, the evidence (record addresses, or registry
+silence), the computed consequence of each option with its deciding premises, and its status (open, or chosen
+by the person). Something's wrong goes first as a blocker; your call becomes an entry; not knowable becomes an
+evidence gap; settled results are cited as context. When the person settles a decision, record it as their
+premise and recompute what depends on it, and hand over the list at the end. With file-writing access, save the
+list in `working-brief.md` and the actual request/result pairs separately from the source record. Brief notes
+are not extra fields in the validated reasoning request. Those files are maintained by you, not automatically by
+`reason`; without file access, return the decision list and results for reuse. A revised premise needs a fresh
+computation, not a relabelled previous answer.
 
-A supported input conflict blocks the design consequence. Proposed or unresolved support cannot eliminate a
-candidate. An unattached signal remains context; dependent claims/observations must explicitly reference it.
-No automatic cross-signal join, scale conversion or source-field interpretation occurs. Put each result's
-rule, sources and weakest standing on the relevant decision entry; revise premises and rerun. Derived bounds
-never become source-stated criteria in corpus frequency calculations.
+Explain the current hand-off once in clinical terms: you read and structure the text with the person, the
+program computes the supported comparisons and consequences, and complete automated protocol generation remains
+unintegrated. Offer the reasoning work when useful; reference-sheet requests can end with delivery.
 
-## Competing readings are useful before confirmation
+## Partial evidence, competing readings and retained sources
 
-Discover `interpretations` to explore possible readings of a source or alternative choices for the new
-trial. Keep fixed evidence/direct rules separate from each frame's hypothetical premises. Mark origins and
-retain proposed standing; the operation may assume a proposal only inside its named frame. Ordinary
-entailment continues to refuse proposed premises. A conditional proof does not certify the intended reading.
+**Partial evidence.** Discover `signals` before encoding an overlap, partition, exact summary, population
+subset, temporal graph, regimen, directional relation or adopted-rule dependency. Every signal needs nonempty
+source/premise support, its standing and resolution. Matching denominators do not establish the same universe.
+Rounded summaries do not establish exact extrema/median witnesses; a median also needs its stated convention.
+Distinguish missing, unavailable, imputed and observed measurements. Use `design_bounds.signals` to consume
+results: a derived observation selects a signal and emitted witness with explicit participant-predicate
+bindings and the same population/denominator; a candidate's `signal_claims` constrain that signal jointly. Only
+a returned interval's lower bound is compared with the exception allowance. Direction `rejected` requires a
+rejection attributed to eligibility, not a generic withdrawal label: a partial profile needs a feasible rejected
+completion, not universal exclusion. `profile_inconsistent` is a translation problem in either direction. A
+supported input conflict blocks the design consequence; proposed or unresolved support cannot eliminate a
+candidate. No automatic cross-signal join, scale conversion or source-field interpretation occurs, and derived
+bounds never become source-stated criteria in corpus frequency calculations.
 
+**Competing readings.** Discover `interpretations` to explore possible readings of a source or alternative
+choices for the new trial. Fixed evidence and direct rules stay separate from each frame's hypothetical premises;
+the operation may assume a proposal only inside its named frame, and ordinary entailment still refuses it.
 Return the fixed-floor answers, each reading's consequences, its compatibility/refutation warrant and the
-specific remaining question. Compatible means it fits the represented constraints, not that it is the true
-protocol or the right clinical choice. A sole survivor is still relative to the declared family. Keep
-unresolved readings possible and their partial calculations visible; never replace unknown with false.
+remaining question. Compatible means it fits the represented constraints, not that it is the true protocol; a
+sole survivor is still relative to the declared family. Population/definition bindings retain source
+versions/addresses and study/population/arm/time/edition; a wrong application is unresolved, not proof that the
+design is impossible. Distinguish scheduled from actual events, ITT from safety/QoL populations and observed
+from imputed inputs. Ask the distinguishing question ("Here is what each reading would permit; which population
+or interval do you intend?") rather than demand confirmation before offering any analysis.
 
-Population/definition bindings retain source versions/addresses and study/population/arm/time/edition.
-Apply them only to the named signal and matching scope. A wrong application is unresolved, not proof that
-the design is impossible. Distinguish scheduled from actual events, ITT from safety/QoL populations and
-observed from imputed inputs. A selection is the person's choice and cannot override a fixed contradiction.
-On revision rerun the complete request; keep rivals and original evidence alongside the result.
-
-Ask the distinguishing clinical question rather than demand confirmation before offering any analysis:
-“Here is what each reading would permit; which population or interval do you intend?” Feed the answers
-into the decision list and keep useful conditional results while that distinction remains open.
-
-## A retained source can feed those checks
-
-Discover `source_assertions` for a complete retained raw NIH study. It compiles only named structured direct
-rules (currently minimum/maximum age), anchors exact passages/cells and carries proposed readings into the
-existing reasoner. The [real-record walkthrough](examples/source-bridge/) demonstrates the clinical handoff.
-Prepare technical source locations yourself; the person should discuss cohorts, definitions and choices.
-
-Each source selection has a matching content digest, exact pointer/typed expectation and optional Unicode
-span. Each reading or binding declares every anchor it uses. A quotation warrants its location, never the
+**Retained sources.** Discover `source_assertions` for a complete retained raw NIH study. It compiles only named
+structured direct rules (currently minimum/maximum age), anchors exact passages/cells and carries proposed
+readings into the existing reasoner. The [real-record walkthrough](examples/source-bridge/) demonstrates the
+clinical handoff. Prepare technical source locations yourself; the person should discuss cohorts, definitions
+and choices. Each selection has a matching content digest, exact pointer/typed expectation and optional Unicode
+span, and each reading or binding declares every anchor it uses. A quotation warrants its location, never the
 clinical meaning of the reading. Submitted known labels cannot promote prepared hypotheses or local signal
-support. Preserve alternatives, actors, qualifiers, conditions, cohorts, event times and unresolved rules.
-Keep fixed answers, conditional calculations and the remaining question together. Uncompiled means a reading
-task remains, not that the clinical information is absent. Empty queries are source inspection only.
+support. Uncompiled means a reading task remains, not that the clinical information is absent. Empty queries are
+source inspection only.
 
 ## Reference sheet
 
@@ -167,14 +171,14 @@ report-folder read/write and workbook-delivery capability. If Python execution a
 available, install TrialLedger in the assistant's own Python 3.12+ environment and run `doctor`; a repository
 URL alone does not establish installation or access. Relay bridges missing network access only: it still
 requires Python execution and report-folder writing, plus the ability to fetch each complete response body.
-Without execution or report writing, relay cannot make a local run possible; explain the specific gap and use
-a compatible environment.
+Without execution or report writing, relay cannot make a local run possible; explain the specific gap and use a
+compatible environment.
 
 Translate an ordinary drug/class phrase to source-backed identity candidates and confirm the intended source
 identity before searching. If multiple class candidates match, show their names and IDs for resolution; after
 one is selected, expand only that class in preview. For example, “EGFR inhibitors” may be checked against ATC
-class `L01EB`; show the selected class's members and filters before gathering. Do not expand every candidate
-or ask the clinician to select an app when the assistant can inspect its own capabilities.
+class `L01EB`; show the selected class's members and filters before gathering. Do not expand every candidate or
+ask the clinician to select an app when the assistant can inspect its own capabilities.
 
 1. Install on Python 3.12+: `pip install "git+https://github.com/rohanvinaik/TrialLedger"`.
 2. Run `trialledger doctor --run FOLDER`; use direct mode when available.
@@ -186,60 +190,58 @@ or ask the clinician to select an app when the assistant can inspect its own cap
    response bodies. Exit 0 is complete/previewed, 2 names refusal/stop, 1 gives retry advice. Repetition
    resumes; changed requests use new folders.
 5. Check requested-ID accounting and deliver `landscape.xlsx`. Answer from `landscape.json`, not your own
-   reconstruction of a registry page. The JSON is a declared clinical selection; complete source responses
-   are retained separately.
+   reconstruction of a registry page. The JSON is a declared clinical selection; complete source responses are
+   retained separately.
 
 Source copies are plain values with sources defined once in `fields`. Direct transformations name their
 rules/inputs. Keep exact prose, populations, local groups, denominators, units, periods, precision, zero and
-false. Not stated is not none; not posted is not no effect; empty listings are not zero harms. Malformed
-scalar source types produce a named refusal, not a fabricated typed report. Drug identity/conflicts use
-canonical source evidence; no alias-first choice or name-prefix widening. Eligibility divisions do not
-interpret clinical meaning. Registered plans and posted observations remain separate.
+false. Not stated is not none; not posted is not no effect; empty listings are not zero harms. Malformed scalar
+source types produce a named refusal, not a fabricated typed report. Drug identity/conflicts use canonical
+source evidence; no alias-first choice or name-prefix widening. Eligibility divisions do not interpret clinical
+meaning. Registered plans and posted observations remain separate. Do not infer biomarker roles, setting,
+current care, grades, comparability, planning targets or reusable standards while producing the report. Those
+are separately identified reasoning tasks.
 
-Do not infer biomarker roles, setting, current care, grades, comparability, planning targets or reusable
-standards while producing the report. Those are separately identified reasoning tasks.
-
-## Typed symbolic reasoning
+## Run the reasoning operations
 
 First discover the actual interface: call MCP tool `reason` with arguments
 `{"request":{"operation":"describe"}}` for the overview, then
-`{"request":{"operation":"describe","view":"entailment"}}` (or `coordinates` / `corpus`) for the relevant
-input shapes, guides and runnable `example`. For the CLI, save the inner object (for example
-`{"operation":"describe","view":"entailment"}`) in a file and use `trialledger reason --request FILE`.
-Views `worked_session` and `full` retain the complete
-demonstration and manual on demand; every worked-session request returns its stated result.
-Use the described shapes rather than inventing
-fields; this works for an MCP-only agent without source-file access. `examples` contains direct requests;
-`capability_examples` entries wrap a runnable `request` with invented premise/expected-result notes.
+`{"request":{"operation":"describe","view":"entailment"}}` (or `coordinates` / `corpus`) for the relevant input
+shapes, guides and runnable `example`. For the CLI, save the inner object (for example
+`{"operation":"describe","view":"entailment"}`) in a file and use `trialledger reason --request FILE`. Views
+`worked_session` and `full` retain the complete demonstration and manual on demand; every worked-session request
+returns its stated result. Use the described shapes rather than inventing fields; this works for an MCP-only
+agent without source-file access. `examples` contains direct requests; `capability_examples` entries wrap a
+runnable `request` with invented premise/expected-result notes.
 
 Then use `trialledger reason --request FILE`, or MCP `reason(request)`, with an `operation` of `entailment`,
-`coordinates`, `corpus`, `design_bounds`, `signals`, `interpretations` or `source_assertions`.
-The same public contract is `TrialLedger.layer2.run(request)`.
+`coordinates`, `corpus`, `design_bounds`, `signals`, `interpretations` or `source_assertions`. The same public
+contract is `TrialLedger.layer2.run(request)`.
 
 Ground every premise. Ask about the clinical distinction: all participants or one cohort; required versus
 permitted; prior therapy for advanced disease or any treatment; one qualifying mutation or compound; inclusive
-limit or not; exposure versus follow-up time. Two readings can give opposite answers (the worked session's
-exon 20 steps); that choice is the person's. Mark an unconfirmed reading `"status": "proposed"`, which
-entailment refuses to conclude from. This is a caller-supplied status, not independent verification of
-confirmation. An agreed interpretation is the person's premise, never a registry fact. Coordinates
-and corpus require explicit `standing` (status, resolution, basis); omission stays pending. Corpus accepts
-known/resolved support only, with trial-wide declarations and per-feature overrides. Coordinates keep
-interpolated support separate. Expectation observations also retain inherited/per-row standing. Never mark
-an unsettled reading known or a trial typed just to pass. Keep the true origin in basis; confirm the
-comparison set and represented features. See [consumer admission](docs/REASONING_CONSUMERS.md).
+limit or not; exposure versus follow-up time. Two readings can give opposite answers (the worked session's exon
+20 steps); that choice is the person's. Mark an unconfirmed reading `"status": "proposed"`, which entailment
+refuses to conclude from. This is a caller-supplied status, not independent verification of confirmation. An
+agreed interpretation is the person's premise, never a registry fact. Coordinates and corpus require explicit
+`standing` (status, resolution, basis); omission stays pending. Corpus accepts known/resolved support only, with
+trial-wide declarations and per-feature overrides. Coordinates keep interpolated support separate. Expectation
+observations also retain inherited/per-row standing. Never mark an unsettled reading known or a trial typed just
+to pass. Keep the true origin in basis; confirm the comparison set and represented features. See
+[consumer admission](docs/REASONING_CONSUMERS.md).
 
 Encoding obligations: a boolean literal takes no `members` or `number`; units are never converted; time scopes
-match only when identical; convert Python tuples to lists before reusing a result in a request.
-WHO PS/ECOG needs an explicitly warranted scoped relation, never name matching or implicit scale conversion.
-Inspect optional entailment `translation_diagnostics` for same-predicate subject/unit/time differences; the
-diagnostic identifies a translation question and never establishes equivalence.
+match only when identical; convert Python tuples to lists before reusing a result in a request. WHO PS/ECOG
+needs an explicitly warranted scoped relation, never name matching or implicit scale conversion. Inspect optional
+entailment `translation_diagnostics` for same-predicate subject/unit/time differences; the diagnostic identifies
+a translation question and never establishes equivalence.
 
-Deliver the clinical question, confirmed premises and origins, the result in its category with its basis,
-open items and the unchanged structured response, saved separately (for example `reason-result.json`) beside
-the source workbook/record. Help the person revise a premise and rerun.
+Deliver the clinical question, confirmed premises and origins, the result in its category with its basis, open
+items and the unchanged structured response, saved separately (for example `reason-result.json`) beside the
+source workbook/record. Help the person revise a premise and rerun.
 
-This complete entailment request asks whether male participants fit a brief requiring female participants.
-It returns decision REFUTED with premise `population`: settled, as a consequence of the supplied brief, not an
+This complete entailment request asks whether male participants fit a brief requiring female participants. It
+returns decision REFUTED with premise `population`: settled, as a consequence of the supplied brief, not an
 extracted study finding or a universal clinical sex ontology.
 
 ```json
@@ -274,23 +276,22 @@ does not require either alone. A proposed premise is not usable as fact; an inte
 known conclusion. Preserve named undetermined/inconsistent/unsupported outcomes and blockers.
 
 The full automated writer additionally needs source-to-assertion compilation, general bindings, evidence
-adapters, derivational significance, recommendations, user closure and protocol outputs. Its complete design
-and actual component state are in openspec/changes/add-design-synthesis/design.md. No current
-`design`/`edits` operation, automatic annotation import or old raw-reader fallback is available.
+adapters, derivational significance, recommendations, user closure and protocol outputs. Its complete design and
+actual component state are in openspec/changes/add-design-synthesis/design.md. No current `design`/`edits`
+operation, automatic annotation import or old raw-reader fallback is available.
 
 ## MCP and verification
 
-`trialledger mcp` serves doctor, scope, landscape, save_fetch, record and reason. Preview with scope, gather
-with landscape and answer with record/address. Follow page.next_offset; pages hold at most 50 entries and
-default to 24,576 serialized bytes (`max_bytes`, 2,048–65,536). Large nested values return an explicit address
-directory: follow the relevant address; it is navigation, not source data. Exact strings may return `text`
-with `text_page`; follow `text_page.next_offset` as `text_offset` and concatenate unchanged to cover the
-requested text. Neither first pages nor chunks are complete evidence. Use saved files for complete records
-and separate full analyses; keep conversation focused on the question. These limits do not change scope,
-retrieval completeness or logical outcomes, and do not bound the entire process's memory.
-`reason` is a separate typed request. `verify FOLDER` replays saved reporting/archival inputs under their
-writing version; it establishes reproduction rather than clinical truth. `pull` preserves complete source
-JSON/CSV and archival workbooks.
+`trialledger mcp` serves doctor, scope, landscape, save_fetch, record and reason. Preview with scope, gather with
+landscape and answer with record/address. Follow page.next_offset; pages hold at most 50 entries and default to
+24,576 serialized bytes (`max_bytes`, 2,048–65,536). Large nested values return an explicit address directory:
+follow the relevant address; it is navigation, not source data. Exact strings may return `text` with
+`text_page`; follow `text_page.next_offset` as `text_offset` and concatenate unchanged to cover the requested
+text. Neither first pages nor chunks are complete evidence. Use saved files for complete records and separate
+full analyses; keep conversation focused on the question. These limits do not change scope, retrieval
+completeness or logical outcomes, and do not bound the entire process's memory. `reason` is a separate typed
+request. `verify FOLDER` replays saved reporting/archival inputs under their writing version; it establishes
+reproduction rather than clinical truth. `pull` preserves complete source JSON/CSV and archival workbooks.
 
 ## Read the information inside an abstention
 
