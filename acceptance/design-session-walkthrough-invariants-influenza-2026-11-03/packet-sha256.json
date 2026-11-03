@@ -1,0 +1,110 @@
+{
+  "README.md": {
+    "bytes": 11459,
+    "sha256": "7e0fc5ce97cdbcd9777a1ad5f3b716255b6998f781a4f616378536a19316f62b"
+  },
+  "finding-summary.json": {
+    "bytes": 69446,
+    "sha256": "7081667b370d57a5132c814de5edb30e48953a8683d62ea46bc51b536bf01b36"
+  },
+  "gather-fetches.json": {
+    "bytes": 1913,
+    "sha256": "68a2966f6e010d8d8913ed12c04cb99513d3260209e1d5a1635f55da22ea422a"
+  },
+  "gather-manifest.json": {
+    "bytes": 2527,
+    "sha256": "58428d3d17240084b67706b61ce58f301e9a23889d276111b9ab7d750936eeb3"
+  },
+  "gather-request.json": {
+    "bytes": 119,
+    "sha256": "63bac16f944a8a65117c183ca213a3c9deef3fb67bc36e8167928c024931e386"
+  },
+  "gather-resolution.json": {
+    "bytes": 1802,
+    "sha256": "bb6ab7832e001856952f263ce6c7e8631d19da2ea903df95263353fe57150f07"
+  },
+  "gather-scope.json": {
+    "bytes": 226,
+    "sha256": "21c10f679468ad15e989f1a54bb2811d7eddc576f96539f64e08cd7cd697c68c"
+  },
+  "local-retention.json": {
+    "bytes": 8253,
+    "sha256": "73ca2386a85968fbfa5621a6177ade3e1dfeae582c7b8fc602112408dadd5d42"
+  },
+  "preflight.json": {
+    "bytes": 1219,
+    "sha256": "733e43d8084ea177db4530137b326c5b249da63d32003bed70e49d3ccc0a9c34"
+  },
+  "receipt.json": {
+    "bytes": 5187,
+    "sha256": "f7ec33538fc78c3fcdb6b54558ac64ec391c78e0d948cef0249b26de0a7c1c65"
+  },
+  "requests/immunocompromised-context-retracted.json": {
+    "bytes": 10911,
+    "sha256": "d89f7866c5ccb945977713ce677365e424ceaba0c1a95b129ef33821e91235ed"
+  },
+  "requests/immunocompromised-randomized-context.json": {
+    "bytes": 88332,
+    "sha256": "a575aa72da95b980e64f38ab49e5c11f680fc99ae511aabd0205ca00a06556d5"
+  },
+  "requests/pk-age-and-renal-reading.json": {
+    "bytes": 32310,
+    "sha256": "afa2c4502de9703c32bf5664b1553e872b99bc7d32f679570d63d35077220efe"
+  },
+  "requests/presentation-and-delay24.json": {
+    "bytes": 12342,
+    "sha256": "1797664203f354eb0de303f41d8eb262cf07ef3ed8ad06b0ca814b4d20da444a"
+  },
+  "requests/presentation-and-immediate-dose.json": {
+    "bytes": 249286,
+    "sha256": "607a74a285f71a1a0b5633e997da8e006dab67a43d1dc3547173237eb2e5480f"
+  },
+  "requests/presentation-and-unknown-dose-delay.json": {
+    "bytes": 12318,
+    "sha256": "6f786a995d95e98389aeadadaf84b0f380a425ede83ad6a1059423820ef00421"
+  },
+  "results/immunocompromised-context-retracted.json": {
+    "bytes": 30792,
+    "sha256": "67ea34f1e0819f1135d90c703ad427d7cc33b31f38e02195c216d7d33b7ed77e"
+  },
+  "results/immunocompromised-randomized-context.json": {
+    "bytes": 89390,
+    "sha256": "03b635ae8db5542bbb48f2bb95c7a7887af62dcdb1cc4e756dead95969135e37"
+  },
+  "results/pk-age-and-renal-reading.json": {
+    "bytes": 71961,
+    "sha256": "fa75d287091156c1eeb4d4e9ff4bfd710cd2ec2a34ad1da58d9048da2180a40e"
+  },
+  "results/presentation-and-delay24.json": {
+    "bytes": 45126,
+    "sha256": "aa9039115bf97de4f05ad07edd95fe816bdffc6c0862ab2cc69b709b4b340bd2"
+  },
+  "results/presentation-and-immediate-dose.json": {
+    "bytes": 120575,
+    "sha256": "739b3039c3e3ecf50a3c21c237db1845024532b16d952eb1e5484437242837a6"
+  },
+  "results/presentation-and-unknown-dose-delay.json": {
+    "bytes": 45121,
+    "sha256": "cd2cf1d864bd883264b608edf48ce309999f698cadc74aad4f4b0df2ed8f82cc"
+  },
+  "runtime-receipt.json": {
+    "bytes": 12940,
+    "sha256": "d4a2e316a7ce360a8e411c597a50334f2ba122a85812d77e2453080f7920ed4c"
+  },
+  "selection.json": {
+    "bytes": 2366,
+    "sha256": "91189ce86eba0cc89a74eb796a4efba5677a8067ee0d8e8a20f3a5805017d2c3"
+  },
+  "source-inventory.json": {
+    "bytes": 1885,
+    "sha256": "987c5b6813f2a4e4a2b538978819af9d7aca9ef44b0c2f8efa1f949ed672ffe6"
+  },
+  "verification-receipt.json": {
+    "bytes": 583,
+    "sha256": "c6f4b58b6763f9168cceeb6464fa18bd5009438a3ed5cc45683d014c7df4fe10"
+  },
+  "working-brief.md": {
+    "bytes": 3585,
+    "sha256": "9ed192bafb5b85584902950f5d08aa61a4f801231f98c45191b2aff13534e8c5"
+  }
+}

@@ -1,0 +1,29 @@
+[
+  {
+    "target": "TrialLedger/layer2/session_state.py::revision_code",
+    "operator_behaviors": 48,
+    "value_pinned": 48,
+    "equivalences": 0,
+    "source_file_sha256": "f316361d546f5902ddbceea794d56e71d70b421282dfcb4894e89d17cbb627a5",
+    "function_text_sha256": "0945fe3d95d1d4de2958cc8f38c7a58459dd5c49f44b777f1d2073690850e4bf",
+    "scope": "Actual comprehensive --two-sign operator universe; not a whole-module or clinical-truth proof."
+  },
+  {
+    "target": "TrialLedger/layer2/session_state.py::change_code",
+    "operator_behaviors": 38,
+    "value_pinned": 38,
+    "equivalences": 0,
+    "source_file_sha256": "f316361d546f5902ddbceea794d56e71d70b421282dfcb4894e89d17cbb627a5",
+    "function_text_sha256": "15d6665e81d75956e0480fb1e88eeaef577b8d27336c3f8144870af6b8573056",
+    "scope": "Actual comprehensive --two-sign operator universe; not a whole-module or clinical-truth proof."
+  },
+  {
+    "target": "TrialLedger/layer2/design_session.py::alternative_code",
+    "operator_behaviors": 131,
+    "value_pinned": 131,
+    "equivalences": 0,
+    "source_file_sha256": "0bcf907cf345e63e32f5ab34cd8b87ac7c0391c1f968fcc4d20ae3526ce1cb2e",
+    "function_text_sha256": "415d0e910002467aa382d1ca0d8686e010fa102733852d8142886e37d7bb8475",
+    "scope": "Actual comprehensive --two-sign operator universe; not a whole-module or clinical-truth proof."
+  }
+]

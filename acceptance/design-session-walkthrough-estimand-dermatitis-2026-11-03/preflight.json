@@ -1,0 +1,28 @@
+{
+  "question": "For a proposed Phase2 atopic-dermatitis study, how do the sampled tralokinumab records define response when rescue treatment, treatment discontinuation or an unavailable assessment occurs? What is the clinical target versus a missing-data analysis rule?",
+  "declared_at_utc": "2026-11-03T22:22:49.647501+00:00",
+  "query": {
+    "drug": [
+      "tralokinumab"
+    ],
+    "condition": [
+      "Atopic Dermatitis"
+    ],
+    "phase": [
+      "PHASE2"
+    ],
+    "status": [
+      "COMPLETED"
+    ]
+  },
+  "max_complete_pool": 30,
+  "seed": 3061570227477035330,
+  "selection_rule": "random.Random(seed).sample(sorted(complete_pool),min(3,len(complete_pool))) before selected-content reading; no replacement",
+  "retention": {
+    "packet": "Clinical handoff, full minimal reasoning request/canonical-result pairs, source/query/pool/seed/time/version/hash receipts; under2MB by reducing redundant cases, never by truncating source or result",
+    "local_preview_report": "/Users/rohanvinaik/trialledger-runs/estimand-dermatitis-20261103",
+    "local_bulk": "Full raw/report/workbook/cache/helpers/duplicate wires stayoutsideGit; snapshots requiredbyreasoningrequest remaincomplete"
+  },
+  "runtime_gate": "No new decision-table or estimand execution until root explicitly ROOTREADY for that increment",
+  "epistemic_boundary": "Acquire and read actual complete units; a design label cannot supply rule-table cases; outcome missing-data handling cannot itself supply a complete estimand; hypothetical acceptance tables/definitions must be attributed separately if source insufficient"
+}

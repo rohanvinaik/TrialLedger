@@ -43,7 +43,7 @@ def test_unsettled_bridges_must_never_supply_witnesses(status, resolution, expec
         ("proposed_refused", "REFUTED", [], "unresolved"),
         ("binding_unresolved", "REFUTED", [], "unresolved"),
         ("witness", "UNDETERMINED", ["resource_bound"], "unresolved"),
-        ("witness", "REFUTED", ["proposed_refused:x"], "unresolved"),
+        ("witness", "REFUTED", ["proposed_refused:x"], "ruled_out"),
         ("witness", "UNDETERMINED", ["undecided_by_constraints"], "not_ruled_out"),
         ("witness", "UNDETERMINED", ["no_constraint_mentions_query"], "not_ruled_out"),
         ("witness", "ENTAILED", [], "not_ruled_out"),

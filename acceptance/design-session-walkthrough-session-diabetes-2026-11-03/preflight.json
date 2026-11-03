@@ -1,0 +1,27 @@
+{
+  "question": "For a proposed observational type2-diabetes follow-up registry, which age restrictions and follow-up definitions are actually documented by sampled metformin records, and which downstream answers should change if the working brief revises a chosen population or age premise?",
+  "declared_at_utc": "2026-11-03T22:37:40.679784+00:00",
+  "query": {
+    "drug": [
+      "metformin"
+    ],
+    "condition": [
+      "Type 2 Diabetes"
+    ],
+    "study_type": "OBSERVATIONAL",
+    "status": [
+      "COMPLETED"
+    ]
+  },
+  "phase_handling": "No phase filter or therapeutic phase assumption for observational records",
+  "max_complete_pool": 30,
+  "seed": 2556818910469820462,
+  "selection_rule": "random.Random(seed).sample(sorted(complete_pool),min(3,len(complete_pool))) before selected content reading; no replacement",
+  "retention": {
+    "packet": "Clinical README/decisionlist, full minimal request/canonicalresult pairs, complete query/pool/seed, source/runtime/version/time/hash receipts; under2MB by reducing redundant cases not truncating records/results",
+    "local_bulk": "Complete source/report/workbook/helpers/duplicate wires outside Git; source snapshots remain complete inside requests that require them",
+    "local_preview_report": "/Users/rohanvinaik/trialledger-runs/session-diabetes-20261103"
+  },
+  "runtime_gate": "No managed-session runtime checks until ROOT SESSION READY; read/acquire only",
+  "epistemic_boundary": "Source restrictions do not become new-study design choices automatically. Managed revision is an explicitly hypothetical brief update, never a modified registry fact."
+}

@@ -1,0 +1,2403 @@
+{
+  "code": "complete",
+  "operation": "design_session",
+  "result": {
+    "schema_version": 1,
+    "session_id": "design",
+    "revision": "one",
+    "session_digest": "f6bd4db8db062bfcb183cdb6338da158e9d7f4fddecf73cd00a3fe3c2a930b3d",
+    "target": {
+      "kind": "new_trial",
+      "ref": "draft",
+      "scope": {
+        "study": "draft",
+        "population": "general",
+        "arm": "all",
+        "time": "entry",
+        "version": "v1"
+      }
+    },
+    "sources": [],
+    "premises": [
+      {
+        "id": "adult_scale_le_2",
+        "kind": "candidate",
+        "payload": {
+          "id": "adult_scale_le_2",
+          "assertions": [
+            {
+              "applicability": {
+                "class": "Always"
+              },
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "example_age",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "ge",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 18.0,
+                  "unit": "years",
+                  "upper": null
+                }
+              },
+              "branch": {
+                "class": "Branch",
+                "node": "unresolved",
+                "path": []
+              },
+              "class": "ScopedAssertion",
+              "cohort": {
+                "class": "Scope",
+                "kind": "all_participants",
+                "parts": [],
+                "ref": ""
+              },
+              "criterion_ref": "user:invented-candidate",
+              "id": "adult",
+              "modality": "required",
+              "resolution": "resolved",
+              "rule": {
+                "answers": [],
+                "class": "Rule",
+                "id": "invented-candidate",
+                "premises": [],
+                "version": "1",
+                "warrants": [
+                  "user:invented-candidate"
+                ]
+              },
+              "span": [],
+              "status": "known"
+            },
+            {
+              "applicability": {
+                "class": "Always"
+              },
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "example_scale",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "le",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 2.0,
+                  "unit": "example_scale",
+                  "upper": null
+                }
+              },
+              "branch": {
+                "class": "Branch",
+                "node": "unresolved",
+                "path": []
+              },
+              "class": "ScopedAssertion",
+              "cohort": {
+                "class": "Scope",
+                "kind": "all_participants",
+                "parts": [],
+                "ref": ""
+              },
+              "criterion_ref": "user:invented-candidate",
+              "id": "scale",
+              "modality": "required",
+              "resolution": "resolved",
+              "rule": {
+                "answers": [],
+                "class": "Rule",
+                "id": "invented-candidate",
+                "premises": [],
+                "version": "1",
+                "warrants": [
+                  "user:invented-candidate"
+                ]
+              },
+              "span": [],
+              "status": "known"
+            }
+          ]
+        },
+        "origin": {
+          "kind": "hypothesis",
+          "ref": "invented:candidate:adult_scale_le_2",
+          "source": null,
+          "analysis": null
+        },
+        "depends_on": []
+      },
+      {
+        "id": "adult_scale_le_2_marker",
+        "kind": "candidate",
+        "payload": {
+          "id": "adult_scale_le_2_marker",
+          "assertions": [
+            {
+              "applicability": {
+                "class": "Always"
+              },
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "example_age",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "ge",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 18.0,
+                  "unit": "years",
+                  "upper": null
+                }
+              },
+              "branch": {
+                "class": "Branch",
+                "node": "unresolved",
+                "path": []
+              },
+              "class": "ScopedAssertion",
+              "cohort": {
+                "class": "Scope",
+                "kind": "all_participants",
+                "parts": [],
+                "ref": ""
+              },
+              "criterion_ref": "user:invented-candidate",
+              "id": "adult-m",
+              "modality": "required",
+              "resolution": "resolved",
+              "rule": {
+                "answers": [],
+                "class": "Rule",
+                "id": "invented-candidate",
+                "premises": [],
+                "version": "1",
+                "warrants": [
+                  "user:invented-candidate"
+                ]
+              },
+              "span": [],
+              "status": "known"
+            },
+            {
+              "applicability": {
+                "class": "Always"
+              },
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "example_scale",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "le",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 2.0,
+                  "unit": "example_scale",
+                  "upper": null
+                }
+              },
+              "branch": {
+                "class": "Branch",
+                "node": "unresolved",
+                "path": []
+              },
+              "class": "ScopedAssertion",
+              "cohort": {
+                "class": "Scope",
+                "kind": "all_participants",
+                "parts": [],
+                "ref": ""
+              },
+              "criterion_ref": "user:invented-candidate",
+              "id": "scale-m",
+              "modality": "required",
+              "resolution": "resolved",
+              "rule": {
+                "answers": [],
+                "class": "Rule",
+                "id": "invented-candidate",
+                "premises": [],
+                "version": "1",
+                "warrants": [
+                  "user:invented-candidate"
+                ]
+              },
+              "span": [],
+              "status": "known"
+            },
+            {
+              "applicability": {
+                "class": "Always"
+              },
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "example_marker",
+                  "kind": "demographic"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "boolean",
+                  "members": [],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                }
+              },
+              "branch": {
+                "class": "Branch",
+                "node": "unresolved",
+                "path": []
+              },
+              "class": "ScopedAssertion",
+              "cohort": {
+                "class": "Scope",
+                "kind": "all_participants",
+                "parts": [],
+                "ref": ""
+              },
+              "criterion_ref": "user:invented-candidate",
+              "id": "marker-m",
+              "modality": "required",
+              "resolution": "resolved",
+              "rule": {
+                "answers": [],
+                "class": "Rule",
+                "id": "invented-candidate",
+                "premises": [],
+                "version": "1",
+                "warrants": [
+                  "user:invented-candidate"
+                ]
+              },
+              "span": [],
+              "status": "known"
+            }
+          ]
+        },
+        "origin": {
+          "kind": "hypothesis",
+          "ref": "invented:candidate:adult_scale_le_2_marker",
+          "source": null,
+          "analysis": null
+        },
+        "depends_on": []
+      }
+    ],
+    "effective_premises": [
+      {
+        "id": "adult_scale_le_2",
+        "kind": "candidate",
+        "payload": {
+          "id": "adult_scale_le_2",
+          "assertions": [
+            {
+              "applicability": {
+                "class": "Always"
+              },
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "example_age",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "ge",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 18.0,
+                  "unit": "years",
+                  "upper": null
+                }
+              },
+              "branch": {
+                "class": "Branch",
+                "node": "unresolved",
+                "path": []
+              },
+              "class": "ScopedAssertion",
+              "cohort": {
+                "class": "Scope",
+                "kind": "all_participants",
+                "parts": [],
+                "ref": ""
+              },
+              "criterion_ref": "user:invented-candidate",
+              "id": "adult",
+              "modality": "required",
+              "resolution": "resolved",
+              "rule": {
+                "answers": [],
+                "class": "Rule",
+                "id": "invented-candidate",
+                "premises": [],
+                "version": "1",
+                "warrants": [
+                  "user:invented-candidate"
+                ]
+              },
+              "span": [],
+              "status": "known"
+            },
+            {
+              "applicability": {
+                "class": "Always"
+              },
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "example_scale",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "le",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 2.0,
+                  "unit": "example_scale",
+                  "upper": null
+                }
+              },
+              "branch": {
+                "class": "Branch",
+                "node": "unresolved",
+                "path": []
+              },
+              "class": "ScopedAssertion",
+              "cohort": {
+                "class": "Scope",
+                "kind": "all_participants",
+                "parts": [],
+                "ref": ""
+              },
+              "criterion_ref": "user:invented-candidate",
+              "id": "scale",
+              "modality": "required",
+              "resolution": "resolved",
+              "rule": {
+                "answers": [],
+                "class": "Rule",
+                "id": "invented-candidate",
+                "premises": [],
+                "version": "1",
+                "warrants": [
+                  "user:invented-candidate"
+                ]
+              },
+              "span": [],
+              "status": "known"
+            }
+          ]
+        },
+        "standing": {
+          "status": "proposed",
+          "resolution": "unresolved",
+          "basis": [
+            "invented:candidate:adult_scale_le_2"
+          ]
+        },
+        "origin": {
+          "kind": "hypothesis",
+          "ref": "invented:candidate:adult_scale_le_2",
+          "source": null,
+          "analysis": null
+        },
+        "depends_on": [],
+        "dependency_support": null
+      },
+      {
+        "id": "adult_scale_le_2_marker",
+        "kind": "candidate",
+        "payload": {
+          "id": "adult_scale_le_2_marker",
+          "assertions": [
+            {
+              "applicability": {
+                "class": "Always"
+              },
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "example_age",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "ge",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 18.0,
+                  "unit": "years",
+                  "upper": null
+                }
+              },
+              "branch": {
+                "class": "Branch",
+                "node": "unresolved",
+                "path": []
+              },
+              "class": "ScopedAssertion",
+              "cohort": {
+                "class": "Scope",
+                "kind": "all_participants",
+                "parts": [],
+                "ref": ""
+              },
+              "criterion_ref": "user:invented-candidate",
+              "id": "adult-m",
+              "modality": "required",
+              "resolution": "resolved",
+              "rule": {
+                "answers": [],
+                "class": "Rule",
+                "id": "invented-candidate",
+                "premises": [],
+                "version": "1",
+                "warrants": [
+                  "user:invented-candidate"
+                ]
+              },
+              "span": [],
+              "status": "known"
+            },
+            {
+              "applicability": {
+                "class": "Always"
+              },
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "example_scale",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "le",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 2.0,
+                  "unit": "example_scale",
+                  "upper": null
+                }
+              },
+              "branch": {
+                "class": "Branch",
+                "node": "unresolved",
+                "path": []
+              },
+              "class": "ScopedAssertion",
+              "cohort": {
+                "class": "Scope",
+                "kind": "all_participants",
+                "parts": [],
+                "ref": ""
+              },
+              "criterion_ref": "user:invented-candidate",
+              "id": "scale-m",
+              "modality": "required",
+              "resolution": "resolved",
+              "rule": {
+                "answers": [],
+                "class": "Rule",
+                "id": "invented-candidate",
+                "premises": [],
+                "version": "1",
+                "warrants": [
+                  "user:invented-candidate"
+                ]
+              },
+              "span": [],
+              "status": "known"
+            },
+            {
+              "applicability": {
+                "class": "Always"
+              },
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "example_marker",
+                  "kind": "demographic"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "boolean",
+                  "members": [],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                }
+              },
+              "branch": {
+                "class": "Branch",
+                "node": "unresolved",
+                "path": []
+              },
+              "class": "ScopedAssertion",
+              "cohort": {
+                "class": "Scope",
+                "kind": "all_participants",
+                "parts": [],
+                "ref": ""
+              },
+              "criterion_ref": "user:invented-candidate",
+              "id": "marker-m",
+              "modality": "required",
+              "resolution": "resolved",
+              "rule": {
+                "answers": [],
+                "class": "Rule",
+                "id": "invented-candidate",
+                "premises": [],
+                "version": "1",
+                "warrants": [
+                  "user:invented-candidate"
+                ]
+              },
+              "span": [],
+              "status": "known"
+            }
+          ]
+        },
+        "standing": {
+          "status": "proposed",
+          "resolution": "unresolved",
+          "basis": [
+            "invented:candidate:adult_scale_le_2_marker"
+          ]
+        },
+        "origin": {
+          "kind": "hypothesis",
+          "ref": "invented:candidate:adult_scale_le_2_marker",
+          "source": null,
+          "analysis": null
+        },
+        "depends_on": [],
+        "dependency_support": null
+      }
+    ],
+    "dependency_graph": {
+      "premise:adult_scale_le_2": [],
+      "premise:adult_scale_le_2_marker": [],
+      "analysis:seek-evidence": [
+        "premise:adult_scale_le_2",
+        "premise:adult_scale_le_2_marker"
+      ]
+    },
+    "analyses": [
+      {
+        "id": "seek-evidence",
+        "target": {
+          "kind": "new_trial",
+          "ref": "draft",
+          "scope": {
+            "study": "draft",
+            "population": "general",
+            "arm": "all",
+            "time": "entry",
+            "version": "v1"
+          }
+        },
+        "request": {
+          "operation": "evidence_requests",
+          "study_ref": "invented:evidence-request-example",
+          "survivors": [
+            "adult_scale_le_2",
+            "adult_scale_le_2_marker"
+          ],
+          "survival_basis": [
+            "invented:design_bounds remaining"
+          ],
+          "variables": [
+            {
+              "id": "scale",
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "predicate": {
+                "class": "Predicate",
+                "key": "example_scale",
+                "kind": "measurement"
+              },
+              "time": null,
+              "domain": {
+                "kind": "integer",
+                "unit": "example_scale",
+                "minimum": 0,
+                "maximum": 4
+              }
+            },
+            {
+              "id": "marker",
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "predicate": {
+                "class": "Predicate",
+                "key": "example_marker",
+                "kind": "demographic"
+              },
+              "time": null,
+              "domain": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "id": "age",
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "predicate": {
+                "class": "Predicate",
+                "key": "example_age",
+                "kind": "measurement"
+              },
+              "time": null,
+              "domain": {
+                "kind": "continuous",
+                "unit": "years",
+                "minimum": 0,
+                "maximum": null,
+                "cut_points": []
+              }
+            }
+          ],
+          "bound": 32,
+          "limits": {
+            "max_decisions": 100
+          },
+          "candidates": [
+            {
+              "id": "adult_scale_le_2",
+              "assertions": [
+                {
+                  "applicability": {
+                    "class": "Always"
+                  },
+                  "body": {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "example_age",
+                      "kind": "measurement"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "participant",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "ge",
+                      "inclusivity": "unspecified",
+                      "kind": "quantity",
+                      "members": [],
+                      "number": 18.0,
+                      "unit": "years",
+                      "upper": null
+                    }
+                  },
+                  "branch": {
+                    "class": "Branch",
+                    "node": "unresolved",
+                    "path": []
+                  },
+                  "class": "ScopedAssertion",
+                  "cohort": {
+                    "class": "Scope",
+                    "kind": "all_participants",
+                    "parts": [],
+                    "ref": ""
+                  },
+                  "criterion_ref": "user:invented-candidate",
+                  "id": "adult",
+                  "modality": "required",
+                  "resolution": "resolved",
+                  "rule": {
+                    "answers": [],
+                    "class": "Rule",
+                    "id": "invented-candidate",
+                    "premises": [],
+                    "version": "1",
+                    "warrants": [
+                      "user:invented-candidate"
+                    ]
+                  },
+                  "span": [],
+                  "status": "known"
+                },
+                {
+                  "applicability": {
+                    "class": "Always"
+                  },
+                  "body": {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "example_scale",
+                      "kind": "measurement"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "participant",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "le",
+                      "inclusivity": "unspecified",
+                      "kind": "quantity",
+                      "members": [],
+                      "number": 2.0,
+                      "unit": "example_scale",
+                      "upper": null
+                    }
+                  },
+                  "branch": {
+                    "class": "Branch",
+                    "node": "unresolved",
+                    "path": []
+                  },
+                  "class": "ScopedAssertion",
+                  "cohort": {
+                    "class": "Scope",
+                    "kind": "all_participants",
+                    "parts": [],
+                    "ref": ""
+                  },
+                  "criterion_ref": "user:invented-candidate",
+                  "id": "scale",
+                  "modality": "required",
+                  "resolution": "resolved",
+                  "rule": {
+                    "answers": [],
+                    "class": "Rule",
+                    "id": "invented-candidate",
+                    "premises": [],
+                    "version": "1",
+                    "warrants": [
+                      "user:invented-candidate"
+                    ]
+                  },
+                  "span": [],
+                  "status": "known"
+                }
+              ]
+            },
+            {
+              "id": "adult_scale_le_2_marker",
+              "assertions": [
+                {
+                  "applicability": {
+                    "class": "Always"
+                  },
+                  "body": {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "example_age",
+                      "kind": "measurement"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "participant",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "ge",
+                      "inclusivity": "unspecified",
+                      "kind": "quantity",
+                      "members": [],
+                      "number": 18.0,
+                      "unit": "years",
+                      "upper": null
+                    }
+                  },
+                  "branch": {
+                    "class": "Branch",
+                    "node": "unresolved",
+                    "path": []
+                  },
+                  "class": "ScopedAssertion",
+                  "cohort": {
+                    "class": "Scope",
+                    "kind": "all_participants",
+                    "parts": [],
+                    "ref": ""
+                  },
+                  "criterion_ref": "user:invented-candidate",
+                  "id": "adult-m",
+                  "modality": "required",
+                  "resolution": "resolved",
+                  "rule": {
+                    "answers": [],
+                    "class": "Rule",
+                    "id": "invented-candidate",
+                    "premises": [],
+                    "version": "1",
+                    "warrants": [
+                      "user:invented-candidate"
+                    ]
+                  },
+                  "span": [],
+                  "status": "known"
+                },
+                {
+                  "applicability": {
+                    "class": "Always"
+                  },
+                  "body": {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "example_scale",
+                      "kind": "measurement"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "participant",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "le",
+                      "inclusivity": "unspecified",
+                      "kind": "quantity",
+                      "members": [],
+                      "number": 2.0,
+                      "unit": "example_scale",
+                      "upper": null
+                    }
+                  },
+                  "branch": {
+                    "class": "Branch",
+                    "node": "unresolved",
+                    "path": []
+                  },
+                  "class": "ScopedAssertion",
+                  "cohort": {
+                    "class": "Scope",
+                    "kind": "all_participants",
+                    "parts": [],
+                    "ref": ""
+                  },
+                  "criterion_ref": "user:invented-candidate",
+                  "id": "scale-m",
+                  "modality": "required",
+                  "resolution": "resolved",
+                  "rule": {
+                    "answers": [],
+                    "class": "Rule",
+                    "id": "invented-candidate",
+                    "premises": [],
+                    "version": "1",
+                    "warrants": [
+                      "user:invented-candidate"
+                    ]
+                  },
+                  "span": [],
+                  "status": "known"
+                },
+                {
+                  "applicability": {
+                    "class": "Always"
+                  },
+                  "body": {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "example_marker",
+                      "kind": "demographic"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "participant",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "eq",
+                      "inclusivity": "unspecified",
+                      "kind": "boolean",
+                      "members": [],
+                      "number": null,
+                      "unit": "",
+                      "upper": null
+                    }
+                  },
+                  "branch": {
+                    "class": "Branch",
+                    "node": "unresolved",
+                    "path": []
+                  },
+                  "class": "ScopedAssertion",
+                  "cohort": {
+                    "class": "Scope",
+                    "kind": "all_participants",
+                    "parts": [],
+                    "ref": ""
+                  },
+                  "criterion_ref": "user:invented-candidate",
+                  "id": "marker-m",
+                  "modality": "required",
+                  "resolution": "resolved",
+                  "rule": {
+                    "answers": [],
+                    "class": "Rule",
+                    "id": "invented-candidate",
+                    "premises": [],
+                    "version": "1",
+                    "warrants": [
+                      "user:invented-candidate"
+                    ]
+                  },
+                  "span": [],
+                  "status": "known"
+                }
+              ]
+            }
+          ]
+        },
+        "result": {
+          "code": "complete",
+          "metadata": {
+            "findings": [
+              {
+                "causes": [],
+                "completion": "complete",
+                "disposition": "descriptive",
+                "kind": "candidate_family",
+                "logical_result": "searched",
+                "path": "/result/family",
+                "standing": "known"
+              },
+              {
+                "causes": [
+                  {
+                    "code": "resource_bound:decisions",
+                    "kind": "computation"
+                  }
+                ],
+                "completion": "limited",
+                "disposition": "not_computed",
+                "kind": "evidence_search",
+                "logical_result": "incomplete",
+                "path": "/result/search",
+                "standing": "known"
+              },
+              {
+                "causes": [],
+                "completion": "complete",
+                "disposition": "descriptive",
+                "kind": "evidence_output",
+                "logical_result": "complete",
+                "path": "/result/output",
+                "standing": "known"
+              },
+              {
+                "causes": [],
+                "completion": "complete",
+                "context_causes": [
+                  {
+                    "code": "resource_bound",
+                    "kind": "computation"
+                  },
+                  {
+                    "code": "witness_unresolved:adult_scale_le_2_marker",
+                    "kind": "premise"
+                  }
+                ],
+                "disposition": "open",
+                "kind": "evidence_pair",
+                "logical_result": "separated",
+                "path": "/result/pairs/0",
+                "standing": null
+              },
+              {
+                "causes": [],
+                "completion": "complete",
+                "disposition": "open",
+                "hypothetical": true,
+                "kind": "hypothetical_evidence_request",
+                "logical_result": "hypothetical_evidence_request",
+                "path": "/result/requests/0",
+                "standing": "known",
+                "support_path": "/result/requests/0/required_premises"
+              },
+              {
+                "causes": [],
+                "completion": "complete",
+                "disposition": "open",
+                "hypothetical": true,
+                "kind": "hypothetical_evidence_request",
+                "logical_result": "hypothetical_evidence_request",
+                "path": "/result/requests/1",
+                "standing": "known",
+                "support_path": "/result/requests/1/required_premises"
+              }
+            ],
+            "kind": "reasoning",
+            "version": 1
+          },
+          "operation": "evidence_requests",
+          "problems": [],
+          "result": {
+            "basis": "Hypothetical witnesses checked by the existing participant-witness engine; conditional on declared survivors, variables and the premises each request names.",
+            "family": "searched",
+            "inconsistent": [],
+            "input_checks": [
+              {
+                "candidate": "adult_scale_le_2",
+                "decision": {
+                  "blockers": [
+                    "undecided_by_constraints"
+                  ],
+                  "proof": [
+                    "scale"
+                  ],
+                  "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"example_scale\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":0.0,\"unit\":\"example_scale\",\"upper\":null}}",
+                  "result": "UNDETERMINED",
+                  "status": null
+                }
+              },
+              {
+                "candidate": "adult_scale_le_2_marker",
+                "decision": {
+                  "blockers": [
+                    "undecided_by_constraints"
+                  ],
+                  "proof": [
+                    "scale-m"
+                  ],
+                  "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"example_scale\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":0.0,\"unit\":\"example_scale\",\"upper\":null}}",
+                  "result": "UNDETERMINED",
+                  "status": null
+                }
+              }
+            ],
+            "input_conflicts": [],
+            "limits": "Hypothetical evidence requests over the declared surviving candidates and declared variables only. No row is an observation, premise or recommendation, and no row claims that such evidence exists. The declared family does not exhaust real protocols; corpus silence never supplies a negative witness.",
+            "output": {
+              "causes": [],
+              "found": 2,
+              "omitted": 0,
+              "returned": 2,
+              "state": "complete"
+            },
+            "pairs": [
+              {
+                "candidates": [
+                  "adult_scale_le_2",
+                  "adult_scale_le_2_marker"
+                ],
+                "causes": [
+                  "resource_bound",
+                  "witness_unresolved:adult_scale_le_2_marker"
+                ],
+                "found": 2,
+                "outcome": "separated",
+                "requests": [
+                  "request-1",
+                  "request-2"
+                ]
+              }
+            ],
+            "premises": {
+              "bound": 32,
+              "candidates": [
+                {
+                  "assertions": [
+                    {
+                      "applicability": {
+                        "class": "Always"
+                      },
+                      "body": {
+                        "class": "Literal",
+                        "evidence": [],
+                        "polarity": "positive",
+                        "predicate": {
+                          "class": "Predicate",
+                          "key": "example_age",
+                          "kind": "measurement"
+                        },
+                        "qualifiers": {
+                          "class": "Always"
+                        },
+                        "subject": {
+                          "class": "Subject",
+                          "kind": "participant",
+                          "referent": ""
+                        },
+                        "time": null,
+                        "value": {
+                          "class": "Value",
+                          "comparison": "ge",
+                          "inclusivity": "unspecified",
+                          "kind": "quantity",
+                          "members": [],
+                          "number": 18.0,
+                          "unit": "years",
+                          "upper": null
+                        }
+                      },
+                      "branch": {
+                        "class": "Branch",
+                        "node": "unresolved",
+                        "path": []
+                      },
+                      "class": "ScopedAssertion",
+                      "cohort": {
+                        "class": "Scope",
+                        "kind": "all_participants",
+                        "parts": [],
+                        "ref": ""
+                      },
+                      "criterion_ref": "user:invented-candidate",
+                      "id": "adult",
+                      "modality": "required",
+                      "resolution": "resolved",
+                      "rule": {
+                        "answers": [],
+                        "class": "Rule",
+                        "id": "invented-candidate",
+                        "premises": [],
+                        "version": "1",
+                        "warrants": [
+                          "user:invented-candidate"
+                        ]
+                      },
+                      "span": [],
+                      "status": "known"
+                    },
+                    {
+                      "applicability": {
+                        "class": "Always"
+                      },
+                      "body": {
+                        "class": "Literal",
+                        "evidence": [],
+                        "polarity": "positive",
+                        "predicate": {
+                          "class": "Predicate",
+                          "key": "example_scale",
+                          "kind": "measurement"
+                        },
+                        "qualifiers": {
+                          "class": "Always"
+                        },
+                        "subject": {
+                          "class": "Subject",
+                          "kind": "participant",
+                          "referent": ""
+                        },
+                        "time": null,
+                        "value": {
+                          "class": "Value",
+                          "comparison": "le",
+                          "inclusivity": "unspecified",
+                          "kind": "quantity",
+                          "members": [],
+                          "number": 2.0,
+                          "unit": "example_scale",
+                          "upper": null
+                        }
+                      },
+                      "branch": {
+                        "class": "Branch",
+                        "node": "unresolved",
+                        "path": []
+                      },
+                      "class": "ScopedAssertion",
+                      "cohort": {
+                        "class": "Scope",
+                        "kind": "all_participants",
+                        "parts": [],
+                        "ref": ""
+                      },
+                      "criterion_ref": "user:invented-candidate",
+                      "id": "scale",
+                      "modality": "required",
+                      "resolution": "resolved",
+                      "rule": {
+                        "answers": [],
+                        "class": "Rule",
+                        "id": "invented-candidate",
+                        "premises": [],
+                        "version": "1",
+                        "warrants": [
+                          "user:invented-candidate"
+                        ]
+                      },
+                      "span": [],
+                      "status": "known"
+                    }
+                  ],
+                  "id": "adult_scale_le_2"
+                },
+                {
+                  "assertions": [
+                    {
+                      "applicability": {
+                        "class": "Always"
+                      },
+                      "body": {
+                        "class": "Literal",
+                        "evidence": [],
+                        "polarity": "positive",
+                        "predicate": {
+                          "class": "Predicate",
+                          "key": "example_age",
+                          "kind": "measurement"
+                        },
+                        "qualifiers": {
+                          "class": "Always"
+                        },
+                        "subject": {
+                          "class": "Subject",
+                          "kind": "participant",
+                          "referent": ""
+                        },
+                        "time": null,
+                        "value": {
+                          "class": "Value",
+                          "comparison": "ge",
+                          "inclusivity": "unspecified",
+                          "kind": "quantity",
+                          "members": [],
+                          "number": 18.0,
+                          "unit": "years",
+                          "upper": null
+                        }
+                      },
+                      "branch": {
+                        "class": "Branch",
+                        "node": "unresolved",
+                        "path": []
+                      },
+                      "class": "ScopedAssertion",
+                      "cohort": {
+                        "class": "Scope",
+                        "kind": "all_participants",
+                        "parts": [],
+                        "ref": ""
+                      },
+                      "criterion_ref": "user:invented-candidate",
+                      "id": "adult-m",
+                      "modality": "required",
+                      "resolution": "resolved",
+                      "rule": {
+                        "answers": [],
+                        "class": "Rule",
+                        "id": "invented-candidate",
+                        "premises": [],
+                        "version": "1",
+                        "warrants": [
+                          "user:invented-candidate"
+                        ]
+                      },
+                      "span": [],
+                      "status": "known"
+                    },
+                    {
+                      "applicability": {
+                        "class": "Always"
+                      },
+                      "body": {
+                        "class": "Literal",
+                        "evidence": [],
+                        "polarity": "positive",
+                        "predicate": {
+                          "class": "Predicate",
+                          "key": "example_scale",
+                          "kind": "measurement"
+                        },
+                        "qualifiers": {
+                          "class": "Always"
+                        },
+                        "subject": {
+                          "class": "Subject",
+                          "kind": "participant",
+                          "referent": ""
+                        },
+                        "time": null,
+                        "value": {
+                          "class": "Value",
+                          "comparison": "le",
+                          "inclusivity": "unspecified",
+                          "kind": "quantity",
+                          "members": [],
+                          "number": 2.0,
+                          "unit": "example_scale",
+                          "upper": null
+                        }
+                      },
+                      "branch": {
+                        "class": "Branch",
+                        "node": "unresolved",
+                        "path": []
+                      },
+                      "class": "ScopedAssertion",
+                      "cohort": {
+                        "class": "Scope",
+                        "kind": "all_participants",
+                        "parts": [],
+                        "ref": ""
+                      },
+                      "criterion_ref": "user:invented-candidate",
+                      "id": "scale-m",
+                      "modality": "required",
+                      "resolution": "resolved",
+                      "rule": {
+                        "answers": [],
+                        "class": "Rule",
+                        "id": "invented-candidate",
+                        "premises": [],
+                        "version": "1",
+                        "warrants": [
+                          "user:invented-candidate"
+                        ]
+                      },
+                      "span": [],
+                      "status": "known"
+                    },
+                    {
+                      "applicability": {
+                        "class": "Always"
+                      },
+                      "body": {
+                        "class": "Literal",
+                        "evidence": [],
+                        "polarity": "positive",
+                        "predicate": {
+                          "class": "Predicate",
+                          "key": "example_marker",
+                          "kind": "demographic"
+                        },
+                        "qualifiers": {
+                          "class": "Always"
+                        },
+                        "subject": {
+                          "class": "Subject",
+                          "kind": "participant",
+                          "referent": ""
+                        },
+                        "time": null,
+                        "value": {
+                          "class": "Value",
+                          "comparison": "eq",
+                          "inclusivity": "unspecified",
+                          "kind": "boolean",
+                          "members": [],
+                          "number": null,
+                          "unit": "",
+                          "upper": null
+                        }
+                      },
+                      "branch": {
+                        "class": "Branch",
+                        "node": "unresolved",
+                        "path": []
+                      },
+                      "class": "ScopedAssertion",
+                      "cohort": {
+                        "class": "Scope",
+                        "kind": "all_participants",
+                        "parts": [],
+                        "ref": ""
+                      },
+                      "criterion_ref": "user:invented-candidate",
+                      "id": "marker-m",
+                      "modality": "required",
+                      "resolution": "resolved",
+                      "rule": {
+                        "answers": [],
+                        "class": "Rule",
+                        "id": "invented-candidate",
+                        "premises": [],
+                        "version": "1",
+                        "warrants": [
+                          "user:invented-candidate"
+                        ]
+                      },
+                      "span": [],
+                      "status": "known"
+                    }
+                  ],
+                  "id": "adult_scale_le_2_marker"
+                }
+              ],
+              "limits": {
+                "max_decisions": 100
+              },
+              "operation": "evidence_requests",
+              "study_ref": "invented:evidence-request-example",
+              "survival_basis": [
+                "invented:design_bounds remaining"
+              ],
+              "survivors": [
+                "adult_scale_le_2",
+                "adult_scale_le_2_marker"
+              ],
+              "variables": [
+                {
+                  "domain": {
+                    "kind": "integer",
+                    "maximum": 4,
+                    "minimum": 0,
+                    "unit": "example_scale"
+                  },
+                  "id": "scale",
+                  "predicate": {
+                    "class": "Predicate",
+                    "key": "example_scale",
+                    "kind": "measurement"
+                  },
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "participant",
+                    "referent": ""
+                  },
+                  "time": null
+                },
+                {
+                  "domain": {
+                    "kind": "boolean"
+                  },
+                  "id": "marker",
+                  "predicate": {
+                    "class": "Predicate",
+                    "key": "example_marker",
+                    "kind": "demographic"
+                  },
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "participant",
+                    "referent": ""
+                  },
+                  "time": null
+                },
+                {
+                  "domain": {
+                    "cut_points": [],
+                    "kind": "continuous",
+                    "maximum": null,
+                    "minimum": 0,
+                    "unit": "years"
+                  },
+                  "id": "age",
+                  "predicate": {
+                    "class": "Predicate",
+                    "key": "example_age",
+                    "kind": "measurement"
+                  },
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "participant",
+                    "referent": ""
+                  },
+                  "time": null
+                }
+              ]
+            },
+            "representation": {
+              "coverage": [
+                "empty_profile_not_representable"
+              ],
+              "unrepresented_variables": [],
+              "unsearched_constraints": []
+            },
+            "requests": [
+              {
+                "accommodates": [
+                  "adult_scale_le_2"
+                ],
+                "cells": {
+                  "marker": "does not hold"
+                },
+                "checks": [
+                  {
+                    "candidate": "adult_scale_le_2",
+                    "decision": {
+                      "blockers": [
+                        "no_constraint_mentions_query"
+                      ],
+                      "proof": [],
+                      "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"negative\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"example_marker\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+                      "result": "UNDETERMINED",
+                      "status": null
+                    },
+                    "verdict": "not_ruled_out"
+                  },
+                  {
+                    "candidate": "adult_scale_le_2_marker",
+                    "decision": {
+                      "blockers": [],
+                      "proof": [
+                        "marker-m"
+                      ],
+                      "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"negative\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"example_marker\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+                      "result": "REFUTED",
+                      "status": "known"
+                    },
+                    "verdict": "ruled_out"
+                  }
+                ],
+                "conditional_status": "known",
+                "eliminates": [
+                  "adult_scale_le_2_marker"
+                ],
+                "id": "request-1",
+                "kind": "hypothetical_evidence_request",
+                "observed": false,
+                "profile": {
+                  "class": "Literal",
+                  "evidence": [],
+                  "polarity": "negative",
+                  "predicate": {
+                    "class": "Predicate",
+                    "key": "example_marker",
+                    "kind": "demographic"
+                  },
+                  "qualifiers": {
+                    "class": "Always"
+                  },
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "participant",
+                    "referent": ""
+                  },
+                  "time": null,
+                  "value": {
+                    "class": "Value",
+                    "comparison": "eq",
+                    "inclusivity": "unspecified",
+                    "kind": "boolean",
+                    "members": [],
+                    "number": null,
+                    "unit": "",
+                    "upper": null
+                  }
+                },
+                "profile_size": 1,
+                "required_premises": [
+                  "eligibility_attribution:accepted",
+                  "accepted_resolved_bridge",
+                  "count_above_exception_allowance"
+                ],
+                "scope": {
+                  "bound": 32,
+                  "context": {
+                    "arm": null,
+                    "cohort": null,
+                    "phase": null
+                  },
+                  "study_ref": "invented:evidence-request-example"
+                },
+                "seek": "Participation records bound to eligibility at entry, such as baseline characteristics or enrolled-participant listings for the same measurement and time, with an eligibility bridge.",
+                "separates": [
+                  [
+                    "adult_scale_le_2",
+                    "adult_scale_le_2_marker"
+                  ]
+                ],
+                "sign": "accepted",
+                "specified": [
+                  "marker"
+                ],
+                "undecided": []
+              },
+              {
+                "accommodates": [
+                  "adult_scale_le_2_marker"
+                ],
+                "cells": {
+                  "age": "= 18 years",
+                  "scale": "= 0 example_scale"
+                },
+                "checks": [
+                  {
+                    "candidate": "adult_scale_le_2",
+                    "decision": {
+                      "blockers": [],
+                      "proof": [
+                        "adult",
+                        "scale"
+                      ],
+                      "query": "{\"class\":\"AllOf\",\"parts\":[{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"example_scale\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":0.0,\"unit\":\"example_scale\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"example_age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"years\",\"upper\":null}}]}",
+                      "result": "REFUTED",
+                      "status": "known"
+                    },
+                    "verdict": "ruled_out"
+                  },
+                  {
+                    "candidate": "adult_scale_le_2_marker",
+                    "decision": {
+                      "blockers": [
+                        "undecided_by_constraints"
+                      ],
+                      "proof": [
+                        "adult-m",
+                        "marker-m",
+                        "scale-m"
+                      ],
+                      "query": "{\"class\":\"AllOf\",\"parts\":[{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"example_scale\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":0.0,\"unit\":\"example_scale\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"example_age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"years\",\"upper\":null}}]}",
+                      "result": "UNDETERMINED",
+                      "status": null
+                    },
+                    "verdict": "not_ruled_out"
+                  }
+                ],
+                "conditional_status": "known",
+                "eliminates": [
+                  "adult_scale_le_2"
+                ],
+                "id": "request-2",
+                "kind": "hypothetical_evidence_request",
+                "observed": false,
+                "profile": {
+                  "class": "AllOf",
+                  "parts": [
+                    {
+                      "class": "Literal",
+                      "evidence": [],
+                      "polarity": "positive",
+                      "predicate": {
+                        "class": "Predicate",
+                        "key": "example_scale",
+                        "kind": "measurement"
+                      },
+                      "qualifiers": {
+                        "class": "Always"
+                      },
+                      "subject": {
+                        "class": "Subject",
+                        "kind": "participant",
+                        "referent": ""
+                      },
+                      "time": null,
+                      "value": {
+                        "class": "Value",
+                        "comparison": "eq",
+                        "inclusivity": "unspecified",
+                        "kind": "quantity",
+                        "members": [],
+                        "number": 0.0,
+                        "unit": "example_scale",
+                        "upper": null
+                      }
+                    },
+                    {
+                      "class": "Literal",
+                      "evidence": [],
+                      "polarity": "positive",
+                      "predicate": {
+                        "class": "Predicate",
+                        "key": "example_age",
+                        "kind": "measurement"
+                      },
+                      "qualifiers": {
+                        "class": "Always"
+                      },
+                      "subject": {
+                        "class": "Subject",
+                        "kind": "participant",
+                        "referent": ""
+                      },
+                      "time": null,
+                      "value": {
+                        "class": "Value",
+                        "comparison": "eq",
+                        "inclusivity": "unspecified",
+                        "kind": "quantity",
+                        "members": [],
+                        "number": 18.0,
+                        "unit": "years",
+                        "upper": null
+                      }
+                    }
+                  ]
+                },
+                "profile_size": 2,
+                "required_premises": [
+                  "eligibility_attribution:rejected",
+                  "accepted_resolved_bridge",
+                  "count_above_exception_allowance",
+                  "complete_candidate_eligibility:adult_scale_le_2"
+                ],
+                "scope": {
+                  "bound": 32,
+                  "context": {
+                    "arm": null,
+                    "cohort": null,
+                    "phase": null
+                  },
+                  "study_ref": "invented:evidence-request-example"
+                },
+                "seek": "Eligibility-attributed screening or adjudication records, such as screening logs or screen-failure reasons for this profile. Registry participant-flow categories rarely identify the profile or the failed criterion, and corpus silence is never a rejected witness.",
+                "separates": [
+                  [
+                    "adult_scale_le_2",
+                    "adult_scale_le_2_marker"
+                  ]
+                ],
+                "sign": "rejected",
+                "specified": [
+                  "scale",
+                  "age"
+                ],
+                "undecided": []
+              }
+            ],
+            "search": {
+              "causes": [
+                "resource_bound:decisions"
+              ],
+              "decisions": 98,
+              "profiles_examined": 24,
+              "state": "incomplete"
+            },
+            "study_ref": "invented:evidence-request-example",
+            "survival_basis": [
+              "invented:design_bounds remaining"
+            ],
+            "survivors": [
+              "adult_scale_le_2",
+              "adult_scale_le_2_marker"
+            ]
+          }
+        },
+        "request_digest": "5a1d0aedd9e8898bad40b4491bfb89a9c8bc1e43ca088d279500b9cfdb7fc46f",
+        "result_digest": "db7a047079cd11f16889e67c4b69b664ebf751abe9e931bdc0ffbece3468e4c0",
+        "dependencies": [
+          "premise:adult_scale_le_2",
+          "premise:adult_scale_le_2_marker"
+        ]
+      }
+    ],
+    "projection_ledger": [
+      {
+        "analysis": "seek-evidence",
+        "projections": [
+          {
+            "premise": "adult_scale_le_2",
+            "slot": "candidates",
+            "projection": "identity",
+            "value": {
+              "id": "adult_scale_le_2",
+              "assertions": [
+                {
+                  "applicability": {
+                    "class": "Always"
+                  },
+                  "body": {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "example_age",
+                      "kind": "measurement"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "participant",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "ge",
+                      "inclusivity": "unspecified",
+                      "kind": "quantity",
+                      "members": [],
+                      "number": 18.0,
+                      "unit": "years",
+                      "upper": null
+                    }
+                  },
+                  "branch": {
+                    "class": "Branch",
+                    "node": "unresolved",
+                    "path": []
+                  },
+                  "class": "ScopedAssertion",
+                  "cohort": {
+                    "class": "Scope",
+                    "kind": "all_participants",
+                    "parts": [],
+                    "ref": ""
+                  },
+                  "criterion_ref": "user:invented-candidate",
+                  "id": "adult",
+                  "modality": "required",
+                  "resolution": "resolved",
+                  "rule": {
+                    "answers": [],
+                    "class": "Rule",
+                    "id": "invented-candidate",
+                    "premises": [],
+                    "version": "1",
+                    "warrants": [
+                      "user:invented-candidate"
+                    ]
+                  },
+                  "span": [],
+                  "status": "known"
+                },
+                {
+                  "applicability": {
+                    "class": "Always"
+                  },
+                  "body": {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "example_scale",
+                      "kind": "measurement"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "participant",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "le",
+                      "inclusivity": "unspecified",
+                      "kind": "quantity",
+                      "members": [],
+                      "number": 2.0,
+                      "unit": "example_scale",
+                      "upper": null
+                    }
+                  },
+                  "branch": {
+                    "class": "Branch",
+                    "node": "unresolved",
+                    "path": []
+                  },
+                  "class": "ScopedAssertion",
+                  "cohort": {
+                    "class": "Scope",
+                    "kind": "all_participants",
+                    "parts": [],
+                    "ref": ""
+                  },
+                  "criterion_ref": "user:invented-candidate",
+                  "id": "scale",
+                  "modality": "required",
+                  "resolution": "resolved",
+                  "rule": {
+                    "answers": [],
+                    "class": "Rule",
+                    "id": "invented-candidate",
+                    "premises": [],
+                    "version": "1",
+                    "warrants": [
+                      "user:invented-candidate"
+                    ]
+                  },
+                  "span": [],
+                  "status": "known"
+                }
+              ]
+            },
+            "details": []
+          },
+          {
+            "premise": "adult_scale_le_2_marker",
+            "slot": "candidates",
+            "projection": "identity",
+            "value": {
+              "id": "adult_scale_le_2_marker",
+              "assertions": [
+                {
+                  "applicability": {
+                    "class": "Always"
+                  },
+                  "body": {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "example_age",
+                      "kind": "measurement"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "participant",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "ge",
+                      "inclusivity": "unspecified",
+                      "kind": "quantity",
+                      "members": [],
+                      "number": 18.0,
+                      "unit": "years",
+                      "upper": null
+                    }
+                  },
+                  "branch": {
+                    "class": "Branch",
+                    "node": "unresolved",
+                    "path": []
+                  },
+                  "class": "ScopedAssertion",
+                  "cohort": {
+                    "class": "Scope",
+                    "kind": "all_participants",
+                    "parts": [],
+                    "ref": ""
+                  },
+                  "criterion_ref": "user:invented-candidate",
+                  "id": "adult-m",
+                  "modality": "required",
+                  "resolution": "resolved",
+                  "rule": {
+                    "answers": [],
+                    "class": "Rule",
+                    "id": "invented-candidate",
+                    "premises": [],
+                    "version": "1",
+                    "warrants": [
+                      "user:invented-candidate"
+                    ]
+                  },
+                  "span": [],
+                  "status": "known"
+                },
+                {
+                  "applicability": {
+                    "class": "Always"
+                  },
+                  "body": {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "example_scale",
+                      "kind": "measurement"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "participant",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "le",
+                      "inclusivity": "unspecified",
+                      "kind": "quantity",
+                      "members": [],
+                      "number": 2.0,
+                      "unit": "example_scale",
+                      "upper": null
+                    }
+                  },
+                  "branch": {
+                    "class": "Branch",
+                    "node": "unresolved",
+                    "path": []
+                  },
+                  "class": "ScopedAssertion",
+                  "cohort": {
+                    "class": "Scope",
+                    "kind": "all_participants",
+                    "parts": [],
+                    "ref": ""
+                  },
+                  "criterion_ref": "user:invented-candidate",
+                  "id": "scale-m",
+                  "modality": "required",
+                  "resolution": "resolved",
+                  "rule": {
+                    "answers": [],
+                    "class": "Rule",
+                    "id": "invented-candidate",
+                    "premises": [],
+                    "version": "1",
+                    "warrants": [
+                      "user:invented-candidate"
+                    ]
+                  },
+                  "span": [],
+                  "status": "known"
+                },
+                {
+                  "applicability": {
+                    "class": "Always"
+                  },
+                  "body": {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "example_marker",
+                      "kind": "demographic"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "participant",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "eq",
+                      "inclusivity": "unspecified",
+                      "kind": "boolean",
+                      "members": [],
+                      "number": null,
+                      "unit": "",
+                      "upper": null
+                    }
+                  },
+                  "branch": {
+                    "class": "Branch",
+                    "node": "unresolved",
+                    "path": []
+                  },
+                  "class": "ScopedAssertion",
+                  "cohort": {
+                    "class": "Scope",
+                    "kind": "all_participants",
+                    "parts": [],
+                    "ref": ""
+                  },
+                  "criterion_ref": "user:invented-candidate",
+                  "id": "marker-m",
+                  "modality": "required",
+                  "resolution": "resolved",
+                  "rule": {
+                    "answers": [],
+                    "class": "Rule",
+                    "id": "invented-candidate",
+                    "premises": [],
+                    "version": "1",
+                    "warrants": [
+                      "user:invented-candidate"
+                    ]
+                  },
+                  "span": [],
+                  "status": "known"
+                }
+              ]
+            },
+            "details": []
+          }
+        ]
+      }
+    ],
+    "decisions": [],
+    "limits": {
+      "max_analyses": 128,
+      "max_premises": 1000,
+      "max_sources": 64,
+      "max_decisions": 128,
+      "max_expanded_items": 10000,
+      "max_solver_work": 10000000,
+      "max_output_bytes": 16000000
+    },
+    "limits_of_claim": [
+      "Caller labels do not independently verify source truth or confirmation.",
+      "Exact representation comparison is not clinical semantic equivalence.",
+      "A represented restriction is not full patient eligibility.",
+      "All analysis inputs are replay dependencies; only claimed support or actual deciding warrants weaken a finding."
+    ]
+  },
+  "previous_fresh": null,
+  "diff": null,
+  "work": {
+    "analyses": 1,
+    "expanded_items": 320,
+    "solver_work_reserved": 217600
+  },
+  "problems": [],
+  "metadata": {
+    "version": 1,
+    "kind": "reasoning",
+    "findings": [
+      {
+        "causes": [],
+        "completion": "complete",
+        "disposition": "descriptive",
+        "kind": "candidate_family",
+        "logical_result": "searched",
+        "path": "/result/analyses/0/result/result/family",
+        "standing": "known"
+      },
+      {
+        "causes": [
+          {
+            "code": "resource_bound:decisions",
+            "kind": "computation"
+          }
+        ],
+        "completion": "limited",
+        "disposition": "not_computed",
+        "kind": "evidence_search",
+        "logical_result": "incomplete",
+        "path": "/result/analyses/0/result/result/search",
+        "standing": "known"
+      },
+      {
+        "causes": [],
+        "completion": "complete",
+        "disposition": "descriptive",
+        "kind": "evidence_output",
+        "logical_result": "complete",
+        "path": "/result/analyses/0/result/result/output",
+        "standing": "known"
+      },
+      {
+        "causes": [],
+        "completion": "complete",
+        "context_causes": [
+          {
+            "code": "resource_bound",
+            "kind": "computation"
+          },
+          {
+            "code": "witness_unresolved:adult_scale_le_2_marker",
+            "kind": "premise"
+          }
+        ],
+        "disposition": "open",
+        "kind": "evidence_pair",
+        "logical_result": "separated",
+        "path": "/result/analyses/0/result/result/pairs/0",
+        "standing": null
+      },
+      {
+        "causes": [],
+        "completion": "complete",
+        "disposition": "open",
+        "hypothetical": true,
+        "kind": "hypothetical_evidence_request",
+        "logical_result": "hypothetical_evidence_request",
+        "path": "/result/analyses/0/result/result/requests/0",
+        "standing": "known",
+        "support_path": "/result/analyses/0/result/result/requests/0/required_premises"
+      },
+      {
+        "causes": [],
+        "completion": "complete",
+        "disposition": "open",
+        "hypothetical": true,
+        "kind": "hypothetical_evidence_request",
+        "logical_result": "hypothetical_evidence_request",
+        "path": "/result/analyses/0/result/result/requests/1",
+        "standing": "known",
+        "support_path": "/result/analyses/0/result/result/requests/1/required_premises"
+      }
+    ]
+  }
+}

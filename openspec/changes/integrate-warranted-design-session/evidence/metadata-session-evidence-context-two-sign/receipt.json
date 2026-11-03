@@ -1,0 +1,61 @@
+{
+  "crosshair": {
+    "confirmed": 0,
+    "counterexamples": 0,
+    "explicit_contracts": 3,
+    "log": "crosshair.log",
+    "not_confirmed": 3,
+    "scope": "Return-codomain postconditions only; timeout unknown is not a proof"
+  },
+  "current_correspondence": "current-function-correspondence.json",
+  "detective": {
+    "cause_kind": {
+      "crash_only": "VALUE_6d6887fc: partition(':') -> partition(''); detected by crash, not equivalent; no flag issued",
+      "function_digest": "2b660e587a3b2e50",
+      "killed": 18,
+      "total": 18,
+      "value_pinned": 17
+    },
+    "chain": "Actual fresh help -> regime -> converge --two-sign -> prescribed branch inputs -> plan/decompose --apply --two-sign/survey per function; all full outputs retained; no separable block; no source or authored test/config edits during proof",
+    "completion_code": {
+      "function_digest": "0ca68ed2a47b84e6",
+      "killed": 87,
+      "total": 87,
+      "value_pinned": 87
+    },
+    "disposition_code": {
+      "function_digest": "e8f6cd7dcf149c50",
+      "killed": 200,
+      "total": 200,
+      "value_pinned": 200
+    },
+    "policy": "9+neg.f5a15364c11d"
+  },
+  "format": 1,
+  "original_receipt": "original-receipt.json",
+  "scope": "Only cause_kind/completion_code/disposition_code with exact current module/globals and actual production import identity; metadata wrappers/session/evidence orchestration are not certified by these primitive certificates",
+  "scope_limit": "Current source/global identity does not make wrappers or clinical meanings certified by these three primitive receipts.",
+  "source": {
+    "function_sha256": {
+      "cause_kind": "84e2634f00e58dbabef0780cf20cc5523ef8288bb414a9cb4016025a21a80d3a",
+      "completion_code": "d8fa754bd53d3ea41a3c251b03db566cdd9e143bae5d22e33a669733657416e8",
+      "disposition_code": "d6822d5629e2a97d786966906bf6a98b5377cc5dcd1cd6546f2b19586d2eb531"
+    },
+    "globals": {
+      "CAUSE_KINDS": {
+        "count": 101,
+        "sha256": "8f3024faea1ac7ea0f207455d064b28a49331839d707253941097e818e1aec6b"
+      },
+      "DISPOSITIONS": {
+        "count": 9,
+        "sha256": "b269296dcda3fb4e195d458cdfdeeb0c109638f531b816bef94916d2d2063adc"
+      },
+      "RESULTS": {
+        "count": 64,
+        "sha256": "5f3ebdcd71354f7191f70f1a14d3cf90481a03af1306c6071df7c52ae6fa441e"
+      }
+    },
+    "module_sha256": "3d05007883cc0363660ed911e841c8a098214c5f3df93d66c2a02131031752d0"
+  },
+  "supersedes_historical_packet": "metadata-structural-final-two-sign"
+}

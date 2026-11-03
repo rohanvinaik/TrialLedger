@@ -1,0 +1,61 @@
+{
+  "question": "For a proposed Phase 2 early influenza-treatment study, which compared population/onset and assessment definitions matter, and what follows when one temporal/eligibility premise changes?",
+  "category": "Phase 2 influenza treatment; existing constructs, not new design-paradigm validation",
+  "declared_at_utc": "2026-11-03T21:51:07.754014+00:00",
+  "query": {
+    "drug": [
+      "oseltamivir"
+    ],
+    "condition": [
+      "Influenza"
+    ],
+    "phase": [
+      "PHASE2"
+    ],
+    "status": [
+      "COMPLETED"
+    ]
+  },
+  "max_complete_pool": 30,
+  "seed": 4136338864088426196,
+  "selection_rule": "random.Random(seed).sample(sorted(complete_pool), min(3, len(complete_pool))) before selected-content reading",
+  "retention": {
+    "packet": "Clinical README and working brief, complete reasoning request/canonical-result pairs, query/pool/seed and source/runtime/hash/time receipts; target <2 MB by reducing case duplication, never by truncation",
+    "local_report": "/Users/rohanvinaik/trialledger-runs/invariant-influenza-20261103",
+    "local_bulk": "Full report/raw bodies/workbook and duplicate MCP wires remain outside Git; required snapshots stay complete in reasoning requests"
+  },
+  "identifier_preflight_url": "https://clinicaltrials.gov/api/v2/studies?filter.advanced=%28AREA%5BInterventionName%5D%22oseltamivir%22+OR+AREA%5BInterventionOtherName%5D%22oseltamivir%22%29+AND+AREA%5BPhase%5DPHASE2+AND+AREA%5BOverallStatus%5DCOMPLETED&query.cond=Influenza&format=json&fields=NCTId&pageSize=1000&countTotal=true",
+  "identifier_preflight_retrieved_at_utc": "2026-11-03T21:51:29.949465+00:00",
+  "identifier_preflight_sha256": "c571247faa4a2abb2ae9c590eb6a2e125adc67156b29b4e6003c6053d187c21d",
+  "identifier_response_headers": {
+    "Date": "Tue, 03 Nov 2026 21:51:29 GMT",
+    "content-type": "application/json",
+    "etag": "\"0/0.34.1/mw0io5mw\""
+  },
+  "complete_pool": [
+    "NCT00298233",
+    "NCT00334529",
+    "NCT00391768",
+    "NCT00453999",
+    "NCT00867139",
+    "NCT00979251",
+    "NCT01146535",
+    "NCT01179919",
+    "NCT01227967",
+    "NCT01980966",
+    "NCT02293863",
+    "NCT02342249",
+    "NCT02469298",
+    "NCT02532283",
+    "NCT02603952",
+    "NCT03040141",
+    "NCT03394209"
+  ],
+  "pool_count": 17,
+  "selected": [
+    "NCT01179919",
+    "NCT00867139",
+    "NCT00453999"
+  ],
+  "gather_whole_pool": true
+}

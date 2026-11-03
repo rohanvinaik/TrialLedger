@@ -165,9 +165,34 @@ def extend(description: dict) -> None:
     description["result_guides"]["signals"]["optional_fields"] = {
         "binding_checks": "Full application checks; proposed bindings are refused outside frames",
         "binding_premises": "Unchanged study identity, bindings and application scopes",
+        "operator_support": "Deciding internal support/ids; the outer wrapper cannot promote a local reading",
+        "admission": "Support gate and application blockers, including equal raw/effective codes",
     }
+    description["result_guides"]["signals"]["stages"] = (
+        "Each transition retains raw/effective population checks, exact person/person-period/cluster unit, "
+        "scope and local support. A permitted pathway supplies no subset arithmetic. A declared subset "
+        "is checked for count compatibility, not proved identity or individual progression. Read each "
+        "transition's metadata separately. Empty graphs are inspection with no clinical findings. "
+        "gate_ref is retained as a premise reference; its clinical condition is not evaluated here."
+    )
     description["result_guides"]["signals"]["binding_preflight"] = (
         "Supply bindings and binding_uses with study_ref to check population/definition applications. "
         "Gate arithmetic, candidate claims and derived witnesses together. A mismatched scope remains "
         "unresolved even when raw arithmetic conflicts; compatibility does not establish identity."
+    )
+    description["result_guides"]["signals"]["decision_table"] = (
+        "Explicit finite equality domains and feasible-combination constraints precede coverage, "
+        "different-action overlap and action reachability. Same-action overlap is diagnostic. "
+        "Read each completed check beside unfinished ones. Static coverage does not establish "
+        "sequential termination, clinical appropriateness or statistical operating characteristics. "
+        "Nonempty candidate claims are refused; no concrete participant countermodel is fabricated."
+    )
+    description["result_guides"]["signals"]["estimand"] = (
+        "Five supplied definition references and event strategies are declarations, not verified medical "
+        "completeness. Explicit requirement rules bind event, variable, window and observed/imputed/derived "
+        "mode. Read relevance, collection alignment and actual input separately with their own support "
+        "and blockers. A stopped required collection is a plan mismatch; unavailable relevant data, "
+        "not-required data and structural nonexistence are different states. Only adopted dependency "
+        "rules establish dependency conflicts. Strategy names generate no requirements. Estimation "
+        "always remains not_computed. Empty requirements/dependencies are inspection."
     )

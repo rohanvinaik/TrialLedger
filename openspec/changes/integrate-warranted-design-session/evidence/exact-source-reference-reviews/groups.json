@@ -1,0 +1,322 @@
+[
+  {
+    "id": "a056ca995fae7727b6f50a54dcba7b48e112d8d880dbbc9cadf55a2c00c3fa27",
+    "value": "ctg:NCT04255433:9ee34afaf2fd51aac6b4876ad4a8bf8259729ce85ddb4b26b767a1abb52b3ad3",
+    "state": "reviewed_public_source_reference",
+    "occurrences": 1,
+    "representative_complete_object": "units/bd03fa796ba5599e75d86dd581572d68e4eeeb340cf5e73611cf09aaba23978c.json",
+    "fields": [
+      "study_ref"
+    ],
+    "description": "Public ClinicalTrials.gov study identity and SHA256, optionally a source address/character span or explicitly named cohort/event suffix"
+  },
+  {
+    "id": "5355980b2c21ae05d38c9835e4b03141453e88ca693beb556373be2a64787934",
+    "value": "ctg:NCT04657016:f05b9fd52112a3f9787af7658d9d3c77140bcdee451ffe153740e25f64d47d3b",
+    "state": "reviewed_public_source_reference",
+    "occurrences": 1,
+    "representative_complete_object": "units/751d3648b019941c6b01e7cb748c5e1dee677b8973e2ce7391d8b72d8b5fa0ef.json",
+    "fields": [
+      "study_ref"
+    ],
+    "description": "Public ClinicalTrials.gov study identity and SHA256, optionally a source address/character span or explicitly named cohort/event suffix"
+  },
+  {
+    "id": "1ae937f55177adba542ccf74b2ab46e16338335c30eb33491ec8f31c220415ef",
+    "value": "ctg:NCT05260021:2eea4e53e8da0f8a29b5ee2f9de0dec1d732a79907c5b3f5784390b81cfe21e1",
+    "state": "reviewed_public_source_reference",
+    "occurrences": 3,
+    "representative_complete_object": "units/aa82a9c8d3ad94255a4a45ab950545926612063a70bea595c08df505589947fc.json",
+    "fields": [
+      "study_ref"
+    ],
+    "description": "Public ClinicalTrials.gov study identity and SHA256, optionally a source address/character span or explicitly named cohort/event suffix"
+  },
+  {
+    "id": "d961bac643d381c7b523f2bf922b061a564a61de40bd1d2c3aaa84868264a11e",
+    "value": "ctg:NCT01369355:e88dd2edd3a6d63bf6a7d10c8b304315497cfb90e2dadf36a259dc0d8ef75be2#/protocolSection/armsInterventionsModule/armGroups",
+    "state": "reviewed_public_source_reference",
+    "occurrences": 1,
+    "representative_complete_object": "units/778b65b7da90ec651fa17c5f5381f433d508aaf0c4bb758642e8cd520af8e9a4.json",
+    "fields": [
+      "array_element"
+    ],
+    "description": "Public ClinicalTrials.gov study identity and SHA256, optionally a source address/character span or explicitly named cohort/event suffix"
+  },
+  {
+    "id": "c90ec9eb4a48428c375ed4220a739a40e933a502b979415ddc5f262cbd5d42ec",
+    "value": "ctg:NCT01369355:e88dd2edd3a6d63bf6a7d10c8b304315497cfb90e2dadf36a259dc0d8ef75be2",
+    "state": "reviewed_public_source_reference",
+    "occurrences": 3,
+    "representative_complete_object": "units/3b1142b5f0a337a920b83376ad75eb682ba84726b08546871f08b2ae1b88936b.json",
+    "fields": [
+      "study_ref"
+    ],
+    "description": "Public ClinicalTrials.gov study identity and SHA256, optionally a source address/character span or explicitly named cohort/event suffix"
+  },
+  {
+    "id": "928c56102953106983ff551c9ab467d51d461931d90d11ae3ec2beff2650f892",
+    "value": "ctg:NCT01369355:e88dd2edd3a6d63bf6a7d10c8b304315497cfb90e2dadf36a259dc0d8ef75be2:induction-week8",
+    "state": "reviewed_public_source_reference",
+    "occurrences": 1,
+    "representative_complete_object": "units/37d6b0f1217cea7e01dfce2d729d329aae2cf379aaa365adbb496b99ac7a1164.json",
+    "fields": [
+      "anchor_ref"
+    ],
+    "description": "Public ClinicalTrials.gov study identity and SHA256, optionally a source address/character span or explicitly named cohort/event suffix"
+  },
+  {
+    "id": "9407e8634009e2fb94903141ecfb419306352809b177cd39610e410844d45a01",
+    "value": "ctg:NCT03057977:651d50db132a20a8261fdfcbcddd46ad377d98a32d477c3d4094c19a0ee65f11#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:2460",
+    "state": "reviewed_public_source_reference",
+    "occurrences": 1,
+    "representative_complete_object": "units/bc9035b25842a7427f7baabdabc7c3e178b052a84c7e34475abd0573d87471b1.json",
+    "fields": [
+      "array_element"
+    ],
+    "description": "Public ClinicalTrials.gov study identity and SHA256, optionally a source address/character span or explicitly named cohort/event suffix"
+  },
+  {
+    "id": "8bbcb36f81d315af886bca89633cffa329f6acca688d8bedc374bcb3c9539f03",
+    "value": "ctg:NCT03332212:6bbfa6623b3c42e62756daeafaa841488494fe4cbbd4a2a904506a9fe76de6c6#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:7096",
+    "state": "reviewed_public_source_reference",
+    "occurrences": 1,
+    "representative_complete_object": "units/af318452401d1434b60432cfb0484fc248a87dcf60539092e3bfad753785736c.json",
+    "fields": [
+      "array_element"
+    ],
+    "description": "Public ClinicalTrials.gov study identity and SHA256, optionally a source address/character span or explicitly named cohort/event suffix"
+  },
+  {
+    "id": "656033f984ab9ddc278a7812dcfbe7c2f6e486913086697c91e45db90a42da00",
+    "value": "ctg:NCT03448406:619c275b11f3e6ea8c049fb63484166c967d19fa0d725c81580c1f8b01153a48#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:4168",
+    "state": "reviewed_public_source_reference",
+    "occurrences": 1,
+    "representative_complete_object": "units/06a84cdeabeb1df9c3d9cad4614c3813a441e0dfd1e28f0cebfc06981efd196d.json",
+    "fields": [
+      "array_element"
+    ],
+    "description": "Public ClinicalTrials.gov study identity and SHA256, optionally a source address/character span or explicitly named cohort/event suffix"
+  },
+  {
+    "id": "4d5f3cfad38dade60f307e40d9596975a4f22f7275c5685bb952cb7f4efad755",
+    "value": "ctg:NCT03057977:651d50db132a20a8261fdfcbcddd46ad377d98a32d477c3d4094c19a0ee65f11#/protocolSection/eligibilityModule/eligibilityCriteria",
+    "state": "reviewed_public_source_reference",
+    "occurrences": 2,
+    "representative_complete_object": "units/c1e0efe77e63b01b6d94901aa6f36875a21ba7517619e6a03c85538375cc67d5.json",
+    "fields": [
+      "criterion_ref"
+    ],
+    "description": "Public ClinicalTrials.gov study identity and SHA256, optionally a source address/character span or explicitly named cohort/event suffix"
+  },
+  {
+    "id": "4111fff1f3cea20e7acc7f77af78da9e0f40272b36fdfdbfab81239c2db21ddb",
+    "value": "ctg:NCT03332212:6bbfa6623b3c42e62756daeafaa841488494fe4cbbd4a2a904506a9fe76de6c6:screening",
+    "state": "reviewed_public_source_reference",
+    "occurrences": 2,
+    "representative_complete_object": "units/fd2617e3676464bdc3c31442ffb351b915dc4af79be311d9b4d385b1355bed6d.json",
+    "fields": [
+      "anchor_ref"
+    ],
+    "description": "Public ClinicalTrials.gov study identity and SHA256, optionally a source address/character span or explicitly named cohort/event suffix"
+  },
+  {
+    "id": "fd7c1acee8c581b61e7bd560b4b2720a9d6c2df0f61ef1f18c8099aa0dea1990",
+    "value": "ctg:NCT03448406:619c275b11f3e6ea8c049fb63484166c967d19fa0d725c81580c1f8b01153a48:Visit1",
+    "state": "reviewed_public_source_reference",
+    "occurrences": 1,
+    "representative_complete_object": "units/1c164d0ee33b02f0227d89b8d47532d212e6b644d8bd06c67247177ee0a6a8e7.json",
+    "fields": [
+      "anchor_ref"
+    ],
+    "description": "Public ClinicalTrials.gov study identity and SHA256, optionally a source address/character span or explicitly named cohort/event suffix"
+  },
+  {
+    "id": "997ab4e9dc7e1350565885a4785aec95dbae6a912957bbb9774f9837ccebbf2d",
+    "value": "ctg:NCT03332212:6bbfa6623b3c42e62756daeafaa841488494fe4cbbd4a2a904506a9fe76de6c6#/protocolSection/eligibilityModule/minimumAge",
+    "state": "reviewed_public_source_reference",
+    "occurrences": 2,
+    "representative_complete_object": "units/c96885da0d2ae220dd6513f9b180cae77693f844c6489f53f789d775c15c6275.json",
+    "fields": [
+      "array_element"
+    ],
+    "description": "Public ClinicalTrials.gov study identity and SHA256, optionally a source address/character span or explicitly named cohort/event suffix"
+  },
+  {
+    "id": "235e7f971ad96ab87522cfb1d7bcf9105dce363037173ebe70c15fa6cfb0034a",
+    "value": "ctg:NCT03057977:651d50db132a20a8261fdfcbcddd46ad377d98a32d477c3d4094c19a0ee65f11#/protocolSection/eligibilityModule/minimumAge",
+    "state": "reviewed_public_source_reference",
+    "occurrences": 2,
+    "representative_complete_object": "units/6cf9ae458ad45241f7dd869f85867d85477f714011d5fabeb70f33bfce7cb894.json",
+    "fields": [
+      "array_element"
+    ],
+    "description": "Public ClinicalTrials.gov study identity and SHA256, optionally a source address/character span or explicitly named cohort/event suffix"
+  },
+  {
+    "id": "d28980326b781c1b57d59df8d04f1aace47b42772f69bec5cd11eefa4ba08832",
+    "value": "ctg:NCT03448406:619c275b11f3e6ea8c049fb63484166c967d19fa0d725c81580c1f8b01153a48#/protocolSection/eligibilityModule/minimumAge",
+    "state": "reviewed_public_source_reference",
+    "occurrences": 2,
+    "representative_complete_object": "units/c08bfebcc089ca159b1d0c9fd5059e8e8a37aa9255c831308f0eae04f1434373.json",
+    "fields": [
+      "array_element"
+    ],
+    "description": "Public ClinicalTrials.gov study identity and SHA256, optionally a source address/character span or explicitly named cohort/event suffix"
+  },
+  {
+    "id": "aa796c54028f439b1285a8d3dc45e0b9282e013924326776aa98b57a023451b4",
+    "value": "ctg:NCT03057977:651d50db132a20a8261fdfcbcddd46ad377d98a32d477c3d4094c19a0ee65f11",
+    "state": "reviewed_public_source_reference",
+    "occurrences": 2,
+    "representative_complete_object": "units/633f9a9d1b84a1f56b57959e519e654fe6e0beb0847769fe1fc4ba12ed158bc0.json",
+    "fields": [
+      "study_ref"
+    ],
+    "description": "Public ClinicalTrials.gov study identity and SHA256, optionally a source address/character span or explicitly named cohort/event suffix"
+  },
+  {
+    "id": "54dda30337baec2081449dbc4bb31e0a73b03d697d2444e4d70bffab9ef908f9",
+    "value": "ctg:NCT03332212:6bbfa6623b3c42e62756daeafaa841488494fe4cbbd4a2a904506a9fe76de6c6",
+    "state": "reviewed_public_source_reference",
+    "occurrences": 2,
+    "representative_complete_object": "units/a0934fd490b8edb596c5c0ad516ff10efe0071eb62cb55e2d299ef9d1bee81a7.json",
+    "fields": [
+      "study_ref"
+    ],
+    "description": "Public ClinicalTrials.gov study identity and SHA256, optionally a source address/character span or explicitly named cohort/event suffix"
+  },
+  {
+    "id": "65c19043d007ad7ba1978f74b4679049840cfbb27b0998dbb04bd49f2ec5269c",
+    "value": "ctg:NCT03448406:619c275b11f3e6ea8c049fb63484166c967d19fa0d725c81580c1f8b01153a48",
+    "state": "reviewed_public_source_reference",
+    "occurrences": 1,
+    "representative_complete_object": "units/8833ce825d50112facb5f1ed43adeaf5b6a6d177a68a41f98f08756a9045c892.json",
+    "fields": [
+      "study_ref"
+    ],
+    "description": "Public ClinicalTrials.gov study identity and SHA256, optionally a source address/character span or explicitly named cohort/event suffix"
+  },
+  {
+    "id": "a4104308e09c6d55f9f4c1f12cfc284c1cb2cd45339f9686403481983a7ecc81",
+    "value": "ctg:NCT00000001:d931783115dbb2feacfac3836e12a43b48a52426c8cc526316aea73c8b8518f2",
+    "state": "held_public_identity_not_established",
+    "occurrences": 1,
+    "representative_complete_object": "units/12c7c36f377009a9474a79f3fae16ed97842aee6ec3687900dad1f2352e5e97f.json",
+    "fields": [
+      "study_ref"
+    ],
+    "description": "Source-identity-shaped value with null last_update; its actual public/fixture provenance is not established by the inspected object"
+  },
+  {
+    "id": "1a31462c3aa066236a86056a70d79227072c97bbaff8f5dccc4aa8cc67912bce",
+    "value": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/protocolSection/eligibilityModule/minimumAge",
+    "state": "reviewed_public_source_reference",
+    "occurrences": 5,
+    "representative_complete_object": "units/0aa9406de1af22f3839a1f4565e66055e470e8200cddfffcf1814017766773b9.json",
+    "fields": [
+      "array_element"
+    ],
+    "description": "Public ClinicalTrials.gov study identity and SHA256, optionally a source address/character span or explicitly named cohort/event suffix"
+  },
+  {
+    "id": "8d80978f37a933a3a3ad0088a6166a081c71cfbb5177606bd7d93830226b87d2",
+    "value": "ctg:NCT01774721:3c36eb9ab86ea1b30b764fec80c4e08504f9103533db6d3c69b31c0ada6147b1#/protocolSection/eligibilityModule/minimumAge",
+    "state": "reviewed_public_source_reference",
+    "occurrences": 5,
+    "representative_complete_object": "units/41cab5b586ac55befa16b53b140ee3082524bf46098e9e10c3b6acf02c9a1b6b.json",
+    "fields": [
+      "array_element"
+    ],
+    "description": "Public ClinicalTrials.gov study identity and SHA256, optionally a source address/character span or explicitly named cohort/event suffix"
+  },
+  {
+    "id": "e75efadb447fee57ea9c8e1a91a4599872f33c90840d24801ad078f8f0d29fde",
+    "value": "ctg:NCT01774721:3c36eb9ab86ea1b30b764fec80c4e08504f9103533db6d3c69b31c0ada6147b1",
+    "state": "reviewed_public_source_reference",
+    "occurrences": 2,
+    "representative_complete_object": "units/e32b4348e9d2c4e42f116f6d68a09491d9aa30f36d61422959f99ba6a10e8b7e.json",
+    "fields": [
+      "study_ref"
+    ],
+    "description": "Public ClinicalTrials.gov study identity and SHA256, optionally a source address/character span or explicitly named cohort/event suffix"
+  },
+  {
+    "id": "872c4c609744d3817fd7f8b0ae5d714a4472b600e69ca2e7c6cced3c92831266",
+    "value": "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0",
+    "state": "reviewed_public_source_reference",
+    "occurrences": 13,
+    "representative_complete_object": "units/087e0dbec1bdaa2ee3a7d7630ba50e659bc65a94e6f426ad0f809ac7a57be641.json",
+    "fields": [
+      "study",
+      "study_ref"
+    ],
+    "description": "Public ClinicalTrials.gov study identity and SHA256, optionally a source address/character span or explicitly named cohort/event suffix"
+  },
+  {
+    "id": "9c9847420a04753cafeeff8811adb8bec013fd5dc3106d7c389a9bac35b32cff",
+    "value": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c#/protocolSection/eligibilityModule/minimumAge",
+    "state": "reviewed_public_source_reference",
+    "occurrences": 1,
+    "representative_complete_object": "units/5c159a50cf8685f62e8d16611c5c766fe08f006c8f94318466dc556a19c6123a.json",
+    "fields": [
+      "ref"
+    ],
+    "description": "Public ClinicalTrials.gov study identity and SHA256, optionally a source address/character span or explicitly named cohort/event suffix"
+  },
+  {
+    "id": "9b9809931c00800c19712687db600b1addb2566beddf0b6dfdb6da2f9cf9c9a1",
+    "value": "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2:Q8W-started",
+    "state": "reviewed_public_source_reference",
+    "occurrences": 4,
+    "representative_complete_object": "units/e082ff729e68c5afd176357bdf13e6c0d8402b20e41d34c53644384534311a59.json",
+    "fields": [
+      "universe"
+    ],
+    "description": "Public ClinicalTrials.gov study identity and SHA256, optionally a source address/character span or explicitly named cohort/event suffix"
+  },
+  {
+    "id": "4f4a07dbe0db6984297f6e585420a3d306ad310096600f8e60e96dd60e36aea6",
+    "value": "ctg:NCT02203032:320d7a09be9a01a6e26a958b0a8eccb84794070d01b948b3589dc7d1a77fe94c",
+    "state": "reviewed_public_source_reference",
+    "occurrences": 16,
+    "representative_complete_object": "units/45dc08fed10df2ee62bd900292e2289727cfde890405a05a41875cd495aeee3e.json",
+    "fields": [
+      "study_ref"
+    ],
+    "description": "Public ClinicalTrials.gov study identity and SHA256, optionally a source address/character span or explicitly named cohort/event suffix"
+  },
+  {
+    "id": "5522417ec8b80cf5763d498ba7c2bc685e68b8c360e1e8644000b1bf28dea3a2",
+    "value": "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2",
+    "state": "reviewed_public_source_reference",
+    "occurrences": 9,
+    "representative_complete_object": "units/f83ed6dea10be278302e90fe87d50262fdbc9392f6d8769c8414896c9f8a7837.json",
+    "fields": [
+      "study_ref"
+    ],
+    "description": "Public ClinicalTrials.gov study identity and SHA256, optionally a source address/character span or explicitly named cohort/event suffix"
+  },
+  {
+    "id": "ff0381d7f48e7a3f4573e65f7402c4ccb48afd9909e840c4c641b39919af7ffb",
+    "value": "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2:Q8W-FAS",
+    "state": "reviewed_public_source_reference",
+    "occurrences": 1,
+    "representative_complete_object": "units/008f020725ce7ff37bdeb6ad20888312de8380fd5ab52a6cea53712b0d1b720e.json",
+    "fields": [
+      "universe"
+    ],
+    "description": "Public ClinicalTrials.gov study identity and SHA256, optionally a source address/character span or explicitly named cohort/event suffix"
+  },
+  {
+    "id": "230f7a3d27ab4723e90621dd72e8bd306f4ba6e7a1ffd692f695117f9f6f5185",
+    "value": "ctg:NCT02905331:ab5063f8f68ceb6acca16823d6a3043f8b759c6a04b01aaff0ac2c415802842c",
+    "state": "reviewed_public_source_reference",
+    "occurrences": 1,
+    "representative_complete_object": "units/6d5b715d36ddfc435ea3c07e8bded85e96608db1cc8a75a145b3ea3c21bd1386.json",
+    "fields": [
+      "study_ref"
+    ],
+    "description": "Public ClinicalTrials.gov study identity and SHA256, optionally a source address/character span or explicitly named cohort/event suffix"
+  }
+]

@@ -1,0 +1,3791 @@
+{
+  "operation": "source_assertions",
+  "study": {
+    "protocolSection": {
+      "identificationModule": {
+        "nctId": "NCT02347176",
+        "orgStudyIdInfo": {
+          "id": "D2213C00001"
+        },
+        "organization": {
+          "fullName": "MedImmune LLC",
+          "class": "INDUSTRY"
+        },
+        "briefTitle": "Phase 2 Study to Evaluate the Efficacy and Safety of Tralokinumab in Adults With Atopic Dermatitis",
+        "officialTitle": "A Phase 2b, Randomized, Double-blinded, Placebo-controlled, Dose-ranging Study to Evaluate the Efficacy and Safety of Tralokinumab in Adult Subjects With Moderate-to-Severe Atopic Dermatitis",
+        "acronym": "D2213C00001"
+      },
+      "statusModule": {
+        "statusVerifiedDate": "2018-04",
+        "overallStatus": "COMPLETED",
+        "expandedAccessInfo": {
+          "hasExpandedAccess": false
+        },
+        "startDateStruct": {
+          "date": "2015-01-23",
+          "type": "ACTUAL"
+        },
+        "primaryCompletionDateStruct": {
+          "date": "2015-11-27",
+          "type": "ACTUAL"
+        },
+        "completionDateStruct": {
+          "date": "2016-02-05",
+          "type": "ACTUAL"
+        },
+        "studyFirstSubmitDate": "2015-01-05",
+        "studyFirstSubmitQcDate": "2015-01-26",
+        "studyFirstPostDateStruct": {
+          "date": "2015-01-27",
+          "type": "ESTIMATED"
+        },
+        "resultsFirstSubmitDate": "2017-05-11",
+        "resultsFirstSubmitQcDate": "2017-05-11",
+        "resultsFirstPostDateStruct": {
+          "date": "2017-06-07",
+          "type": "ACTUAL"
+        },
+        "dispFirstSubmitDate": "2017-02-14",
+        "dispFirstSubmitQcDate": "2017-03-20",
+        "dispFirstPostDateStruct": {
+          "date": "2017-03-21",
+          "type": "ACTUAL"
+        },
+        "lastUpdateSubmitDate": "2018-04-24",
+        "lastUpdatePostDateStruct": {
+          "date": "2018-05-23",
+          "type": "ACTUAL"
+        }
+      },
+      "sponsorCollaboratorsModule": {
+        "responsibleParty": {
+          "type": "SPONSOR"
+        },
+        "leadSponsor": {
+          "name": "MedImmune LLC",
+          "class": "INDUSTRY"
+        }
+      },
+      "oversightModule": {
+        "oversightHasDmc": false
+      },
+      "descriptionModule": {
+        "briefSummary": "The aim of the study is to evaluate the efficacy and safety of tralokinumab in adults with atopic dermatitis"
+      },
+      "conditionsModule": {
+        "conditions": [
+          "Atopic Dermatitis"
+        ]
+      },
+      "designModule": {
+        "studyType": "INTERVENTIONAL",
+        "phases": [
+          "PHASE2"
+        ],
+        "designInfo": {
+          "allocation": "RANDOMIZED",
+          "interventionModel": "PARALLEL",
+          "primaryPurpose": "TREATMENT",
+          "maskingInfo": {
+            "masking": "QUADRUPLE",
+            "whoMasked": [
+              "PARTICIPANT",
+              "CARE_PROVIDER",
+              "INVESTIGATOR",
+              "OUTCOMES_ASSESSOR"
+            ]
+          }
+        },
+        "enrollmentInfo": {
+          "count": 204,
+          "type": "ACTUAL"
+        }
+      },
+      "armsInterventionsModule": {
+        "armGroups": [
+          {
+            "label": "Placebo",
+            "type": "PLACEBO_COMPARATOR",
+            "description": "Placebo matched to Tralokinumab will be administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks.",
+            "interventionNames": [
+              "Other: Placebo"
+            ]
+          },
+          {
+            "label": "Tralokinumab Dose 1",
+            "type": "EXPERIMENTAL",
+            "description": "Tralokinumab Dose 1 will be administered subcutaneously once every 2 Weeks (Q2W) for 12 weeks.",
+            "interventionNames": [
+              "Biological: Tralokinumab Dose 1"
+            ]
+          },
+          {
+            "label": "Tralokinumab Dose 2",
+            "type": "EXPERIMENTAL",
+            "description": "Tralokinumab Dose 2 will be administered subcutaneously once every 2 Weeks (Q2W) for 12 weeks.",
+            "interventionNames": [
+              "Biological: Tralokinumab Dose 2"
+            ]
+          },
+          {
+            "label": "Tralokinumab Dose 3",
+            "type": "EXPERIMENTAL",
+            "description": "Tralokinumab Dose 3 will be administered subcutaneously once every 2 Weeks (Q2W) for 12 weeks.",
+            "interventionNames": [
+              "Biological: Tralokinumab Dose 3"
+            ]
+          }
+        ],
+        "interventions": [
+          {
+            "type": "OTHER",
+            "name": "Placebo",
+            "description": "Subcutaneous injection with placebo",
+            "armGroupLabels": [
+              "Placebo"
+            ]
+          },
+          {
+            "type": "BIOLOGICAL",
+            "name": "Tralokinumab Dose 1",
+            "description": "Subcutaneous injection with tralokinumab",
+            "armGroupLabels": [
+              "Tralokinumab Dose 1"
+            ]
+          },
+          {
+            "type": "BIOLOGICAL",
+            "name": "Tralokinumab Dose 2",
+            "description": "Subcutaneous injection with tralokinumab",
+            "armGroupLabels": [
+              "Tralokinumab Dose 2"
+            ]
+          },
+          {
+            "type": "BIOLOGICAL",
+            "name": "Tralokinumab Dose 3",
+            "description": "Subcutaneous injection with tralokinumab",
+            "armGroupLabels": [
+              "Tralokinumab Dose 3"
+            ]
+          }
+        ]
+      },
+      "outcomesModule": {
+        "primaryOutcomes": [
+          {
+            "measure": "Absolute Change From Baseline in Eczema Area and Severity Index (EASI) Total Score at Week 12",
+            "description": "EASI evaluates 4 natural anatomical regions for severity and extent of key disease signs and focuses on the key acute and chronic signs of inflammation (erythema, induration/papulation, excoriation, and lichenification). The maximum total score is 72, with higher values indicating more severe disease. The data presented here is Adjusted mean change after excluding the data from participants who took prohibited medications.",
+            "timeFrame": "Baseline (Day 1) and Week 12"
+          },
+          {
+            "measure": "Percentage of Participants Achieving Investigator's Global Assessment (IGA) Response of 0 (Clear) or 1 (Almost Clear) and at Least a 2-Grade Reduction From Baseline at Week 12",
+            "description": "The IGA allows investigators to assess overall disease severity at one given time point and consists of a 6-point severity scale from clear to very severe disease (0 = clear, 1 = almost clear, 2 = mild disease, 3 = moderate disease, 4 = severe disease, and 5 = very severe disease). A participant has IGA response if they achieve a score of 0 (clear) or 1 (almost clear) and at least a 2-grade reduction from baseline.",
+            "timeFrame": "Week 12"
+          }
+        ],
+        "secondaryOutcomes": [
+          {
+            "measure": "Number of Participants With Treatment Emergent Adverse Events (TEAEs) and Treatment Emergent Serious Adverse Events (TESAEs)",
+            "description": "An adverse event (AE) present at baseline that worsened in intensity after administration of investigational product or events absent at baseline that emerged after administration of study drug until Week 22. A serious adverse event (SAE) is an AE resulting in any of the following outcomes or deemed significant for any other reason: death; initial or prolonged inpatient hospitalization; life-threatening situation (immediate risk of dying); persistent or significant disability/incapacity; congenital anomaly/birth defect in the offspring of a participant who received Tralokinumab. Treatment-emergent adverse events between administration of investigational product and Week 22 that were absent before treatment or that worsened relative to pre-treatment state.",
+            "timeFrame": "From Study Drug Administration (Day 1) to Week 22"
+          },
+          {
+            "measure": "Number of Participants With Vital Signs and Physical Examination Abnormalities Reported as Treatment Emergent Adverse Events",
+            "description": "Vital sign parameters included blood pressure, temperature, pulse rate, and respiratory rate. TEAEs were present at baseline that worsened in intensity after administration of study drug or events absent at baseline that emerged after administration of study drug until Week 22.",
+            "timeFrame": "From Study Drug Administration (Day 1) to Week 22"
+          },
+          {
+            "measure": "Number of Participants With Clinical Laboratory Abnormalities Reported as Treatment Emergent Adverse Events",
+            "description": "An abnormal laboratory finding which required an action or intervention by the investigator, or a finding judged by the investigator to represent a change beyond the range of normal physiologic fluctuation were reported as an adverse event. Treatment-emergent adverse events between administration of investigational product and Week 22 that were absent before treatment or that worsened relative to pre-treatment state. Laboratory evaluations (haematology, serum chemistry and urinalysis) of blood and urine samples were performed.",
+            "timeFrame": "From Study Drug Administration (Day 1) to Week 22"
+          },
+          {
+            "measure": "Number of Participants With Electrocardiogram (ECG) Abnormalities Reported as Treatment Emergent Adverse Events",
+            "description": "AEs observed in participants with clinically significant ECG abnormalities were assessed. ECG parameters included heart rate, RR, PR, QRS and QT intervals. Treatment-emergent adverse events between administration of investigational product and Week 22 that were absent before treatment or that worsened relative to pre-treatment state.",
+            "timeFrame": "From Study Drug Administration (Day 1) to Week 22"
+          },
+          {
+            "measure": "Adjusted Percentage of Participants Achieving 50 Percent (%) Reduction From Baseline in Eczema Area and Severity Index (EASI) at Week 12",
+            "description": "EASI50 responder is defined as a participant who achieves at least a 50% reduction in EASI score from baseline. Data from participants who took prohibited medications were excluded from this analysis and a last observation carried forward (LOCF) analysis was used.",
+            "timeFrame": "Week 12"
+          },
+          {
+            "measure": "Absolute Change From Baseline in Scoring of Atopic Dermatitis (SCORAD) at Week 12",
+            "description": "The SCORAD is a clinical tool for assessing the severity (that is, extent, intensity) of atopic dermatitis (AD). The tool evaluates the extent and intensity of the AD lesions, along with participant symptoms. The maximum total score is 103, with higher values indicating more severe disease. The data presented here is Adjusted mean change after excluding the data from participants who took prohibited medications.",
+            "timeFrame": "Baseline (Day 1) and Week 12"
+          },
+          {
+            "measure": "Adjusted Percentage of Participants Achieving 50 Percent (%) Reduction From Baseline in SCORAD at Week 12",
+            "description": "SCORAD 50 responder is defined as a participant who achieves at least a 50% reduction in SCORAD score from baseline. Data from participants who took prohibited medications were excluded from this analysis and a LOCF analysis was used.",
+            "timeFrame": "Week 12"
+          },
+          {
+            "measure": "Change From Baseline in Pruritus Numeric Rating Scale (NRS) (7-day Mean Score) at Week 12",
+            "description": "Pruritus assessed using an NRS (0 - 10) with 0= no itch and 10= worst imaginable itch. Daily pruritus assessments were summarized as weekly peak score and a change from baseline in weekly peak score was calculated. The data presented here is Adjusted mean change after excluding the data from participants who took prohibited medications.",
+            "timeFrame": "Baseline (Day 1) and Week 12"
+          }
+        ]
+      },
+      "eligibilityModule": {
+        "eligibilityCriteria": "Inclusion Criteria:\n\n* Physician diagnosis of atopic dermatitis for greater than (\\>) 1 year\n* Atopic dermatitis involvement of greater than or equal to (\\>=) 10 percent (%) body surface area\n* EASI score of \\>= 12\n* SCORAD of \\>= 25\n* IGA score of \\>= 3\n* Effective birth control in line with protocol details\n\nExclusion Criteria:\n\n* History of anaphylaxis following any biologic therapy\n* Hepatitis B, C or human immunodeficiency virus\n* Pregnant or breastfeeding\n* History of cancer\n* Previous receipt of tralokinumab",
+        "healthyVolunteers": false,
+        "sex": "ALL",
+        "minimumAge": "18 Years",
+        "maximumAge": "75 Years",
+        "stdAges": [
+          "ADULT",
+          "OLDER_ADULT"
+        ]
+      },
+      "contactsLocationsModule": {
+        "locations": [
+          {
+            "facility": "Research Site",
+            "city": "Phoenix",
+            "state": "Arizona",
+            "zip": "85018",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 33.44838,
+              "lon": -112.07404
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Rogers",
+            "state": "Arkansas",
+            "zip": "72758",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 36.33202,
+              "lon": -94.11854
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Fremont",
+            "state": "California",
+            "zip": "94538",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 37.54827,
+              "lon": -121.98857
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Fullerton",
+            "state": "California",
+            "zip": "92835",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 33.87029,
+              "lon": -117.92534
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Los Angeles",
+            "state": "California",
+            "zip": "90045",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 34.05223,
+              "lon": -118.24368
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Oceanside",
+            "state": "California",
+            "zip": "92056",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 33.19587,
+              "lon": -117.37948
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Rancho Santa Margarita",
+            "state": "California",
+            "zip": "92688",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 33.64086,
+              "lon": -117.6031
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Santa Monica",
+            "state": "California",
+            "zip": "90404",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 34.01949,
+              "lon": -118.49138
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Clearwater",
+            "state": "Florida",
+            "zip": "33759",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 27.96585,
+              "lon": -82.8001
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Miami",
+            "state": "Florida",
+            "zip": "33144",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 25.77427,
+              "lon": -80.19366
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Worcester",
+            "state": "Massachusetts",
+            "zip": "01605",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 42.26259,
+              "lon": -71.80229
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Warren",
+            "state": "Michigan",
+            "zip": "48088",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 42.49044,
+              "lon": -83.01304
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Berlin",
+            "state": "New Jersey",
+            "zip": "08009",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 39.79123,
+              "lon": -74.92905
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Verona",
+            "state": "New Jersey",
+            "zip": "07044",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 40.82982,
+              "lon": -74.24015
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "New York",
+            "state": "New York",
+            "zip": "10029",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 40.71427,
+              "lon": -74.00597
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Rochester",
+            "state": "New York",
+            "zip": "14625",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 43.15478,
+              "lon": -77.61556
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Portland",
+            "state": "Oregon",
+            "zip": "97241",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 45.52345,
+              "lon": -122.67621
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Charleston",
+            "state": "South Carolina",
+            "zip": "29414",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 32.77632,
+              "lon": -79.93275
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Houston",
+            "state": "Texas",
+            "zip": "77004",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 29.76328,
+              "lon": -95.36327
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Houston",
+            "state": "Texas",
+            "zip": "77056",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 29.76328,
+              "lon": -95.36327
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Pflugerville",
+            "state": "Texas",
+            "zip": "78660",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 30.43937,
+              "lon": -97.62
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "San Antonio",
+            "state": "Texas",
+            "zip": "78218",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 29.42412,
+              "lon": -98.49363
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "San Antonio",
+            "state": "Texas",
+            "zip": "78229",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 29.42412,
+              "lon": -98.49363
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Norfolk",
+            "state": "Virginia",
+            "zip": "23507",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 36.84681,
+              "lon": -76.28522
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "East Melbourne",
+            "zip": "3002",
+            "country": "Australia",
+            "geoPoint": {
+              "lat": -37.81667,
+              "lon": 144.9879
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Kogarah",
+            "zip": "02217",
+            "country": "Australia",
+            "geoPoint": {
+              "lat": -33.9681,
+              "lon": 151.13564
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Liverpool",
+            "zip": "2170",
+            "country": "Australia",
+            "geoPoint": {
+              "lat": -33.91938,
+              "lon": 150.92588
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Sydney",
+            "zip": "02010",
+            "country": "Australia",
+            "geoPoint": {
+              "lat": -33.86785,
+              "lon": 151.20732
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Woolloongabba",
+            "zip": "04102",
+            "country": "Australia",
+            "geoPoint": {
+              "lat": -27.48855,
+              "lon": 153.03655
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Surrey",
+            "state": "British Columbia",
+            "zip": "V3V 0C6",
+            "country": "Canada",
+            "geoPoint": {
+              "lat": 49.10635,
+              "lon": -122.82509
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Courtice",
+            "state": "Ontario",
+            "zip": "L1E 3C3",
+            "country": "Canada",
+            "geoPoint": {
+              "lat": 43.91682,
+              "lon": -78.76626
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Markham",
+            "state": "Ontario",
+            "zip": "L3P1X2",
+            "country": "Canada",
+            "geoPoint": {
+              "lat": 43.86682,
+              "lon": -79.2663
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Peterborough",
+            "state": "Ontario",
+            "zip": "K9J 5K2",
+            "country": "Canada",
+            "geoPoint": {
+              "lat": 44.30012,
+              "lon": -78.31623
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Waterloo",
+            "state": "Ontario",
+            "zip": "N2J 1C4",
+            "country": "Canada",
+            "geoPoint": {
+              "lat": 43.4668,
+              "lon": -80.51639
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Windsor",
+            "state": "Ontario",
+            "zip": "N8W 5L7",
+            "country": "Canada",
+            "geoPoint": {
+              "lat": 42.30008,
+              "lon": -83.01654
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Berlin",
+            "zip": "10117",
+            "country": "Germany",
+            "geoPoint": {
+              "lat": 52.52437,
+              "lon": 13.41053
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Bochum",
+            "zip": "44803",
+            "country": "Germany",
+            "geoPoint": {
+              "lat": 51.48165,
+              "lon": 7.21648
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Dresden",
+            "zip": "01307",
+            "country": "Germany",
+            "geoPoint": {
+              "lat": 51.05089,
+              "lon": 13.73832
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Dülmen",
+            "zip": "48249",
+            "country": "Germany",
+            "geoPoint": {
+              "lat": 51.83149,
+              "lon": 7.28075
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Frankfurt am Main",
+            "zip": "60590",
+            "country": "Germany",
+            "geoPoint": {
+              "lat": 50.11552,
+              "lon": 8.68417
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Hanover",
+            "zip": "30625",
+            "country": "Germany",
+            "geoPoint": {
+              "lat": 52.37052,
+              "lon": 9.73322
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "München",
+            "zip": "80337",
+            "country": "Germany",
+            "geoPoint": {
+              "lat": 51.60698,
+              "lon": 13.31243
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Münster",
+            "zip": "48149",
+            "country": "Germany",
+            "geoPoint": {
+              "lat": 51.96236,
+              "lon": 7.62571
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Stuttgart-Weilimdorf",
+            "zip": "70499",
+            "country": "Germany",
+            "geoPoint": {
+              "lat": 48.81367,
+              "lon": 9.11174
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Wuppertal",
+            "zip": "42287",
+            "country": "Germany",
+            "geoPoint": {
+              "lat": 51.25627,
+              "lon": 7.14816
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Nakano",
+            "zip": "164-0001",
+            "country": "Japan",
+            "geoPoint": {
+              "lat": 25.94567,
+              "lon": 131.31144
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Shibuya-ku",
+            "zip": "150-0034",
+            "country": "Japan"
+          },
+          {
+            "facility": "Research Site",
+            "city": "Shinjuku-ku",
+            "zip": "160-0004",
+            "country": "Japan"
+          },
+          {
+            "facility": "Research Site",
+            "city": "Shinjuku-ku",
+            "zip": "160-0023",
+            "country": "Japan"
+          },
+          {
+            "facility": "Research Site",
+            "city": "Shinjuku-ku",
+            "zip": "169-0075",
+            "country": "Japan"
+          },
+          {
+            "facility": "Research Site",
+            "city": "Yokohama",
+            "zip": "220-0073",
+            "country": "Japan",
+            "geoPoint": {
+              "lat": 35.43333,
+              "lon": 139.65
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Katowice",
+            "zip": "40-611",
+            "country": "Poland",
+            "geoPoint": {
+              "lat": 50.2597,
+              "lon": 19.02173
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Lodz",
+            "zip": "90-436",
+            "country": "Poland",
+            "geoPoint": {
+              "lat": 51.77058,
+              "lon": 19.47395
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Szczecin",
+            "zip": "70-332",
+            "country": "Poland",
+            "geoPoint": {
+              "lat": 53.42894,
+              "lon": 14.55302
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Warsaw",
+            "zip": "04-141",
+            "country": "Poland",
+            "geoPoint": {
+              "lat": 52.22977,
+              "lon": 21.01178
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Wroclaw",
+            "zip": "50-368",
+            "country": "Poland",
+            "geoPoint": {
+              "lat": 51.10286,
+              "lon": 17.03006
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Wroclaw",
+            "zip": "51-318",
+            "country": "Poland",
+            "geoPoint": {
+              "lat": 51.10286,
+              "lon": 17.03006
+            }
+          }
+        ]
+      },
+      "referencesModule": {
+        "references": [
+          {
+            "pmid": "33333295",
+            "type": "DERIVED",
+            "citation": "Silverberg JI, Guttman-Yassky E, Gooderham M, Worm M, Rippon S, O'Quinn S, van der Merwe R, Kragh N, Kurbasic A, Wollenberg A. Health-related quality of life with tralokinumab in moderate-to-severe atopic dermatitis: A phase 2b randomized study. Ann Allergy Asthma Immunol. 2021 May;126(5):576-583.e4. doi: 10.1016/j.anai.2020.12.004. Epub 2020 Dec 15."
+          },
+          {
+            "pmid": "29906525",
+            "type": "DERIVED",
+            "citation": "Wollenberg A, Howell MD, Guttman-Yassky E, Silverberg JI, Kell C, Ranade K, Moate R, van der Merwe R. Treatment of atopic dermatitis with tralokinumab, an anti-IL-13 mAb. J Allergy Clin Immunol. 2019 Jan;143(1):135-141. doi: 10.1016/j.jaci.2018.05.029. Epub 2018 Jun 12."
+          }
+        ]
+      }
+    },
+    "resultsSection": {
+      "participantFlowModule": {
+        "preAssignmentDetails": "95 participants were considered screen failures and 204 participants were randomized and treated in the study.",
+        "recruitmentDetails": "A total of 299 participants participated in the study at 55 sites worldwide, including 24 sites in the United States of America, 8 sites in Germany, 6 sites each in Japan, Poland, and Canada, and 5 sites in Australia.",
+        "groups": [
+          {
+            "id": "FG000",
+            "title": "Placebo",
+            "description": "Placebo matched to Tralokinumab was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks."
+          },
+          {
+            "id": "FG001",
+            "title": "Tralokinumab Dose 1",
+            "description": "Tralokinumab Dose 1 was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks."
+          },
+          {
+            "id": "FG002",
+            "title": "Tralokinumab Dose 2",
+            "description": "Tralokinumab Dose 2 was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks."
+          },
+          {
+            "id": "FG003",
+            "title": "Tralokinumab Dose 3",
+            "description": "Tralokinumab Dose 3 was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks."
+          }
+        ],
+        "periods": [
+          {
+            "title": "Overall Study",
+            "milestones": [
+              {
+                "type": "STARTED",
+                "achievements": [
+                  {
+                    "groupId": "FG000",
+                    "numSubjects": "51"
+                  },
+                  {
+                    "groupId": "FG001",
+                    "numSubjects": "50"
+                  },
+                  {
+                    "groupId": "FG002",
+                    "numSubjects": "51"
+                  },
+                  {
+                    "groupId": "FG003",
+                    "numSubjects": "52"
+                  }
+                ]
+              },
+              {
+                "type": "COMPLETED",
+                "achievements": [
+                  {
+                    "groupId": "FG000",
+                    "numSubjects": "39"
+                  },
+                  {
+                    "groupId": "FG001",
+                    "numSubjects": "40"
+                  },
+                  {
+                    "groupId": "FG002",
+                    "numSubjects": "43"
+                  },
+                  {
+                    "groupId": "FG003",
+                    "numSubjects": "48"
+                  }
+                ]
+              },
+              {
+                "type": "NOT COMPLETED",
+                "achievements": [
+                  {
+                    "groupId": "FG000",
+                    "numSubjects": "12"
+                  },
+                  {
+                    "groupId": "FG001",
+                    "numSubjects": "10"
+                  },
+                  {
+                    "groupId": "FG002",
+                    "numSubjects": "8"
+                  },
+                  {
+                    "groupId": "FG003",
+                    "numSubjects": "4"
+                  }
+                ]
+              }
+            ],
+            "dropWithdraws": [
+              {
+                "type": "Lost to Follow-up",
+                "reasons": [
+                  {
+                    "groupId": "FG000",
+                    "numSubjects": "2"
+                  },
+                  {
+                    "groupId": "FG001",
+                    "numSubjects": "3"
+                  },
+                  {
+                    "groupId": "FG002",
+                    "numSubjects": "1"
+                  },
+                  {
+                    "groupId": "FG003",
+                    "numSubjects": "1"
+                  }
+                ]
+              },
+              {
+                "type": "Withdrawal by Subject",
+                "reasons": [
+                  {
+                    "groupId": "FG000",
+                    "numSubjects": "9"
+                  },
+                  {
+                    "groupId": "FG001",
+                    "numSubjects": "5"
+                  },
+                  {
+                    "groupId": "FG002",
+                    "numSubjects": "5"
+                  },
+                  {
+                    "groupId": "FG003",
+                    "numSubjects": "3"
+                  }
+                ]
+              },
+              {
+                "type": "Other",
+                "reasons": [
+                  {
+                    "groupId": "FG000",
+                    "numSubjects": "1"
+                  },
+                  {
+                    "groupId": "FG001",
+                    "numSubjects": "2"
+                  },
+                  {
+                    "groupId": "FG002",
+                    "numSubjects": "2"
+                  },
+                  {
+                    "groupId": "FG003",
+                    "numSubjects": "0"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "baselineCharacteristicsModule": {
+        "populationDescription": "The intent-to-treat (ITT) population included all randomized and treated participants, grouped according to assigned treatment.",
+        "groups": [
+          {
+            "id": "BG000",
+            "title": "Placebo",
+            "description": "Placebo matched to Tralokinumab was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks."
+          },
+          {
+            "id": "BG001",
+            "title": "Tralokinumab Dose 1",
+            "description": "Tralokinumab Dose 1 was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks."
+          },
+          {
+            "id": "BG002",
+            "title": "Tralokinumab Dose 2",
+            "description": "Tralokinumab Dose 2 was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks."
+          },
+          {
+            "id": "BG003",
+            "title": "Tralokinumab Dose 3",
+            "description": "Tralokinumab Dose 3 was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks."
+          },
+          {
+            "id": "BG004",
+            "title": "Total",
+            "description": "Total of all reporting groups"
+          }
+        ],
+        "denoms": [
+          {
+            "units": "Participants",
+            "counts": [
+              {
+                "groupId": "BG000",
+                "value": "51"
+              },
+              {
+                "groupId": "BG001",
+                "value": "50"
+              },
+              {
+                "groupId": "BG002",
+                "value": "51"
+              },
+              {
+                "groupId": "BG003",
+                "value": "52"
+              },
+              {
+                "groupId": "BG004",
+                "value": "204"
+              }
+            ]
+          }
+        ],
+        "measures": [
+          {
+            "title": "Age, Continuous",
+            "paramType": "MEAN",
+            "dispersionType": "STANDARD_DEVIATION",
+            "unitOfMeasure": "Years",
+            "classes": [
+              {
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "BG000",
+                        "value": "39.4",
+                        "spread": "14.5"
+                      },
+                      {
+                        "groupId": "BG001",
+                        "value": "39.1",
+                        "spread": "15.1"
+                      },
+                      {
+                        "groupId": "BG002",
+                        "value": "37.1",
+                        "spread": "14.0"
+                      },
+                      {
+                        "groupId": "BG003",
+                        "value": "35.7",
+                        "spread": "14.6"
+                      },
+                      {
+                        "groupId": "BG004",
+                        "value": "37.8",
+                        "spread": "14.5"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Sex: Female, Male",
+            "paramType": "COUNT_OF_PARTICIPANTS",
+            "unitOfMeasure": "Participants",
+            "classes": [
+              {
+                "categories": [
+                  {
+                    "title": "Female",
+                    "measurements": [
+                      {
+                        "groupId": "BG000",
+                        "value": "29"
+                      },
+                      {
+                        "groupId": "BG001",
+                        "value": "21"
+                      },
+                      {
+                        "groupId": "BG002",
+                        "value": "25"
+                      },
+                      {
+                        "groupId": "BG003",
+                        "value": "19"
+                      },
+                      {
+                        "groupId": "BG004",
+                        "value": "94"
+                      }
+                    ]
+                  },
+                  {
+                    "title": "Male",
+                    "measurements": [
+                      {
+                        "groupId": "BG000",
+                        "value": "22"
+                      },
+                      {
+                        "groupId": "BG001",
+                        "value": "29"
+                      },
+                      {
+                        "groupId": "BG002",
+                        "value": "26"
+                      },
+                      {
+                        "groupId": "BG003",
+                        "value": "33"
+                      },
+                      {
+                        "groupId": "BG004",
+                        "value": "110"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Ethnicity (NIH/OMB)",
+            "paramType": "COUNT_OF_PARTICIPANTS",
+            "unitOfMeasure": "Participants",
+            "classes": [
+              {
+                "categories": [
+                  {
+                    "title": "Hispanic or Latino",
+                    "measurements": [
+                      {
+                        "groupId": "BG000",
+                        "value": "2"
+                      },
+                      {
+                        "groupId": "BG001",
+                        "value": "2"
+                      },
+                      {
+                        "groupId": "BG002",
+                        "value": "3"
+                      },
+                      {
+                        "groupId": "BG003",
+                        "value": "4"
+                      },
+                      {
+                        "groupId": "BG004",
+                        "value": "11"
+                      }
+                    ]
+                  },
+                  {
+                    "title": "Not Hispanic or Latino",
+                    "measurements": [
+                      {
+                        "groupId": "BG000",
+                        "value": "49"
+                      },
+                      {
+                        "groupId": "BG001",
+                        "value": "48"
+                      },
+                      {
+                        "groupId": "BG002",
+                        "value": "48"
+                      },
+                      {
+                        "groupId": "BG003",
+                        "value": "48"
+                      },
+                      {
+                        "groupId": "BG004",
+                        "value": "193"
+                      }
+                    ]
+                  },
+                  {
+                    "title": "Unknown or Not Reported",
+                    "measurements": [
+                      {
+                        "groupId": "BG000",
+                        "value": "0"
+                      },
+                      {
+                        "groupId": "BG001",
+                        "value": "0"
+                      },
+                      {
+                        "groupId": "BG002",
+                        "value": "0"
+                      },
+                      {
+                        "groupId": "BG003",
+                        "value": "0"
+                      },
+                      {
+                        "groupId": "BG004",
+                        "value": "0"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Race (NIH/OMB)",
+            "paramType": "COUNT_OF_PARTICIPANTS",
+            "unitOfMeasure": "Participants",
+            "classes": [
+              {
+                "categories": [
+                  {
+                    "title": "American Indian or Alaska Native",
+                    "measurements": [
+                      {
+                        "groupId": "BG000",
+                        "value": "0"
+                      },
+                      {
+                        "groupId": "BG001",
+                        "value": "1"
+                      },
+                      {
+                        "groupId": "BG002",
+                        "value": "0"
+                      },
+                      {
+                        "groupId": "BG003",
+                        "value": "0"
+                      },
+                      {
+                        "groupId": "BG004",
+                        "value": "1"
+                      }
+                    ]
+                  },
+                  {
+                    "title": "Asian",
+                    "measurements": [
+                      {
+                        "groupId": "BG000",
+                        "value": "10"
+                      },
+                      {
+                        "groupId": "BG001",
+                        "value": "11"
+                      },
+                      {
+                        "groupId": "BG002",
+                        "value": "8"
+                      },
+                      {
+                        "groupId": "BG003",
+                        "value": "16"
+                      },
+                      {
+                        "groupId": "BG004",
+                        "value": "45"
+                      }
+                    ]
+                  },
+                  {
+                    "title": "Native Hawaiian or Other Pacific Islander",
+                    "measurements": [
+                      {
+                        "groupId": "BG000",
+                        "value": "1"
+                      },
+                      {
+                        "groupId": "BG001",
+                        "value": "0"
+                      },
+                      {
+                        "groupId": "BG002",
+                        "value": "0"
+                      },
+                      {
+                        "groupId": "BG003",
+                        "value": "0"
+                      },
+                      {
+                        "groupId": "BG004",
+                        "value": "1"
+                      }
+                    ]
+                  },
+                  {
+                    "title": "Black or African American",
+                    "measurements": [
+                      {
+                        "groupId": "BG000",
+                        "value": "8"
+                      },
+                      {
+                        "groupId": "BG001",
+                        "value": "4"
+                      },
+                      {
+                        "groupId": "BG002",
+                        "value": "10"
+                      },
+                      {
+                        "groupId": "BG003",
+                        "value": "7"
+                      },
+                      {
+                        "groupId": "BG004",
+                        "value": "29"
+                      }
+                    ]
+                  },
+                  {
+                    "title": "White",
+                    "measurements": [
+                      {
+                        "groupId": "BG000",
+                        "value": "31"
+                      },
+                      {
+                        "groupId": "BG001",
+                        "value": "33"
+                      },
+                      {
+                        "groupId": "BG002",
+                        "value": "33"
+                      },
+                      {
+                        "groupId": "BG003",
+                        "value": "28"
+                      },
+                      {
+                        "groupId": "BG004",
+                        "value": "125"
+                      }
+                    ]
+                  },
+                  {
+                    "title": "More than one race",
+                    "measurements": [
+                      {
+                        "groupId": "BG000",
+                        "value": "1"
+                      },
+                      {
+                        "groupId": "BG001",
+                        "value": "1"
+                      },
+                      {
+                        "groupId": "BG002",
+                        "value": "0"
+                      },
+                      {
+                        "groupId": "BG003",
+                        "value": "1"
+                      },
+                      {
+                        "groupId": "BG004",
+                        "value": "3"
+                      }
+                    ]
+                  },
+                  {
+                    "title": "Unknown or Not Reported",
+                    "measurements": [
+                      {
+                        "groupId": "BG000",
+                        "value": "0"
+                      },
+                      {
+                        "groupId": "BG001",
+                        "value": "0"
+                      },
+                      {
+                        "groupId": "BG002",
+                        "value": "0"
+                      },
+                      {
+                        "groupId": "BG003",
+                        "value": "0"
+                      },
+                      {
+                        "groupId": "BG004",
+                        "value": "0"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "outcomeMeasuresModule": {
+        "outcomeMeasures": [
+          {
+            "type": "PRIMARY",
+            "title": "Absolute Change From Baseline in Eczema Area and Severity Index (EASI) Total Score at Week 12",
+            "description": "EASI evaluates 4 natural anatomical regions for severity and extent of key disease signs and focuses on the key acute and chronic signs of inflammation (erythema, induration/papulation, excoriation, and lichenification). The maximum total score is 72, with higher values indicating more severe disease. The data presented here is Adjusted mean change after excluding the data from participants who took prohibited medications.",
+            "populationDescription": "The intent-to-treat (ITT) population included all randomized and treated participants, grouped according to assigned treatment. Here, the category \"Number Analyzed\" is number of participants analyzed for this outcome measure.",
+            "reportingStatus": "POSTED",
+            "paramType": "MEAN",
+            "dispersionType": "Standard Error",
+            "unitOfMeasure": "units on a scale",
+            "timeFrame": "Baseline (Day 1) and Week 12",
+            "groups": [
+              {
+                "id": "OG000",
+                "title": "Placebo",
+                "description": "Placebo matched to Tralokinumab was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks."
+              },
+              {
+                "id": "OG001",
+                "title": "Tralokinumab Dose 1",
+                "description": "Tralokinumab Dose 1 was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks."
+              },
+              {
+                "id": "OG002",
+                "title": "Tralokinumab Dose 2",
+                "description": "Tralokinumab Dose 2 was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks."
+              },
+              {
+                "id": "OG003",
+                "title": "Tralokinumab Dose 3",
+                "description": "Tralokinumab Dose 3 was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks."
+              }
+            ],
+            "denoms": [
+              {
+                "units": "Participants",
+                "counts": [
+                  {
+                    "groupId": "OG000",
+                    "value": "51"
+                  },
+                  {
+                    "groupId": "OG001",
+                    "value": "50"
+                  },
+                  {
+                    "groupId": "OG002",
+                    "value": "51"
+                  },
+                  {
+                    "groupId": "OG003",
+                    "value": "52"
+                  }
+                ]
+              }
+            ],
+            "classes": [
+              {
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "-10.78",
+                        "spread": "1.398"
+                      },
+                      {
+                        "groupId": "OG001",
+                        "value": "-13.67",
+                        "spread": "1.386"
+                      },
+                      {
+                        "groupId": "OG002",
+                        "value": "-15.14",
+                        "spread": "1.361"
+                      },
+                      {
+                        "groupId": "OG003",
+                        "value": "-15.72",
+                        "spread": "1.334"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "analyses": [
+              {
+                "groupIds": [
+                  "OG000",
+                  "OG001"
+                ],
+                "nonInferiorityType": "SUPERIORITY",
+                "pValue": "0.143",
+                "statisticalMethod": "Mixed Model Repeated Measures Analysis",
+                "paramType": "Adjusted Mean Difference",
+                "paramValue": "-2.89",
+                "ciPctValue": "95",
+                "ciNumSides": "TWO_SIDED",
+                "ciLowerLimit": "-6.78",
+                "ciUpperLimit": "0.99",
+                "dispersionType": "STANDARD_ERROR_OF_MEAN",
+                "dispersionValue": "1.968"
+              },
+              {
+                "groupIds": [
+                  "OG000",
+                  "OG002"
+                ],
+                "nonInferiorityType": "SUPERIORITY",
+                "pValue": "0.027",
+                "statisticalMethod": "Mixed Model Repeated Measures Analysis",
+                "paramType": "Adjusted Mean Difference",
+                "paramValue": "-4.36",
+                "ciPctValue": "95",
+                "ciNumSides": "TWO_SIDED",
+                "ciLowerLimit": "-8.22",
+                "ciUpperLimit": "-0.51",
+                "dispersionType": "STANDARD_ERROR_OF_MEAN",
+                "dispersionValue": "1.951"
+              },
+              {
+                "groupIds": [
+                  "OG000",
+                  "OG003"
+                ],
+                "nonInferiorityType": "SUPERIORITY",
+                "pValue": "0.011",
+                "statisticalMethod": "Mixed Model Repeated Measures Analysis",
+                "paramType": "Adjusted Mean Difference",
+                "paramValue": "-4.94",
+                "ciPctValue": "95",
+                "ciNumSides": "TWO_SIDED",
+                "ciLowerLimit": "-8.76",
+                "ciUpperLimit": "-1.13",
+                "dispersionType": "STANDARD_ERROR_OF_MEAN",
+                "dispersionValue": "1.932"
+              }
+            ]
+          },
+          {
+            "type": "PRIMARY",
+            "title": "Percentage of Participants Achieving Investigator's Global Assessment (IGA) Response of 0 (Clear) or 1 (Almost Clear) and at Least a 2-Grade Reduction From Baseline at Week 12",
+            "description": "The IGA allows investigators to assess overall disease severity at one given time point and consists of a 6-point severity scale from clear to very severe disease (0 = clear, 1 = almost clear, 2 = mild disease, 3 = moderate disease, 4 = severe disease, and 5 = very severe disease). A participant has IGA response if they achieve a score of 0 (clear) or 1 (almost clear) and at least a 2-grade reduction from baseline.",
+            "populationDescription": "The ITT population included all randomized and treated participants, grouped according to assigned treatment. Here, the category \"Number Analyzed\" is number of participants analyzed for this outcome measure.",
+            "reportingStatus": "POSTED",
+            "paramType": "NUMBER",
+            "unitOfMeasure": "Percentage of participants",
+            "timeFrame": "Week 12",
+            "groups": [
+              {
+                "id": "OG000",
+                "title": "Placebo",
+                "description": "Placebo matched to Tralokinumab was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks."
+              },
+              {
+                "id": "OG001",
+                "title": "Tralokinumab Dose 1",
+                "description": "Tralokinumab Dose 1 was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks."
+              },
+              {
+                "id": "OG002",
+                "title": "Tralokinumab Dose 2",
+                "description": "Tralokinumab Dose 2 was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks."
+              },
+              {
+                "id": "OG003",
+                "title": "Tralokinumab Dose 3",
+                "description": "Tralokinumab Dose 3 was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks."
+              }
+            ],
+            "denoms": [
+              {
+                "units": "Participants",
+                "counts": [
+                  {
+                    "groupId": "OG000",
+                    "value": "51"
+                  },
+                  {
+                    "groupId": "OG001",
+                    "value": "50"
+                  },
+                  {
+                    "groupId": "OG002",
+                    "value": "51"
+                  },
+                  {
+                    "groupId": "OG003",
+                    "value": "52"
+                  }
+                ]
+              }
+            ],
+            "classes": [
+              {
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "11.8"
+                      },
+                      {
+                        "groupId": "OG001",
+                        "value": "11.6"
+                      },
+                      {
+                        "groupId": "OG002",
+                        "value": "19.5"
+                      },
+                      {
+                        "groupId": "OG003",
+                        "value": "26.7"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "analyses": [
+              {
+                "groupIds": [
+                  "OG000",
+                  "OG001"
+                ],
+                "nonInferiorityType": "SUPERIORITY",
+                "pValue": "0.974",
+                "statisticalMethod": "Regression, Logistic",
+                "paramType": "Odds Ratio (OR)",
+                "paramValue": "0.98",
+                "ciPctValue": "95",
+                "ciNumSides": "TWO_SIDED",
+                "ciLowerLimit": "0.29",
+                "ciUpperLimit": "3.32"
+              },
+              {
+                "groupIds": [
+                  "OG000",
+                  "OG002"
+                ],
+                "nonInferiorityType": "SUPERIORITY",
+                "pValue": "0.281",
+                "statisticalMethod": "Regression, Logistic",
+                "paramType": "Odds Ratio (OR)",
+                "paramValue": "1.85",
+                "ciPctValue": "95",
+                "ciNumSides": "TWO_SIDED",
+                "ciLowerLimit": "0.61",
+                "ciUpperLimit": "5.65"
+              },
+              {
+                "groupIds": [
+                  "OG000",
+                  "OG003"
+                ],
+                "nonInferiorityType": "SUPERIORITY",
+                "pValue": "0.061",
+                "statisticalMethod": "Regression, Logistic",
+                "paramType": "Odds Ratio (OR)",
+                "paramValue": "2.83",
+                "ciPctValue": "95",
+                "ciNumSides": "TWO_SIDED",
+                "ciLowerLimit": "0.95",
+                "ciUpperLimit": "8.37"
+              }
+            ]
+          },
+          {
+            "type": "SECONDARY",
+            "title": "Number of Participants With Treatment Emergent Adverse Events (TEAEs) and Treatment Emergent Serious Adverse Events (TESAEs)",
+            "description": "An adverse event (AE) present at baseline that worsened in intensity after administration of investigational product or events absent at baseline that emerged after administration of study drug until Week 22. A serious adverse event (SAE) is an AE resulting in any of the following outcomes or deemed significant for any other reason: death; initial or prolonged inpatient hospitalization; life-threatening situation (immediate risk of dying); persistent or significant disability/incapacity; congenital anomaly/birth defect in the offspring of a participant who received Tralokinumab. Treatment-emergent adverse events between administration of investigational product and Week 22 that were absent before treatment or that worsened relative to pre-treatment state.",
+            "populationDescription": "As-treated population included all treated participants, grouped according to actual treatment received.",
+            "reportingStatus": "POSTED",
+            "paramType": "COUNT_OF_PARTICIPANTS",
+            "unitOfMeasure": "Participants",
+            "timeFrame": "From Study Drug Administration (Day 1) to Week 22",
+            "groups": [
+              {
+                "id": "OG000",
+                "title": "Placebo",
+                "description": "Placebo matched to Tralokinumab was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks."
+              },
+              {
+                "id": "OG001",
+                "title": "Tralokinumab Dose 1",
+                "description": "Tralokinumab Dose 1 was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks."
+              },
+              {
+                "id": "OG002",
+                "title": "Tralokinumab Dose 2",
+                "description": "Tralokinumab Dose 2 was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks."
+              },
+              {
+                "id": "OG003",
+                "title": "Tralokinumab Dose 3",
+                "description": "Tralokinumab Dose 3 was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks."
+              }
+            ],
+            "denoms": [
+              {
+                "units": "Participants",
+                "counts": [
+                  {
+                    "groupId": "OG000",
+                    "value": "51"
+                  },
+                  {
+                    "groupId": "OG001",
+                    "value": "50"
+                  },
+                  {
+                    "groupId": "OG002",
+                    "value": "51"
+                  },
+                  {
+                    "groupId": "OG003",
+                    "value": "52"
+                  }
+                ]
+              }
+            ],
+            "classes": [
+              {
+                "title": "TEAEs",
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "31"
+                      },
+                      {
+                        "groupId": "OG001",
+                        "value": "36"
+                      },
+                      {
+                        "groupId": "OG002",
+                        "value": "35"
+                      },
+                      {
+                        "groupId": "OG003",
+                        "value": "30"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "TESAEs",
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "1"
+                      },
+                      {
+                        "groupId": "OG001",
+                        "value": "3"
+                      },
+                      {
+                        "groupId": "OG002",
+                        "value": "2"
+                      },
+                      {
+                        "groupId": "OG003",
+                        "value": "0"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "SECONDARY",
+            "title": "Number of Participants With Vital Signs and Physical Examination Abnormalities Reported as Treatment Emergent Adverse Events",
+            "description": "Vital sign parameters included blood pressure, temperature, pulse rate, and respiratory rate. TEAEs were present at baseline that worsened in intensity after administration of study drug or events absent at baseline that emerged after administration of study drug until Week 22.",
+            "populationDescription": "As-treated population included all treated participants, grouped according to actual treatment received.",
+            "reportingStatus": "POSTED",
+            "paramType": "COUNT_OF_PARTICIPANTS",
+            "unitOfMeasure": "Participants",
+            "timeFrame": "From Study Drug Administration (Day 1) to Week 22",
+            "groups": [
+              {
+                "id": "OG000",
+                "title": "Placebo",
+                "description": "Placebo matched to Tralokinumab was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks."
+              },
+              {
+                "id": "OG001",
+                "title": "Tralokinumab Dose 1",
+                "description": "Tralokinumab Dose 1 was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks."
+              },
+              {
+                "id": "OG002",
+                "title": "Tralokinumab Dose 2",
+                "description": "Tralokinumab Dose 2 was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks."
+              },
+              {
+                "id": "OG003",
+                "title": "Tralokinumab Dose 3",
+                "description": "Tralokinumab Dose 3 was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks."
+              }
+            ],
+            "denoms": [
+              {
+                "units": "Participants",
+                "counts": [
+                  {
+                    "groupId": "OG000",
+                    "value": "51"
+                  },
+                  {
+                    "groupId": "OG001",
+                    "value": "50"
+                  },
+                  {
+                    "groupId": "OG002",
+                    "value": "51"
+                  },
+                  {
+                    "groupId": "OG003",
+                    "value": "52"
+                  }
+                ]
+              }
+            ],
+            "classes": [
+              {
+                "title": "Blood pressure increased",
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "0"
+                      },
+                      {
+                        "groupId": "OG001",
+                        "value": "1"
+                      },
+                      {
+                        "groupId": "OG002",
+                        "value": "1"
+                      },
+                      {
+                        "groupId": "OG003",
+                        "value": "0"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "Pyrexia",
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "1"
+                      },
+                      {
+                        "groupId": "OG001",
+                        "value": "0"
+                      },
+                      {
+                        "groupId": "OG002",
+                        "value": "1"
+                      },
+                      {
+                        "groupId": "OG003",
+                        "value": "0"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "Acute coronary syndrome",
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "0"
+                      },
+                      {
+                        "groupId": "OG001",
+                        "value": "1"
+                      },
+                      {
+                        "groupId": "OG002",
+                        "value": "0"
+                      },
+                      {
+                        "groupId": "OG003",
+                        "value": "0"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "Angina pectoris",
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "1"
+                      },
+                      {
+                        "groupId": "OG001",
+                        "value": "0"
+                      },
+                      {
+                        "groupId": "OG002",
+                        "value": "0"
+                      },
+                      {
+                        "groupId": "OG003",
+                        "value": "0"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "Hypertension",
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "0"
+                      },
+                      {
+                        "groupId": "OG001",
+                        "value": "0"
+                      },
+                      {
+                        "groupId": "OG002",
+                        "value": "1"
+                      },
+                      {
+                        "groupId": "OG003",
+                        "value": "0"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "Pallor",
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "0"
+                      },
+                      {
+                        "groupId": "OG001",
+                        "value": "0"
+                      },
+                      {
+                        "groupId": "OG002",
+                        "value": "0"
+                      },
+                      {
+                        "groupId": "OG003",
+                        "value": "1"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "SECONDARY",
+            "title": "Number of Participants With Clinical Laboratory Abnormalities Reported as Treatment Emergent Adverse Events",
+            "description": "An abnormal laboratory finding which required an action or intervention by the investigator, or a finding judged by the investigator to represent a change beyond the range of normal physiologic fluctuation were reported as an adverse event. Treatment-emergent adverse events between administration of investigational product and Week 22 that were absent before treatment or that worsened relative to pre-treatment state. Laboratory evaluations (haematology, serum chemistry and urinalysis) of blood and urine samples were performed.",
+            "populationDescription": "As-treated population included all treated participants, grouped according to actual treatment received.",
+            "reportingStatus": "POSTED",
+            "paramType": "COUNT_OF_PARTICIPANTS",
+            "unitOfMeasure": "Participants",
+            "timeFrame": "From Study Drug Administration (Day 1) to Week 22",
+            "groups": [
+              {
+                "id": "OG000",
+                "title": "Placebo",
+                "description": "Placebo matched to Tralokinumab was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks."
+              },
+              {
+                "id": "OG001",
+                "title": "Tralokinumab Dose 1",
+                "description": "Tralokinumab Dose 1 was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks."
+              },
+              {
+                "id": "OG002",
+                "title": "Tralokinumab Dose 2",
+                "description": "Tralokinumab Dose 2 was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks."
+              },
+              {
+                "id": "OG003",
+                "title": "Tralokinumab Dose 3",
+                "description": "Tralokinumab Dose 3 was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks."
+              }
+            ],
+            "denoms": [
+              {
+                "units": "Participants",
+                "counts": [
+                  {
+                    "groupId": "OG000",
+                    "value": "51"
+                  },
+                  {
+                    "groupId": "OG001",
+                    "value": "50"
+                  },
+                  {
+                    "groupId": "OG002",
+                    "value": "51"
+                  },
+                  {
+                    "groupId": "OG003",
+                    "value": "52"
+                  }
+                ]
+              }
+            ],
+            "classes": [
+              {
+                "title": "Anaemia",
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "0"
+                      },
+                      {
+                        "groupId": "OG001",
+                        "value": "1"
+                      },
+                      {
+                        "groupId": "OG002",
+                        "value": "0"
+                      },
+                      {
+                        "groupId": "OG003",
+                        "value": "0"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "Lymphopenia",
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "1"
+                      },
+                      {
+                        "groupId": "OG001",
+                        "value": "0"
+                      },
+                      {
+                        "groupId": "OG002",
+                        "value": "0"
+                      },
+                      {
+                        "groupId": "OG003",
+                        "value": "0"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "Alanine aminotransferase increased",
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "0"
+                      },
+                      {
+                        "groupId": "OG001",
+                        "value": "1"
+                      },
+                      {
+                        "groupId": "OG002",
+                        "value": "0"
+                      },
+                      {
+                        "groupId": "OG003",
+                        "value": "0"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "Aspartate aminotransferase increased",
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "0"
+                      },
+                      {
+                        "groupId": "OG001",
+                        "value": "1"
+                      },
+                      {
+                        "groupId": "OG002",
+                        "value": "0"
+                      },
+                      {
+                        "groupId": "OG003",
+                        "value": "0"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "Blood alkaline phosphatase increased",
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "0"
+                      },
+                      {
+                        "groupId": "OG001",
+                        "value": "0"
+                      },
+                      {
+                        "groupId": "OG002",
+                        "value": "1"
+                      },
+                      {
+                        "groupId": "OG003",
+                        "value": "0"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "Blood creatinine increased",
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "0"
+                      },
+                      {
+                        "groupId": "OG001",
+                        "value": "1"
+                      },
+                      {
+                        "groupId": "OG002",
+                        "value": "0"
+                      },
+                      {
+                        "groupId": "OG003",
+                        "value": "0"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "Blood immunoglobulin E increased",
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "0"
+                      },
+                      {
+                        "groupId": "OG001",
+                        "value": "0"
+                      },
+                      {
+                        "groupId": "OG002",
+                        "value": "1"
+                      },
+                      {
+                        "groupId": "OG003",
+                        "value": "0"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "Gamma-glutamyltransferase increased",
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "0"
+                      },
+                      {
+                        "groupId": "OG001",
+                        "value": "1"
+                      },
+                      {
+                        "groupId": "OG002",
+                        "value": "0"
+                      },
+                      {
+                        "groupId": "OG003",
+                        "value": "0"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "Hepatic function abnormal",
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "0"
+                      },
+                      {
+                        "groupId": "OG001",
+                        "value": "1"
+                      },
+                      {
+                        "groupId": "OG002",
+                        "value": "0"
+                      },
+                      {
+                        "groupId": "OG003",
+                        "value": "0"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "Hyperbilirubinaemia",
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "1"
+                      },
+                      {
+                        "groupId": "OG001",
+                        "value": "0"
+                      },
+                      {
+                        "groupId": "OG002",
+                        "value": "0"
+                      },
+                      {
+                        "groupId": "OG003",
+                        "value": "0"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "Liver function test abnormal",
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "0"
+                      },
+                      {
+                        "groupId": "OG001",
+                        "value": "0"
+                      },
+                      {
+                        "groupId": "OG002",
+                        "value": "1"
+                      },
+                      {
+                        "groupId": "OG003",
+                        "value": "0"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "Glycosuria",
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "0"
+                      },
+                      {
+                        "groupId": "OG001",
+                        "value": "1"
+                      },
+                      {
+                        "groupId": "OG002",
+                        "value": "0"
+                      },
+                      {
+                        "groupId": "OG003",
+                        "value": "0"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "Leukocyturia",
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "1"
+                      },
+                      {
+                        "groupId": "OG001",
+                        "value": "0"
+                      },
+                      {
+                        "groupId": "OG002",
+                        "value": "0"
+                      },
+                      {
+                        "groupId": "OG003",
+                        "value": "0"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "SECONDARY",
+            "title": "Number of Participants With Electrocardiogram (ECG) Abnormalities Reported as Treatment Emergent Adverse Events",
+            "description": "AEs observed in participants with clinically significant ECG abnormalities were assessed. ECG parameters included heart rate, RR, PR, QRS and QT intervals. Treatment-emergent adverse events between administration of investigational product and Week 22 that were absent before treatment or that worsened relative to pre-treatment state.",
+            "populationDescription": "As-treated population included all treated participants, grouped according to actual treatment received.",
+            "reportingStatus": "POSTED",
+            "paramType": "COUNT_OF_PARTICIPANTS",
+            "unitOfMeasure": "Participants",
+            "timeFrame": "From Study Drug Administration (Day 1) to Week 22",
+            "groups": [
+              {
+                "id": "OG000",
+                "title": "Placebo",
+                "description": "Placebo matched to Tralokinumab was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks."
+              },
+              {
+                "id": "OG001",
+                "title": "Tralokinumab Dose 1",
+                "description": "Tralokinumab Dose 1 was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks."
+              },
+              {
+                "id": "OG002",
+                "title": "Tralokinumab Dose 2",
+                "description": "Tralokinumab Dose 2 was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks."
+              },
+              {
+                "id": "OG003",
+                "title": "Tralokinumab Dose 3",
+                "description": "Tralokinumab Dose 3 was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks."
+              }
+            ],
+            "denoms": [
+              {
+                "units": "Participants",
+                "counts": [
+                  {
+                    "groupId": "OG000",
+                    "value": "51"
+                  },
+                  {
+                    "groupId": "OG001",
+                    "value": "50"
+                  },
+                  {
+                    "groupId": "OG002",
+                    "value": "51"
+                  },
+                  {
+                    "groupId": "OG003",
+                    "value": "52"
+                  }
+                ]
+              }
+            ],
+            "classes": [
+              {
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "0"
+                      },
+                      {
+                        "groupId": "OG001",
+                        "value": "0"
+                      },
+                      {
+                        "groupId": "OG002",
+                        "value": "0"
+                      },
+                      {
+                        "groupId": "OG003",
+                        "value": "0"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "SECONDARY",
+            "title": "Adjusted Percentage of Participants Achieving 50 Percent (%) Reduction From Baseline in Eczema Area and Severity Index (EASI) at Week 12",
+            "description": "EASI50 responder is defined as a participant who achieves at least a 50% reduction in EASI score from baseline. Data from participants who took prohibited medications were excluded from this analysis and a last observation carried forward (LOCF) analysis was used.",
+            "populationDescription": "The ITT population included all randomized and treated participants, grouped according to assigned treatment. Here, the category \"Number Analyzed\" is number of participants analyzed for this outcome measure.",
+            "reportingStatus": "POSTED",
+            "paramType": "NUMBER",
+            "unitOfMeasure": "Percentage of participants",
+            "timeFrame": "Week 12",
+            "groups": [
+              {
+                "id": "OG000",
+                "title": "Placebo",
+                "description": "Placebo matched to Tralokinumab was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks."
+              },
+              {
+                "id": "OG001",
+                "title": "Tralokinumab Dose 1",
+                "description": "Tralokinumab Dose 1 was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks."
+              },
+              {
+                "id": "OG002",
+                "title": "Tralokinumab Dose 2",
+                "description": "Tralokinumab Dose 2 was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks."
+              },
+              {
+                "id": "OG003",
+                "title": "Tralokinumab Dose 3",
+                "description": "Tralokinumab Dose 3 was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks."
+              }
+            ],
+            "denoms": [
+              {
+                "units": "Participants",
+                "counts": [
+                  {
+                    "groupId": "OG000",
+                    "value": "51"
+                  },
+                  {
+                    "groupId": "OG001",
+                    "value": "50"
+                  },
+                  {
+                    "groupId": "OG002",
+                    "value": "51"
+                  },
+                  {
+                    "groupId": "OG003",
+                    "value": "52"
+                  }
+                ]
+              }
+            ],
+            "classes": [
+              {
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "51.9"
+                      },
+                      {
+                        "groupId": "OG001",
+                        "value": "54.3"
+                      },
+                      {
+                        "groupId": "OG002",
+                        "value": "67.3"
+                      },
+                      {
+                        "groupId": "OG003",
+                        "value": "73.4"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "SECONDARY",
+            "title": "Absolute Change From Baseline in Scoring of Atopic Dermatitis (SCORAD) at Week 12",
+            "description": "The SCORAD is a clinical tool for assessing the severity (that is, extent, intensity) of atopic dermatitis (AD). The tool evaluates the extent and intensity of the AD lesions, along with participant symptoms. The maximum total score is 103, with higher values indicating more severe disease. The data presented here is Adjusted mean change after excluding the data from participants who took prohibited medications.",
+            "populationDescription": "The ITT population included all randomized and treated participants, grouped according to assigned treatment. Here, the category \"Number Analyzed\" is number of participants analyzed for this outcome measure.",
+            "reportingStatus": "POSTED",
+            "paramType": "MEAN",
+            "dispersionType": "Standard Error",
+            "unitOfMeasure": "units on a scale",
+            "timeFrame": "Baseline (Day 1) and Week 12",
+            "groups": [
+              {
+                "id": "OG000",
+                "title": "Placebo",
+                "description": "Placebo matched to Tralokinumab was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks."
+              },
+              {
+                "id": "OG001",
+                "title": "Tralokinumab Dose 1",
+                "description": "Tralokinumab Dose 1 was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks."
+              },
+              {
+                "id": "OG002",
+                "title": "Tralokinumab Dose 2",
+                "description": "Tralokinumab Dose 2 was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks."
+              },
+              {
+                "id": "OG003",
+                "title": "Tralokinumab Dose 3",
+                "description": "Tralokinumab Dose 3 was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks."
+              }
+            ],
+            "denoms": [
+              {
+                "units": "Participants",
+                "counts": [
+                  {
+                    "groupId": "OG000",
+                    "value": "51"
+                  },
+                  {
+                    "groupId": "OG001",
+                    "value": "50"
+                  },
+                  {
+                    "groupId": "OG002",
+                    "value": "51"
+                  },
+                  {
+                    "groupId": "OG003",
+                    "value": "52"
+                  }
+                ]
+              }
+            ],
+            "classes": [
+              {
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "-16.67",
+                        "spread": "2.224"
+                      },
+                      {
+                        "groupId": "OG001",
+                        "value": "-21.97",
+                        "spread": "2.204"
+                      },
+                      {
+                        "groupId": "OG002",
+                        "value": "-26.09",
+                        "spread": "2.168"
+                      },
+                      {
+                        "groupId": "OG003",
+                        "value": "-26.50",
+                        "spread": "2.123"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "SECONDARY",
+            "title": "Adjusted Percentage of Participants Achieving 50 Percent (%) Reduction From Baseline in SCORAD at Week 12",
+            "description": "SCORAD 50 responder is defined as a participant who achieves at least a 50% reduction in SCORAD score from baseline. Data from participants who took prohibited medications were excluded from this analysis and a LOCF analysis was used.",
+            "populationDescription": "The ITT population included all randomized and treated participants, grouped according to assigned treatment. Here, the category \"Number Analyzed\" is number of participants analyzed for this outcome measure.",
+            "reportingStatus": "POSTED",
+            "paramType": "NUMBER",
+            "unitOfMeasure": "Percentage of participants",
+            "timeFrame": "Week 12",
+            "groups": [
+              {
+                "id": "OG000",
+                "title": "Placebo",
+                "description": "Placebo matched to Tralokinumab was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks."
+              },
+              {
+                "id": "OG001",
+                "title": "Tralokinumab Dose 1",
+                "description": "Tralokinumab Dose 1 was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks."
+              },
+              {
+                "id": "OG002",
+                "title": "Tralokinumab Dose 2",
+                "description": "Tralokinumab Dose 2 was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks."
+              },
+              {
+                "id": "OG003",
+                "title": "Tralokinumab Dose 3",
+                "description": "Tralokinumab Dose 3 was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks."
+              }
+            ],
+            "denoms": [
+              {
+                "units": "Participants",
+                "counts": [
+                  {
+                    "groupId": "OG000",
+                    "value": "51"
+                  },
+                  {
+                    "groupId": "OG001",
+                    "value": "50"
+                  },
+                  {
+                    "groupId": "OG002",
+                    "value": "51"
+                  },
+                  {
+                    "groupId": "OG003",
+                    "value": "52"
+                  }
+                ]
+              }
+            ],
+            "classes": [
+              {
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "19.5"
+                      },
+                      {
+                        "groupId": "OG001",
+                        "value": "26.9"
+                      },
+                      {
+                        "groupId": "OG002",
+                        "value": "44.2"
+                      },
+                      {
+                        "groupId": "OG003",
+                        "value": "44.1"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "SECONDARY",
+            "title": "Change From Baseline in Pruritus Numeric Rating Scale (NRS) (7-day Mean Score) at Week 12",
+            "description": "Pruritus assessed using an NRS (0 - 10) with 0= no itch and 10= worst imaginable itch. Daily pruritus assessments were summarized as weekly peak score and a change from baseline in weekly peak score was calculated. The data presented here is Adjusted mean change after excluding the data from participants who took prohibited medications.",
+            "populationDescription": "The ITT population included all randomized and treated participants, grouped according to assigned treatment. Here, the category \"Number Analyzed\" is number of participants analyzed for this outcome measure.",
+            "reportingStatus": "POSTED",
+            "paramType": "MEAN",
+            "dispersionType": "Standard Error",
+            "unitOfMeasure": "units on a scale",
+            "timeFrame": "Baseline (Day 1) and Week 12",
+            "groups": [
+              {
+                "id": "OG000",
+                "title": "Placebo",
+                "description": "Placebo matched to Tralokinumab was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks."
+              },
+              {
+                "id": "OG001",
+                "title": "Tralokinumab Dose 1",
+                "description": "Tralokinumab Dose 1 was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks."
+              },
+              {
+                "id": "OG002",
+                "title": "Tralokinumab Dose 2",
+                "description": "Tralokinumab Dose 2 was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks."
+              },
+              {
+                "id": "OG003",
+                "title": "Tralokinumab Dose 3",
+                "description": "Tralokinumab Dose 3 was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks."
+              }
+            ],
+            "denoms": [
+              {
+                "units": "Participants",
+                "counts": [
+                  {
+                    "groupId": "OG000",
+                    "value": "51"
+                  },
+                  {
+                    "groupId": "OG001",
+                    "value": "50"
+                  },
+                  {
+                    "groupId": "OG002",
+                    "value": "51"
+                  },
+                  {
+                    "groupId": "OG003",
+                    "value": "52"
+                  }
+                ]
+              }
+            ],
+            "classes": [
+              {
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "-1.03",
+                        "spread": "0.270"
+                      },
+                      {
+                        "groupId": "OG001",
+                        "value": "-1.80",
+                        "spread": "0.266"
+                      },
+                      {
+                        "groupId": "OG002",
+                        "value": "-1.59",
+                        "spread": "0.260"
+                      },
+                      {
+                        "groupId": "OG003",
+                        "value": "-2.17",
+                        "spread": "0.256"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "adverseEventsModule": {
+        "frequencyThreshold": "3",
+        "timeFrame": "From Study Drug Administration (Day 1) to Week 22",
+        "eventGroups": [
+          {
+            "id": "EG000",
+            "title": "Placebo",
+            "description": "Placebo matched to Tralokinumab was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks.",
+            "deathsNumAffected": 0,
+            "deathsNumAtRisk": 51,
+            "seriousNumAffected": 1,
+            "seriousNumAtRisk": 51,
+            "otherNumAffected": 15,
+            "otherNumAtRisk": 51
+          },
+          {
+            "id": "EG001",
+            "title": "Tralokinumab Dose 1",
+            "description": "Tralokinumab Dose 1 was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks.",
+            "deathsNumAffected": 1,
+            "deathsNumAtRisk": 50,
+            "seriousNumAffected": 3,
+            "seriousNumAtRisk": 50,
+            "otherNumAffected": 20,
+            "otherNumAtRisk": 50
+          },
+          {
+            "id": "EG002",
+            "title": "Tralokinumab Dose 2",
+            "description": "Tralokinumab Dose 2 was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks.",
+            "deathsNumAffected": 0,
+            "deathsNumAtRisk": 51,
+            "seriousNumAffected": 2,
+            "seriousNumAtRisk": 51,
+            "otherNumAffected": 21,
+            "otherNumAtRisk": 51
+          },
+          {
+            "id": "EG003",
+            "title": "Tralokinumab Dose 3",
+            "description": "Tralokinumab Dose 3 was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks.",
+            "deathsNumAffected": 0,
+            "deathsNumAtRisk": 52,
+            "seriousNumAffected": 0,
+            "seriousNumAtRisk": 52,
+            "otherNumAffected": 22,
+            "otherNumAtRisk": 52
+          }
+        ],
+        "seriousEvents": [
+          {
+            "term": "Angina pectoris",
+            "organSystem": "Cardiac disorders",
+            "sourceVocabulary": "MedDRA 18.1",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numEvents": 1,
+                "numAffected": 1,
+                "numAtRisk": 51
+              },
+              {
+                "groupId": "EG001",
+                "numEvents": 0,
+                "numAffected": 0,
+                "numAtRisk": 50
+              },
+              {
+                "groupId": "EG002",
+                "numEvents": 0,
+                "numAffected": 0,
+                "numAtRisk": 51
+              },
+              {
+                "groupId": "EG003",
+                "numEvents": 0,
+                "numAffected": 0,
+                "numAtRisk": 52
+              }
+            ]
+          },
+          {
+            "term": "Upper gastrointestinal haemorrhage",
+            "organSystem": "Gastrointestinal disorders",
+            "sourceVocabulary": "MedDRA 18.1",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numEvents": 0,
+                "numAffected": 0,
+                "numAtRisk": 51
+              },
+              {
+                "groupId": "EG001",
+                "numEvents": 1,
+                "numAffected": 1,
+                "numAtRisk": 50
+              },
+              {
+                "groupId": "EG002",
+                "numEvents": 0,
+                "numAffected": 0,
+                "numAtRisk": 51
+              },
+              {
+                "groupId": "EG003",
+                "numEvents": 0,
+                "numAffected": 0,
+                "numAtRisk": 52
+              }
+            ]
+          },
+          {
+            "term": "Death",
+            "organSystem": "General disorders",
+            "sourceVocabulary": "MedDRA 18.1",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numEvents": 0,
+                "numAffected": 0,
+                "numAtRisk": 51
+              },
+              {
+                "groupId": "EG001",
+                "numEvents": 1,
+                "numAffected": 1,
+                "numAtRisk": 50
+              },
+              {
+                "groupId": "EG002",
+                "numEvents": 0,
+                "numAffected": 0,
+                "numAtRisk": 51
+              },
+              {
+                "groupId": "EG003",
+                "numEvents": 0,
+                "numAffected": 0,
+                "numAtRisk": 52
+              }
+            ]
+          },
+          {
+            "term": "Cholelithiasis",
+            "organSystem": "Hepatobiliary disorders",
+            "sourceVocabulary": "MedDRA 18.1",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numEvents": 0,
+                "numAffected": 0,
+                "numAtRisk": 51
+              },
+              {
+                "groupId": "EG001",
+                "numEvents": 1,
+                "numAffected": 1,
+                "numAtRisk": 50
+              },
+              {
+                "groupId": "EG002",
+                "numEvents": 0,
+                "numAffected": 0,
+                "numAtRisk": 51
+              },
+              {
+                "groupId": "EG003",
+                "numEvents": 0,
+                "numAffected": 0,
+                "numAtRisk": 52
+              }
+            ]
+          },
+          {
+            "term": "Hepatic function abnormal",
+            "organSystem": "Hepatobiliary disorders",
+            "sourceVocabulary": "MedDRA 18.1",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numEvents": 0,
+                "numAffected": 0,
+                "numAtRisk": 51
+              },
+              {
+                "groupId": "EG001",
+                "numEvents": 1,
+                "numAffected": 1,
+                "numAtRisk": 50
+              },
+              {
+                "groupId": "EG002",
+                "numEvents": 0,
+                "numAffected": 0,
+                "numAtRisk": 51
+              },
+              {
+                "groupId": "EG003",
+                "numEvents": 0,
+                "numAffected": 0,
+                "numAtRisk": 52
+              }
+            ]
+          },
+          {
+            "term": "Ovarian cyst",
+            "organSystem": "Reproductive system and breast disorders",
+            "sourceVocabulary": "MedDRA 18.1",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numEvents": 0,
+                "numAffected": 0,
+                "numAtRisk": 51
+              },
+              {
+                "groupId": "EG001",
+                "numEvents": 0,
+                "numAffected": 0,
+                "numAtRisk": 50
+              },
+              {
+                "groupId": "EG002",
+                "numEvents": 1,
+                "numAffected": 1,
+                "numAtRisk": 51
+              },
+              {
+                "groupId": "EG003",
+                "numEvents": 0,
+                "numAffected": 0,
+                "numAtRisk": 52
+              }
+            ]
+          },
+          {
+            "term": "Uterine polyp",
+            "organSystem": "Reproductive system and breast disorders",
+            "sourceVocabulary": "MedDRA 18.1",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numEvents": 0,
+                "numAffected": 0,
+                "numAtRisk": 51
+              },
+              {
+                "groupId": "EG001",
+                "numEvents": 0,
+                "numAffected": 0,
+                "numAtRisk": 50
+              },
+              {
+                "groupId": "EG002",
+                "numEvents": 1,
+                "numAffected": 1,
+                "numAtRisk": 51
+              },
+              {
+                "groupId": "EG003",
+                "numEvents": 0,
+                "numAffected": 0,
+                "numAtRisk": 52
+              }
+            ]
+          },
+          {
+            "term": "Asthma",
+            "organSystem": "Respiratory, thoracic and mediastinal disorders",
+            "sourceVocabulary": "MedDRA 18.1",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numEvents": 0,
+                "numAffected": 0,
+                "numAtRisk": 51
+              },
+              {
+                "groupId": "EG001",
+                "numEvents": 0,
+                "numAffected": 0,
+                "numAtRisk": 50
+              },
+              {
+                "groupId": "EG002",
+                "numEvents": 1,
+                "numAffected": 1,
+                "numAtRisk": 51
+              },
+              {
+                "groupId": "EG003",
+                "numEvents": 0,
+                "numAffected": 0,
+                "numAtRisk": 52
+              }
+            ]
+          }
+        ],
+        "otherEvents": [
+          {
+            "term": "Nasopharyngitis",
+            "organSystem": "Infections and infestations",
+            "sourceVocabulary": "MedDRA 18.1",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numEvents": 9,
+                "numAffected": 6,
+                "numAtRisk": 51
+              },
+              {
+                "groupId": "EG001",
+                "numEvents": 12,
+                "numAffected": 11,
+                "numAtRisk": 50
+              },
+              {
+                "groupId": "EG002",
+                "numEvents": 9,
+                "numAffected": 8,
+                "numAtRisk": 51
+              },
+              {
+                "groupId": "EG003",
+                "numEvents": 20,
+                "numAffected": 13,
+                "numAtRisk": 52
+              }
+            ]
+          },
+          {
+            "term": "Sinusitis",
+            "organSystem": "Infections and infestations",
+            "sourceVocabulary": "MedDRA 18.1",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numEvents": 1,
+                "numAffected": 1,
+                "numAtRisk": 51
+              },
+              {
+                "groupId": "EG001",
+                "numEvents": 1,
+                "numAffected": 1,
+                "numAtRisk": 50
+              },
+              {
+                "groupId": "EG002",
+                "numEvents": 2,
+                "numAffected": 2,
+                "numAtRisk": 51
+              },
+              {
+                "groupId": "EG003",
+                "numEvents": 3,
+                "numAffected": 3,
+                "numAtRisk": 52
+              }
+            ]
+          },
+          {
+            "term": "Upper respiratory tract infection",
+            "organSystem": "Infections and infestations",
+            "sourceVocabulary": "MedDRA 18.1",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numEvents": 6,
+                "numAffected": 5,
+                "numAtRisk": 51
+              },
+              {
+                "groupId": "EG001",
+                "numEvents": 7,
+                "numAffected": 5,
+                "numAtRisk": 50
+              },
+              {
+                "groupId": "EG002",
+                "numEvents": 9,
+                "numAffected": 6,
+                "numAtRisk": 51
+              },
+              {
+                "groupId": "EG003",
+                "numEvents": 6,
+                "numAffected": 4,
+                "numAtRisk": 52
+              }
+            ]
+          },
+          {
+            "term": "Headache",
+            "organSystem": "Nervous system disorders",
+            "sourceVocabulary": "MedDRA 18.1",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numEvents": 3,
+                "numAffected": 2,
+                "numAtRisk": 51
+              },
+              {
+                "groupId": "EG001",
+                "numEvents": 6,
+                "numAffected": 3,
+                "numAtRisk": 50
+              },
+              {
+                "groupId": "EG002",
+                "numEvents": 4,
+                "numAffected": 4,
+                "numAtRisk": 51
+              },
+              {
+                "groupId": "EG003",
+                "numEvents": 4,
+                "numAffected": 4,
+                "numAtRisk": 52
+              }
+            ]
+          },
+          {
+            "term": "Dermatitis atopic",
+            "organSystem": "Skin and subcutaneous tissue disorders",
+            "sourceVocabulary": "MedDRA 18.1",
+            "assessmentType": "SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numEvents": 5,
+                "numAffected": 4,
+                "numAtRisk": 51
+              },
+              {
+                "groupId": "EG001",
+                "numEvents": 3,
+                "numAffected": 3,
+                "numAtRisk": 50
+              },
+              {
+                "groupId": "EG002",
+                "numEvents": 4,
+                "numAffected": 3,
+                "numAtRisk": 51
+              },
+              {
+                "groupId": "EG003",
+                "numEvents": 4,
+                "numAffected": 3,
+                "numAtRisk": 52
+              }
+            ]
+          }
+        ]
+      },
+      "moreInfoModule": {
+        "certainAgreement": {
+          "piSponsorEmployee": false,
+          "restrictionType": "OTHER",
+          "restrictiveAgreement": true,
+          "otherDetails": "MedImmune has 60 days to review results communications prior to public release and may delete information that compromises on-going studies or is considered proprietary. This restriction is not intended to compromise the objective scientific integrity of the manuscript, it being understood that results shall be published regardless of outcome."
+        },
+        "pointOfContact": {
+          "title": "Rene van der Merwe",
+          "organization": "MedImmune, LLC",
+          "email": "information.center@astrazeneca.com",
+          "phone": "301-398-4095"
+        }
+      }
+    },
+    "derivedSection": {
+      "miscInfoModule": {
+        "versionHolder": "2026-11-03"
+      },
+      "conditionBrowseModule": {
+        "meshes": [
+          {
+            "id": "D003876",
+            "term": "Dermatitis, Atopic"
+          }
+        ],
+        "ancestors": [
+          {
+            "id": "D012873",
+            "term": "Skin Diseases, Genetic"
+          },
+          {
+            "id": "D030342",
+            "term": "Genetic Diseases, Inborn"
+          },
+          {
+            "id": "D009358",
+            "term": "Congenital, Hereditary, and Neonatal Diseases and Abnormalities"
+          },
+          {
+            "id": "D003872",
+            "term": "Dermatitis"
+          },
+          {
+            "id": "D012871",
+            "term": "Skin Diseases"
+          },
+          {
+            "id": "D017437",
+            "term": "Skin and Connective Tissue Diseases"
+          },
+          {
+            "id": "D017443",
+            "term": "Skin Diseases, Eczematous"
+          },
+          {
+            "id": "D006969",
+            "term": "Hypersensitivity, Immediate"
+          },
+          {
+            "id": "D006967",
+            "term": "Hypersensitivity"
+          },
+          {
+            "id": "D007154",
+            "term": "Immune System Diseases"
+          }
+        ]
+      }
+    },
+    "hasResults": true
+  },
+  "expected_digest": "3e933eac56369196c45d59e3c20a96e61c92fe84e7b63de35821faaa4c2581f5",
+  "anchors": [
+    {
+      "id": "eligibility",
+      "address": "/protocolSection/eligibilityModule/eligibilityCriteria",
+      "digest": "3e933eac56369196c45d59e3c20a96e61c92fe84e7b63de35821faaa4c2581f5",
+      "expected": "Inclusion Criteria:\n\n* Physician diagnosis of atopic dermatitis for greater than (\\>) 1 year\n* Atopic dermatitis involvement of greater than or equal to (\\>=) 10 percent (%) body surface area\n* EASI score of \\>= 12\n* SCORAD of \\>= 25\n* IGA score of \\>= 3\n* Effective birth control in line with protocol details\n\nExclusion Criteria:\n\n* History of anaphylaxis following any biologic therapy\n* Hepatitis B, C or human immunodeficiency virus\n* Pregnant or breastfeeding\n* History of cancer\n* Previous receipt of tralokinumab"
+    },
+    {
+      "id": "description",
+      "address": "/protocolSection/descriptionModule",
+      "digest": "3e933eac56369196c45d59e3c20a96e61c92fe84e7b63de35821faaa4c2581f5",
+      "expected": {
+        "briefSummary": "The aim of the study is to evaluate the efficacy and safety of tralokinumab in adults with atopic dermatitis"
+      }
+    },
+    {
+      "id": "outcomes",
+      "address": "/protocolSection/outcomesModule",
+      "digest": "3e933eac56369196c45d59e3c20a96e61c92fe84e7b63de35821faaa4c2581f5",
+      "expected": {
+        "primaryOutcomes": [
+          {
+            "measure": "Absolute Change From Baseline in Eczema Area and Severity Index (EASI) Total Score at Week 12",
+            "description": "EASI evaluates 4 natural anatomical regions for severity and extent of key disease signs and focuses on the key acute and chronic signs of inflammation (erythema, induration/papulation, excoriation, and lichenification). The maximum total score is 72, with higher values indicating more severe disease. The data presented here is Adjusted mean change after excluding the data from participants who took prohibited medications.",
+            "timeFrame": "Baseline (Day 1) and Week 12"
+          },
+          {
+            "measure": "Percentage of Participants Achieving Investigator's Global Assessment (IGA) Response of 0 (Clear) or 1 (Almost Clear) and at Least a 2-Grade Reduction From Baseline at Week 12",
+            "description": "The IGA allows investigators to assess overall disease severity at one given time point and consists of a 6-point severity scale from clear to very severe disease (0 = clear, 1 = almost clear, 2 = mild disease, 3 = moderate disease, 4 = severe disease, and 5 = very severe disease). A participant has IGA response if they achieve a score of 0 (clear) or 1 (almost clear) and at least a 2-grade reduction from baseline.",
+            "timeFrame": "Week 12"
+          }
+        ],
+        "secondaryOutcomes": [
+          {
+            "measure": "Number of Participants With Treatment Emergent Adverse Events (TEAEs) and Treatment Emergent Serious Adverse Events (TESAEs)",
+            "description": "An adverse event (AE) present at baseline that worsened in intensity after administration of investigational product or events absent at baseline that emerged after administration of study drug until Week 22. A serious adverse event (SAE) is an AE resulting in any of the following outcomes or deemed significant for any other reason: death; initial or prolonged inpatient hospitalization; life-threatening situation (immediate risk of dying); persistent or significant disability/incapacity; congenital anomaly/birth defect in the offspring of a participant who received Tralokinumab. Treatment-emergent adverse events between administration of investigational product and Week 22 that were absent before treatment or that worsened relative to pre-treatment state.",
+            "timeFrame": "From Study Drug Administration (Day 1) to Week 22"
+          },
+          {
+            "measure": "Number of Participants With Vital Signs and Physical Examination Abnormalities Reported as Treatment Emergent Adverse Events",
+            "description": "Vital sign parameters included blood pressure, temperature, pulse rate, and respiratory rate. TEAEs were present at baseline that worsened in intensity after administration of study drug or events absent at baseline that emerged after administration of study drug until Week 22.",
+            "timeFrame": "From Study Drug Administration (Day 1) to Week 22"
+          },
+          {
+            "measure": "Number of Participants With Clinical Laboratory Abnormalities Reported as Treatment Emergent Adverse Events",
+            "description": "An abnormal laboratory finding which required an action or intervention by the investigator, or a finding judged by the investigator to represent a change beyond the range of normal physiologic fluctuation were reported as an adverse event. Treatment-emergent adverse events between administration of investigational product and Week 22 that were absent before treatment or that worsened relative to pre-treatment state. Laboratory evaluations (haematology, serum chemistry and urinalysis) of blood and urine samples were performed.",
+            "timeFrame": "From Study Drug Administration (Day 1) to Week 22"
+          },
+          {
+            "measure": "Number of Participants With Electrocardiogram (ECG) Abnormalities Reported as Treatment Emergent Adverse Events",
+            "description": "AEs observed in participants with clinically significant ECG abnormalities were assessed. ECG parameters included heart rate, RR, PR, QRS and QT intervals. Treatment-emergent adverse events between administration of investigational product and Week 22 that were absent before treatment or that worsened relative to pre-treatment state.",
+            "timeFrame": "From Study Drug Administration (Day 1) to Week 22"
+          },
+          {
+            "measure": "Adjusted Percentage of Participants Achieving 50 Percent (%) Reduction From Baseline in Eczema Area and Severity Index (EASI) at Week 12",
+            "description": "EASI50 responder is defined as a participant who achieves at least a 50% reduction in EASI score from baseline. Data from participants who took prohibited medications were excluded from this analysis and a last observation carried forward (LOCF) analysis was used.",
+            "timeFrame": "Week 12"
+          },
+          {
+            "measure": "Absolute Change From Baseline in Scoring of Atopic Dermatitis (SCORAD) at Week 12",
+            "description": "The SCORAD is a clinical tool for assessing the severity (that is, extent, intensity) of atopic dermatitis (AD). The tool evaluates the extent and intensity of the AD lesions, along with participant symptoms. The maximum total score is 103, with higher values indicating more severe disease. The data presented here is Adjusted mean change after excluding the data from participants who took prohibited medications.",
+            "timeFrame": "Baseline (Day 1) and Week 12"
+          },
+          {
+            "measure": "Adjusted Percentage of Participants Achieving 50 Percent (%) Reduction From Baseline in SCORAD at Week 12",
+            "description": "SCORAD 50 responder is defined as a participant who achieves at least a 50% reduction in SCORAD score from baseline. Data from participants who took prohibited medications were excluded from this analysis and a LOCF analysis was used.",
+            "timeFrame": "Week 12"
+          },
+          {
+            "measure": "Change From Baseline in Pruritus Numeric Rating Scale (NRS) (7-day Mean Score) at Week 12",
+            "description": "Pruritus assessed using an NRS (0 - 10) with 0= no itch and 10= worst imaginable itch. Daily pruritus assessments were summarized as weekly peak score and a change from baseline in weekly peak score was calculated. The data presented here is Adjusted mean change after excluding the data from participants who took prohibited medications.",
+            "timeFrame": "Baseline (Day 1) and Week 12"
+          }
+        ]
+      }
+    },
+    {
+      "id": "result-0",
+      "address": "/resultsSection/outcomeMeasuresModule/outcomeMeasures/0",
+      "digest": "3e933eac56369196c45d59e3c20a96e61c92fe84e7b63de35821faaa4c2581f5",
+      "expected": {
+        "type": "PRIMARY",
+        "title": "Absolute Change From Baseline in Eczema Area and Severity Index (EASI) Total Score at Week 12",
+        "description": "EASI evaluates 4 natural anatomical regions for severity and extent of key disease signs and focuses on the key acute and chronic signs of inflammation (erythema, induration/papulation, excoriation, and lichenification). The maximum total score is 72, with higher values indicating more severe disease. The data presented here is Adjusted mean change after excluding the data from participants who took prohibited medications.",
+        "populationDescription": "The intent-to-treat (ITT) population included all randomized and treated participants, grouped according to assigned treatment. Here, the category \"Number Analyzed\" is number of participants analyzed for this outcome measure.",
+        "reportingStatus": "POSTED",
+        "paramType": "MEAN",
+        "dispersionType": "Standard Error",
+        "unitOfMeasure": "units on a scale",
+        "timeFrame": "Baseline (Day 1) and Week 12",
+        "groups": [
+          {
+            "id": "OG000",
+            "title": "Placebo",
+            "description": "Placebo matched to Tralokinumab was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks."
+          },
+          {
+            "id": "OG001",
+            "title": "Tralokinumab Dose 1",
+            "description": "Tralokinumab Dose 1 was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks."
+          },
+          {
+            "id": "OG002",
+            "title": "Tralokinumab Dose 2",
+            "description": "Tralokinumab Dose 2 was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks."
+          },
+          {
+            "id": "OG003",
+            "title": "Tralokinumab Dose 3",
+            "description": "Tralokinumab Dose 3 was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks."
+          }
+        ],
+        "denoms": [
+          {
+            "units": "Participants",
+            "counts": [
+              {
+                "groupId": "OG000",
+                "value": "51"
+              },
+              {
+                "groupId": "OG001",
+                "value": "50"
+              },
+              {
+                "groupId": "OG002",
+                "value": "51"
+              },
+              {
+                "groupId": "OG003",
+                "value": "52"
+              }
+            ]
+          }
+        ],
+        "classes": [
+          {
+            "categories": [
+              {
+                "measurements": [
+                  {
+                    "groupId": "OG000",
+                    "value": "-10.78",
+                    "spread": "1.398"
+                  },
+                  {
+                    "groupId": "OG001",
+                    "value": "-13.67",
+                    "spread": "1.386"
+                  },
+                  {
+                    "groupId": "OG002",
+                    "value": "-15.14",
+                    "spread": "1.361"
+                  },
+                  {
+                    "groupId": "OG003",
+                    "value": "-15.72",
+                    "spread": "1.334"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "analyses": [
+          {
+            "groupIds": [
+              "OG000",
+              "OG001"
+            ],
+            "nonInferiorityType": "SUPERIORITY",
+            "pValue": "0.143",
+            "statisticalMethod": "Mixed Model Repeated Measures Analysis",
+            "paramType": "Adjusted Mean Difference",
+            "paramValue": "-2.89",
+            "ciPctValue": "95",
+            "ciNumSides": "TWO_SIDED",
+            "ciLowerLimit": "-6.78",
+            "ciUpperLimit": "0.99",
+            "dispersionType": "STANDARD_ERROR_OF_MEAN",
+            "dispersionValue": "1.968"
+          },
+          {
+            "groupIds": [
+              "OG000",
+              "OG002"
+            ],
+            "nonInferiorityType": "SUPERIORITY",
+            "pValue": "0.027",
+            "statisticalMethod": "Mixed Model Repeated Measures Analysis",
+            "paramType": "Adjusted Mean Difference",
+            "paramValue": "-4.36",
+            "ciPctValue": "95",
+            "ciNumSides": "TWO_SIDED",
+            "ciLowerLimit": "-8.22",
+            "ciUpperLimit": "-0.51",
+            "dispersionType": "STANDARD_ERROR_OF_MEAN",
+            "dispersionValue": "1.951"
+          },
+          {
+            "groupIds": [
+              "OG000",
+              "OG003"
+            ],
+            "nonInferiorityType": "SUPERIORITY",
+            "pValue": "0.011",
+            "statisticalMethod": "Mixed Model Repeated Measures Analysis",
+            "paramType": "Adjusted Mean Difference",
+            "paramValue": "-4.94",
+            "ciPctValue": "95",
+            "ciNumSides": "TWO_SIDED",
+            "ciLowerLimit": "-8.76",
+            "ciUpperLimit": "-1.13",
+            "dispersionType": "STANDARD_ERROR_OF_MEAN",
+            "dispersionValue": "1.932"
+          }
+        ]
+      }
+    },
+    {
+      "id": "result-6",
+      "address": "/resultsSection/outcomeMeasuresModule/outcomeMeasures/6",
+      "digest": "3e933eac56369196c45d59e3c20a96e61c92fe84e7b63de35821faaa4c2581f5",
+      "expected": {
+        "type": "SECONDARY",
+        "title": "Adjusted Percentage of Participants Achieving 50 Percent (%) Reduction From Baseline in Eczema Area and Severity Index (EASI) at Week 12",
+        "description": "EASI50 responder is defined as a participant who achieves at least a 50% reduction in EASI score from baseline. Data from participants who took prohibited medications were excluded from this analysis and a last observation carried forward (LOCF) analysis was used.",
+        "populationDescription": "The ITT population included all randomized and treated participants, grouped according to assigned treatment. Here, the category \"Number Analyzed\" is number of participants analyzed for this outcome measure.",
+        "reportingStatus": "POSTED",
+        "paramType": "NUMBER",
+        "unitOfMeasure": "Percentage of participants",
+        "timeFrame": "Week 12",
+        "groups": [
+          {
+            "id": "OG000",
+            "title": "Placebo",
+            "description": "Placebo matched to Tralokinumab was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks."
+          },
+          {
+            "id": "OG001",
+            "title": "Tralokinumab Dose 1",
+            "description": "Tralokinumab Dose 1 was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks."
+          },
+          {
+            "id": "OG002",
+            "title": "Tralokinumab Dose 2",
+            "description": "Tralokinumab Dose 2 was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks."
+          },
+          {
+            "id": "OG003",
+            "title": "Tralokinumab Dose 3",
+            "description": "Tralokinumab Dose 3 was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks."
+          }
+        ],
+        "denoms": [
+          {
+            "units": "Participants",
+            "counts": [
+              {
+                "groupId": "OG000",
+                "value": "51"
+              },
+              {
+                "groupId": "OG001",
+                "value": "50"
+              },
+              {
+                "groupId": "OG002",
+                "value": "51"
+              },
+              {
+                "groupId": "OG003",
+                "value": "52"
+              }
+            ]
+          }
+        ],
+        "classes": [
+          {
+            "categories": [
+              {
+                "measurements": [
+                  {
+                    "groupId": "OG000",
+                    "value": "51.9"
+                  },
+                  {
+                    "groupId": "OG001",
+                    "value": "54.3"
+                  },
+                  {
+                    "groupId": "OG002",
+                    "value": "67.3"
+                  },
+                  {
+                    "groupId": "OG003",
+                    "value": "73.4"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "result-8",
+      "address": "/resultsSection/outcomeMeasuresModule/outcomeMeasures/8",
+      "digest": "3e933eac56369196c45d59e3c20a96e61c92fe84e7b63de35821faaa4c2581f5",
+      "expected": {
+        "type": "SECONDARY",
+        "title": "Adjusted Percentage of Participants Achieving 50 Percent (%) Reduction From Baseline in SCORAD at Week 12",
+        "description": "SCORAD 50 responder is defined as a participant who achieves at least a 50% reduction in SCORAD score from baseline. Data from participants who took prohibited medications were excluded from this analysis and a LOCF analysis was used.",
+        "populationDescription": "The ITT population included all randomized and treated participants, grouped according to assigned treatment. Here, the category \"Number Analyzed\" is number of participants analyzed for this outcome measure.",
+        "reportingStatus": "POSTED",
+        "paramType": "NUMBER",
+        "unitOfMeasure": "Percentage of participants",
+        "timeFrame": "Week 12",
+        "groups": [
+          {
+            "id": "OG000",
+            "title": "Placebo",
+            "description": "Placebo matched to Tralokinumab was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks."
+          },
+          {
+            "id": "OG001",
+            "title": "Tralokinumab Dose 1",
+            "description": "Tralokinumab Dose 1 was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks."
+          },
+          {
+            "id": "OG002",
+            "title": "Tralokinumab Dose 2",
+            "description": "Tralokinumab Dose 2 was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks."
+          },
+          {
+            "id": "OG003",
+            "title": "Tralokinumab Dose 3",
+            "description": "Tralokinumab Dose 3 was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks."
+          }
+        ],
+        "denoms": [
+          {
+            "units": "Participants",
+            "counts": [
+              {
+                "groupId": "OG000",
+                "value": "51"
+              },
+              {
+                "groupId": "OG001",
+                "value": "50"
+              },
+              {
+                "groupId": "OG002",
+                "value": "51"
+              },
+              {
+                "groupId": "OG003",
+                "value": "52"
+              }
+            ]
+          }
+        ],
+        "classes": [
+          {
+            "categories": [
+              {
+                "measurements": [
+                  {
+                    "groupId": "OG000",
+                    "value": "19.5"
+                  },
+                  {
+                    "groupId": "OG001",
+                    "value": "26.9"
+                  },
+                  {
+                    "groupId": "OG002",
+                    "value": "44.2"
+                  },
+                  {
+                    "groupId": "OG003",
+                    "value": "44.1"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "queries": [
+    {
+      "id": "adult-age-restriction",
+      "body": {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+          "class": "Predicate",
+          "key": "age",
+          "kind": "measurement"
+        },
+        "qualifiers": {
+          "class": "Always"
+        },
+        "subject": {
+          "class": "Subject",
+          "kind": "participant",
+          "referent": ""
+        },
+        "time": null,
+        "value": {
+          "class": "Value",
+          "comparison": "ge",
+          "inclusivity": "unspecified",
+          "kind": "quantity",
+          "members": [],
+          "number": 18,
+          "unit": "Years",
+          "upper": null
+        }
+      }
+    }
+  ]
+}

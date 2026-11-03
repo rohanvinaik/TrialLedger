@@ -1,0 +1,37 @@
+{
+  "rule": "interpretations.compatibility:1",
+  "guarantee": "conditional_on_fixed_and_interpretation_premises",
+  "fixed_status": "known",
+  "status": "proposed",
+  "fixed_premises": [],
+  "assumptions": [
+    "EF-range"
+  ],
+  "bindings": [],
+  "basis": [
+    "ctg:NCT03057977:651d50db132a20a8261fdfcbcddd46ad377d98a32d477c3d4094c19a0ee65f11#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:2460",
+    "hypothesis:source-location-is-not-semantic-warrant"
+  ],
+  "consistency": {
+    "result": "UNDETERMINED",
+    "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+    "status": null,
+    "proof": [],
+    "blockers": [
+      "resource_bound"
+    ]
+  },
+  "intrinsic_consistency": {
+    "result": "UNDETERMINED",
+    "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+    "status": null,
+    "proof": [],
+    "blockers": [
+      "resource_bound"
+    ]
+  },
+  "signal_rules": [],
+  "blockers": [
+    "resource_bound"
+  ]
+}

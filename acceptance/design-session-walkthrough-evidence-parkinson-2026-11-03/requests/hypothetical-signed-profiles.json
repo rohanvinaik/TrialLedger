@@ -1,0 +1,538 @@
+{
+  "operation": "evidence_requests",
+  "study_ref": "hypothetical:Parkinson-entry-age-explanations:v1",
+  "candidates": [
+    {
+      "id": "strict80",
+      "assertions": [
+        {
+          "applicability": {
+            "class": "Always"
+          },
+          "body": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "age",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "ge",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 30,
+              "unit": "Years",
+              "upper": null
+            }
+          },
+          "branch": {
+            "class": "Branch",
+            "node": "unresolved",
+            "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+            "class": "Scope",
+            "kind": "all_participants",
+            "parts": [],
+            "ref": ""
+          },
+          "criterion_ref": "hypothetical:age-explanation-family",
+          "id": "strict-min30",
+          "modality": "required",
+          "resolution": "resolved",
+          "rule": {
+            "answers": [],
+            "class": "Rule",
+            "id": "hypothetical-declared-rule",
+            "premises": [],
+            "version": "1",
+            "warrants": [
+              "assistant:explicit-hypothetical-represented-rule-not-complete-registry-eligibility-not-clinician-confirmed"
+            ]
+          },
+          "span": [],
+          "status": "interpolated"
+        },
+        {
+          "applicability": {
+            "class": "Always"
+          },
+          "body": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "age",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "le",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 80,
+              "unit": "Years",
+              "upper": null
+            }
+          },
+          "branch": {
+            "class": "Branch",
+            "node": "unresolved",
+            "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+            "class": "Scope",
+            "kind": "all_participants",
+            "parts": [],
+            "ref": ""
+          },
+          "criterion_ref": "hypothetical:age-explanation-family",
+          "id": "strict-max80",
+          "modality": "required",
+          "resolution": "resolved",
+          "rule": {
+            "answers": [],
+            "class": "Rule",
+            "id": "hypothetical-declared-rule",
+            "premises": [],
+            "version": "1",
+            "warrants": [
+              "assistant:explicit-hypothetical-represented-rule-not-complete-registry-eligibility-not-clinician-confirmed"
+            ]
+          },
+          "span": [],
+          "status": "interpolated"
+        }
+      ]
+    },
+    {
+      "id": "conditional85",
+      "assertions": [
+        {
+          "applicability": {
+            "class": "Always"
+          },
+          "body": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "age",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "ge",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 30,
+              "unit": "Years",
+              "upper": null
+            }
+          },
+          "branch": {
+            "class": "Branch",
+            "node": "unresolved",
+            "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+            "class": "Scope",
+            "kind": "all_participants",
+            "parts": [],
+            "ref": ""
+          },
+          "criterion_ref": "hypothetical:age-explanation-family",
+          "id": "conditional-min30",
+          "modality": "required",
+          "resolution": "resolved",
+          "rule": {
+            "answers": [],
+            "class": "Rule",
+            "id": "hypothetical-declared-rule",
+            "premises": [],
+            "version": "1",
+            "warrants": [
+              "assistant:explicit-hypothetical-represented-rule-not-complete-registry-eligibility-not-clinician-confirmed"
+            ]
+          },
+          "span": [],
+          "status": "interpolated"
+        },
+        {
+          "applicability": {
+            "class": "Always"
+          },
+          "body": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "age",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "le",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 85,
+              "unit": "Years",
+              "upper": null
+            }
+          },
+          "branch": {
+            "class": "Branch",
+            "node": "unresolved",
+            "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+            "class": "Scope",
+            "kind": "all_participants",
+            "parts": [],
+            "ref": ""
+          },
+          "criterion_ref": "hypothetical:age-explanation-family",
+          "id": "conditional-max85",
+          "modality": "required",
+          "resolution": "resolved",
+          "rule": {
+            "answers": [],
+            "class": "Rule",
+            "id": "hypothetical-declared-rule",
+            "premises": [],
+            "version": "1",
+            "warrants": [
+              "assistant:explicit-hypothetical-represented-rule-not-complete-registry-eligibility-not-clinician-confirmed"
+            ]
+          },
+          "span": [],
+          "status": "interpolated"
+        },
+        {
+          "applicability": {
+            "class": "Always"
+          },
+          "body": {
+            "class": "AnyOf",
+            "parts": [
+              {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "age",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "le",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 80,
+                  "unit": "Years",
+                  "upper": null
+                }
+              },
+              {
+                "class": "Literal",
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "predicate": {
+                  "class": "Predicate",
+                  "kind": "condition_status",
+                  "key": "PI-judges-otherwise-good-health"
+                },
+                "value": {
+                  "class": "Value",
+                  "kind": "boolean"
+                }
+              }
+            ]
+          },
+          "branch": {
+            "class": "Branch",
+            "node": "unresolved",
+            "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+            "class": "Scope",
+            "kind": "all_participants",
+            "parts": [],
+            "ref": ""
+          },
+          "criterion_ref": "hypothetical:age-explanation-family",
+          "id": "conditional-health",
+          "modality": "required",
+          "resolution": "resolved",
+          "rule": {
+            "answers": [],
+            "class": "Rule",
+            "id": "hypothetical-declared-rule",
+            "premises": [],
+            "version": "1",
+            "warrants": [
+              "assistant:explicit-hypothetical-represented-rule-not-complete-registry-eligibility-not-clinician-confirmed"
+            ]
+          },
+          "span": [],
+          "status": "interpolated"
+        }
+      ]
+    },
+    {
+      "id": "broad85",
+      "assertions": [
+        {
+          "applicability": {
+            "class": "Always"
+          },
+          "body": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "age",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "ge",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 30,
+              "unit": "Years",
+              "upper": null
+            }
+          },
+          "branch": {
+            "class": "Branch",
+            "node": "unresolved",
+            "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+            "class": "Scope",
+            "kind": "all_participants",
+            "parts": [],
+            "ref": ""
+          },
+          "criterion_ref": "hypothetical:age-explanation-family",
+          "id": "broad-min30",
+          "modality": "required",
+          "resolution": "resolved",
+          "rule": {
+            "answers": [],
+            "class": "Rule",
+            "id": "hypothetical-declared-rule",
+            "premises": [],
+            "version": "1",
+            "warrants": [
+              "assistant:explicit-hypothetical-represented-rule-not-complete-registry-eligibility-not-clinician-confirmed"
+            ]
+          },
+          "span": [],
+          "status": "interpolated"
+        },
+        {
+          "applicability": {
+            "class": "Always"
+          },
+          "body": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "age",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "le",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 85,
+              "unit": "Years",
+              "upper": null
+            }
+          },
+          "branch": {
+            "class": "Branch",
+            "node": "unresolved",
+            "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+            "class": "Scope",
+            "kind": "all_participants",
+            "parts": [],
+            "ref": ""
+          },
+          "criterion_ref": "hypothetical:age-explanation-family",
+          "id": "broad-max85",
+          "modality": "required",
+          "resolution": "resolved",
+          "rule": {
+            "answers": [],
+            "class": "Rule",
+            "id": "hypothetical-declared-rule",
+            "premises": [],
+            "version": "1",
+            "warrants": [
+              "assistant:explicit-hypothetical-represented-rule-not-complete-registry-eligibility-not-clinician-confirmed"
+            ]
+          },
+          "span": [],
+          "status": "interpolated"
+        }
+      ]
+    }
+  ],
+  "survivors": [
+    "strict80",
+    "conditional85",
+    "broad85"
+  ],
+  "survival_basis": [
+    "assistant:declared-hypothetical-family-no-source-observations-or-eliminations-claimed"
+  ],
+  "variables": [
+    {
+      "id": "age",
+      "subject": {
+        "class": "Subject",
+        "kind": "participant",
+        "referent": ""
+      },
+      "predicate": {
+        "class": "Predicate",
+        "key": "age",
+        "kind": "measurement"
+      },
+      "time": null,
+      "domain": {
+        "kind": "integer",
+        "unit": "Years",
+        "minimum": 30,
+        "maximum": 90
+      }
+    },
+    {
+      "id": "PI-good-health",
+      "subject": {
+        "class": "Subject",
+        "kind": "participant",
+        "referent": ""
+      },
+      "predicate": {
+        "class": "Predicate",
+        "kind": "condition_status",
+        "key": "PI-judges-otherwise-good-health"
+      },
+      "time": null,
+      "domain": {
+        "kind": "boolean"
+      }
+    }
+  ],
+  "signs": [
+    "accepted",
+    "rejected"
+  ],
+  "bound": 4096,
+  "limits": {
+    "max_profile_size": 2,
+    "max_profiles": 200,
+    "max_decisions": 2000,
+    "max_requests_per_pair": 2,
+    "max_requests": 6,
+    "max_bytes": 131072,
+    "max_response_bytes": 1048576
+  }
+}

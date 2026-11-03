@@ -1,0 +1,150 @@
+──────────────────────────────────────────────────────────────────────────────
+TrialLedger/layer2/result_semantics.py — plan (full) · 22 regions · budget 500 DOF-proxy · spent 0
+
+  TrialLedger/layer2/result_semantics.py::_corpus
+                       CONSTRUCTIVE · unpinned · status unpinned · not_clean · agreement 3
+                       smells: overload (227 DOF / 64 lines (static proxy)) · seam (1 seam(s)) · complexity (CC 16)
+                       template loop_invariant_recompute → hoist_invariant · gate receipt + verify-rewrite + paired budget · line 495: _path(base) — every argument loop-invariant
+                       cost 227 (static_dof_proxy)
+    next               detective converge 'TrialLedger/layer2/result_semantics.py::_corpus'
+
+  TrialLedger/layer2/result_semantics.py::_estimand_findings
+                       CONSTRUCTIVE · unpinned · status unpinned · not_clean · agreement 3
+                       smells: cohesion (2 disjoint components) · seam (1 seam(s)) · gamma_seam (5 crossing(s) at the cheapest seam (γ-bound proxy))
+                       template loop_invariant_recompute → hoist_invariant · gate receipt + verify-rewrite + paired budget · line 428: _path(_path, path) — every argument loop-invariant
+                       cost 122 (static_dof_proxy)
+    next               detective converge 'TrialLedger/layer2/result_semantics.py::_estimand_findings'
+
+  TrialLedger/layer2/result_semantics.py::metadata
+                       CONSTRUCTIVE · unpinned · status unpinned · not_clean · agreement 3
+                       smells: overload (144 DOF / 54 lines (static proxy)) · seam (1 seam(s)) · complexity (CC 21)
+                       cost 144 (static_dof_proxy)
+    next               detective converge 'TrialLedger/layer2/result_semantics.py::metadata'
+
+  TrialLedger/layer2/result_semantics.py::_applications
+                       CONSTRUCTIVE · unpinned · status unpinned · not_clean · agreement 2
+                       smells: overload (40 DOF / 11 lines (static proxy)) · seam (1 seam(s))
+                       template loop_invariant_recompute → hoist_invariant · gate receipt + verify-rewrite + paired budget · line 608: _path(base, field) — every argument loop-invariant
+                       cost 40 (static_dof_proxy)
+    next               detective converge 'TrialLedger/layer2/result_semantics.py::_applications'
+
+  TrialLedger/layer2/result_semantics.py::_candidate_causes
+                       CONSTRUCTIVE · unpinned · status unpinned · not_clean · agreement 2
+                       smells: overload (47 DOF / 12 lines (static proxy)) · seam (1 seam(s))
+                       cost 47 (static_dof_proxy)
+    next               detective converge 'TrialLedger/layer2/result_semantics.py::_candidate_causes'
+
+  TrialLedger/layer2/result_semantics.py::_coordinates
+                       CONSTRUCTIVE · unpinned · status unpinned · not_clean · agreement 2
+                       smells: overload (111 DOF / 35 lines (static proxy)) · seam (1 seam(s))
+                       template loop_invariant_recompute → hoist_invariant · gate receipt + verify-rewrite + paired budget · line 458: _path(base) — every argument loop-invariant
+                       cost 111 (static_dof_proxy)
+    next               detective converge 'TrialLedger/layer2/result_semantics.py::_coordinates'
+
+  TrialLedger/layer2/result_semantics.py::_design_bounds
+                       CONSTRUCTIVE · unpinned · status unpinned · not_clean · agreement 2
+                       smells: overload (169 DOF / 42 lines (static proxy)) · seam (1 seam(s))
+                       template loop_invariant_recompute → hoist_invariant · gate receipt + verify-rewrite + paired budget · line 561: _path(base) — every argument loop-invariant
+                       cost 169 (static_dof_proxy)
+    next               detective converge 'TrialLedger/layer2/result_semantics.py::_design_bounds'
+
+  TrialLedger/layer2/result_semantics.py::_evidence_findings
+                       CONSTRUCTIVE · unpinned · status unpinned · not_clean · agreement 2
+                       smells: overload (149 DOF / 44 lines (static proxy)) · seam (1 seam(s))
+                       template loop_invariant_recompute → hoist_invariant · gate receipt + verify-rewrite + paired budget · line 706: _path(base) — every argument loop-invariant
+                       cost 149 (static_dof_proxy)
+    next               detective converge 'TrialLedger/layer2/result_semantics.py::_evidence_findings'
+
+  TrialLedger/layer2/result_semantics.py::_interpretations
+                       CONSTRUCTIVE · unpinned · status unpinned · not_clean · agreement 2
+                       smells: overload (150 DOF / 52 lines (static proxy)) · seam (1 seam(s))
+                       template loop_invariant_recompute → hoist_invariant · gate receipt + verify-rewrite + paired budget · line 645: _path(base) — every argument loop-invariant
+                       cost 150 (static_dof_proxy)
+    next               detective converge 'TrialLedger/layer2/result_semantics.py::_interpretations'
+
+  TrialLedger/layer2/result_semantics.py::_session_findings
+                       CONSTRUCTIVE · unpinned · status unpinned · not_clean · agreement 2
+                       smells: seam (1 seam(s)) · complexity (CC 16)
+                       template loop_invariant_recompute → hoist_invariant · gate receipt + verify-rewrite + paired budget · line 758: _path(base) — every argument loop-invariant
+                       cost 139 (static_dof_proxy)
+    next               detective converge 'TrialLedger/layer2/result_semantics.py::_session_findings'
+
+  TrialLedger/layer2/result_semantics.py::_signal_findings
+                       CONSTRUCTIVE · unpinned · status unpinned · not_clean · agreement 2
+                       smells: overload (108 DOF / 30 lines (static proxy)) · seam (1 seam(s))
+                       template loop_invariant_recompute → hoist_invariant · gate receipt + verify-rewrite + paired budget · line 335: _path(_path, path) — every argument loop-invariant
+                       cost 108 (static_dof_proxy)
+    next               detective converge 'TrialLedger/layer2/result_semantics.py::_signal_findings'
+
+  TrialLedger/layer2/result_semantics.py::_source_assertions
+                       CONSTRUCTIVE · unpinned · status unpinned · not_clean · agreement 2
+                       smells: overload (44 DOF / 14 lines (static proxy)) · seam (1 seam(s))
+                       template loop_invariant_recompute → hoist_invariant · gate receipt + verify-rewrite + paired budget · line 686: _path(base) — every argument loop-invariant
+                       cost 44 (static_dof_proxy)
+    next               detective converge 'TrialLedger/layer2/result_semantics.py::_source_assertions'
+
+  TrialLedger/layer2/result_semantics.py::_decision
+                       AMBIGUOUS · escalated · status unpinned · not_clean · agreement 1
+                       smells: overload (22 DOF / 2 lines (static proxy))
+                       cost 22 (static_dof_proxy)
+    next               detective flag 'TrialLedger/layer2/result_semantics.py::_decision' --style --leave --note "why"   # or --proceed; to ground it first: detective converge 'TrialLedger/layer2/result_semantics.py::_decision'
+
+  TrialLedger/layer2/result_semantics.py::_path
+                       AMBIGUOUS · escalated · status unpinned · not_clean · agreement 1
+                       smells: overload (13 DOF / 2 lines (static proxy))
+                       cost 13 (static_dof_proxy)
+    next               detective flag 'TrialLedger/layer2/result_semantics.py::_path' --style --leave --note "why"   # or --proceed; to ground it first: detective converge 'TrialLedger/layer2/result_semantics.py::_path'
+
+  TrialLedger/layer2/result_semantics.py::_query
+                       AMBIGUOUS · escalated · status unpinned · not_clean · agreement 1
+                       smells: overload (54 DOF / 9 lines (static proxy))
+                       cost 54 (static_dof_proxy)
+    next               detective flag 'TrialLedger/layer2/result_semantics.py::_query' --style --leave --note "why"   # or --proceed; to ground it first: detective converge 'TrialLedger/layer2/result_semantics.py::_query'
+
+  TrialLedger/layer2/result_semantics.py::_row
+                       AMBIGUOUS · escalated · status unpinned · not_clean · agreement 1
+                       smells: interface_width (5 parameter(s))
+                       cost 21 (static_dof_proxy)
+    next               detective flag 'TrialLedger/layer2/result_semantics.py::_row' --style --leave --note "why"   # or --proceed; to ground it first: detective converge 'TrialLedger/layer2/result_semantics.py::_row'
+
+  TrialLedger/layer2/result_semantics.py::_signal
+                       AMBIGUOUS · escalated · status unpinned · not_clean · agreement 1
+                       smells: overload (40 DOF / 6 lines (static proxy))
+                       cost 40 (static_dof_proxy)
+    next               detective flag 'TrialLedger/layer2/result_semantics.py::_signal' --style --leave --note "why"   # or --proceed; to ground it first: detective converge 'TrialLedger/layer2/result_semantics.py::_signal'
+
+  TrialLedger/layer2/result_semantics.py::_signal_is_gated
+                       AMBIGUOUS · escalated · status unpinned · not_clean · agreement 1
+                       smells: overload (33 DOF / 9 lines (static proxy))
+                       cost 33 (static_dof_proxy)
+    next               detective flag 'TrialLedger/layer2/result_semantics.py::_signal_is_gated' --style --leave --note "why"   # or --proceed; to ground it first: detective converge 'TrialLedger/layer2/result_semantics.py::_signal_is_gated'
+
+  TrialLedger/layer2/result_semantics.py::_table_findings
+                       AMBIGUOUS · escalated · status unpinned · not_clean · agreement 1
+                       smells: overload (81 DOF / 32 lines (static proxy))
+                       template loop_invariant_recompute → hoist_invariant · gate receipt + verify-rewrite + paired budget · line 367: _path(path) — every argument loop-invariant
+                       cost 81 (static_dof_proxy)
+    next               detective flag 'TrialLedger/layer2/result_semantics.py::_table_findings' --style --leave --note "why"   # or --proceed; to ground it first: detective converge 'TrialLedger/layer2/result_semantics.py::_table_findings'
+
+  TrialLedger/layer2/result_semantics.py::completion_code
+                       AMBIGUOUS · escalated · status pinned · not_clean · agreement 1
+                       smells: overload (41 DOF / 15 lines (static proxy))
+                       cost 41 (static_dof_proxy)
+    next               detective flag 'TrialLedger/layer2/result_semantics.py::completion_code' --style --leave --note "why"   # or --proceed; to ground it first: detective converge 'TrialLedger/layer2/result_semantics.py::completion_code'
+
+  TrialLedger/layer2/result_semantics.py::cause_kind
+                       SILENT · silent · status pinned · clean · agreement 0
+                       smells: —
+                       cost 8 (static_dof_proxy)
+
+  TrialLedger/layer2/result_semantics.py::disposition_code
+                       SILENT · silent · status pinned · clean · agreement 0
+                       smells: —
+                       cost 109 (static_dof_proxy)
+
+  · unexamined         what this plan did not propose is UNEXAMINED, not approved
+                       regime — unread: it needs a live mutation profile this static plan never runs
+                       fences held at 0 — the form-censor spine (§5.3) is unbuilt, so DESTRUCTIVE is unexercised
+                       recognizers — 5 template(s); a region with no match is a library gap, not a clean bill
+
+FINAL plan TrialLedger/layer2/result_semantics.py: 0 funded · 12 constructive · 8 escalated · 0 fenced · 2 silent (clean 2 · unread 0) · advisory — writes no project files

@@ -1,0 +1,120 @@
+──────────────────────────────────────────────────────────────────────────────
+scripts/push_checks.py — plan (full) · 19 regions · budget 500 DOF-proxy · spent 0
+
+  scripts/push_checks.py::scan
+                       CONSTRUCTIVE · unpinned · status unpinned · not_clean · agreement 3
+                       smells: overload (134 DOF / 52 lines (static proxy)) · seam (1 seam(s)) · complexity (CC 24)
+                       cost 134 (static_dof_proxy)
+    next               detective converge 'scripts/push_checks.py::scan'
+
+  scripts/push_checks.py::commit_additions
+                       CONSTRUCTIVE · unpinned · status unpinned · not_clean · agreement 2
+                       smells: overload (39 DOF / 9 lines (static proxy)) · seam (1 seam(s))
+                       cost 39 (static_dof_proxy)
+    next               detective converge 'scripts/push_checks.py::commit_additions'
+
+  scripts/push_checks.py::hook
+                       CONSTRUCTIVE · unpinned · status unpinned · not_clean · agreement 2
+                       smells: seam (1 seam(s)) · complexity (CC 30)
+                       template quadratic_membership_scan → set_membership · gate receipt + verify-rewrite + paired budget · line 384: `in sending` (list-evidenced) inside a loop
+                       cost 103 (static_dof_proxy)
+    next               detective converge 'scripts/push_checks.py::hook'
+
+  scripts/push_checks.py::main
+                       CONSTRUCTIVE · unpinned · status unpinned · not_clean · agreement 2
+                       smells: overload (76 DOF / 25 lines (static proxy)) · complexity (CC 16)
+                       cost 76 (static_dof_proxy)
+    next               detective converge 'scripts/push_checks.py::main'
+
+  scripts/push_checks.py::secret_reviews
+                       CONSTRUCTIVE · unpinned · status unpinned · not_clean · agreement 2
+                       smells: overload (107 DOF / 25 lines (static proxy)) · complexity (CC 23)
+                       template quadratic_membership_scan → set_membership · gate receipt + verify-rewrite + paired budget · line 161: `in result` (list-evidenced) inside a loop
+                       cost 107 (static_dof_proxy)
+    next               detective converge 'scripts/push_checks.py::secret_reviews'
+
+  scripts/push_checks.py::added_lines
+                       AMBIGUOUS · escalated · status unpinned · not_clean · agreement 1
+                       smells: seam (1 seam(s))
+                       cost 28 (static_dof_proxy)
+    next               detective flag 'scripts/push_checks.py::added_lines' --style --leave --note "why"   # or --proceed; to ground it first: detective converge 'scripts/push_checks.py::added_lines'
+
+  scripts/push_checks.py::audit
+                       AMBIGUOUS · escalated · status unpinned · not_clean · agreement 1
+                       smells: seam (1 seam(s))
+                       cost 63 (static_dof_proxy)
+    next               detective flag 'scripts/push_checks.py::audit' --style --leave --note "why"   # or --proceed; to ground it first: detective converge 'scripts/push_checks.py::audit'
+
+  scripts/push_checks.py::audit_lines
+                       AMBIGUOUS · escalated · status unpinned · not_clean · agreement 1
+                       smells: overload (67 DOF / 22 lines (static proxy))
+                       cost 67 (static_dof_proxy)
+    next               detective flag 'scripts/push_checks.py::audit_lines' --style --leave --note "why"   # or --proceed; to ground it first: detective converge 'scripts/push_checks.py::audit_lines'
+
+  scripts/push_checks.py::audit_result
+                       AMBIGUOUS · escalated · status unpinned · not_clean · agreement 1
+                       smells: overload (49 DOF / 14 lines (static proxy))
+                       cost 49 (static_dof_proxy)
+    next               detective flag 'scripts/push_checks.py::audit_result' --style --leave --note "why"   # or --proceed; to ground it first: detective converge 'scripts/push_checks.py::audit_result'
+
+  scripts/push_checks.py::git_path
+                       AMBIGUOUS · escalated · status unpinned · not_clean · agreement 1
+                       smells: overload (9 DOF / 3 lines (static proxy))
+                       cost 9 (static_dof_proxy)
+    next               detective flag 'scripts/push_checks.py::git_path' --style --leave --note "why"   # or --proceed; to ground it first: detective converge 'scripts/push_checks.py::git_path'
+
+  scripts/push_checks.py::install
+                       AMBIGUOUS · escalated · status unpinned · not_clean · agreement 1
+                       smells: overload (26 DOF / 9 lines (static proxy))
+                       cost 26 (static_dof_proxy)
+    next               detective flag 'scripts/push_checks.py::install' --style --leave --note "why"   # or --proceed; to ground it first: detective converge 'scripts/push_checks.py::install'
+
+  scripts/push_checks.py::pushed_commits
+                       AMBIGUOUS · escalated · status unpinned · not_clean · agreement 1
+                       smells: overload (24 DOF / 8 lines (static proxy))
+                       cost 24 (static_dof_proxy)
+    next               detective flag 'scripts/push_checks.py::pushed_commits' --style --leave --note "why"   # or --proceed; to ground it first: detective converge 'scripts/push_checks.py::pushed_commits'
+
+  scripts/push_checks.py::ref_check
+                       AMBIGUOUS · escalated · status unpinned · not_clean · agreement 1
+                       smells: interface_width (5 parameter(s))
+                       cost 18 (static_dof_proxy)
+    next               detective flag 'scripts/push_checks.py::ref_check' --style --leave --note "why"   # or --proceed; to ground it first: detective converge 'scripts/push_checks.py::ref_check'
+
+  scripts/push_checks.py::stamp
+                       AMBIGUOUS · escalated · status unpinned · not_clean · agreement 1
+                       smells: overload (28 DOF / 10 lines (static proxy))
+                       cost 28 (static_dof_proxy)
+    next               detective flag 'scripts/push_checks.py::stamp' --style --leave --note "why"   # or --proceed; to ground it first: detective converge 'scripts/push_checks.py::stamp'
+
+  scripts/push_checks.py::git
+                       SILENT · silent · status unpinned · clean · agreement 0
+                       smells: —
+                       cost 14 (static_dof_proxy)
+
+  scripts/push_checks.py::passed_trees
+                       SILENT · silent · status unpinned · clean · agreement 0
+                       smells: —
+                       cost 4 (static_dof_proxy)
+
+  scripts/push_checks.py::run
+                       SILENT · silent · status unpinned · clean · agreement 0
+                       smells: —
+                       cost 15 (static_dof_proxy)
+
+  scripts/push_checks.py::secret_review_state
+                       SILENT · silent · status pinned · clean · agreement 0
+                       smells: —
+                       cost 7 (static_dof_proxy)
+
+  scripts/push_checks.py::worktree_tree
+                       SILENT · silent · status unpinned · clean · agreement 0
+                       smells: —
+                       cost 33 (static_dof_proxy)
+
+  · unexamined         what this plan did not propose is UNEXAMINED, not approved
+                       regime — unread: it needs a live mutation profile this static plan never runs
+                       fences held at 0 — the form-censor spine (§5.3) is unbuilt, so DESTRUCTIVE is unexercised
+                       recognizers — 5 template(s); a region with no match is a library gap, not a clean bill
+
+FINAL plan scripts/push_checks.py: 0 funded · 5 constructive · 9 escalated · 0 fenced · 5 silent (clean 5 · unread 0) · advisory — writes no project files

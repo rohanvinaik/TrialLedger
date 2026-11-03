@@ -6,6 +6,7 @@ the eventual session schema. Run with the repository environment from any workin
 
 from __future__ import annotations
 
+import argparse
 import copy
 import hashlib
 import json
@@ -14,7 +15,7 @@ import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-REFERENCE = HERE.parent / "evidence" / "registry-run" / "reasoning"
+REFERENCE = HERE / "runs"
 
 
 def read_json(path: Path) -> dict:
@@ -168,12 +169,15 @@ def replay_revision(prototype: dict, folder: Path) -> dict:
     name, child = sensitivity_child(prototype)
     children[name] = child
     for name, request in children.items():
-        expected = read_json(REFERENCE / (name + "-request.json"))
+        reference_folder = REFERENCE / (
+            "revision-2" if name == "ipass-hypothetical-exceptions-49" else "revision-1"
+        )
+        expected = read_json(reference_folder / (name + "-request.json"))
         if request != expected:
             raise ValueError("prototype_child_request_changed:" + name)
         response = execute(name, request, folder)
         responses[name] = response
-        reference_result = read_json(REFERENCE / (name + "-result.json"))
+        reference_result = read_json(reference_folder / (name + "-result.json"))
         comparisons.append(
             {
                 "child": name,
@@ -201,6 +205,14 @@ def replay_revision(prototype: dict, folder: Path) -> dict:
 
 
 def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--output", type=Path, required=True, help="New replay directory outside this prototype"
+    )
+    output = parser.parse_args().output.resolve()
+    if output == HERE or HERE in output.parents:
+        raise ValueError("prototype_output_overwrites_reference")
+    output.mkdir(parents=True, exist_ok=False)
     initial = read_json(HERE / "session-input.json")
     revision = read_json(HERE / "revision.json")
     if identity(initial) != revision["parent_digest"]:
@@ -208,8 +220,8 @@ def main() -> None:
     revised = copy.deepcopy(initial)
     revised["revision"] = 2
     revised["active_exception_variant"] = revision["active_exception_variant"]
-    initial_result = replay_revision(initial, HERE / "runs" / "revision-1")
-    revised_result = replay_revision(revised, HERE / "runs" / "revision-2")
+    initial_result = replay_revision(initial, output / "revision-1")
+    revised_result = replay_revision(revised, output / "revision-2")
     old = initial_result["responses"]["ipass-hypothetical-exceptions-48"]["result"]
     new = revised_result["responses"]["ipass-hypothetical-exceptions-49"]["result"]
     receipt = {
@@ -227,7 +239,7 @@ def main() -> None:
         },
         "clinical_choices_recorded": initial["clinical_choices"],
     }
-    write_json(HERE / "replay-receipt.json", receipt)
+    write_json(output / "replay-receipt.json", receipt)
     print(json.dumps(receipt, indent=2))
 
 

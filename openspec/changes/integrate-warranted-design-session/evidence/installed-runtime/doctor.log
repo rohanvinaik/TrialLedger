@@ -1,0 +1,30 @@
+{
+ "python": {
+  "version": "3.14.7",
+  "supported": true
+ },
+ "dependencies": {
+  "httpx": "0.28.1",
+  "openpyxl": "3.1.5"
+ },
+ "reachable": {
+  "clinicaltrials.gov": "reachable",
+  "rxnav.nlm.nih.gov": "reachable",
+  "github.com": "reachable"
+ },
+ "connection_advice": {
+  "clinicaltrials.gov": "Connection check succeeded; gathering will validate the source response.",
+  "rxnav.nlm.nih.gov": "Connection check succeeded; gathering will validate the source response.",
+  "github.com": "Connection check succeeded; gathering will validate the source response."
+ },
+ "run_folder": {
+  "path": "trialledger_run",
+  "writable": true
+ },
+ "platform": {
+  "os": "posix",
+  "executable": "/tmp/trialledger-final-runtime-wheel-20261103-v2/runtime/bin/python"
+ },
+ "mode": "direct",
+ "next": "Run `trialledger landscape --run <folder>` with the person's request (--request FILE, or the request's flags: see `trialledger landscape --help`; trials by number: --ids NCT01234567,NCT07654321); TrialLedger fetches from the registry and RxNav itself and writes the record, landscape.json, into the folder. Answer from that record."
+}

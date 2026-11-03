@@ -1,0 +1,164 @@
+{
+  "completed_at_utc": "2026-11-03T22:36:58.028696+00:00",
+  "actual_separate_process_cli_mcp_pairs": 10,
+  "source_report_verify_exit": 0,
+  "payload_files": {
+    "README.md": {
+      "bytes": 7960,
+      "sha256": "bebb134e840703f58af3ade821d6f118c670d8df1c3e2abd9fd7e1e754bd82f4"
+    },
+    "estimand-discovery.json": {
+      "bytes": 5856,
+      "sha256": "95f06572e6ddcd52d5e52fe4b237ab7c7a02457f526c7dbba5fdbfdb74eefa90"
+    },
+    "finding-summary.json": {
+      "bytes": 74227,
+      "sha256": "ece52f81f24e344610314f9fde94ecdef8b5ccdafc7600cc88b43bae1a6692c6"
+    },
+    "gather-fetches.json": {
+      "bytes": 1595,
+      "sha256": "4cfc1caf28810986ab5a2b80b7148d4a3c377f716f9cb634e495ba25649c8dbb"
+    },
+    "gather-manifest.json": {
+      "bytes": 1615,
+      "sha256": "8293bea7b516891c1e1f4c206e453449f9189f83901059d1efdcfa281dd271ca"
+    },
+    "gather-request.json": {
+      "bytes": 128,
+      "sha256": "e2356c7605732860980a69b1582c9db4b6f014682920389aec5ce103776ebf9b"
+    },
+    "gather-resolution.json": {
+      "bytes": 1837,
+      "sha256": "b9fb665e4af40257b611f81dbd987cbfbc763a3f7908da61c588dd8f297d8ae8"
+    },
+    "gather-scope.json": {
+      "bytes": 236,
+      "sha256": "920633b5b0db11dfa62ad34b6848c6d4e3b55426f94986baff93dd4d8cd47153"
+    },
+    "local-retention.json": {
+      "bytes": 11894,
+      "sha256": "5dfd0b7cb8b4e6330740cb075467b8afbcf975dda2db2aa5c25ffa872ad8b5f6"
+    },
+    "preflight.json": {
+      "bytes": 1600,
+      "sha256": "6841fd57450d400042ff703c10cc2819e6c448e5a022209c0bbb057240737106"
+    },
+    "requests/NCT02347176-source-age.json": {
+      "bytes": 138084,
+      "sha256": "ce90b2acddad8b053000189b1d8e4ca85b2a0205512db4a875c97a7c855f1f11"
+    },
+    "requests/NCT04556461-source-age.json": {
+      "bytes": 44775,
+      "sha256": "262897d2a636b5d51efe1f3cb2804ed5dacc534a77cf45f74f0918dd0bddd8b6"
+    },
+    "requests/NCT05388760-source-age.json": {
+      "bytes": 27094,
+      "sha256": "07bea23c0ae63c63f243fd742f36298aea6ee1a4795e8016cb7f05fa490efb4e"
+    },
+    "requests/hypothetical-observation-available-revision.json": {
+      "bytes": 5269,
+      "sha256": "7af23801995e0385f0841151ba4f6652f720ce8b2bc06e7bebd4d43c861d13ac"
+    },
+    "requests/hypothetical-observation-not-required.json": {
+      "bytes": 5308,
+      "sha256": "6d54d0cdcccbd75cd1c6ee8e8dde1168ae3388c259b0fca7d93d9434d325bbf0"
+    },
+    "requests/hypothetical-plan-collect-revision.json": {
+      "bytes": 5273,
+      "sha256": "c9ae164f22fc20acee2ec20fb1e2e36b8e6353c60869ef21c0c654b28f253a6d"
+    },
+    "requests/hypothetical-proposed-support.json": {
+      "bytes": 5266,
+      "sha256": "99eddf239583ae42712c6fceea0ba6347e9da94916587f96d37815c4d03eac6d"
+    },
+    "requests/hypothetical-required-stop.json": {
+      "bytes": 5270,
+      "sha256": "6fa173fc1a61fa00fbac4b8cf657d6ce6da5d8de1ebf5043d5070b984e042dca"
+    },
+    "requests/hypothetical-strategy-label-only.json": {
+      "bytes": 5266,
+      "sha256": "789adde4d165962c374ca4c83f92797c73fb130a1b2516a6ad572bbc57ab5512"
+    },
+    "requests/hypothetical-targets-interpretations.json": {
+      "bytes": 12981,
+      "sha256": "d8cbd85fb1b40503e69095379ef857ab135c196f27c8809ffe45ba38028c353f"
+    },
+    "results/NCT02347176-source-age.json": {
+      "bytes": 47620,
+      "sha256": "fe782a37963d96bcc9afc90556e8c7685b2850ecc2c027c6376424a43483dd83"
+    },
+    "results/NCT04556461-source-age.json": {
+      "bytes": 41230,
+      "sha256": "10cdfa5502bb9ac3000026a23b6ad3b4fb0014df26c68253f100fadc068bad19"
+    },
+    "results/NCT05388760-source-age.json": {
+      "bytes": 35187,
+      "sha256": "86e5e5b110a43f06c72b9543642abfbd4e6ce90dbf2adbcf3293d1fd177d31de"
+    },
+    "results/hypothetical-observation-available-revision.json": {
+      "bytes": 26754,
+      "sha256": "3ab2068335f13bf424e0d450738418a42a7d445a2b8729461b8720741a6ec79e"
+    },
+    "results/hypothetical-observation-not-required.json": {
+      "bytes": 26702,
+      "sha256": "160e80433a05dda6df69b0690243d9bbceb4ded7551aee4748ba5523f2a27c5a"
+    },
+    "results/hypothetical-plan-collect-revision.json": {
+      "bytes": 26934,
+      "sha256": "4888f08606630f2c0f1fbfe867cc78c0ae300fd6b912086d0d1412477ccfac39"
+    },
+    "results/hypothetical-proposed-support.json": {
+      "bytes": 29766,
+      "sha256": "e3dbfcb48fb9e43d31bb095f49a5fb8b6269f257cc78e7191f2a7816887c6870"
+    },
+    "results/hypothetical-required-stop.json": {
+      "bytes": 27440,
+      "sha256": "97e2c602a3962bf46745458df37cb9cb9c168712bd49175984fa4a4bb840d56e"
+    },
+    "results/hypothetical-strategy-label-only.json": {
+      "bytes": 27416,
+      "sha256": "34803276ef358b4d6f266859252f9319e1f2b923911f2e2cb7d52483f3c810f4"
+    },
+    "results/hypothetical-targets-interpretations.json": {
+      "bytes": 78060,
+      "sha256": "e483ba6c70ae610cb22c77681af6aeba92f3a031777cb7455a138d21288278ea"
+    },
+    "runtime-receipt.json": {
+      "bytes": 17208,
+      "sha256": "6de767ef5111cbabfebbcea9b685e95873ca04dc0b0cdde80b75cfab69de424d"
+    },
+    "selection.json": {
+      "bytes": 2509,
+      "sha256": "40551cfba34aa1bb1d0cec5ea81d114936901f2da7bb33d101e6ec79d8a00b46"
+    },
+    "source-inventory.json": {
+      "bytes": 1721,
+      "sha256": "5a8ef166c7efd927ad6d3636de7ab0e0ce500493dd42422188d3d1e08ba2dd1e"
+    },
+    "source-reading.md": {
+      "bytes": 3603,
+      "sha256": "ece15f29dd3f02e6eef371f1e96420f1810536837a4f4008a79156899aa5d357"
+    },
+    "verification-receipt.json": {
+      "bytes": 447,
+      "sha256": "bb98980496d6387d62ab1218a606a52c52d2d0e0312667de577692831242b3ec"
+    },
+    "working-brief.md": {
+      "bytes": 3541,
+      "sha256": "d275f7f131a67d3442fd0b7cf0388576ff2b210459b4fba7297483dbe2bf2af2"
+    }
+  },
+  "payload_file_count": 36,
+  "payload_bytes": 757672,
+  "unclassified_effective_findings": [],
+  "clinical_user_confirmation": false,
+  "scope": "Actual Phase2 dermatitis source reading plus hypothetical relevance/collection/input mechanism acceptance; no actual registry estimand reconstruction or statistical estimation",
+  "helper_repair": "Available-observation revision rule-ref label corrected; all10 finalpairs rerun",
+  "clinical_limits": [
+    "Rescue not equated with prohibited medication",
+    "LOCF not equated with observed week12 measurement or a complete estimand",
+    "No source missingness or medication use invented",
+    "No comparator population/window/arm binding inferred",
+    "No clinical appropriateness, estimation or estimator validity computed"
+  ]
+}

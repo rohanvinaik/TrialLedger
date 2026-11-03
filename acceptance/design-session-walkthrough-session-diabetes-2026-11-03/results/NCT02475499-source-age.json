@@ -1,0 +1,708 @@
+{
+  "code": "complete",
+  "operation": "source_assertions",
+  "result": {
+    "source": {
+      "nct": "NCT02475499",
+      "digest": "e603086d5c520d07d5c96df6766e9b93a761b61ee33f2cfac802c9cb0eae67e7",
+      "study_ref": "ctg:NCT02475499:e603086d5c520d07d5c96df6766e9b93a761b61ee33f2cfac802c9cb0eae67e7",
+      "version": "e603086d5c520d07d5c96df6766e9b93a761b61ee33f2cfac802c9cb0eae67e7",
+      "last_update": {
+        "date": "2016-03-14",
+        "type": "ESTIMATED"
+      }
+    },
+    "anchors": [
+      {
+        "id": "eligibility",
+        "address": "/protocolSection/eligibilityModule/eligibilityCriteria",
+        "digest": "e603086d5c520d07d5c96df6766e9b93a761b61ee33f2cfac802c9cb0eae67e7",
+        "value": "Inclusion Criteria:\n\n* Patients with a first-ever prescription for a non-insulin anti-diabetic drug, including biguanides, sulfonylureas, thiazolidinediones, DPP-4 inhibitors, GLP-1 analogs, alpha-glucosidase inhibitors, meglitinides or combinations of these drugs from the earliest availability of data at each site to the last date of availability of data.\n* Patients with at least 1 year of history in the database.\n* Patients at least 18 years of age.\n\nExclusion Criteria:\n\n* Patients who died or left the cohort before the year the first incretin-based drug entered the market.\n* Patients who never added-on or switched to a new anti-diabetic drug after incretin-based drugs entered the market up until June 30, 2014.\n* Patients with a previous diagnosis of pancreatic cancer, those who underwent pancreatectomy or were diagnosed with congenital defects of the pancreas at any time prior to study cohort entry.\n* Patients with less than 365 days of follow-up after study cohort entry",
+        "ref": "ctg:NCT02475499:e603086d5c520d07d5c96df6766e9b93a761b61ee33f2cfac802c9cb0eae67e7#/protocolSection/eligibilityModule/eligibilityCriteria",
+        "source": {
+          "ref": "ctg:NCT02475499:e603086d5c520d07d5c96df6766e9b93a761b61ee33f2cfac802c9cb0eae67e7",
+          "version": "e603086d5c520d07d5c96df6766e9b93a761b61ee33f2cfac802c9cb0eae67e7",
+          "address": "/protocolSection/eligibilityModule/eligibilityCriteria",
+          "digest": "e603086d5c520d07d5c96df6766e9b93a761b61ee33f2cfac802c9cb0eae67e7"
+        },
+        "code": "located"
+      },
+      {
+        "id": "description",
+        "address": "/protocolSection/descriptionModule",
+        "digest": "e603086d5c520d07d5c96df6766e9b93a761b61ee33f2cfac802c9cb0eae67e7",
+        "value": {
+          "briefSummary": "The purpose of this study is to determine whether incretin-based drugs (used to treat type 2 diabetes) taken either alone in or combination with other anti-diabetic drugs are associated with an increased risk of pancreatic cancer (PC) compared to sulfonylureas.\n\nThe investigators will carry out separate population based cohort studies using administrative health databases in five jurisdictions in Canada, the US, and the UK. Cohorts will be defined by the initiation of a new anti-diabetic drug when incretin-based drugs entered the market, with follow-up until hospitalization for PC. The results from the separate sites will be combined to provide an overall assessment of the risk of PC in users of incretin-based drugs and by class of incretin-based drugs.",
+          "detailedDescription": "The study objective is to determine whether the use of incretin-based drugs, compared with the use of sulfonylureas, is associated with an increased risk of pancreatic cancer (PC) in routine clinical practice. The investigators will use a common-protocol approach to conduct retrospective cohort studies using administrative health care data from five jurisdictions (the Canadian provinces of Alberta, Manitoba, and Ontario, as well as United States (US) MarketScan, and the United Kingdom (UK) Clinical Practice Research Datalink \\[CPRD\\]). Briefly, the Canadian databases include population-level data on physician billing, diagnoses and procedures from hospital discharge abstracts, and dispensations for prescription drugs. Ontario data will be restricted to patients aged 65 years and older as prescription data are not available for younger patients. The CPRD is a clinical database that is representative of the UK population and contains the records for patients seen at over 680 general practitioner practices in the UK; these data will be linked to the Hospital Episode Statistics (HES) database, which contains in-hospital diagnosis and procedure data. US MarketScan includes individuals and their dependents covered by large U.S. employer health insurance plans, and government and public organizations.\n\nStudy population\n\nIn each jurisdiction, the investigators will assemble a base cohort that includes all patients with a first-ever prescription for a non-insulin anti-diabetic drug, including biguanides, sulfonylureas, thiazolidinediones, DPP-4 inhibitors, GLP-1 analogs, alpha-glucosidase inhibitors, meglitinides, or combinations of these drugs from the earliest availability of data at each site to the last date of availability of data. The date of prescription (for the CPRD) or dispensation (for all other sites) of the first-ever non-insulin anti-diabetic drug will define the date of base cohort entry. From this base cohort, a study cohort will be created including all patients who initiated a new anti-diabetic drug class during the year in which incretin-based drugs entered the market in each jurisdiction or any time thereafter. These new users consist of both those who are newly-treated for diabetes, as well as those who switch to or add on a new anti-diabetic drug class not included as part of their previous treatment history. The date of study cohort entry is defined by the prescription date of the newly-prescribed drug class. Patients in the study cohort will be followed from the date of study cohort entry + 365 days until an event (defined below) or censoring due to death, departure from the database, loss of continuous health plan or drug plan enrolment, entry into a long-term care facility, or the end of the study period (June 30, 2014 or the last date of data availability at that site), whichever occurs first.\n\nCase-control selection\n\nThe cohort defined above will be analyzed using a nested case-control analysis, where cases are defined as a hospitalization for PC. Risk set sampling will be used to randomly select up to 20 controls for each case, matched on sex, age (± 365 days), date of study cohort entry (± 180 days), duration of treated diabetes (± 90 days), and duration of follow-up in days.\n\nExposure assessment\n\nEver-use of an anti-diabetic drug will be defined as any prescription for an anti-diabetic agent between base cohort entry and the index day -365 days. This 365-day lag period will be applied to account for disease latency and potential protopathic bias by only considering prescriptions received from (and including) the Base Cohort Entry Date until (and including) the date one year prior to the Index day. Ever-use of exposure will be classified hierarchically based on the following three mutually-exclusive categories: 1) incretin-based drugs; 2) sulfonylureas; 3) other antidiabetic agents. Sulfonylureas will serve as the primary reference category as incretin-based drugs are second- to third-line therapy and thus used at a comparable point in the disease management.\n\nStatistical analyses\n\nConditional logistic regression will be used to estimate odds ratios (ORs) and corresponding 95% confidence intervals (CIs) of the association of hospitalization for PC, comparing ever-use of incretin-based drugs to ever-use of sulfonylureas. This is considered the primary analysis. Secondary analyses will include sub-classifying ever-users of incretin-based drugs by type (i.e., DPP-4 inhibitor vs GLP-1 analog), cumulative duration of ever-use (≤ 365 days, 366-729 days, and ≥730 days), and time since initiation of treatment among ever-users. In addition, four sensitivity analyses will be conducted, all defined a priori, to assess the robustness of the results. Finally, all site-specific estimates will be meta-analyzed using random-effects models with inverse variance weighting, with fixed-effects analyses conducted as sensitivity analyses. The amount of between-site heterogeneity will be estimated using the I square statistic."
+        },
+        "ref": "ctg:NCT02475499:e603086d5c520d07d5c96df6766e9b93a761b61ee33f2cfac802c9cb0eae67e7#/protocolSection/descriptionModule",
+        "source": {
+          "ref": "ctg:NCT02475499:e603086d5c520d07d5c96df6766e9b93a761b61ee33f2cfac802c9cb0eae67e7",
+          "version": "e603086d5c520d07d5c96df6766e9b93a761b61ee33f2cfac802c9cb0eae67e7",
+          "address": "/protocolSection/descriptionModule",
+          "digest": "e603086d5c520d07d5c96df6766e9b93a761b61ee33f2cfac802c9cb0eae67e7"
+        },
+        "code": "located"
+      }
+    ],
+    "fixed": {
+      "assertions": [
+        {
+          "applicability": {
+            "class": "Always"
+          },
+          "body": {
+            "class": "Literal",
+            "evidence": [
+              {
+                "class": "Evidence",
+                "kind": "record_field",
+                "ref": "ctg:NCT02475499:e603086d5c520d07d5c96df6766e9b93a761b61ee33f2cfac802c9cb0eae67e7#/protocolSection/eligibilityModule/minimumAge"
+              }
+            ],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "age",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "ge",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 18.0,
+              "unit": "Years",
+              "upper": null
+            }
+          },
+          "branch": {
+            "class": "Branch",
+            "node": "unresolved",
+            "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+            "class": "Scope",
+            "kind": "all_participants",
+            "parts": [],
+            "ref": ""
+          },
+          "criterion_ref": "ctg:NCT02475499:e603086d5c520d07d5c96df6766e9b93a761b61ee33f2cfac802c9cb0eae67e7#/protocolSection/eligibilityModule/minimumAge",
+          "id": "registry-age-minimumAge",
+          "modality": "required",
+          "resolution": "resolved",
+          "rule": {
+            "answers": [],
+            "class": "Rule",
+            "id": "ctg-structured-general-eligibility-age",
+            "premises": [
+              "ctg:NCT02475499:e603086d5c520d07d5c96df6766e9b93a761b61ee33f2cfac802c9cb0eae67e7#/protocolSection/eligibilityModule/minimumAge"
+            ],
+            "version": "1",
+            "warrants": []
+          },
+          "span": [],
+          "status": "known"
+        }
+      ],
+      "signals": []
+    },
+    "interpretations": [],
+    "bindings": [],
+    "coverage": [
+      {
+        "address": "/protocolSection/eligibilityModule/minimumAge",
+        "code": "compiled",
+        "value": "18 Years",
+        "assertion": "registry-age-minimumAge",
+        "rule": "ctg-structured-general-eligibility-age",
+        "ref": "ctg:NCT02475499:e603086d5c520d07d5c96df6766e9b93a761b61ee33f2cfac802c9cb0eae67e7#/protocolSection/eligibilityModule/minimumAge"
+      },
+      {
+        "address": "/protocolSection/eligibilityModule/maximumAge",
+        "code": "missing",
+        "value": null
+      },
+      {
+        "address": "/protocolSection/eligibilityModule/eligibilityCriteria",
+        "code": "unresolved_retained",
+        "value": "Inclusion Criteria:\n\n* Patients with a first-ever prescription for a non-insulin anti-diabetic drug, including biguanides, sulfonylureas, thiazolidinediones, DPP-4 inhibitors, GLP-1 analogs, alpha-glucosidase inhibitors, meglitinides or combinations of these drugs from the earliest availability of data at each site to the last date of availability of data.\n* Patients with at least 1 year of history in the database.\n* Patients at least 18 years of age.\n\nExclusion Criteria:\n\n* Patients who died or left the cohort before the year the first incretin-based drug entered the market.\n* Patients who never added-on or switched to a new anti-diabetic drug after incretin-based drugs entered the market up until June 30, 2014.\n* Patients with a previous diagnosis of pancreatic cancer, those who underwent pancreatectomy or were diagnosed with congenital defects of the pancreas at any time prior to study cohort entry.\n* Patients with less than 365 days of follow-up after study cohort entry"
+      },
+      {
+        "address": "/protocolSection/eligibilityModule/healthyVolunteers",
+        "code": "unresolved_retained",
+        "value": false
+      },
+      {
+        "address": "/protocolSection/eligibilityModule/sex",
+        "code": "unresolved_retained",
+        "value": "ALL"
+      },
+      {
+        "address": "/protocolSection/eligibilityModule/stdAges",
+        "code": "unresolved_retained",
+        "value": [
+          "ADULT",
+          "OLDER_ADULT"
+        ]
+      },
+      {
+        "address": "/protocolSection/eligibilityModule/studyPopulation",
+        "code": "unresolved_retained",
+        "value": "In each jurisdiction, a base cohort will be assembled including all patients with a first-ever prescription for a non-insulin anti-diabetic drug. Base cohort entry is defined as the date of prescription or dispensation of the first-ever non-insulin anti-diabetic drug. From this base cohort, a study cohort will be formed consisting of all patients who initiated a new anti-diabetic drug class during the year in which incretin-based drugs entered the market in each jurisdiction or any time thereafter. Study cohort entry is defined by the prescription date of the newly-prescribed drug class."
+      },
+      {
+        "address": "/protocolSection/eligibilityModule/samplingMethod",
+        "code": "unresolved_retained",
+        "value": "PROBABILITY_SAMPLE"
+      },
+      {
+        "address": "/derivedSection",
+        "ref": "ctg:NCT02475499:e603086d5c520d07d5c96df6766e9b93a761b61ee33f2cfac802c9cb0eae67e7#/derivedSection",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/hasResults",
+        "ref": "ctg:NCT02475499:e603086d5c520d07d5c96df6766e9b93a761b61ee33f2cfac802c9cb0eae67e7#/hasResults",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/identificationModule",
+        "ref": "ctg:NCT02475499:e603086d5c520d07d5c96df6766e9b93a761b61ee33f2cfac802c9cb0eae67e7#/protocolSection/identificationModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/statusModule",
+        "ref": "ctg:NCT02475499:e603086d5c520d07d5c96df6766e9b93a761b61ee33f2cfac802c9cb0eae67e7#/protocolSection/statusModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/sponsorCollaboratorsModule",
+        "ref": "ctg:NCT02475499:e603086d5c520d07d5c96df6766e9b93a761b61ee33f2cfac802c9cb0eae67e7#/protocolSection/sponsorCollaboratorsModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/oversightModule",
+        "ref": "ctg:NCT02475499:e603086d5c520d07d5c96df6766e9b93a761b61ee33f2cfac802c9cb0eae67e7#/protocolSection/oversightModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/descriptionModule",
+        "ref": "ctg:NCT02475499:e603086d5c520d07d5c96df6766e9b93a761b61ee33f2cfac802c9cb0eae67e7#/protocolSection/descriptionModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/conditionsModule",
+        "ref": "ctg:NCT02475499:e603086d5c520d07d5c96df6766e9b93a761b61ee33f2cfac802c9cb0eae67e7#/protocolSection/conditionsModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/designModule",
+        "ref": "ctg:NCT02475499:e603086d5c520d07d5c96df6766e9b93a761b61ee33f2cfac802c9cb0eae67e7#/protocolSection/designModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/armsInterventionsModule",
+        "ref": "ctg:NCT02475499:e603086d5c520d07d5c96df6766e9b93a761b61ee33f2cfac802c9cb0eae67e7#/protocolSection/armsInterventionsModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/outcomesModule",
+        "ref": "ctg:NCT02475499:e603086d5c520d07d5c96df6766e9b93a761b61ee33f2cfac802c9cb0eae67e7#/protocolSection/outcomesModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/contactsLocationsModule",
+        "ref": "ctg:NCT02475499:e603086d5c520d07d5c96df6766e9b93a761b61ee33f2cfac802c9cb0eae67e7#/protocolSection/contactsLocationsModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/referencesModule",
+        "ref": "ctg:NCT02475499:e603086d5c520d07d5c96df6766e9b93a761b61ee33f2cfac802c9cb0eae67e7#/protocolSection/referencesModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      }
+    ],
+    "submitted": {
+      "interpretations": [],
+      "bindings": []
+    },
+    "requests": [
+      {
+        "operation": "entailment",
+        "assertions": [
+          {
+            "applicability": {
+              "class": "Always"
+            },
+            "body": {
+              "class": "Literal",
+              "evidence": [
+                {
+                  "class": "Evidence",
+                  "kind": "record_field",
+                  "ref": "ctg:NCT02475499:e603086d5c520d07d5c96df6766e9b93a761b61ee33f2cfac802c9cb0eae67e7#/protocolSection/eligibilityModule/minimumAge"
+                }
+              ],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "age",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "ge",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 18.0,
+                "unit": "Years",
+                "upper": null
+              }
+            },
+            "branch": {
+              "class": "Branch",
+              "node": "unresolved",
+              "path": []
+            },
+            "class": "ScopedAssertion",
+            "cohort": {
+              "class": "Scope",
+              "kind": "all_participants",
+              "parts": [],
+              "ref": ""
+            },
+            "criterion_ref": "ctg:NCT02475499:e603086d5c520d07d5c96df6766e9b93a761b61ee33f2cfac802c9cb0eae67e7#/protocolSection/eligibilityModule/minimumAge",
+            "id": "registry-age-minimumAge",
+            "modality": "required",
+            "resolution": "resolved",
+            "rule": {
+              "answers": [],
+              "class": "Rule",
+              "id": "ctg-structured-general-eligibility-age",
+              "premises": [
+                "ctg:NCT02475499:e603086d5c520d07d5c96df6766e9b93a761b61ee33f2cfac802c9cb0eae67e7#/protocolSection/eligibilityModule/minimumAge"
+              ],
+              "version": "1",
+              "warrants": []
+            },
+            "span": [],
+            "status": "known"
+          }
+        ],
+        "query": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+            "class": "Predicate",
+            "key": "age",
+            "kind": "measurement"
+          },
+          "qualifiers": {
+            "class": "Always"
+          },
+          "subject": {
+            "class": "Subject",
+            "kind": "participant",
+            "referent": ""
+          },
+          "time": null,
+          "value": {
+            "class": "Value",
+            "comparison": "ge",
+            "inclusivity": "unspecified",
+            "kind": "quantity",
+            "members": [],
+            "number": 18,
+            "unit": "Years",
+            "upper": null
+          }
+        }
+      },
+      {
+        "operation": "entailment",
+        "assertions": [
+          {
+            "applicability": {
+              "class": "Always"
+            },
+            "body": {
+              "class": "Literal",
+              "evidence": [
+                {
+                  "class": "Evidence",
+                  "kind": "record_field",
+                  "ref": "ctg:NCT02475499:e603086d5c520d07d5c96df6766e9b93a761b61ee33f2cfac802c9cb0eae67e7#/protocolSection/eligibilityModule/minimumAge"
+                }
+              ],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "age",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "ge",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 18.0,
+                "unit": "Years",
+                "upper": null
+              }
+            },
+            "branch": {
+              "class": "Branch",
+              "node": "unresolved",
+              "path": []
+            },
+            "class": "ScopedAssertion",
+            "cohort": {
+              "class": "Scope",
+              "kind": "all_participants",
+              "parts": [],
+              "ref": ""
+            },
+            "criterion_ref": "ctg:NCT02475499:e603086d5c520d07d5c96df6766e9b93a761b61ee33f2cfac802c9cb0eae67e7#/protocolSection/eligibilityModule/minimumAge",
+            "id": "registry-age-minimumAge",
+            "modality": "required",
+            "resolution": "resolved",
+            "rule": {
+              "answers": [],
+              "class": "Rule",
+              "id": "ctg-structured-general-eligibility-age",
+              "premises": [
+                "ctg:NCT02475499:e603086d5c520d07d5c96df6766e9b93a761b61ee33f2cfac802c9cb0eae67e7#/protocolSection/eligibilityModule/minimumAge"
+              ],
+              "version": "1",
+              "warrants": []
+            },
+            "span": [],
+            "status": "known"
+          }
+        ],
+        "query": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+            "class": "Predicate",
+            "key": "age",
+            "kind": "measurement"
+          },
+          "qualifiers": {
+            "class": "Always"
+          },
+          "subject": {
+            "class": "Subject",
+            "kind": "participant",
+            "referent": ""
+          },
+          "time": null,
+          "value": {
+            "class": "Value",
+            "comparison": "ge",
+            "inclusivity": "unspecified",
+            "kind": "quantity",
+            "members": [],
+            "number": 65,
+            "unit": "Years",
+            "upper": null
+          }
+        }
+      }
+    ],
+    "limits": [
+      "Structured ages describe registry general eligibility, not verified actual protocol.",
+      "A located quotation proves quotation only; clinical readings remain hypothetical.",
+      "No unit conversion, automatic binding joins, clinical text interpretation or source mutation."
+    ],
+    "analyses": [
+      {
+        "code": "complete",
+        "operation": "entailment",
+        "result": {
+          "basis": "Conditional on the supplied typed premises; their source meaning is not certified by this operation.",
+          "decision": {
+            "result": "ENTAILED",
+            "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+            "status": "known",
+            "proof": [
+              "registry-age-minimumAge"
+            ],
+            "blockers": []
+          },
+          "premises": [
+            {
+              "applicability": {
+                "class": "Always"
+              },
+              "body": {
+                "class": "Literal",
+                "evidence": [
+                  {
+                    "class": "Evidence",
+                    "kind": "record_field",
+                    "ref": "ctg:NCT02475499:e603086d5c520d07d5c96df6766e9b93a761b61ee33f2cfac802c9cb0eae67e7#/protocolSection/eligibilityModule/minimumAge"
+                  }
+                ],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "age",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "ge",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 18.0,
+                  "unit": "Years",
+                  "upper": null
+                }
+              },
+              "branch": {
+                "class": "Branch",
+                "node": "unresolved",
+                "path": []
+              },
+              "class": "ScopedAssertion",
+              "cohort": {
+                "class": "Scope",
+                "kind": "all_participants",
+                "parts": [],
+                "ref": ""
+              },
+              "criterion_ref": "ctg:NCT02475499:e603086d5c520d07d5c96df6766e9b93a761b61ee33f2cfac802c9cb0eae67e7#/protocolSection/eligibilityModule/minimumAge",
+              "id": "registry-age-minimumAge",
+              "modality": "required",
+              "resolution": "resolved",
+              "rule": {
+                "answers": [],
+                "class": "Rule",
+                "id": "ctg-structured-general-eligibility-age",
+                "premises": [
+                  "ctg:NCT02475499:e603086d5c520d07d5c96df6766e9b93a761b61ee33f2cfac802c9cb0eae67e7#/protocolSection/eligibilityModule/minimumAge"
+                ],
+                "version": "1",
+                "warrants": []
+              },
+              "span": [],
+              "status": "known"
+            }
+          ]
+        },
+        "problems": [],
+        "metadata": {
+          "version": 1,
+          "kind": "reasoning",
+          "findings": [
+            {
+              "path": "/result/decision",
+              "kind": "logical",
+              "logical_result": "ENTAILED",
+              "standing": "known",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "settled"
+            }
+          ]
+        }
+      },
+      {
+        "code": "complete",
+        "operation": "entailment",
+        "result": {
+          "basis": "Conditional on the supplied typed premises; their source meaning is not certified by this operation.",
+          "decision": {
+            "result": "UNDETERMINED",
+            "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":65.0,\"unit\":\"Years\",\"upper\":null}}",
+            "status": null,
+            "proof": [
+              "registry-age-minimumAge"
+            ],
+            "blockers": [
+              "undecided_by_constraints"
+            ]
+          },
+          "premises": [
+            {
+              "applicability": {
+                "class": "Always"
+              },
+              "body": {
+                "class": "Literal",
+                "evidence": [
+                  {
+                    "class": "Evidence",
+                    "kind": "record_field",
+                    "ref": "ctg:NCT02475499:e603086d5c520d07d5c96df6766e9b93a761b61ee33f2cfac802c9cb0eae67e7#/protocolSection/eligibilityModule/minimumAge"
+                  }
+                ],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "age",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "ge",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 18.0,
+                  "unit": "Years",
+                  "upper": null
+                }
+              },
+              "branch": {
+                "class": "Branch",
+                "node": "unresolved",
+                "path": []
+              },
+              "class": "ScopedAssertion",
+              "cohort": {
+                "class": "Scope",
+                "kind": "all_participants",
+                "parts": [],
+                "ref": ""
+              },
+              "criterion_ref": "ctg:NCT02475499:e603086d5c520d07d5c96df6766e9b93a761b61ee33f2cfac802c9cb0eae67e7#/protocolSection/eligibilityModule/minimumAge",
+              "id": "registry-age-minimumAge",
+              "modality": "required",
+              "resolution": "resolved",
+              "rule": {
+                "answers": [],
+                "class": "Rule",
+                "id": "ctg-structured-general-eligibility-age",
+                "premises": [
+                  "ctg:NCT02475499:e603086d5c520d07d5c96df6766e9b93a761b61ee33f2cfac802c9cb0eae67e7#/protocolSection/eligibilityModule/minimumAge"
+                ],
+                "version": "1",
+                "warrants": []
+              },
+              "span": [],
+              "status": "known"
+            }
+          ]
+        },
+        "problems": [],
+        "metadata": {
+          "version": 1,
+          "kind": "reasoning",
+          "findings": [
+            {
+              "path": "/result/decision",
+              "kind": "logical",
+              "logical_result": "UNDETERMINED",
+              "standing": null,
+              "completion": "complete",
+              "causes": [
+                {
+                  "code": "undecided_by_constraints",
+                  "kind": "constraint"
+                }
+              ],
+              "disposition": "open"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "problems": [],
+  "metadata": {
+    "version": 1,
+    "kind": "reasoning",
+    "findings": [
+      {
+        "path": "/result/analyses/0/result/decision",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled"
+      },
+      {
+        "path": "/result/analyses/1/result/decision",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": null,
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "undecided_by_constraints",
+            "kind": "constraint"
+          }
+        ],
+        "disposition": "open"
+      }
+    ]
+  }
+}

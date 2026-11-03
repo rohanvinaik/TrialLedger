@@ -1,0 +1,618 @@
+{
+  "code": "complete",
+  "operation": "source_assertions",
+  "result": {
+    "source": {
+      "nct": "NCT03625505",
+      "digest": "2aedd2487c16532f6d826bec43345d1df52ce352fa5102e10cbabaf92620de2e",
+      "study_ref": "ctg:NCT03625505:2aedd2487c16532f6d826bec43345d1df52ce352fa5102e10cbabaf92620de2e",
+      "version": "2aedd2487c16532f6d826bec43345d1df52ce352fa5102e10cbabaf92620de2e",
+      "last_update": {
+        "date": "2021-09-14",
+        "type": "ACTUAL"
+      }
+    },
+    "anchors": [
+      {
+        "id": "eligibility",
+        "address": "/protocolSection/eligibilityModule/eligibilityCriteria",
+        "digest": "2aedd2487c16532f6d826bec43345d1df52ce352fa5102e10cbabaf92620de2e",
+        "value": "Inclusion Criteria:\n\n* Should have an established, confirmed diagnosis of Acute Myeloid Leukemia (AML) by World Health Organization (2016).\n* Should have failed at least 1 line of prior therapy (defined as failure to respond to therapy, and/or progression during or after therapy).\n* Should have an Eastern Cooperative Oncology Group (ECOG) performance status of 0, 1, or 2.\n* Should have adequate hematologic, kidney and liver function as described in the protocol.\n* For participants enrolling into the Expansion Cohort only: a documented FMS-like Tyrosine Kinase (FLT3) mutation in bone marrow or peripheral blood, as described in the protocol.\n\nExclusion Criteria:\n\n* Has a diagnosis of acute promyelocytic leukemia (APL) or BCR-ABL-positive leukemia.\n* Has a history of other malignancies within 2 years prior to study entry, with exceptions as described in the protocol.\n* Has active central nervous system leukemia.\n* Has a history of chronic New York Heart Association (NYHA) class IV heart failure.\n* Has a corrected QT interval of \\> 450 ms.\n* Has a chronic respiratory disease that requires continuous oxygen use.",
+        "ref": "ctg:NCT03625505:2aedd2487c16532f6d826bec43345d1df52ce352fa5102e10cbabaf92620de2e#/protocolSection/eligibilityModule/eligibilityCriteria",
+        "source": {
+          "ref": "ctg:NCT03625505:2aedd2487c16532f6d826bec43345d1df52ce352fa5102e10cbabaf92620de2e",
+          "version": "2aedd2487c16532f6d826bec43345d1df52ce352fa5102e10cbabaf92620de2e",
+          "address": "/protocolSection/eligibilityModule/eligibilityCriteria",
+          "digest": "2aedd2487c16532f6d826bec43345d1df52ce352fa5102e10cbabaf92620de2e"
+        },
+        "code": "located"
+      },
+      {
+        "id": "outcomes",
+        "address": "/protocolSection/outcomesModule",
+        "digest": "2aedd2487c16532f6d826bec43345d1df52ce352fa5102e10cbabaf92620de2e",
+        "value": {
+          "primaryOutcomes": [
+            {
+              "measure": "Recommended Phase 2 Dose (RPTD) of Co-administered Study Drugs",
+              "description": "The RPTD of co-administered venetoclax and gilteritinib will be determined during the dose escalation phase of the study. RPTD will be determined using available safety and pharmacokinetics data.",
+              "timeFrame": "Up to approximately 6 months after the last participant is enrolled"
+            },
+            {
+              "measure": "Modified Composite Complete Remission (CRc)",
+              "description": "Modified CRc rate is defined as the proportion of participants with documented complete response (CR) + CR with partial blood count recovery (CRp) + CR with incomplete blood count recovery (CRi) plus Morphologic Leukemia-Free State (MLFS) based on guidelines adapted from the International Working Group (IWG) for Acute Myeloid Leukemia (AML).",
+              "timeFrame": "Up to approximately 6 months after the last participant is enrolled"
+            }
+          ],
+          "secondaryOutcomes": [
+            {
+              "measure": "Pharmacokinetics - Cmax of Venetoclax",
+              "description": "Maximum observed plasma concentration (Cmax) of study drug.",
+              "timeFrame": "Approximately 16 days after first dose of study drug"
+            },
+            {
+              "measure": "Pharmacokinetics - Cmax of Gilteritinib",
+              "description": "Maximum observed plasma concentration (Cmax) of study drug.",
+              "timeFrame": "Approximately 16 days after first dose of study drug"
+            },
+            {
+              "measure": "Pharmacokinetics - Tmax of Venetoclax",
+              "description": "Time to maximum plasma concentration (Tmax) of study drug.",
+              "timeFrame": "Approximately 16 days after first dose of study drug"
+            },
+            {
+              "measure": "Pharmacokinetics - Tmax of Gilteritinib",
+              "description": "Time to maximum plasma concentration (Tmax) of study drug.",
+              "timeFrame": "Approximately 16 days after first dose of study drug"
+            },
+            {
+              "measure": "Pharmacokinetics - AUCt of Venetoclax",
+              "description": "Area Under the Plasma Concentration-time Curve (AUC) from Time 0 to Time of the Last Measurable Concentration (AUCt) of study drug.",
+              "timeFrame": "Approximately 16 days after first dose of study drug"
+            },
+            {
+              "measure": "Pharmacokinetics - AUCt of Gilteritinib",
+              "description": "Area Under the Plasma Concentration-time Curve (AUC) from Time 0 to Time of the Last Measurable Concentration (AUCt) of study drug.",
+              "timeFrame": "Approximately 16 days after first dose of study drug"
+            },
+            {
+              "measure": "Pharmacokinetics - AUC0-24 Post-dose of Study Drug of Venetoclax",
+              "description": "Area under the plasma concentration-time curve from 0 to 24 hours (AUC24) post-dose of study drug.",
+              "timeFrame": "Approximately 16 days after first dose of study drug"
+            },
+            {
+              "measure": "Pharmacokinetics - AUC0-24 Post-dose of Study Drug of Gilteritinib",
+              "description": "Area under the plasma concentration-time curve from 0 to 24 hours (AUC24) post-dose of study drug.",
+              "timeFrame": "Approximately 16 days after first dose of study drug"
+            },
+            {
+              "measure": "Composite Complete Remission (CRc) Rate",
+              "description": "CRc is defined as the proportion of participants with documented CR + CRp + CRi based on guidelines adapted from the International Working Group (IWG) for Acute Myeloid Leukemia (AML).",
+              "timeFrame": "Up to approximately 6 months after the last participant is enrolled"
+            },
+            {
+              "measure": "Duration of Response (DOR) of Modified Composite Complete Remission (CRc)",
+              "description": "DOR of modified CRc will be defined as time from the first date achieving modified CRc to disease progression (including morphologic relapse) or death from any cause whichever is earlier.",
+              "timeFrame": "Up to approximately 6 months after the last participant is enrolled"
+            },
+            {
+              "measure": "Complete Remission (CR) + with Partial Hematologic Recovery (CRh)",
+              "description": "It is defined as the proportion of participants achieving CR or CRh based on guidelines adapted from the International Working Group (IWG) for Acute Myeloid Leukemia (AML).",
+              "timeFrame": "Up to approximately 6 months after the last participant is enrolled"
+            },
+            {
+              "measure": "Duration of Response (DOR) of Complete Remission (CR) + Complete Remission with Partial Hematologic Recovery (CRh)",
+              "description": "DOR of CR + CRh will be defined as time from the first date achieving CR and/or CRh to disease progression (including morphologic relapse) or death from any cause whichever is earlier.",
+              "timeFrame": "Up to approximately 6 months after the last participant is enrolled"
+            },
+            {
+              "measure": "Number of Participants With Adverse Events",
+              "description": "An adverse event (AE) is defined as any untoward medical occurrence in a patient or clinical investigation subject administered a pharmaceutical product and which does not necessarily have a causal relationship with this treatment.",
+              "timeFrame": "From first dose of study drug until 30 days or 5 half-lives after discontinuation of study drug administration will be collected (up to approximately 4 years)"
+            }
+          ]
+        },
+        "ref": "ctg:NCT03625505:2aedd2487c16532f6d826bec43345d1df52ce352fa5102e10cbabaf92620de2e#/protocolSection/outcomesModule",
+        "source": {
+          "ref": "ctg:NCT03625505:2aedd2487c16532f6d826bec43345d1df52ce352fa5102e10cbabaf92620de2e",
+          "version": "2aedd2487c16532f6d826bec43345d1df52ce352fa5102e10cbabaf92620de2e",
+          "address": "/protocolSection/outcomesModule",
+          "digest": "2aedd2487c16532f6d826bec43345d1df52ce352fa5102e10cbabaf92620de2e"
+        },
+        "code": "located"
+      },
+      {
+        "id": "arms",
+        "address": "/protocolSection/armsInterventionsModule",
+        "digest": "2aedd2487c16532f6d826bec43345d1df52ce352fa5102e10cbabaf92620de2e",
+        "value": {
+          "armGroups": [
+            {
+              "label": "Dose Escalation Venetoclax + Gilteritinib",
+              "type": "EXPERIMENTAL",
+              "description": "Different combinations of dose levels for venetoclax in combination with gilteritinib will be administered to determine the recommended phase 2 dose (RPTD).",
+              "interventionNames": [
+                "Drug: Venetoclax",
+                "Drug: Gilteritinib"
+              ]
+            },
+            {
+              "label": "Dose Expansion Venetoclax + Gilteritinib",
+              "type": "EXPERIMENTAL",
+              "description": "Participants will receive venetoclax in combination with gilteritinib at the dose determined in dose escalation portion.",
+              "interventionNames": [
+                "Drug: Venetoclax",
+                "Drug: Gilteritinib"
+              ]
+            }
+          ],
+          "interventions": [
+            {
+              "type": "DRUG",
+              "name": "Venetoclax",
+              "description": "tablet, oral",
+              "armGroupLabels": [
+                "Dose Escalation Venetoclax + Gilteritinib",
+                "Dose Expansion Venetoclax + Gilteritinib"
+              ],
+              "otherNames": [
+                "ABT-199",
+                "GDC-0199"
+              ]
+            },
+            {
+              "type": "DRUG",
+              "name": "Gilteritinib",
+              "description": "tablet, oral",
+              "armGroupLabels": [
+                "Dose Escalation Venetoclax + Gilteritinib",
+                "Dose Expansion Venetoclax + Gilteritinib"
+              ],
+              "otherNames": [
+                "ASP-2215"
+              ]
+            }
+          ]
+        },
+        "ref": "ctg:NCT03625505:2aedd2487c16532f6d826bec43345d1df52ce352fa5102e10cbabaf92620de2e#/protocolSection/armsInterventionsModule",
+        "source": {
+          "ref": "ctg:NCT03625505:2aedd2487c16532f6d826bec43345d1df52ce352fa5102e10cbabaf92620de2e",
+          "version": "2aedd2487c16532f6d826bec43345d1df52ce352fa5102e10cbabaf92620de2e",
+          "address": "/protocolSection/armsInterventionsModule",
+          "digest": "2aedd2487c16532f6d826bec43345d1df52ce352fa5102e10cbabaf92620de2e"
+        },
+        "code": "located"
+      }
+    ],
+    "fixed": {
+      "assertions": [
+        {
+          "applicability": {
+            "class": "Always"
+          },
+          "body": {
+            "class": "Literal",
+            "evidence": [
+              {
+                "class": "Evidence",
+                "kind": "record_field",
+                "ref": "ctg:NCT03625505:2aedd2487c16532f6d826bec43345d1df52ce352fa5102e10cbabaf92620de2e#/protocolSection/eligibilityModule/minimumAge"
+              }
+            ],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "age",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "ge",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 18.0,
+              "unit": "Years",
+              "upper": null
+            }
+          },
+          "branch": {
+            "class": "Branch",
+            "node": "unresolved",
+            "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+            "class": "Scope",
+            "kind": "all_participants",
+            "parts": [],
+            "ref": ""
+          },
+          "criterion_ref": "ctg:NCT03625505:2aedd2487c16532f6d826bec43345d1df52ce352fa5102e10cbabaf92620de2e#/protocolSection/eligibilityModule/minimumAge",
+          "id": "registry-age-minimumAge",
+          "modality": "required",
+          "resolution": "resolved",
+          "rule": {
+            "answers": [],
+            "class": "Rule",
+            "id": "ctg-structured-general-eligibility-age",
+            "premises": [
+              "ctg:NCT03625505:2aedd2487c16532f6d826bec43345d1df52ce352fa5102e10cbabaf92620de2e#/protocolSection/eligibilityModule/minimumAge"
+            ],
+            "version": "1",
+            "warrants": []
+          },
+          "span": [],
+          "status": "known"
+        }
+      ],
+      "signals": []
+    },
+    "interpretations": [],
+    "bindings": [],
+    "coverage": [
+      {
+        "address": "/protocolSection/eligibilityModule/minimumAge",
+        "code": "compiled",
+        "value": "18 Years",
+        "assertion": "registry-age-minimumAge",
+        "rule": "ctg-structured-general-eligibility-age",
+        "ref": "ctg:NCT03625505:2aedd2487c16532f6d826bec43345d1df52ce352fa5102e10cbabaf92620de2e#/protocolSection/eligibilityModule/minimumAge"
+      },
+      {
+        "address": "/protocolSection/eligibilityModule/maximumAge",
+        "code": "missing",
+        "value": null
+      },
+      {
+        "address": "/protocolSection/eligibilityModule/eligibilityCriteria",
+        "code": "unresolved_retained",
+        "value": "Inclusion Criteria:\n\n* Should have an established, confirmed diagnosis of Acute Myeloid Leukemia (AML) by World Health Organization (2016).\n* Should have failed at least 1 line of prior therapy (defined as failure to respond to therapy, and/or progression during or after therapy).\n* Should have an Eastern Cooperative Oncology Group (ECOG) performance status of 0, 1, or 2.\n* Should have adequate hematologic, kidney and liver function as described in the protocol.\n* For participants enrolling into the Expansion Cohort only: a documented FMS-like Tyrosine Kinase (FLT3) mutation in bone marrow or peripheral blood, as described in the protocol.\n\nExclusion Criteria:\n\n* Has a diagnosis of acute promyelocytic leukemia (APL) or BCR-ABL-positive leukemia.\n* Has a history of other malignancies within 2 years prior to study entry, with exceptions as described in the protocol.\n* Has active central nervous system leukemia.\n* Has a history of chronic New York Heart Association (NYHA) class IV heart failure.\n* Has a corrected QT interval of \\> 450 ms.\n* Has a chronic respiratory disease that requires continuous oxygen use."
+      },
+      {
+        "address": "/protocolSection/eligibilityModule/healthyVolunteers",
+        "code": "unresolved_retained",
+        "value": false
+      },
+      {
+        "address": "/protocolSection/eligibilityModule/sex",
+        "code": "unresolved_retained",
+        "value": "ALL"
+      },
+      {
+        "address": "/protocolSection/eligibilityModule/stdAges",
+        "code": "unresolved_retained",
+        "value": [
+          "ADULT",
+          "OLDER_ADULT"
+        ]
+      },
+      {
+        "address": "/derivedSection",
+        "ref": "ctg:NCT03625505:2aedd2487c16532f6d826bec43345d1df52ce352fa5102e10cbabaf92620de2e#/derivedSection",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/hasResults",
+        "ref": "ctg:NCT03625505:2aedd2487c16532f6d826bec43345d1df52ce352fa5102e10cbabaf92620de2e#/hasResults",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/identificationModule",
+        "ref": "ctg:NCT03625505:2aedd2487c16532f6d826bec43345d1df52ce352fa5102e10cbabaf92620de2e#/protocolSection/identificationModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/statusModule",
+        "ref": "ctg:NCT03625505:2aedd2487c16532f6d826bec43345d1df52ce352fa5102e10cbabaf92620de2e#/protocolSection/statusModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/sponsorCollaboratorsModule",
+        "ref": "ctg:NCT03625505:2aedd2487c16532f6d826bec43345d1df52ce352fa5102e10cbabaf92620de2e#/protocolSection/sponsorCollaboratorsModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/oversightModule",
+        "ref": "ctg:NCT03625505:2aedd2487c16532f6d826bec43345d1df52ce352fa5102e10cbabaf92620de2e#/protocolSection/oversightModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/descriptionModule",
+        "ref": "ctg:NCT03625505:2aedd2487c16532f6d826bec43345d1df52ce352fa5102e10cbabaf92620de2e#/protocolSection/descriptionModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/conditionsModule",
+        "ref": "ctg:NCT03625505:2aedd2487c16532f6d826bec43345d1df52ce352fa5102e10cbabaf92620de2e#/protocolSection/conditionsModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/designModule",
+        "ref": "ctg:NCT03625505:2aedd2487c16532f6d826bec43345d1df52ce352fa5102e10cbabaf92620de2e#/protocolSection/designModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/armsInterventionsModule",
+        "ref": "ctg:NCT03625505:2aedd2487c16532f6d826bec43345d1df52ce352fa5102e10cbabaf92620de2e#/protocolSection/armsInterventionsModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/outcomesModule",
+        "ref": "ctg:NCT03625505:2aedd2487c16532f6d826bec43345d1df52ce352fa5102e10cbabaf92620de2e#/protocolSection/outcomesModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/contactsLocationsModule",
+        "ref": "ctg:NCT03625505:2aedd2487c16532f6d826bec43345d1df52ce352fa5102e10cbabaf92620de2e#/protocolSection/contactsLocationsModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/referencesModule",
+        "ref": "ctg:NCT03625505:2aedd2487c16532f6d826bec43345d1df52ce352fa5102e10cbabaf92620de2e#/protocolSection/referencesModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/ipdSharingStatementModule",
+        "ref": "ctg:NCT03625505:2aedd2487c16532f6d826bec43345d1df52ce352fa5102e10cbabaf92620de2e#/protocolSection/ipdSharingStatementModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      }
+    ],
+    "submitted": {
+      "interpretations": [],
+      "bindings": []
+    },
+    "requests": [
+      {
+        "operation": "entailment",
+        "assertions": [
+          {
+            "applicability": {
+              "class": "Always"
+            },
+            "body": {
+              "class": "Literal",
+              "evidence": [
+                {
+                  "class": "Evidence",
+                  "kind": "record_field",
+                  "ref": "ctg:NCT03625505:2aedd2487c16532f6d826bec43345d1df52ce352fa5102e10cbabaf92620de2e#/protocolSection/eligibilityModule/minimumAge"
+                }
+              ],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "age",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "ge",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 18.0,
+                "unit": "Years",
+                "upper": null
+              }
+            },
+            "branch": {
+              "class": "Branch",
+              "node": "unresolved",
+              "path": []
+            },
+            "class": "ScopedAssertion",
+            "cohort": {
+              "class": "Scope",
+              "kind": "all_participants",
+              "parts": [],
+              "ref": ""
+            },
+            "criterion_ref": "ctg:NCT03625505:2aedd2487c16532f6d826bec43345d1df52ce352fa5102e10cbabaf92620de2e#/protocolSection/eligibilityModule/minimumAge",
+            "id": "registry-age-minimumAge",
+            "modality": "required",
+            "resolution": "resolved",
+            "rule": {
+              "answers": [],
+              "class": "Rule",
+              "id": "ctg-structured-general-eligibility-age",
+              "premises": [
+                "ctg:NCT03625505:2aedd2487c16532f6d826bec43345d1df52ce352fa5102e10cbabaf92620de2e#/protocolSection/eligibilityModule/minimumAge"
+              ],
+              "version": "1",
+              "warrants": []
+            },
+            "span": [],
+            "status": "known"
+          }
+        ],
+        "query": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+            "class": "Predicate",
+            "key": "age",
+            "kind": "measurement"
+          },
+          "qualifiers": {
+            "class": "Always"
+          },
+          "subject": {
+            "class": "Subject",
+            "kind": "participant",
+            "referent": ""
+          },
+          "time": null,
+          "value": {
+            "class": "Value",
+            "comparison": "ge",
+            "inclusivity": "unspecified",
+            "kind": "quantity",
+            "members": [],
+            "number": 18,
+            "unit": "Years",
+            "upper": null
+          }
+        }
+      }
+    ],
+    "limits": [
+      "Structured ages describe registry general eligibility, not verified actual protocol.",
+      "A located quotation proves quotation only; clinical readings remain hypothetical.",
+      "No unit conversion, automatic binding joins, clinical text interpretation or source mutation."
+    ],
+    "analyses": [
+      {
+        "code": "complete",
+        "operation": "entailment",
+        "result": {
+          "basis": "Conditional on the supplied typed premises; their source meaning is not certified by this operation.",
+          "decision": {
+            "result": "ENTAILED",
+            "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+            "status": "known",
+            "proof": [
+              "registry-age-minimumAge"
+            ],
+            "blockers": []
+          },
+          "premises": [
+            {
+              "applicability": {
+                "class": "Always"
+              },
+              "body": {
+                "class": "Literal",
+                "evidence": [
+                  {
+                    "class": "Evidence",
+                    "kind": "record_field",
+                    "ref": "ctg:NCT03625505:2aedd2487c16532f6d826bec43345d1df52ce352fa5102e10cbabaf92620de2e#/protocolSection/eligibilityModule/minimumAge"
+                  }
+                ],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "age",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "ge",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 18.0,
+                  "unit": "Years",
+                  "upper": null
+                }
+              },
+              "branch": {
+                "class": "Branch",
+                "node": "unresolved",
+                "path": []
+              },
+              "class": "ScopedAssertion",
+              "cohort": {
+                "class": "Scope",
+                "kind": "all_participants",
+                "parts": [],
+                "ref": ""
+              },
+              "criterion_ref": "ctg:NCT03625505:2aedd2487c16532f6d826bec43345d1df52ce352fa5102e10cbabaf92620de2e#/protocolSection/eligibilityModule/minimumAge",
+              "id": "registry-age-minimumAge",
+              "modality": "required",
+              "resolution": "resolved",
+              "rule": {
+                "answers": [],
+                "class": "Rule",
+                "id": "ctg-structured-general-eligibility-age",
+                "premises": [
+                  "ctg:NCT03625505:2aedd2487c16532f6d826bec43345d1df52ce352fa5102e10cbabaf92620de2e#/protocolSection/eligibilityModule/minimumAge"
+                ],
+                "version": "1",
+                "warrants": []
+              },
+              "span": [],
+              "status": "known"
+            }
+          ]
+        },
+        "problems": [],
+        "metadata": {
+          "version": 1,
+          "kind": "reasoning",
+          "findings": [
+            {
+              "path": "/result/decision",
+              "kind": "logical",
+              "logical_result": "ENTAILED",
+              "standing": "known",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "settled"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "problems": [],
+  "metadata": {
+    "version": 1,
+    "kind": "reasoning",
+    "findings": [
+      {
+        "path": "/result/analyses/0/result/decision",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled"
+      }
+    ]
+  }
+}

@@ -1,0 +1,227 @@
+{
+  "report_folder": "/Users/rohanvinaik/trialledger-runs/docs-asthma-sample-20261103",
+  "preview_folder": "/Users/rohanvinaik/trialledger-runs/docs-asthma-20261103",
+  "files": {
+    "bodies/ids-001.json": {
+      "bytes": 239,
+      "sha256": "8328faab88983825b4df6f5a22edc7a4a327ca4035fce4d25b373d9698c58cb3"
+    },
+    "bodies/studies-001.json": {
+      "bytes": 108745,
+      "sha256": "389f9886230c60bec8daa1c7c483acd29d9391cd59072c0659a7e7fc4e03cec7"
+    },
+    "bodies/version-end.json": {
+      "bytes": 71,
+      "sha256": "9eb0e46583efc444c5877db64a361ff539a68ea4f56332958999a5acb39c8553"
+    },
+    "bodies/version-start.json": {
+      "bytes": 71,
+      "sha256": "9eb0e46583efc444c5877db64a361ff539a68ea4f56332958999a5acb39c8553"
+    },
+    "classes.json": {
+      "bytes": 31791,
+      "sha256": "c9cb72ff1244d271cdfcf96a60301e430cc451356d03363db9237788c965d08a"
+    },
+    "fetches.json": {
+      "bytes": 1258,
+      "sha256": "35448ccb62eb835f7cea1c5c34ae7690a8c4234e3fa7e19c2d1ea1ece586b37c"
+    },
+    "input-contract-replay.py": {
+      "bytes": 2668,
+      "sha256": "33dc81e9157edde8d019b836a0b2223d44a7caa66d75f05b9d73eb5f915dee01"
+    },
+    "landscape.json": {
+      "bytes": 402011,
+      "sha256": "1fbe681725a9d24d96ea3ce5da2047cce0b4b1724854f3988927eee65b3a25f9"
+    },
+    "landscape.xlsx": {
+      "bytes": 80493,
+      "sha256": "50014e637d199a7b6b231e5ffbcbabff4af16ed993f0b6e70c0fae69a69e5aec"
+    },
+    "manifest.json": {
+      "bytes": 1924,
+      "sha256": "a0f3a55f3ff2f8841b2fbcab7cfdf84b8d4ac59a8ea640b4ece23e17bed36b1d"
+    },
+    "request.json": {
+      "bytes": 74,
+      "sha256": "c2d80b4d231d3038b03843d2f7756b9f76531b2e981f5a04ef5c80bb2b868bab"
+    },
+    "resolution.json": {
+      "bytes": 510,
+      "sha256": "735c2c79985dde1fc810e6a323f0cb7e8f5991e53d2aceb10d4a2f4c9c57eb79"
+    },
+    "scope.json": {
+      "bytes": 87,
+      "sha256": "e10e2061066d39d00a66ca0e19e0236c4fed726b81a39243be9e7e2ec1b1bcf1"
+    },
+    "source-discovery.json": {
+      "bytes": 75412,
+      "sha256": "adad7dfd1736f431741df2849378b61385264cff95af0dc332d72934f9469a51"
+    },
+    "workflow-wires/NCT00419952-source-age-cli.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/NCT00419952-source-age-cli.stdout": {
+      "bytes": 20776,
+      "sha256": "678bbfc1e3077f771ddc4c3f658a3bfabe930d464767f1fc41937c627cb0984b"
+    },
+    "workflow-wires/NCT00419952-source-age-mcp-input.jsonl": {
+      "bytes": 61040,
+      "sha256": "8197341b8e169d0bdd8afc8259e52b53394bfd610b74a547bd1793f03a297472"
+    },
+    "workflow-wires/NCT00419952-source-age-mcp.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/NCT00419952-source-age-mcp.stdout": {
+      "bytes": 27783,
+      "sha256": "c96fd4dee2153a091097027bc5ed9f85577cea096e4b645c07e9722855376211"
+    },
+    "workflow-wires/NCT01001364-source-age-cli.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/NCT01001364-source-age-cli.stdout": {
+      "bytes": 22676,
+      "sha256": "a315bb69c820444ec5ef5cba14b2254186eadffee4ed2f18d881780eb29767cb"
+    },
+    "workflow-wires/NCT01001364-source-age-mcp-input.jsonl": {
+      "bytes": 10786,
+      "sha256": "03ea95d2c6f20502974e4ea92c642f8cef46050aa06cf2823b8b60ab7e4506e9"
+    },
+    "workflow-wires/NCT01001364-source-age-mcp.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/NCT01001364-source-age-mcp.stdout": {
+      "bytes": 29687,
+      "sha256": "c2431af2664dbe35a58770d31646687ab544b089c0998bb732f4af73d05c1bf1"
+    },
+    "workflow-wires/NCT01360021-source-age-cli.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/NCT01360021-source-age-cli.stdout": {
+      "bytes": 21744,
+      "sha256": "5b0aa8c16dca801baab070b57ef110cc68fcb1c91399191e106967feae3316b8"
+    },
+    "workflow-wires/NCT01360021-source-age-mcp-input.jsonl": {
+      "bytes": 51400,
+      "sha256": "ceaceb0d1d3e0b1518b06e08b1c0114714b1d8be42b59ada32bfeb00e28cd98a"
+    },
+    "workflow-wires/NCT01360021-source-age-mcp.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/NCT01360021-source-age-mcp.stdout": {
+      "bytes": 28761,
+      "sha256": "d08f7ea25c645fb13e1a790747e6d40af056993fc2c1d10567c46757f666a184"
+    },
+    "workflow-wires/input-contract-cli.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/input-contract-cli.stdout": {
+      "bytes": 485,
+      "sha256": "84c3010fbdd00f2757c7eb5f18cc7308ac308a95ba5ff34f2c5581ee0979c87b"
+    },
+    "workflow-wires/input-contract-mcp-input.jsonl": {
+      "bytes": 20761,
+      "sha256": "3814fe0aef5d7f80ea75c97d7b46e09ea6b57067ac9def4767c7047b986b4b11"
+    },
+    "workflow-wires/input-contract-mcp.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/input-contract-mcp.stdout": {
+      "bytes": 4961,
+      "sha256": "cd0baa73fd226deb681284b09eaeec0ff02a256837806f6fc71b064068b51f42"
+    },
+    "workflow-wires/post-docs-overview-cli.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/post-docs-overview-cli.stdout": {
+      "bytes": 6814,
+      "sha256": "dafb4c0ed930bd4844925e5b0e5a4e6f8677b2cf18765830a42f7aa25a03ad97"
+    },
+    "workflow-wires/post-docs-overview-mcp-input.jsonl": {
+      "bytes": 314,
+      "sha256": "54cad5163c9b4e0c8ea8d8cb8c2e6f054fd80ae7ad5cccf75d391fca2b31be09"
+    },
+    "workflow-wires/post-docs-overview-mcp.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/post-docs-overview-mcp.stdout": {
+      "bytes": 11752,
+      "sha256": "c2b407964461e2d581311e1826fec7389db20e3207e8f43f9c61a1069ccc000c"
+    },
+    "workflow-wires/session-add-rival-reading-cli.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/session-add-rival-reading-cli.stdout": {
+      "bytes": 382008,
+      "sha256": "9e1ed2ce0c7955d9816a93f0d448bfff1d2f4606e0843d251ec47b8cb7160739"
+    },
+    "workflow-wires/session-add-rival-reading-mcp-input.jsonl": {
+      "bytes": 161573,
+      "sha256": "cd2a77d30e7b2072b7f155b61363b00ab3b1f14bdcb1aaa65928539ac1ac41e0"
+    },
+    "workflow-wires/session-add-rival-reading-mcp.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/session-add-rival-reading-mcp.stdout": {
+      "bytes": 430126,
+      "sha256": "e2c4861529c44d0f247cc73c38436cf1fb0f90abd9bf080788c803305676e661"
+    },
+    "workflow-wires/session-initial-therapy-reading-cli.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/session-initial-therapy-reading-cli.stdout": {
+      "bytes": 173735,
+      "sha256": "fd0893a83c6c3b14765db720f2f8d0a13c19f246d55d967e687f8a19330db337"
+    },
+    "workflow-wires/session-initial-therapy-reading-mcp-input.jsonl": {
+      "bytes": 20671,
+      "sha256": "a613e219391f146517cd453499af58721e6caaa685cc570c43441023c4664070"
+    },
+    "workflow-wires/session-initial-therapy-reading-mcp.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/session-initial-therapy-reading-mcp.stdout": {
+      "bytes": 197848,
+      "sha256": "9fdac129c7d5390b1af039c9d3b545e7d20995d36b581843be85231473f5aab1"
+    },
+    "workflow-wires/source-competing-therapy-readings-cli.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/source-competing-therapy-readings-cli.stdout": {
+      "bytes": 119641,
+      "sha256": "faac4b722e898d47e3338bf5556f4b1a9163f27ddd1ff1f70fadfd6ed167acd2"
+    },
+    "workflow-wires/source-competing-therapy-readings-mcp-input.jsonl": {
+      "bytes": 16840,
+      "sha256": "06aabb604b3255fba669e433d83da38c4ac1c635e43bfa894e572d187cf48571"
+    },
+    "workflow-wires/source-competing-therapy-readings-mcp.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/source-competing-therapy-readings-mcp.stdout": {
+      "bytes": 140325,
+      "sha256": "9f2783798e5f2c906f2ca046d56d14ea1c5501f61a9d52767a06e0925670b9e9"
+    },
+    "workflow.py": {
+      "bytes": 10708,
+      "sha256": "2e45b46c4556cdaeb6f9a11c35261659e2b79cd9695d6b683e04ca9927b57674"
+    }
+  },
+  "scope": "Full raw/report/workbook/helpers/duplicatewires outsideGit; portablepairs include complete required snapshots and prior replay"
+}

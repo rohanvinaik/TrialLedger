@@ -1,0 +1,44 @@
+[
+ {
+  "file": "version-start.json",
+  "url": "https://clinicaltrials.gov/api/v2/version",
+  "save_as": "bodies/version-start.json",
+  "why": "version_start",
+  "params": {}
+ },
+ {
+  "file": "ids-001.json",
+  "url": "https://clinicaltrials.gov/api/v2/studies?filter.advanced=%28AREA%5BInterventionName%5D%22metformin%22+OR+AREA%5BInterventionOtherName%5D%22metformin%22%29+AND+AREA%5BOverallStatus%5DCOMPLETED+AND+AREA%5BStudyType%5DOBSERVATIONAL&query.cond=Type+2+Diabetes&format=json&markupFormat=markdown&countTotal=true&pageSize=1000&fields=NCTId",
+  "save_as": "bodies/ids-001.json",
+  "why": "id_page",
+  "params": {
+   "filter.advanced": "(AREA[InterventionName]\"metformin\" OR AREA[InterventionOtherName]\"metformin\") AND AREA[OverallStatus]COMPLETED AND AREA[StudyType]OBSERVATIONAL",
+   "query.cond": "Type 2 Diabetes",
+   "format": "json",
+   "markupFormat": "markdown",
+   "countTotal": "true",
+   "pageSize": "1000",
+   "fields": "NCTId"
+  }
+ },
+ {
+  "file": "studies-001.json",
+  "url": "https://clinicaltrials.gov/api/v2/studies?filter.ids=NCT02476760%2CNCT01219582%2CNCT04665570%2CNCT01318564%2CNCT03155087%2CNCT03748810%2CNCT05822674%2CNCT02475499%2CNCT01294553%2CNCT01357135%2CNCT01332370%2CNCT07628556%2CNCT00449553%2CNCT03921242%2CNCT07788378%2CNCT00745433%2CNCT02024971%2CNCT02456428%2CNCT01065766%2CNCT03555565%2CNCT04841668%2CNCT01195259%2CNCT00445627&format=json&markupFormat=markdown&countTotal=true&pageSize=100",
+  "save_as": "bodies/studies-001.json",
+  "why": "studies_batch",
+  "params": {
+   "filter.ids": "NCT02476760,NCT01219582,NCT04665570,NCT01318564,NCT03155087,NCT03748810,NCT05822674,NCT02475499,NCT01294553,NCT01357135,NCT01332370,NCT07628556,NCT00449553,NCT03921242,NCT07788378,NCT00745433,NCT02024971,NCT02456428,NCT01065766,NCT03555565,NCT04841668,NCT01195259,NCT00445627",
+   "format": "json",
+   "markupFormat": "markdown",
+   "countTotal": "true",
+   "pageSize": "100"
+  }
+ },
+ {
+  "file": "version-end.json",
+  "url": "https://clinicaltrials.gov/api/v2/version",
+  "save_as": "bodies/version-end.json",
+  "why": "version_end",
+  "params": {}
+ }
+]

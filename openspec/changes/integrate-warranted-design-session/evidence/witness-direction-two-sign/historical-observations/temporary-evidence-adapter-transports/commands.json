@@ -1,0 +1,59 @@
+[
+  {
+    "argv": [
+      "/private/tmp/trialledger-witness-direction-contract-20261103-v1/.venv/bin/trialledger",
+      "reason",
+      "--request",
+      "/private/tmp/trialledger-witness-direction-contract-20261103-v1/entrypoint-proof/accepted-request.json"
+    ],
+    "returncode": 0
+  },
+  {
+    "argv": [
+      "/private/tmp/trialledger-witness-direction-contract-20261103-v1/.venv/bin/trialledger",
+      "mcp",
+      "--root",
+      "/private/tmp/trialledger-witness-direction-contract-20261103-v1/entrypoint-proof/reports"
+    ],
+    "returncode": 0,
+    "stdin_file": "accepted-mcp-input.jsonl"
+  },
+  {
+    "argv": [
+      "/private/tmp/trialledger-witness-direction-contract-20261103-v1/.venv/bin/trialledger",
+      "reason",
+      "--request",
+      "/private/tmp/trialledger-witness-direction-contract-20261103-v1/entrypoint-proof/rejected-request.json"
+    ],
+    "returncode": 0
+  },
+  {
+    "argv": [
+      "/private/tmp/trialledger-witness-direction-contract-20261103-v1/.venv/bin/trialledger",
+      "mcp",
+      "--root",
+      "/private/tmp/trialledger-witness-direction-contract-20261103-v1/entrypoint-proof/reports"
+    ],
+    "returncode": 0,
+    "stdin_file": "rejected-mcp-input.jsonl"
+  },
+  {
+    "argv": [
+      "/private/tmp/trialledger-witness-direction-contract-20261103-v1/.venv/bin/trialledger",
+      "reason",
+      "--request",
+      "/private/tmp/trialledger-witness-direction-contract-20261103-v1/entrypoint-proof/evidence-requests-request.json"
+    ],
+    "returncode": 0
+  },
+  {
+    "argv": [
+      "/private/tmp/trialledger-witness-direction-contract-20261103-v1/.venv/bin/trialledger",
+      "mcp",
+      "--root",
+      "/private/tmp/trialledger-witness-direction-contract-20261103-v1/entrypoint-proof/reports"
+    ],
+    "returncode": 0,
+    "stdin_file": "evidence-requests-mcp-input.jsonl"
+  }
+]

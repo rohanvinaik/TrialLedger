@@ -1,0 +1,17 @@
+# Frozen proof stdout and patch artifacts retain exact original bytes, including meaningful diff
+# context spaces and tool blank lines. Source/test formatting remains governed by the normal gate.
+openspec/changes/integrate-warranted-design-session/evidence/evidence-request-integration/approved-contract-update.diff -whitespace
+openspec/changes/integrate-warranted-design-session/evidence/evidence-request-integration/red-tests.log -whitespace
+openspec/changes/integrate-warranted-design-session/evidence/evidence-requests-two-sign/proof-v2/logs/converge-dominated.refused-shadowed.log -whitespace
+openspec/changes/integrate-warranted-design-session/evidence/evidence-requests-two-sign/proof-v2/logs/converge-family_state.refused-shadowed.log -whitespace
+openspec/changes/integrate-warranted-design-session/evidence/evidence-requests-two-sign/proof-v2/logs/converge-output_state.refused-shadowed.log -whitespace
+openspec/changes/integrate-warranted-design-session/evidence/evidence-requests-two-sign/proof-v2/logs/converge-pair_outcome.refused-shadowed.log -whitespace
+openspec/changes/integrate-warranted-design-session/evidence/evidence-requests-two-sign/proof-v2/logs/converge-pair_relation.refused-shadowed.log -whitespace
+openspec/changes/integrate-warranted-design-session/evidence/evidence-requests-two-sign/proof-v2/logs/converge-required_premises.refused-shadowed.log -whitespace
+openspec/changes/integrate-warranted-design-session/evidence/evidence-requests-two-sign/proof-v2/logs/converge-seek.refused-shadowed.log -whitespace
+openspec/changes/integrate-warranted-design-session/evidence/evidence-requests-two-sign/proof-v2/logs/regime-migrate.log -whitespace
+openspec/changes/integrate-warranted-design-session/evidence/evidence-requests-two-sign/proof-v2/logs/regime.log -whitespace
+openspec/changes/integrate-warranted-design-session/evidence/metadata-session-evidence-context-two-sign/regime.log -whitespace
+openspec/changes/integrate-warranted-design-session/evidence/session-two-sign/detective-regime.log -whitespace
+openspec/changes/integrate-warranted-design-session/evidence/witness-direction-two-sign/detective-regime.log -whitespace
+openspec/changes/integrate-warranted-design-session/evidence/witness-direction-two-sign/witness-direction.patch -whitespace

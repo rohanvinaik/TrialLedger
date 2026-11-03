@@ -1,0 +1,127 @@
+{
+  "scope": "Final frozen stage/decision_table/estimand metadata primitive refresh; later design_session service and metadata adapters outside proof scope",
+  "completed": "2026-11-03T22:40:55.759688+00:00",
+  "module": {
+    "sha256": "bf50f082463413336747edf103347497572544a94cd77008bce9f28f7b164997",
+    "bytes": 27919
+  },
+  "functions": {
+    "cause_kind": {
+      "source_sha256": "84e2634f00e58dbabef0780cf20cc5523ef8288bb414a9cb4016025a21a80d3a",
+      "ast_sha256": "684c348c1f0eb70adc47e75b540bfedfb04726818461ca5b6da6531e7d643c63",
+      "line": 179,
+      "end_line": 184
+    },
+    "completion_code": {
+      "source_sha256": "d8fa754bd53d3ea41a3c251b03db566cdd9e143bae5d22e33a669733657416e8",
+      "ast_sha256": "f9b0a570f1a69ba100951b348f4d790732a7bdb91688e95c9aeb643d512237bc",
+      "line": 187,
+      "end_line": 201
+    },
+    "disposition_code": {
+      "source_sha256": "5b32c2bdc0eb40b03d86d2df8bbc50abec9a04f904ca366328fe597e4d1be0a7",
+      "ast_sha256": "50b9471ba677eb246dabb67722b1d16543958e3f61c9ddeb318f8308079bec36",
+      "line": 204,
+      "end_line": 249
+    }
+  },
+  "globals": {
+    "CAUSE_KINDS": {
+      "count": 90,
+      "canonical_json_sha256": "3c7033410bb7b75fbe29d43e97058e6ca3e57450786a2ddc6f1bddad7289d6bf",
+      "definition_ast_sha256": "5d91297dd3ee318c8a5ed8f2fb367d6fabe6abe06c3204636773fd8c183d097e"
+    },
+    "DISPOSITIONS": {
+      "count": 9,
+      "canonical_json_sha256": "b269296dcda3fb4e195d458cdfdeeb0c109638f531b816bef94916d2d2063adc",
+      "definition_ast_sha256": "8b084e54884dd072dc70372ac061877b06f2ee1c67507612f2daae93a9424246"
+    },
+    "RESULTS": {
+      "count": 54,
+      "canonical_json_sha256": "c1289083995712431444122b57a916c3e4232df6a1bb7850160146891f53e30d",
+      "definition_ast_sha256": "f9b224149355fa6395066777bea744b4fa9a9bb42c615c8cd42700af7cfa082d"
+    }
+  },
+  "config": {
+    "sha256": "4a0a5758a6a27eacb4967c2df79857ac6ca32485916b3acdc40974121685d074",
+    "bytes": 1768
+  },
+  "authored_test_files": {
+    "tests/test_result_semantics.py": {
+      "sha256": "764bea2d3eab0b34437826909bc089c6e351cb59684996efa2f8185f58f27c3b",
+      "bytes": 14747
+    },
+    "tests/test_metadata_vocabulary.py": {
+      "sha256": "9adb068cc4a359ff6591f4fe32e4fae935dd695665bab6ed7053f35fb5cd6b72",
+      "bytes": 8629
+    }
+  },
+  "generated_suites": {
+    "test_TrialLedger_layer2_result_semantics_cause_kind_a38b8f3a25_synth.py": {
+      "sha256": "7a56197b7752b0711c0e7852f14b666aee79a6dedac45196d44a0499c9d4311c",
+      "bytes": 669
+    },
+    "test_TrialLedger_layer2_result_semantics_completion_code_0f6f433d15_synth.py": {
+      "sha256": "83b1285eb3df6415ef05cbbd045a15d05458667cb7b32c9dd5b90aa3690df705",
+      "bytes": 1081
+    },
+    "test_TrialLedger_layer2_result_semantics_disposition_code_3741ce9eea_synth.py": {
+      "sha256": "87e6dcd2c63654bb9b5a8e262f85c1455ab23bb7623cb58a9de81a63be43a7d8",
+      "bytes": 4735
+    }
+  },
+  "certificates": {
+    "sha256": "a188a3decaf04870162a367be14dbbcc7ed3ce663b031935a77ec0dbed3d639c",
+    "bytes": 539
+  },
+  "frozen_input_files": 144,
+  "frozen_input_bytes": 3834930,
+  "scratch_frozen_inputs_unchanged": true,
+  "root_functions_source_and_globals_ast_equal_at_export": true,
+  "root_changed_snapshot_paths_at_export": [],
+  "policy": "9+neg.f5a15364c11d",
+  "pins": {
+    "cause_kind": {
+      "killed": 18,
+      "total": 18,
+      "value_pinned": 17,
+      "crash_only_value_gap": "VALUE_5b199ece: partition(':') becomes partition(''); mutant raises where original returns; detected, not equivalent",
+      "function_digest": "2b660e587a3b2e50"
+    },
+    "completion_code": {
+      "killed": 87,
+      "total": 87,
+      "value_pinned": 87,
+      "function_digest": "0ca68ed2a47b84e6"
+    },
+    "disposition_code": {
+      "killed": 193,
+      "total": 193,
+      "value_pinned": 193,
+      "function_digest": "65dd6aacd9c81ad6"
+    }
+  },
+  "authored_tests_passed": 121,
+  "generated_cases_passed": 20,
+  "total_tests_passed": 141,
+  "ruff": "passed",
+  "format": "passed, six files already formatted",
+  "ty": "passed",
+  "crosshair": {
+    "report_all": true,
+    "per_condition_timeout_seconds": 10,
+    "confirmed": 0,
+    "not_confirmed": 3,
+    "counterexamples_reported": 0
+  },
+  "equivalence_flags": 0,
+  "source_authored_test_config_edits_during_proof": "none; prescribed generated suites only",
+  "outside_scope": [
+    "metadata wrappers including _signal_findings/_table_findings/_estimand_findings",
+    "whole module or system certification",
+    "later design_session adapter changes",
+    "clinical truth of source readings",
+    "production CLI/MCP and real clinical walkthroughs owned by root"
+  ],
+  "previous_exports": "Decision-table v3, exact secret-review helper, historical stage-context proof, and doc proposal preserved independently; their measurements are not claimed to cover changed globals."
+}

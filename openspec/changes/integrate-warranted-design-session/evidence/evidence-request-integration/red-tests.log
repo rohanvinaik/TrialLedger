@@ -1,0 +1,49 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.14.7, pytest-9.2.0, pluggy-1.7.0
+rootdir: /Users/rohanvinaik/tools/TrialLedger
+configfile: pyproject.toml
+plugins: anyio-4.15.1
+collected 2 items
+
+tests/test_evidence_requests_independent.py FF                           [100%]
+
+=================================== FAILURES ===================================
+_ test_replay_helper_known_refutation_survives_proposed_conjunct_for_acceptance_only _
+
+    def test_replay_helper_known_refutation_survives_proposed_conjunct_for_acceptance_only():
+        states = design_bounds_replay([X, Y], {"sign": "accepted", "profile": model(ecog("eq", 3))})
+        assert states["X"]["state"] == "ruled_out" and states["Y"]["state"] == "not_ruled_out"
+        mixed = candidate(
+            "P2", required("P2_ecog", ecog("le", 3)), required("P2_marker", flag("marker"), status="proposed")
+        )
+        states = design_bounds_replay([mixed, W], {"sign": "accepted", "profile": model(ecog("eq", 4))})
+        # No completion of the withheld conjunct can loosen the confirmed ECOG <= 3 requirement.
+        assert states["P2"]["decision"]["result"] == "REFUTED"
+        assert states["P2"]["decision"]["status"] == "known"
+        assert states["P2"]["decision"]["proof"] == ("P2_ecog",)
+        assert "proposed_refused:P2_marker" in states["P2"]["decision"]["blockers"]
+>       assert states["P2"]["state"] == "ruled_out" and states["W"]["state"] == "not_ruled_out"
+E       AssertionError: assert ('unresolved' == 'ruled_out'
+E         
+E         - ruled_out
+E         + unresolved)
+
+tests/test_evidence_requests_independent.py:477: AssertionError
+_ test_known_required_conjunct_eliminates_accepted_profile_but_not_unresolved_rejection _
+
+evaluate = <function evaluate.<locals>.call at 0x108a3aa30>
+
+    def test_known_required_conjunct_eliminates_accepted_profile_but_not_unresolved_rejection(evaluate):
+        mixed = candidate(
+            "P2", required("P2_ecog", ecog("le", 3)), required("P2_marker", flag("marker"), status="proposed")
+        )
+        result = evaluate(request([mixed, W], ["P2", "W"], [integer_variable()]))
+>       assert len(result["requests"]) == 1
+E       assert 0 == 1
+E        +  where 0 = len([])
+
+tests/test_evidence_requests_independent.py:1074: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_evidence_requests_independent.py::test_replay_helper_known_refutation_survives_proposed_conjunct_for_acceptance_only
+FAILED tests/test_evidence_requests_independent.py::test_known_required_conjunct_eliminates_accepted_profile_but_not_unresolved_rejection
+============================== 2 failed in 0.19s ===============================

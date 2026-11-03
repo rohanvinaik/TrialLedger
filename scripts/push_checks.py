@@ -14,9 +14,10 @@ using Detective and Wesker at his local checkouts; so the gate runs here, before
   Entropy String" detector disabled: this project's lowercase hex values (function digests, SHA-256 study
   digests, Merkle roots, the file digests of run artifacts) are fingerprints, never credentials, and that
   detector refused them and nothing else (the founder, 2026-11-01: fix the scan or remove it). Every other
-  detector still runs (AWS, GitHub, private keys, keywords, Base64 entropy and the rest), and any finding of
-  theirs refuses the push. A line carrying `# pragma: allowlist secret`, detect-secrets' own mark for a
-  finding reviewed as no secret, is not a finding;
+  detector still runs (AWS, GitHub, private keys, keywords, Base64 entropy and the rest). Findings refuse
+  unless scripts/secret_scan_reviews.json records an exact reviewed path, detector and complete added-line
+  fingerprint. A changed line or another detector is not covered. A line carrying
+  `# pragma: allowlist secret`, detect-secrets' own mark for a reviewed non-secret, is not a finding;
 - audits the lockfile with all extras and groups (pip-audit) and names its result: no_known_flaws;
   flaws_found, each flaw printed with its package and the versions that fix it; or audit_did_not_run, with
   pip-audit's messages. The audit refuses nothing: its findings are leads, not verdicts.
@@ -31,6 +32,7 @@ cannot run.
 
 from __future__ import annotations
 
+import hashlib
 import json
 import os
 import subprocess
@@ -126,22 +128,72 @@ def commit_additions(sha: str) -> dict[str, list[str]]:
     return additions
 
 
+def secret_review_state(path: str, detector: str, digest: str, reviewed: list[tuple[str, str, str]]) -> str:
+    """Only an exact reviewed file/detector/whole-line fingerprint is admitted (pure — pinned).
+
+    post: (__return__ == 'reviewed_non_secret') == ((path, detector, digest) in reviewed)
+    post: (__return__ == 'unreviewed') == ((path, detector, digest) not in reviewed)
+    """
+    if (path, detector, digest) in reviewed:
+        return "reviewed_non_secret"
+    return "unreviewed"
+
+
+def secret_reviews() -> list[tuple[str, str, str]]:
+    """Load narrowly reviewed findings; malformed reviews refuse rather than disable a detector."""
+    path = ROOT / "scripts" / "secret_scan_reviews.json"
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+        if set(data) != {"version", "reviews"} or type(data["version"]) is not int or data["version"] != 1:
+            raise ValueError("unsupported review schema")
+        if not isinstance(data["reviews"], list) or len(data["reviews"]) > 1024:
+            raise ValueError("invalid review list")
+        result = []
+        for row in data["reviews"]:
+            if not isinstance(row, dict) or set(row) != {"path", "detector", "added_line_sha256", "reason"}:
+                raise ValueError("invalid review fields")
+            if any(not isinstance(value, str) or not value for value in row.values()):
+                raise ValueError("empty review field")
+            digest = row["added_line_sha256"]
+            if len(digest) != 64 or any(char not in "0123456789abcdef" for char in digest):
+                raise ValueError("invalid review fingerprint")
+            key = (row["path"], row["detector"], digest)
+            if key in result:
+                raise ValueError("duplicate review")
+            result.append(key)
+        return result
+    except (OSError, ValueError, TypeError, KeyError) as error:
+        raise Unchecked(f"secret reviews could not be read: {error}") from error
+
+
 def scan(commits: list[str]) -> list[str]:
     """Scan the lines the commits add for secrets, every detector but hex entropy (the project's lowercase hex
-    digests are fingerprints, never credentials); the refusals, one per finding."""
+    digests are fingerprints, never credentials); refuse each finding without an exact reviewed identity."""
     if not commits:
         return []
+    reviewed = secret_reviews()
+    added_by_file = {}
     with tempfile.TemporaryDirectory() as folder:
         base = Path(folder)
         written = 0
         for sha in commits:
             for path, lines in commit_additions(sha).items():
+                added_by_file[sha + "/" + path] = lines
                 target = base / sha / path
                 target.parent.mkdir(parents=True, exist_ok=True)
                 target.write_text("\n".join(lines) + "\n", encoding="utf-8")
                 written += 1
         done = run(
-            ["uvx", DETECT_SECRETS, "scan", "--disable-plugin", "HexHighEntropyString", "--all-files", "."],
+            [
+                "uvx",
+                DETECT_SECRETS,
+                "scan",
+                "--no-verify",
+                "--disable-plugin",
+                "HexHighEntropyString",
+                "--all-files",
+                ".",
+            ],
             cwd=base,
         )
         if done.returncode != 0:
@@ -157,14 +209,23 @@ def scan(commits: list[str]) -> list[str]:
         f"over {len(commits)} commit(s)"
     )
     refusals: list[str] = []
+    accepted_reviews = 0
     for name, findings in sorted(results.items()):
         sha, _, path = name.removeprefix("./").partition("/")
         for finding in findings:
+            lines = added_by_file.get(sha + "/" + path, [])
+            number = finding["line_number"]
+            if type(number) is int and 1 <= number <= len(lines):
+                digest = hashlib.sha256(lines[number - 1].encode("utf-8")).hexdigest()
+                if secret_review_state(path, finding["type"], digest, reviewed) == "reviewed_non_secret":
+                    accepted_reviews += 1
+                    continue
             refusals.append(
                 f"a possible secret in {sha[:7]} {path}, "
                 f"added line {finding['line_number']}: {finding['type']}"
             )
     print(f"secret scan: {len(refusals)} findings")
+    print(f"secret scan: {accepted_reviews} exact reviewed non-secret findings")
     return refusals
 
 

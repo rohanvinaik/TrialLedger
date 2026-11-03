@@ -1,0 +1,42 @@
+{
+  "rule": "interpretations.compatibility:1",
+  "guarantee": "conditional_on_fixed_and_interpretation_premises",
+  "fixed_status": "known",
+  "status": "proposed",
+  "fixed_premises": [],
+  "assumptions": [
+    "EF-range",
+    "conditional-diuretic-stability"
+  ],
+  "bindings": [],
+  "basis": [
+    "ctg:NCT03448406:619c275b11f3e6ea8c049fb63484166c967d19fa0d725c81580c1f8b01153a48#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:4168",
+    "ctg:NCT03448406:619c275b11f3e6ea8c049fb63484166c967d19fa0d725c81580c1f8b01153a48#/protocolSection/outcomesModule/primaryOutcomes/0",
+    "hypothesis:source-location-is-not-semantic-warrant"
+  ],
+  "consistency": {
+    "result": "UNDETERMINED",
+    "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+    "status": null,
+    "proof": [],
+    "blockers": [
+      "no_constraint_mentions_query"
+    ]
+  },
+  "intrinsic_consistency": {
+    "result": "UNDETERMINED",
+    "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+    "status": null,
+    "proof": [],
+    "blockers": [
+      "no_constraint_mentions_query"
+    ]
+  },
+  "signal_rules": [
+    {
+      "id": "endpoint-observed-or-imputed-inputs",
+      "rule": "dependencies.explicit_prerequisites.v1"
+    }
+  ],
+  "blockers": []
+}

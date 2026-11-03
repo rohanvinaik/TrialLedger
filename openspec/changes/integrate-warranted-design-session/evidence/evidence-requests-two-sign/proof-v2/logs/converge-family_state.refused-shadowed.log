@@ -1,0 +1,16 @@
+──────────────────────────────────────────────────────────────────────────────
+TrialLedger/layer2/evidence_requests.py::family_state — REFUSED · shadowed target
+
+  ✗ your tests import  TrialLedger.layer2.evidence_requests
+  ✗ which is this file /Users/rohanvinaik/tools/TrialLedger/TrialLedger/layer2/evidence_requests.py
+  ✗ but you pointed me TrialLedger/layer2/evidence_requests.py
+                       — a different file, so the suite never runs the code
+                       you asked about. Any verdict would measure the wrong
+                       program. "0 tests cover this" would be TRUE, and useless.
+
+DO THIS:  pick the tree you meant, then re-run —
+
+  · that tree          --project-root '/Users/rohanvinaik/tools/TrialLedger'
+  · or THIS tree       cd '/private/tmp/trialledger-evidence-requests-20261103164615/proof-v2' && pip install -e .
+                       which re-points `import TrialLedger` here.
+

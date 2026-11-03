@@ -1,0 +1,111 @@
+"""External installed-wheel checks: stdlib and TrialLedger runtime imports only."""
+from pathlib import Path
+import copy
+import hashlib
+import importlib.metadata
+import importlib.util
+import json
+import os
+import subprocess
+import sys
+import zipfile
+
+ROOT=Path(__file__).resolve().parent
+CHECKOUT=Path("/Users/rohanvinaik/tools/TrialLedger").resolve()
+assert not Path.cwd().resolve().is_relative_to(CHECKOUT)
+assert "PYTHONPATH" not in os.environ
+from TrialLedger.layer2 import run, service
+import TrialLedger
+installed=Path(TrialLedger.__file__).resolve()
+assert installed.is_relative_to(ROOT/"runtime") and not installed.is_relative_to(CHECKOUT)
+for development in ("pytest","Detective","Wesker","ruff","hatchling"):
+    assert importlib.util.find_spec(development) is None, development
+frozen=json.loads((ROOT/"runtime-source-freeze.json").read_text())
+for name,digest in frozen.items():
+    p=installed.parent.parent/name
+    assert hashlib.sha256(p.read_bytes()).hexdigest()==digest, name
+identity={"executable":sys.executable,"cwd":str(Path.cwd()),"module":str(installed),"distributions":sorted((d.metadata["Name"],d.version) for d in importlib.metadata.distributions()),"frozen_runtime_files_verified":len(frozen)}
+(ROOT/"installed-identity.json").write_text(json.dumps(identity,indent=2)+"\n")
+COMMANDS=[]
+
+def command(label,args,sent=None):
+    completed=subprocess.run(args,input=sent,capture_output=True,timeout=60)
+    (ROOT/(label+".stdout")).write_bytes(completed.stdout)
+    (ROOT/(label+".stderr")).write_bytes(completed.stderr)
+    COMMANDS.append({"label":label,"argv":list(map(str,args)),"returncode":completed.returncode,"stdout_sha256":hashlib.sha256(completed.stdout).hexdigest(),"stderr_sha256":hashlib.sha256(completed.stderr).hexdigest()})
+    (ROOT/"entrypoint-commands.json").write_text(json.dumps(COMMANDS,indent=2)+"\n")
+    return completed
+
+def normalized(value):
+    return json.loads(json.dumps(value,allow_nan=False))
+
+VERIFIED=[]
+def check(label,request,expected_code="complete"):
+    before=copy.deepcopy(request)
+    expected=run(request)
+    assert expected["code"]==expected_code,(label,expected)
+    assert request==before,label
+    path=ROOT/(label+"-request.json")
+    path.write_text(json.dumps(request,ensure_ascii=False,allow_nan=False)+"\n")
+    (ROOT/(label+"-result.json")).write_text(json.dumps(expected,ensure_ascii=False,allow_nan=False)+"\n")
+    cli=command(label+"-cli",[ROOT/"runtime/bin/trialledger","reason","--request",path])
+    assert cli.returncode==(0 if expected_code=="complete" else 2),(label,cli.stderr)
+    assert json.loads(cli.stdout)==normalized(expected),label
+    messages=[{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2025-11-25","capabilities":{},"clientInfo":{"name":"runtime-wheel-check","version":"1"}}},{"jsonrpc":"2.0","id":2,"method":"tools/call","params":{"name":"reason","arguments":{"request":request}}}]
+    mcp=command(label+"-mcp",[ROOT/"runtime/bin/trialledger","mcp","--root",ROOT/"reports"],("".join(json.dumps(m,allow_nan=False)+"\n" for m in messages)).encode())
+    assert mcp.returncode==0,(label,mcp.stderr)
+    replies=[json.loads(line) for line in mcp.stdout.splitlines()]
+    assert len(replies)==2 and replies[0]["id"]==1 and replies[1]["id"]==2,(label,replies)
+    result=json.loads(replies[1]["result"]["content"][0]["text"])
+    assert result.pop("tool")=="reason"
+    assert result==normalized(expected),label
+    assert request==before,label
+    VERIFIED.append({"case":label,"operation":request["operation"],"code":expected_code,"transports":["executable CLI","stdio MCP"],"result_sha256":hashlib.sha256((ROOT/(label+"-result.json")).read_bytes()).hexdigest()})
+    return expected
+
+assert set(service.OPERATIONS)=={"describe","entailment","coordinates","corpus","design_bounds","signals","interpretations","source_assertions","design_session","evidence_requests"}
+overview=check("discovery-overview",{"operation":"describe"})
+assert len(json.dumps(overview,ensure_ascii=False,indent=1).encode())<=8192
+for op in service.OPERATIONS:
+    if op=="describe":continue
+    focus=check("discovery-"+op,{"operation":"describe","view":op})["result"]
+    check("example-"+op,focus["example"])
+check("discovery-full",{"operation":"describe","view":"full"})
+focus=run({"operation":"describe","view":"design_session"})["result"]
+base=check("session-baseline",focus["example"])
+assert base["result"]["decisions"][0]["code"]=="design_choice"
+revision=check("session-revision",focus["revision_example"])
+assert revision["result"]["decisions"][0]["code"]=="settled_within_declared_alternatives"
+assert revision["previous_fresh"] and revision["diff"] and revision["work"]["analyses"]==5
+investigation=run({"operation":"describe","view":"evidence_requests"})["result"]["example"]
+evidence=run(investigation)
+assert evidence["result"]["family"]=="searched" and evidence["result"]["requests"]
+for row in evidence["result"]["requests"]:
+    assert row["kind"]=="hypothetical_evidence_request" and row["observed"] is False
+    assert row["required_premises"] and row["sign"] in ("accepted","rejected")
+    assert not set(row)&{"count","bridge","basis","status"}
+nested=copy.deepcopy(focus["example"])
+parameters=copy.deepcopy(investigation)
+candidates=parameters.pop("candidates")
+parameters.pop("operation")
+parameters.update(bound=32,limits={"max_decisions":100})
+nested["session"].update(premises=[{"id":c["id"],"kind":"candidate","payload":c,"origin":{"kind":"hypothesis","ref":"invented:candidate:"+c["id"],"source":None,"analysis":None},"depends_on":[]} for c in candidates],decisions=[])
+nested["session"]["analyses"]=[{"id":"seek-evidence","operation":"evidence_requests","target":copy.deepcopy(nested["session"]["target"]),"parameters":parameters,"uses":[{"premise":c["id"],"slot":"candidates","projection":"identity"} for c in candidates]}]
+nest=check("session-nested-evidence",nested)
+child=nest["result"]["analyses"][0]
+assert child["result"]==normalized(run(child["request"]))
+assert len(child["dependencies"])==2 and nest["work"]["solver_work_reserved"]==217600
+assert all(p["origin"]["kind"]=="hypothesis" for p in nest["result"]["effective_premises"])
+small=copy.deepcopy(investigation);small["limits"]={"max_bytes":1}
+limited=check("evidence-row-limit",small)
+assert limited["result"]["requests"]==[] and limited["result"]["output"]["omitted"]>0
+assert limited["result"]["search"]["state"]=="complete"
+small["limits"]["max_response_bytes"]=1
+refused=check("evidence-response-limit",small,"refused")
+assert refused["problems"]==["resource_bound:evidence_requests:response_bytes"]
+precision=copy.deepcopy(investigation)
+precision["variables"][0]["domain"].update(minimum=2**53+1,maximum=2**53+1)
+refused=check("evidence-inexact-number",precision,"refused")
+assert refused["problems"][0].endswith("exact_number_required")
+(ROOT/"verification-receipt.json").write_text(json.dumps({"identity":identity,"cases":VERIFIED,"commands":len(COMMANDS),"scope":"Transport/replay, packaged runtime, declared local support and explicit example semantics; not independent verification of premise truth, estimator validity or complete clinical eligibility"},indent=2)+"\n")
+print(json.dumps({"cases":len(VERIFIED),"actual_transport_commands":len(COMMANDS),"runtime_identity":str(installed),"operations":list(service.OPERATIONS),"result":"PASS"},indent=2))

@@ -1,0 +1,720 @@
+{
+  "NCT00745433-source-age": {
+    "findings": [
+      {
+        "path": "/result/analyses/0/result/decision",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled"
+      },
+      {
+        "path": "/result/analyses/1/result/decision",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": null,
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "undecided_by_constraints",
+            "kind": "constraint"
+          }
+        ],
+        "disposition": "open"
+      }
+    ],
+    "child_findings": [
+      [
+        {
+          "path": "/result/decision",
+          "kind": "logical",
+          "logical_result": "ENTAILED",
+          "standing": "known",
+          "completion": "complete",
+          "causes": [],
+          "disposition": "settled"
+        }
+      ],
+      [
+        {
+          "path": "/result/decision",
+          "kind": "logical",
+          "logical_result": "UNDETERMINED",
+          "standing": null,
+          "completion": "complete",
+          "causes": [
+            {
+              "code": "undecided_by_constraints",
+              "kind": "constraint"
+            }
+          ],
+          "disposition": "open"
+        }
+      ]
+    ]
+  },
+  "NCT01318564-source-age": {
+    "findings": [
+      {
+        "path": "/result/analyses/0/result/decision",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled"
+      },
+      {
+        "path": "/result/analyses/1/result/decision",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": null,
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "undecided_by_constraints",
+            "kind": "constraint"
+          }
+        ],
+        "disposition": "open"
+      }
+    ],
+    "child_findings": [
+      [
+        {
+          "path": "/result/decision",
+          "kind": "logical",
+          "logical_result": "ENTAILED",
+          "standing": "known",
+          "completion": "complete",
+          "causes": [],
+          "disposition": "settled"
+        }
+      ],
+      [
+        {
+          "path": "/result/decision",
+          "kind": "logical",
+          "logical_result": "UNDETERMINED",
+          "standing": null,
+          "completion": "complete",
+          "causes": [
+            {
+              "code": "undecided_by_constraints",
+              "kind": "constraint"
+            }
+          ],
+          "disposition": "open"
+        }
+      ]
+    ]
+  },
+  "NCT02475499-source-age": {
+    "findings": [
+      {
+        "path": "/result/analyses/0/result/decision",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled"
+      },
+      {
+        "path": "/result/analyses/1/result/decision",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": null,
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "undecided_by_constraints",
+            "kind": "constraint"
+          }
+        ],
+        "disposition": "open"
+      }
+    ],
+    "child_findings": [
+      [
+        {
+          "path": "/result/decision",
+          "kind": "logical",
+          "logical_result": "ENTAILED",
+          "standing": "known",
+          "completion": "complete",
+          "causes": [],
+          "disposition": "settled"
+        }
+      ],
+      [
+        {
+          "path": "/result/decision",
+          "kind": "logical",
+          "logical_result": "UNDETERMINED",
+          "standing": null,
+          "completion": "complete",
+          "causes": [
+            {
+              "code": "undecided_by_constraints",
+              "kind": "constraint"
+            }
+          ],
+          "disposition": "open"
+        }
+      ]
+    ]
+  },
+  "session-baseline": {
+    "findings": [
+      {
+        "causes": [],
+        "completion": "complete",
+        "disposition": "settled",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "path": "/result/analyses/0/result/result/decision",
+        "standing": "known"
+      },
+      {
+        "causes": [],
+        "completion": "complete",
+        "disposition": "settled",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "path": "/result/analyses/1/result/result/decision",
+        "standing": "known"
+      },
+      {
+        "causes": [],
+        "completion": "complete",
+        "disposition": "settled",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "path": "/result/analyses/2/result/result/decision",
+        "standing": "known"
+      },
+      {
+        "causes": [],
+        "completion": "complete",
+        "disposition": "settled",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "path": "/result/analyses/3/result/result/decision",
+        "standing": "known"
+      },
+      {
+        "causes": [
+          {
+            "code": "proposed_refused:Ontario-age-reading",
+            "kind": "premise"
+          },
+          {
+            "code": "undecided_by_constraints",
+            "kind": "constraint"
+          }
+        ],
+        "completion": "complete",
+        "disposition": "open",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "path": "/result/analyses/4/result/result/decision",
+        "standing": null
+      },
+      {
+        "causes": [
+          {
+            "code": "proposed_refused:Ontario-age-reading",
+            "kind": "premise"
+          },
+          {
+            "code": "undecided_by_constraints",
+            "kind": "constraint"
+          }
+        ],
+        "completion": "complete",
+        "disposition": "open",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "path": "/result/analyses/5/result/result/decision",
+        "standing": null
+      },
+      {
+        "causes": [
+          {
+            "code": "undecided_by_constraints",
+            "kind": "constraint"
+          }
+        ],
+        "completion": "complete",
+        "disposition": "open",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "path": "/result/analyses/6/result/result/decision",
+        "standing": null
+      },
+      {
+        "causes": [
+          {
+            "code": "undecided_by_constraints",
+            "kind": "constraint"
+          }
+        ],
+        "completion": "complete",
+        "disposition": "open",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "path": "/result/analyses/7/result/result/decision",
+        "standing": null
+      },
+      {
+        "causes": [],
+        "completion": "complete",
+        "disposition": "settled",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "path": "/result/analyses/8/result/result/decision",
+        "standing": "known"
+      },
+      {
+        "causes": [],
+        "completion": "complete",
+        "disposition": "settled",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "path": "/result/decisions/0/distinctions/0/result/result/decision",
+        "standing": "known"
+      },
+      {
+        "path": "/result/decisions/0",
+        "kind": "session_decision",
+        "logical_result": "design_choice",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "undecided_by_constraints",
+            "kind": "constraint"
+          }
+        ],
+        "disposition": "open",
+        "session_disposition": "design_choice",
+        "origin": {
+          "kind": "computed",
+          "refs": [
+            {
+              "premise": "draft-minimum-age",
+              "origin": {
+                "kind": "user_choice",
+                "ref": "invented-scenario:user-choice:adult-registry",
+                "source": null,
+                "analysis": null
+              }
+            }
+          ]
+        },
+        "coverage": {
+          "target": {
+            "kind": "new_trial",
+            "ref": "invented:observational-diabetes-draft",
+            "scope": {
+              "study": "invented:observational-diabetes-draft",
+              "population": "invented-prospective-registry",
+              "arm": "observational-all",
+              "time": "registry-entry",
+              "version": "invented-draft-v1"
+            }
+          },
+          "declared": "represented_restriction",
+          "limit": "Only caller-declared represented constructs; not complete clinical eligibility."
+        },
+        "support_path": "/result/decisions/0"
+      }
+    ],
+    "child_findings": [
+      [
+        {
+          "causes": [],
+          "completion": "complete",
+          "disposition": "settled",
+          "kind": "logical",
+          "logical_result": "ENTAILED",
+          "path": "/result/decision",
+          "standing": "known"
+        }
+      ],
+      [
+        {
+          "causes": [],
+          "completion": "complete",
+          "disposition": "settled",
+          "kind": "logical",
+          "logical_result": "ENTAILED",
+          "path": "/result/decision",
+          "standing": "known"
+        }
+      ],
+      [
+        {
+          "causes": [],
+          "completion": "complete",
+          "disposition": "settled",
+          "kind": "logical",
+          "logical_result": "ENTAILED",
+          "path": "/result/decision",
+          "standing": "known"
+        }
+      ],
+      [
+        {
+          "causes": [],
+          "completion": "complete",
+          "disposition": "settled",
+          "kind": "logical",
+          "logical_result": "ENTAILED",
+          "path": "/result/decision",
+          "standing": "known"
+        }
+      ],
+      [
+        {
+          "causes": [
+            {
+              "code": "proposed_refused:Ontario-age-reading",
+              "kind": "premise"
+            },
+            {
+              "code": "undecided_by_constraints",
+              "kind": "constraint"
+            }
+          ],
+          "completion": "complete",
+          "disposition": "open",
+          "kind": "logical",
+          "logical_result": "UNDETERMINED",
+          "path": "/result/decision",
+          "standing": null
+        }
+      ],
+      [
+        {
+          "causes": [
+            {
+              "code": "proposed_refused:Ontario-age-reading",
+              "kind": "premise"
+            },
+            {
+              "code": "undecided_by_constraints",
+              "kind": "constraint"
+            }
+          ],
+          "completion": "complete",
+          "disposition": "open",
+          "kind": "logical",
+          "logical_result": "UNDETERMINED",
+          "path": "/result/decision",
+          "standing": null
+        }
+      ],
+      [
+        {
+          "causes": [
+            {
+              "code": "undecided_by_constraints",
+              "kind": "constraint"
+            }
+          ],
+          "completion": "complete",
+          "disposition": "open",
+          "kind": "logical",
+          "logical_result": "UNDETERMINED",
+          "path": "/result/decision",
+          "standing": null
+        }
+      ],
+      [
+        {
+          "causes": [
+            {
+              "code": "undecided_by_constraints",
+              "kind": "constraint"
+            }
+          ],
+          "completion": "complete",
+          "disposition": "open",
+          "kind": "logical",
+          "logical_result": "UNDETERMINED",
+          "path": "/result/decision",
+          "standing": null
+        }
+      ],
+      [
+        {
+          "causes": [],
+          "completion": "complete",
+          "disposition": "settled",
+          "kind": "logical",
+          "logical_result": "ENTAILED",
+          "path": "/result/decision",
+          "standing": "known"
+        }
+      ]
+    ]
+  },
+  "session-age65-revision": {
+    "findings": [
+      {
+        "causes": [],
+        "completion": "complete",
+        "disposition": "settled",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "path": "/result/analyses/0/result/result/decision",
+        "standing": "known"
+      },
+      {
+        "causes": [],
+        "completion": "complete",
+        "disposition": "settled",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "path": "/result/analyses/1/result/result/decision",
+        "standing": "known"
+      },
+      {
+        "causes": [],
+        "completion": "complete",
+        "disposition": "settled",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "path": "/result/analyses/2/result/result/decision",
+        "standing": "known"
+      },
+      {
+        "causes": [],
+        "completion": "complete",
+        "disposition": "settled",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "path": "/result/analyses/3/result/result/decision",
+        "standing": "known"
+      },
+      {
+        "causes": [
+          {
+            "code": "proposed_refused:Ontario-age-reading",
+            "kind": "premise"
+          },
+          {
+            "code": "undecided_by_constraints",
+            "kind": "constraint"
+          }
+        ],
+        "completion": "complete",
+        "disposition": "open",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "path": "/result/analyses/4/result/result/decision",
+        "standing": null
+      },
+      {
+        "causes": [
+          {
+            "code": "proposed_refused:Ontario-age-reading",
+            "kind": "premise"
+          },
+          {
+            "code": "undecided_by_constraints",
+            "kind": "constraint"
+          }
+        ],
+        "completion": "complete",
+        "disposition": "open",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "path": "/result/analyses/5/result/result/decision",
+        "standing": null
+      },
+      {
+        "causes": [],
+        "completion": "complete",
+        "disposition": "settled",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "path": "/result/analyses/6/result/result/decision",
+        "standing": "known"
+      },
+      {
+        "causes": [],
+        "completion": "complete",
+        "disposition": "settled",
+        "kind": "logical",
+        "logical_result": "REFUTED",
+        "path": "/result/analyses/7/result/result/decision",
+        "standing": "known"
+      },
+      {
+        "causes": [],
+        "completion": "complete",
+        "disposition": "settled",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "path": "/result/analyses/8/result/result/decision",
+        "standing": "known"
+      },
+      {
+        "path": "/result/decisions/0",
+        "kind": "session_decision",
+        "logical_result": "chosen_by_person",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "open",
+        "session_disposition": "chosen_by_person",
+        "origin": {
+          "kind": "user_choice",
+          "basis": [
+            "invented-scenario-user-selection-not-real-clinical-confirmation"
+          ]
+        },
+        "coverage": {
+          "target": {
+            "kind": "new_trial",
+            "ref": "invented:observational-diabetes-draft",
+            "scope": {
+              "study": "invented:observational-diabetes-draft",
+              "population": "invented-prospective-registry",
+              "arm": "observational-all",
+              "time": "registry-entry",
+              "version": "invented-draft-v1"
+            }
+          },
+          "declared": "represented_restriction",
+          "limit": "Only caller-declared represented constructs; not complete clinical eligibility."
+        },
+        "support_path": "/result/decisions/0"
+      }
+    ],
+    "child_findings": [
+      [
+        {
+          "causes": [],
+          "completion": "complete",
+          "disposition": "settled",
+          "kind": "logical",
+          "logical_result": "ENTAILED",
+          "path": "/result/decision",
+          "standing": "known"
+        }
+      ],
+      [
+        {
+          "causes": [],
+          "completion": "complete",
+          "disposition": "settled",
+          "kind": "logical",
+          "logical_result": "ENTAILED",
+          "path": "/result/decision",
+          "standing": "known"
+        }
+      ],
+      [
+        {
+          "causes": [],
+          "completion": "complete",
+          "disposition": "settled",
+          "kind": "logical",
+          "logical_result": "ENTAILED",
+          "path": "/result/decision",
+          "standing": "known"
+        }
+      ],
+      [
+        {
+          "causes": [],
+          "completion": "complete",
+          "disposition": "settled",
+          "kind": "logical",
+          "logical_result": "ENTAILED",
+          "path": "/result/decision",
+          "standing": "known"
+        }
+      ],
+      [
+        {
+          "causes": [
+            {
+              "code": "proposed_refused:Ontario-age-reading",
+              "kind": "premise"
+            },
+            {
+              "code": "undecided_by_constraints",
+              "kind": "constraint"
+            }
+          ],
+          "completion": "complete",
+          "disposition": "open",
+          "kind": "logical",
+          "logical_result": "UNDETERMINED",
+          "path": "/result/decision",
+          "standing": null
+        }
+      ],
+      [
+        {
+          "causes": [
+            {
+              "code": "proposed_refused:Ontario-age-reading",
+              "kind": "premise"
+            },
+            {
+              "code": "undecided_by_constraints",
+              "kind": "constraint"
+            }
+          ],
+          "completion": "complete",
+          "disposition": "open",
+          "kind": "logical",
+          "logical_result": "UNDETERMINED",
+          "path": "/result/decision",
+          "standing": null
+        }
+      ],
+      [
+        {
+          "causes": [],
+          "completion": "complete",
+          "disposition": "settled",
+          "kind": "logical",
+          "logical_result": "ENTAILED",
+          "path": "/result/decision",
+          "standing": "known"
+        }
+      ],
+      [
+        {
+          "causes": [],
+          "completion": "complete",
+          "disposition": "settled",
+          "kind": "logical",
+          "logical_result": "REFUTED",
+          "path": "/result/decision",
+          "standing": "known"
+        }
+      ],
+      [
+        {
+          "causes": [],
+          "completion": "complete",
+          "disposition": "settled",
+          "kind": "logical",
+          "logical_result": "ENTAILED",
+          "path": "/result/decision",
+          "standing": "known"
+        }
+      ]
+    ]
+  }
+}

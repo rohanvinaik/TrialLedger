@@ -1,0 +1,20 @@
+error[invalid-argument-type]: Argument to constructor `float.__new__` is incorrect
+   --> TrialLedger/layer2/evidence_requests.py:238:24
+    |
+238 |         number = float(value)
+    |                        ^^^^^ Expected `str | Buffer | SupportsFloat | SupportsIndex`, found `object`
+info: type `object` is not assignable to any element of the union `str | Buffer | SupportsFloat | SupportsIndex`
+info: ├── type `object` is not assignable to protocol `Buffer`
+info: │   └── protocol member `__buffer__` is not defined on type `object`
+info: ├── type `object` is not assignable to protocol `SupportsFloat`
+info: │   └── protocol member `__float__` is not defined on type `object`
+info: ├── type `object` is not assignable to protocol `SupportsIndex`
+info: │   └── protocol member `__index__` is not defined on type `object`
+info: └── ... omitted 1 union element without additional context
+info: Function defined here
+   --> stdlib/builtins.pyi:676:9
+    |
+676 |     def __new__(cls, x: ConvertibleToFloat = 0, /) -> Self: ...
+    |         ^^^^^^^      ------------------------- Parameter declared here
+
+Found 1 diagnostic

@@ -1,0 +1,52 @@
+{
+  "raw_batch_sha256": "7f7fb559684a8fd1fcfd9f424fd121a31f531ef515cc03562d97673af8c2d214",
+  "filesystem_capture_utc": "2026-11-03T22:23:42.322707+00:00",
+  "time_meaning": "filesystem capture, not independent network time",
+  "studies": [
+    {
+      "id": "NCT02670044",
+      "index": 0,
+      "digest": "03536f5e1fac0fdc9abc90bf630f5767d64002ac69a2599545e3e0f41de820a7",
+      "reviewed_protocol_modules": [
+        "identificationModule",
+        "statusModule",
+        "descriptionModule",
+        "designModule",
+        "eligibilityModule",
+        "armsInterventionsModule",
+        "outcomesModule"
+      ],
+      "resultsSection": "not_posted"
+    },
+    {
+      "id": "NCT03625505",
+      "index": 1,
+      "digest": "2aedd2487c16532f6d826bec43345d1df52ce352fa5102e10cbabaf92620de2e",
+      "reviewed_protocol_modules": [
+        "identificationModule",
+        "statusModule",
+        "descriptionModule",
+        "designModule",
+        "eligibilityModule",
+        "armsInterventionsModule",
+        "outcomesModule"
+      ],
+      "resultsSection": "not_posted"
+    },
+    {
+      "id": "NCT04666649",
+      "index": 2,
+      "digest": "673add96b5c61adb6c965456079d102d1ae1b178333be4a13be5d4e2abe89c7a",
+      "reviewed_protocol_modules": [
+        "identificationModule",
+        "statusModule",
+        "descriptionModule",
+        "designModule",
+        "eligibilityModule",
+        "armsInterventionsModule",
+        "outcomesModule"
+      ],
+      "resultsSection": "not_posted"
+    }
+  ]
+}

@@ -1,0 +1,364 @@
+{
+ "cwd": "/tmp/trialledger-evidence-requests-20261103164615/proof-v2",
+ "commands": [
+  {
+   "argv": [
+    "/Users/rohanvinaik/Projects/SquishOS/ops/agents/bin/owned-run",
+    "--label",
+    "er-v2-regime-migrate",
+    "--",
+    "env",
+    "PYTHONPATH=/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+    "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+    "regime",
+    "--migrate"
+   ],
+   "stdout_stderr": "logs/regime-migrate.log",
+   "exit_code": 0
+  },
+  {
+   "argv": [
+    "/Users/rohanvinaik/Projects/SquishOS/ops/agents/bin/owned-run",
+    "--label",
+    "er-v2-regime",
+    "--",
+    "env",
+    "PYTHONPATH=/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+    "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+    "regime"
+   ],
+   "stdout_stderr": "logs/regime.log",
+   "exit_code": 0
+  },
+  {
+   "argv": [
+    "/Users/rohanvinaik/Projects/SquishOS/ops/agents/bin/owned-run",
+    "--label",
+    "er-v2-converge-family_state",
+    "--",
+    "env",
+    "PYTHONPATH=/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+    "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+    "converge",
+    "TrialLedger/layer2/evidence_requests.py::family_state",
+    "--two-sign"
+   ],
+   "stdout_stderr": "logs/converge-family_state.log",
+   "exit_code": 2
+  },
+  {
+   "argv": [
+    "/Users/rohanvinaik/Projects/SquishOS/ops/agents/bin/owned-run",
+    "--label",
+    "er-v2-converge-pair_relation",
+    "--",
+    "env",
+    "PYTHONPATH=/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+    "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+    "converge",
+    "TrialLedger/layer2/evidence_requests.py::pair_relation",
+    "--two-sign"
+   ],
+   "stdout_stderr": "logs/converge-pair_relation.log",
+   "exit_code": 2
+  },
+  {
+   "argv": [
+    "/Users/rohanvinaik/Projects/SquishOS/ops/agents/bin/owned-run",
+    "--label",
+    "er-v2-converge-pair_outcome",
+    "--",
+    "env",
+    "PYTHONPATH=/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+    "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+    "converge",
+    "TrialLedger/layer2/evidence_requests.py::pair_outcome",
+    "--two-sign"
+   ],
+   "stdout_stderr": "logs/converge-pair_outcome.log",
+   "exit_code": 2
+  },
+  {
+   "argv": [
+    "/Users/rohanvinaik/Projects/SquishOS/ops/agents/bin/owned-run",
+    "--label",
+    "er-v2-converge-output_state",
+    "--",
+    "env",
+    "PYTHONPATH=/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+    "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+    "converge",
+    "TrialLedger/layer2/evidence_requests.py::output_state",
+    "--two-sign"
+   ],
+   "stdout_stderr": "logs/converge-output_state.log",
+   "exit_code": 2
+  },
+  {
+   "argv": [
+    "/Users/rohanvinaik/Projects/SquishOS/ops/agents/bin/owned-run",
+    "--label",
+    "er-v2-converge-required_premises",
+    "--",
+    "env",
+    "PYTHONPATH=/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+    "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+    "converge",
+    "TrialLedger/layer2/evidence_requests.py::required_premises",
+    "--two-sign"
+   ],
+   "stdout_stderr": "logs/converge-required_premises.log",
+   "exit_code": 2
+  },
+  {
+   "argv": [
+    "/Users/rohanvinaik/Projects/SquishOS/ops/agents/bin/owned-run",
+    "--label",
+    "er-v2-converge-seek",
+    "--",
+    "env",
+    "PYTHONPATH=/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+    "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+    "converge",
+    "TrialLedger/layer2/evidence_requests.py::seek",
+    "--two-sign"
+   ],
+   "stdout_stderr": "logs/converge-seek.log",
+   "exit_code": 2
+  },
+  {
+   "argv": [
+    "/Users/rohanvinaik/Projects/SquishOS/ops/agents/bin/owned-run",
+    "--label",
+    "er-v2-converge-dominated",
+    "--",
+    "env",
+    "PYTHONPATH=/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+    "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+    "converge",
+    "TrialLedger/layer2/evidence_requests.py::dominated",
+    "--two-sign"
+   ],
+   "stdout_stderr": "logs/converge-dominated.log",
+   "exit_code": 2
+  },
+  {
+   "argv": [
+    "patch",
+    "-p0",
+    "pyproject.toml",
+    "<",
+    "../proof/regime-migrate-pyproject.diff"
+   ],
+   "stdout_stderr": "logs/apply-prior-migrate.log",
+   "exit_code": 0,
+   "note": "manual: identical scratch-only pytest pythonpath change that `detective regime --migrate` wrote in the first proof run; `pip install -e .` was refused because it would repoint the shared venv. The 7 refused converge runs above are retained."
+  },
+  {
+   "argv": [
+    "/Users/rohanvinaik/Projects/SquishOS/ops/agents/bin/owned-run",
+    "--label",
+    "er-v2-converge-family_state",
+    "--",
+    "env",
+    "PYTHONPATH=/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+    "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+    "converge",
+    "TrialLedger/layer2/evidence_requests.py::family_state",
+    "--two-sign"
+   ],
+   "stdout_stderr": "logs/converge-family_state.log",
+   "exit_code": 0
+  },
+  {
+   "argv": [
+    "/Users/rohanvinaik/Projects/SquishOS/ops/agents/bin/owned-run",
+    "--label",
+    "er-v2-converge-pair_relation",
+    "--",
+    "env",
+    "PYTHONPATH=/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+    "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+    "converge",
+    "TrialLedger/layer2/evidence_requests.py::pair_relation",
+    "--two-sign"
+   ],
+   "stdout_stderr": "logs/converge-pair_relation.log",
+   "exit_code": 0
+  },
+  {
+   "argv": [
+    "/Users/rohanvinaik/Projects/SquishOS/ops/agents/bin/owned-run",
+    "--label",
+    "er-v2-converge-pair_outcome",
+    "--",
+    "env",
+    "PYTHONPATH=/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+    "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+    "converge",
+    "TrialLedger/layer2/evidence_requests.py::pair_outcome",
+    "--two-sign"
+   ],
+   "stdout_stderr": "logs/converge-pair_outcome.log",
+   "exit_code": 0
+  },
+  {
+   "argv": [
+    "/Users/rohanvinaik/Projects/SquishOS/ops/agents/bin/owned-run",
+    "--label",
+    "er-v2-converge-output_state",
+    "--",
+    "env",
+    "PYTHONPATH=/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+    "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+    "converge",
+    "TrialLedger/layer2/evidence_requests.py::output_state",
+    "--two-sign"
+   ],
+   "stdout_stderr": "logs/converge-output_state.log",
+   "exit_code": 0
+  },
+  {
+   "argv": [
+    "/Users/rohanvinaik/Projects/SquishOS/ops/agents/bin/owned-run",
+    "--label",
+    "er-v2-converge-required_premises",
+    "--",
+    "env",
+    "PYTHONPATH=/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+    "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+    "converge",
+    "TrialLedger/layer2/evidence_requests.py::required_premises",
+    "--two-sign"
+   ],
+   "stdout_stderr": "logs/converge-required_premises.log",
+   "exit_code": 0
+  },
+  {
+   "argv": [
+    "/Users/rohanvinaik/Projects/SquishOS/ops/agents/bin/owned-run",
+    "--label",
+    "er-v2-converge-seek",
+    "--",
+    "env",
+    "PYTHONPATH=/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+    "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+    "converge",
+    "TrialLedger/layer2/evidence_requests.py::seek",
+    "--two-sign"
+   ],
+   "stdout_stderr": "logs/converge-seek.log",
+   "exit_code": 0
+  },
+  {
+   "argv": [
+    "/Users/rohanvinaik/Projects/SquishOS/ops/agents/bin/owned-run",
+    "--label",
+    "er-v2-converge-dominated",
+    "--",
+    "env",
+    "PYTHONPATH=/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+    "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+    "converge",
+    "TrialLedger/layer2/evidence_requests.py::dominated",
+    "--two-sign"
+   ],
+   "stdout_stderr": "logs/converge-dominated.log",
+   "exit_code": 0
+  },
+  {
+   "argv": [
+    "/Users/rohanvinaik/Projects/SquishOS/ops/agents/bin/owned-run",
+    "--label",
+    "er-v2-crosshair",
+    "--",
+    "env",
+    "PYTHONPATH=/tmp/trialledger-evidence-requests-20261103164615/proof-v2",
+    "/Users/rohanvinaik/miniconda3/bin/crosshair",
+    "check",
+    "--analysis_kind",
+    "PEP316",
+    "--report_all",
+    "TrialLedger/layer2/evidence_requests.py"
+   ],
+   "stdout_stderr": "logs/crosshair.log",
+   "exit_code": 1
+  },
+  {
+   "argv": [
+    "/Users/rohanvinaik/Projects/SquishOS/ops/agents/bin/owned-run",
+    "--label",
+    "er-v2-pytest",
+    "--",
+    "env",
+    "PYTHONPATH=/tmp/trialledger-evidence-requests-20261103164615/proof-v2",
+    "PYTHONDONTWRITEBYTECODE=1",
+    "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/python",
+    "-m",
+    "pytest",
+    "-q",
+    "-p",
+    "no:cacheprovider",
+    "tests"
+   ],
+   "stdout_stderr": "logs/pytest-all.log",
+   "exit_code": 0
+  },
+  {
+   "argv": [
+    "/Users/rohanvinaik/Projects/SquishOS/ops/agents/bin/owned-run",
+    "--label",
+    "er-v2-converge-required_premises-contract-fix",
+    "--",
+    "env",
+    "PYTHONPATH=/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+    "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+    "converge",
+    "TrialLedger/layer2/evidence_requests.py::required_premises",
+    "--two-sign"
+   ],
+   "stdout_stderr": "logs/converge-required_premises.contract-fix.log",
+   "exit_code": 0
+  },
+  {
+   "argv": [
+    "/Users/rohanvinaik/Projects/SquishOS/ops/agents/bin/owned-run",
+    "--label",
+    "er-v2-crosshair-final",
+    "--",
+    "env",
+    "PYTHONPATH=/tmp/trialledger-evidence-requests-20261103164615/proof-v2",
+    "/Users/rohanvinaik/miniconda3/bin/crosshair",
+    "check",
+    "--analysis_kind",
+    "PEP316",
+    "--report_all",
+    "--per_condition_timeout",
+    "30",
+    "TrialLedger/layer2/evidence_requests.py"
+   ],
+   "stdout_stderr": "logs/crosshair-final.log",
+   "exit_code": 0
+  },
+  {
+   "argv": [
+    "/Users/rohanvinaik/Projects/SquishOS/ops/agents/bin/owned-run",
+    "--label",
+    "er-v2-pytest-final",
+    "--",
+    "env",
+    "PYTHONPATH=/tmp/trialledger-evidence-requests-20261103164615/proof-v2",
+    "PYTHONDONTWRITEBYTECODE=1",
+    "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/python",
+    "-m",
+    "pytest",
+    "-q",
+    "-p",
+    "no:cacheprovider",
+    "tests"
+   ],
+   "stdout_stderr": "logs/pytest-final.log",
+   "exit_code": 0
+  }
+ ]
+}

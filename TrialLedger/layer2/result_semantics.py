@@ -9,7 +9,37 @@ from __future__ import annotations
 from collections.abc import Sequence
 from copy import deepcopy
 
+from TrialLedger.layer2.entail import weakest_status
+
 CAUSE_KINDS = {
+    "profile_size_limit": "computation",
+    "witness_unresolved": "premise",
+    "survivor_inconsistent": "conflict",
+    "variable_unrepresented": "translation",
+    "unsearched_constraints": "coverage",
+    "signs_restricted": "coverage",
+    "no_represented_variable": "translation",
+    "output_limit": "computation",
+    "profile_inconsistent": "translation",
+    "OUT_OF_SCOPE": "translation",
+    "UNSUPPORTED_QUERY": "unsupported",
+    "estimand_missing_support": "premise",
+    "estimand_proposed_refused": "premise",
+    "estimand_binding_unresolved": "translation",
+    "estimand_relevance_unresolved": "translation",
+    "estimand_collection_plan_mismatch": "constraint",
+    "estimand_availability_conflict": "conflict",
+    "estimand_unresolved": "evidence",
+    "estimand_missing_relevant": "evidence",
+    "estimand_structurally_unavailable": "evidence",
+    "estimand_definition_unresolved": "translation",
+    "table_uncovered_case": "conflict",
+    "table_conflicting_actions": "conflict",
+    "stage_scope_mismatch": "translation",
+    "stage_unit_mismatch": "translation",
+    "stage_binding_unresolved": "translation",
+    "stage_total_unknown": "evidence",
+    "stage_subset_not_warranted": "premise",
     "exception_upper_unknown": "evidence",
     "exception_bridge_conflict": "conflict",
     "attribution_conflict": "conflict",
@@ -96,6 +126,32 @@ RESULTS = frozenset(
         "REFUSED",
         "bounded",
         "consistent",
+        "permitted_only",
+        "feasible",
+        "covered",
+        "gap",
+        "domain_conflict",
+        "disjoint",
+        "overlap",
+        "reachable",
+        "unreachable",
+        "required",
+        "not_required_for_this_estimand",
+        "aligned",
+        "collection_plan_mismatch",
+        "available",
+        "missing_relevant",
+        "structurally_unavailable",
+        "searched",
+        "single_survivor",
+        "separated",
+        "no_separator",
+        "not_separated_in_declared_variables",
+        "search_incomplete",
+        "hypothetical_evidence_request",
+        "complete",
+        "incomplete",
+        "truncated",
         "conflict",
         "unresolved",
         "resolved",
@@ -183,6 +239,8 @@ def disposition_code(logical_result: str, standing: str, completion: str) -> str
         "refuted",
         "incoherent",
         "floor_conflict",
+        "gap",
+        "domain_conflict",
     ):
         return "conflict" if standing in ("known", "interpolated", "proposed") else "unclassified"
     if logical_result in ("ENTAILED", "REFUTED", "ruled_out"):
@@ -201,6 +259,15 @@ def disposition_code(logical_result: str, standing: str, completion: str) -> str
         "no_witness",
         "below_support",
         "abstain",
+        "missing_relevant",
+        "collection_plan_mismatch",
+        "separated",
+        "no_separator",
+        "not_separated_in_declared_variables",
+        "search_incomplete",
+        "hypothetical_evidence_request",
+        "incomplete",
+        "truncated",
     ):
         return "open"
     if standing in ("interpolated", "proposed") or logical_result in ("conditional", "proposed"):
@@ -249,6 +316,140 @@ def _signal(row: dict, path: str) -> dict:
         finding["raw_result"] = row.get("calculation_code")
         finding["raw_path"] = _path(path, "calculation_code")
     return finding
+
+
+def _signal_findings(row: dict, path: str) -> list[dict]:
+    """Retain stage-local checks under the enclosing signal's actual admission warrant."""
+    if row.get("kind") == "decision_table":
+        return _table_findings(row, path)
+    if row.get("kind") == "estimand":
+        return _estimand_findings(row, path)
+    if row.get("kind") != "stages":
+        return [_signal(row, path)]
+    transitions = row.get("value", {}).get("transitions", [])
+    if not transitions:
+        return []
+    findings = [_signal(row, path)]
+    gated = _signal_is_gated(row)
+    for index, edge in enumerate(transitions):
+        edge_path = _path(_path(_path(path, "value"), "transitions"), index)
+        outer = [premise["status"] for premise in row.get("support", ())]
+        outer.extend(binding["status"] for binding in row.get("binding_support", ()))
+        status = weakest_status(tuple(outer) + (edge["status"],))
+        blockers = [*edge["blockers"], *(row["blockers"] if gated else [])]
+        finding = _row(
+            edge_path, "stage_transition", "unresolved" if gated else edge["code"], status, blockers
+        )
+        finding["support_path"] = _path(edge_path, "declaration")
+        if gated:
+            finding["raw_result"] = edge["code"]
+            finding["raw_path"] = _path(edge_path, "code")
+        elif edge["code"] == "permitted_only" and status == "known":
+            finding["disposition"] = "descriptive"
+        findings.append(finding)
+    return findings
+
+
+def _table_findings(row: dict, path: str) -> list[dict]:
+    """Expose completed table checks beside independent unfinished checks and outer gates."""
+    findings = [_signal(row, path)]
+    gated = _signal_is_gated(row)
+    value = row.get("value", {})
+    checks = [(name, None, value.get(name)) for name in ("domain", "coverage")]
+    checks.extend(
+        (name, index, check)
+        for name in ("overlaps", "actions")
+        for index, check in enumerate(value.get(name, ()))
+    )
+    for name, index, check in checks:
+        if check is None:
+            continue
+        check_path = _path(_path(path, "value"), name)
+        if index is not None:
+            check_path = _path(check_path, index)
+        finding = _row(
+            check_path,
+            "table_" + name,
+            "unresolved" if gated else check["state"],
+            row.get("status"),
+            [*check["blockers"], *(row["blockers"] if gated else [])],
+        )
+        finding["support_path"] = _path(path, "support")
+        if gated:
+            finding["raw_result"] = check["state"]
+            finding["raw_path"] = _path(check_path, "state")
+        elif check.get("same_action") and row.get("status") == "known":
+            finding["disposition"] = "descriptive"
+        findings.append(finding)
+    return findings
+
+
+def _signal_is_gated(row: dict) -> bool:
+    """Consume admission explicitly even when both raw and effective aggregate codes are unresolved."""
+    admission = row.get("admission", {})
+    return (
+        admission.get("code", "accepted") != "accepted"
+        or bool(admission.get("application_blockers"))
+        or row.get("code") != row.get("calculation_code")
+        or ("ungated_code" in row and row["code"] != row["ungated_code"])
+    )
+
+
+def _estimand_findings(row: dict, path: str) -> list[dict]:
+    """Consume channel-local states/support rather than spreading an unrelated open definition."""
+    value = row.get("value", {})
+    requirements = value.get("requirements", [])
+    dependencies = value.get("dependency_checks", [])
+    if not requirements and not dependencies:
+        return []
+    findings = [_signal(row, path)]
+    gated = _signal_is_gated(row)
+    outer = [premise["status"] for premise in row.get("support", ())]
+    outer.extend(binding["status"] for binding in row.get("binding_support", ()))
+
+    def append(
+        local_path: str, kind: str, code: str, status: str | None, blockers: list, support_path: str
+    ) -> None:
+        standing = weakest_status(tuple(outer) + (status,)) if status is not None else None
+        finding = _row(
+            local_path,
+            kind,
+            "unresolved" if gated else code,
+            standing,
+            [*blockers, *(row["blockers"] if gated else [])],
+        )
+        finding["support_path"] = support_path
+        if gated:
+            finding["raw_result"] = code
+            finding["raw_path"] = local_path
+        findings.append(finding)
+
+    for index, requirement in enumerate(requirements):
+        base = _path(_path(_path(path, "value"), "requirements"), index)
+        for field, status, blockers in (
+            ("relevance", "relevance_status", "relevance_blockers"),
+            ("collection_alignment", "collection_status", "collection_blockers"),
+            ("actual_input", "actual_status", "actual_blockers"),
+        ):
+            append(
+                _path(base, field),
+                "estimand_" + field,
+                requirement[field],
+                requirement[status],
+                requirement[blockers],
+                base,
+            )
+    for index, check in enumerate(dependencies):
+        base = _path(_path(_path(path, "value"), "dependency_checks"), index)
+        append(
+            _path(base, "code"),
+            "estimand_dependency",
+            check["code"],
+            check["status"],
+            check["blockers"],
+            _path(base, "deciding_refs"),
+        )
+    return findings
 
 
 def _coordinates(result: dict, base: str) -> list[dict]:
@@ -373,7 +574,7 @@ def _design_bounds(result: dict, base: str) -> list[dict]:
                 _row(observation_path, "witness", row.get("state", ""), row.get("status"), blockers)
             )
         for signal_index, row in enumerate(candidate.get("signal_checks", ())):
-            findings.append(_signal(row, _path(_path(path, "signal_checks"), signal_index)))
+            findings.extend(_signal_findings(row, _path(_path(path, "signal_checks"), signal_index)))
     consequence = result.get("consequence", {})
     blockers = list(consequence.get("blockers", ()))
     if consequence.get("result") == "UNDETERMINED":
@@ -390,8 +591,9 @@ def _design_bounds(result: dict, base: str) -> list[dict]:
         )
     )
     findings.extend(
-        _signal(row, _path(_path(base, "signals"), index))
+        finding
         for index, row in enumerate(result.get("signals", ()))
+        for finding in _signal_findings(row, _path(_path(base, "signals"), index))
     )
     findings.extend(_applications(result, base))
     return findings
@@ -435,8 +637,9 @@ def _interpretations(result: dict, base: str) -> list[dict]:
         for index, row in enumerate(fixed.get("queries", ()))
     )
     findings.extend(
-        _signal(row, _path(_path(fixed_path, "signals"), index))
+        finding
         for index, row in enumerate(fixed.get("signals", ()))
+        for finding in _signal_findings(row, _path(_path(fixed_path, "signals"), index))
     )
     for index, frame in enumerate(result.get("interpretations", ())):
         path = _path(_path(base, "interpretations"), index)
@@ -456,8 +659,9 @@ def _interpretations(result: dict, base: str) -> list[dict]:
         )
         for field in ("signals", "signal_checks"):
             findings.extend(
-                _signal(row, _path(_path(path, field), signal_index))
+                finding
                 for signal_index, row in enumerate(frame.get(field, ()))
+                for finding in _signal_findings(row, _path(_path(path, field), signal_index))
             )
         for binding_index, row in enumerate(frame.get("bindings", ())):
             findings.append(
@@ -492,6 +696,115 @@ def _source_assertions(result: dict, base: str) -> list[dict]:
     return findings
 
 
+def _evidence_findings(result: dict, base: str) -> list[dict]:
+    """Investigation requests stay open; enumeration and output limits remain separate channels."""
+    findings = []
+    conflict_statuses = []
+    for index, check in enumerate(result.get("input_checks", ())):
+        decision = check["decision"]
+        if decision["result"] == "INCONSISTENT":
+            path = _path(_path(_path(base, "input_checks"), index), "decision")
+            findings.append(_decision(decision, path))
+            conflict_statuses.append(decision["status"])
+    status = weakest_status(tuple(conflict_statuses)) if conflict_statuses else "known"
+    family = _row(
+        _path(base, "family"), "candidate_family", result["family"], status, result["input_conflicts"]
+    )
+    if result["family"] in ("searched", "single_survivor"):
+        family["disposition"] = "descriptive"
+    findings.append(family)
+    for name in ("search", "output"):
+        value = result[name]
+        finding = _row(_path(base, name), "evidence_" + name, value["state"], "known", value["causes"])
+        if value["state"] == "complete":
+            finding["disposition"] = "descriptive"
+        findings.append(finding)
+    for index, pair in enumerate(result["pairs"]):
+        separated = pair["outcome"] == "separated"
+        finding = _row(
+            _path(_path(base, "pairs"), index),
+            "evidence_pair",
+            pair["outcome"],
+            None,
+            () if separated else pair["causes"],
+        )
+        if separated and pair["causes"]:
+            finding["context_causes"] = [
+                {"code": cause, "kind": cause_kind(cause)} for cause in pair["causes"]
+            ]
+        findings.append(finding)
+    for index, row in enumerate(result["requests"]):
+        path = _path(_path(base, "requests"), index)
+        finding = _row(path, "hypothetical_evidence_request", row["kind"], row["conditional_status"])
+        finding["hypothetical"] = True
+        finding["support_path"] = _path(path, "required_premises")
+        findings.append(finding)
+    return findings
+
+
+def _session_findings(result: dict, base: str) -> list[dict]:
+    """Retain every actual child finding and the separately computed question context."""
+    findings = []
+
+    def extend_child(child: dict, prefix: str) -> None:
+        for raw in child.get("metadata", {}).get("findings", ()):
+            finding = deepcopy(raw)
+            for field in ("path", "raw_path", "support_path"):
+                if field in finding:
+                    finding[field] = prefix + finding[field]
+            findings.append(finding)
+
+    for index, analysis in enumerate(result.get("analyses", ())):
+        prefix = _path(_path(_path(base, "analyses"), index), "result")
+        extend_child(analysis["result"], prefix)
+    dispositions = {
+        "blocker": "conflict",
+        "translation_question": "translation_question",
+        "computation_task": "not_computed",
+        "evidence_question": "open",
+        "design_choice": "open",
+        "options_not_distinguished": "open",
+        "chosen_by_person": "open",
+        "chosen_with_open_checks": "open",
+        "settled_within_declared_alternatives": "settled",
+    }
+    for index, decision in enumerate(result.get("decisions", ())):
+        path = _path(_path(base, "decisions"), index)
+        for number, distinction in enumerate(decision.get("distinctions", ())):
+            if distinction.get("result") is not None:
+                prefix = _path(_path(_path(path, "distinctions"), number), "result")
+                extend_child(distinction["result"], prefix)
+        code, standing = decision["code"], decision.get("standing")
+        disposition = dispositions.get(code, "unclassified")
+        if disposition == "settled" and standing in ("interpolated", "proposed"):
+            disposition = "conditional"
+        blockers = {
+            cause
+            for option in decision["alternatives"]
+            for cause in (option.get("warrant") or {}).get("blockers", ())
+        }
+        findings.append(
+            {
+                "path": path,
+                "kind": "session_decision",
+                "logical_result": code,
+                "standing": standing,
+                "completion": "limited" if code == "computation_task" else "complete",
+                "causes": [{"code": cause, "kind": cause_kind(cause)} for cause in sorted(blockers)],
+                "disposition": disposition,
+                "session_disposition": code,
+                "origin": deepcopy(decision["origin"]),
+                "coverage": {
+                    "target": deepcopy(decision["target"]),
+                    "declared": decision["coverage"],
+                    "limit": decision["coverage_limit"],
+                },
+                "support_path": path,
+            }
+        )
+    return findings
+
+
 def metadata(operation: str, result: object, problems: Sequence[str] = ()) -> dict:
     """Describe existing outputs at envelope level without changing their payloads."""
     if problems:
@@ -520,6 +833,8 @@ def metadata(operation: str, result: object, problems: Sequence[str] = ()) -> di
         "design_bounds": _design_bounds,
         "interpretations": _interpretations,
         "source_assertions": _source_assertions,
+        "design_session": _session_findings,
+        "evidence_requests": _evidence_findings,
     }
     if not isinstance(result, dict):
         findings = [_row("/result", "unclassified", "", None)]
@@ -527,15 +842,20 @@ def metadata(operation: str, result: object, problems: Sequence[str] = ()) -> di
         findings = [_decision(result.get("decision", {}), "/result/decision")]
     elif operation == "signals":
         findings = [
-            _signal(row, _path("/result/signals", index))
+            finding
             for index, row in enumerate(result.get("signals", ()))
+            for finding in _signal_findings(row, _path("/result/signals", index))
         ]
         findings.extend(_applications(result, "/result"))
     elif operation in adapters:
         findings = adapters[operation](result, "/result")
     else:
         findings = [_row("/result", "unclassified", "", None)]
-    kind = "inspection" if operation == "source_assertions" and not findings else "reasoning"
+    kind = (
+        "inspection"
+        if operation in ("source_assertions", "signals", "design_session") and not findings
+        else "reasoning"
+    )
     if operation not in (*adapters, "entailment", "signals"):
         kind = "inspection"
     return {"version": 1, "kind": kind, "findings": findings}

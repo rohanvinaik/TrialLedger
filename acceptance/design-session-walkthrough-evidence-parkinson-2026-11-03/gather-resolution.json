@@ -1,0 +1,79 @@
+{
+ "code": "resolved",
+ "check": [
+  "ok",
+  []
+ ],
+ "join": "the names of one slot are joined by OR, the slots by AND",
+ "slots": [
+  {
+   "slot": "drug",
+   "value": [
+    "levodopa"
+   ],
+   "clause": "(AREA[InterventionName]\"levodopa\" OR AREA[InterventionOtherName]\"levodopa\")"
+  },
+  {
+   "slot": "condition",
+   "value": "Parkinson Disease",
+   "clause": "Parkinson Disease"
+  },
+  {
+   "slot": "phase",
+   "value": [
+    "PHASE4"
+   ],
+   "clause": "AREA[Phase]PHASE4"
+  },
+  {
+   "slot": "status",
+   "value": [
+    "COMPLETED"
+   ],
+   "clause": "AREA[OverallStatus]COMPLETED"
+  }
+ ],
+ "expansions": [
+  {
+   "slot": "drug",
+   "kind": "drug_names",
+   "drug": "levodopa",
+   "source": "RxNorm",
+   "requests": [
+    "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=levodopa&search=0",
+    "https://rxnav.nlm.nih.gov/REST/rxcui/6375/properties.json"
+   ],
+   "code": "ingredient",
+   "names": [
+    [
+     "levodopa",
+     "request"
+    ]
+   ],
+   "candidates": [],
+   "release": "02-Nov-2026"
+  }
+ ],
+ "lookups": [
+  "https://rxnav.nlm.nih.gov/REST/version.json",
+  "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=levodopa&search=0",
+  "https://rxnav.nlm.nih.gov/REST/rxcui/6375/properties.json"
+ ],
+ "pending": [],
+ "stops": [],
+ "query": {
+  "filter.advanced": "(AREA[InterventionName]\"levodopa\" OR AREA[InterventionOtherName]\"levodopa\") AND AREA[Phase]PHASE4 AND AREA[OverallStatus]COMPLETED",
+  "query.cond": "Parkinson Disease"
+ },
+ "release": [
+  "found",
+  "02-Nov-2026",
+  "https://rxnav.nlm.nih.gov/REST/version.json"
+ ],
+ "release_basis": "version.json asked in the first round and again after the last; release_check holds the code of the comparison (operate.release_check) and both releases",
+ "release_check": [
+  "unchanged",
+  "02-Nov-2026",
+  "02-Nov-2026"
+ ]
+}

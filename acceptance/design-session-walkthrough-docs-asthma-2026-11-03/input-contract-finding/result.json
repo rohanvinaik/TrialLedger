@@ -1,0 +1,28 @@
+{
+  "code": "refused",
+  "operation": "design_session",
+  "result": null,
+  "problems": [
+    "source_study_collision"
+  ],
+  "metadata": {
+    "version": 1,
+    "kind": "refusal",
+    "findings": [
+      {
+        "path": "/problems/0",
+        "kind": "request",
+        "logical_result": "REFUSED",
+        "standing": null,
+        "completion": "invalid",
+        "causes": [
+          {
+            "code": "source_study_collision",
+            "kind": "translation"
+          }
+        ],
+        "disposition": "translation_question"
+      }
+    ]
+  }
+}

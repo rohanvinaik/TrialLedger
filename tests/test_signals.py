@@ -37,7 +37,7 @@ def test_all_discovered_operator_examples_run_without_mutating_inputs(kind):
     assert reply["code"] == "complete", reply
     assert reply["result"]["signals"][0]["code"] == (
         "unresolved"
-        if kind == "dependencies"
+        if kind in ("dependencies", "estimand")
         else "bounded"
         if kind in ("overlap", "partition", "summary", "population")
         else "consistent"

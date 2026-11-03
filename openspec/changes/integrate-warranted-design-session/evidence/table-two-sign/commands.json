@@ -1,0 +1,294 @@
+[
+  {
+    "argv": [
+      "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+      "--help"
+    ],
+    "cwd": "/private/tmp/trialledger-decision-table-production-path-20261103-v3",
+    "PYTHONPATH": "/tmp/trialledger-decision-table-production-path-20261103-v3:/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+    "started": "2026-11-03T21:59:45.902505+00:00",
+    "completed": "2026-11-03T21:59:46.005421+00:00",
+    "exit_code": 0,
+    "log": "help.log",
+    "sha256": "1629b84ce31fc121fe2da5361946861273272397aebe227d5425a219461c5671"
+  },
+  {
+    "argv": [
+      "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+      "regime"
+    ],
+    "cwd": "/private/tmp/trialledger-decision-table-production-path-20261103-v3",
+    "PYTHONPATH": "/tmp/trialledger-decision-table-production-path-20261103-v3:/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+    "started": "2026-11-03T21:59:56.593362+00:00",
+    "completed": "2026-11-03T21:59:56.697866+00:00",
+    "exit_code": 0,
+    "log": "regime.log",
+    "sha256": "5dce61dba5938a6db6e7e273d95754b75e6ed06d4b611b60d5f314033833d212"
+  },
+  {
+    "argv": [
+      "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+      "converge",
+      "TrialLedger/layer2/decision_tables.py::table_check_state",
+      "--two-sign"
+    ],
+    "cwd": "/private/tmp/trialledger-decision-table-production-path-20261103-v3",
+    "PYTHONPATH": "/tmp/trialledger-decision-table-production-path-20261103-v3:/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+    "started": "2026-11-03T21:59:57.258827+00:00",
+    "completed": "2026-11-03T22:00:03.668533+00:00",
+    "exit_code": 0,
+    "log": "check-converge.log",
+    "sha256": "1ccae111a13dd92842f30c332a6fc2db77724de1a0951c30b3cc8cfdbd2eb527"
+  },
+  {
+    "argv": [
+      "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+      "plan",
+      "TrialLedger/layer2/decision_tables.py"
+    ],
+    "cwd": "/private/tmp/trialledger-decision-table-production-path-20261103-v3",
+    "PYTHONPATH": "/tmp/trialledger-decision-table-production-path-20261103-v3:/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+    "started": "2026-11-03T22:00:09.781782+00:00",
+    "completed": "2026-11-03T22:00:12.511067+00:00",
+    "exit_code": 0,
+    "log": "check-plan.log",
+    "sha256": "2c5f61784766ae24a9dc7eb9635c45941982611a5e85f4a16187975a022898b5"
+  },
+  {
+    "argv": [
+      "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+      "decompose",
+      "TrialLedger/layer2/decision_tables.py::table_check_state",
+      "--apply",
+      "--two-sign"
+    ],
+    "cwd": "/private/tmp/trialledger-decision-table-production-path-20261103-v3",
+    "PYTHONPATH": "/tmp/trialledger-decision-table-production-path-20261103-v3:/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+    "started": "2026-11-03T22:00:19.287857+00:00",
+    "completed": "2026-11-03T22:00:26.192194+00:00",
+    "exit_code": 0,
+    "log": "check-decompose.log",
+    "sha256": "40fe953bc519ecaf03c99ccded03f6cb082bacec60f27adcefe20926dae239b6"
+  },
+  {
+    "argv": [
+      "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+      "survey",
+      "TrialLedger/layer2/decision_tables.py"
+    ],
+    "cwd": "/private/tmp/trialledger-decision-table-production-path-20261103-v3",
+    "PYTHONPATH": "/tmp/trialledger-decision-table-production-path-20261103-v3:/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+    "started": "2026-11-03T22:00:33.786863+00:00",
+    "completed": "2026-11-03T22:00:33.906032+00:00",
+    "exit_code": 0,
+    "log": "check-survey.log",
+    "sha256": "12f2d4439c1f374d2b0f1096d765228f8671e12e45e51328ea7b813da6521ae3"
+  },
+  {
+    "argv": [
+      "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+      "converge",
+      "TrialLedger/layer2/decision_tables.py::table_state",
+      "--two-sign"
+    ],
+    "cwd": "/private/tmp/trialledger-decision-table-production-path-20261103-v3",
+    "PYTHONPATH": "/tmp/trialledger-decision-table-production-path-20261103-v3:/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+    "started": "2026-11-03T22:00:34.461020+00:00",
+    "completed": "2026-11-03T22:00:48.138935+00:00",
+    "exit_code": 0,
+    "log": "state-converge.log",
+    "sha256": "45a59459358089c176f0a716511ccbd8e87218f2a0d43e7d6aa68fcb6824dc56"
+  },
+  {
+    "argv": [
+      "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+      "flag",
+      "TrialLedger/layer2/decision_tables.py::table_state",
+      "OUTPUT_64cd6200",
+      "--two-sign",
+      "--note",
+      "CURRENT survivor OUTPUT_64cd6200 replaces return 'unresolved' with return domain inside the guard domain == 'unresolved'. Under the declared literal-string inputs the guard makes those returned values equal. All other branches are unchanged, and the Boolean flags are irrelevant on this guarded branch."
+    ],
+    "cwd": "/private/tmp/trialledger-decision-table-production-path-20261103-v3",
+    "PYTHONPATH": "/tmp/trialledger-decision-table-production-path-20261103-v3:/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+    "started": "2026-11-03T22:01:08.829374+00:00",
+    "completed": "2026-11-03T22:01:11.684109+00:00",
+    "exit_code": 0,
+    "log": "state-flag.log",
+    "sha256": "dbee0eeab819e0637d4674bb8b4492ebad5f085dd0a5c34c3eda0b113d680688"
+  },
+  {
+    "argv": [
+      "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+      "audit",
+      "TrialLedger/layer2/decision_tables.py::table_state",
+      "--two-sign"
+    ],
+    "cwd": "/private/tmp/trialledger-decision-table-production-path-20261103-v3",
+    "PYTHONPATH": "/tmp/trialledger-decision-table-production-path-20261103-v3:/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+    "started": "2026-11-03T22:01:31.364581+00:00",
+    "completed": "2026-11-03T22:01:37.530688+00:00",
+    "exit_code": 0,
+    "log": "state-audit.log",
+    "sha256": "8fb375ed88f1567f07d39f75220a8c10478ebfcb30ca05c04991eed3c9e4022b"
+  },
+  {
+    "argv": [
+      "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+      "converge",
+      "TrialLedger/layer2/decision_tables.py::table_state",
+      "--two-sign"
+    ],
+    "cwd": "/private/tmp/trialledger-decision-table-production-path-20261103-v3",
+    "PYTHONPATH": "/tmp/trialledger-decision-table-production-path-20261103-v3:/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+    "started": "2026-11-03T22:01:45.486893+00:00",
+    "completed": "2026-11-03T22:01:57.903685+00:00",
+    "exit_code": 0,
+    "log": "state-reconverge.log",
+    "sha256": "d970c9f2ca341fa28be450e50bf80e64d4840a0992b0bdb62220d6b3b864a0af"
+  },
+  {
+    "argv": [
+      "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+      "plan",
+      "TrialLedger/layer2/decision_tables.py"
+    ],
+    "cwd": "/private/tmp/trialledger-decision-table-production-path-20261103-v3",
+    "PYTHONPATH": "/tmp/trialledger-decision-table-production-path-20261103-v3:/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+    "started": "2026-11-03T22:02:04.902184+00:00",
+    "completed": "2026-11-03T22:02:07.604351+00:00",
+    "exit_code": 0,
+    "log": "state-plan.log",
+    "sha256": "2c5f61784766ae24a9dc7eb9635c45941982611a5e85f4a16187975a022898b5"
+  },
+  {
+    "argv": [
+      "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+      "decompose",
+      "TrialLedger/layer2/decision_tables.py::table_state",
+      "--apply",
+      "--two-sign"
+    ],
+    "cwd": "/private/tmp/trialledger-decision-table-production-path-20261103-v3",
+    "PYTHONPATH": "/tmp/trialledger-decision-table-production-path-20261103-v3:/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+    "started": "2026-11-03T22:02:17.331909+00:00",
+    "completed": "2026-11-03T22:02:30.624131+00:00",
+    "exit_code": 0,
+    "log": "state-decompose.log",
+    "sha256": "46a437ca90de7f0b5e97cf2d12e419331d7e4d6951354e0cd6eadc06fec2fc25"
+  },
+  {
+    "argv": [
+      "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+      "survey",
+      "TrialLedger/layer2/decision_tables.py"
+    ],
+    "cwd": "/private/tmp/trialledger-decision-table-production-path-20261103-v3",
+    "PYTHONPATH": "/tmp/trialledger-decision-table-production-path-20261103-v3:/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+    "started": "2026-11-03T22:02:45.082016+00:00",
+    "completed": "2026-11-03T22:02:45.201349+00:00",
+    "exit_code": 0,
+    "log": "state-survey.log",
+    "sha256": "12f2d4439c1f374d2b0f1096d765228f8671e12e45e51328ea7b813da6521ae3"
+  },
+  {
+    "argv": [
+      "uv",
+      "run",
+      "--project",
+      "/Users/rohanvinaik/tools/TrialLedger",
+      "--with",
+      "crosshair-tool",
+      "crosshair",
+      "check",
+      "/tmp/trialledger-decision-table-production-path-20261103-v3/TrialLedger/layer2/decision_tables.py",
+      "--report_all",
+      "--per_condition_timeout=10"
+    ],
+    "cwd": "/private/tmp/trialledger-decision-table-production-path-20261103-v3",
+    "PYTHONPATH": "/tmp/trialledger-decision-table-production-path-20261103-v3:/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+    "started": "2026-11-03T22:02:45.742913+00:00",
+    "completed": "2026-11-03T22:02:47.860477+00:00",
+    "exit_code": 0,
+    "log": "crosshair.log",
+    "sha256": "08f5d8aed4a783da3f0c7ce4c1bcd1be361adbcb808bdea46489388f17a6edd1"
+  },
+  {
+    "argv": [
+      "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/python",
+      "-m",
+      "pytest",
+      "tests"
+    ],
+    "cwd": "/private/tmp/trialledger-decision-table-production-path-20261103-v3",
+    "PYTHONPATH": "/tmp/trialledger-decision-table-production-path-20261103-v3:/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+    "started": "2026-11-03T22:03:06.107253+00:00",
+    "completed": "2026-11-03T22:03:06.449899+00:00",
+    "exit_code": 0,
+    "log": "final-tests.log",
+    "sha256": "bf7bfe6ec35bd8800631eba28f6ebd0030ba2beb0b593a8d173ecafc5df19567"
+  },
+  {
+    "argv": [
+      "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/ruff",
+      "check",
+      "TrialLedger/layer2/decision_tables.py",
+      "tests"
+    ],
+    "cwd": "/private/tmp/trialledger-decision-table-production-path-20261103-v3",
+    "PYTHONPATH": "/tmp/trialledger-decision-table-production-path-20261103-v3:/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+    "started": "2026-11-03T22:03:21.127925+00:00",
+    "completed": "2026-11-03T22:03:21.140812+00:00",
+    "exit_code": 0,
+    "log": "final-ruff.log",
+    "sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+  },
+  {
+    "argv": [
+      "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/ruff",
+      "format",
+      "--check",
+      "TrialLedger/layer2/decision_tables.py",
+      "tests"
+    ],
+    "cwd": "/private/tmp/trialledger-decision-table-production-path-20261103-v3",
+    "PYTHONPATH": "/tmp/trialledger-decision-table-production-path-20261103-v3:/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+    "started": "2026-11-03T22:03:21.524660+00:00",
+    "completed": "2026-11-03T22:03:21.538736+00:00",
+    "exit_code": 0,
+    "log": "final-format.log",
+    "sha256": "3bc53bf3e981a98a34a852e175bf9b77af841edea74fca595d9aedcbaf9a4938"
+  },
+  {
+    "argv": [
+      "ty",
+      "check",
+      "--python",
+      "/Users/rohanvinaik/tools/TrialLedger/.venv",
+      "--extra-search-path",
+      "/tmp/trialledger-decision-table-production-path-20261103-v3",
+      "TrialLedger/layer2/decision_tables.py"
+    ],
+    "cwd": "/private/tmp/trialledger-decision-table-production-path-20261103-v3",
+    "PYTHONPATH": "/tmp/trialledger-decision-table-production-path-20261103-v3:/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+    "started": "2026-11-03T22:03:21.924321+00:00",
+    "completed": "2026-11-03T22:03:21.980431+00:00",
+    "exit_code": 0,
+    "log": "final-ty.log",
+    "sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+  },
+  {
+    "argv": [
+      "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/python",
+      "-c",
+      "import sys, importlib.metadata, Detective, Wesker; from TrialLedger.layer2 import decision_tables, assertions, entail; print(sys.executable); print(sys.version); print(Detective.__file__); print(Wesker.__file__); print(decision_tables.__file__); print(assertions.__file__); print(entail.__file__); print({name: importlib.metadata.version(name) for name in (\"pytest\", \"ruff\", \"httpx\", \"openpyxl\", \"detective-spec\")})"
+    ],
+    "cwd": "/private/tmp/trialledger-decision-table-production-path-20261103-v3",
+    "PYTHONPATH": "/tmp/trialledger-decision-table-production-path-20261103-v3:/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+    "started": "2026-11-03T22:04:07.807291+00:00",
+    "completed": "2026-11-03T22:04:07.944036+00:00",
+    "exit_code": 0,
+    "log": "identities.log",
+    "sha256": "333274ccbd8a6afd82fe3b67c71e511e0ae7c4c7a884abf1019552678a84464c"
+  }
+]

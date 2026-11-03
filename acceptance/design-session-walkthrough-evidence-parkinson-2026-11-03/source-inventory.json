@@ -1,0 +1,55 @@
+{
+  "raw_batch_sha256": "55c5bac6e8fb92a6dc91f16775a6fec71a6fd5873a496827980257d2fd48f4b6",
+  "filesystem_capture_utc": "2026-11-03T23:08:47.404103+00:00",
+  "time_meaning": "Filesystem capture not independent network timestamp",
+  "studies": [
+    {
+      "id": "NCT04821830",
+      "raw_index": 5,
+      "digest": "b6e68b6d145c21647f13e9341595afd670704363bd4c808e49d6ec4fbff3f5b4",
+      "protocol_modules_read": [
+        "identificationModule",
+        "statusModule",
+        "descriptionModule",
+        "designModule",
+        "eligibilityModule",
+        "armsInterventionsModule",
+        "outcomesModule"
+      ],
+      "flow_baseline": "read_complete",
+      "efficacy_results": "not interpreted for eligibility question"
+    },
+    {
+      "id": "NCT00219284",
+      "raw_index": 20,
+      "digest": "dc4bbdabeda7df19d4c936961eed05a3c476d2a6d2934377ceae1b6b19717512",
+      "protocol_modules_read": [
+        "identificationModule",
+        "statusModule",
+        "descriptionModule",
+        "designModule",
+        "eligibilityModule",
+        "armsInterventionsModule",
+        "outcomesModule"
+      ],
+      "flow_baseline": "read_complete",
+      "efficacy_results": "not interpreted for eligibility question"
+    },
+    {
+      "id": "NCT01494532",
+      "raw_index": 7,
+      "digest": "c2237381451eff89edcc80d666f6ce4765922ce42e20a31b41a696ed05a07e26",
+      "protocol_modules_read": [
+        "identificationModule",
+        "statusModule",
+        "descriptionModule",
+        "designModule",
+        "eligibilityModule",
+        "armsInterventionsModule",
+        "outcomesModule"
+      ],
+      "flow_baseline": "read_complete",
+      "efficacy_results": "not interpreted for eligibility question"
+    }
+  ]
+}

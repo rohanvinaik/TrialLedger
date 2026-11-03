@@ -1,0 +1,12 @@
+from pathlib import Path
+import datetime, hashlib, json, os, subprocess, sys
+log = Path(sys.argv[1])
+args = sys.argv[2:]
+start = datetime.datetime.now(datetime.timezone.utc).isoformat()
+result = subprocess.run(args, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+log.write_bytes(result.stdout)
+manifest = Path("commands.json")
+rows = json.loads(manifest.read_text()) if manifest.exists() else []
+rows.append({"argv": args, "cwd": str(Path.cwd()), "PYTHONPATH": os.environ.get("PYTHONPATH"), "started": start, "completed": datetime.datetime.now(datetime.timezone.utc).isoformat(), "exit_code": result.returncode, "log": str(log), "sha256": hashlib.sha256(result.stdout).hexdigest()})
+manifest.write_text(json.dumps(rows, indent=2)+"\n")
+raise SystemExit(result.returncode)

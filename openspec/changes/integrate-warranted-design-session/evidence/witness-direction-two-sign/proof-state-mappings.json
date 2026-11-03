@@ -1,0 +1,42 @@
+{
+  "entries": [
+    {
+      "original_tool_path": "tests/detective/certificates.json",
+      "source_sha256": "a9b14587e0c371d570caa6bcd7bf74d352c4facee2b8a8e37c345f02c54b293e",
+      "stored": "certificates.json.gz",
+      "transform": "gzip:mtime=0"
+    },
+    {
+      "original_tool_path": ".detective/reports/converge_witness_verdict.txt",
+      "source_sha256": "9fbc5d6c1ba34ad735558c0137fe8bdb70cfb60edc9e23b63bba18fc4dd6db94",
+      "stored": "converge_witness_verdict.txt",
+      "transform": "identity"
+    },
+    {
+      "original_tool_path": ".detective/reports/decompose_witness_verdict.txt",
+      "source_sha256": "038eafecbd9f40f29a0b706516ef044ce9a389436b0e4cf8d25f7fb04d869925",
+      "stored": "decompose_witness_verdict.txt",
+      "transform": "identity"
+    },
+    {
+      "original_tool_path": ".detective/ledger.jsonl",
+      "source_sha256": "200e1a3f8527bc7d3e6496ff7aa4e275805fbce1bbda8b45e74c7f869f41b299",
+      "stored": "native-ledger.jsonl",
+      "transform": "identity"
+    },
+    {
+      "original_tool_path": ".detective/pins.json",
+      "source_sha256": "6e3d25194f19aa32242c63239e9e0ebee338e2c4c9eab5d78a1a3a231497180f",
+      "stored": "pins.json",
+      "transform": "identity"
+    },
+    {
+      "original_tool_path": ".detective/reports/plan_TrialLedger_layer2_design_bounds_py.txt",
+      "source_sha256": "09984f3353c9d39426dfe0012c7617037f9411dc39b5c2d87a44ff592c177c7a",
+      "stored": "plan_TrialLedger_layer2_design_bounds_py.txt",
+      "transform": "identity"
+    }
+  ],
+  "format": 1,
+  "note": "Visible-path mappings preserve historical tool state. No arbitrary historical certificate or cache is copied to the live project; only exact owned entries are merged."
+}

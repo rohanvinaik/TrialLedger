@@ -1,0 +1,285 @@
+{
+  "sample_report_root": "/Users/rohanvinaik/trialledger-runs/stages-bipolar-sample-20261103",
+  "sample_files": {
+    "bodies/ids-001.json": {
+      "bytes": 239,
+      "sha256": "4c5bed3d5a22abf268cd4c3ccb0d774909e3ab90352f7b5b6ab889c65ae8dd75"
+    },
+    "bodies/studies-001.json": {
+      "bytes": 57674,
+      "sha256": "ee059dbaad561bc6536e0145210035079e5e279cf33aa37bd95a5c628c8cc7d5"
+    },
+    "bodies/version-end.json": {
+      "bytes": 71,
+      "sha256": "9eb0e46583efc444c5877db64a361ff539a68ea4f56332958999a5acb39c8553"
+    },
+    "bodies/version-start.json": {
+      "bytes": 71,
+      "sha256": "9eb0e46583efc444c5877db64a361ff539a68ea4f56332958999a5acb39c8553"
+    },
+    "classes.json": {
+      "bytes": 25491,
+      "sha256": "1064674dea82a1f8576f7201b4df1aad09dc2a0bc5042dfe6e0d65f95f7a57e2"
+    },
+    "fetches.json": {
+      "bytes": 1258,
+      "sha256": "e6e7a04c72d8f711d8fe89929491e035aaf216a1b62694f315a1fb3bc80a2c48"
+    },
+    "landscape.json": {
+      "bytes": 311817,
+      "sha256": "907d107123cab2a7d19cf4a552facf2968c104fcd34715c62baa8e7a934c6f9d"
+    },
+    "landscape.xlsx": {
+      "bytes": 55516,
+      "sha256": "baca6be403585e5ccf6c93dc8338f2594b451a9acb5b9f236c2accf72e7e0ad2"
+    },
+    "manifest.json": {
+      "bytes": 1924,
+      "sha256": "0eaa780c17d84f4855554f54e84af8805b9a77f625032e114f31f37decfa566a"
+    },
+    "request.json": {
+      "bytes": 74,
+      "sha256": "bbae3f1061a53c63e2395fc221b51e28d2be9ca7fac3c1c0f944bee72a329fbc"
+    },
+    "resolution.json": {
+      "bytes": 510,
+      "sha256": "aa70004744849b4a4af6d3ceefbd45354e5e8c2f1ffa91f4d0340e0d407f05e2"
+    },
+    "scope.json": {
+      "bytes": 87,
+      "sha256": "8940ae306dedf2c6f80e380f7cdede466c749b09416a06ef32afbf058bbd6b92"
+    },
+    "stage-discovery.json": {
+      "bytes": 2959,
+      "sha256": "27c2355ff69dc758790292bb1c028a402832c92678c3d40b974a811b74ee149c"
+    },
+    "workflow-wires/NCT00090311-source-age-cli.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/NCT00090311-source-age-cli.stdout": {
+      "bytes": 31177,
+      "sha256": "314dd0ba1749f9fa07b7856ac9b2fd0ffd78cd7bd7a8f90183188fd955aa621d"
+    },
+    "workflow-wires/NCT00090311-source-age-mcp-input.jsonl": {
+      "bytes": 12034,
+      "sha256": "b1287fa3772761ec955bf5ec1ac7b6dac58390af5e077b46ed2679f70706ba8b"
+    },
+    "workflow-wires/NCT00090311-source-age-mcp.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/NCT00090311-source-age-mcp.stdout": {
+      "bytes": 39390,
+      "sha256": "3edf8936cbcf70d4e7d746789c4d87056cf5e20a2564a18471f2f61f7ab2f3bd"
+    },
+    "workflow-wires/NCT00119652-source-age-cli.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/NCT00119652-source-age-cli.stdout": {
+      "bytes": 30855,
+      "sha256": "bd936727b4e74138c6186f4d1045438efd8c9cf419a4ed9951839bbecdf695b3"
+    },
+    "workflow-wires/NCT00119652-source-age-mcp-input.jsonl": {
+      "bytes": 15098,
+      "sha256": "e5f310f7ad50eb4a6589f22d566c22115f158ff35adb4721d783fc352e6a2877"
+    },
+    "workflow-wires/NCT00119652-source-age-mcp.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/NCT00119652-source-age-mcp.stdout": {
+      "bytes": 39077,
+      "sha256": "fa6395ca9471d90af683fc34a71a007dffa2ea31e850a3bfc4bc304e0cc2683e"
+    },
+    "workflow-wires/NCT00227305-source-age-cli.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/NCT00227305-source-age-cli.stdout": {
+      "bytes": 51043,
+      "sha256": "8227399f731fe5b8a8764a21e0cd176f259998f3a67a876d302826db09a66db6"
+    },
+    "workflow-wires/NCT00227305-source-age-mcp-input.jsonl": {
+      "bytes": 43832,
+      "sha256": "eead1e6bfc455986334e3cd3c8cff54a53e491894c51a98cf6068cd4b75f89c6"
+    },
+    "workflow-wires/NCT00227305-source-age-mcp.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/NCT00227305-source-age-mcp.stdout": {
+      "bytes": 61894,
+      "sha256": "6d2ab983e92ba9cc1842166a0bbabb414c67585871cdef2abc453dcba54d3957"
+    },
+    "workflow-wires/extension-design-sensitivity-cli.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/extension-design-sensitivity-cli.stdout": {
+      "bytes": 42124,
+      "sha256": "4deed23fd4e0def1851fc0901b45213cf8d0582b01f57bb1f29a004268d5ddf6"
+    },
+    "workflow-wires/extension-design-sensitivity-mcp-input.jsonl": {
+      "bytes": 3830,
+      "sha256": "da5d1366b76c685c43962a361ab68460d9866e8cfd79af9dc7788e9198dfa501"
+    },
+    "workflow-wires/extension-design-sensitivity-mcp.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/extension-design-sensitivity-mcp.stdout": {
+      "bytes": 51206,
+      "sha256": "9e98980a180be0740902213cf47f57f867e1f45102cf447a1aad4d2b1d06a135"
+    },
+    "workflow-wires/extension-design-wrong-time-cli.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/extension-design-wrong-time-cli.stdout": {
+      "bytes": 38332,
+      "sha256": "93a0412de6d72ea98ea6f69c583be6c38a83b95e1b6aef42126666b04e4e0f6a"
+    },
+    "workflow-wires/extension-design-wrong-time-mcp-input.jsonl": {
+      "bytes": 3838,
+      "sha256": "f96f3d9401dee8be8391e81f5469fd911147d27e5d3b3449373e8f2b9730e8b2"
+    },
+    "workflow-wires/extension-design-wrong-time-mcp.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/extension-design-wrong-time-mcp.stdout": {
+      "bytes": 47029,
+      "sha256": "730422f59d18bc3d1800ab2afcca52a433d3dd87d761cf7f804888c20c34aa0a"
+    },
+    "workflow-wires/extension-permission-only-cli.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/extension-permission-only-cli.stdout": {
+      "bytes": 11116,
+      "sha256": "aec9019c9325ae7936d203e61a237afe917d3cae8a2bcea347606926224db37d"
+    },
+    "workflow-wires/extension-permission-only-mcp-input.jsonl": {
+      "bytes": 3094,
+      "sha256": "c6ffe4ebc01596919613704669d3aef49d0a83cd64944f80c7ff10ab4db0b511"
+    },
+    "workflow-wires/extension-permission-only-mcp.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/extension-permission-only-mcp.stdout": {
+      "bytes": 16690,
+      "sha256": "64c84a12b2d9c3b1bb0d375f5da1116dc8908a09d49b1f0fd12fce0cb982fd03"
+    },
+    "workflow-wires/extension-subsets-proposed-cli.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/extension-subsets-proposed-cli.stdout": {
+      "bytes": 15330,
+      "sha256": "f893a20599b350a9fba46e8972efbd04d00d5e2b2d769054ebc88ad1e3cc60a1"
+    },
+    "workflow-wires/extension-subsets-proposed-mcp-input.jsonl": {
+      "bytes": 3124,
+      "sha256": "f0ad5268f417d1f1352c57fcca8720fa461a3d9a11c73999b0ddd9b94cedcc7b"
+    },
+    "workflow-wires/extension-subsets-proposed-mcp.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/extension-subsets-proposed-mcp.stdout": {
+      "bytes": 21375,
+      "sha256": "f0748d9ed21f3233edc1fa6d38d7de1ff3850bbab5867c52178a37507fa2f415"
+    },
+    "workflow-wires/extension-subsets-sensitivity-cli.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/extension-subsets-sensitivity-cli.stdout": {
+      "bytes": 14888,
+      "sha256": "d0cba51c86079e4f315e4a75ed124f7594b7086ce5e0eb5eee058de13f66f30d"
+    },
+    "workflow-wires/extension-subsets-sensitivity-mcp-input.jsonl": {
+      "bytes": 3132,
+      "sha256": "a34984fda08b66a408a384ebd2b6f9c7cd35e4fdc6f5bf25e5a7d2f47fbe942b"
+    },
+    "workflow-wires/extension-subsets-sensitivity-mcp.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/extension-subsets-sensitivity-mcp.stdout": {
+      "bytes": 20876,
+      "sha256": "231063d52523fd4a08264e5fecac319474baa5739e21c1d0ffbef8fb82701cf6"
+    },
+    "workflow-wires/extension-wrong-completion-time-cli.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/extension-wrong-completion-time-cli.stdout": {
+      "bytes": 13300,
+      "sha256": "8b3086e2e0257f9cc4430bbb637d62d01b3f855d49703cef123e8d6c8433612b"
+    },
+    "workflow-wires/extension-wrong-completion-time-mcp-input.jsonl": {
+      "bytes": 3140,
+      "sha256": "1b50e6fa32cb98faa207e29cb6805681d961400202075eb742063208341e6647"
+    },
+    "workflow-wires/extension-wrong-completion-time-mcp.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/extension-wrong-completion-time-mcp.stdout": {
+      "bytes": 19110,
+      "sha256": "7d94b54d4f49cc770459905050ee66db7e8435f758cc8e12f3d1bc6edac3a169"
+    },
+    "workflow.py": {
+      "bytes": 11153,
+      "sha256": "e74e7746809ad3de0134a49d373db2332100445288589c1d5b542ee56602d1e9"
+    }
+  },
+  "sample_file_count": 59,
+  "sample_bytes": 1124778,
+  "query_preview_root": "/Users/rohanvinaik/trialledger-runs/stages-bipolar-20261103",
+  "query_preview_files": {
+    "lookups/lookup-001.json": {
+      "bytes": 51,
+      "sha256": "83e67e89f05d4128a7df68cab6d6f0c913f0981f1f96e77b8dc8823e516fdd30"
+    },
+    "lookups/lookup-002.json": {
+      "bytes": 36,
+      "sha256": "5b3e27f272fe895afc0b55e1fa0390af709668df760dd97152de175f33ac7396"
+    },
+    "lookups/lookup-003.json": {
+      "bytes": 135,
+      "sha256": "a5c744c8e8681085651d7008fd3d156f48005a72a4a0151ddb3e3e164746f9d1"
+    },
+    "lookups/release-end.json": {
+      "bytes": 51,
+      "sha256": "83e67e89f05d4128a7df68cab6d6f0c913f0981f1f96e77b8dc8823e516fdd30"
+    },
+    "lookups.json": {
+      "bytes": 857,
+      "sha256": "e54313032823a9b7a3e86aa924646942effab3eb1aaabcabdb1b7be2119badd2"
+    },
+    "request.json": {
+      "bytes": 125,
+      "sha256": "a99ad5f6c83a3d130017ba443254dcc98c50c41e1967c15d095067f1f6799320"
+    },
+    "resolution.json": {
+      "bytes": 1812,
+      "sha256": "949ee17da596eab57c4da0df4cb2b7d4dd5551553d987b58b16677e7138285db"
+    },
+    "scope.json": {
+      "bytes": 231,
+      "sha256": "787bfa26f2841b3afa852a3a4cdd49fbd35fd4a48b4aa79db04a5b1ef7b65db9"
+    },
+    "stage-id-preflight.json": {
+      "bytes": 2200,
+      "sha256": "b03c640efae0100e2bb11ba77d5a3d433ed7fb242339585842883fc897895dc3"
+    }
+  },
+  "query_preview_file_count": 9,
+  "query_preview_bytes": 5498,
+  "refetch_is_new_observation": true
+}

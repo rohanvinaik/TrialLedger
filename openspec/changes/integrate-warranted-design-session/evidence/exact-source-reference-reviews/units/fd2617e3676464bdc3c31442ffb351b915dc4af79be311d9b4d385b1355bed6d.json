@@ -1,0 +1,12 @@
+{
+  "anchor": "named_event",
+  "anchor_ref": "ctg:NCT03332212:6bbfa6623b3c42e62756daeafaa841488494fe4cbbd4a2a904506a9fe76de6c6:screening",
+  "certainty": "explicit",
+  "class": "TemporalScope",
+  "evidence": [],
+  "inclusivity": "unspecified",
+  "lower": null,
+  "orientation": "at",
+  "unit": "",
+  "upper": null
+}

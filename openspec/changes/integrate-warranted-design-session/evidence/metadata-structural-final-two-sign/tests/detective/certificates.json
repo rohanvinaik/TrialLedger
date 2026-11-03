@@ -1,0 +1,20 @@
+{
+  "TrialLedger/layer2/result_semantics.py::cause_kind": {
+    "cut_reasons": [],
+    "function_digest": "2b660e587a3b2e50",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/result_semantics.py::completion_code": {
+    "cut_reasons": [],
+    "function_digest": "0ca68ed2a47b84e6",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/result_semantics.py::disposition_code": {
+    "cut_reasons": [],
+    "function_digest": "65dd6aacd9c81ad6",
+    "refusal": "",
+    "standing": "complete"
+  }
+}

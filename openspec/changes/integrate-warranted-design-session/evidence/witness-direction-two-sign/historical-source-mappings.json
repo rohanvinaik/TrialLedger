@@ -1,0 +1,41 @@
+{
+  "format": 1,
+  "sources": [
+    {
+      "classification": "Historical source; only explicitly verified pure-function correspondence can be current.",
+      "original_production_or_helper_path": "TrialLedger/layer2/design_bounds.py",
+      "source_sha256": "71aafdae577f82ceb97fef98b1110d2d1a0f8f2ffa7041bd693bb7c109885717",
+      "stored": "design_bounds.py.txt"
+    },
+    {
+      "classification": "Historical source; only explicitly verified pure-function correspondence can be current.",
+      "original_production_or_helper_path": "TrialLedger/layer2/evidence_requests.py",
+      "source_sha256": "880e55991162ab5e0eb49220941b8b6fc642d28c64bccb4cdcc4f9922ec3e6d4",
+      "stored": "evidence_requests-context.py.txt"
+    },
+    {
+      "classification": "Historical source; only explicitly verified pure-function correspondence can be current.",
+      "original_production_or_helper_path": "tests/test_witness_direction_locality.py",
+      "source_sha256": "e6ebaceb3572c276e9dd2115f85573f7a4f94adafe52b22d797a99b90e9d1cd5",
+      "stored": "test_witness_direction_locality.py.txt"
+    },
+    {
+      "classification": "Historical source; only explicitly verified pure-function correspondence can be current.",
+      "original_production_or_helper_path": "tests/test_design_bounds.py",
+      "source_sha256": "d52cd40303cdd4b1f175fbc3874cd665ae36f341bf3dffda3b5b573b7571a257",
+      "stored": "test_design_bounds.py.txt"
+    },
+    {
+      "classification": "Historical source; only explicitly verified pure-function correspondence can be current.",
+      "original_production_or_helper_path": "tests/detective/test_TrialLedger_layer2_design_bounds_witness_verdict_bb7f931d78_synth.py",
+      "source_sha256": "b5c85c8fda924c944e17495de3afc5a4b723111bba525cdf49da166566109563",
+      "stored": "generated-witness-test.py.txt"
+    },
+    {
+      "classification": "Historical source; only explicitly verified pure-function correspondence can be current.",
+      "original_production_or_helper_path": "TrialLedger/layer2/service.py",
+      "source_sha256": "74d551eb10a67d1100e6e1beefbdd2ea9edece84a614488f96bd77c87904aabc",
+      "stored": "historical-observations/temporary-evidence-adapter-transports/service-adapter.py.txt"
+    }
+  ]
+}

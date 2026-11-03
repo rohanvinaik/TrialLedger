@@ -1,0 +1,738 @@
+{
+  "operation": "source_assertions",
+  "study": {
+    "protocolSection": {
+      "identificationModule": {
+        "nctId": "NCT04666649",
+        "orgStudyIdInfo": {
+          "id": "2087GCCC ; HP-00093729"
+        },
+        "organization": {
+          "fullName": "University of Maryland, Baltimore",
+          "class": "OTHER"
+        },
+        "briefTitle": "Pegcrisantaspase in Combination With Venetoclax for Treatment of Relapsed or Refractory Acute Myeloid Leukemia (R/R AML)",
+        "officialTitle": "Pegcrisantaspase in Combination With Venetoclax for Treatment of Relapsed or Refractory Acute Myeloid Leukemia"
+      },
+      "statusModule": {
+        "statusVerifiedDate": "2025-10",
+        "overallStatus": "COMPLETED",
+        "expandedAccessInfo": {
+          "hasExpandedAccess": false
+        },
+        "startDateStruct": {
+          "date": "2021-03-10",
+          "type": "ACTUAL"
+        },
+        "primaryCompletionDateStruct": {
+          "date": "2024-09-01",
+          "type": "ACTUAL"
+        },
+        "completionDateStruct": {
+          "date": "2025-05-23",
+          "type": "ACTUAL"
+        },
+        "studyFirstSubmitDate": "2020-12-07",
+        "studyFirstSubmitQcDate": "2020-12-07",
+        "studyFirstPostDateStruct": {
+          "date": "2020-12-14",
+          "type": "ACTUAL"
+        },
+        "lastUpdateSubmitDate": "2025-10-01",
+        "lastUpdatePostDateStruct": {
+          "date": "2025-10-07",
+          "type": "ACTUAL"
+        }
+      },
+      "sponsorCollaboratorsModule": {
+        "responsibleParty": {
+          "type": "SPONSOR"
+        },
+        "leadSponsor": {
+          "name": "University of Maryland, Baltimore",
+          "class": "OTHER"
+        }
+      },
+      "oversightModule": {
+        "oversightHasDmc": true,
+        "isFdaRegulatedDrug": true,
+        "isFdaRegulatedDevice": false
+      },
+      "descriptionModule": {
+        "briefSummary": "Evaluate the safety and tolerability of pegcrisantaspase in combination with venetoclax (Ven-PegC) and estimate the maximum tolerated doses and/or biologically active doses of Ven-PegC in patients with relapsed or refractory acute myeloid leukemia (R/R AML)",
+        "detailedDescription": "This research study is a non-randomized, open-label Phase Ib clinical trial evaluating venetoclax (Ven) administered orally daily in combination with pegcrisantaspase (PegC) administered IV biweekly, as part of a 28-day treatment cycle in adult subjects with relapsed or refractory acute myeloid leukemia (R/R AML).\n\nThe trial will consist of dose escalation to evaluate the safety and tolerability of Ven-PegC and estimate the maximum tolerated doses (MTDs) and/or biologically active doses (e.g. recommended phase 2 doses \\[RP2Ds\\]) of Ven-PegC in patients with R/R AML\n\nVenetoclax is an FDA (the U.S. Food and Drug Administration) approved drug, but this combination ( Ven-PegC) has not been approved by the FDA."
+      },
+      "conditionsModule": {
+        "conditions": [
+          "Relapsed or Refractory Acute Myeloid Leukemia"
+        ],
+        "keywords": [
+          "Pegcrisantaspase",
+          "Venetoclax",
+          "Relapsed or refractory acute myeloid leukemia (R/R AML)",
+          "Ven-PegC",
+          "Maximum tolerated doses",
+          "Recommended phase 2 doses",
+          "Incidence of regimen limiting toxicities",
+          "Incidence of treatment-emergent adverse events"
+        ]
+      },
+      "designModule": {
+        "studyType": "INTERVENTIONAL",
+        "phases": [
+          "PHASE1"
+        ],
+        "designInfo": {
+          "allocation": "NON_RANDOMIZED",
+          "interventionModel": "SEQUENTIAL",
+          "interventionModelDescription": "1. Cohort1: The subject will take 400mg of Venetoclax every day as a pill by mouth and a dose of 500 IU/m² of Pegcrisantaspase in an IV every 14 days ( per cycle)\n2. Cohort 2: The subject will take 400mg of Venetoclax every day as a pill by mouth and a dose of 750 IU/m² of Pegcrisantaspase in an IV every 14 days ( per cycle)\n3. Cohort 3: The subject will take 400mg of Venetoclax every day as a pill by mouth and a dose of 1000 IU/m ² of Pegcrisantaspase in an IV every 14 days ( per cycle)\n4. Cohort 4: The subject will take 600mg of Venetoclax every day as a pill by mouth and a dose of 1000 IU/m ² of Pegcrisantaspase in an IV every 14 days ( per cycle)",
+          "primaryPurpose": "TREATMENT",
+          "maskingInfo": {
+            "masking": "NONE"
+          }
+        },
+        "enrollmentInfo": {
+          "count": 27,
+          "type": "ACTUAL"
+        }
+      },
+      "armsInterventionsModule": {
+        "armGroups": [
+          {
+            "label": "Cohort 400mg of Venetoclax, 500 IU/m ² of Pegcrisantaspase",
+            "type": "EXPERIMENTAL",
+            "description": "The subject will take 400mg of Venetoclax every day as a pill by mouth and a dose of 500 IU/m ² of Pegcrisantaspase in an IV every 14 days ( per cycle)",
+            "interventionNames": [
+              "Drug: Venetoclax and pegcrisantaspase"
+            ]
+          },
+          {
+            "label": "Cohort 400mg of Venetoclax, 750 IU/m ² of Pegcrisantaspase",
+            "type": "EXPERIMENTAL",
+            "description": "The subject will take 400mg of Venetoclax every day as a pill by mouth and a dose of 750 IU/m ² of Pegcrisantaspase in an IV every 14 days ( per cycle)",
+            "interventionNames": [
+              "Drug: Venetoclax and pegcrisantaspase"
+            ]
+          },
+          {
+            "label": "Cohort 400mg of Venetoclax, 1000 IU/m² of Pegcrisantaspase",
+            "type": "EXPERIMENTAL",
+            "description": "The subject will take 400mg of Venetoclax every day as a pill by mouth and a dose of 1000 IU/m² of Pegcrisantaspase in an IV every 14 days ( per cycle)",
+            "interventionNames": [
+              "Drug: Venetoclax and pegcrisantaspase"
+            ]
+          },
+          {
+            "label": "Cohort 600mg Venetoclax, 1000 IU/m ² of Pegcrisantaspase",
+            "type": "EXPERIMENTAL",
+            "description": "The subject will take 600mg of Venetoclax every day as a pill by mouth and a dose of 1000 IU/m ² of Pegcrisantaspase in an IV every 14 days ( Per cycle)",
+            "interventionNames": [
+              "Drug: Venetoclax and pegcrisantaspase"
+            ]
+          }
+        ],
+        "interventions": [
+          {
+            "type": "DRUG",
+            "name": "Venetoclax and pegcrisantaspase",
+            "description": "Therapeutic",
+            "armGroupLabels": [
+              "Cohort 400mg of Venetoclax, 1000 IU/m² of Pegcrisantaspase",
+              "Cohort 400mg of Venetoclax, 500 IU/m ² of Pegcrisantaspase",
+              "Cohort 400mg of Venetoclax, 750 IU/m ² of Pegcrisantaspase",
+              "Cohort 600mg Venetoclax, 1000 IU/m ² of Pegcrisantaspase"
+            ]
+          }
+        ]
+      },
+      "outcomesModule": {
+        "primaryOutcomes": [
+          {
+            "measure": "Incidence of regimen limiting toxicities (RLTs)",
+            "description": "The period for determination of RLT will be from the first day of treatment until 30 days after receiving the first dose of Ven-PegC.",
+            "timeFrame": "One year (after 12 cycle's treatment)"
+          },
+          {
+            "measure": "Incidence of treatment-emergent adverse events (TEAE)",
+            "description": "The period for determination of TEAE will be from the first day of treatment until 30 days after receiving the first dose of Ven-PegC.",
+            "timeFrame": "One year (after 12 cycle's treatment)"
+          }
+        ],
+        "secondaryOutcomes": [
+          {
+            "measure": "The rate of CR",
+            "description": "Complete Remission rate",
+            "timeFrame": "One year (after 12 cycle's treatment)"
+          },
+          {
+            "measure": "The rate of composite complete remission (CR+CRh+CRi+CRp)",
+            "description": "The rate of Complete Remission rate, Complete Remission with Partial hematological recovery, Complete Remission with incomplete hematological recovery and Complete Remission with incomplete platelet recovery.",
+            "timeFrame": "One year (after 12 cycle's treatment)"
+          },
+          {
+            "measure": "Event-free Survival (EFS)",
+            "description": "Event-free Survival (EFS)",
+            "timeFrame": "One year (after 12 cycle's treatment)"
+          },
+          {
+            "measure": "Overall Survival (OS)",
+            "description": "Overall Survival (OS)",
+            "timeFrame": "One year (after 12 cycle's treatment)"
+          },
+          {
+            "measure": "The rate of conversion from transfusion dependence to transfusion independence",
+            "description": "The rate of conversion from transfusion dependence to transfusion independence",
+            "timeFrame": "One year (after 12 cycle's treatment)"
+          },
+          {
+            "measure": "The rate of proceeding to allogeneic hematopoietic stem cell transplantation (allo-HSCT) after administration of Ven-PegC",
+            "description": "The rate of proceeding to allogeneic hematopoietic stem cell transplantation (allo-HSCT) after administration of Ven-PegC",
+            "timeFrame": "One year (after 12 cycle's treatment)"
+          },
+          {
+            "measure": "Achievement of MRD <0.02% within 2 cycles of treatment with Ven-PegC",
+            "description": "Achievement of Minimal Residual Disease \\<0.02% within 2 cycles of treatment with Ven-PegC",
+            "timeFrame": "Two months"
+          },
+          {
+            "measure": "Overall incidence and severity of AEs",
+            "description": "Overall incidence and severity of Adverse Events",
+            "timeFrame": "One year (after 12 cycle's treatment)"
+          }
+        ]
+      },
+      "eligibilityModule": {
+        "eligibilityCriteria": "Inclusion Criteria:\n\n* A histologically or pathologically confirmed diagnosis of AML based on 2016 WHO classification. Patients with Complex Karyotype AML (CK-AML) and TP53-mutated AML are eligible for this study.\n* AML has relapsed after or is refractory to, first-line therapy, with a maximum of three prior lines of therapy. Patients whose AML has FLT3 or IDH1/IDH2 mutations should have received at least one available FLT3 or IDH1/IDH2 inhibitors\n* Age 18 years and older\n* ECOG performance status ≤ 2\n* Patients who have undergone allo-HSCT are eligible if they are ≥ 30 days post stem cell infusion, have no evidence of graft versus hose disease ( GVHD ) \\> Grade 1, and are ≥ 10 days off all immunosuppressive therapy\n* Previous cytotoxic chemotherapy must have been completed at least 10 days prior to day 1 of treatment on the study and all AEs (excluding alopecia, acne, rash) due to agents administered earlier should have recovered to \\< Grade 1. Patients with hematologic malignancies are expected to have hematologic abnormalities at study entry. These abnormalities which are thought to be primarily related to the underlying leukemia, are not considered to be toxicities (AE) and do not need to resolve to \\< Grade 1\n* All biologic agents including hematopoietic growth factors must have been stopped at least 1 week prior to day 1 of treatment on the study\n* Patients must have adequate organ function as defined below:\n\n  * Direct bilirubin ≤2X the institutional upper limit of normal (ULN) (except in patients with leukemic infiltration of the liver)\n  * AST(SGOT)/ALT(SGPT) ≤3X ULN (except if attributable to leukemic infiltration of the liver)\n  * Alkaline phosphatase ≤5X ULN\n  * Creatinine Clearance (CrCl) ≥ 45 mL/min (except in patients with evidence of tumor lysis syndrome)\n  * Patients with a history of CNS leukemia must be stable with clear CSF for \\> 2 months prior to day 1 of treatment (patient can receive intrathecal maintenance chemotherapy)\n* Female patients of childbearing potential must have a negative pregnancy test \\<1 week prior to enrollment. Female patients of childbearing potential who are sexually active and male patients who are sexually active and have female partners of childbearing potential must agree to use highly effective method of contraception with their partners during exposure to study drugs and for 30 days after the last dose of study drugs.\n* Ability to understand and willingness to sign a written informed consent document.\n\nExclusion Criteria:\n\n* Patients receiving any other investigational agents, or concurrent chemotherapy or immunotherapy\n* Patients with acute promyelocytic leukemia (APL) confirmed with t(15;17) (i.e. FAB subtype M3 and M3 variant)\n* Prior treatment with any asparaginase product. Patients who received ≤12 weeks of a BCL-2 inhibitor including venetoclax are eligible.\n* Absolute peripheral blast \\> 100,000/μL. Hydroxyurea for blast count control is permitted before starting treatment and up to maximum of 10 days after starting treatment on the study. The decision to start hydroxyurea during this time is at the discretion of the treating physician.\n* Patients with the following clinical histories are excluded:\n\n  * severe pancreatitis not related to cholelithiasis. Severe acute pancreatitis is defined by lipase elevation \\>5X ULN and with signs or symptoms\n  * unprovoked deep venous thrombosis (DVT)\n  * pulmonary emboli\n  * hemorrhagic or thromboembolic stroke\n  * other malignancies requiring systemic chemotherapy, immunotherapy or targeted therapy in the last three months\n* Active, uncontrolled infection; patients with infection under active treatment and controlled with antibiotics are eligible\n* Uncontrolled intercurrent illness including, but not limited to, symptomatic congestive heart failure, unstable angina pectoris, cardiac arrhythmia, or psychiatric illness/social situations that per site Principal Investigator's judgment would limit compliance with study requirements\n* Pregnant women and female patients who are lactating and do not agree to stop breast- feeding.\n* Uncontrolled active seizure\n* Any other clinical conditions that in the opinion of the investigator would make the subject unsuitable for the study",
+        "healthyVolunteers": false,
+        "sex": "ALL",
+        "minimumAge": "18 Years",
+        "stdAges": [
+          "ADULT",
+          "OLDER_ADULT"
+        ]
+      },
+      "contactsLocationsModule": {
+        "overallOfficials": [
+          {
+            "name": "Vu Duong, MD",
+            "affiliation": "University of Maryland, Baltimore",
+            "role": "PRINCIPAL_INVESTIGATOR"
+          }
+        ],
+        "locations": [
+          {
+            "facility": "Greenebaum Cancer Center at University of Maryland Medical Center",
+            "city": "Baltimore",
+            "state": "Maryland",
+            "zip": "21201",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 39.29038,
+              "lon": -76.61219
+            }
+          }
+        ]
+      },
+      "referencesModule": {
+        "references": [
+          {
+            "pmid": "30917738",
+            "type": "BACKGROUND",
+            "citation": "Bade NA, Lu C, Patzke CL, Baer MR, Duong VH, Law JY, Lee ST, Sausville EA, Zimrin AB, Duffy AP, Lawson J, Emadi A. Optimizing pegylated asparaginase use: An institutional guideline for dosing, monitoring, and management. J Oncol Pharm Pract. 2020 Jan;26(1):74-92. doi: 10.1177/1078155219838316. Epub 2019 Mar 27."
+          },
+          {
+            "type": "BACKGROUND",
+            "citation": "American Cancer Society. Key Statistics for AML. 2020."
+          },
+          {
+            "pmid": "31533852",
+            "type": "BACKGROUND",
+            "citation": "Lai C, Doucette K, Norsworthy K. Recent drug approvals for acute myeloid leukemia. J Hematol Oncol. 2019 Sep 18;12(1):100. doi: 10.1186/s13045-019-0774-x."
+          },
+          {
+            "pmid": "19776406",
+            "type": "BACKGROUND",
+            "citation": "Fernandez HF, Sun Z, Yao X, Litzow MR, Luger SM, Paietta EM, Racevskis J, Dewald GW, Ketterling RP, Bennett JM, Rowe JM, Lazarus HM, Tallman MS. Anthracycline dose intensification in acute myeloid leukemia. N Engl J Med. 2009 Sep 24;361(13):1249-59. doi: 10.1056/NEJMoa0904544."
+          },
+          {
+            "type": "BACKGROUND",
+            "citation": "FDA. Vyxeos (daunorubicin and cytarabine) liposome Label. US Food and Drug Administration 2017:https://www.accessdata.fda.gov/drugsatfda_docs/label/2017/209401s000lbl.pdf."
+          },
+          {
+            "pmid": "28286924",
+            "type": "BACKGROUND",
+            "citation": "Bose P, Vachhani P, Cortes JE. Treatment of Relapsed/Refractory Acute Myeloid Leukemia. Curr Treat Options Oncol. 2017 Mar;18(3):17. doi: 10.1007/s11864-017-0456-2."
+          },
+          {
+            "pmid": "11110676",
+            "type": "BACKGROUND",
+            "citation": "Slovak ML, Kopecky KJ, Cassileth PA, Harrington DH, Theil KS, Mohamed A, Paietta E, Willman CL, Head DR, Rowe JM, Forman SJ, Appelbaum FR. Karyotypic analysis predicts outcome of preremission and postremission therapy in adult acute myeloid leukemia: a Southwest Oncology Group/Eastern Cooperative Oncology Group Study. Blood. 2000 Dec 15;96(13):4075-83."
+          },
+          {
+            "pmid": "12393746",
+            "type": "BACKGROUND",
+            "citation": "Byrd JC, Mrozek K, Dodge RK, Carroll AJ, Edwards CG, Arthur DC, Pettenati MJ, Patil SR, Rao KW, Watson MS, Koduru PR, Moore JO, Stone RM, Mayer RJ, Feldman EJ, Davey FR, Schiffer CA, Larson RA, Bloomfield CD; Cancer and Leukemia Group B (CALGB 8461). Pretreatment cytogenetic abnormalities are predictive of induction success, cumulative incidence of relapse, and overall survival in adult patients with de novo acute myeloid leukemia: results from Cancer and Leukemia Group B (CALGB 8461). Blood. 2002 Dec 15;100(13):4325-36. doi: 10.1182/blood-2002-03-0772. Epub 2002 Aug 1."
+          },
+          {
+            "pmid": "29469961",
+            "type": "BACKGROUND",
+            "citation": "Ciurea SO, Labopin M, Socie G, Volin L, Passweg J, Chevallier P, Beelen D, Milpied N, Blaise D, Cornelissen JJ, Fegueux N, Polge E, Kongtim P, Rondon G, Esteve J, Mohty M, Savani BN, Champlin RE, Nagler A. Relapse and survival after transplantation for complex karyotype acute myeloid leukemia: A report from the Acute Leukemia Working Party of the European Society for Blood and Marrow Transplantation and the University of Texas MD Anderson Cancer Center. Cancer. 2018 May 15;124(10):2134-2141. doi: 10.1002/cncr.31311. Epub 2018 Feb 22."
+          },
+          {
+            "pmid": "15846790",
+            "type": "BACKGROUND",
+            "citation": "Schoch C, Kern W, Kohlmann A, Hiddemann W, Schnittger S, Haferlach T. Acute myeloid leukemia with a complex aberrant karyotype is a distinct biological entity characterized by genomic imbalances and a specific gene expression profile. Genes Chromosomes Cancer. 2005 Jul;43(3):227-38. doi: 10.1002/gcc.20193."
+          },
+          {
+            "pmid": "30231330",
+            "type": "BACKGROUND",
+            "citation": "Kuykendall A, Duployez N, Boissel N, Lancet JE, Welch JS. Acute Myeloid Leukemia: The Good, the Bad, and the Ugly. Am Soc Clin Oncol Educ Book. 2018 May 23;38:555-573. doi: 10.1200/EDBK_199519."
+          },
+          {
+            "pmid": "22850420",
+            "type": "BACKGROUND",
+            "citation": "Grzmil M, Hemmings BA. Translation regulation as a therapeutic target in cancer. Cancer Res. 2012 Aug 15;72(16):3891-900. doi: 10.1158/0008-5472.CAN-12-0026. Epub 2012 Jul 31."
+          },
+          {
+            "pmid": "23291630",
+            "type": "BACKGROUND",
+            "citation": "Souers AJ, Leverson JD, Boghaert ER, Ackler SL, Catron ND, Chen J, Dayton BD, Ding H, Enschede SH, Fairbrother WJ, Huang DC, Hymowitz SG, Jin S, Khaw SL, Kovar PJ, Lam LT, Lee J, Maecker HL, Marsh KC, Mason KD, Mitten MJ, Nimmer PM, Oleksijew A, Park CH, Park CM, Phillips DC, Roberts AW, Sampath D, Seymour JF, Smith ML, Sullivan GM, Tahir SK, Tse C, Wendt MD, Xiao Y, Xue JC, Zhang H, Humerickhouse RA, Rosenberg SH, Elmore SW. ABT-199, a potent and selective BCL-2 inhibitor, achieves antitumor activity while sparing platelets. Nat Med. 2013 Feb;19(2):202-8. doi: 10.1038/nm.3048. Epub 2013 Jan 6."
+          },
+          {
+            "type": "BACKGROUND",
+            "citation": "FDA. Venetoclax (Venclexta). Food and Drug Administration 2018:https://www.accessdata.fda.gov/drugsatfda_docs/label/2019/208573s013lbl.pdf"
+          },
+          {
+            "pmid": "30361262",
+            "type": "BACKGROUND",
+            "citation": "DiNardo CD, Pratz K, Pullarkat V, Jonas BA, Arellano M, Becker PS, Frankfurt O, Konopleva M, Wei AH, Kantarjian HM, Xu T, Hong WJ, Chyla B, Potluri J, Pollyea DA, Letai A. Venetoclax combined with decitabine or azacitidine in treatment-naive, elderly patients with acute myeloid leukemia. Blood. 2019 Jan 3;133(1):7-17. doi: 10.1182/blood-2018-08-868752. Epub 2018 Oct 25."
+          },
+          {
+            "pmid": "31648312",
+            "type": "BACKGROUND",
+            "citation": "Winters AC, Gutman JA, Purev E, Nakic M, Tobin J, Chase S, Kaiser J, Lyle L, Boggs C, Halsema K, Schowinsky JT, Rosser J, Ewalt MD, Siegele B, Rana V, Schuster S, Abbott D, Stevens BM, Jordan CT, Smith C, Pollyea DA. Real-world experience of venetoclax with azacitidine for untreated patients with acute myeloid leukemia. Blood Adv. 2019 Oct 22;3(20):2911-2919. doi: 10.1182/bloodadvances.2019000243."
+          },
+          {
+            "pmid": "29218851",
+            "type": "BACKGROUND",
+            "citation": "DiNardo CD, Rausch CR, Benton C, Kadia T, Jain N, Pemmaraju N, Daver N, Covert W, Marx KR, Mace M, Jabbour E, Cortes J, Garcia-Manero G, Ravandi F, Bhalla KN, Kantarjian H, Konopleva M. Clinical experience with the BCL2-inhibitor venetoclax in combination therapy for relapsed and refractory acute myeloid leukemia and related myeloid malignancies. Am J Hematol. 2018 Mar;93(3):401-407. doi: 10.1002/ajh.25000. Epub 2017 Dec 23."
+          },
+          {
+            "pmid": "30741367",
+            "type": "BACKGROUND",
+            "citation": "Daneshbod Y, Kohan L, Taghadosi V, Weinberg OK, Arber DA. Prognostic Significance of Complex Karyotypes in Acute Myeloid Leukemia. Curr Treat Options Oncol. 2019 Feb 11;20(2):15. doi: 10.1007/s11864-019-0612-y."
+          },
+          {
+            "pmid": "27520294",
+            "type": "BACKGROUND",
+            "citation": "Konopleva M, Pollyea DA, Potluri J, Chyla B, Hogdal L, Busman T, McKeegan E, Salem AH, Zhu M, Ricker JL, Blum W, DiNardo CD, Kadia T, Dunbar M, Kirby R, Falotico N, Leverson J, Humerickhouse R, Mabry M, Stone R, Kantarjian H, Letai A. Efficacy and Biological Correlates of Response in a Phase II Study of Venetoclax Monotherapy in Patients with Acute Myelogenous Leukemia. Cancer Discov. 2016 Oct;6(10):1106-1117. doi: 10.1158/2159-8290.CD-16-0313. Epub 2016 Aug 12."
+          },
+          {
+            "pmid": "27661108",
+            "type": "BACKGROUND",
+            "citation": "Bodo J, Zhao X, Durkin L, Souers AJ, Phillips DC, Smith MR, Hsi ED. Acquired resistance to venetoclax (ABT-199) in t(14;18) positive lymphoma cells. Oncotarget. 2016 Oct 25;7(43):70000-70010. doi: 10.18632/oncotarget.12132."
+          },
+          {
+            "pmid": "28578655",
+            "type": "BACKGROUND",
+            "citation": "Tahir SK, Smith ML, Hessler P, Rapp LR, Idler KB, Park CH, Leverson JD, Lam LT. Potential mechanisms of resistance to venetoclax and strategies to circumvent it. BMC Cancer. 2017 Jun 2;17(1):399. doi: 10.1186/s12885-017-3383-5."
+          },
+          {
+            "pmid": "17692808",
+            "type": "BACKGROUND",
+            "citation": "Deng J, Carlson N, Takeyama K, Dal Cin P, Shipp M, Letai A. BH3 profiling identifies three distinct classes of apoptotic blocks to predict response to ABT-737 and conventional chemotherapeutic agents. Cancer Cell. 2007 Aug;12(2):171-85. doi: 10.1016/j.ccr.2007.07.001."
+          },
+          {
+            "pmid": "20197552",
+            "type": "BACKGROUND",
+            "citation": "Yecies D, Carlson NE, Deng J, Letai A. Acquired resistance to ABT-737 in lymphoma cells that up-regulate MCL-1 and BFL-1. Blood. 2010 Apr 22;115(16):3304-13. doi: 10.1182/blood-2009-07-233304. Epub 2010 Mar 2."
+          },
+          {
+            "pmid": "31543463",
+            "type": "BACKGROUND",
+            "citation": "Guieze R, Liu VM, Rosebrock D, Jourdain AA, Hernandez-Sanchez M, Martinez Zurita A, Sun J, Ten Hacken E, Baranowski K, Thompson PA, Heo JM, Cartun Z, Aygun O, Iorgulescu JB, Zhang W, Notarangelo G, Livitz D, Li S, Davids MS, Biran A, Fernandes SM, Brown JR, Lako A, Ciantra ZB, Lawlor MA, Keskin DB, Udeshi ND, Wierda WG, Livak KJ, Letai AG, Neuberg D, Harper JW, Carr SA, Piccioni F, Ott CJ, Leshchiner I, Johannessen CM, Doench J, Mootha VK, Getz G, Wu CJ. Mitochondrial Reprogramming Underlies Resistance to BCL-2 Inhibition in Lymphoid Malignancies. Cancer Cell. 2019 Oct 14;36(4):369-384.e13. doi: 10.1016/j.ccell.2019.08.005. Epub 2019 Sep 19."
+          },
+          {
+            "pmid": "15718471",
+            "type": "BACKGROUND",
+            "citation": "Opferman JT, Iwasaki H, Ong CC, Suh H, Mizuno S, Akashi K, Korsmeyer SJ. Obligate role of anti-apoptotic MCL-1 in the survival of hematopoietic stem cells. Science. 2005 Feb 18;307(5712):1101-4. doi: 10.1126/science.1106114."
+          },
+          {
+            "pmid": "19127517",
+            "type": "BACKGROUND",
+            "citation": "Vick B, Weber A, Urbanik T, Maass T, Teufel A, Krammer PH, Opferman JT, Schuchmann M, Galle PR, Schulze-Bergkamen H. Knockout of myeloid cell leukemia-1 induces liver damage and increases apoptosis susceptibility of murine hepatocytes. Hepatology. 2009 Feb;49(2):627-36. doi: 10.1002/hep.22664."
+          },
+          {
+            "pmid": "23788623",
+            "type": "BACKGROUND",
+            "citation": "Thomas RL, Roberts DJ, Kubli DA, Lee Y, Quinsay MN, Owens JB, Fischer KM, Sussman MA, Miyamoto S, Gustafsson AB. Loss of MCL-1 leads to impaired autophagy and rapid development of heart failure. Genes Dev. 2013 Jun 15;27(12):1365-77. doi: 10.1101/gad.215871.113."
+          },
+          {
+            "pmid": "18055695",
+            "type": "BACKGROUND",
+            "citation": "Wendel HG, Silva RL, Malina A, Mills JR, Zhu H, Ueda T, Watanabe-Fukunaga R, Fukunaga R, Teruya-Feldstein J, Pelletier J, Lowe SW. Dissecting eIF4E action in tumorigenesis. Genes Dev. 2007 Dec 15;21(24):3232-7. doi: 10.1101/gad.1604407. Epub 2007 Nov 30."
+          },
+          {
+            "pmid": "24014241",
+            "type": "BACKGROUND",
+            "citation": "Willems L, Jacque N, Jacquel A, Neveux N, Maciel TT, Lambert M, Schmitt A, Poulain L, Green AS, Uzunov M, Kosmider O, Radford-Weiss I, Moura IC, Auberger P, Ifrah N, Bardet V, Chapuis N, Lacombe C, Mayeux P, Tamburini J, Bouscary D. Inhibiting glutamine uptake represents an attractive new strategy for treating acute myeloid leukemia. Blood. 2013 Nov 14;122(20):3521-32. doi: 10.1182/blood-2013-03-493163. Epub 2013 Sep 6."
+          },
+          {
+            "pmid": "24333121",
+            "type": "BACKGROUND",
+            "citation": "Emadi A, Jun SA, Tsukamoto T, Fathi AT, Minden MD, Dang CV. Inhibition of glutaminase selectively suppresses the growth of primary acute myeloid leukemia cells with IDH mutations. Exp Hematol. 2014 Apr;42(4):247-51. doi: 10.1016/j.exphem.2013.12.001. Epub 2013 Dec 11."
+          },
+          {
+            "pmid": "31552479",
+            "type": "BACKGROUND",
+            "citation": "Beckett A, Gervais D. What makes a good new therapeutic L-asparaginase? World J Microbiol Biotechnol. 2019 Sep 24;35(10):152. doi: 10.1007/s11274-019-2731-9."
+          },
+          {
+            "pmid": "7945221",
+            "type": "BACKGROUND",
+            "citation": "Moola ZB, Scawen MD, Atkinson T, Nicholls DJ. Erwinia chrysanthemi L-asparaginase: epitope mapping and production of antigenically modified enzymes. Biochem J. 1994 Sep 15;302 ( Pt 3)(Pt 3):921-7. doi: 10.1042/bj3020921."
+          },
+          {
+            "pmid": "24515335",
+            "type": "BACKGROUND",
+            "citation": "Emadi A, Zokaee H, Sausville EA. Asparaginase in the treatment of non-ALL hematologic malignancies. Cancer Chemother Pharmacol. 2014 May;73(5):875-83. doi: 10.1007/s00280-014-2402-3. Epub 2014 Feb 11."
+          },
+          {
+            "type": "BACKGROUND",
+            "citation": "FDA. Erwinaze (asparaginase Erwinia chrysanthemi) Label. Food and Drug Administration 2019:https://www.accessdata.fda.gov/drugsatfda_docs/label/2019/125359s098lbl.pdf"
+          },
+          {
+            "pmid": "19672973",
+            "type": "BACKGROUND",
+            "citation": "Vrooman LM, Supko JG, Neuberg DS, Asselin BL, Athale UH, Clavell L, Kelly KM, Laverdiere C, Michon B, Schorin M, Cohen HJ, Sallan SE, Silverman LB. Erwinia asparaginase after allergy to E. coli asparaginase in children with acute lymphoblastic leukemia. Pediatr Blood Cancer. 2010 Feb;54(2):199-205. doi: 10.1002/pbc.22225."
+          },
+          {
+            "pmid": "3162515",
+            "type": "BACKGROUND",
+            "citation": "Capizzi RL, Davis R, Powell B, Cuttner J, Ellison RR, Cooper MR, Dillman R, Major WB, Dupre E, McIntyre OR. Synergy between high-dose cytarabine and asparaginase in the treatment of adults with refractory and relapsed acute myelogenous leukemia--a Cancer and Leukemia Group B Study. J Clin Oncol. 1988 Mar;6(3):499-508. doi: 10.1200/JCO.1988.6.3.499."
+          },
+          {
+            "pmid": "32079074",
+            "type": "BACKGROUND",
+            "citation": "Patzke CL, Duffy AP, Duong VH, El Chaer F, Trovato JA, Baer MR, Bentzen SM, Emadi A. Comparison of High-Dose Cytarabine, Mitoxantrone, and Pegaspargase (HAM-pegA) to High-Dose Cytarabine, Mitoxantrone, Cladribine, and Filgrastim (CLAG-M) as First-Line Salvage Cytotoxic Chemotherapy for Relapsed/Refractory Acute Myeloid Leukemia. J Clin Med. 2020 Feb 16;9(2):536. doi: 10.3390/jcm9020536."
+          },
+          {
+            "pmid": "29119293",
+            "type": "BACKGROUND",
+            "citation": "Emadi A, Law JY, Strovel ET, Lapidus RG, Jeng LJB, Lee M, Blitzer MG, Carter-Cooper BA, Sewell D, Van Der Merwe I, Philip S, Imran M, Yu SL, Li H, Amrein PC, Duong VH, Sausville EA, Baer MR, Fathi AT, Singh Z, Bentzen SM. Asparaginase Erwinia chrysanthemi effectively depletes plasma glutamine in adult patients with relapsed/refractory acute myeloid leukemia. Cancer Chemother Pharmacol. 2018 Jan;81(1):217-222. doi: 10.1007/s00280-017-3459-6. Epub 2017 Nov 8."
+          },
+          {
+            "pmid": "26186940",
+            "type": "BACKGROUND",
+            "citation": "Jacque N, Ronchetti AM, Larrue C, Meunier G, Birsen R, Willems L, Saland E, Decroocq J, Maciel TT, Lambert M, Poulain L, Hospital MA, Sujobert P, Joseph L, Chapuis N, Lacombe C, Moura IC, Demo S, Sarry JE, Recher C, Mayeux P, Tamburini J, Bouscary D. Targeting glutaminolysis has antileukemic activity in acute myeloid leukemia and synergizes with BCL-2 inhibition. Blood. 2015 Sep 10;126(11):1346-56. doi: 10.1182/blood-2015-01-621870. Epub 2015 Jul 17."
+          },
+          {
+            "pmid": "26640142",
+            "type": "BACKGROUND",
+            "citation": "Bajpai R, Matulis SM, Wei C, Nooka AK, Von Hollen HE, Lonial S, Boise LH, Shanmugam M. Targeting glutamine metabolism in multiple myeloma enhances BIM binding to BCL-2 eliciting synthetic lethality to venetoclax. Oncogene. 2016 Jul 28;35(30):3955-64. doi: 10.1038/onc.2015.464. Epub 2015 Dec 7."
+          },
+          {
+            "pmid": "12165276",
+            "type": "BACKGROUND",
+            "citation": "Chang WK, Yang KD, Chuang H, Jan JT, Shaio MF. Glutamine protects activated human T cells from apoptosis by up-regulating glutathione and Bcl-2 levels. Clin Immunol. 2002 Aug;104(2):151-60. doi: 10.1006/clim.2002.5257."
+          },
+          {
+            "type": "BACKGROUND",
+            "citation": "Emadi A, Gartenhaus RB, Bhandary B, et al. Pegcrisantaspase and venetoclax combination is highly effective against acute myeloid leukemia (AML), mechanistically driven synergism between glutamine depletion and bcl-2 inhibition. European Hematology Association (EHA) 2019;Oral Presentation:S834."
+          },
+          {
+            "pmid": "29343523",
+            "type": "BACKGROUND",
+            "citation": "Nguyen HA, Su Y, Zhang JY, Antanasijevic A, Caffrey M, Schalk AM, Liu L, Rondelli D, Oh A, Mahmud DL, Bosland MC, Kajdacsy-Balla A, Peirs S, Lammens T, Mondelaers V, De Moerloose B, Goossens S, Schlicht MJ, Kabirov KK, Lyubimov AV, Merrill BJ, Saunthararajah Y, Van Vlierberghe P, Lavie A. A Novel l-Asparaginase with low l-Glutaminase Coactivity Is Highly Efficacious against Both T- and B-cell Acute Lymphoblastic Leukemias In Vivo. Cancer Res. 2018 Mar 15;78(6):1549-1560. doi: 10.1158/0008-5472.CAN-17-2106. Epub 2018 Jan 17."
+          },
+          {
+            "pmid": "26928249",
+            "type": "BACKGROUND",
+            "citation": "van der Sluis IM, Vrooman LM, Pieters R, Baruchel A, Escherich G, Goulden N, Mondelaers V, Sanchez de Toledo J, Rizzari C, Silverman LB, Whitlock JA. Consensus expert recommendations for identification and management of asparaginase hypersensitivity and silent inactivation. Haematologica. 2016 Mar;101(3):279-85. doi: 10.3324/haematol.2015.137380."
+          },
+          {
+            "pmid": "24829072",
+            "type": "BACKGROUND",
+            "citation": "Chien WW, Allas S, Rachinel N, Sahakian P, Julien M, Le Beux C, Lacroix CE, Abribat T, Salles G. Pharmacology, immunogenicity, and efficacy of a novel pegylated recombinant Erwinia chrysanthemi-derived L-asparaginase. Invest New Drugs. 2014 Oct;32(5):795-805. doi: 10.1007/s10637-014-0102-9. Epub 2014 May 15."
+          },
+          {
+            "pmid": "31084767",
+            "type": "BACKGROUND",
+            "citation": "Campos EDV, Pinto R. Targeted therapy with a selective BCL-2 inhibitor in older patients with acute myeloid leukemia. Hematol Transfus Cell Ther. 2019 Apr-Jun;41(2):169-177. doi: 10.1016/j.htct.2018.09.001. Epub 2018 Dec 29."
+          },
+          {
+            "pmid": "27064021",
+            "type": "BACKGROUND",
+            "citation": "Emadi A, Bade NA, Stevenson B, Singh Z. Minimally-Myelosuppressive Asparaginase-Containing Induction Regimen for Treatment of a Jehovah's Witness with mutant IDH1/NPM1/NRAS Acute Myeloid Leukemia. Pharmaceuticals (Basel). 2016 Mar 10;9(1):12. doi: 10.3390/ph9010012."
+          },
+          {
+            "type": "BACKGROUND",
+            "citation": "FDA. Mylotarg (gemtuzumab ozogamicin) Label. US Food and Drug Administration 2017:https://www.accessdata.fda.gov/drugsatfda_docs/label/2017/761060lbl.pdf."
+          },
+          {
+            "type": "BACKGROUND",
+            "citation": "FDA. Oncaspar (pegaspargase) Food and Drug Administration 2019:https://www.accessdata.fda.gov/drugsatfda_docs/label/2019/193411s5196lbl.pdf"
+          },
+          {
+            "pmid": "27895058",
+            "type": "BACKGROUND",
+            "citation": "Dohner H, Estey E, Grimwade D, Amadori S, Appelbaum FR, Buchner T, Dombret H, Ebert BL, Fenaux P, Larson RA, Levine RL, Lo-Coco F, Naoe T, Niederwieser D, Ossenkoppele GJ, Sanz M, Sierra J, Tallman MS, Tien HF, Wei AH, Lowenberg B, Bloomfield CD. Diagnosis and management of AML in adults: 2017 ELN recommendations from an international expert panel. Blood. 2017 Jan 26;129(4):424-447. doi: 10.1182/blood-2016-08-733196. Epub 2016 Nov 28."
+          },
+          {
+            "type": "BACKGROUND",
+            "citation": "FDA. Gilteritinib (Xospata). Food and Drug Administration 2019:https://www.accessdata.fda.gov/drugsatfda_docs/label/2019/211349s001lbl.pdf"
+          },
+          {
+            "type": "BACKGROUND",
+            "citation": "FDA. Enasidenib (Idhifa). Food and Drug Administration 2019:https://www.accessdata.fda.gov/drugsatfda_docs/label/2019/209606s002lbl.pdf"
+          },
+          {
+            "pmid": "2790129",
+            "type": "BACKGROUND",
+            "citation": "Storer BE. Design and analysis of phase I clinical trials. Biometrics. 1989 Sep;45(3):925-37."
+          },
+          {
+            "pmid": "19436029",
+            "type": "BACKGROUND",
+            "citation": "Le Tourneau C, Lee JJ, Siu LL. Dose escalation methods in phase I cancer clinical trials. J Natl Cancer Inst. 2009 May 20;101(10):708-20. doi: 10.1093/jnci/djp079. Epub 2009 May 12."
+          },
+          {
+            "pmid": "30634463",
+            "type": "BACKGROUND",
+            "citation": "Horvath TD, Chan WK, Pontikos MA, Martin LA, Du D, Tan L, Konopleva M, Weinstein JN, Lorenzi PL. Assessment of l-Asparaginase Pharmacodynamics in Mouse Models of Cancer. Metabolites. 2019 Jan 9;9(1):10. doi: 10.3390/metabo9010010."
+          },
+          {
+            "pmid": "39437546",
+            "type": "DERIVED",
+            "citation": "Liu Y, Bollino DR, Bah OM, Strovel ET, Le TV, Zarrabi J, Philip S, Lapidus RG, Baer MR, Niyongere S, Duong VH, Dougherty CC, Beumer JH, Caprinolo KD, Kamangar F, Emadi A. A phase 1 study of the amino acid modulator pegcrisantaspase and venetoclax for relapsed or refractory acute myeloid leukemia. Blood. 2025 Jan 30;145(5):486-496. doi: 10.1182/blood.2024024837."
+          }
+        ]
+      },
+      "ipdSharingStatementModule": {
+        "ipdSharing": "NO"
+      }
+    },
+    "derivedSection": {
+      "miscInfoModule": {
+        "versionHolder": "2026-11-03"
+      },
+      "conditionBrowseModule": {
+        "meshes": [
+          {
+            "id": "D012008",
+            "term": "Recurrence"
+          },
+          {
+            "id": "D015470",
+            "term": "Leukemia, Myeloid, Acute"
+          }
+        ],
+        "ancestors": [
+          {
+            "id": "D020969",
+            "term": "Disease Attributes"
+          },
+          {
+            "id": "D010335",
+            "term": "Pathologic Processes"
+          },
+          {
+            "id": "D013568",
+            "term": "Pathological Conditions, Signs and Symptoms"
+          },
+          {
+            "id": "D007951",
+            "term": "Leukemia, Myeloid"
+          },
+          {
+            "id": "D007938",
+            "term": "Leukemia"
+          },
+          {
+            "id": "D009370",
+            "term": "Neoplasms by Histologic Type"
+          },
+          {
+            "id": "D009369",
+            "term": "Neoplasms"
+          },
+          {
+            "id": "D006402",
+            "term": "Hematologic Diseases"
+          },
+          {
+            "id": "D006425",
+            "term": "Hemic and Lymphatic Diseases"
+          }
+        ]
+      },
+      "interventionBrowseModule": {
+        "meshes": [
+          {
+            "id": "C579720",
+            "term": "venetoclax"
+          }
+        ]
+      }
+    },
+    "hasResults": false
+  },
+  "expected_digest": "673add96b5c61adb6c965456079d102d1ae1b178333be4a13be5d4e2abe89c7a",
+  "anchors": [
+    {
+      "id": "eligibility",
+      "address": "/protocolSection/eligibilityModule/eligibilityCriteria",
+      "digest": "673add96b5c61adb6c965456079d102d1ae1b178333be4a13be5d4e2abe89c7a",
+      "expected": "Inclusion Criteria:\n\n* A histologically or pathologically confirmed diagnosis of AML based on 2016 WHO classification. Patients with Complex Karyotype AML (CK-AML) and TP53-mutated AML are eligible for this study.\n* AML has relapsed after or is refractory to, first-line therapy, with a maximum of three prior lines of therapy. Patients whose AML has FLT3 or IDH1/IDH2 mutations should have received at least one available FLT3 or IDH1/IDH2 inhibitors\n* Age 18 years and older\n* ECOG performance status ≤ 2\n* Patients who have undergone allo-HSCT are eligible if they are ≥ 30 days post stem cell infusion, have no evidence of graft versus hose disease ( GVHD ) \\> Grade 1, and are ≥ 10 days off all immunosuppressive therapy\n* Previous cytotoxic chemotherapy must have been completed at least 10 days prior to day 1 of treatment on the study and all AEs (excluding alopecia, acne, rash) due to agents administered earlier should have recovered to \\< Grade 1. Patients with hematologic malignancies are expected to have hematologic abnormalities at study entry. These abnormalities which are thought to be primarily related to the underlying leukemia, are not considered to be toxicities (AE) and do not need to resolve to \\< Grade 1\n* All biologic agents including hematopoietic growth factors must have been stopped at least 1 week prior to day 1 of treatment on the study\n* Patients must have adequate organ function as defined below:\n\n  * Direct bilirubin ≤2X the institutional upper limit of normal (ULN) (except in patients with leukemic infiltration of the liver)\n  * AST(SGOT)/ALT(SGPT) ≤3X ULN (except if attributable to leukemic infiltration of the liver)\n  * Alkaline phosphatase ≤5X ULN\n  * Creatinine Clearance (CrCl) ≥ 45 mL/min (except in patients with evidence of tumor lysis syndrome)\n  * Patients with a history of CNS leukemia must be stable with clear CSF for \\> 2 months prior to day 1 of treatment (patient can receive intrathecal maintenance chemotherapy)\n* Female patients of childbearing potential must have a negative pregnancy test \\<1 week prior to enrollment. Female patients of childbearing potential who are sexually active and male patients who are sexually active and have female partners of childbearing potential must agree to use highly effective method of contraception with their partners during exposure to study drugs and for 30 days after the last dose of study drugs.\n* Ability to understand and willingness to sign a written informed consent document.\n\nExclusion Criteria:\n\n* Patients receiving any other investigational agents, or concurrent chemotherapy or immunotherapy\n* Patients with acute promyelocytic leukemia (APL) confirmed with t(15;17) (i.e. FAB subtype M3 and M3 variant)\n* Prior treatment with any asparaginase product. Patients who received ≤12 weeks of a BCL-2 inhibitor including venetoclax are eligible.\n* Absolute peripheral blast \\> 100,000/μL. Hydroxyurea for blast count control is permitted before starting treatment and up to maximum of 10 days after starting treatment on the study. The decision to start hydroxyurea during this time is at the discretion of the treating physician.\n* Patients with the following clinical histories are excluded:\n\n  * severe pancreatitis not related to cholelithiasis. Severe acute pancreatitis is defined by lipase elevation \\>5X ULN and with signs or symptoms\n  * unprovoked deep venous thrombosis (DVT)\n  * pulmonary emboli\n  * hemorrhagic or thromboembolic stroke\n  * other malignancies requiring systemic chemotherapy, immunotherapy or targeted therapy in the last three months\n* Active, uncontrolled infection; patients with infection under active treatment and controlled with antibiotics are eligible\n* Uncontrolled intercurrent illness including, but not limited to, symptomatic congestive heart failure, unstable angina pectoris, cardiac arrhythmia, or psychiatric illness/social situations that per site Principal Investigator's judgment would limit compliance with study requirements\n* Pregnant women and female patients who are lactating and do not agree to stop breast- feeding.\n* Uncontrolled active seizure\n* Any other clinical conditions that in the opinion of the investigator would make the subject unsuitable for the study"
+    },
+    {
+      "id": "outcomes",
+      "address": "/protocolSection/outcomesModule",
+      "digest": "673add96b5c61adb6c965456079d102d1ae1b178333be4a13be5d4e2abe89c7a",
+      "expected": {
+        "primaryOutcomes": [
+          {
+            "measure": "Incidence of regimen limiting toxicities (RLTs)",
+            "description": "The period for determination of RLT will be from the first day of treatment until 30 days after receiving the first dose of Ven-PegC.",
+            "timeFrame": "One year (after 12 cycle's treatment)"
+          },
+          {
+            "measure": "Incidence of treatment-emergent adverse events (TEAE)",
+            "description": "The period for determination of TEAE will be from the first day of treatment until 30 days after receiving the first dose of Ven-PegC.",
+            "timeFrame": "One year (after 12 cycle's treatment)"
+          }
+        ],
+        "secondaryOutcomes": [
+          {
+            "measure": "The rate of CR",
+            "description": "Complete Remission rate",
+            "timeFrame": "One year (after 12 cycle's treatment)"
+          },
+          {
+            "measure": "The rate of composite complete remission (CR+CRh+CRi+CRp)",
+            "description": "The rate of Complete Remission rate, Complete Remission with Partial hematological recovery, Complete Remission with incomplete hematological recovery and Complete Remission with incomplete platelet recovery.",
+            "timeFrame": "One year (after 12 cycle's treatment)"
+          },
+          {
+            "measure": "Event-free Survival (EFS)",
+            "description": "Event-free Survival (EFS)",
+            "timeFrame": "One year (after 12 cycle's treatment)"
+          },
+          {
+            "measure": "Overall Survival (OS)",
+            "description": "Overall Survival (OS)",
+            "timeFrame": "One year (after 12 cycle's treatment)"
+          },
+          {
+            "measure": "The rate of conversion from transfusion dependence to transfusion independence",
+            "description": "The rate of conversion from transfusion dependence to transfusion independence",
+            "timeFrame": "One year (after 12 cycle's treatment)"
+          },
+          {
+            "measure": "The rate of proceeding to allogeneic hematopoietic stem cell transplantation (allo-HSCT) after administration of Ven-PegC",
+            "description": "The rate of proceeding to allogeneic hematopoietic stem cell transplantation (allo-HSCT) after administration of Ven-PegC",
+            "timeFrame": "One year (after 12 cycle's treatment)"
+          },
+          {
+            "measure": "Achievement of MRD <0.02% within 2 cycles of treatment with Ven-PegC",
+            "description": "Achievement of Minimal Residual Disease \\<0.02% within 2 cycles of treatment with Ven-PegC",
+            "timeFrame": "Two months"
+          },
+          {
+            "measure": "Overall incidence and severity of AEs",
+            "description": "Overall incidence and severity of Adverse Events",
+            "timeFrame": "One year (after 12 cycle's treatment)"
+          }
+        ]
+      }
+    },
+    {
+      "id": "arms",
+      "address": "/protocolSection/armsInterventionsModule",
+      "digest": "673add96b5c61adb6c965456079d102d1ae1b178333be4a13be5d4e2abe89c7a",
+      "expected": {
+        "armGroups": [
+          {
+            "label": "Cohort 400mg of Venetoclax, 500 IU/m ² of Pegcrisantaspase",
+            "type": "EXPERIMENTAL",
+            "description": "The subject will take 400mg of Venetoclax every day as a pill by mouth and a dose of 500 IU/m ² of Pegcrisantaspase in an IV every 14 days ( per cycle)",
+            "interventionNames": [
+              "Drug: Venetoclax and pegcrisantaspase"
+            ]
+          },
+          {
+            "label": "Cohort 400mg of Venetoclax, 750 IU/m ² of Pegcrisantaspase",
+            "type": "EXPERIMENTAL",
+            "description": "The subject will take 400mg of Venetoclax every day as a pill by mouth and a dose of 750 IU/m ² of Pegcrisantaspase in an IV every 14 days ( per cycle)",
+            "interventionNames": [
+              "Drug: Venetoclax and pegcrisantaspase"
+            ]
+          },
+          {
+            "label": "Cohort 400mg of Venetoclax, 1000 IU/m² of Pegcrisantaspase",
+            "type": "EXPERIMENTAL",
+            "description": "The subject will take 400mg of Venetoclax every day as a pill by mouth and a dose of 1000 IU/m² of Pegcrisantaspase in an IV every 14 days ( per cycle)",
+            "interventionNames": [
+              "Drug: Venetoclax and pegcrisantaspase"
+            ]
+          },
+          {
+            "label": "Cohort 600mg Venetoclax, 1000 IU/m ² of Pegcrisantaspase",
+            "type": "EXPERIMENTAL",
+            "description": "The subject will take 600mg of Venetoclax every day as a pill by mouth and a dose of 1000 IU/m ² of Pegcrisantaspase in an IV every 14 days ( Per cycle)",
+            "interventionNames": [
+              "Drug: Venetoclax and pegcrisantaspase"
+            ]
+          }
+        ],
+        "interventions": [
+          {
+            "type": "DRUG",
+            "name": "Venetoclax and pegcrisantaspase",
+            "description": "Therapeutic",
+            "armGroupLabels": [
+              "Cohort 400mg of Venetoclax, 1000 IU/m² of Pegcrisantaspase",
+              "Cohort 400mg of Venetoclax, 500 IU/m ² of Pegcrisantaspase",
+              "Cohort 400mg of Venetoclax, 750 IU/m ² of Pegcrisantaspase",
+              "Cohort 600mg Venetoclax, 1000 IU/m ² of Pegcrisantaspase"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "queries": [
+    {
+      "id": "adult-age-restriction",
+      "body": {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+          "class": "Predicate",
+          "key": "age",
+          "kind": "measurement"
+        },
+        "qualifiers": {
+          "class": "Always"
+        },
+        "subject": {
+          "class": "Subject",
+          "kind": "participant",
+          "referent": ""
+        },
+        "time": null,
+        "value": {
+          "class": "Value",
+          "comparison": "ge",
+          "inclusivity": "unspecified",
+          "kind": "quantity",
+          "members": [],
+          "number": 18,
+          "unit": "Years",
+          "upper": null
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,923 @@
+"""Hypothetical participant profiles that would distinguish declared surviving eligibility explanations.
+
+Every returned row is an investigation request: never an observation, a premise, a recommendation or a
+recovered protocol. The existing scoped participant-witness engine decides each check, and the existing
+design-bounds verdict classifies it, so a row states exactly what that consumer would conclude if the
+observation were later supplied with a resolved, accepted bridge and a count above its exception allowance.
+This module only enumerates represented comparison cells; it adds no eligibility logic of its own.
+"""
+
+from __future__ import annotations
+
+import dataclasses
+import itertools
+import json
+import math
+from typing import Any, Literal, cast
+
+from TrialLedger.layer2 import assertions as a
+from TrialLedger.layer2 import entail, source_evidence
+from TrialLedger.layer2.design_bounds import witness_verdict
+
+Sign = Literal["accepted", "rejected"]
+SIGNS: tuple[Sign, ...] = ("accepted", "rejected")
+DOMAIN_KINDS = ("boolean", "enum", "integer", "continuous")
+DEFAULT_BOUND = 4096
+MAX_CANDIDATES = 256
+MAX_SURVIVORS = 32
+MAX_VARIABLES = 12
+MAX_CELLS = 64
+LIMITS = {
+    # name: (default, hard maximum)
+    "max_profile_size": (3, 6),
+    "max_profiles": (2048, 20000),
+    "max_decisions": (5000, 50000),
+    "max_requests_per_pair": (3, 20),
+    "max_requests": (30, 200),
+    "max_bytes": (65536, 262144),
+    "max_response_bytes": (1048576, 4194304),
+}
+FIELDS = frozenset(
+    {
+        "operation",
+        "study_ref",
+        "candidates",
+        "survivors",
+        "survival_basis",
+        "variables",
+        "context",
+        "signs",
+        "bound",
+        "limits",
+    }
+)
+REQUIRED = frozenset({"operation", "study_ref", "candidates", "survivors", "survival_basis", "variables"})
+SEPARATING = frozenset({"separates_first", "separates_second"})
+OUTCOMES = ("separated", "search_incomplete", "not_separated_in_declared_variables", "no_separator")
+BRIDGE_PREMISES = ("accepted_resolved_bridge", "count_above_exception_allowance")
+COMPLETE = "complete_candidate_eligibility:"
+LIMIT_TEXT = (
+    "Hypothetical evidence requests over the declared surviving candidates and declared variables only. "
+    "No row is an observation, premise or recommendation, and no row claims that such evidence exists. "
+    "The declared family does not exhaust real protocols; corpus silence never supplies a negative witness."
+)
+
+
+# ---------------------------------------------------------------------------------------------------------
+# Pure decisions (literal-typed; pinned by authored tests, Detective and explicit contracts)
+# ---------------------------------------------------------------------------------------------------------
+
+
+def family_state(consistent_survivors: int) -> str:
+    """Whether a declared family needs separation at all (pure).
+
+    pre: consistent_survivors >= 0
+    post: __return__ in ('conflict', 'single_survivor', 'searched')
+    post: (__return__ == 'conflict') == (consistent_survivors == 0)
+    post: (__return__ == 'single_survivor') == (consistent_survivors == 1)
+    post: (__return__ == 'searched') == (consistent_survivors >= 2)
+    """
+    if consistent_survivors == 0:
+        return "conflict"
+    if consistent_survivors == 1:
+        return "single_survivor"
+    return "searched"
+
+
+def pair_relation(first: str, second: str) -> str:
+    """How one hypothetical witness treats two candidates, from their design-bounds verdicts (pure).
+
+    Only an elimination of exactly one candidate beside an accommodation of the other separates them. An
+    unresolved or inconsistent verdict on either side leaves the relation undecided, never separated.
+
+    pre: first in ('ruled_out', 'not_ruled_out', 'unresolved', 'inconsistent')
+    pre: second in ('ruled_out', 'not_ruled_out', 'unresolved', 'inconsistent')
+    post: __return__ in ('separates_first', 'separates_second', 'both_eliminated', 'neither', 'undecided')
+    post: (__return__ == 'separates_first') == (first == 'ruled_out' and second == 'not_ruled_out')
+    post: (__return__ == 'separates_second') == (first == 'not_ruled_out' and second == 'ruled_out')
+    post: (__return__ == 'both_eliminated') == (first == second == 'ruled_out')
+    post: (__return__ == 'neither') == (first == second == 'not_ruled_out')
+    """
+    decided = ("ruled_out", "not_ruled_out")
+    if first not in decided or second not in decided:
+        return "undecided"
+    if first == second:
+        return "both_eliminated" if first == "ruled_out" else "neither"
+    return "separates_first" if first == "ruled_out" else "separates_second"
+
+
+def pair_outcome(found: int, search_complete: bool, undecided: bool, representation_complete: bool) -> str:
+    """Name what the search established for one pair, never claiming absence after unfinished work (pure).
+
+    pre: found >= 0
+    post: __return__ in OUTCOMES
+    post: (__return__ == 'separated') == (found > 0)
+    post: __return__ != 'no_separator' or (search_complete and not undecided and representation_complete)
+    post: __return__ != 'not_separated_in_declared_variables' or (search_complete and not undecided)
+    """
+    if found > 0:
+        return "separated"
+    if not search_complete or undecided:
+        return "search_incomplete"
+    if not representation_complete:
+        return "not_separated_in_declared_variables"
+    return "no_separator"
+
+
+def output_state(found: int, returned: int) -> str:
+    """Whether every found request was returned; truncation is separate from search completeness (pure).
+
+    pre: 0 <= returned <= found
+    post: __return__ in ('complete', 'truncated')
+    post: (__return__ == 'truncated') == (returned < found)
+    """
+    return "truncated" if returned < found else "complete"
+
+
+def required_premises(sign: str, eliminated: tuple[str, ...]) -> tuple[str, ...]:
+    """Premises that must be supplied before a hypothetical witness could eliminate a candidate (pure).
+
+    Accepted eliminations survive extra unrepresented criteria of the eliminated candidate: more criteria only
+    refute more profiles. A rejection can be explained by an unrepresented criterion, so every rejected
+    elimination additionally needs that candidate to be the complete eligibility rule at this context.
+
+    pre: sign in ('accepted', 'rejected')
+    post: __return__[:3] == ('eligibility_attribution:' + sign, *BRIDGE_PREMISES)
+    post: len(__return__) == 3 + (len(eliminated) if sign == 'rejected' else 0)
+    post: sign != 'rejected' or __return__[3:] == tuple(COMPLETE + c for c in eliminated)
+    """
+    base = ("eligibility_attribution:" + sign, *BRIDGE_PREMISES)
+    if sign == "accepted":
+        return base
+    return base + tuple(COMPLETE + identity for identity in eliminated)
+
+
+def seek(sign: str) -> str:
+    """Where such evidence would be looked for; never a claim that it exists (pure).
+
+    pre: sign in ('accepted', 'rejected')
+    post: __return__ != ''
+    post: ('screening' in __return__) == (sign == 'rejected')
+    """
+    if sign == "accepted":
+        return (
+            "Participation records bound to eligibility at entry, such as baseline characteristics or "
+            "enrolled-participant listings for the same measurement and time, with an eligibility bridge."
+        )
+    return (
+        "Eligibility-attributed screening or adjudication records, such as screening logs or screen-failure "
+        "reasons for this profile. Registry participant-flow categories rarely identify the profile or the "
+        "failed criterion, and corpus silence is never a rejected witness."
+    )
+
+
+def dominated(literals: frozenset[str], found: tuple[frozenset[str], ...]) -> bool:
+    """Whether an already-found separator uses a strict subset of these literals (pure).
+
+    Adding literals preserves an elimination but not an accommodation, so only a found subset makes a
+    profile redundant; its one-literal weakenings need not separate.
+
+    post: __return__ == any(prior < literals for prior in found)
+    """
+    return any(prior < literals for prior in found)
+
+
+# ---------------------------------------------------------------------------------------------------------
+# Validation of the closed request
+# ---------------------------------------------------------------------------------------------------------
+
+
+def _refuse(where: str, problem: str) -> ValueError:
+    return ValueError(f"evidence_requests:{where}:{problem}")
+
+
+def _object(value: object, fields: frozenset[str], required: frozenset[str], where: str) -> dict[str, Any]:
+    if type(value) is not dict:
+        raise _refuse(where, "object_required")
+    if set(value) - fields:
+        raise _refuse(where, "unknown_field")
+    if required - set(value):
+        raise _refuse(where, "missing_field")
+    return cast(dict[str, Any], value)
+
+
+def _text(value: object, where: str) -> str:
+    if type(value) is not str or not value.strip():
+        raise _refuse(where, "text_required")
+    return value
+
+
+def _rows(value: object, where: str, maximum: int, nonempty: bool = False) -> list:
+    if type(value) is not list:
+        raise _refuse(where, "list_required")
+    if len(value) > maximum:
+        raise ValueError(f"resource_bound:evidence_requests:{where}")
+    if nonempty and not value:
+        raise _refuse(where, "nonempty_required")
+    return value
+
+
+def _unique(values: list[str], where: str) -> None:
+    if len(set(values)) != len(values):
+        raise _refuse(where, "duplicate_id")
+
+
+def _model(value: object, kind: type, where: str) -> Any:
+    if type(value) is not dict:
+        raise _refuse(where, "object_required")
+    held = a.from_canonical(json.dumps(value, allow_nan=False))
+    if not isinstance(held, kind):
+        raise _refuse(where, "wrong_model_class")
+    return held
+
+
+def _number(value: object, where: str) -> float:
+    if type(value) not in (int, float):
+        raise _refuse(where, "finite_number_required")
+    try:
+        number = float(cast(int | float, value))
+    except OverflowError as error:
+        raise _refuse(where, "finite_number_required") from error
+    if not math.isfinite(number):
+        raise _refuse(where, "finite_number_required")
+    if type(value) is int and int(number) != value:
+        raise _refuse(where, "exact_number_required")
+    return number
+
+
+def _candidates(raw: object) -> dict[str, tuple[a.ScopedAssertion, ...]]:
+    result: dict[str, tuple[a.ScopedAssertion, ...]] = {}
+    for value in _rows(raw, "candidates", MAX_CANDIDATES):
+        if type(value) is dict and "signal_claims" in value:
+            raise _refuse("candidate", "signal_claims_unsupported")
+        row = _object(value, frozenset({"id", "assertions"}), frozenset({"id", "assertions"}), "candidate")
+        identity = _text(row["id"], "candidate.id")
+        if identity in result:
+            raise _refuse("candidates", "duplicate_id")
+        items = tuple(
+            _model(item, a.ScopedAssertion, "candidate.assertion")
+            for item in _rows(row["assertions"], "candidate.assertions", MAX_CANDIDATES)
+        )
+        _unique([item.id for item in items], "candidate.assertions")
+        result[identity] = items
+    return result
+
+
+def _survivors(raw: object, candidates: dict[str, tuple[a.ScopedAssertion, ...]]) -> tuple[str, ...]:
+    ids = [_text(item, "survivors") for item in _rows(raw, "survivors", MAX_SURVIVORS)]
+    _unique(ids, "survivors")
+    if any(identity not in candidates for identity in ids):
+        raise _refuse("survivors", "unknown_candidate")
+    return tuple(ids)
+
+
+def _context(raw: object) -> entail.Context:
+    row = _object(raw, frozenset({"cohort", "phase", "arm"}), frozenset(), "context")
+    for key, value in row.items():
+        if value is not None:
+            _text(value, "context." + key)
+    return entail.Context(**row)
+
+
+def _signs(raw: object) -> tuple[Sign, ...]:
+    chosen = [_text(item, "signs") for item in _rows(raw, "signs", len(SIGNS), nonempty=True)]
+    _unique(chosen, "signs")
+    if not set(chosen) <= set(SIGNS):
+        raise _refuse("signs", "unsupported_sign")
+    return tuple(sign for sign in SIGNS if sign in chosen)
+
+
+def _bound(raw: object) -> int:
+    if type(raw) is not int or not 1 <= raw <= entail.MAX_ASSIGNMENTS:
+        raise _refuse("bound", "invalid_resource_bound")
+    return raw
+
+
+def _limits(raw: object) -> dict[str, int]:
+    row = _object(raw, frozenset(LIMITS), frozenset(), "limits")
+    chosen = {}
+    for name, (default, maximum) in LIMITS.items():
+        value = row.get(name, default)
+        if type(value) is not int or value < 1:
+            raise _refuse("limits." + name, "positive_integer_required")
+        if value > maximum:
+            raise ValueError(f"resource_bound:evidence_requests:limits.{name}")
+        chosen[name] = value
+    return chosen
+
+
+# ---------------------------------------------------------------------------------------------------------
+# Represented variables and their comparison cells
+# ---------------------------------------------------------------------------------------------------------
+
+
+@dataclasses.dataclass(frozen=True)
+class Cell:
+    variable: str
+    label: str
+    literal: a.Literal
+    canonical: str
+
+
+@dataclasses.dataclass(frozen=True)
+class Variable:
+    id: str
+    key: tuple[str, ...]
+    subject: a.Subject
+    predicate: a.Predicate
+    time: a.TemporalScope | None
+    kind: str
+    unit: str
+    members: tuple[str, ...]
+    open: bool
+    minimum: float | None
+    maximum: float | None
+    cut_points: tuple[float, ...]
+
+
+def _head(subject: a.Subject, predicate: a.Predicate, time: a.TemporalScope | None) -> tuple[str, str, str]:
+    """The entailment variable head: canonical subject and predicate; time without certainty or evidence."""
+    stamp = a.canonical(dataclasses.replace(time, certainty="unresolved", evidence=())) if time else ""
+    return a.canonical(subject), a.canonical(predicate), stamp
+
+
+def _family(kind: str, head: tuple[str, str, str], unit: str) -> tuple[str, ...]:
+    if kind == "boolean":
+        return ("boolean", *head)
+    if kind == "enum":
+        return ("enum", *head)
+    if kind in ("quantity", "interval", "integer", "continuous"):
+        return ("measure", *head, unit)
+    return ("other:" + kind, *head)
+
+
+def _variables(raw: object) -> tuple[Variable, ...]:
+    result = []
+    fields = frozenset({"id", "subject", "predicate", "time", "domain"})
+    for value in _rows(raw, "variables", MAX_VARIABLES, nonempty=True):
+        row = _object(value, fields, fields, "variable")
+        identity = _text(row["id"], "variable.id")
+        subject = _model(row["subject"], a.Subject, "variable.subject")
+        predicate = _model(row["predicate"], a.Predicate, "variable.predicate")
+        time = None if row["time"] is None else _model(row["time"], a.TemporalScope, "variable.time")
+        domain = row["domain"]
+        if type(domain) is not dict or domain.get("kind") not in DOMAIN_KINDS:
+            raise _refuse("variable", "unsupported_domain")
+        kind = domain["kind"]
+        unit, members, is_open, low, high, cuts = "", (), False, None, None, ()
+        if kind == "boolean":
+            _object(domain, frozenset({"kind"}), frozenset({"kind"}), "domain.boolean")
+        elif kind == "enum":
+            spec = _object(
+                domain,
+                frozenset({"kind", "members", "open"}),
+                frozenset({"kind", "members", "open"}),
+                "domain.enum",
+            )
+            members = tuple(
+                _text(m, "domain.members") for m in _rows(spec["members"], "domain.members", MAX_CELLS, True)
+            )
+            _unique(list(members), "domain.members")
+            if type(spec["open"]) is not bool:
+                raise _refuse("domain.open", "boolean_required")
+            is_open = spec["open"]
+        elif kind == "integer":
+            names = frozenset({"kind", "unit", "minimum", "maximum"})
+            spec = _object(domain, names, names, "domain.integer")
+            unit = _text(spec["unit"], "domain.unit")
+            if type(spec["minimum"]) is not int or type(spec["maximum"]) is not int:
+                raise _refuse("domain.integer", "integer_limits_required")
+            if spec["maximum"] < spec["minimum"]:
+                raise _refuse("domain.integer", "reversed_limits")
+            if spec["maximum"] - spec["minimum"] + 1 > MAX_CELLS:
+                raise ValueError("resource_bound:evidence_requests:cells:" + identity)
+            low = _number(spec["minimum"], "domain.minimum")
+            high = _number(spec["maximum"], "domain.maximum")
+        else:
+            names = frozenset({"kind", "unit", "minimum", "maximum", "cut_points"})
+            spec = _object(domain, names, names, "domain.continuous")
+            unit = _text(spec["unit"], "domain.unit")
+            low = None if spec["minimum"] is None else _number(spec["minimum"], "domain.minimum")
+            high = None if spec["maximum"] is None else _number(spec["maximum"], "domain.maximum")
+            if low is not None and high is not None and high < low:
+                raise _refuse("domain.continuous", "reversed_limits")
+            cuts = tuple(
+                sorted(
+                    {
+                        _number(c, "domain.cut_points")
+                        for c in _rows(spec["cut_points"], "domain.cut_points", MAX_CELLS)
+                    }
+                )
+            )
+        key = _family(kind, _head(subject, predicate, time), unit)
+        result.append(
+            Variable(identity, key, subject, predicate, time, kind, unit, members, is_open, low, high, cuts)
+        )
+    _unique([v.id for v in result], "variables")
+    if len({v.key for v in result}) != len(result):
+        raise _refuse("variables", "duplicate_key")
+    return tuple(result)
+
+
+def _walk(item: object) -> list[object]:
+    """Every literal and opaque part of a scoped assertion's body, applicability and qualifiers."""
+    found: list[object] = []
+    stack = [item]
+    while stack:
+        node = stack.pop()
+        if isinstance(node, a.ScopedAssertion):
+            stack.extend((node.body, node.applicability))
+        elif isinstance(node, a.Literal):
+            found.append(node)
+            stack.append(node.qualifiers)
+        elif isinstance(node, a.Opaque):
+            found.append(node)
+        elif isinstance(node, (a.AllOf, a.AnyOf)):
+            stack.extend(node.parts)
+        elif isinstance(node, a.Not):
+            stack.append(node.part)
+    return found
+
+
+def _inventory(survivors: dict[str, tuple[a.ScopedAssertion, ...]]) -> tuple[dict[tuple, dict], list[str]]:
+    """Represented literal families with their thresholds/members, and descriptions of opaque content."""
+    families: dict[tuple, dict] = {}
+    opaque: list[str] = []
+    for identity in survivors:
+        for assertion in survivors[identity]:
+            for node in _walk(assertion):
+                if isinstance(node, a.Opaque):
+                    opaque.append(f"opaque:{identity}:{node.ref}")
+                    continue
+                assert isinstance(node, a.Literal)
+                literal = node
+                head = _head(literal.subject, literal.predicate, literal.time)
+                value = literal.value
+                key = _family(value.kind, head, value.unit)
+                entry = families.setdefault(
+                    key,
+                    {
+                        "predicate": literal.predicate.key or literal.predicate.kind,
+                        "points": set(),
+                        "members": set(),
+                    },
+                )
+                if value.kind in ("quantity", "interval"):
+                    entry["points"].update(n for n in (value.number, value.upper) if n is not None)
+                if value.kind == "enum":
+                    entry["members"].update(value.members)
+    return families, sorted(set(opaque))
+
+
+def _literal(variable: Variable, value: a.Value, polarity: str = "positive") -> a.Literal:
+    return a.Literal(variable.subject, variable.predicate, value, polarity, variable.time)
+
+
+def _number_label(number: float) -> str:
+    return str(int(number)) if number == int(number) else repr(number)
+
+
+def _cells(variable: Variable, represented: dict) -> tuple[Cell, ...]:
+    built: list[tuple[str, a.Literal]] = []
+    if variable.kind == "boolean":
+        value = a.Value("boolean", "eq")
+        built = [
+            ("holds", _literal(variable, value)),
+            ("does not hold", _literal(variable, value, "negative")),
+        ]
+    elif variable.kind == "enum":
+        members = sorted(set(variable.members) | set(represented.get("members", ())))
+        built = [(f"= {m}", _literal(variable, a.Value("enum", "eq", (m,)))) for m in members]
+        if variable.open:
+            built.append(
+                (
+                    "none of: " + ", ".join(members),
+                    _literal(variable, a.Value("enum", "not_in", tuple(members))),
+                )
+            )
+    elif variable.kind == "integer":
+        assert variable.minimum is not None and variable.maximum is not None
+        for number in range(int(variable.minimum), int(variable.maximum) + 1):
+            value = a.Value("quantity", "eq", number=_number(number, "domain.integer"), unit=variable.unit)
+            built.append((f"= {number} {variable.unit}".strip(), _literal(variable, value)))
+    else:
+        low, high = variable.minimum, variable.maximum
+        points = set(variable.cut_points) | set(represented.get("points", ()))
+        points |= {limit for limit in (low, high) if limit is not None}
+        ordered = sorted(p for p in points if (low is None or p >= low) and (high is None or p <= high))
+        unit = variable.unit
+        if ordered and low is None:
+            built.append(
+                (
+                    f"< {_number_label(ordered[0])} {unit}".strip(),
+                    _literal(variable, a.Value("quantity", "lt", number=ordered[0], unit=unit)),
+                )
+            )
+        for index, point in enumerate(ordered):
+            built.append(
+                (
+                    f"= {_number_label(point)} {unit}".strip(),
+                    _literal(variable, a.Value("quantity", "eq", number=point, unit=unit)),
+                )
+            )
+            if index + 1 < len(ordered):
+                upper = ordered[index + 1]
+                value = a.Value(
+                    "interval", "in", number=point, upper=upper, unit=unit, inclusivity="exclusive"
+                )
+                built.append(
+                    (
+                        f"between {_number_label(point)} and {_number_label(upper)} {unit}".strip()
+                        + " (exclusive)",
+                        _literal(variable, value),
+                    )
+                )
+        if ordered and high is None:
+            built.append(
+                (
+                    f"> {_number_label(ordered[-1])} {unit}".strip(),
+                    _literal(variable, a.Value("quantity", "gt", number=ordered[-1], unit=unit)),
+                )
+            )
+    if len(built) > MAX_CELLS:
+        raise ValueError("resource_bound:evidence_requests:cells:" + variable.id)
+    return tuple(Cell(variable.id, label, literal, a.canonical(literal)) for label, literal in built)
+
+
+def _profile(cells: tuple[Cell, ...]) -> object:
+    literals = tuple(cell.literal for cell in cells)
+    return literals[0] if len(literals) == 1 else a.AllOf(literals)
+
+
+# ---------------------------------------------------------------------------------------------------------
+# Search and assembly
+# ---------------------------------------------------------------------------------------------------------
+
+
+@dataclasses.dataclass
+class _PairState:
+    found: int = 0
+    request_ids: list[str] = dataclasses.field(default_factory=list)
+    causes: set[str] = dataclasses.field(default_factory=set)
+    undecided: bool = False
+    minimal: dict[tuple[str, str], list[frozenset[str]]] = dataclasses.field(default_factory=dict)
+
+
+def _plain(value: object) -> Any:
+    return json.loads(json.dumps(value, allow_nan=False))
+
+
+DECIDED = ("ruled_out", "not_ruled_out")
+
+
+def _separations(
+    pairs: list[tuple[str, str]],
+    states: dict[tuple[str, str], _PairState],
+    verdicts: dict[str, str],
+    decided: dict[str, entail.Decision],
+    sign: str,
+    literals: frozenset[str],
+) -> list[tuple[str, str]]:
+    """Record which pairs this witness minimally separates, and which it leaves undecided."""
+    separated = []
+    for pair in pairs:
+        relation = pair_relation(verdicts[pair[0]], verdicts[pair[1]])
+        state = states[pair]
+        if relation == "undecided":
+            state.undecided = True
+            for identity in pair:
+                if verdicts[identity] not in DECIDED:
+                    decision = decided[identity]
+                    state.causes.add("witness_unresolved:" + identity)
+                    state.causes.update(decision.blockers or (decision.result,))
+            continue
+        if relation not in SEPARATING:
+            continue
+        eliminated = pair[0] if relation == "separates_first" else pair[1]
+        prior = state.minimal.setdefault((sign, eliminated), [])
+        if dominated(literals, tuple(prior)):
+            continue
+        prior.append(literals)
+        state.found += 1
+        separated.append(pair)
+    return separated
+
+
+def _request_row(
+    request_id: str,
+    sign: Sign,
+    profile: object,
+    specified: list[str],
+    cells: tuple[Cell, ...],
+    separated: list[tuple[str, str]],
+    consistent: list[str],
+    decided: dict[str, entail.Decision],
+    verdicts: dict[str, str],
+    scope: dict[str, Any],
+) -> dict[str, Any]:
+    """One hypothetical request. It carries no count, bridge, basis or status: it cannot pass as evidence."""
+    eliminates = [identity for identity in consistent if verdicts[identity] == "ruled_out"]
+    statuses = tuple(decided[identity].status or "known" for identity in eliminates)
+    return {
+        "id": request_id,
+        "kind": "hypothetical_evidence_request",
+        "observed": False,
+        "sign": sign,
+        "profile": json.loads(a.canonical(profile)),
+        "profile_size": len(cells),
+        "specified": specified,
+        "cells": {cell.variable: cell.label for cell in cells},
+        "eliminates": eliminates,
+        "accommodates": [identity for identity in consistent if verdicts[identity] == "not_ruled_out"],
+        "undecided": [identity for identity in consistent if verdicts[identity] not in DECIDED],
+        "separates": [list(pair) for pair in separated],
+        "checks": [
+            {
+                "candidate": identity,
+                "verdict": verdicts[identity],
+                "decision": _plain(dataclasses.asdict(decided[identity])),
+            }
+            for identity in consistent
+        ],
+        "required_premises": list(required_premises(sign, tuple(eliminates))),
+        "seek": seek(sign),
+        "conditional_status": entail.weakest_status(statuses),
+        "scope": scope,
+    }
+
+
+@dataclasses.dataclass(frozen=True)
+class _Plan:
+    """A validated request; nothing in it has been interpreted beyond its declared types."""
+
+    row: dict[str, Any]
+    study: str
+    survivors: dict[str, tuple[a.ScopedAssertion, ...]]
+    basis: tuple[str, ...]
+    variables: tuple[Variable, ...]
+    context: entail.Context
+    signs: tuple[Sign, ...]
+    bound: int
+    limits: dict[str, int]
+
+
+def _plan(request: object) -> _Plan:
+    row = _object(source_evidence._json_copy(request, "evidence_requests"), FIELDS, REQUIRED, "request")
+    if row["operation"] != "evidence_requests":
+        raise _refuse("request", "wrong_operation")
+    study = _text(row["study_ref"], "study_ref")
+    candidates = _candidates(row["candidates"])
+    declared = _survivors(row["survivors"], candidates)
+    basis = tuple(
+        _text(item, "survival_basis")
+        for item in _rows(row["survival_basis"], "survival_basis", MAX_CANDIDATES, True)
+    )
+    return _Plan(
+        row,
+        study,
+        {identity: candidates[identity] for identity in declared},
+        basis,
+        _variables(row["variables"]),
+        _context(row.get("context", {})),
+        _signs(row.get("signs", list(SIGNS))),
+        _bound(row.get("bound", DEFAULT_BOUND)),
+        _limits(row.get("limits", {})),
+    )
+
+
+@dataclasses.dataclass(frozen=True)
+class _Representation:
+    usable: tuple[tuple[Variable, tuple[Cell, ...]], ...]
+    unrepresented: tuple[str, ...]
+    unsearched: tuple[str, ...]
+
+    def report(self) -> dict[str, Any]:
+        return {
+            "unrepresented_variables": list(self.unrepresented),
+            "unsearched_constraints": list(self.unsearched),
+            "coverage": [
+                "empty_profile_not_representable",
+                *(f"variable_unrepresented:{identity}" for identity in self.unrepresented),
+            ],
+        }
+
+
+def _representation(plan: _Plan) -> _Representation:
+    """Declared variables that match survivor literals, their cells, and what the search cannot see."""
+    families, opaque = _inventory(plan.survivors)
+    usable = []
+    unrepresented = []
+    for variable in plan.variables:
+        cells = _cells(variable, families[variable.key]) if variable.key in families else ()
+        if cells:
+            usable.append((variable, cells))
+        else:
+            unrepresented.append(variable.id)
+    covered = {variable.key for variable, _ in usable}
+    unsearched = {
+        f"{key[0]}:{families[key]['predicate']}" + (f":{key[-1]}" if key[0] == "measure" and key[-1] else "")
+        for key in families
+        if key not in covered
+    }
+    return _Representation(tuple(usable), tuple(unrepresented), tuple(sorted(unsearched | set(opaque))))
+
+
+def _inconsistent(
+    plan: _Plan, representation: _Representation
+) -> tuple[list[str], int, set[str], list[dict]]:
+    """Survivors whose own criteria contradict each other: input conflicts, excluded from separation."""
+    if not representation.usable:
+        return [], 0, set(), []
+    probe = representation.usable[0][1][0].literal
+    found, spent, checks = [], 0, []
+    for identity, assertions in plan.survivors.items():
+        if spent >= plan.limits["max_decisions"]:
+            return found, spent, {"resource_bound:decisions"}, checks
+        spent += 1
+        decision = entail.decide(assertions, probe, plan.context, plan.bound)
+        checks.append({"candidate": identity, "decision": _plain(dataclasses.asdict(decision))})
+        if decision.result == entail.INCONSISTENT:
+            found.append(identity)
+    return found, spent, set(), checks
+
+
+def _profiles(usable: tuple[tuple[Variable, tuple[Cell, ...]], ...], largest: int):
+    """Partial profiles by size, then declared variable order, then cell order."""
+    for size in range(1, largest + 1):
+        for chosen in itertools.combinations(usable, size):
+            for cells in itertools.product(*(group for _, group in chosen)):
+                yield [variable.id for variable, _ in chosen], cells
+
+
+@dataclasses.dataclass
+class _Search:
+    rows: list[dict[str, Any]]
+    states: dict[tuple[str, str], _PairState]
+    profiles: int
+    decisions: int
+    causes: set[str]
+
+
+def _search(
+    plan: _Plan, representation: _Representation, consistent: list[str], decisions: int, causes: set[str]
+) -> _Search:
+    """Evaluate each (profile, sign, survivor) once with the existing witness engine; derive pairs after."""
+    pairs = list(itertools.combinations(consistent, 2))
+    found = _Search([], {pair: _PairState() for pair in pairs}, 0, decisions, set(causes))
+    largest = min(plan.limits["max_profile_size"], len(representation.usable))
+    if largest < len(representation.usable):
+        found.causes.add("profile_size_limit")
+    scope = {"study_ref": plan.study, "context": dataclasses.asdict(plan.context), "bound": plan.bound}
+    for specified, cells in _profiles(representation.usable, largest):
+        if found.profiles >= plan.limits["max_profiles"]:
+            found.causes.add("resource_bound:profiles")
+            break
+        if found.decisions + len(consistent) * len(plan.signs) > plan.limits["max_decisions"]:
+            found.causes.add("resource_bound:decisions")
+            break
+        found.profiles += 1
+        profile = _profile(cells)
+        literals = frozenset(cell.canonical for cell in cells)
+        for sign in plan.signs:
+            decided = {
+                identity: entail.eligibility_witness(
+                    plan.survivors[identity], profile, plan.context, sign, plan.bound
+                )
+                for identity in consistent
+            }
+            found.decisions += len(consistent)
+            if any("profile_inconsistent" in decision.blockers for decision in decided.values()):
+                continue
+            verdicts = {
+                identity: witness_verdict("witness", decision.result, list(decision.blockers), sign)
+                for identity, decision in decided.items()
+            }
+            separated = _separations(pairs, found.states, verdicts, decided, sign, literals)
+            if not separated:
+                continue
+            request_id = f"request-{len(found.rows) + 1}"
+            found.rows.append(
+                _request_row(
+                    request_id,
+                    sign,
+                    profile,
+                    specified,
+                    cells,
+                    separated,
+                    consistent,
+                    decided,
+                    verdicts,
+                    scope,
+                )
+            )
+            for pair in separated:
+                found.states[pair].request_ids.append(request_id)
+    return found
+
+
+def _select(search: _Search, limits: dict[str, int]) -> tuple[list[dict[str, Any]], set[str]]:
+    """Keep per-pair, total and byte output limits; truncation never alters what the search found."""
+    wanted: set[str] = set()
+    trimmed = False
+    for state in search.states.values():
+        kept = state.request_ids[: limits["max_requests_per_pair"]]
+        trimmed = trimmed or len(kept) < len(state.request_ids)
+        wanted.update(kept)
+    causes = {"output_limit:per_pair"} if trimmed and len(wanted) < len(search.rows) else set()
+    returned: list[dict[str, Any]] = []
+    spent = 0
+    for row in search.rows:
+        if row["id"] not in wanted:
+            continue
+        if len(returned) >= limits["max_requests"]:
+            causes.add("output_limit:requests")
+            break
+        size = len(json.dumps(row, allow_nan=False))
+        if spent + size > limits["max_bytes"]:
+            causes.add("output_limit:bytes")
+            break
+        spent += size
+        returned.append(row)
+    return returned, causes
+
+
+def _pair_rows(
+    search: _Search, returned: list[dict[str, Any]], representation_complete: bool, global_causes: list[str]
+) -> list[dict[str, Any]]:
+    returned_ids = {row["id"] for row in returned}
+    complete = not search.causes
+    rows = []
+    for pair, state in search.states.items():
+        outcome = pair_outcome(state.found, complete, state.undecided, representation_complete)
+        causes = set(state.causes) | (set(global_causes) if outcome != "separated" else set())
+        rows.append(
+            {
+                "candidates": list(pair),
+                "outcome": outcome,
+                "requests": [identity for identity in state.request_ids if identity in returned_ids],
+                "found": state.found,
+                "causes": sorted(causes),
+            }
+        )
+    return rows
+
+
+def evaluate(request: object) -> dict[str, Any]:
+    """Validate the closed request and list hypothetical evidence requests over the declared survivors."""
+    plan = _plan(request)
+    representation = _representation(plan)
+    inconsistent, decisions, causes, input_checks = _inconsistent(plan, representation)
+    consistent = [identity for identity in plan.survivors if identity not in inconsistent]
+    family = family_state(len(consistent))
+    global_causes = sorted(causes)
+    if representation.unsearched:
+        global_causes.append("unsearched_constraints")
+    if set(plan.signs) != set(SIGNS):
+        global_causes.append("signs_restricted")
+    global_causes.extend(f"variable_unrepresented:{identity}" for identity in representation.unrepresented)
+    if family == "searched" and not representation.usable:
+        global_causes.insert(0, "no_represented_variable")
+        causes.add("no_represented_variable")
+    search = _Search([], {}, 0, decisions, causes)
+    if family == "searched" and representation.usable:
+        search = _search(plan, representation, consistent, decisions, causes)
+    elif family == "searched":
+        search.states = {pair: _PairState() for pair in itertools.combinations(consistent, 2)}
+    returned, output_causes = _select(search, plan.limits)
+    representation_complete = not representation.unsearched and not representation.unrepresented
+    representation_complete = representation_complete and set(plan.signs) == set(SIGNS)
+    response = {
+        "basis": (
+            "Hypothetical witnesses checked by the existing participant-witness engine; conditional on "
+            "declared survivors, variables and the premises each request names."
+        ),
+        "study_ref": plan.study,
+        "premises": _plain(plan.row),
+        "survival_basis": list(plan.basis),
+        "family": family,
+        "survivors": consistent,
+        "inconsistent": inconsistent,
+        "input_conflicts": ["survivor_inconsistent:" + identity for identity in inconsistent],
+        "input_checks": input_checks,
+        "representation": representation.report(),
+        "search": {
+            "state": "complete" if not search.causes else "incomplete",
+            "profiles_examined": search.profiles,
+            "decisions": search.decisions,
+            "causes": sorted(search.causes),
+        },
+        "output": {
+            "state": output_state(len(search.rows), len(returned)),
+            "found": len(search.rows),
+            "returned": len(returned),
+            "omitted": len(search.rows) - len(returned),
+            "causes": sorted(output_causes),
+        },
+        "pairs": _pair_rows(search, returned, representation_complete, global_causes),
+        "requests": returned,
+        "limits": LIMIT_TEXT,
+    }
+    encoded = json.dumps(response, ensure_ascii=False, separators=(",", ":"), allow_nan=False).encode()
+    if len(encoded) > plan.limits["max_response_bytes"]:
+        raise ValueError("resource_bound:evidence_requests:response_bytes")
+    return response

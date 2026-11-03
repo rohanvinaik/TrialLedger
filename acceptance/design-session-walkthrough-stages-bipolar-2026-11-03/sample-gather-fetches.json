@@ -1,0 +1,43 @@
+[
+ {
+  "file": "version-start.json",
+  "url": "https://clinicaltrials.gov/api/v2/version",
+  "save_as": "bodies/version-start.json",
+  "why": "version_start",
+  "params": {}
+ },
+ {
+  "file": "ids-001.json",
+  "url": "https://clinicaltrials.gov/api/v2/studies?filter.ids=NCT00090311%2CNCT00227305%2CNCT00119652&format=json&markupFormat=markdown&countTotal=true&pageSize=1000&fields=NCTId",
+  "save_as": "bodies/ids-001.json",
+  "why": "id_page",
+  "params": {
+   "filter.ids": "NCT00090311,NCT00227305,NCT00119652",
+   "format": "json",
+   "markupFormat": "markdown",
+   "countTotal": "true",
+   "pageSize": "1000",
+   "fields": "NCTId"
+  }
+ },
+ {
+  "file": "studies-001.json",
+  "url": "https://clinicaltrials.gov/api/v2/studies?filter.ids=NCT00119652%2CNCT00090311%2CNCT00227305&format=json&markupFormat=markdown&countTotal=true&pageSize=100",
+  "save_as": "bodies/studies-001.json",
+  "why": "studies_batch",
+  "params": {
+   "filter.ids": "NCT00119652,NCT00090311,NCT00227305",
+   "format": "json",
+   "markupFormat": "markdown",
+   "countTotal": "true",
+   "pageSize": "100"
+  }
+ },
+ {
+  "file": "version-end.json",
+  "url": "https://clinicaltrials.gov/api/v2/version",
+  "save_as": "bodies/version-end.json",
+  "why": "version_end",
+  "params": {}
+ }
+]

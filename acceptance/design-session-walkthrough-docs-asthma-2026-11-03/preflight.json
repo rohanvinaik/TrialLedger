@@ -1,0 +1,28 @@
+{
+  "question": "For a proposed Phase3 asthma study, how do sampled records distinguish background controller therapy, rescue or as-needed treatment, and the population eligible for each regimen; how should a working brief change when one of those roles is revised?",
+  "declared_at_utc": "2026-11-03T23:41:59.645773+00:00",
+  "query": {
+    "drug": [
+      "budesonide"
+    ],
+    "condition": [
+      "Asthma"
+    ],
+    "phase": [
+      "PHASE3"
+    ],
+    "status": [
+      "COMPLETED"
+    ]
+  },
+  "max_complete_pool": 30,
+  "seed": 692001714306634475,
+  "selection_rule": "random.Random(seed).sample(sorted(complete_pool),min(3,len(complete_pool))) before selected content reading, no replacement",
+  "retention": {
+    "packet": "ClinicalREADME/decisionlist, fullminimalrequest/canonicalresultpairs, completequery/pool/seed/source/runtime/version/time/hashreceipts; under2MB by reducing redundantcases not shortening source/results",
+    "local_preview_report": "/Users/rohanvinaik/trialledger-runs/docs-asthma-20261103",
+    "local_bulk": "Complete raw/report/workbook/helpers/duplicatewires outsideGit; complete snapshots inside required source requests"
+  },
+  "documentation_gate": "Root DOCSREADY received before this new question/acquisition; no code or doc mutation by walkthrough",
+  "epistemic_boundary": "Controller/rescue/prior-treatment roles and cohort correspondences stay source-bound readings until confirmed. No treatment recommendation, source correction or complete clinical protocol inferred."
+}

@@ -1,0 +1,14 @@
+{
+  "TrialLedger/layer2/decision_tables.py::table_check_state": {
+    "cut_reasons": [],
+    "function_digest": "9fdaa1e7152fb9aa",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/decision_tables.py::table_state": {
+    "cut_reasons": [],
+    "function_digest": "850772ce5196f933",
+    "refusal": "",
+    "standing": "complete"
+  }
+}

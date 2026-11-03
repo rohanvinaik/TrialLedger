@@ -1,0 +1,357 @@
+{
+  "identity": {
+    "executable": "/tmp/trialledger-final-runtime-wheel-20261103-v2/runtime/bin/python",
+    "cwd": "/private/tmp/trialledger-final-runtime-wheel-20261103-v2",
+    "module": "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/runtime/lib/python3.14/site-packages/TrialLedger/__init__.py",
+    "distributions": [
+      [
+        "TrialLedger",
+        "0.1.0"
+      ],
+      [
+        "anyio",
+        "4.16.0"
+      ],
+      [
+        "certifi",
+        "2026.10.23"
+      ],
+      [
+        "et_xmlfile",
+        "2.0.0"
+      ],
+      [
+        "h11",
+        "0.16.0"
+      ],
+      [
+        "httpcore",
+        "1.0.9"
+      ],
+      [
+        "httpx",
+        "0.28.1"
+      ],
+      [
+        "idna",
+        "3.20"
+      ],
+      [
+        "openpyxl",
+        "3.1.5"
+      ],
+      [
+        "typing_extensions",
+        "4.16.0"
+      ]
+    ],
+    "frozen_runtime_files_verified": 82
+  },
+  "cases": [
+    {
+      "case": "discovery-overview",
+      "operation": "describe",
+      "code": "complete",
+      "transports": [
+        "executable CLI",
+        "stdio MCP"
+      ],
+      "result_sha256": "811b46c31718e2d86fedff3186cc3ed8e85fc4744c807cd2c0d7f7bb79e3c856"
+    },
+    {
+      "case": "discovery-entailment",
+      "operation": "describe",
+      "code": "complete",
+      "transports": [
+        "executable CLI",
+        "stdio MCP"
+      ],
+      "result_sha256": "ec9f72a09433cd5578d14792be24327f56d49818fc725245667718c9d710ae74"
+    },
+    {
+      "case": "example-entailment",
+      "operation": "entailment",
+      "code": "complete",
+      "transports": [
+        "executable CLI",
+        "stdio MCP"
+      ],
+      "result_sha256": "ef5de85a85234b40efa0501e2daafc243d54f13a6625894e967bfa3922b3b21d"
+    },
+    {
+      "case": "discovery-coordinates",
+      "operation": "describe",
+      "code": "complete",
+      "transports": [
+        "executable CLI",
+        "stdio MCP"
+      ],
+      "result_sha256": "d108620e0fc23fb0984b7f075f191458df9491c96f18c02c30ec0c756c4e6c48"
+    },
+    {
+      "case": "example-coordinates",
+      "operation": "coordinates",
+      "code": "complete",
+      "transports": [
+        "executable CLI",
+        "stdio MCP"
+      ],
+      "result_sha256": "23747cbef22a6aa76089b7c753193661ad41a264fef632e63bedcbe95ff84223"
+    },
+    {
+      "case": "discovery-corpus",
+      "operation": "describe",
+      "code": "complete",
+      "transports": [
+        "executable CLI",
+        "stdio MCP"
+      ],
+      "result_sha256": "cce68d492f82cb469a1bb95319d1ef24cbf0fbb8a49bbbb161bd5c069d603dcd"
+    },
+    {
+      "case": "example-corpus",
+      "operation": "corpus",
+      "code": "complete",
+      "transports": [
+        "executable CLI",
+        "stdio MCP"
+      ],
+      "result_sha256": "be686cb67eb7bb4ab87c98e2f4d60bfa34b041553f888a1f22918348a2ada404"
+    },
+    {
+      "case": "discovery-design_bounds",
+      "operation": "describe",
+      "code": "complete",
+      "transports": [
+        "executable CLI",
+        "stdio MCP"
+      ],
+      "result_sha256": "aeb4ccc3c92b29ac72b1615a634d1255b252045f7ef6881c814e03e97f88610c"
+    },
+    {
+      "case": "example-design_bounds",
+      "operation": "design_bounds",
+      "code": "complete",
+      "transports": [
+        "executable CLI",
+        "stdio MCP"
+      ],
+      "result_sha256": "f37fb91aae557ec4b9fb0430c7f3e195f0379e310cdd7f8c72492de28b46c7e3"
+    },
+    {
+      "case": "discovery-evidence_requests",
+      "operation": "describe",
+      "code": "complete",
+      "transports": [
+        "executable CLI",
+        "stdio MCP"
+      ],
+      "result_sha256": "ed912f3958f910fbccd1e1c9c93511cbead8dd2f6a387b61847ca824d91ed68c"
+    },
+    {
+      "case": "example-evidence_requests",
+      "operation": "evidence_requests",
+      "code": "complete",
+      "transports": [
+        "executable CLI",
+        "stdio MCP"
+      ],
+      "result_sha256": "d508f1c4d70cf729adeab1e20da8d30fe6f12caadc228de47bfe91de704c4a62"
+    },
+    {
+      "case": "discovery-signals",
+      "operation": "describe",
+      "code": "complete",
+      "transports": [
+        "executable CLI",
+        "stdio MCP"
+      ],
+      "result_sha256": "a4b15b13623fd13aa50c773c84b1e4f64b3510863cb05b09991a538155c5e0ff"
+    },
+    {
+      "case": "example-signals",
+      "operation": "signals",
+      "code": "complete",
+      "transports": [
+        "executable CLI",
+        "stdio MCP"
+      ],
+      "result_sha256": "aedc72ce7257ce6c00d61a89c5814677aa86c6afc1b53e5b7bb346bf7f469146"
+    },
+    {
+      "case": "discovery-interpretations",
+      "operation": "describe",
+      "code": "complete",
+      "transports": [
+        "executable CLI",
+        "stdio MCP"
+      ],
+      "result_sha256": "6059b1e3b501a938513500e786b476c62dea552f2109937095a92a12d34844f7"
+    },
+    {
+      "case": "example-interpretations",
+      "operation": "interpretations",
+      "code": "complete",
+      "transports": [
+        "executable CLI",
+        "stdio MCP"
+      ],
+      "result_sha256": "920cbee465af9f28b236e8e5f62a85dcf93dcd9c5f315486d0768d58b28143bd"
+    },
+    {
+      "case": "discovery-source_assertions",
+      "operation": "describe",
+      "code": "complete",
+      "transports": [
+        "executable CLI",
+        "stdio MCP"
+      ],
+      "result_sha256": "2f328a25ec8f89679d3f5b5079d9563a949fee5125269508a8cf01ea1d70ca71"
+    },
+    {
+      "case": "example-source_assertions",
+      "operation": "source_assertions",
+      "code": "complete",
+      "transports": [
+        "executable CLI",
+        "stdio MCP"
+      ],
+      "result_sha256": "5d2cdf05b48216246716a8dbd1d5b4199a2eaba26e32e544aeb2cb0809350c98"
+    },
+    {
+      "case": "discovery-design_session",
+      "operation": "describe",
+      "code": "complete",
+      "transports": [
+        "executable CLI",
+        "stdio MCP"
+      ],
+      "result_sha256": "3de433546b43b9a0da472a493942f68b579c78d8b5a8c06a8a19fdbdc04d7151"
+    },
+    {
+      "case": "example-design_session",
+      "operation": "design_session",
+      "code": "complete",
+      "transports": [
+        "executable CLI",
+        "stdio MCP"
+      ],
+      "result_sha256": "85c60a8e89e95ba8e586fa20ecbb0c9e8c029e24f050b6bf66261618dff35a88"
+    },
+    {
+      "case": "discovery-full",
+      "operation": "describe",
+      "code": "complete",
+      "transports": [
+        "executable CLI",
+        "stdio MCP"
+      ],
+      "result_sha256": "4a5d9b6ca5c332b708e5749fd7d1d5b42abd7f2421d0f9bb05237f002d3ff5be"
+    },
+    {
+      "case": "session-baseline",
+      "operation": "design_session",
+      "code": "complete",
+      "transports": [
+        "executable CLI",
+        "stdio MCP"
+      ],
+      "result_sha256": "85c60a8e89e95ba8e586fa20ecbb0c9e8c029e24f050b6bf66261618dff35a88"
+    },
+    {
+      "case": "session-revision",
+      "operation": "design_session",
+      "code": "complete",
+      "transports": [
+        "executable CLI",
+        "stdio MCP"
+      ],
+      "result_sha256": "2b2d07078bbd4b029af34973536b06d8d625eb427069e4eca4c775d80e12e64f"
+    },
+    {
+      "case": "session-nested-evidence",
+      "operation": "design_session",
+      "code": "complete",
+      "transports": [
+        "executable CLI",
+        "stdio MCP"
+      ],
+      "result_sha256": "f2dbac9d8aad685492a6d5ba560a9aef87e14905fff7be9efbd3c324de536a28"
+    },
+    {
+      "case": "evidence-row-limit",
+      "operation": "evidence_requests",
+      "code": "complete",
+      "transports": [
+        "executable CLI",
+        "stdio MCP"
+      ],
+      "result_sha256": "4dc7927f729b188084ddc33189d49c252467d4f9d558a5a8f25222f04853913d"
+    },
+    {
+      "case": "evidence-response-limit",
+      "operation": "evidence_requests",
+      "code": "refused",
+      "transports": [
+        "executable CLI",
+        "stdio MCP"
+      ],
+      "result_sha256": "7a00990e8c200418fa2c12c74478354153093d8ef5e10631da6b3ea90f033dfb"
+    },
+    {
+      "case": "evidence-inexact-number",
+      "operation": "evidence_requests",
+      "code": "refused",
+      "transports": [
+        "executable CLI",
+        "stdio MCP"
+      ],
+      "result_sha256": "8e6b8f8ad0844168cbda067bd617125f90c556186a023d1d19e31e25de54f6b6"
+    }
+  ],
+  "commands": 52,
+  "scope": "Transport/replay, packaged runtime, declared local support and explicit example semantics; not independent verification of premise truth, estimator validity or complete clinical eligibility",
+  "wheel_identity": {
+    "wheel": "/tmp/trialledger-final-runtime-wheel-20261103-v2/dist/trialledger-0.1.0-py3-none-any.whl",
+    "sha256": "8141be11e76a72980414d8a3521ec83b2fec90ee59e8315f5c67dbf5fc305617",
+    "bytes": 521744,
+    "all_frozen_runtime_files_match": 82,
+    "build_stamp": "7debeaf793d69fa1a51ae5725591e2230abcbbe4 with uncommitted changes\n"
+  },
+  "current_root_runtime_match": true,
+  "doctor": {
+    "python": {
+      "version": "3.14.7",
+      "supported": true
+    },
+    "dependencies": {
+      "httpx": "0.28.1",
+      "openpyxl": "3.1.5"
+    },
+    "reachable": {
+      "clinicaltrials.gov": "reachable",
+      "rxnav.nlm.nih.gov": "reachable",
+      "github.com": "reachable"
+    },
+    "connection_advice": {
+      "clinicaltrials.gov": "Connection check succeeded; gathering will validate the source response.",
+      "rxnav.nlm.nih.gov": "Connection check succeeded; gathering will validate the source response.",
+      "github.com": "Connection check succeeded; gathering will validate the source response."
+    },
+    "run_folder": {
+      "path": "trialledger_run",
+      "writable": true
+    },
+    "platform": {
+      "os": "posix",
+      "executable": "/tmp/trialledger-final-runtime-wheel-20261103-v2/runtime/bin/python"
+    },
+    "mode": "direct",
+    "next": "Run `trialledger landscape --run <folder>` with the person's request (--request FILE, or the request's flags: see `trialledger landscape --help`; trials by number: --ids NCT01234567,NCT07654321); TrialLedger fetches from the registry and RxNav itself and writes the record, landscape.json, into the folder. Answer from that record."
+  },
+  "historical_wheel": "v1 before overview fix is historical, not the final verification",
+  "metadata_proof_export": "/tmp/trialledger-metadata-session-evidence-context-20261103-v1/final-export",
+  "no_shared_edits": "Build/test verification only; no source/doc/config staging or commits",
+  "overview_cli_utf8_bytes": 6814,
+  "overview_pretty_indent2_utf8_bytes": 7360
+}

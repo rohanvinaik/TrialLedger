@@ -1,0 +1,55 @@
+{
+ "api_version": "2.0.5",
+ "data_timestamp": "2026-11-03T10:00:05",
+ "study_digests": [
+  "5631f296dd0ed7e1b6eebda0430e5936d9e94ddbbaab231e9b5c8b81e02d5879",
+  "e3c206e11f36f3c8045363bd16ff2ad6d0d91814e3940d1898808c9c17fa3fd9",
+  "d73bfe549610a937617000d45eb812d23ce18799aa97909baa9cfca4244ff3dd",
+  "58b688d46a6afb2ba0f59e4c92f490b185ac315ce4599e92d0ceb9ff2ff5a18e",
+  "05ac64a61f3c8a6fdaf1fb2a808a4652d9f9f4624cf40b2429b39bcf54871b27",
+  "9670372e2d3a1fc5b49cc8a460cbb947ba0b0bcf1e3ddda47556491fa8ab4628",
+  "3d759063fb4e10d64e67b03bfb41a841c82eb79a0bee65f28eb3f9596bae7ec2",
+  "e603086d5c520d07d5c96df6766e9b93a761b61ee33f2cfac802c9cb0eae67e7",
+  "441bd894dbf07623af89124295a61173d93fa0039ae005f67033e4daf05ff7b6",
+  "cbadad8a2d35c59dc594a7edbd199d581a2f2142f1a6f461fc1f87755044bace",
+  "5bec78c13072552f828ebf3d9a0e7bbbc483262f9d93a94c788083f8c3da2b02",
+  "247067596e159e32586d7b5d1ff9799fe41b010cf493e61f4dadb7861e507e05",
+  "466bce773e8c0b8bfdd11e3293d1466dfa2473cc84e5e98b47b924e6e8469b5e",
+  "46a73dd8e5aad115eb55ab57aea71b0ae1d7844c04d0b2c22c4fdf247fada617",
+  "b0fe47bbb96c1ce6239ebbcef73b207c369458f3c251388702be658357cceb34",
+  "7678f921b24f951a9132a20e293d7f60e75b33e78f549b62fe77dfbeea97c6eb",
+  "075ba4ea1c56d605265139d0cee3e25f97c24ecd494f0ef1859a2377846ca396",
+  "04c3364617c55eab268095f1ee4536e72420673276b33269b2540bcc50536474",
+  "3fde4a904f44d63196ca1370746346647b0ecfbc44406f709eab3536e4828746",
+  "0a27ef645021c195121ab9e78157cde625a4a650e8cdd8fb50762380aadd7860",
+  "74f0119ccaf60d8afd9a4321af685c9fddd31ac9ce7483a7990d8f390ea88b9f",
+  "d1208bf9b1ae9ae9c698ac978e4b346d3bac1f727cb3e98602a6927176346ef9",
+  "3211bb5d260a1f1893fe2c2d6ee83f4207033e140f5e4cc377391d0da4ec9f53"
+ ],
+ "merkle_root": "d9dacf90917c69564968cd1b9f88f052de9b09a7dbcc1a8a5766f1d56e66316b",
+ "code_commit": "7debeaf793d69fa1a51ae5725591e2230abcbbe4",
+ "rule_versions": {
+  "landscape_schema": 4,
+  "contract": "4.1",
+  "trialledger": "0.1.0",
+  "derivation_code_root": "bdbe6253f6db6c7a9798911734f519edf556af1ce1afa51c89d04e8895caa0ef",
+  "display": "display-1",
+  "eligibility_sections": "registry-headings-source-passages/1",
+  "registry_checks": 3
+ },
+ "retrieval": {
+  "mode": "direct",
+  "matched": 23,
+  "read": 23,
+  "drug_classes": {
+   "state": "looked_up",
+   "source": "NLM RxClass asked for the EPC and MoA classes of every drug, biological and genetic intervention of the studies read, and RxNav for the RxNorm identity, ATC classes and structure of each experimental arm's drug, biological or genetic intervention only; cached in the run folder's classes.json"
+  }
+ },
+ "input_digests": {
+  "request.json": "fff381561d2c28d512b80c9c083e2cfc8035cead7b076dde513a8bbdb3bd80e9",
+  "resolution.json": "ddd65aa47874cc449dba1926cb3855597d27b72ef6f0897e7b43869e4c710950",
+  "scope.json": "a31c2baa1b0c7c76cce355165d30bbe3d83bc486c6a3dfccf29a301de8c9bdf5",
+  "classes.json": "2d146b8a3c22e3f047caf8a6367edc0d8b136204d69e09ca68dd0c1230a36c6e"
+ }
+}

@@ -1,0 +1,25 @@
+{
+  "at_utc": "2026-11-03T23:50:49.292976+00:00",
+  "request_provenance": "Reconstructed original preparatory condition from the successful baseline request by restoring only redundant expected_digest; independently replayed now, not a claim to preserve overwritten original wire bytes",
+  "cli_command": [
+    "uv",
+    "run",
+    "trialledger",
+    "reason",
+    "--request",
+    "/tmp/trialledger-docs-asthma-workflow-20261103/input-contract-finding/request.json"
+  ],
+  "cli_exit": 2,
+  "mcp_command": [
+    "uv",
+    "run",
+    "trialledger",
+    "mcp",
+    "--root",
+    "/Users/rohanvinaik/trialledger-runs/docs-asthma-sample-20261103"
+  ],
+  "mcp_exit": 0,
+  "complete_parsed_result_equal": true,
+  "outcome": "refused:source_study_collision",
+  "runtime_files_still_match_writing_receipt": true
+}

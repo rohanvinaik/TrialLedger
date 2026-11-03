@@ -1,0 +1,693 @@
+{
+  "code": "complete",
+  "operation": "source_assertions",
+  "result": {
+    "source": {
+      "nct": "NCT01494532",
+      "digest": "c2237381451eff89edcc80d666f6ce4765922ce42e20a31b41a696ed05a07e26",
+      "study_ref": "ctg:NCT01494532:c2237381451eff89edcc80d666f6ce4765922ce42e20a31b41a696ed05a07e26",
+      "version": "c2237381451eff89edcc80d666f6ce4765922ce42e20a31b41a696ed05a07e26",
+      "last_update": {
+        "date": "2018-06-20",
+        "type": "ACTUAL"
+      }
+    },
+    "anchors": [
+      {
+        "id": "eligibility",
+        "address": "/protocolSection/eligibilityModule/eligibilityCriteria",
+        "digest": "c2237381451eff89edcc80d666f6ce4765922ce42e20a31b41a696ed05a07e26",
+        "value": "Inclusion Criteria:\n\n* Diagnosis of idiopathic Parkinson's disease (according to modified Hoehn \\& Yahr criteria Stages II-IV) and demonstrating lack of control with L-dopa therapy (e.g.\n\nend of dose akinesia, simple on/off fluctuations).\n\n* Subjects receiving a stable dose of L-dopa for at least 4 weeks prior to screening.\n* A minimum of 3 hours awake \"off-time\" for each diary day recorded during the baseline period.\n* Men or non-pregnant/non-breast-feeding women of at least 30 years of age at screening. Women of child-bearing potential must be practicing a clinically accepted method of contraception during the study and for at least one month prior to randomization and one month following completion of the study. Acceptable contraceptive methods include abstinence, oral contraception, injectable progestogen, implants of levonorgestrel, estrogenic vaginal ring, percutaneous contraceptive patches, surgical sterilisation, male partner sterilization, intrauterine device \\[IUD\\], or double barrier method: condom or occlusive cap (diaphragm or cervical/vault caps) plus spermicidal agent (foam/gel/film/cream/suppository.\n* Provide written informed consent for this study.\n* Be willing and able to comply with study procedures, including diary card completion and follow-up clinic visits.\n\nExclusion Criteria:\n\n* Late stage advanced subjects demonstrating incapacitating peak dose or diphasic dyskinesia on their stable dose of L-dopa\n* Consumption of any dopamine agonist, including ropinirole, within four weeks of randomization in the study.\n* Subjects with severe, clinically significant condition(s) other than Parkinson's disease which, in the opinion of the investigator, would render the subject unsuitable for the study (e.g., psychiatric, haematological, renal, hepatic, endocrinology, neurological \\[other than Parkinson's disease\\], cardiovascular, or active malignancy \\[other than basal cell carcinoma\\]).\n* Subjects with crippling degenerative arthritis or other physical or mental conditions which would preclude accurate assessment of efficacy or safety.\n* Subjects with prior or current major psychosis (e.g., schizophrenia or psychotic depression) e.g. scoring 3 or 4 on UPDRS item 2 \\[thought disorder\\] or item 3 \\[depression\\].\n* Subjects with severe clinical dementia e.g. scoring 3 or 4 on UPDRS item 1 \\[mentation\\].\n* Subjects with severe dizziness or fainting due to postural hypotension on standing.\n* Subjects with a personal history of melanoma.\n* Subjects with clinically significant abnormalities in laboratory or ECG tests at Screening. If findings are outside the normal range and the subject is included, it must be documented by the investigator that the findings are not of clinical significance.\n* Subjects who are diagnosed with an impulse control disorder. The modified MIDI will be conducted at screening. Subjects who score positive for this screen must be referred to a specialist for diagnostic evaluation.\n* Subjects who have an active suicidal plan/intent or have had active suicidal thoughts in the past 6 months. Subjects who have a history of suicide attempt in the last 2 years or more than 1 lifetime suicide attempt.\n* Current alcohol or drug dependence.\n* Definite or suspected personal or family history of clinically significant adverse reactions or hypersensitivity to ropinirole (or to drugs with a similar chemical structure) that would preclude long-term dosing with ropinirole.\n* Withdrawal, introduction, or change in dose of hormone replacement therapy and/or any drug known to substantially inhibit CYP1A2 (e.g. ciprofloxacine, fluvoxamine, cimetidine, ethinyloestradiol) or induce CYP1A2 (e.g. tobacco, omeprazole) within 7 days prior to enrolment (randomization). Subjects already on chronic therapy with any of these agents may be enrolled but doses must have remained stable from 7 days prior to enrolment (randomization) through the end of the treatment period.\n* Women who are pregnant or breast-feeding.\n* Use of an investigational drug from 30 days or 5 half-lives (whichever is longer) prior to enrolment (randomization) through to the end of the treatment period. 15. Women who are pregnant or breast-feeding. 16. Use of an investigational drug from 30 days or 5 half-lives (whichever is longer) prior to enrolment (randomization) through to the end of the treatment period.",
+        "ref": "ctg:NCT01494532:c2237381451eff89edcc80d666f6ce4765922ce42e20a31b41a696ed05a07e26#/protocolSection/eligibilityModule/eligibilityCriteria",
+        "source": {
+          "ref": "ctg:NCT01494532:c2237381451eff89edcc80d666f6ce4765922ce42e20a31b41a696ed05a07e26",
+          "version": "c2237381451eff89edcc80d666f6ce4765922ce42e20a31b41a696ed05a07e26",
+          "address": "/protocolSection/eligibilityModule/eligibilityCriteria",
+          "digest": "c2237381451eff89edcc80d666f6ce4765922ce42e20a31b41a696ed05a07e26"
+        },
+        "code": "located"
+      }
+    ],
+    "fixed": {
+      "assertions": [
+        {
+          "applicability": {
+            "class": "Always"
+          },
+          "body": {
+            "class": "Literal",
+            "evidence": [
+              {
+                "class": "Evidence",
+                "kind": "record_field",
+                "ref": "ctg:NCT01494532:c2237381451eff89edcc80d666f6ce4765922ce42e20a31b41a696ed05a07e26#/protocolSection/eligibilityModule/minimumAge"
+              }
+            ],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "age",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "ge",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 30.0,
+              "unit": "Years",
+              "upper": null
+            }
+          },
+          "branch": {
+            "class": "Branch",
+            "node": "unresolved",
+            "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+            "class": "Scope",
+            "kind": "all_participants",
+            "parts": [],
+            "ref": ""
+          },
+          "criterion_ref": "ctg:NCT01494532:c2237381451eff89edcc80d666f6ce4765922ce42e20a31b41a696ed05a07e26#/protocolSection/eligibilityModule/minimumAge",
+          "id": "registry-age-minimumAge",
+          "modality": "required",
+          "resolution": "resolved",
+          "rule": {
+            "answers": [],
+            "class": "Rule",
+            "id": "ctg-structured-general-eligibility-age",
+            "premises": [
+              "ctg:NCT01494532:c2237381451eff89edcc80d666f6ce4765922ce42e20a31b41a696ed05a07e26#/protocolSection/eligibilityModule/minimumAge"
+            ],
+            "version": "1",
+            "warrants": []
+          },
+          "span": [],
+          "status": "known"
+        }
+      ],
+      "signals": []
+    },
+    "interpretations": [],
+    "bindings": [],
+    "coverage": [
+      {
+        "address": "/protocolSection/eligibilityModule/minimumAge",
+        "code": "compiled",
+        "value": "30 Years",
+        "assertion": "registry-age-minimumAge",
+        "rule": "ctg-structured-general-eligibility-age",
+        "ref": "ctg:NCT01494532:c2237381451eff89edcc80d666f6ce4765922ce42e20a31b41a696ed05a07e26#/protocolSection/eligibilityModule/minimumAge"
+      },
+      {
+        "address": "/protocolSection/eligibilityModule/maximumAge",
+        "code": "missing",
+        "value": null
+      },
+      {
+        "address": "/protocolSection/eligibilityModule/eligibilityCriteria",
+        "code": "unresolved_retained",
+        "value": "Inclusion Criteria:\n\n* Diagnosis of idiopathic Parkinson's disease (according to modified Hoehn \\& Yahr criteria Stages II-IV) and demonstrating lack of control with L-dopa therapy (e.g.\n\nend of dose akinesia, simple on/off fluctuations).\n\n* Subjects receiving a stable dose of L-dopa for at least 4 weeks prior to screening.\n* A minimum of 3 hours awake \"off-time\" for each diary day recorded during the baseline period.\n* Men or non-pregnant/non-breast-feeding women of at least 30 years of age at screening. Women of child-bearing potential must be practicing a clinically accepted method of contraception during the study and for at least one month prior to randomization and one month following completion of the study. Acceptable contraceptive methods include abstinence, oral contraception, injectable progestogen, implants of levonorgestrel, estrogenic vaginal ring, percutaneous contraceptive patches, surgical sterilisation, male partner sterilization, intrauterine device \\[IUD\\], or double barrier method: condom or occlusive cap (diaphragm or cervical/vault caps) plus spermicidal agent (foam/gel/film/cream/suppository.\n* Provide written informed consent for this study.\n* Be willing and able to comply with study procedures, including diary card completion and follow-up clinic visits.\n\nExclusion Criteria:\n\n* Late stage advanced subjects demonstrating incapacitating peak dose or diphasic dyskinesia on their stable dose of L-dopa\n* Consumption of any dopamine agonist, including ropinirole, within four weeks of randomization in the study.\n* Subjects with severe, clinically significant condition(s) other than Parkinson's disease which, in the opinion of the investigator, would render the subject unsuitable for the study (e.g., psychiatric, haematological, renal, hepatic, endocrinology, neurological \\[other than Parkinson's disease\\], cardiovascular, or active malignancy \\[other than basal cell carcinoma\\]).\n* Subjects with crippling degenerative arthritis or other physical or mental conditions which would preclude accurate assessment of efficacy or safety.\n* Subjects with prior or current major psychosis (e.g., schizophrenia or psychotic depression) e.g. scoring 3 or 4 on UPDRS item 2 \\[thought disorder\\] or item 3 \\[depression\\].\n* Subjects with severe clinical dementia e.g. scoring 3 or 4 on UPDRS item 1 \\[mentation\\].\n* Subjects with severe dizziness or fainting due to postural hypotension on standing.\n* Subjects with a personal history of melanoma.\n* Subjects with clinically significant abnormalities in laboratory or ECG tests at Screening. If findings are outside the normal range and the subject is included, it must be documented by the investigator that the findings are not of clinical significance.\n* Subjects who are diagnosed with an impulse control disorder. The modified MIDI will be conducted at screening. Subjects who score positive for this screen must be referred to a specialist for diagnostic evaluation.\n* Subjects who have an active suicidal plan/intent or have had active suicidal thoughts in the past 6 months. Subjects who have a history of suicide attempt in the last 2 years or more than 1 lifetime suicide attempt.\n* Current alcohol or drug dependence.\n* Definite or suspected personal or family history of clinically significant adverse reactions or hypersensitivity to ropinirole (or to drugs with a similar chemical structure) that would preclude long-term dosing with ropinirole.\n* Withdrawal, introduction, or change in dose of hormone replacement therapy and/or any drug known to substantially inhibit CYP1A2 (e.g. ciprofloxacine, fluvoxamine, cimetidine, ethinyloestradiol) or induce CYP1A2 (e.g. tobacco, omeprazole) within 7 days prior to enrolment (randomization). Subjects already on chronic therapy with any of these agents may be enrolled but doses must have remained stable from 7 days prior to enrolment (randomization) through the end of the treatment period.\n* Women who are pregnant or breast-feeding.\n* Use of an investigational drug from 30 days or 5 half-lives (whichever is longer) prior to enrolment (randomization) through to the end of the treatment period. 15. Women who are pregnant or breast-feeding. 16. Use of an investigational drug from 30 days or 5 half-lives (whichever is longer) prior to enrolment (randomization) through to the end of the treatment period."
+      },
+      {
+        "address": "/protocolSection/eligibilityModule/healthyVolunteers",
+        "code": "unresolved_retained",
+        "value": false
+      },
+      {
+        "address": "/protocolSection/eligibilityModule/sex",
+        "code": "unresolved_retained",
+        "value": "ALL"
+      },
+      {
+        "address": "/protocolSection/eligibilityModule/stdAges",
+        "code": "unresolved_retained",
+        "value": [
+          "ADULT",
+          "OLDER_ADULT"
+        ]
+      },
+      {
+        "address": "/resultsSection",
+        "ref": "ctg:NCT01494532:c2237381451eff89edcc80d666f6ce4765922ce42e20a31b41a696ed05a07e26#/resultsSection",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/derivedSection",
+        "ref": "ctg:NCT01494532:c2237381451eff89edcc80d666f6ce4765922ce42e20a31b41a696ed05a07e26#/derivedSection",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/hasResults",
+        "ref": "ctg:NCT01494532:c2237381451eff89edcc80d666f6ce4765922ce42e20a31b41a696ed05a07e26#/hasResults",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/identificationModule",
+        "ref": "ctg:NCT01494532:c2237381451eff89edcc80d666f6ce4765922ce42e20a31b41a696ed05a07e26#/protocolSection/identificationModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/statusModule",
+        "ref": "ctg:NCT01494532:c2237381451eff89edcc80d666f6ce4765922ce42e20a31b41a696ed05a07e26#/protocolSection/statusModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/sponsorCollaboratorsModule",
+        "ref": "ctg:NCT01494532:c2237381451eff89edcc80d666f6ce4765922ce42e20a31b41a696ed05a07e26#/protocolSection/sponsorCollaboratorsModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/oversightModule",
+        "ref": "ctg:NCT01494532:c2237381451eff89edcc80d666f6ce4765922ce42e20a31b41a696ed05a07e26#/protocolSection/oversightModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/descriptionModule",
+        "ref": "ctg:NCT01494532:c2237381451eff89edcc80d666f6ce4765922ce42e20a31b41a696ed05a07e26#/protocolSection/descriptionModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/conditionsModule",
+        "ref": "ctg:NCT01494532:c2237381451eff89edcc80d666f6ce4765922ce42e20a31b41a696ed05a07e26#/protocolSection/conditionsModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/designModule",
+        "ref": "ctg:NCT01494532:c2237381451eff89edcc80d666f6ce4765922ce42e20a31b41a696ed05a07e26#/protocolSection/designModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/armsInterventionsModule",
+        "ref": "ctg:NCT01494532:c2237381451eff89edcc80d666f6ce4765922ce42e20a31b41a696ed05a07e26#/protocolSection/armsInterventionsModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/outcomesModule",
+        "ref": "ctg:NCT01494532:c2237381451eff89edcc80d666f6ce4765922ce42e20a31b41a696ed05a07e26#/protocolSection/outcomesModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/contactsLocationsModule",
+        "ref": "ctg:NCT01494532:c2237381451eff89edcc80d666f6ce4765922ce42e20a31b41a696ed05a07e26#/protocolSection/contactsLocationsModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/referencesModule",
+        "ref": "ctg:NCT01494532:c2237381451eff89edcc80d666f6ce4765922ce42e20a31b41a696ed05a07e26#/protocolSection/referencesModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/ipdSharingStatementModule",
+        "ref": "ctg:NCT01494532:c2237381451eff89edcc80d666f6ce4765922ce42e20a31b41a696ed05a07e26#/protocolSection/ipdSharingStatementModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      }
+    ],
+    "submitted": {
+      "interpretations": [],
+      "bindings": []
+    },
+    "requests": [
+      {
+        "operation": "entailment",
+        "assertions": [
+          {
+            "applicability": {
+              "class": "Always"
+            },
+            "body": {
+              "class": "Literal",
+              "evidence": [
+                {
+                  "class": "Evidence",
+                  "kind": "record_field",
+                  "ref": "ctg:NCT01494532:c2237381451eff89edcc80d666f6ce4765922ce42e20a31b41a696ed05a07e26#/protocolSection/eligibilityModule/minimumAge"
+                }
+              ],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "age",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "ge",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 30.0,
+                "unit": "Years",
+                "upper": null
+              }
+            },
+            "branch": {
+              "class": "Branch",
+              "node": "unresolved",
+              "path": []
+            },
+            "class": "ScopedAssertion",
+            "cohort": {
+              "class": "Scope",
+              "kind": "all_participants",
+              "parts": [],
+              "ref": ""
+            },
+            "criterion_ref": "ctg:NCT01494532:c2237381451eff89edcc80d666f6ce4765922ce42e20a31b41a696ed05a07e26#/protocolSection/eligibilityModule/minimumAge",
+            "id": "registry-age-minimumAge",
+            "modality": "required",
+            "resolution": "resolved",
+            "rule": {
+              "answers": [],
+              "class": "Rule",
+              "id": "ctg-structured-general-eligibility-age",
+              "premises": [
+                "ctg:NCT01494532:c2237381451eff89edcc80d666f6ce4765922ce42e20a31b41a696ed05a07e26#/protocolSection/eligibilityModule/minimumAge"
+              ],
+              "version": "1",
+              "warrants": []
+            },
+            "span": [],
+            "status": "known"
+          }
+        ],
+        "query": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+            "class": "Predicate",
+            "key": "age",
+            "kind": "measurement"
+          },
+          "qualifiers": {
+            "class": "Always"
+          },
+          "subject": {
+            "class": "Subject",
+            "kind": "participant",
+            "referent": ""
+          },
+          "time": null,
+          "value": {
+            "class": "Value",
+            "comparison": "ge",
+            "inclusivity": "unspecified",
+            "kind": "quantity",
+            "members": [],
+            "number": 30,
+            "unit": "Years",
+            "upper": null
+          }
+        }
+      },
+      {
+        "operation": "entailment",
+        "assertions": [
+          {
+            "applicability": {
+              "class": "Always"
+            },
+            "body": {
+              "class": "Literal",
+              "evidence": [
+                {
+                  "class": "Evidence",
+                  "kind": "record_field",
+                  "ref": "ctg:NCT01494532:c2237381451eff89edcc80d666f6ce4765922ce42e20a31b41a696ed05a07e26#/protocolSection/eligibilityModule/minimumAge"
+                }
+              ],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "age",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "ge",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 30.0,
+                "unit": "Years",
+                "upper": null
+              }
+            },
+            "branch": {
+              "class": "Branch",
+              "node": "unresolved",
+              "path": []
+            },
+            "class": "ScopedAssertion",
+            "cohort": {
+              "class": "Scope",
+              "kind": "all_participants",
+              "parts": [],
+              "ref": ""
+            },
+            "criterion_ref": "ctg:NCT01494532:c2237381451eff89edcc80d666f6ce4765922ce42e20a31b41a696ed05a07e26#/protocolSection/eligibilityModule/minimumAge",
+            "id": "registry-age-minimumAge",
+            "modality": "required",
+            "resolution": "resolved",
+            "rule": {
+              "answers": [],
+              "class": "Rule",
+              "id": "ctg-structured-general-eligibility-age",
+              "premises": [
+                "ctg:NCT01494532:c2237381451eff89edcc80d666f6ce4765922ce42e20a31b41a696ed05a07e26#/protocolSection/eligibilityModule/minimumAge"
+              ],
+              "version": "1",
+              "warrants": []
+            },
+            "span": [],
+            "status": "known"
+          }
+        ],
+        "query": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+            "class": "Predicate",
+            "key": "age",
+            "kind": "measurement"
+          },
+          "qualifiers": {
+            "class": "Always"
+          },
+          "subject": {
+            "class": "Subject",
+            "kind": "participant",
+            "referent": ""
+          },
+          "time": null,
+          "value": {
+            "class": "Value",
+            "comparison": "eq",
+            "inclusivity": "unspecified",
+            "kind": "quantity",
+            "members": [],
+            "number": 83,
+            "unit": "Years",
+            "upper": null
+          }
+        }
+      }
+    ],
+    "limits": [
+      "Structured ages describe registry general eligibility, not verified actual protocol.",
+      "A located quotation proves quotation only; clinical readings remain hypothetical.",
+      "No unit conversion, automatic binding joins, clinical text interpretation or source mutation."
+    ],
+    "analyses": [
+      {
+        "code": "complete",
+        "operation": "entailment",
+        "result": {
+          "basis": "Conditional on the supplied typed premises; their source meaning is not certified by this operation.",
+          "decision": {
+            "result": "ENTAILED",
+            "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":30.0,\"unit\":\"Years\",\"upper\":null}}",
+            "status": "known",
+            "proof": [
+              "registry-age-minimumAge"
+            ],
+            "blockers": []
+          },
+          "premises": [
+            {
+              "applicability": {
+                "class": "Always"
+              },
+              "body": {
+                "class": "Literal",
+                "evidence": [
+                  {
+                    "class": "Evidence",
+                    "kind": "record_field",
+                    "ref": "ctg:NCT01494532:c2237381451eff89edcc80d666f6ce4765922ce42e20a31b41a696ed05a07e26#/protocolSection/eligibilityModule/minimumAge"
+                  }
+                ],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "age",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "ge",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 30.0,
+                  "unit": "Years",
+                  "upper": null
+                }
+              },
+              "branch": {
+                "class": "Branch",
+                "node": "unresolved",
+                "path": []
+              },
+              "class": "ScopedAssertion",
+              "cohort": {
+                "class": "Scope",
+                "kind": "all_participants",
+                "parts": [],
+                "ref": ""
+              },
+              "criterion_ref": "ctg:NCT01494532:c2237381451eff89edcc80d666f6ce4765922ce42e20a31b41a696ed05a07e26#/protocolSection/eligibilityModule/minimumAge",
+              "id": "registry-age-minimumAge",
+              "modality": "required",
+              "resolution": "resolved",
+              "rule": {
+                "answers": [],
+                "class": "Rule",
+                "id": "ctg-structured-general-eligibility-age",
+                "premises": [
+                  "ctg:NCT01494532:c2237381451eff89edcc80d666f6ce4765922ce42e20a31b41a696ed05a07e26#/protocolSection/eligibilityModule/minimumAge"
+                ],
+                "version": "1",
+                "warrants": []
+              },
+              "span": [],
+              "status": "known"
+            }
+          ]
+        },
+        "problems": [],
+        "metadata": {
+          "version": 1,
+          "kind": "reasoning",
+          "findings": [
+            {
+              "path": "/result/decision",
+              "kind": "logical",
+              "logical_result": "ENTAILED",
+              "standing": "known",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "settled"
+            }
+          ]
+        }
+      },
+      {
+        "code": "complete",
+        "operation": "entailment",
+        "result": {
+          "basis": "Conditional on the supplied typed premises; their source meaning is not certified by this operation.",
+          "decision": {
+            "result": "UNDETERMINED",
+            "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":83.0,\"unit\":\"Years\",\"upper\":null}}",
+            "status": null,
+            "proof": [
+              "registry-age-minimumAge"
+            ],
+            "blockers": [
+              "undecided_by_constraints"
+            ]
+          },
+          "premises": [
+            {
+              "applicability": {
+                "class": "Always"
+              },
+              "body": {
+                "class": "Literal",
+                "evidence": [
+                  {
+                    "class": "Evidence",
+                    "kind": "record_field",
+                    "ref": "ctg:NCT01494532:c2237381451eff89edcc80d666f6ce4765922ce42e20a31b41a696ed05a07e26#/protocolSection/eligibilityModule/minimumAge"
+                  }
+                ],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "age",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "ge",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 30.0,
+                  "unit": "Years",
+                  "upper": null
+                }
+              },
+              "branch": {
+                "class": "Branch",
+                "node": "unresolved",
+                "path": []
+              },
+              "class": "ScopedAssertion",
+              "cohort": {
+                "class": "Scope",
+                "kind": "all_participants",
+                "parts": [],
+                "ref": ""
+              },
+              "criterion_ref": "ctg:NCT01494532:c2237381451eff89edcc80d666f6ce4765922ce42e20a31b41a696ed05a07e26#/protocolSection/eligibilityModule/minimumAge",
+              "id": "registry-age-minimumAge",
+              "modality": "required",
+              "resolution": "resolved",
+              "rule": {
+                "answers": [],
+                "class": "Rule",
+                "id": "ctg-structured-general-eligibility-age",
+                "premises": [
+                  "ctg:NCT01494532:c2237381451eff89edcc80d666f6ce4765922ce42e20a31b41a696ed05a07e26#/protocolSection/eligibilityModule/minimumAge"
+                ],
+                "version": "1",
+                "warrants": []
+              },
+              "span": [],
+              "status": "known"
+            }
+          ]
+        },
+        "problems": [],
+        "metadata": {
+          "version": 1,
+          "kind": "reasoning",
+          "findings": [
+            {
+              "path": "/result/decision",
+              "kind": "logical",
+              "logical_result": "UNDETERMINED",
+              "standing": null,
+              "completion": "complete",
+              "causes": [
+                {
+                  "code": "undecided_by_constraints",
+                  "kind": "constraint"
+                }
+              ],
+              "disposition": "open"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "problems": [],
+  "metadata": {
+    "version": 1,
+    "kind": "reasoning",
+    "findings": [
+      {
+        "path": "/result/analyses/0/result/decision",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled"
+      },
+      {
+        "path": "/result/analyses/1/result/decision",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": null,
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "undecided_by_constraints",
+            "kind": "constraint"
+          }
+        ],
+        "disposition": "open"
+      }
+    ]
+  }
+}

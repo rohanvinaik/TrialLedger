@@ -1,0 +1,91 @@
+{
+  "operator_inputs": {
+    "required": [
+      "study",
+      "snapshot",
+      "resolution",
+      "stages",
+      "transitions"
+    ],
+    "fields": {
+      "study": "nonempty study identity",
+      "snapshot": "nonempty supplied source snapshot identity; not protocol-edition proof",
+      "resolution": "shared study/snapshot binding; unresolved gates every edge",
+      "stages": "distinct {id,population,arm,time,unit,total}; total integer/null, unit exact",
+      "transitions": "{id,source,target,relation,scope,status,resolution,basis,gate_ref}; relation permitted or documented_subset. Scope names exact graph and endpoint identities. Each edge keeps independent support; no title/count matching or automatic membership."
+    },
+    "claims": "{transition,count,lower,upper}; count is source id, target id or outside",
+    "limits": {
+      "stages": 32,
+      "transitions": 128,
+      "claims": 256
+    }
+  },
+  "example": {
+    "operation": "signals",
+    "signals": [
+      {
+        "id": "invented-stages",
+        "kind": "stages",
+        "data": {
+          "study": "invented:runin-study",
+          "snapshot": "invented:snapshot-v1",
+          "resolution": "resolved",
+          "stages": [
+            {
+              "id": "induction",
+              "population": "induction-started",
+              "arm": "all",
+              "time": "entry",
+              "unit": "person",
+              "total": 498
+            },
+            {
+              "id": "maintenance",
+              "population": "randomized-maintenance",
+              "arm": "all",
+              "time": "week16",
+              "unit": "person",
+              "total": 440
+            }
+          ],
+          "transitions": [
+            {
+              "id": "randomized-after-runin",
+              "source": "induction",
+              "target": "maintenance",
+              "relation": "documented_subset",
+              "scope": {
+                "study": "invented:runin-study",
+                "snapshot": "invented:snapshot-v1",
+                "source_population": "induction-started",
+                "target_population": "randomized-maintenance",
+                "source_arm": "all",
+                "target_arm": "all",
+                "source_time": "entry",
+                "target_time": "week16",
+                "unit": "person"
+              },
+              "status": "interpolated",
+              "resolution": "resolved",
+              "basis": [
+                "invented:declared-person-lineage-not-registry-evidence"
+              ],
+              "gate_ref": "invented:week16-response-gate-retained-not-evaluated"
+            }
+          ]
+        },
+        "support": [
+          {
+            "id": "invented-inputs",
+            "status": "known",
+            "resolution": "resolved",
+            "basis": [
+              "user:invented-typed-demonstration-not-clinical-evidence"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

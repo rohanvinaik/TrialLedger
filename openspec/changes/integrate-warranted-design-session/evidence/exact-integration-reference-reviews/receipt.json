@@ -1,0 +1,689 @@
+{
+  "source_packet": "/tmp/trialledger-secret-preflight-20261103-v1",
+  "source_packet_manifest_sha256": "20380c1ad1ac25ec883d91cd970fdf5377589869a0acba8257bdbd27eceaadf9",
+  "reviewed_by": "root integrator",
+  "scope": "Exact listed path/detector/whole-line identities only. Public source reference scalars and local proof paths reviewed in their complete JSON/command context; clinical truth not assessed. Original complete source/object copies remain local, with original referenced source files retained in repository.",
+  "reviews": [
+    {
+      "path": "acceptance/design-session-walkthrough-decision-aml-2026-11-03/requests/hypothetical-tables-with-source-age.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "1327231588a400997633013ac4e40934ffe9aa6b2b32d667c860759070cf430a",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-decision-aml-2026-11-03/results/NCT02670044-source-age.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "bd1b1cdba3128acb8126c85a2e02f23d12b5f55fdf1fb150b2eebd09f03be383",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-decision-aml-2026-11-03/results/NCT03625505-source-age.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "40cf4823bef219b84f15e6fa89a53d7b13bbe1eb1c53b69d4aaac091045af210",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-decision-aml-2026-11-03/results/NCT04666649-source-age.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "aceea6c08dea578d733c8db125301b4adf70a0e7e37797ed5cb85c59c82e9b3c",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-decision-aml-2026-11-03/results/hypothetical-tables-with-source-age.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "e0cbb1fe07b4cd4b9c6e211ec6b628d2e4321bdfaa9789d645fa3a880791d09a",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-estimand-dermatitis-2026-11-03/results/NCT02347176-source-age.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "2f37a48743d8858b4f8824ccd73489b01b3f7dfcfbec83920bd8874d850cb653",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-estimand-dermatitis-2026-11-03/results/NCT04556461-source-age.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "5c9716622e7fd127c0c2181f07eca267400a218ede41ac9fbc3e1058d10e3c09",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-estimand-dermatitis-2026-11-03/results/NCT05388760-source-age.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "82fd542bc80340545813a8d5d400591e1dd6ac137fcb12249d027edab7483e94",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-evidence-parkinson-2026-11-03/requests/session-named-hypotheses.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "c59b1db0ed385e29191c80617ba8424a629debd3933a74efc1b7214980ab0117",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-evidence-parkinson-2026-11-03/results/NCT00219284-source-age.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "1fae1b0ae3a7d6c03274fbc379750efdc18e86b0de4b63414002d7d4ef085848",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-evidence-parkinson-2026-11-03/results/NCT01494532-source-age.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "d1db671a2b85d4bbc52ff8812cbd483a51be1ce48cf9a15d3a8503f6dc932bb9",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-evidence-parkinson-2026-11-03/results/NCT04821830-source-age.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "b18b3e51c5724d226720818a7279f0d9e1c048d33cec12d8b16dafff48c3b862",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-evidence-parkinson-2026-11-03/results/session-named-hypotheses.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "10ddf02794edcc2dac58be8b4a17f90206b5a7ee5bc92ea9b85d51d776f41db4",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-invariants-influenza-2026-11-03/requests/immunocompromised-context-retracted.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "78cf7f6cb37b75e9eeadac87f37112898cc8d2217022c9f12b7cdd2bfd26cff6",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-invariants-influenza-2026-11-03/requests/presentation-and-delay24.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "e28c0a22899636b48d4009927355859502dc5b816ec8e86e01462f3bbff07461",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-invariants-influenza-2026-11-03/requests/presentation-and-unknown-dose-delay.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "e28c0a22899636b48d4009927355859502dc5b816ec8e86e01462f3bbff07461",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-invariants-influenza-2026-11-03/results/immunocompromised-context-retracted.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "a9fd81337bdd1ec88bd876701e07a6660d8d0db19a4d10029aea2158a1adca27",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-invariants-influenza-2026-11-03/results/immunocompromised-randomized-context.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "94becde9c26c52b8a87be406fcf2ec43d47a55d8038c403d4f5cc3b63034015f",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-invariants-influenza-2026-11-03/results/pk-age-and-renal-reading.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "db7d66d651fd93b678f770c1ec814494680f51f53cf536bb95f3c458a5dde97c",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-invariants-influenza-2026-11-03/results/presentation-and-delay24.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "f9df5bde1d27a81b3b7091600e90b889d21d1be4fec865fcdff87de7a8212c4e",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-invariants-influenza-2026-11-03/results/presentation-and-immediate-dose.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "10f4a53377404aa3dc5a7ca9b13ed9388fc7c8f4178675926b15b5f86dfdd0ce",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-invariants-influenza-2026-11-03/results/presentation-and-unknown-dose-delay.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "f9df5bde1d27a81b3b7091600e90b889d21d1be4fec865fcdff87de7a8212c4e",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-session-diabetes-2026-11-03/requests/session-age65-revision.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "5005f09066ae7057b5537eb68ff7e80aecc7075b223185c97fee5d655792f92d",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-session-diabetes-2026-11-03/requests/session-age65-revision.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "a219d3525d7e3fefd7f6ea7e580e6ac0ba7873e9d829320cb03bfb8a91a79f1e",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-session-diabetes-2026-11-03/requests/session-age65-revision.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "bd0777b5fdb947a240e9d6d285db77e5c3fdf8a9ac4919252a29757b7200c678",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-session-diabetes-2026-11-03/requests/session-baseline.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "5005f09066ae7057b5537eb68ff7e80aecc7075b223185c97fee5d655792f92d",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-session-diabetes-2026-11-03/requests/session-baseline.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "a219d3525d7e3fefd7f6ea7e580e6ac0ba7873e9d829320cb03bfb8a91a79f1e",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-session-diabetes-2026-11-03/requests/session-baseline.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "bd0777b5fdb947a240e9d6d285db77e5c3fdf8a9ac4919252a29757b7200c678",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-session-diabetes-2026-11-03/results/NCT00745433-source-age.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "6987e6b918627bdcb8b440acd863c976671e3ab74601e9e9d98e88af5e9ca55c",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-session-diabetes-2026-11-03/results/NCT01318564-source-age.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "b5dc9e98a079ff5a1170acb771d0f8daec4c605c7628c49655e183a2e2ee0224",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-session-diabetes-2026-11-03/results/NCT02475499-source-age.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "01bb185447d0c6d474b78666cf832351f2d81159e8a56ff2c70e83a33e386e1c",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-session-diabetes-2026-11-03/results/session-age65-revision.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "24320546e2176f3998e842257802a46d7b1b287387bed79b023c3403df41a439",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-session-diabetes-2026-11-03/results/session-age65-revision.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "c5b84c4739aaa722dac2aedec56df26b0c46c61c53bb7fffa2f7e7aa4f12f7c3",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-session-diabetes-2026-11-03/results/session-age65-revision.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "f17e1004588e488aa7eb56ffd37653b7380d6559ab8ae566d7ffffa837fac2b3",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-session-diabetes-2026-11-03/results/session-baseline.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "24320546e2176f3998e842257802a46d7b1b287387bed79b023c3403df41a439",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-session-diabetes-2026-11-03/results/session-baseline.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "c5b84c4739aaa722dac2aedec56df26b0c46c61c53bb7fffa2f7e7aa4f12f7c3",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-session-diabetes-2026-11-03/results/session-baseline.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "f17e1004588e488aa7eb56ffd37653b7380d6559ab8ae566d7ffffa837fac2b3",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-stages-bipolar-2026-11-03/requests/extension-design-sensitivity.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "93007d9f7be4353633bcb45215e121deaeee490dea3ae27a28851d7ee5fd0d35",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-stages-bipolar-2026-11-03/requests/extension-design-wrong-time.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "93007d9f7be4353633bcb45215e121deaeee490dea3ae27a28851d7ee5fd0d35",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-stages-bipolar-2026-11-03/requests/extension-permission-only.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "93007d9f7be4353633bcb45215e121deaeee490dea3ae27a28851d7ee5fd0d35",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-stages-bipolar-2026-11-03/requests/extension-subsets-proposed.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "93007d9f7be4353633bcb45215e121deaeee490dea3ae27a28851d7ee5fd0d35",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-stages-bipolar-2026-11-03/requests/extension-subsets-sensitivity.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "93007d9f7be4353633bcb45215e121deaeee490dea3ae27a28851d7ee5fd0d35",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-stages-bipolar-2026-11-03/requests/extension-wrong-completion-time.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "93007d9f7be4353633bcb45215e121deaeee490dea3ae27a28851d7ee5fd0d35",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-stages-bipolar-2026-11-03/results/NCT00090311-source-age.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "f3acb716c48022c003f32bc2ee89d68697eea1d0155c9d53d9e600749c91301e",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-stages-bipolar-2026-11-03/results/NCT00119652-source-age.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "d51fa6a651c3c2e18e7fad7dcee8fc4e7fd1f18fd89415da72aae70ab2d169ba",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-stages-bipolar-2026-11-03/results/NCT00227305-source-age.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "0c8150b72d6a78aea05896d0961c002340e58c44d21a8e7fa644b9bf0bce3360",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-stages-bipolar-2026-11-03/results/extension-design-sensitivity.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "c1b3e2522c661462825a0df0fc96738ae2732cbf1ef2a2e3fbf4074b7822d923",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-stages-bipolar-2026-11-03/results/extension-design-wrong-time.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "c1b3e2522c661462825a0df0fc96738ae2732cbf1ef2a2e3fbf4074b7822d923",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-stages-bipolar-2026-11-03/results/extension-permission-only.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "7382604a81e443b0dc2ba33835d4c6a3e3745d00ae1b91637bec53f69523d5c9",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-stages-bipolar-2026-11-03/results/extension-subsets-proposed.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "7382604a81e443b0dc2ba33835d4c6a3e3745d00ae1b91637bec53f69523d5c9",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-stages-bipolar-2026-11-03/results/extension-subsets-sensitivity.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "7382604a81e443b0dc2ba33835d4c6a3e3745d00ae1b91637bec53f69523d5c9",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-stages-bipolar-2026-11-03/results/extension-wrong-completion-time.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "7382604a81e443b0dc2ba33835d4c6a3e3745d00ae1b91637bec53f69523d5c9",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "examples/source-bridge/ipass-baseline-overlap-result.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "cf648f09337b0df7f8828121fc78832e104c9bd8836cd2f48cb0686fe089a411",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "openspec/changes/integrate-warranted-design-session/evidence/evidence-requests-two-sign/frozen/receipts/commands.json",
+      "detector": "Base64 High Entropy String",
+      "added_line_sha256": "e8a8f124fe50dbf626be6e08c8d154252c34a60b303323cca576ad4b105043fd",
+      "reason": "Reviewed complete proof command/context: local temporary proof or review directory, not a credential."
+    },
+    {
+      "path": "openspec/changes/integrate-warranted-design-session/evidence/evidence-requests-two-sign/frozen/receipts/commands.json",
+      "detector": "Base64 High Entropy String",
+      "added_line_sha256": "78192996b01487d4db27153a9e7825e461dc4b6992f1bb5bf0df0123437744af",
+      "reason": "Reviewed complete proof command/context: local temporary proof or review directory, not a credential."
+    },
+    {
+      "path": "openspec/changes/integrate-warranted-design-session/evidence/evidence-requests-two-sign/proof-v2/commands.json",
+      "detector": "Base64 High Entropy String",
+      "added_line_sha256": "e8a8f124fe50dbf626be6e08c8d154252c34a60b303323cca576ad4b105043fd",
+      "reason": "Reviewed complete proof command/context: local temporary proof or review directory, not a credential."
+    },
+    {
+      "path": "openspec/changes/integrate-warranted-design-session/evidence/evidence-requests-two-sign/proof-v2/commands.json",
+      "detector": "Base64 High Entropy String",
+      "added_line_sha256": "78192996b01487d4db27153a9e7825e461dc4b6992f1bb5bf0df0123437744af",
+      "reason": "Reviewed complete proof command/context: local temporary proof or review directory, not a credential."
+    },
+    {
+      "path": "openspec/changes/integrate-warranted-design-session/evidence/exact-source-reference-reviews/groups.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "26ed6ad04b345817ad045573c6c01f4605153d92b549710cbe7d2f09334fe5e5",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "openspec/changes/integrate-warranted-design-session/evidence/exact-source-reference-reviews/groups.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "447a82ffdf8ea2831356815c6dc7b5c7e6182fc39620d71b5467a19b7bd11a01",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "openspec/changes/integrate-warranted-design-session/evidence/exact-source-reference-reviews/groups.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "0ac0de24866e124daa7d12ab8d09dd3689220a7e829b645bbf8564bee5d76539",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "openspec/changes/integrate-warranted-design-session/evidence/exact-source-reference-reviews/groups.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "8287dea4604aee13c0b089c5cd4b47e171e02b40d6a6690efd8dba5fdeb8afb5",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "openspec/changes/integrate-warranted-design-session/evidence/exact-source-reference-reviews/groups.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "c40528c1ede6eb31680237209db611fa68e09213df821655f21a1a48baf2e1ef",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "openspec/changes/integrate-warranted-design-session/evidence/exact-source-reference-reviews/groups.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "3fe798040a8e5d3912cbbfadce23f490085b52211cb94df0f5af42ab72ac93c4",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "openspec/changes/integrate-warranted-design-session/evidence/exact-source-reference-reviews/groups.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "8e88c5db80c8ed5048ce719ccc86e84ca5c98482a8a4e0ff586914195f14b419",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "openspec/changes/integrate-warranted-design-session/evidence/exact-source-reference-reviews/groups.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "69ea95fd3bf1bee499e8f8e4e4f485dffbcce3d016e8923c20ac4fd9e8bb79e8",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "openspec/changes/integrate-warranted-design-session/evidence/exact-source-reference-reviews/groups.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "5c6dc7f7f1c7151ea5d9d8ff5c867bbc3489b55dff2b8cb55063fe1b021acb19",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "openspec/changes/integrate-warranted-design-session/evidence/exact-source-reference-reviews/groups.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "26f96c85a9f66826083b45ce7cd1ca17fa2148a3b80838ae69858a52751354ce",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "openspec/changes/integrate-warranted-design-session/evidence/exact-source-reference-reviews/groups.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "f026df78e67a07161c76b44b48851d7ef1bce7a052c20063f02a654f1981a3bc",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "openspec/changes/integrate-warranted-design-session/evidence/exact-source-reference-reviews/groups.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "b9bb682235eb1607b5425dcbb3e50a73f5229c93867f4a8441a910617eabd7a1",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "openspec/changes/integrate-warranted-design-session/evidence/exact-source-reference-reviews/groups.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "3a54c73d7e65414a374a14eef224f9d453233b881921d85ae21b68be94f8f9ee",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "openspec/changes/integrate-warranted-design-session/evidence/exact-source-reference-reviews/receipt.json",
+      "detector": "Base64 High Entropy String",
+      "added_line_sha256": "680e691afd424028ada5e35e852c19f8fb1ed764e6ccb0a1fd1e32f7c96b6f03",
+      "reason": "Reviewed complete proof command/context: local temporary proof or review directory, not a credential."
+    },
+    {
+      "path": "openspec/changes/integrate-warranted-design-session/evidence/exact-source-reference-reviews/root-fixture-check.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "836fcce94565930846eb8768e21c33ced9d4f278955419a1309e0c46d406e98c",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "openspec/changes/integrate-warranted-design-session/evidence/exact-source-reference-reviews/units/008f020725ce7ff37bdeb6ad20888312de8380fd5ab52a6cea53712b0d1b720e.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "1989aeaba28a3da5ffa2edad96a77c111d80d4554846f82ae9020911c6373c76",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "openspec/changes/integrate-warranted-design-session/evidence/exact-source-reference-reviews/units/06a84cdeabeb1df9c3d9cad4614c3813a441e0dfd1e28f0cebfc06981efd196d.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "368a897d86033048d864399eb80d641abe50e932e0be69405e5feea3fdeb16be",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "openspec/changes/integrate-warranted-design-session/evidence/exact-source-reference-reviews/units/087e0dbec1bdaa2ee3a7d7630ba50e659bc65a94e6f426ad0f809ac7a57be641.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "88b4003c51e09a9a0f7b80c166fbb90a358402fabfee2e56920231fe17d541f7",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "openspec/changes/integrate-warranted-design-session/evidence/exact-source-reference-reviews/units/0aa9406de1af22f3839a1f4565e66055e470e8200cddfffcf1814017766773b9.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "22690ff9a42ebee19124469170ff6446f19fb6310e5b5466aa35483a56d05a3c",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "openspec/changes/integrate-warranted-design-session/evidence/exact-source-reference-reviews/units/12c7c36f377009a9474a79f3fae16ed97842aee6ec3687900dad1f2352e5e97f.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "5b8ebdab98ae42de51e1fc7d73c9a6705078a986e798756f681e75320f287ead",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "openspec/changes/integrate-warranted-design-session/evidence/exact-source-reference-reviews/units/1c164d0ee33b02f0227d89b8d47532d212e6b644d8bd06c67247177ee0a6a8e7.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "778ef63a29e5e1c77188cec7097264511e82b8818dac92b7fed2eece3f1b4263",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "openspec/changes/integrate-warranted-design-session/evidence/exact-source-reference-reviews/units/37d6b0f1217cea7e01dfce2d729d329aae2cf379aaa365adbb496b99ac7a1164.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "b187741b0fbd53d0736a01ea5329749b5df8321cefda579f1e1bfc6bfedabdfd",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "openspec/changes/integrate-warranted-design-session/evidence/exact-source-reference-reviews/units/3b1142b5f0a337a920b83376ad75eb682ba84726b08546871f08b2ae1b88936b.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "1f7aedb7369aa60a809db33b34af5aa47458d906169b2449e8c8c04896960e98",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "openspec/changes/integrate-warranted-design-session/evidence/exact-source-reference-reviews/units/41cab5b586ac55befa16b53b140ee3082524bf46098e9e10c3b6acf02c9a1b6b.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "d63646ab73de878c2b867ab3ee381d9003b6450069d7188050eba15e866cdfb7",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "openspec/changes/integrate-warranted-design-session/evidence/exact-source-reference-reviews/units/45dc08fed10df2ee62bd900292e2289727cfde890405a05a41875cd495aeee3e.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "44c9b25fe8f8142378ee4297eadbc297460ec31e8349d5acfe7c7a06e2f76f49",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "openspec/changes/integrate-warranted-design-session/evidence/exact-source-reference-reviews/units/5c159a50cf8685f62e8d16611c5c766fe08f006c8f94318466dc556a19c6123a.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "efb75fd94e0528e1f026b72e5b8611959401c14e94250512bacb079d116eb7c1",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "openspec/changes/integrate-warranted-design-session/evidence/exact-source-reference-reviews/units/633f9a9d1b84a1f56b57959e519e654fe6e0beb0847769fe1fc4ba12ed158bc0.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "94b456b46f8d2c3653e25c0403758f66ed9c4e4db924acb98bcaf4f895cf1e03",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "openspec/changes/integrate-warranted-design-session/evidence/exact-source-reference-reviews/units/6cf9ae458ad45241f7dd869f85867d85477f714011d5fabeb70f33bfce7cb894.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "24e145cf80b2f9166922145bc4e53bda7413d3b2c201c398102ac3e0e03c2364",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "openspec/changes/integrate-warranted-design-session/evidence/exact-source-reference-reviews/units/6d5b715d36ddfc435ea3c07e8bded85e96608db1cc8a75a145b3ea3c21bd1386.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "6a83009dc242eb03be1e868f59d0ce9a0166da14981f7d7236a3508a287dbf47",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "openspec/changes/integrate-warranted-design-session/evidence/exact-source-reference-reviews/units/751d3648b019941c6b01e7cb748c5e1dee677b8973e2ce7391d8b72d8b5fa0ef.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "c1ecc3262a3d169cc9da414c701de08c4631c4f2ddb86cc15053d2ec0ebb7a31",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "openspec/changes/integrate-warranted-design-session/evidence/exact-source-reference-reviews/units/778b65b7da90ec651fa17c5f5381f433d508aaf0c4bb758642e8cd520af8e9a4.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "ac6614dd951be295039df06807cadbd611849b41c3438e0fba4ea1016482eb76",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "openspec/changes/integrate-warranted-design-session/evidence/exact-source-reference-reviews/units/8833ce825d50112facb5f1ed43adeaf5b6a6d177a68a41f98f08756a9045c892.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "b95ca18b54520df8fa1f3f4e4868e79a0e0a2728c81be875064317ae4ca4c48a",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "openspec/changes/integrate-warranted-design-session/evidence/exact-source-reference-reviews/units/a0934fd490b8edb596c5c0ad516ff10efe0071eb62cb55e2d299ef9d1bee81a7.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "41c1df15ab16a89f77271b67d30be8628b72ff58d0b6a277ae1bd5df64f85c37",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "openspec/changes/integrate-warranted-design-session/evidence/exact-source-reference-reviews/units/aa82a9c8d3ad94255a4a45ab950545926612063a70bea595c08df505589947fc.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "184d80c3beb9c8bb86f64a4a59584acd16d377bf4951c6028b45ba1562aa059b",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "openspec/changes/integrate-warranted-design-session/evidence/exact-source-reference-reviews/units/af318452401d1434b60432cfb0484fc248a87dcf60539092e3bfad753785736c.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "42c0989045ed1b9055b543804597a9b29824f289b6b27ab12a8505352def72bd",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "openspec/changes/integrate-warranted-design-session/evidence/exact-source-reference-reviews/units/bc9035b25842a7427f7baabdabc7c3e178b052a84c7e34475abd0573d87471b1.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "3a01e4a44856f6949ad4cc65b99b50c731581d4bcbdd6d8b1e96cac2d1c4351d",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "openspec/changes/integrate-warranted-design-session/evidence/exact-source-reference-reviews/units/bd03fa796ba5599e75d86dd581572d68e4eeeb340cf5e73611cf09aaba23978c.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "303ff8c1d797a3ec9f66dd7f1440de9eeec6a9e2abf6888cb3c98cdc03d0b3ef",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "openspec/changes/integrate-warranted-design-session/evidence/exact-source-reference-reviews/units/c08bfebcc089ca159b1d0c9fd5059e8e8a37aa9255c831308f0eae04f1434373.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "f8dd2237d44909bf11bac28505a46bed19f2e29f3347ed3359ce22992ec9e4c0",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "openspec/changes/integrate-warranted-design-session/evidence/exact-source-reference-reviews/units/c1e0efe77e63b01b6d94901aa6f36875a21ba7517619e6a03c85538375cc67d5.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "22517428f6241752168e601749d031c132e30d6680305ecd33229b45c442e0dc",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "openspec/changes/integrate-warranted-design-session/evidence/exact-source-reference-reviews/units/c96885da0d2ae220dd6513f9b180cae77693f844c6489f53f789d775c15c6275.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "590528a501f7de8c8a5ead91fc63b3e51954078ab3de094a7afc9b0d83eb167b",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "openspec/changes/integrate-warranted-design-session/evidence/exact-source-reference-reviews/units/e082ff729e68c5afd176357bdf13e6c0d8402b20e41d34c53644384534311a59.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "c4df320e715936e0b37482efca3b39cd1b2333798687fe0ffbfe25204596d6bd",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "openspec/changes/integrate-warranted-design-session/evidence/exact-source-reference-reviews/units/e32b4348e9d2c4e42f116f6d68a09491d9aa30f36d61422959f99ba6a10e8b7e.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "02ff8ff3f8e2df46eec4ed42438b53e3287f9635a513147a7d954e599eeb8c84",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "openspec/changes/integrate-warranted-design-session/evidence/exact-source-reference-reviews/units/f83ed6dea10be278302e90fe87d50262fdbc9392f6d8769c8414896c9f8a7837.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "4340f453672e54070ceb4c6b3841cadc52cb056b693a18374e954fa037eed952",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    },
+    {
+      "path": "openspec/changes/integrate-warranted-design-session/evidence/exact-source-reference-reviews/units/fd2617e3676464bdc3c31442ffb351b915dc4af79be311d9b4d385b1355bed6d.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "acdafbb9f223fc3eaa0bfba2ad2024c05322c9202c86810263a42fa34618850f",
+      "reason": "Reviewed source object: registry identifier/content fingerprint with optional source address or named suffix; no credential."
+    }
+  ],
+  "additional_reviews": [
+    {
+      "path": "acceptance/design-session-walkthrough-docs-asthma-2026-11-03/input-contract-finding/request.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "9cc5f7e6ad76d879877b0a46897aa1c6b013dbc6b00f4f1630885aaff943b962",
+      "reason": "Reviewed complete asthma source identity/target/interpretation object: ClinicalTrials.gov NCT identifier plus canonical content fingerprint/address, not a credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-docs-asthma-2026-11-03/requests/session-add-rival-reading.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "9cc5f7e6ad76d879877b0a46897aa1c6b013dbc6b00f4f1630885aaff943b962",
+      "reason": "Reviewed complete asthma source identity/target/interpretation object: ClinicalTrials.gov NCT identifier plus canonical content fingerprint/address, not a credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-docs-asthma-2026-11-03/requests/session-initial-therapy-reading.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "9cc5f7e6ad76d879877b0a46897aa1c6b013dbc6b00f4f1630885aaff943b962",
+      "reason": "Reviewed complete asthma source identity/target/interpretation object: ClinicalTrials.gov NCT identifier plus canonical content fingerprint/address, not a credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-docs-asthma-2026-11-03/requests/source-competing-therapy-readings.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "224f89d60b597d7f30c835f5ed324971551e26bfa8cd9cd8a4ec2801d80b3e29",
+      "reason": "Reviewed complete asthma source identity/target/interpretation object: ClinicalTrials.gov NCT identifier plus canonical content fingerprint/address, not a credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-docs-asthma-2026-11-03/results/NCT00419952-source-age.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "91304756ada1e2ebd4f1e3ac13ee3db912378e5c91578358cee471fd69ef22d5",
+      "reason": "Reviewed complete asthma source identity/target/interpretation object: ClinicalTrials.gov NCT identifier plus canonical content fingerprint/address, not a credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-docs-asthma-2026-11-03/results/NCT01001364-source-age.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "9d2741955e6e5704e4e57528ad7e446a599388166ab81dceb68d60a05df70ddb",
+      "reason": "Reviewed complete asthma source identity/target/interpretation object: ClinicalTrials.gov NCT identifier plus canonical content fingerprint/address, not a credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-docs-asthma-2026-11-03/results/NCT01360021-source-age.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "9f6f2667d24d433a48f1364725efd201988e96d4cbc8612ec09929251b06a50a",
+      "reason": "Reviewed complete asthma source identity/target/interpretation object: ClinicalTrials.gov NCT identifier plus canonical content fingerprint/address, not a credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-docs-asthma-2026-11-03/results/session-add-rival-reading.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "9cc5f7e6ad76d879877b0a46897aa1c6b013dbc6b00f4f1630885aaff943b962",
+      "reason": "Reviewed complete asthma source identity/target/interpretation object: ClinicalTrials.gov NCT identifier plus canonical content fingerprint/address, not a credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-docs-asthma-2026-11-03/results/session-initial-therapy-reading.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "9cc5f7e6ad76d879877b0a46897aa1c6b013dbc6b00f4f1630885aaff943b962",
+      "reason": "Reviewed complete asthma source identity/target/interpretation object: ClinicalTrials.gov NCT identifier plus canonical content fingerprint/address, not a credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-docs-asthma-2026-11-03/results/source-competing-therapy-readings.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "9d2741955e6e5704e4e57528ad7e446a599388166ab81dceb68d60a05df70ddb",
+      "reason": "Reviewed complete asthma source identity/target/interpretation object: ClinicalTrials.gov NCT identifier plus canonical content fingerprint/address, not a credential."
+    },
+    {
+      "path": "openspec/changes/integrate-warranted-design-session/evidence/integration-verification.json",
+      "detector": "Base64 High Entropy String",
+      "added_line_sha256": "59ad7c07cf9b839a888f62bdc3c05e6fafb4fff2b221830cc0e356eed2bbd8a4",
+      "reason": "Reviewed complete integration inventory: path of retained clinical walkthrough directory, not a credential."
+    }
+  ],
+  "second_preflight": {
+    "snapshot": "bba92ccb72f9ffc93f833204babfc0a23e01ee2d",
+    "candidates": 112,
+    "already_reviewed": 101,
+    "additional_reviewed": 11,
+    "index_observation": "Root staged reviewed integration files while this read-only preflight was running; its differing before/after index hashes do not assert index immutability. The helper itself made no real-index edits. Final committed push scan remains mandatory."
+  }
+}

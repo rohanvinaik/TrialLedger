@@ -1,0 +1,593 @@
+{
+  "operation": "source_assertions",
+  "study": {
+    "protocolSection": {
+      "identificationModule": {
+        "nctId": "NCT00090311",
+        "orgStudyIdInfo": {
+          "id": "D1441C00149"
+        },
+        "organization": {
+          "fullName": "AstraZeneca",
+          "class": "INDUSTRY"
+        },
+        "briefTitle": "Quetiapine Fumarate (SEROQUEL) Compared to Placebo in the Treatment of Children & Adolescents With Bipolar I Mania",
+        "officialTitle": "A 3-wk, Multicenter, Randomized, Double-blind, Parallel-group, Placebo-controlled, Phase 3b Study of the Efficacy & Safety of Quetiapine Fumarate (SEROQUEL™) Immediate-release Tablets in the Treatment of Children & Adolescents With Bipolar I Mania (Abbreviated)",
+        "acronym": "ANCHOR 149"
+      },
+      "statusModule": {
+        "statusVerifiedDate": "2013-01",
+        "overallStatus": "COMPLETED",
+        "startDateStruct": {
+          "date": "2004-07"
+        },
+        "completionDateStruct": {
+          "date": "2006-07",
+          "type": "ACTUAL"
+        },
+        "studyFirstSubmitDate": "2004-08-25",
+        "studyFirstSubmitQcDate": "2004-08-27",
+        "studyFirstPostDateStruct": {
+          "date": "2004-08-30",
+          "type": "ESTIMATED"
+        },
+        "lastUpdateSubmitDate": "2013-01-03",
+        "lastUpdatePostDateStruct": {
+          "date": "2013-01-04",
+          "type": "ESTIMATED"
+        }
+      },
+      "sponsorCollaboratorsModule": {
+        "leadSponsor": {
+          "name": "AstraZeneca",
+          "class": "INDUSTRY"
+        }
+      },
+      "descriptionModule": {
+        "briefSummary": "The purpose of this study is to demonstrate efficacy and safety of quetiapine fumarate (SEROQUEL) compared with placebo in the treatment of children and adolescent patients with Bipolar I mania."
+      },
+      "conditionsModule": {
+        "conditions": [
+          "Bipolar Disorder"
+        ],
+        "keywords": [
+          "Bipolar I Mania"
+        ]
+      },
+      "designModule": {
+        "studyType": "INTERVENTIONAL",
+        "phases": [
+          "PHASE3"
+        ],
+        "designInfo": {
+          "allocation": "RANDOMIZED",
+          "interventionModel": "PARALLEL",
+          "primaryPurpose": "TREATMENT",
+          "maskingInfo": {
+            "masking": "DOUBLE"
+          }
+        },
+        "enrollmentInfo": {
+          "count": 220,
+          "type": "ACTUAL"
+        }
+      },
+      "armsInterventionsModule": {
+        "interventions": [
+          {
+            "type": "DRUG",
+            "name": "quetiapine fumarate"
+          }
+        ]
+      },
+      "outcomesModule": {
+        "primaryOutcomes": [
+          {
+            "measure": "Compare efficacy of Quetiapine with placebo in the treatment of bipolar I mania as assessed by the YMRS total score, change from baseline to Day 21"
+          }
+        ],
+        "secondaryOutcomes": [
+          {
+            "measure": "Compare the effect of Quetiapine with placebo in change from baseline to Day 21 percentage of patients with response, defined as a ≤ 12, evaluate safety and tolerability"
+          }
+        ]
+      },
+      "eligibilityModule": {
+        "eligibilityCriteria": "Inclusion Criteria:\n\n* Patient is able to provide written assent and the parents or legal guardian of the patient is able to provide written informed consent before beginning and study related procedures\n* Patient has a documented clinical diagnosis of Bipolar I mania\n* Patient's parent or legal guardian will be able to accompany the patient at each scheduled study visit\n\nExclusion Criteria:\n\n* Patients (female) must not be pregnant or lactating\n* Patients with a known intolerance or lack of response to previous treatment with quetiapine\n* Patients who have previously participated in this study",
+        "healthyVolunteers": false,
+        "sex": "ALL",
+        "minimumAge": "10 Years",
+        "maximumAge": "17 Years",
+        "stdAges": [
+          "CHILD"
+        ]
+      },
+      "contactsLocationsModule": {
+        "overallOfficials": [
+          {
+            "name": "Seroquel Medical Science Director, MD",
+            "affiliation": "AstraZeneca",
+            "role": "STUDY_DIRECTOR"
+          }
+        ],
+        "locations": [
+          {
+            "facility": "Research Site",
+            "city": "Scottsdale",
+            "state": "Arizona",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 33.50921,
+              "lon": -111.89903
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Riverside",
+            "state": "California",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 33.95335,
+              "lon": -117.39616
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Sacramento",
+            "state": "California",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 38.58157,
+              "lon": -121.4944
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "San Diego",
+            "state": "California",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 32.71571,
+              "lon": -117.16472
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Denver",
+            "state": "Colorado",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 39.73915,
+              "lon": -104.9847
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Alamonte",
+            "state": "Florida",
+            "country": "United States"
+          },
+          {
+            "facility": "Research Site",
+            "city": "Jacksonville",
+            "state": "Florida",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 30.33218,
+              "lon": -81.65565
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Miami",
+            "state": "Florida",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 25.77427,
+              "lon": -80.19366
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Augusta",
+            "state": "Georgia",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 33.47097,
+              "lon": -81.97484
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Chicago",
+            "state": "Illinois",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 41.85003,
+              "lon": -87.65005
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Wichita",
+            "state": "Kansas",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 37.69224,
+              "lon": -97.33754
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "New Orleans",
+            "state": "Louisiana",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 29.95465,
+              "lon": -90.07507
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Saint Charles",
+            "state": "Missouri",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 38.78394,
+              "lon": -90.48123
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Las Vegas",
+            "state": "Nevada",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 36.17497,
+              "lon": -115.13722
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Clementon",
+            "state": "New Jersey",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 39.8115,
+              "lon": -74.98294
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Piscataway",
+            "state": "New Jersey",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 40.49927,
+              "lon": -74.39904
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Rochester",
+            "state": "New York",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 43.15478,
+              "lon": -77.61556
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Chapel Hill",
+            "state": "North Carolina",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 35.9132,
+              "lon": -79.05584
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Cincinnati",
+            "state": "Ohio",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 39.12711,
+              "lon": -84.51439
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Cleveland",
+            "state": "Ohio",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 41.4995,
+              "lon": -81.69541
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Lyndhurst",
+            "state": "Ohio",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 41.52005,
+              "lon": -81.48873
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Oklahoma City",
+            "state": "Oklahoma",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 35.46756,
+              "lon": -97.51643
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Philadelphia",
+            "state": "Pennsylvania",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 39.95238,
+              "lon": -75.16362
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Madison",
+            "state": "Tennessee",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 36.25616,
+              "lon": -86.71389
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Austin",
+            "state": "Texas",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 30.26715,
+              "lon": -97.74306
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Houston",
+            "state": "Texas",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 29.76328,
+              "lon": -95.36327
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "San Antonio",
+            "state": "Texas",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 29.42412,
+              "lon": -98.49363
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Richmond",
+            "state": "Virginia",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 37.55376,
+              "lon": -77.46026
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Virginia Beach",
+            "state": "Virginia",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 36.85293,
+              "lon": -75.97799
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Bellevue",
+            "state": "Washington",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 47.61038,
+              "lon": -122.20068
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Kirkland",
+            "state": "Washington",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 47.68149,
+              "lon": -122.20874
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Milwaukee",
+            "state": "Wisconsin",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 43.0389,
+              "lon": -87.90647
+            }
+          }
+        ]
+      },
+      "referencesModule": {
+        "references": [
+          {
+            "pmid": "23419231",
+            "type": "DERIVED",
+            "citation": "Pathak S, Findling RL, Earley WR, Acevedo LD, Stankowski J, Delbello MP. Efficacy and safety of quetiapine in children and adolescents with mania associated with bipolar I disorder: a 3-week, double-blind, placebo-controlled trial. J Clin Psychiatry. 2013 Jan;74(1):e100-9. doi: 10.4088/JCP.11m07424."
+          }
+        ]
+      }
+    },
+    "derivedSection": {
+      "miscInfoModule": {
+        "versionHolder": "2026-11-03"
+      },
+      "conditionBrowseModule": {
+        "meshes": [
+          {
+            "id": "D001714",
+            "term": "Bipolar Disorder"
+          }
+        ],
+        "ancestors": [
+          {
+            "id": "D000068105",
+            "term": "Bipolar and Related Disorders"
+          },
+          {
+            "id": "D019964",
+            "term": "Mood Disorders"
+          },
+          {
+            "id": "D001523",
+            "term": "Mental Disorders"
+          }
+        ]
+      },
+      "interventionBrowseModule": {
+        "meshes": [
+          {
+            "id": "D000069348",
+            "term": "Quetiapine Fumarate"
+          }
+        ],
+        "ancestors": [
+          {
+            "id": "D003987",
+            "term": "Dibenzothiazepines"
+          },
+          {
+            "id": "D013841",
+            "term": "Thiazepines"
+          },
+          {
+            "id": "D013846",
+            "term": "Thiepins"
+          },
+          {
+            "id": "D013457",
+            "term": "Sulfur Compounds"
+          },
+          {
+            "id": "D009930",
+            "term": "Organic Chemicals"
+          },
+          {
+            "id": "D006575",
+            "term": "Heterocyclic Compounds, 3-Ring"
+          },
+          {
+            "id": "D000072471",
+            "term": "Heterocyclic Compounds, Fused-Ring"
+          },
+          {
+            "id": "D006571",
+            "term": "Heterocyclic Compounds"
+          }
+        ]
+      }
+    },
+    "hasResults": false
+  },
+  "expected_digest": "47721392afdb2c80e855e4686dd6226ffa27f5b27d794ebec0a0f870e25712a2",
+  "anchors": [
+    {
+      "id": "eligibility",
+      "address": "/protocolSection/eligibilityModule/eligibilityCriteria",
+      "digest": "47721392afdb2c80e855e4686dd6226ffa27f5b27d794ebec0a0f870e25712a2",
+      "expected": "Inclusion Criteria:\n\n* Patient is able to provide written assent and the parents or legal guardian of the patient is able to provide written informed consent before beginning and study related procedures\n* Patient has a documented clinical diagnosis of Bipolar I mania\n* Patient's parent or legal guardian will be able to accompany the patient at each scheduled study visit\n\nExclusion Criteria:\n\n* Patients (female) must not be pregnant or lactating\n* Patients with a known intolerance or lack of response to previous treatment with quetiapine\n* Patients who have previously participated in this study",
+      "span": {
+        "start": 0,
+        "end": 601,
+        "text": "Inclusion Criteria:\n\n* Patient is able to provide written assent and the parents or legal guardian of the patient is able to provide written informed consent before beginning and study related procedures\n* Patient has a documented clinical diagnosis of Bipolar I mania\n* Patient's parent or legal guardian will be able to accompany the patient at each scheduled study visit\n\nExclusion Criteria:\n\n* Patients (female) must not be pregnant or lactating\n* Patients with a known intolerance or lack of response to previous treatment with quetiapine\n* Patients who have previously participated in this study"
+      }
+    }
+  ],
+  "queries": [
+    {
+      "id": "at-least10",
+      "body": {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+          "class": "Predicate",
+          "key": "age",
+          "kind": "measurement"
+        },
+        "qualifiers": {
+          "class": "Always"
+        },
+        "subject": {
+          "class": "Subject",
+          "kind": "participant",
+          "referent": ""
+        },
+        "time": null,
+        "value": {
+          "class": "Value",
+          "comparison": "ge",
+          "inclusivity": "unspecified",
+          "kind": "quantity",
+          "members": [],
+          "number": 10,
+          "unit": "Years",
+          "upper": null
+        }
+      }
+    },
+    {
+      "id": "at-least18",
+      "body": {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+          "class": "Predicate",
+          "key": "age",
+          "kind": "measurement"
+        },
+        "qualifiers": {
+          "class": "Always"
+        },
+        "subject": {
+          "class": "Subject",
+          "kind": "participant",
+          "referent": ""
+        },
+        "time": null,
+        "value": {
+          "class": "Value",
+          "comparison": "ge",
+          "inclusivity": "unspecified",
+          "kind": "quantity",
+          "members": [],
+          "number": 18,
+          "unit": "Years",
+          "upper": null
+        }
+      }
+    }
+  ]
+}

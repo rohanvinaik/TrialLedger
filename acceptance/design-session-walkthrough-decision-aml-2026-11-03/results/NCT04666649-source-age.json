@@ -1,0 +1,593 @@
+{
+  "code": "complete",
+  "operation": "source_assertions",
+  "result": {
+    "source": {
+      "nct": "NCT04666649",
+      "digest": "673add96b5c61adb6c965456079d102d1ae1b178333be4a13be5d4e2abe89c7a",
+      "study_ref": "ctg:NCT04666649:673add96b5c61adb6c965456079d102d1ae1b178333be4a13be5d4e2abe89c7a",
+      "version": "673add96b5c61adb6c965456079d102d1ae1b178333be4a13be5d4e2abe89c7a",
+      "last_update": {
+        "date": "2025-10-07",
+        "type": "ACTUAL"
+      }
+    },
+    "anchors": [
+      {
+        "id": "eligibility",
+        "address": "/protocolSection/eligibilityModule/eligibilityCriteria",
+        "digest": "673add96b5c61adb6c965456079d102d1ae1b178333be4a13be5d4e2abe89c7a",
+        "value": "Inclusion Criteria:\n\n* A histologically or pathologically confirmed diagnosis of AML based on 2016 WHO classification. Patients with Complex Karyotype AML (CK-AML) and TP53-mutated AML are eligible for this study.\n* AML has relapsed after or is refractory to, first-line therapy, with a maximum of three prior lines of therapy. Patients whose AML has FLT3 or IDH1/IDH2 mutations should have received at least one available FLT3 or IDH1/IDH2 inhibitors\n* Age 18 years and older\n* ECOG performance status ≤ 2\n* Patients who have undergone allo-HSCT are eligible if they are ≥ 30 days post stem cell infusion, have no evidence of graft versus hose disease ( GVHD ) \\> Grade 1, and are ≥ 10 days off all immunosuppressive therapy\n* Previous cytotoxic chemotherapy must have been completed at least 10 days prior to day 1 of treatment on the study and all AEs (excluding alopecia, acne, rash) due to agents administered earlier should have recovered to \\< Grade 1. Patients with hematologic malignancies are expected to have hematologic abnormalities at study entry. These abnormalities which are thought to be primarily related to the underlying leukemia, are not considered to be toxicities (AE) and do not need to resolve to \\< Grade 1\n* All biologic agents including hematopoietic growth factors must have been stopped at least 1 week prior to day 1 of treatment on the study\n* Patients must have adequate organ function as defined below:\n\n  * Direct bilirubin ≤2X the institutional upper limit of normal (ULN) (except in patients with leukemic infiltration of the liver)\n  * AST(SGOT)/ALT(SGPT) ≤3X ULN (except if attributable to leukemic infiltration of the liver)\n  * Alkaline phosphatase ≤5X ULN\n  * Creatinine Clearance (CrCl) ≥ 45 mL/min (except in patients with evidence of tumor lysis syndrome)\n  * Patients with a history of CNS leukemia must be stable with clear CSF for \\> 2 months prior to day 1 of treatment (patient can receive intrathecal maintenance chemotherapy)\n* Female patients of childbearing potential must have a negative pregnancy test \\<1 week prior to enrollment. Female patients of childbearing potential who are sexually active and male patients who are sexually active and have female partners of childbearing potential must agree to use highly effective method of contraception with their partners during exposure to study drugs and for 30 days after the last dose of study drugs.\n* Ability to understand and willingness to sign a written informed consent document.\n\nExclusion Criteria:\n\n* Patients receiving any other investigational agents, or concurrent chemotherapy or immunotherapy\n* Patients with acute promyelocytic leukemia (APL) confirmed with t(15;17) (i.e. FAB subtype M3 and M3 variant)\n* Prior treatment with any asparaginase product. Patients who received ≤12 weeks of a BCL-2 inhibitor including venetoclax are eligible.\n* Absolute peripheral blast \\> 100,000/μL. Hydroxyurea for blast count control is permitted before starting treatment and up to maximum of 10 days after starting treatment on the study. The decision to start hydroxyurea during this time is at the discretion of the treating physician.\n* Patients with the following clinical histories are excluded:\n\n  * severe pancreatitis not related to cholelithiasis. Severe acute pancreatitis is defined by lipase elevation \\>5X ULN and with signs or symptoms\n  * unprovoked deep venous thrombosis (DVT)\n  * pulmonary emboli\n  * hemorrhagic or thromboembolic stroke\n  * other malignancies requiring systemic chemotherapy, immunotherapy or targeted therapy in the last three months\n* Active, uncontrolled infection; patients with infection under active treatment and controlled with antibiotics are eligible\n* Uncontrolled intercurrent illness including, but not limited to, symptomatic congestive heart failure, unstable angina pectoris, cardiac arrhythmia, or psychiatric illness/social situations that per site Principal Investigator's judgment would limit compliance with study requirements\n* Pregnant women and female patients who are lactating and do not agree to stop breast- feeding.\n* Uncontrolled active seizure\n* Any other clinical conditions that in the opinion of the investigator would make the subject unsuitable for the study",
+        "ref": "ctg:NCT04666649:673add96b5c61adb6c965456079d102d1ae1b178333be4a13be5d4e2abe89c7a#/protocolSection/eligibilityModule/eligibilityCriteria",
+        "source": {
+          "ref": "ctg:NCT04666649:673add96b5c61adb6c965456079d102d1ae1b178333be4a13be5d4e2abe89c7a",
+          "version": "673add96b5c61adb6c965456079d102d1ae1b178333be4a13be5d4e2abe89c7a",
+          "address": "/protocolSection/eligibilityModule/eligibilityCriteria",
+          "digest": "673add96b5c61adb6c965456079d102d1ae1b178333be4a13be5d4e2abe89c7a"
+        },
+        "code": "located"
+      },
+      {
+        "id": "outcomes",
+        "address": "/protocolSection/outcomesModule",
+        "digest": "673add96b5c61adb6c965456079d102d1ae1b178333be4a13be5d4e2abe89c7a",
+        "value": {
+          "primaryOutcomes": [
+            {
+              "measure": "Incidence of regimen limiting toxicities (RLTs)",
+              "description": "The period for determination of RLT will be from the first day of treatment until 30 days after receiving the first dose of Ven-PegC.",
+              "timeFrame": "One year (after 12 cycle's treatment)"
+            },
+            {
+              "measure": "Incidence of treatment-emergent adverse events (TEAE)",
+              "description": "The period for determination of TEAE will be from the first day of treatment until 30 days after receiving the first dose of Ven-PegC.",
+              "timeFrame": "One year (after 12 cycle's treatment)"
+            }
+          ],
+          "secondaryOutcomes": [
+            {
+              "measure": "The rate of CR",
+              "description": "Complete Remission rate",
+              "timeFrame": "One year (after 12 cycle's treatment)"
+            },
+            {
+              "measure": "The rate of composite complete remission (CR+CRh+CRi+CRp)",
+              "description": "The rate of Complete Remission rate, Complete Remission with Partial hematological recovery, Complete Remission with incomplete hematological recovery and Complete Remission with incomplete platelet recovery.",
+              "timeFrame": "One year (after 12 cycle's treatment)"
+            },
+            {
+              "measure": "Event-free Survival (EFS)",
+              "description": "Event-free Survival (EFS)",
+              "timeFrame": "One year (after 12 cycle's treatment)"
+            },
+            {
+              "measure": "Overall Survival (OS)",
+              "description": "Overall Survival (OS)",
+              "timeFrame": "One year (after 12 cycle's treatment)"
+            },
+            {
+              "measure": "The rate of conversion from transfusion dependence to transfusion independence",
+              "description": "The rate of conversion from transfusion dependence to transfusion independence",
+              "timeFrame": "One year (after 12 cycle's treatment)"
+            },
+            {
+              "measure": "The rate of proceeding to allogeneic hematopoietic stem cell transplantation (allo-HSCT) after administration of Ven-PegC",
+              "description": "The rate of proceeding to allogeneic hematopoietic stem cell transplantation (allo-HSCT) after administration of Ven-PegC",
+              "timeFrame": "One year (after 12 cycle's treatment)"
+            },
+            {
+              "measure": "Achievement of MRD <0.02% within 2 cycles of treatment with Ven-PegC",
+              "description": "Achievement of Minimal Residual Disease \\<0.02% within 2 cycles of treatment with Ven-PegC",
+              "timeFrame": "Two months"
+            },
+            {
+              "measure": "Overall incidence and severity of AEs",
+              "description": "Overall incidence and severity of Adverse Events",
+              "timeFrame": "One year (after 12 cycle's treatment)"
+            }
+          ]
+        },
+        "ref": "ctg:NCT04666649:673add96b5c61adb6c965456079d102d1ae1b178333be4a13be5d4e2abe89c7a#/protocolSection/outcomesModule",
+        "source": {
+          "ref": "ctg:NCT04666649:673add96b5c61adb6c965456079d102d1ae1b178333be4a13be5d4e2abe89c7a",
+          "version": "673add96b5c61adb6c965456079d102d1ae1b178333be4a13be5d4e2abe89c7a",
+          "address": "/protocolSection/outcomesModule",
+          "digest": "673add96b5c61adb6c965456079d102d1ae1b178333be4a13be5d4e2abe89c7a"
+        },
+        "code": "located"
+      },
+      {
+        "id": "arms",
+        "address": "/protocolSection/armsInterventionsModule",
+        "digest": "673add96b5c61adb6c965456079d102d1ae1b178333be4a13be5d4e2abe89c7a",
+        "value": {
+          "armGroups": [
+            {
+              "label": "Cohort 400mg of Venetoclax, 500 IU/m ² of Pegcrisantaspase",
+              "type": "EXPERIMENTAL",
+              "description": "The subject will take 400mg of Venetoclax every day as a pill by mouth and a dose of 500 IU/m ² of Pegcrisantaspase in an IV every 14 days ( per cycle)",
+              "interventionNames": [
+                "Drug: Venetoclax and pegcrisantaspase"
+              ]
+            },
+            {
+              "label": "Cohort 400mg of Venetoclax, 750 IU/m ² of Pegcrisantaspase",
+              "type": "EXPERIMENTAL",
+              "description": "The subject will take 400mg of Venetoclax every day as a pill by mouth and a dose of 750 IU/m ² of Pegcrisantaspase in an IV every 14 days ( per cycle)",
+              "interventionNames": [
+                "Drug: Venetoclax and pegcrisantaspase"
+              ]
+            },
+            {
+              "label": "Cohort 400mg of Venetoclax, 1000 IU/m² of Pegcrisantaspase",
+              "type": "EXPERIMENTAL",
+              "description": "The subject will take 400mg of Venetoclax every day as a pill by mouth and a dose of 1000 IU/m² of Pegcrisantaspase in an IV every 14 days ( per cycle)",
+              "interventionNames": [
+                "Drug: Venetoclax and pegcrisantaspase"
+              ]
+            },
+            {
+              "label": "Cohort 600mg Venetoclax, 1000 IU/m ² of Pegcrisantaspase",
+              "type": "EXPERIMENTAL",
+              "description": "The subject will take 600mg of Venetoclax every day as a pill by mouth and a dose of 1000 IU/m ² of Pegcrisantaspase in an IV every 14 days ( Per cycle)",
+              "interventionNames": [
+                "Drug: Venetoclax and pegcrisantaspase"
+              ]
+            }
+          ],
+          "interventions": [
+            {
+              "type": "DRUG",
+              "name": "Venetoclax and pegcrisantaspase",
+              "description": "Therapeutic",
+              "armGroupLabels": [
+                "Cohort 400mg of Venetoclax, 1000 IU/m² of Pegcrisantaspase",
+                "Cohort 400mg of Venetoclax, 500 IU/m ² of Pegcrisantaspase",
+                "Cohort 400mg of Venetoclax, 750 IU/m ² of Pegcrisantaspase",
+                "Cohort 600mg Venetoclax, 1000 IU/m ² of Pegcrisantaspase"
+              ]
+            }
+          ]
+        },
+        "ref": "ctg:NCT04666649:673add96b5c61adb6c965456079d102d1ae1b178333be4a13be5d4e2abe89c7a#/protocolSection/armsInterventionsModule",
+        "source": {
+          "ref": "ctg:NCT04666649:673add96b5c61adb6c965456079d102d1ae1b178333be4a13be5d4e2abe89c7a",
+          "version": "673add96b5c61adb6c965456079d102d1ae1b178333be4a13be5d4e2abe89c7a",
+          "address": "/protocolSection/armsInterventionsModule",
+          "digest": "673add96b5c61adb6c965456079d102d1ae1b178333be4a13be5d4e2abe89c7a"
+        },
+        "code": "located"
+      }
+    ],
+    "fixed": {
+      "assertions": [
+        {
+          "applicability": {
+            "class": "Always"
+          },
+          "body": {
+            "class": "Literal",
+            "evidence": [
+              {
+                "class": "Evidence",
+                "kind": "record_field",
+                "ref": "ctg:NCT04666649:673add96b5c61adb6c965456079d102d1ae1b178333be4a13be5d4e2abe89c7a#/protocolSection/eligibilityModule/minimumAge"
+              }
+            ],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "age",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "ge",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 18.0,
+              "unit": "Years",
+              "upper": null
+            }
+          },
+          "branch": {
+            "class": "Branch",
+            "node": "unresolved",
+            "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+            "class": "Scope",
+            "kind": "all_participants",
+            "parts": [],
+            "ref": ""
+          },
+          "criterion_ref": "ctg:NCT04666649:673add96b5c61adb6c965456079d102d1ae1b178333be4a13be5d4e2abe89c7a#/protocolSection/eligibilityModule/minimumAge",
+          "id": "registry-age-minimumAge",
+          "modality": "required",
+          "resolution": "resolved",
+          "rule": {
+            "answers": [],
+            "class": "Rule",
+            "id": "ctg-structured-general-eligibility-age",
+            "premises": [
+              "ctg:NCT04666649:673add96b5c61adb6c965456079d102d1ae1b178333be4a13be5d4e2abe89c7a#/protocolSection/eligibilityModule/minimumAge"
+            ],
+            "version": "1",
+            "warrants": []
+          },
+          "span": [],
+          "status": "known"
+        }
+      ],
+      "signals": []
+    },
+    "interpretations": [],
+    "bindings": [],
+    "coverage": [
+      {
+        "address": "/protocolSection/eligibilityModule/minimumAge",
+        "code": "compiled",
+        "value": "18 Years",
+        "assertion": "registry-age-minimumAge",
+        "rule": "ctg-structured-general-eligibility-age",
+        "ref": "ctg:NCT04666649:673add96b5c61adb6c965456079d102d1ae1b178333be4a13be5d4e2abe89c7a#/protocolSection/eligibilityModule/minimumAge"
+      },
+      {
+        "address": "/protocolSection/eligibilityModule/maximumAge",
+        "code": "missing",
+        "value": null
+      },
+      {
+        "address": "/protocolSection/eligibilityModule/eligibilityCriteria",
+        "code": "unresolved_retained",
+        "value": "Inclusion Criteria:\n\n* A histologically or pathologically confirmed diagnosis of AML based on 2016 WHO classification. Patients with Complex Karyotype AML (CK-AML) and TP53-mutated AML are eligible for this study.\n* AML has relapsed after or is refractory to, first-line therapy, with a maximum of three prior lines of therapy. Patients whose AML has FLT3 or IDH1/IDH2 mutations should have received at least one available FLT3 or IDH1/IDH2 inhibitors\n* Age 18 years and older\n* ECOG performance status ≤ 2\n* Patients who have undergone allo-HSCT are eligible if they are ≥ 30 days post stem cell infusion, have no evidence of graft versus hose disease ( GVHD ) \\> Grade 1, and are ≥ 10 days off all immunosuppressive therapy\n* Previous cytotoxic chemotherapy must have been completed at least 10 days prior to day 1 of treatment on the study and all AEs (excluding alopecia, acne, rash) due to agents administered earlier should have recovered to \\< Grade 1. Patients with hematologic malignancies are expected to have hematologic abnormalities at study entry. These abnormalities which are thought to be primarily related to the underlying leukemia, are not considered to be toxicities (AE) and do not need to resolve to \\< Grade 1\n* All biologic agents including hematopoietic growth factors must have been stopped at least 1 week prior to day 1 of treatment on the study\n* Patients must have adequate organ function as defined below:\n\n  * Direct bilirubin ≤2X the institutional upper limit of normal (ULN) (except in patients with leukemic infiltration of the liver)\n  * AST(SGOT)/ALT(SGPT) ≤3X ULN (except if attributable to leukemic infiltration of the liver)\n  * Alkaline phosphatase ≤5X ULN\n  * Creatinine Clearance (CrCl) ≥ 45 mL/min (except in patients with evidence of tumor lysis syndrome)\n  * Patients with a history of CNS leukemia must be stable with clear CSF for \\> 2 months prior to day 1 of treatment (patient can receive intrathecal maintenance chemotherapy)\n* Female patients of childbearing potential must have a negative pregnancy test \\<1 week prior to enrollment. Female patients of childbearing potential who are sexually active and male patients who are sexually active and have female partners of childbearing potential must agree to use highly effective method of contraception with their partners during exposure to study drugs and for 30 days after the last dose of study drugs.\n* Ability to understand and willingness to sign a written informed consent document.\n\nExclusion Criteria:\n\n* Patients receiving any other investigational agents, or concurrent chemotherapy or immunotherapy\n* Patients with acute promyelocytic leukemia (APL) confirmed with t(15;17) (i.e. FAB subtype M3 and M3 variant)\n* Prior treatment with any asparaginase product. Patients who received ≤12 weeks of a BCL-2 inhibitor including venetoclax are eligible.\n* Absolute peripheral blast \\> 100,000/μL. Hydroxyurea for blast count control is permitted before starting treatment and up to maximum of 10 days after starting treatment on the study. The decision to start hydroxyurea during this time is at the discretion of the treating physician.\n* Patients with the following clinical histories are excluded:\n\n  * severe pancreatitis not related to cholelithiasis. Severe acute pancreatitis is defined by lipase elevation \\>5X ULN and with signs or symptoms\n  * unprovoked deep venous thrombosis (DVT)\n  * pulmonary emboli\n  * hemorrhagic or thromboembolic stroke\n  * other malignancies requiring systemic chemotherapy, immunotherapy or targeted therapy in the last three months\n* Active, uncontrolled infection; patients with infection under active treatment and controlled with antibiotics are eligible\n* Uncontrolled intercurrent illness including, but not limited to, symptomatic congestive heart failure, unstable angina pectoris, cardiac arrhythmia, or psychiatric illness/social situations that per site Principal Investigator's judgment would limit compliance with study requirements\n* Pregnant women and female patients who are lactating and do not agree to stop breast- feeding.\n* Uncontrolled active seizure\n* Any other clinical conditions that in the opinion of the investigator would make the subject unsuitable for the study"
+      },
+      {
+        "address": "/protocolSection/eligibilityModule/healthyVolunteers",
+        "code": "unresolved_retained",
+        "value": false
+      },
+      {
+        "address": "/protocolSection/eligibilityModule/sex",
+        "code": "unresolved_retained",
+        "value": "ALL"
+      },
+      {
+        "address": "/protocolSection/eligibilityModule/stdAges",
+        "code": "unresolved_retained",
+        "value": [
+          "ADULT",
+          "OLDER_ADULT"
+        ]
+      },
+      {
+        "address": "/derivedSection",
+        "ref": "ctg:NCT04666649:673add96b5c61adb6c965456079d102d1ae1b178333be4a13be5d4e2abe89c7a#/derivedSection",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/hasResults",
+        "ref": "ctg:NCT04666649:673add96b5c61adb6c965456079d102d1ae1b178333be4a13be5d4e2abe89c7a#/hasResults",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/identificationModule",
+        "ref": "ctg:NCT04666649:673add96b5c61adb6c965456079d102d1ae1b178333be4a13be5d4e2abe89c7a#/protocolSection/identificationModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/statusModule",
+        "ref": "ctg:NCT04666649:673add96b5c61adb6c965456079d102d1ae1b178333be4a13be5d4e2abe89c7a#/protocolSection/statusModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/sponsorCollaboratorsModule",
+        "ref": "ctg:NCT04666649:673add96b5c61adb6c965456079d102d1ae1b178333be4a13be5d4e2abe89c7a#/protocolSection/sponsorCollaboratorsModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/oversightModule",
+        "ref": "ctg:NCT04666649:673add96b5c61adb6c965456079d102d1ae1b178333be4a13be5d4e2abe89c7a#/protocolSection/oversightModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/descriptionModule",
+        "ref": "ctg:NCT04666649:673add96b5c61adb6c965456079d102d1ae1b178333be4a13be5d4e2abe89c7a#/protocolSection/descriptionModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/conditionsModule",
+        "ref": "ctg:NCT04666649:673add96b5c61adb6c965456079d102d1ae1b178333be4a13be5d4e2abe89c7a#/protocolSection/conditionsModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/designModule",
+        "ref": "ctg:NCT04666649:673add96b5c61adb6c965456079d102d1ae1b178333be4a13be5d4e2abe89c7a#/protocolSection/designModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/armsInterventionsModule",
+        "ref": "ctg:NCT04666649:673add96b5c61adb6c965456079d102d1ae1b178333be4a13be5d4e2abe89c7a#/protocolSection/armsInterventionsModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/outcomesModule",
+        "ref": "ctg:NCT04666649:673add96b5c61adb6c965456079d102d1ae1b178333be4a13be5d4e2abe89c7a#/protocolSection/outcomesModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/contactsLocationsModule",
+        "ref": "ctg:NCT04666649:673add96b5c61adb6c965456079d102d1ae1b178333be4a13be5d4e2abe89c7a#/protocolSection/contactsLocationsModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/referencesModule",
+        "ref": "ctg:NCT04666649:673add96b5c61adb6c965456079d102d1ae1b178333be4a13be5d4e2abe89c7a#/protocolSection/referencesModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/ipdSharingStatementModule",
+        "ref": "ctg:NCT04666649:673add96b5c61adb6c965456079d102d1ae1b178333be4a13be5d4e2abe89c7a#/protocolSection/ipdSharingStatementModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      }
+    ],
+    "submitted": {
+      "interpretations": [],
+      "bindings": []
+    },
+    "requests": [
+      {
+        "operation": "entailment",
+        "assertions": [
+          {
+            "applicability": {
+              "class": "Always"
+            },
+            "body": {
+              "class": "Literal",
+              "evidence": [
+                {
+                  "class": "Evidence",
+                  "kind": "record_field",
+                  "ref": "ctg:NCT04666649:673add96b5c61adb6c965456079d102d1ae1b178333be4a13be5d4e2abe89c7a#/protocolSection/eligibilityModule/minimumAge"
+                }
+              ],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "age",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "ge",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 18.0,
+                "unit": "Years",
+                "upper": null
+              }
+            },
+            "branch": {
+              "class": "Branch",
+              "node": "unresolved",
+              "path": []
+            },
+            "class": "ScopedAssertion",
+            "cohort": {
+              "class": "Scope",
+              "kind": "all_participants",
+              "parts": [],
+              "ref": ""
+            },
+            "criterion_ref": "ctg:NCT04666649:673add96b5c61adb6c965456079d102d1ae1b178333be4a13be5d4e2abe89c7a#/protocolSection/eligibilityModule/minimumAge",
+            "id": "registry-age-minimumAge",
+            "modality": "required",
+            "resolution": "resolved",
+            "rule": {
+              "answers": [],
+              "class": "Rule",
+              "id": "ctg-structured-general-eligibility-age",
+              "premises": [
+                "ctg:NCT04666649:673add96b5c61adb6c965456079d102d1ae1b178333be4a13be5d4e2abe89c7a#/protocolSection/eligibilityModule/minimumAge"
+              ],
+              "version": "1",
+              "warrants": []
+            },
+            "span": [],
+            "status": "known"
+          }
+        ],
+        "query": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+            "class": "Predicate",
+            "key": "age",
+            "kind": "measurement"
+          },
+          "qualifiers": {
+            "class": "Always"
+          },
+          "subject": {
+            "class": "Subject",
+            "kind": "participant",
+            "referent": ""
+          },
+          "time": null,
+          "value": {
+            "class": "Value",
+            "comparison": "ge",
+            "inclusivity": "unspecified",
+            "kind": "quantity",
+            "members": [],
+            "number": 18,
+            "unit": "Years",
+            "upper": null
+          }
+        }
+      }
+    ],
+    "limits": [
+      "Structured ages describe registry general eligibility, not verified actual protocol.",
+      "A located quotation proves quotation only; clinical readings remain hypothetical.",
+      "No unit conversion, automatic binding joins, clinical text interpretation or source mutation."
+    ],
+    "analyses": [
+      {
+        "code": "complete",
+        "operation": "entailment",
+        "result": {
+          "basis": "Conditional on the supplied typed premises; their source meaning is not certified by this operation.",
+          "decision": {
+            "result": "ENTAILED",
+            "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+            "status": "known",
+            "proof": [
+              "registry-age-minimumAge"
+            ],
+            "blockers": []
+          },
+          "premises": [
+            {
+              "applicability": {
+                "class": "Always"
+              },
+              "body": {
+                "class": "Literal",
+                "evidence": [
+                  {
+                    "class": "Evidence",
+                    "kind": "record_field",
+                    "ref": "ctg:NCT04666649:673add96b5c61adb6c965456079d102d1ae1b178333be4a13be5d4e2abe89c7a#/protocolSection/eligibilityModule/minimumAge"
+                  }
+                ],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "age",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "ge",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 18.0,
+                  "unit": "Years",
+                  "upper": null
+                }
+              },
+              "branch": {
+                "class": "Branch",
+                "node": "unresolved",
+                "path": []
+              },
+              "class": "ScopedAssertion",
+              "cohort": {
+                "class": "Scope",
+                "kind": "all_participants",
+                "parts": [],
+                "ref": ""
+              },
+              "criterion_ref": "ctg:NCT04666649:673add96b5c61adb6c965456079d102d1ae1b178333be4a13be5d4e2abe89c7a#/protocolSection/eligibilityModule/minimumAge",
+              "id": "registry-age-minimumAge",
+              "modality": "required",
+              "resolution": "resolved",
+              "rule": {
+                "answers": [],
+                "class": "Rule",
+                "id": "ctg-structured-general-eligibility-age",
+                "premises": [
+                  "ctg:NCT04666649:673add96b5c61adb6c965456079d102d1ae1b178333be4a13be5d4e2abe89c7a#/protocolSection/eligibilityModule/minimumAge"
+                ],
+                "version": "1",
+                "warrants": []
+              },
+              "span": [],
+              "status": "known"
+            }
+          ]
+        },
+        "problems": [],
+        "metadata": {
+          "version": 1,
+          "kind": "reasoning",
+          "findings": [
+            {
+              "path": "/result/decision",
+              "kind": "logical",
+              "logical_result": "ENTAILED",
+              "standing": "known",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "settled"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "problems": [],
+  "metadata": {
+    "version": 1,
+    "kind": "reasoning",
+    "findings": [
+      {
+        "path": "/result/analyses/0/result/decision",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled"
+      }
+    ]
+  }
+}

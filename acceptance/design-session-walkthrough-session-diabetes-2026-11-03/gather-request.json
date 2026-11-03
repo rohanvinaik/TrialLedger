@@ -1,0 +1,10 @@
+{
+ "drug": [
+  "metformin"
+ ],
+ "condition": "Type 2 Diabetes",
+ "status": [
+  "COMPLETED"
+ ],
+ "study_type": "OBSERVATIONAL"
+}

@@ -1,0 +1,117 @@
+{
+  "previous_fresh_equals_baseline": true,
+  "all_child_envelopes_complete": true,
+  "source_changes": [
+    [
+      "source-NCT00745433",
+      "unchanged"
+    ],
+    [
+      "source-NCT01318564",
+      "unchanged"
+    ],
+    [
+      "source-NCT02475499",
+      "unchanged"
+    ]
+  ],
+  "analysis_changes": [
+    [
+      "NCT00745433-adult",
+      "unchanged"
+    ],
+    [
+      "NCT01318564-adult",
+      "unchanged"
+    ],
+    [
+      "NCT02475499-adult",
+      "unchanged"
+    ],
+    [
+      "Ontario-reading-ordinary",
+      "unchanged"
+    ],
+    [
+      "derived-adult-recheck",
+      "changed"
+    ],
+    [
+      "draft-adult",
+      "changed"
+    ],
+    [
+      "general-reading-does-not-adopt-Ontario",
+      "unchanged"
+    ],
+    [
+      "older",
+      "changed"
+    ],
+    [
+      "younger",
+      "changed"
+    ]
+  ],
+  "decision_before": "design_choice",
+  "decision_after": "chosen_by_person",
+  "baseline_distinction_codes": [
+    "distinguishable_under_floor"
+  ],
+  "work": {
+    "analyses": 19,
+    "expanded_items": 1844,
+    "solver_work_reserved": 15616
+  },
+  "dependency_graph": {
+    "source:source-NCT00745433": [],
+    "source:source-NCT01318564": [],
+    "source:source-NCT02475499": [],
+    "premise:draft-minimum-age": [],
+    "premise:age-NCT00745433": [
+      "source:source-NCT00745433"
+    ],
+    "premise:age-NCT01318564": [
+      "source:source-NCT01318564"
+    ],
+    "premise:age-NCT02475499": [
+      "source:source-NCT02475499"
+    ],
+    "premise:Ontario-age-reading": [
+      "source:source-NCT02475499"
+    ],
+    "premise:derived-draft-adult": [
+      "premise:draft-minimum-age",
+      "analysis:draft-adult"
+    ],
+    "analysis:NCT00745433-adult": [
+      "premise:age-NCT00745433"
+    ],
+    "analysis:NCT01318564-adult": [
+      "premise:age-NCT01318564"
+    ],
+    "analysis:NCT02475499-adult": [
+      "premise:age-NCT02475499"
+    ],
+    "analysis:Ontario-reading-ordinary": [
+      "premise:age-NCT02475499",
+      "premise:Ontario-age-reading"
+    ],
+    "analysis:general-reading-does-not-adopt-Ontario": [
+      "premise:age-NCT02475499",
+      "premise:Ontario-age-reading"
+    ],
+    "analysis:draft-adult": [
+      "premise:draft-minimum-age"
+    ],
+    "analysis:older": [
+      "premise:draft-minimum-age"
+    ],
+    "analysis:younger": [
+      "premise:draft-minimum-age"
+    ],
+    "analysis:derived-adult-recheck": [
+      "premise:derived-draft-adult"
+    ]
+  }
+}

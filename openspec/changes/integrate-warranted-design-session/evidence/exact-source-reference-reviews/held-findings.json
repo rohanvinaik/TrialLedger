@@ -1,0 +1,10 @@
+[
+  {
+    "path": "openspec/changes/integrate-warranted-design-session/evidence/result-metadata-inventory.json",
+    "detector": "Telegram Bot Token",
+    "added_line_sha256": "368e341b3a6e5c1207ce0cab53554cf54f1c2b7e4b5dd41e98aa3d9f498ed5bf",
+    "reason": "Reviewed complete source-reference object group a4104308e09c6d55: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential.",
+    "group": "a4104308e09c6d55f9f4c1f12cfc284c1cb2cd45339f9686403481983a7ecc81",
+    "status": "held; public/fixture provenance not established in bounded review"
+  }
+]

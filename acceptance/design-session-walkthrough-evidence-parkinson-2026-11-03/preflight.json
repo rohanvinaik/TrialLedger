@@ -1,0 +1,28 @@
+{
+  "question": "For a proposed Phase4 Parkinson disease study, which hypothetical entry-participant profiles and accepted/rejected signs would distinguish competing eligibility explanations, and where could the required evidence be sought?",
+  "declared_at_utc": "2026-11-03T23:08:18.744285+00:00",
+  "query": {
+    "drug": [
+      "levodopa"
+    ],
+    "condition": [
+      "Parkinson Disease"
+    ],
+    "phase": [
+      "PHASE4"
+    ],
+    "status": [
+      "COMPLETED"
+    ]
+  },
+  "max_complete_pool": 30,
+  "seed": 6261498521908556500,
+  "selection_rule": "random.Random(seed).sample(sorted(complete_pool),min(3,len(complete_pool))) before selected-content reading, no replacement",
+  "retention": {
+    "packet": "Clinical README/decisionlist, full minimal request/canonicalresult pairs, complete pool/seed/query/time/source/runtime/version/hash receipts; under2MB by reducing duplicate cases not truncating source or output",
+    "local_preview_report": "/Users/rohanvinaik/trialledger-runs/evidence-parkinson-20261103",
+    "local_bulk": "Full raw/report/workbook/helpers/duplicatewires outsideGit; complete snapshots kept in any operation that requires them"
+  },
+  "runtime_gate": "No evidence_requests runtime until ROOT EVIDENCE READY",
+  "epistemic_boundary": "Source age/prior-therapy/stability wording stays attributed. Unobserved rejected entry profiles remain absent; hypothetical evidence requests are not observations. Phase4 and any crossover source design do not establish new statistical/paradigm validation."
+}

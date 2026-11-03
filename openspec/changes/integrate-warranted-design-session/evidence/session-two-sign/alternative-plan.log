@@ -1,0 +1,17 @@
+──────────────────────────────────────────────────────────────────────────────
+TrialLedger/layer2/design_session.py — plan · 16 regions · 9 constructive · 4 ambiguous · 0 destructive · 3 silent (clean 3 · unread 0)   (advisory — static, writes nothing to your project)
+
+  funded               0 of 9 constructive · budget 500 DOF-proxy · spent 0
+                       nothing funded — every constructive region is excluded below, by name
+
+  residual             every exclusion named: unpinned 9 · escalated 4 · silent 3
+  · converge first     9 constructive region(s) have no current contract — style waits: TrialLedger/layer2/design_session.py::_decisions, TrialLedger/layer2/design_session.py::_child, TrialLedger/layer2/design_session.py::_decision_support  (+6 more in the report)
+  · yours              4 AMBIGUOUS — one lens each, or the two signs disagree; the driver's call: record it with `flag <region> --style --leave|--proceed`, or ground it with converge
+
+  · unexamined         what this plan did not propose is UNEXAMINED, not approved
+                       regime — unread: it needs a live mutation profile this static plan never runs
+                       fences held at 0 — the form-censor spine (§5.3) is unbuilt, so DESTRUCTIVE is unexercised
+                       recognizers — 5 template(s); a region with no match is a library gap, not a clean bill
+  · full report        .detective/reports/plan_TrialLedger_layer2_design_session_py.txt
+
+FINAL plan TrialLedger/layer2/design_session.py: 0 funded · 9 constructive · 4 escalated · 0 fenced · 3 silent (clean 3 · unread 0) · advisory — writes no project files

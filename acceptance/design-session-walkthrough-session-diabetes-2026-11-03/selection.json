@@ -1,0 +1,67 @@
+{
+  "question": "For a proposed observational type2-diabetes follow-up registry, which age restrictions and follow-up definitions are actually documented by sampled metformin records, and which downstream answers should change if the working brief revises a chosen population or age premise?",
+  "declared_at_utc": "2026-11-03T22:37:40.679784+00:00",
+  "query": {
+    "drug": [
+      "metformin"
+    ],
+    "condition": [
+      "Type 2 Diabetes"
+    ],
+    "study_type": "OBSERVATIONAL",
+    "status": [
+      "COMPLETED"
+    ]
+  },
+  "phase_handling": "No phase filter or therapeutic phase assumption for observational records",
+  "max_complete_pool": 30,
+  "seed": 2556818910469820462,
+  "selection_rule": "random.Random(seed).sample(sorted(complete_pool),min(3,len(complete_pool))) before selected content reading; no replacement",
+  "retention": {
+    "packet": "Clinical README/decisionlist, full minimal request/canonicalresult pairs, complete query/pool/seed, source/runtime/version/time/hash receipts; under2MB by reducing redundant cases not truncating records/results",
+    "local_bulk": "Complete source/report/workbook/helpers/duplicate wires outside Git; source snapshots remain complete inside requests that require them",
+    "local_preview_report": "/Users/rohanvinaik/trialledger-runs/session-diabetes-20261103"
+  },
+  "runtime_gate": "No managed-session runtime checks until ROOT SESSION READY; read/acquire only",
+  "epistemic_boundary": "Source restrictions do not become new-study design choices automatically. Managed revision is an explicitly hypothetical brief update, never a modified registry fact.",
+  "identifier_preflight_url": "https://clinicaltrials.gov/api/v2/studies?filter.advanced=%28AREA%5BInterventionName%5D%22metformin%22+OR+AREA%5BInterventionOtherName%5D%22metformin%22%29+AND+AREA%5BOverallStatus%5DCOMPLETED+AND+AREA%5BStudyType%5DOBSERVATIONAL&query.cond=Type+2+Diabetes&format=json&fields=NCTId&pageSize=1000&countTotal=true",
+  "identifier_preflight_retrieved_at_utc": "2026-11-03T22:37:59.422986+00:00",
+  "identifier_preflight_sha256": "ce754a780c3597532ab84d44a0f5f96d586be686092c3af381f64c01dea4f3f0",
+  "identifier_response_headers": {
+    "Date": "Tue, 03 Nov 2026 22:37:59 GMT",
+    "content-type": "application/json",
+    "etag": "\"0/0.34.1/mw0io5mw\""
+  },
+  "complete_pool": [
+    "NCT00445627",
+    "NCT00449553",
+    "NCT00745433",
+    "NCT01065766",
+    "NCT01195259",
+    "NCT01219582",
+    "NCT01294553",
+    "NCT01318564",
+    "NCT01332370",
+    "NCT01357135",
+    "NCT02024971",
+    "NCT02456428",
+    "NCT02475499",
+    "NCT02476760",
+    "NCT03155087",
+    "NCT03555565",
+    "NCT03748810",
+    "NCT03921242",
+    "NCT04665570",
+    "NCT04841668",
+    "NCT05822674",
+    "NCT07628556",
+    "NCT07788378"
+  ],
+  "pool_count": 23,
+  "selected": [
+    "NCT00745433",
+    "NCT01318564",
+    "NCT02475499"
+  ],
+  "gather_whole_pool": true
+}

@@ -1,0 +1,205 @@
+{
+  "root": "/Users/rohanvinaik/trialledger-runs/invariant-influenza-20261103",
+  "files": {
+    "bodies/ids-001.json": {
+      "bytes": 1220,
+      "sha256": "c571247faa4a2abb2ae9c590eb6a2e125adc67156b29b4e6003c6053d187c21d"
+    },
+    "bodies/studies-001.json": {
+      "bytes": 1161151,
+      "sha256": "2af5553edfe2f8d8c3aeaac666c9a4b62e618138e36ee397f57c763cb4c8fd54"
+    },
+    "bodies/version-end.json": {
+      "bytes": 71,
+      "sha256": "9eb0e46583efc444c5877db64a361ff539a68ea4f56332958999a5acb39c8553"
+    },
+    "bodies/version-start.json": {
+      "bytes": 71,
+      "sha256": "9eb0e46583efc444c5877db64a361ff539a68ea4f56332958999a5acb39c8553"
+    },
+    "classes.json": {
+      "bytes": 164561,
+      "sha256": "9d5679569feae66963372ed0084f946d6de4cc579437b2a15479ff74ba4f5076"
+    },
+    "fetches.json": {
+      "bytes": 1913,
+      "sha256": "68a2966f6e010d8d8913ed12c04cb99513d3260209e1d5a1635f55da22ea422a"
+    },
+    "invariant-id-preflight.json": {
+      "bytes": 1220,
+      "sha256": "c571247faa4a2abb2ae9c590eb6a2e125adc67156b29b4e6003c6053d187c21d"
+    },
+    "landscape.json": {
+      "bytes": 3437774,
+      "sha256": "aa403efb9d527d3d72ab939f384004ce2ef43e3b3c527dbf2305e5514f4ff29b"
+    },
+    "landscape.xlsx": {
+      "bytes": 677949,
+      "sha256": "d2fd4779abe7a266c95107712934af114b307055ca1a51c62a688c3d44a66e8e"
+    },
+    "lookups/lookup-001.json": {
+      "bytes": 51,
+      "sha256": "83e67e89f05d4128a7df68cab6d6f0c913f0981f1f96e77b8dc8823e516fdd30"
+    },
+    "lookups/lookup-002.json": {
+      "bytes": 37,
+      "sha256": "b34a455ddf56fab80a55205d9368adae7ca907702b81fa533cbf4703a3c826b2"
+    },
+    "lookups/lookup-003.json": {
+      "bytes": 137,
+      "sha256": "54f7af4cba270b31b646e84f5c3bf5f3c93b0cd3a678ea1a31e4682ed776ff48"
+    },
+    "lookups/release-end.json": {
+      "bytes": 51,
+      "sha256": "83e67e89f05d4128a7df68cab6d6f0c913f0981f1f96e77b8dc8823e516fdd30"
+    },
+    "lookups.json": {
+      "bytes": 861,
+      "sha256": "c96f979a49c78afab960c66c6d371a6e2399cdec2bc1426838e8a685ffc24162"
+    },
+    "manifest.json": {
+      "bytes": 2527,
+      "sha256": "58428d3d17240084b67706b61ce58f301e9a23889d276111b9ab7d750936eeb3"
+    },
+    "request.json": {
+      "bytes": 119,
+      "sha256": "63bac16f944a8a65117c183ca213a3c9deef3fb67bc36e8167928c024931e386"
+    },
+    "resolution.json": {
+      "bytes": 1802,
+      "sha256": "bb6ab7832e001856952f263ce6c7e8631d19da2ea903df95263353fe57150f07"
+    },
+    "scope.json": {
+      "bytes": 226,
+      "sha256": "21c10f679468ad15e989f1a54bb2811d7eddc576f96539f64e08cd7cd697c68c"
+    },
+    "workflow-wires/immunocompromised-context-retracted-cli.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/immunocompromised-context-retracted-cli.stdout": {
+      "bytes": 25823,
+      "sha256": "cf691343e75720437088326dc8dc0aece26c4502d1143c74248f775c5464362a"
+    },
+    "workflow-wires/immunocompromised-context-retracted-mcp-input.jsonl": {
+      "bytes": 7717,
+      "sha256": "71dd807bff4e7f8b2984d4234eeec4d1ffd3de4edd0631c6eb8334516f32bfd8"
+    },
+    "workflow-wires/immunocompromised-context-retracted-mcp.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/immunocompromised-context-retracted-mcp.stdout": {
+      "bytes": 34081,
+      "sha256": "ce06b2cb9173022662b7839ef4c958ae73354a801334f7287e63f09525850a8a"
+    },
+    "workflow-wires/immunocompromised-randomized-context-cli.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/immunocompromised-randomized-context-cli.stdout": {
+      "bytes": 75322,
+      "sha256": "cb7e32c19f755d52888b87b8456ecf5534b50502fa7b7472514ce41efbf22ef2"
+    },
+    "workflow-wires/immunocompromised-randomized-context-mcp-input.jsonl": {
+      "bytes": 56878,
+      "sha256": "b385d2287e07963f4ba95b2f7837818e0bd527833a5db136ee514700c25bffcc"
+    },
+    "workflow-wires/immunocompromised-randomized-context-mcp.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/immunocompromised-randomized-context-mcp.stdout": {
+      "bytes": 87245,
+      "sha256": "ea2363aa1289e1ec67b7fadd72e9392f67a40a7bee6328e36f83bc4d6fbb9895"
+    },
+    "workflow-wires/pk-age-and-renal-reading-cli.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/pk-age-and-renal-reading-cli.stdout": {
+      "bytes": 59548,
+      "sha256": "19648990a419ed26d2eebaeb0de5676b28d2e4213524aa380221f2481ade2a3e"
+    },
+    "workflow-wires/pk-age-and-renal-reading-mcp-input.jsonl": {
+      "bytes": 21228,
+      "sha256": "063521046de8b24199c446587e763fc0f8d1fa06c584d1420f7abc3223da0e10"
+    },
+    "workflow-wires/pk-age-and-renal-reading-mcp.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/pk-age-and-renal-reading-mcp.stdout": {
+      "bytes": 71044,
+      "sha256": "86bcc84b1b686f622cd782c6921bdd1d4d03ded98282f75a3d6868000c2e95dd"
+    },
+    "workflow-wires/presentation-and-delay24-cli.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/presentation-and-delay24-cli.stdout": {
+      "bytes": 37478,
+      "sha256": "adbd42c1f9cb7b16cf98574be598aa22355a59f2699141f6c6fb4232297f77e8"
+    },
+    "workflow-wires/presentation-and-delay24-mcp-input.jsonl": {
+      "bytes": 8472,
+      "sha256": "5ace10c4e72a1e80acc365993b01d7dcfe3afad861460ddb2f19e08cf72c20b9"
+    },
+    "workflow-wires/presentation-and-delay24-mcp.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/presentation-and-delay24-mcp.stdout": {
+      "bytes": 47706,
+      "sha256": "6c7a3bfca007b3feca6d9a74e1558509fa86b09ab06bdd7c95a1d5294d008ff0"
+    },
+    "workflow-wires/presentation-and-immediate-dose-cli.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/presentation-and-immediate-dose-cli.stdout": {
+      "bytes": 101574,
+      "sha256": "663ebfb949766543c12e2a3b72e9ea2023a6a9919c281dc2e89a8ff9c2c9cea6"
+    },
+    "workflow-wires/presentation-and-immediate-dose-mcp-input.jsonl": {
+      "bytes": 134609,
+      "sha256": "2138436d15a4cf3b092294afeab6402027e9816702fbafadc5ddb33ac2578066"
+    },
+    "workflow-wires/presentation-and-immediate-dose-mcp.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/presentation-and-immediate-dose-mcp.stdout": {
+      "bytes": 116097,
+      "sha256": "c4a71a7f92044c6592f99ad8f0210cdae20a0f5e9a7ee0d9672d1b89725d52e3"
+    },
+    "workflow-wires/presentation-and-unknown-dose-delay-cli.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/presentation-and-unknown-dose-delay-cli.stdout": {
+      "bytes": 37473,
+      "sha256": "03f68d612c878b85a1cdcd01224018825a200e45d1a9a3f922a77c3e27e0e82c"
+    },
+    "workflow-wires/presentation-and-unknown-dose-delay-mcp-input.jsonl": {
+      "bytes": 8448,
+      "sha256": "a3b6a33b6b5a375c815f203a2c10a39d38ca8cbd681ded7a3ff11a4b62548d45"
+    },
+    "workflow-wires/presentation-and-unknown-dose-delay-mcp.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/presentation-and-unknown-dose-delay-mcp.stdout": {
+      "bytes": 47701,
+      "sha256": "8838ff5aa5ecc55ff65a531e5e98a14efc4aea261629bccdfbc5428307673320"
+    },
+    "workflow.py": {
+      "bytes": 10414,
+      "sha256": "db73093ffda5268a50747f285bbfac37c7e90e6255f89d76e0af4fd2a75a8884"
+    }
+  },
+  "file_count": 49,
+  "bytes": 6440599,
+  "raw_batch_verified_sha256": "2af5553edfe2f8d8c3aeaac666c9a4b62e618138e36ee397f57c763cb4c8fd54",
+  "refetch_is_new_observation": true
+}

@@ -1,0 +1,2056 @@
+{
+  "pk-age-and-renal-reading": {
+    "findings": [
+      {
+        "path": "/result/analyses/0/result/fixed/consistency",
+        "kind": "consistency",
+        "logical_result": "UNDETERMINED",
+        "standing": null,
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          }
+        ],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/analyses/0/result/fixed/queries/0",
+        "kind": "logical",
+        "logical_result": "REFUTED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled",
+        "support_path": "/result/analyses/0/result/fixed/queries/0/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/fixed/queries/1",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/analyses/0/result/fixed/queries/1/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/0",
+        "kind": "interpretation",
+        "logical_result": "compatible",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/0/queries/0",
+        "kind": "logical",
+        "logical_result": "REFUTED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional",
+        "support_path": "/result/analyses/0/result/interpretations/0/queries/0/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/0/queries/1",
+        "kind": "logical",
+        "logical_result": "REFUTED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional",
+        "support_path": "/result/analyses/0/result/interpretations/0/queries/1/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/consequences/0",
+        "kind": "logical",
+        "logical_result": "REFUTED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled",
+        "support_path": "/result/analyses/0/result/consequences/0/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/consequences/1",
+        "kind": "logical",
+        "logical_result": "REFUTED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional",
+        "support_path": "/result/analyses/0/result/consequences/1/warrant"
+      }
+    ],
+    "child_findings": [
+      [
+        {
+          "path": "/result/fixed/consistency",
+          "kind": "consistency",
+          "logical_result": "UNDETERMINED",
+          "standing": null,
+          "completion": "complete",
+          "causes": [
+            {
+              "code": "no_constraint_mentions_query",
+              "kind": "coverage"
+            }
+          ],
+          "disposition": "open"
+        },
+        {
+          "path": "/result/fixed/queries/0",
+          "kind": "logical",
+          "logical_result": "REFUTED",
+          "standing": "known",
+          "completion": "complete",
+          "causes": [],
+          "disposition": "settled",
+          "support_path": "/result/fixed/queries/0/warrant"
+        },
+        {
+          "path": "/result/fixed/queries/1",
+          "kind": "logical",
+          "logical_result": "UNDETERMINED",
+          "standing": "known",
+          "completion": "complete",
+          "causes": [
+            {
+              "code": "no_constraint_mentions_query",
+              "kind": "coverage"
+            }
+          ],
+          "disposition": "open",
+          "support_path": "/result/fixed/queries/1/warrant"
+        },
+        {
+          "path": "/result/interpretations/0",
+          "kind": "interpretation",
+          "logical_result": "compatible",
+          "standing": "proposed",
+          "completion": "complete",
+          "causes": [],
+          "disposition": "conditional"
+        },
+        {
+          "path": "/result/interpretations/0/queries/0",
+          "kind": "logical",
+          "logical_result": "REFUTED",
+          "standing": "proposed",
+          "completion": "complete",
+          "causes": [],
+          "disposition": "conditional",
+          "support_path": "/result/interpretations/0/queries/0/warrant"
+        },
+        {
+          "path": "/result/interpretations/0/queries/1",
+          "kind": "logical",
+          "logical_result": "REFUTED",
+          "standing": "proposed",
+          "completion": "complete",
+          "causes": [],
+          "disposition": "conditional",
+          "support_path": "/result/interpretations/0/queries/1/warrant"
+        },
+        {
+          "path": "/result/consequences/0",
+          "kind": "logical",
+          "logical_result": "REFUTED",
+          "standing": "known",
+          "completion": "complete",
+          "causes": [],
+          "disposition": "settled",
+          "support_path": "/result/consequences/0/warrant"
+        },
+        {
+          "path": "/result/consequences/1",
+          "kind": "logical",
+          "logical_result": "REFUTED",
+          "standing": "proposed",
+          "completion": "complete",
+          "causes": [],
+          "disposition": "conditional",
+          "support_path": "/result/consequences/1/warrant"
+        }
+      ]
+    ]
+  },
+  "immunocompromised-randomized-context": {
+    "findings": [
+      {
+        "path": "/result/analyses/0/result/fixed/consistency",
+        "kind": "consistency",
+        "logical_result": "UNDETERMINED",
+        "standing": null,
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          }
+        ],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/analyses/0/result/fixed/queries/0",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/analyses/0/result/fixed/queries/0/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/fixed/queries/1",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/analyses/0/result/fixed/queries/1/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/0",
+        "kind": "interpretation",
+        "logical_result": "compatible",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/0/queries/0",
+        "kind": "logical",
+        "logical_result": "REFUTED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional",
+        "support_path": "/result/analyses/0/result/interpretations/0/queries/0/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/0/queries/1",
+        "kind": "logical",
+        "logical_result": "REFUTED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional",
+        "support_path": "/result/analyses/0/result/interpretations/0/queries/1/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/consequences/0",
+        "kind": "logical",
+        "logical_result": "REFUTED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional",
+        "support_path": "/result/analyses/0/result/consequences/0/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/consequences/1",
+        "kind": "logical",
+        "logical_result": "REFUTED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional",
+        "support_path": "/result/analyses/0/result/consequences/1/warrant"
+      }
+    ],
+    "child_findings": [
+      [
+        {
+          "path": "/result/fixed/consistency",
+          "kind": "consistency",
+          "logical_result": "UNDETERMINED",
+          "standing": null,
+          "completion": "complete",
+          "causes": [
+            {
+              "code": "no_constraint_mentions_query",
+              "kind": "coverage"
+            }
+          ],
+          "disposition": "open"
+        },
+        {
+          "path": "/result/fixed/queries/0",
+          "kind": "logical",
+          "logical_result": "UNDETERMINED",
+          "standing": "known",
+          "completion": "complete",
+          "causes": [
+            {
+              "code": "no_constraint_mentions_query",
+              "kind": "coverage"
+            }
+          ],
+          "disposition": "open",
+          "support_path": "/result/fixed/queries/0/warrant"
+        },
+        {
+          "path": "/result/fixed/queries/1",
+          "kind": "logical",
+          "logical_result": "UNDETERMINED",
+          "standing": "known",
+          "completion": "complete",
+          "causes": [
+            {
+              "code": "no_constraint_mentions_query",
+              "kind": "coverage"
+            }
+          ],
+          "disposition": "open",
+          "support_path": "/result/fixed/queries/1/warrant"
+        },
+        {
+          "path": "/result/interpretations/0",
+          "kind": "interpretation",
+          "logical_result": "compatible",
+          "standing": "proposed",
+          "completion": "complete",
+          "causes": [],
+          "disposition": "conditional"
+        },
+        {
+          "path": "/result/interpretations/0/queries/0",
+          "kind": "logical",
+          "logical_result": "REFUTED",
+          "standing": "proposed",
+          "completion": "complete",
+          "causes": [],
+          "disposition": "conditional",
+          "support_path": "/result/interpretations/0/queries/0/warrant"
+        },
+        {
+          "path": "/result/interpretations/0/queries/1",
+          "kind": "logical",
+          "logical_result": "REFUTED",
+          "standing": "proposed",
+          "completion": "complete",
+          "causes": [],
+          "disposition": "conditional",
+          "support_path": "/result/interpretations/0/queries/1/warrant"
+        },
+        {
+          "path": "/result/consequences/0",
+          "kind": "logical",
+          "logical_result": "REFUTED",
+          "standing": "proposed",
+          "completion": "complete",
+          "causes": [],
+          "disposition": "conditional",
+          "support_path": "/result/consequences/0/warrant"
+        },
+        {
+          "path": "/result/consequences/1",
+          "kind": "logical",
+          "logical_result": "REFUTED",
+          "standing": "proposed",
+          "completion": "complete",
+          "causes": [],
+          "disposition": "conditional",
+          "support_path": "/result/consequences/1/warrant"
+        }
+      ]
+    ]
+  },
+  "immunocompromised-context-retracted": {
+    "findings": [
+      {
+        "path": "/result/fixed/consistency",
+        "kind": "consistency",
+        "logical_result": "UNDETERMINED",
+        "standing": null,
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          }
+        ],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/fixed/queries/0",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/fixed/queries/0/warrant"
+      },
+      {
+        "path": "/result/fixed/queries/1",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/fixed/queries/1/warrant"
+      },
+      {
+        "path": "/result/interpretations/0",
+        "kind": "interpretation",
+        "logical_result": "unresolved",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "open_scope:cohort_ref:NCT00867139:randomized-arms",
+            "kind": "translation"
+          }
+        ],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/interpretations/0/queries/0",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "interpretation_unresolved",
+            "kind": "premise"
+          },
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          },
+          {
+            "code": "open_scope:cohort_ref:NCT00867139:randomized-arms",
+            "kind": "translation"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/interpretations/0/queries/0/warrant"
+      },
+      {
+        "path": "/result/interpretations/0/queries/1",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "interpretation_unresolved",
+            "kind": "premise"
+          },
+          {
+            "code": "open_scope:cohort_ref:NCT00867139:randomized-arms",
+            "kind": "translation"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/interpretations/0/queries/1/warrant",
+        "raw_result": "REFUTED",
+        "raw_path": "/result/interpretations/0/queries/1/decision"
+      },
+      {
+        "path": "/result/consequences/0",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "interpretation_unresolved",
+            "kind": "premise"
+          },
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          },
+          {
+            "code": "open_scope:cohort_ref:NCT00867139:randomized-arms",
+            "kind": "translation"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/consequences/0/warrant"
+      },
+      {
+        "path": "/result/consequences/1",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "interpretation_unresolved",
+            "kind": "premise"
+          },
+          {
+            "code": "open_scope:cohort_ref:NCT00867139:randomized-arms",
+            "kind": "translation"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/consequences/1/warrant"
+      }
+    ],
+    "frames": [
+      {
+        "id": "randomized-entry-reading",
+        "state": "unresolved",
+        "queries": [
+          {
+            "id": "age6",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "age",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "eq",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 6.0,
+                "unit": "Years",
+                "upper": null
+              }
+            },
+            "result": "UNDETERMINED",
+            "decision": {
+              "result": "UNDETERMINED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":6.0,\"unit\":\"Years\",\"upper\":null}}",
+              "status": null,
+              "proof": [],
+              "blockers": [
+                "no_constraint_mentions_query"
+              ]
+            },
+            "warrant": {
+              "rule": "entail.decide:1",
+              "guarantee": "conditional_on_interpretation",
+              "status": "proposed",
+              "assumptions": [
+                "randomized-age-floor",
+                "illness-before-diagnosis"
+              ],
+              "proof": [],
+              "blockers": [
+                "interpretation_unresolved",
+                "no_constraint_mentions_query",
+                "open_scope:cohort_ref:NCT00867139:randomized-arms"
+              ]
+            }
+          },
+          {
+            "id": "illness6days-at-diagnosis",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "record_defined_illness_duration",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": {
+                "anchor": "named_event",
+                "anchor_ref": "NCT00867139:diagnosis",
+                "certainty": "explicit",
+                "class": "TemporalScope",
+                "evidence": [],
+                "inclusivity": "unspecified",
+                "lower": null,
+                "orientation": "at",
+                "unit": "",
+                "upper": null
+              },
+              "value": {
+                "class": "Value",
+                "comparison": "eq",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 6.0,
+                "unit": "days",
+                "upper": null
+              }
+            },
+            "result": "UNDETERMINED",
+            "decision": {
+              "result": "REFUTED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"record_defined_illness_duration\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":{\"anchor\":\"named_event\",\"anchor_ref\":\"NCT00867139:diagnosis\",\"certainty\":\"explicit\",\"class\":\"TemporalScope\",\"evidence\":[],\"inclusivity\":\"unspecified\",\"lower\":null,\"orientation\":\"at\",\"unit\":\"\",\"upper\":null},\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":6.0,\"unit\":\"days\",\"upper\":null}}",
+              "status": "interpolated",
+              "proof": [
+                "illness-before-diagnosis"
+              ],
+              "blockers": []
+            },
+            "warrant": {
+              "rule": "entail.decide:1",
+              "guarantee": "conditional_on_interpretation",
+              "status": "proposed",
+              "assumptions": [
+                "randomized-age-floor",
+                "illness-before-diagnosis"
+              ],
+              "proof": [
+                "illness-before-diagnosis"
+              ],
+              "blockers": [
+                "interpretation_unresolved",
+                "open_scope:cohort_ref:NCT00867139:randomized-arms"
+              ]
+            }
+          }
+        ],
+        "signals": [],
+        "signal_checks": []
+      }
+    ]
+  },
+  "presentation-and-immediate-dose": {
+    "findings": [
+      {
+        "path": "/result/analyses/0/result/fixed/consistency",
+        "kind": "consistency",
+        "logical_result": "UNDETERMINED",
+        "standing": null,
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          }
+        ],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/analyses/0/result/fixed/queries/0",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled",
+        "support_path": "/result/analyses/0/result/fixed/queries/0/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/fixed/queries/1",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/analyses/0/result/fixed/queries/1/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/fixed/queries/2",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/analyses/0/result/fixed/queries/2/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/0",
+        "kind": "interpretation",
+        "logical_result": "incoherent",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conflict"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/0/queries/0",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "interpretation_incoherent",
+            "kind": "conflict"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/analyses/0/result/interpretations/0/queries/0/warrant",
+        "raw_result": "ENTAILED",
+        "raw_path": "/result/analyses/0/result/interpretations/0/queries/0/decision"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/0/queries/1",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "interpretation_incoherent",
+            "kind": "conflict"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/analyses/0/result/interpretations/0/queries/1/warrant",
+        "raw_result": "REFUTED",
+        "raw_path": "/result/analyses/0/result/interpretations/0/queries/1/decision"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/0/queries/2",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "interpretation_incoherent",
+            "kind": "conflict"
+          },
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/analyses/0/result/interpretations/0/queries/2/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/0/signals/0",
+        "kind": "signal",
+        "logical_result": "consistent",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/0/signal_checks/0",
+        "kind": "signal",
+        "logical_result": "conflict",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conflict"
+      },
+      {
+        "path": "/result/analyses/0/result/consequences/0",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled",
+        "support_path": "/result/analyses/0/result/consequences/0/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/consequences/1",
+        "kind": "logical",
+        "logical_result": "CONFLICT",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conflict",
+        "support_path": "/result/analyses/0/result/consequences/1/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/consequences/2",
+        "kind": "logical",
+        "logical_result": "CONFLICT",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conflict",
+        "support_path": "/result/analyses/0/result/consequences/2/warrant"
+      }
+    ],
+    "child_findings": [
+      [
+        {
+          "path": "/result/fixed/consistency",
+          "kind": "consistency",
+          "logical_result": "UNDETERMINED",
+          "standing": null,
+          "completion": "complete",
+          "causes": [
+            {
+              "code": "no_constraint_mentions_query",
+              "kind": "coverage"
+            }
+          ],
+          "disposition": "open"
+        },
+        {
+          "path": "/result/fixed/queries/0",
+          "kind": "logical",
+          "logical_result": "ENTAILED",
+          "standing": "known",
+          "completion": "complete",
+          "causes": [],
+          "disposition": "settled",
+          "support_path": "/result/fixed/queries/0/warrant"
+        },
+        {
+          "path": "/result/fixed/queries/1",
+          "kind": "logical",
+          "logical_result": "UNDETERMINED",
+          "standing": "known",
+          "completion": "complete",
+          "causes": [
+            {
+              "code": "no_constraint_mentions_query",
+              "kind": "coverage"
+            }
+          ],
+          "disposition": "open",
+          "support_path": "/result/fixed/queries/1/warrant"
+        },
+        {
+          "path": "/result/fixed/queries/2",
+          "kind": "logical",
+          "logical_result": "UNDETERMINED",
+          "standing": "known",
+          "completion": "complete",
+          "causes": [
+            {
+              "code": "no_constraint_mentions_query",
+              "kind": "coverage"
+            }
+          ],
+          "disposition": "open",
+          "support_path": "/result/fixed/queries/2/warrant"
+        },
+        {
+          "path": "/result/interpretations/0",
+          "kind": "interpretation",
+          "logical_result": "incoherent",
+          "standing": "proposed",
+          "completion": "complete",
+          "causes": [],
+          "disposition": "conflict"
+        },
+        {
+          "path": "/result/interpretations/0/queries/0",
+          "kind": "logical",
+          "logical_result": "UNDETERMINED",
+          "standing": "proposed",
+          "completion": "complete",
+          "causes": [
+            {
+              "code": "interpretation_incoherent",
+              "kind": "conflict"
+            }
+          ],
+          "disposition": "open",
+          "support_path": "/result/interpretations/0/queries/0/warrant",
+          "raw_result": "ENTAILED",
+          "raw_path": "/result/interpretations/0/queries/0/decision"
+        },
+        {
+          "path": "/result/interpretations/0/queries/1",
+          "kind": "logical",
+          "logical_result": "UNDETERMINED",
+          "standing": "proposed",
+          "completion": "complete",
+          "causes": [
+            {
+              "code": "interpretation_incoherent",
+              "kind": "conflict"
+            }
+          ],
+          "disposition": "open",
+          "support_path": "/result/interpretations/0/queries/1/warrant",
+          "raw_result": "REFUTED",
+          "raw_path": "/result/interpretations/0/queries/1/decision"
+        },
+        {
+          "path": "/result/interpretations/0/queries/2",
+          "kind": "logical",
+          "logical_result": "UNDETERMINED",
+          "standing": "proposed",
+          "completion": "complete",
+          "causes": [
+            {
+              "code": "interpretation_incoherent",
+              "kind": "conflict"
+            },
+            {
+              "code": "no_constraint_mentions_query",
+              "kind": "coverage"
+            }
+          ],
+          "disposition": "open",
+          "support_path": "/result/interpretations/0/queries/2/warrant"
+        },
+        {
+          "path": "/result/interpretations/0/signals/0",
+          "kind": "signal",
+          "logical_result": "consistent",
+          "standing": "proposed",
+          "completion": "complete",
+          "causes": [],
+          "disposition": "conditional"
+        },
+        {
+          "path": "/result/interpretations/0/signal_checks/0",
+          "kind": "signal",
+          "logical_result": "conflict",
+          "standing": "proposed",
+          "completion": "complete",
+          "causes": [],
+          "disposition": "conflict"
+        },
+        {
+          "path": "/result/consequences/0",
+          "kind": "logical",
+          "logical_result": "ENTAILED",
+          "standing": "known",
+          "completion": "complete",
+          "causes": [],
+          "disposition": "settled",
+          "support_path": "/result/consequences/0/warrant"
+        },
+        {
+          "path": "/result/consequences/1",
+          "kind": "logical",
+          "logical_result": "CONFLICT",
+          "standing": "proposed",
+          "completion": "complete",
+          "causes": [],
+          "disposition": "conflict",
+          "support_path": "/result/consequences/1/warrant"
+        },
+        {
+          "path": "/result/consequences/2",
+          "kind": "logical",
+          "logical_result": "CONFLICT",
+          "standing": "proposed",
+          "completion": "complete",
+          "causes": [],
+          "disposition": "conflict",
+          "support_path": "/result/consequences/2/warrant"
+        }
+      ]
+    ]
+  },
+  "presentation-and-delay24": {
+    "findings": [
+      {
+        "path": "/result/fixed/consistency",
+        "kind": "consistency",
+        "logical_result": "UNDETERMINED",
+        "standing": null,
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          }
+        ],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/fixed/queries/0",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled",
+        "support_path": "/result/fixed/queries/0/warrant"
+      },
+      {
+        "path": "/result/fixed/queries/1",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/fixed/queries/1/warrant"
+      },
+      {
+        "path": "/result/fixed/queries/2",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/fixed/queries/2/warrant"
+      },
+      {
+        "path": "/result/interpretations/0",
+        "kind": "interpretation",
+        "logical_result": "compatible",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional"
+      },
+      {
+        "path": "/result/interpretations/0/queries/0",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional",
+        "support_path": "/result/interpretations/0/queries/0/warrant"
+      },
+      {
+        "path": "/result/interpretations/0/queries/1",
+        "kind": "logical",
+        "logical_result": "REFUTED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional",
+        "support_path": "/result/interpretations/0/queries/1/warrant"
+      },
+      {
+        "path": "/result/interpretations/0/queries/2",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/interpretations/0/queries/2/warrant"
+      },
+      {
+        "path": "/result/interpretations/0/signals/0",
+        "kind": "signal",
+        "logical_result": "consistent",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional"
+      },
+      {
+        "path": "/result/interpretations/0/signal_checks/0",
+        "kind": "signal",
+        "logical_result": "consistent",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional"
+      },
+      {
+        "path": "/result/consequences/0",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled",
+        "support_path": "/result/consequences/0/warrant"
+      },
+      {
+        "path": "/result/consequences/1",
+        "kind": "logical",
+        "logical_result": "REFUTED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional",
+        "support_path": "/result/consequences/1/warrant"
+      },
+      {
+        "path": "/result/consequences/2",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/consequences/2/warrant"
+      }
+    ],
+    "frames": [
+      {
+        "id": "timeline-option",
+        "state": "compatible",
+        "queries": [
+          {
+            "id": "adult",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "age",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "ge",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 18.0,
+                "unit": "Years",
+                "upper": null
+              }
+            },
+            "result": "ENTAILED",
+            "decision": {
+              "result": "ENTAILED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+              "status": "known",
+              "proof": [
+                "registry-age-minimumAge"
+              ],
+              "blockers": []
+            },
+            "warrant": {
+              "rule": "entail.decide:1",
+              "guarantee": "conditional_on_interpretation",
+              "status": "proposed",
+              "assumptions": [
+                "presentation-onset-upper72"
+              ],
+              "proof": [
+                "registry-age-minimumAge"
+              ],
+              "blockers": []
+            }
+          },
+          {
+            "id": "presentation80hours",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "record_defined_illness_duration",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": {
+                "anchor": "named_event",
+                "anchor_ref": "NCT00453999:presentation",
+                "certainty": "explicit",
+                "class": "TemporalScope",
+                "evidence": [],
+                "inclusivity": "unspecified",
+                "lower": null,
+                "orientation": "at",
+                "unit": "",
+                "upper": null
+              },
+              "value": {
+                "class": "Value",
+                "comparison": "eq",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 80.0,
+                "unit": "hours",
+                "upper": null
+              }
+            },
+            "result": "REFUTED",
+            "decision": {
+              "result": "REFUTED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"record_defined_illness_duration\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":{\"anchor\":\"named_event\",\"anchor_ref\":\"NCT00453999:presentation\",\"certainty\":\"explicit\",\"class\":\"TemporalScope\",\"evidence\":[],\"inclusivity\":\"unspecified\",\"lower\":null,\"orientation\":\"at\",\"unit\":\"\",\"upper\":null},\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":80.0,\"unit\":\"hours\",\"upper\":null}}",
+              "status": "interpolated",
+              "proof": [
+                "presentation-onset-upper72"
+              ],
+              "blockers": []
+            },
+            "warrant": {
+              "rule": "entail.decide:1",
+              "guarantee": "conditional_on_interpretation",
+              "status": "proposed",
+              "assumptions": [
+                "presentation-onset-upper72"
+              ],
+              "proof": [
+                "presentation-onset-upper72"
+              ],
+              "blockers": []
+            }
+          },
+          {
+            "id": "first-dose80hours",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "record_defined_illness_duration",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": {
+                "anchor": "named_event",
+                "anchor_ref": "invented:new-draft:first-dose",
+                "certainty": "explicit",
+                "class": "TemporalScope",
+                "evidence": [],
+                "inclusivity": "unspecified",
+                "lower": null,
+                "orientation": "at",
+                "unit": "",
+                "upper": null
+              },
+              "value": {
+                "class": "Value",
+                "comparison": "eq",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 80.0,
+                "unit": "hours",
+                "upper": null
+              }
+            },
+            "result": "UNDETERMINED",
+            "decision": {
+              "result": "UNDETERMINED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"record_defined_illness_duration\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":{\"anchor\":\"named_event\",\"anchor_ref\":\"invented:new-draft:first-dose\",\"certainty\":\"explicit\",\"class\":\"TemporalScope\",\"evidence\":[],\"inclusivity\":\"unspecified\",\"lower\":null,\"orientation\":\"at\",\"unit\":\"\",\"upper\":null},\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":80.0,\"unit\":\"hours\",\"upper\":null}}",
+              "status": null,
+              "proof": [],
+              "blockers": [
+                "no_constraint_mentions_query"
+              ]
+            },
+            "warrant": {
+              "rule": "entail.decide:1",
+              "guarantee": "conditional_on_interpretation",
+              "status": "proposed",
+              "assumptions": [
+                "presentation-onset-upper72"
+              ],
+              "proof": [],
+              "blockers": [
+                "no_constraint_mentions_query"
+              ]
+            }
+          }
+        ],
+        "signals": [
+          {
+            "id": "presentation-dose-timeline",
+            "kind": "temporal",
+            "code": "consistent",
+            "calculation_code": "consistent",
+            "value": {
+              "scope": "NCT00453999:illustrative-new-draft-course",
+              "unit": "hours",
+              "origin": "NCT00453999:record-defined-onset",
+              "bounds": [
+                {
+                  "before": "NCT00453999:record-defined-onset",
+                  "after": "NCT00453999:presentation",
+                  "lower": 0,
+                  "upper": 72,
+                  "lower_inclusive": true,
+                  "upper_inclusive": true
+                },
+                {
+                  "before": "NCT00453999:record-defined-onset",
+                  "after": "invented:new-draft:first-dose",
+                  "lower": 0,
+                  "upper": 96,
+                  "lower_inclusive": true,
+                  "upper_inclusive": true
+                },
+                {
+                  "before": "NCT00453999:presentation",
+                  "after": "NCT00453999:record-defined-onset",
+                  "lower": -72,
+                  "upper": 0,
+                  "lower_inclusive": true,
+                  "upper_inclusive": true
+                },
+                {
+                  "before": "NCT00453999:presentation",
+                  "after": "invented:new-draft:first-dose",
+                  "lower": 0,
+                  "upper": 24,
+                  "lower_inclusive": true,
+                  "upper_inclusive": true
+                },
+                {
+                  "before": "invented:new-draft:first-dose",
+                  "after": "NCT00453999:record-defined-onset",
+                  "lower": -96,
+                  "upper": 0,
+                  "lower_inclusive": true,
+                  "upper_inclusive": true
+                },
+                {
+                  "before": "invented:new-draft:first-dose",
+                  "after": "NCT00453999:presentation",
+                  "lower": -24,
+                  "upper": 0,
+                  "lower_inclusive": true,
+                  "upper_inclusive": true
+                }
+              ]
+            },
+            "rule": "graph.temporal:1",
+            "status": "proposed",
+            "basis": [
+              "assistant:source72h-presentation-reading",
+              "invented:0to24hour-delay-operational-option-not-source-fact"
+            ],
+            "support": [
+              {
+                "id": "timing-reading-and-invented-delay",
+                "status": "proposed",
+                "resolution": "resolved",
+                "basis": [
+                  "assistant:source72h-presentation-reading",
+                  "invented:0to24hour-delay-operational-option-not-source-fact"
+                ]
+              }
+            ],
+            "blockers": [],
+            "guarantee": "conditional_on_interpretation",
+            "assumed_support": [
+              "timing-reading-and-invented-delay"
+            ],
+            "role": "baseline_context"
+          }
+        ],
+        "signal_checks": [
+          {
+            "id": "presentation-dose-timeline",
+            "kind": "temporal",
+            "code": "consistent",
+            "calculation_code": "consistent",
+            "value": {
+              "scope": "NCT00453999:illustrative-new-draft-course",
+              "unit": "hours",
+              "origin": "NCT00453999:record-defined-onset",
+              "bounds": [
+                {
+                  "before": "NCT00453999:record-defined-onset",
+                  "after": "NCT00453999:presentation",
+                  "lower": 56,
+                  "upper": 72,
+                  "lower_inclusive": true,
+                  "upper_inclusive": true
+                },
+                {
+                  "before": "NCT00453999:record-defined-onset",
+                  "after": "invented:new-draft:first-dose",
+                  "lower": 80,
+                  "upper": 80,
+                  "lower_inclusive": true,
+                  "upper_inclusive": true
+                },
+                {
+                  "before": "NCT00453999:presentation",
+                  "after": "NCT00453999:record-defined-onset",
+                  "lower": -72,
+                  "upper": -56,
+                  "lower_inclusive": true,
+                  "upper_inclusive": true
+                },
+                {
+                  "before": "NCT00453999:presentation",
+                  "after": "invented:new-draft:first-dose",
+                  "lower": 8,
+                  "upper": 24,
+                  "lower_inclusive": true,
+                  "upper_inclusive": true
+                },
+                {
+                  "before": "invented:new-draft:first-dose",
+                  "after": "NCT00453999:record-defined-onset",
+                  "lower": -80,
+                  "upper": -80,
+                  "lower_inclusive": true,
+                  "upper_inclusive": true
+                },
+                {
+                  "before": "invented:new-draft:first-dose",
+                  "after": "NCT00453999:presentation",
+                  "lower": -24,
+                  "upper": -8,
+                  "lower_inclusive": true,
+                  "upper_inclusive": true
+                }
+              ]
+            },
+            "rule": "graph.temporal:1",
+            "status": "proposed",
+            "basis": [
+              "assistant:source72h-presentation-reading",
+              "invented:0to24hour-delay-operational-option-not-source-fact"
+            ],
+            "support": [
+              {
+                "id": "timing-reading-and-invented-delay",
+                "status": "proposed",
+                "resolution": "resolved",
+                "basis": [
+                  "assistant:source72h-presentation-reading",
+                  "invented:0to24hour-delay-operational-option-not-source-fact"
+                ]
+              }
+            ],
+            "blockers": [],
+            "guarantee": "conditional_on_interpretation",
+            "assumed_support": [
+              "timing-reading-and-invented-delay"
+            ],
+            "claims": [
+              {
+                "before": "NCT00453999:record-defined-onset",
+                "after": "invented:new-draft:first-dose",
+                "lower": 80,
+                "upper": 80,
+                "lower_inclusive": true,
+                "upper_inclusive": true
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "presentation-and-unknown-dose-delay": {
+    "findings": [
+      {
+        "path": "/result/fixed/consistency",
+        "kind": "consistency",
+        "logical_result": "UNDETERMINED",
+        "standing": null,
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          }
+        ],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/fixed/queries/0",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled",
+        "support_path": "/result/fixed/queries/0/warrant"
+      },
+      {
+        "path": "/result/fixed/queries/1",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/fixed/queries/1/warrant"
+      },
+      {
+        "path": "/result/fixed/queries/2",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/fixed/queries/2/warrant"
+      },
+      {
+        "path": "/result/interpretations/0",
+        "kind": "interpretation",
+        "logical_result": "compatible",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional"
+      },
+      {
+        "path": "/result/interpretations/0/queries/0",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional",
+        "support_path": "/result/interpretations/0/queries/0/warrant"
+      },
+      {
+        "path": "/result/interpretations/0/queries/1",
+        "kind": "logical",
+        "logical_result": "REFUTED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional",
+        "support_path": "/result/interpretations/0/queries/1/warrant"
+      },
+      {
+        "path": "/result/interpretations/0/queries/2",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/interpretations/0/queries/2/warrant"
+      },
+      {
+        "path": "/result/interpretations/0/signals/0",
+        "kind": "signal",
+        "logical_result": "consistent",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional"
+      },
+      {
+        "path": "/result/interpretations/0/signal_checks/0",
+        "kind": "signal",
+        "logical_result": "consistent",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional"
+      },
+      {
+        "path": "/result/consequences/0",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled",
+        "support_path": "/result/consequences/0/warrant"
+      },
+      {
+        "path": "/result/consequences/1",
+        "kind": "logical",
+        "logical_result": "REFUTED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional",
+        "support_path": "/result/consequences/1/warrant"
+      },
+      {
+        "path": "/result/consequences/2",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/consequences/2/warrant"
+      }
+    ],
+    "frames": [
+      {
+        "id": "timeline-option",
+        "state": "compatible",
+        "queries": [
+          {
+            "id": "adult",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "age",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "ge",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 18.0,
+                "unit": "Years",
+                "upper": null
+              }
+            },
+            "result": "ENTAILED",
+            "decision": {
+              "result": "ENTAILED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+              "status": "known",
+              "proof": [
+                "registry-age-minimumAge"
+              ],
+              "blockers": []
+            },
+            "warrant": {
+              "rule": "entail.decide:1",
+              "guarantee": "conditional_on_interpretation",
+              "status": "proposed",
+              "assumptions": [
+                "presentation-onset-upper72"
+              ],
+              "proof": [
+                "registry-age-minimumAge"
+              ],
+              "blockers": []
+            }
+          },
+          {
+            "id": "presentation80hours",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "record_defined_illness_duration",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": {
+                "anchor": "named_event",
+                "anchor_ref": "NCT00453999:presentation",
+                "certainty": "explicit",
+                "class": "TemporalScope",
+                "evidence": [],
+                "inclusivity": "unspecified",
+                "lower": null,
+                "orientation": "at",
+                "unit": "",
+                "upper": null
+              },
+              "value": {
+                "class": "Value",
+                "comparison": "eq",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 80.0,
+                "unit": "hours",
+                "upper": null
+              }
+            },
+            "result": "REFUTED",
+            "decision": {
+              "result": "REFUTED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"record_defined_illness_duration\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":{\"anchor\":\"named_event\",\"anchor_ref\":\"NCT00453999:presentation\",\"certainty\":\"explicit\",\"class\":\"TemporalScope\",\"evidence\":[],\"inclusivity\":\"unspecified\",\"lower\":null,\"orientation\":\"at\",\"unit\":\"\",\"upper\":null},\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":80.0,\"unit\":\"hours\",\"upper\":null}}",
+              "status": "interpolated",
+              "proof": [
+                "presentation-onset-upper72"
+              ],
+              "blockers": []
+            },
+            "warrant": {
+              "rule": "entail.decide:1",
+              "guarantee": "conditional_on_interpretation",
+              "status": "proposed",
+              "assumptions": [
+                "presentation-onset-upper72"
+              ],
+              "proof": [
+                "presentation-onset-upper72"
+              ],
+              "blockers": []
+            }
+          },
+          {
+            "id": "first-dose80hours",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "record_defined_illness_duration",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": {
+                "anchor": "named_event",
+                "anchor_ref": "invented:new-draft:first-dose",
+                "certainty": "explicit",
+                "class": "TemporalScope",
+                "evidence": [],
+                "inclusivity": "unspecified",
+                "lower": null,
+                "orientation": "at",
+                "unit": "",
+                "upper": null
+              },
+              "value": {
+                "class": "Value",
+                "comparison": "eq",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 80.0,
+                "unit": "hours",
+                "upper": null
+              }
+            },
+            "result": "UNDETERMINED",
+            "decision": {
+              "result": "UNDETERMINED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"record_defined_illness_duration\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":{\"anchor\":\"named_event\",\"anchor_ref\":\"invented:new-draft:first-dose\",\"certainty\":\"explicit\",\"class\":\"TemporalScope\",\"evidence\":[],\"inclusivity\":\"unspecified\",\"lower\":null,\"orientation\":\"at\",\"unit\":\"\",\"upper\":null},\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":80.0,\"unit\":\"hours\",\"upper\":null}}",
+              "status": null,
+              "proof": [],
+              "blockers": [
+                "no_constraint_mentions_query"
+              ]
+            },
+            "warrant": {
+              "rule": "entail.decide:1",
+              "guarantee": "conditional_on_interpretation",
+              "status": "proposed",
+              "assumptions": [
+                "presentation-onset-upper72"
+              ],
+              "proof": [],
+              "blockers": [
+                "no_constraint_mentions_query"
+              ]
+            }
+          }
+        ],
+        "signals": [
+          {
+            "id": "presentation-dose-timeline",
+            "kind": "temporal",
+            "code": "consistent",
+            "calculation_code": "consistent",
+            "value": {
+              "scope": "NCT00453999:illustrative-new-draft-course",
+              "unit": "hours",
+              "origin": "NCT00453999:record-defined-onset",
+              "bounds": [
+                {
+                  "before": "NCT00453999:record-defined-onset",
+                  "after": "NCT00453999:presentation",
+                  "lower": 0,
+                  "upper": 72,
+                  "lower_inclusive": true,
+                  "upper_inclusive": true
+                },
+                {
+                  "before": "NCT00453999:record-defined-onset",
+                  "after": "invented:new-draft:first-dose",
+                  "lower": 0,
+                  "upper": null,
+                  "lower_inclusive": true,
+                  "upper_inclusive": null
+                },
+                {
+                  "before": "NCT00453999:presentation",
+                  "after": "NCT00453999:record-defined-onset",
+                  "lower": -72,
+                  "upper": 0,
+                  "lower_inclusive": true,
+                  "upper_inclusive": true
+                },
+                {
+                  "before": "NCT00453999:presentation",
+                  "after": "invented:new-draft:first-dose",
+                  "lower": 0,
+                  "upper": null,
+                  "lower_inclusive": true,
+                  "upper_inclusive": null
+                },
+                {
+                  "before": "invented:new-draft:first-dose",
+                  "after": "NCT00453999:record-defined-onset",
+                  "lower": null,
+                  "upper": 0,
+                  "lower_inclusive": null,
+                  "upper_inclusive": true
+                },
+                {
+                  "before": "invented:new-draft:first-dose",
+                  "after": "NCT00453999:presentation",
+                  "lower": null,
+                  "upper": 0,
+                  "lower_inclusive": null,
+                  "upper_inclusive": true
+                }
+              ]
+            },
+            "rule": "graph.temporal:1",
+            "status": "proposed",
+            "basis": [
+              "assistant:source72h-presentation-reading",
+              "invented:nonnegative-delay-with-unknown-ceiling-not-source-fact"
+            ],
+            "support": [
+              {
+                "id": "timing-reading-and-invented-delay",
+                "status": "proposed",
+                "resolution": "resolved",
+                "basis": [
+                  "assistant:source72h-presentation-reading",
+                  "invented:nonnegative-delay-with-unknown-ceiling-not-source-fact"
+                ]
+              }
+            ],
+            "blockers": [],
+            "guarantee": "conditional_on_interpretation",
+            "assumed_support": [
+              "timing-reading-and-invented-delay"
+            ],
+            "role": "baseline_context"
+          }
+        ],
+        "signal_checks": [
+          {
+            "id": "presentation-dose-timeline",
+            "kind": "temporal",
+            "code": "consistent",
+            "calculation_code": "consistent",
+            "value": {
+              "scope": "NCT00453999:illustrative-new-draft-course",
+              "unit": "hours",
+              "origin": "NCT00453999:record-defined-onset",
+              "bounds": [
+                {
+                  "before": "NCT00453999:record-defined-onset",
+                  "after": "NCT00453999:presentation",
+                  "lower": 0,
+                  "upper": 72,
+                  "lower_inclusive": true,
+                  "upper_inclusive": true
+                },
+                {
+                  "before": "NCT00453999:record-defined-onset",
+                  "after": "invented:new-draft:first-dose",
+                  "lower": 80,
+                  "upper": 80,
+                  "lower_inclusive": true,
+                  "upper_inclusive": true
+                },
+                {
+                  "before": "NCT00453999:presentation",
+                  "after": "NCT00453999:record-defined-onset",
+                  "lower": -72,
+                  "upper": 0,
+                  "lower_inclusive": true,
+                  "upper_inclusive": true
+                },
+                {
+                  "before": "NCT00453999:presentation",
+                  "after": "invented:new-draft:first-dose",
+                  "lower": 8,
+                  "upper": 80,
+                  "lower_inclusive": true,
+                  "upper_inclusive": true
+                },
+                {
+                  "before": "invented:new-draft:first-dose",
+                  "after": "NCT00453999:record-defined-onset",
+                  "lower": -80,
+                  "upper": -80,
+                  "lower_inclusive": true,
+                  "upper_inclusive": true
+                },
+                {
+                  "before": "invented:new-draft:first-dose",
+                  "after": "NCT00453999:presentation",
+                  "lower": -80,
+                  "upper": -8,
+                  "lower_inclusive": true,
+                  "upper_inclusive": true
+                }
+              ]
+            },
+            "rule": "graph.temporal:1",
+            "status": "proposed",
+            "basis": [
+              "assistant:source72h-presentation-reading",
+              "invented:nonnegative-delay-with-unknown-ceiling-not-source-fact"
+            ],
+            "support": [
+              {
+                "id": "timing-reading-and-invented-delay",
+                "status": "proposed",
+                "resolution": "resolved",
+                "basis": [
+                  "assistant:source72h-presentation-reading",
+                  "invented:nonnegative-delay-with-unknown-ceiling-not-source-fact"
+                ]
+              }
+            ],
+            "blockers": [],
+            "guarantee": "conditional_on_interpretation",
+            "assumed_support": [
+              "timing-reading-and-invented-delay"
+            ],
+            "claims": [
+              {
+                "before": "NCT00453999:record-defined-onset",
+                "after": "invented:new-draft:first-dose",
+                "lower": 80,
+                "upper": 80,
+                "lower_inclusive": true,
+                "upper_inclusive": true
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

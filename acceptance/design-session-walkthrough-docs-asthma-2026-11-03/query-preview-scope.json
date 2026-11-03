@@ -1,0 +1,7 @@
+{
+ "query": {
+  "filter.advanced": "(AREA[InterventionName]\"budesonide\" OR AREA[InterventionOtherName]\"budesonide\") AND AREA[Phase]PHASE3 AND AREA[OverallStatus]COMPLETED",
+  "query.cond": "Asthma"
+ },
+ "rxnav": []
+}

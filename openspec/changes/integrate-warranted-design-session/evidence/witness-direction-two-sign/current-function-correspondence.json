@@ -1,0 +1,16 @@
+[
+  {
+    "current": "TrialLedger/layer2/design_bounds.py",
+    "current_sha256": "71aafdae577f82ceb97fef98b1110d2d1a0f8f2ffa7041bd693bb7c109885717",
+    "frozen": "/tmp/trialledger-witness-direction-contract-20261103-v2/TrialLedger/layer2/design_bounds.py",
+    "frozen_sha256": "71aafdae577f82ceb97fef98b1110d2d1a0f8f2ffa7041bd693bb7c109885717",
+    "functions": {
+      "witness_verdict": {
+        "ast_equal": true,
+        "text_equal": true
+      }
+    },
+    "globals": {},
+    "packet": "witness"
+  }
+]

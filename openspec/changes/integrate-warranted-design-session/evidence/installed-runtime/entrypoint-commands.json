@@ -1,0 +1,626 @@
+[
+  {
+    "label": "discovery-overview-cli",
+    "argv": [
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/runtime/bin/trialledger",
+      "reason",
+      "--request",
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/discovery-overview-request.json"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "dafb4c0ed930bd4844925e5b0e5a4e6f8677b2cf18765830a42f7aa25a03ad97",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "discovery-overview-mcp",
+    "argv": [
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/runtime/bin/trialledger",
+      "mcp",
+      "--root",
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/reports"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "c2b407964461e2d581311e1826fec7389db20e3207e8f43f9c61a1069ccc000c",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "discovery-entailment-cli",
+    "argv": [
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/runtime/bin/trialledger",
+      "reason",
+      "--request",
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/discovery-entailment-request.json"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "095dd27f6bbef5426ae2efdcce239a1785766bb24094b53ef58f588080bbed80",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "discovery-entailment-mcp",
+    "argv": [
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/runtime/bin/trialledger",
+      "mcp",
+      "--root",
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/reports"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "cadc675d22b5fe7eebf573f541a5699d1c2b59961c387348796365ed6e17f71c",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "example-entailment-cli",
+    "argv": [
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/runtime/bin/trialledger",
+      "reason",
+      "--request",
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/example-entailment-request.json"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "cf427529102a99b438b2def85146ccafb3166464710acdb00ebf07202acdc0a4",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "example-entailment-mcp",
+    "argv": [
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/runtime/bin/trialledger",
+      "mcp",
+      "--root",
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/reports"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "e27cef5fca80c8b9516b2e2c419424e77de2d86422905a63d1042d6fba6bdc8b",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "discovery-coordinates-cli",
+    "argv": [
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/runtime/bin/trialledger",
+      "reason",
+      "--request",
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/discovery-coordinates-request.json"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "290abd7df37e209d77b17377ba156d91be2d99902b3717f84ee6767b118c6f88",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "discovery-coordinates-mcp",
+    "argv": [
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/runtime/bin/trialledger",
+      "mcp",
+      "--root",
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/reports"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "1f71a52748e0502272a573d1bad64481d92b2226d3de5f4d404a844af012050f",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "example-coordinates-cli",
+    "argv": [
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/runtime/bin/trialledger",
+      "reason",
+      "--request",
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/example-coordinates-request.json"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "220cd037a8076978623d467e984b86c59fcf35b4fcbb1c11a029e649df40636b",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "example-coordinates-mcp",
+    "argv": [
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/runtime/bin/trialledger",
+      "mcp",
+      "--root",
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/reports"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "541781022dcc6bbc292e3439163fe0b1ade0127450017ba7630dfa018a85b1d6",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "discovery-corpus-cli",
+    "argv": [
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/runtime/bin/trialledger",
+      "reason",
+      "--request",
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/discovery-corpus-request.json"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "348ba4077568565792ff04d5c91fe8529e4cdcb4d854d2a97237229e211f1bc1",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "discovery-corpus-mcp",
+    "argv": [
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/runtime/bin/trialledger",
+      "mcp",
+      "--root",
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/reports"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "1f3409cc0230496fe338bae7419114f205ea67786d21506b8e5105b9b19964a3",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "example-corpus-cli",
+    "argv": [
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/runtime/bin/trialledger",
+      "reason",
+      "--request",
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/example-corpus-request.json"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "4a173df30d6ff29b740b7fc27f15547616249bac571b585cd6c98bca831bf663",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "example-corpus-mcp",
+    "argv": [
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/runtime/bin/trialledger",
+      "mcp",
+      "--root",
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/reports"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "05fb4b75fc6f4da828006ef8a873741ae2a2cacaddd4cb3b7e4253f7d5f2d66c",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "discovery-design_bounds-cli",
+    "argv": [
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/runtime/bin/trialledger",
+      "reason",
+      "--request",
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/discovery-design_bounds-request.json"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "1c7d265392731b89c9db26ab1629274d1300112b7dae130b9b0a33ca35e7afe9",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "discovery-design_bounds-mcp",
+    "argv": [
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/runtime/bin/trialledger",
+      "mcp",
+      "--root",
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/reports"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "ef8147a682399d61253543d3fb2777540cdf0492988c79daaf2d77e979b231bf",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "example-design_bounds-cli",
+    "argv": [
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/runtime/bin/trialledger",
+      "reason",
+      "--request",
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/example-design_bounds-request.json"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "3f6ed05964720a3823282eeb9fb536c6c788031436622314aa7ba20fbbd1de70",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "example-design_bounds-mcp",
+    "argv": [
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/runtime/bin/trialledger",
+      "mcp",
+      "--root",
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/reports"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "7a30cad9a4075d5514e167cae8643e173701fe1ea59a207573b22b8abeff654f",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "discovery-evidence_requests-cli",
+    "argv": [
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/runtime/bin/trialledger",
+      "reason",
+      "--request",
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/discovery-evidence_requests-request.json"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "8dd75e308c53f8598132ffa9e0f6ce96ed7bb37ccc182077ef815483a19211da",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "discovery-evidence_requests-mcp",
+    "argv": [
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/runtime/bin/trialledger",
+      "mcp",
+      "--root",
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/reports"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "a0426b6815206656ceeeecae06eada95975e9667fd2d1520409d957decfaa8bd",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "example-evidence_requests-cli",
+    "argv": [
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/runtime/bin/trialledger",
+      "reason",
+      "--request",
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/example-evidence_requests-request.json"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "577a2d7b1a4edfe16eb469fa17c0fb8f6216299cb601e649790b5e20149f937f",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "example-evidence_requests-mcp",
+    "argv": [
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/runtime/bin/trialledger",
+      "mcp",
+      "--root",
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/reports"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "e58307043598f2669341c1419c2907c33121a0fe8bc664f02771e3d5cfc4195e",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "discovery-signals-cli",
+    "argv": [
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/runtime/bin/trialledger",
+      "reason",
+      "--request",
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/discovery-signals-request.json"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "ea6afabf99cf4882e6b4f1f2ff2c448166f11089c1ccbeaf98d17f12aef81d24",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "discovery-signals-mcp",
+    "argv": [
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/runtime/bin/trialledger",
+      "mcp",
+      "--root",
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/reports"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "36c4198c9c6933968d67ab162c0ee1f0dfdccdbd687f421f9c9b3374c6fb0a0f",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "example-signals-cli",
+    "argv": [
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/runtime/bin/trialledger",
+      "reason",
+      "--request",
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/example-signals-request.json"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "7adbb67c70999b5ae726c706ded8098f7a12a65bd9eb05ad60f50584548435f3",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "example-signals-mcp",
+    "argv": [
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/runtime/bin/trialledger",
+      "mcp",
+      "--root",
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/reports"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "de7c507ccdbf7316de582784f22f608d2588fdf1bf4e491c409c6a37731d5c99",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "discovery-interpretations-cli",
+    "argv": [
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/runtime/bin/trialledger",
+      "reason",
+      "--request",
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/discovery-interpretations-request.json"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "55a7fb2cf28d266aeadcbc292325e0293cc18278b47810ddb7f4c3b8b0611a62",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "discovery-interpretations-mcp",
+    "argv": [
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/runtime/bin/trialledger",
+      "mcp",
+      "--root",
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/reports"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "30884f7f0b6e5ff8e5f68a4222816ab32b56ceb3bd6defc61cb477fbf5fc232b",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "example-interpretations-cli",
+    "argv": [
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/runtime/bin/trialledger",
+      "reason",
+      "--request",
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/example-interpretations-request.json"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "16167ae1aa85e0b8d144a152a031c05d042e8bdb89aa83ef4a5001a0350cd53d",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "example-interpretations-mcp",
+    "argv": [
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/runtime/bin/trialledger",
+      "mcp",
+      "--root",
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/reports"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "98f588a98893a798c9d791c84638b280e831172e732b3b03d7d03a5f6b8d1980",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "discovery-source_assertions-cli",
+    "argv": [
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/runtime/bin/trialledger",
+      "reason",
+      "--request",
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/discovery-source_assertions-request.json"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "71cb4447e06e5af407743982700e14c4b6b173cf6e324134bb0962db0ec69ba7",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "discovery-source_assertions-mcp",
+    "argv": [
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/runtime/bin/trialledger",
+      "mcp",
+      "--root",
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/reports"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "9d42a1cd1a6425dc379de28ef614e507ccff918dd989aa24e4d122cb16363712",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "example-source_assertions-cli",
+    "argv": [
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/runtime/bin/trialledger",
+      "reason",
+      "--request",
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/example-source_assertions-request.json"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "90d13efdd7d38966f46180cd75fcf6c6f49c14c452fe9a0a6297cd0656ef3e3c",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "example-source_assertions-mcp",
+    "argv": [
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/runtime/bin/trialledger",
+      "mcp",
+      "--root",
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/reports"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "36837de52d807d2bedb9f86a4a6a83b374e777b93850545d84056da8befd2b6c",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "discovery-design_session-cli",
+    "argv": [
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/runtime/bin/trialledger",
+      "reason",
+      "--request",
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/discovery-design_session-request.json"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "4d102511bbd36afb1aefc6e097415c7ff24f3a08cff060bc7d247979e1bfd3f6",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "discovery-design_session-mcp",
+    "argv": [
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/runtime/bin/trialledger",
+      "mcp",
+      "--root",
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/reports"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "945433e53b9f2473ef0ecdcac7aeb3dde3acd1fdaff51762f0a1aed058cef461",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "example-design_session-cli",
+    "argv": [
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/runtime/bin/trialledger",
+      "reason",
+      "--request",
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/example-design_session-request.json"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "5360249f5ba417912e81b51f50352b981d6d9334a6a673e4ed760c05c9a69c38",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "example-design_session-mcp",
+    "argv": [
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/runtime/bin/trialledger",
+      "mcp",
+      "--root",
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/reports"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "42637677e3ae6d096144302579f647abbd0cada5c2fa78282b039e061e44e409",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "discovery-full-cli",
+    "argv": [
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/runtime/bin/trialledger",
+      "reason",
+      "--request",
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/discovery-full-request.json"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "43f0a4a0b5fbae945913f89e8311d5b76c9f98e53959cabb1f2a132bfc9bdf6c",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "discovery-full-mcp",
+    "argv": [
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/runtime/bin/trialledger",
+      "mcp",
+      "--root",
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/reports"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "8d02bdaf2082166515d9148a8b9f61abbd41d4cb779b05dc9d6fe0c508bed5cd",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "session-baseline-cli",
+    "argv": [
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/runtime/bin/trialledger",
+      "reason",
+      "--request",
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/session-baseline-request.json"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "5360249f5ba417912e81b51f50352b981d6d9334a6a673e4ed760c05c9a69c38",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "session-baseline-mcp",
+    "argv": [
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/runtime/bin/trialledger",
+      "mcp",
+      "--root",
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/reports"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "42637677e3ae6d096144302579f647abbd0cada5c2fa78282b039e061e44e409",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "session-revision-cli",
+    "argv": [
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/runtime/bin/trialledger",
+      "reason",
+      "--request",
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/session-revision-request.json"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "62f65ed6c26c1bbc68c08e20d377e548a94c817293bd8cbb7f8bdba6f5fd2d9f",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "session-revision-mcp",
+    "argv": [
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/runtime/bin/trialledger",
+      "mcp",
+      "--root",
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/reports"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "fa594efa2d6f7aac496d472a412e8dd72476fb09d6c2ad213f0630c450a97786",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "session-nested-evidence-cli",
+    "argv": [
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/runtime/bin/trialledger",
+      "reason",
+      "--request",
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/session-nested-evidence-request.json"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "6ceb2ce4176552c70eaf60eb934303ffffe528dc7500f7640043c706dc46554a",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "session-nested-evidence-mcp",
+    "argv": [
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/runtime/bin/trialledger",
+      "mcp",
+      "--root",
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/reports"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "78f0de363dc31e0bcfbb4d1c373e4666b874c028977c0f1207775f2282541e75",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "evidence-row-limit-cli",
+    "argv": [
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/runtime/bin/trialledger",
+      "reason",
+      "--request",
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/evidence-row-limit-request.json"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "e6fbd39b5da51f6641a598c2035532ae306c43a2aec936f5325b659306ff3b3c",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "evidence-row-limit-mcp",
+    "argv": [
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/runtime/bin/trialledger",
+      "mcp",
+      "--root",
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/reports"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "40f4070761d93a8fb97b9dee4b5f8cb3b21e37a8435f4bccf8598bf06527b27f",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "evidence-response-limit-cli",
+    "argv": [
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/runtime/bin/trialledger",
+      "reason",
+      "--request",
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/evidence-response-limit-request.json"
+    ],
+    "returncode": 2,
+    "stdout_sha256": "0eba894d38c029d10fd55540c425271fc2c51814d9489919b5f832e918fd8a46",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "evidence-response-limit-mcp",
+    "argv": [
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/runtime/bin/trialledger",
+      "mcp",
+      "--root",
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/reports"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "526c7a2ba17b59ade69f7a4fa750b8af5cd308646ce142ff1d146533c97445fd",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "evidence-inexact-number-cli",
+    "argv": [
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/runtime/bin/trialledger",
+      "reason",
+      "--request",
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/evidence-inexact-number-request.json"
+    ],
+    "returncode": 2,
+    "stdout_sha256": "62378a95c452a6b31fa7b9ee6c29e92be23a353910c35cc7f31e71adbb6282dd",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "label": "evidence-inexact-number-mcp",
+    "argv": [
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/runtime/bin/trialledger",
+      "mcp",
+      "--root",
+      "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/reports"
+    ],
+    "returncode": 0,
+    "stdout_sha256": "778a4da320f4bd0f53874311f89fd6b603f05982a81752b9f44af6c3eca99da9",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+]

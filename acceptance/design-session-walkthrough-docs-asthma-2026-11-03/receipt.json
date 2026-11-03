@@ -1,0 +1,177 @@
+{
+  "completed_at_utc": "2026-11-03T23:51:22.222488+00:00",
+  "actual_full_cli_mcp_pairs": 7,
+  "payload_files": {
+    "README.md": {
+      "bytes": 7557,
+      "sha256": "954b33e87b97dd450e6439e0e2c23e9f7b234accbee99b554691f7c49b50ffba"
+    },
+    "finding-summary.json": {
+      "bytes": 59867,
+      "sha256": "aaffcba6c0a81a9c23454737f795db12fe485d679659c0cc92e2a3651fe919b3"
+    },
+    "input-contract-finding/receipt.json": {
+      "bytes": 806,
+      "sha256": "8e66a0dae34ee1fed85e08d9c2c8c758d4ad3c13c4698895cf852ec34f02e480"
+    },
+    "input-contract-finding/request.json": {
+      "bytes": 32440,
+      "sha256": "2a0173fd696c22319714e84a80b4cd38c23e929bb371ac7a30b3188354902de7"
+    },
+    "input-contract-finding/result.json": {
+      "bytes": 562,
+      "sha256": "248d93c6099331e104c7af3bcf12427ac6ef785024780429ba35f6dee97581c7"
+    },
+    "local-retention.json": {
+      "bytes": 9220,
+      "sha256": "826f0558acaad9b7ce29132ff7857ae777511266a775e3b289dadd345714cc1c"
+    },
+    "preflight.json": {
+      "bytes": 1523,
+      "sha256": "e9a03a3f3bbfac6717c67abb563ebd06303ea578e83b6386f0333d0cdfef6a64"
+    },
+    "query-preview-request.json": {
+      "bytes": 115,
+      "sha256": "3901b8afaff56985eabe856b82c5548cbef7003e7110082fc690b59c2e6856c7"
+    },
+    "query-preview-resolution.json": {
+      "bytes": 1782,
+      "sha256": "11c3779c296713ba3ab63022d6c14fbc5925d66c753ba046b2e15b1e9a1c43e9"
+    },
+    "query-preview-scope.json": {
+      "bytes": 221,
+      "sha256": "71d550d90110e2e0cd7b209ff86e41cc4507b861ea2d11b875181b724931bbb0"
+    },
+    "requests/NCT00419952-source-age.json": {
+      "bytes": 107382,
+      "sha256": "ffdbb0ab20fbbd2f70ed5f3a8cb2a9b3479bacacce6210599a359cc425711567"
+    },
+    "requests/NCT01001364-source-age.json": {
+      "bytes": 13748,
+      "sha256": "5e8bcf2abd2b3e3d8ce14fe503a42a225134ec8f602672a2e035d1d52cb41e78"
+    },
+    "requests/NCT01360021-source-age.json": {
+      "bytes": 94440,
+      "sha256": "29763407ba0f8f6d07b8fb525ca27e6a252f98cc536eeaaf61c9f169307c864c"
+    },
+    "requests/post-docs-overview.json": {
+      "bytes": 30,
+      "sha256": "771d632fb3be33794d06587fa15466d13b3ef0f2790c0500cf92bba3c4c975bf"
+    },
+    "requests/session-add-rival-reading.json": {
+      "bytes": 290357,
+      "sha256": "1d80198c3c550985938098582025e52d6ec0722bb34581a245da5874495ffdc0"
+    },
+    "requests/session-initial-therapy-reading.json": {
+      "bytes": 32269,
+      "sha256": "d5a291c3909469816d402f81cce51b7de021d8f7f60baa409c4a161a16c73982"
+    },
+    "requests/source-competing-therapy-readings.json": {
+      "bytes": 22798,
+      "sha256": "eb1735868affa54f459242db73a2921a50f497eaa867f501195ad67accf68440"
+    },
+    "results/NCT00419952-source-age.json": {
+      "bytes": 24609,
+      "sha256": "3c2a40d19fed1dd86cbd71c50539bc4538fa3cf72e4980313cfb375564b9bdba"
+    },
+    "results/NCT01001364-source-age.json": {
+      "bytes": 26487,
+      "sha256": "354d0726d2ed77dc549d57cbff84ee520109e0e5cc5b47991c565eb57ac9c9cd"
+    },
+    "results/NCT01360021-source-age.json": {
+      "bytes": 25577,
+      "sha256": "e6170bcd826eac51f03bf24ed611912c26570babcdbdb96c748bd07d0fa8c7c8"
+    },
+    "results/post-docs-overview.json": {
+      "bytes": 7361,
+      "sha256": "3b63fb212e154600130402e3628024c122744b89dca9b54ad12276df04e63572"
+    },
+    "results/session-add-rival-reading.json": {
+      "bytes": 487146,
+      "sha256": "720a580b1e5dee460560def56a9f35feab5891b725d214b82bd49fc800029ea9"
+    },
+    "results/session-initial-therapy-reading.json": {
+      "bytes": 220410,
+      "sha256": "3953bb78e623d8cbc47b3e41ca70bdb20bf9b13029c46d15449947b346570648"
+    },
+    "results/source-competing-therapy-readings.json": {
+      "bytes": 148183,
+      "sha256": "64690589acc8897b9dbda8d8ac0237246a5a323591ded7ae4d99588602e87d39"
+    },
+    "runtime-receipt.json": {
+      "bytes": 14887,
+      "sha256": "8bb914d4a3d622458ddefbcfe2fcbc9f55be84dc7f9df433242cb90751e0897c"
+    },
+    "sample-gather-fetches.json": {
+      "bytes": 1258,
+      "sha256": "35448ccb62eb835f7cea1c5c34ae7690a8c4234e3fa7e19c2d1ea1ece586b37c"
+    },
+    "sample-gather-manifest.json": {
+      "bytes": 1924,
+      "sha256": "a0f3a55f3ff2f8841b2fbcab7cfdf84b8d4ac59a8ea640b4ece23e17bed36b1d"
+    },
+    "sample-gather-request.json": {
+      "bytes": 74,
+      "sha256": "c2d80b4d231d3038b03843d2f7756b9f76531b2e981f5a04ef5c80bb2b868bab"
+    },
+    "sample-gather-resolution.json": {
+      "bytes": 510,
+      "sha256": "735c2c79985dde1fc810e6a323f0cb7e8f5991e53d2aceb10d4a2f4c9c57eb79"
+    },
+    "sample-gather-scope.json": {
+      "bytes": 87,
+      "sha256": "e10e2061066d39d00a66ca0e19e0236c4fed726b81a39243be9e7e2ec1b1bcf1"
+    },
+    "selection.json": {
+      "bytes": 3911,
+      "sha256": "09327b7d449ff730a2bdab8d787ce8612a641f23b7cda570866814184030e1c1"
+    },
+    "semantic-checks.json": {
+      "bytes": 197,
+      "sha256": "17b4b61778fc4bf1a53915a4961e8daaf17b2fb80ea6008133055ff79a13e8fb"
+    },
+    "source-input-contract.json": {
+      "bytes": 12353,
+      "sha256": "d61c13ab2c07e18036f1381425fe29687196f03a9b2730b87e2a11c4af73e1ec"
+    },
+    "source-inventory.json": {
+      "bytes": 1517,
+      "sha256": "08ba3df63677ea6b298f9822f0908c458aadab476d7f85810a2ce0f121d101da"
+    },
+    "source-reading.md": {
+      "bytes": 2738,
+      "sha256": "7a977d90fbda6bda9e0d71d8351a93c082966fc45b7219cbf04eb070fcdbdd90"
+    },
+    "verification-receipt.json": {
+      "bytes": 445,
+      "sha256": "558bdf9ddbf6cedc90176a96d292eb2ca386db58273463d9fb46bca35e301601"
+    },
+    "working-brief.md": {
+      "bytes": 2340,
+      "sha256": "584e34fb2ee2e6f2981ef518775ac4f3e3f2a911e0f5cdd26f5e95272ee9c6f4"
+    }
+  },
+  "payload_bytes": 1657131,
+  "unclassified_effective_findings": [],
+  "semantic_checks": {
+    "envelopes": 26,
+    "metadata_pointers": 222
+  },
+  "verify_exit": 0,
+  "runtime_files_unchanged": 80,
+  "runtime_additions": {},
+  "clinical_user_confirmation": false,
+  "scope": "Freshdifferentcategory postDOCSREADY acquisition and postOVERVIEWREADY execution:Phase3asthma therapyrole translation with additive rival reading and managedreplay",
+  "source_changed": false,
+  "input_repair": "Redundant expected_digest removed from source_study projection; all7pairs rerun",
+  "clinical_limits": [
+    "No rescue current-use to daily-use inference",
+    "No treatment recommendation or new-study adoption",
+    "Source ICS duration/stability/event-time channels retained",
+    "Population and dose-unit correspondence not inferred",
+    "Missing posted results retained"
+  ],
+  "additional_refusal_transport_pairs": 1,
+  "refusal_check": "input-contract-finding/receipt.json; reconstructed condition, original overwritten wire bytes not retained",
+  "external_documentation_clarification": "README/AGENTS explicitly state source_study owns study and expected_digest; runtime unchanged"
+}

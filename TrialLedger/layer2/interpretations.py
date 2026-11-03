@@ -142,9 +142,13 @@ def _assume_signal(signal: signal_engine.Signal) -> signal_engine.Signal:
 
 def _local_calculation(signal: signal_engine.Signal, claims: list[dict] | None = None) -> dict:
     result = signal_engine.evaluate(_assume_signal(signal), claims)
+    statuses = tuple(premise.status for premise in signal.support)
+    inner = result.get("operator_support", {}).get("status")
+    if inner is not None:
+        statuses += (inner,)
     result.update(
         support=[dataclasses.asdict(premise) for premise in signal.support],
-        status=entail.weakest_status(tuple(premise.status for premise in signal.support)),
+        status=entail.weakest_status(statuses),
         guarantee="conditional_on_interpretation",
         assumed_support=[premise.id for premise in signal.support if premise.status == "proposed"],
     )

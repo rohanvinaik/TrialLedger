@@ -1,0 +1,18 @@
+stage_result_code — decompose
+
+DONE:  no separable block. There is no seam here to split.
+
+──────────────────────────────────────────────────────────────────────────────
+PROOF RUN — the converge this decomposition was validated against
+──────────────────────────────────────────────────────────────────────────────
+TrialLedger/layer2/stage_evidence.py::stage_result_code: ✓ COMPLETE — every mutant killed or oracle-proven-equivalent, line-complete
+  mutants: 0 → 0 survivors; score 100% → 100% (42/42 killed)
+  value: 0 → 0 unspecified; score 100% → 100% (42/42 pinned)
+  every-killable-killed=True  line-complete=True
+  universe: 14 operator mutants · comprehensive — full mutant universe · 42/42 = 100% of scored mutants value-pinned · exhaustive — every operator-universe mutant tested · policy 9+neg.f5a15364c11d
+  pass 0: 0 survivors, 0 sound tests written
+  ✓ line-complete — every executable line is covered by a test
+  · not consulted: 6 collected test(s) have no static path to this function — not traced (a missed dynamic reacher costs a redundant generated test, never a certificate)
+  minimal suite: 3 test(s) cover all kills + lines
+  PROPOSED removals (22, redundant for BOTH kills and lines — confirm to delete, never auto): tests/test_stage_evidence.py::test_claims_against_one_edge_are_checked_together, tests/test_stage_evidence.py::test_count_units_never_convert_implicitly[cluster], tests/test_stage_evidence.py::test_count_units_never_convert_implicitly[event], tests/test_stage_evidence.py::test_count_units_never_convert_implicitly[person-period], tests/test_stage_evidence.py::test_empty_graph_has_no_fabricated_witness, tests/test_stage_evidence.py::test_explicit_zero_is_usable, tests/test_stage_evidence.py::test_impossible_subset_is_conditional_conflict_not_wrong_relation_identity, tests/test_stage_evidence.py::test_order_independence_and_input_immutability, tests/test_stage_evidence.py::test_permitted_progression_does_not_supply_subset_arithmetic, tests/test_stage_evidence.py::test_proposed_relation_retains_raw_conflict_but_no_admitted_refutation, tests/test_stage_evidence.py::test_result_code_direct_intent[codes0-consistent], tests/test_stage_evidence.py::test_result_code_direct_intent[codes1-consistent], tests/test_stage_evidence.py::test_result_code_direct_intent[codes2-consistent], tests/test_stage_evidence.py::test_result_code_direct_intent[codes3-unresolved], tests/test_stage_evidence.py::test_result_code_direct_intent[codes4-conflict], tests/test_stage_evidence.py::test_result_code_direct_intent[codes5-conflict], tests/test_stage_evidence.py::test_scope_mismatch_never_reaches_population_arithmetic[snapshot-other-snapshot], tests/test_stage_evidence.py::test_scope_mismatch_never_reaches_population_arithmetic[source_arm-another-arm], tests/test_stage_evidence.py::test_scope_mismatch_never_reaches_population_arithmetic[study-other-study], tests/test_stage_evidence.py::test_scope_mismatch_never_reaches_population_arithmetic[target_time-later], tests/test_stage_evidence.py::test_unknown_total_is_not_zero[0], tests/test_stage_evidence.py::test_unknown_total_is_not_zero[1]
+FINAL TrialLedger/layer2/stage_evidence.py::stage_result_code: ✓ COMPLETE (operator universe) · 42/42 killed · minimal cover 3 test(s) · policy 9+neg.f5a15364c11d

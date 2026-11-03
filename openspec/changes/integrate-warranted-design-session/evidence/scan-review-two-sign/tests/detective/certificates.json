@@ -1,0 +1,8 @@
+{
+  "scripts/push_checks.py::secret_review_state": {
+    "cut_reasons": [],
+    "function_digest": "9d8aa92148ac2aa6",
+    "refusal": "",
+    "standing": "complete"
+  }
+}

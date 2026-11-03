@@ -1,0 +1,7 @@
+{
+ "query": {
+  "filter.advanced": "(AREA[InterventionName]\"levodopa\" OR AREA[InterventionOtherName]\"levodopa\") AND AREA[Phase]PHASE4 AND AREA[OverallStatus]COMPLETED",
+  "query.cond": "Parkinson Disease"
+ },
+ "rxnav": []
+}

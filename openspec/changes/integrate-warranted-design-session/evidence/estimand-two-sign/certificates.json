@@ -1,0 +1,20 @@
+{
+  "TrialLedger/layer2/estimand_evidence.py::actual_input": {
+    "cut_reasons": [],
+    "function_digest": "d6e65514bc7d1d8f",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/estimand_evidence.py::collection_alignment": {
+    "cut_reasons": [],
+    "function_digest": "b2764eb3d211671b",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/signals.py::support_state": {
+    "cut_reasons": [],
+    "function_digest": "b5e3cc8892bf9ea8",
+    "refusal": "",
+    "standing": "complete"
+  }
+}

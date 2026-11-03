@@ -1,0 +1,800 @@
+{
+  "operation": "design_session",
+  "session": {
+    "schema_version": 1,
+    "id": "asthma-therapy-reading-session",
+    "revision": "initial-one-reading",
+    "parent_digest": null,
+    "target": {
+      "kind": "historical",
+      "ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4",
+      "scope": {
+        "study": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4",
+        "population": "registered-general-population",
+        "arm": "all",
+        "time": "eligibility-assessment",
+        "version": "e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4"
+      }
+    },
+    "sources": [
+      {
+        "id": "focal-source",
+        "study": {
+          "protocolSection": {
+            "identificationModule": {
+              "nctId": "NCT01001364",
+              "orgStudyIdInfo": {
+                "id": "EF-091"
+              },
+              "organization": {
+                "fullName": "Eurofarma Laboratorios S.A.",
+                "class": "INDUSTRY"
+              },
+              "briefTitle": "A Comparative Study Between Foraseq and Formoterol/Budesonide Inhalation Capsules in Patients with Asthma",
+              "officialTitle": "A Phase III, Randomized, Open-Label, Non-Inferiority Comparative Study Between Foraseq Inhalation Capsules 12/200 \u039cg and Formoterol/ Budesonide Inhalation Capsules 12/200 \u039cg Eurofarma in Patients with Asthma",
+              "acronym": "CAINAS"
+            },
+            "statusModule": {
+              "statusVerifiedDate": "2025-03",
+              "overallStatus": "COMPLETED",
+              "expandedAccessInfo": {
+                "hasExpandedAccess": false
+              },
+              "startDateStruct": {
+                "date": "2010-02"
+              },
+              "primaryCompletionDateStruct": {
+                "date": "2011-04",
+                "type": "ACTUAL"
+              },
+              "completionDateStruct": {
+                "date": "2011-04",
+                "type": "ACTUAL"
+              },
+              "studyFirstSubmitDate": "2009-10-23",
+              "studyFirstSubmitQcDate": "2009-10-23",
+              "studyFirstPostDateStruct": {
+                "date": "2009-10-26",
+                "type": "ESTIMATED"
+              },
+              "lastUpdateSubmitDate": "2025-03-17",
+              "lastUpdatePostDateStruct": {
+                "date": "2025-03-19",
+                "type": "ACTUAL"
+              }
+            },
+            "sponsorCollaboratorsModule": {
+              "responsibleParty": {
+                "type": "SPONSOR"
+              },
+              "leadSponsor": {
+                "name": "Eurofarma Laboratorios S.A.",
+                "class": "INDUSTRY"
+              }
+            },
+            "oversightModule": {
+              "oversightHasDmc": true
+            },
+            "descriptionModule": {
+              "briefSummary": "This study primary objective is to compare the impact of two products containing budesonide and formoterol as individual capsules with inhalation powder for the pulmonary function of subjects with persistent asthma.",
+              "detailedDescription": "This study primary objective is to compare the impact of two products containing budesonide and formoterol as individual capsules with inhalation powder for the pulmonary function of subjects with persistent asthma. This is a non-inferiority study, which hypothesis is that there is no difference on the pulmonary function measure between the groups studied at its end. Therefore, the study primary endpoint will be the forced expiratory volume in 1 second (FEV1) at the final visit (FV) at each study arm.\n\nThis study secondary objective is to compare the impact on the clinical control of two products containing budesonide and formoterol as individual capsules with inhalation powder in subjects with persistent asthma.\n\nThe secondary endpoints considered for this study are:\n\n* Score of asthma control questionnaire (ACQ-7) 34 at the end of the study ;\n* Peak of expiratory flow (PEF) throughout the study;\n* Symptoms score at the end of the study;\n* FEV1 throughout the study;\n* Treatment safety, including serum cortisol dosage;\n* Frequency of observed adverse events.\n\nSome eligibility criteria:\n\n* Current use of inhaled corticosteroids (equivalent to beclometasone dipropionate 1000\u00b5g) associated or not to long-acting \u03b22-adrenergics and relief medication (salbutamol or equivalent);\n* Diagnosis of mild to moderate persistent asthma, as per the ARIA classification, 35 with symptoms for at least 6 months, clinically stable for at least 1 month with ACQ-7 test34 (see Attachment D) \\< 3.0;"
+            },
+            "conditionsModule": {
+              "conditions": [
+                "ASTHMA"
+              ]
+            },
+            "designModule": {
+              "studyType": "INTERVENTIONAL",
+              "phases": [
+                "PHASE3"
+              ],
+              "designInfo": {
+                "allocation": "RANDOMIZED",
+                "interventionModel": "PARALLEL",
+                "primaryPurpose": "TREATMENT",
+                "maskingInfo": {
+                  "masking": "NONE"
+                }
+              },
+              "enrollmentInfo": {
+                "count": 88,
+                "type": "ACTUAL"
+              }
+            },
+            "armsInterventionsModule": {
+              "armGroups": [
+                {
+                  "label": "Formoterol/Budesonide",
+                  "type": "EXPERIMENTAL",
+                  "interventionNames": [
+                    "Drug: Formoterol/Budesonide"
+                  ]
+                },
+                {
+                  "label": "Foraseq",
+                  "type": "ACTIVE_COMPARATOR",
+                  "interventionNames": [
+                    "Drug: Foraseq"
+                  ]
+                }
+              ],
+              "interventions": [
+                {
+                  "type": "DRUG",
+                  "name": "Formoterol/Budesonide",
+                  "description": "formoterol will be administered at the 12 \u00b5g dosage, twice a day, and budesonide will be administered at the 200 \u00b5g dose, also twice a day for 12 weeks.",
+                  "armGroupLabels": [
+                    "Formoterol/Budesonide"
+                  ]
+                },
+                {
+                  "type": "DRUG",
+                  "name": "Foraseq",
+                  "description": "formoterol will be administered at the 12 \u00b5g dosage, twice a day, and budesonide will be administered at the 200 \u00b5g dose, also twice a day for 12 weeks.",
+                  "armGroupLabels": [
+                    "Foraseq"
+                  ]
+                }
+              ]
+            },
+            "outcomesModule": {
+              "primaryOutcomes": [
+                {
+                  "measure": "The study primary endpoint will be the forced expiratory volume in 1 second (FEV1) at the final visit (FV) at each study arm.",
+                  "timeFrame": "4 months"
+                }
+              ],
+              "secondaryOutcomes": [
+                {
+                  "measure": "Only one Score of asthma control questionnaire (ACQ-7) 34 at the end of the study.",
+                  "timeFrame": "4 months"
+                }
+              ]
+            },
+            "eligibilityModule": {
+              "eligibilityCriteria": "Inclusion Criteria:\n\n* Sign ICF (see Attachment A);\n* Age \u226512 years old\n* Diagnosis of mild to moderate persistent asthma, as per the ARIA classification, 35 with symptoms for at least 6 months, clinically stable for at least 1 month with ACQ-7 test34 (see Attachment D) \\< 3.0;\n* Current use of inhaled corticosteroids (equivalent to beclometasone dipropionate 1000\u00b5g) associated or not to long-acting \u03b22-adrenergics and relief medication (salbutamol or equivalent);\n* Initial FEV1 of at least 50% of the normal value estimated.\n* Serum cortisol evaluation within the normal values\n\nExclusion Criteria:\n\n* Use of oral or parenteral corticosteroids within the last 3 months;\n* Need of hospitalization due to asthma within the last 3 months;\n* Active tabagism, defined as the use of cigarettes, pipe, cigar or any other type in any amount within the last 3 months;\n* Severe co-morbidity, such as cardiovascular, renal, liver, neurologic, neoplastic, blood, infectious, dermatologic, neurologic, psychiatric or chronic respiratory diseases, other than asthma;\n* Recent participation (\\<6 months) or planned participation, during this study, on other clinical trials involving drugs of any nature or under studies of any type of intervention for the asthma treatment;\n* Intolerance or allergy to any of the compounds of the drugs evaluated on the study;\n* Pregnancy or lactation;\n* Chronic use of routine oral or intravenous \u03b2-blocker drugs, even ophthalmic solutions.",
+              "healthyVolunteers": false,
+              "sex": "ALL",
+              "minimumAge": "12 Years",
+              "stdAges": [
+                "CHILD",
+                "ADULT",
+                "OLDER_ADULT"
+              ]
+            },
+            "contactsLocationsModule": {
+              "locations": [
+                {
+                  "facility": "Centro de Pesquisa Cl\u00ednica Stelmach",
+                  "city": "S\u00e3o Paulo",
+                  "state": "S\u00e3o Paulo",
+                  "zip": "05437 010",
+                  "country": "Brazil",
+                  "geoPoint": {
+                    "lat": -23.5475,
+                    "lon": -46.63611
+                  }
+                }
+              ]
+            }
+          },
+          "derivedSection": {
+            "miscInfoModule": {
+              "versionHolder": "2026-11-03"
+            },
+            "conditionBrowseModule": {
+              "meshes": [
+                {
+                  "id": "D001249",
+                  "term": "Asthma"
+                }
+              ],
+              "ancestors": [
+                {
+                  "id": "D001982",
+                  "term": "Bronchial Diseases"
+                },
+                {
+                  "id": "D012140",
+                  "term": "Respiratory Tract Diseases"
+                },
+                {
+                  "id": "D008173",
+                  "term": "Lung Diseases, Obstructive"
+                },
+                {
+                  "id": "D008171",
+                  "term": "Lung Diseases"
+                },
+                {
+                  "id": "D012130",
+                  "term": "Respiratory Hypersensitivity"
+                },
+                {
+                  "id": "D006969",
+                  "term": "Hypersensitivity, Immediate"
+                },
+                {
+                  "id": "D006967",
+                  "term": "Hypersensitivity"
+                },
+                {
+                  "id": "D007154",
+                  "term": "Immune System Diseases"
+                }
+              ]
+            },
+            "interventionBrowseModule": {
+              "meshes": [
+                {
+                  "id": "D000068759",
+                  "term": "Formoterol Fumarate"
+                },
+                {
+                  "id": "D019819",
+                  "term": "Budesonide"
+                }
+              ],
+              "ancestors": [
+                {
+                  "id": "D004983",
+                  "term": "Ethanolamines"
+                },
+                {
+                  "id": "D000605",
+                  "term": "Amino Alcohols"
+                },
+                {
+                  "id": "D000438",
+                  "term": "Alcohols"
+                },
+                {
+                  "id": "D009930",
+                  "term": "Organic Chemicals"
+                },
+                {
+                  "id": "D000588",
+                  "term": "Amines"
+                },
+                {
+                  "id": "D011282",
+                  "term": "Pregnenediones"
+                },
+                {
+                  "id": "D011283",
+                  "term": "Pregnenes"
+                },
+                {
+                  "id": "D011278",
+                  "term": "Pregnanes"
+                },
+                {
+                  "id": "D013256",
+                  "term": "Steroids"
+                },
+                {
+                  "id": "D000072473",
+                  "term": "Fused-Ring Compounds"
+                },
+                {
+                  "id": "D011083",
+                  "term": "Polycyclic Compounds"
+                }
+              ]
+            }
+          },
+          "hasResults": false
+        },
+        "expected_digest": "e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4"
+      }
+    ],
+    "premises": [
+      {
+        "id": "source-age",
+        "kind": "source_assertion",
+        "payload": {
+          "source": "focal-source",
+          "assertion": "registry-age-minimumAge"
+        },
+        "origin": {
+          "kind": "source_rule",
+          "ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/eligibilityModule/minimumAge",
+          "source": "focal-source",
+          "analysis": null
+        },
+        "depends_on": []
+      },
+      {
+        "id": "relief-required-reading",
+        "kind": "assertion",
+        "payload": {
+          "applicability": {
+            "class": "Always"
+          },
+          "body": {
+            "class": "Literal",
+            "subject": {
+              "class": "Subject",
+              "kind": "participant"
+            },
+            "predicate": {
+              "class": "Predicate",
+              "kind": "medication_use",
+              "key": "current-relief-medication-use"
+            },
+            "value": {
+              "class": "Value",
+              "kind": "boolean"
+            },
+            "time": {
+              "class": "TemporalScope",
+              "orientation": "at",
+              "anchor": "named_event",
+              "anchor_ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4:eligibility-assessment",
+              "certainty": "explicit"
+            }
+          },
+          "branch": {
+            "class": "Branch",
+            "node": "unresolved",
+            "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+            "class": "Scope",
+            "kind": "all_participants",
+            "parts": [],
+            "ref": ""
+          },
+          "criterion_ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/eligibilityModule/eligibilityCriteria",
+          "id": "relief-required-reading",
+          "modality": "required",
+          "resolution": "resolved",
+          "rule": {
+            "answers": [],
+            "class": "Rule",
+            "id": "assistant-scope-reading",
+            "premises": [],
+            "version": "1",
+            "warrants": [
+              "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/eligibilityModule/eligibilityCriteria",
+              "assistant:unconfirmed-reading-of-optional-scope-not-clinician-confirmed"
+            ]
+          },
+          "span": [],
+          "status": "proposed"
+        },
+        "origin": {
+          "kind": "source_interpretation",
+          "ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/eligibilityModule/eligibilityCriteria",
+          "source": "focal-source",
+          "analysis": null
+        },
+        "depends_on": []
+      }
+    ],
+    "analyses": [
+      {
+        "id": "conditional-reading-consequences",
+        "operation": "source_assertions",
+        "target": {
+          "kind": "historical",
+          "ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4",
+          "scope": {
+            "study": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4",
+            "population": "registered-general-population",
+            "arm": "all",
+            "time": "eligibility-assessment",
+            "version": "e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4"
+          }
+        },
+        "parameters": {
+          "anchors": [
+            {
+              "id": "eligibility",
+              "address": "/protocolSection/eligibilityModule/eligibilityCriteria",
+              "digest": "e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4",
+              "expected": "Inclusion Criteria:\n\n* Sign ICF (see Attachment A);\n* Age \u226512 years old\n* Diagnosis of mild to moderate persistent asthma, as per the ARIA classification, 35 with symptoms for at least 6 months, clinically stable for at least 1 month with ACQ-7 test34 (see Attachment D) \\< 3.0;\n* Current use of inhaled corticosteroids (equivalent to beclometasone dipropionate 1000\u00b5g) associated or not to long-acting \u03b22-adrenergics and relief medication (salbutamol or equivalent);\n* Initial FEV1 of at least 50% of the normal value estimated.\n* Serum cortisol evaluation within the normal values\n\nExclusion Criteria:\n\n* Use of oral or parenteral corticosteroids within the last 3 months;\n* Need of hospitalization due to asthma within the last 3 months;\n* Active tabagism, defined as the use of cigarettes, pipe, cigar or any other type in any amount within the last 3 months;\n* Severe co-morbidity, such as cardiovascular, renal, liver, neurologic, neoplastic, blood, infectious, dermatologic, neurologic, psychiatric or chronic respiratory diseases, other than asthma;\n* Recent participation (\\<6 months) or planned participation, during this study, on other clinical trials involving drugs of any nature or under studies of any type of intervention for the asthma treatment;\n* Intolerance or allergy to any of the compounds of the drugs evaluated on the study;\n* Pregnancy or lactation;\n* Chronic use of routine oral or intravenous \u03b2-blocker drugs, even ophthalmic solutions."
+            }
+          ],
+          "interpretations": [
+            {
+              "id": "relief-required",
+              "label": "Read relief medication as a required current co-treatment",
+              "origin": "assistant",
+              "basis": [
+                "assistant:unconfirmed-reading-of-optional-scope-not-clinician-confirmed"
+              ],
+              "anchors": [
+                "eligibility"
+              ],
+              "assumptions": [
+                {
+                  "applicability": {
+                    "class": "Always"
+                  },
+                  "body": {
+                    "class": "Literal",
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "participant"
+                    },
+                    "predicate": {
+                      "class": "Predicate",
+                      "kind": "medication_use",
+                      "key": "current-inhaled-corticosteroid-use"
+                    },
+                    "value": {
+                      "class": "Value",
+                      "kind": "boolean"
+                    },
+                    "time": {
+                      "class": "TemporalScope",
+                      "orientation": "at",
+                      "anchor": "named_event",
+                      "anchor_ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4:eligibility-assessment",
+                      "certainty": "explicit"
+                    }
+                  },
+                  "branch": {
+                    "class": "Branch",
+                    "node": "unresolved",
+                    "path": []
+                  },
+                  "class": "ScopedAssertion",
+                  "cohort": {
+                    "class": "Scope",
+                    "kind": "all_participants",
+                    "parts": [],
+                    "ref": ""
+                  },
+                  "criterion_ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/eligibilityModule/eligibilityCriteria",
+                  "id": "ICS-reading",
+                  "modality": "required",
+                  "resolution": "resolved",
+                  "rule": {
+                    "answers": [],
+                    "class": "Rule",
+                    "id": "assistant-scope-reading",
+                    "premises": [],
+                    "version": "1",
+                    "warrants": [
+                      "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/eligibilityModule/eligibilityCriteria",
+                      "assistant:unconfirmed-reading-of-optional-scope-not-clinician-confirmed"
+                    ]
+                  },
+                  "span": [],
+                  "status": "proposed"
+                },
+                {
+                  "applicability": {
+                    "class": "Always"
+                  },
+                  "body": {
+                    "class": "Literal",
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "participant"
+                    },
+                    "predicate": {
+                      "class": "Predicate",
+                      "kind": "medication_use",
+                      "key": "current-relief-medication-use"
+                    },
+                    "value": {
+                      "class": "Value",
+                      "kind": "boolean"
+                    },
+                    "time": {
+                      "class": "TemporalScope",
+                      "orientation": "at",
+                      "anchor": "named_event",
+                      "anchor_ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4:eligibility-assessment",
+                      "certainty": "explicit"
+                    }
+                  },
+                  "branch": {
+                    "class": "Branch",
+                    "node": "unresolved",
+                    "path": []
+                  },
+                  "class": "ScopedAssertion",
+                  "cohort": {
+                    "class": "Scope",
+                    "kind": "all_participants",
+                    "parts": [],
+                    "ref": ""
+                  },
+                  "criterion_ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/eligibilityModule/eligibilityCriteria",
+                  "id": "relief-required-reading",
+                  "modality": "required",
+                  "resolution": "resolved",
+                  "rule": {
+                    "answers": [],
+                    "class": "Rule",
+                    "id": "assistant-scope-reading",
+                    "premises": [],
+                    "version": "1",
+                    "warrants": [
+                      "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/eligibilityModule/eligibilityCriteria",
+                      "assistant:unconfirmed-reading-of-optional-scope-not-clinician-confirmed"
+                    ]
+                  },
+                  "span": [],
+                  "status": "proposed"
+                }
+              ],
+              "signals": [],
+              "signal_claims": [],
+              "binding_uses": []
+            }
+          ],
+          "queries": [
+            {
+              "id": "age-floor",
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "age",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "ge",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 12,
+                  "unit": "Years",
+                  "upper": null
+                }
+              }
+            },
+            {
+              "id": "current-ICS",
+              "body": {
+                "class": "Literal",
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant"
+                },
+                "predicate": {
+                  "class": "Predicate",
+                  "kind": "medication_use",
+                  "key": "current-inhaled-corticosteroid-use"
+                },
+                "value": {
+                  "class": "Value",
+                  "kind": "boolean"
+                },
+                "time": {
+                  "class": "TemporalScope",
+                  "orientation": "at",
+                  "anchor": "named_event",
+                  "anchor_ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4:eligibility-assessment",
+                  "certainty": "explicit"
+                }
+              }
+            },
+            {
+              "id": "current-relief",
+              "body": {
+                "class": "Literal",
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant"
+                },
+                "predicate": {
+                  "class": "Predicate",
+                  "kind": "medication_use",
+                  "key": "current-relief-medication-use"
+                },
+                "value": {
+                  "class": "Value",
+                  "kind": "boolean"
+                },
+                "time": {
+                  "class": "TemporalScope",
+                  "orientation": "at",
+                  "anchor": "named_event",
+                  "anchor_ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4:eligibility-assessment",
+                  "certainty": "explicit"
+                }
+              }
+            },
+            {
+              "id": "no-current-relief",
+              "body": {
+                "class": "Not",
+                "part": {
+                  "class": "Literal",
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "participant"
+                  },
+                  "predicate": {
+                    "class": "Predicate",
+                    "kind": "medication_use",
+                    "key": "current-relief-medication-use"
+                  },
+                  "value": {
+                    "class": "Value",
+                    "kind": "boolean"
+                  },
+                  "time": {
+                    "class": "TemporalScope",
+                    "orientation": "at",
+                    "anchor": "named_event",
+                    "anchor_ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4:eligibility-assessment",
+                    "certainty": "explicit"
+                  }
+                }
+              }
+            },
+            {
+              "id": "daily-relief",
+              "body": {
+                "class": "Literal",
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant"
+                },
+                "predicate": {
+                  "class": "Predicate",
+                  "kind": "medication_use",
+                  "key": "daily-relief-medication-use"
+                },
+                "value": {
+                  "class": "Value",
+                  "kind": "boolean"
+                },
+                "time": {
+                  "class": "TemporalScope",
+                  "orientation": "at",
+                  "anchor": "named_event",
+                  "anchor_ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4:eligibility-assessment",
+                  "certainty": "explicit"
+                }
+              }
+            }
+          ],
+          "bound": 256,
+          "expected_digest": "e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4"
+        },
+        "uses": [
+          {
+            "premise": "focal-source",
+            "slot": "study",
+            "projection": "source_study"
+          }
+        ]
+      },
+      {
+        "id": "independent-age",
+        "operation": "entailment",
+        "target": {
+          "kind": "historical",
+          "ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4",
+          "scope": {
+            "study": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4",
+            "population": "registered-general-population",
+            "arm": "all",
+            "time": "eligibility-assessment",
+            "version": "e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4"
+          }
+        },
+        "parameters": {
+          "query": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "age",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "ge",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 12,
+              "unit": "Years",
+              "upper": null
+            }
+          },
+          "bound": 128
+        },
+        "uses": [
+          {
+            "premise": "source-age",
+            "slot": "assertions",
+            "projection": "identity"
+          }
+        ]
+      },
+      {
+        "id": "ordinary-relief-query",
+        "operation": "entailment",
+        "target": {
+          "kind": "historical",
+          "ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4",
+          "scope": {
+            "study": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4",
+            "population": "registered-general-population",
+            "arm": "all",
+            "time": "eligibility-assessment",
+            "version": "e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4"
+          }
+        },
+        "parameters": {
+          "query": {
+            "class": "Literal",
+            "subject": {
+              "class": "Subject",
+              "kind": "participant"
+            },
+            "predicate": {
+              "class": "Predicate",
+              "kind": "medication_use",
+              "key": "current-relief-medication-use"
+            },
+            "value": {
+              "class": "Value",
+              "kind": "boolean"
+            },
+            "time": {
+              "class": "TemporalScope",
+              "orientation": "at",
+              "anchor": "named_event",
+              "anchor_ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4:eligibility-assessment",
+              "certainty": "explicit"
+            }
+          },
+          "bound": 128
+        },
+        "uses": [
+          {
+            "premise": "relief-required-reading",
+            "slot": "assertions",
+            "projection": "identity"
+          }
+        ]
+      }
+    ],
+    "decisions": [],
+    "limits": {
+      "max_analyses": 128,
+      "max_premises": 1000,
+      "max_sources": 64,
+      "max_decisions": 128,
+      "max_expanded_items": 10000,
+      "max_solver_work": 10000000,
+      "max_output_bytes": 16000000
+    }
+  },
+  "previous": null
+}

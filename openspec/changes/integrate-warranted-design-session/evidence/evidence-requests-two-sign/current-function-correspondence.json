@@ -1,0 +1,56 @@
+[
+  {
+    "current": "TrialLedger/layer2/evidence_requests.py",
+    "current_sha256": "ef0e57b3767dc58107848edc9822f8940fdc848194c88355bcea8e5f1d5041e5",
+    "frozen": "/tmp/trialledger-evidence-requests-20261103164615/frozen/TrialLedger/layer2/evidence_requests.py",
+    "frozen_sha256": "abd04aef31d3b9f424b8abc034c43b9d7b37a88496b854008f91f7b6409038e9",
+    "functions": {
+      "dominated": {
+        "ast_equal": true,
+        "text_equal": true
+      },
+      "family_state": {
+        "ast_equal": true,
+        "text_equal": true
+      },
+      "output_state": {
+        "ast_equal": true,
+        "text_equal": true
+      },
+      "pair_outcome": {
+        "ast_equal": true,
+        "text_equal": true
+      },
+      "pair_relation": {
+        "ast_equal": true,
+        "text_equal": true
+      },
+      "required_premises": {
+        "ast_equal": true,
+        "text_equal": true
+      },
+      "seek": {
+        "ast_equal": true,
+        "text_equal": true
+      }
+    },
+    "globals": {
+      "BRIDGE_PREMISES": {
+        "ast_equal": true,
+        "current_expression": "('accepted_resolved_bridge', 'count_above_exception_allowance')",
+        "frozen_expression": "('accepted_resolved_bridge', 'count_above_exception_allowance')"
+      },
+      "COMPLETE": {
+        "ast_equal": true,
+        "current_expression": "'complete_candidate_eligibility:'",
+        "frozen_expression": "'complete_candidate_eligibility:'"
+      },
+      "OUTCOMES": {
+        "ast_equal": true,
+        "current_expression": "('separated', 'search_incomplete', 'not_separated_in_declared_variables', 'no_separator')",
+        "frozen_expression": "('separated', 'search_incomplete', 'not_separated_in_declared_variables', 'no_separator')"
+      }
+    },
+    "packet": "external"
+  }
+]

@@ -293,6 +293,10 @@
               ]
             }
           ],
+          "admission": {
+            "code": "accepted",
+            "application_blockers": []
+          },
           "blockers": []
         },
         {
@@ -338,6 +342,10 @@
               ]
             }
           ],
+          "admission": {
+            "code": "accepted",
+            "application_blockers": []
+          },
           "blockers": []
         }
       ],
@@ -480,6 +488,10 @@
                 ]
               }
             ],
+            "admission": {
+              "code": "accepted",
+              "application_blockers": []
+            },
             "blockers": [],
             "claims": [
               {
@@ -778,6 +790,10 @@
                 ]
               }
             ],
+            "admission": {
+              "code": "accepted",
+              "application_blockers": []
+            },
             "blockers": [],
             "claims": [
               {
@@ -1065,6 +1081,10 @@
                 ]
               }
             ],
+            "admission": {
+              "code": "accepted",
+              "application_blockers": []
+            },
             "blockers": [],
             "claims": [
               {
@@ -1367,6 +1387,10 @@
                 ]
               }
             ],
+            "admission": {
+              "code": "accepted",
+              "application_blockers": []
+            },
             "blockers": [],
             "claims": [
               {

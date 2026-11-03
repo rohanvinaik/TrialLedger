@@ -1,0 +1,83 @@
+{
+  "scope": "Only cause_kind/completion_code/disposition_code with exact current module/globals and actual production import identity; metadata wrappers/session/evidence orchestration are not certified by these primitive certificates",
+  "source": {
+    "module_sha256": "3d05007883cc0363660ed911e841c8a098214c5f3df93d66c2a02131031752d0",
+    "function_sha256": {
+      "cause_kind": "84e2634f00e58dbabef0780cf20cc5523ef8288bb414a9cb4016025a21a80d3a",
+      "completion_code": "d8fa754bd53d3ea41a3c251b03db566cdd9e143bae5d22e33a669733657416e8",
+      "disposition_code": "d6822d5629e2a97d786966906bf6a98b5377cc5dcd1cd6546f2b19586d2eb531"
+    },
+    "globals": {
+      "CAUSE_KINDS": {
+        "count": 101,
+        "sha256": "8f3024faea1ac7ea0f207455d064b28a49331839d707253941097e818e1aec6b"
+      },
+      "DISPOSITIONS": {
+        "count": 9,
+        "sha256": "b269296dcda3fb4e195d458cdfdeeb0c109638f531b816bef94916d2d2063adc"
+      },
+      "RESULTS": {
+        "count": 64,
+        "sha256": "5f3ebdcd71354f7191f70f1a14d3cf90481a03af1306c6071df7c52ae6fa441e"
+      }
+    }
+  },
+  "detective": {
+    "policy": "9+neg.f5a15364c11d",
+    "cause_kind": {
+      "function_digest": "2b660e587a3b2e50",
+      "killed": 18,
+      "total": 18,
+      "value_pinned": 17,
+      "crash_only": "VALUE_6d6887fc: partition(':') -> partition(''); detected by crash, not equivalent; no flag issued"
+    },
+    "completion_code": {
+      "function_digest": "0ca68ed2a47b84e6",
+      "killed": 87,
+      "total": 87,
+      "value_pinned": 87
+    },
+    "disposition_code": {
+      "function_digest": "e8f6cd7dcf149c50",
+      "killed": 200,
+      "total": 200,
+      "value_pinned": 200
+    },
+    "chain": "Actual fresh help -> regime -> converge --two-sign -> prescribed branch inputs -> plan/decompose --apply --two-sign/survey per function; all full outputs retained; no separable block; no source or authored test/config edits during proof"
+  },
+  "crosshair": {
+    "explicit_contracts": 3,
+    "confirmed": 0,
+    "not_confirmed": 3,
+    "counterexamples": 0,
+    "log": "crosshair.log",
+    "scope": "Return-codomain postconditions only; timeout unknown is not a proof"
+  },
+  "verification": {
+    "authored_tests": 123,
+    "authored_plus_generated_tests": 150,
+    "ruff": "pass",
+    "format": "pass",
+    "ty": "pass"
+  },
+  "generated_tests": {
+    "certificates.json": {
+      "sha256": "ce547dcd0b76cf9d7ec04c6fff23ce3ab553d3d62e73319b52e399ac98fac6c6",
+      "bytes": 539
+    },
+    "test_TrialLedger_layer2_result_semantics_cause_kind_a38b8f3a25_synth.py": {
+      "sha256": "7a56197b7752b0711c0e7852f14b666aee79a6dedac45196d44a0499c9d4311c",
+      "bytes": 669
+    },
+    "test_TrialLedger_layer2_result_semantics_completion_code_0f6f433d15_synth.py": {
+      "sha256": "83b1285eb3df6415ef05cbbd045a15d05458667cb7b32c9dd5b90aa3690df705",
+      "bytes": 1081
+    },
+    "test_TrialLedger_layer2_result_semantics_disposition_code_3741ce9eea_synth.py": {
+      "sha256": "fbf00aed2fc0c9d3f368482ec66c41e30b2bd24996ea42141752e1b5f2a1ba25",
+      "bytes": 6634
+    }
+  },
+  "frozen_snapshot": "All 149 snapshot files byte-identical after walk. Only current root evidence_requests_guide.py docstring drifted, as root announced; metadata module/globals unchanged.",
+  "cache_note": "Full scratch .detective/verdict_cache.json retained outside concise export; not required for certificate/import/test replay."
+}

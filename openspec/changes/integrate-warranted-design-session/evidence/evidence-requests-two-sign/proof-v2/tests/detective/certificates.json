@@ -1,0 +1,44 @@
+{
+  "TrialLedger/layer2/evidence_requests.py::dominated": {
+    "cut_reasons": [],
+    "function_digest": "16b8a7595154dfa2",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/evidence_requests.py::family_state": {
+    "cut_reasons": [],
+    "function_digest": "fd34b534a5479c52",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/evidence_requests.py::output_state": {
+    "cut_reasons": [],
+    "function_digest": "1655c26905fd3c46",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/evidence_requests.py::pair_outcome": {
+    "cut_reasons": [],
+    "function_digest": "8dcd5a9228d563ba",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/evidence_requests.py::pair_relation": {
+    "cut_reasons": [],
+    "function_digest": "6eee538eac969016",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/evidence_requests.py::required_premises": {
+    "cut_reasons": [],
+    "function_digest": "423f1ddf5f835edd",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/evidence_requests.py::seek": {
+    "cut_reasons": [],
+    "function_digest": "8c13442d71ec359d",
+    "refusal": "",
+    "standing": "complete"
+  }
+}

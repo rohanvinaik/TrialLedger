@@ -1,0 +1,361 @@
+[
+  {
+    "argv": [
+      "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/python",
+      "-c",
+      "import sys,json,Detective,Wesker; from pathlib import Path; from TrialLedger.layer2 import result_semantics as r; print(sys.executable); print(Detective.__file__); print(Wesker.__file__); print(r.__file__); assert Path(r.__file__).resolve().is_relative_to(Path.cwd()); g={\"CAUSE_KINDS\":r.CAUSE_KINDS,\"RESULTS\":sorted(r.RESULTS),\"DISPOSITIONS\":sorted(r.DISPOSITIONS)}; Path(\"frozen-globals.json\").write_text(json.dumps(g,indent=2,sort_keys=True)+\"\\n\"); print(json.dumps(g,sort_keys=True))"
+    ],
+    "cwd": "/private/tmp/trialledger-metadata-session-evidence-context-20261103-v1",
+    "PYTHONPATH": "/tmp/trialledger-metadata-session-evidence-context-20261103-v1:/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+    "started": "2026-11-03T23:35:56.768957+00:00",
+    "completed": "2026-11-03T23:35:56.975136+00:00",
+    "exit_code": 0,
+    "log": "identities.log",
+    "sha256": "319a2b7d12fd8658deec5e67c8892c34877815b566591609bebc582131f1f43e"
+  },
+  {
+    "argv": [
+      "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+      "--help"
+    ],
+    "cwd": "/private/tmp/trialledger-metadata-session-evidence-context-20261103-v1",
+    "PYTHONPATH": "/tmp/trialledger-metadata-session-evidence-context-20261103-v1:/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+    "started": "2026-11-03T23:35:57.614736+00:00",
+    "completed": "2026-11-03T23:35:57.717054+00:00",
+    "exit_code": 0,
+    "log": "help.log",
+    "sha256": "1629b84ce31fc121fe2da5361946861273272397aebe227d5425a219461c5671"
+  },
+  {
+    "argv": [
+      "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+      "regime"
+    ],
+    "cwd": "/private/tmp/trialledger-metadata-session-evidence-context-20261103-v1",
+    "PYTHONPATH": "/tmp/trialledger-metadata-session-evidence-context-20261103-v1:/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+    "started": "2026-11-03T23:36:03.833549+00:00",
+    "completed": "2026-11-03T23:36:03.940466+00:00",
+    "exit_code": 0,
+    "log": "regime.log",
+    "sha256": "5dce61dba5938a6db6e7e273d95754b75e6ed06d4b611b60d5f314033833d212"
+  },
+  {
+    "argv": [
+      "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/python",
+      "-m",
+      "pytest",
+      "tests"
+    ],
+    "cwd": "/private/tmp/trialledger-metadata-session-evidence-context-20261103-v1",
+    "PYTHONPATH": "/tmp/trialledger-metadata-session-evidence-context-20261103-v1:/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+    "started": "2026-11-03T23:36:14.047568+00:00",
+    "completed": "2026-11-03T23:36:14.797510+00:00",
+    "exit_code": 0,
+    "log": "authored-tests.log",
+    "sha256": "db37c422f96aed01ad6d837d69bdb0aa3742dc1a6c7318444dd57b144fe64a95"
+  },
+  {
+    "argv": [
+      "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+      "converge",
+      "TrialLedger/layer2/result_semantics.py::cause_kind",
+      "--two-sign"
+    ],
+    "cwd": "/private/tmp/trialledger-metadata-session-evidence-context-20261103-v1",
+    "PYTHONPATH": "/tmp/trialledger-metadata-session-evidence-context-20261103-v1:/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+    "started": "2026-11-03T23:36:15.329742+00:00",
+    "completed": "2026-11-03T23:36:22.169865+00:00",
+    "exit_code": 0,
+    "log": "cause-converge.log",
+    "sha256": "3eddee8a3945c77d64824b629bd2c9813bd9c15b94ac9c8bb651995a22484442"
+  },
+  {
+    "argv": [
+      "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+      "plan",
+      "TrialLedger/layer2/result_semantics.py"
+    ],
+    "cwd": "/private/tmp/trialledger-metadata-session-evidence-context-20261103-v1",
+    "PYTHONPATH": "/tmp/trialledger-metadata-session-evidence-context-20261103-v1:/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+    "started": "2026-11-03T23:36:27.831747+00:00",
+    "completed": "2026-11-03T23:36:31.933242+00:00",
+    "exit_code": 0,
+    "log": "cause-plan.log",
+    "sha256": "ac33f4cb34bc17e72da844331f414a4333936daf7c654e2d3ca5663f6c3ac580"
+  },
+  {
+    "argv": [
+      "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+      "decompose",
+      "TrialLedger/layer2/result_semantics.py::cause_kind",
+      "--apply",
+      "--two-sign"
+    ],
+    "cwd": "/private/tmp/trialledger-metadata-session-evidence-context-20261103-v1",
+    "PYTHONPATH": "/tmp/trialledger-metadata-session-evidence-context-20261103-v1:/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+    "started": "2026-11-03T23:36:38.132088+00:00",
+    "completed": "2026-11-03T23:36:45.754063+00:00",
+    "exit_code": 0,
+    "log": "cause-decompose.log",
+    "sha256": "5d021e22dd0462be502964d70bf82f9ed2649adb56bfd98e3ddf000a1139425d"
+  },
+  {
+    "argv": [
+      "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+      "survey",
+      "TrialLedger/layer2/result_semantics.py"
+    ],
+    "cwd": "/private/tmp/trialledger-metadata-session-evidence-context-20261103-v1",
+    "PYTHONPATH": "/tmp/trialledger-metadata-session-evidence-context-20261103-v1:/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+    "started": "2026-11-03T23:36:55.606755+00:00",
+    "completed": "2026-11-03T23:36:55.731615+00:00",
+    "exit_code": 0,
+    "log": "cause-survey.log",
+    "sha256": "482e344dd0bbe9ee5b19e1808fda2ba25a5c6c8e7d929a8fcaba84af3668073e"
+  },
+  {
+    "argv": [
+      "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+      "converge",
+      "TrialLedger/layer2/result_semantics.py::completion_code",
+      "--two-sign"
+    ],
+    "cwd": "/private/tmp/trialledger-metadata-session-evidence-context-20261103-v1",
+    "PYTHONPATH": "/tmp/trialledger-metadata-session-evidence-context-20261103-v1:/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+    "started": "2026-11-03T23:36:56.265804+00:00",
+    "completed": "2026-11-03T23:37:10.716657+00:00",
+    "exit_code": 0,
+    "log": "completion-converge.log",
+    "sha256": "6b773d7bee1a0f829ffd098aa5690da83085482bd5b17bd67a3581252b39d9e5"
+  },
+  {
+    "argv": [
+      "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+      "converge",
+      "TrialLedger/layer2/result_semantics.py::completion_code",
+      "--two-sign",
+      "--input",
+      "('UNDETERMINED', ['unsupported_operation'])",
+      "--input",
+      "('missing_relevant', ['request_not_an_object'])"
+    ],
+    "cwd": "/private/tmp/trialledger-metadata-session-evidence-context-20261103-v1",
+    "PYTHONPATH": "/tmp/trialledger-metadata-session-evidence-context-20261103-v1:/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+    "started": "2026-11-03T23:37:23.289707+00:00",
+    "completed": "2026-11-03T23:37:33.611152+00:00",
+    "exit_code": 0,
+    "log": "completion-inputs-converge.log",
+    "sha256": "696d68b588c72cde16a9f8153ae06accc900c3dfca3da1095d7d45c416ac26d5"
+  },
+  {
+    "argv": [
+      "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+      "plan",
+      "TrialLedger/layer2/result_semantics.py"
+    ],
+    "cwd": "/private/tmp/trialledger-metadata-session-evidence-context-20261103-v1",
+    "PYTHONPATH": "/tmp/trialledger-metadata-session-evidence-context-20261103-v1:/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+    "started": "2026-11-03T23:37:47.562458+00:00",
+    "completed": "2026-11-03T23:37:51.741331+00:00",
+    "exit_code": 0,
+    "log": "completion-plan.log",
+    "sha256": "ac33f4cb34bc17e72da844331f414a4333936daf7c654e2d3ca5663f6c3ac580"
+  },
+  {
+    "argv": [
+      "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+      "decompose",
+      "TrialLedger/layer2/result_semantics.py::completion_code",
+      "--apply",
+      "--two-sign"
+    ],
+    "cwd": "/private/tmp/trialledger-metadata-session-evidence-context-20261103-v1",
+    "PYTHONPATH": "/tmp/trialledger-metadata-session-evidence-context-20261103-v1:/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+    "started": "2026-11-03T23:37:59.205809+00:00",
+    "completed": "2026-11-03T23:38:09.402683+00:00",
+    "exit_code": 0,
+    "log": "completion-decompose.log",
+    "sha256": "2d9da8de878b6cf90e0ec5256b291d7feec4806f8199ad3f94253e38ab4729ec"
+  },
+  {
+    "argv": [
+      "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+      "survey",
+      "TrialLedger/layer2/result_semantics.py"
+    ],
+    "cwd": "/private/tmp/trialledger-metadata-session-evidence-context-20261103-v1",
+    "PYTHONPATH": "/tmp/trialledger-metadata-session-evidence-context-20261103-v1:/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+    "started": "2026-11-03T23:38:25.375426+00:00",
+    "completed": "2026-11-03T23:38:25.500438+00:00",
+    "exit_code": 0,
+    "log": "completion-survey.log",
+    "sha256": "482e344dd0bbe9ee5b19e1808fda2ba25a5c6c8e7d929a8fcaba84af3668073e"
+  },
+  {
+    "argv": [
+      "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+      "converge",
+      "TrialLedger/layer2/result_semantics.py::disposition_code",
+      "--two-sign"
+    ],
+    "cwd": "/private/tmp/trialledger-metadata-session-evidence-context-20261103-v1",
+    "PYTHONPATH": "/tmp/trialledger-metadata-session-evidence-context-20261103-v1:/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+    "started": "2026-11-03T23:38:26.046827+00:00",
+    "completed": "2026-11-03T23:39:00.843586+00:00",
+    "exit_code": 0,
+    "log": "disposition-converge.log",
+    "sha256": "3fcea41770db69d2c9cfb31430cd807787082a226a5a689e625723e652b86805"
+  },
+  {
+    "argv": [
+      "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+      "converge",
+      "TrialLedger/layer2/result_semantics.py::disposition_code",
+      "--two-sign",
+      "--input",
+      "('available', '', 'complete')"
+    ],
+    "cwd": "/private/tmp/trialledger-metadata-session-evidence-context-20261103-v1",
+    "PYTHONPATH": "/tmp/trialledger-metadata-session-evidence-context-20261103-v1:/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+    "started": "2026-11-03T23:39:09.137503+00:00",
+    "completed": "2026-11-03T23:39:32.445848+00:00",
+    "exit_code": 0,
+    "log": "disposition-input-converge.log",
+    "sha256": "4120b968e92d96b530e1e5a2d16b0595f8cc539f69cb755a7dfb71ad1530defe"
+  },
+  {
+    "argv": [
+      "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+      "plan",
+      "TrialLedger/layer2/result_semantics.py"
+    ],
+    "cwd": "/private/tmp/trialledger-metadata-session-evidence-context-20261103-v1",
+    "PYTHONPATH": "/tmp/trialledger-metadata-session-evidence-context-20261103-v1:/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+    "started": "2026-11-03T23:39:42.775328+00:00",
+    "completed": "2026-11-03T23:39:47.159079+00:00",
+    "exit_code": 0,
+    "log": "disposition-plan.log",
+    "sha256": "ac33f4cb34bc17e72da844331f414a4333936daf7c654e2d3ca5663f6c3ac580"
+  },
+  {
+    "argv": [
+      "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+      "decompose",
+      "TrialLedger/layer2/result_semantics.py::disposition_code",
+      "--apply",
+      "--two-sign"
+    ],
+    "cwd": "/private/tmp/trialledger-metadata-session-evidence-context-20261103-v1",
+    "PYTHONPATH": "/tmp/trialledger-metadata-session-evidence-context-20261103-v1:/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+    "started": "2026-11-03T23:39:54.090220+00:00",
+    "completed": "2026-11-03T23:40:17.702899+00:00",
+    "exit_code": 0,
+    "log": "disposition-decompose.log",
+    "sha256": "9ed738ea72cbaa40948f3f302e585d6e6b2dccb23b1d0aace783e788e3cd25d6"
+  },
+  {
+    "argv": [
+      "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+      "survey",
+      "TrialLedger/layer2/result_semantics.py"
+    ],
+    "cwd": "/private/tmp/trialledger-metadata-session-evidence-context-20261103-v1",
+    "PYTHONPATH": "/tmp/trialledger-metadata-session-evidence-context-20261103-v1:/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+    "started": "2026-11-03T23:40:31.848527+00:00",
+    "completed": "2026-11-03T23:40:31.979043+00:00",
+    "exit_code": 0,
+    "log": "disposition-survey.log",
+    "sha256": "482e344dd0bbe9ee5b19e1808fda2ba25a5c6c8e7d929a8fcaba84af3668073e"
+  },
+  {
+    "argv": [
+      "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/python",
+      "-m",
+      "pytest",
+      "tests"
+    ],
+    "cwd": "/private/tmp/trialledger-metadata-session-evidence-context-20261103-v1",
+    "PYTHONPATH": "/tmp/trialledger-metadata-session-evidence-context-20261103-v1:/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+    "started": "2026-11-03T23:40:44.384111+00:00",
+    "completed": "2026-11-03T23:40:45.171353+00:00",
+    "exit_code": 0,
+    "log": "final-tests.log",
+    "sha256": "d7a62efc5419de50291eb9eed94c6bcdcb51974c30a51a79860ced3d81f693db"
+  },
+  {
+    "argv": [
+      "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/ruff",
+      "check",
+      "TrialLedger/layer2/result_semantics.py",
+      "tests"
+    ],
+    "cwd": "/private/tmp/trialledger-metadata-session-evidence-context-20261103-v1",
+    "PYTHONPATH": "/tmp/trialledger-metadata-session-evidence-context-20261103-v1:/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+    "started": "2026-11-03T23:40:45.515657+00:00",
+    "completed": "2026-11-03T23:40:45.541996+00:00",
+    "exit_code": 0,
+    "log": "final-ruff.log",
+    "sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+  },
+  {
+    "argv": [
+      "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/ruff",
+      "format",
+      "--check",
+      "TrialLedger/layer2/result_semantics.py",
+      "tests"
+    ],
+    "cwd": "/private/tmp/trialledger-metadata-session-evidence-context-20261103-v1",
+    "PYTHONPATH": "/tmp/trialledger-metadata-session-evidence-context-20261103-v1:/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+    "started": "2026-11-03T23:40:45.912160+00:00",
+    "completed": "2026-11-03T23:40:45.927607+00:00",
+    "exit_code": 0,
+    "log": "final-format.log",
+    "sha256": "ef7d13d02214e98ca902b05257cdbe6a8e84f3b4714508efdc19766460b54209"
+  },
+  {
+    "argv": [
+      "ty",
+      "check",
+      "--python",
+      "/Users/rohanvinaik/tools/TrialLedger/.venv",
+      "--extra-search-path",
+      "/tmp/trialledger-metadata-session-evidence-context-20261103-v1",
+      "TrialLedger/layer2/result_semantics.py"
+    ],
+    "cwd": "/private/tmp/trialledger-metadata-session-evidence-context-20261103-v1",
+    "PYTHONPATH": "/tmp/trialledger-metadata-session-evidence-context-20261103-v1:/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+    "started": "2026-11-03T23:40:46.311403+00:00",
+    "completed": "2026-11-03T23:40:46.442039+00:00",
+    "exit_code": 0,
+    "log": "final-ty.log",
+    "sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+  },
+  {
+    "argv": [
+      "uv",
+      "run",
+      "--no-project",
+      "--python",
+      "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/python",
+      "--with",
+      "crosshair-tool",
+      "--with",
+      "httpx==0.28.1",
+      "--with",
+      "openpyxl==3.1.5",
+      "crosshair",
+      "check",
+      "TrialLedger/layer2/result_semantics.py",
+      "--report_all",
+      "--per_condition_timeout=10"
+    ],
+    "cwd": "/private/tmp/trialledger-metadata-session-evidence-context-20261103-v1",
+    "PYTHONPATH": "/tmp/trialledger-metadata-session-evidence-context-20261103-v1:/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+    "started": "2026-11-03T23:40:32.541663+00:00",
+    "completed": "2026-11-03T23:41:04.284100+00:00",
+    "exit_code": 0,
+    "log": "crosshair.log",
+    "sha256": "4a41fa3d849f2b017350d808f93b5bfd1112c7b6e13753b0b14c6b346814eca5"
+  }
+]

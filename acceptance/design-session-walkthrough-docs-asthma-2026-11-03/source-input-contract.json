@@ -1,0 +1,382 @@
+{
+  "input_shapes": {
+    "source_assertions": {
+      "required": [
+        "study"
+      ],
+      "fields": {
+        "study": "one complete raw NIH study object; retained unchanged, not landscape.json's projection",
+        "expected_digest": "optional digest of that exact study; stale content is a translation refusal",
+        "anchors": "optional source_anchor array; exact typed values and optional Unicode text spans",
+        "interpretations": "optional source_interpretation array; rivals stay isolated and proposed",
+        "bindings": "optional source_binding array; correspondence remains a proposed premise",
+        "queries": "optional named tagged propositions; empty means inspection only, with analyses []",
+        "context": "optional existing cohort/arm/phase context; never inferred from text",
+        "bound": "optional integer assignment bound 1..65536 per solver decision",
+        "selected": "optional user-selected frame; selection cannot promote its source standing"
+      }
+    },
+    "source_anchor": {
+      "required": [
+        "id",
+        "address",
+        "digest",
+        "expected"
+      ],
+      "fields": {
+        "id": "distinct nonempty anchor identity",
+        "address": "exact RFC 6901 JSON pointer into the supplied raw study",
+        "digest": "current warrants.study_digest(study), binding the anchor to the complete input",
+        "expected": "exact JSON value at address, including its JSON type; no coercion",
+        "span": "optional source_span, permitted only for a string-valued address"
+      }
+    },
+    "source_span": {
+      "required": [
+        "start",
+        "end",
+        "text"
+      ],
+      "fields": {
+        "start": "zero-based inclusive Unicode code-point offset in the original string",
+        "end": "exclusive Unicode code-point offset; exact original[start:end] must equal text",
+        "text": "exact unchanged passage; offsets are not UTF-8 bytes or normalized text"
+      }
+    },
+    "source_template": {
+      "required": [
+        "$source",
+        "as"
+      ],
+      "fields": {
+        "$source": "existing anchor id; recursively substitutes that anchor's value or exact span text",
+        "as": "integer, text or json; integers allow no decimals, commas or units"
+      }
+    },
+    "source_interpretation": {
+      "required": [
+        "id",
+        "label",
+        "origin",
+        "basis",
+        "anchors"
+      ],
+      "fields": {
+        "id": "distinct frame id, as in interpretation",
+        "label": "clinical reading or design option, as in interpretation",
+        "origin": "assistant, user or source; attribution does not certify the reading",
+        "basis": "declared rationale; compiler adds the actual source-anchor provenance",
+        "anchors": "nonempty existing anchor ids; every template dependency must be declared here",
+        "assumptions": "optional tagged ScopedAssertion templates, always forced to proposed",
+        "signals": "optional local signal templates; every support is forced to proposed",
+        "signal_claims": "optional existing signal claims, evaluated jointly within this frame",
+        "binding_uses": "optional existing binding-use array; exact scope and edition remain material"
+      }
+    },
+    "source_binding": {
+      "required": [
+        "id",
+        "kind",
+        "relation",
+        "subjects",
+        "scope",
+        "sources",
+        "status",
+        "resolution",
+        "basis",
+        "anchors"
+      ],
+      "fields": {
+        "id": "existing interpretation_binding identity",
+        "kind": "population or definition",
+        "relation": "subset_of, same_universe or partition_of; definition uses adopts",
+        "subjects": "explicit ordered references consumed by the target operator",
+        "scope": "study, population, arm, time and version; content digest is not a protocol edition",
+        "sources": "declared source objects; compiler retains actual anchor provenance",
+        "status": "always forced to proposed; exact quotation does not prove population correspondence",
+        "resolution": "existing resolution; unresolved or mismatched applications remain unresolved",
+        "basis": "declared rationale plus actual anchored source references",
+        "anchors": "nonempty existing anchor ids; every binding template dependency must be declared"
+      }
+    },
+    "interpretation_query": {
+      "required": [
+        "id",
+        "body"
+      ],
+      "fields": {
+        "id": "distinct nonempty question id",
+        "body": "tagged participant proposition"
+      }
+    },
+    "interpretation_binding_use": {
+      "required": [
+        "binding",
+        "signal",
+        "scope"
+      ],
+      "fields": {
+        "binding": "existing binding id",
+        "signal": "existing fixed or local signal id",
+        "scope": "declared application scope checked against the binding and target signal"
+      }
+    },
+    "signal": {
+      "required": [
+        "id",
+        "kind",
+        "data",
+        "support"
+      ],
+      "fields": {
+        "id": "distinct nonempty string",
+        "kind": "one of signal_kinds",
+        "data": "kind-specific typed input; see operator_inputs",
+        "support": "nonempty array of independently identified support objects",
+        "bindings": "optional object mapping mathematical ref ids to tagged participant propositions"
+      }
+    },
+    "support": {
+      "required": [
+        "id",
+        "status",
+        "resolution",
+        "basis"
+      ],
+      "fields": {
+        "id": "distinct premise/source-binding id",
+        "status": "known/interpolated/proposed",
+        "resolution": "resolved/partially_resolved/unresolved/conflicting",
+        "basis": "nonempty exact source/version or user-premise references"
+      }
+    },
+    "context": {
+      "required": [],
+      "fields": {
+        "cohort": "nonempty string or null",
+        "phase": "nonempty string or null",
+        "arm": "nonempty string or null"
+      }
+    }
+  },
+  "example": {
+    "operation": "source_assertions",
+    "study": {
+      "protocolSection": {
+        "identificationModule": {
+          "nctId": "NCT00000001"
+        },
+        "eligibilityModule": {
+          "minimumAge": "18 Years",
+          "eligibilityCriteria": "Participants must be adults. Performance status is not specified here."
+        }
+      }
+    },
+    "expected_digest": "d931783115dbb2feacfac3836e12a43b48a52426c8cc526316aea73c8b8518f2",
+    "anchors": [
+      {
+        "id": "eligibility-passage",
+        "address": "/protocolSection/eligibilityModule/eligibilityCriteria",
+        "digest": "d931783115dbb2feacfac3836e12a43b48a52426c8cc526316aea73c8b8518f2",
+        "expected": "Participants must be adults. Performance status is not specified here.",
+        "span": {
+          "start": 0,
+          "end": 70,
+          "text": "Participants must be adults. Performance status is not specified here."
+        }
+      }
+    ],
+    "interpretations": [
+      {
+        "id": "adults",
+        "label": "Read this as requiring adults",
+        "origin": "assistant",
+        "basis": [
+          "invented:teaching-reading-not-established-protocol"
+        ],
+        "assumptions": [
+          {
+            "applicability": {
+              "class": "Always"
+            },
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "age",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "ge",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 18.0,
+                "unit": "Years",
+                "upper": null
+              }
+            },
+            "branch": {
+              "class": "Branch",
+              "node": "unresolved",
+              "path": []
+            },
+            "class": "ScopedAssertion",
+            "cohort": {
+              "class": "Scope",
+              "kind": "all_participants",
+              "parts": [],
+              "ref": ""
+            },
+            "criterion_ref": "invented:trial-design-session-not-registry-evidence",
+            "id": "adult-reading",
+            "modality": "required",
+            "resolution": "resolved",
+            "rule": {
+              "answers": [],
+              "class": "Rule",
+              "id": "invented-session-premise",
+              "premises": [],
+              "version": "1",
+              "warrants": [
+                "invented:explicit-teaching-premise"
+              ]
+            },
+            "span": [],
+            "status": "proposed"
+          }
+        ],
+        "signals": [],
+        "signal_claims": [],
+        "binding_uses": [],
+        "anchors": [
+          "eligibility-passage"
+        ]
+      },
+      {
+        "id": "under-18",
+        "label": "Hypothetically require everyone to be under 18",
+        "origin": "assistant",
+        "basis": [
+          "invented:teaching-reading-not-established-protocol"
+        ],
+        "assumptions": [
+          {
+            "applicability": {
+              "class": "Always"
+            },
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "age",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "lt",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 18.0,
+                "unit": "Years",
+                "upper": null
+              }
+            },
+            "branch": {
+              "class": "Branch",
+              "node": "unresolved",
+              "path": []
+            },
+            "class": "ScopedAssertion",
+            "cohort": {
+              "class": "Scope",
+              "kind": "all_participants",
+              "parts": [],
+              "ref": ""
+            },
+            "criterion_ref": "invented:trial-design-session-not-registry-evidence",
+            "id": "child-reading",
+            "modality": "required",
+            "resolution": "resolved",
+            "rule": {
+              "answers": [],
+              "class": "Rule",
+              "id": "invented-session-premise",
+              "premises": [],
+              "version": "1",
+              "warrants": [
+                "invented:explicit-teaching-premise"
+              ]
+            },
+            "span": [],
+            "status": "proposed"
+          }
+        ],
+        "signals": [],
+        "signal_claims": [],
+        "binding_uses": [],
+        "anchors": [
+          "eligibility-passage"
+        ]
+      }
+    ],
+    "queries": [
+      {
+        "id": "adult",
+        "body": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+            "class": "Predicate",
+            "key": "age",
+            "kind": "measurement"
+          },
+          "qualifiers": {
+            "class": "Always"
+          },
+          "subject": {
+            "class": "Subject",
+            "kind": "participant",
+            "referent": ""
+          },
+          "time": null,
+          "value": {
+            "class": "Value",
+            "comparison": "ge",
+            "inclusivity": "unspecified",
+            "kind": "quantity",
+            "members": [],
+            "number": 18.0,
+            "unit": "Years",
+            "upper": null
+          }
+        }
+      }
+    ]
+  }
+}

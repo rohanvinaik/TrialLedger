@@ -1,0 +1,9 @@
+{
+  "TrialLedger/layer2/stage_evidence.py::transition_gate": {
+    "disposition": "leave",
+    "func_key": "TrialLedger/layer2/stage_evidence.py::transition_gate",
+    "function_digest": "e91d6c8b146a27f3",
+    "note": "Five independent validated inputs select distinct scope, unit, standing, resolution and relation remedies; retaining the atomic decision interface.",
+    "verdict": "AMBIGUOUS"
+  }
+}

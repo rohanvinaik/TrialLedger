@@ -19,7 +19,11 @@ from TrialLedger.layer2 import (
     coordinate_admission,
     corpus_admission,
     design_bounds,
+    design_session,
+    design_session_guide,
     entail,
+    evidence_requests,
+    evidence_requests_guide,
     exception_bounds,
     exception_guide,
     expectations,
@@ -44,9 +48,11 @@ OPERATIONS = (
     "coordinates",
     "corpus",
     "design_bounds",
+    "evidence_requests",
     "signals",
     "interpretations",
     "source_assertions",
+    "design_session",
 )
 MAX_ITEMS = 1000
 BASIS = "Conditional on the supplied typed premises; their source meaning is not certified by this operation."
@@ -1590,9 +1596,11 @@ def _describe(request: dict[str, Any]) -> dict[str, Any]:
         "coordinates",
         "corpus",
         "design_bounds",
+        "evidence_requests",
         "signals",
         "interpretations",
         "source_assertions",
+        "design_session",
         "worked_session",
         "full",
     )
@@ -1603,6 +1611,8 @@ def _describe(request: dict[str, Any]) -> dict[str, Any]:
     signals_guide.extend(full)
     interpretations_guide.extend(full)
     source_assertions_guide.extend(full)
+    design_session_guide.extend(full)
+    evidence_requests_guide.extend(full)
     full["exception_example"] = exception_guide.example()
     full["response_metadata"] = {
         "location": "Every reason envelope has additive metadata; original clinical results remain intact.",
@@ -1651,7 +1661,9 @@ def _describe(request: dict[str, Any]) -> dict[str, Any]:
                 "general automatic text compilation and complete protocol generation remain unintegrated."
             ),
             "decision_list": full["answer_guide"]["decision_list"],
-            "use_cases": full["use_cases"],
+            "use_cases": [
+                {key: case[key] for key in ("question", "operation")} for case in full["use_cases"]
+            ],
             "input_shapes": {"describe": full["input_shapes"]["describe"]},
         }
     if view == "worked_session":
@@ -1681,6 +1693,8 @@ def _describe(request: dict[str, Any]) -> dict[str, Any]:
             "support",
             "context",
         ),
+        "design_session": tuple(design_session_guide.INPUTS),
+        "evidence_requests": (*evidence_requests_guide.INPUTS, "candidate", "context"),
     }[view]
     vocabulary = {
         "entailment": tuple(
@@ -1707,6 +1721,8 @@ def _describe(request: dict[str, Any]) -> dict[str, Any]:
             "predicate_kinds",
             "value_kinds",
         ),
+        "design_session": ("statuses", "resolutions"),
+        "evidence_requests": ("statuses", "resolutions", "value_kinds"),
         "design_bounds": (
             "statuses",
             "resolutions",
@@ -1736,7 +1752,7 @@ def _describe(request: dict[str, Any]) -> dict[str, Any]:
         "example": full["examples"][view],
         "example_result": full["example_results"][view],
     }
-    if view in ("entailment", "design_bounds", "interpretations", "source_assertions"):
+    if view in ("entailment", "design_bounds", "interpretations", "source_assertions", "evidence_requests"):
         result["tagged_model"] = full["tagged_model"]
     if view in ("signals", "design_bounds", "interpretations", "source_assertions"):
         result["operator_inputs"] = full["operator_inputs"]
@@ -1755,6 +1771,9 @@ def _describe(request: dict[str, Any]) -> dict[str, Any]:
     if view == "corpus":
         result["capability_examples"] = full["capability_examples"]
         result["answer_guide"]["notable"] = full["answer_guide"]["notable"]
+    if view == "design_session":
+        result["revision_example"] = deepcopy(design_session_guide.REVISION_EXAMPLE)
+        result["tagged_model"] = full["tagged_model"]
     return result
 
 
@@ -1766,24 +1785,39 @@ def run(request: object) -> dict[str, Any]:
             raise RequestError("request_not_an_object")
         if operation not in OPERATIONS:
             raise RequestError("unsupported_operation")
+        if operation == "design_session":
+            response = design_session.run(request, execute=run)
+            response["metadata"] = result_semantics.metadata(operation, response["result"])
+            return response
         function = {
             "describe": _describe,
             "entailment": _entailment,
             "coordinates": _coordinates,
             "corpus": _corpus,
             "design_bounds": _design_bounds,
+            "evidence_requests": evidence_requests.evaluate,
             "signals": _signals,
             "interpretations": _interpretations,
             "source_assertions": _source_assertions,
         }[operation]
         result = function(request)
-        return {
+        response = {
             "code": "complete",
             "operation": operation,
             "result": result,
             "problems": [],
             "metadata": result_semantics.metadata(operation, result),
         }
+        if operation == "evidence_requests":
+            maximum = request.get("limits", {}).get(
+                "max_response_bytes", evidence_requests.LIMITS["max_response_bytes"][0]
+            )
+            encoded = json.dumps(
+                response, ensure_ascii=False, separators=(",", ":"), allow_nan=False
+            ).encode()
+            if len(encoded) > maximum:
+                raise RequestError("resource_bound:evidence_requests:response_bytes")
+        return response
     except (ValueError, TypeError, KeyError, RecursionError, OverflowError) as error:
         return {
             "code": "refused",

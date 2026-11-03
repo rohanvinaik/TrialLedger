@@ -1,0 +1,286 @@
+{
+  "report_folder": "/Users/rohanvinaik/trialledger-runs/estimand-dermatitis-20261103",
+  "report_files": {
+    "bodies/ids-001.json": {
+      "bytes": 309,
+      "sha256": "690b5bc23bc646291d8dc492a0368a6ae51b05eb21a5885aaf62bbd4d57160f7"
+    },
+    "bodies/studies-001.json": {
+      "bytes": 146431,
+      "sha256": "0fbcf479f60bd54f10bd5226ecaeac4198c293a3ac67bf11d7bedaca40fc99cf"
+    },
+    "bodies/version-end.json": {
+      "bytes": 71,
+      "sha256": "9eb0e46583efc444c5877db64a361ff539a68ea4f56332958999a5acb39c8553"
+    },
+    "bodies/version-start.json": {
+      "bytes": 71,
+      "sha256": "9eb0e46583efc444c5877db64a361ff539a68ea4f56332958999a5acb39c8553"
+    },
+    "classes.json": {
+      "bytes": 32258,
+      "sha256": "097c105ae5674c287c32453c5c2fbc1a9c20f1d96fd9984ee0f0d5215b3abdce"
+    },
+    "estimand-discovery.json": {
+      "bytes": 5856,
+      "sha256": "95f06572e6ddcd52d5e52fe4b237ab7c7a02457f526c7dbba5fdbfdb74eefa90"
+    },
+    "fetches.json": {
+      "bytes": 1595,
+      "sha256": "4cfc1caf28810986ab5a2b80b7148d4a3c377f716f9cb634e495ba25649c8dbb"
+    },
+    "id-preflight.json": {
+      "bytes": 309,
+      "sha256": "690b5bc23bc646291d8dc492a0368a6ae51b05eb21a5885aaf62bbd4d57160f7"
+    },
+    "landscape.json": {
+      "bytes": 504139,
+      "sha256": "c5370c6df31f84957d18b93b933adc096083902785b2bf203af25528c0f6562b"
+    },
+    "landscape.xlsx": {
+      "bytes": 117751,
+      "sha256": "1e4610e39ff2532f7f4218be534745aaed465b9bd92f52b16c857886bbbc0bdc"
+    },
+    "lookups/lookup-001.json": {
+      "bytes": 51,
+      "sha256": "83e67e89f05d4128a7df68cab6d6f0c913f0981f1f96e77b8dc8823e516fdd30"
+    },
+    "lookups/lookup-002.json": {
+      "bytes": 38,
+      "sha256": "3b3313a2182e92c889044479cf5acb1a2988de7665289455b13b1a884dea6d0d"
+    },
+    "lookups/lookup-003.json": {
+      "bytes": 139,
+      "sha256": "9728a8c45d391d504d5ec8767e93fdafff68a7308d358cf7184a455163079097"
+    },
+    "lookups/release-end.json": {
+      "bytes": 51,
+      "sha256": "83e67e89f05d4128a7df68cab6d6f0c913f0981f1f96e77b8dc8823e516fdd30"
+    },
+    "lookups.json": {
+      "bytes": 865,
+      "sha256": "45384e5bb14c63395aa25220243903b2f6d1495c91394ca181057852f52672de"
+    },
+    "manifest.json": {
+      "bytes": 1615,
+      "sha256": "8293bea7b516891c1e1f4c206e453449f9189f83901059d1efdcfa281dd271ca"
+    },
+    "request.json": {
+      "bytes": 128,
+      "sha256": "e2356c7605732860980a69b1582c9db4b6f014682920389aec5ce103776ebf9b"
+    },
+    "resolution.json": {
+      "bytes": 1837,
+      "sha256": "b9fb665e4af40257b611f81dbd987cbfbc763a3f7908da61c588dd8f297d8ae8"
+    },
+    "scope.json": {
+      "bytes": 236,
+      "sha256": "920633b5b0db11dfa62ad34b6848c6d4e3b55426f94986baff93dd4d8cd47153"
+    },
+    "workflow-wires/NCT02347176-source-age-cli.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/NCT02347176-source-age-cli.stdout": {
+      "bytes": 40862,
+      "sha256": "9aed58a5f7336e23960523f2bd1285797ed17190f45401bfc95413a23c049e85"
+    },
+    "workflow-wires/NCT02347176-source-age-mcp-input.jsonl": {
+      "bytes": 78442,
+      "sha256": "51047ae0549cffb8dddfcf3f2b1da2c24cee8c7365b722f5da6cffbfbc38bb37"
+    },
+    "workflow-wires/NCT02347176-source-age-mcp.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/NCT02347176-source-age-mcp.stdout": {
+      "bytes": 49185,
+      "sha256": "dce3ea4ca523d31674be61945fa03de88a43eb227542003c31316ced0b5cc0ee"
+    },
+    "workflow-wires/NCT04556461-source-age-cli.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/NCT04556461-source-age-cli.stdout": {
+      "bytes": 38404,
+      "sha256": "67f5685f1cbba6f56d9b1d29c90b4d5f2d97db138c4813721f2baf788b01951d"
+    },
+    "workflow-wires/NCT04556461-source-age-mcp-input.jsonl": {
+      "bytes": 39921,
+      "sha256": "f0896fbad7fb10999d029e1420d0c8531d3837cf4b24a17f1c6b235cac7c2a12"
+    },
+    "workflow-wires/NCT04556461-source-age-mcp.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/NCT04556461-source-age-mcp.stdout": {
+      "bytes": 44958,
+      "sha256": "56c0335888a3ccabb9efffa422ee1b78fa617a1e96583ca7a18b310903715258"
+    },
+    "workflow-wires/NCT05388760-source-age-cli.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/NCT05388760-source-age-cli.stdout": {
+      "bytes": 30864,
+      "sha256": "54c1cfe85bff39131e70fe8da797cea884d6bcf684c59cf6fdbb0392d01fa206"
+    },
+    "workflow-wires/NCT05388760-source-age-mcp-input.jsonl": {
+      "bytes": 22038,
+      "sha256": "e861ff9e460710467447854933d7d93b42489633696f77f723c77175a12439c4"
+    },
+    "workflow-wires/NCT05388760-source-age-mcp.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/NCT05388760-source-age-mcp.stdout": {
+      "bytes": 38047,
+      "sha256": "de5f4ec252d9090be002ffe52e6b91d3d421bf707f84ea558fa1d6e681e95e81"
+    },
+    "workflow-wires/hypothetical-observation-available-revision-cli.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/hypothetical-observation-available-revision-cli.stdout": {
+      "bytes": 21705,
+      "sha256": "bfce33022f05a145d95df82296381826933cef8dec756ee43d13d564cadcf0a8"
+    },
+    "workflow-wires/hypothetical-observation-available-revision-mcp-input.jsonl": {
+      "bytes": 3789,
+      "sha256": "d22ba10f8584415e0c0c57e44d0cf390cae1b913c9b912b5baf6a75e73335aa9"
+    },
+    "workflow-wires/hypothetical-observation-available-revision-mcp.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/hypothetical-observation-available-revision-mcp.stdout": {
+      "bytes": 28480,
+      "sha256": "f5e8b621cc293e0d2b38ed50b359215ccfe9662f196a7e6285342d1616fcfc78"
+    },
+    "workflow-wires/hypothetical-observation-not-required-cli.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/hypothetical-observation-not-required-cli.stdout": {
+      "bytes": 21732,
+      "sha256": "30ab7bea029c6927ae482fef97c24eae9130cfb8b6223f7b1ad15cda8b316036"
+    },
+    "workflow-wires/hypothetical-observation-not-required-mcp-input.jsonl": {
+      "bytes": 3828,
+      "sha256": "5695ad8d3db2adb9f287f5c7c7bdea3900adafd75750652dae5ddd41c121a88c"
+    },
+    "workflow-wires/hypothetical-observation-not-required-mcp.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/hypothetical-observation-not-required-mcp.stdout": {
+      "bytes": 28483,
+      "sha256": "97606c89995d1858fffb2481c5d142d08649f70a5f04b228e3e1abfcb7b590e2"
+    },
+    "workflow-wires/hypothetical-plan-collect-revision-cli.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/hypothetical-plan-collect-revision-cli.stdout": {
+      "bytes": 21884,
+      "sha256": "9e59711e5d704ef0339817dbb5aa82dc3080d314d66c753c589765a019388cec"
+    },
+    "workflow-wires/hypothetical-plan-collect-revision-mcp-input.jsonl": {
+      "bytes": 3793,
+      "sha256": "c364131cdc91b10b4d440302909d8ddb7f8a258ad95ad274f2da52556ca9144b"
+    },
+    "workflow-wires/hypothetical-plan-collect-revision-mcp.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/hypothetical-plan-collect-revision-mcp.stdout": {
+      "bytes": 28667,
+      "sha256": "eb1a9be2b0cb09d8944b1138ebf1efe2e5c0a255a3443b227e2b6d52a7deb306"
+    },
+    "workflow-wires/hypothetical-proposed-support-cli.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/hypothetical-proposed-support-cli.stdout": {
+      "bytes": 24275,
+      "sha256": "e72be44860b7eaa0b1103153f68089a8431546541e2da6c7f4c4f5985c92b916"
+    },
+    "workflow-wires/hypothetical-proposed-support-mcp-input.jsonl": {
+      "bytes": 3786,
+      "sha256": "4edc3a40d6c9a99fd66c8443107c8041156916d0962481da2171f714abcae551"
+    },
+    "workflow-wires/hypothetical-proposed-support-mcp.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/hypothetical-proposed-support-mcp.stdout": {
+      "bytes": 31317,
+      "sha256": "900d0f171ae6a864bddb5edab1a474355724d599e3b2868a0073ab93e2a72e8c"
+    },
+    "workflow-wires/hypothetical-required-stop-cli.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/hypothetical-required-stop-cli.stdout": {
+      "bytes": 22314,
+      "sha256": "d8a093bbd41544e77bc1d4364f1c4101ee2539fbbf1a3ddf051e1ba214dc28cb"
+    },
+    "workflow-wires/hypothetical-required-stop-mcp-input.jsonl": {
+      "bytes": 3790,
+      "sha256": "89b96c5e1c6a1d2efb6eba74cd080c3f78efa9db37effd73f5d8745c0acb0c1f"
+    },
+    "workflow-wires/hypothetical-required-stop-mcp.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/hypothetical-required-stop-mcp.stdout": {
+      "bytes": 29132,
+      "sha256": "5df7f37773a077b5272c9ce748601e2b92a9aaaea6bc82148506b1931455d30a"
+    },
+    "workflow-wires/hypothetical-strategy-label-only-cli.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/hypothetical-strategy-label-only-cli.stdout": {
+      "bytes": 22290,
+      "sha256": "645f823ea69d6a20357515eb09a51542863cc24871706f1ae56a935b19dc702e"
+    },
+    "workflow-wires/hypothetical-strategy-label-only-mcp-input.jsonl": {
+      "bytes": 3786,
+      "sha256": "24d659bd5b3d93ee1db264ea42be56f6251336e3f971331b5a729c796620d140"
+    },
+    "workflow-wires/hypothetical-strategy-label-only-mcp.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/hypothetical-strategy-label-only-mcp.stdout": {
+      "bytes": 29108,
+      "sha256": "10577feaf33598b68eb449da13123fbfd5b8c979013896ff5e3100cc19ba4cc4"
+    },
+    "workflow-wires/hypothetical-targets-interpretations-cli.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/hypothetical-targets-interpretations-cli.stdout": {
+      "bytes": 62403,
+      "sha256": "c17ee7d448ca46b97b95b05a3d1305ef6eabeb66b0acbcc13941e754679e6506"
+    },
+    "workflow-wires/hypothetical-targets-interpretations-mcp-input.jsonl": {
+      "bytes": 8209,
+      "sha256": "8efca2dda00a699bd6b0c75cc59335862f0b5bb7d1a4711c5232ea6848344edd"
+    },
+    "workflow-wires/hypothetical-targets-interpretations-mcp.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/hypothetical-targets-interpretations-mcp.stdout": {
+      "bytes": 74333,
+      "sha256": "5abd4db0f32d29a3931d4a38fbf46131e92c7e0e5b08ed9693e094ab74759cb3"
+    },
+    "workflow.py": {
+      "bytes": 10235,
+      "sha256": "b28a57d42e3ae16cc37c16672e758fbddbd6bc677703edcf669914a4cce3343c"
+    }
+  },
+  "scope": "Full raw/report/workbook/helpers/duplicate wires retained locally outside Git; packet has complete minimal requests and results"
+}

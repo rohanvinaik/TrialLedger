@@ -1,0 +1,2439 @@
+{
+  "code": "complete",
+  "operation": "source_assertions",
+  "result": {
+    "source": {
+      "nct": "NCT00453999",
+      "digest": "587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa",
+      "study_ref": "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa",
+      "version": "587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa",
+      "last_update": {
+        "date": "2015-02-12",
+        "type": "ESTIMATED"
+      }
+    },
+    "anchors": [
+      {
+        "id": "eligibility",
+        "address": "/protocolSection/eligibilityModule/eligibilityCriteria",
+        "digest": "587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa",
+        "value": "Inclusion Criteria:\n\n* Age ≥18 years of age, male or female\n* Able to provide informed consent, or for whom consent may be provided by guardian\n* Presence of fever at time of screening of ≥38.0°C (≥ 100.0°F) taken orally, or ≥38.5°C (≥101.2°F) taken rectally. This requirement is waived if the subject has (1) a history of fever within 24 hours prior to screening and administered any antipyretic(s) in the 24 hours prior to screening, or (2) has no history of documented fever as defined above, but reports a symptom of feverishness at some time during 48 hours prior to screening\n* Presence of at least 1 respiratory symptom (cough, sore throat, nasal congestion/symptoms) of any severity (mild, moderate, severe)\n* Presence of at least 1 constitutional symptom (headache, myalgia, feverishness, malaise, fatigue) of any severity (mild, moderate, severe)\n* Onset of illness no more than 72 hours before presentation. Time of onset of illness defined as either (1) the time when temperature (oral or rectal) was elevated (at least 1°C of elevation-oral temperature), OR (2) the time when the subject experienced the presence of at least 1 respiratory symptom AND the presence of at least 1 constitutional symptom\n* Presence of 1 or more of the following factors in a subject willing to be hospitalized for inpatient observation and treatment:\n* Age ≥60 years\n* Presence of chronic obstructive pulmonary disease (COPD) or other chronic lung disease requiring daily pharmacotherapy\n* History of congestive heart failure with or without medically significant recent change in cardiac status, but without signs or symptoms compatible with NYHA Class IV functional status\n* Presence of diabetes mellitus, clinically stable or unstable\n* Transcutaneous oxygen saturation \\<94% without supplemental oxygen for at least 5 minutes, or a medically significant decrease in oxygen saturation from an established baseline value\n* Systolic blood pressure \\<90 mmHg\n* Severity of illness that, in the Investigator's judgment, justifies hospitalization of the subject for supportive care\n* Positive rapid antigen test (RAT) for influenza A and/or influenza B (using an approved test kit) or other test for influenza virus antigen performed in a clinical laboratory at the screening/enrollment evaluation\n* Females of childbearing potential must report one of the following:\n* Be surgically sterile or clinically post-menopausal\n* Have been sexually abstinent 4 weeks prior to date of screening evaluation and be willing to remain abstinent through 4 weeks after study-drug administration for all perimenopausal women or women of child-bearing potential\n* Use oral contraceptives or other form of hormonal birth control including hormonal vaginal rings or transdermal patches and have been using these for 3 months prior through 4 weeks after study-drug administration for all perimenopausal women or women of child-bearing potential\n* Use an intra-uterine device (IUD), or adequate barrier contraception (or double-barrier method such as condom or diaphragm with spermicidal gel or foam) as birth control 4 weeks prior to date of screening evaluation through 4 weeks after study drug administration for all perimenopausal women or women of child-bearing potential\n\nExclusion Criteria:\n\n* Immunized against influenza with live attenuated virus vaccine in the previous weeks\n* Treatment with any dose(s) of rimantadine, amantadine, zanamivir, or oseltamivir in the previous 7 days\n* Current clinical evidence of a recognized or suspected acute non-influenzal infectious illness with onset prior to Screening\n* Serum creatinine laboratory result at Screening \\>1.6 mg/dL or a result \\>25% above the upper limit of normal for the laboratory performing the test\n* History of clinically significant proteinuria (≥1000 mg/24 hrs)\n* History of moderate or severe renal impairment and/or previous clinical laboratory data indicating an estimated creatinine clearance \\<50 mL/min during the previous 12 months\n* Electrocardiogram (ECG) at Screening visit showing evidence of acute ischemia, or presence of a medically significant dysrhythmia\n* Presence of cardiac signs or symptoms compatible with NYHA Class III or Class IV functional status for congestive heart failure or angina (see NYHA Appendix V)\n* Presence of diagnosed COPD or other chronic lung condition requiring either continuous or intermittent oxygen therapy as an outpatient. Note: Subjects who are determined to require acute supplemental oxygen therapy at the time of Screening and/or at hospital admission may be enrolled, if exclusion criteria #13 or #14 are not applicable.\n* History of organ transplantation during the previous 12 months\n* Known HIV infection with most recent CD4+ T-cell count ≤350 cells/mL\n* History of diagnosis of any type of cancer (hematologic or solid tumor), that has required chemotherapy or radiation therapy in the previous 12 months, excluding non-melanomatous localized skin cancer\n* Presence of ongoing requirement for chronic mechanical ventilation, either via oral or nasotracheal intubation or via tracheostomy, or chronic or intermittent requirement for BiPAP (bilevel positive airway pressure) at screening. Note: Subjects who require intermittent CPAP treatment for sleep apnea (without oxygen supplementation) may be enrolled\n* Subjects who require acute mechanical ventilatory support of any type at the time of screening.\n* History of alcohol abuse or drug addiction during the previous 12 months\n* Participation in a clinical study of an experimental medication or other treatment during the previous 4 weeks\n* Previous treatment with intravenous or intramuscular peramivir\n* Women who are pregnant (positive serum or urine pregnancy test), who are attempting to become pregnant, or who are breast-feeding\n* Subjects who have been hospitalized due to a condition other than acute influenza and in whom influenza is diagnosed during hospitalization.",
+        "ref": "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:5936",
+        "source": {
+          "ref": "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa",
+          "version": "587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa",
+          "address": "/protocolSection/eligibilityModule/eligibilityCriteria",
+          "digest": "587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa"
+        },
+        "code": "located",
+        "span": {
+          "start": 0,
+          "end": 5936,
+          "text": "Inclusion Criteria:\n\n* Age ≥18 years of age, male or female\n* Able to provide informed consent, or for whom consent may be provided by guardian\n* Presence of fever at time of screening of ≥38.0°C (≥ 100.0°F) taken orally, or ≥38.5°C (≥101.2°F) taken rectally. This requirement is waived if the subject has (1) a history of fever within 24 hours prior to screening and administered any antipyretic(s) in the 24 hours prior to screening, or (2) has no history of documented fever as defined above, but reports a symptom of feverishness at some time during 48 hours prior to screening\n* Presence of at least 1 respiratory symptom (cough, sore throat, nasal congestion/symptoms) of any severity (mild, moderate, severe)\n* Presence of at least 1 constitutional symptom (headache, myalgia, feverishness, malaise, fatigue) of any severity (mild, moderate, severe)\n* Onset of illness no more than 72 hours before presentation. Time of onset of illness defined as either (1) the time when temperature (oral or rectal) was elevated (at least 1°C of elevation-oral temperature), OR (2) the time when the subject experienced the presence of at least 1 respiratory symptom AND the presence of at least 1 constitutional symptom\n* Presence of 1 or more of the following factors in a subject willing to be hospitalized for inpatient observation and treatment:\n* Age ≥60 years\n* Presence of chronic obstructive pulmonary disease (COPD) or other chronic lung disease requiring daily pharmacotherapy\n* History of congestive heart failure with or without medically significant recent change in cardiac status, but without signs or symptoms compatible with NYHA Class IV functional status\n* Presence of diabetes mellitus, clinically stable or unstable\n* Transcutaneous oxygen saturation \\<94% without supplemental oxygen for at least 5 minutes, or a medically significant decrease in oxygen saturation from an established baseline value\n* Systolic blood pressure \\<90 mmHg\n* Severity of illness that, in the Investigator's judgment, justifies hospitalization of the subject for supportive care\n* Positive rapid antigen test (RAT) for influenza A and/or influenza B (using an approved test kit) or other test for influenza virus antigen performed in a clinical laboratory at the screening/enrollment evaluation\n* Females of childbearing potential must report one of the following:\n* Be surgically sterile or clinically post-menopausal\n* Have been sexually abstinent 4 weeks prior to date of screening evaluation and be willing to remain abstinent through 4 weeks after study-drug administration for all perimenopausal women or women of child-bearing potential\n* Use oral contraceptives or other form of hormonal birth control including hormonal vaginal rings or transdermal patches and have been using these for 3 months prior through 4 weeks after study-drug administration for all perimenopausal women or women of child-bearing potential\n* Use an intra-uterine device (IUD), or adequate barrier contraception (or double-barrier method such as condom or diaphragm with spermicidal gel or foam) as birth control 4 weeks prior to date of screening evaluation through 4 weeks after study drug administration for all perimenopausal women or women of child-bearing potential\n\nExclusion Criteria:\n\n* Immunized against influenza with live attenuated virus vaccine in the previous weeks\n* Treatment with any dose(s) of rimantadine, amantadine, zanamivir, or oseltamivir in the previous 7 days\n* Current clinical evidence of a recognized or suspected acute non-influenzal infectious illness with onset prior to Screening\n* Serum creatinine laboratory result at Screening \\>1.6 mg/dL or a result \\>25% above the upper limit of normal for the laboratory performing the test\n* History of clinically significant proteinuria (≥1000 mg/24 hrs)\n* History of moderate or severe renal impairment and/or previous clinical laboratory data indicating an estimated creatinine clearance \\<50 mL/min during the previous 12 months\n* Electrocardiogram (ECG) at Screening visit showing evidence of acute ischemia, or presence of a medically significant dysrhythmia\n* Presence of cardiac signs or symptoms compatible with NYHA Class III or Class IV functional status for congestive heart failure or angina (see NYHA Appendix V)\n* Presence of diagnosed COPD or other chronic lung condition requiring either continuous or intermittent oxygen therapy as an outpatient. Note: Subjects who are determined to require acute supplemental oxygen therapy at the time of Screening and/or at hospital admission may be enrolled, if exclusion criteria #13 or #14 are not applicable.\n* History of organ transplantation during the previous 12 months\n* Known HIV infection with most recent CD4+ T-cell count ≤350 cells/mL\n* History of diagnosis of any type of cancer (hematologic or solid tumor), that has required chemotherapy or radiation therapy in the previous 12 months, excluding non-melanomatous localized skin cancer\n* Presence of ongoing requirement for chronic mechanical ventilation, either via oral or nasotracheal intubation or via tracheostomy, or chronic or intermittent requirement for BiPAP (bilevel positive airway pressure) at screening. Note: Subjects who require intermittent CPAP treatment for sleep apnea (without oxygen supplementation) may be enrolled\n* Subjects who require acute mechanical ventilatory support of any type at the time of screening.\n* History of alcohol abuse or drug addiction during the previous 12 months\n* Participation in a clinical study of an experimental medication or other treatment during the previous 4 weeks\n* Previous treatment with intravenous or intramuscular peramivir\n* Women who are pregnant (positive serum or urine pregnancy test), who are attempting to become pregnant, or who are breast-feeding\n* Subjects who have been hospitalized due to a condition other than acute influenza and in whom influenza is diagnosed during hospitalization."
+        }
+      },
+      {
+        "id": "arms",
+        "address": "/protocolSection/armsInterventionsModule",
+        "digest": "587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa",
+        "value": {
+          "armGroups": [
+            {
+              "label": "Arm 1: Peramivir 200 mg",
+              "type": "EXPERIMENTAL",
+              "description": "Peramivir 200 mg administered intravenously once daily for 5 days (5 doses)",
+              "interventionNames": [
+                "Drug: Peramivir 200 mg"
+              ]
+            },
+            {
+              "label": "Arm 2: Peramivir 400 mg",
+              "type": "EXPERIMENTAL",
+              "description": "Peramivir 400 mg administered intravenously once daily for 5 days (5 doses)",
+              "interventionNames": [
+                "Drug: Peramivir 400 mg"
+              ]
+            },
+            {
+              "label": "Arm 3: Oseltamivir",
+              "type": "EXPERIMENTAL",
+              "description": "Oseltamivir 75 mg oral suspension administered orally twice daily for 5 days (10 doses)",
+              "interventionNames": [
+                "Drug: Oseltamivir"
+              ]
+            }
+          ],
+          "interventions": [
+            {
+              "type": "DRUG",
+              "name": "Peramivir 200 mg",
+              "description": "Peramivir (200 mg in 100 mL of solution) intravenous infusion (over 15 minutes) and an orally administered oseltamivir placebo suspension (6.25 mL) treatment",
+              "armGroupLabels": [
+                "Arm 1: Peramivir 200 mg"
+              ]
+            },
+            {
+              "type": "DRUG",
+              "name": "Peramivir 400 mg",
+              "description": "Peramivir (400 mg in 100 mL of solution ) intravenous infusion (over 15 minutes) and an orally administered oseltamivir placebo suspension (6.25 ml)",
+              "armGroupLabels": [
+                "Arm 2: Peramivir 400 mg"
+              ]
+            },
+            {
+              "type": "DRUG",
+              "name": "Oseltamivir",
+              "description": "Placebo peramivir infusion (over 15 minutes) and a 75-mg dose of oseltamivir suspension (6.25 mL)",
+              "armGroupLabels": [
+                "Arm 3: Oseltamivir"
+              ]
+            }
+          ]
+        },
+        "ref": "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/armsInterventionsModule",
+        "source": {
+          "ref": "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa",
+          "version": "587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa",
+          "address": "/protocolSection/armsInterventionsModule",
+          "digest": "587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa"
+        },
+        "code": "located"
+      },
+      {
+        "id": "outcomes",
+        "address": "/protocolSection/outcomesModule",
+        "digest": "587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa",
+        "value": {
+          "primaryOutcomes": [
+            {
+              "measure": "Time to Clinical Stability (Kaplan-Meier Estimate)",
+              "description": "Time to clinical stability was summarized overall and for individual clinical signs for each treatment group using the method of Kaplan Meier. Subjects who did not experience clinical stability were censored at the date of their last non-missing assessment during the study (whether this assessment occurred as an inpatient or as an outpatient).",
+              "timeFrame": "14 days"
+            }
+          ],
+          "secondaryOutcomes": [
+            {
+              "measure": "Change From Baseline in Scores of Symptoms of Influenza",
+              "description": "Descriptive statistics for the change from baseline in each of the 7 symptoms of influenza (cough; sore throat; nasal congestion; myalgia \\[aches and pains\\]; headache; feverishness; and fatigue, each graded on a 4-point severity scale \\[0, absent; 1, mild; 2, moderate; 3, severe\\]) were tabulated by treatment group. Missing data were excluded.",
+              "timeFrame": "Baseline, Days 2, 3, 4, 5, 10, and 14"
+            },
+            {
+              "measure": "Time to Resumption of Ability to Perform Usual Activities (Kaplan-Meier Estimate)",
+              "description": "Changes in each subject's ability to perform usual activities as determined from the visual analog scale (0 to 10, where 0 indicated subject was unable to perform usual activities at all and 10 indicated subject was able to perform all usual activities fully) were summarized by study visit and treatment group. The time to resumption of a subject's ability to perform usual activities was estimated using the method of Kaplan Meier. Subjects who did not return to the pre-study level of performance of usual activities were censored at the time of their last assessment. (Note: N is the number of ITTI participants with available data).",
+              "timeFrame": "14 days"
+            },
+            {
+              "measure": "Incidence of Clinical Relapse of Influenza After Treatment (Number of Participants Experiencing Relapse During the Study)",
+              "description": "The number of subjects with clinical relapse, defined as changes in 2 or more signs of clinical stability to values outside the range of normalization criteria for a duration of at least 12 consecutive hours after clinical stability had been attained, were summarized by treatment group.",
+              "timeFrame": "14 days"
+            },
+            {
+              "measure": "Time to Hospital Discharge (Kaplan-Meier Estimate)",
+              "description": "Time to discharge from hospital was estimated using the method of Kaplan Meier. Subjects who were not discharged from the hospital were censored at the time of their last assessment.",
+              "timeFrame": "14 days"
+            },
+            {
+              "measure": "Change in Amount of Influenza Virus in Nose and Throat (Influenza A and B Combined)",
+              "description": "Reduction in viral shedding, assessed as the change in quantitative viral titers and defined as the time-weighted change from baseline in TCID50/mL, was summarized for each treatment group.",
+              "timeFrame": "Baseline, and 12, 24, 36, 48, 72, and 96 hours"
+            }
+          ]
+        },
+        "ref": "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/outcomesModule",
+        "source": {
+          "ref": "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa",
+          "version": "587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa",
+          "address": "/protocolSection/outcomesModule",
+          "digest": "587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa"
+        },
+        "code": "located"
+      }
+    ],
+    "fixed": {
+      "assertions": [
+        {
+          "applicability": {
+            "class": "Always"
+          },
+          "body": {
+            "class": "Literal",
+            "evidence": [
+              {
+                "class": "Evidence",
+                "kind": "record_field",
+                "ref": "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/eligibilityModule/minimumAge"
+              }
+            ],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "age",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "ge",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 18.0,
+              "unit": "Years",
+              "upper": null
+            }
+          },
+          "branch": {
+            "class": "Branch",
+            "node": "unresolved",
+            "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+            "class": "Scope",
+            "kind": "all_participants",
+            "parts": [],
+            "ref": ""
+          },
+          "criterion_ref": "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/eligibilityModule/minimumAge",
+          "id": "registry-age-minimumAge",
+          "modality": "required",
+          "resolution": "resolved",
+          "rule": {
+            "answers": [],
+            "class": "Rule",
+            "id": "ctg-structured-general-eligibility-age",
+            "premises": [
+              "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/eligibilityModule/minimumAge"
+            ],
+            "version": "1",
+            "warrants": []
+          },
+          "span": [],
+          "status": "known"
+        }
+      ],
+      "signals": []
+    },
+    "interpretations": [
+      {
+        "id": "timeline-option",
+        "label": "Source presentation rule plus invented immediate dosing; test hypothetical first dose80hours",
+        "origin": "assistant",
+        "basis": [
+          "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:5936",
+          "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/armsInterventionsModule",
+          "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/outcomesModule",
+          "hypothesis:source-location-is-not-semantic-warrant"
+        ],
+        "assumptions": [
+          {
+            "applicability": {
+              "class": "Always"
+            },
+            "body": {
+              "class": "Literal",
+              "evidence": [
+                {
+                  "class": "Evidence",
+                  "kind": "text_span",
+                  "ref": "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:5936"
+                },
+                {
+                  "class": "Evidence",
+                  "kind": "record_field",
+                  "ref": "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/armsInterventionsModule"
+                },
+                {
+                  "class": "Evidence",
+                  "kind": "record_field",
+                  "ref": "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/outcomesModule"
+                }
+              ],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "record_defined_illness_duration",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": {
+                "anchor": "named_event",
+                "anchor_ref": "NCT00453999:presentation",
+                "certainty": "explicit",
+                "class": "TemporalScope",
+                "evidence": [
+                  {
+                    "class": "Evidence",
+                    "kind": "text_span",
+                    "ref": "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:5936"
+                  },
+                  {
+                    "class": "Evidence",
+                    "kind": "record_field",
+                    "ref": "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/armsInterventionsModule"
+                  },
+                  {
+                    "class": "Evidence",
+                    "kind": "record_field",
+                    "ref": "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/outcomesModule"
+                  }
+                ],
+                "inclusivity": "unspecified",
+                "lower": null,
+                "orientation": "at",
+                "unit": "",
+                "upper": null
+              },
+              "value": {
+                "class": "Value",
+                "comparison": "le",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 72.0,
+                "unit": "hours",
+                "upper": null
+              }
+            },
+            "branch": {
+              "class": "Branch",
+              "node": "unresolved",
+              "path": []
+            },
+            "class": "ScopedAssertion",
+            "cohort": {
+              "class": "Scope",
+              "kind": "all_participants",
+              "parts": [],
+              "ref": ""
+            },
+            "criterion_ref": "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:5936|ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/armsInterventionsModule|ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/outcomesModule",
+            "id": "presentation-onset-upper72",
+            "modality": "required",
+            "resolution": "resolved",
+            "rule": {
+              "answers": [],
+              "class": "Rule",
+              "id": "source-anchored-hypothesis",
+              "premises": [
+                "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:5936",
+                "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/armsInterventionsModule",
+                "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/outcomesModule"
+              ],
+              "version": "1",
+              "warrants": [
+                "hypothesis:source-location-is-not-semantic-warrant"
+              ]
+            },
+            "span": [
+              {
+                "class": "Span",
+                "end": 5936.0,
+                "start": 0.0
+              }
+            ],
+            "status": "proposed"
+          }
+        ],
+        "signals": [
+          {
+            "id": "presentation-dose-timeline",
+            "kind": "temporal",
+            "data": {
+              "scope": "NCT00453999:illustrative-new-draft-course",
+              "unit": "hours",
+              "origin": "NCT00453999:record-defined-onset",
+              "resolution": "resolved",
+              "events": [
+                "NCT00453999:record-defined-onset",
+                "NCT00453999:presentation",
+                "invented:new-draft:first-dose"
+              ],
+              "constraints": [
+                {
+                  "before": "NCT00453999:record-defined-onset",
+                  "after": "NCT00453999:presentation",
+                  "lower": 0,
+                  "upper": 72,
+                  "lower_inclusive": true,
+                  "upper_inclusive": true
+                },
+                {
+                  "before": "NCT00453999:presentation",
+                  "after": "invented:new-draft:first-dose",
+                  "lower": 0,
+                  "upper": 0,
+                  "lower_inclusive": true,
+                  "upper_inclusive": true
+                }
+              ]
+            },
+            "support": [
+              {
+                "id": "timing-reading-and-invented-delay",
+                "status": "proposed",
+                "resolution": "resolved",
+                "basis": [
+                  "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:5936",
+                  "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/armsInterventionsModule",
+                  "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/outcomesModule",
+                  "hypothesis:source-location-is-not-semantic-warrant"
+                ]
+              }
+            ],
+            "bindings": {}
+          }
+        ],
+        "signal_claims": [
+          {
+            "signal": "presentation-dose-timeline",
+            "claim": {
+              "before": "NCT00453999:record-defined-onset",
+              "after": "invented:new-draft:first-dose",
+              "lower": 80,
+              "upper": 80,
+              "lower_inclusive": true,
+              "upper_inclusive": true
+            }
+          }
+        ],
+        "binding_uses": []
+      }
+    ],
+    "bindings": [],
+    "coverage": [
+      {
+        "address": "/protocolSection/eligibilityModule/minimumAge",
+        "code": "compiled",
+        "value": "18 Years",
+        "assertion": "registry-age-minimumAge",
+        "rule": "ctg-structured-general-eligibility-age",
+        "ref": "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/eligibilityModule/minimumAge"
+      },
+      {
+        "address": "/protocolSection/eligibilityModule/maximumAge",
+        "code": "missing",
+        "value": null
+      },
+      {
+        "address": "/protocolSection/eligibilityModule/eligibilityCriteria",
+        "code": "unresolved_retained",
+        "value": "Inclusion Criteria:\n\n* Age ≥18 years of age, male or female\n* Able to provide informed consent, or for whom consent may be provided by guardian\n* Presence of fever at time of screening of ≥38.0°C (≥ 100.0°F) taken orally, or ≥38.5°C (≥101.2°F) taken rectally. This requirement is waived if the subject has (1) a history of fever within 24 hours prior to screening and administered any antipyretic(s) in the 24 hours prior to screening, or (2) has no history of documented fever as defined above, but reports a symptom of feverishness at some time during 48 hours prior to screening\n* Presence of at least 1 respiratory symptom (cough, sore throat, nasal congestion/symptoms) of any severity (mild, moderate, severe)\n* Presence of at least 1 constitutional symptom (headache, myalgia, feverishness, malaise, fatigue) of any severity (mild, moderate, severe)\n* Onset of illness no more than 72 hours before presentation. Time of onset of illness defined as either (1) the time when temperature (oral or rectal) was elevated (at least 1°C of elevation-oral temperature), OR (2) the time when the subject experienced the presence of at least 1 respiratory symptom AND the presence of at least 1 constitutional symptom\n* Presence of 1 or more of the following factors in a subject willing to be hospitalized for inpatient observation and treatment:\n* Age ≥60 years\n* Presence of chronic obstructive pulmonary disease (COPD) or other chronic lung disease requiring daily pharmacotherapy\n* History of congestive heart failure with or without medically significant recent change in cardiac status, but without signs or symptoms compatible with NYHA Class IV functional status\n* Presence of diabetes mellitus, clinically stable or unstable\n* Transcutaneous oxygen saturation \\<94% without supplemental oxygen for at least 5 minutes, or a medically significant decrease in oxygen saturation from an established baseline value\n* Systolic blood pressure \\<90 mmHg\n* Severity of illness that, in the Investigator's judgment, justifies hospitalization of the subject for supportive care\n* Positive rapid antigen test (RAT) for influenza A and/or influenza B (using an approved test kit) or other test for influenza virus antigen performed in a clinical laboratory at the screening/enrollment evaluation\n* Females of childbearing potential must report one of the following:\n* Be surgically sterile or clinically post-menopausal\n* Have been sexually abstinent 4 weeks prior to date of screening evaluation and be willing to remain abstinent through 4 weeks after study-drug administration for all perimenopausal women or women of child-bearing potential\n* Use oral contraceptives or other form of hormonal birth control including hormonal vaginal rings or transdermal patches and have been using these for 3 months prior through 4 weeks after study-drug administration for all perimenopausal women or women of child-bearing potential\n* Use an intra-uterine device (IUD), or adequate barrier contraception (or double-barrier method such as condom or diaphragm with spermicidal gel or foam) as birth control 4 weeks prior to date of screening evaluation through 4 weeks after study drug administration for all perimenopausal women or women of child-bearing potential\n\nExclusion Criteria:\n\n* Immunized against influenza with live attenuated virus vaccine in the previous weeks\n* Treatment with any dose(s) of rimantadine, amantadine, zanamivir, or oseltamivir in the previous 7 days\n* Current clinical evidence of a recognized or suspected acute non-influenzal infectious illness with onset prior to Screening\n* Serum creatinine laboratory result at Screening \\>1.6 mg/dL or a result \\>25% above the upper limit of normal for the laboratory performing the test\n* History of clinically significant proteinuria (≥1000 mg/24 hrs)\n* History of moderate or severe renal impairment and/or previous clinical laboratory data indicating an estimated creatinine clearance \\<50 mL/min during the previous 12 months\n* Electrocardiogram (ECG) at Screening visit showing evidence of acute ischemia, or presence of a medically significant dysrhythmia\n* Presence of cardiac signs or symptoms compatible with NYHA Class III or Class IV functional status for congestive heart failure or angina (see NYHA Appendix V)\n* Presence of diagnosed COPD or other chronic lung condition requiring either continuous or intermittent oxygen therapy as an outpatient. Note: Subjects who are determined to require acute supplemental oxygen therapy at the time of Screening and/or at hospital admission may be enrolled, if exclusion criteria #13 or #14 are not applicable.\n* History of organ transplantation during the previous 12 months\n* Known HIV infection with most recent CD4+ T-cell count ≤350 cells/mL\n* History of diagnosis of any type of cancer (hematologic or solid tumor), that has required chemotherapy or radiation therapy in the previous 12 months, excluding non-melanomatous localized skin cancer\n* Presence of ongoing requirement for chronic mechanical ventilation, either via oral or nasotracheal intubation or via tracheostomy, or chronic or intermittent requirement for BiPAP (bilevel positive airway pressure) at screening. Note: Subjects who require intermittent CPAP treatment for sleep apnea (without oxygen supplementation) may be enrolled\n* Subjects who require acute mechanical ventilatory support of any type at the time of screening.\n* History of alcohol abuse or drug addiction during the previous 12 months\n* Participation in a clinical study of an experimental medication or other treatment during the previous 4 weeks\n* Previous treatment with intravenous or intramuscular peramivir\n* Women who are pregnant (positive serum or urine pregnancy test), who are attempting to become pregnant, or who are breast-feeding\n* Subjects who have been hospitalized due to a condition other than acute influenza and in whom influenza is diagnosed during hospitalization."
+      },
+      {
+        "address": "/protocolSection/eligibilityModule/healthyVolunteers",
+        "code": "unresolved_retained",
+        "value": false
+      },
+      {
+        "address": "/protocolSection/eligibilityModule/sex",
+        "code": "unresolved_retained",
+        "value": "ALL"
+      },
+      {
+        "address": "/protocolSection/eligibilityModule/stdAges",
+        "code": "unresolved_retained",
+        "value": [
+          "ADULT",
+          "OLDER_ADULT"
+        ]
+      },
+      {
+        "address": "/resultsSection",
+        "ref": "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/resultsSection",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/derivedSection",
+        "ref": "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/derivedSection",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/hasResults",
+        "ref": "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/hasResults",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/identificationModule",
+        "ref": "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/identificationModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/statusModule",
+        "ref": "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/statusModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/sponsorCollaboratorsModule",
+        "ref": "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/sponsorCollaboratorsModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/oversightModule",
+        "ref": "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/oversightModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/descriptionModule",
+        "ref": "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/descriptionModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/conditionsModule",
+        "ref": "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/conditionsModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/designModule",
+        "ref": "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/designModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/armsInterventionsModule",
+        "ref": "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/armsInterventionsModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/outcomesModule",
+        "ref": "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/outcomesModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/contactsLocationsModule",
+        "ref": "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/contactsLocationsModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/referencesModule",
+        "ref": "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/referencesModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      }
+    ],
+    "submitted": {
+      "interpretations": [
+        {
+          "id": "timeline-option",
+          "label": "Source presentation rule plus invented immediate dosing; test hypothetical first dose80hours",
+          "origin": "assistant",
+          "basis": [
+            "assistant:unconfirmed-source-reading; invented operational additions explicitly labelled"
+          ],
+          "anchors": [
+            "eligibility",
+            "arms",
+            "outcomes"
+          ],
+          "assumptions": [
+            {
+              "applicability": {
+                "class": "Always"
+              },
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "record_defined_illness_duration",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": {
+                  "class": "TemporalScope",
+                  "orientation": "at",
+                  "anchor": "named_event",
+                  "anchor_ref": "NCT00453999:presentation",
+                  "certainty": "explicit"
+                },
+                "value": {
+                  "class": "Value",
+                  "comparison": "le",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 72,
+                  "unit": "hours",
+                  "upper": null
+                }
+              },
+              "branch": {
+                "class": "Branch",
+                "node": "unresolved",
+                "path": []
+              },
+              "class": "ScopedAssertion",
+              "cohort": {
+                "class": "Scope",
+                "kind": "all_participants",
+                "parts": [],
+                "ref": ""
+              },
+              "criterion_ref": "assistant:source-reading-not-confirmed",
+              "id": "presentation-onset-upper72",
+              "modality": "required",
+              "resolution": "resolved",
+              "rule": {
+                "answers": [],
+                "class": "Rule",
+                "id": "assistant:source-reading-not-confirmed",
+                "premises": [],
+                "version": "1",
+                "warrants": [
+                  "invented:explicit-teaching-premise"
+                ]
+              },
+              "span": [],
+              "status": "proposed"
+            }
+          ],
+          "signals": [
+            {
+              "id": "presentation-dose-timeline",
+              "kind": "temporal",
+              "data": {
+                "scope": "NCT00453999:illustrative-new-draft-course",
+                "unit": "hours",
+                "origin": "NCT00453999:record-defined-onset",
+                "resolution": "resolved",
+                "events": [
+                  "NCT00453999:record-defined-onset",
+                  "NCT00453999:presentation",
+                  "invented:new-draft:first-dose"
+                ],
+                "constraints": [
+                  {
+                    "before": "NCT00453999:record-defined-onset",
+                    "after": "NCT00453999:presentation",
+                    "lower": 0,
+                    "upper": 72,
+                    "lower_inclusive": true,
+                    "upper_inclusive": true
+                  },
+                  {
+                    "before": "NCT00453999:presentation",
+                    "after": "invented:new-draft:first-dose",
+                    "lower": 0,
+                    "upper": 0,
+                    "lower_inclusive": true,
+                    "upper_inclusive": true
+                  }
+                ]
+              },
+              "support": [
+                {
+                  "id": "timing-reading-and-invented-delay",
+                  "status": "proposed",
+                  "resolution": "resolved",
+                  "basis": [
+                    "assistant:source72h-presentation-reading",
+                    "invented:immediate-first-dose-operational-option-not-source-fact"
+                  ]
+                }
+              ]
+            }
+          ],
+          "signal_claims": [
+            {
+              "signal": "presentation-dose-timeline",
+              "claim": {
+                "before": "NCT00453999:record-defined-onset",
+                "after": "invented:new-draft:first-dose",
+                "lower": 80,
+                "upper": 80,
+                "lower_inclusive": true,
+                "upper_inclusive": true
+              }
+            }
+          ],
+          "binding_uses": []
+        }
+      ],
+      "bindings": []
+    },
+    "requests": [
+      {
+        "operation": "interpretations",
+        "study_ref": "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa",
+        "fixed": {
+          "assertions": [
+            {
+              "applicability": {
+                "class": "Always"
+              },
+              "body": {
+                "class": "Literal",
+                "evidence": [
+                  {
+                    "class": "Evidence",
+                    "kind": "record_field",
+                    "ref": "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/eligibilityModule/minimumAge"
+                  }
+                ],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "age",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "ge",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 18.0,
+                  "unit": "Years",
+                  "upper": null
+                }
+              },
+              "branch": {
+                "class": "Branch",
+                "node": "unresolved",
+                "path": []
+              },
+              "class": "ScopedAssertion",
+              "cohort": {
+                "class": "Scope",
+                "kind": "all_participants",
+                "parts": [],
+                "ref": ""
+              },
+              "criterion_ref": "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/eligibilityModule/minimumAge",
+              "id": "registry-age-minimumAge",
+              "modality": "required",
+              "resolution": "resolved",
+              "rule": {
+                "answers": [],
+                "class": "Rule",
+                "id": "ctg-structured-general-eligibility-age",
+                "premises": [
+                  "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/eligibilityModule/minimumAge"
+                ],
+                "version": "1",
+                "warrants": []
+              },
+              "span": [],
+              "status": "known"
+            }
+          ],
+          "signals": []
+        },
+        "bindings": [],
+        "interpretations": [
+          {
+            "id": "timeline-option",
+            "label": "Source presentation rule plus invented immediate dosing; test hypothetical first dose80hours",
+            "origin": "assistant",
+            "basis": [
+              "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:5936",
+              "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/armsInterventionsModule",
+              "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/outcomesModule",
+              "hypothesis:source-location-is-not-semantic-warrant"
+            ],
+            "assumptions": [
+              {
+                "applicability": {
+                  "class": "Always"
+                },
+                "body": {
+                  "class": "Literal",
+                  "evidence": [
+                    {
+                      "class": "Evidence",
+                      "kind": "text_span",
+                      "ref": "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:5936"
+                    },
+                    {
+                      "class": "Evidence",
+                      "kind": "record_field",
+                      "ref": "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/armsInterventionsModule"
+                    },
+                    {
+                      "class": "Evidence",
+                      "kind": "record_field",
+                      "ref": "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/outcomesModule"
+                    }
+                  ],
+                  "polarity": "positive",
+                  "predicate": {
+                    "class": "Predicate",
+                    "key": "record_defined_illness_duration",
+                    "kind": "measurement"
+                  },
+                  "qualifiers": {
+                    "class": "Always"
+                  },
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "participant",
+                    "referent": ""
+                  },
+                  "time": {
+                    "anchor": "named_event",
+                    "anchor_ref": "NCT00453999:presentation",
+                    "certainty": "explicit",
+                    "class": "TemporalScope",
+                    "evidence": [
+                      {
+                        "class": "Evidence",
+                        "kind": "text_span",
+                        "ref": "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:5936"
+                      },
+                      {
+                        "class": "Evidence",
+                        "kind": "record_field",
+                        "ref": "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/armsInterventionsModule"
+                      },
+                      {
+                        "class": "Evidence",
+                        "kind": "record_field",
+                        "ref": "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/outcomesModule"
+                      }
+                    ],
+                    "inclusivity": "unspecified",
+                    "lower": null,
+                    "orientation": "at",
+                    "unit": "",
+                    "upper": null
+                  },
+                  "value": {
+                    "class": "Value",
+                    "comparison": "le",
+                    "inclusivity": "unspecified",
+                    "kind": "quantity",
+                    "members": [],
+                    "number": 72.0,
+                    "unit": "hours",
+                    "upper": null
+                  }
+                },
+                "branch": {
+                  "class": "Branch",
+                  "node": "unresolved",
+                  "path": []
+                },
+                "class": "ScopedAssertion",
+                "cohort": {
+                  "class": "Scope",
+                  "kind": "all_participants",
+                  "parts": [],
+                  "ref": ""
+                },
+                "criterion_ref": "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:5936|ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/armsInterventionsModule|ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/outcomesModule",
+                "id": "presentation-onset-upper72",
+                "modality": "required",
+                "resolution": "resolved",
+                "rule": {
+                  "answers": [],
+                  "class": "Rule",
+                  "id": "source-anchored-hypothesis",
+                  "premises": [
+                    "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:5936",
+                    "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/armsInterventionsModule",
+                    "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/outcomesModule"
+                  ],
+                  "version": "1",
+                  "warrants": [
+                    "hypothesis:source-location-is-not-semantic-warrant"
+                  ]
+                },
+                "span": [
+                  {
+                    "class": "Span",
+                    "end": 5936.0,
+                    "start": 0.0
+                  }
+                ],
+                "status": "proposed"
+              }
+            ],
+            "signals": [
+              {
+                "id": "presentation-dose-timeline",
+                "kind": "temporal",
+                "data": {
+                  "scope": "NCT00453999:illustrative-new-draft-course",
+                  "unit": "hours",
+                  "origin": "NCT00453999:record-defined-onset",
+                  "resolution": "resolved",
+                  "events": [
+                    "NCT00453999:record-defined-onset",
+                    "NCT00453999:presentation",
+                    "invented:new-draft:first-dose"
+                  ],
+                  "constraints": [
+                    {
+                      "before": "NCT00453999:record-defined-onset",
+                      "after": "NCT00453999:presentation",
+                      "lower": 0,
+                      "upper": 72,
+                      "lower_inclusive": true,
+                      "upper_inclusive": true
+                    },
+                    {
+                      "before": "NCT00453999:presentation",
+                      "after": "invented:new-draft:first-dose",
+                      "lower": 0,
+                      "upper": 0,
+                      "lower_inclusive": true,
+                      "upper_inclusive": true
+                    }
+                  ]
+                },
+                "support": [
+                  {
+                    "id": "timing-reading-and-invented-delay",
+                    "status": "proposed",
+                    "resolution": "resolved",
+                    "basis": [
+                      "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:5936",
+                      "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/armsInterventionsModule",
+                      "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/outcomesModule",
+                      "hypothesis:source-location-is-not-semantic-warrant"
+                    ]
+                  }
+                ],
+                "bindings": {}
+              }
+            ],
+            "signal_claims": [
+              {
+                "signal": "presentation-dose-timeline",
+                "claim": {
+                  "before": "NCT00453999:record-defined-onset",
+                  "after": "invented:new-draft:first-dose",
+                  "lower": 80,
+                  "upper": 80,
+                  "lower_inclusive": true,
+                  "upper_inclusive": true
+                }
+              }
+            ],
+            "binding_uses": []
+          }
+        ],
+        "queries": [
+          {
+            "id": "adult",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "age",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "ge",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 18,
+                "unit": "Years",
+                "upper": null
+              }
+            }
+          },
+          {
+            "id": "presentation80hours",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "record_defined_illness_duration",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": {
+                "class": "TemporalScope",
+                "orientation": "at",
+                "anchor": "named_event",
+                "anchor_ref": "NCT00453999:presentation",
+                "certainty": "explicit"
+              },
+              "value": {
+                "class": "Value",
+                "comparison": "eq",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 80,
+                "unit": "hours",
+                "upper": null
+              }
+            }
+          },
+          {
+            "id": "first-dose80hours",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "record_defined_illness_duration",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": {
+                "class": "TemporalScope",
+                "orientation": "at",
+                "anchor": "named_event",
+                "anchor_ref": "invented:new-draft:first-dose",
+                "certainty": "explicit"
+              },
+              "value": {
+                "class": "Value",
+                "comparison": "eq",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 80,
+                "unit": "hours",
+                "upper": null
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "limits": [
+      "Structured ages describe registry general eligibility, not verified actual protocol.",
+      "A located quotation proves quotation only; clinical readings remain hypothetical.",
+      "No unit conversion, automatic binding joins, clinical text interpretation or source mutation."
+    ],
+    "analyses": [
+      {
+        "code": "complete",
+        "operation": "interpretations",
+        "result": {
+          "study_ref": "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa",
+          "fixed": {
+            "assertions": [
+              {
+                "applicability": {
+                  "class": "Always"
+                },
+                "body": {
+                  "class": "Literal",
+                  "evidence": [
+                    {
+                      "class": "Evidence",
+                      "kind": "record_field",
+                      "ref": "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/eligibilityModule/minimumAge"
+                    }
+                  ],
+                  "polarity": "positive",
+                  "predicate": {
+                    "class": "Predicate",
+                    "key": "age",
+                    "kind": "measurement"
+                  },
+                  "qualifiers": {
+                    "class": "Always"
+                  },
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "participant",
+                    "referent": ""
+                  },
+                  "time": null,
+                  "value": {
+                    "class": "Value",
+                    "comparison": "ge",
+                    "inclusivity": "unspecified",
+                    "kind": "quantity",
+                    "members": [],
+                    "number": 18.0,
+                    "unit": "Years",
+                    "upper": null
+                  }
+                },
+                "branch": {
+                  "class": "Branch",
+                  "node": "unresolved",
+                  "path": []
+                },
+                "class": "ScopedAssertion",
+                "cohort": {
+                  "class": "Scope",
+                  "kind": "all_participants",
+                  "parts": [],
+                  "ref": ""
+                },
+                "criterion_ref": "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/eligibilityModule/minimumAge",
+                "id": "registry-age-minimumAge",
+                "modality": "required",
+                "resolution": "resolved",
+                "rule": {
+                  "answers": [],
+                  "class": "Rule",
+                  "id": "ctg-structured-general-eligibility-age",
+                  "premises": [
+                    "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/eligibilityModule/minimumAge"
+                  ],
+                  "version": "1",
+                  "warrants": []
+                },
+                "span": [],
+                "status": "known"
+              }
+            ],
+            "consistency": {
+              "result": "UNDETERMINED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+              "status": null,
+              "proof": [],
+              "blockers": [
+                "no_constraint_mentions_query"
+              ]
+            },
+            "queries": [
+              {
+                "id": "adult",
+                "body": {
+                  "class": "Literal",
+                  "evidence": [],
+                  "polarity": "positive",
+                  "predicate": {
+                    "class": "Predicate",
+                    "key": "age",
+                    "kind": "measurement"
+                  },
+                  "qualifiers": {
+                    "class": "Always"
+                  },
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "participant",
+                    "referent": ""
+                  },
+                  "time": null,
+                  "value": {
+                    "class": "Value",
+                    "comparison": "ge",
+                    "inclusivity": "unspecified",
+                    "kind": "quantity",
+                    "members": [],
+                    "number": 18.0,
+                    "unit": "Years",
+                    "upper": null
+                  }
+                },
+                "result": "ENTAILED",
+                "decision": {
+                  "result": "ENTAILED",
+                  "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+                  "status": "known",
+                  "proof": [
+                    "registry-age-minimumAge"
+                  ],
+                  "blockers": []
+                },
+                "warrant": {
+                  "rule": "entail.decide:1",
+                  "guarantee": "fixed_floor",
+                  "status": "known",
+                  "assumptions": [],
+                  "proof": [
+                    "registry-age-minimumAge"
+                  ],
+                  "blockers": []
+                }
+              },
+              {
+                "id": "presentation80hours",
+                "body": {
+                  "class": "Literal",
+                  "evidence": [],
+                  "polarity": "positive",
+                  "predicate": {
+                    "class": "Predicate",
+                    "key": "record_defined_illness_duration",
+                    "kind": "measurement"
+                  },
+                  "qualifiers": {
+                    "class": "Always"
+                  },
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "participant",
+                    "referent": ""
+                  },
+                  "time": {
+                    "anchor": "named_event",
+                    "anchor_ref": "NCT00453999:presentation",
+                    "certainty": "explicit",
+                    "class": "TemporalScope",
+                    "evidence": [],
+                    "inclusivity": "unspecified",
+                    "lower": null,
+                    "orientation": "at",
+                    "unit": "",
+                    "upper": null
+                  },
+                  "value": {
+                    "class": "Value",
+                    "comparison": "eq",
+                    "inclusivity": "unspecified",
+                    "kind": "quantity",
+                    "members": [],
+                    "number": 80.0,
+                    "unit": "hours",
+                    "upper": null
+                  }
+                },
+                "result": "UNDETERMINED",
+                "decision": {
+                  "result": "UNDETERMINED",
+                  "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"record_defined_illness_duration\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":{\"anchor\":\"named_event\",\"anchor_ref\":\"NCT00453999:presentation\",\"certainty\":\"explicit\",\"class\":\"TemporalScope\",\"evidence\":[],\"inclusivity\":\"unspecified\",\"lower\":null,\"orientation\":\"at\",\"unit\":\"\",\"upper\":null},\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":80.0,\"unit\":\"hours\",\"upper\":null}}",
+                  "status": null,
+                  "proof": [],
+                  "blockers": [
+                    "no_constraint_mentions_query"
+                  ]
+                },
+                "warrant": {
+                  "rule": "entail.decide:1",
+                  "guarantee": "fixed_floor",
+                  "status": "known",
+                  "assumptions": [],
+                  "proof": [],
+                  "blockers": [
+                    "no_constraint_mentions_query"
+                  ]
+                }
+              },
+              {
+                "id": "first-dose80hours",
+                "body": {
+                  "class": "Literal",
+                  "evidence": [],
+                  "polarity": "positive",
+                  "predicate": {
+                    "class": "Predicate",
+                    "key": "record_defined_illness_duration",
+                    "kind": "measurement"
+                  },
+                  "qualifiers": {
+                    "class": "Always"
+                  },
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "participant",
+                    "referent": ""
+                  },
+                  "time": {
+                    "anchor": "named_event",
+                    "anchor_ref": "invented:new-draft:first-dose",
+                    "certainty": "explicit",
+                    "class": "TemporalScope",
+                    "evidence": [],
+                    "inclusivity": "unspecified",
+                    "lower": null,
+                    "orientation": "at",
+                    "unit": "",
+                    "upper": null
+                  },
+                  "value": {
+                    "class": "Value",
+                    "comparison": "eq",
+                    "inclusivity": "unspecified",
+                    "kind": "quantity",
+                    "members": [],
+                    "number": 80.0,
+                    "unit": "hours",
+                    "upper": null
+                  }
+                },
+                "result": "UNDETERMINED",
+                "decision": {
+                  "result": "UNDETERMINED",
+                  "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"record_defined_illness_duration\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":{\"anchor\":\"named_event\",\"anchor_ref\":\"invented:new-draft:first-dose\",\"certainty\":\"explicit\",\"class\":\"TemporalScope\",\"evidence\":[],\"inclusivity\":\"unspecified\",\"lower\":null,\"orientation\":\"at\",\"unit\":\"\",\"upper\":null},\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":80.0,\"unit\":\"hours\",\"upper\":null}}",
+                  "status": null,
+                  "proof": [],
+                  "blockers": [
+                    "no_constraint_mentions_query"
+                  ]
+                },
+                "warrant": {
+                  "rule": "entail.decide:1",
+                  "guarantee": "fixed_floor",
+                  "status": "known",
+                  "assumptions": [],
+                  "proof": [],
+                  "blockers": [
+                    "no_constraint_mentions_query"
+                  ]
+                }
+              }
+            ],
+            "signals": [],
+            "blockers": []
+          },
+          "bindings": [],
+          "interpretations": [
+            {
+              "id": "timeline-option",
+              "label": "Source presentation rule plus invented immediate dosing; test hypothetical first dose80hours",
+              "origin": "assistant",
+              "state": "incoherent",
+              "premises": {
+                "basis": [
+                  "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:5936",
+                  "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/armsInterventionsModule",
+                  "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/outcomesModule",
+                  "hypothesis:source-location-is-not-semantic-warrant"
+                ],
+                "assumptions": [
+                  {
+                    "applicability": {
+                      "class": "Always"
+                    },
+                    "body": {
+                      "class": "Literal",
+                      "evidence": [
+                        {
+                          "class": "Evidence",
+                          "kind": "text_span",
+                          "ref": "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:5936"
+                        },
+                        {
+                          "class": "Evidence",
+                          "kind": "record_field",
+                          "ref": "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/armsInterventionsModule"
+                        },
+                        {
+                          "class": "Evidence",
+                          "kind": "record_field",
+                          "ref": "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/outcomesModule"
+                        }
+                      ],
+                      "polarity": "positive",
+                      "predicate": {
+                        "class": "Predicate",
+                        "key": "record_defined_illness_duration",
+                        "kind": "measurement"
+                      },
+                      "qualifiers": {
+                        "class": "Always"
+                      },
+                      "subject": {
+                        "class": "Subject",
+                        "kind": "participant",
+                        "referent": ""
+                      },
+                      "time": {
+                        "anchor": "named_event",
+                        "anchor_ref": "NCT00453999:presentation",
+                        "certainty": "explicit",
+                        "class": "TemporalScope",
+                        "evidence": [
+                          {
+                            "class": "Evidence",
+                            "kind": "text_span",
+                            "ref": "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:5936"
+                          },
+                          {
+                            "class": "Evidence",
+                            "kind": "record_field",
+                            "ref": "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/armsInterventionsModule"
+                          },
+                          {
+                            "class": "Evidence",
+                            "kind": "record_field",
+                            "ref": "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/outcomesModule"
+                          }
+                        ],
+                        "inclusivity": "unspecified",
+                        "lower": null,
+                        "orientation": "at",
+                        "unit": "",
+                        "upper": null
+                      },
+                      "value": {
+                        "class": "Value",
+                        "comparison": "le",
+                        "inclusivity": "unspecified",
+                        "kind": "quantity",
+                        "members": [],
+                        "number": 72.0,
+                        "unit": "hours",
+                        "upper": null
+                      }
+                    },
+                    "branch": {
+                      "class": "Branch",
+                      "node": "unresolved",
+                      "path": []
+                    },
+                    "class": "ScopedAssertion",
+                    "cohort": {
+                      "class": "Scope",
+                      "kind": "all_participants",
+                      "parts": [],
+                      "ref": ""
+                    },
+                    "criterion_ref": "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:5936|ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/armsInterventionsModule|ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/outcomesModule",
+                    "id": "presentation-onset-upper72",
+                    "modality": "required",
+                    "resolution": "resolved",
+                    "rule": {
+                      "answers": [],
+                      "class": "Rule",
+                      "id": "source-anchored-hypothesis",
+                      "premises": [
+                        "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:5936",
+                        "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/armsInterventionsModule",
+                        "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/outcomesModule"
+                      ],
+                      "version": "1",
+                      "warrants": [
+                        "hypothesis:source-location-is-not-semantic-warrant"
+                      ]
+                    },
+                    "span": [
+                      {
+                        "class": "Span",
+                        "end": 5936.0,
+                        "start": 0.0
+                      }
+                    ],
+                    "status": "proposed"
+                  }
+                ],
+                "signals": [
+                  {
+                    "id": "presentation-dose-timeline",
+                    "kind": "temporal",
+                    "data": {
+                      "scope": "NCT00453999:illustrative-new-draft-course",
+                      "unit": "hours",
+                      "origin": "NCT00453999:record-defined-onset",
+                      "resolution": "resolved",
+                      "events": [
+                        "NCT00453999:record-defined-onset",
+                        "NCT00453999:presentation",
+                        "invented:new-draft:first-dose"
+                      ],
+                      "constraints": [
+                        {
+                          "before": "NCT00453999:record-defined-onset",
+                          "after": "NCT00453999:presentation",
+                          "lower": 0,
+                          "upper": 72,
+                          "lower_inclusive": true,
+                          "upper_inclusive": true
+                        },
+                        {
+                          "before": "NCT00453999:presentation",
+                          "after": "invented:new-draft:first-dose",
+                          "lower": 0,
+                          "upper": 0,
+                          "lower_inclusive": true,
+                          "upper_inclusive": true
+                        }
+                      ]
+                    },
+                    "support": [
+                      {
+                        "id": "timing-reading-and-invented-delay",
+                        "status": "proposed",
+                        "resolution": "resolved",
+                        "basis": [
+                          "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:5936",
+                          "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/armsInterventionsModule",
+                          "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/outcomesModule",
+                          "hypothesis:source-location-is-not-semantic-warrant"
+                        ]
+                      }
+                    ],
+                    "bindings": {}
+                  }
+                ],
+                "signal_claims": [
+                  {
+                    "signal": "presentation-dose-timeline",
+                    "claim": {
+                      "before": "NCT00453999:record-defined-onset",
+                      "after": "invented:new-draft:first-dose",
+                      "lower": 80,
+                      "upper": 80,
+                      "lower_inclusive": true,
+                      "upper_inclusive": true
+                    }
+                  }
+                ],
+                "binding_uses": []
+              },
+              "bindings": [],
+              "signals": [
+                {
+                  "id": "presentation-dose-timeline",
+                  "kind": "temporal",
+                  "code": "consistent",
+                  "calculation_code": "consistent",
+                  "value": {
+                    "scope": "NCT00453999:illustrative-new-draft-course",
+                    "unit": "hours",
+                    "origin": "NCT00453999:record-defined-onset",
+                    "bounds": [
+                      {
+                        "before": "NCT00453999:record-defined-onset",
+                        "after": "NCT00453999:presentation",
+                        "lower": 0,
+                        "upper": 72,
+                        "lower_inclusive": true,
+                        "upper_inclusive": true
+                      },
+                      {
+                        "before": "NCT00453999:record-defined-onset",
+                        "after": "invented:new-draft:first-dose",
+                        "lower": 0,
+                        "upper": 72,
+                        "lower_inclusive": true,
+                        "upper_inclusive": true
+                      },
+                      {
+                        "before": "NCT00453999:presentation",
+                        "after": "NCT00453999:record-defined-onset",
+                        "lower": -72,
+                        "upper": 0,
+                        "lower_inclusive": true,
+                        "upper_inclusive": true
+                      },
+                      {
+                        "before": "NCT00453999:presentation",
+                        "after": "invented:new-draft:first-dose",
+                        "lower": 0,
+                        "upper": 0,
+                        "lower_inclusive": true,
+                        "upper_inclusive": true
+                      },
+                      {
+                        "before": "invented:new-draft:first-dose",
+                        "after": "NCT00453999:record-defined-onset",
+                        "lower": -72,
+                        "upper": 0,
+                        "lower_inclusive": true,
+                        "upper_inclusive": true
+                      },
+                      {
+                        "before": "invented:new-draft:first-dose",
+                        "after": "NCT00453999:presentation",
+                        "lower": 0,
+                        "upper": 0,
+                        "lower_inclusive": true,
+                        "upper_inclusive": true
+                      }
+                    ]
+                  },
+                  "rule": "graph.temporal:1",
+                  "status": "proposed",
+                  "basis": [
+                    "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:5936",
+                    "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/armsInterventionsModule",
+                    "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/outcomesModule",
+                    "hypothesis:source-location-is-not-semantic-warrant"
+                  ],
+                  "support": [
+                    {
+                      "id": "timing-reading-and-invented-delay",
+                      "status": "proposed",
+                      "resolution": "resolved",
+                      "basis": [
+                        "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:5936",
+                        "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/armsInterventionsModule",
+                        "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/outcomesModule",
+                        "hypothesis:source-location-is-not-semantic-warrant"
+                      ]
+                    }
+                  ],
+                  "blockers": [],
+                  "guarantee": "conditional_on_interpretation",
+                  "assumed_support": [
+                    "timing-reading-and-invented-delay"
+                  ],
+                  "role": "baseline_context"
+                }
+              ],
+              "signal_checks": [
+                {
+                  "id": "presentation-dose-timeline",
+                  "kind": "temporal",
+                  "code": "conflict",
+                  "calculation_code": "conflict",
+                  "value": {
+                    "scope": "NCT00453999:illustrative-new-draft-course",
+                    "unit": "hours",
+                    "origin": "NCT00453999:record-defined-onset",
+                    "bounds": []
+                  },
+                  "rule": "graph.temporal:1",
+                  "status": "proposed",
+                  "basis": [
+                    "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:5936",
+                    "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/armsInterventionsModule",
+                    "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/outcomesModule",
+                    "hypothesis:source-location-is-not-semantic-warrant"
+                  ],
+                  "support": [
+                    {
+                      "id": "timing-reading-and-invented-delay",
+                      "status": "proposed",
+                      "resolution": "resolved",
+                      "basis": [
+                        "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:5936",
+                        "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/armsInterventionsModule",
+                        "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/outcomesModule",
+                        "hypothesis:source-location-is-not-semantic-warrant"
+                      ]
+                    }
+                  ],
+                  "blockers": [],
+                  "guarantee": "conditional_on_interpretation",
+                  "assumed_support": [
+                    "timing-reading-and-invented-delay"
+                  ],
+                  "claims": [
+                    {
+                      "before": "NCT00453999:record-defined-onset",
+                      "after": "invented:new-draft:first-dose",
+                      "lower": 80,
+                      "upper": 80,
+                      "lower_inclusive": true,
+                      "upper_inclusive": true
+                    }
+                  ]
+                }
+              ],
+              "queries": [
+                {
+                  "id": "adult",
+                  "body": {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "age",
+                      "kind": "measurement"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "participant",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "ge",
+                      "inclusivity": "unspecified",
+                      "kind": "quantity",
+                      "members": [],
+                      "number": 18.0,
+                      "unit": "Years",
+                      "upper": null
+                    }
+                  },
+                  "result": "UNDETERMINED",
+                  "decision": {
+                    "result": "ENTAILED",
+                    "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+                    "status": "known",
+                    "proof": [
+                      "registry-age-minimumAge"
+                    ],
+                    "blockers": []
+                  },
+                  "warrant": {
+                    "rule": "entail.decide:1",
+                    "guarantee": "conditional_on_interpretation",
+                    "status": "proposed",
+                    "assumptions": [
+                      "presentation-onset-upper72"
+                    ],
+                    "proof": [
+                      "registry-age-minimumAge"
+                    ],
+                    "blockers": [
+                      "interpretation_incoherent"
+                    ]
+                  }
+                },
+                {
+                  "id": "presentation80hours",
+                  "body": {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "record_defined_illness_duration",
+                      "kind": "measurement"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "participant",
+                      "referent": ""
+                    },
+                    "time": {
+                      "anchor": "named_event",
+                      "anchor_ref": "NCT00453999:presentation",
+                      "certainty": "explicit",
+                      "class": "TemporalScope",
+                      "evidence": [],
+                      "inclusivity": "unspecified",
+                      "lower": null,
+                      "orientation": "at",
+                      "unit": "",
+                      "upper": null
+                    },
+                    "value": {
+                      "class": "Value",
+                      "comparison": "eq",
+                      "inclusivity": "unspecified",
+                      "kind": "quantity",
+                      "members": [],
+                      "number": 80.0,
+                      "unit": "hours",
+                      "upper": null
+                    }
+                  },
+                  "result": "UNDETERMINED",
+                  "decision": {
+                    "result": "REFUTED",
+                    "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"record_defined_illness_duration\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":{\"anchor\":\"named_event\",\"anchor_ref\":\"NCT00453999:presentation\",\"certainty\":\"explicit\",\"class\":\"TemporalScope\",\"evidence\":[],\"inclusivity\":\"unspecified\",\"lower\":null,\"orientation\":\"at\",\"unit\":\"\",\"upper\":null},\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":80.0,\"unit\":\"hours\",\"upper\":null}}",
+                    "status": "interpolated",
+                    "proof": [
+                      "presentation-onset-upper72"
+                    ],
+                    "blockers": []
+                  },
+                  "warrant": {
+                    "rule": "entail.decide:1",
+                    "guarantee": "conditional_on_interpretation",
+                    "status": "proposed",
+                    "assumptions": [
+                      "presentation-onset-upper72"
+                    ],
+                    "proof": [
+                      "presentation-onset-upper72"
+                    ],
+                    "blockers": [
+                      "interpretation_incoherent"
+                    ]
+                  }
+                },
+                {
+                  "id": "first-dose80hours",
+                  "body": {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "record_defined_illness_duration",
+                      "kind": "measurement"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "participant",
+                      "referent": ""
+                    },
+                    "time": {
+                      "anchor": "named_event",
+                      "anchor_ref": "invented:new-draft:first-dose",
+                      "certainty": "explicit",
+                      "class": "TemporalScope",
+                      "evidence": [],
+                      "inclusivity": "unspecified",
+                      "lower": null,
+                      "orientation": "at",
+                      "unit": "",
+                      "upper": null
+                    },
+                    "value": {
+                      "class": "Value",
+                      "comparison": "eq",
+                      "inclusivity": "unspecified",
+                      "kind": "quantity",
+                      "members": [],
+                      "number": 80.0,
+                      "unit": "hours",
+                      "upper": null
+                    }
+                  },
+                  "result": "UNDETERMINED",
+                  "decision": {
+                    "result": "UNDETERMINED",
+                    "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"record_defined_illness_duration\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":{\"anchor\":\"named_event\",\"anchor_ref\":\"invented:new-draft:first-dose\",\"certainty\":\"explicit\",\"class\":\"TemporalScope\",\"evidence\":[],\"inclusivity\":\"unspecified\",\"lower\":null,\"orientation\":\"at\",\"unit\":\"\",\"upper\":null},\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":80.0,\"unit\":\"hours\",\"upper\":null}}",
+                    "status": null,
+                    "proof": [],
+                    "blockers": [
+                      "no_constraint_mentions_query"
+                    ]
+                  },
+                  "warrant": {
+                    "rule": "entail.decide:1",
+                    "guarantee": "conditional_on_interpretation",
+                    "status": "proposed",
+                    "assumptions": [
+                      "presentation-onset-upper72"
+                    ],
+                    "proof": [],
+                    "blockers": [
+                      "interpretation_incoherent",
+                      "no_constraint_mentions_query"
+                    ]
+                  }
+                }
+              ],
+              "warrant": {
+                "rule": "interpretations.compatibility:1",
+                "guarantee": "conditional_on_fixed_and_interpretation_premises",
+                "fixed_status": "known",
+                "status": "proposed",
+                "fixed_premises": [],
+                "assumptions": [
+                  "presentation-onset-upper72"
+                ],
+                "bindings": [],
+                "basis": [
+                  "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:5936",
+                  "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/armsInterventionsModule",
+                  "ctg:NCT00453999:587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa#/protocolSection/outcomesModule",
+                  "hypothesis:source-location-is-not-semantic-warrant"
+                ],
+                "consistency": {
+                  "result": "UNDETERMINED",
+                  "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+                  "status": null,
+                  "proof": [],
+                  "blockers": [
+                    "no_constraint_mentions_query"
+                  ]
+                },
+                "intrinsic_consistency": {
+                  "result": "UNDETERMINED",
+                  "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+                  "status": null,
+                  "proof": [],
+                  "blockers": [
+                    "no_constraint_mentions_query"
+                  ]
+                },
+                "signal_rules": [
+                  {
+                    "id": "presentation-dose-timeline",
+                    "rule": "graph.temporal:1"
+                  },
+                  {
+                    "id": "presentation-dose-timeline",
+                    "rule": "graph.temporal:1"
+                  }
+                ],
+                "blockers": []
+              }
+            }
+          ],
+          "remaining": [],
+          "refuted": [],
+          "incoherent": [
+            "timeline-option"
+          ],
+          "unresolved": [],
+          "selection": {
+            "id": null,
+            "state": "none",
+            "origin": null
+          },
+          "consequences": [
+            {
+              "id": "adult",
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "age",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "ge",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 18.0,
+                  "unit": "Years",
+                  "upper": null
+                }
+              },
+              "result": "ENTAILED",
+              "decision": {
+                "result": "ENTAILED",
+                "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+                "status": "known",
+                "proof": [
+                  "registry-age-minimumAge"
+                ],
+                "blockers": []
+              },
+              "warrant": {
+                "rule": "entail.decide:1",
+                "guarantee": "fixed_floor",
+                "status": "known",
+                "assumptions": [],
+                "proof": [
+                  "registry-age-minimumAge"
+                ],
+                "blockers": []
+              },
+              "frames": [],
+              "basis": "fixed_floor"
+            },
+            {
+              "id": "presentation80hours",
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "record_defined_illness_duration",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": {
+                  "anchor": "named_event",
+                  "anchor_ref": "NCT00453999:presentation",
+                  "certainty": "explicit",
+                  "class": "TemporalScope",
+                  "evidence": [],
+                  "inclusivity": "unspecified",
+                  "lower": null,
+                  "orientation": "at",
+                  "unit": "",
+                  "upper": null
+                },
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 80.0,
+                  "unit": "hours",
+                  "upper": null
+                }
+              },
+              "result": "CONFLICT",
+              "frames": [],
+              "basis": "declared_interpretation_family",
+              "warrant": {
+                "rule": "interpretations.common:1",
+                "guarantee": "conditional_on_declared_family_not_exhaustive",
+                "status": "proposed",
+                "blockers": []
+              }
+            },
+            {
+              "id": "first-dose80hours",
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "record_defined_illness_duration",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": {
+                  "anchor": "named_event",
+                  "anchor_ref": "invented:new-draft:first-dose",
+                  "certainty": "explicit",
+                  "class": "TemporalScope",
+                  "evidence": [],
+                  "inclusivity": "unspecified",
+                  "lower": null,
+                  "orientation": "at",
+                  "unit": "",
+                  "upper": null
+                },
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 80.0,
+                  "unit": "hours",
+                  "upper": null
+                }
+              },
+              "result": "CONFLICT",
+              "frames": [],
+              "basis": "declared_interpretation_family",
+              "warrant": {
+                "rule": "interpretations.common:1",
+                "guarantee": "conditional_on_declared_family_not_exhaustive",
+                "status": "proposed",
+                "blockers": []
+              }
+            }
+          ],
+          "limits": "Exact conditional checks over declared readings; compatibility is not source truth or clinical recommendation. The interpretation family is not assumed exhaustive. No automatic text reading, source correction, source mutation or corpus-frequency admission."
+        },
+        "problems": [],
+        "metadata": {
+          "version": 1,
+          "kind": "reasoning",
+          "findings": [
+            {
+              "path": "/result/fixed/consistency",
+              "kind": "consistency",
+              "logical_result": "UNDETERMINED",
+              "standing": null,
+              "completion": "complete",
+              "causes": [
+                {
+                  "code": "no_constraint_mentions_query",
+                  "kind": "coverage"
+                }
+              ],
+              "disposition": "open"
+            },
+            {
+              "path": "/result/fixed/queries/0",
+              "kind": "logical",
+              "logical_result": "ENTAILED",
+              "standing": "known",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "settled",
+              "support_path": "/result/fixed/queries/0/warrant"
+            },
+            {
+              "path": "/result/fixed/queries/1",
+              "kind": "logical",
+              "logical_result": "UNDETERMINED",
+              "standing": "known",
+              "completion": "complete",
+              "causes": [
+                {
+                  "code": "no_constraint_mentions_query",
+                  "kind": "coverage"
+                }
+              ],
+              "disposition": "open",
+              "support_path": "/result/fixed/queries/1/warrant"
+            },
+            {
+              "path": "/result/fixed/queries/2",
+              "kind": "logical",
+              "logical_result": "UNDETERMINED",
+              "standing": "known",
+              "completion": "complete",
+              "causes": [
+                {
+                  "code": "no_constraint_mentions_query",
+                  "kind": "coverage"
+                }
+              ],
+              "disposition": "open",
+              "support_path": "/result/fixed/queries/2/warrant"
+            },
+            {
+              "path": "/result/interpretations/0",
+              "kind": "interpretation",
+              "logical_result": "incoherent",
+              "standing": "proposed",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "conflict"
+            },
+            {
+              "path": "/result/interpretations/0/queries/0",
+              "kind": "logical",
+              "logical_result": "UNDETERMINED",
+              "standing": "proposed",
+              "completion": "complete",
+              "causes": [
+                {
+                  "code": "interpretation_incoherent",
+                  "kind": "conflict"
+                }
+              ],
+              "disposition": "open",
+              "support_path": "/result/interpretations/0/queries/0/warrant",
+              "raw_result": "ENTAILED",
+              "raw_path": "/result/interpretations/0/queries/0/decision"
+            },
+            {
+              "path": "/result/interpretations/0/queries/1",
+              "kind": "logical",
+              "logical_result": "UNDETERMINED",
+              "standing": "proposed",
+              "completion": "complete",
+              "causes": [
+                {
+                  "code": "interpretation_incoherent",
+                  "kind": "conflict"
+                }
+              ],
+              "disposition": "open",
+              "support_path": "/result/interpretations/0/queries/1/warrant",
+              "raw_result": "REFUTED",
+              "raw_path": "/result/interpretations/0/queries/1/decision"
+            },
+            {
+              "path": "/result/interpretations/0/queries/2",
+              "kind": "logical",
+              "logical_result": "UNDETERMINED",
+              "standing": "proposed",
+              "completion": "complete",
+              "causes": [
+                {
+                  "code": "interpretation_incoherent",
+                  "kind": "conflict"
+                },
+                {
+                  "code": "no_constraint_mentions_query",
+                  "kind": "coverage"
+                }
+              ],
+              "disposition": "open",
+              "support_path": "/result/interpretations/0/queries/2/warrant"
+            },
+            {
+              "path": "/result/interpretations/0/signals/0",
+              "kind": "signal",
+              "logical_result": "consistent",
+              "standing": "proposed",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "conditional"
+            },
+            {
+              "path": "/result/interpretations/0/signal_checks/0",
+              "kind": "signal",
+              "logical_result": "conflict",
+              "standing": "proposed",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "conflict"
+            },
+            {
+              "path": "/result/consequences/0",
+              "kind": "logical",
+              "logical_result": "ENTAILED",
+              "standing": "known",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "settled",
+              "support_path": "/result/consequences/0/warrant"
+            },
+            {
+              "path": "/result/consequences/1",
+              "kind": "logical",
+              "logical_result": "CONFLICT",
+              "standing": "proposed",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "conflict",
+              "support_path": "/result/consequences/1/warrant"
+            },
+            {
+              "path": "/result/consequences/2",
+              "kind": "logical",
+              "logical_result": "CONFLICT",
+              "standing": "proposed",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "conflict",
+              "support_path": "/result/consequences/2/warrant"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "problems": [],
+  "metadata": {
+    "version": 1,
+    "kind": "reasoning",
+    "findings": [
+      {
+        "path": "/result/analyses/0/result/fixed/consistency",
+        "kind": "consistency",
+        "logical_result": "UNDETERMINED",
+        "standing": null,
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          }
+        ],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/analyses/0/result/fixed/queries/0",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled",
+        "support_path": "/result/analyses/0/result/fixed/queries/0/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/fixed/queries/1",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/analyses/0/result/fixed/queries/1/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/fixed/queries/2",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/analyses/0/result/fixed/queries/2/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/0",
+        "kind": "interpretation",
+        "logical_result": "incoherent",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conflict"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/0/queries/0",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "interpretation_incoherent",
+            "kind": "conflict"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/analyses/0/result/interpretations/0/queries/0/warrant",
+        "raw_result": "ENTAILED",
+        "raw_path": "/result/analyses/0/result/interpretations/0/queries/0/decision"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/0/queries/1",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "interpretation_incoherent",
+            "kind": "conflict"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/analyses/0/result/interpretations/0/queries/1/warrant",
+        "raw_result": "REFUTED",
+        "raw_path": "/result/analyses/0/result/interpretations/0/queries/1/decision"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/0/queries/2",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "interpretation_incoherent",
+            "kind": "conflict"
+          },
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/analyses/0/result/interpretations/0/queries/2/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/0/signals/0",
+        "kind": "signal",
+        "logical_result": "consistent",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/0/signal_checks/0",
+        "kind": "signal",
+        "logical_result": "conflict",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conflict"
+      },
+      {
+        "path": "/result/analyses/0/result/consequences/0",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled",
+        "support_path": "/result/analyses/0/result/consequences/0/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/consequences/1",
+        "kind": "logical",
+        "logical_result": "CONFLICT",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conflict",
+        "support_path": "/result/analyses/0/result/consequences/1/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/consequences/2",
+        "kind": "logical",
+        "logical_result": "CONFLICT",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conflict",
+        "support_path": "/result/analyses/0/result/consequences/2/warrant"
+      }
+    ]
+  }
+}

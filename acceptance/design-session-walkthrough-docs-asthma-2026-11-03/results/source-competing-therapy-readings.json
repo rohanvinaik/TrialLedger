@@ -1,0 +1,3539 @@
+{
+  "code": "complete",
+  "operation": "source_assertions",
+  "result": {
+    "source": {
+      "nct": "NCT01001364",
+      "digest": "e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4",
+      "study_ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4",
+      "version": "e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4",
+      "last_update": {
+        "date": "2025-03-19",
+        "type": "ACTUAL"
+      }
+    },
+    "anchors": [
+      {
+        "id": "eligibility",
+        "address": "/protocolSection/eligibilityModule/eligibilityCriteria",
+        "digest": "e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4",
+        "value": "Inclusion Criteria:\n\n* Sign ICF (see Attachment A);\n* Age ≥12 years old\n* Diagnosis of mild to moderate persistent asthma, as per the ARIA classification, 35 with symptoms for at least 6 months, clinically stable for at least 1 month with ACQ-7 test34 (see Attachment D) \\< 3.0;\n* Current use of inhaled corticosteroids (equivalent to beclometasone dipropionate 1000µg) associated or not to long-acting β2-adrenergics and relief medication (salbutamol or equivalent);\n* Initial FEV1 of at least 50% of the normal value estimated.\n* Serum cortisol evaluation within the normal values\n\nExclusion Criteria:\n\n* Use of oral or parenteral corticosteroids within the last 3 months;\n* Need of hospitalization due to asthma within the last 3 months;\n* Active tabagism, defined as the use of cigarettes, pipe, cigar or any other type in any amount within the last 3 months;\n* Severe co-morbidity, such as cardiovascular, renal, liver, neurologic, neoplastic, blood, infectious, dermatologic, neurologic, psychiatric or chronic respiratory diseases, other than asthma;\n* Recent participation (\\<6 months) or planned participation, during this study, on other clinical trials involving drugs of any nature or under studies of any type of intervention for the asthma treatment;\n* Intolerance or allergy to any of the compounds of the drugs evaluated on the study;\n* Pregnancy or lactation;\n* Chronic use of routine oral or intravenous β-blocker drugs, even ophthalmic solutions.",
+        "ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/eligibilityModule/eligibilityCriteria",
+        "source": {
+          "ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4",
+          "version": "e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4",
+          "address": "/protocolSection/eligibilityModule/eligibilityCriteria",
+          "digest": "e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4"
+        },
+        "code": "located"
+      }
+    ],
+    "fixed": {
+      "assertions": [
+        {
+          "applicability": {
+            "class": "Always"
+          },
+          "body": {
+            "class": "Literal",
+            "evidence": [
+              {
+                "class": "Evidence",
+                "kind": "record_field",
+                "ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/eligibilityModule/minimumAge"
+              }
+            ],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "age",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "ge",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 12.0,
+              "unit": "Years",
+              "upper": null
+            }
+          },
+          "branch": {
+            "class": "Branch",
+            "node": "unresolved",
+            "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+            "class": "Scope",
+            "kind": "all_participants",
+            "parts": [],
+            "ref": ""
+          },
+          "criterion_ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/eligibilityModule/minimumAge",
+          "id": "registry-age-minimumAge",
+          "modality": "required",
+          "resolution": "resolved",
+          "rule": {
+            "answers": [],
+            "class": "Rule",
+            "id": "ctg-structured-general-eligibility-age",
+            "premises": [
+              "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/eligibilityModule/minimumAge"
+            ],
+            "version": "1",
+            "warrants": []
+          },
+          "span": [],
+          "status": "known"
+        }
+      ],
+      "signals": []
+    },
+    "interpretations": [
+      {
+        "id": "relief-required",
+        "label": "Read relief medication as a required current co-treatment",
+        "origin": "assistant",
+        "basis": [
+          "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/eligibilityModule/eligibilityCriteria",
+          "hypothesis:source-location-is-not-semantic-warrant"
+        ],
+        "assumptions": [
+          {
+            "applicability": {
+              "class": "Always"
+            },
+            "body": {
+              "class": "Literal",
+              "evidence": [
+                {
+                  "class": "Evidence",
+                  "kind": "record_field",
+                  "ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/eligibilityModule/eligibilityCriteria"
+                }
+              ],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "current-inhaled-corticosteroid-use",
+                "kind": "medication_use"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": {
+                "anchor": "named_event",
+                "anchor_ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4:eligibility-assessment",
+                "certainty": "explicit",
+                "class": "TemporalScope",
+                "evidence": [
+                  {
+                    "class": "Evidence",
+                    "kind": "record_field",
+                    "ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/eligibilityModule/eligibilityCriteria"
+                  }
+                ],
+                "inclusivity": "unspecified",
+                "lower": null,
+                "orientation": "at",
+                "unit": "",
+                "upper": null
+              },
+              "value": {
+                "class": "Value",
+                "comparison": "eq",
+                "inclusivity": "unspecified",
+                "kind": "boolean",
+                "members": [],
+                "number": null,
+                "unit": "",
+                "upper": null
+              }
+            },
+            "branch": {
+              "class": "Branch",
+              "node": "unresolved",
+              "path": []
+            },
+            "class": "ScopedAssertion",
+            "cohort": {
+              "class": "Scope",
+              "kind": "all_participants",
+              "parts": [],
+              "ref": ""
+            },
+            "criterion_ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/eligibilityModule/eligibilityCriteria",
+            "id": "ICS-reading",
+            "modality": "required",
+            "resolution": "resolved",
+            "rule": {
+              "answers": [],
+              "class": "Rule",
+              "id": "source-anchored-hypothesis",
+              "premises": [
+                "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/eligibilityModule/eligibilityCriteria"
+              ],
+              "version": "1",
+              "warrants": [
+                "hypothesis:source-location-is-not-semantic-warrant"
+              ]
+            },
+            "span": [],
+            "status": "proposed"
+          },
+          {
+            "applicability": {
+              "class": "Always"
+            },
+            "body": {
+              "class": "Literal",
+              "evidence": [
+                {
+                  "class": "Evidence",
+                  "kind": "record_field",
+                  "ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/eligibilityModule/eligibilityCriteria"
+                }
+              ],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "current-relief-medication-use",
+                "kind": "medication_use"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": {
+                "anchor": "named_event",
+                "anchor_ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4:eligibility-assessment",
+                "certainty": "explicit",
+                "class": "TemporalScope",
+                "evidence": [
+                  {
+                    "class": "Evidence",
+                    "kind": "record_field",
+                    "ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/eligibilityModule/eligibilityCriteria"
+                  }
+                ],
+                "inclusivity": "unspecified",
+                "lower": null,
+                "orientation": "at",
+                "unit": "",
+                "upper": null
+              },
+              "value": {
+                "class": "Value",
+                "comparison": "eq",
+                "inclusivity": "unspecified",
+                "kind": "boolean",
+                "members": [],
+                "number": null,
+                "unit": "",
+                "upper": null
+              }
+            },
+            "branch": {
+              "class": "Branch",
+              "node": "unresolved",
+              "path": []
+            },
+            "class": "ScopedAssertion",
+            "cohort": {
+              "class": "Scope",
+              "kind": "all_participants",
+              "parts": [],
+              "ref": ""
+            },
+            "criterion_ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/eligibilityModule/eligibilityCriteria",
+            "id": "relief-required-reading",
+            "modality": "required",
+            "resolution": "resolved",
+            "rule": {
+              "answers": [],
+              "class": "Rule",
+              "id": "source-anchored-hypothesis",
+              "premises": [
+                "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/eligibilityModule/eligibilityCriteria"
+              ],
+              "version": "1",
+              "warrants": [
+                "hypothesis:source-location-is-not-semantic-warrant"
+              ]
+            },
+            "span": [],
+            "status": "proposed"
+          }
+        ],
+        "signals": [],
+        "signal_claims": [],
+        "binding_uses": []
+      },
+      {
+        "id": "relief-not-settled",
+        "label": "Read current ICS as required, leaving relief use unaddressed",
+        "origin": "assistant",
+        "basis": [
+          "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/eligibilityModule/eligibilityCriteria",
+          "hypothesis:source-location-is-not-semantic-warrant"
+        ],
+        "assumptions": [
+          {
+            "applicability": {
+              "class": "Always"
+            },
+            "body": {
+              "class": "Literal",
+              "evidence": [
+                {
+                  "class": "Evidence",
+                  "kind": "record_field",
+                  "ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/eligibilityModule/eligibilityCriteria"
+                }
+              ],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "current-inhaled-corticosteroid-use",
+                "kind": "medication_use"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": {
+                "anchor": "named_event",
+                "anchor_ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4:eligibility-assessment",
+                "certainty": "explicit",
+                "class": "TemporalScope",
+                "evidence": [
+                  {
+                    "class": "Evidence",
+                    "kind": "record_field",
+                    "ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/eligibilityModule/eligibilityCriteria"
+                  }
+                ],
+                "inclusivity": "unspecified",
+                "lower": null,
+                "orientation": "at",
+                "unit": "",
+                "upper": null
+              },
+              "value": {
+                "class": "Value",
+                "comparison": "eq",
+                "inclusivity": "unspecified",
+                "kind": "boolean",
+                "members": [],
+                "number": null,
+                "unit": "",
+                "upper": null
+              }
+            },
+            "branch": {
+              "class": "Branch",
+              "node": "unresolved",
+              "path": []
+            },
+            "class": "ScopedAssertion",
+            "cohort": {
+              "class": "Scope",
+              "kind": "all_participants",
+              "parts": [],
+              "ref": ""
+            },
+            "criterion_ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/eligibilityModule/eligibilityCriteria",
+            "id": "ICS-reading",
+            "modality": "required",
+            "resolution": "resolved",
+            "rule": {
+              "answers": [],
+              "class": "Rule",
+              "id": "source-anchored-hypothesis",
+              "premises": [
+                "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/eligibilityModule/eligibilityCriteria"
+              ],
+              "version": "1",
+              "warrants": [
+                "hypothesis:source-location-is-not-semantic-warrant"
+              ]
+            },
+            "span": [],
+            "status": "proposed"
+          }
+        ],
+        "signals": [],
+        "signal_claims": [],
+        "binding_uses": []
+      }
+    ],
+    "bindings": [],
+    "coverage": [
+      {
+        "address": "/protocolSection/eligibilityModule/minimumAge",
+        "code": "compiled",
+        "value": "12 Years",
+        "assertion": "registry-age-minimumAge",
+        "rule": "ctg-structured-general-eligibility-age",
+        "ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/eligibilityModule/minimumAge"
+      },
+      {
+        "address": "/protocolSection/eligibilityModule/maximumAge",
+        "code": "missing",
+        "value": null
+      },
+      {
+        "address": "/protocolSection/eligibilityModule/eligibilityCriteria",
+        "code": "unresolved_retained",
+        "value": "Inclusion Criteria:\n\n* Sign ICF (see Attachment A);\n* Age ≥12 years old\n* Diagnosis of mild to moderate persistent asthma, as per the ARIA classification, 35 with symptoms for at least 6 months, clinically stable for at least 1 month with ACQ-7 test34 (see Attachment D) \\< 3.0;\n* Current use of inhaled corticosteroids (equivalent to beclometasone dipropionate 1000µg) associated or not to long-acting β2-adrenergics and relief medication (salbutamol or equivalent);\n* Initial FEV1 of at least 50% of the normal value estimated.\n* Serum cortisol evaluation within the normal values\n\nExclusion Criteria:\n\n* Use of oral or parenteral corticosteroids within the last 3 months;\n* Need of hospitalization due to asthma within the last 3 months;\n* Active tabagism, defined as the use of cigarettes, pipe, cigar or any other type in any amount within the last 3 months;\n* Severe co-morbidity, such as cardiovascular, renal, liver, neurologic, neoplastic, blood, infectious, dermatologic, neurologic, psychiatric or chronic respiratory diseases, other than asthma;\n* Recent participation (\\<6 months) or planned participation, during this study, on other clinical trials involving drugs of any nature or under studies of any type of intervention for the asthma treatment;\n* Intolerance or allergy to any of the compounds of the drugs evaluated on the study;\n* Pregnancy or lactation;\n* Chronic use of routine oral or intravenous β-blocker drugs, even ophthalmic solutions."
+      },
+      {
+        "address": "/protocolSection/eligibilityModule/healthyVolunteers",
+        "code": "unresolved_retained",
+        "value": false
+      },
+      {
+        "address": "/protocolSection/eligibilityModule/sex",
+        "code": "unresolved_retained",
+        "value": "ALL"
+      },
+      {
+        "address": "/protocolSection/eligibilityModule/stdAges",
+        "code": "unresolved_retained",
+        "value": [
+          "CHILD",
+          "ADULT",
+          "OLDER_ADULT"
+        ]
+      },
+      {
+        "address": "/derivedSection",
+        "ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/derivedSection",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/hasResults",
+        "ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/hasResults",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/identificationModule",
+        "ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/identificationModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/statusModule",
+        "ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/statusModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/sponsorCollaboratorsModule",
+        "ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/sponsorCollaboratorsModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/oversightModule",
+        "ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/oversightModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/descriptionModule",
+        "ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/descriptionModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/conditionsModule",
+        "ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/conditionsModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/designModule",
+        "ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/designModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/armsInterventionsModule",
+        "ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/armsInterventionsModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/outcomesModule",
+        "ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/outcomesModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/contactsLocationsModule",
+        "ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/contactsLocationsModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      }
+    ],
+    "submitted": {
+      "interpretations": [
+        {
+          "id": "relief-required",
+          "label": "Read relief medication as a required current co-treatment",
+          "origin": "assistant",
+          "basis": [
+            "assistant:unconfirmed-reading-of-optional-scope-not-clinician-confirmed"
+          ],
+          "anchors": [
+            "eligibility"
+          ],
+          "assumptions": [
+            {
+              "applicability": {
+                "class": "Always"
+              },
+              "body": {
+                "class": "Literal",
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant"
+                },
+                "predicate": {
+                  "class": "Predicate",
+                  "kind": "medication_use",
+                  "key": "current-inhaled-corticosteroid-use"
+                },
+                "value": {
+                  "class": "Value",
+                  "kind": "boolean"
+                },
+                "time": {
+                  "class": "TemporalScope",
+                  "orientation": "at",
+                  "anchor": "named_event",
+                  "anchor_ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4:eligibility-assessment",
+                  "certainty": "explicit"
+                }
+              },
+              "branch": {
+                "class": "Branch",
+                "node": "unresolved",
+                "path": []
+              },
+              "class": "ScopedAssertion",
+              "cohort": {
+                "class": "Scope",
+                "kind": "all_participants",
+                "parts": [],
+                "ref": ""
+              },
+              "criterion_ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/eligibilityModule/eligibilityCriteria",
+              "id": "ICS-reading",
+              "modality": "required",
+              "resolution": "resolved",
+              "rule": {
+                "answers": [],
+                "class": "Rule",
+                "id": "assistant-scope-reading",
+                "premises": [],
+                "version": "1",
+                "warrants": [
+                  "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/eligibilityModule/eligibilityCriteria",
+                  "assistant:unconfirmed-reading-of-optional-scope-not-clinician-confirmed"
+                ]
+              },
+              "span": [],
+              "status": "proposed"
+            },
+            {
+              "applicability": {
+                "class": "Always"
+              },
+              "body": {
+                "class": "Literal",
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant"
+                },
+                "predicate": {
+                  "class": "Predicate",
+                  "kind": "medication_use",
+                  "key": "current-relief-medication-use"
+                },
+                "value": {
+                  "class": "Value",
+                  "kind": "boolean"
+                },
+                "time": {
+                  "class": "TemporalScope",
+                  "orientation": "at",
+                  "anchor": "named_event",
+                  "anchor_ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4:eligibility-assessment",
+                  "certainty": "explicit"
+                }
+              },
+              "branch": {
+                "class": "Branch",
+                "node": "unresolved",
+                "path": []
+              },
+              "class": "ScopedAssertion",
+              "cohort": {
+                "class": "Scope",
+                "kind": "all_participants",
+                "parts": [],
+                "ref": ""
+              },
+              "criterion_ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/eligibilityModule/eligibilityCriteria",
+              "id": "relief-required-reading",
+              "modality": "required",
+              "resolution": "resolved",
+              "rule": {
+                "answers": [],
+                "class": "Rule",
+                "id": "assistant-scope-reading",
+                "premises": [],
+                "version": "1",
+                "warrants": [
+                  "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/eligibilityModule/eligibilityCriteria",
+                  "assistant:unconfirmed-reading-of-optional-scope-not-clinician-confirmed"
+                ]
+              },
+              "span": [],
+              "status": "proposed"
+            }
+          ],
+          "signals": [],
+          "signal_claims": [],
+          "binding_uses": []
+        },
+        {
+          "id": "relief-not-settled",
+          "label": "Read current ICS as required, leaving relief use unaddressed",
+          "origin": "assistant",
+          "basis": [
+            "assistant:unconfirmed-reading-of-optional-scope-not-clinician-confirmed"
+          ],
+          "anchors": [
+            "eligibility"
+          ],
+          "assumptions": [
+            {
+              "applicability": {
+                "class": "Always"
+              },
+              "body": {
+                "class": "Literal",
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant"
+                },
+                "predicate": {
+                  "class": "Predicate",
+                  "kind": "medication_use",
+                  "key": "current-inhaled-corticosteroid-use"
+                },
+                "value": {
+                  "class": "Value",
+                  "kind": "boolean"
+                },
+                "time": {
+                  "class": "TemporalScope",
+                  "orientation": "at",
+                  "anchor": "named_event",
+                  "anchor_ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4:eligibility-assessment",
+                  "certainty": "explicit"
+                }
+              },
+              "branch": {
+                "class": "Branch",
+                "node": "unresolved",
+                "path": []
+              },
+              "class": "ScopedAssertion",
+              "cohort": {
+                "class": "Scope",
+                "kind": "all_participants",
+                "parts": [],
+                "ref": ""
+              },
+              "criterion_ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/eligibilityModule/eligibilityCriteria",
+              "id": "ICS-reading",
+              "modality": "required",
+              "resolution": "resolved",
+              "rule": {
+                "answers": [],
+                "class": "Rule",
+                "id": "assistant-scope-reading",
+                "premises": [],
+                "version": "1",
+                "warrants": [
+                  "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/eligibilityModule/eligibilityCriteria",
+                  "assistant:unconfirmed-reading-of-optional-scope-not-clinician-confirmed"
+                ]
+              },
+              "span": [],
+              "status": "proposed"
+            }
+          ],
+          "signals": [],
+          "signal_claims": [],
+          "binding_uses": []
+        }
+      ],
+      "bindings": []
+    },
+    "requests": [
+      {
+        "operation": "interpretations",
+        "study_ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4",
+        "fixed": {
+          "assertions": [
+            {
+              "applicability": {
+                "class": "Always"
+              },
+              "body": {
+                "class": "Literal",
+                "evidence": [
+                  {
+                    "class": "Evidence",
+                    "kind": "record_field",
+                    "ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/eligibilityModule/minimumAge"
+                  }
+                ],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "age",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "ge",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 12.0,
+                  "unit": "Years",
+                  "upper": null
+                }
+              },
+              "branch": {
+                "class": "Branch",
+                "node": "unresolved",
+                "path": []
+              },
+              "class": "ScopedAssertion",
+              "cohort": {
+                "class": "Scope",
+                "kind": "all_participants",
+                "parts": [],
+                "ref": ""
+              },
+              "criterion_ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/eligibilityModule/minimumAge",
+              "id": "registry-age-minimumAge",
+              "modality": "required",
+              "resolution": "resolved",
+              "rule": {
+                "answers": [],
+                "class": "Rule",
+                "id": "ctg-structured-general-eligibility-age",
+                "premises": [
+                  "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/eligibilityModule/minimumAge"
+                ],
+                "version": "1",
+                "warrants": []
+              },
+              "span": [],
+              "status": "known"
+            }
+          ],
+          "signals": []
+        },
+        "bindings": [],
+        "interpretations": [
+          {
+            "id": "relief-required",
+            "label": "Read relief medication as a required current co-treatment",
+            "origin": "assistant",
+            "basis": [
+              "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/eligibilityModule/eligibilityCriteria",
+              "hypothesis:source-location-is-not-semantic-warrant"
+            ],
+            "assumptions": [
+              {
+                "applicability": {
+                  "class": "Always"
+                },
+                "body": {
+                  "class": "Literal",
+                  "evidence": [
+                    {
+                      "class": "Evidence",
+                      "kind": "record_field",
+                      "ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/eligibilityModule/eligibilityCriteria"
+                    }
+                  ],
+                  "polarity": "positive",
+                  "predicate": {
+                    "class": "Predicate",
+                    "key": "current-inhaled-corticosteroid-use",
+                    "kind": "medication_use"
+                  },
+                  "qualifiers": {
+                    "class": "Always"
+                  },
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "participant",
+                    "referent": ""
+                  },
+                  "time": {
+                    "anchor": "named_event",
+                    "anchor_ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4:eligibility-assessment",
+                    "certainty": "explicit",
+                    "class": "TemporalScope",
+                    "evidence": [
+                      {
+                        "class": "Evidence",
+                        "kind": "record_field",
+                        "ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/eligibilityModule/eligibilityCriteria"
+                      }
+                    ],
+                    "inclusivity": "unspecified",
+                    "lower": null,
+                    "orientation": "at",
+                    "unit": "",
+                    "upper": null
+                  },
+                  "value": {
+                    "class": "Value",
+                    "comparison": "eq",
+                    "inclusivity": "unspecified",
+                    "kind": "boolean",
+                    "members": [],
+                    "number": null,
+                    "unit": "",
+                    "upper": null
+                  }
+                },
+                "branch": {
+                  "class": "Branch",
+                  "node": "unresolved",
+                  "path": []
+                },
+                "class": "ScopedAssertion",
+                "cohort": {
+                  "class": "Scope",
+                  "kind": "all_participants",
+                  "parts": [],
+                  "ref": ""
+                },
+                "criterion_ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/eligibilityModule/eligibilityCriteria",
+                "id": "ICS-reading",
+                "modality": "required",
+                "resolution": "resolved",
+                "rule": {
+                  "answers": [],
+                  "class": "Rule",
+                  "id": "source-anchored-hypothesis",
+                  "premises": [
+                    "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/eligibilityModule/eligibilityCriteria"
+                  ],
+                  "version": "1",
+                  "warrants": [
+                    "hypothesis:source-location-is-not-semantic-warrant"
+                  ]
+                },
+                "span": [],
+                "status": "proposed"
+              },
+              {
+                "applicability": {
+                  "class": "Always"
+                },
+                "body": {
+                  "class": "Literal",
+                  "evidence": [
+                    {
+                      "class": "Evidence",
+                      "kind": "record_field",
+                      "ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/eligibilityModule/eligibilityCriteria"
+                    }
+                  ],
+                  "polarity": "positive",
+                  "predicate": {
+                    "class": "Predicate",
+                    "key": "current-relief-medication-use",
+                    "kind": "medication_use"
+                  },
+                  "qualifiers": {
+                    "class": "Always"
+                  },
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "participant",
+                    "referent": ""
+                  },
+                  "time": {
+                    "anchor": "named_event",
+                    "anchor_ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4:eligibility-assessment",
+                    "certainty": "explicit",
+                    "class": "TemporalScope",
+                    "evidence": [
+                      {
+                        "class": "Evidence",
+                        "kind": "record_field",
+                        "ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/eligibilityModule/eligibilityCriteria"
+                      }
+                    ],
+                    "inclusivity": "unspecified",
+                    "lower": null,
+                    "orientation": "at",
+                    "unit": "",
+                    "upper": null
+                  },
+                  "value": {
+                    "class": "Value",
+                    "comparison": "eq",
+                    "inclusivity": "unspecified",
+                    "kind": "boolean",
+                    "members": [],
+                    "number": null,
+                    "unit": "",
+                    "upper": null
+                  }
+                },
+                "branch": {
+                  "class": "Branch",
+                  "node": "unresolved",
+                  "path": []
+                },
+                "class": "ScopedAssertion",
+                "cohort": {
+                  "class": "Scope",
+                  "kind": "all_participants",
+                  "parts": [],
+                  "ref": ""
+                },
+                "criterion_ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/eligibilityModule/eligibilityCriteria",
+                "id": "relief-required-reading",
+                "modality": "required",
+                "resolution": "resolved",
+                "rule": {
+                  "answers": [],
+                  "class": "Rule",
+                  "id": "source-anchored-hypothesis",
+                  "premises": [
+                    "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/eligibilityModule/eligibilityCriteria"
+                  ],
+                  "version": "1",
+                  "warrants": [
+                    "hypothesis:source-location-is-not-semantic-warrant"
+                  ]
+                },
+                "span": [],
+                "status": "proposed"
+              }
+            ],
+            "signals": [],
+            "signal_claims": [],
+            "binding_uses": []
+          },
+          {
+            "id": "relief-not-settled",
+            "label": "Read current ICS as required, leaving relief use unaddressed",
+            "origin": "assistant",
+            "basis": [
+              "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/eligibilityModule/eligibilityCriteria",
+              "hypothesis:source-location-is-not-semantic-warrant"
+            ],
+            "assumptions": [
+              {
+                "applicability": {
+                  "class": "Always"
+                },
+                "body": {
+                  "class": "Literal",
+                  "evidence": [
+                    {
+                      "class": "Evidence",
+                      "kind": "record_field",
+                      "ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/eligibilityModule/eligibilityCriteria"
+                    }
+                  ],
+                  "polarity": "positive",
+                  "predicate": {
+                    "class": "Predicate",
+                    "key": "current-inhaled-corticosteroid-use",
+                    "kind": "medication_use"
+                  },
+                  "qualifiers": {
+                    "class": "Always"
+                  },
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "participant",
+                    "referent": ""
+                  },
+                  "time": {
+                    "anchor": "named_event",
+                    "anchor_ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4:eligibility-assessment",
+                    "certainty": "explicit",
+                    "class": "TemporalScope",
+                    "evidence": [
+                      {
+                        "class": "Evidence",
+                        "kind": "record_field",
+                        "ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/eligibilityModule/eligibilityCriteria"
+                      }
+                    ],
+                    "inclusivity": "unspecified",
+                    "lower": null,
+                    "orientation": "at",
+                    "unit": "",
+                    "upper": null
+                  },
+                  "value": {
+                    "class": "Value",
+                    "comparison": "eq",
+                    "inclusivity": "unspecified",
+                    "kind": "boolean",
+                    "members": [],
+                    "number": null,
+                    "unit": "",
+                    "upper": null
+                  }
+                },
+                "branch": {
+                  "class": "Branch",
+                  "node": "unresolved",
+                  "path": []
+                },
+                "class": "ScopedAssertion",
+                "cohort": {
+                  "class": "Scope",
+                  "kind": "all_participants",
+                  "parts": [],
+                  "ref": ""
+                },
+                "criterion_ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/eligibilityModule/eligibilityCriteria",
+                "id": "ICS-reading",
+                "modality": "required",
+                "resolution": "resolved",
+                "rule": {
+                  "answers": [],
+                  "class": "Rule",
+                  "id": "source-anchored-hypothesis",
+                  "premises": [
+                    "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/eligibilityModule/eligibilityCriteria"
+                  ],
+                  "version": "1",
+                  "warrants": [
+                    "hypothesis:source-location-is-not-semantic-warrant"
+                  ]
+                },
+                "span": [],
+                "status": "proposed"
+              }
+            ],
+            "signals": [],
+            "signal_claims": [],
+            "binding_uses": []
+          }
+        ],
+        "queries": [
+          {
+            "id": "age-floor",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "age",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "ge",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 12,
+                "unit": "Years",
+                "upper": null
+              }
+            }
+          },
+          {
+            "id": "current-ICS",
+            "body": {
+              "class": "Literal",
+              "subject": {
+                "class": "Subject",
+                "kind": "participant"
+              },
+              "predicate": {
+                "class": "Predicate",
+                "kind": "medication_use",
+                "key": "current-inhaled-corticosteroid-use"
+              },
+              "value": {
+                "class": "Value",
+                "kind": "boolean"
+              },
+              "time": {
+                "class": "TemporalScope",
+                "orientation": "at",
+                "anchor": "named_event",
+                "anchor_ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4:eligibility-assessment",
+                "certainty": "explicit"
+              }
+            }
+          },
+          {
+            "id": "current-relief",
+            "body": {
+              "class": "Literal",
+              "subject": {
+                "class": "Subject",
+                "kind": "participant"
+              },
+              "predicate": {
+                "class": "Predicate",
+                "kind": "medication_use",
+                "key": "current-relief-medication-use"
+              },
+              "value": {
+                "class": "Value",
+                "kind": "boolean"
+              },
+              "time": {
+                "class": "TemporalScope",
+                "orientation": "at",
+                "anchor": "named_event",
+                "anchor_ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4:eligibility-assessment",
+                "certainty": "explicit"
+              }
+            }
+          },
+          {
+            "id": "no-current-relief",
+            "body": {
+              "class": "Not",
+              "part": {
+                "class": "Literal",
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant"
+                },
+                "predicate": {
+                  "class": "Predicate",
+                  "kind": "medication_use",
+                  "key": "current-relief-medication-use"
+                },
+                "value": {
+                  "class": "Value",
+                  "kind": "boolean"
+                },
+                "time": {
+                  "class": "TemporalScope",
+                  "orientation": "at",
+                  "anchor": "named_event",
+                  "anchor_ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4:eligibility-assessment",
+                  "certainty": "explicit"
+                }
+              }
+            }
+          },
+          {
+            "id": "daily-relief",
+            "body": {
+              "class": "Literal",
+              "subject": {
+                "class": "Subject",
+                "kind": "participant"
+              },
+              "predicate": {
+                "class": "Predicate",
+                "kind": "medication_use",
+                "key": "daily-relief-medication-use"
+              },
+              "value": {
+                "class": "Value",
+                "kind": "boolean"
+              },
+              "time": {
+                "class": "TemporalScope",
+                "orientation": "at",
+                "anchor": "named_event",
+                "anchor_ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4:eligibility-assessment",
+                "certainty": "explicit"
+              }
+            }
+          }
+        ],
+        "bound": 256
+      }
+    ],
+    "limits": [
+      "Structured ages describe registry general eligibility, not verified actual protocol.",
+      "A located quotation proves quotation only; clinical readings remain hypothetical.",
+      "No unit conversion, automatic binding joins, clinical text interpretation or source mutation."
+    ],
+    "analyses": [
+      {
+        "code": "complete",
+        "operation": "interpretations",
+        "result": {
+          "study_ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4",
+          "fixed": {
+            "assertions": [
+              {
+                "applicability": {
+                  "class": "Always"
+                },
+                "body": {
+                  "class": "Literal",
+                  "evidence": [
+                    {
+                      "class": "Evidence",
+                      "kind": "record_field",
+                      "ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/eligibilityModule/minimumAge"
+                    }
+                  ],
+                  "polarity": "positive",
+                  "predicate": {
+                    "class": "Predicate",
+                    "key": "age",
+                    "kind": "measurement"
+                  },
+                  "qualifiers": {
+                    "class": "Always"
+                  },
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "participant",
+                    "referent": ""
+                  },
+                  "time": null,
+                  "value": {
+                    "class": "Value",
+                    "comparison": "ge",
+                    "inclusivity": "unspecified",
+                    "kind": "quantity",
+                    "members": [],
+                    "number": 12.0,
+                    "unit": "Years",
+                    "upper": null
+                  }
+                },
+                "branch": {
+                  "class": "Branch",
+                  "node": "unresolved",
+                  "path": []
+                },
+                "class": "ScopedAssertion",
+                "cohort": {
+                  "class": "Scope",
+                  "kind": "all_participants",
+                  "parts": [],
+                  "ref": ""
+                },
+                "criterion_ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/eligibilityModule/minimumAge",
+                "id": "registry-age-minimumAge",
+                "modality": "required",
+                "resolution": "resolved",
+                "rule": {
+                  "answers": [],
+                  "class": "Rule",
+                  "id": "ctg-structured-general-eligibility-age",
+                  "premises": [
+                    "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/eligibilityModule/minimumAge"
+                  ],
+                  "version": "1",
+                  "warrants": []
+                },
+                "span": [],
+                "status": "known"
+              }
+            ],
+            "consistency": {
+              "result": "UNDETERMINED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+              "status": null,
+              "proof": [],
+              "blockers": [
+                "no_constraint_mentions_query"
+              ]
+            },
+            "queries": [
+              {
+                "id": "age-floor",
+                "body": {
+                  "class": "Literal",
+                  "evidence": [],
+                  "polarity": "positive",
+                  "predicate": {
+                    "class": "Predicate",
+                    "key": "age",
+                    "kind": "measurement"
+                  },
+                  "qualifiers": {
+                    "class": "Always"
+                  },
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "participant",
+                    "referent": ""
+                  },
+                  "time": null,
+                  "value": {
+                    "class": "Value",
+                    "comparison": "ge",
+                    "inclusivity": "unspecified",
+                    "kind": "quantity",
+                    "members": [],
+                    "number": 12.0,
+                    "unit": "Years",
+                    "upper": null
+                  }
+                },
+                "result": "ENTAILED",
+                "decision": {
+                  "result": "ENTAILED",
+                  "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":12.0,\"unit\":\"Years\",\"upper\":null}}",
+                  "status": "known",
+                  "proof": [
+                    "registry-age-minimumAge"
+                  ],
+                  "blockers": []
+                },
+                "warrant": {
+                  "rule": "entail.decide:1",
+                  "guarantee": "fixed_floor",
+                  "status": "known",
+                  "assumptions": [],
+                  "proof": [
+                    "registry-age-minimumAge"
+                  ],
+                  "blockers": []
+                }
+              },
+              {
+                "id": "current-ICS",
+                "body": {
+                  "class": "Literal",
+                  "evidence": [],
+                  "polarity": "positive",
+                  "predicate": {
+                    "class": "Predicate",
+                    "key": "current-inhaled-corticosteroid-use",
+                    "kind": "medication_use"
+                  },
+                  "qualifiers": {
+                    "class": "Always"
+                  },
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "participant",
+                    "referent": ""
+                  },
+                  "time": {
+                    "anchor": "named_event",
+                    "anchor_ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4:eligibility-assessment",
+                    "certainty": "explicit",
+                    "class": "TemporalScope",
+                    "evidence": [],
+                    "inclusivity": "unspecified",
+                    "lower": null,
+                    "orientation": "at",
+                    "unit": "",
+                    "upper": null
+                  },
+                  "value": {
+                    "class": "Value",
+                    "comparison": "eq",
+                    "inclusivity": "unspecified",
+                    "kind": "boolean",
+                    "members": [],
+                    "number": null,
+                    "unit": "",
+                    "upper": null
+                  }
+                },
+                "result": "UNDETERMINED",
+                "decision": {
+                  "result": "UNDETERMINED",
+                  "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"current-inhaled-corticosteroid-use\",\"kind\":\"medication_use\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":{\"anchor\":\"named_event\",\"anchor_ref\":\"ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4:eligibility-assessment\",\"certainty\":\"explicit\",\"class\":\"TemporalScope\",\"evidence\":[],\"inclusivity\":\"unspecified\",\"lower\":null,\"orientation\":\"at\",\"unit\":\"\",\"upper\":null},\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+                  "status": null,
+                  "proof": [],
+                  "blockers": [
+                    "no_constraint_mentions_query"
+                  ]
+                },
+                "warrant": {
+                  "rule": "entail.decide:1",
+                  "guarantee": "fixed_floor",
+                  "status": "known",
+                  "assumptions": [],
+                  "proof": [],
+                  "blockers": [
+                    "no_constraint_mentions_query"
+                  ]
+                }
+              },
+              {
+                "id": "current-relief",
+                "body": {
+                  "class": "Literal",
+                  "evidence": [],
+                  "polarity": "positive",
+                  "predicate": {
+                    "class": "Predicate",
+                    "key": "current-relief-medication-use",
+                    "kind": "medication_use"
+                  },
+                  "qualifiers": {
+                    "class": "Always"
+                  },
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "participant",
+                    "referent": ""
+                  },
+                  "time": {
+                    "anchor": "named_event",
+                    "anchor_ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4:eligibility-assessment",
+                    "certainty": "explicit",
+                    "class": "TemporalScope",
+                    "evidence": [],
+                    "inclusivity": "unspecified",
+                    "lower": null,
+                    "orientation": "at",
+                    "unit": "",
+                    "upper": null
+                  },
+                  "value": {
+                    "class": "Value",
+                    "comparison": "eq",
+                    "inclusivity": "unspecified",
+                    "kind": "boolean",
+                    "members": [],
+                    "number": null,
+                    "unit": "",
+                    "upper": null
+                  }
+                },
+                "result": "UNDETERMINED",
+                "decision": {
+                  "result": "UNDETERMINED",
+                  "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"current-relief-medication-use\",\"kind\":\"medication_use\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":{\"anchor\":\"named_event\",\"anchor_ref\":\"ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4:eligibility-assessment\",\"certainty\":\"explicit\",\"class\":\"TemporalScope\",\"evidence\":[],\"inclusivity\":\"unspecified\",\"lower\":null,\"orientation\":\"at\",\"unit\":\"\",\"upper\":null},\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+                  "status": null,
+                  "proof": [],
+                  "blockers": [
+                    "no_constraint_mentions_query"
+                  ]
+                },
+                "warrant": {
+                  "rule": "entail.decide:1",
+                  "guarantee": "fixed_floor",
+                  "status": "known",
+                  "assumptions": [],
+                  "proof": [],
+                  "blockers": [
+                    "no_constraint_mentions_query"
+                  ]
+                }
+              },
+              {
+                "id": "no-current-relief",
+                "body": {
+                  "class": "Not",
+                  "part": {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "current-relief-medication-use",
+                      "kind": "medication_use"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "participant",
+                      "referent": ""
+                    },
+                    "time": {
+                      "anchor": "named_event",
+                      "anchor_ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4:eligibility-assessment",
+                      "certainty": "explicit",
+                      "class": "TemporalScope",
+                      "evidence": [],
+                      "inclusivity": "unspecified",
+                      "lower": null,
+                      "orientation": "at",
+                      "unit": "",
+                      "upper": null
+                    },
+                    "value": {
+                      "class": "Value",
+                      "comparison": "eq",
+                      "inclusivity": "unspecified",
+                      "kind": "boolean",
+                      "members": [],
+                      "number": null,
+                      "unit": "",
+                      "upper": null
+                    }
+                  }
+                },
+                "result": "UNDETERMINED",
+                "decision": {
+                  "result": "UNDETERMINED",
+                  "query": "{\"class\":\"Not\",\"part\":{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"current-relief-medication-use\",\"kind\":\"medication_use\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":{\"anchor\":\"named_event\",\"anchor_ref\":\"ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4:eligibility-assessment\",\"certainty\":\"explicit\",\"class\":\"TemporalScope\",\"evidence\":[],\"inclusivity\":\"unspecified\",\"lower\":null,\"orientation\":\"at\",\"unit\":\"\",\"upper\":null},\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}}",
+                  "status": null,
+                  "proof": [],
+                  "blockers": [
+                    "no_constraint_mentions_query"
+                  ]
+                },
+                "warrant": {
+                  "rule": "entail.decide:1",
+                  "guarantee": "fixed_floor",
+                  "status": "known",
+                  "assumptions": [],
+                  "proof": [],
+                  "blockers": [
+                    "no_constraint_mentions_query"
+                  ]
+                }
+              },
+              {
+                "id": "daily-relief",
+                "body": {
+                  "class": "Literal",
+                  "evidence": [],
+                  "polarity": "positive",
+                  "predicate": {
+                    "class": "Predicate",
+                    "key": "daily-relief-medication-use",
+                    "kind": "medication_use"
+                  },
+                  "qualifiers": {
+                    "class": "Always"
+                  },
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "participant",
+                    "referent": ""
+                  },
+                  "time": {
+                    "anchor": "named_event",
+                    "anchor_ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4:eligibility-assessment",
+                    "certainty": "explicit",
+                    "class": "TemporalScope",
+                    "evidence": [],
+                    "inclusivity": "unspecified",
+                    "lower": null,
+                    "orientation": "at",
+                    "unit": "",
+                    "upper": null
+                  },
+                  "value": {
+                    "class": "Value",
+                    "comparison": "eq",
+                    "inclusivity": "unspecified",
+                    "kind": "boolean",
+                    "members": [],
+                    "number": null,
+                    "unit": "",
+                    "upper": null
+                  }
+                },
+                "result": "UNDETERMINED",
+                "decision": {
+                  "result": "UNDETERMINED",
+                  "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"daily-relief-medication-use\",\"kind\":\"medication_use\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":{\"anchor\":\"named_event\",\"anchor_ref\":\"ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4:eligibility-assessment\",\"certainty\":\"explicit\",\"class\":\"TemporalScope\",\"evidence\":[],\"inclusivity\":\"unspecified\",\"lower\":null,\"orientation\":\"at\",\"unit\":\"\",\"upper\":null},\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+                  "status": null,
+                  "proof": [],
+                  "blockers": [
+                    "no_constraint_mentions_query"
+                  ]
+                },
+                "warrant": {
+                  "rule": "entail.decide:1",
+                  "guarantee": "fixed_floor",
+                  "status": "known",
+                  "assumptions": [],
+                  "proof": [],
+                  "blockers": [
+                    "no_constraint_mentions_query"
+                  ]
+                }
+              }
+            ],
+            "signals": [],
+            "blockers": []
+          },
+          "bindings": [],
+          "interpretations": [
+            {
+              "id": "relief-required",
+              "label": "Read relief medication as a required current co-treatment",
+              "origin": "assistant",
+              "state": "compatible",
+              "premises": {
+                "basis": [
+                  "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/eligibilityModule/eligibilityCriteria",
+                  "hypothesis:source-location-is-not-semantic-warrant"
+                ],
+                "assumptions": [
+                  {
+                    "applicability": {
+                      "class": "Always"
+                    },
+                    "body": {
+                      "class": "Literal",
+                      "evidence": [
+                        {
+                          "class": "Evidence",
+                          "kind": "record_field",
+                          "ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/eligibilityModule/eligibilityCriteria"
+                        }
+                      ],
+                      "polarity": "positive",
+                      "predicate": {
+                        "class": "Predicate",
+                        "key": "current-inhaled-corticosteroid-use",
+                        "kind": "medication_use"
+                      },
+                      "qualifiers": {
+                        "class": "Always"
+                      },
+                      "subject": {
+                        "class": "Subject",
+                        "kind": "participant",
+                        "referent": ""
+                      },
+                      "time": {
+                        "anchor": "named_event",
+                        "anchor_ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4:eligibility-assessment",
+                        "certainty": "explicit",
+                        "class": "TemporalScope",
+                        "evidence": [
+                          {
+                            "class": "Evidence",
+                            "kind": "record_field",
+                            "ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/eligibilityModule/eligibilityCriteria"
+                          }
+                        ],
+                        "inclusivity": "unspecified",
+                        "lower": null,
+                        "orientation": "at",
+                        "unit": "",
+                        "upper": null
+                      },
+                      "value": {
+                        "class": "Value",
+                        "comparison": "eq",
+                        "inclusivity": "unspecified",
+                        "kind": "boolean",
+                        "members": [],
+                        "number": null,
+                        "unit": "",
+                        "upper": null
+                      }
+                    },
+                    "branch": {
+                      "class": "Branch",
+                      "node": "unresolved",
+                      "path": []
+                    },
+                    "class": "ScopedAssertion",
+                    "cohort": {
+                      "class": "Scope",
+                      "kind": "all_participants",
+                      "parts": [],
+                      "ref": ""
+                    },
+                    "criterion_ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/eligibilityModule/eligibilityCriteria",
+                    "id": "ICS-reading",
+                    "modality": "required",
+                    "resolution": "resolved",
+                    "rule": {
+                      "answers": [],
+                      "class": "Rule",
+                      "id": "source-anchored-hypothesis",
+                      "premises": [
+                        "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/eligibilityModule/eligibilityCriteria"
+                      ],
+                      "version": "1",
+                      "warrants": [
+                        "hypothesis:source-location-is-not-semantic-warrant"
+                      ]
+                    },
+                    "span": [],
+                    "status": "proposed"
+                  },
+                  {
+                    "applicability": {
+                      "class": "Always"
+                    },
+                    "body": {
+                      "class": "Literal",
+                      "evidence": [
+                        {
+                          "class": "Evidence",
+                          "kind": "record_field",
+                          "ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/eligibilityModule/eligibilityCriteria"
+                        }
+                      ],
+                      "polarity": "positive",
+                      "predicate": {
+                        "class": "Predicate",
+                        "key": "current-relief-medication-use",
+                        "kind": "medication_use"
+                      },
+                      "qualifiers": {
+                        "class": "Always"
+                      },
+                      "subject": {
+                        "class": "Subject",
+                        "kind": "participant",
+                        "referent": ""
+                      },
+                      "time": {
+                        "anchor": "named_event",
+                        "anchor_ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4:eligibility-assessment",
+                        "certainty": "explicit",
+                        "class": "TemporalScope",
+                        "evidence": [
+                          {
+                            "class": "Evidence",
+                            "kind": "record_field",
+                            "ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/eligibilityModule/eligibilityCriteria"
+                          }
+                        ],
+                        "inclusivity": "unspecified",
+                        "lower": null,
+                        "orientation": "at",
+                        "unit": "",
+                        "upper": null
+                      },
+                      "value": {
+                        "class": "Value",
+                        "comparison": "eq",
+                        "inclusivity": "unspecified",
+                        "kind": "boolean",
+                        "members": [],
+                        "number": null,
+                        "unit": "",
+                        "upper": null
+                      }
+                    },
+                    "branch": {
+                      "class": "Branch",
+                      "node": "unresolved",
+                      "path": []
+                    },
+                    "class": "ScopedAssertion",
+                    "cohort": {
+                      "class": "Scope",
+                      "kind": "all_participants",
+                      "parts": [],
+                      "ref": ""
+                    },
+                    "criterion_ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/eligibilityModule/eligibilityCriteria",
+                    "id": "relief-required-reading",
+                    "modality": "required",
+                    "resolution": "resolved",
+                    "rule": {
+                      "answers": [],
+                      "class": "Rule",
+                      "id": "source-anchored-hypothesis",
+                      "premises": [
+                        "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/eligibilityModule/eligibilityCriteria"
+                      ],
+                      "version": "1",
+                      "warrants": [
+                        "hypothesis:source-location-is-not-semantic-warrant"
+                      ]
+                    },
+                    "span": [],
+                    "status": "proposed"
+                  }
+                ],
+                "signals": [],
+                "signal_claims": [],
+                "binding_uses": []
+              },
+              "bindings": [],
+              "signals": [],
+              "signal_checks": [],
+              "queries": [
+                {
+                  "id": "age-floor",
+                  "body": {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "age",
+                      "kind": "measurement"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "participant",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "ge",
+                      "inclusivity": "unspecified",
+                      "kind": "quantity",
+                      "members": [],
+                      "number": 12.0,
+                      "unit": "Years",
+                      "upper": null
+                    }
+                  },
+                  "result": "ENTAILED",
+                  "decision": {
+                    "result": "ENTAILED",
+                    "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":12.0,\"unit\":\"Years\",\"upper\":null}}",
+                    "status": "known",
+                    "proof": [
+                      "registry-age-minimumAge"
+                    ],
+                    "blockers": []
+                  },
+                  "warrant": {
+                    "rule": "entail.decide:1",
+                    "guarantee": "conditional_on_interpretation",
+                    "status": "proposed",
+                    "assumptions": [
+                      "ICS-reading",
+                      "relief-required-reading"
+                    ],
+                    "proof": [
+                      "registry-age-minimumAge"
+                    ],
+                    "blockers": []
+                  }
+                },
+                {
+                  "id": "current-ICS",
+                  "body": {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "current-inhaled-corticosteroid-use",
+                      "kind": "medication_use"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "participant",
+                      "referent": ""
+                    },
+                    "time": {
+                      "anchor": "named_event",
+                      "anchor_ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4:eligibility-assessment",
+                      "certainty": "explicit",
+                      "class": "TemporalScope",
+                      "evidence": [],
+                      "inclusivity": "unspecified",
+                      "lower": null,
+                      "orientation": "at",
+                      "unit": "",
+                      "upper": null
+                    },
+                    "value": {
+                      "class": "Value",
+                      "comparison": "eq",
+                      "inclusivity": "unspecified",
+                      "kind": "boolean",
+                      "members": [],
+                      "number": null,
+                      "unit": "",
+                      "upper": null
+                    }
+                  },
+                  "result": "ENTAILED",
+                  "decision": {
+                    "result": "ENTAILED",
+                    "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"current-inhaled-corticosteroid-use\",\"kind\":\"medication_use\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":{\"anchor\":\"named_event\",\"anchor_ref\":\"ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4:eligibility-assessment\",\"certainty\":\"explicit\",\"class\":\"TemporalScope\",\"evidence\":[],\"inclusivity\":\"unspecified\",\"lower\":null,\"orientation\":\"at\",\"unit\":\"\",\"upper\":null},\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+                    "status": "interpolated",
+                    "proof": [
+                      "ICS-reading"
+                    ],
+                    "blockers": []
+                  },
+                  "warrant": {
+                    "rule": "entail.decide:1",
+                    "guarantee": "conditional_on_interpretation",
+                    "status": "proposed",
+                    "assumptions": [
+                      "ICS-reading",
+                      "relief-required-reading"
+                    ],
+                    "proof": [
+                      "ICS-reading"
+                    ],
+                    "blockers": []
+                  }
+                },
+                {
+                  "id": "current-relief",
+                  "body": {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "current-relief-medication-use",
+                      "kind": "medication_use"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "participant",
+                      "referent": ""
+                    },
+                    "time": {
+                      "anchor": "named_event",
+                      "anchor_ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4:eligibility-assessment",
+                      "certainty": "explicit",
+                      "class": "TemporalScope",
+                      "evidence": [],
+                      "inclusivity": "unspecified",
+                      "lower": null,
+                      "orientation": "at",
+                      "unit": "",
+                      "upper": null
+                    },
+                    "value": {
+                      "class": "Value",
+                      "comparison": "eq",
+                      "inclusivity": "unspecified",
+                      "kind": "boolean",
+                      "members": [],
+                      "number": null,
+                      "unit": "",
+                      "upper": null
+                    }
+                  },
+                  "result": "ENTAILED",
+                  "decision": {
+                    "result": "ENTAILED",
+                    "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"current-relief-medication-use\",\"kind\":\"medication_use\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":{\"anchor\":\"named_event\",\"anchor_ref\":\"ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4:eligibility-assessment\",\"certainty\":\"explicit\",\"class\":\"TemporalScope\",\"evidence\":[],\"inclusivity\":\"unspecified\",\"lower\":null,\"orientation\":\"at\",\"unit\":\"\",\"upper\":null},\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+                    "status": "interpolated",
+                    "proof": [
+                      "relief-required-reading"
+                    ],
+                    "blockers": []
+                  },
+                  "warrant": {
+                    "rule": "entail.decide:1",
+                    "guarantee": "conditional_on_interpretation",
+                    "status": "proposed",
+                    "assumptions": [
+                      "ICS-reading",
+                      "relief-required-reading"
+                    ],
+                    "proof": [
+                      "relief-required-reading"
+                    ],
+                    "blockers": []
+                  }
+                },
+                {
+                  "id": "no-current-relief",
+                  "body": {
+                    "class": "Not",
+                    "part": {
+                      "class": "Literal",
+                      "evidence": [],
+                      "polarity": "positive",
+                      "predicate": {
+                        "class": "Predicate",
+                        "key": "current-relief-medication-use",
+                        "kind": "medication_use"
+                      },
+                      "qualifiers": {
+                        "class": "Always"
+                      },
+                      "subject": {
+                        "class": "Subject",
+                        "kind": "participant",
+                        "referent": ""
+                      },
+                      "time": {
+                        "anchor": "named_event",
+                        "anchor_ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4:eligibility-assessment",
+                        "certainty": "explicit",
+                        "class": "TemporalScope",
+                        "evidence": [],
+                        "inclusivity": "unspecified",
+                        "lower": null,
+                        "orientation": "at",
+                        "unit": "",
+                        "upper": null
+                      },
+                      "value": {
+                        "class": "Value",
+                        "comparison": "eq",
+                        "inclusivity": "unspecified",
+                        "kind": "boolean",
+                        "members": [],
+                        "number": null,
+                        "unit": "",
+                        "upper": null
+                      }
+                    }
+                  },
+                  "result": "REFUTED",
+                  "decision": {
+                    "result": "REFUTED",
+                    "query": "{\"class\":\"Not\",\"part\":{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"current-relief-medication-use\",\"kind\":\"medication_use\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":{\"anchor\":\"named_event\",\"anchor_ref\":\"ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4:eligibility-assessment\",\"certainty\":\"explicit\",\"class\":\"TemporalScope\",\"evidence\":[],\"inclusivity\":\"unspecified\",\"lower\":null,\"orientation\":\"at\",\"unit\":\"\",\"upper\":null},\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}}",
+                    "status": "interpolated",
+                    "proof": [
+                      "relief-required-reading"
+                    ],
+                    "blockers": []
+                  },
+                  "warrant": {
+                    "rule": "entail.decide:1",
+                    "guarantee": "conditional_on_interpretation",
+                    "status": "proposed",
+                    "assumptions": [
+                      "ICS-reading",
+                      "relief-required-reading"
+                    ],
+                    "proof": [
+                      "relief-required-reading"
+                    ],
+                    "blockers": []
+                  }
+                },
+                {
+                  "id": "daily-relief",
+                  "body": {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "daily-relief-medication-use",
+                      "kind": "medication_use"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "participant",
+                      "referent": ""
+                    },
+                    "time": {
+                      "anchor": "named_event",
+                      "anchor_ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4:eligibility-assessment",
+                      "certainty": "explicit",
+                      "class": "TemporalScope",
+                      "evidence": [],
+                      "inclusivity": "unspecified",
+                      "lower": null,
+                      "orientation": "at",
+                      "unit": "",
+                      "upper": null
+                    },
+                    "value": {
+                      "class": "Value",
+                      "comparison": "eq",
+                      "inclusivity": "unspecified",
+                      "kind": "boolean",
+                      "members": [],
+                      "number": null,
+                      "unit": "",
+                      "upper": null
+                    }
+                  },
+                  "result": "UNDETERMINED",
+                  "decision": {
+                    "result": "UNDETERMINED",
+                    "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"daily-relief-medication-use\",\"kind\":\"medication_use\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":{\"anchor\":\"named_event\",\"anchor_ref\":\"ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4:eligibility-assessment\",\"certainty\":\"explicit\",\"class\":\"TemporalScope\",\"evidence\":[],\"inclusivity\":\"unspecified\",\"lower\":null,\"orientation\":\"at\",\"unit\":\"\",\"upper\":null},\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+                    "status": null,
+                    "proof": [],
+                    "blockers": [
+                      "no_constraint_mentions_query"
+                    ]
+                  },
+                  "warrant": {
+                    "rule": "entail.decide:1",
+                    "guarantee": "conditional_on_interpretation",
+                    "status": "proposed",
+                    "assumptions": [
+                      "ICS-reading",
+                      "relief-required-reading"
+                    ],
+                    "proof": [],
+                    "blockers": [
+                      "no_constraint_mentions_query"
+                    ]
+                  }
+                }
+              ],
+              "warrant": {
+                "rule": "interpretations.compatibility:1",
+                "guarantee": "conditional_on_fixed_and_interpretation_premises",
+                "fixed_status": "known",
+                "status": "proposed",
+                "fixed_premises": [],
+                "assumptions": [
+                  "ICS-reading",
+                  "relief-required-reading"
+                ],
+                "bindings": [],
+                "basis": [
+                  "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/eligibilityModule/eligibilityCriteria",
+                  "hypothesis:source-location-is-not-semantic-warrant"
+                ],
+                "consistency": {
+                  "result": "UNDETERMINED",
+                  "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+                  "status": null,
+                  "proof": [],
+                  "blockers": [
+                    "no_constraint_mentions_query"
+                  ]
+                },
+                "intrinsic_consistency": {
+                  "result": "UNDETERMINED",
+                  "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+                  "status": null,
+                  "proof": [],
+                  "blockers": [
+                    "no_constraint_mentions_query"
+                  ]
+                },
+                "signal_rules": [],
+                "blockers": []
+              }
+            },
+            {
+              "id": "relief-not-settled",
+              "label": "Read current ICS as required, leaving relief use unaddressed",
+              "origin": "assistant",
+              "state": "compatible",
+              "premises": {
+                "basis": [
+                  "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/eligibilityModule/eligibilityCriteria",
+                  "hypothesis:source-location-is-not-semantic-warrant"
+                ],
+                "assumptions": [
+                  {
+                    "applicability": {
+                      "class": "Always"
+                    },
+                    "body": {
+                      "class": "Literal",
+                      "evidence": [
+                        {
+                          "class": "Evidence",
+                          "kind": "record_field",
+                          "ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/eligibilityModule/eligibilityCriteria"
+                        }
+                      ],
+                      "polarity": "positive",
+                      "predicate": {
+                        "class": "Predicate",
+                        "key": "current-inhaled-corticosteroid-use",
+                        "kind": "medication_use"
+                      },
+                      "qualifiers": {
+                        "class": "Always"
+                      },
+                      "subject": {
+                        "class": "Subject",
+                        "kind": "participant",
+                        "referent": ""
+                      },
+                      "time": {
+                        "anchor": "named_event",
+                        "anchor_ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4:eligibility-assessment",
+                        "certainty": "explicit",
+                        "class": "TemporalScope",
+                        "evidence": [
+                          {
+                            "class": "Evidence",
+                            "kind": "record_field",
+                            "ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/eligibilityModule/eligibilityCriteria"
+                          }
+                        ],
+                        "inclusivity": "unspecified",
+                        "lower": null,
+                        "orientation": "at",
+                        "unit": "",
+                        "upper": null
+                      },
+                      "value": {
+                        "class": "Value",
+                        "comparison": "eq",
+                        "inclusivity": "unspecified",
+                        "kind": "boolean",
+                        "members": [],
+                        "number": null,
+                        "unit": "",
+                        "upper": null
+                      }
+                    },
+                    "branch": {
+                      "class": "Branch",
+                      "node": "unresolved",
+                      "path": []
+                    },
+                    "class": "ScopedAssertion",
+                    "cohort": {
+                      "class": "Scope",
+                      "kind": "all_participants",
+                      "parts": [],
+                      "ref": ""
+                    },
+                    "criterion_ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/eligibilityModule/eligibilityCriteria",
+                    "id": "ICS-reading",
+                    "modality": "required",
+                    "resolution": "resolved",
+                    "rule": {
+                      "answers": [],
+                      "class": "Rule",
+                      "id": "source-anchored-hypothesis",
+                      "premises": [
+                        "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/eligibilityModule/eligibilityCriteria"
+                      ],
+                      "version": "1",
+                      "warrants": [
+                        "hypothesis:source-location-is-not-semantic-warrant"
+                      ]
+                    },
+                    "span": [],
+                    "status": "proposed"
+                  }
+                ],
+                "signals": [],
+                "signal_claims": [],
+                "binding_uses": []
+              },
+              "bindings": [],
+              "signals": [],
+              "signal_checks": [],
+              "queries": [
+                {
+                  "id": "age-floor",
+                  "body": {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "age",
+                      "kind": "measurement"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "participant",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "ge",
+                      "inclusivity": "unspecified",
+                      "kind": "quantity",
+                      "members": [],
+                      "number": 12.0,
+                      "unit": "Years",
+                      "upper": null
+                    }
+                  },
+                  "result": "ENTAILED",
+                  "decision": {
+                    "result": "ENTAILED",
+                    "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":12.0,\"unit\":\"Years\",\"upper\":null}}",
+                    "status": "known",
+                    "proof": [
+                      "registry-age-minimumAge"
+                    ],
+                    "blockers": []
+                  },
+                  "warrant": {
+                    "rule": "entail.decide:1",
+                    "guarantee": "conditional_on_interpretation",
+                    "status": "proposed",
+                    "assumptions": [
+                      "ICS-reading"
+                    ],
+                    "proof": [
+                      "registry-age-minimumAge"
+                    ],
+                    "blockers": []
+                  }
+                },
+                {
+                  "id": "current-ICS",
+                  "body": {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "current-inhaled-corticosteroid-use",
+                      "kind": "medication_use"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "participant",
+                      "referent": ""
+                    },
+                    "time": {
+                      "anchor": "named_event",
+                      "anchor_ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4:eligibility-assessment",
+                      "certainty": "explicit",
+                      "class": "TemporalScope",
+                      "evidence": [],
+                      "inclusivity": "unspecified",
+                      "lower": null,
+                      "orientation": "at",
+                      "unit": "",
+                      "upper": null
+                    },
+                    "value": {
+                      "class": "Value",
+                      "comparison": "eq",
+                      "inclusivity": "unspecified",
+                      "kind": "boolean",
+                      "members": [],
+                      "number": null,
+                      "unit": "",
+                      "upper": null
+                    }
+                  },
+                  "result": "ENTAILED",
+                  "decision": {
+                    "result": "ENTAILED",
+                    "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"current-inhaled-corticosteroid-use\",\"kind\":\"medication_use\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":{\"anchor\":\"named_event\",\"anchor_ref\":\"ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4:eligibility-assessment\",\"certainty\":\"explicit\",\"class\":\"TemporalScope\",\"evidence\":[],\"inclusivity\":\"unspecified\",\"lower\":null,\"orientation\":\"at\",\"unit\":\"\",\"upper\":null},\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+                    "status": "interpolated",
+                    "proof": [
+                      "ICS-reading"
+                    ],
+                    "blockers": []
+                  },
+                  "warrant": {
+                    "rule": "entail.decide:1",
+                    "guarantee": "conditional_on_interpretation",
+                    "status": "proposed",
+                    "assumptions": [
+                      "ICS-reading"
+                    ],
+                    "proof": [
+                      "ICS-reading"
+                    ],
+                    "blockers": []
+                  }
+                },
+                {
+                  "id": "current-relief",
+                  "body": {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "current-relief-medication-use",
+                      "kind": "medication_use"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "participant",
+                      "referent": ""
+                    },
+                    "time": {
+                      "anchor": "named_event",
+                      "anchor_ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4:eligibility-assessment",
+                      "certainty": "explicit",
+                      "class": "TemporalScope",
+                      "evidence": [],
+                      "inclusivity": "unspecified",
+                      "lower": null,
+                      "orientation": "at",
+                      "unit": "",
+                      "upper": null
+                    },
+                    "value": {
+                      "class": "Value",
+                      "comparison": "eq",
+                      "inclusivity": "unspecified",
+                      "kind": "boolean",
+                      "members": [],
+                      "number": null,
+                      "unit": "",
+                      "upper": null
+                    }
+                  },
+                  "result": "UNDETERMINED",
+                  "decision": {
+                    "result": "UNDETERMINED",
+                    "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"current-relief-medication-use\",\"kind\":\"medication_use\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":{\"anchor\":\"named_event\",\"anchor_ref\":\"ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4:eligibility-assessment\",\"certainty\":\"explicit\",\"class\":\"TemporalScope\",\"evidence\":[],\"inclusivity\":\"unspecified\",\"lower\":null,\"orientation\":\"at\",\"unit\":\"\",\"upper\":null},\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+                    "status": null,
+                    "proof": [],
+                    "blockers": [
+                      "no_constraint_mentions_query"
+                    ]
+                  },
+                  "warrant": {
+                    "rule": "entail.decide:1",
+                    "guarantee": "conditional_on_interpretation",
+                    "status": "proposed",
+                    "assumptions": [
+                      "ICS-reading"
+                    ],
+                    "proof": [],
+                    "blockers": [
+                      "no_constraint_mentions_query"
+                    ]
+                  }
+                },
+                {
+                  "id": "no-current-relief",
+                  "body": {
+                    "class": "Not",
+                    "part": {
+                      "class": "Literal",
+                      "evidence": [],
+                      "polarity": "positive",
+                      "predicate": {
+                        "class": "Predicate",
+                        "key": "current-relief-medication-use",
+                        "kind": "medication_use"
+                      },
+                      "qualifiers": {
+                        "class": "Always"
+                      },
+                      "subject": {
+                        "class": "Subject",
+                        "kind": "participant",
+                        "referent": ""
+                      },
+                      "time": {
+                        "anchor": "named_event",
+                        "anchor_ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4:eligibility-assessment",
+                        "certainty": "explicit",
+                        "class": "TemporalScope",
+                        "evidence": [],
+                        "inclusivity": "unspecified",
+                        "lower": null,
+                        "orientation": "at",
+                        "unit": "",
+                        "upper": null
+                      },
+                      "value": {
+                        "class": "Value",
+                        "comparison": "eq",
+                        "inclusivity": "unspecified",
+                        "kind": "boolean",
+                        "members": [],
+                        "number": null,
+                        "unit": "",
+                        "upper": null
+                      }
+                    }
+                  },
+                  "result": "UNDETERMINED",
+                  "decision": {
+                    "result": "UNDETERMINED",
+                    "query": "{\"class\":\"Not\",\"part\":{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"current-relief-medication-use\",\"kind\":\"medication_use\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":{\"anchor\":\"named_event\",\"anchor_ref\":\"ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4:eligibility-assessment\",\"certainty\":\"explicit\",\"class\":\"TemporalScope\",\"evidence\":[],\"inclusivity\":\"unspecified\",\"lower\":null,\"orientation\":\"at\",\"unit\":\"\",\"upper\":null},\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}}",
+                    "status": null,
+                    "proof": [],
+                    "blockers": [
+                      "no_constraint_mentions_query"
+                    ]
+                  },
+                  "warrant": {
+                    "rule": "entail.decide:1",
+                    "guarantee": "conditional_on_interpretation",
+                    "status": "proposed",
+                    "assumptions": [
+                      "ICS-reading"
+                    ],
+                    "proof": [],
+                    "blockers": [
+                      "no_constraint_mentions_query"
+                    ]
+                  }
+                },
+                {
+                  "id": "daily-relief",
+                  "body": {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "daily-relief-medication-use",
+                      "kind": "medication_use"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "participant",
+                      "referent": ""
+                    },
+                    "time": {
+                      "anchor": "named_event",
+                      "anchor_ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4:eligibility-assessment",
+                      "certainty": "explicit",
+                      "class": "TemporalScope",
+                      "evidence": [],
+                      "inclusivity": "unspecified",
+                      "lower": null,
+                      "orientation": "at",
+                      "unit": "",
+                      "upper": null
+                    },
+                    "value": {
+                      "class": "Value",
+                      "comparison": "eq",
+                      "inclusivity": "unspecified",
+                      "kind": "boolean",
+                      "members": [],
+                      "number": null,
+                      "unit": "",
+                      "upper": null
+                    }
+                  },
+                  "result": "UNDETERMINED",
+                  "decision": {
+                    "result": "UNDETERMINED",
+                    "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"daily-relief-medication-use\",\"kind\":\"medication_use\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":{\"anchor\":\"named_event\",\"anchor_ref\":\"ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4:eligibility-assessment\",\"certainty\":\"explicit\",\"class\":\"TemporalScope\",\"evidence\":[],\"inclusivity\":\"unspecified\",\"lower\":null,\"orientation\":\"at\",\"unit\":\"\",\"upper\":null},\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+                    "status": null,
+                    "proof": [],
+                    "blockers": [
+                      "no_constraint_mentions_query"
+                    ]
+                  },
+                  "warrant": {
+                    "rule": "entail.decide:1",
+                    "guarantee": "conditional_on_interpretation",
+                    "status": "proposed",
+                    "assumptions": [
+                      "ICS-reading"
+                    ],
+                    "proof": [],
+                    "blockers": [
+                      "no_constraint_mentions_query"
+                    ]
+                  }
+                }
+              ],
+              "warrant": {
+                "rule": "interpretations.compatibility:1",
+                "guarantee": "conditional_on_fixed_and_interpretation_premises",
+                "fixed_status": "known",
+                "status": "proposed",
+                "fixed_premises": [],
+                "assumptions": [
+                  "ICS-reading"
+                ],
+                "bindings": [],
+                "basis": [
+                  "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4#/protocolSection/eligibilityModule/eligibilityCriteria",
+                  "hypothesis:source-location-is-not-semantic-warrant"
+                ],
+                "consistency": {
+                  "result": "UNDETERMINED",
+                  "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+                  "status": null,
+                  "proof": [],
+                  "blockers": [
+                    "no_constraint_mentions_query"
+                  ]
+                },
+                "intrinsic_consistency": {
+                  "result": "UNDETERMINED",
+                  "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+                  "status": null,
+                  "proof": [],
+                  "blockers": [
+                    "no_constraint_mentions_query"
+                  ]
+                },
+                "signal_rules": [],
+                "blockers": []
+              }
+            }
+          ],
+          "remaining": [
+            "relief-required",
+            "relief-not-settled"
+          ],
+          "refuted": [],
+          "incoherent": [],
+          "unresolved": [],
+          "selection": {
+            "id": null,
+            "state": "none",
+            "origin": null
+          },
+          "consequences": [
+            {
+              "id": "age-floor",
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "age",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "ge",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 12.0,
+                  "unit": "Years",
+                  "upper": null
+                }
+              },
+              "result": "ENTAILED",
+              "decision": {
+                "result": "ENTAILED",
+                "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":12.0,\"unit\":\"Years\",\"upper\":null}}",
+                "status": "known",
+                "proof": [
+                  "registry-age-minimumAge"
+                ],
+                "blockers": []
+              },
+              "warrant": {
+                "rule": "entail.decide:1",
+                "guarantee": "fixed_floor",
+                "status": "known",
+                "assumptions": [],
+                "proof": [
+                  "registry-age-minimumAge"
+                ],
+                "blockers": []
+              },
+              "frames": [],
+              "basis": "fixed_floor"
+            },
+            {
+              "id": "current-ICS",
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "current-inhaled-corticosteroid-use",
+                  "kind": "medication_use"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": {
+                  "anchor": "named_event",
+                  "anchor_ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4:eligibility-assessment",
+                  "certainty": "explicit",
+                  "class": "TemporalScope",
+                  "evidence": [],
+                  "inclusivity": "unspecified",
+                  "lower": null,
+                  "orientation": "at",
+                  "unit": "",
+                  "upper": null
+                },
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "boolean",
+                  "members": [],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                }
+              },
+              "result": "ENTAILED",
+              "frames": [
+                "relief-required",
+                "relief-not-settled"
+              ],
+              "basis": "declared_interpretation_family",
+              "warrant": {
+                "rule": "interpretations.common:1",
+                "guarantee": "conditional_on_declared_family_not_exhaustive",
+                "status": "proposed",
+                "blockers": []
+              }
+            },
+            {
+              "id": "current-relief",
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "current-relief-medication-use",
+                  "kind": "medication_use"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": {
+                  "anchor": "named_event",
+                  "anchor_ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4:eligibility-assessment",
+                  "certainty": "explicit",
+                  "class": "TemporalScope",
+                  "evidence": [],
+                  "inclusivity": "unspecified",
+                  "lower": null,
+                  "orientation": "at",
+                  "unit": "",
+                  "upper": null
+                },
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "boolean",
+                  "members": [],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                }
+              },
+              "result": "UNDETERMINED",
+              "frames": [
+                "relief-required",
+                "relief-not-settled"
+              ],
+              "basis": "declared_interpretation_family",
+              "warrant": {
+                "rule": "interpretations.common:1",
+                "guarantee": "conditional_on_declared_family_not_exhaustive",
+                "status": "proposed",
+                "blockers": [
+                  "no_constraint_mentions_query"
+                ]
+              }
+            },
+            {
+              "id": "no-current-relief",
+              "body": {
+                "class": "Not",
+                "part": {
+                  "class": "Literal",
+                  "evidence": [],
+                  "polarity": "positive",
+                  "predicate": {
+                    "class": "Predicate",
+                    "key": "current-relief-medication-use",
+                    "kind": "medication_use"
+                  },
+                  "qualifiers": {
+                    "class": "Always"
+                  },
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "participant",
+                    "referent": ""
+                  },
+                  "time": {
+                    "anchor": "named_event",
+                    "anchor_ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4:eligibility-assessment",
+                    "certainty": "explicit",
+                    "class": "TemporalScope",
+                    "evidence": [],
+                    "inclusivity": "unspecified",
+                    "lower": null,
+                    "orientation": "at",
+                    "unit": "",
+                    "upper": null
+                  },
+                  "value": {
+                    "class": "Value",
+                    "comparison": "eq",
+                    "inclusivity": "unspecified",
+                    "kind": "boolean",
+                    "members": [],
+                    "number": null,
+                    "unit": "",
+                    "upper": null
+                  }
+                }
+              },
+              "result": "UNDETERMINED",
+              "frames": [
+                "relief-required",
+                "relief-not-settled"
+              ],
+              "basis": "declared_interpretation_family",
+              "warrant": {
+                "rule": "interpretations.common:1",
+                "guarantee": "conditional_on_declared_family_not_exhaustive",
+                "status": "proposed",
+                "blockers": [
+                  "no_constraint_mentions_query"
+                ]
+              }
+            },
+            {
+              "id": "daily-relief",
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "daily-relief-medication-use",
+                  "kind": "medication_use"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": {
+                  "anchor": "named_event",
+                  "anchor_ref": "ctg:NCT01001364:e81c595a19d2925aaf9fd41b0c231804e8948c808cf51c10d61df81c7c9e3dd4:eligibility-assessment",
+                  "certainty": "explicit",
+                  "class": "TemporalScope",
+                  "evidence": [],
+                  "inclusivity": "unspecified",
+                  "lower": null,
+                  "orientation": "at",
+                  "unit": "",
+                  "upper": null
+                },
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "boolean",
+                  "members": [],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                }
+              },
+              "result": "UNDETERMINED",
+              "frames": [
+                "relief-required",
+                "relief-not-settled"
+              ],
+              "basis": "declared_interpretation_family",
+              "warrant": {
+                "rule": "interpretations.common:1",
+                "guarantee": "conditional_on_declared_family_not_exhaustive",
+                "status": "proposed",
+                "blockers": [
+                  "no_constraint_mentions_query"
+                ]
+              }
+            }
+          ],
+          "limits": "Exact conditional checks over declared readings; compatibility is not source truth or clinical recommendation. The interpretation family is not assumed exhaustive. No automatic text reading, source correction, source mutation or corpus-frequency admission."
+        },
+        "problems": [],
+        "metadata": {
+          "version": 1,
+          "kind": "reasoning",
+          "findings": [
+            {
+              "path": "/result/fixed/consistency",
+              "kind": "consistency",
+              "logical_result": "UNDETERMINED",
+              "standing": null,
+              "completion": "complete",
+              "causes": [
+                {
+                  "code": "no_constraint_mentions_query",
+                  "kind": "coverage"
+                }
+              ],
+              "disposition": "open"
+            },
+            {
+              "path": "/result/fixed/queries/0",
+              "kind": "logical",
+              "logical_result": "ENTAILED",
+              "standing": "known",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "settled",
+              "support_path": "/result/fixed/queries/0/warrant"
+            },
+            {
+              "path": "/result/fixed/queries/1",
+              "kind": "logical",
+              "logical_result": "UNDETERMINED",
+              "standing": "known",
+              "completion": "complete",
+              "causes": [
+                {
+                  "code": "no_constraint_mentions_query",
+                  "kind": "coverage"
+                }
+              ],
+              "disposition": "open",
+              "support_path": "/result/fixed/queries/1/warrant"
+            },
+            {
+              "path": "/result/fixed/queries/2",
+              "kind": "logical",
+              "logical_result": "UNDETERMINED",
+              "standing": "known",
+              "completion": "complete",
+              "causes": [
+                {
+                  "code": "no_constraint_mentions_query",
+                  "kind": "coverage"
+                }
+              ],
+              "disposition": "open",
+              "support_path": "/result/fixed/queries/2/warrant"
+            },
+            {
+              "path": "/result/fixed/queries/3",
+              "kind": "logical",
+              "logical_result": "UNDETERMINED",
+              "standing": "known",
+              "completion": "complete",
+              "causes": [
+                {
+                  "code": "no_constraint_mentions_query",
+                  "kind": "coverage"
+                }
+              ],
+              "disposition": "open",
+              "support_path": "/result/fixed/queries/3/warrant"
+            },
+            {
+              "path": "/result/fixed/queries/4",
+              "kind": "logical",
+              "logical_result": "UNDETERMINED",
+              "standing": "known",
+              "completion": "complete",
+              "causes": [
+                {
+                  "code": "no_constraint_mentions_query",
+                  "kind": "coverage"
+                }
+              ],
+              "disposition": "open",
+              "support_path": "/result/fixed/queries/4/warrant"
+            },
+            {
+              "path": "/result/interpretations/0",
+              "kind": "interpretation",
+              "logical_result": "compatible",
+              "standing": "proposed",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "conditional"
+            },
+            {
+              "path": "/result/interpretations/0/queries/0",
+              "kind": "logical",
+              "logical_result": "ENTAILED",
+              "standing": "proposed",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "conditional",
+              "support_path": "/result/interpretations/0/queries/0/warrant"
+            },
+            {
+              "path": "/result/interpretations/0/queries/1",
+              "kind": "logical",
+              "logical_result": "ENTAILED",
+              "standing": "proposed",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "conditional",
+              "support_path": "/result/interpretations/0/queries/1/warrant"
+            },
+            {
+              "path": "/result/interpretations/0/queries/2",
+              "kind": "logical",
+              "logical_result": "ENTAILED",
+              "standing": "proposed",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "conditional",
+              "support_path": "/result/interpretations/0/queries/2/warrant"
+            },
+            {
+              "path": "/result/interpretations/0/queries/3",
+              "kind": "logical",
+              "logical_result": "REFUTED",
+              "standing": "proposed",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "conditional",
+              "support_path": "/result/interpretations/0/queries/3/warrant"
+            },
+            {
+              "path": "/result/interpretations/0/queries/4",
+              "kind": "logical",
+              "logical_result": "UNDETERMINED",
+              "standing": "proposed",
+              "completion": "complete",
+              "causes": [
+                {
+                  "code": "no_constraint_mentions_query",
+                  "kind": "coverage"
+                }
+              ],
+              "disposition": "open",
+              "support_path": "/result/interpretations/0/queries/4/warrant"
+            },
+            {
+              "path": "/result/interpretations/1",
+              "kind": "interpretation",
+              "logical_result": "compatible",
+              "standing": "proposed",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "conditional"
+            },
+            {
+              "path": "/result/interpretations/1/queries/0",
+              "kind": "logical",
+              "logical_result": "ENTAILED",
+              "standing": "proposed",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "conditional",
+              "support_path": "/result/interpretations/1/queries/0/warrant"
+            },
+            {
+              "path": "/result/interpretations/1/queries/1",
+              "kind": "logical",
+              "logical_result": "ENTAILED",
+              "standing": "proposed",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "conditional",
+              "support_path": "/result/interpretations/1/queries/1/warrant"
+            },
+            {
+              "path": "/result/interpretations/1/queries/2",
+              "kind": "logical",
+              "logical_result": "UNDETERMINED",
+              "standing": "proposed",
+              "completion": "complete",
+              "causes": [
+                {
+                  "code": "no_constraint_mentions_query",
+                  "kind": "coverage"
+                }
+              ],
+              "disposition": "open",
+              "support_path": "/result/interpretations/1/queries/2/warrant"
+            },
+            {
+              "path": "/result/interpretations/1/queries/3",
+              "kind": "logical",
+              "logical_result": "UNDETERMINED",
+              "standing": "proposed",
+              "completion": "complete",
+              "causes": [
+                {
+                  "code": "no_constraint_mentions_query",
+                  "kind": "coverage"
+                }
+              ],
+              "disposition": "open",
+              "support_path": "/result/interpretations/1/queries/3/warrant"
+            },
+            {
+              "path": "/result/interpretations/1/queries/4",
+              "kind": "logical",
+              "logical_result": "UNDETERMINED",
+              "standing": "proposed",
+              "completion": "complete",
+              "causes": [
+                {
+                  "code": "no_constraint_mentions_query",
+                  "kind": "coverage"
+                }
+              ],
+              "disposition": "open",
+              "support_path": "/result/interpretations/1/queries/4/warrant"
+            },
+            {
+              "path": "/result/consequences/0",
+              "kind": "logical",
+              "logical_result": "ENTAILED",
+              "standing": "known",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "settled",
+              "support_path": "/result/consequences/0/warrant"
+            },
+            {
+              "path": "/result/consequences/1",
+              "kind": "logical",
+              "logical_result": "ENTAILED",
+              "standing": "proposed",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "conditional",
+              "support_path": "/result/consequences/1/warrant"
+            },
+            {
+              "path": "/result/consequences/2",
+              "kind": "logical",
+              "logical_result": "UNDETERMINED",
+              "standing": "proposed",
+              "completion": "complete",
+              "causes": [
+                {
+                  "code": "no_constraint_mentions_query",
+                  "kind": "coverage"
+                }
+              ],
+              "disposition": "open",
+              "support_path": "/result/consequences/2/warrant"
+            },
+            {
+              "path": "/result/consequences/3",
+              "kind": "logical",
+              "logical_result": "UNDETERMINED",
+              "standing": "proposed",
+              "completion": "complete",
+              "causes": [
+                {
+                  "code": "no_constraint_mentions_query",
+                  "kind": "coverage"
+                }
+              ],
+              "disposition": "open",
+              "support_path": "/result/consequences/3/warrant"
+            },
+            {
+              "path": "/result/consequences/4",
+              "kind": "logical",
+              "logical_result": "UNDETERMINED",
+              "standing": "proposed",
+              "completion": "complete",
+              "causes": [
+                {
+                  "code": "no_constraint_mentions_query",
+                  "kind": "coverage"
+                }
+              ],
+              "disposition": "open",
+              "support_path": "/result/consequences/4/warrant"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "problems": [],
+  "metadata": {
+    "version": 1,
+    "kind": "reasoning",
+    "findings": [
+      {
+        "path": "/result/analyses/0/result/fixed/consistency",
+        "kind": "consistency",
+        "logical_result": "UNDETERMINED",
+        "standing": null,
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          }
+        ],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/analyses/0/result/fixed/queries/0",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled",
+        "support_path": "/result/analyses/0/result/fixed/queries/0/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/fixed/queries/1",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/analyses/0/result/fixed/queries/1/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/fixed/queries/2",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/analyses/0/result/fixed/queries/2/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/fixed/queries/3",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/analyses/0/result/fixed/queries/3/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/fixed/queries/4",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/analyses/0/result/fixed/queries/4/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/0",
+        "kind": "interpretation",
+        "logical_result": "compatible",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/0/queries/0",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional",
+        "support_path": "/result/analyses/0/result/interpretations/0/queries/0/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/0/queries/1",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional",
+        "support_path": "/result/analyses/0/result/interpretations/0/queries/1/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/0/queries/2",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional",
+        "support_path": "/result/analyses/0/result/interpretations/0/queries/2/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/0/queries/3",
+        "kind": "logical",
+        "logical_result": "REFUTED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional",
+        "support_path": "/result/analyses/0/result/interpretations/0/queries/3/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/0/queries/4",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/analyses/0/result/interpretations/0/queries/4/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/1",
+        "kind": "interpretation",
+        "logical_result": "compatible",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/1/queries/0",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional",
+        "support_path": "/result/analyses/0/result/interpretations/1/queries/0/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/1/queries/1",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional",
+        "support_path": "/result/analyses/0/result/interpretations/1/queries/1/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/1/queries/2",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/analyses/0/result/interpretations/1/queries/2/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/1/queries/3",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/analyses/0/result/interpretations/1/queries/3/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/1/queries/4",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/analyses/0/result/interpretations/1/queries/4/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/consequences/0",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled",
+        "support_path": "/result/analyses/0/result/consequences/0/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/consequences/1",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional",
+        "support_path": "/result/analyses/0/result/consequences/1/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/consequences/2",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/analyses/0/result/consequences/2/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/consequences/3",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/analyses/0/result/consequences/3/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/consequences/4",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/analyses/0/result/consequences/4/warrant"
+      }
+    ]
+  }
+}

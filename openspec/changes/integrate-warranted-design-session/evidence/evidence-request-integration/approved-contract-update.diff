@@ -1,0 +1,64 @@
+--- approved-before.py
++++ tests/test_evidence_requests_independent.py
+@@ -25,6 +25,7 @@
+ import re
+ 
+ import pytest
++
+ from TrialLedger.layer2 import assertions as a
+ from TrialLedger.layer2 import entail, run
+ 
+@@ -461,17 +462,23 @@
+     assert states["A"]["state"] == states["B"]["state"] == "not_ruled_out"
+ 
+ 
+-def test_replay_helper_accepted_cutoff_and_proposed_blocker():
++def test_replay_helper_known_refutation_survives_proposed_conjunct_for_acceptance_only():
+     states = design_bounds_replay([X, Y], {"sign": "accepted", "profile": model(ecog("eq", 3))})
+     assert states["X"]["state"] == "ruled_out" and states["Y"]["state"] == "not_ruled_out"
+     mixed = candidate(
+         "P2", required("P2_ecog", ecog("le", 3)), required("P2_marker", flag("marker"), status="proposed")
+     )
+     states = design_bounds_replay([mixed, W], {"sign": "accepted", "profile": model(ecog("eq", 4))})
+-    # The known premise alone refutes, yet the unrelated proposed premise keeps the verdict unresolved.
++    # No completion of the withheld conjunct can loosen the confirmed ECOG <= 3 requirement.
+     assert states["P2"]["decision"]["result"] == "REFUTED"
++    assert states["P2"]["decision"]["status"] == "known"
++    assert states["P2"]["decision"]["proof"] == ("P2_ecog",)
+     assert "proposed_refused:P2_marker" in states["P2"]["decision"]["blockers"]
+-    assert states["P2"]["state"] == "unresolved" and states["W"]["state"] == "not_ruled_out"
++    assert states["P2"]["state"] == "ruled_out" and states["W"]["state"] == "not_ruled_out"
++    rejected = design_bounds_replay([mixed, W], {"sign": "rejected", "profile": model(ecog("eq", 2))})
++    # The withheld marker can explain an eligibility rejection when the known cutoff is satisfied.
++    assert rejected["P2"]["state"] == "unresolved"
++    assert "proposed_refused:P2_marker" in rejected["P2"]["decision"]["blockers"]
+ 
+ 
+ def test_oracle_helpers_read_meaning_not_layout():
+@@ -1059,15 +1066,21 @@
+ # --------------------------------------------------------------------------------------------------------
+ 
+ 
+-def test_proposed_premise_beside_a_refuting_known_premise_must_not_eliminate(evaluate):
+-    # A classifier reading only decision.result would emit "accepted ECOG 4 eliminates P2, fits W".
++def test_known_required_conjunct_eliminates_accepted_profile_but_not_unresolved_rejection(evaluate):
+     mixed = candidate(
+         "P2", required("P2_ecog", ecog("le", 3)), required("P2_marker", flag("marker"), status="proposed")
+     )
+     result = evaluate(request([mixed, W], ["P2", "W"], [integer_variable()]))
+-    assert result["requests"] == []
+-    assert all("P2" not in row["eliminates"] for row in result["requests"])
+-    assert pair_of(result, "P2", "W")["outcome"] not in ("no_separator", "separated")
++    assert len(result["requests"]) == 1
++    accepted = result["requests"][0]
++    assert accepted["sign"] == "accepted" and implies(accepted["profile"], ecog("eq", 4))
++    assert accepted["eliminates"] == ["P2"] and accepted["accommodates"] == ["W"]
++    deciding = checks_by_candidate(accepted)["P2"]["decision"]
++    assert deciding["result"] == "REFUTED" and deciding["status"] == "known"
++    assert normalize(deciding["proof"]) == ["P2_ecog"]
++    assert "proposed_refused:P2_marker" in deciding["blockers"]
++    assert all("P2" not in row["eliminates"] for row in result["requests"] if row["sign"] == "rejected")
++    assert pair_of(result, "P2", "W")["outcome"] == "separated"
+     assert "witness_unresolved:P2" in all_causes(result)
+ 
+ 

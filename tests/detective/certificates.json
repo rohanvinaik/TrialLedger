@@ -760,6 +760,18 @@
     "refusal": "",
     "standing": "complete"
   },
+  "TrialLedger/layer2/decision_tables.py::table_check_state": {
+    "cut_reasons": [],
+    "function_digest": "9fdaa1e7152fb9aa",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/decision_tables.py::table_state": {
+    "cut_reasons": [],
+    "function_digest": "850772ce5196f933",
+    "refusal": "",
+    "standing": "complete"
+  },
   "TrialLedger/layer2/dependency_evidence.py::alternative_state": {
     "cut_reasons": [],
     "function_digest": "84b33164c591a22a",
@@ -798,7 +810,13 @@
   },
   "TrialLedger/layer2/design_bounds.py::witness_verdict": {
     "cut_reasons": [],
-    "function_digest": "70bcc869bd4520a1",
+    "function_digest": "89ef25b92ecfedfd",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/design_session.py::alternative_code": {
+    "cut_reasons": [],
+    "function_digest": "0974c98951278c61",
     "refusal": "",
     "standing": "complete"
   },
@@ -811,6 +829,60 @@
   "TrialLedger/layer2/entail.py::rejected_outcome": {
     "cut_reasons": [],
     "function_digest": "220acaa1ca89139e",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/estimand_evidence.py::actual_input": {
+    "cut_reasons": [],
+    "function_digest": "d6e65514bc7d1d8f",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/estimand_evidence.py::collection_alignment": {
+    "cut_reasons": [],
+    "function_digest": "b2764eb3d211671b",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/evidence_requests.py::dominated": {
+    "cut_reasons": [],
+    "function_digest": "16b8a7595154dfa2",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/evidence_requests.py::family_state": {
+    "cut_reasons": [],
+    "function_digest": "fd34b534a5479c52",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/evidence_requests.py::output_state": {
+    "cut_reasons": [],
+    "function_digest": "1655c26905fd3c46",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/evidence_requests.py::pair_outcome": {
+    "cut_reasons": [],
+    "function_digest": "8dcd5a9228d563ba",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/evidence_requests.py::pair_relation": {
+    "cut_reasons": [],
+    "function_digest": "6eee538eac969016",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/evidence_requests.py::required_premises": {
+    "cut_reasons": [],
+    "function_digest": "423f1ddf5f835edd",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/evidence_requests.py::seek": {
+    "cut_reasons": [],
+    "function_digest": "8c13442d71ec359d",
     "refusal": "",
     "standing": "complete"
   },
@@ -948,7 +1020,25 @@
   },
   "TrialLedger/layer2/result_semantics.py::disposition_code": {
     "cut_reasons": [],
-    "function_digest": "721902055853505a",
+    "function_digest": "e8f6cd7dcf149c50",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/session_state.py::change_code": {
+    "cut_reasons": [],
+    "function_digest": "8a29be4899772545",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/session_state.py::revision_code": {
+    "cut_reasons": [],
+    "function_digest": "8a1d660274f21740",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/signals.py::support_state": {
+    "cut_reasons": [],
+    "function_digest": "b5e3cc8892bf9ea8",
     "refusal": "",
     "standing": "complete"
   },
@@ -973,6 +1063,24 @@
   "TrialLedger/layer2/source_evidence.py::pointer_state": {
     "cut_reasons": [],
     "function_digest": "c343f8d8582ad001",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/stage_evidence.py::stage_result_code": {
+    "cut_reasons": [],
+    "function_digest": "122843696fee4fc4",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/stage_evidence.py::stage_support_status": {
+    "cut_reasons": [],
+    "function_digest": "6e2294ccd30b905e",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/stage_evidence.py::transition_gate": {
+    "cut_reasons": [],
+    "function_digest": "e91d6c8b146a27f3",
     "refusal": "",
     "standing": "complete"
   },
@@ -2038,6 +2146,12 @@
   "acceptance/select.py::window_expression": {
     "cut_reasons": [],
     "function_digest": "00a34ea8979411b5",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "scripts/push_checks.py::secret_review_state": {
+    "cut_reasons": [],
+    "function_digest": "9d8aa92148ac2aa6",
     "refusal": "",
     "standing": "complete"
   },

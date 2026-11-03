@@ -1,0 +1,28 @@
+{
+  "question": "For a proposed Phase1 AML combination study, do the sampled venetoclax studies state enough escalation, expansion, dose-limiting-toxicity evaluation and stopping rules to encode a complete decision table? Which cases or actions remain unspecified?",
+  "declared_at_utc": "2026-11-03T22:22:49.646904+00:00",
+  "query": {
+    "drug": [
+      "venetoclax"
+    ],
+    "condition": [
+      "Acute Myeloid Leukemia"
+    ],
+    "phase": [
+      "PHASE1"
+    ],
+    "status": [
+      "COMPLETED"
+    ]
+  },
+  "max_complete_pool": 30,
+  "seed": 7075652826039879207,
+  "selection_rule": "random.Random(seed).sample(sorted(complete_pool),min(3,len(complete_pool))) before selected-content reading; no replacement",
+  "retention": {
+    "packet": "Clinical handoff, full minimal reasoning request/canonical-result pairs, source/query/pool/seed/time/version/hash receipts; under2MB by reducing redundant cases, never by truncating source or result",
+    "local_preview_report": "/Users/rohanvinaik/trialledger-runs/decision-aml-20261103",
+    "local_bulk": "Full raw/report/workbook/cache/helpers/duplicate wires stayoutsideGit; snapshots requiredbyreasoningrequest remaincomplete"
+  },
+  "runtime_gate": "No new decision-table or estimand execution until root explicitly ROOTREADY for that increment",
+  "epistemic_boundary": "Acquire and read actual complete units; a design label cannot supply rule-table cases; outcome missing-data handling cannot itself supply a complete estimand; hypothetical acceptance tables/definitions must be attributed separately if source insufficient"
+}

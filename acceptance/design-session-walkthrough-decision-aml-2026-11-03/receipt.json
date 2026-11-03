@@ -1,0 +1,154 @@
+{
+  "completed_at_utc": "2026-11-03T22:29:28.227004+00:00",
+  "actual_separate_process_cli_mcp_pairs": 8,
+  "source_report_verify_exit": 0,
+  "payload_files": {
+    "README.md": {
+      "bytes": 6140,
+      "sha256": "f1c4fca6fb666ff856c75e523bb02dc1382fd8a941030c29967923fa9a79ed36"
+    },
+    "finding-summary.json": {
+      "bytes": 113135,
+      "sha256": "904fee804bce4f37c7dc79892e93b0232c8d1c51dea38c6ffb5a9257aed3c42c"
+    },
+    "local-retention.json": {
+      "bytes": 9149,
+      "sha256": "029c07a22d5b67e7a699c39869ca497d69d9d94200a2ca077750372d406e21fb"
+    },
+    "preflight.json": {
+      "bytes": 1590,
+      "sha256": "c019958dc65c28544f4909a6828be6875696d12f0ef32e44bcc7e8148748b8cb"
+    },
+    "query-preview-request.json": {
+      "bytes": 131,
+      "sha256": "f47640d626fd9265de782961654412edc5017adf338376bba63e10333b63ffe5"
+    },
+    "query-preview-resolution.json": {
+      "bytes": 1834,
+      "sha256": "584c53797162bae708282784f9f401596a2fdd4054c82d4ad834b57b3dbe3b5f"
+    },
+    "query-preview-scope.json": {
+      "bytes": 237,
+      "sha256": "22ca1c9b97759917871f8dcef9b19395c5e627d1f5e3435792e6e35640cce545"
+    },
+    "requests/NCT02670044-source-age.json": {
+      "bytes": 38564,
+      "sha256": "35ca96c52c910673a538cc17b673a1264c96033fcdc4cdd0549d4e24ccd888b9"
+    },
+    "requests/NCT03625505-source-age.json": {
+      "bytes": 29220,
+      "sha256": "6dade1fcbafa7eb9ec94d5cf2335676e7027788070990e6c606aa92160de6fbc"
+    },
+    "requests/NCT04666649-source-age.json": {
+      "bytes": 50312,
+      "sha256": "71ff71f292997111db44be475308f345856e94d14d51a2566f35f7f410e86e95"
+    },
+    "requests/hypothetical-complete-revision.json": {
+      "bytes": 14681,
+      "sha256": "a704b0bb4d7e027cfd876a32f68d0c00f73fafd5a479cb876306d41e96d71e1a"
+    },
+    "requests/hypothetical-gap-at-one.json": {
+      "bytes": 13482,
+      "sha256": "d20af147ce747944da195368d978d0f5ec90719fe603c8f7db2f58453b0e469e"
+    },
+    "requests/hypothetical-limited.json": {
+      "bytes": 14679,
+      "sha256": "b91b62f1a1bbad93d09f9cab2ceb0746e71c770212c3117d66c7ffe84b61dbc4"
+    },
+    "requests/hypothetical-overlap-at-one.json": {
+      "bytes": 15663,
+      "sha256": "e9d95ccdf3147d012bebe0da673efe537885324be06a69a615cd5d2953506395"
+    },
+    "requests/hypothetical-tables-with-source-age.json": {
+      "bytes": 53176,
+      "sha256": "781f0235622ff625fc449b729da45af519e21312495c7be1e95af243a6a7c911"
+    },
+    "results/NCT02670044-source-age.json": {
+      "bytes": 34468,
+      "sha256": "e23a0fcb822caa0ee0c2234125444c2ac927a0520ed300ae70a4ffffd556bb4a"
+    },
+    "results/NCT03625505-source-age.json": {
+      "bytes": 28197,
+      "sha256": "08ae3ccdc6b25f1dc6e480dee3a9d5ffab17849d9971bb08616697b5f4841796"
+    },
+    "results/NCT04666649-source-age.json": {
+      "bytes": 32352,
+      "sha256": "9f105249937741221bf01225355351ba9fbe1aa14b2fdddab4937b836bf352d6"
+    },
+    "results/hypothetical-complete-revision.json": {
+      "bytes": 44848,
+      "sha256": "fffa1bc867b2ad6c3ff30032f5b434f89e86174abe62e795d7039efa6620e0f3"
+    },
+    "results/hypothetical-gap-at-one.json": {
+      "bytes": 41389,
+      "sha256": "f05ae6c76ae579ff2710c2496fdc4c6527a0f63102fee2a85dda900dbfb62029"
+    },
+    "results/hypothetical-limited.json": {
+      "bytes": 33466,
+      "sha256": "fae479e79cf0e3d40202afd29e7f3301876a2fc8effd2ed5aae5870fc742bda8"
+    },
+    "results/hypothetical-overlap-at-one.json": {
+      "bytes": 49193,
+      "sha256": "3832b19cf93cff162bf18af5d202d04f042e91e2dade8ac89222c95500fba7c9"
+    },
+    "results/hypothetical-tables-with-source-age.json": {
+      "bytes": 167122,
+      "sha256": "9f58093d19f1389f30b6c29df7af10520f9ae821af8b1c172119f5bc8a1d00a7"
+    },
+    "runtime-receipt.json": {
+      "bytes": 15278,
+      "sha256": "66bb93f12d188b429806564c5c80485b3d018165b4597310738b9da49cdeabdb"
+    },
+    "sample-gather-fetches.json": {
+      "bytes": 1258,
+      "sha256": "9c15892d82f2392eef93f1215fd8f606947fd19b39336a3c7c553fd0ab3dad5d"
+    },
+    "sample-gather-manifest.json": {
+      "bytes": 1924,
+      "sha256": "d654a91115f6a00c80f3d1956c5763932f6820560c44a604fbabe738f2f21eae"
+    },
+    "sample-gather-request.json": {
+      "bytes": 74,
+      "sha256": "7debfea3c230c31f20e7d60fed1ec84ea8676abf81af1bbcdb99695108f22638"
+    },
+    "sample-gather-resolution.json": {
+      "bytes": 510,
+      "sha256": "e30cfc7205363754577976ed8bc87c9f68bc8b0d1cf1f9e5ffc3a181b1112df5"
+    },
+    "sample-gather-scope.json": {
+      "bytes": 87,
+      "sha256": "b97d6432304373d93658f62101db5ce04f0ee403fe41cb522c924855cd612f50"
+    },
+    "selection.json": {
+      "bytes": 3181,
+      "sha256": "5340ca3bc7d96d3a4a106a03aaec04d17ea8f2c6cad3fb6b03a071ef9d1c7352"
+    },
+    "source-inventory.json": {
+      "bytes": 1515,
+      "sha256": "6483204657e309adc5e932660c64f536d054b6f0af6ce47816ac0792107ef85e"
+    },
+    "verification-receipt.json": {
+      "bytes": 447,
+      "sha256": "1ae3d9f93bf714134e5af67e7b0780daa998e949825d3d890da83a71df9ee6f8"
+    },
+    "working-brief.md": {
+      "bytes": 2269,
+      "sha256": "820c00f3a9a6a2ce85a1b608e50f50ba783768c46a0e0be2c5646c9106afd5b8"
+    }
+  },
+  "payload_file_count": 33,
+  "payload_bytes": 819571,
+  "unclassified_effective_findings": [],
+  "clinical_user_confirmation": false,
+  "scope": "Actual Phase1 AML source acquisition; explicitly hypothetical rule-table mechanism acceptance, no source dose algorithm validation",
+  "helper_repairs": [
+    "Unary AnyOf corrected to literal; all8 finalpairs rerun",
+    "verify positionalfolder syntax used after unsupported --run attempt"
+  ],
+  "clinical_limits": [
+    "No table thresholds inferred from study phase or label",
+    "No source dose algorithm claimed",
+    "No source evaluation windows equated",
+    "No operating characteristics or sequential termination computed"
+  ]
+}

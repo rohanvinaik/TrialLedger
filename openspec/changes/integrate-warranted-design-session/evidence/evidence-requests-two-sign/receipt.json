@@ -1,0 +1,56 @@
+{
+  "crosshair": {
+    "confirmed": 17,
+    "counterexample_reported": false,
+    "not_confirmed": 4
+  },
+  "current_scope": "All seven exact function texts/ASTs and dependent OUTCOMES, BRIDGE_PREMISES, COMPLETE AST expressions match. Current wrapper module differs; no whole-module or clinical-truth certification.",
+  "format": 1,
+  "generated_source_required": 3,
+  "generated_tests_required": 5,
+  "protocol_limits": [
+    "Shared venv shadowing refusals were recorded before explicit scratch pythonpath migration. Actual commands/native ledger are preserved unchanged.",
+    "The source return states final-source plan/survey were not rerun; no final-source decompose receipt is present.",
+    "required_premises has four crash-only value gaps: all mutants detected, four have no return-value pin. They are not equivalences.",
+    "Some captured pytest commands use -q; the original command record is preserved rather than rewritten."
+  ],
+  "source_module_sha256": "abd04aef31d3b9f424b8abc034c43b9d7b37a88496b854008f91f7b6409038e9",
+  "targets": {
+    "dominated": {
+      "killed": 16,
+      "total": 16,
+      "value_pinned": 16
+    },
+    "family_state": {
+      "killed": 44,
+      "total": 44,
+      "value_pinned": 44
+    },
+    "output_state": {
+      "killed": 18,
+      "total": 18,
+      "value_pinned": 18
+    },
+    "pair_outcome": {
+      "killed": 55,
+      "total": 55,
+      "value_pinned": 55
+    },
+    "pair_relation": {
+      "killed": 56,
+      "total": 56,
+      "value_pinned": 56
+    },
+    "required_premises": {
+      "crash_only_value_gaps": 4,
+      "killed": 34,
+      "total": 34,
+      "value_pinned": 30
+    },
+    "seek": {
+      "killed": 27,
+      "total": 27,
+      "value_pinned": 27
+    }
+  }
+}

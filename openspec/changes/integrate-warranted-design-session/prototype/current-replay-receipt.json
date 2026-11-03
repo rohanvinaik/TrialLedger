@@ -1,0 +1,101 @@
+{
+  "prototype_not_public_session_api": true,
+  "public_child_cli_executions": 12,
+  "source_files": {
+    "session-input.json": "f2efd2635a9383a6986db31edaad9c7adf63bbaed98de41c6e7c17a2e163401b",
+    "revision.json": "0cab7e677c819df6da6d39fbbf38cf97460e9eaa3c7085dcaa5bb46426d31041"
+  },
+  "revision_1": {
+    "children": [
+      {
+        "child": "ipass-registered-age",
+        "request_exactly_equal_to_reference": true,
+        "original_result_fields_preserved": true
+      },
+      {
+        "child": "archer-registered-age",
+        "request_exactly_equal_to_reference": true,
+        "original_result_fields_preserved": true
+      },
+      {
+        "child": "ipass-baseline-overlap",
+        "request_exactly_equal_to_reference": true,
+        "original_result_fields_preserved": true
+      },
+      {
+        "child": "ipass-schedule-readings",
+        "request_exactly_equal_to_reference": true,
+        "original_result_fields_preserved": true
+      },
+      {
+        "child": "ipass-hypothetical-exceptions-48",
+        "request_exactly_equal_to_reference": true,
+        "original_result_fields_preserved": false
+      }
+    ],
+    "corpus_projection_matches_explicit_reference": true,
+    "corpus_count": {
+      "stating": 2,
+      "trials": 2
+    },
+    "snapshot_unchanged": true
+  },
+  "revision_2": {
+    "children": [
+      {
+        "child": "ipass-registered-age",
+        "request_exactly_equal_to_reference": true,
+        "original_result_fields_preserved": true
+      },
+      {
+        "child": "archer-registered-age",
+        "request_exactly_equal_to_reference": true,
+        "original_result_fields_preserved": true
+      },
+      {
+        "child": "ipass-baseline-overlap",
+        "request_exactly_equal_to_reference": true,
+        "original_result_fields_preserved": true
+      },
+      {
+        "child": "ipass-schedule-readings",
+        "request_exactly_equal_to_reference": true,
+        "original_result_fields_preserved": true
+      },
+      {
+        "child": "ipass-hypothetical-exceptions-49",
+        "request_exactly_equal_to_reference": true,
+        "original_result_fields_preserved": true
+      }
+    ],
+    "corpus_projection_matches_explicit_reference": true,
+    "corpus_count": {
+      "stating": 2,
+      "trials": 2
+    },
+    "snapshot_unchanged": true
+  },
+  "revision_consequence": {
+    "changed_assumption": "hypothetical maximum exceptions: 48 -> 49, not a clinician's choice",
+    "before_remaining": [
+      "requires_never",
+      "unrestricted"
+    ],
+    "after_remaining": [
+      "no_joint",
+      "requires_never",
+      "unrestricted"
+    ],
+    "before_common_consequence": {
+      "result": "UNDETERMINED",
+      "status": null,
+      "basis": "All remaining declared candidate designs; includes the support of eliminations."
+    },
+    "after_common_consequence": {
+      "result": "UNDETERMINED",
+      "status": null,
+      "basis": "All remaining declared candidate designs; includes the support of eliminations."
+    }
+  },
+  "clinical_choices_recorded": []
+}

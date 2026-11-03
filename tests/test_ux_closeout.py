@@ -17,32 +17,15 @@ from TrialLedger.record_access import MAX_BYTES, MIN_BYTES, bounded_view, respon
 
 
 def test_default_discovery_is_small_and_points_to_every_focused_guide():
+    from TrialLedger.layer2 import service
+
     reply = run({"operation": "describe"})
     assert reply["code"] == "complete" and response_bytes(reply) < 8_192
     overview = reply["result"]
     assert "worked_session" not in overview and "tagged_model" not in overview
-    assert set(overview["discovery"]) == {
-        "overview",
-        "entailment",
-        "coordinates",
-        "corpus",
-        "design_bounds",
-        "signals",
-        "interpretations",
-        "source_assertions",
-        "worked_session",
-        "full",
-    }
-    assert len(overview["availability"]["built"]) == 7
-    operations = {
-        "entailment",
-        "coordinates",
-        "corpus",
-        "design_bounds",
-        "signals",
-        "interpretations",
-        "source_assertions",
-    }
+    operations = set(service.OPERATIONS) - {"describe"}
+    assert set(overview["discovery"]) == operations | {"overview", "worked_session", "full"}
+    assert len(overview["availability"]["built"]) == len(operations)
     for operation in sorted(operations):
         focused = run(overview["discovery"][operation])["result"]
         assert run(focused["example"])["code"] == "complete"

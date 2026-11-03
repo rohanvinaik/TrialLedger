@@ -1,0 +1,153 @@
+{
+  "operation": "signals",
+  "signals": [
+    {
+      "id": "hypothetical-week12-target",
+      "kind": "estimand",
+      "data": {
+        "scope": "hypothetical:new-AD-draft:adult-population:assigned-arm:week12:v1",
+        "version": "assistant-sensitivity-v1",
+        "id": "hypothetical-new-AD-target",
+        "definitions": {
+          "intercurrent_events": {
+            "ref": "hypothetical:new-AD:intercurrent_events",
+            "version": "1",
+            "status": "interpolated",
+            "resolution": "resolved",
+            "basis": [
+              "assistant:invented-new-study-sensitivity-not-registry-evidence-not-clinician-confirmed"
+            ]
+          },
+          "population": {
+            "ref": "hypothetical:new-AD:population",
+            "version": "1",
+            "status": "interpolated",
+            "resolution": "resolved",
+            "basis": [
+              "assistant:invented-new-study-sensitivity-not-registry-evidence-not-clinician-confirmed"
+            ]
+          },
+          "summary": {
+            "ref": "hypothetical:new-AD:summary",
+            "version": "1",
+            "status": "interpolated",
+            "resolution": "resolved",
+            "basis": [
+              "assistant:invented-new-study-sensitivity-not-registry-evidence-not-clinician-confirmed"
+            ]
+          },
+          "treatment": {
+            "ref": "hypothetical:new-AD:treatment",
+            "version": "1",
+            "status": "interpolated",
+            "resolution": "resolved",
+            "basis": [
+              "assistant:invented-new-study-sensitivity-not-registry-evidence-not-clinician-confirmed"
+            ]
+          },
+          "variable": {
+            "ref": "hypothetical:new-AD:week12-EASI-score",
+            "version": "1",
+            "status": "interpolated",
+            "resolution": "resolved",
+            "basis": [
+              "assistant:invented-new-study-sensitivity-not-registry-evidence-not-clinician-confirmed"
+            ]
+          }
+        },
+        "events": [
+          {
+            "id": "discontinuation",
+            "event_ref": {
+              "ref": "hypothetical:new-AD:treatment-discontinuation",
+              "version": "1",
+              "status": "interpolated",
+              "resolution": "resolved",
+              "basis": [
+                "assistant:invented-new-study-sensitivity-not-registry-evidence-not-clinician-confirmed"
+              ]
+            },
+            "strategy": "treatment_policy",
+            "status": "interpolated",
+            "resolution": "resolved",
+            "basis": [
+              "assistant:invented-new-study-sensitivity-not-registry-evidence-not-clinician-confirmed"
+            ]
+          }
+        ],
+        "requirements": [
+          {
+            "id": "week12-observed",
+            "event": "discontinuation",
+            "variable": "hypothetical:new-AD:week12-EASI-score",
+            "window": "hypothetical:nominal-week12-post-discontinuation",
+            "role": "observed_measurement",
+            "mode": "observed",
+            "relevance": "required",
+            "rule": {
+              "ref": "hypothetical:explicit-week12-observation-required",
+              "version": "1",
+              "status": "interpolated",
+              "resolution": "resolved",
+              "basis": [
+                "assistant:invented-new-study-sensitivity-not-registry-evidence-not-clinician-confirmed"
+              ]
+            }
+          }
+        ],
+        "collection_plan": [
+          {
+            "requirement": "week12-observed",
+            "action": "collect",
+            "status": "interpolated",
+            "resolution": "resolved",
+            "basis": [
+              "assistant:invented-new-study-sensitivity-not-registry-evidence-not-clinician-confirmed"
+            ]
+          }
+        ],
+        "data_state": [
+          {
+            "requirement": "week12-observed",
+            "mode": "observed",
+            "state": "unavailable",
+            "rule": {
+              "ref": "hypothetical:scenario-week12-observation-unavailable",
+              "version": "1",
+              "status": "interpolated",
+              "resolution": "resolved",
+              "basis": [
+                "assistant:invented-new-study-sensitivity-not-registry-evidence-not-clinician-confirmed"
+              ]
+            }
+          },
+          {
+            "requirement": "week12-observed",
+            "mode": "imputed",
+            "state": "available",
+            "rule": {
+              "ref": "hypothetical:scenario-carried-forward-value-available",
+              "version": "1",
+              "status": "interpolated",
+              "resolution": "resolved",
+              "basis": [
+                "assistant:invented-new-study-sensitivity-not-registry-evidence-not-clinician-confirmed"
+              ]
+            }
+          }
+        ],
+        "dependencies": null
+      },
+      "support": [
+        {
+          "id": "hypothetical-target-support",
+          "status": "interpolated",
+          "resolution": "resolved",
+          "basis": [
+            "assistant:invented-new-study-sensitivity-not-registry-evidence-not-clinician-confirmed"
+          ]
+        }
+      ]
+    }
+  ]
+}

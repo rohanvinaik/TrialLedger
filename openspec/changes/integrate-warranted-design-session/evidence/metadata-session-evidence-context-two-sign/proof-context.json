@@ -1,0 +1,22 @@
+{
+  "module_sha256": "3d05007883cc0363660ed911e841c8a098214c5f3df93d66c2a02131031752d0",
+  "function_sha256": {
+    "cause_kind": "84e2634f00e58dbabef0780cf20cc5523ef8288bb414a9cb4016025a21a80d3a",
+    "completion_code": "d8fa754bd53d3ea41a3c251b03db566cdd9e143bae5d22e33a669733657416e8",
+    "disposition_code": "d6822d5629e2a97d786966906bf6a98b5377cc5dcd1cd6546f2b19586d2eb531"
+  },
+  "globals": {
+    "CAUSE_KINDS": {
+      "count": 101,
+      "sha256": "8f3024faea1ac7ea0f207455d064b28a49331839d707253941097e818e1aec6b"
+    },
+    "DISPOSITIONS": {
+      "count": 9,
+      "sha256": "b269296dcda3fb4e195d458cdfdeeb0c109638f531b816bef94916d2d2063adc"
+    },
+    "RESULTS": {
+      "count": 64,
+      "sha256": "5f3ebdcd71354f7191f70f1a14d3cf90481a03af1306c6071df7c52ae6fa441e"
+    }
+  }
+}

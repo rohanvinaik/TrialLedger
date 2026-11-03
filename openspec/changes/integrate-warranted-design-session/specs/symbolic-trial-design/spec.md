@@ -2,6 +2,42 @@
 
 ## ADDED Requirements
 
+### Requirement: Information-conservation tests respect operation contracts
+The development harness SHALL exercise saved and discovery requests, immutable replay and declared unordered permutations. It SHALL test qualified irrelevance, standing weakening, immaterial uncertainty and fresh retraction, distinguishing global contradiction, default revision, candidate-family changes and computation limits. Reduced proofs SHALL NOT be treated as exhaustive dependencies.
+
+#### Scenario: Another sufficient support survives retraction
+- **WHEN** one of two independent supports is withdrawn
+- **THEN** fresh recomputation retains the answer under the remaining support without relabelling the earlier proof as complete dependency coverage
+
+### Requirement: Stage relationships retain population and counting identity
+The system SHALL distinguish permitted progression from supplied subset relationships, preserve exact counting units and local support, and reuse existing population checks for admitted relations. Compatibility SHALL NOT establish participant progression or population identity.
+
+#### Scenario: Induction evidence is offered for randomized maintenance
+- **WHEN** a baseline participant count concerns induction and a later stage is declared a subset
+- **THEN** the declared stage relation is checked without locating particular baseline participants in maintenance or transferring their profiles automatically
+
+#### Scenario: An unrelated transition remains pending
+- **WHEN** a candidate claim concerns an admitted transition and another transition is proposed
+- **THEN** the pending relation remains visible without weakening the independently supported claim; a shared unresolved study/snapshot binding still gates its dependent edges
+
+### Requirement: Finite tables expose coverage and conflicting actions
+The system SHALL check explicit finite domains and feasible combinations before coverage, action overlap and reachability, using existing proposition semantics and bounded work. It SHALL distinguish different-action ambiguity from same-action overlap and SHALL NOT infer sequential termination from static coverage.
+
+#### Scenario: An expanded cohort outcome has no action
+- **WHEN** a declared feasible six-person outcome is absent from every table guard
+- **THEN** coverage is not complete and the result retains the uncovered proposition without inventing a participant profile or choosing an action
+
+### Requirement: Estimand input checks preserve distinct information channels
+The system SHALL retain attributed definition components, event-specific strategies and explicitly bound requirement relevance. Collection alignment, actual input state and adopted dependency feasibility SHALL remain separate. Strategy labels SHALL NOT certify estimation or manufacture observation requirements.
+
+#### Scenario: Relevant follow-up stops at treatment discontinuation
+- **WHEN** an adopted relevance rule requires a post-discontinuation assessment but the collection plan stops at discontinuation
+- **THEN** the system reports the collection-plan mismatch and preserves the actual data state without declaring estimation categorically impossible
+
+#### Scenario: An observation is irrelevant to the declared estimand
+- **WHEN** the applicable requirement says an uncollected measurement is not required for this estimand
+- **THEN** it is not labelled relevant missing data and its raw availability state remains available for other estimands
+
 ### Requirement: Existing operations distinguish logical and operational state
 Every existing reasoning operation SHALL provide additive per-finding metadata preserving effective logical results and separate evidence, translation and computation causes. Mixed results SHALL remain separate. Completed request handling SHALL NOT imply completed reasoning; discovery and inspection SHALL NOT receive clinical verdicts.
 
@@ -15,7 +51,7 @@ Every existing reasoning operation SHALL provide additive per-finding metadata p
 
 #### Scenario: A finding is open before the session supplies question context
 - **WHEN** existing version-1 metadata reports open with standing, completion and causes but no normalized origin or coverage
-- **THEN** no design freedom is implied; the planned session refines that state from declared questions, dependencies, represented coverage and actual feasibility results
+- **THEN** no design freedom is implied; the managed session refines that state from declared questions, dependencies, represented coverage and actual feasibility results
 
 #### Scenario: Conditional findings have different standing
 - **WHEN** two findings are conditional but one has interpolated support and the other proposed support

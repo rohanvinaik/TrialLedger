@@ -29,6 +29,9 @@ def cases():
     description = run({"operation": "describe", "view": "full"})["result"]
     rows = [("discovery:" + name, request) for name, request in description["examples"].items()]
     rows.extend(("discovery:" + key, description[key]) for key in ("exception_example", "binding_example"))
+    from TrialLedger.layer2 import design_session_guide
+
+    rows.append(("discovery:design_session_revision", design_session_guide.REVISION_EXAMPLE))
     bound_binding = copy.deepcopy(description["binding_example"])
     bound_binding.update(
         operation="design_bounds",
@@ -52,7 +55,13 @@ def cases():
     rows.extend(
         ("corpus:" + name, item["request"]) for name, item in description["capability_examples"].items()
     )
-    for directory in ("source-bridge", "reasoning-admission", "partial-evidence", "interpretations"):
+    for directory in (
+        "source-bridge",
+        "reasoning-admission",
+        "partial-evidence",
+        "interpretations",
+        "design-session",
+    ):
         for path in sorted((ROOT / "examples" / directory).glob("*-request.json")):
             rows.append((directory + ":" + path.stem, json.loads(path.read_text())))
     return rows

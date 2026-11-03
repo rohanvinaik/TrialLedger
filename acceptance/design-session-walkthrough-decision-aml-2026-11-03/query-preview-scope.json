@@ -1,0 +1,7 @@
+{
+ "query": {
+  "filter.advanced": "(AREA[InterventionName]\"venetoclax\" OR AREA[InterventionOtherName]\"venetoclax\") AND AREA[Phase]PHASE1 AND AREA[OverallStatus]COMPLETED",
+  "query.cond": "Acute Myeloid Leukemia"
+ },
+ "rxnav": []
+}

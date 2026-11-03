@@ -15,6 +15,8 @@ Layer two already computes useful bounds, scoped consequences and rival interpre
 - Project corpus features from referenced premises, deriving admission from their complete support and origin. A known user choice, a derived witness and a source-stated criterion are different objects even when each has known support.
 - Replay all analyses from the revised snapshot initially. Return changed/withdrawn consequences and independent answers without relying on the assistant's memory or treating one minimal proof as every possible support.
 - Persist executable clinical acceptance cases from the fresh pull. Keep the larger joint-feasibility, version-space, information-accounting and grammar extensions as sequenced follow-ons, with explicit prerequisites rather than unbuilt helpers.
+- Add operation-aware information-conservation tests and bounded stage, decision-table and estimand contracts before completing session orchestration. Reuse the existing count, proposition and dependency engines; preserve per-check standing through their public consumers.
+- Rotate clinical walkthroughs by design structure as well as disease and phase. Content-independent threshold tests do not establish coverage of escalation, withdrawal, crossover or cluster designs.
 
 This is a deliberately bounded integration increment under `add-design-synthesis`, especially its tasks 7, 10 and 12. It does not finish that change or claim to classify every clause of an arbitrary protocol.
 

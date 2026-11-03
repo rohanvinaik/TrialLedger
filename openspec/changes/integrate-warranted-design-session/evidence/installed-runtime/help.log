@@ -1,0 +1,39 @@
+usage: trialledger [-h] {doctor,landscape,pull,verify,mcp,reason} ...
+
+TrialLedger gathers every ClinicalTrials.gov study that matches a question about clinical trials (a drug, a
+drug class, a disease, or trials by number) into a record an AI assistant answers from and a spreadsheet
+for the person who asked, every trial's dossier and the listings that compare them.
+Every value is a field of the registry's own record, or the result of a named, fixed rule over such fields,
+and says which; no language model supplies the trial facts. Your assistant answers from that saved record.
+Start with `trialledger doctor`, then
+`trialledger landscape`.
+
+Layer one is mechanical: request specific trials or a subset, and receive a clinical reference spreadsheet
+and matching evidence record for your assistant, containing registry facts and direct derivations only.
+Layer two is symbolic reasoning about trial design. Your assistant restates your criteria and questions as
+premises you confirm; the reason operation then computes whether something is required, ruled out,
+contradictory, or allowed but not required, with the criterion that decides it. It also narrows NSCLC
+settings and computes how common, unusual or patterned criteria are across trials you choose. Ask reason
+for its describe operation to discover the supported inputs, answer guide and a worked session. The
+complete automated trial writer is designed and partly built; its brief-to-protocol workflow is not yet
+integrated.
+
+options:
+  -h, --help            show this help message and exit
+
+commands:
+  {doctor,landscape,pull,verify,mcp,reason}
+    doctor              check what this computer or sandbox can do, before the
+                        first run
+    landscape           gather every trial matching a request, or trials by
+                        number, into a record and a spreadsheet
+    pull                save the registry's own records for a search, with two
+                        checked spreadsheets
+    verify              check that a saved landscape or pull folder still
+                        follows from its retained sources
+    mcp                 serve trial reference reports and separate reasoning
+                        to an assistant over MCP (stdio)
+    reason              layer two: check design requirements and explore
+                        comparable-trial patterns
+
+Each command explains itself: trialledger <command> --help.

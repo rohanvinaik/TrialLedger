@@ -1,0 +1,29 @@
+{
+  "format": 1,
+  "sources": [
+    {
+      "classification": "Historical source; only explicitly verified pure-function correspondence can be current.",
+      "original_production_or_helper_path": "TrialLedger/layer2/result_semantics.py",
+      "source_sha256": "3d05007883cc0363660ed911e841c8a098214c5f3df93d66c2a02131031752d0",
+      "stored": "TrialLedger/layer2/result_semantics.py.txt"
+    },
+    {
+      "classification": "Historical source; only explicitly verified pure-function correspondence can be current.",
+      "original_production_or_helper_path": "run_tool.py",
+      "source_sha256": "bba16ff341a7ca9b6075d65a956d172291f2fce3dc075426dbedc0f690006756",
+      "stored": "run_tool.py.txt"
+    },
+    {
+      "classification": "Historical source; only explicitly verified pure-function correspondence can be current.",
+      "original_production_or_helper_path": "tests/test_metadata_vocabulary.py",
+      "source_sha256": "9adb068cc4a359ff6591f4fe32e4fae935dd695665bab6ed7053f35fb5cd6b72",
+      "stored": "tests/test_metadata_vocabulary.py.txt"
+    },
+    {
+      "classification": "Historical source; only explicitly verified pure-function correspondence can be current.",
+      "original_production_or_helper_path": "tests/test_result_semantics.py",
+      "source_sha256": "764bea2d3eab0b34437826909bc089c6e351cb59684996efa2f8185f58f27c3b",
+      "stored": "tests/test_result_semantics.py.txt"
+    }
+  ]
+}

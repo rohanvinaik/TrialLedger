@@ -1,0 +1,139 @@
+{
+  "completed_at_utc": "2026-11-03T23:07:12.314499+00:00",
+  "actual_cli_mcp_complete_parity_pairs": 5,
+  "payload_files": {
+    "README.md": {
+      "bytes": 6752,
+      "sha256": "509937b8d999d906c66f30286dd6831ebc717ddb5808b83d58bcddf41fd1873f"
+    },
+    "finding-summary.json": {
+      "bytes": 19041,
+      "sha256": "fb74c631c0fe0d312f150b6dc4b3010e3155d9bd8fad6eb99dfeace77395312f"
+    },
+    "gather-fetches.json": {
+      "bytes": 2095,
+      "sha256": "e7b80b1d107f8470e8dfa7b2bce8a052dfa42b33cdb9df68785bf25df81481e9"
+    },
+    "gather-manifest.json": {
+      "bytes": 2947,
+      "sha256": "b4a62e88b5442f107c99dc1c5b555eaf8335f3fe106c992f8fa56a1d834a5fd0"
+    },
+    "gather-request.json": {
+      "bytes": 128,
+      "sha256": "fff381561d2c28d512b80c9c083e2cfc8035cead7b076dde513a8bbdb3bd80e9"
+    },
+    "gather-resolution.json": {
+      "bytes": 1821,
+      "sha256": "ddd65aa47874cc449dba1926cb3855597d27b72ef6f0897e7b43869e4c710950"
+    },
+    "gather-scope.json": {
+      "bytes": 239,
+      "sha256": "a31c2baa1b0c7c76cce355165d30bbe3d83bc486c6a3dfccf29a301de8c9bdf5"
+    },
+    "local-retention.json": {
+      "bytes": 7292,
+      "sha256": "67e30698108d47fadf26dde94f732b8d49c6eff0f6d606b887cb9c10b72ec5fa"
+    },
+    "preflight-verification.json": {
+      "bytes": 494,
+      "sha256": "fb70dff85459def1f6a92618d1141068c2c774a43b7c228f06b0808f3c9bca8a"
+    },
+    "preflight.json": {
+      "bytes": 1628,
+      "sha256": "dbf5674df10409ed47aba558190c7fee20a7d935b875c6370dcf312f824b30aa"
+    },
+    "requests/NCT00745433-source-age.json": {
+      "bytes": 9428,
+      "sha256": "98438884b13cdb01b6b91d3539c43e9088d2b0aa4500f331889967098ed34e72"
+    },
+    "requests/NCT01318564-source-age.json": {
+      "bytes": 19944,
+      "sha256": "d2b1970eadf657646056f73222a519f596f716bbdc8b5b376578015092273051"
+    },
+    "requests/NCT02475499-source-age.json": {
+      "bytes": 37070,
+      "sha256": "4f3cde2dd06a2ed96f36d5f504f7a67e9c22c718f36defad51997c6ad25878ef"
+    },
+    "requests/session-age65-revision.json": {
+      "bytes": 426768,
+      "sha256": "6eaa10667f463aca9bd64a84a1f2b16b689df13ccd085b025930b493254b93f0"
+    },
+    "requests/session-baseline.json": {
+      "bytes": 81994,
+      "sha256": "6cb5c6b02a3b405bba4568f7ef866a7198d0176810d31bea0bb4e1f6b73e4bf2"
+    },
+    "results/NCT00745433-source-age.json": {
+      "bytes": 26026,
+      "sha256": "95f395848bed6d5f40c838f3d29a94c55fe33d3b786307438666dbb687e3fea8"
+    },
+    "results/NCT01318564-source-age.json": {
+      "bytes": 30355,
+      "sha256": "10af5933abdf6d5c4d2df63144084fd6f68871fba04d3df79ccae0df83ea7ab1"
+    },
+    "results/NCT02475499-source-age.json": {
+      "bytes": 33631,
+      "sha256": "81b81979dc1e1a77a2ed23816caa97a44a048d971c60762e81b9404c569ff61c"
+    },
+    "results/session-age65-revision.json": {
+      "bytes": 487012,
+      "sha256": "7f0a0a95b2e30602227857e241939ca9fa85513d3e9f5c9a0028b92c607318be"
+    },
+    "results/session-baseline.json": {
+      "bytes": 250350,
+      "sha256": "6c09a103f47ba97cb146e45d8ec6b79eea61f6895919f1c0a819ff1cdcaa8669"
+    },
+    "revision-checks.json": {
+      "bytes": 2431,
+      "sha256": "b7f2d1e235012f89470f4692e4c700c07cb3b255d79be15f17edb00316a0243d"
+    },
+    "runtime-receipt.json": {
+      "bytes": 13252,
+      "sha256": "493104c782dcb3ecd0e5dcbab9d32f49c420b705b8f5766825a6ebbb4c2b6eba"
+    },
+    "selection.json": {
+      "bytes": 2902,
+      "sha256": "85bd16af9c7b5910aa035e8493e06af86aea2425b5f6bcd9d7958a7757a4500b"
+    },
+    "session-input-contract.json": {
+      "bytes": 17925,
+      "sha256": "bcae0bacaace023f637fa917bfb2d219795363daef43619802c67411afbbc35a"
+    },
+    "source-inventory.json": {
+      "bytes": 1541,
+      "sha256": "cadfa92352f7fcce487840b43ce63c51d3c8bd0fdba18af7f21a9bfa5492fccf"
+    },
+    "source-reading.md": {
+      "bytes": 3804,
+      "sha256": "edd4cf84f2f796b97d2c712daa691bd052ead80b6001020b2b839bd5c19e3b56"
+    },
+    "verification-receipt.json": {
+      "bytes": 441,
+      "sha256": "8f939bb82ccc581282b7c8def2a46591f337d29c74fd5067163ec00db01770e3"
+    },
+    "working-brief.md": {
+      "bytes": 2354,
+      "sha256": "963465b51be2d61baafd312e3673a86651635eb48e988f6a7ba9f4a427959745"
+    }
+  },
+  "payload_bytes": 1489665,
+  "unclassified_effective_findings": [],
+  "verify_exit": 0,
+  "existing_runtime_files_unchanged": 80,
+  "clinical_confirmation": false,
+  "new_trial_choices": "Explicit invented acceptance fixture, not a real user assertion",
+  "source_mutation": false,
+  "scope": "Observational source-grounded historical age floors, proposed Ontario interpretation, fictional brief revision and full dependency replay",
+  "helper_repairs": [
+    "Reuse identical serialized alternative query",
+    "Match payload and ledger assertion IDs",
+    "Use discovered cohort_ref and string context",
+    "Read metadata from actual session child envelope layout"
+  ],
+  "clinical_limits": [
+    "Age restriction only, not complete eligibility",
+    "No comparator restriction automatically adopted",
+    "No Ontario reading promoted",
+    "No conflicting source design/schedule channel resolved",
+    "No effect estimate or medical recommendation"
+  ]
+}

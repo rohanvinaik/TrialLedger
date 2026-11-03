@@ -1,0 +1,2079 @@
+{
+  "operation": "source_assertions",
+  "study": {
+    "protocolSection": {
+      "identificationModule": {
+        "nctId": "NCT04821830",
+        "orgStudyIdInfo": {
+          "id": "HUM00166765"
+        },
+        "secondaryIdInfos": [
+          {
+            "id": "R21NS114749",
+            "type": "NIH",
+            "link": "https://reporter.nih.gov/quickSearch/R21NS114749"
+          }
+        ],
+        "organization": {
+          "fullName": "University of Michigan",
+          "class": "OTHER"
+        },
+        "briefTitle": "Vigor and the LDR in Parkinson Disease",
+        "officialTitle": "Vigor and the LDR in Parkinson Disease"
+      },
+      "statusModule": {
+        "statusVerifiedDate": "2025-06",
+        "overallStatus": "COMPLETED",
+        "expandedAccessInfo": {
+          "hasExpandedAccess": false
+        },
+        "startDateStruct": {
+          "date": "2020-02-12",
+          "type": "ACTUAL"
+        },
+        "primaryCompletionDateStruct": {
+          "date": "2024-04-25",
+          "type": "ACTUAL"
+        },
+        "completionDateStruct": {
+          "date": "2024-04-25",
+          "type": "ACTUAL"
+        },
+        "studyFirstSubmitDate": "2021-03-10",
+        "studyFirstSubmitQcDate": "2021-03-27",
+        "studyFirstPostDateStruct": {
+          "date": "2021-03-30",
+          "type": "ACTUAL"
+        },
+        "resultsFirstSubmitDate": "2025-04-23",
+        "resultsFirstSubmitQcDate": "2025-06-30",
+        "resultsFirstPostDateStruct": {
+          "date": "2025-07-18",
+          "type": "ACTUAL"
+        },
+        "lastUpdateSubmitDate": "2025-06-30",
+        "lastUpdatePostDateStruct": {
+          "date": "2025-07-18",
+          "type": "ACTUAL"
+        }
+      },
+      "sponsorCollaboratorsModule": {
+        "responsibleParty": {
+          "type": "PRINCIPAL_INVESTIGATOR",
+          "investigatorFullName": "Roger L. Albin",
+          "investigatorTitle": "Professor of Neurology",
+          "investigatorAffiliation": "University of Michigan"
+        },
+        "leadSponsor": {
+          "name": "University of Michigan",
+          "class": "OTHER"
+        },
+        "collaborators": [
+          {
+            "name": "National Institute of Neurological Disorders and Stroke (NINDS)",
+            "class": "NIH"
+          }
+        ]
+      },
+      "oversightModule": {
+        "oversightHasDmc": true,
+        "isFdaRegulatedDrug": true,
+        "isFdaRegulatedDevice": false,
+        "isUsExport": false
+      },
+      "descriptionModule": {
+        "briefSummary": "Parkinson disease (PD) is a common disorder in which reduced speed of movement results from inadequate brain production of the chemical dopamine. The most effective treatment for PD is the drug levo-dopa, which partially replaces brain dopamine. Despite decades of successful use, how levo-dopa improves speed of movement in PD is not understood. This observational study recruits participants who have been prescribed levo-dopa by their treating physicians. Before their first dose, immediately after their first dose and later, when their dose has been stabilized, they will engage with the research team to participate in a few simple experiments to measure speed, grip strength, tremor, and stability (on and off of treatment). The purpose of these experiments is to understand how levo-dopa treatment in Parkinson disease enhances movement speed. An important but not understood component of levo-dopa action, the Long Duration Response (LDR), lasts for days to weeks. A basic function of dopamine signaling in the brain is modulation of motivation - the coupling between effort and action values. These experiments will determine if the LDR is associated with relative normalization of motivation function in the brain. The motivation behavior of recently diagnosed PD participants will be examined before and after treatment with levo-dopa to determine if the magnitude of the LDR is correlated with improvements in motivation behavior.",
+        "detailedDescription": "Dopamine replacement therapy (DRT) is the standard symptomatic treatment for early to moderate Parkinson disease (PD). In early to moderate PD, the most important DRT component is the Long Duration Response (LDR), a pharmacodynamic effect that builds up over the course of days-weeks and can be induced by dopamine agonists. Despite its effectiveness, DRT actions are poorly understood and the basis of the LDR is unknown. As the LDR wanes in advancing disease, PD patients develop troublesome motor fluctuations and increasing disability. Improved understanding of the LDR has the potential to prolong the duration of its effects and could have a significant positive effect on clinical practice.\n\nThe kinetics of the LDR suggest long-term plastic changes in striatal function. Recent studies of striatal dopamine actions in PD subjects and experimental animals indicate that striatal dopaminergic neurotransmission regulates \"vigor,\" the force, velocity, or amplitude of actions. Vigor is closely allied to the concept that striatal dopaminergic neurotransmission mediates motivation, which involves the assessment of act utility and the appropriate scaling of actions to perceived rewards. Recent theoretical and experimental results suggest that tonic striatal dopamine signaling, mimicked by dopamine agonist administration, is a key determinant of movement vigor. Convergent clinical pharmacologic and experimental data lead to a strong hypothesis that the LDR results from chronic DRT partially restoring motivational coupling of effort to perceived reward and movement vigor. Prior experiments examining vigor in PD subjects did not take the LDR into account, resulting in incomplete examinations of the role of vigor deficits in PD.\n\nRecent non-human primate work on the control and vigor of saccadic eye movements indicates the existence of basal ganglia circuit changes that stably encode motor action values for prolonged periods. Striatal dopaminergic neurotransmission is critical for establishing this remarkably stable form of value-action coupling. This phenomenon is a plausible circuit level mechanism underlying the LDR.\n\nOur long-term goal is to understand the clinically relevant actions of DRT. The primary objective of our proposal is to test the hypothesis that the LDR results from partial restoration of normal action vigor by reinstating the link between motivation and effort. Our secondary objective is to explore potential mechanisms underlying the LDR. The rationale for these experiments is that better understanding of the LDR, a clinically crucial component of DRT action, will lead to improved symptomatic therapy.\n\nWe will study recently diagnosed PD subjects. All subjects will undergo standard evaluations of clinical, cognitive, and motivational features. Subjects will perform incentive motivation tasks assessing movement vigor in response to monetary incentives. Two complementary tasks, one based on modulation of movement velocity and one based on modulation of grip strength, will be employed. To assess whether the recently described stable action-value coupling for saccades is relevant to the LDR, subjects will perform a task that measures saccadic eye movement vigor in response to stable value signals learned prior to LDR induction. Subjects will perform all tasks before and after LDR induction in both the \"practical off\" and post-acute treatment states.\n\nSpecific Aim 1: To use incentive motivation tasks to evaluate the coupling between motivation and movement vigor in recently treated PD subjects before and after LDR induction.\n\nHypothesis 1A: LDR induction will result in partial restoration of movement vigor in response to monetary incentives in PD subjects in the \"practical off\" state.\n\nHypothesis 1B: The magnitude of partially restored movement vigor in response to monetary incentives will correlate with reduced bradykinesia in PD subjects in the \"practical off\" state.\n\nHypothesis 1C: Identical effects will be found with an incentive motivation task based on movement amplitude and one based on grip strength.\n\nSpecific Aim 2: To use a saccadic eye movement task to assess saccadic eye movement vigor in response to stable value signals in recently treated PD subjects before and after LDR induction.\n\nHypothesis 2: LDR induction will result in partial restoration of saccadic eye movement vigor in response to previously learned stable value signals in PD subjects in the \"practical off\" state.\n\nValidation of our hypotheses would have considerable impact by identifying a specific functional process underlying the LDR and a potential mechanism of the LDR. This will facilitate research into LDR mechanisms, provide a rational basis for developing valid animal models of the LDR, and open a new path towards improved symptomatic management of PD."
+      },
+      "conditionsModule": {
+        "conditions": [
+          "Parkinson Disease"
+        ],
+        "keywords": [
+          "Parkinson's Disease"
+        ]
+      },
+      "designModule": {
+        "studyType": "INTERVENTIONAL",
+        "phases": [
+          "PHASE4"
+        ],
+        "designInfo": {
+          "allocation": "NON_RANDOMIZED",
+          "interventionModel": "SINGLE_GROUP",
+          "primaryPurpose": "TREATMENT",
+          "maskingInfo": {
+            "masking": "SINGLE",
+            "whoMasked": [
+              "OUTCOMES_ASSESSOR"
+            ]
+          }
+        },
+        "enrollmentInfo": {
+          "count": 19,
+          "type": "ACTUAL"
+        }
+      },
+      "armsInterventionsModule": {
+        "armGroups": [
+          {
+            "label": "Experiment 1: Primary Outcomes (MDS-UPDRS, Joystick Task, Tapping Speed)",
+            "type": "OTHER",
+            "description": "Participants will undergo evaluation of the relationship between the LDR and movement vigor. All participants will undergo standard evaluation with standard clinical rating scales and three outcome measures: Tapping Speed Task; Joystick Movement Task; and completion of MDS-UPDRS.\n\ncarbidopa/levodopa, as prescribed by treating physician: There will be 4 measurement states: at baseline prior to chronic treatment initiation (OFF-No LDR); at baseline after a standard, acute oral dose (25/250 carbidopa/L-dopa), referenced in the protocol, but prescribed and provided by their prescribing physician as standard of care initial dosage (ON-No LDR); 2 months after initiation of chronic, stable L-dopa treatment (amounts and sequences as prescribed by treating physicians) but with no L-dopa for 10-12 hours prior to evaluation (Practical OFF- LDR); and after resuming subjects' usual physician-prescribed L-dopa dose (ON-LDR).",
+            "interventionNames": [
+              "Drug: carbidopa/levodopa, as prescribed by treating physician"
+            ]
+          },
+          {
+            "label": "Experiment 2: Primary Outcome (Value Driven Attentional Oculomotor Capture)",
+            "type": "OTHER",
+            "description": "Participants will undergo evaluation of the relationship between the LDR and movement vigor. All participants will undergo standard evaluation with standard clinical rating scales and the outcome measure: Grip Strength Task - Measurement of Incentive-Outcome Coupling - Movement Vigor.\n\ncarbidopa/levodopa, as prescribed by treating physician: There will be 4 measurement states: at baseline prior to chronic treatment initiation (OFF-No LDR); at baseline after a standard, acute oral dose (25/250 carbidopa/L-dopa), referenced in the protocol, but prescribed and provided by their prescribing physician as standard of care initial dosage (ON-No LDR); 2 months after initiation of chronic, stable L-dopa treatment (amounts and sequences as prescribed by treating physicians) but with no L-dopa for 10-12 hours prior to evaluation (Practical OFF- LDR); and after resuming subjects' usual physician-prescribed L-dopa dose (ON-LDR).",
+            "interventionNames": [
+              "Drug: carbidopa/levodopa, as prescribed by treating physician"
+            ]
+          }
+        ],
+        "interventions": [
+          {
+            "type": "DRUG",
+            "name": "carbidopa/levodopa, as prescribed by treating physician",
+            "description": "There will be 4 measurement states:\n\nat baseline prior to chronic treatment initiation (OFF-No LDR); at baseline after a standard, acute oral dose (25/250 carbidopa/L-dopa), referenced in the protocol, but prescribed and provided by their prescribing physician as standard of care initial dosage (ON-No LDR); 2 months after initiation of chronic, stable L-dopa treatment (amounts and sequences as prescribed by treating physicians) but with no L-dopa for 10-12 hours prior to evaluation (Practical OFF- LDR); and after resuming subjects' usual physician-prescribed L-dopa dose (ON-LDR).",
+            "armGroupLabels": [
+              "Experiment 1: Primary Outcomes (MDS-UPDRS, Joystick Task, Tapping Speed)",
+              "Experiment 2: Primary Outcome (Value Driven Attentional Oculomotor Capture)"
+            ],
+            "otherNames": [
+              "Parcopa, Sinemet"
+            ]
+          }
+        ]
+      },
+      "outcomesModule": {
+        "primaryOutcomes": [
+          {
+            "measure": "Tapping Speed Task - Experiment 1",
+            "description": "Measurement of bradykinesia. With the hand most affected by PD, participants were instructed to alternately tap 2 manual counters spaced 20 cm apart as rapidly as possible for 1 minute. The longer participants took to complete the task indicated a higher degree of bradykinesia affecting them. This task was administered over the course of 4 visits during the following conditions:\n\nVisit 1. Baseline prior to chronic treatment initiation (Treatment Naïve Subject); Visit 2. After the initial, standard, acute oral dosage (SDR: Treatment Naïve Subject After Acute LDopa); Visit 3. 2-4 months after start of chronic treatment following Visit 2, stable LDopa treatment (as prescribed by treating physicians), but with no LDopa for 10-12 hours prior to Visit 3 (LDR: Chronically Treated - \"Practical Off\" State); and Visit 4. After resuming participants' usual physician-prescribed LDopa dose (SDR + LDR: Chronically Treated - After Usual LDopa).",
+            "timeFrame": "Visit 1 at Baseline, Visit 2 up to 2 weeks after baseline, Visit 3 up to 2-4 months after baseline, and Visit 4 up to 4 months after baseline"
+          },
+          {
+            "measure": "Value Driven Attentional Oculomotor Capture Task - Experiment 2 - No Distractor Value",
+            "description": "Participants did a saccadic eye movement task involving rapid-eye movements from one point to another to assess the functionality of eye muscles and the brain's ability to control these movements. Participants had an initial training session and then had to complete the task with no distractors, low distractors, and high distractors. This task was administered over the course of 4 visits during the following conditions:\n\nVisit 1. Baseline prior to chronic treatment initiation (Treatment Naïve Subject); Visit 2. After the initial, standard, acute oral dosage (SDR: Treatment Naïve Subject After Acute LDopa); Visit 3. 2-4 months after start of chronic treatment following Visit 2, stable LDopa treatment (as prescribed by treating physicians), but with no LDopa for 10-12 hours prior to Visit 3 (LDR: Chronically Treated - \"Practical Off\" State); and Visit 4. After resuming participants' usual physician-prescribed LDopa dose (SDR + LDR: Chronically Treated - After Usual LDopa).",
+            "timeFrame": "Visit 1 at Baseline, Visit 2 up to 2 weeks after baseline, Visit 3 up to 2-4 months after baseline, and Visit 4 up to 4 months after baseline"
+          },
+          {
+            "measure": "Value Driven Attentional Oculomotor Capture Task - Experiment 2 - Low Distractor Value",
+            "description": "Participants did a saccadic eye movement task involving rapid-eye movements from one point to another to assess the functionality of eye muscles and the brain's ability to control these movements. Participants had an initial training session and then had to complete the task with no distractors, low distractors, and high distractors. This task was administered over the course of 4 visits during the following conditions:\n\nVisit 1. Baseline prior to chronic treatment initiation (Treatment Naïve Subject); Visit 2. After the initial, standard, acute oral dosage (SDR: Treatment Naïve Subject After Acute LDopa); Visit 3. 2-4 months after start of chronic treatment following Visit 2, stable LDopa treatment (as prescribed by treating physicians), but with no LDopa for 10-12 hours prior to Visit 3 (LDR: Chronically Treated - \"Practical Off\" State); and Visit 4. After resuming participants' usual physician-prescribed LDopa dose (SDR + LDR: Chronically Treated - After Usual LDopa).",
+            "timeFrame": "Visit 1 at Baseline, Visit 2 up to 2 weeks after baseline, Visit 3 up to 2-4 months after baseline, and Visit 4 up to 4 months after baseline"
+          },
+          {
+            "measure": "Value Driven Attentional Oculomotor Capture Task - Experiment 2 - High Distractor Value",
+            "description": "Participants did a saccadic eye movement task involving rapid-eye movements from one point to another to assess the functionality of eye muscles and the brain's ability to control these movements. Participants had an initial training session and then had to complete the task with no distractors, low distractors, and high distractors. This task was administered over the course of 4 visits during the following conditions:\n\nVisit 1. Baseline prior to chronic treatment initiation (Treatment Naïve Subject); Visit 2. After the initial, standard, acute oral dosage (SDR: Treatment Naïve Subject After Acute LDopa); Visit 3. 2-4 months after start of chronic treatment following Visit 2, stable LDopa treatment (as prescribed by treating physicians), but with no LDopa for 10-12 hours prior to Visit 3 (LDR: Chronically Treated - \"Practical Off\" State); and Visit 4. After resuming participants' usual physician-prescribed LDopa dose (SDR + LDR: Chronically Treated - After Usual LDopa).",
+            "timeFrame": "Visit 1 at Baseline, Visit 2 up to 2 weeks after baseline, Visit 3 up to 2-4 months after baseline, and Visit 4 up to 4 months after baseline"
+          },
+          {
+            "measure": "Joystick Movement Task - Experiment 1 - Low Incentive",
+            "description": "All participants were tasked with pushing a joystick with the hand most affected by PD symptoms in response to monetary incentives. Participants were presented with incentives of low ($5), medium ($10), and high value ($20) on each treatment day, and their movement time in pushing the joystick was measured over the course of 4 visits during the following conditions:\n\nVisit 1: Baseline prior to chronic treatment initiation (Treatment Naïve Subject); Visit 2: After the initial, standard, acute oral dosage (SDR: Treatment Naïve Subject After Acute LDopa); Visit 3: 2-4 months after start of chronic treatment following Visit 2, stable LDopa treatment (as prescribed by treating physicians), but with no LDopa for 10-12 hours prior to Visit 3 (LDR: Chronically Treated - \"Practical Off\" State); and Visit 4: After resuming participants' usual physician-prescribed LDopa dose (SDR + LDR: Chronically Treated - After Usual LDopa). Results reflect participants' response to the low incentive.",
+            "timeFrame": "Visit 1 at Baseline, Visit 2 up to 2 weeks after baseline, Visit 3 up to 2-4 months after baseline, and Visit 4 up to 4 months after baseline"
+          },
+          {
+            "measure": "Joystick Movement Task - Experiment 1 - Medium Incentive",
+            "description": "All participants were tasked with pushing a joystick with the hand most affected by PD symptoms in response to monetary incentives. Participants were presented with incentives of low ($5), medium ($10), and high value ($20) on each treatment day, and their movement time in pushing the joystick was measured over the course of 4 visits during the following conditions:\n\nVisit 1: Baseline prior to chronic treatment initiation (Treatment Naïve Subject); Visit 2: After the initial, standard, acute oral dosage (SDR: Treatment Naïve Subject After Acute LDopa); Visit 3: 2-4 months after start of chronic treatment following Visit 2, stable LDopa treatment (as prescribed by treating physicians), but with no LDopa for 10-12 hours prior to Visit 3 (LDR: Chronically Treated - \"Practical Off\" State); and Visit 4: After resuming participants' usual physician-prescribed LDopa dose (SDR + LDR: Chronically Treated - After Usual LDopa). Results reflect participants' response to the medium incentive.",
+            "timeFrame": "Visit 1 at Baseline, Visit 2 up to 2 weeks after baseline, Visit 3 up to 2-4 months after baseline, and Visit 4 up to 4 months after baseline"
+          },
+          {
+            "measure": "Joystick Movement Task - Experiment 1 - High Incentive",
+            "description": "All participants were tasked with pushing a joystick with the hand most affected by PD symptoms in response to monetary incentives. Participants were presented with incentives of low ($5), medium ($10), and high value ($20) on each treatment day, and their movement time in pushing the joystick was measured over the course of 4 visits during the following conditions:\n\nVisit 1: Baseline prior to chronic treatment initiation (Treatment Naïve Subject); Visit 2: After the initial, standard, acute oral dosage (SDR: Treatment Naïve Subject After Acute LDopa); Visit 3: 2-4 months after start of chronic treatment following Visit 2, stable LDopa treatment (as prescribed by treating physicians), but with no LDopa for 10-12 hours prior to Visit 3 (LDR: Chronically Treated - \"Practical Off\" State); and Visit 4: After resuming participants' usual physician-prescribed LDopa dose (SDR + LDR: Chronically Treated - After Usual LDopa). Results reflect participants' response to the high incentive.",
+            "timeFrame": "Visit 1 at Baseline, Visit 2 up to 2 weeks after baseline, Visit 3 up to 2-4 months after baseline, and Visit 4 up to 4 months after baseline"
+          },
+          {
+            "measure": "Grip Force Task - Experiment 1 - Low Incentive",
+            "description": "Participants were tasked with modulating their grip strength in response to monetary incentives. With the hand most affected by PD symptoms, participants squeezed a dynamometer. Participants were presented with incentives of low ($5), medium ($10), and high value ($20) on each treatment day, and their time in reaching their maximum grip strength was measured over the course of 4 visits during the following conditions:\n\nVisit 1. Baseline prior to chronic treatment initiation (Treatment Naïve Subject); Visit 2. After the initial, standard, acute oral dosage (SDR: Treatment Naïve Subject After Acute LDopa); Visit 3. 2-4 months after start of chronic treatment following Visit 2, stable LDopa treatment (as prescribed by treating physicians), but with no LDopa for 10-12 hours prior to Visit 3 (LDR: Chronically Treated - \"Practical Off\" State); and Visit 4. After resuming participants' usual physician-prescribed LDopa dose (SDR + LDR: Chronically Treated - After Usual LDopa).",
+            "timeFrame": "Visit 1 at Baseline, Visit 2 up to 2 weeks after baseline, Visit 3 up to 2-4 months after baseline, and Visit 4 up to 4 months after baseline"
+          },
+          {
+            "measure": "Grip Force Task - Experiment 1 - Medium Incentive",
+            "description": "Participants were tasked with modulating their grip strength in response to monetary incentives. With the hand most affected by PD symptoms, participants squeezed a dynamometer. Participants were presented with incentives of low ($5), medium ($10), and high value ($20) on each treatment day, and their time in reaching their maximum grip strength was measured over the course of 4 visits during the following conditions:\n\nVisit 1. Baseline prior to chronic treatment initiation (Treatment Naïve Subject); Visit 2. After the initial, standard, acute oral dosage (SDR: Treatment Naïve Subject After Acute LDopa); Visit 3. 2-4 months after start of chronic treatment following Visit 2, stable LDopa treatment (as prescribed by treating physicians), but with no LDopa for 10-12 hours prior to Visit 3 (LDR: Chronically Treated - \"Practical Off\" State); and Visit 4. After resuming participants' usual physician-prescribed LDopa dose (SDR + LDR: Chronically Treated - After Usual LDopa).",
+            "timeFrame": "Visit 1 at Baseline, Visit 2 up to 2 weeks after baseline, Visit 3 up to 2-4 months after baseline, and Visit 4 up to 4 months after baseline"
+          },
+          {
+            "measure": "Grip Force Task - Experiment 1 - High Incentive",
+            "description": "Participants were tasked with modulating their grip strength in response to monetary incentives. With the hand most affected by PD symptoms, participants squeezed a dynamometer. Participants were presented with incentives of low ($5), medium ($10), and high value ($20) on each treatment day, and their time in reaching their maximum grip strength was measured over the course of 4 visits during the following conditions:\n\nVisit 1. Baseline prior to chronic treatment initiation (Treatment Naïve Subject); Visit 2. After the initial, standard, acute oral dosage (SDR: Treatment Naïve Subject After Acute LDopa); Visit 3. 2-4 months after start of chronic treatment following Visit 2, stable LDopa treatment (as prescribed by treating physicians), but with no LDopa for 10-12 hours prior to Visit 3 (LDR: Chronically Treated - \"Practical Off\" State); and Visit 4. After resuming participants' usual physician-prescribed LDopa dose (SDR + LDR: Chronically Treated - After Usual LDopa).",
+            "timeFrame": "Visit 1 at Baseline, Visit 2 up to 2 weeks after baseline, Visit 3 up to 2-4 months after baseline, and Visit 4 up to 4 months after baseline"
+          },
+          {
+            "measure": "MDS-Unified Parkinson's Disease Rating Scale (MDS-UPDRS): Part III - Experiment 1",
+            "description": "Movement Disorder Society-Sponsored Revision of the Unified Parkinson's Disease Rating Scale (MDS-UPDRS): Part III, Motor Examination. Scores range from 0 to 86. A higher score indicates worse motor performance. Participants completed this scale at each visit over the course of 4 visits during the following conditions:\n\nVisit 1. Baseline prior to chronic treatment initiation (Treatment Naïve Subject); Visit 2. After the initial, standard, acute oral dosage (SDR: Treatment Naïve Subject After Acute LDopa); Visit 3. 2-4 months after start of chronic treatment following Visit 2, stable LDopa treatment (as prescribed by treating physicians), but with no LDopa for 10-12 hours prior to Visit 3 (LDR: Chronically Treated - \"Practical Off\" State); and Visit 4. After resuming participants' usual physician-prescribed LDopa dose (SDR + LDR: Chronically Treated - After Usual LDopa).",
+            "timeFrame": "Visit 1 at Baseline, Visit 2 up to 2 weeks after baseline, Visit 3 up to 2-4 months after baseline, and Visit 4 up to 4 months after baseline"
+          }
+        ]
+      },
+      "eligibilityModule": {
+        "eligibilityCriteria": "Inclusion Criteria:\n\n* Diagnosis of Parkinson Disease\n* Previously Untreated or treated for \\<4 weeks\n* Mild to Moderate Parkinson disease (Hoehn \\& Yahr Stages I-II)\n* About to start treatment with a L-Dopa preparation (Sinemet)\n\nExclusion Criteria:\n\n* The presence of other neurologic disease or findings on examination\n* Depression: Geriatric Depression Scale score \\>11\n* Use of dopamine agonists or stimulants\n* Evidence of a stroke or mass lesion on prior structural brain imaging (MRI or CT)\n* Evidence of any confounding medical or psychiatric problem that would preclude task participation.\n* Participants with cognitive impairment that might impair their capacity to provide informed consent.",
+        "healthyVolunteers": false,
+        "sex": "ALL",
+        "minimumAge": "45 Years",
+        "maximumAge": "90 Years",
+        "stdAges": [
+          "ADULT",
+          "OLDER_ADULT"
+        ]
+      },
+      "contactsLocationsModule": {
+        "overallOfficials": [
+          {
+            "name": "Roger Albin",
+            "affiliation": "University of Michigan",
+            "role": "PRINCIPAL_INVESTIGATOR"
+          }
+        ],
+        "locations": [
+          {
+            "facility": "University of Michigan",
+            "city": "Ann Arbor",
+            "state": "Michigan",
+            "zip": "48109",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 42.27756,
+              "lon": -83.74088
+            }
+          }
+        ]
+      },
+      "ipdSharingStatementModule": {
+        "ipdSharing": "NO"
+      }
+    },
+    "resultsSection": {
+      "participantFlowModule": {
+        "groups": [
+          {
+            "id": "FG000",
+            "title": "Experiment 1: Primary Outcomes (MDS-UPDRS, Joystick Task, Tapping Speed)",
+            "description": "Participants will undergo evaluation of the relationship between the Long Duration Response (LDR) and movement vigor. All participants will undergo standard evaluation with standard clinical rating scales and three outcome measures: Tapping Speed Task - Measurement of Bradykinesia; Joystick Movement Task - Measurement of Incentive-Outcome Coupling - Movement Vigor; and completion of MDS-UPDRS.\n\ncarbidopa/levodopa, as prescribed by treating physician: There will be 4 measurement states: at baseline prior to chronic treatment initiation (OFF-No LDR); at baseline after a standard, acute oral dose (25/250 carbidopa/L-dopa), referenced in the protocol, but prescribed and provided by their prescribing physician as standard of care initial dosage (ON-No LDR); 2 months after initiation of chronic, stable L-dopa treatment (amounts and sequences as prescribed by treating physicians) but with no L-dopa for 10-12 hours prior to evaluation (Practical OFF- LDR); and after resuming subjects' usual physician-prescribed L-dopa dose (ON-LDR).\n\nParticipants included in Experiment 1 were not included in Experiment 2."
+          },
+          {
+            "id": "FG001",
+            "title": "Experiment 2: Primary Outcome (Value Driven Attentional Oculomotor Capture)",
+            "description": "Participants will undergo evaluation of the relationship between the LDR and movement vigor. All participants will undergo standard evaluation with standard clinical rating scales and the outcome measure: Grip Strength Task - Measurement of Incentive-Outcome Coupling - Movement Vigor.\n\ncarbidopa/levodopa, as prescribed by treating physician: There will be 4 measurement states: at baseline prior to chronic treatment initiation (OFF-No LDR); at baseline after a standard, acute oral dose (25/250 carbidopa/L-dopa), referenced in the protocol, but prescribed and provided by their prescribing physician as standard of care initial dosage (ON-No LDR); 2 months after initiation of chronic, stable L-dopa treatment (amounts and sequences as prescribed by treating physicians) but with no L-dopa for 10-12 hours prior to evaluation (Practical OFF- LDR); and after resuming subjects' usual physician-prescribed L-dopa dose (ON-LDR).\n\nParticipants from Experiment 2 were not included in Experiment 1."
+          }
+        ],
+        "periods": [
+          {
+            "title": "Overall Study",
+            "milestones": [
+              {
+                "type": "STARTED",
+                "achievements": [
+                  {
+                    "groupId": "FG000",
+                    "numSubjects": "12"
+                  },
+                  {
+                    "groupId": "FG001",
+                    "numSubjects": "7"
+                  }
+                ]
+              },
+              {
+                "type": "COMPLETED",
+                "achievements": [
+                  {
+                    "groupId": "FG000",
+                    "numSubjects": "11"
+                  },
+                  {
+                    "groupId": "FG001",
+                    "numSubjects": "7"
+                  }
+                ]
+              },
+              {
+                "type": "NOT COMPLETED",
+                "achievements": [
+                  {
+                    "groupId": "FG000",
+                    "numSubjects": "1"
+                  },
+                  {
+                    "groupId": "FG001",
+                    "numSubjects": "0"
+                  }
+                ]
+              }
+            ],
+            "dropWithdraws": [
+              {
+                "type": "Withdrawal by Subject",
+                "reasons": [
+                  {
+                    "groupId": "FG000",
+                    "numSubjects": "1"
+                  },
+                  {
+                    "groupId": "FG001",
+                    "numSubjects": "0"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "baselineCharacteristicsModule": {
+        "groups": [
+          {
+            "id": "BG000",
+            "title": "Experiment 1: Primary Outcomes (MDS-UPDRS, Joystick Task, Tapping Speed)",
+            "description": "Participants will undergo evaluation of the relationship between the LDR and movement vigor. All participants will undergo standard evaluation with standard clinical rating scales and three outcome measures: Tapping Speed Task - Measurement of Bradykinesia; Joystick Movement Task - Measurement of Incentive-Outcome Coupling - Movement Vigor; and completion of MDS-UPDRS.\n\ncarbidopa/levodopa, as prescribed by treating physician: There will be 4 measurement states: at baseline prior to chronic treatment initiation (OFF-No LDR); at baseline after a standard, acute oral dose (25/250 carbidopa/L-dopa), referenced in the protocol, but prescribed and provided by their prescribing physician as standard of care initial dosage (ON-No LDR); 2 months after initiation of chronic, stable L-dopa treatment (amounts and sequences as prescribed by treating physicians) but with no L-dopa for 10-12 hours prior to evaluation (Practical OFF- LDR); and after resuming subjects' usual physician-prescribed L-dopa dose (ON-LDR).\n\nParticipants included in Experiment 1 were not included in Experiment 2."
+          },
+          {
+            "id": "BG001",
+            "title": "Experiment 2: Primary Outcome (Value Driven Attentional Oculomotor Capture)",
+            "description": "Participants will undergo evaluation of the relationship between the LDR and movement vigor. All participants will undergo standard evaluation with standard clinical rating scales and the outcome measure: Grip Strength Task - Measurement of Incentive-Outcome Coupling - Movement Vigor.\n\ncarbidopa/levodopa, as prescribed by treating physician: There will be 4 measurement states: at baseline prior to chronic treatment initiation (OFF-No LDR); at baseline after a standard, acute oral dose (25/250 carbidopa/L-dopa), referenced in the protocol, but prescribed and provided by their prescribing physician as standard of care initial dosage (ON-No LDR); 2 months after initiation of chronic, stable L-dopa treatment (amounts and sequences as prescribed by treating physicians) but with no L-dopa for 10-12 hours prior to evaluation (Practical OFF- LDR); and after resuming subjects' usual physician-prescribed L-dopa dose (ON-LDR).\n\nParticipants from Experiment 2 were not included in Experiment 1."
+          },
+          {
+            "id": "BG002",
+            "title": "Total",
+            "description": "Total of all reporting groups"
+          }
+        ],
+        "denoms": [
+          {
+            "units": "Participants",
+            "counts": [
+              {
+                "groupId": "BG000",
+                "value": "12"
+              },
+              {
+                "groupId": "BG001",
+                "value": "7"
+              },
+              {
+                "groupId": "BG002",
+                "value": "19"
+              }
+            ]
+          }
+        ],
+        "measures": [
+          {
+            "title": "Age, Continuous",
+            "paramType": "MEAN",
+            "dispersionType": "STANDARD_DEVIATION",
+            "unitOfMeasure": "years",
+            "classes": [
+              {
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "BG000",
+                        "value": "67.0",
+                        "spread": "6.1"
+                      },
+                      {
+                        "groupId": "BG001",
+                        "value": "69.7",
+                        "spread": "8.01"
+                      },
+                      {
+                        "groupId": "BG002",
+                        "value": "68.0",
+                        "spread": "6.78"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Sex: Female, Male",
+            "paramType": "COUNT_OF_PARTICIPANTS",
+            "unitOfMeasure": "Participants",
+            "classes": [
+              {
+                "categories": [
+                  {
+                    "title": "Female",
+                    "measurements": [
+                      {
+                        "groupId": "BG000",
+                        "value": "5"
+                      },
+                      {
+                        "groupId": "BG001",
+                        "value": "4"
+                      },
+                      {
+                        "groupId": "BG002",
+                        "value": "9"
+                      }
+                    ]
+                  },
+                  {
+                    "title": "Male",
+                    "measurements": [
+                      {
+                        "groupId": "BG000",
+                        "value": "7"
+                      },
+                      {
+                        "groupId": "BG001",
+                        "value": "3"
+                      },
+                      {
+                        "groupId": "BG002",
+                        "value": "10"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Ethnicity (NIH/OMB)",
+            "paramType": "COUNT_OF_PARTICIPANTS",
+            "unitOfMeasure": "Participants",
+            "classes": [
+              {
+                "categories": [
+                  {
+                    "title": "Hispanic or Latino",
+                    "measurements": [
+                      {
+                        "groupId": "BG000",
+                        "value": "0"
+                      },
+                      {
+                        "groupId": "BG001",
+                        "value": "0"
+                      },
+                      {
+                        "groupId": "BG002",
+                        "value": "0"
+                      }
+                    ]
+                  },
+                  {
+                    "title": "Not Hispanic or Latino",
+                    "measurements": [
+                      {
+                        "groupId": "BG000",
+                        "value": "12"
+                      },
+                      {
+                        "groupId": "BG001",
+                        "value": "7"
+                      },
+                      {
+                        "groupId": "BG002",
+                        "value": "19"
+                      }
+                    ]
+                  },
+                  {
+                    "title": "Unknown or Not Reported",
+                    "measurements": [
+                      {
+                        "groupId": "BG000",
+                        "value": "0"
+                      },
+                      {
+                        "groupId": "BG001",
+                        "value": "0"
+                      },
+                      {
+                        "groupId": "BG002",
+                        "value": "0"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Race (NIH/OMB)",
+            "paramType": "COUNT_OF_PARTICIPANTS",
+            "unitOfMeasure": "Participants",
+            "classes": [
+              {
+                "categories": [
+                  {
+                    "title": "American Indian or Alaska Native",
+                    "measurements": [
+                      {
+                        "groupId": "BG000",
+                        "value": "0"
+                      },
+                      {
+                        "groupId": "BG001",
+                        "value": "0"
+                      },
+                      {
+                        "groupId": "BG002",
+                        "value": "0"
+                      }
+                    ]
+                  },
+                  {
+                    "title": "Asian",
+                    "measurements": [
+                      {
+                        "groupId": "BG000",
+                        "value": "0"
+                      },
+                      {
+                        "groupId": "BG001",
+                        "value": "0"
+                      },
+                      {
+                        "groupId": "BG002",
+                        "value": "0"
+                      }
+                    ]
+                  },
+                  {
+                    "title": "Native Hawaiian or Other Pacific Islander",
+                    "measurements": [
+                      {
+                        "groupId": "BG000",
+                        "value": "0"
+                      },
+                      {
+                        "groupId": "BG001",
+                        "value": "0"
+                      },
+                      {
+                        "groupId": "BG002",
+                        "value": "0"
+                      }
+                    ]
+                  },
+                  {
+                    "title": "Black or African American",
+                    "measurements": [
+                      {
+                        "groupId": "BG000",
+                        "value": "0"
+                      },
+                      {
+                        "groupId": "BG001",
+                        "value": "0"
+                      },
+                      {
+                        "groupId": "BG002",
+                        "value": "0"
+                      }
+                    ]
+                  },
+                  {
+                    "title": "White",
+                    "measurements": [
+                      {
+                        "groupId": "BG000",
+                        "value": "12"
+                      },
+                      {
+                        "groupId": "BG001",
+                        "value": "7"
+                      },
+                      {
+                        "groupId": "BG002",
+                        "value": "19"
+                      }
+                    ]
+                  },
+                  {
+                    "title": "More than one race",
+                    "measurements": [
+                      {
+                        "groupId": "BG000",
+                        "value": "0"
+                      },
+                      {
+                        "groupId": "BG001",
+                        "value": "0"
+                      },
+                      {
+                        "groupId": "BG002",
+                        "value": "0"
+                      }
+                    ]
+                  },
+                  {
+                    "title": "Unknown or Not Reported",
+                    "measurements": [
+                      {
+                        "groupId": "BG000",
+                        "value": "0"
+                      },
+                      {
+                        "groupId": "BG001",
+                        "value": "0"
+                      },
+                      {
+                        "groupId": "BG002",
+                        "value": "0"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Region of Enrollment",
+            "paramType": "COUNT_OF_PARTICIPANTS",
+            "unitOfMeasure": "Participants",
+            "classes": [
+              {
+                "title": "United States",
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "BG000",
+                        "value": "12"
+                      },
+                      {
+                        "groupId": "BG001",
+                        "value": "7"
+                      },
+                      {
+                        "groupId": "BG002",
+                        "value": "19"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "outcomeMeasuresModule": {
+        "outcomeMeasures": [
+          {
+            "type": "PRIMARY",
+            "title": "Tapping Speed Task - Experiment 1",
+            "description": "Measurement of bradykinesia. With the hand most affected by PD, participants were instructed to alternately tap 2 manual counters spaced 20 cm apart as rapidly as possible for 1 minute. The longer participants took to complete the task indicated a higher degree of bradykinesia affecting them. This task was administered over the course of 4 visits during the following conditions:\n\nVisit 1. Baseline prior to chronic treatment initiation (Treatment Naïve Subject); Visit 2. After the initial, standard, acute oral dosage (SDR: Treatment Naïve Subject After Acute LDopa); Visit 3. 2-4 months after start of chronic treatment following Visit 2, stable LDopa treatment (as prescribed by treating physicians), but with no LDopa for 10-12 hours prior to Visit 3 (LDR: Chronically Treated - \"Practical Off\" State); and Visit 4. After resuming participants' usual physician-prescribed LDopa dose (SDR + LDR: Chronically Treated - After Usual LDopa).",
+            "reportingStatus": "POSTED",
+            "paramType": "MEAN",
+            "dispersionType": "Standard Deviation",
+            "unitOfMeasure": "taps/min",
+            "timeFrame": "Visit 1 at Baseline, Visit 2 up to 2 weeks after baseline, Visit 3 up to 2-4 months after baseline, and Visit 4 up to 4 months after baseline",
+            "groups": [
+              {
+                "id": "OG000",
+                "title": "Experiment 1: Primary Outcomes (MDS-UPDRS, Joystick Task, Tapping Speed)",
+                "description": "Participants will undergo evaluation of the relationship between the LDR and movement vigor. All participants will undergo standard evaluation with standard clinical rating scales and three outcome measures: Tapping Speed Task - Measurement of Bradykinesia; Joystick Movement Task - Measurement of Incentive-Outcome Coupling - Movement Vigor; and completion of MDS-UPDRS.\n\ncarbidopa/levodopa, as prescribed by treating physician: There will be 4 measurement states: at baseline prior to chronic treatment initiation (OFF-No LDR); at baseline after a standard, acute oral dose (25/250 carbidopa/L-dopa), referenced in the protocol, but prescribed and provided by their prescribing physician as standard of care initial dosage (ON-No LDR); 2 months after initiation of chronic, stable L-dopa treatment (amounts and sequences as prescribed by treating physicians) but with no L-dopa for 10-12 hours prior to evaluation (Practical OFF- LDR); and after resuming subjects' usual physician-prescribed L-dopa dose (ON-LDR).\n\nParticipants included in Experiment 1 were not included in Experiment 2."
+              }
+            ],
+            "denoms": [
+              {
+                "units": "Participants",
+                "counts": [
+                  {
+                    "groupId": "OG000",
+                    "value": "11"
+                  }
+                ]
+              }
+            ],
+            "classes": [
+              {
+                "title": "Visit 1 - Baseline: Treatment Naïve Subject",
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "110.52",
+                        "spread": "23.12"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "Visit 2 - SDR: Treatment Naïve Subject After Acute L-Dopa",
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "128.89",
+                        "spread": "39.31"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "Visit 3 - LDR: Chronically Treated - \"Practical Off\" State",
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "138.43",
+                        "spread": "42.49"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "Visit 4 - SDR + LDR: Chronically Treated - After Usual L-Dopa",
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "145.86",
+                        "spread": "41.94"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "PRIMARY",
+            "title": "Value Driven Attentional Oculomotor Capture Task - Experiment 2 - No Distractor Value",
+            "description": "Participants did a saccadic eye movement task involving rapid-eye movements from one point to another to assess the functionality of eye muscles and the brain's ability to control these movements. Participants had an initial training session and then had to complete the task with no distractors, low distractors, and high distractors. This task was administered over the course of 4 visits during the following conditions:\n\nVisit 1. Baseline prior to chronic treatment initiation (Treatment Naïve Subject); Visit 2. After the initial, standard, acute oral dosage (SDR: Treatment Naïve Subject After Acute LDopa); Visit 3. 2-4 months after start of chronic treatment following Visit 2, stable LDopa treatment (as prescribed by treating physicians), but with no LDopa for 10-12 hours prior to Visit 3 (LDR: Chronically Treated - \"Practical Off\" State); and Visit 4. After resuming participants' usual physician-prescribed LDopa dose (SDR + LDR: Chronically Treated - After Usual LDopa).",
+            "populationDescription": "Interim analysis disclosed after 6 participants that outcome would be very unlikely to produce significant findings, so administration of this outcome was performed only for 6 participants before it was stopped.",
+            "reportingStatus": "POSTED",
+            "paramType": "MEAN",
+            "dispersionType": "Standard Deviation",
+            "unitOfMeasure": "seconds",
+            "timeFrame": "Visit 1 at Baseline, Visit 2 up to 2 weeks after baseline, Visit 3 up to 2-4 months after baseline, and Visit 4 up to 4 months after baseline",
+            "groups": [
+              {
+                "id": "OG000",
+                "title": "Experiment 2: Primary Outcome (Value Driven Attentional Oculomotor Capture)",
+                "description": "Participants will undergo evaluation of the relationship between the LDR and movement vigor. All participants will undergo standard evaluation with standard clinical rating scales and the outcome measure: Grip Strength Task - Measurement of Incentive-Outcome Coupling - Movement Vigor.\n\ncarbidopa/levodopa, as prescribed by treating physician: There will be 4 measurement states: at baseline prior to chronic treatment initiation (OFF-No LDR); at baseline after a standard, acute oral dose (25/250 carbidopa/L-dopa), referenced in the protocol, but prescribed and provided by their prescribing physician as standard of care initial dosage (ON-No LDR); 2 months after initiation of chronic, stable L-dopa treatment (amounts and sequences as prescribed by treating physicians) but with no L-dopa for 10-12 hours prior to evaluation (Practical OFF- LDR); and after resuming subjects' usual physician-prescribed L-dopa dose (ON-LDR).\n\nParticipants from Experiment 2 were not included in Experiment 1."
+              }
+            ],
+            "denoms": [
+              {
+                "units": "Participants",
+                "counts": [
+                  {
+                    "groupId": "OG000",
+                    "value": "6"
+                  }
+                ]
+              }
+            ],
+            "classes": [
+              {
+                "title": "Baseline: Treatment Naïve Subject",
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "1.14",
+                        "spread": "0.09"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "SDR: Treatment Naïve Subject After Acute L-Dopa",
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "1.057",
+                        "spread": "0.06"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "LDR: Chronically Treated - \"Practical Off\" State",
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "1.03",
+                        "spread": "0.06"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "SDR + LDR: Chronically Treated - After Usual L-Dopa",
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "1.04",
+                        "spread": "0.02"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "PRIMARY",
+            "title": "Value Driven Attentional Oculomotor Capture Task - Experiment 2 - Low Distractor Value",
+            "description": "Participants did a saccadic eye movement task involving rapid-eye movements from one point to another to assess the functionality of eye muscles and the brain's ability to control these movements. Participants had an initial training session and then had to complete the task with no distractors, low distractors, and high distractors. This task was administered over the course of 4 visits during the following conditions:\n\nVisit 1. Baseline prior to chronic treatment initiation (Treatment Naïve Subject); Visit 2. After the initial, standard, acute oral dosage (SDR: Treatment Naïve Subject After Acute LDopa); Visit 3. 2-4 months after start of chronic treatment following Visit 2, stable LDopa treatment (as prescribed by treating physicians), but with no LDopa for 10-12 hours prior to Visit 3 (LDR: Chronically Treated - \"Practical Off\" State); and Visit 4. After resuming participants' usual physician-prescribed LDopa dose (SDR + LDR: Chronically Treated - After Usual LDopa).",
+            "populationDescription": "Interim analysis disclosed after 6 participants that outcome would be very unlikely to produce significant findings, so administration of this outcome was performed only for 6 participants before it was stopped. Data for the training session was collected for participants during the high-distractor task. During the training session, 1 participant's data was not collected because of a computer issue.",
+            "reportingStatus": "POSTED",
+            "paramType": "MEAN",
+            "dispersionType": "Standard Deviation",
+            "unitOfMeasure": "seconds",
+            "timeFrame": "Visit 1 at Baseline, Visit 2 up to 2 weeks after baseline, Visit 3 up to 2-4 months after baseline, and Visit 4 up to 4 months after baseline",
+            "groups": [
+              {
+                "id": "OG000",
+                "title": "Experiment 2: Primary Outcome (Value Driven Attentional Oculomotor Capture)",
+                "description": "Participants will undergo evaluation of the relationship between the LDR and movement vigor. All participants will undergo standard evaluation with standard clinical rating scales and the outcome measure: Grip Strength Task - Measurement of Incentive-Outcome Coupling - Movement Vigor.\n\ncarbidopa/levodopa, as prescribed by treating physician: There will be 4 measurement states: at baseline prior to chronic treatment initiation (OFF-No LDR); at baseline after a standard, acute oral dose (25/250 carbidopa/L-dopa), referenced in the protocol, but prescribed and provided by their prescribing physician as standard of care initial dosage (ON-No LDR); 2 months after initiation of chronic, stable L-dopa treatment (amounts and sequences as prescribed by treating physicians) but with no L-dopa for 10-12 hours prior to evaluation (Practical OFF- LDR); and after resuming subjects' usual physician-prescribed L-dopa dose (ON-LDR).\n\nParticipants from Experiment 2 were not included in Experiment 1."
+              }
+            ],
+            "denoms": [
+              {
+                "units": "Participants",
+                "counts": [
+                  {
+                    "groupId": "OG000",
+                    "value": "6"
+                  }
+                ]
+              }
+            ],
+            "classes": [
+              {
+                "title": "Visit 1 - Training Session",
+                "denoms": [
+                  {
+                    "units": "Participants",
+                    "counts": [
+                      {
+                        "groupId": "OG000",
+                        "value": "5"
+                      }
+                    ]
+                  }
+                ],
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "0.97",
+                        "spread": "0.02"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "Visit 1 - Baseline: Treatment Naïve Subject",
+                "denoms": [
+                  {
+                    "units": "Participants",
+                    "counts": [
+                      {
+                        "groupId": "OG000",
+                        "value": "6"
+                      }
+                    ]
+                  }
+                ],
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "1.15",
+                        "spread": "0.07"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "Visit 2 - SDR: Treatment Naïve Subject After Acute L-Dopa",
+                "denoms": [
+                  {
+                    "units": "Participants",
+                    "counts": [
+                      {
+                        "groupId": "OG000",
+                        "value": "6"
+                      }
+                    ]
+                  }
+                ],
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "1.06",
+                        "spread": "0.04"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "Visit 3 - LDR: Chronically Treated - \"Practical Off\" State",
+                "denoms": [
+                  {
+                    "units": "Participants",
+                    "counts": [
+                      {
+                        "groupId": "OG000",
+                        "value": "6"
+                      }
+                    ]
+                  }
+                ],
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "1.03",
+                        "spread": "0.05"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "Visit 4 - SDR + LDR: Chronically Treated - After Usual L-Dopa",
+                "denoms": [
+                  {
+                    "units": "Participants",
+                    "counts": [
+                      {
+                        "groupId": "OG000",
+                        "value": "6"
+                      }
+                    ]
+                  }
+                ],
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "1.04",
+                        "spread": "0.05"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "PRIMARY",
+            "title": "Value Driven Attentional Oculomotor Capture Task - Experiment 2 - High Distractor Value",
+            "description": "Participants did a saccadic eye movement task involving rapid-eye movements from one point to another to assess the functionality of eye muscles and the brain's ability to control these movements. Participants had an initial training session and then had to complete the task with no distractors, low distractors, and high distractors. This task was administered over the course of 4 visits during the following conditions:\n\nVisit 1. Baseline prior to chronic treatment initiation (Treatment Naïve Subject); Visit 2. After the initial, standard, acute oral dosage (SDR: Treatment Naïve Subject After Acute LDopa); Visit 3. 2-4 months after start of chronic treatment following Visit 2, stable LDopa treatment (as prescribed by treating physicians), but with no LDopa for 10-12 hours prior to Visit 3 (LDR: Chronically Treated - \"Practical Off\" State); and Visit 4. After resuming participants' usual physician-prescribed LDopa dose (SDR + LDR: Chronically Treated - After Usual LDopa).",
+            "populationDescription": "Interim analysis disclosed after 6 participants that outcome would be very unlikely to produce significant findings, so administration of this outcome was performed only for 6 participants before it was stopped.\n\nData for the training session was collected for participants during the high-distractor task. During the training session, 1 participant's data was not collected because of a computer issue.",
+            "reportingStatus": "POSTED",
+            "paramType": "MEAN",
+            "dispersionType": "Standard Deviation",
+            "unitOfMeasure": "seconds",
+            "timeFrame": "Visit 1 at Baseline, Visit 2 up to 2 weeks after baseline, Visit 3 up to 2-4 months after baseline, and Visit 4 up to 4 months after baseline",
+            "groups": [
+              {
+                "id": "OG000",
+                "title": "Experiment 2: Primary Outcome (Value Driven Attentional Oculomotor Capture)",
+                "description": "Participants will undergo evaluation of the relationship between the LDR and movement vigor. All participants will undergo standard evaluation with standard clinical rating scales and the outcome measure: Grip Strength Task - Measurement of Incentive-Outcome Coupling - Movement Vigor.\n\ncarbidopa/levodopa, as prescribed by treating physician: There will be 4 measurement states: at baseline prior to chronic treatment initiation (OFF-No LDR); at baseline after a standard, acute oral dose (25/250 carbidopa/L-dopa), referenced in the protocol, but prescribed and provided by their prescribing physician as standard of care initial dosage (ON-No LDR); 2 months after initiation of chronic, stable L-dopa treatment (amounts and sequences as prescribed by treating physicians) but with no L-dopa for 10-12 hours prior to evaluation (Practical OFF- LDR); and after resuming subjects' usual physician-prescribed L-dopa dose (ON-LDR).\n\nParticipants from Experiment 2 were not included in Experiment 1."
+              }
+            ],
+            "denoms": [
+              {
+                "units": "Participants",
+                "counts": [
+                  {
+                    "groupId": "OG000",
+                    "value": "6"
+                  }
+                ]
+              }
+            ],
+            "classes": [
+              {
+                "title": "Visit 1 - Training Session",
+                "denoms": [
+                  {
+                    "units": "Participants",
+                    "counts": [
+                      {
+                        "groupId": "OG000",
+                        "value": "5"
+                      }
+                    ]
+                  }
+                ],
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "0.97",
+                        "spread": "0.02"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "Visit 1 - Baseline - Treatment Naïve Subject (Day 0)",
+                "denoms": [
+                  {
+                    "units": "Participants",
+                    "counts": [
+                      {
+                        "groupId": "OG000",
+                        "value": "6"
+                      }
+                    ]
+                  }
+                ],
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "1.12",
+                        "spread": "0.04"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "Visit 2 - SDR: Treatment Naïve Subject After Acute L-Dopa",
+                "denoms": [
+                  {
+                    "units": "Participants",
+                    "counts": [
+                      {
+                        "groupId": "OG000",
+                        "value": "6"
+                      }
+                    ]
+                  }
+                ],
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "1.05",
+                        "spread": "0.05"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "Visit 3 - LDR: Chronically Treated - \"Practical Off\" State",
+                "denoms": [
+                  {
+                    "units": "Participants",
+                    "counts": [
+                      {
+                        "groupId": "OG000",
+                        "value": "6"
+                      }
+                    ]
+                  }
+                ],
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "1.03",
+                        "spread": "0.06"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "Visit 4 - SDR + LDR: Chronically Treated - After Usual L-Dopa",
+                "denoms": [
+                  {
+                    "units": "Participants",
+                    "counts": [
+                      {
+                        "groupId": "OG000",
+                        "value": "6"
+                      }
+                    ]
+                  }
+                ],
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "1.04",
+                        "spread": "0.04"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "PRIMARY",
+            "title": "Joystick Movement Task - Experiment 1 - Low Incentive",
+            "description": "All participants were tasked with pushing a joystick with the hand most affected by PD symptoms in response to monetary incentives. Participants were presented with incentives of low ($5), medium ($10), and high value ($20) on each treatment day, and their movement time in pushing the joystick was measured over the course of 4 visits during the following conditions:\n\nVisit 1: Baseline prior to chronic treatment initiation (Treatment Naïve Subject); Visit 2: After the initial, standard, acute oral dosage (SDR: Treatment Naïve Subject After Acute LDopa); Visit 3: 2-4 months after start of chronic treatment following Visit 2, stable LDopa treatment (as prescribed by treating physicians), but with no LDopa for 10-12 hours prior to Visit 3 (LDR: Chronically Treated - \"Practical Off\" State); and Visit 4: After resuming participants' usual physician-prescribed LDopa dose (SDR + LDR: Chronically Treated - After Usual LDopa). Results reflect participants' response to the low incentive.",
+            "reportingStatus": "POSTED",
+            "paramType": "MEAN",
+            "dispersionType": "Standard Deviation",
+            "unitOfMeasure": "seconds",
+            "timeFrame": "Visit 1 at Baseline, Visit 2 up to 2 weeks after baseline, Visit 3 up to 2-4 months after baseline, and Visit 4 up to 4 months after baseline",
+            "groups": [
+              {
+                "id": "OG000",
+                "title": "Experiment 1: Primary Outcomes (MDS-UPDRS, Joystick Task, Tapping Speed)",
+                "description": "Participants will undergo evaluation of the relationship between the LDR and movement vigor. All participants will undergo standard evaluation with standard clinical rating scales and three outcome measures: Tapping Speed Task - Measurement of Bradykinesia; Joystick Movement Task - Measurement of Incentive-Outcome Coupling - Movement Vigor; and completion of MDS-UPDRS.\n\ncarbidopa/levodopa, as prescribed by treating physician: There will be 4 measurement states: at baseline prior to chronic treatment initiation (OFF-No LDR); at baseline after a standard, acute oral dose (25/250 carbidopa/L-dopa), referenced in the protocol, but prescribed and provided by their prescribing physician as standard of care initial dosage (ON-No LDR); 2 months after initiation of chronic, stable L-dopa treatment (amounts and sequences as prescribed by treating physicians) but with no L-dopa for 10-12 hours prior to evaluation (Practical OFF- LDR); and after resuming subjects' usual physician-prescribed L-dopa dose (ON-LDR).\n\nParticipants included in Experiment 1 were not included in Experiment 2."
+              }
+            ],
+            "denoms": [
+              {
+                "units": "Participants",
+                "counts": [
+                  {
+                    "groupId": "OG000",
+                    "value": "11"
+                  }
+                ]
+              }
+            ],
+            "classes": [
+              {
+                "title": "Baseline - Treatment Naïve Subject",
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "0.24",
+                        "spread": "0.12"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "SDR: Treatment Naïve Subject After Acute L-Dopa",
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "0.20",
+                        "spread": "0.09"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "LDR: Chronically Treated - \"Practical Off\" State",
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "0.20",
+                        "spread": "0.10"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "SDR + LDR: Chronically Treated - After Usual L-Dopa",
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "0.19",
+                        "spread": "0.10"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "PRIMARY",
+            "title": "Joystick Movement Task - Experiment 1 - Medium Incentive",
+            "description": "All participants were tasked with pushing a joystick with the hand most affected by PD symptoms in response to monetary incentives. Participants were presented with incentives of low ($5), medium ($10), and high value ($20) on each treatment day, and their movement time in pushing the joystick was measured over the course of 4 visits during the following conditions:\n\nVisit 1: Baseline prior to chronic treatment initiation (Treatment Naïve Subject); Visit 2: After the initial, standard, acute oral dosage (SDR: Treatment Naïve Subject After Acute LDopa); Visit 3: 2-4 months after start of chronic treatment following Visit 2, stable LDopa treatment (as prescribed by treating physicians), but with no LDopa for 10-12 hours prior to Visit 3 (LDR: Chronically Treated - \"Practical Off\" State); and Visit 4: After resuming participants' usual physician-prescribed LDopa dose (SDR + LDR: Chronically Treated - After Usual LDopa). Results reflect participants' response to the medium incentive.",
+            "reportingStatus": "POSTED",
+            "paramType": "MEAN",
+            "dispersionType": "Standard Deviation",
+            "unitOfMeasure": "seconds",
+            "timeFrame": "Visit 1 at Baseline, Visit 2 up to 2 weeks after baseline, Visit 3 up to 2-4 months after baseline, and Visit 4 up to 4 months after baseline",
+            "groups": [
+              {
+                "id": "OG000",
+                "title": "Experiment 1: Primary Outcomes (MDS-UPDRS, Joystick Task, Tapping Speed)",
+                "description": "Participants will undergo evaluation of the relationship between the LDR and movement vigor. All participants will undergo standard evaluation with standard clinical rating scales and three outcome measures: Tapping Speed Task - Measurement of Bradykinesia; Joystick Movement Task - Measurement of Incentive-Outcome Coupling - Movement Vigor; and completion of MDS-UPDRS.\n\ncarbidopa/levodopa, as prescribed by treating physician: There will be 4 measurement states: at baseline prior to chronic treatment initiation (OFF-No LDR); at baseline after a standard, acute oral dose (25/250 carbidopa/L-dopa), referenced in the protocol, but prescribed and provided by their prescribing physician as standard of care initial dosage (ON-No LDR); 2 months after initiation of chronic, stable L-dopa treatment (amounts and sequences as prescribed by treating physicians) but with no L-dopa for 10-12 hours prior to evaluation (Practical OFF- LDR); and after resuming subjects' usual physician-prescribed L-dopa dose (ON-LDR).\n\nParticipants included in Experiment 1 were not included in Experiment 2."
+              }
+            ],
+            "denoms": [
+              {
+                "units": "Participants",
+                "counts": [
+                  {
+                    "groupId": "OG000",
+                    "value": "11"
+                  }
+                ]
+              }
+            ],
+            "classes": [
+              {
+                "title": "Baseline - Treatment Naïve Subject",
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "0.24",
+                        "spread": "0.14"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "SDR: Treatment Naïve Subject After Acute L-Dopa",
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "0.20",
+                        "spread": "0.10"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "LDR: Chronically Treated - \"Practical Off\" State",
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "0.21",
+                        "spread": "0.10"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "SDR + LDR: Chronically Treated - After Usual L-Dopa",
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "0.19",
+                        "spread": "0.08"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "PRIMARY",
+            "title": "Joystick Movement Task - Experiment 1 - High Incentive",
+            "description": "All participants were tasked with pushing a joystick with the hand most affected by PD symptoms in response to monetary incentives. Participants were presented with incentives of low ($5), medium ($10), and high value ($20) on each treatment day, and their movement time in pushing the joystick was measured over the course of 4 visits during the following conditions:\n\nVisit 1: Baseline prior to chronic treatment initiation (Treatment Naïve Subject); Visit 2: After the initial, standard, acute oral dosage (SDR: Treatment Naïve Subject After Acute LDopa); Visit 3: 2-4 months after start of chronic treatment following Visit 2, stable LDopa treatment (as prescribed by treating physicians), but with no LDopa for 10-12 hours prior to Visit 3 (LDR: Chronically Treated - \"Practical Off\" State); and Visit 4: After resuming participants' usual physician-prescribed LDopa dose (SDR + LDR: Chronically Treated - After Usual LDopa). Results reflect participants' response to the high incentive.",
+            "reportingStatus": "POSTED",
+            "paramType": "MEAN",
+            "dispersionType": "Standard Deviation",
+            "unitOfMeasure": "seconds",
+            "timeFrame": "Visit 1 at Baseline, Visit 2 up to 2 weeks after baseline, Visit 3 up to 2-4 months after baseline, and Visit 4 up to 4 months after baseline",
+            "groups": [
+              {
+                "id": "OG000",
+                "title": "Experiment 1: Primary Outcomes (MDS-UPDRS, Joystick Task, Tapping Speed)",
+                "description": "Participants will undergo evaluation of the relationship between the LDR and movement vigor. All participants will undergo standard evaluation with standard clinical rating scales and three outcome measures: Tapping Speed Task - Measurement of Bradykinesia; Joystick Movement Task - Measurement of Incentive-Outcome Coupling - Movement Vigor; and completion of MDS-UPDRS.\n\ncarbidopa/levodopa, as prescribed by treating physician: There will be 4 measurement states: at baseline prior to chronic treatment initiation (OFF-No LDR); at baseline after a standard, acute oral dose (25/250 carbidopa/L-dopa), referenced in the protocol, but prescribed and provided by their prescribing physician as standard of care initial dosage (ON-No LDR); 2 months after initiation of chronic, stable L-dopa treatment (amounts and sequences as prescribed by treating physicians) but with no L-dopa for 10-12 hours prior to evaluation (Practical OFF- LDR); and after resuming subjects' usual physician-prescribed L-dopa dose (ON-LDR).\n\nParticipants included in Experiment 1 were not included in Experiment 2."
+              }
+            ],
+            "denoms": [
+              {
+                "units": "Participants",
+                "counts": [
+                  {
+                    "groupId": "OG000",
+                    "value": "11"
+                  }
+                ]
+              }
+            ],
+            "classes": [
+              {
+                "title": "Baseline - Treatment Naïve Subject",
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "0.25",
+                        "spread": "0.23"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "SDR: Treatment Naïve Subject After Acute L-Dopa",
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "0.20",
+                        "spread": "0.10"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "LDR: Chronically Treated - \"Practical Off\" State",
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "0.20",
+                        "spread": "0.09"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "SDR + LDR: Chronically Treated - After Usual L-Dopa",
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "0.18",
+                        "spread": "0.06"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "PRIMARY",
+            "title": "Grip Force Task - Experiment 1 - Low Incentive",
+            "description": "Participants were tasked with modulating their grip strength in response to monetary incentives. With the hand most affected by PD symptoms, participants squeezed a dynamometer. Participants were presented with incentives of low ($5), medium ($10), and high value ($20) on each treatment day, and their time in reaching their maximum grip strength was measured over the course of 4 visits during the following conditions:\n\nVisit 1. Baseline prior to chronic treatment initiation (Treatment Naïve Subject); Visit 2. After the initial, standard, acute oral dosage (SDR: Treatment Naïve Subject After Acute LDopa); Visit 3. 2-4 months after start of chronic treatment following Visit 2, stable LDopa treatment (as prescribed by treating physicians), but with no LDopa for 10-12 hours prior to Visit 3 (LDR: Chronically Treated - \"Practical Off\" State); and Visit 4. After resuming participants' usual physician-prescribed LDopa dose (SDR + LDR: Chronically Treated - After Usual LDopa).",
+            "reportingStatus": "POSTED",
+            "paramType": "MEAN",
+            "dispersionType": "Standard Deviation",
+            "unitOfMeasure": "seconds",
+            "timeFrame": "Visit 1 at Baseline, Visit 2 up to 2 weeks after baseline, Visit 3 up to 2-4 months after baseline, and Visit 4 up to 4 months after baseline",
+            "groups": [
+              {
+                "id": "OG000",
+                "title": "Experiment 1: Primary Outcomes (MDS-UPDRS, Joystick Task, Tapping Speed)",
+                "description": "Participants will undergo evaluation of the relationship between the LDR and movement vigor. All participants will undergo standard evaluation with standard clinical rating scales and three outcome measures: Tapping Speed Task - Measurement of Bradykinesia; Joystick Movement Task - Measurement of Incentive-Outcome Coupling - Movement Vigor; and completion of MDS-UPDRS.\n\ncarbidopa/levodopa, as prescribed by treating physician: There will be 4 measurement states: at baseline prior to chronic treatment initiation (OFF-No LDR); at baseline after a standard, acute oral dose (25/250 carbidopa/L-dopa), referenced in the protocol, but prescribed and provided by their prescribing physician as standard of care initial dosage (ON-No LDR); 2 months after initiation of chronic, stable L-dopa treatment (amounts and sequences as prescribed by treating physicians) but with no L-dopa for 10-12 hours prior to evaluation (Practical OFF- LDR); and after resuming subjects' usual physician-prescribed L-dopa dose (ON-LDR).\n\nParticipants included in Experiment 1 were not included in Experiment 2."
+              }
+            ],
+            "denoms": [
+              {
+                "units": "Participants",
+                "counts": [
+                  {
+                    "groupId": "OG000",
+                    "value": "11"
+                  }
+                ]
+              }
+            ],
+            "classes": [
+              {
+                "title": "Visit 1 - Baseline - Treatment Naïve Subject",
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "0.14",
+                        "spread": "0.10"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "Visit 2 - SDR: Treatment Naïve Subject After Acute L-Dopa",
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "0.14",
+                        "spread": "0.07"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "Visit 3 - LDR: Chronically Treated - \"Practical Off\" State",
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "0.13",
+                        "spread": "0.09"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "Visit 4 - SDR + LDR: Chronically Treated - After Usual L-Dopa",
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "0.12",
+                        "spread": "0.08"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "PRIMARY",
+            "title": "Grip Force Task - Experiment 1 - Medium Incentive",
+            "description": "Participants were tasked with modulating their grip strength in response to monetary incentives. With the hand most affected by PD symptoms, participants squeezed a dynamometer. Participants were presented with incentives of low ($5), medium ($10), and high value ($20) on each treatment day, and their time in reaching their maximum grip strength was measured over the course of 4 visits during the following conditions:\n\nVisit 1. Baseline prior to chronic treatment initiation (Treatment Naïve Subject); Visit 2. After the initial, standard, acute oral dosage (SDR: Treatment Naïve Subject After Acute LDopa); Visit 3. 2-4 months after start of chronic treatment following Visit 2, stable LDopa treatment (as prescribed by treating physicians), but with no LDopa for 10-12 hours prior to Visit 3 (LDR: Chronically Treated - \"Practical Off\" State); and Visit 4. After resuming participants' usual physician-prescribed LDopa dose (SDR + LDR: Chronically Treated - After Usual LDopa).",
+            "reportingStatus": "POSTED",
+            "paramType": "MEAN",
+            "dispersionType": "Standard Deviation",
+            "unitOfMeasure": "seconds",
+            "timeFrame": "Visit 1 at Baseline, Visit 2 up to 2 weeks after baseline, Visit 3 up to 2-4 months after baseline, and Visit 4 up to 4 months after baseline",
+            "groups": [
+              {
+                "id": "OG000",
+                "title": "Experiment 1: Primary Outcomes (MDS-UPDRS, Joystick Task, Tapping Speed)",
+                "description": "Participants will undergo evaluation of the relationship between the LDR and movement vigor. All participants will undergo standard evaluation with standard clinical rating scales and three outcome measures: Tapping Speed Task - Measurement of Bradykinesia; Joystick Movement Task - Measurement of Incentive-Outcome Coupling - Movement Vigor; and completion of MDS-UPDRS.\n\ncarbidopa/levodopa, as prescribed by treating physician: There will be 4 measurement states: at baseline prior to chronic treatment initiation (OFF-No LDR); at baseline after a standard, acute oral dose (25/250 carbidopa/L-dopa), referenced in the protocol, but prescribed and provided by their prescribing physician as standard of care initial dosage (ON-No LDR); 2 months after initiation of chronic, stable L-dopa treatment (amounts and sequences as prescribed by treating physicians) but with no L-dopa for 10-12 hours prior to evaluation (Practical OFF- LDR); and after resuming subjects' usual physician-prescribed L-dopa dose (ON-LDR).\n\nParticipants included in Experiment 1 were not included in Experiment 2."
+              }
+            ],
+            "denoms": [
+              {
+                "units": "Participants",
+                "counts": [
+                  {
+                    "groupId": "OG000",
+                    "value": "11"
+                  }
+                ]
+              }
+            ],
+            "classes": [
+              {
+                "title": "Visit 1 - Baseline - Treatment Naïve Subject",
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "0.14",
+                        "spread": "0.10"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "Visit 2 - SDR: Treatment Naïve Subject After Acute L-Dopa",
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "0.14",
+                        "spread": "0.08"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "Visit 3 - LDR: Chronically Treated - \"Practical Off\" State",
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "0.12",
+                        "spread": "0.07"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "Visit 4 - SDR + LDR: Chronically Treated - After Usual L-Dopa",
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "0.12",
+                        "spread": "0.07"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "PRIMARY",
+            "title": "Grip Force Task - Experiment 1 - High Incentive",
+            "description": "Participants were tasked with modulating their grip strength in response to monetary incentives. With the hand most affected by PD symptoms, participants squeezed a dynamometer. Participants were presented with incentives of low ($5), medium ($10), and high value ($20) on each treatment day, and their time in reaching their maximum grip strength was measured over the course of 4 visits during the following conditions:\n\nVisit 1. Baseline prior to chronic treatment initiation (Treatment Naïve Subject); Visit 2. After the initial, standard, acute oral dosage (SDR: Treatment Naïve Subject After Acute LDopa); Visit 3. 2-4 months after start of chronic treatment following Visit 2, stable LDopa treatment (as prescribed by treating physicians), but with no LDopa for 10-12 hours prior to Visit 3 (LDR: Chronically Treated - \"Practical Off\" State); and Visit 4. After resuming participants' usual physician-prescribed LDopa dose (SDR + LDR: Chronically Treated - After Usual LDopa).",
+            "reportingStatus": "POSTED",
+            "paramType": "MEAN",
+            "dispersionType": "Standard Deviation",
+            "unitOfMeasure": "seconds",
+            "timeFrame": "Visit 1 at Baseline, Visit 2 up to 2 weeks after baseline, Visit 3 up to 2-4 months after baseline, and Visit 4 up to 4 months after baseline",
+            "groups": [
+              {
+                "id": "OG000",
+                "title": "Experiment 1: Primary Outcomes (MDS-UPDRS, Joystick Task, Tapping Speed)",
+                "description": "Participants will undergo evaluation of the relationship between the LDR and movement vigor. All participants will undergo standard evaluation with standard clinical rating scales and three outcome measures: Tapping Speed Task - Measurement of Bradykinesia; Joystick Movement Task - Measurement of Incentive-Outcome Coupling - Movement Vigor; and completion of MDS-UPDRS.\n\ncarbidopa/levodopa, as prescribed by treating physician: There will be 4 measurement states: at baseline prior to chronic treatment initiation (OFF-No LDR); at baseline after a standard, acute oral dose (25/250 carbidopa/L-dopa), referenced in the protocol, but prescribed and provided by their prescribing physician as standard of care initial dosage (ON-No LDR); 2 months after initiation of chronic, stable L-dopa treatment (amounts and sequences as prescribed by treating physicians) but with no L-dopa for 10-12 hours prior to evaluation (Practical OFF- LDR); and after resuming subjects' usual physician-prescribed L-dopa dose (ON-LDR).\n\nParticipants included in Experiment 1 were not included in Experiment 2."
+              }
+            ],
+            "denoms": [
+              {
+                "units": "Participants",
+                "counts": [
+                  {
+                    "groupId": "OG000",
+                    "value": "11"
+                  }
+                ]
+              }
+            ],
+            "classes": [
+              {
+                "title": "Visit 1 - Baseline - Treatment Naïve Subject",
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "0.14",
+                        "spread": "0.09"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "Visit 2 - SDR: Treatment Naïve Subject After Acute L-Dopa",
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "0.13",
+                        "spread": "0.05"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "Visit 3 - LDR: Chronically Treated - \"Practical Off\" State",
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "0.12",
+                        "spread": "0.08"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "Visit 4 - SDR + LDR: Chronically Treated - After Usual L-Dopa",
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "0.12",
+                        "spread": "0.08"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "PRIMARY",
+            "title": "MDS-Unified Parkinson's Disease Rating Scale (MDS-UPDRS): Part III - Experiment 1",
+            "description": "Movement Disorder Society-Sponsored Revision of the Unified Parkinson's Disease Rating Scale (MDS-UPDRS): Part III, Motor Examination. Scores range from 0 to 86. A higher score indicates worse motor performance. Participants completed this scale at each visit over the course of 4 visits during the following conditions:\n\nVisit 1. Baseline prior to chronic treatment initiation (Treatment Naïve Subject); Visit 2. After the initial, standard, acute oral dosage (SDR: Treatment Naïve Subject After Acute LDopa); Visit 3. 2-4 months after start of chronic treatment following Visit 2, stable LDopa treatment (as prescribed by treating physicians), but with no LDopa for 10-12 hours prior to Visit 3 (LDR: Chronically Treated - \"Practical Off\" State); and Visit 4. After resuming participants' usual physician-prescribed LDopa dose (SDR + LDR: Chronically Treated - After Usual LDopa).",
+            "reportingStatus": "POSTED",
+            "paramType": "MEAN",
+            "dispersionType": "Standard Deviation",
+            "unitOfMeasure": "score on a scale",
+            "timeFrame": "Visit 1 at Baseline, Visit 2 up to 2 weeks after baseline, Visit 3 up to 2-4 months after baseline, and Visit 4 up to 4 months after baseline",
+            "groups": [
+              {
+                "id": "OG000",
+                "title": "Experiment 1: Primary Outcomes (MDS-UPDRS, Joystick Task, Tapping Speed)",
+                "description": "Participants will undergo evaluation of the relationship between the LDR and movement vigor. All participants will undergo standard evaluation with standard clinical rating scales and three outcome measures: Tapping Speed Task - Measurement of Bradykinesia; Joystick Movement Task - Measurement of Incentive-Outcome Coupling - Movement Vigor; and completion of MDS-UPDRS.\n\ncarbidopa/levodopa, as prescribed by treating physician: There will be 4 measurement states: at baseline prior to chronic treatment initiation (OFF-No LDR); at baseline after a standard, acute oral dose (25/250 carbidopa/L-dopa), referenced in the protocol, but prescribed and provided by their prescribing physician as standard of care initial dosage (ON-No LDR); 2 months after initiation of chronic, stable L-dopa treatment (amounts and sequences as prescribed by treating physicians) but with no L-dopa for 10-12 hours prior to evaluation (Practical OFF- LDR); and after resuming subjects' usual physician-prescribed L-dopa dose (ON-LDR).\n\nParticipants included in Experiment 1 were not included in Experiment 2."
+              }
+            ],
+            "denoms": [
+              {
+                "units": "Participants",
+                "counts": [
+                  {
+                    "groupId": "OG000",
+                    "value": "11"
+                  }
+                ]
+              }
+            ],
+            "classes": [
+              {
+                "title": "Visit 1 - Baseline - Treatment Naïve Subject",
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "31.45",
+                        "spread": "7.46"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "Visit 2 - SDR: Treatment Naïve Subject After Acute L-Dopa",
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "24.36",
+                        "spread": "8.15"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "Visit 3 - LDR: Chronically Treated - \"Practical Off\" State",
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "18.64",
+                        "spread": "6.82"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "Visit 4 - SDR + LDR: Chronically Treated - After Usual L-Dopa",
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "14.82",
+                        "spread": "7.47"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "adverseEventsModule": {
+        "frequencyThreshold": "0",
+        "timeFrame": "Up to 4 months",
+        "eventGroups": [
+          {
+            "id": "EG000",
+            "title": "Experiment 1: Primary Outcomes (MDS-UPDRS, Joystick Task, Tapping Speed)",
+            "description": "Participants will undergo evaluation of the relationship between the LDR and movement vigor. All participants will undergo standard evaluation with standard clinical rating scales and three outcome measures: Tapping Speed Task - Measurement of Bradykinesia; Joystick Movement Task - Measurement of Incentive-Outcome Coupling - Movement Vigor; and completion of MDS-UPDRS.\n\ncarbidopa/levodopa, as prescribed by treating physician: There will be 4 measurement states: at baseline prior to chronic treatment initiation (OFF-No LDR); at baseline after a standard, acute oral dose (25/250 carbidopa/L-dopa), referenced in the protocol, but prescribed and provided by their prescribing physician as standard of care initial dosage (ON-No LDR); 2 months after initiation of chronic, stable L-dopa treatment (amounts and sequences as prescribed by treating physicians) but with no L-dopa for 10-12 hours prior to evaluation (Practical OFF- LDR); and after resuming subjects' usual physician-prescribed L-dopa dose (ON-LDR).\n\nParticipants included in Experiment 1 were not included in Experiment 2.",
+            "deathsNumAffected": 0,
+            "deathsNumAtRisk": 12,
+            "seriousNumAffected": 0,
+            "seriousNumAtRisk": 12,
+            "otherNumAffected": 2,
+            "otherNumAtRisk": 12
+          },
+          {
+            "id": "EG001",
+            "title": "Experiment 2: Primary Outcome (Value Driven Attentional Oculomotor Capture)",
+            "description": "Participants will undergo evaluation of the relationship between the LDR and movement vigor. All participants will undergo standard evaluation with standard clinical rating scales and the outcome measure: Grip Strength Task - Measurement of Incentive-Outcome Coupling - Movement Vigor.\n\ncarbidopa/levodopa, as prescribed by treating physician: There will be 4 measurement states: at baseline prior to chronic treatment initiation (OFF-No LDR); at baseline after a standard, acute oral dose (25/250 carbidopa/L-dopa), referenced in the protocol, but prescribed and provided by their prescribing physician as standard of care initial dosage (ON-No LDR); 2 months after initiation of chronic, stable L-dopa treatment (amounts and sequences as prescribed by treating physicians) but with no L-dopa for 10-12 hours prior to evaluation (Practical OFF- LDR); and after resuming subjects' usual physician-prescribed L-dopa dose (ON-LDR).\n\nParticipants from Experiment 2 were not included in Experiment 1.",
+            "deathsNumAffected": 0,
+            "deathsNumAtRisk": 7,
+            "seriousNumAffected": 0,
+            "seriousNumAtRisk": 7,
+            "otherNumAffected": 0,
+            "otherNumAtRisk": 7
+          }
+        ],
+        "otherEvents": [
+          {
+            "term": "pre-syncope",
+            "organSystem": "Vascular disorders",
+            "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numEvents": 1,
+                "numAffected": 1,
+                "numAtRisk": 12
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 0,
+                "numAtRisk": 7
+              }
+            ]
+          },
+          {
+            "term": "vomiting",
+            "organSystem": "Gastrointestinal disorders",
+            "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numEvents": 1,
+                "numAffected": 1,
+                "numAtRisk": 12
+              },
+              {
+                "groupId": "EG001",
+                "numAffected": 0,
+                "numAtRisk": 7
+              }
+            ]
+          }
+        ]
+      },
+      "moreInfoModule": {
+        "certainAgreement": {
+          "piSponsorEmployee": false,
+          "restrictiveAgreement": false
+        },
+        "pointOfContact": {
+          "title": "Dr. Roger Albin",
+          "organization": "University of Michigan",
+          "email": "ralbin@med.umich.edu",
+          "phone": "734-936-9115"
+        }
+      }
+    },
+    "documentSection": {
+      "largeDocumentModule": {
+        "largeDocs": [
+          {
+            "typeAbbrev": "Prot_SAP",
+            "hasProtocol": true,
+            "hasSap": true,
+            "hasIcf": false,
+            "label": "Study Protocol and Statistical Analysis Plan",
+            "date": "2019-10-25",
+            "uploadDate": "2025-04-23T15:27",
+            "filename": "Prot_SAP_000.pdf",
+            "size": 372784
+          },
+          {
+            "typeAbbrev": "ICF",
+            "hasProtocol": false,
+            "hasSap": false,
+            "hasIcf": true,
+            "label": "Informed Consent Form",
+            "date": "2023-12-13",
+            "uploadDate": "2025-06-02T16:02",
+            "filename": "ICF_001.pdf",
+            "size": 307356
+          }
+        ]
+      }
+    },
+    "derivedSection": {
+      "miscInfoModule": {
+        "versionHolder": "2026-11-03",
+        "submissionTracking": {
+          "firstMcpInfo": {
+            "postDateStruct": {
+              "date": "2025-06-19",
+              "type": "ACTUAL"
+            }
+          }
+        }
+      },
+      "conditionBrowseModule": {
+        "meshes": [
+          {
+            "id": "D010300",
+            "term": "Parkinson Disease"
+          }
+        ],
+        "ancestors": [
+          {
+            "id": "D020734",
+            "term": "Parkinsonian Disorders"
+          },
+          {
+            "id": "D001480",
+            "term": "Basal Ganglia Diseases"
+          },
+          {
+            "id": "D001927",
+            "term": "Brain Diseases"
+          },
+          {
+            "id": "D002493",
+            "term": "Central Nervous System Diseases"
+          },
+          {
+            "id": "D009422",
+            "term": "Nervous System Diseases"
+          },
+          {
+            "id": "D009069",
+            "term": "Movement Disorders"
+          },
+          {
+            "id": "D000080874",
+            "term": "Synucleinopathies"
+          },
+          {
+            "id": "D019636",
+            "term": "Neurodegenerative Diseases"
+          }
+        ]
+      },
+      "interventionBrowseModule": {
+        "meshes": [
+          {
+            "id": "D002230",
+            "term": "Carbidopa"
+          },
+          {
+            "id": "D007980",
+            "term": "Levodopa"
+          },
+          {
+            "id": "C009265",
+            "term": "carbidopa, levodopa drug combination"
+          }
+        ],
+        "ancestors": [
+          {
+            "id": "D008750",
+            "term": "Methyldopa"
+          },
+          {
+            "id": "D004295",
+            "term": "Dihydroxyphenylalanine"
+          },
+          {
+            "id": "D002395",
+            "term": "Catecholamines"
+          },
+          {
+            "id": "D000588",
+            "term": "Amines"
+          },
+          {
+            "id": "D009930",
+            "term": "Organic Chemicals"
+          },
+          {
+            "id": "D006834",
+            "term": "Hydrazines"
+          },
+          {
+            "id": "D002396",
+            "term": "Catechols"
+          },
+          {
+            "id": "D010636",
+            "term": "Phenols"
+          },
+          {
+            "id": "D001555",
+            "term": "Benzene Derivatives"
+          },
+          {
+            "id": "D006841",
+            "term": "Hydrocarbons, Aromatic"
+          },
+          {
+            "id": "D006844",
+            "term": "Hydrocarbons, Cyclic"
+          },
+          {
+            "id": "D006838",
+            "term": "Hydrocarbons"
+          },
+          {
+            "id": "D010649",
+            "term": "Phenylalanine"
+          },
+          {
+            "id": "D024322",
+            "term": "Amino Acids, Aromatic"
+          },
+          {
+            "id": "D000598",
+            "term": "Amino Acids, Cyclic"
+          },
+          {
+            "id": "D000596",
+            "term": "Amino Acids"
+          },
+          {
+            "id": "D000602",
+            "term": "Amino Acids, Peptides, and Proteins"
+          },
+          {
+            "id": "D014443",
+            "term": "Tyrosine"
+          }
+        ]
+      }
+    },
+    "hasResults": true
+  },
+  "expected_digest": "b6e68b6d145c21647f13e9341595afd670704363bd4c808e49d6ec4fbff3f5b4",
+  "anchors": [
+    {
+      "id": "eligibility",
+      "address": "/protocolSection/eligibilityModule/eligibilityCriteria",
+      "digest": "b6e68b6d145c21647f13e9341595afd670704363bd4c808e49d6ec4fbff3f5b4",
+      "expected": "Inclusion Criteria:\n\n* Diagnosis of Parkinson Disease\n* Previously Untreated or treated for \\<4 weeks\n* Mild to Moderate Parkinson disease (Hoehn \\& Yahr Stages I-II)\n* About to start treatment with a L-Dopa preparation (Sinemet)\n\nExclusion Criteria:\n\n* The presence of other neurologic disease or findings on examination\n* Depression: Geriatric Depression Scale score \\>11\n* Use of dopamine agonists or stimulants\n* Evidence of a stroke or mass lesion on prior structural brain imaging (MRI or CT)\n* Evidence of any confounding medical or psychiatric problem that would preclude task participation.\n* Participants with cognitive impairment that might impair their capacity to provide informed consent."
+    }
+  ],
+  "queries": [
+    {
+      "id": "minimum30",
+      "body": {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+          "class": "Predicate",
+          "key": "age",
+          "kind": "measurement"
+        },
+        "qualifiers": {
+          "class": "Always"
+        },
+        "subject": {
+          "class": "Subject",
+          "kind": "participant",
+          "referent": ""
+        },
+        "time": null,
+        "value": {
+          "class": "Value",
+          "comparison": "ge",
+          "inclusivity": "unspecified",
+          "kind": "quantity",
+          "members": [],
+          "number": 30,
+          "unit": "Years",
+          "upper": null
+        }
+      }
+    },
+    {
+      "id": "age83",
+      "body": {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+          "class": "Predicate",
+          "key": "age",
+          "kind": "measurement"
+        },
+        "qualifiers": {
+          "class": "Always"
+        },
+        "subject": {
+          "class": "Subject",
+          "kind": "participant",
+          "referent": ""
+        },
+        "time": null,
+        "value": {
+          "class": "Value",
+          "comparison": "eq",
+          "inclusivity": "unspecified",
+          "kind": "quantity",
+          "members": [],
+          "number": 83,
+          "unit": "Years",
+          "upper": null
+        }
+      }
+    }
+  ]
+}

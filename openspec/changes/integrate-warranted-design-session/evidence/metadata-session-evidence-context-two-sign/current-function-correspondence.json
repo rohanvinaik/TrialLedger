@@ -1,0 +1,34 @@
+[
+  {
+    "current": "TrialLedger/layer2/result_semantics.py",
+    "current_sha256": "3d05007883cc0363660ed911e841c8a098214c5f3df93d66c2a02131031752d0",
+    "frozen": "TrialLedger/layer2/result_semantics.py.txt",
+    "frozen_sha256": "3d05007883cc0363660ed911e841c8a098214c5f3df93d66c2a02131031752d0",
+    "functions": {
+      "cause_kind": {
+        "ast_equal": true,
+        "text_equal": true
+      },
+      "completion_code": {
+        "ast_equal": true,
+        "text_equal": true
+      },
+      "disposition_code": {
+        "ast_equal": true,
+        "text_equal": true
+      }
+    },
+    "globals": {
+      "CAUSE_KINDS": {
+        "ast_equal": true
+      },
+      "DISPOSITIONS": {
+        "ast_equal": true
+      },
+      "RESULTS": {
+        "ast_equal": true
+      }
+    },
+    "packet": "metadata"
+  }
+]

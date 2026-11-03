@@ -73,12 +73,19 @@ def witness_support(count: int, exceptions: int, status: str, resolution: str) -
     return "witness"
 
 
-def witness_verdict(support: str, result: str, blockers: list[str]) -> str:
+def witness_verdict(support: str, result: str, blockers: list[str], direction: str = "accepted") -> str:
     """Combine witness support with the existing participant decision (pure — pinned).
 
     Inconsistency is a property of the candidate, independent of witness support. A missing witness cannot
     refute a design. An unresolved binding or solver limit cannot eliminate it. A feasible proposition need
     not be universally required: undecided_by_constraints/no_constraint_mentions_query allow a witness.
+    An accepted profile already refuted by admitted necessary constraints stays refuted when additional
+    criteria are withheld. Rejected profiles retain those blockers: an unknown criterion could explain
+    rejection. No binding, profile, query, computation limit or unknown blocker is discarded.
+
+    post: __return__ in ('inconsistent', 'not_ruled_out', 'unresolved', 'ruled_out')
+    post: __return__ != 'ruled_out' or (support == 'witness' and result == 'REFUTED')
+    post: result != 'INCONSISTENT' or __return__ == 'inconsistent'
     """
     if result == "INCONSISTENT":
         return "inconsistent"
@@ -86,7 +93,19 @@ def witness_verdict(support: str, result: str, blockers: list[str]) -> str:
         return "not_ruled_out"
     if support != "witness":
         return "unresolved"
-    if any(b not in ("undecided_by_constraints", "no_constraint_mentions_query") for b in blockers):
+    if direction not in ("accepted", "rejected"):
+        return "unresolved"
+    if any(
+        b not in ("undecided_by_constraints", "no_constraint_mentions_query")
+        and not (
+            direction == "accepted"
+            and result == "REFUTED"
+            and b.startswith(
+                ("proposed_refused:", "unresolved_assertion:", "unresolved_rule:", "conflicting:")
+            )
+        )
+        for b in blockers
+    ):
         return "unresolved"
     if result == "REFUTED":
         return "ruled_out"
@@ -161,7 +180,9 @@ def bound_designs(
                     observation.count, observation.max_exceptions, observation.status, observation.resolution
                 )
             )
-            verdict = witness_verdict(support, decision.result, list(decision.blockers))
+            verdict = witness_verdict(
+                support, decision.result, list(decision.blockers), observation.direction
+            )
             status = (
                 decision.status or "known"
                 if verdict == "inconsistent"

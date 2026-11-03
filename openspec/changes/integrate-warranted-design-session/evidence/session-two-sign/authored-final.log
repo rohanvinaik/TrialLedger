@@ -1,0 +1,11 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.14.7, pytest-9.2.0, pluggy-1.7.0
+rootdir: /private/tmp/trialledger-session-contract-20261103-v3
+configfile: pyproject.toml
+plugins: anyio-4.15.1
+collected 88 items
+
+tests/test_design_session_contract.py .................................. [ 38%]
+......................................................                   [100%]
+
+============================== 88 passed in 0.61s ==============================

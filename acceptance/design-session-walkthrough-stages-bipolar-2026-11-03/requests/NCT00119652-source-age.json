@@ -1,0 +1,851 @@
+{
+  "operation": "source_assertions",
+  "study": {
+    "protocolSection": {
+      "identificationModule": {
+        "nctId": "NCT00119652",
+        "orgStudyIdInfo": {
+          "id": "D1447C00134"
+        },
+        "organization": {
+          "fullName": "AstraZeneca",
+          "class": "INDUSTRY"
+        },
+        "briefTitle": "Seroquel in Bipolar Depression Versus SSRI",
+        "officialTitle": "Multicentre, Double-blind, Randomised, Parallel Group, Placebo Controlled, Phase 3 Study of the Efficacy & Safety of Quetiapine Fumarate & Paroxetine as Monotherapy in Adult Patients With Bipolar Depression for 8 Weeks & Quetiapine in Continuation (Abbreviated)",
+        "acronym": "EMBOLDEN II"
+      },
+      "statusModule": {
+        "statusVerifiedDate": "2013-01",
+        "overallStatus": "COMPLETED",
+        "expandedAccessInfo": {
+          "hasExpandedAccess": false
+        },
+        "startDateStruct": {
+          "date": "2005-05"
+        },
+        "completionDateStruct": {
+          "date": "2007-05",
+          "type": "ACTUAL"
+        },
+        "studyFirstSubmitDate": "2005-07-06",
+        "studyFirstSubmitQcDate": "2005-07-13",
+        "studyFirstPostDateStruct": {
+          "date": "2005-07-14",
+          "type": "ESTIMATED"
+        },
+        "lastUpdateSubmitDate": "2013-01-03",
+        "lastUpdatePostDateStruct": {
+          "date": "2013-01-04",
+          "type": "ESTIMATED"
+        }
+      },
+      "sponsorCollaboratorsModule": {
+        "leadSponsor": {
+          "name": "AstraZeneca",
+          "class": "INDUSTRY"
+        }
+      },
+      "descriptionModule": {
+        "briefSummary": "The purpose of this study is to determine whether quetiapine is effective and safe in the acute treatment of bipolar depression and whether the effect is maintained when treatment is continued."
+      },
+      "conditionsModule": {
+        "conditions": [
+          "Bipolar Disorder",
+          "Bipolar Depression",
+          "Depression"
+        ],
+        "keywords": [
+          "Bipolar disorder",
+          "bipolar depression",
+          "depression"
+        ]
+      },
+      "designModule": {
+        "studyType": "INTERVENTIONAL",
+        "phases": [
+          "PHASE3"
+        ],
+        "designInfo": {
+          "allocation": "RANDOMIZED",
+          "interventionModel": "PARALLEL",
+          "primaryPurpose": "TREATMENT",
+          "maskingInfo": {
+            "masking": "DOUBLE"
+          }
+        },
+        "enrollmentInfo": {
+          "count": 676,
+          "type": "ACTUAL"
+        }
+      },
+      "armsInterventionsModule": {
+        "interventions": [
+          {
+            "type": "DRUG",
+            "name": "quetiapine fumarate (Seroquel)"
+          },
+          {
+            "type": "DRUG",
+            "name": "paroxetine"
+          },
+          {
+            "type": "BEHAVIORAL",
+            "name": "mood stabilizing activity"
+          }
+        ]
+      },
+      "outcomesModule": {
+        "primaryOutcomes": [
+          {
+            "measure": "Change from baseline to Week 8 assessment in the total score on the Montgomery-Asberg Depression Rating Scale (MADRS)"
+          }
+        ],
+        "secondaryOutcomes": [
+          {
+            "measure": "Secondary variables supportive to the primary objective:"
+          },
+          {
+            "measure": "MADRS total score response"
+          },
+          {
+            "measure": "MADRS total score remission"
+          }
+        ]
+      },
+      "eligibilityModule": {
+        "eligibilityCriteria": "Inclusion Criteria:\n\n* Male and female out-patients aged 18 to 65 years inclusive\n* Diagnosis of Bipolar Disorder (Bipolar I or Bipolar II), most recent episode depressed\n\nExclusion Criteria:\n\n* Current period of depression lasting less than 4 weeks or more than 12 months\n* Use of prohibited medication\n* Substance or alcohol dependence or abuse\n* Current suicide risk or suicide attempt within 6 months\n* Breast feeding or pregnancy\n* Clinically relevant disease or clinical finding",
+        "healthyVolunteers": false,
+        "sex": "ALL",
+        "minimumAge": "18 Years",
+        "maximumAge": "65 Years",
+        "stdAges": [
+          "ADULT",
+          "OLDER_ADULT"
+        ]
+      },
+      "contactsLocationsModule": {
+        "overallOfficials": [
+          {
+            "name": "AstraZeneca Seroquel Medical Science Director, MD",
+            "affiliation": "AstraZeneca",
+            "role": "STUDY_DIRECTOR"
+          }
+        ],
+        "locations": [
+          {
+            "facility": "Research Site",
+            "city": "Phoenix",
+            "state": "Arizona",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 33.44838,
+              "lon": -112.07404
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Little Rock",
+            "state": "Arkansas",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 34.74648,
+              "lon": -92.28959
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "National City",
+            "state": "California",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 32.67811,
+              "lon": -117.0992
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "San Clemente",
+            "state": "California",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 33.42697,
+              "lon": -117.61199
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "San Diego",
+            "state": "California",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 32.71571,
+              "lon": -117.16472
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Maitland",
+            "state": "Florida",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 28.62778,
+              "lon": -81.36312
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Winter Park",
+            "state": "Florida",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 28.6,
+              "lon": -81.33924
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Atlanta",
+            "state": "Georgia",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 33.749,
+              "lon": -84.38798
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Smyrna",
+            "state": "Georgia",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 33.88399,
+              "lon": -84.51438
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Northfield",
+            "state": "Illinois",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 42.09975,
+              "lon": -87.7809
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Oak Brook",
+            "state": "Illinois",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 41.83281,
+              "lon": -87.92895
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "New Orleans",
+            "state": "Louisiana",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 29.95465,
+              "lon": -90.07507
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Shreveport",
+            "state": "Louisiana",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 32.52515,
+              "lon": -93.75018
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Glen Burnie",
+            "state": "Maryland",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 39.16261,
+              "lon": -76.62469
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "St Louis",
+            "state": "Missouri",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 38.62727,
+              "lon": -90.19789
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Clementon",
+            "state": "New Jersey",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 39.8115,
+              "lon": -74.98294
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "New York",
+            "state": "New York",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 40.71427,
+              "lon": -74.00597
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Raleigh",
+            "state": "North Carolina",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 35.7721,
+              "lon": -78.63861
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Cincinnati",
+            "state": "Ohio",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 39.12711,
+              "lon": -84.51439
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Dayton",
+            "state": "Ohio",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 39.75895,
+              "lon": -84.19161
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Oklahoma City",
+            "state": "Oklahoma",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 35.46756,
+              "lon": -97.51643
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Philadelphia",
+            "state": "Pennsylvania",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 39.95238,
+              "lon": -75.16362
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Austin",
+            "state": "Texas",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 30.26715,
+              "lon": -97.74306
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Dallas",
+            "state": "Texas",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 32.78306,
+              "lon": -96.80667
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Irving",
+            "state": "Texas",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 32.81402,
+              "lon": -96.94889
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Richmond",
+            "state": "Virginia",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 37.55376,
+              "lon": -77.46026
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Bellevue",
+            "state": "Washington",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 47.61038,
+              "lon": -122.20068
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Kirkland",
+            "state": "Washington",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 47.68149,
+              "lon": -122.20874
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Brisbane",
+            "state": "Queensland",
+            "country": "Australia",
+            "geoPoint": {
+              "lat": -27.46794,
+              "lon": 153.02809
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Everton Park",
+            "state": "Queensland",
+            "country": "Australia",
+            "geoPoint": {
+              "lat": -27.40732,
+              "lon": 152.9884
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Southport",
+            "state": "Queensland",
+            "country": "Australia",
+            "geoPoint": {
+              "lat": -27.96724,
+              "lon": 153.39796
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Epping",
+            "state": "Victoria",
+            "country": "Australia",
+            "geoPoint": {
+              "lat": -37.65,
+              "lon": 145.03333
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Malvern",
+            "state": "Victoria",
+            "country": "Australia",
+            "geoPoint": {
+              "lat": -37.86259,
+              "lon": 145.02811
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Providencia Santiago",
+            "country": "Chile"
+          },
+          {
+            "facility": "Research Site",
+            "city": "Santiago",
+            "country": "Chile",
+            "geoPoint": {
+              "lat": -33.45694,
+              "lon": -70.64827
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Bogotá",
+            "country": "Colombia",
+            "geoPoint": {
+              "lat": 4.60971,
+              "lon": -74.08175
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "San José",
+            "country": "Costa Rica",
+            "geoPoint": {
+              "lat": 9.93388,
+              "lon": -84.08489
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Athens",
+            "country": "Greece",
+            "geoPoint": {
+              "lat": 37.98376,
+              "lon": 23.72784
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Thessaloniki",
+            "country": "Greece",
+            "geoPoint": {
+              "lat": 40.64072,
+              "lon": 22.93493
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Tripoli",
+            "country": "Greece",
+            "geoPoint": {
+              "lat": 37.50959,
+              "lon": 22.37883
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "México",
+            "country": "Mexico",
+            "geoPoint": {
+              "lat": 31.00435,
+              "lon": -108.15213
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Yucatán",
+            "country": "Mexico",
+            "geoPoint": {
+              "lat": 19.34472,
+              "lon": -96.36167
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Lima",
+            "country": "Peru",
+            "geoPoint": {
+              "lat": -12.04318,
+              "lon": -77.02824
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "San Borja",
+            "country": "Peru",
+            "geoPoint": {
+              "lat": -12.09841,
+              "lon": -77.01107
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Bucharest",
+            "country": "Romania",
+            "geoPoint": {
+              "lat": 44.43225,
+              "lon": 26.10626
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Galati",
+            "country": "Romania",
+            "geoPoint": {
+              "lat": 45.43687,
+              "lon": 28.05028
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Iași",
+            "country": "Romania",
+            "geoPoint": {
+              "lat": 47.16667,
+              "lon": 27.6
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Măgura",
+            "country": "Romania",
+            "geoPoint": {
+              "lat": 45.26667,
+              "lon": 26.58333
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Benoni",
+            "country": "South Africa",
+            "geoPoint": {
+              "lat": -26.18848,
+              "lon": 28.32078
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Cape Town",
+            "country": "South Africa",
+            "geoPoint": {
+              "lat": -33.92584,
+              "lon": 18.42322
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Durban",
+            "country": "South Africa",
+            "geoPoint": {
+              "lat": -29.8579,
+              "lon": 31.0292
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Pretoria",
+            "country": "South Africa",
+            "geoPoint": {
+              "lat": -25.74486,
+              "lon": 28.18783
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Gaziantep",
+            "country": "Turkey (Türkiye)",
+            "geoPoint": {
+              "lat": 37.05944,
+              "lon": 37.3825
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Istanbul",
+            "country": "Turkey (Türkiye)",
+            "geoPoint": {
+              "lat": 41.01384,
+              "lon": 28.94966
+            }
+          },
+          {
+            "facility": "Research Site",
+            "city": "Manisa",
+            "country": "Turkey (Türkiye)",
+            "geoPoint": {
+              "lat": 38.61202,
+              "lon": 27.42647
+            }
+          }
+        ]
+      },
+      "referencesModule": {
+        "references": [
+          {
+            "pmid": "20122366",
+            "type": "DERIVED",
+            "citation": "McElroy SL, Weisler RH, Chang W, Olausson B, Paulsson B, Brecher M, Agambaram V, Merideth C, Nordenhem A, Young AH; EMBOLDEN II (Trial D1447C00134) Investigators. A double-blind, placebo-controlled study of quetiapine and paroxetine as monotherapy in adults with bipolar depression (EMBOLDEN II). J Clin Psychiatry. 2010 Feb;71(2):163-74. doi: 10.4088/JCP.08m04942gre. Epub 2010 Jan 26."
+          }
+        ]
+      }
+    },
+    "derivedSection": {
+      "miscInfoModule": {
+        "versionHolder": "2026-11-03",
+        "removedCountries": [
+          "United Kingdom",
+          "Venezuela"
+        ]
+      },
+      "conditionBrowseModule": {
+        "meshes": [
+          {
+            "id": "D001714",
+            "term": "Bipolar Disorder"
+          },
+          {
+            "id": "D003863",
+            "term": "Depression"
+          }
+        ],
+        "ancestors": [
+          {
+            "id": "D000068105",
+            "term": "Bipolar and Related Disorders"
+          },
+          {
+            "id": "D019964",
+            "term": "Mood Disorders"
+          },
+          {
+            "id": "D001523",
+            "term": "Mental Disorders"
+          },
+          {
+            "id": "D001526",
+            "term": "Behavioral Symptoms"
+          },
+          {
+            "id": "D001519",
+            "term": "Behavior"
+          }
+        ]
+      },
+      "interventionBrowseModule": {
+        "meshes": [
+          {
+            "id": "D000069348",
+            "term": "Quetiapine Fumarate"
+          },
+          {
+            "id": "D017374",
+            "term": "Paroxetine"
+          }
+        ],
+        "ancestors": [
+          {
+            "id": "D003987",
+            "term": "Dibenzothiazepines"
+          },
+          {
+            "id": "D013841",
+            "term": "Thiazepines"
+          },
+          {
+            "id": "D013846",
+            "term": "Thiepins"
+          },
+          {
+            "id": "D013457",
+            "term": "Sulfur Compounds"
+          },
+          {
+            "id": "D009930",
+            "term": "Organic Chemicals"
+          },
+          {
+            "id": "D006575",
+            "term": "Heterocyclic Compounds, 3-Ring"
+          },
+          {
+            "id": "D000072471",
+            "term": "Heterocyclic Compounds, Fused-Ring"
+          },
+          {
+            "id": "D006571",
+            "term": "Heterocyclic Compounds"
+          },
+          {
+            "id": "D010880",
+            "term": "Piperidines"
+          },
+          {
+            "id": "D006573",
+            "term": "Heterocyclic Compounds, 1-Ring"
+          }
+        ]
+      }
+    },
+    "hasResults": false
+  },
+  "expected_digest": "a2f284d50f0a321941f47669d82d151fba9e7d7df044689726f4aa3c904a255d",
+  "anchors": [
+    {
+      "id": "eligibility",
+      "address": "/protocolSection/eligibilityModule/eligibilityCriteria",
+      "digest": "a2f284d50f0a321941f47669d82d151fba9e7d7df044689726f4aa3c904a255d",
+      "expected": "Inclusion Criteria:\n\n* Male and female out-patients aged 18 to 65 years inclusive\n* Diagnosis of Bipolar Disorder (Bipolar I or Bipolar II), most recent episode depressed\n\nExclusion Criteria:\n\n* Current period of depression lasting less than 4 weeks or more than 12 months\n* Use of prohibited medication\n* Substance or alcohol dependence or abuse\n* Current suicide risk or suicide attempt within 6 months\n* Breast feeding or pregnancy\n* Clinically relevant disease or clinical finding",
+      "span": {
+        "start": 0,
+        "end": 484,
+        "text": "Inclusion Criteria:\n\n* Male and female out-patients aged 18 to 65 years inclusive\n* Diagnosis of Bipolar Disorder (Bipolar I or Bipolar II), most recent episode depressed\n\nExclusion Criteria:\n\n* Current period of depression lasting less than 4 weeks or more than 12 months\n* Use of prohibited medication\n* Substance or alcohol dependence or abuse\n* Current suicide risk or suicide attempt within 6 months\n* Breast feeding or pregnancy\n* Clinically relevant disease or clinical finding"
+      }
+    }
+  ],
+  "queries": [
+    {
+      "id": "at-least10",
+      "body": {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+          "class": "Predicate",
+          "key": "age",
+          "kind": "measurement"
+        },
+        "qualifiers": {
+          "class": "Always"
+        },
+        "subject": {
+          "class": "Subject",
+          "kind": "participant",
+          "referent": ""
+        },
+        "time": null,
+        "value": {
+          "class": "Value",
+          "comparison": "ge",
+          "inclusivity": "unspecified",
+          "kind": "quantity",
+          "members": [],
+          "number": 10,
+          "unit": "Years",
+          "upper": null
+        }
+      }
+    },
+    {
+      "id": "at-least18",
+      "body": {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+          "class": "Predicate",
+          "key": "age",
+          "kind": "measurement"
+        },
+        "qualifiers": {
+          "class": "Always"
+        },
+        "subject": {
+          "class": "Subject",
+          "kind": "participant",
+          "referent": ""
+        },
+        "time": null,
+        "value": {
+          "class": "Value",
+          "comparison": "ge",
+          "inclusivity": "unspecified",
+          "kind": "quantity",
+          "members": [],
+          "number": 18,
+          "unit": "Years",
+          "upper": null
+        }
+      }
+    }
+  ]
+}

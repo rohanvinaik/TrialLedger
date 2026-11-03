@@ -1,0 +1,12 @@
+{
+ "drug": [
+  "oseltamivir"
+ ],
+ "condition": "Influenza",
+ "phase": [
+  "PHASE2"
+ ],
+ "status": [
+  "COMPLETED"
+ ]
+}

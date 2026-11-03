@@ -1,0 +1,7 @@
+{
+ "query": {
+  "filter.advanced": "(AREA[InterventionName]\"tralokinumab\" OR AREA[InterventionOtherName]\"tralokinumab\") AND AREA[Phase]PHASE2 AND AREA[OverallStatus]COMPLETED",
+  "query.cond": "Atopic Dermatitis"
+ },
+ "rxnav": []
+}

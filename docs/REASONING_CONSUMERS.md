@@ -35,8 +35,9 @@ Choose wording for `conditional` from `standing` and the effective warrant. Inte
 an overridable default or working assumption; proposed support means an unconfirmed reading, refused by
 ordinary entailment and explored only within its hypothetical frame. `open` alone establishes neither a
 clinical choice nor an evidence gap. Current metadata has `causes`, not `uncertainty_causes`, and carries no
-normalized `origin` or `coverage` fields; inspect the actual premises and operation-specific scope. Planned
-session projections will add those distinctions from declared questions and dependencies.
+normalized `origin` or `coverage` fields; inspect the actual premises and operation-specific scope.
+Managed-session decision findings add origin and coverage from declared questions and dependencies,
+alongside `session_disposition`; the underlying operation's finding semantics stay unchanged.
 
 A refused request has supplied no clinical finding. Its metadata identifies an invalid translation task,
 unsupported operation or computation limit, retaining the complete refusal code. An unfamiliar detailed
@@ -48,6 +49,8 @@ that context still remain `unclassified`.
 | Input channel | Actual consumer | Admission and preserved limit |
 |---|---|---|
 | Exact retained NIH field/quotation | source_assertions → existing entailment/interpretations | Snapshot and exact location; named structured age rules alone create fixed assertions. Other meanings remain proposed. |
+| Immutable source/premise ledger and named uses | design_session → session_state / session_projections → existing service.run children → computed decisions | Complete dependencies and origins retained; documentary corpus projection refuses choices/derived bounds; fresh revisions replay every declared child. |
+| Declared surviving eligibility candidates | evidence_requests → eligibility_witness / direction-aware witness_verdict → hypothetical investigation rows | Profiles and signs retain required future premises; rows are never observations. Search and output truncation are independent. |
 | Scoped requirement/exclusion | entailment → finite countermodel check | Proposed premises refused; scope, alternatives and qualifiers retained. A decision is conditional on the supplied encoding. |
 | Counts, partitions, summaries, subsets | signals → numeric_evidence; selected derived witness → design_bounds → eligibility_witness | Same universe and predicates explicitly bound; interval retained; lower bound alone compared to exceptions. |
 | Reported protocol failures and separate target attributions | exception_bounds.prepare/apply → service._exception_application → design_bounds observations/consequence | Exact source anchors and scopes retained; entry-only accepted attribution supplies a floor, never an informative ceiling. Conflicting budgets block dependent elimination. |
@@ -60,6 +63,71 @@ that context still remain `unclassified`.
 | Declared representation and shared predicates | corpus_admission → nearmiss | Pending declared fields withhold that trial. One differing represented feature does not certify full trial equivalence. |
 | Setting/class membership | corpus_admission → explicit occupancy projection | Known dimensions retained independently. Pending setting widens to requested settings; pending class remains possible. Empty means no possible member within this supplied set. |
 | Declared expectation observations | corpus_admission → conditional_rarity | Known/resolved rows only; original states and pending rows retained. Denominator/support are explicit; no automatic join with trials. |
+
+## Stage populations: permission and actual membership travel separately
+
+The `stages` signal reaches the existing population arithmetic and then the ordinary signal/design
+consumers. Each transition retains its declaration, source and target stage, raw population request/result,
+effective code, local standing and blockers. A `documented_subset` relation supplies a stated membership
+premise; compatible counts test that premise without establishing it. A `permitted` relation supplies no
+subset arithmetic. Candidate count claims cannot use permission as documented progression.
+
+Keep source and target populations, arms, times and exact person/person-period/cluster units. The shared
+study/snapshot binding gates every edge; local resolution/support gates that edge. A retained `gate_ref`
+does not evaluate a clinical condition or establish individual eligibility. Unknown totals and mismatched
+scopes remain explicit. The aggregate cannot erase an independently supported conflict because another edge
+is unresolved; read each transition finding rather than borrowing the aggregate's support for every edge.
+
+The clinical wording follows those identities. If a documented relationship yields 144 outside completion
+and another yields one outside dosing, retain both. They do not identify the same people, explain their
+reasons or warrant calling all non-completers untreated.
+
+## Finite action tables: a closed case space, not a stopping proof
+
+The `decision_table` signal reuses scoped entailment over explicitly declared finite equality domains and
+feasible-combination constraints. Domain consistency precedes coverage, pairwise overlap and action
+reachability. A conflicting domain does not make an empty case space a successful coverage proof. A feasible
+case with no applicable row is a coverage gap; applicable rows with different actions conflict. Overlap with
+the same action is diagnostic. Reachability asks whether any feasible declared case can select an action;
+it is not evidence that the action occurred in a study.
+
+Each check retains its solver result, scope, deciding references and completion limits. A completed existence
+check may retain the raw solver's `undecided_by_constraints`: both sides being feasible decides existence,
+without claiming the queried condition universally true. Actual computation blockers still withhold that
+check. A known gap or conflicting action remains visible beside an independently limited check.
+
+An invented six-person DLT table covering zero and two through six but not one exposes an unassigned action
+for 1/6. Preserve the returned uncovered condition; the checker does not fabricate a concrete participant
+countermodel. Nonempty candidate table claims refuse. Static coverage supplies neither sequential
+termination nor operating characteristics, treatment safety or clinical optimality.
+
+## Estimand alignment
+
+The `estimand` signal retains five attributed definitions: treatment conditions, population,
+variable, intercurrent-event handling and population-level summary. Each event and requirement has explicit
+local support; strategy names alone do not generate requirements. A relevance rule binds an exact event,
+variable, window, role and observed/imputed/derived mode. Source references and accepted labels are supplied
+premises, not independent validation of a definition.
+
+Keep these results separate: collection-plan mismatch; available actual input; missing relevant actual input;
+input not required for this estimand; unresolved relevance or availability; structurally unavailable
+measurement. A plan to stop collection does not assert that the data are actually absent. A measurement
+that cannot exist after an event is not merely an uncollected value. Neither result proves impossible
+estimation. Only explicit adopted dependency rules can produce an input-rule conflict, and that conflict is
+relative to those rules rather than every possible estimator.
+
+Read local requirement, collection and dependency support independently. An unresolved definition or weaker
+unrelated fact must not erase a separately warranted result or promote a local reading. Preserve raw and
+effective dependency checks, modes, source versions and exact scope. This channel computes no estimator
+validity, estimability, treatment effect or statistical operating characteristics. The public CLI/MCP
+walkthrough retains all channel-specific states and a consequential revision. Automatic
+general clinical-text compilation and complete protocol generation remain unfinished. The managed
+session composes declared inputs and checks without supplying their missing clinical meanings.
+
+The shared signal result also retains its actual `admission` code and application blockers. Consumers
+must read that gate even when both raw and effective aggregate codes are `unresolved`: equal labels do not
+establish that local findings were admitted. Per-channel metadata consumes local support and blockers,
+while full declarations and raw results remain inspectable.
 
 ## Declare the warrant once, retain unsettled details
 
@@ -162,10 +230,38 @@ to their writing version. Low-level Python profile/coherence functions retain do
 preconditions; the public admission boundary is `TrialLedger.layer2.run`, CLI reason and MCP reason.
 
 General source-to-scoped-assertion compilation, ontology/measurement bindings, full default conflict strata,
-tight association-completion bounds, automatic downstream orchestration, significance, recommendations and
+tight association-completion bounds, automatic discovery of all downstream clinical questions, significance, recommendations and
 complete protocol output remain work. The compiler must resolve every construction it can warrant and
 preserve alternatives for everything else. A blanket confirmation step or a successful JSON parse is not a
 substitute for those symbolic decisions.
+
+## Managed replay and investigation handoffs
+
+`service.run` dispatches `design_session` to the snapshot runner, which invokes that same service for every
+prepared child. `session_state` validates identities, exact source references and the complete bipartite
+dependency graph; `session_projections` owns named typed projections and origin-aware admission. The runner
+reserves aggregate child work, retains every complete request/result and replays both supplied snapshots
+before returning a revision diff. A minimal entailment proof never substitutes for the dependency graph.
+Derived assertions retain their producer's cohort/arm/phase; documentary features must come from the exact
+source snapshot named by their trial. Comparator restrictions require explicit adoption for a new target.
+
+Decision alternatives need completed individual feasibility and an actual distinguishing entailment under
+the same floor. Merely different query syntax does not establish design freedom. Historical unknowns stay
+evidence tasks. Decisions retain origin, declared coverage and the full distinction request/result; selected
+options with open checks stay open in those respects. The human brief explains the computed list.
+
+`evidence_requests` validates declared variables and exact comparison cells, then uses the existing
+participant-witness engine for both signs. Candidate premises can reach it through the session's existing
+identity projection; direct candidate parameters are refused. Accepted refutations survive additional
+withheld criteria by conjunction monotonicity. Rejected profiles retain those blockers because another
+criterion can explain rejection. Scope, profile and computation blockers still gate both directions.
+Full prechecks preserve inconsistent-candidate standing; returned investigation rows retain every actual
+decision and future attribution/exception/completeness premise. They carry no observed count or bridge.
+The row-byte budget and complete UTF-8 successful-envelope budget are separate. Unsupported precision is
+refused before comparison-cell enumeration. No screening-log importer or evidence-availability claim follows.
+
+See the [invented managed evidence request](../examples/design-session/) and
+[real observational-source revision](../acceptance/design-session-walkthrough-session-diabetes-2026-11-03/README.md).
 
 ## The same conservation obligation in reporting
 

@@ -1,0 +1,45 @@
+{
+  "scope": "Scratch production-path decision-table operator; only two pure named-code decisions pinned. Root owns public routing, metadata, discovery, actual CLI/MCP and clinical workflow.",
+  "source_sha256": "0db593d983a38cee865677f02e6b1f65c709907537a4876f48850bfebbdd3c46",
+  "functions": {
+    "table_check_state": {
+      "source_sha256": "cd1b6087caa1e0c106b22dd6aae7a1ffd27a18deaa3c6dff3222786985b0a97b",
+      "ast_sha256": "e9cef8ec3c2c16bd760469ed8aa608d006adfe9bd4de282f3bb02c515536cedb"
+    },
+    "table_state": {
+      "source_sha256": "2d209f0334904af3969afe93621fb4a3855287351d0982e8d4e97dcba908a6bf",
+      "ast_sha256": "a4c45acf8122c253ad643493e6ca5af46184a5183d611f1b74950677563e9281"
+    }
+  },
+  "full_frozen_input_hashes_match": true,
+  "authored_tests": 86,
+  "generated_test_functions_remaining": 0,
+  "crosshair_confirmed_contracts": 10,
+  "pins": {
+    "table_check_state": {
+      "scored": 98,
+      "value_pinned": 98,
+      "unproven": 0
+    },
+    "table_state": {
+      "scored": 55,
+      "value_pinned": 54,
+      "proved_equivalent": 1,
+      "unproven": 0
+    }
+  },
+  "policy": "9+neg.f5a15364c11d",
+  "static_plan_unpinned_constructive": [
+    "domains",
+    "evaluate",
+    "bounded_input",
+    "limits"
+  ],
+  "source_test_config_edits_during_v3_proof": false,
+  "historical_only": [
+    "/tmp/trialledger-table-estimand-contracts-20261103-v1",
+    "/tmp/trialledger-decision-table-production-path-20261103-v2"
+  ],
+  "source_snapshot_local": "/tmp/trialledger-decision-table-production-path-20261103-v3/TrialLedger",
+  "pure_functions_unchanged_since_v1": true
+}

@@ -1,0 +1,23 @@
+{
+  "crosshair": {
+    "confirmed": 0,
+    "counterexample_reported": false,
+    "not_confirmed": 3
+  },
+  "current_correspondence": "Exact frozen function text and AST match current code; only explicitly compared pure functions/globals are current. Frozen wrapper/module snapshots are historical context, not current whole-module receipts.",
+  "format": 1,
+  "function_correspondence": "current-function-correspondence.json",
+  "generated_source_required": 1,
+  "outside_owned_context_limit": "The captured evidence_requests context reported a Ty narrowing issue outside the witness hunk. This is historical, not a statement that current shared code still has that diagnostic.",
+  "packet": "witness-direction-two-sign",
+  "source_export_manifest_sha256": "c5adcd67fdf16b9d52fe51cb595731f46d7d596188ce0a452cab08cd10e16daa",
+  "source_limitations": "README.md and original source packet README; full tool reports take precedence over certificate shorthand.",
+  "targets": {
+    "witness_verdict": {
+      "function_digest": "89ef25b92ecfedfd",
+      "killed": 139,
+      "total": 139,
+      "value_pinned": 139
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "scope": "Only tests/test_evidence_requests_independent.py; no runtime/shared config or other test changes",
+  "approval": "Root approved one Ruff import whitespace correction and two accepted-witness contract updates; all remaining assertions retained",
+  "before": {
+    "approved_suite_sha256": "6baf7c7e1ac4a5aad2003ff7f65181c52caa3b27dc64e17dcc215076eaf581ee",
+    "as_written_sha256": "fdf771c56daff43d3282b9debdbfa5b10227ca053d2004bc291ab28a996edc2f"
+  },
+  "after_sha256": "378d33996a07536471d839457cc00ede7205c1f21cf4d60f95a59ead511cfff8",
+  "red_verification": {
+    "log": "red-tests.log",
+    "result": "2 failed: accepted ECOG4 known refutation remains unresolved; no accepted distinguishing request emitted",
+    "clinical_contract": "Known ECOG<=3 cannot be loosened by an additional proposed marker conjunct. Accepted ECOG4 rules candidate out; rejected ECOG2 remains unresolved."
+  },
+  "style": {
+    "ruff_check": "All checks passed",
+    "ruff_format_check": "1 file already formatted"
+  },
+  "diff": "approved-contract-update.diff",
+  "post_WITNESSREADY_verification": {
+    "log": "/tmp/trialledger-evidence-independent-witness-green-20261103.log",
+    "tests": 509,
+    "result": "pass",
+    "scope": "Current authored evidence tests, approved independent suite, full current invariant harness"
+  }
+}

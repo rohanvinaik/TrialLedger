@@ -1,0 +1,14 @@
+{
+  "at_utc": "2026-11-03T23:10:45.566485+00:00",
+  "command": [
+    "uv",
+    "run",
+    "trialledger",
+    "verify",
+    "/Users/rohanvinaik/trialledger-runs/evidence-parkinson-20261103"
+  ],
+  "exit": 0,
+  "stdout": "/Users/rohanvinaik/trialledger-runs/evidence-parkinson-20261103: verified \u2014 the clinical record and workbook reproduce from the retained sources. This checks derivation, not clinical interpretation.\n",
+  "stderr": "",
+  "runtime_checks": "held until ROOT EVIDENCE READY"
+}

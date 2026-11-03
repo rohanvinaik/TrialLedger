@@ -1,0 +1,18 @@
+{
+  "cases": 26,
+  "actual_transport_commands": 52,
+  "runtime_identity": "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/runtime/lib/python3.14/site-packages/TrialLedger/__init__.py",
+  "operations": [
+    "describe",
+    "entailment",
+    "coordinates",
+    "corpus",
+    "design_bounds",
+    "evidence_requests",
+    "signals",
+    "interpretations",
+    "source_assertions",
+    "design_session"
+  ],
+  "result": "PASS"
+}

@@ -1,0 +1,7 @@
+{
+ "query": {
+  "filter.advanced": "(AREA[InterventionName]\"oseltamivir\" OR AREA[InterventionOtherName]\"oseltamivir\") AND AREA[Phase]PHASE2 AND AREA[OverallStatus]COMPLETED",
+  "query.cond": "Influenza"
+ },
+ "rxnav": []
+}

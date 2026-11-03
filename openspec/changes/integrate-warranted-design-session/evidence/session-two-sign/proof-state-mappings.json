@@ -1,0 +1,78 @@
+{
+  "entries": [
+    {
+      "original_tool_path": "tests/detective/certificates.json",
+      "source_sha256": "d8a813cb728493cb1c5443ea8a60398cee1dadd776b6e268761a721582d2a71e",
+      "stored": "certificates.json",
+      "transform": "identity"
+    },
+    {
+      "original_tool_path": ".detective/reports/converge_alternative_code.txt",
+      "source_sha256": "eaa55512341a653a1c22d64d823b1b1618faa1b569da34865cfd4d64ec178d86",
+      "stored": "converge_alternative_code.txt",
+      "transform": "identity"
+    },
+    {
+      "original_tool_path": ".detective/reports/converge_change_code.txt",
+      "source_sha256": "0b220f774bd4dcfd90c0f74cf0dfec51a13d24f03126ef879425f577d7d7f2f1",
+      "stored": "converge_change_code.txt",
+      "transform": "identity"
+    },
+    {
+      "original_tool_path": ".detective/reports/converge_revision_code.txt",
+      "source_sha256": "ae7ecba53a80feba82b9240f5327b7ce3309c03030e7bf05272dd9e4221aa09f",
+      "stored": "converge_revision_code.txt",
+      "transform": "identity"
+    },
+    {
+      "original_tool_path": ".detective/reports/decompose_alternative_code.txt",
+      "source_sha256": "309b2db5a944f80b85d6a9945df9caf682d9a38ba150b0a09e95b3386019ebbe",
+      "stored": "decompose_alternative_code.txt",
+      "transform": "identity"
+    },
+    {
+      "original_tool_path": ".detective/reports/decompose_change_code.txt",
+      "source_sha256": "05f0942568d3f2ed0f000493a413d28ed6d73d04954228e2f7a2069b8c89d7b0",
+      "stored": "decompose_change_code.txt",
+      "transform": "identity"
+    },
+    {
+      "original_tool_path": ".detective/reports/decompose_revision_code.txt",
+      "source_sha256": "788dc34f4b9ac6ccc8eda485f0e273e06a346bc263c21c8b085501997bd9dbbd",
+      "stored": "decompose_revision_code.txt",
+      "transform": "identity"
+    },
+    {
+      "original_tool_path": ".detective/inputs.json",
+      "source_sha256": "e2347a1961b7b9b017d4e43bf90e06ba71e8631feb26811e9f9c0c942838ed30",
+      "stored": "inputs.json",
+      "transform": "identity"
+    },
+    {
+      "original_tool_path": ".detective/ledger.jsonl",
+      "source_sha256": "a1dab4836ec5894a39329baa8de8db904d118cbd39023a159179f6ecfff20917",
+      "stored": "native-ledger.jsonl",
+      "transform": "identity"
+    },
+    {
+      "original_tool_path": ".detective/pins.json",
+      "source_sha256": "fbc8421b39e6d698fe72dd669c130c1775a7eef3dad0f37ee8e76b4e7525f388",
+      "stored": "pins.json",
+      "transform": "identity"
+    },
+    {
+      "original_tool_path": ".detective/reports/plan_TrialLedger_layer2_design_session_py.txt",
+      "source_sha256": "f3f7fa81a9816218488a0ede23128a9a4dbba1db0901247d1dc9729af9b1f86b",
+      "stored": "plan_TrialLedger_layer2_design_session_py.txt",
+      "transform": "identity"
+    },
+    {
+      "original_tool_path": ".detective/reports/plan_TrialLedger_layer2_session_state_py.txt",
+      "source_sha256": "8b05cdba6233ce7187dcca50c2ed6c89b9edee72ab5266974f1b3e9640953298",
+      "stored": "plan_TrialLedger_layer2_session_state_py.txt",
+      "transform": "identity"
+    }
+  ],
+  "format": 1,
+  "note": "Visible-path mappings preserve historical tool state. No arbitrary historical certificate or cache is copied to the live project; only exact owned entries are merged."
+}

@@ -1,0 +1,63 @@
+{
+  "exact_function_texts_and_AST_verified": 14,
+  "exact_owned_certificate_entries_verified": 14,
+  "exact_test_file_hashes_verified": 10,
+  "explicit_dependent_global_bindings_verified": 7,
+  "format": 1,
+  "integration_receipt_sha256": "98f64ac4fabc4df8404b294b4fb1e159633777d7e738b6b58624739715a1a480",
+  "no_runtime_edits": true,
+  "no_staging_or_commit": true,
+  "original_payload_bytes": 1489683,
+  "packets": [
+    {
+      "bytes": 454793,
+      "files": 57,
+      "manifest_sha256": "dd72ac443cfc347ae5c38fb04446329ae8458d99f86f02651fa785664ae2f5f9",
+      "path": "openspec/changes/integrate-warranted-design-session/evidence/session-two-sign",
+      "storage_records_verified": 50
+    },
+    {
+      "bytes": 576248,
+      "files": 83,
+      "manifest_sha256": "4469b3747bbb72cf8f281563394b3b11e54fb20ef9b9585a51907409fd3ce98d",
+      "path": "openspec/changes/integrate-warranted-design-session/evidence/witness-direction-two-sign",
+      "storage_records_verified": 76
+    },
+    {
+      "bytes": 234245,
+      "files": 69,
+      "manifest_sha256": "40b5e54a344bb1cf970609ce5d6624618015ff9a65edcb8a73357ee2a7931b8c",
+      "path": "openspec/changes/integrate-warranted-design-session/evidence/evidence-requests-two-sign",
+      "storage_records_verified": 61
+    },
+    {
+      "bytes": 269414,
+      "files": 58,
+      "manifest_sha256": "5d76b069a5de9beee758d2897e1260cab754b5fb14de20de97330025dc6cc4e1",
+      "path": "openspec/changes/integrate-warranted-design-session/evidence/metadata-session-evidence-context-two-sign",
+      "storage_records_verified": 51
+    }
+  ],
+  "residuals": {
+    "CrossHair_not_confirmed": {
+      "external_evidence_requests": 4,
+      "final_metadata": 3,
+      "session": 4,
+      "witness": 3
+    },
+    "external_protocol": "Final-source plan/survey not rerun and no final-source decomposition receipt; original shadow/migration/command records retained.",
+    "external_required_premises": {
+      "crash_only_value_gaps": 4,
+      "mutants_detected": 34,
+      "value_pinned": 30
+    },
+    "metadata_cause_kind": {
+      "crash_only_value_gaps": 1,
+      "mutants_detected": 18,
+      "value_pinned": 17
+    },
+    "scope": "Only the explicitly compared primitives/dependent globals are mapped current; historical wrapper modules are not upgraded to whole-module certificates."
+  },
+  "storage_payloads_verified": 238,
+  "stored_payload_bytes": 1361628
+}

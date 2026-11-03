@@ -1,0 +1,104 @@
+{
+  "TrialLedger/layer2/evidence_requests.py::dominated::16b8a7595154dfa2": [
+    {
+      "assertion_code": "result = dominated(literals={'x'}, found=({'x'},))\nassert result is False",
+      "category": "VALUE",
+      "confidence": 0.9,
+      "function_key": "",
+      "golden_case": null,
+      "mutant_id": "",
+      "needs_oracle": false,
+      "preconditions": [
+        "golden capture (pure + deterministic)"
+      ],
+      "setup_code": "from TrialLedger.layer2.evidence_requests import dominated",
+      "source_lenses": [
+        "golden_capture"
+      ]
+    }
+  ],
+  "TrialLedger/layer2/evidence_requests.py::family_state::fd34b534a5479c52": [],
+  "TrialLedger/layer2/evidence_requests.py::output_state::1655c26905fd3c46": [],
+  "TrialLedger/layer2/evidence_requests.py::pair_outcome::8dcd5a9228d563ba": [],
+  "TrialLedger/layer2/evidence_requests.py::pair_relation::6eee538eac969016": [],
+  "TrialLedger/layer2/evidence_requests.py::required_premises::423f1ddf5f835edd": [
+    {
+      "assertion_code": "result = required_premises(sign='rejected', eliminated=('A', 'C'))\nassert result == ('eligibility_attribution:rejected', 'accepted_resolved_bridge', 'count_above_exception_allowance', 'complete_candidate_eligibility:A', 'complete_candidate_eligibility:C')",
+      "category": "VALUE",
+      "confidence": 0.9,
+      "function_key": "",
+      "golden_case": [
+        "('rejected', ('A', 'C'))",
+        "('eligibility_attribution:rejected', 'accepted_resolved_bridge', 'count_above_exception_allowance', 'complete_candidate_eligibility:A', 'complete_candidate_eligibility:C')"
+      ],
+      "mutant_id": "",
+      "needs_oracle": false,
+      "preconditions": [
+        "golden capture (pure + deterministic)"
+      ],
+      "setup_code": "from TrialLedger.layer2.evidence_requests import required_premises",
+      "source_lenses": [
+        "golden_capture"
+      ]
+    },
+    {
+      "assertion_code": "result = required_premises(sign='abc', eliminated=('x',))\nassert result == ('eligibility_attribution:abc', 'accepted_resolved_bridge', 'count_above_exception_allowance', 'complete_candidate_eligibility:x')",
+      "category": "VALUE",
+      "confidence": 0.9,
+      "function_key": "",
+      "golden_case": [
+        "('abc', ('x',))",
+        "('eligibility_attribution:abc', 'accepted_resolved_bridge', 'count_above_exception_allowance', 'complete_candidate_eligibility:x')"
+      ],
+      "mutant_id": "",
+      "needs_oracle": false,
+      "preconditions": [
+        "golden capture (pure + deterministic)"
+      ],
+      "setup_code": "from TrialLedger.layer2.evidence_requests import required_premises",
+      "source_lenses": [
+        "golden_capture"
+      ]
+    }
+  ],
+  "TrialLedger/layer2/evidence_requests.py::seek::8c13442d71ec359d": [
+    {
+      "assertion_code": "result = seek(sign='rejected')\nassert result == 'Eligibility-attributed screening or adjudication records, such as screening logs or screen-failure reasons for this profile. Registry participant-flow categories rarely identify the profile or the failed criterion, and corpus silence is never a rejected witness.'",
+      "category": "VALUE",
+      "confidence": 0.9,
+      "function_key": "",
+      "golden_case": [
+        "('rejected',)",
+        "'Eligibility-attributed screening or adjudication records, such as screening logs or screen-failure reasons for this profile. Registry participant-flow categories rarely identify the profile or the failed criterion, and corpus silence is never a rejected witness.'"
+      ],
+      "mutant_id": "",
+      "needs_oracle": false,
+      "preconditions": [
+        "golden capture (pure + deterministic)"
+      ],
+      "setup_code": "from TrialLedger.layer2.evidence_requests import seek",
+      "source_lenses": [
+        "golden_capture"
+      ]
+    },
+    {
+      "assertion_code": "result = seek(sign='accepted')\nassert result == 'Participation records bound to eligibility at entry, such as baseline characteristics or enrolled-participant listings for the same measurement and time, with an eligibility bridge.'",
+      "category": "VALUE",
+      "confidence": 0.9,
+      "function_key": "",
+      "golden_case": [
+        "('accepted',)",
+        "'Participation records bound to eligibility at entry, such as baseline characteristics or enrolled-participant listings for the same measurement and time, with an eligibility bridge.'"
+      ],
+      "mutant_id": "",
+      "needs_oracle": false,
+      "preconditions": [
+        "golden capture (pure + deterministic)"
+      ],
+      "setup_code": "from TrialLedger.layer2.evidence_requests import seek",
+      "source_lenses": [
+        "golden_capture"
+      ]
+    }
+  ]
+}

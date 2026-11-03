@@ -1,0 +1,18 @@
+{
+  "README.md": {
+    "sha256": "e7f4504d81a7b38416e953295300baedc3872d5eb26144588ee046225fd38a5b",
+    "bytes": 1361
+  },
+  "judgments.json": {
+    "sha256": "34ed60b13e40596596b6eff111d54b2a5d8220433706bad904d44c659f30d9ad",
+    "bytes": 403
+  },
+  "ledger.jsonl": {
+    "sha256": "4aae1b6f550813699643e98e5dbed40b48554391a82caab52abc3ddcf42e09c9",
+    "bytes": 9788
+  },
+  "pyproject.toml": {
+    "sha256": "4a0a5758a6a27eacb4967c2df79857ac6ca32485916b3acdc40974121685d074",
+    "bytes": 1768
+  }
+}

@@ -1,0 +1,55 @@
+{
+ "api_version": "2.0.5",
+ "data_timestamp": "2026-11-03T10:00:05",
+ "study_digests": [
+  "a2f284d50f0a321941f47669d82d151fba9e7d7df044689726f4aa3c904a255d",
+  "47721392afdb2c80e855e4686dd6226ffa27f5b27d794ebec0a0f870e25712a2",
+  "d6bbc9510449a2f50fad07ada797b8a61c6ce122bcfe198b4f4106e684518340"
+ ],
+ "merkle_root": "10757590b15880409e672b297c0b6462d9b626081a630c685c671da0c36af118",
+ "code_commit": "7debeaf793d69fa1a51ae5725591e2230abcbbe4",
+ "rule_versions": {
+  "landscape_schema": 4,
+  "contract": "4.1",
+  "trialledger": "0.1.0",
+  "derivation_code_root": "bdbe6253f6db6c7a9798911734f519edf556af1ce1afa51c89d04e8895caa0ef",
+  "display": "display-1",
+  "eligibility_sections": "registry-headings-source-passages/1",
+  "registry_checks": 3
+ },
+ "retrieval": {
+  "mode": "direct",
+  "matched": 3,
+  "read": 3,
+  "drug_classes": {
+   "state": "looked_up",
+   "source": "NLM RxClass asked for the EPC and MoA classes of every drug, biological and genetic intervention of the studies read, and RxNav for the RxNorm identity, ATC classes and structure of each experimental arm's drug, biological or genetic intervention only; cached in the run folder's classes.json"
+  },
+  "requested_ids": [
+   {
+    "requested": "NCT00090311",
+    "id": "NCT00090311",
+    "status": "found",
+    "study": "NCT00090311"
+   },
+   {
+    "requested": "NCT00227305",
+    "id": "NCT00227305",
+    "status": "found",
+    "study": "NCT00227305"
+   },
+   {
+    "requested": "NCT00119652",
+    "id": "NCT00119652",
+    "status": "found",
+    "study": "NCT00119652"
+   }
+  ]
+ },
+ "input_digests": {
+  "request.json": "bbae3f1061a53c63e2395fc221b51e28d2be9ca7fac3c1c0f944bee72a329fbc",
+  "resolution.json": "aa70004744849b4a4af6d3ceefbd45354e5e8c2f1ffa91f4d0340e0d407f05e2",
+  "scope.json": "8940ae306dedf2c6f80e380f7cdede466c749b09416a06ef32afbf058bbd6b92",
+  "classes.json": "1064674dea82a1f8576f7201b4df1aad09dc2a0bc5042dfe6e0d65f95f7a57e2"
+ }
+}

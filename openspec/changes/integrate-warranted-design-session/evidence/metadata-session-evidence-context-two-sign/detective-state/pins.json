@@ -1,0 +1,452 @@
+{
+  "TrialLedger/layer2/result_semantics.py::cause_kind::2b660e587a3b2e50": [
+    {
+      "assertion_code": "result = cause_kind(code='future_validation_error:request')\nassert result == 'unclassified'",
+      "category": "VALUE",
+      "confidence": 0.9,
+      "function_key": "",
+      "golden_case": [
+        "('future_validation_error:request',)",
+        "'unclassified'"
+      ],
+      "mutant_id": "",
+      "needs_oracle": false,
+      "preconditions": [
+        "golden capture (pure + deterministic)"
+      ],
+      "setup_code": "from TrialLedger.layer2.result_semantics import cause_kind",
+      "source_lenses": [
+        "golden_capture"
+      ]
+    }
+  ],
+  "TrialLedger/layer2/result_semantics.py::completion_code::0ca68ed2a47b84e6": [
+    {
+      "assertion_code": "result = completion_code(logical_result='REFUSED', causes=[])\nassert result == 'complete'",
+      "category": "VALUE",
+      "confidence": 0.95,
+      "function_key": "",
+      "golden_case": null,
+      "mutant_id": "",
+      "needs_oracle": false,
+      "preconditions": [
+        "distinguishing witness (equivalence search)"
+      ],
+      "setup_code": "from TrialLedger.layer2.result_semantics import completion_code",
+      "source_lenses": [
+        "witness"
+      ]
+    },
+    {
+      "assertion_code": "result = completion_code(logical_result='UNDETERMINED', causes=['unsupported_operation'])\nassert result == 'unsupported'",
+      "category": "VALUE",
+      "confidence": 0.9,
+      "function_key": "",
+      "golden_case": [
+        "('UNDETERMINED', ['unsupported_operation'])",
+        "'unsupported'"
+      ],
+      "mutant_id": "",
+      "needs_oracle": false,
+      "preconditions": [
+        "golden capture (pure + deterministic)"
+      ],
+      "setup_code": "from TrialLedger.layer2.result_semantics import completion_code",
+      "source_lenses": [
+        "golden_capture"
+      ]
+    },
+    {
+      "assertion_code": "result = completion_code(logical_result='missing_relevant', causes=['request_not_an_object'])\nassert result == 'complete'",
+      "category": "VALUE",
+      "confidence": 0.9,
+      "function_key": "",
+      "golden_case": [
+        "('missing_relevant', ['request_not_an_object'])",
+        "'complete'"
+      ],
+      "mutant_id": "",
+      "needs_oracle": false,
+      "preconditions": [
+        "golden capture (pure + deterministic)"
+      ],
+      "setup_code": "from TrialLedger.layer2.result_semantics import completion_code",
+      "source_lenses": [
+        "golden_capture"
+      ]
+    }
+  ],
+  "TrialLedger/layer2/result_semantics.py::disposition_code::e8f6cd7dcf149c50": [
+    {
+      "assertion_code": "result = disposition_code(logical_result='INCONSISTENT', standing='proposed', completion='')\nassert result == 'unclassified'",
+      "category": "VALUE",
+      "confidence": 0.95,
+      "function_key": "",
+      "golden_case": null,
+      "mutant_id": "",
+      "needs_oracle": false,
+      "preconditions": [
+        "distinguishing witness (equivalence search)"
+      ],
+      "setup_code": "from TrialLedger.layer2.result_semantics import disposition_code",
+      "source_lenses": [
+        "witness"
+      ]
+    },
+    {
+      "assertion_code": "result = disposition_code(logical_result='conditional', standing='', completion='complete')\nassert result == 'conditional'",
+      "category": "VALUE",
+      "confidence": 0.95,
+      "function_key": "",
+      "golden_case": null,
+      "mutant_id": "",
+      "needs_oracle": false,
+      "preconditions": [
+        "distinguishing witness (equivalence search)"
+      ],
+      "setup_code": "from TrialLedger.layer2.result_semantics import disposition_code",
+      "source_lenses": [
+        "witness"
+      ]
+    },
+    {
+      "assertion_code": "result = disposition_code(logical_result='CONFLICT', standing='proposed', completion='complete')\nassert result == 'conflict'",
+      "category": "VALUE",
+      "confidence": 0.95,
+      "function_key": "",
+      "golden_case": null,
+      "mutant_id": "",
+      "needs_oracle": false,
+      "preconditions": [
+        "distinguishing witness (equivalence search)"
+      ],
+      "setup_code": "from TrialLedger.layer2.result_semantics import disposition_code",
+      "source_lenses": [
+        "witness"
+      ]
+    },
+    {
+      "assertion_code": "result = disposition_code(logical_result='conflict', standing='proposed', completion='limited')\nassert result == 'conflict'",
+      "category": "VALUE",
+      "confidence": 0.95,
+      "function_key": "",
+      "golden_case": null,
+      "mutant_id": "",
+      "needs_oracle": false,
+      "preconditions": [
+        "distinguishing witness (equivalence search)"
+      ],
+      "setup_code": "from TrialLedger.layer2.result_semantics import disposition_code",
+      "source_lenses": [
+        "witness"
+      ]
+    },
+    {
+      "assertion_code": "result = disposition_code(logical_result='inconsistent', standing='known', completion='complete')\nassert result == 'conflict'",
+      "category": "VALUE",
+      "confidence": 0.95,
+      "function_key": "",
+      "golden_case": null,
+      "mutant_id": "",
+      "needs_oracle": false,
+      "preconditions": [
+        "distinguishing witness (equivalence search)"
+      ],
+      "setup_code": "from TrialLedger.layer2.result_semantics import disposition_code",
+      "source_lenses": [
+        "witness"
+      ]
+    },
+    {
+      "assertion_code": "result = disposition_code(logical_result='floor_conflict', standing='proposed', completion='complete')\nassert result == 'conflict'",
+      "category": "VALUE",
+      "confidence": 0.95,
+      "function_key": "",
+      "golden_case": null,
+      "mutant_id": "",
+      "needs_oracle": false,
+      "preconditions": [
+        "distinguishing witness (equivalence search)"
+      ],
+      "setup_code": "from TrialLedger.layer2.result_semantics import disposition_code",
+      "source_lenses": [
+        "witness"
+      ]
+    },
+    {
+      "assertion_code": "result = disposition_code(logical_result='gap', standing='proposed', completion='limited')\nassert result == 'conflict'",
+      "category": "VALUE",
+      "confidence": 0.95,
+      "function_key": "",
+      "golden_case": null,
+      "mutant_id": "",
+      "needs_oracle": false,
+      "preconditions": [
+        "distinguishing witness (equivalence search)"
+      ],
+      "setup_code": "from TrialLedger.layer2.result_semantics import disposition_code",
+      "source_lenses": [
+        "witness"
+      ]
+    },
+    {
+      "assertion_code": "result = disposition_code(logical_result='domain_conflict', standing='proposed', completion='limited')\nassert result == 'conflict'",
+      "category": "VALUE",
+      "confidence": 0.95,
+      "function_key": "",
+      "golden_case": null,
+      "mutant_id": "",
+      "needs_oracle": false,
+      "preconditions": [
+        "distinguishing witness (equivalence search)"
+      ],
+      "setup_code": "from TrialLedger.layer2.result_semantics import disposition_code",
+      "source_lenses": [
+        "witness"
+      ]
+    },
+    {
+      "assertion_code": "result = disposition_code(logical_result='ruled_out', standing='proposed', completion='limited')\nassert result == 'conditional'",
+      "category": "VALUE",
+      "confidence": 0.95,
+      "function_key": "",
+      "golden_case": null,
+      "mutant_id": "",
+      "needs_oracle": false,
+      "preconditions": [
+        "distinguishing witness (equivalence search)"
+      ],
+      "setup_code": "from TrialLedger.layer2.result_semantics import disposition_code",
+      "source_lenses": [
+        "witness"
+      ]
+    },
+    {
+      "assertion_code": "result = disposition_code(logical_result='OUT_OF_SCOPE', standing='', completion='complete')\nassert result == 'open'",
+      "category": "VALUE",
+      "confidence": 0.95,
+      "function_key": "",
+      "golden_case": null,
+      "mutant_id": "",
+      "needs_oracle": false,
+      "preconditions": [
+        "distinguishing witness (equivalence search)"
+      ],
+      "setup_code": "from TrialLedger.layer2.result_semantics import disposition_code",
+      "source_lenses": [
+        "witness"
+      ]
+    },
+    {
+      "assertion_code": "result = disposition_code(logical_result='not_ruled_out', standing='', completion='complete')\nassert result == 'open'",
+      "category": "VALUE",
+      "confidence": 0.95,
+      "function_key": "",
+      "golden_case": null,
+      "mutant_id": "",
+      "needs_oracle": false,
+      "preconditions": [
+        "distinguishing witness (equivalence search)"
+      ],
+      "setup_code": "from TrialLedger.layer2.result_semantics import disposition_code",
+      "source_lenses": [
+        "witness"
+      ]
+    },
+    {
+      "assertion_code": "result = disposition_code(logical_result='no_witness', standing='', completion='complete')\nassert result == 'open'",
+      "category": "VALUE",
+      "confidence": 0.95,
+      "function_key": "",
+      "golden_case": null,
+      "mutant_id": "",
+      "needs_oracle": false,
+      "preconditions": [
+        "distinguishing witness (equivalence search)"
+      ],
+      "setup_code": "from TrialLedger.layer2.result_semantics import disposition_code",
+      "source_lenses": [
+        "witness"
+      ]
+    },
+    {
+      "assertion_code": "result = disposition_code(logical_result='missing_relevant', standing='', completion='complete')\nassert result == 'open'",
+      "category": "VALUE",
+      "confidence": 0.95,
+      "function_key": "",
+      "golden_case": null,
+      "mutant_id": "",
+      "needs_oracle": false,
+      "preconditions": [
+        "distinguishing witness (equivalence search)"
+      ],
+      "setup_code": "from TrialLedger.layer2.result_semantics import disposition_code",
+      "source_lenses": [
+        "witness"
+      ]
+    },
+    {
+      "assertion_code": "result = disposition_code(logical_result='collection_plan_mismatch', standing='', completion='complete')\nassert result == 'open'",
+      "category": "VALUE",
+      "confidence": 0.95,
+      "function_key": "",
+      "golden_case": null,
+      "mutant_id": "",
+      "needs_oracle": false,
+      "preconditions": [
+        "distinguishing witness (equivalence search)"
+      ],
+      "setup_code": "from TrialLedger.layer2.result_semantics import disposition_code",
+      "source_lenses": [
+        "witness"
+      ]
+    },
+    {
+      "assertion_code": "result = disposition_code(logical_result='separated', standing='', completion='complete')\nassert result == 'open'",
+      "category": "VALUE",
+      "confidence": 0.95,
+      "function_key": "",
+      "golden_case": null,
+      "mutant_id": "",
+      "needs_oracle": false,
+      "preconditions": [
+        "distinguishing witness (equivalence search)"
+      ],
+      "setup_code": "from TrialLedger.layer2.result_semantics import disposition_code",
+      "source_lenses": [
+        "witness"
+      ]
+    },
+    {
+      "assertion_code": "result = disposition_code(logical_result='no_separator', standing='', completion='complete')\nassert result == 'open'",
+      "category": "VALUE",
+      "confidence": 0.95,
+      "function_key": "",
+      "golden_case": null,
+      "mutant_id": "",
+      "needs_oracle": false,
+      "preconditions": [
+        "distinguishing witness (equivalence search)"
+      ],
+      "setup_code": "from TrialLedger.layer2.result_semantics import disposition_code",
+      "source_lenses": [
+        "witness"
+      ]
+    },
+    {
+      "assertion_code": "result = disposition_code(logical_result='not_separated_in_declared_variables', standing='', completion='complete')\nassert result == 'open'",
+      "category": "VALUE",
+      "confidence": 0.95,
+      "function_key": "",
+      "golden_case": null,
+      "mutant_id": "",
+      "needs_oracle": false,
+      "preconditions": [
+        "distinguishing witness (equivalence search)"
+      ],
+      "setup_code": "from TrialLedger.layer2.result_semantics import disposition_code",
+      "source_lenses": [
+        "witness"
+      ]
+    },
+    {
+      "assertion_code": "result = disposition_code(logical_result='search_incomplete', standing='', completion='complete')\nassert result == 'open'",
+      "category": "VALUE",
+      "confidence": 0.95,
+      "function_key": "",
+      "golden_case": null,
+      "mutant_id": "",
+      "needs_oracle": false,
+      "preconditions": [
+        "distinguishing witness (equivalence search)"
+      ],
+      "setup_code": "from TrialLedger.layer2.result_semantics import disposition_code",
+      "source_lenses": [
+        "witness"
+      ]
+    },
+    {
+      "assertion_code": "result = disposition_code(logical_result='hypothetical_evidence_request', standing='', completion='complete')\nassert result == 'open'",
+      "category": "VALUE",
+      "confidence": 0.95,
+      "function_key": "",
+      "golden_case": null,
+      "mutant_id": "",
+      "needs_oracle": false,
+      "preconditions": [
+        "distinguishing witness (equivalence search)"
+      ],
+      "setup_code": "from TrialLedger.layer2.result_semantics import disposition_code",
+      "source_lenses": [
+        "witness"
+      ]
+    },
+    {
+      "assertion_code": "result = disposition_code(logical_result='incomplete', standing='', completion='complete')\nassert result == 'open'",
+      "category": "VALUE",
+      "confidence": 0.95,
+      "function_key": "",
+      "golden_case": null,
+      "mutant_id": "",
+      "needs_oracle": false,
+      "preconditions": [
+        "distinguishing witness (equivalence search)"
+      ],
+      "setup_code": "from TrialLedger.layer2.result_semantics import disposition_code",
+      "source_lenses": [
+        "witness"
+      ]
+    },
+    {
+      "assertion_code": "result = disposition_code(logical_result='truncated', standing='', completion='complete')\nassert result == 'open'",
+      "category": "VALUE",
+      "confidence": 0.95,
+      "function_key": "",
+      "golden_case": null,
+      "mutant_id": "",
+      "needs_oracle": false,
+      "preconditions": [
+        "distinguishing witness (equivalence search)"
+      ],
+      "setup_code": "from TrialLedger.layer2.result_semantics import disposition_code",
+      "source_lenses": [
+        "witness"
+      ]
+    },
+    {
+      "assertion_code": "result = disposition_code(logical_result='proposed', standing='', completion='complete')\nassert result == 'conditional'",
+      "category": "VALUE",
+      "confidence": 0.95,
+      "function_key": "",
+      "golden_case": null,
+      "mutant_id": "",
+      "needs_oracle": false,
+      "preconditions": [
+        "distinguishing witness (equivalence search)"
+      ],
+      "setup_code": "from TrialLedger.layer2.result_semantics import disposition_code",
+      "source_lenses": [
+        "witness"
+      ]
+    },
+    {
+      "assertion_code": "result = disposition_code(logical_result='available', standing='', completion='complete')\nassert result == 'unclassified'",
+      "category": "VALUE",
+      "confidence": 0.9,
+      "function_key": "",
+      "golden_case": [
+        "('available', '', 'complete')",
+        "'unclassified'"
+      ],
+      "mutant_id": "",
+      "needs_oracle": false,
+      "preconditions": [
+        "golden capture (pure + deterministic)"
+      ],
+      "setup_code": "from TrialLedger.layer2.result_semantics import disposition_code",
+      "source_lenses": [
+        "golden_capture"
+      ]
+    }
+  ]
+}

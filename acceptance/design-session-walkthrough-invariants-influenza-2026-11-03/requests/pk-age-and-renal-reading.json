@@ -1,0 +1,908 @@
+{
+  "operation": "source_assertions",
+  "study": {
+    "protocolSection": {
+      "identificationModule": {
+        "nctId": "NCT01179919",
+        "orgStudyIdInfo": {
+          "id": "10-002"
+        },
+        "organization": {
+          "fullName": "University of Michigan",
+          "class": "OTHER"
+        },
+        "briefTitle": "Pharmacokinetics of Oseltamivir Carboxylate In Morbidly Obese Subjects",
+        "officialTitle": "Oseltamivir and Oseltamivir Carboxylate Pharmacokinetics in Obese Adults"
+      },
+      "statusModule": {
+        "statusVerifiedDate": "2016-12",
+        "overallStatus": "COMPLETED",
+        "expandedAccessInfo": {
+          "hasExpandedAccess": false
+        },
+        "startDateStruct": {
+          "date": "2010-07"
+        },
+        "primaryCompletionDateStruct": {
+          "date": "2010-09",
+          "type": "ACTUAL"
+        },
+        "completionDateStruct": {
+          "date": "2010-12",
+          "type": "ACTUAL"
+        },
+        "studyFirstSubmitDate": "2010-08-10",
+        "studyFirstSubmitQcDate": "2010-08-10",
+        "studyFirstPostDateStruct": {
+          "date": "2010-08-11",
+          "type": "ESTIMATED"
+        },
+        "resultsFirstSubmitDate": "2016-10-11",
+        "resultsFirstSubmitQcDate": "2016-10-11",
+        "resultsFirstPostDateStruct": {
+          "date": "2016-12-06",
+          "type": "ESTIMATED"
+        },
+        "lastUpdateSubmitDate": "2016-12-16",
+        "lastUpdatePostDateStruct": {
+          "date": "2017-02-09",
+          "type": "ESTIMATED"
+        }
+      },
+      "sponsorCollaboratorsModule": {
+        "responsibleParty": {
+          "type": "SPONSOR_INVESTIGATOR",
+          "investigatorFullName": "Manjunath Prakash Pai",
+          "investigatorTitle": "Associate Professor",
+          "investigatorAffiliation": "University of Michigan"
+        },
+        "leadSponsor": {
+          "name": "Manjunath Prakash Pai",
+          "class": "OTHER"
+        },
+        "collaborators": [
+          {
+            "name": "Hoffmann-La Roche",
+            "class": "INDUSTRY"
+          }
+        ]
+      },
+      "oversightModule": {
+        "oversightHasDmc": false
+      },
+      "descriptionModule": {
+        "briefSummary": "One in three Americans are obese. Obese subjects may or may not need higher doses of the anti-flu drug known as Tamiflu (oseltamivir). The current study is being done to see if the FDA approved dose of oseltamivir will achieve similar concentrations in obese healthy volunteers compared to that previously shown in non-obese volunteers.",
+        "detailedDescription": "The incidence of obesity has increased dramatically over the past two decades in the United States (US). Twenty-five percent of adult Americans are now classified as obese. Obesity is associated with physiological alterations that can affect drug clearance and volume of distribution. Obese subjects are often excluded from phase 1 pharmacokinetic studies. As a result, drug dosing regimens developed for clinical use may not be appropriate for the obese population. Use of fixed dosing regimens may result in under dosing of obese patients. In contrast adjustment of drug dosing based on total body weight may lead to over dosing of obese patients. Oseltamivir phosphate (Tamiflu®) is an antiviral agent that is currently dosed as 75 mg once daily for chemoprophylaxis and twice daily for treatment of influenza in adults.\n\nOseltamivir is rapidly converted to its active metabolite, oseltamivir carboxylate by esterases. The clearance of oseltamivir carboxylate is dependent on tubular secretion and glomerular filtration. Given that these drug elimination pathways may be enhanced in obese individuals, oseltamivir carboxylate plasma exposures may be lower in obese subjects compared to normal weight subjects. Although a specific plasma exposure target for oseltamivir carboxylate has not been established, lower oseltamivir carboxylate exposures may predispose obese patients to treatment failure and increase the probability for emergence of oseltamivir-resistant influenza virus. The current study proposes to characterize the plasma oseltamivir carboxylate concentration-time profile after multiple doses of oral oseltamivir in a cohort of healthy morbidly obese subjects. The study will be performed using a phase 1, open-label,multiple dose, pharmacokinetic study design in twenty obese adult subjects. This pilot study will provide pharmacokinetic data that may be incorporated into existing oseltamivir carboxylate population pharmacokinetic models to define appropriate doses of oseltamivir in obese patients."
+      },
+      "conditionsModule": {
+        "conditions": [
+          "Obesity"
+        ],
+        "keywords": [
+          "Oseltamivir",
+          "Obesity",
+          "Influenza",
+          "Pharmacokinetics in Obesity"
+        ]
+      },
+      "designModule": {
+        "studyType": "INTERVENTIONAL",
+        "phases": [
+          "PHASE1",
+          "PHASE2"
+        ],
+        "designInfo": {
+          "allocation": "NA",
+          "interventionModel": "SINGLE_GROUP",
+          "maskingInfo": {
+            "masking": "NONE"
+          }
+        },
+        "enrollmentInfo": {
+          "count": 21,
+          "type": "ACTUAL"
+        }
+      },
+      "armsInterventionsModule": {
+        "armGroups": [
+          {
+            "label": "Oseltamivir Dosed Group",
+            "type": "EXPERIMENTAL",
+            "description": "Oseltamivir 75 mg by mouth every 12 hours for 9 doses",
+            "interventionNames": [
+              "Drug: Oseltamivir"
+            ]
+          }
+        ],
+        "interventions": [
+          {
+            "type": "DRUG",
+            "name": "Oseltamivir",
+            "description": "Capsule, 75 mg by mouth for 9 doses",
+            "armGroupLabels": [
+              "Oseltamivir Dosed Group"
+            ],
+            "otherNames": [
+              "Tamiflu"
+            ]
+          }
+        ]
+      },
+      "outcomesModule": {
+        "primaryOutcomes": [
+          {
+            "measure": "Steady-State AUC of Oseltamivir Carboxylate",
+            "description": "AUC is the area under the concentration-time curve. This is measured as concentration in nanograms of oseltamivir carboxylate per milliliter of plasma multiplied by time in hours (hour\\*ng/mL)",
+            "timeFrame": "6 days"
+          }
+        ],
+        "secondaryOutcomes": [
+          {
+            "measure": "Steady-State Cmax and Cmin of Oseltamivir Carboxylate",
+            "description": "Cmax is the maximum concentration and Cmin in the minimum concentration of oseltamivir carboxylate measured in nanogram of oseltamivir carboxylate per milliliter of plasma (ng/mL)",
+            "timeFrame": "6 days"
+          }
+        ]
+      },
+      "eligibilityModule": {
+        "eligibilityCriteria": "Inclusion Criteria:\n\n* males and females, 18 to 50 years of age\n* non-smoking or light-smoking (≤5 cigarettes per day) volunteers\n* BMI ≥ 40 kg/m2\n* female subjects of childbearing potential either surgically sterilized, using an effective method of contraception (diaphragm, cervical cap,condom) or agree to abstain from sex from time of pre-study screening, during entire study period and 1 week following the study period.\n\nExclusion Criteria:\n\n* history of significant hypersensitivity reaction to oseltamivir\n* history of gastric bypass surgical procedure\n* history of significant clinical illness requiring pharmacological management\n* abnormal serum electrolyte or complete blood count requiring further clinical work-up\n* transaminases (AST or ALT) \\>2.5 x upper limit of normal\n* estimated creatinine clearance \\<50 mL/min (Cockcroft-Gault equation)\n* positive urine pregnancy test (if female)\n* abnormal electrocardiogram (ECG) as judged by study physician\n* unable to tolerate venipuncture and multiple blood draws\n* clinically significant abnormal physical examination defined as a physical finding requiring further clinical work-up",
+        "healthyVolunteers": true,
+        "sex": "ALL",
+        "minimumAge": "18 Years",
+        "maximumAge": "50 Years",
+        "stdAges": [
+          "ADULT"
+        ]
+      },
+      "contactsLocationsModule": {
+        "overallOfficials": [
+          {
+            "name": "Manjunath Pai, PharmD",
+            "affiliation": "ACPHS",
+            "role": "PRINCIPAL_INVESTIGATOR"
+          }
+        ],
+        "locations": [
+          {
+            "facility": "TKL Research",
+            "city": "Paramaus",
+            "state": "New Jersey",
+            "zip": "07652",
+            "country": "United States"
+          }
+        ]
+      },
+      "referencesModule": {
+        "references": [
+          {
+            "pmid": "21930881",
+            "type": "DERIVED",
+            "citation": "Pai MP, Lodise TP Jr. Oseltamivir and oseltamivir carboxylate pharmacokinetics in obese adults: dose modification for weight is not necessary. Antimicrob Agents Chemother. 2011 Dec;55(12):5640-5. doi: 10.1128/AAC.00422-11. Epub 2011 Sep 19."
+          }
+        ]
+      },
+      "ipdSharingStatementModule": {
+        "ipdSharing": "NO",
+        "description": "The summative data have been published and are available as open-access to the public: doi10.1128/AAC.00422-11"
+      }
+    },
+    "resultsSection": {
+      "participantFlowModule": {
+        "groups": [
+          {
+            "id": "FG000",
+            "title": "Oseltamivir Dosed Group",
+            "description": "Oseltamivir 75 mg by mouth every 12 hours for 9 doses\n\nOseltamivir: Capsule, 75 mg by mouth for 9 doses"
+          }
+        ],
+        "periods": [
+          {
+            "title": "Overall Study",
+            "milestones": [
+              {
+                "type": "STARTED",
+                "achievements": [
+                  {
+                    "groupId": "FG000",
+                    "numSubjects": "21"
+                  }
+                ]
+              },
+              {
+                "type": "COMPLETED",
+                "achievements": [
+                  {
+                    "groupId": "FG000",
+                    "numSubjects": "19"
+                  }
+                ]
+              },
+              {
+                "type": "NOT COMPLETED",
+                "achievements": [
+                  {
+                    "groupId": "FG000",
+                    "numSubjects": "2"
+                  }
+                ]
+              }
+            ],
+            "dropWithdraws": [
+              {
+                "type": "Protocol Violation",
+                "reasons": [
+                  {
+                    "groupId": "FG000",
+                    "numSubjects": "1"
+                  }
+                ]
+              },
+              {
+                "type": "Adverse Event",
+                "reasons": [
+                  {
+                    "groupId": "FG000",
+                    "numSubjects": "1"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "baselineCharacteristicsModule": {
+        "populationDescription": "Subjects administered at least 1 dose of oseltamivir",
+        "groups": [
+          {
+            "id": "BG000",
+            "title": "Oseltamivir Dosed Group",
+            "description": "Oseltamivir 75 mg by mouth every 12 hours for 9 doses\n\nOseltamivir: Capsule, 75 mg by mouth for 9 doses"
+          }
+        ],
+        "denoms": [
+          {
+            "units": "Participants",
+            "counts": [
+              {
+                "groupId": "BG000",
+                "value": "21"
+              }
+            ]
+          }
+        ],
+        "measures": [
+          {
+            "title": "Age, Continuous",
+            "paramType": "MEDIAN",
+            "dispersionType": "FULL_RANGE",
+            "unitOfMeasure": "years",
+            "classes": [
+              {
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "BG000",
+                        "value": "36",
+                        "lowerLimit": "19",
+                        "upperLimit": "50"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Gender",
+            "paramType": "COUNT_OF_PARTICIPANTS",
+            "unitOfMeasure": "Participants",
+            "classes": [
+              {
+                "categories": [
+                  {
+                    "title": "Female",
+                    "measurements": [
+                      {
+                        "groupId": "BG000",
+                        "value": "17"
+                      }
+                    ]
+                  },
+                  {
+                    "title": "Male",
+                    "measurements": [
+                      {
+                        "groupId": "BG000",
+                        "value": "4"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Race (NIH/OMB)",
+            "paramType": "COUNT_OF_PARTICIPANTS",
+            "unitOfMeasure": "Participants",
+            "classes": [
+              {
+                "categories": [
+                  {
+                    "title": "American Indian or Alaska Native",
+                    "measurements": [
+                      {
+                        "groupId": "BG000",
+                        "value": "0"
+                      }
+                    ]
+                  },
+                  {
+                    "title": "Asian",
+                    "measurements": [
+                      {
+                        "groupId": "BG000",
+                        "value": "0"
+                      }
+                    ]
+                  },
+                  {
+                    "title": "Native Hawaiian or Other Pacific Islander",
+                    "measurements": [
+                      {
+                        "groupId": "BG000",
+                        "value": "0"
+                      }
+                    ]
+                  },
+                  {
+                    "title": "Black or African American",
+                    "measurements": [
+                      {
+                        "groupId": "BG000",
+                        "value": "7"
+                      }
+                    ]
+                  },
+                  {
+                    "title": "White",
+                    "measurements": [
+                      {
+                        "groupId": "BG000",
+                        "value": "11"
+                      }
+                    ]
+                  },
+                  {
+                    "title": "More than one race",
+                    "measurements": [
+                      {
+                        "groupId": "BG000",
+                        "value": "3"
+                      }
+                    ]
+                  },
+                  {
+                    "title": "Unknown or Not Reported",
+                    "measurements": [
+                      {
+                        "groupId": "BG000",
+                        "value": "0"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "title": "Body Mass Index",
+            "paramType": "MEDIAN",
+            "dispersionType": "FULL_RANGE",
+            "unitOfMeasure": "kg/m^2",
+            "classes": [
+              {
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "BG000",
+                        "value": "43.7",
+                        "lowerLimit": "40.0",
+                        "upperLimit": "54.4"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "outcomeMeasuresModule": {
+        "outcomeMeasures": [
+          {
+            "type": "PRIMARY",
+            "title": "Steady-State AUC of Oseltamivir Carboxylate",
+            "description": "AUC is the area under the concentration-time curve. This is measured as concentration in nanograms of oseltamivir carboxylate per milliliter of plasma multiplied by time in hours (hour\\*ng/mL)",
+            "populationDescription": "Subjects who received all 9 doses of oseltamivir",
+            "reportingStatus": "POSTED",
+            "paramType": "MEAN",
+            "dispersionType": "Standard Deviation",
+            "unitOfMeasure": "hour*ng/mL",
+            "timeFrame": "6 days",
+            "groups": [
+              {
+                "id": "OG000",
+                "title": "Oseltamivir Dosed Group",
+                "description": "Oseltamivir 75 mg by mouth every 12 hours for 9 doses\n\nOseltamivir: Capsule, 75 mg by mouth for 9 doses"
+              }
+            ],
+            "denoms": [
+              {
+                "units": "Participants",
+                "counts": [
+                  {
+                    "groupId": "OG000",
+                    "value": "19"
+                  }
+                ]
+              }
+            ],
+            "classes": [
+              {
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "2579",
+                        "spread": "510"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "SECONDARY",
+            "title": "Steady-State Cmax and Cmin of Oseltamivir Carboxylate",
+            "description": "Cmax is the maximum concentration and Cmin in the minimum concentration of oseltamivir carboxylate measured in nanogram of oseltamivir carboxylate per milliliter of plasma (ng/mL)",
+            "populationDescription": "Subjects who received all 9 doses of oseltamivir",
+            "reportingStatus": "POSTED",
+            "paramType": "MEAN",
+            "dispersionType": "Standard Deviation",
+            "unitOfMeasure": "ng/mL",
+            "timeFrame": "6 days",
+            "groups": [
+              {
+                "id": "OG000",
+                "title": "Oseltamivir Dosed Group",
+                "description": "Oseltamivir 75 mg by mouth every 12 hours for 9 doses\n\nOseltamivir: Capsule, 75 mg by mouth for 9 doses"
+              }
+            ],
+            "denoms": [
+              {
+                "units": "Participants",
+                "counts": [
+                  {
+                    "groupId": "OG000",
+                    "value": "19"
+                  }
+                ]
+              }
+            ],
+            "classes": [
+              {
+                "title": "Cmax",
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "316",
+                        "spread": "68.1"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "title": "Cmin",
+                "categories": [
+                  {
+                    "measurements": [
+                      {
+                        "groupId": "OG000",
+                        "value": "113",
+                        "spread": "37.4"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "adverseEventsModule": {
+        "frequencyThreshold": "0",
+        "timeFrame": "6 days",
+        "eventGroups": [
+          {
+            "id": "EG000",
+            "title": "Oseltamivir Dosed Group",
+            "description": "Oseltamivir 75 mg by mouth every 12 hours for 9 doses\n\nOseltamivir: Capsule, 75 mg by mouth for 9 doses",
+            "seriousNumAffected": 0,
+            "seriousNumAtRisk": 21,
+            "otherNumAffected": 1,
+            "otherNumAtRisk": 21
+          }
+        ],
+        "otherEvents": [
+          {
+            "term": "Anxiety",
+            "organSystem": "General disorders",
+            "assessmentType": "NON_SYSTEMATIC_ASSESSMENT",
+            "stats": [
+              {
+                "groupId": "EG000",
+                "numEvents": 1,
+                "numAffected": 1,
+                "numAtRisk": 21
+              }
+            ]
+          }
+        ]
+      },
+      "moreInfoModule": {
+        "limitationsAndCaveats": {
+          "description": "This study only evaluated obese subjects. The concentrations measured in plasma may not reflect concentrations in tissues such as the lungs."
+        },
+        "certainAgreement": {
+          "piSponsorEmployee": false,
+          "restrictiveAgreement": false
+        },
+        "pointOfContact": {
+          "title": "Manjunath Pai",
+          "organization": "University of Michigan",
+          "email": "amitpai@med.umich.edu",
+          "phone": "7346473466"
+        }
+      }
+    },
+    "derivedSection": {
+      "miscInfoModule": {
+        "versionHolder": "2026-11-03"
+      },
+      "conditionBrowseModule": {
+        "meshes": [
+          {
+            "id": "D009765",
+            "term": "Obesity"
+          },
+          {
+            "id": "D007251",
+            "term": "Influenza, Human"
+          }
+        ],
+        "ancestors": [
+          {
+            "id": "D050177",
+            "term": "Overweight"
+          },
+          {
+            "id": "D044343",
+            "term": "Overnutrition"
+          },
+          {
+            "id": "D009748",
+            "term": "Nutrition Disorders"
+          },
+          {
+            "id": "D009750",
+            "term": "Nutritional and Metabolic Diseases"
+          },
+          {
+            "id": "D001835",
+            "term": "Body Weight"
+          },
+          {
+            "id": "D012816",
+            "term": "Signs and Symptoms"
+          },
+          {
+            "id": "D013568",
+            "term": "Pathological Conditions, Signs and Symptoms"
+          },
+          {
+            "id": "D012141",
+            "term": "Respiratory Tract Infections"
+          },
+          {
+            "id": "D007239",
+            "term": "Infections"
+          },
+          {
+            "id": "D009976",
+            "term": "Orthomyxoviridae Infections"
+          },
+          {
+            "id": "D012327",
+            "term": "RNA Virus Infections"
+          },
+          {
+            "id": "D014777",
+            "term": "Virus Diseases"
+          },
+          {
+            "id": "D012140",
+            "term": "Respiratory Tract Diseases"
+          }
+        ]
+      },
+      "interventionBrowseModule": {
+        "meshes": [
+          {
+            "id": "D053139",
+            "term": "Oseltamivir"
+          }
+        ],
+        "ancestors": [
+          {
+            "id": "D000081",
+            "term": "Acetamides"
+          },
+          {
+            "id": "D000577",
+            "term": "Amides"
+          },
+          {
+            "id": "D009930",
+            "term": "Organic Chemicals"
+          },
+          {
+            "id": "D053138",
+            "term": "Cyclohexenes"
+          },
+          {
+            "id": "D003510",
+            "term": "Cyclohexanes"
+          },
+          {
+            "id": "D003516",
+            "term": "Cycloparaffins"
+          },
+          {
+            "id": "D006840",
+            "term": "Hydrocarbons, Alicyclic"
+          },
+          {
+            "id": "D006844",
+            "term": "Hydrocarbons, Cyclic"
+          },
+          {
+            "id": "D006838",
+            "term": "Hydrocarbons"
+          }
+        ]
+      }
+    },
+    "hasResults": true
+  },
+  "expected_digest": "e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529",
+  "anchors": [
+    {
+      "id": "eligibility",
+      "address": "/protocolSection/eligibilityModule/eligibilityCriteria",
+      "digest": "e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529",
+      "expected": "Inclusion Criteria:\n\n* males and females, 18 to 50 years of age\n* non-smoking or light-smoking (≤5 cigarettes per day) volunteers\n* BMI ≥ 40 kg/m2\n* female subjects of childbearing potential either surgically sterilized, using an effective method of contraception (diaphragm, cervical cap,condom) or agree to abstain from sex from time of pre-study screening, during entire study period and 1 week following the study period.\n\nExclusion Criteria:\n\n* history of significant hypersensitivity reaction to oseltamivir\n* history of gastric bypass surgical procedure\n* history of significant clinical illness requiring pharmacological management\n* abnormal serum electrolyte or complete blood count requiring further clinical work-up\n* transaminases (AST or ALT) \\>2.5 x upper limit of normal\n* estimated creatinine clearance \\<50 mL/min (Cockcroft-Gault equation)\n* positive urine pregnancy test (if female)\n* abnormal electrocardiogram (ECG) as judged by study physician\n* unable to tolerate venipuncture and multiple blood draws\n* clinically significant abnormal physical examination defined as a physical finding requiring further clinical work-up",
+      "span": {
+        "start": 0,
+        "end": 1145,
+        "text": "Inclusion Criteria:\n\n* males and females, 18 to 50 years of age\n* non-smoking or light-smoking (≤5 cigarettes per day) volunteers\n* BMI ≥ 40 kg/m2\n* female subjects of childbearing potential either surgically sterilized, using an effective method of contraception (diaphragm, cervical cap,condom) or agree to abstain from sex from time of pre-study screening, during entire study period and 1 week following the study period.\n\nExclusion Criteria:\n\n* history of significant hypersensitivity reaction to oseltamivir\n* history of gastric bypass surgical procedure\n* history of significant clinical illness requiring pharmacological management\n* abnormal serum electrolyte or complete blood count requiring further clinical work-up\n* transaminases (AST or ALT) \\>2.5 x upper limit of normal\n* estimated creatinine clearance \\<50 mL/min (Cockcroft-Gault equation)\n* positive urine pregnancy test (if female)\n* abnormal electrocardiogram (ECG) as judged by study physician\n* unable to tolerate venipuncture and multiple blood draws\n* clinically significant abnormal physical examination defined as a physical finding requiring further clinical work-up"
+      }
+    },
+    {
+      "id": "arms",
+      "address": "/protocolSection/armsInterventionsModule",
+      "digest": "e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529",
+      "expected": {
+        "armGroups": [
+          {
+            "label": "Oseltamivir Dosed Group",
+            "type": "EXPERIMENTAL",
+            "description": "Oseltamivir 75 mg by mouth every 12 hours for 9 doses",
+            "interventionNames": [
+              "Drug: Oseltamivir"
+            ]
+          }
+        ],
+        "interventions": [
+          {
+            "type": "DRUG",
+            "name": "Oseltamivir",
+            "description": "Capsule, 75 mg by mouth for 9 doses",
+            "armGroupLabels": [
+              "Oseltamivir Dosed Group"
+            ],
+            "otherNames": [
+              "Tamiflu"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "outcomes",
+      "address": "/protocolSection/outcomesModule",
+      "digest": "e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529",
+      "expected": {
+        "primaryOutcomes": [
+          {
+            "measure": "Steady-State AUC of Oseltamivir Carboxylate",
+            "description": "AUC is the area under the concentration-time curve. This is measured as concentration in nanograms of oseltamivir carboxylate per milliliter of plasma multiplied by time in hours (hour\\*ng/mL)",
+            "timeFrame": "6 days"
+          }
+        ],
+        "secondaryOutcomes": [
+          {
+            "measure": "Steady-State Cmax and Cmin of Oseltamivir Carboxylate",
+            "description": "Cmax is the maximum concentration and Cmin in the minimum concentration of oseltamivir carboxylate measured in nanogram of oseltamivir carboxylate per milliliter of plasma (ng/mL)",
+            "timeFrame": "6 days"
+          }
+        ]
+      }
+    }
+  ],
+  "interpretations": [
+    {
+      "id": "renal-reading",
+      "label": "Read exclusion <50 mL/min as requiring at least50 under the named estimator",
+      "origin": "assistant",
+      "basis": [
+        "assistant:unconfirmed-source-reading; invented operational additions explicitly labelled"
+      ],
+      "anchors": [
+        "eligibility",
+        "arms",
+        "outcomes"
+      ],
+      "assumptions": [
+        {
+          "applicability": {
+            "class": "Always"
+          },
+          "body": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "estimated_creatinine_clearance_Cockcroft_Gault",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "ge",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 50,
+              "unit": "mL/min",
+              "upper": null
+            }
+          },
+          "branch": {
+            "class": "Branch",
+            "node": "unresolved",
+            "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+            "class": "Scope",
+            "kind": "all_participants",
+            "parts": [],
+            "ref": ""
+          },
+          "criterion_ref": "assistant:source-reading-not-confirmed",
+          "id": "renal-floor",
+          "modality": "required",
+          "resolution": "resolved",
+          "rule": {
+            "answers": [],
+            "class": "Rule",
+            "id": "assistant:source-reading-not-confirmed",
+            "premises": [],
+            "version": "1",
+            "warrants": [
+              "invented:explicit-teaching-premise"
+            ]
+          },
+          "span": [],
+          "status": "proposed"
+        }
+      ],
+      "signals": [],
+      "signal_claims": [],
+      "binding_uses": []
+    }
+  ],
+  "queries": [
+    {
+      "id": "age51",
+      "body": {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+          "class": "Predicate",
+          "key": "age",
+          "kind": "measurement"
+        },
+        "qualifiers": {
+          "class": "Always"
+        },
+        "subject": {
+          "class": "Subject",
+          "kind": "participant",
+          "referent": ""
+        },
+        "time": null,
+        "value": {
+          "class": "Value",
+          "comparison": "eq",
+          "inclusivity": "unspecified",
+          "kind": "quantity",
+          "members": [],
+          "number": 51,
+          "unit": "Years",
+          "upper": null
+        }
+      }
+    },
+    {
+      "id": "renal45",
+      "body": {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+          "class": "Predicate",
+          "key": "estimated_creatinine_clearance_Cockcroft_Gault",
+          "kind": "measurement"
+        },
+        "qualifiers": {
+          "class": "Always"
+        },
+        "subject": {
+          "class": "Subject",
+          "kind": "participant",
+          "referent": ""
+        },
+        "time": null,
+        "value": {
+          "class": "Value",
+          "comparison": "eq",
+          "inclusivity": "unspecified",
+          "kind": "quantity",
+          "members": [],
+          "number": 45,
+          "unit": "mL/min",
+          "upper": null
+        }
+      }
+    }
+  ]
+}

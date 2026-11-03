@@ -1,0 +1,20 @@
+{
+  "TrialLedger/layer2/design_session.py::alternative_code": {
+    "cut_reasons": [],
+    "function_digest": "0974c98951278c61",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/session_state.py::change_code": {
+    "cut_reasons": [],
+    "function_digest": "8a29be4899772545",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/session_state.py::revision_code": {
+    "cut_reasons": [],
+    "function_digest": "8a1d660274f21740",
+    "refusal": "",
+    "standing": "complete"
+  }
+}

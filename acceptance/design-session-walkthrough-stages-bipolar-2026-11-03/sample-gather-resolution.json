@@ -1,0 +1,35 @@
+{
+ "code": "resolved",
+ "check": [
+  "ok",
+  []
+ ],
+ "join": "the names of one slot are joined by OR, the slots by AND",
+ "slots": [
+  {
+   "slot": "params",
+   "value": {
+    "filter.ids": "NCT00090311,NCT00227305,NCT00119652"
+   },
+   "clause": ""
+  }
+ ],
+ "expansions": [],
+ "lookups": [],
+ "pending": [],
+ "stops": [],
+ "query": {
+  "filter.ids": "NCT00090311,NCT00227305,NCT00119652"
+ },
+ "release": [
+  "not_asked",
+  "",
+  ""
+ ],
+ "release_basis": "",
+ "release_check": [
+  "not_asked",
+  "",
+  ""
+ ]
+}

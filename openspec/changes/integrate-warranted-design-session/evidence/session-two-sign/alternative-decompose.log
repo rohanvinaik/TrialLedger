@@ -1,0 +1,30 @@
+  ▸ proving: converging the target to a mutation-complete suite (the proof)…
+  ▸ recalled 1 supplied input(s) from a previous run
+  … alternative_code: tracing 14 function-routed tests
+  … alternative_code: baseline traced · 14 tests · 0.0s
+  ▸ pass 0: ✓ every mutant killed; pinning the supplied input(s)…
+  ▸ pass 0: 0 value-survivor(s) — synthesizing killing tests…
+  ▸ pass 0: +3 new killing test(s) written [test_TrialLedger_layer2_design_session_alternative_code_e2f3f386f0_synth.py]
+  … alternative_code: tracing 17 function-routed tests
+  … alternative_code: baseline traced · 17 tests · 0.0s
+  ▸ pass 1: ✓ every mutant killed
+  ▸ witness pass: searching richer inputs for a distinguishing kill…
+  ▸ finalizing — re-profiling the full mutant universe against the written suite…
+  … alternative_code: tracing 17 function-routed tests
+  … alternative_code: baseline traced · 17 tests · 0.0s
+  ▸ minimizing — dropped 3 redundant test(s) our own cover flagged
+  … alternative_code: tracing 14 function-routed tests
+  … alternative_code: baseline traced · 14 tests · 0.0s
+  ▸ verifying reproducibility — fresh isolated observation of the function's proof basis…
+  … alternative_code: tracing 14 function-routed tests
+  … alternative_code: baseline traced · 14 tests · 0.0s
+  … alternative_code: tracing 57 function-routed tests
+  … alternative_code: baseline traced · 57 tests · 2.4s
+  ▸ reproducibility confirmed — the certificate rests on the isolated observation
+  … alternative_code: tracing 37 function-routed tests
+  … alternative_code: baseline traced · 37 tests · 0.0s
+  ▸ baseline: running the proof suite against the UNCHANGED function…
+  ▸ full report: .detective/reports/decompose_alternative_code.txt
+alternative_code — decompose
+
+DONE:  no separable block. There is no seam here to split.

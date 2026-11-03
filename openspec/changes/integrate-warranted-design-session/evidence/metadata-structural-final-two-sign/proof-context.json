@@ -1,0 +1,22 @@
+{
+  "module": "bf50f082463413336747edf103347497572544a94cd77008bce9f28f7b164997",
+  "functions": {
+    "cause_kind": "84e2634f00e58dbabef0780cf20cc5523ef8288bb414a9cb4016025a21a80d3a",
+    "completion_code": "d8fa754bd53d3ea41a3c251b03db566cdd9e143bae5d22e33a669733657416e8",
+    "disposition_code": "5b32c2bdc0eb40b03d86d2df8bbc50abec9a04f904ca366328fe597e4d1be0a7"
+  },
+  "globals": {
+    "CAUSE_KINDS": {
+      "count": 90,
+      "sha256": "3c7033410bb7b75fbe29d43e97058e6ca3e57450786a2ddc6f1bddad7289d6bf"
+    },
+    "DISPOSITIONS": {
+      "count": 9,
+      "sha256": "b269296dcda3fb4e195d458cdfdeeb0c109638f531b816bef94916d2d2063adc"
+    },
+    "RESULTS": {
+      "count": 54,
+      "sha256": "c1289083995712431444122b57a916c3e4232df6a1bb7850160146891f53e30d"
+    }
+  }
+}

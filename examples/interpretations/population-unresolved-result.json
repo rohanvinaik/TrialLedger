@@ -327,6 +327,10 @@
               ]
             }
           ],
+          "admission": {
+            "code": "accepted",
+            "application_blockers": []
+          },
           "blockers": []
         }
       ],
@@ -548,6 +552,10 @@
                 ]
               }
             ],
+            "admission": {
+              "code": "accepted",
+              "application_blockers": []
+            },
             "blockers": [
               "binding_unresolved:EFQ-subset-binding"
             ],
@@ -938,6 +946,10 @@
                 ]
               }
             ],
+            "admission": {
+              "code": "accepted",
+              "application_blockers": []
+            },
             "blockers": [
               "binding_unresolved:EFQ-subset-binding"
             ],
@@ -1002,6 +1014,10 @@
                 ]
               }
             ],
+            "admission": {
+              "code": "accepted",
+              "application_blockers": []
+            },
             "blockers": [
               "binding_unresolved:EFQ-subset-binding",
               "inconsistent_population_total"

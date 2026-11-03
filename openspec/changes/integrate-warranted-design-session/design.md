@@ -42,13 +42,13 @@ have no clinical findings. The implemented finding fields are:
 
 Optional `raw_result`, `raw_path` and `support_path` retain ungated calculations and deciding warrants.
 Group 1 does not emit normalized `origin`, `coverage` or `uncertainty_causes` fields. Origin and represented
-coverage remain in the actual premises and operation payloads until the planned session can expose them
+coverage remain in the actual premises and operation payloads outside the managed session, which exposes them
 from explicit dependencies and declared questions.
 
 `conditional` must be explained from `standing`, not its disposition alone: interpolated support is an
 overridable default or working assumption; proposed support is an unconfirmed reading, refused outside
 the supported hypothetical frame. Current `open` is deliberately neutral about the kind of open question.
-The session projection in task 5.2 will refine it into `design_choice`, `evidence_question` or
+The managed session projection refines it into `design_choice`, `evidence_question` or
 `translation_question` when the declared question, scope, dependencies and actual results warrant that
 classification. Existing refusal metadata already uses `translation_question` for request repair.
 
@@ -259,6 +259,22 @@ and inspectable. Record retained file/byte counts; do not multiply full captures
 
 ## Risks / Trade-offs
 
+### Authorized extension: reusable clinical structures
+
+The founder authorized the following increments after review of the content-generality claim. They precede final session integration and reuse existing solvers; they do not establish arbitrary paradigm coverage or amend the full writer's outstanding contracts.
+
+The invariant harness compares operation-specific answers, standing and causes under declared transformations. It excludes arbitrary input sorting, proof-choice equality and unconditional premise monotonicity. Strict constraints narrow feasible space when computation completes; defaults, candidate-family expansion, changed denominators, global contradictions and work limits have their own semantics. Revision tests rerun complete inputs rather than treating a reduced proof as an exhaustive dependency label.
+
+The `stages` signal names exact stage populations and units. A permitted transition supplies no cardinality or membership warrant. A declared documented-subset relation is checked with the existing population operator. Its clinical meaning remains supplied; passing counts proves neither identity nor individual progression. Every transition retains its own support and application scope; graph resolution concerns the shared study/snapshot identity. Per-edge results coexist. Only deciding support reaches aggregate/candidate conclusions, so unrelated pending edges cannot poison an independent check. Empty graphs are zero-check inspection. No profile transfer, transitive closure or joint population solver is implied.
+
+The `decision_table` signal declares finite equality domains, feasible-combination constraints and guarded actions using existing proposition objects. A nonempty feasible domain is a prerequisite to coverage. Different-action overlap, same-action duplicate overlap and action reachability are separate checks. Input-tree size/depth, rows, domains and aggregate solver calls are bounded. Unfinished checks retain their limits; no fabricated countermodel assignment is returned. Static completeness establishes no sequential termination or statistical operating characteristic. A subsequent sequential contract would require explicit states, transitions, initial/stopping conditions and feasible-path semantics.
+
+The `estimand` signal retains five attributed definition components plus per-event strategies, explicitly bound requirement relevance, collection-plan actions and actual data states. Requirements bind variable, event, window and observed/imputed/derived mode. Labels do not establish those relations. Collection-plan mismatch is distinct from unavailable actual data and from an adopted logical dependency conflict. Not-required data are not missing for that estimand; raw availability stays inspectable. Treatment-policy collection cessation alone does not prove estimation impossible. Structural nonexistence requires the applicable variable/event binding. Adopted dependency checks reuse their existing owner; estimator validity and operating characteristics remain outside that check.
+
+New operators must propagate their local determining support through the shared signal wrapper. Known outer support cannot promote an interpolated internal relation; an independent known conflict can retain its support despite unrelated pending checks. Existing operators retain their current four-field contract and outputs. Additional operator support fields are closed and validated before consumption. Metadata and answer guides expose each material inner finding, rather than reducing mixed results to one reassuring label.
+
+Each increment receives a fresh model-operated clinical walkthrough after integration, rotating structural paradigm as well as phase/indication. Existing examples establish content independence only for their represented constructs. See `docs/BUILD_COMPLETION_PLAN.md` for the wider build sequence and `docs/PARALLEL_EVIDENCE_REQUESTS_HANDOFF.md` for the disjoint external contribution.
+
 - **Premise acceptance mistaken for clinical truth** → preserve origin, source wording and hypothetical/accepted status separately; record the person/source that supplied it.
 - **Flow categories mapped too broadly** → keep source reason counts distinct from the scoped entry-eligibility relation; no word-list classifier.
 - **A session wrapper hides discarded information** → retain complete child requests/results and trace every deciding result into the list through CLI and MCP.
@@ -271,3 +287,29 @@ and inspectable. Record retained file/byte counts; do not multiply full captures
 Implement and commit one coherent vertical increment at a time on main. Start with result causes, then exception/binding preparation, session replay/projections and the actual decision handoff. Preserve old direct requests. Update documentation only when the new behavior reaches both public entry points. Record ordinary gate, two-sign and contract outcomes separately, including typed tool limitations; do not reopen accepted historical pin limitations as a prerequisite.
 
 Rollback is a normal commit revert. Saved source runs and old request/results retain their writing version and are never relabelled as outputs of the new session. Run the post-change model walkthrough after documentation is reconciled, and return any new failing case to its responsible increment before calling the pass complete.
+
+
+## Integrated contract and replay boundaries
+
+The closed version-1 managed schema is discoverable through `describe/design_session`; its focused guide
+contains actually runnable baseline and revision requests. Candidate and other clinical slots are populated
+through named premise projections, not free parameter replacement. Source age is compiled by its existing
+owner. Documentary corpus features must bind the exact source/snapshot; choices and computed bounds cannot
+become source statements. Derived entailment assertions preserve their producer's cohort, arm and phase.
+Decision options require actual feasibility and pairwise distinguishing entailment under an identical floor.
+The runner replays complete snapshots, returns complete children and keeps dependency graphs distinct from
+minimal deciding proofs. A selected unchecked option retains its open checks.
+
+`evidence_requests` is available standalone and as a projected session child. A direction-aware witness
+reducer preserves an admitted necessary-criterion refutation for accepted profiles beside withheld extra
+criteria; those blockers remain material for rejected profiles. Scope/profile/resource/unknown blockers
+are never discarded by that reduction. Input consistency decisions keep their actual deciding support.
+The finite JSON boundary rejects nonfinite numbers and inexact integer/threshold representations before
+enumeration. `max_bytes` bounds returned rows; `max_response_bytes` bounds the complete canonical UTF-8
+successful reason envelope before display/MCP wrapping. A response that cannot fit is refused by name,
+not shortened into a different inference. Session budgets reserve bounded witness solver work in addition
+to the response and input bounds.
+
+The managed runner does not authenticate arbitrary origin declarations, compile arbitrary prose, discover
+all clinical questions, import screening logs, establish candidate-family exhaustiveness or generate a
+complete protocol. Those larger contracts remain explicit in `add-design-synthesis` and section 8 above.

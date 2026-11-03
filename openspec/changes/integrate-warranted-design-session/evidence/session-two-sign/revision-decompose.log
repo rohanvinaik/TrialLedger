@@ -1,0 +1,17 @@
+  ▸ proving: converging the target to a mutation-complete suite (the proof)…
+  … revision_code: tracing 8 function-routed tests
+  … revision_code: baseline traced · 8 tests · 0.0s
+  ▸ pass 0: ✓ every mutant killed
+  ▸ witness pass: searching richer inputs for a distinguishing kill…
+  ▸ finalizing — re-profiling the full mutant universe against the existing suite (no test written this run)…
+  ▸ verifying reproducibility — fresh isolated observation of the function's proof basis…
+  … revision_code: tracing 8 function-routed tests
+  … revision_code: baseline traced · 8 tests · 0.0s
+  ▸ reproducibility confirmed — the certificate rests on the isolated observation
+  … revision_code: tracing 8 function-routed tests
+  … revision_code: baseline traced · 8 tests · 0.0s
+  ▸ baseline: running the proof suite against the UNCHANGED function…
+  ▸ full report: .detective/reports/decompose_revision_code.txt
+revision_code — decompose
+
+DONE:  no separable block. There is no seam here to split.

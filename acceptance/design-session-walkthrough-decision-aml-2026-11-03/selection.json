@@ -1,0 +1,78 @@
+{
+  "question": "For a proposed Phase1 AML combination study, do the sampled venetoclax studies state enough escalation, expansion, dose-limiting-toxicity evaluation and stopping rules to encode a complete decision table? Which cases or actions remain unspecified?",
+  "declared_at_utc": "2026-11-03T22:22:49.646904+00:00",
+  "query": {
+    "drug": [
+      "venetoclax"
+    ],
+    "condition": [
+      "Acute Myeloid Leukemia"
+    ],
+    "phase": [
+      "PHASE1"
+    ],
+    "status": [
+      "COMPLETED"
+    ]
+  },
+  "max_complete_pool": 30,
+  "seed": 7075652826039879207,
+  "selection_rule": "random.Random(seed).sample(sorted(complete_pool),min(3,len(complete_pool))) before selected-content reading; no replacement",
+  "retention": {
+    "packet": "Clinical handoff, full minimal reasoning request/canonical-result pairs, source/query/pool/seed/time/version/hash receipts; under2MB by reducing redundant cases, never by truncating source or result",
+    "local_preview_report": "/Users/rohanvinaik/trialledger-runs/decision-aml-20261103",
+    "local_bulk": "Full raw/report/workbook/cache/helpers/duplicate wires stayoutsideGit; snapshots requiredbyreasoningrequest remaincomplete"
+  },
+  "runtime_gate": "No new decision-table or estimand execution until root explicitly ROOTREADY for that increment",
+  "epistemic_boundary": "Acquire and read actual complete units; a design label cannot supply rule-table cases; outcome missing-data handling cannot itself supply a complete estimand; hypothetical acceptance tables/definitions must be attributed separately if source insufficient",
+  "identifier_preflight_url": "https://clinicaltrials.gov/api/v2/studies?filter.advanced=%28AREA%5BInterventionName%5D%22venetoclax%22+OR+AREA%5BInterventionOtherName%5D%22venetoclax%22%29+AND+AREA%5BPhase%5DPHASE1+AND+AREA%5BOverallStatus%5DCOMPLETED&query.cond=Acute+Myeloid+Leukemia&format=json&fields=NCTId&pageSize=1000&countTotal=true",
+  "identifier_preflight_retrieved_at_utc": "2026-11-03T22:23:12.078809+00:00",
+  "identifier_preflight_sha256": "4ca54e5c96110d06ba8bd45da3aefec97b25eb0894d8e24ee914ee35ca0c7fac",
+  "identifier_response_headers": {
+    "Date": "Tue, 03 Nov 2026 22:23:12 GMT",
+    "content-type": "application/json",
+    "etag": "\"0/0.34.1/mw0io5mw\""
+  },
+  "complete_pool": [
+    "NCT02265731",
+    "NCT02287233",
+    "NCT02391480",
+    "NCT02670044",
+    "NCT02942290",
+    "NCT03063944",
+    "NCT03082209",
+    "NCT03194932",
+    "NCT03236857",
+    "NCT03390296",
+    "NCT03441555",
+    "NCT03625505",
+    "NCT03672695",
+    "NCT03955783",
+    "NCT04017546",
+    "NCT04038437",
+    "NCT04070768",
+    "NCT04075747",
+    "NCT04277442",
+    "NCT04330820",
+    "NCT04372433",
+    "NCT04512105",
+    "NCT04666649",
+    "NCT04687761",
+    "NCT04887857",
+    "NCT04926285",
+    "NCT05155709",
+    "NCT05564650",
+    "NCT05665530",
+    "NCT05673057",
+    "NCT05829226"
+  ],
+  "pool_count": 31,
+  "selected": [
+    "NCT02670044",
+    "NCT03625505",
+    "NCT04666649"
+  ],
+  "gather_whole_pool": false,
+  "gather_mode": "explicit selected IDs because pool31 exceeds predeclared30",
+  "sample_report": "/Users/rohanvinaik/trialledger-runs/decision-aml-sample-20261103"
+}

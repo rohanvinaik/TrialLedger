@@ -205,18 +205,12 @@ def test_scoped_contexts_and_resource_bound_pass_through_the_entry():
 
 
 def test_describe_returns_runnable_examples_for_every_working_operation():
+    from TrialLedger.layer2 import service
+
     described = run({"operation": "describe", "view": "full"})
     assert described["code"] == "complete"
     description = described["result"]
-    assert set(description["examples"]) == {
-        "entailment",
-        "coordinates",
-        "corpus",
-        "design_bounds",
-        "signals",
-        "interpretations",
-        "source_assertions",
-    }
+    assert set(description["examples"]) == set(service.OPERATIONS) - {"describe"}
     results = {name: run(payload) for name, payload in description["examples"].items()}
     assert all(reply["code"] == "complete" for reply in results.values())
     assert results["entailment"]["result"]["decision"]["result"] == "REFUTED"
@@ -342,17 +336,10 @@ def test_described_result_fields_match_the_actual_operation_responses():
 def test_described_developer_blocks_exist_without_becoming_public_operations():
     import importlib
 
+    from TrialLedger.layer2 import service
+
     description = run({"operation": "describe", "view": "full"})["result"]
-    assert set(description["operation_field"]["values"]) == {
-        "describe",
-        "entailment",
-        "coordinates",
-        "corpus",
-        "design_bounds",
-        "signals",
-        "interpretations",
-        "source_assertions",
-    }
+    assert set(description["operation_field"]["values"]) == set(service.OPERATIONS)
     for block in description["developer_building_blocks"]["entries"]:
         assert block["purpose"] and block["precondition"]
         for entrypoint in block["entrypoints"]:
@@ -360,15 +347,5 @@ def test_described_developer_blocks_exist_without_becoming_public_operations():
             assert callable(getattr(importlib.import_module(module_name), name))
     assert run({"operation": "deviation_status", "status": "explicitly_negated"})["code"] == "refused"
     assert all(
-        case["operation"]
-        in {
-            "entailment",
-            "coordinates",
-            "corpus",
-            "design_bounds",
-            "signals",
-            "interpretations",
-            "source_assertions",
-        }
-        for case in description["use_cases"]
+        case["operation"] in set(service.OPERATIONS) - {"describe"} for case in description["use_cases"]
     )

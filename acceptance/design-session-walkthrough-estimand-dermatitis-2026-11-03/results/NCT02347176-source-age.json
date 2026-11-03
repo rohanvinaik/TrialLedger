@@ -1,0 +1,1094 @@
+{
+  "code": "complete",
+  "operation": "source_assertions",
+  "result": {
+    "source": {
+      "nct": "NCT02347176",
+      "digest": "3e933eac56369196c45d59e3c20a96e61c92fe84e7b63de35821faaa4c2581f5",
+      "study_ref": "ctg:NCT02347176:3e933eac56369196c45d59e3c20a96e61c92fe84e7b63de35821faaa4c2581f5",
+      "version": "3e933eac56369196c45d59e3c20a96e61c92fe84e7b63de35821faaa4c2581f5",
+      "last_update": {
+        "date": "2018-05-23",
+        "type": "ACTUAL"
+      }
+    },
+    "anchors": [
+      {
+        "id": "eligibility",
+        "address": "/protocolSection/eligibilityModule/eligibilityCriteria",
+        "digest": "3e933eac56369196c45d59e3c20a96e61c92fe84e7b63de35821faaa4c2581f5",
+        "value": "Inclusion Criteria:\n\n* Physician diagnosis of atopic dermatitis for greater than (\\>) 1 year\n* Atopic dermatitis involvement of greater than or equal to (\\>=) 10 percent (%) body surface area\n* EASI score of \\>= 12\n* SCORAD of \\>= 25\n* IGA score of \\>= 3\n* Effective birth control in line with protocol details\n\nExclusion Criteria:\n\n* History of anaphylaxis following any biologic therapy\n* Hepatitis B, C or human immunodeficiency virus\n* Pregnant or breastfeeding\n* History of cancer\n* Previous receipt of tralokinumab",
+        "ref": "ctg:NCT02347176:3e933eac56369196c45d59e3c20a96e61c92fe84e7b63de35821faaa4c2581f5#/protocolSection/eligibilityModule/eligibilityCriteria",
+        "source": {
+          "ref": "ctg:NCT02347176:3e933eac56369196c45d59e3c20a96e61c92fe84e7b63de35821faaa4c2581f5",
+          "version": "3e933eac56369196c45d59e3c20a96e61c92fe84e7b63de35821faaa4c2581f5",
+          "address": "/protocolSection/eligibilityModule/eligibilityCriteria",
+          "digest": "3e933eac56369196c45d59e3c20a96e61c92fe84e7b63de35821faaa4c2581f5"
+        },
+        "code": "located"
+      },
+      {
+        "id": "description",
+        "address": "/protocolSection/descriptionModule",
+        "digest": "3e933eac56369196c45d59e3c20a96e61c92fe84e7b63de35821faaa4c2581f5",
+        "value": {
+          "briefSummary": "The aim of the study is to evaluate the efficacy and safety of tralokinumab in adults with atopic dermatitis"
+        },
+        "ref": "ctg:NCT02347176:3e933eac56369196c45d59e3c20a96e61c92fe84e7b63de35821faaa4c2581f5#/protocolSection/descriptionModule",
+        "source": {
+          "ref": "ctg:NCT02347176:3e933eac56369196c45d59e3c20a96e61c92fe84e7b63de35821faaa4c2581f5",
+          "version": "3e933eac56369196c45d59e3c20a96e61c92fe84e7b63de35821faaa4c2581f5",
+          "address": "/protocolSection/descriptionModule",
+          "digest": "3e933eac56369196c45d59e3c20a96e61c92fe84e7b63de35821faaa4c2581f5"
+        },
+        "code": "located"
+      },
+      {
+        "id": "outcomes",
+        "address": "/protocolSection/outcomesModule",
+        "digest": "3e933eac56369196c45d59e3c20a96e61c92fe84e7b63de35821faaa4c2581f5",
+        "value": {
+          "primaryOutcomes": [
+            {
+              "measure": "Absolute Change From Baseline in Eczema Area and Severity Index (EASI) Total Score at Week 12",
+              "description": "EASI evaluates 4 natural anatomical regions for severity and extent of key disease signs and focuses on the key acute and chronic signs of inflammation (erythema, induration/papulation, excoriation, and lichenification). The maximum total score is 72, with higher values indicating more severe disease. The data presented here is Adjusted mean change after excluding the data from participants who took prohibited medications.",
+              "timeFrame": "Baseline (Day 1) and Week 12"
+            },
+            {
+              "measure": "Percentage of Participants Achieving Investigator's Global Assessment (IGA) Response of 0 (Clear) or 1 (Almost Clear) and at Least a 2-Grade Reduction From Baseline at Week 12",
+              "description": "The IGA allows investigators to assess overall disease severity at one given time point and consists of a 6-point severity scale from clear to very severe disease (0 = clear, 1 = almost clear, 2 = mild disease, 3 = moderate disease, 4 = severe disease, and 5 = very severe disease). A participant has IGA response if they achieve a score of 0 (clear) or 1 (almost clear) and at least a 2-grade reduction from baseline.",
+              "timeFrame": "Week 12"
+            }
+          ],
+          "secondaryOutcomes": [
+            {
+              "measure": "Number of Participants With Treatment Emergent Adverse Events (TEAEs) and Treatment Emergent Serious Adverse Events (TESAEs)",
+              "description": "An adverse event (AE) present at baseline that worsened in intensity after administration of investigational product or events absent at baseline that emerged after administration of study drug until Week 22. A serious adverse event (SAE) is an AE resulting in any of the following outcomes or deemed significant for any other reason: death; initial or prolonged inpatient hospitalization; life-threatening situation (immediate risk of dying); persistent or significant disability/incapacity; congenital anomaly/birth defect in the offspring of a participant who received Tralokinumab. Treatment-emergent adverse events between administration of investigational product and Week 22 that were absent before treatment or that worsened relative to pre-treatment state.",
+              "timeFrame": "From Study Drug Administration (Day 1) to Week 22"
+            },
+            {
+              "measure": "Number of Participants With Vital Signs and Physical Examination Abnormalities Reported as Treatment Emergent Adverse Events",
+              "description": "Vital sign parameters included blood pressure, temperature, pulse rate, and respiratory rate. TEAEs were present at baseline that worsened in intensity after administration of study drug or events absent at baseline that emerged after administration of study drug until Week 22.",
+              "timeFrame": "From Study Drug Administration (Day 1) to Week 22"
+            },
+            {
+              "measure": "Number of Participants With Clinical Laboratory Abnormalities Reported as Treatment Emergent Adverse Events",
+              "description": "An abnormal laboratory finding which required an action or intervention by the investigator, or a finding judged by the investigator to represent a change beyond the range of normal physiologic fluctuation were reported as an adverse event. Treatment-emergent adverse events between administration of investigational product and Week 22 that were absent before treatment or that worsened relative to pre-treatment state. Laboratory evaluations (haematology, serum chemistry and urinalysis) of blood and urine samples were performed.",
+              "timeFrame": "From Study Drug Administration (Day 1) to Week 22"
+            },
+            {
+              "measure": "Number of Participants With Electrocardiogram (ECG) Abnormalities Reported as Treatment Emergent Adverse Events",
+              "description": "AEs observed in participants with clinically significant ECG abnormalities were assessed. ECG parameters included heart rate, RR, PR, QRS and QT intervals. Treatment-emergent adverse events between administration of investigational product and Week 22 that were absent before treatment or that worsened relative to pre-treatment state.",
+              "timeFrame": "From Study Drug Administration (Day 1) to Week 22"
+            },
+            {
+              "measure": "Adjusted Percentage of Participants Achieving 50 Percent (%) Reduction From Baseline in Eczema Area and Severity Index (EASI) at Week 12",
+              "description": "EASI50 responder is defined as a participant who achieves at least a 50% reduction in EASI score from baseline. Data from participants who took prohibited medications were excluded from this analysis and a last observation carried forward (LOCF) analysis was used.",
+              "timeFrame": "Week 12"
+            },
+            {
+              "measure": "Absolute Change From Baseline in Scoring of Atopic Dermatitis (SCORAD) at Week 12",
+              "description": "The SCORAD is a clinical tool for assessing the severity (that is, extent, intensity) of atopic dermatitis (AD). The tool evaluates the extent and intensity of the AD lesions, along with participant symptoms. The maximum total score is 103, with higher values indicating more severe disease. The data presented here is Adjusted mean change after excluding the data from participants who took prohibited medications.",
+              "timeFrame": "Baseline (Day 1) and Week 12"
+            },
+            {
+              "measure": "Adjusted Percentage of Participants Achieving 50 Percent (%) Reduction From Baseline in SCORAD at Week 12",
+              "description": "SCORAD 50 responder is defined as a participant who achieves at least a 50% reduction in SCORAD score from baseline. Data from participants who took prohibited medications were excluded from this analysis and a LOCF analysis was used.",
+              "timeFrame": "Week 12"
+            },
+            {
+              "measure": "Change From Baseline in Pruritus Numeric Rating Scale (NRS) (7-day Mean Score) at Week 12",
+              "description": "Pruritus assessed using an NRS (0 - 10) with 0= no itch and 10= worst imaginable itch. Daily pruritus assessments were summarized as weekly peak score and a change from baseline in weekly peak score was calculated. The data presented here is Adjusted mean change after excluding the data from participants who took prohibited medications.",
+              "timeFrame": "Baseline (Day 1) and Week 12"
+            }
+          ]
+        },
+        "ref": "ctg:NCT02347176:3e933eac56369196c45d59e3c20a96e61c92fe84e7b63de35821faaa4c2581f5#/protocolSection/outcomesModule",
+        "source": {
+          "ref": "ctg:NCT02347176:3e933eac56369196c45d59e3c20a96e61c92fe84e7b63de35821faaa4c2581f5",
+          "version": "3e933eac56369196c45d59e3c20a96e61c92fe84e7b63de35821faaa4c2581f5",
+          "address": "/protocolSection/outcomesModule",
+          "digest": "3e933eac56369196c45d59e3c20a96e61c92fe84e7b63de35821faaa4c2581f5"
+        },
+        "code": "located"
+      },
+      {
+        "id": "result-0",
+        "address": "/resultsSection/outcomeMeasuresModule/outcomeMeasures/0",
+        "digest": "3e933eac56369196c45d59e3c20a96e61c92fe84e7b63de35821faaa4c2581f5",
+        "value": {
+          "type": "PRIMARY",
+          "title": "Absolute Change From Baseline in Eczema Area and Severity Index (EASI) Total Score at Week 12",
+          "description": "EASI evaluates 4 natural anatomical regions for severity and extent of key disease signs and focuses on the key acute and chronic signs of inflammation (erythema, induration/papulation, excoriation, and lichenification). The maximum total score is 72, with higher values indicating more severe disease. The data presented here is Adjusted mean change after excluding the data from participants who took prohibited medications.",
+          "populationDescription": "The intent-to-treat (ITT) population included all randomized and treated participants, grouped according to assigned treatment. Here, the category \"Number Analyzed\" is number of participants analyzed for this outcome measure.",
+          "reportingStatus": "POSTED",
+          "paramType": "MEAN",
+          "dispersionType": "Standard Error",
+          "unitOfMeasure": "units on a scale",
+          "timeFrame": "Baseline (Day 1) and Week 12",
+          "groups": [
+            {
+              "id": "OG000",
+              "title": "Placebo",
+              "description": "Placebo matched to Tralokinumab was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks."
+            },
+            {
+              "id": "OG001",
+              "title": "Tralokinumab Dose 1",
+              "description": "Tralokinumab Dose 1 was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks."
+            },
+            {
+              "id": "OG002",
+              "title": "Tralokinumab Dose 2",
+              "description": "Tralokinumab Dose 2 was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks."
+            },
+            {
+              "id": "OG003",
+              "title": "Tralokinumab Dose 3",
+              "description": "Tralokinumab Dose 3 was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks."
+            }
+          ],
+          "denoms": [
+            {
+              "units": "Participants",
+              "counts": [
+                {
+                  "groupId": "OG000",
+                  "value": "51"
+                },
+                {
+                  "groupId": "OG001",
+                  "value": "50"
+                },
+                {
+                  "groupId": "OG002",
+                  "value": "51"
+                },
+                {
+                  "groupId": "OG003",
+                  "value": "52"
+                }
+              ]
+            }
+          ],
+          "classes": [
+            {
+              "categories": [
+                {
+                  "measurements": [
+                    {
+                      "groupId": "OG000",
+                      "value": "-10.78",
+                      "spread": "1.398"
+                    },
+                    {
+                      "groupId": "OG001",
+                      "value": "-13.67",
+                      "spread": "1.386"
+                    },
+                    {
+                      "groupId": "OG002",
+                      "value": "-15.14",
+                      "spread": "1.361"
+                    },
+                    {
+                      "groupId": "OG003",
+                      "value": "-15.72",
+                      "spread": "1.334"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "analyses": [
+            {
+              "groupIds": [
+                "OG000",
+                "OG001"
+              ],
+              "nonInferiorityType": "SUPERIORITY",
+              "pValue": "0.143",
+              "statisticalMethod": "Mixed Model Repeated Measures Analysis",
+              "paramType": "Adjusted Mean Difference",
+              "paramValue": "-2.89",
+              "ciPctValue": "95",
+              "ciNumSides": "TWO_SIDED",
+              "ciLowerLimit": "-6.78",
+              "ciUpperLimit": "0.99",
+              "dispersionType": "STANDARD_ERROR_OF_MEAN",
+              "dispersionValue": "1.968"
+            },
+            {
+              "groupIds": [
+                "OG000",
+                "OG002"
+              ],
+              "nonInferiorityType": "SUPERIORITY",
+              "pValue": "0.027",
+              "statisticalMethod": "Mixed Model Repeated Measures Analysis",
+              "paramType": "Adjusted Mean Difference",
+              "paramValue": "-4.36",
+              "ciPctValue": "95",
+              "ciNumSides": "TWO_SIDED",
+              "ciLowerLimit": "-8.22",
+              "ciUpperLimit": "-0.51",
+              "dispersionType": "STANDARD_ERROR_OF_MEAN",
+              "dispersionValue": "1.951"
+            },
+            {
+              "groupIds": [
+                "OG000",
+                "OG003"
+              ],
+              "nonInferiorityType": "SUPERIORITY",
+              "pValue": "0.011",
+              "statisticalMethod": "Mixed Model Repeated Measures Analysis",
+              "paramType": "Adjusted Mean Difference",
+              "paramValue": "-4.94",
+              "ciPctValue": "95",
+              "ciNumSides": "TWO_SIDED",
+              "ciLowerLimit": "-8.76",
+              "ciUpperLimit": "-1.13",
+              "dispersionType": "STANDARD_ERROR_OF_MEAN",
+              "dispersionValue": "1.932"
+            }
+          ]
+        },
+        "ref": "ctg:NCT02347176:3e933eac56369196c45d59e3c20a96e61c92fe84e7b63de35821faaa4c2581f5#/resultsSection/outcomeMeasuresModule/outcomeMeasures/0",
+        "source": {
+          "ref": "ctg:NCT02347176:3e933eac56369196c45d59e3c20a96e61c92fe84e7b63de35821faaa4c2581f5",
+          "version": "3e933eac56369196c45d59e3c20a96e61c92fe84e7b63de35821faaa4c2581f5",
+          "address": "/resultsSection/outcomeMeasuresModule/outcomeMeasures/0",
+          "digest": "3e933eac56369196c45d59e3c20a96e61c92fe84e7b63de35821faaa4c2581f5"
+        },
+        "code": "located"
+      },
+      {
+        "id": "result-6",
+        "address": "/resultsSection/outcomeMeasuresModule/outcomeMeasures/6",
+        "digest": "3e933eac56369196c45d59e3c20a96e61c92fe84e7b63de35821faaa4c2581f5",
+        "value": {
+          "type": "SECONDARY",
+          "title": "Adjusted Percentage of Participants Achieving 50 Percent (%) Reduction From Baseline in Eczema Area and Severity Index (EASI) at Week 12",
+          "description": "EASI50 responder is defined as a participant who achieves at least a 50% reduction in EASI score from baseline. Data from participants who took prohibited medications were excluded from this analysis and a last observation carried forward (LOCF) analysis was used.",
+          "populationDescription": "The ITT population included all randomized and treated participants, grouped according to assigned treatment. Here, the category \"Number Analyzed\" is number of participants analyzed for this outcome measure.",
+          "reportingStatus": "POSTED",
+          "paramType": "NUMBER",
+          "unitOfMeasure": "Percentage of participants",
+          "timeFrame": "Week 12",
+          "groups": [
+            {
+              "id": "OG000",
+              "title": "Placebo",
+              "description": "Placebo matched to Tralokinumab was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks."
+            },
+            {
+              "id": "OG001",
+              "title": "Tralokinumab Dose 1",
+              "description": "Tralokinumab Dose 1 was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks."
+            },
+            {
+              "id": "OG002",
+              "title": "Tralokinumab Dose 2",
+              "description": "Tralokinumab Dose 2 was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks."
+            },
+            {
+              "id": "OG003",
+              "title": "Tralokinumab Dose 3",
+              "description": "Tralokinumab Dose 3 was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks."
+            }
+          ],
+          "denoms": [
+            {
+              "units": "Participants",
+              "counts": [
+                {
+                  "groupId": "OG000",
+                  "value": "51"
+                },
+                {
+                  "groupId": "OG001",
+                  "value": "50"
+                },
+                {
+                  "groupId": "OG002",
+                  "value": "51"
+                },
+                {
+                  "groupId": "OG003",
+                  "value": "52"
+                }
+              ]
+            }
+          ],
+          "classes": [
+            {
+              "categories": [
+                {
+                  "measurements": [
+                    {
+                      "groupId": "OG000",
+                      "value": "51.9"
+                    },
+                    {
+                      "groupId": "OG001",
+                      "value": "54.3"
+                    },
+                    {
+                      "groupId": "OG002",
+                      "value": "67.3"
+                    },
+                    {
+                      "groupId": "OG003",
+                      "value": "73.4"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "ref": "ctg:NCT02347176:3e933eac56369196c45d59e3c20a96e61c92fe84e7b63de35821faaa4c2581f5#/resultsSection/outcomeMeasuresModule/outcomeMeasures/6",
+        "source": {
+          "ref": "ctg:NCT02347176:3e933eac56369196c45d59e3c20a96e61c92fe84e7b63de35821faaa4c2581f5",
+          "version": "3e933eac56369196c45d59e3c20a96e61c92fe84e7b63de35821faaa4c2581f5",
+          "address": "/resultsSection/outcomeMeasuresModule/outcomeMeasures/6",
+          "digest": "3e933eac56369196c45d59e3c20a96e61c92fe84e7b63de35821faaa4c2581f5"
+        },
+        "code": "located"
+      },
+      {
+        "id": "result-8",
+        "address": "/resultsSection/outcomeMeasuresModule/outcomeMeasures/8",
+        "digest": "3e933eac56369196c45d59e3c20a96e61c92fe84e7b63de35821faaa4c2581f5",
+        "value": {
+          "type": "SECONDARY",
+          "title": "Adjusted Percentage of Participants Achieving 50 Percent (%) Reduction From Baseline in SCORAD at Week 12",
+          "description": "SCORAD 50 responder is defined as a participant who achieves at least a 50% reduction in SCORAD score from baseline. Data from participants who took prohibited medications were excluded from this analysis and a LOCF analysis was used.",
+          "populationDescription": "The ITT population included all randomized and treated participants, grouped according to assigned treatment. Here, the category \"Number Analyzed\" is number of participants analyzed for this outcome measure.",
+          "reportingStatus": "POSTED",
+          "paramType": "NUMBER",
+          "unitOfMeasure": "Percentage of participants",
+          "timeFrame": "Week 12",
+          "groups": [
+            {
+              "id": "OG000",
+              "title": "Placebo",
+              "description": "Placebo matched to Tralokinumab was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks."
+            },
+            {
+              "id": "OG001",
+              "title": "Tralokinumab Dose 1",
+              "description": "Tralokinumab Dose 1 was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks."
+            },
+            {
+              "id": "OG002",
+              "title": "Tralokinumab Dose 2",
+              "description": "Tralokinumab Dose 2 was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks."
+            },
+            {
+              "id": "OG003",
+              "title": "Tralokinumab Dose 3",
+              "description": "Tralokinumab Dose 3 was administered subcutaneously to participants once every 2 Weeks (Q2W) for 12 weeks."
+            }
+          ],
+          "denoms": [
+            {
+              "units": "Participants",
+              "counts": [
+                {
+                  "groupId": "OG000",
+                  "value": "51"
+                },
+                {
+                  "groupId": "OG001",
+                  "value": "50"
+                },
+                {
+                  "groupId": "OG002",
+                  "value": "51"
+                },
+                {
+                  "groupId": "OG003",
+                  "value": "52"
+                }
+              ]
+            }
+          ],
+          "classes": [
+            {
+              "categories": [
+                {
+                  "measurements": [
+                    {
+                      "groupId": "OG000",
+                      "value": "19.5"
+                    },
+                    {
+                      "groupId": "OG001",
+                      "value": "26.9"
+                    },
+                    {
+                      "groupId": "OG002",
+                      "value": "44.2"
+                    },
+                    {
+                      "groupId": "OG003",
+                      "value": "44.1"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "ref": "ctg:NCT02347176:3e933eac56369196c45d59e3c20a96e61c92fe84e7b63de35821faaa4c2581f5#/resultsSection/outcomeMeasuresModule/outcomeMeasures/8",
+        "source": {
+          "ref": "ctg:NCT02347176:3e933eac56369196c45d59e3c20a96e61c92fe84e7b63de35821faaa4c2581f5",
+          "version": "3e933eac56369196c45d59e3c20a96e61c92fe84e7b63de35821faaa4c2581f5",
+          "address": "/resultsSection/outcomeMeasuresModule/outcomeMeasures/8",
+          "digest": "3e933eac56369196c45d59e3c20a96e61c92fe84e7b63de35821faaa4c2581f5"
+        },
+        "code": "located"
+      }
+    ],
+    "fixed": {
+      "assertions": [
+        {
+          "applicability": {
+            "class": "Always"
+          },
+          "body": {
+            "class": "Literal",
+            "evidence": [
+              {
+                "class": "Evidence",
+                "kind": "record_field",
+                "ref": "ctg:NCT02347176:3e933eac56369196c45d59e3c20a96e61c92fe84e7b63de35821faaa4c2581f5#/protocolSection/eligibilityModule/minimumAge"
+              }
+            ],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "age",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "ge",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 18.0,
+              "unit": "Years",
+              "upper": null
+            }
+          },
+          "branch": {
+            "class": "Branch",
+            "node": "unresolved",
+            "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+            "class": "Scope",
+            "kind": "all_participants",
+            "parts": [],
+            "ref": ""
+          },
+          "criterion_ref": "ctg:NCT02347176:3e933eac56369196c45d59e3c20a96e61c92fe84e7b63de35821faaa4c2581f5#/protocolSection/eligibilityModule/minimumAge",
+          "id": "registry-age-minimumAge",
+          "modality": "required",
+          "resolution": "resolved",
+          "rule": {
+            "answers": [],
+            "class": "Rule",
+            "id": "ctg-structured-general-eligibility-age",
+            "premises": [
+              "ctg:NCT02347176:3e933eac56369196c45d59e3c20a96e61c92fe84e7b63de35821faaa4c2581f5#/protocolSection/eligibilityModule/minimumAge"
+            ],
+            "version": "1",
+            "warrants": []
+          },
+          "span": [],
+          "status": "known"
+        },
+        {
+          "applicability": {
+            "class": "Always"
+          },
+          "body": {
+            "class": "Literal",
+            "evidence": [
+              {
+                "class": "Evidence",
+                "kind": "record_field",
+                "ref": "ctg:NCT02347176:3e933eac56369196c45d59e3c20a96e61c92fe84e7b63de35821faaa4c2581f5#/protocolSection/eligibilityModule/maximumAge"
+              }
+            ],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "age",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "le",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 75.0,
+              "unit": "Years",
+              "upper": null
+            }
+          },
+          "branch": {
+            "class": "Branch",
+            "node": "unresolved",
+            "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+            "class": "Scope",
+            "kind": "all_participants",
+            "parts": [],
+            "ref": ""
+          },
+          "criterion_ref": "ctg:NCT02347176:3e933eac56369196c45d59e3c20a96e61c92fe84e7b63de35821faaa4c2581f5#/protocolSection/eligibilityModule/maximumAge",
+          "id": "registry-age-maximumAge",
+          "modality": "required",
+          "resolution": "resolved",
+          "rule": {
+            "answers": [],
+            "class": "Rule",
+            "id": "ctg-structured-general-eligibility-age",
+            "premises": [
+              "ctg:NCT02347176:3e933eac56369196c45d59e3c20a96e61c92fe84e7b63de35821faaa4c2581f5#/protocolSection/eligibilityModule/maximumAge"
+            ],
+            "version": "1",
+            "warrants": []
+          },
+          "span": [],
+          "status": "known"
+        }
+      ],
+      "signals": []
+    },
+    "interpretations": [],
+    "bindings": [],
+    "coverage": [
+      {
+        "address": "/protocolSection/eligibilityModule/minimumAge",
+        "code": "compiled",
+        "value": "18 Years",
+        "assertion": "registry-age-minimumAge",
+        "rule": "ctg-structured-general-eligibility-age",
+        "ref": "ctg:NCT02347176:3e933eac56369196c45d59e3c20a96e61c92fe84e7b63de35821faaa4c2581f5#/protocolSection/eligibilityModule/minimumAge"
+      },
+      {
+        "address": "/protocolSection/eligibilityModule/maximumAge",
+        "code": "compiled",
+        "value": "75 Years",
+        "assertion": "registry-age-maximumAge",
+        "rule": "ctg-structured-general-eligibility-age",
+        "ref": "ctg:NCT02347176:3e933eac56369196c45d59e3c20a96e61c92fe84e7b63de35821faaa4c2581f5#/protocolSection/eligibilityModule/maximumAge"
+      },
+      {
+        "address": "/protocolSection/eligibilityModule/eligibilityCriteria",
+        "code": "unresolved_retained",
+        "value": "Inclusion Criteria:\n\n* Physician diagnosis of atopic dermatitis for greater than (\\>) 1 year\n* Atopic dermatitis involvement of greater than or equal to (\\>=) 10 percent (%) body surface area\n* EASI score of \\>= 12\n* SCORAD of \\>= 25\n* IGA score of \\>= 3\n* Effective birth control in line with protocol details\n\nExclusion Criteria:\n\n* History of anaphylaxis following any biologic therapy\n* Hepatitis B, C or human immunodeficiency virus\n* Pregnant or breastfeeding\n* History of cancer\n* Previous receipt of tralokinumab"
+      },
+      {
+        "address": "/protocolSection/eligibilityModule/healthyVolunteers",
+        "code": "unresolved_retained",
+        "value": false
+      },
+      {
+        "address": "/protocolSection/eligibilityModule/sex",
+        "code": "unresolved_retained",
+        "value": "ALL"
+      },
+      {
+        "address": "/protocolSection/eligibilityModule/stdAges",
+        "code": "unresolved_retained",
+        "value": [
+          "ADULT",
+          "OLDER_ADULT"
+        ]
+      },
+      {
+        "address": "/resultsSection",
+        "ref": "ctg:NCT02347176:3e933eac56369196c45d59e3c20a96e61c92fe84e7b63de35821faaa4c2581f5#/resultsSection",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/derivedSection",
+        "ref": "ctg:NCT02347176:3e933eac56369196c45d59e3c20a96e61c92fe84e7b63de35821faaa4c2581f5#/derivedSection",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/hasResults",
+        "ref": "ctg:NCT02347176:3e933eac56369196c45d59e3c20a96e61c92fe84e7b63de35821faaa4c2581f5#/hasResults",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/identificationModule",
+        "ref": "ctg:NCT02347176:3e933eac56369196c45d59e3c20a96e61c92fe84e7b63de35821faaa4c2581f5#/protocolSection/identificationModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/statusModule",
+        "ref": "ctg:NCT02347176:3e933eac56369196c45d59e3c20a96e61c92fe84e7b63de35821faaa4c2581f5#/protocolSection/statusModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/sponsorCollaboratorsModule",
+        "ref": "ctg:NCT02347176:3e933eac56369196c45d59e3c20a96e61c92fe84e7b63de35821faaa4c2581f5#/protocolSection/sponsorCollaboratorsModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/oversightModule",
+        "ref": "ctg:NCT02347176:3e933eac56369196c45d59e3c20a96e61c92fe84e7b63de35821faaa4c2581f5#/protocolSection/oversightModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/descriptionModule",
+        "ref": "ctg:NCT02347176:3e933eac56369196c45d59e3c20a96e61c92fe84e7b63de35821faaa4c2581f5#/protocolSection/descriptionModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/conditionsModule",
+        "ref": "ctg:NCT02347176:3e933eac56369196c45d59e3c20a96e61c92fe84e7b63de35821faaa4c2581f5#/protocolSection/conditionsModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/designModule",
+        "ref": "ctg:NCT02347176:3e933eac56369196c45d59e3c20a96e61c92fe84e7b63de35821faaa4c2581f5#/protocolSection/designModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/armsInterventionsModule",
+        "ref": "ctg:NCT02347176:3e933eac56369196c45d59e3c20a96e61c92fe84e7b63de35821faaa4c2581f5#/protocolSection/armsInterventionsModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/outcomesModule",
+        "ref": "ctg:NCT02347176:3e933eac56369196c45d59e3c20a96e61c92fe84e7b63de35821faaa4c2581f5#/protocolSection/outcomesModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/contactsLocationsModule",
+        "ref": "ctg:NCT02347176:3e933eac56369196c45d59e3c20a96e61c92fe84e7b63de35821faaa4c2581f5#/protocolSection/contactsLocationsModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/referencesModule",
+        "ref": "ctg:NCT02347176:3e933eac56369196c45d59e3c20a96e61c92fe84e7b63de35821faaa4c2581f5#/protocolSection/referencesModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      }
+    ],
+    "submitted": {
+      "interpretations": [],
+      "bindings": []
+    },
+    "requests": [
+      {
+        "operation": "entailment",
+        "assertions": [
+          {
+            "applicability": {
+              "class": "Always"
+            },
+            "body": {
+              "class": "Literal",
+              "evidence": [
+                {
+                  "class": "Evidence",
+                  "kind": "record_field",
+                  "ref": "ctg:NCT02347176:3e933eac56369196c45d59e3c20a96e61c92fe84e7b63de35821faaa4c2581f5#/protocolSection/eligibilityModule/minimumAge"
+                }
+              ],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "age",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "ge",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 18.0,
+                "unit": "Years",
+                "upper": null
+              }
+            },
+            "branch": {
+              "class": "Branch",
+              "node": "unresolved",
+              "path": []
+            },
+            "class": "ScopedAssertion",
+            "cohort": {
+              "class": "Scope",
+              "kind": "all_participants",
+              "parts": [],
+              "ref": ""
+            },
+            "criterion_ref": "ctg:NCT02347176:3e933eac56369196c45d59e3c20a96e61c92fe84e7b63de35821faaa4c2581f5#/protocolSection/eligibilityModule/minimumAge",
+            "id": "registry-age-minimumAge",
+            "modality": "required",
+            "resolution": "resolved",
+            "rule": {
+              "answers": [],
+              "class": "Rule",
+              "id": "ctg-structured-general-eligibility-age",
+              "premises": [
+                "ctg:NCT02347176:3e933eac56369196c45d59e3c20a96e61c92fe84e7b63de35821faaa4c2581f5#/protocolSection/eligibilityModule/minimumAge"
+              ],
+              "version": "1",
+              "warrants": []
+            },
+            "span": [],
+            "status": "known"
+          },
+          {
+            "applicability": {
+              "class": "Always"
+            },
+            "body": {
+              "class": "Literal",
+              "evidence": [
+                {
+                  "class": "Evidence",
+                  "kind": "record_field",
+                  "ref": "ctg:NCT02347176:3e933eac56369196c45d59e3c20a96e61c92fe84e7b63de35821faaa4c2581f5#/protocolSection/eligibilityModule/maximumAge"
+                }
+              ],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "age",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "le",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 75.0,
+                "unit": "Years",
+                "upper": null
+              }
+            },
+            "branch": {
+              "class": "Branch",
+              "node": "unresolved",
+              "path": []
+            },
+            "class": "ScopedAssertion",
+            "cohort": {
+              "class": "Scope",
+              "kind": "all_participants",
+              "parts": [],
+              "ref": ""
+            },
+            "criterion_ref": "ctg:NCT02347176:3e933eac56369196c45d59e3c20a96e61c92fe84e7b63de35821faaa4c2581f5#/protocolSection/eligibilityModule/maximumAge",
+            "id": "registry-age-maximumAge",
+            "modality": "required",
+            "resolution": "resolved",
+            "rule": {
+              "answers": [],
+              "class": "Rule",
+              "id": "ctg-structured-general-eligibility-age",
+              "premises": [
+                "ctg:NCT02347176:3e933eac56369196c45d59e3c20a96e61c92fe84e7b63de35821faaa4c2581f5#/protocolSection/eligibilityModule/maximumAge"
+              ],
+              "version": "1",
+              "warrants": []
+            },
+            "span": [],
+            "status": "known"
+          }
+        ],
+        "query": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+            "class": "Predicate",
+            "key": "age",
+            "kind": "measurement"
+          },
+          "qualifiers": {
+            "class": "Always"
+          },
+          "subject": {
+            "class": "Subject",
+            "kind": "participant",
+            "referent": ""
+          },
+          "time": null,
+          "value": {
+            "class": "Value",
+            "comparison": "ge",
+            "inclusivity": "unspecified",
+            "kind": "quantity",
+            "members": [],
+            "number": 18,
+            "unit": "Years",
+            "upper": null
+          }
+        }
+      }
+    ],
+    "limits": [
+      "Structured ages describe registry general eligibility, not verified actual protocol.",
+      "A located quotation proves quotation only; clinical readings remain hypothetical.",
+      "No unit conversion, automatic binding joins, clinical text interpretation or source mutation."
+    ],
+    "analyses": [
+      {
+        "code": "complete",
+        "operation": "entailment",
+        "result": {
+          "basis": "Conditional on the supplied typed premises; their source meaning is not certified by this operation.",
+          "decision": {
+            "result": "ENTAILED",
+            "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+            "status": "known",
+            "proof": [
+              "registry-age-minimumAge"
+            ],
+            "blockers": []
+          },
+          "premises": [
+            {
+              "applicability": {
+                "class": "Always"
+              },
+              "body": {
+                "class": "Literal",
+                "evidence": [
+                  {
+                    "class": "Evidence",
+                    "kind": "record_field",
+                    "ref": "ctg:NCT02347176:3e933eac56369196c45d59e3c20a96e61c92fe84e7b63de35821faaa4c2581f5#/protocolSection/eligibilityModule/minimumAge"
+                  }
+                ],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "age",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "ge",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 18.0,
+                  "unit": "Years",
+                  "upper": null
+                }
+              },
+              "branch": {
+                "class": "Branch",
+                "node": "unresolved",
+                "path": []
+              },
+              "class": "ScopedAssertion",
+              "cohort": {
+                "class": "Scope",
+                "kind": "all_participants",
+                "parts": [],
+                "ref": ""
+              },
+              "criterion_ref": "ctg:NCT02347176:3e933eac56369196c45d59e3c20a96e61c92fe84e7b63de35821faaa4c2581f5#/protocolSection/eligibilityModule/minimumAge",
+              "id": "registry-age-minimumAge",
+              "modality": "required",
+              "resolution": "resolved",
+              "rule": {
+                "answers": [],
+                "class": "Rule",
+                "id": "ctg-structured-general-eligibility-age",
+                "premises": [
+                  "ctg:NCT02347176:3e933eac56369196c45d59e3c20a96e61c92fe84e7b63de35821faaa4c2581f5#/protocolSection/eligibilityModule/minimumAge"
+                ],
+                "version": "1",
+                "warrants": []
+              },
+              "span": [],
+              "status": "known"
+            },
+            {
+              "applicability": {
+                "class": "Always"
+              },
+              "body": {
+                "class": "Literal",
+                "evidence": [
+                  {
+                    "class": "Evidence",
+                    "kind": "record_field",
+                    "ref": "ctg:NCT02347176:3e933eac56369196c45d59e3c20a96e61c92fe84e7b63de35821faaa4c2581f5#/protocolSection/eligibilityModule/maximumAge"
+                  }
+                ],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "age",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "le",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 75.0,
+                  "unit": "Years",
+                  "upper": null
+                }
+              },
+              "branch": {
+                "class": "Branch",
+                "node": "unresolved",
+                "path": []
+              },
+              "class": "ScopedAssertion",
+              "cohort": {
+                "class": "Scope",
+                "kind": "all_participants",
+                "parts": [],
+                "ref": ""
+              },
+              "criterion_ref": "ctg:NCT02347176:3e933eac56369196c45d59e3c20a96e61c92fe84e7b63de35821faaa4c2581f5#/protocolSection/eligibilityModule/maximumAge",
+              "id": "registry-age-maximumAge",
+              "modality": "required",
+              "resolution": "resolved",
+              "rule": {
+                "answers": [],
+                "class": "Rule",
+                "id": "ctg-structured-general-eligibility-age",
+                "premises": [
+                  "ctg:NCT02347176:3e933eac56369196c45d59e3c20a96e61c92fe84e7b63de35821faaa4c2581f5#/protocolSection/eligibilityModule/maximumAge"
+                ],
+                "version": "1",
+                "warrants": []
+              },
+              "span": [],
+              "status": "known"
+            }
+          ]
+        },
+        "problems": [],
+        "metadata": {
+          "version": 1,
+          "kind": "reasoning",
+          "findings": [
+            {
+              "path": "/result/decision",
+              "kind": "logical",
+              "logical_result": "ENTAILED",
+              "standing": "known",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "settled"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "problems": [],
+  "metadata": {
+    "version": 1,
+    "kind": "reasoning",
+    "findings": [
+      {
+        "path": "/result/analyses/0/result/decision",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled"
+      }
+    ]
+  }
+}

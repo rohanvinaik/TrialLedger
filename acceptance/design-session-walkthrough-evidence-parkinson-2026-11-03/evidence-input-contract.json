@@ -1,0 +1,502 @@
+{
+  "input_shapes": {
+    "evidence_requests": {
+      "required": [
+        "study_ref",
+        "candidates",
+        "survivors",
+        "survival_basis",
+        "variables"
+      ],
+      "fields": {
+        "study_ref": "nonempty study/version reference; all candidates concern this study",
+        "candidates": "array of design_bounds candidate objects {id, assertions}; signal_claims refused",
+        "survivors": "declared surviving candidate ids, e.g. design_bounds remaining; may be empty",
+        "survival_basis": "nonempty references to the analysis or decision that left these survivors",
+        "variables": "nonempty evidence_request_variable array: the represented dimensions to vary",
+        "context": "entry context {cohort, phase, arm}; default open",
+        "signs": "nonempty subset of accepted, rejected; default both",
+        "bound": "integer 1..65536 per participant decision; default 4096",
+        "limits": "optional evidence_request_limits object"
+      }
+    },
+    "evidence_request_variable": {
+      "required": [
+        "id",
+        "subject",
+        "predicate",
+        "time",
+        "domain"
+      ],
+      "fields": {
+        "id": "distinct nonempty string",
+        "subject": "tagged Subject equal to the survivors' literals",
+        "predicate": "tagged Predicate equal to the survivors' literals",
+        "time": "tagged TemporalScope equal to the survivors' literals, or null",
+        "domain": "evidence_request_domain; integer scales never produce fractional participants"
+      }
+    },
+    "evidence_request_domain": {
+      "required": [
+        "kind"
+      ],
+      "fields": {
+        "kind": "boolean, enum, integer or continuous; other value kinds are refused",
+        "members": "enum: nonempty unique strings; survivor-named members are added",
+        "open": "enum: true adds one 'none of these' cell",
+        "unit": "integer/continuous: unit exactly as written; never converted",
+        "minimum": "integer: inclusive integer; continuous: inclusive number or null (open tail)",
+        "maximum": "integer: inclusive integer; continuous: inclusive number or null (open tail)",
+        "cut_points": "continuous: extra boundary points; survivor thresholds are always included"
+      }
+    },
+    "evidence_request_limits": {
+      "required": [],
+      "fields": {
+        "max_profile_size": "positive integer; default 3, hard maximum 6",
+        "max_profiles": "positive integer; default 2048, hard maximum 20000",
+        "max_decisions": "positive integer; default 5000, hard maximum 50000",
+        "max_requests_per_pair": "positive integer; default 3, hard maximum 20",
+        "max_requests": "positive integer; default 30, hard maximum 200",
+        "max_bytes": "positive integer; default 65536, hard maximum 262144",
+        "max_response_bytes": "positive integer; default 1048576, hard maximum 4194304"
+      }
+    },
+    "candidate": {
+      "required": [
+        "id",
+        "assertions"
+      ],
+      "fields": {
+        "id": "distinct nonempty string",
+        "assertions": "array of tagged ScopedAssertion objects",
+        "signal_claims": "optional array of signal/claim objects; same-signal claims are conjoined"
+      }
+    },
+    "context": {
+      "required": [],
+      "fields": {
+        "cohort": "nonempty string or null",
+        "phase": "nonempty string or null",
+        "arm": "nonempty string or null"
+      }
+    }
+  },
+  "result_guide": {
+    "fields": {
+      "basis": "Conditional calculation boundary; no recovered protocol or observed participant",
+      "study_ref": "Declared study/version and comparison scope",
+      "premises": "Complete unchanged request",
+      "survival_basis": "Declared references identifying why these candidates were selected",
+      "family": "conflict, single_survivor or searched",
+      "survivors": "consistent survivors searched; inconsistent ones are listed separately",
+      "search": "complete or incomplete, with named work-limit causes",
+      "output": "complete or truncated; omitted counts only found requests",
+      "pairs": "per survivor pair: outcome, returned request ids, found count and causes",
+      "requests": "hypothetical rows, least-specified first; never evidence",
+      "representation": "unrepresented declared variables and unsearched survivor constraints",
+      "inconsistent": "declared survivors whose own criteria contradict; input_conflicts names each",
+      "input_conflicts": "Named inconsistent survivors, never search limits",
+      "input_checks": "Actual consistency precheck decisions, preserving proof and standing",
+      "limits": "Hypothetical requests only, within the declared family and representation"
+    },
+    "coverage": "empty_profile_not_representable: a rejection with no known attributes is not a participant proposition and belongs to exception evidence; variable_unrepresented:<id>: a declared variable matched no survivor literal (a translation problem, never absence)",
+    "request_rows": "Each row names a profile, an accepted or rejected sign, the candidates it would eliminate or accommodate, every complete witness decision, the premises it would need and where such evidence might be sought. It carries no count, bridge, basis or status and is never inserted as an observation. Supplying a real observation goes through design_bounds with its own standing.",
+    "signs": "An accepted witness eliminates a candidate that refutes the profile, even if that candidate has further unrepresented criteria. A rejected witness eliminates a candidate under which no completion of the profile is ineligible; that needs the candidate to be the complete eligibility rule. A partial rejected profile never establishes universal exclusion of the profile.",
+    "order": "Least-specified profiles first, then declared variable and cell order. A profile is omitted only when a found separator for the same pair, sign and eliminated candidate uses a subset of its literals. The order is structural, not clinical utility or evidence availability.",
+    "limits": "The declared family does not exhaust real protocols. Corpus silence never supplies a rejected witness. No row claims that such evidence exists. max_bytes bounds returned request rows; max_response_bytes separately bounds the complete successful reasoning envelope as canonical UTF-8 JSON, before display formatting and MCP wrapping. The same finite JSON input boundary used by source bindings applies. Integer cells and supplied numeric limits must be exactly representable; unsupported precision receives a named refusal."
+  },
+  "example": {
+    "operation": "evidence_requests",
+    "study_ref": "invented:evidence-request-example",
+    "candidates": [
+      {
+        "id": "adult_scale_le_2",
+        "assertions": [
+          {
+            "applicability": {
+              "class": "Always"
+            },
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "example_age",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "ge",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 18.0,
+                "unit": "years",
+                "upper": null
+              }
+            },
+            "branch": {
+              "class": "Branch",
+              "node": "unresolved",
+              "path": []
+            },
+            "class": "ScopedAssertion",
+            "cohort": {
+              "class": "Scope",
+              "kind": "all_participants",
+              "parts": [],
+              "ref": ""
+            },
+            "criterion_ref": "user:invented-candidate",
+            "id": "adult",
+            "modality": "required",
+            "resolution": "resolved",
+            "rule": {
+              "answers": [],
+              "class": "Rule",
+              "id": "invented-candidate",
+              "premises": [],
+              "version": "1",
+              "warrants": [
+                "user:invented-candidate"
+              ]
+            },
+            "span": [],
+            "status": "known"
+          },
+          {
+            "applicability": {
+              "class": "Always"
+            },
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "example_scale",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "le",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 2.0,
+                "unit": "example_scale",
+                "upper": null
+              }
+            },
+            "branch": {
+              "class": "Branch",
+              "node": "unresolved",
+              "path": []
+            },
+            "class": "ScopedAssertion",
+            "cohort": {
+              "class": "Scope",
+              "kind": "all_participants",
+              "parts": [],
+              "ref": ""
+            },
+            "criterion_ref": "user:invented-candidate",
+            "id": "scale",
+            "modality": "required",
+            "resolution": "resolved",
+            "rule": {
+              "answers": [],
+              "class": "Rule",
+              "id": "invented-candidate",
+              "premises": [],
+              "version": "1",
+              "warrants": [
+                "user:invented-candidate"
+              ]
+            },
+            "span": [],
+            "status": "known"
+          }
+        ]
+      },
+      {
+        "id": "adult_scale_le_2_marker",
+        "assertions": [
+          {
+            "applicability": {
+              "class": "Always"
+            },
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "example_age",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "ge",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 18.0,
+                "unit": "years",
+                "upper": null
+              }
+            },
+            "branch": {
+              "class": "Branch",
+              "node": "unresolved",
+              "path": []
+            },
+            "class": "ScopedAssertion",
+            "cohort": {
+              "class": "Scope",
+              "kind": "all_participants",
+              "parts": [],
+              "ref": ""
+            },
+            "criterion_ref": "user:invented-candidate",
+            "id": "adult-m",
+            "modality": "required",
+            "resolution": "resolved",
+            "rule": {
+              "answers": [],
+              "class": "Rule",
+              "id": "invented-candidate",
+              "premises": [],
+              "version": "1",
+              "warrants": [
+                "user:invented-candidate"
+              ]
+            },
+            "span": [],
+            "status": "known"
+          },
+          {
+            "applicability": {
+              "class": "Always"
+            },
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "example_scale",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "le",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 2.0,
+                "unit": "example_scale",
+                "upper": null
+              }
+            },
+            "branch": {
+              "class": "Branch",
+              "node": "unresolved",
+              "path": []
+            },
+            "class": "ScopedAssertion",
+            "cohort": {
+              "class": "Scope",
+              "kind": "all_participants",
+              "parts": [],
+              "ref": ""
+            },
+            "criterion_ref": "user:invented-candidate",
+            "id": "scale-m",
+            "modality": "required",
+            "resolution": "resolved",
+            "rule": {
+              "answers": [],
+              "class": "Rule",
+              "id": "invented-candidate",
+              "premises": [],
+              "version": "1",
+              "warrants": [
+                "user:invented-candidate"
+              ]
+            },
+            "span": [],
+            "status": "known"
+          },
+          {
+            "applicability": {
+              "class": "Always"
+            },
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "example_marker",
+                "kind": "demographic"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "eq",
+                "inclusivity": "unspecified",
+                "kind": "boolean",
+                "members": [],
+                "number": null,
+                "unit": "",
+                "upper": null
+              }
+            },
+            "branch": {
+              "class": "Branch",
+              "node": "unresolved",
+              "path": []
+            },
+            "class": "ScopedAssertion",
+            "cohort": {
+              "class": "Scope",
+              "kind": "all_participants",
+              "parts": [],
+              "ref": ""
+            },
+            "criterion_ref": "user:invented-candidate",
+            "id": "marker-m",
+            "modality": "required",
+            "resolution": "resolved",
+            "rule": {
+              "answers": [],
+              "class": "Rule",
+              "id": "invented-candidate",
+              "premises": [],
+              "version": "1",
+              "warrants": [
+                "user:invented-candidate"
+              ]
+            },
+            "span": [],
+            "status": "known"
+          }
+        ]
+      }
+    ],
+    "survivors": [
+      "adult_scale_le_2",
+      "adult_scale_le_2_marker"
+    ],
+    "survival_basis": [
+      "invented:design_bounds remaining"
+    ],
+    "variables": [
+      {
+        "id": "scale",
+        "subject": {
+          "class": "Subject",
+          "kind": "participant",
+          "referent": ""
+        },
+        "predicate": {
+          "class": "Predicate",
+          "key": "example_scale",
+          "kind": "measurement"
+        },
+        "time": null,
+        "domain": {
+          "kind": "integer",
+          "unit": "example_scale",
+          "minimum": 0,
+          "maximum": 4
+        }
+      },
+      {
+        "id": "marker",
+        "subject": {
+          "class": "Subject",
+          "kind": "participant",
+          "referent": ""
+        },
+        "predicate": {
+          "class": "Predicate",
+          "key": "example_marker",
+          "kind": "demographic"
+        },
+        "time": null,
+        "domain": {
+          "kind": "boolean"
+        }
+      },
+      {
+        "id": "age",
+        "subject": {
+          "class": "Subject",
+          "kind": "participant",
+          "referent": ""
+        },
+        "predicate": {
+          "class": "Predicate",
+          "key": "example_age",
+          "kind": "measurement"
+        },
+        "time": null,
+        "domain": {
+          "kind": "continuous",
+          "unit": "years",
+          "minimum": 0,
+          "maximum": null,
+          "cut_points": []
+        }
+      }
+    ]
+  }
+}

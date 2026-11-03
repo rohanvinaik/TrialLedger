@@ -1,0 +1,20 @@
+{
+  "TrialLedger/layer2/stage_evidence.py::stage_result_code": {
+    "cut_reasons": [],
+    "function_digest": "122843696fee4fc4",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/stage_evidence.py::stage_support_status": {
+    "cut_reasons": [],
+    "function_digest": "6e2294ccd30b905e",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/stage_evidence.py::transition_gate": {
+    "cut_reasons": [],
+    "function_digest": "e91d6c8b146a27f3",
+    "refusal": "",
+    "standing": "complete"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "source_sha256": "1d00ad113fd6b5ea2c98fcb30eb1e8f7487d0c477d402b690473884324242add",
+  "functions": {
+    "transition_gate": {
+      "source_sha256": "8f4223695db5a7374935736e6f0b1a4c8ce9bdacd0dfa8de8a8bebc9125eda66",
+      "ast_sha256": "e91d6c8b146a27f309f786eebcf478be32979d7d8d887f0644737ceb7421dfe4"
+    },
+    "stage_result_code": {
+      "source_sha256": "e3a0e5b9285704f2a3a3531d54c4d75090d5ef042dbe2ab41dd9a6785f3bbaab",
+      "ast_sha256": "122843696fee4fc4d6ebd7591a6439cb80774243b71b565191a225f66423ef6b"
+    },
+    "stage_support_status": {
+      "source_sha256": "77d9a0e9c4314c6a8739e8940778dde326f809dbf00a1d66a02ba9d51670a8dd",
+      "ast_sha256": "6e2294ccd30b905e574560123183001ed065dc6956dbc0ca0688971eadc71c48"
+    }
+  },
+  "authored_tests": 52,
+  "detective": {
+    "policy": "9+neg.f5a15364c11d",
+    "transition_gate": {
+      "scored": 81,
+      "value_pinned": 81
+    },
+    "stage_result_code": {
+      "scored": 42,
+      "value_pinned": 42
+    },
+    "stage_support_status": {
+      "scored": 54,
+      "value_pinned": 54
+    },
+    "equivalence_flags": 0,
+    "generated_tests": 0,
+    "scope": "Three pure functions only; wrappers validated by authored tests, not mutation-certified"
+  },
+  "crosshair": {
+    "contracts": "17 Not confirmed, no counterexample or proof claimed",
+    "command": "uv run --project /Users/rohanvinaik/tools/TrialLedger --with crosshair-tool crosshair check /tmp/trialledger-stage-contract-20261103-v1/TrialLedger/layer2/stage_evidence.py --report_all"
+  },
+  "no_shared_edits": true,
+  "no_cli_mcp_stage_integration_claim": true,
+  "empty_graph": "Zero checks, support_status null and determining_ids empty; vacuous consistency, no clinical validation"
+}

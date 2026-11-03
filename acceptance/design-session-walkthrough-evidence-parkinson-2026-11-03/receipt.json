@@ -1,0 +1,167 @@
+{
+  "completed_at_utc": "2026-11-03T23:44:00.033721+00:00",
+  "actual_complete_cli_mcp_pairs": 8,
+  "payload_files": {
+    "README.md": {
+      "bytes": 7690,
+      "sha256": "85284feb5545b1c8bc06784e9ec14150fe615f692cb59d890aab0b9fe859a18f"
+    },
+    "evidence-input-contract.json": {
+      "bytes": 17493,
+      "sha256": "0782828f1051e028330c8bc5def2e2e3929f3b6a6fa68cded9614f657e3e8788"
+    },
+    "finding-summary.json": {
+      "bytes": 22017,
+      "sha256": "bba45673c50883dd01466dd4c0da1dae6674fdd250d234f1b4b62d329e46374f"
+    },
+    "gather-fetches.json": {
+      "bytes": 2099,
+      "sha256": "3465e47f99082e2f66cdb522bad6316dfd4f0b492439b10c7652fe128dbe55f6"
+    },
+    "gather-manifest.json": {
+      "bytes": 3017,
+      "sha256": "c2112dc702922a8ebed1160056099cd8637feef02e97ece8e90b9e3fca8d86dd"
+    },
+    "gather-request.json": {
+      "bytes": 124,
+      "sha256": "f914a02afd3ed14fa128110b6877c92a1ace3787366787903a9d361af0e8280a"
+    },
+    "gather-resolution.json": {
+      "bytes": 1795,
+      "sha256": "2189ec8b38f866105c2ce99a49f5f10a945b5d1e7a4e1f3289b6d0cd5eebf40e"
+    },
+    "gather-scope.json": {
+      "bytes": 228,
+      "sha256": "a674838f58275a158b45108f1455c09f059ad75a5a7839179425ed08206a799b"
+    },
+    "local-retention.json": {
+      "bytes": 10699,
+      "sha256": "1bc6bd7140f2f220df53951c097d14185b5f8eacabf8671b4b456c0f67ea0f82"
+    },
+    "preflight-verification.json": {
+      "bytes": 499,
+      "sha256": "203e9d7c2c9e91fc9aecb646c944bc4ca6513e2e3f63dd399d73d037ba30434b"
+    },
+    "preflight.json": {
+      "bytes": 1536,
+      "sha256": "1fc869303678332b60679eda35748e8693e9d727df480237cab3e7d123bb4207"
+    },
+    "requests/NCT00219284-source-age.json": {
+      "bytes": 107650,
+      "sha256": "b9fa16b30c2efb59bce90d31ad07f3ebfb08bcad0df52b268ac3162692ebeb1d"
+    },
+    "requests/NCT01494532-source-age.json": {
+      "bytes": 347423,
+      "sha256": "8df454f8f53432f1b1543102c869b619311e0cb8229f25f0de9b9c03d97bac54"
+    },
+    "requests/NCT04821830-source-age.json": {
+      "bytes": 115407,
+      "sha256": "bd2e6da8f972ee28a282ca2d997651d74c2aa39f4c93b8df44f85722ea83d5de"
+    },
+    "requests/hypothetical-accepted-age-health.json": {
+      "bytes": 14906,
+      "sha256": "02de6b7954e169547fc5f8bb86c0171f7c69b6a925a3b1e5a91a24e0b29b8fdf"
+    },
+    "requests/hypothetical-accepted-age-only-revision.json": {
+      "bytes": 14536,
+      "sha256": "521c173599fc42c842b6e0553101bd0039371fddf5caa12947c50233217af768"
+    },
+    "requests/hypothetical-profile-budget.json": {
+      "bytes": 14920,
+      "sha256": "815172196ab0b9d33fa7d36c80fe36dd90cc93a18fa6059531d4a20c7db42a25"
+    },
+    "requests/hypothetical-signed-profiles.json": {
+      "bytes": 14922,
+      "sha256": "6f37fe1b37925646ae2de7aae74dd87fdf94616aa3078ffdd69461b1184e5206"
+    },
+    "requests/session-named-hypotheses.json": {
+      "bytes": 142431,
+      "sha256": "e06b061be252e5e252b6286bb1253d6ebd9767195f9b9bc4302d8a657b09d1a7"
+    },
+    "results/NCT00219284-source-age.json": {
+      "bytes": 37606,
+      "sha256": "ab99041149e5e227880ca54486d3688187cf73d473fea3ccc59e37107b434e95"
+    },
+    "results/NCT01494532-source-age.json": {
+      "bytes": 33491,
+      "sha256": "e2914fd5101c5639aa9857ad119800eee99a94d1d9f23cd0b6231b9fe4e01ef9"
+    },
+    "results/NCT04821830-source-age.json": {
+      "bytes": 38199,
+      "sha256": "73919065dc9547781a0b483d5d47e5fb732a925ab6f4b524e7aa175ee0dc264d"
+    },
+    "results/hypothetical-accepted-age-health.json": {
+      "bytes": 48553,
+      "sha256": "1835c670e9cff850ac9158d08c61f1904388d609a0fe81d650f8909a3bc6bb16"
+    },
+    "results/hypothetical-accepted-age-only-revision.json": {
+      "bytes": 33346,
+      "sha256": "2e87292c8235e15b6d548235486bfe96c82df6cc1154f77b0bb9ecb6008266cf"
+    },
+    "results/hypothetical-profile-budget.json": {
+      "bytes": 23232,
+      "sha256": "db5d762dd9fefe1c0e36feff10458650f306c8018788484b88cc06e0dfdd60fc"
+    },
+    "results/hypothetical-signed-profiles.json": {
+      "bytes": 43802,
+      "sha256": "5b71f7ddf918b38dea85adb15108453ab49548703711bb68c31aa57df24c97c4"
+    },
+    "results/session-named-hypotheses.json": {
+      "bytes": 279403,
+      "sha256": "19ccb4c0eabc24fc7a7d0153b21f88948e1561cdea8fa3effdbc701fcf224d17"
+    },
+    "runtime-receipt.json": {
+      "bytes": 15851,
+      "sha256": "fa101554a678a63917bcd40e264bc5732643a230e6dc552f50042c4b17a59e34"
+    },
+    "selection.json": {
+      "bytes": 2818,
+      "sha256": "d0b099aa10d0464eb73b13af7912e8b01fb80a853c05b41aa7d33fc67465f143"
+    },
+    "semantic-checks.json": {
+      "bytes": 71,
+      "sha256": "fa368f6297270be1fce34987279f387badd8e2ce970d1a45282c2c4b36e94d3a"
+    },
+    "source-inventory.json": {
+      "bytes": 1736,
+      "sha256": "03509ea2b3f04cd9beef48cb91cb9aa5ab6014355f2ee1d9527d2a4a5d76076d"
+    },
+    "source-reading.md": {
+      "bytes": 4319,
+      "sha256": "c298500fc7fc2df74ab98c416475f80bd39d68fa5d2e24f1570062f0a34fe043"
+    },
+    "verification-receipt.json": {
+      "bytes": 445,
+      "sha256": "ba59d4d947e083272776a2409278bf2af1b08f6a91919d85e4fdbeb58326cfa7"
+    },
+    "working-brief.md": {
+      "bytes": 2519,
+      "sha256": "5bddc2873301fb7e2ff984df4238bf89957aa6d9da86bb88e462b69702713c28"
+    }
+  },
+  "payload_bytes": 1404783,
+  "unclassified_effective_findings": [],
+  "semantic_checks": {
+    "metadata_pointers": 68,
+    "request_rows": 14,
+    "envelopes": 16
+  },
+  "verify_exit": 0,
+  "runtime_frozen_files_through_calls": 80,
+  "runtime_additions_during_calls": {},
+  "clinical_confirmation": false,
+  "profile_observations_generated": false,
+  "scope": "ActualPhase4Parkinsonsources plus explicit hypothetical signed eligibility profiles, no recovered protocol or statistical paradigm claim",
+  "input_refinements": [
+    "Candidate-only design_bounds refused; survival_basis honestly declares comparison family",
+    "Whole-year hypothetical profile domain declared explicitly",
+    "Session aggregate reservation refused; narrowed focuseddomain80\u201385/bound128/32profiles/256decisions then all8pairsrerun"
+  ],
+  "clinical_limits": [
+    "ProtocolViolation not entry attribution",
+    "Rejected separators need complete candidate eligibility, unavailable from this summary",
+    "PI judgment is not a measured biomarker",
+    "Different treatment settings/clocks not equated",
+    "Output truncation and incomplete search remain explicit"
+  ]
+}

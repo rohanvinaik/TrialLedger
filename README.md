@@ -279,6 +279,78 @@ same-arm interpretation, 609 people cannot be a subset of 590; 590 can fit withi
 prove that those are the corresponding populations. A wrong arm or record version leaves the interpretation
 unresolved, with the arithmetic still visible. See [how these warrants reach their consumers](docs/REASONING_CONSUMERS.md).
 
+## Three more decisions hidden in the paperwork
+
+**“Who reached which stage?”** Being allowed to proceed to a treatment stage is different from actually
+entering it. If explicitly bound counts place **144 people outside completion** and **one person outside
+dosing**, TrialLedger keeps both answers, with their separate populations and time points. It does not call
+all 144 untreated or identify which person received no dose. A documented population relationship permits
+that subtraction; a pathway saying patients *may* proceed does not. A count that fits the relationship does
+not prove that the relationship is true.
+
+**“Does our dose table tell us what to do in every case?”** In an invented six-person cohort, suppose your
+table assigns an action for zero dose-limiting toxicities and for two through six, but none for **one out of
+six**. Once you declare those seven possible counts, TrialLedger can establish that the table leaves a case
+uncovered. It also checks whether two applicable rows prescribe different actions and whether each listed
+action is possible under your stated constraints. You decide the missing action. Covering this finite table
+does not prove that a sequence of dose decisions eventually stops, or that the actions are clinically best.
+
+**“What do we need to measure after treatment stops?”** TrialLedger keeps this question separate
+from whether an analysis is possible. An explicitly adopted definition may require a week-12 outcome after
+treatment discontinuation. A plan to stop collecting it is then a collection-plan mismatch; an actually
+unavailable relevant outcome is a different finding. An outcome not required for that particular question,
+an outcome whose relevance is unresolved, and a measurement that cannot exist after an event are kept
+separate too. Merely naming a strategy such as “treatment policy” supplies no measurement requirement.
+Stopping collection alone does not prove that estimation is impossible. These checks retain each channel's
+own warrant; they do not certify a statistical estimator or treatment-effect estimate.
+
+The executed [bipolar extension](acceptance/design-session-walkthrough-stages-bipolar-2026-11-03/README.md),
+[early-phase AML](acceptance/design-session-walkthrough-decision-aml-2026-11-03/README.md) and
+[dermatitis endpoint](acceptance/design-session-walkthrough-estimand-dermatitis-2026-11-03/README.md)
+walkthroughs show the distinction between registry evidence, explicitly hypothetical designs and computed
+consequences. They retain the sampled records' missing rules and unresolved meanings.
+
+These checks support the continuing conversation and its decision list. A managed session now keeps the
+declared sources, premises, analyses and decisions together and replays them when the design changes.
+Complete automatic protocol writing remains unfinished.
+
+## Keep the investigation and the design connected
+
+**“What evidence would resolve the disagreement?”** Suppose two possible eligibility explanations remain:
+adults with ECOG at most 2, and the same restriction plus a marker requirement. TrialLedger can ask for
+an accepted marker-negative participant, which would contradict the marker requirement under a warranted
+eligibility bridge. It can also ask for an adult ECOG-2 participant rejected for eligibility. That could
+contradict the first explanation **if it claims to be the complete eligibility rule**, while the second
+could explain rejection through the unspecified marker. No marker value is invented.
+
+These are requests to investigate, not reports of actual patients. Each keeps its accepted or rejected
+sign, the premises needed to make it decisive, and a place to look. Rejections may require a screening or
+adjudication record beyond the registry. The least-specified separating profiles come first; that ordering
+does not predict which evidence exists. A limited search and a shortened list of found requests are
+reported separately. The [invented executable example](examples/design-session/) shows this handoff.
+The [Parkinson's investigation](acceptance/design-session-walkthrough-evidence-parkinson-2026-11-03/README.md)
+works through real age wording with a conditional older-age allowance and explicitly hypothetical profiles.
+
+**“If we change our population, what else changes?”** The managed session reruns every declared analysis
+from the revised premises and compares the consequences. Historical comparator restrictions stay attached
+to their sources; adopting one for the new trial requires a separate premise. A historical unknown becomes
+an evidence question. A new-trial question becomes a design choice only after genuinely different options
+have been shown feasible under the represented constraints.
+
+The [observational-diabetes walkthrough](acceptance/design-session-walkthrough-session-diabetes-2026-11-03/README.md)
+uses three real registry records and an explicitly invented draft. Revising the draft from age 18+ to 65+
+changes its age consequences while all historical source-age answers remain unchanged. An Ontario-specific
+65+ reading stays proposed and local to Ontario. The source's conflicting design and follow-up descriptions
+remain visible. The session retains both snapshots, complete checks, origins and the consequence comparison;
+your assistant explains them in the working decision list. This checks the declared age restriction, not a
+complete protocol's eligibility or clinical suitability.
+
+The [asthma walkthrough](acceptance/design-session-walkthrough-docs-asthma-2026-11-03/README.md) revises the
+representation itself: it adds a missing rival reading of background and relief therapy while retaining
+the original. Their consequences differ, both remain proposed, neither establishes daily relief use, and
+the independent registered age restriction stays settled. The remaining question is visible for the person
+to resolve.
+
 ## What isn't built yet
 
 - **Automatic reading of eligibility prose.** Today you and your assistant settle readings together;
@@ -366,7 +438,7 @@ observations, explicit eligibility bridges and candidate designs, with a runnabl
 eliminations feed a common-consequence query through the existing scoped solver. The operation does not read
 tables automatically, reconstruct a complete protocol or change source-text frequency counts.
 
-Use `{"operation":"describe","view":"signals"}` for the eight partial-evidence contracts and a
+Use `{"operation":"describe","view":"signals"}` for the partial-evidence contracts and a
 runnable invented request per kind. `signals` evaluates those supplied inputs independently. To constrain a
 design, include them in `design_bounds.signals`, select a derived observation with explicit predicate bindings,
 or attach typed `signal_claims` to a candidate. Claims against one signal are checked together. Relations,
@@ -381,6 +453,19 @@ Use `{"operation":"describe","view":"source_assertions"}` for retained NIH study
 anchors and proposed readings. The bridge returns reusable reasoning requests and their complete results.
 Empty queries inspect source admission without claiming a design check. Content digests identify snapshots;
 they do not establish clinical protocol editions.
+
+Use `{"operation":"describe","view":"evidence_requests"}` for bounded hypothetical profiles and
+witness signs that distinguish declared surviving candidate rules. The guide separates enumeration limits,
+returned-row limits and the complete response-byte limit. Unsupported numeric precision is refused rather
+than changing comparison boundaries.
+
+Use `{"operation":"describe","view":"design_session"}` for the closed version-1 session schema,
+named premise projections, computed decisions and runnable baseline/revision examples. Candidates and
+other clinical inputs travel through its premise ledger, not arbitrary parameter substitution. Explicit
+session budgets include child solver work; large evidence searches may need smaller declared bounds.
+The `source_study` projection supplies both `study` and `expected_digest`; omit both from child parameters.
+The operation returns reusable JSON and does not save files or manage a background session. Save each
+request/result pair separately; the complete trial writer is a further integration.
 
 Entailment checks supplied scoped premises; coordinates uses the explicit NSCLC domain; corpus computes
 statement rates with silence bounds, class associations, rarity, occupancy and one-feature comparisons.

@@ -1,0 +1,775 @@
+{
+  "NCT04821830-source-age": {
+    "findings": [
+      {
+        "path": "/result/analyses/0/result/decision",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled"
+      },
+      {
+        "path": "/result/analyses/1/result/decision",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": null,
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "undecided_by_constraints",
+            "kind": "constraint"
+          }
+        ],
+        "disposition": "open"
+      }
+    ],
+    "child_findings": [
+      [
+        {
+          "path": "/result/decision",
+          "kind": "logical",
+          "logical_result": "ENTAILED",
+          "standing": "known",
+          "completion": "complete",
+          "causes": [],
+          "disposition": "settled"
+        }
+      ],
+      [
+        {
+          "path": "/result/decision",
+          "kind": "logical",
+          "logical_result": "UNDETERMINED",
+          "standing": null,
+          "completion": "complete",
+          "causes": [
+            {
+              "code": "undecided_by_constraints",
+              "kind": "constraint"
+            }
+          ],
+          "disposition": "open"
+        }
+      ]
+    ]
+  },
+  "NCT00219284-source-age": {
+    "findings": [
+      {
+        "path": "/result/analyses/0/result/decision",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled"
+      },
+      {
+        "path": "/result/analyses/1/result/decision",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": null,
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "undecided_by_constraints",
+            "kind": "constraint"
+          }
+        ],
+        "disposition": "open"
+      }
+    ],
+    "child_findings": [
+      [
+        {
+          "path": "/result/decision",
+          "kind": "logical",
+          "logical_result": "ENTAILED",
+          "standing": "known",
+          "completion": "complete",
+          "causes": [],
+          "disposition": "settled"
+        }
+      ],
+      [
+        {
+          "path": "/result/decision",
+          "kind": "logical",
+          "logical_result": "UNDETERMINED",
+          "standing": null,
+          "completion": "complete",
+          "causes": [
+            {
+              "code": "undecided_by_constraints",
+              "kind": "constraint"
+            }
+          ],
+          "disposition": "open"
+        }
+      ]
+    ]
+  },
+  "NCT01494532-source-age": {
+    "findings": [
+      {
+        "path": "/result/analyses/0/result/decision",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled"
+      },
+      {
+        "path": "/result/analyses/1/result/decision",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": null,
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "undecided_by_constraints",
+            "kind": "constraint"
+          }
+        ],
+        "disposition": "open"
+      }
+    ],
+    "child_findings": [
+      [
+        {
+          "path": "/result/decision",
+          "kind": "logical",
+          "logical_result": "ENTAILED",
+          "standing": "known",
+          "completion": "complete",
+          "causes": [],
+          "disposition": "settled"
+        }
+      ],
+      [
+        {
+          "path": "/result/decision",
+          "kind": "logical",
+          "logical_result": "UNDETERMINED",
+          "standing": null,
+          "completion": "complete",
+          "causes": [
+            {
+              "code": "undecided_by_constraints",
+              "kind": "constraint"
+            }
+          ],
+          "disposition": "open"
+        }
+      ]
+    ]
+  },
+  "hypothetical-signed-profiles": {
+    "findings": [
+      {
+        "path": "/result/family",
+        "kind": "candidate_family",
+        "logical_result": "searched",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "descriptive"
+      },
+      {
+        "path": "/result/search",
+        "kind": "evidence_search",
+        "logical_result": "complete",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "descriptive"
+      },
+      {
+        "path": "/result/output",
+        "kind": "evidence_output",
+        "logical_result": "truncated",
+        "standing": "known",
+        "completion": "limited",
+        "causes": [
+          {
+            "code": "output_limit:per_pair",
+            "kind": "computation"
+          }
+        ],
+        "disposition": "not_computed"
+      },
+      {
+        "path": "/result/pairs/0",
+        "kind": "evidence_pair",
+        "logical_result": "separated",
+        "standing": null,
+        "completion": "complete",
+        "causes": [],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/pairs/1",
+        "kind": "evidence_pair",
+        "logical_result": "separated",
+        "standing": null,
+        "completion": "complete",
+        "causes": [],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/pairs/2",
+        "kind": "evidence_pair",
+        "logical_result": "separated",
+        "standing": null,
+        "completion": "complete",
+        "causes": [],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/requests/0",
+        "kind": "hypothetical_evidence_request",
+        "logical_result": "hypothetical_evidence_request",
+        "standing": "interpolated",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "open",
+        "hypothetical": true,
+        "support_path": "/result/requests/0/required_premises"
+      },
+      {
+        "path": "/result/requests/1",
+        "kind": "hypothetical_evidence_request",
+        "logical_result": "hypothetical_evidence_request",
+        "standing": "interpolated",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "open",
+        "hypothetical": true,
+        "support_path": "/result/requests/1/required_premises"
+      },
+      {
+        "path": "/result/requests/2",
+        "kind": "hypothetical_evidence_request",
+        "logical_result": "hypothetical_evidence_request",
+        "standing": "interpolated",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "open",
+        "hypothetical": true,
+        "support_path": "/result/requests/2/required_premises"
+      },
+      {
+        "path": "/result/requests/3",
+        "kind": "hypothetical_evidence_request",
+        "logical_result": "hypothetical_evidence_request",
+        "standing": "interpolated",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "open",
+        "hypothetical": true,
+        "support_path": "/result/requests/3/required_premises"
+      }
+    ]
+  },
+  "hypothetical-accepted-age-health": {
+    "findings": [
+      {
+        "path": "/result/family",
+        "kind": "candidate_family",
+        "logical_result": "searched",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "descriptive"
+      },
+      {
+        "path": "/result/search",
+        "kind": "evidence_search",
+        "logical_result": "complete",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "descriptive"
+      },
+      {
+        "path": "/result/output",
+        "kind": "evidence_output",
+        "logical_result": "truncated",
+        "standing": "known",
+        "completion": "limited",
+        "causes": [
+          {
+            "code": "output_limit:per_pair",
+            "kind": "computation"
+          }
+        ],
+        "disposition": "not_computed"
+      },
+      {
+        "path": "/result/pairs/0",
+        "kind": "evidence_pair",
+        "logical_result": "separated",
+        "standing": null,
+        "completion": "complete",
+        "causes": [],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/pairs/1",
+        "kind": "evidence_pair",
+        "logical_result": "separated",
+        "standing": null,
+        "completion": "complete",
+        "causes": [],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/pairs/2",
+        "kind": "evidence_pair",
+        "logical_result": "separated",
+        "standing": null,
+        "completion": "complete",
+        "causes": [],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/requests/0",
+        "kind": "hypothetical_evidence_request",
+        "logical_result": "hypothetical_evidence_request",
+        "standing": "interpolated",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "open",
+        "hypothetical": true,
+        "support_path": "/result/requests/0/required_premises"
+      },
+      {
+        "path": "/result/requests/1",
+        "kind": "hypothetical_evidence_request",
+        "logical_result": "hypothetical_evidence_request",
+        "standing": "interpolated",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "open",
+        "hypothetical": true,
+        "support_path": "/result/requests/1/required_premises"
+      },
+      {
+        "path": "/result/requests/2",
+        "kind": "hypothetical_evidence_request",
+        "logical_result": "hypothetical_evidence_request",
+        "standing": "interpolated",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "open",
+        "hypothetical": true,
+        "support_path": "/result/requests/2/required_premises"
+      },
+      {
+        "path": "/result/requests/3",
+        "kind": "hypothetical_evidence_request",
+        "logical_result": "hypothetical_evidence_request",
+        "standing": "interpolated",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "open",
+        "hypothetical": true,
+        "support_path": "/result/requests/3/required_premises"
+      }
+    ]
+  },
+  "hypothetical-accepted-age-only-revision": {
+    "findings": [
+      {
+        "path": "/result/family",
+        "kind": "candidate_family",
+        "logical_result": "searched",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "descriptive"
+      },
+      {
+        "path": "/result/search",
+        "kind": "evidence_search",
+        "logical_result": "complete",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "descriptive"
+      },
+      {
+        "path": "/result/output",
+        "kind": "evidence_output",
+        "logical_result": "truncated",
+        "standing": "known",
+        "completion": "limited",
+        "causes": [
+          {
+            "code": "output_limit:per_pair",
+            "kind": "computation"
+          }
+        ],
+        "disposition": "not_computed"
+      },
+      {
+        "path": "/result/pairs/0",
+        "kind": "evidence_pair",
+        "logical_result": "separated",
+        "standing": null,
+        "completion": "complete",
+        "causes": [],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/pairs/1",
+        "kind": "evidence_pair",
+        "logical_result": "separated",
+        "standing": null,
+        "completion": "complete",
+        "causes": [],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/pairs/2",
+        "kind": "evidence_pair",
+        "logical_result": "not_separated_in_declared_variables",
+        "standing": null,
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "signs_restricted",
+            "kind": "coverage"
+          },
+          {
+            "code": "unsearched_constraints",
+            "kind": "coverage"
+          }
+        ],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/requests/0",
+        "kind": "hypothetical_evidence_request",
+        "logical_result": "hypothetical_evidence_request",
+        "standing": "interpolated",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "open",
+        "hypothetical": true,
+        "support_path": "/result/requests/0/required_premises"
+      },
+      {
+        "path": "/result/requests/1",
+        "kind": "hypothetical_evidence_request",
+        "logical_result": "hypothetical_evidence_request",
+        "standing": "interpolated",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "open",
+        "hypothetical": true,
+        "support_path": "/result/requests/1/required_premises"
+      }
+    ]
+  },
+  "hypothetical-profile-budget": {
+    "findings": [
+      {
+        "path": "/result/family",
+        "kind": "candidate_family",
+        "logical_result": "searched",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "descriptive"
+      },
+      {
+        "path": "/result/search",
+        "kind": "evidence_search",
+        "logical_result": "incomplete",
+        "standing": "known",
+        "completion": "limited",
+        "causes": [
+          {
+            "code": "resource_bound:profiles",
+            "kind": "computation"
+          }
+        ],
+        "disposition": "not_computed"
+      },
+      {
+        "path": "/result/output",
+        "kind": "evidence_output",
+        "logical_result": "complete",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "descriptive"
+      },
+      {
+        "path": "/result/pairs/0",
+        "kind": "evidence_pair",
+        "logical_result": "search_incomplete",
+        "standing": null,
+        "completion": "complete",
+        "causes": [],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/pairs/1",
+        "kind": "evidence_pair",
+        "logical_result": "search_incomplete",
+        "standing": null,
+        "completion": "complete",
+        "causes": [],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/pairs/2",
+        "kind": "evidence_pair",
+        "logical_result": "search_incomplete",
+        "standing": null,
+        "completion": "complete",
+        "causes": [],
+        "disposition": "open"
+      }
+    ]
+  },
+  "session-named-hypotheses": {
+    "findings": [
+      {
+        "causes": [],
+        "completion": "complete",
+        "disposition": "descriptive",
+        "kind": "candidate_family",
+        "logical_result": "searched",
+        "path": "/result/analyses/0/result/result/family",
+        "standing": "known"
+      },
+      {
+        "causes": [],
+        "completion": "complete",
+        "disposition": "descriptive",
+        "kind": "evidence_search",
+        "logical_result": "complete",
+        "path": "/result/analyses/0/result/result/search",
+        "standing": "known"
+      },
+      {
+        "causes": [
+          {
+            "code": "output_limit:per_pair",
+            "kind": "computation"
+          }
+        ],
+        "completion": "limited",
+        "disposition": "not_computed",
+        "kind": "evidence_output",
+        "logical_result": "truncated",
+        "path": "/result/analyses/0/result/result/output",
+        "standing": "known"
+      },
+      {
+        "causes": [],
+        "completion": "complete",
+        "disposition": "open",
+        "kind": "evidence_pair",
+        "logical_result": "separated",
+        "path": "/result/analyses/0/result/result/pairs/0",
+        "standing": null
+      },
+      {
+        "causes": [],
+        "completion": "complete",
+        "disposition": "open",
+        "kind": "evidence_pair",
+        "logical_result": "separated",
+        "path": "/result/analyses/0/result/result/pairs/1",
+        "standing": null
+      },
+      {
+        "causes": [],
+        "completion": "complete",
+        "disposition": "open",
+        "kind": "evidence_pair",
+        "logical_result": "separated",
+        "path": "/result/analyses/0/result/result/pairs/2",
+        "standing": null
+      },
+      {
+        "causes": [],
+        "completion": "complete",
+        "disposition": "open",
+        "hypothetical": true,
+        "kind": "hypothetical_evidence_request",
+        "logical_result": "hypothetical_evidence_request",
+        "path": "/result/analyses/0/result/result/requests/0",
+        "standing": "interpolated",
+        "support_path": "/result/analyses/0/result/result/requests/0/required_premises"
+      },
+      {
+        "causes": [],
+        "completion": "complete",
+        "disposition": "open",
+        "hypothetical": true,
+        "kind": "hypothetical_evidence_request",
+        "logical_result": "hypothetical_evidence_request",
+        "path": "/result/analyses/0/result/result/requests/1",
+        "standing": "interpolated",
+        "support_path": "/result/analyses/0/result/result/requests/1/required_premises"
+      },
+      {
+        "causes": [],
+        "completion": "complete",
+        "disposition": "open",
+        "hypothetical": true,
+        "kind": "hypothetical_evidence_request",
+        "logical_result": "hypothetical_evidence_request",
+        "path": "/result/analyses/0/result/result/requests/2",
+        "standing": "interpolated",
+        "support_path": "/result/analyses/0/result/result/requests/2/required_premises"
+      },
+      {
+        "causes": [],
+        "completion": "complete",
+        "disposition": "open",
+        "hypothetical": true,
+        "kind": "hypothetical_evidence_request",
+        "logical_result": "hypothetical_evidence_request",
+        "path": "/result/analyses/0/result/result/requests/3",
+        "standing": "interpolated",
+        "support_path": "/result/analyses/0/result/result/requests/3/required_premises"
+      },
+      {
+        "causes": [],
+        "completion": "complete",
+        "disposition": "settled",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "path": "/result/analyses/1/result/result/decision",
+        "standing": "known"
+      }
+    ],
+    "child_findings": [
+      [
+        {
+          "causes": [],
+          "completion": "complete",
+          "disposition": "descriptive",
+          "kind": "candidate_family",
+          "logical_result": "searched",
+          "path": "/result/family",
+          "standing": "known"
+        },
+        {
+          "causes": [],
+          "completion": "complete",
+          "disposition": "descriptive",
+          "kind": "evidence_search",
+          "logical_result": "complete",
+          "path": "/result/search",
+          "standing": "known"
+        },
+        {
+          "causes": [
+            {
+              "code": "output_limit:per_pair",
+              "kind": "computation"
+            }
+          ],
+          "completion": "limited",
+          "disposition": "not_computed",
+          "kind": "evidence_output",
+          "logical_result": "truncated",
+          "path": "/result/output",
+          "standing": "known"
+        },
+        {
+          "causes": [],
+          "completion": "complete",
+          "disposition": "open",
+          "kind": "evidence_pair",
+          "logical_result": "separated",
+          "path": "/result/pairs/0",
+          "standing": null
+        },
+        {
+          "causes": [],
+          "completion": "complete",
+          "disposition": "open",
+          "kind": "evidence_pair",
+          "logical_result": "separated",
+          "path": "/result/pairs/1",
+          "standing": null
+        },
+        {
+          "causes": [],
+          "completion": "complete",
+          "disposition": "open",
+          "kind": "evidence_pair",
+          "logical_result": "separated",
+          "path": "/result/pairs/2",
+          "standing": null
+        },
+        {
+          "causes": [],
+          "completion": "complete",
+          "disposition": "open",
+          "hypothetical": true,
+          "kind": "hypothetical_evidence_request",
+          "logical_result": "hypothetical_evidence_request",
+          "path": "/result/requests/0",
+          "standing": "interpolated",
+          "support_path": "/result/requests/0/required_premises"
+        },
+        {
+          "causes": [],
+          "completion": "complete",
+          "disposition": "open",
+          "hypothetical": true,
+          "kind": "hypothetical_evidence_request",
+          "logical_result": "hypothetical_evidence_request",
+          "path": "/result/requests/1",
+          "standing": "interpolated",
+          "support_path": "/result/requests/1/required_premises"
+        },
+        {
+          "causes": [],
+          "completion": "complete",
+          "disposition": "open",
+          "hypothetical": true,
+          "kind": "hypothetical_evidence_request",
+          "logical_result": "hypothetical_evidence_request",
+          "path": "/result/requests/2",
+          "standing": "interpolated",
+          "support_path": "/result/requests/2/required_premises"
+        },
+        {
+          "causes": [],
+          "completion": "complete",
+          "disposition": "open",
+          "hypothetical": true,
+          "kind": "hypothetical_evidence_request",
+          "logical_result": "hypothetical_evidence_request",
+          "path": "/result/requests/3",
+          "standing": "interpolated",
+          "support_path": "/result/requests/3/required_premises"
+        }
+      ],
+      [
+        {
+          "causes": [],
+          "completion": "complete",
+          "disposition": "settled",
+          "kind": "logical",
+          "logical_result": "ENTAILED",
+          "path": "/result/decision",
+          "standing": "known"
+        }
+      ]
+    ]
+  }
+}

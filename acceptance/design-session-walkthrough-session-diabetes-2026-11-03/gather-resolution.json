@@ -1,0 +1,77 @@
+{
+ "code": "resolved",
+ "check": [
+  "ok",
+  []
+ ],
+ "join": "the names of one slot are joined by OR, the slots by AND",
+ "slots": [
+  {
+   "slot": "drug",
+   "value": [
+    "metformin"
+   ],
+   "clause": "(AREA[InterventionName]\"metformin\" OR AREA[InterventionOtherName]\"metformin\")"
+  },
+  {
+   "slot": "condition",
+   "value": "Type 2 Diabetes",
+   "clause": "Type 2 Diabetes"
+  },
+  {
+   "slot": "status",
+   "value": [
+    "COMPLETED"
+   ],
+   "clause": "AREA[OverallStatus]COMPLETED"
+  },
+  {
+   "slot": "study_type",
+   "value": "OBSERVATIONAL",
+   "clause": "AREA[StudyType]OBSERVATIONAL"
+  }
+ ],
+ "expansions": [
+  {
+   "slot": "drug",
+   "kind": "drug_names",
+   "drug": "metformin",
+   "source": "RxNorm",
+   "requests": [
+    "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=metformin&search=0",
+    "https://rxnav.nlm.nih.gov/REST/rxcui/6809/properties.json"
+   ],
+   "code": "ingredient",
+   "names": [
+    [
+     "metformin",
+     "request"
+    ]
+   ],
+   "candidates": [],
+   "release": "02-Nov-2026"
+  }
+ ],
+ "lookups": [
+  "https://rxnav.nlm.nih.gov/REST/version.json",
+  "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=metformin&search=0",
+  "https://rxnav.nlm.nih.gov/REST/rxcui/6809/properties.json"
+ ],
+ "pending": [],
+ "stops": [],
+ "query": {
+  "filter.advanced": "(AREA[InterventionName]\"metformin\" OR AREA[InterventionOtherName]\"metformin\") AND AREA[OverallStatus]COMPLETED AND AREA[StudyType]OBSERVATIONAL",
+  "query.cond": "Type 2 Diabetes"
+ },
+ "release": [
+  "found",
+  "02-Nov-2026",
+  "https://rxnav.nlm.nih.gov/REST/version.json"
+ ],
+ "release_basis": "version.json asked in the first round and again after the last; release_check holds the code of the comparison (operate.release_check) and both releases",
+ "release_check": [
+  "unchanged",
+  "02-Nov-2026",
+  "02-Nov-2026"
+ ]
+}

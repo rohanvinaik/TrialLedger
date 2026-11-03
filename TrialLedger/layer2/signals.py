@@ -17,6 +17,9 @@ MODULES = {
     **{kind: "numeric_evidence" for kind in ("overlap", "partition", "summary", "population")},
     **{kind: "graph_evidence" for kind in ("temporal", "regimen", "relations")},
     "dependencies": "dependency_evidence",
+    "stages": "stage_evidence",
+    "decision_table": "decision_tables",
+    "estimand": "estimand_evidence",
 }
 
 
@@ -70,13 +73,31 @@ def evaluate(signal: Signal, claims: list[dict] | None = None) -> dict:
         if claims is None
         else module.check(signal.kind, signal.data, claims)
     )
-    if not isinstance(calculation, dict) or set(calculation) != {"code", "value", "blockers", "rule"}:
+    fields = {"code", "value", "blockers", "rule"}
+    extended = fields | {"support_status", "determining_ids"}
+    if not isinstance(calculation, dict) or set(calculation) not in (fields, extended):
         raise ValueError("invalid_signal_operator_result")
-    state = support_state([p.status for p in signal.support], [p.resolution for p in signal.support])
+    status = entail.weakest_status(tuple(p.status for p in signal.support))
+    inner = None
+    if set(calculation) == extended:
+        inner = calculation["support_status"]
+        ids = calculation["determining_ids"]
+        if inner not in (None, "known", "interpolated", "proposed") or not isinstance(ids, list):
+            raise ValueError("invalid_signal_operator_support")
+        if any(not isinstance(identity, str) or not identity for identity in ids) or len(set(ids)) != len(
+            ids
+        ):
+            raise ValueError("invalid_signal_operator_support")
+        if inner is not None:
+            status = entail.weakest_status((status, inner))
+    state = support_state(
+        [p.status for p in signal.support] + ([inner] if inner is not None else []),
+        [p.resolution for p in signal.support] + (["resolved"] if inner is not None else []),
+    )
     blockers = list(calculation["blockers"]) + list(signal.application_blockers)
     if state != "accepted":
         blockers.append(state + ":" + signal.id)
-    return {
+    result = {
         "id": signal.id,
         "kind": signal.kind,
         "code": calculation["code"]
@@ -85,11 +106,18 @@ def evaluate(signal: Signal, claims: list[dict] | None = None) -> dict:
         "calculation_code": calculation["code"],
         "value": calculation["value"],
         "rule": calculation["rule"],
-        "status": entail.weakest_status(tuple(p.status for p in signal.support)),
+        "status": status,
         "basis": [ref for p in signal.support for ref in p.basis],
         "support": [dataclasses.asdict(p) for p in signal.support],
+        "admission": {"code": state, "application_blockers": list(signal.application_blockers)},
         "blockers": blockers,
     }
+    if set(calculation) == extended:
+        result["operator_support"] = {
+            "status": calculation["support_status"],
+            "determining_ids": list(calculation["determining_ids"]),
+        }
+    return result
 
 
 def expression_body(

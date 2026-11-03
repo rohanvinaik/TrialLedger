@@ -1,0 +1,109 @@
+──────────────────────────────────────────────────────────────────────────────
+TrialLedger/layer2/decision_tables.py — plan (full) · 18 regions · budget 500 DOF-proxy · spent 0
+
+  TrialLedger/layer2/decision_tables.py::_domains
+                       CONSTRUCTIVE · unpinned · status unpinned · not_clean · agreement 3
+                       smells: overload (108 DOF / 32 lines (static proxy)) · seam (1 seam(s)) · complexity (CC 26)
+                       cost 108 (static_dof_proxy)
+    next               detective converge 'TrialLedger/layer2/decision_tables.py::_domains'
+
+  TrialLedger/layer2/decision_tables.py::_evaluate
+                       CONSTRUCTIVE · unpinned · status unpinned · not_clean · agreement 3
+                       smells: overload (328 DOF / 84 lines (static proxy)) · seam (1 seam(s)) · complexity (CC 23)
+                       template quadratic_membership_scan → set_membership · gate receipt + verify-rewrite + paired budget · line 256: `in actions` (list-evidenced) inside a loop
+                       cost 328 (static_dof_proxy)
+    next               detective converge 'TrialLedger/layer2/decision_tables.py::_evaluate'
+
+  TrialLedger/layer2/decision_tables.py::_bounded_input
+                       CONSTRUCTIVE · unpinned · status unpinned · not_clean · agreement 2
+                       smells: overload (60 DOF / 17 lines (static proxy)) · seam (1 seam(s))
+                       cost 60 (static_dof_proxy)
+    next               detective converge 'TrialLedger/layer2/decision_tables.py::_bounded_input'
+
+  TrialLedger/layer2/decision_tables.py::_limits
+                       CONSTRUCTIVE · unpinned · status unpinned · not_clean · agreement 2
+                       smells: overload (52 DOF / 8 lines (static proxy)) · seam (1 seam(s))
+                       cost 52 (static_dof_proxy)
+    next               detective converge 'TrialLedger/layer2/decision_tables.py::_limits'
+
+  TrialLedger/layer2/decision_tables.py::_join
+                       AMBIGUOUS · escalated · status unpinned · not_clean · agreement 1
+                       smells: overload (13 DOF / 4 lines (static proxy))
+                       cost 13 (static_dof_proxy)
+    next               detective flag 'TrialLedger/layer2/decision_tables.py::_join' --style --leave --note "why"   # or --proceed; to ground it first: detective converge 'TrialLedger/layer2/decision_tables.py::_join'
+
+  TrialLedger/layer2/decision_tables.py::_object
+                       AMBIGUOUS · escalated · status unpinned · not_clean · agreement 1
+                       smells: overload (19 DOF / 6 lines (static proxy))
+                       cost 19 (static_dof_proxy)
+    next               detective flag 'TrialLedger/layer2/decision_tables.py::_object' --style --leave --note "why"   # or --proceed; to ground it first: detective converge 'TrialLedger/layer2/decision_tables.py::_object'
+
+  TrialLedger/layer2/decision_tables.py::_proposition
+                       AMBIGUOUS · escalated · status unpinned · not_clean · agreement 1
+                       smells: seam (1 seam(s))
+                       cost 20 (static_dof_proxy)
+    next               detective flag 'TrialLedger/layer2/decision_tables.py::_proposition' --style --leave --note "why"   # or --proceed; to ground it first: detective converge 'TrialLedger/layer2/decision_tables.py::_proposition'
+
+  TrialLedger/layer2/decision_tables.py::_rows
+                       AMBIGUOUS · escalated · status unpinned · not_clean · agreement 1
+                       smells: overload (21 DOF / 6 lines (static proxy))
+                       cost 21 (static_dof_proxy)
+    next               detective flag 'TrialLedger/layer2/decision_tables.py::_rows' --style --leave --note "why"   # or --proceed; to ground it first: detective converge 'TrialLedger/layer2/decision_tables.py::_rows'
+
+  TrialLedger/layer2/decision_tables.py::_text
+                       AMBIGUOUS · escalated · status unpinned · not_clean · agreement 1
+                       smells: overload (12 DOF / 4 lines (static proxy))
+                       cost 12 (static_dof_proxy)
+    next               detective flag 'TrialLedger/layer2/decision_tables.py::_text' --style --leave --note "why"   # or --proceed; to ground it first: detective converge 'TrialLedger/layer2/decision_tables.py::_text'
+
+  TrialLedger/layer2/decision_tables.py::_Checks.__init__
+                       SILENT · silent · status unpinned · clean · agreement 0
+                       smells: —
+                       cost 6 (static_dof_proxy)
+
+  TrialLedger/layer2/decision_tables.py::_Checks.check
+                       SILENT · silent · status unpinned · clean · agreement 0
+                       smells: —
+                       cost 46 (static_dof_proxy)
+
+  TrialLedger/layer2/decision_tables.py::_assertion
+                       SILENT · silent · status unpinned · clean · agreement 0
+                       smells: —
+                       cost 16 (static_dof_proxy)
+
+  TrialLedger/layer2/decision_tables.py::_example
+                       SILENT · silent · status unpinned · clean · agreement 0
+                       smells: —
+                       cost 70 (static_dof_proxy)
+
+  TrialLedger/layer2/decision_tables.py::_keys
+                       SILENT · silent · status unpinned · clean · agreement 0
+                       smells: —
+                       cost 4 (static_dof_proxy)
+
+  TrialLedger/layer2/decision_tables.py::check
+                       SILENT · silent · status unpinned · clean · agreement 0
+                       smells: —
+                       cost 13 (static_dof_proxy)
+
+  TrialLedger/layer2/decision_tables.py::evaluate
+                       SILENT · silent · status unpinned · clean · agreement 0
+                       smells: —
+                       cost 9 (static_dof_proxy)
+
+  TrialLedger/layer2/decision_tables.py::table_check_state
+                       SILENT · silent · status pinned · clean · agreement 0
+                       smells: —
+                       cost 43 (static_dof_proxy)
+
+  TrialLedger/layer2/decision_tables.py::table_state
+                       SILENT · silent · status pinned · clean · agreement 0
+                       smells: —
+                       cost 18 (static_dof_proxy)
+
+  · unexamined         what this plan did not propose is UNEXAMINED, not approved
+                       regime — unread: it needs a live mutation profile this static plan never runs
+                       fences held at 0 — the form-censor spine (§5.3) is unbuilt, so DESTRUCTIVE is unexercised
+                       recognizers — 5 template(s); a region with no match is a library gap, not a clean bill
+
+FINAL plan TrialLedger/layer2/decision_tables.py: 0 funded · 4 constructive · 5 escalated · 0 fenced · 9 silent (clean 9 · unread 0) · advisory — writes no project files

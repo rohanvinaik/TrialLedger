@@ -1,0 +1,64 @@
+{
+  "raw_batch_sha256": "2af5553edfe2f8d8c3aeaac666c9a4b62e618138e36ee397f57c763cb4c8fd54",
+  "raw_batch_filesystem_capture_utc": "2026-11-03T21:51:40.351213+00:00",
+  "capture_time_meaning": "filesystem write time, not independent network-response timestamp",
+  "studies": [
+    {
+      "id": "NCT01179919",
+      "index": 1,
+      "digest": "e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529",
+      "snapshot_bytes": 14533,
+      "reviewed_protocol_modules": [
+        "identificationModule",
+        "statusModule",
+        "descriptionModule",
+        "designModule",
+        "eligibilityModule",
+        "armsInterventionsModule",
+        "outcomesModule"
+      ],
+      "reviewed_results_modules": [
+        "participantFlowModule",
+        "baselineCharacteristicsModule"
+      ]
+    },
+    {
+      "id": "NCT00867139",
+      "index": 3,
+      "digest": "a1e40ac6e9a25fbce05cb1ee24a9625507b275f6f1c201687f2e7a2765b77e72",
+      "snapshot_bytes": 40214,
+      "reviewed_protocol_modules": [
+        "identificationModule",
+        "statusModule",
+        "descriptionModule",
+        "designModule",
+        "eligibilityModule",
+        "armsInterventionsModule",
+        "outcomesModule"
+      ],
+      "reviewed_results_modules": [
+        "participantFlowModule",
+        "baselineCharacteristicsModule"
+      ]
+    },
+    {
+      "id": "NCT00453999",
+      "index": 16,
+      "digest": "587fa7e8ebbc777bf0f2919d963badcbcf7eaa17db8a563e4cc2af24a9e14baa",
+      "snapshot_bytes": 112894,
+      "reviewed_protocol_modules": [
+        "identificationModule",
+        "statusModule",
+        "descriptionModule",
+        "designModule",
+        "eligibilityModule",
+        "armsInterventionsModule",
+        "outcomesModule"
+      ],
+      "reviewed_results_modules": [
+        "participantFlowModule",
+        "baselineCharacteristicsModule"
+      ]
+    }
+  ]
+}

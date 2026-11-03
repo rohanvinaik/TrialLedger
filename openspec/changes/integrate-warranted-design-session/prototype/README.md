@@ -28,12 +28,13 @@ Run from the repository's environment:
 
 ```bash
 /Users/rohanvinaik/Projects/SquishOS/ops/agents/bin/owned-run --label session-prototype-replay -- \
-  uv run python openspec/changes/integrate-warranted-design-session/prototype/replay.py
+  uv run python openspec/changes/integrate-warranted-design-session/prototype/replay.py \
+  --output /tmp/trialledger-prototype-fresh-replay
 ```
 
 ## Observed public behavior
 
-`replay-receipt.json` records twelve public CLI executions: six analyses for each revision. Each revision
+The retained `replay-receipt.json` records twelve historical public CLI executions: six analyses for each revision. Each revision
 fully reruns the four source analyses, its selected sensitivity request and the derived age-corpus request.
 The operation names remain `source_assertions`, `design_bounds` and `corpus`; no unbuilt API was called.
 
@@ -77,6 +78,20 @@ age projection and sharing of repeated source/query objects. It does **not** dem
 session reduces total authoring effort: it retains all eleven listed material semantic definitions and adds
 references that an assistant can mistype. No conclusion about splitting or keeping the session change is
 made by this prototype; that choice belongs to the lead and the user.
+
+## Integration decision and current replay
+
+Retain the bounded session integration. The material reduction is the removal of independently supplied
+age-feature standing and structural typing declarations, and the ability to check source origin and
+revision dependencies once. This supports a narrower engineering claim than reducing total authoring:
+the clinical interpretations still have to be supplied and accepted, while consequential admission
+declarations can be derived and checked. The administration remains explicit and is tested by strict
+schema and replay checks; it is not treated as a reduction in clinical meaning.
+
+Current replay compares against the complete retained expanded request/result pairs in `runs/`, rather
+than requiring the removed loose planning capture. It requires a new output directory outside this
+prototype and refuses to overwrite the historical references. The archived original capture remains
+restorable under `evidence/registry-run/RESTORE.md`; the prototype does not need another source copy.
 
 ## Questions not settled by the prototype
 

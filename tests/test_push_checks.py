@@ -97,6 +97,7 @@ def test_the_scan_disables_hex_entropy_and_refuses_every_other_finding(monkeypat
             "uvx",
             push_checks.DETECT_SECRETS,
             "scan",
+            "--no-verify",
             "--disable-plugin",
             "HexHighEntropyString",
             "--all-files",

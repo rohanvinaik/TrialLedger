@@ -1,0 +1,186 @@
+{
+  "report_folder": "/Users/rohanvinaik/trialledger-runs/session-diabetes-20261103",
+  "files": {
+    "bodies/ids-001.json": {
+      "bytes": 1640,
+      "sha256": "ce754a780c3597532ab84d44a0f5f96d586be686092c3af381f64c01dea4f3f0"
+    },
+    "bodies/studies-001.json": {
+      "bytes": 423511,
+      "sha256": "4a9ec0b94d87716805136682cab11ee6144cc533a8a9192339e958fefee142d9"
+    },
+    "bodies/version-end.json": {
+      "bytes": 71,
+      "sha256": "9eb0e46583efc444c5877db64a361ff539a68ea4f56332958999a5acb39c8553"
+    },
+    "bodies/version-start.json": {
+      "bytes": 71,
+      "sha256": "9eb0e46583efc444c5877db64a361ff539a68ea4f56332958999a5acb39c8553"
+    },
+    "classes.json": {
+      "bytes": 438266,
+      "sha256": "2d146b8a3c22e3f047caf8a6367edc0d8b136204d69e09ca68dd0c1230a36c6e"
+    },
+    "fetches.json": {
+      "bytes": 2095,
+      "sha256": "e7b80b1d107f8470e8dfa7b2bce8a052dfa42b33cdb9df68785bf25df81481e9"
+    },
+    "id-preflight.json": {
+      "bytes": 1640,
+      "sha256": "ce754a780c3597532ab84d44a0f5f96d586be686092c3af381f64c01dea4f3f0"
+    },
+    "landscape.json": {
+      "bytes": 2264085,
+      "sha256": "465e46512e8f6e3b598314022b374d0aff29b3a35fc0afb0afd94259323e4185"
+    },
+    "landscape.xlsx": {
+      "bytes": 277148,
+      "sha256": "a619c56bc13886f09de9bcba931040c9f4cb169a53a266895d12854847433850"
+    },
+    "lookups/lookup-001.json": {
+      "bytes": 51,
+      "sha256": "83e67e89f05d4128a7df68cab6d6f0c913f0981f1f96e77b8dc8823e516fdd30"
+    },
+    "lookups/lookup-002.json": {
+      "bytes": 35,
+      "sha256": "95fcdba7b28f98515aec946d5a7552261aaa20e37a3a4ab840439054057beb78"
+    },
+    "lookups/lookup-003.json": {
+      "bytes": 133,
+      "sha256": "d2c6e12842c3f78d22dca0a6de6f5dee90ae7856a9267c30a044803081e4fc4f"
+    },
+    "lookups/release-end.json": {
+      "bytes": 51,
+      "sha256": "83e67e89f05d4128a7df68cab6d6f0c913f0981f1f96e77b8dc8823e516fdd30"
+    },
+    "lookups.json": {
+      "bytes": 853,
+      "sha256": "6b3e819b666469d33f9205feffa3e1942cdb4377ef5d81b6973bb33f27301d6d"
+    },
+    "manifest.json": {
+      "bytes": 2947,
+      "sha256": "b4a62e88b5442f107c99dc1c5b555eaf8335f3fe106c992f8fa56a1d834a5fd0"
+    },
+    "request.json": {
+      "bytes": 128,
+      "sha256": "fff381561d2c28d512b80c9c083e2cfc8035cead7b076dde513a8bbdb3bd80e9"
+    },
+    "resolution.json": {
+      "bytes": 1821,
+      "sha256": "ddd65aa47874cc449dba1926cb3855597d27b72ef6f0897e7b43869e4c710950"
+    },
+    "scope.json": {
+      "bytes": 239,
+      "sha256": "a31c2baa1b0c7c76cce355165d30bbe3d83bc486c6a3dfccf29a301de8c9bdf5"
+    },
+    "session-discovery.json": {
+      "bytes": 105143,
+      "sha256": "17776c8499609486729e0fd23e465877ec5ce5e4e40e4618d9599c0d3fa9cdd9"
+    },
+    "workflow-wires/NCT00745433-source-age-cli.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/NCT00745433-source-age-cli.stdout": {
+      "bytes": 22015,
+      "sha256": "9d52716b69cc2fadcb29950ad8348a6ce6826d138dba7af2227ace4280b6af13"
+    },
+    "workflow-wires/NCT00745433-source-age-mcp-input.jsonl": {
+      "bytes": 6672,
+      "sha256": "79b76edc471cf1eb15a1d84c4c14f932beeff52b4bb19cb627ee90156ad547a0"
+    },
+    "workflow-wires/NCT00745433-source-age-mcp.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/NCT00745433-source-age-mcp.stdout": {
+      "bytes": 29139,
+      "sha256": "f44b0d82ad8bb25f7213ef0bb6695c6a1f1bee2aefd0b775e8cd42e6f5a28df7"
+    },
+    "workflow-wires/NCT01318564-source-age-cli.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/NCT01318564-source-age-cli.stdout": {
+      "bytes": 26339,
+      "sha256": "95ddec42ff00ea5473ecb4971b6961ce16f6f412c0527bae32be2391c7509249"
+    },
+    "workflow-wires/NCT01318564-source-age-mcp-input.jsonl": {
+      "bytes": 16386,
+      "sha256": "6f7b887f923608e1510ed8475ab532cddfd76ffad28fef65ef64eb6703b23e50"
+    },
+    "workflow-wires/NCT01318564-source-age-mcp.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/NCT01318564-source-age-mcp.stdout": {
+      "bytes": 33532,
+      "sha256": "1f331829664c7e921411b53bbadd80020e22de3deb8a4115eb4421abb2ce8071"
+    },
+    "workflow-wires/NCT02475499-source-age-cli.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/NCT02475499-source-age-cli.stdout": {
+      "bytes": 29615,
+      "sha256": "a4083d7cfa474ade246f052ebe30feedb9ac5cf68fa8064de03b214ad86ef999"
+    },
+    "workflow-wires/NCT02475499-source-age-mcp-input.jsonl": {
+      "bytes": 28546,
+      "sha256": "8a16c997bed03f22f8774427ccbe3e69fd027554be6b74d7727a382eebc696ae"
+    },
+    "workflow-wires/NCT02475499-source-age-mcp.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/NCT02475499-source-age-mcp.stdout": {
+      "bytes": 36768,
+      "sha256": "99e76fc84716ff69d97d71fe60824bb44e24b4340bcefa6e3aae1efe1c58576b"
+    },
+    "workflow-wires/session-age65-revision-cli.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/session-age65-revision-cli.stdout": {
+      "bytes": 393439,
+      "sha256": "e1c084c63063f826bf7298e456d215b2300415858e57b92ba42872ec721859e8"
+    },
+    "workflow-wires/session-age65-revision-mcp-input.jsonl": {
+      "bytes": 247832,
+      "sha256": "5b9deeb67cdcf694b69a31dbfe079c4d88ba3f4158d786678ba7fa3e94a8828a"
+    },
+    "workflow-wires/session-age65-revision-mcp.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/session-age65-revision-mcp.stdout": {
+      "bytes": 444999,
+      "sha256": "3d25e86240b6f0a2993a0e22077772bc53554ebf0eeda39ed03ebaa8a760c5ad"
+    },
+    "workflow-wires/session-baseline-cli.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/session-baseline-cli.stdout": {
+      "bytes": 201525,
+      "sha256": "121bc1343f3d239eb94ace8bfc895797a8119b8020bab22dc3768c43401fe07f"
+    },
+    "workflow-wires/session-baseline-mcp-input.jsonl": {
+      "bytes": 50720,
+      "sha256": "56d44f9b60814de93632125795519c0d5a1ab92ef85df4a3eab5b82337deb44c"
+    },
+    "workflow-wires/session-baseline-mcp.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/session-baseline-mcp.stdout": {
+      "bytes": 230480,
+      "sha256": "e22f2a98fd827f0a8eb9ba55914e0c2b45931772d26c6f9302028ba344862005"
+    },
+    "workflow.py": {
+      "bytes": 11042,
+      "sha256": "fa9817d20397790e97e8d08e349707cec2a37aab54d6bb0cf29860f9d375dad4"
+    }
+  },
+  "scope": "Full source/report/workbook/discovery/helpers/duplicate wires outside Git. Required complete snapshots, previous session replay and child requests/results retained inside parent request/result pairs."
+}

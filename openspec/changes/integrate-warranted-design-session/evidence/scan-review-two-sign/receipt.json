@@ -1,0 +1,36 @@
+{
+  "scope": "Exact identity membership helper only; no certificate for scanner IO, registry review judgment or finding-to-line mapping.",
+  "module_sha256": "6468a0ed264869ba4f41d4cdb0809b0be347c1bffe61297218e9b6c9b125e46d",
+  "function_source_sha256": "910e0d3ca4ebe54be6c6f4ee06223e5d9b3ea3af82d131c5cbac563d4ba9318e",
+  "function_ast_sha256": "eb8d5696907e3836d43bcec9ceb56ca30e8b331d976b1367cd5825d29f9538d6",
+  "production_root_module_tests_registry_match": true,
+  "frozen_inputs_match": true,
+  "authored_suite_passed": 12,
+  "function_routed_tests_initial": 5,
+  "isolation_shaped_test_initially_deferred": 1,
+  "generated_suites": [],
+  "pin": {
+    "scored": 26,
+    "value_pinned": 26,
+    "killed": 26,
+    "unproven": 0,
+    "policy": "9+neg.f5a15364c11d"
+  },
+  "crosshair": {
+    "confirmed": 0,
+    "not_confirmed": 2,
+    "counterexamples_reported": 0,
+    "per_condition_timeout_seconds": 10
+  },
+  "config_migration": "Detective prescribed scratch-only pythonpath=[\".\"]; original root config retained separately. No source/tests/registry edited.",
+  "scanner_io_regions_unpinned": [
+    "run",
+    "scan",
+    "worktree_tree",
+    "stamp",
+    "hook"
+  ],
+  "style_check": "passed",
+  "format_check": "passed",
+  "ty": "passed"
+}

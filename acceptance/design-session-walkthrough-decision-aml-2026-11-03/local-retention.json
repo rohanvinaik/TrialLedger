@@ -1,0 +1,223 @@
+{
+  "report_folder": "/Users/rohanvinaik/trialledger-runs/decision-aml-sample-20261103",
+  "preview_folder": "/Users/rohanvinaik/trialledger-runs/decision-aml-20261103",
+  "report_files": {
+    "bodies/ids-001.json": {
+      "bytes": 239,
+      "sha256": "3daf23b31421d6844a8a511a5369be6a24dc5adfab47ece7e13f07d35f4a12b9"
+    },
+    "bodies/studies-001.json": {
+      "bytes": 62629,
+      "sha256": "7f7fb559684a8fd1fcfd9f424fd121a31f531ef515cc03562d97673af8c2d214"
+    },
+    "bodies/version-end.json": {
+      "bytes": 71,
+      "sha256": "9eb0e46583efc444c5877db64a361ff539a68ea4f56332958999a5acb39c8553"
+    },
+    "bodies/version-start.json": {
+      "bytes": 71,
+      "sha256": "9eb0e46583efc444c5877db64a361ff539a68ea4f56332958999a5acb39c8553"
+    },
+    "classes.json": {
+      "bytes": 37715,
+      "sha256": "938379d7fe71f470425f3e061411192ecd7de5857c81afb8676702febb525801"
+    },
+    "fetches.json": {
+      "bytes": 1258,
+      "sha256": "9c15892d82f2392eef93f1215fd8f606947fd19b39336a3c7c553fd0ab3dad5d"
+    },
+    "landscape.json": {
+      "bytes": 274027,
+      "sha256": "5822752fb79af0bb24cbd01870160071c29ce684ce10dc61f54c1687598a96f3"
+    },
+    "landscape.xlsx": {
+      "bytes": 70067,
+      "sha256": "73a0aaccb91192a40f07220e43b57a36fd61eae5af708057432fe61cf22b06bb"
+    },
+    "manifest.json": {
+      "bytes": 1924,
+      "sha256": "d654a91115f6a00c80f3d1956c5763932f6820560c44a604fbabe738f2f21eae"
+    },
+    "request.json": {
+      "bytes": 74,
+      "sha256": "7debfea3c230c31f20e7d60fed1ec84ea8676abf81af1bbcdb99695108f22638"
+    },
+    "resolution.json": {
+      "bytes": 510,
+      "sha256": "e30cfc7205363754577976ed8bc87c9f68bc8b0d1cf1f9e5ffc3a181b1112df5"
+    },
+    "scope.json": {
+      "bytes": 87,
+      "sha256": "b97d6432304373d93658f62101db5ce04f0ee403fe41cb522c924855cd612f50"
+    },
+    "table-discovery.json": {
+      "bytes": 16451,
+      "sha256": "9df85eec85a6f722936f563661f4fccf5c37d50e1d25d2a98c59b44feefd25a8"
+    },
+    "workflow-wires/NCT02670044-source-age-cli.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/NCT02670044-source-age-cli.stdout": {
+      "bytes": 30519,
+      "sha256": "5c0b982dd7ca439a07ed4632277447e6a75f636a19f2dd4b87aeaa4d4ae41bc2"
+    },
+    "workflow-wires/NCT02670044-source-age-mcp-input.jsonl": {
+      "bytes": 29448,
+      "sha256": "e7b9a2ab91ab8314609fbd509673677ede54a879d4288a9254f2d44aa135ad0e"
+    },
+    "workflow-wires/NCT02670044-source-age-mcp.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/NCT02670044-source-age-mcp.stdout": {
+      "bytes": 37442,
+      "sha256": "82e8f2fe1dcc2beb6fc1f24027dd309ae12ee7bbc74a5ad16a1bb50414f1d3b0"
+    },
+    "workflow-wires/NCT03625505-source-age-cli.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/NCT03625505-source-age-cli.stdout": {
+      "bytes": 24803,
+      "sha256": "feaf3da03235b44236038941d506ca1484406726faa52096ce5357117facbfcd"
+    },
+    "workflow-wires/NCT03625505-source-age-mcp-input.jsonl": {
+      "bytes": 22494,
+      "sha256": "78f97cf3d17b0f3f063b5bf71346d40b862e32764ff36c827ad7b34ca66dac1a"
+    },
+    "workflow-wires/NCT03625505-source-age-mcp.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/NCT03625505-source-age-mcp.stdout": {
+      "bytes": 31468,
+      "sha256": "53c34f6586f2b6475570eaac8dc85ab702f78b14b0a8b6e4672290080ae04206"
+    },
+    "workflow-wires/NCT04666649-source-age-cli.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/NCT04666649-source-age-cli.stdout": {
+      "bytes": 29128,
+      "sha256": "56f538b88df89fe32bec56159ae21547c61098eba0b192441a133d8ee548b20b"
+    },
+    "workflow-wires/NCT04666649-source-age-mcp-input.jsonl": {
+      "bytes": 42900,
+      "sha256": "1e81bca8d1ae772e020dbc92af68a8b11421f4934d41714ce46e43608ecbe2ef"
+    },
+    "workflow-wires/NCT04666649-source-age-mcp.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/NCT04666649-source-age-mcp.stdout": {
+      "bytes": 35780,
+      "sha256": "4c7a6fd261c6c4eeb88e2cb6f2ce187720a6fd69aac07301afb070521d151719"
+    },
+    "workflow-wires/hypothetical-complete-revision-cli.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/hypothetical-complete-revision-cli.stdout": {
+      "bytes": 36474,
+      "sha256": "e2516a51d734660b4a21c83b65fbc96399e3ffe861aff89d105d5cb8604c68c2"
+    },
+    "workflow-wires/hypothetical-complete-revision-mcp-input.jsonl": {
+      "bytes": 6993,
+      "sha256": "33c295032f3f3199d10281063f1781caae736e1f0771ced1e386e00af974224e"
+    },
+    "workflow-wires/hypothetical-complete-revision-mcp.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/hypothetical-complete-revision-mcp.stdout": {
+      "bytes": 48311,
+      "sha256": "94ab0df7679b4b712a1fa7b59e0a30dbaa9dfc275455a369b44129fc7d642ac7"
+    },
+    "workflow-wires/hypothetical-gap-at-one-cli.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/hypothetical-gap-at-one-cli.stdout": {
+      "bytes": 33729,
+      "sha256": "699ae7af25b73cefbe505352ed96734bb02d59368b856c86e7b7209537f0310d"
+    },
+    "workflow-wires/hypothetical-gap-at-one-mcp-input.jsonl": {
+      "bytes": 6538,
+      "sha256": "35cafb68c984c175d66e79f4568bd69bf7d4c19b4bd8a824942ac11b132e056a"
+    },
+    "workflow-wires/hypothetical-gap-at-one-mcp.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/hypothetical-gap-at-one-mcp.stdout": {
+      "bytes": 44935,
+      "sha256": "5214e1031920c021b5e290e9648b707549c4869397f5cc6df8662bf12f03166c"
+    },
+    "workflow-wires/hypothetical-limited-cli.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/hypothetical-limited-cli.stdout": {
+      "bytes": 25373,
+      "sha256": "020862903472425fe937cc7f386c1c11159009ec5d5cbb7c9a2e6123d4bb0efc"
+    },
+    "workflow-wires/hypothetical-limited-mcp-input.jsonl": {
+      "bytes": 6991,
+      "sha256": "e1a2c9bfb1cf560b01427bb4c89f1d74de35ce5550a3a8d1d1e6666b78e29f0f"
+    },
+    "workflow-wires/hypothetical-limited-mcp.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/hypothetical-limited-mcp.stdout": {
+      "bytes": 33840,
+      "sha256": "d4b79067df470bf8c36251242d9617480f564ad306e6d63777cd3f3494fbf55a"
+    },
+    "workflow-wires/hypothetical-overlap-at-one-cli.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/hypothetical-overlap-at-one-cli.stdout": {
+      "bytes": 39984,
+      "sha256": "949a5efbbe1d565b2a706732707f621a2070d0ac80b3a320fd7bf948094c2ac4"
+    },
+    "workflow-wires/hypothetical-overlap-at-one-mcp-input.jsonl": {
+      "bytes": 7417,
+      "sha256": "9672cebcba4610efae6874a2998a306c3e681ef9ad4c4427c317d8d0ce22b9b1"
+    },
+    "workflow-wires/hypothetical-overlap-at-one-mcp.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/hypothetical-overlap-at-one-mcp.stdout": {
+      "bytes": 52552,
+      "sha256": "72933e202f7786015eb5568ffb9d288f9365f8d1dd4a7a358ea2f47f80a66999"
+    },
+    "workflow-wires/hypothetical-tables-with-source-age-cli.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/hypothetical-tables-with-source-age-cli.stdout": {
+      "bytes": 132837,
+      "sha256": "46aab04c413e3842f22912df75f2efd3d5c3e18038e30f4b71d5fe9347d3b0f8"
+    },
+    "workflow-wires/hypothetical-tables-with-source-age-mcp-input.jsonl": {
+      "bytes": 22970,
+      "sha256": "30a49e0ac3c2b2d500731fdd36f4a998a0017e97e334c3372361b19ddbf96901"
+    },
+    "workflow-wires/hypothetical-tables-with-source-age-mcp.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/hypothetical-tables-with-source-age-mcp.stdout": {
+      "bytes": 162996,
+      "sha256": "0d67d2ffd3ea598270c7a481f300b59c971938dc7968bed7567e9b2bdbe61d6f"
+    },
+    "workflow.py": {
+      "bytes": 8591,
+      "sha256": "0da5986443d0efe2b94a9ac877376eea2f39b932f1d6c67d75126c46359276f3"
+    }
+  },
+  "scope": "Full raw/report/workbook/helpers/duplicate wires retained locally outside Git; packet has complete minimal requests and results"
+}

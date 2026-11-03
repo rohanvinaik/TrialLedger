@@ -168,6 +168,26 @@ on its supplied premises and retains their source/user/agent origin.
 
 ## Admission and information handoffs
 
+`session_state` owns the closed version-1 snapshot, content identities and full dependency graph;
+`session_projections` owns named typed uses, documentary origins and target/adoption boundaries.
+`design_session` runs the existing public service for every child, reserves aggregate solver work,
+computes genuinely distinct feasible alternatives and replays both snapshots for revision comparison.
+Complete children, origins and projection ledgers remain in the returned result. It writes no files.
+`design_session_guide` exposes executable baseline/revision and strict shapes. The observational-diabetes
+walkthrough retains proposed Ontario scope separately from an invented new-trial choice.
+
+`evidence_requests` owns bounded comparison-cell enumeration over declared survivors. Existing
+`entail.eligibility_witness` and `design_bounds.witness_verdict` own the decisions, including their sign.
+Hypothetical profiles stay investigation requests; no returned row becomes observed evidence. The
+guide preserves attribution, exception and complete-candidate premises, structural ordering and separate
+search/output limits. Whole-envelope byte limits and exact numeric representation are public refusals.
+Managed uses project candidate premises through the existing identity channel and reserve child work.
+The direct operation still retains its supplied survivor-selection basis as a caller declaration.
+
+The current consumer trace includes these operations, a full session revision and nested evidence search.
+Its CLI/MCP entry-function route checks reachability and parity. Clinical acceptance packets and fresh
+installation receipts separately exercise executable processes; neither form of trace proves source meaning.
+
 `layer2.admission` validates explicit standing; `coordinate_admission` keeps known/interpolated evidence
 separate; `corpus_admission` projects per-feature support for every public corpus consumer. Missing support
 is pending. Original values, provenance and reasons remain alongside accepted computations. Unknown class
@@ -187,7 +207,10 @@ through a sensible clinical question on a fresh registry sample. Coherent edits 
 an arbitrary task-group boundary does not replace this trigger. This is a model-operated development action
 outside CI, not a new software gate or an automatic clinical encoder. Use a different trial category from
 the preceding walkthrough, such as another indication or study type, and record the category. Rotate beyond
-NSCLC without applying its coordinate rules outside their declared domain.
+NSCLC without applying its coordinate rules outside their declared domain. Rotate design structure as well
+as indication and phase: a renamed threshold exercises the same construct, whereas run-in/withdrawal,
+period reuse, cluster units and rule-based cohort decisions pose different representation questions. Name
+which structure the walkthrough actually exercises and which specialized rules remain untested.
 
 The purpose is to test the available path from the person's question to evidence, typed reasoning, a
 meaningful revision and a usable decision handoff. Look for a documented promise the person cannot carry out,
@@ -256,6 +279,14 @@ bytes. If exact evidence is unavailable, report that limitation rather than rela
 Record actual file/byte counts and avoid committing the same raw capture beside every derived artifact.
 
 ## Verification
+
+`tests/test_reasoning_invariants.py` inventories saved and discovery requests and checks immutable replay,
+explicitly unordered permutations and operation-specific information-conservation laws. It preserves
+interval endpoints and clinical sequence order; it does not require identical sufficient proofs or erase
+additional provenance. Global inconsistency, bounded computation, defaults, candidate-family expansion and
+changed corpus denominators have distinct contracts. Retraction checks use fresh full inputs, not only a
+previous reduced proof. The fresh Phase 2 influenza workflow in
+`acceptance/design-session-walkthrough-invariants-influenza-2026-11-03/` exercises the resulting user handoff.
 
 Trace production consumers and duplicate paths before behavior edits. Use symbolic/AST inspection, read
 whole units and keep decisions pure with named outcomes. Write positive and negative intent tests, exercise

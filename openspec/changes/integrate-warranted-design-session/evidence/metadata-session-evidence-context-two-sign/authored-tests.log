@@ -1,0 +1,12 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.14.7, pytest-9.2.0, pluggy-1.7.0
+rootdir: /private/tmp/trialledger-metadata-session-evidence-context-20261103-v1
+configfile: pyproject.toml
+plugins: anyio-4.15.1
+collected 123 items
+
+tests/test_metadata_vocabulary.py ...................................... [ 30%]
+.............................................                            [ 67%]
+tests/test_result_semantics.py ........................................  [100%]
+
+============================= 123 passed in 0.55s ==============================

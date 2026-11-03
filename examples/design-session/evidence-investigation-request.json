@@ -1,0 +1,479 @@
+{
+  "operation": "design_session",
+  "session": {
+    "schema_version": 1,
+    "id": "design",
+    "revision": "one",
+    "parent_digest": null,
+    "target": {
+      "kind": "new_trial",
+      "ref": "draft",
+      "scope": {
+        "study": "draft",
+        "population": "general",
+        "arm": "all",
+        "time": "entry",
+        "version": "v1"
+      }
+    },
+    "sources": [],
+    "premises": [
+      {
+        "id": "adult_scale_le_2",
+        "kind": "candidate",
+        "payload": {
+          "id": "adult_scale_le_2",
+          "assertions": [
+            {
+              "applicability": {
+                "class": "Always"
+              },
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "example_age",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "ge",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 18.0,
+                  "unit": "years",
+                  "upper": null
+                }
+              },
+              "branch": {
+                "class": "Branch",
+                "node": "unresolved",
+                "path": []
+              },
+              "class": "ScopedAssertion",
+              "cohort": {
+                "class": "Scope",
+                "kind": "all_participants",
+                "parts": [],
+                "ref": ""
+              },
+              "criterion_ref": "user:invented-candidate",
+              "id": "adult",
+              "modality": "required",
+              "resolution": "resolved",
+              "rule": {
+                "answers": [],
+                "class": "Rule",
+                "id": "invented-candidate",
+                "premises": [],
+                "version": "1",
+                "warrants": [
+                  "user:invented-candidate"
+                ]
+              },
+              "span": [],
+              "status": "known"
+            },
+            {
+              "applicability": {
+                "class": "Always"
+              },
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "example_scale",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "le",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 2.0,
+                  "unit": "example_scale",
+                  "upper": null
+                }
+              },
+              "branch": {
+                "class": "Branch",
+                "node": "unresolved",
+                "path": []
+              },
+              "class": "ScopedAssertion",
+              "cohort": {
+                "class": "Scope",
+                "kind": "all_participants",
+                "parts": [],
+                "ref": ""
+              },
+              "criterion_ref": "user:invented-candidate",
+              "id": "scale",
+              "modality": "required",
+              "resolution": "resolved",
+              "rule": {
+                "answers": [],
+                "class": "Rule",
+                "id": "invented-candidate",
+                "premises": [],
+                "version": "1",
+                "warrants": [
+                  "user:invented-candidate"
+                ]
+              },
+              "span": [],
+              "status": "known"
+            }
+          ]
+        },
+        "origin": {
+          "kind": "hypothesis",
+          "ref": "invented:candidate:adult_scale_le_2",
+          "source": null,
+          "analysis": null
+        },
+        "depends_on": []
+      },
+      {
+        "id": "adult_scale_le_2_marker",
+        "kind": "candidate",
+        "payload": {
+          "id": "adult_scale_le_2_marker",
+          "assertions": [
+            {
+              "applicability": {
+                "class": "Always"
+              },
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "example_age",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "ge",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 18.0,
+                  "unit": "years",
+                  "upper": null
+                }
+              },
+              "branch": {
+                "class": "Branch",
+                "node": "unresolved",
+                "path": []
+              },
+              "class": "ScopedAssertion",
+              "cohort": {
+                "class": "Scope",
+                "kind": "all_participants",
+                "parts": [],
+                "ref": ""
+              },
+              "criterion_ref": "user:invented-candidate",
+              "id": "adult-m",
+              "modality": "required",
+              "resolution": "resolved",
+              "rule": {
+                "answers": [],
+                "class": "Rule",
+                "id": "invented-candidate",
+                "premises": [],
+                "version": "1",
+                "warrants": [
+                  "user:invented-candidate"
+                ]
+              },
+              "span": [],
+              "status": "known"
+            },
+            {
+              "applicability": {
+                "class": "Always"
+              },
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "example_scale",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "le",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 2.0,
+                  "unit": "example_scale",
+                  "upper": null
+                }
+              },
+              "branch": {
+                "class": "Branch",
+                "node": "unresolved",
+                "path": []
+              },
+              "class": "ScopedAssertion",
+              "cohort": {
+                "class": "Scope",
+                "kind": "all_participants",
+                "parts": [],
+                "ref": ""
+              },
+              "criterion_ref": "user:invented-candidate",
+              "id": "scale-m",
+              "modality": "required",
+              "resolution": "resolved",
+              "rule": {
+                "answers": [],
+                "class": "Rule",
+                "id": "invented-candidate",
+                "premises": [],
+                "version": "1",
+                "warrants": [
+                  "user:invented-candidate"
+                ]
+              },
+              "span": [],
+              "status": "known"
+            },
+            {
+              "applicability": {
+                "class": "Always"
+              },
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "example_marker",
+                  "kind": "demographic"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "boolean",
+                  "members": [],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                }
+              },
+              "branch": {
+                "class": "Branch",
+                "node": "unresolved",
+                "path": []
+              },
+              "class": "ScopedAssertion",
+              "cohort": {
+                "class": "Scope",
+                "kind": "all_participants",
+                "parts": [],
+                "ref": ""
+              },
+              "criterion_ref": "user:invented-candidate",
+              "id": "marker-m",
+              "modality": "required",
+              "resolution": "resolved",
+              "rule": {
+                "answers": [],
+                "class": "Rule",
+                "id": "invented-candidate",
+                "premises": [],
+                "version": "1",
+                "warrants": [
+                  "user:invented-candidate"
+                ]
+              },
+              "span": [],
+              "status": "known"
+            }
+          ]
+        },
+        "origin": {
+          "kind": "hypothesis",
+          "ref": "invented:candidate:adult_scale_le_2_marker",
+          "source": null,
+          "analysis": null
+        },
+        "depends_on": []
+      }
+    ],
+    "analyses": [
+      {
+        "id": "seek-evidence",
+        "operation": "evidence_requests",
+        "target": {
+          "kind": "new_trial",
+          "ref": "draft",
+          "scope": {
+            "study": "draft",
+            "population": "general",
+            "arm": "all",
+            "time": "entry",
+            "version": "v1"
+          }
+        },
+        "parameters": {
+          "study_ref": "invented:evidence-request-example",
+          "survivors": [
+            "adult_scale_le_2",
+            "adult_scale_le_2_marker"
+          ],
+          "survival_basis": [
+            "invented:design_bounds remaining"
+          ],
+          "variables": [
+            {
+              "id": "scale",
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "predicate": {
+                "class": "Predicate",
+                "key": "example_scale",
+                "kind": "measurement"
+              },
+              "time": null,
+              "domain": {
+                "kind": "integer",
+                "unit": "example_scale",
+                "minimum": 0,
+                "maximum": 4
+              }
+            },
+            {
+              "id": "marker",
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "predicate": {
+                "class": "Predicate",
+                "key": "example_marker",
+                "kind": "demographic"
+              },
+              "time": null,
+              "domain": {
+                "kind": "boolean"
+              }
+            },
+            {
+              "id": "age",
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "predicate": {
+                "class": "Predicate",
+                "key": "example_age",
+                "kind": "measurement"
+              },
+              "time": null,
+              "domain": {
+                "kind": "continuous",
+                "unit": "years",
+                "minimum": 0,
+                "maximum": null,
+                "cut_points": []
+              }
+            }
+          ],
+          "bound": 32,
+          "limits": {
+            "max_decisions": 100
+          }
+        },
+        "uses": [
+          {
+            "premise": "adult_scale_le_2",
+            "slot": "candidates",
+            "projection": "identity"
+          },
+          {
+            "premise": "adult_scale_le_2_marker",
+            "slot": "candidates",
+            "projection": "identity"
+          }
+        ]
+      }
+    ],
+    "decisions": [],
+    "limits": {
+      "max_analyses": 128,
+      "max_premises": 1000,
+      "max_sources": 64,
+      "max_decisions": 128,
+      "max_expanded_items": 10000,
+      "max_solver_work": 10000000,
+      "max_output_bytes": 16000000
+    }
+  },
+  "previous": null
+}

@@ -1,0 +1,89 @@
+{
+  "normal_gate": {
+    "exit": 0,
+    "passed": 5855,
+    "live_deselected": 10,
+    "log_sha256": "235a4fac9f9c1772b94cc0db8b80b5755b503fc57a8b066063d4bd90ff75c06d",
+    "stored": "final-normal-gate.log.gz"
+  },
+  "public_trace": {
+    "runs": 90,
+    "modules": 44,
+    "receipt": "acceptance/reasoning-consumer-trace.json"
+  },
+  "installed_runtime": {
+    "cases": 26,
+    "executable_commands": 52,
+    "runtime_files": 82,
+    "receipt": "installed-runtime/verification-receipt.json"
+  },
+  "walkthrough_packets": [
+    {
+      "path": "acceptance/design-session-walkthrough-decision-aml-2026-11-03",
+      "files": 34,
+      "bytes": 825418,
+      "receipt_sha256": "d3afa7796da74cd95eccd44da55964a502b238a38d6f002e6784df0d21dc0dd0"
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-docs-asthma-2026-11-03",
+      "files": 38,
+      "bytes": 1663992,
+      "receipt_sha256": "4b80ff79849773ac3b89a4f350b7d1268634038813b132ba08e2451b46cd60c9"
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-docs-diabetes-2026-11-03",
+      "files": 23,
+      "bytes": 2968663,
+      "receipt_sha256": "313e00ff833aa64cb9833ec9badd443f955f1e635a4463bc195fe08699ed695e"
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-estimand-dermatitis-2026-11-03",
+      "files": 37,
+      "bytes": 764163,
+      "receipt_sha256": "52ef23058360898e56e940c994d34c388246d1797f7ad58e604376c0d8770b1a"
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-evidence-parkinson-2026-11-03",
+      "files": 35,
+      "bytes": 1411194,
+      "receipt_sha256": "be35e42e8d3c09d0c29ceaede64b15e87bc05b4d0fb591f8e36f20d05bfd5b43"
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-exceptions-inflammatory-bowel-2026-11-03",
+      "files": 23,
+      "bytes": 953795,
+      "receipt_sha256": "1bb75506bcc3b6db53f24d2bdb8e6e8c1ff747644bc40cb7089a09049b0e66da"
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-invariants-influenza-2026-11-03",
+      "files": 28,
+      "bytes": 935842,
+      "receipt_sha256": "f7ec33538fc78c3fcdb6b54558ac64ec391c78e0d948cef0249b26de0a7c1c65"
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-metadata-heart-failure-2026-11-03",
+      "files": 30,
+      "bytes": 2096438,
+      "receipt_sha256": null
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-population-psoriasis-2026-11-03",
+      "files": 42,
+      "bytes": 2084168,
+      "receipt_sha256": "4d6e737d936e022ddacc3eba1d9f5c375ccf4eb6dc5fbfd9cd948138d6037863"
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-session-diabetes-2026-11-03",
+      "files": 29,
+      "bytes": 1494844,
+      "receipt_sha256": "bfb9298757c78a3fc7e644ac7f3e7d5b1dd08fdb4ea935198206d459bd835201"
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-stages-bipolar-2026-11-03",
+      "files": 38,
+      "bytes": 538663,
+      "receipt_sha256": "ccecd4b154db190369ffb2b3bb8db3610e803e342920a5f986817995fdb1e3b8"
+    }
+  ],
+  "scope": "Bounded integration only; larger add-design-synthesis tasks and recorded proof limitations remain explicit."
+}

@@ -1,0 +1,44 @@
+[
+ {
+  "file": "version-start.json",
+  "url": "https://clinicaltrials.gov/api/v2/version",
+  "save_as": "bodies/version-start.json",
+  "why": "version_start",
+  "params": {}
+ },
+ {
+  "file": "ids-001.json",
+  "url": "https://clinicaltrials.gov/api/v2/studies?filter.advanced=%28AREA%5BInterventionName%5D%22oseltamivir%22+OR+AREA%5BInterventionOtherName%5D%22oseltamivir%22%29+AND+AREA%5BPhase%5DPHASE2+AND+AREA%5BOverallStatus%5DCOMPLETED&query.cond=Influenza&format=json&markupFormat=markdown&countTotal=true&pageSize=1000&fields=NCTId",
+  "save_as": "bodies/ids-001.json",
+  "why": "id_page",
+  "params": {
+   "filter.advanced": "(AREA[InterventionName]\"oseltamivir\" OR AREA[InterventionOtherName]\"oseltamivir\") AND AREA[Phase]PHASE2 AND AREA[OverallStatus]COMPLETED",
+   "query.cond": "Influenza",
+   "format": "json",
+   "markupFormat": "markdown",
+   "countTotal": "true",
+   "pageSize": "1000",
+   "fields": "NCTId"
+  }
+ },
+ {
+  "file": "studies-001.json",
+  "url": "https://clinicaltrials.gov/api/v2/studies?filter.ids=NCT03040141%2CNCT01179919%2CNCT01146535%2CNCT00867139%2CNCT02469298%2CNCT01980966%2CNCT02532283%2CNCT02293863%2CNCT00979251%2CNCT00298233%2CNCT03394209%2CNCT02603952%2CNCT02342249%2CNCT00334529%2CNCT00391768%2CNCT01227967%2CNCT00453999&format=json&markupFormat=markdown&countTotal=true&pageSize=100",
+  "save_as": "bodies/studies-001.json",
+  "why": "studies_batch",
+  "params": {
+   "filter.ids": "NCT03040141,NCT01179919,NCT01146535,NCT00867139,NCT02469298,NCT01980966,NCT02532283,NCT02293863,NCT00979251,NCT00298233,NCT03394209,NCT02603952,NCT02342249,NCT00334529,NCT00391768,NCT01227967,NCT00453999",
+   "format": "json",
+   "markupFormat": "markdown",
+   "countTotal": "true",
+   "pageSize": "100"
+  }
+ },
+ {
+  "file": "version-end.json",
+  "url": "https://clinicaltrials.gov/api/v2/version",
+  "save_as": "bodies/version-end.json",
+  "why": "version_end",
+  "params": {}
+ }
+]

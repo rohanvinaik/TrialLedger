@@ -1,0 +1,86 @@
+{
+  "question": "For a proposed bipolar maintenance/randomized-withdrawal study, what can run-in and randomized counts tell us, and what population/transition premises are needed?",
+  "declared_at_utc": "2026-11-03T21:59:44.666943+00:00",
+  "category": "Phase3 bipolar maintenance/randomized withdrawal: stage populations and transition contracts; applicability determined from retained sample, not search labels",
+  "query": {
+    "drug": [
+      "quetiapine"
+    ],
+    "condition": [
+      "Bipolar Disorder"
+    ],
+    "phase": [
+      "PHASE3"
+    ],
+    "status": [
+      "COMPLETED"
+    ]
+  },
+  "max_complete_pool": 30,
+  "seed": 3948003275121507650,
+  "selection_rule": "random.Random(seed).sample(sorted(complete_pool), min(3,len(complete_pool))) before selected-content reading; no sample replacement",
+  "acquisition_gate": "Wait for root STAGES PUBLIC READY before acquisition or execution",
+  "retention": {
+    "packet": "Clinical README and decision list; complete minimal request/canonical-result pairs; query/pool/seed; source/version/time/runtime/hash receipts; target under2MB by reducing redundant cases, never truncating inputs/results",
+    "local_report": "/Users/rohanvinaik/trialledger-runs/stages-bipolar-20261103",
+    "local_bulk": "Full workbook/report/raw bodies/cache/helpers/duplicate transport captures stay outsideGit; complete snapshots requiredbyrequests remain ininputs"
+  },
+  "epistemic_contract": [
+    "Permitted transitions do not establish actual membership or individual progression",
+    "Counts transfer only through explicitly supported applicable subset/partition relations",
+    "Clinical meanings stayproposed or explicitlylabelled interpolated sensitivity; no clinicianconfirmation",
+    "Unknown or missing counts remain unknown; no manufactured source facts",
+    "Use only public staged discovery schema afterrootready"
+  ],
+  "identifier_preflight_url": "https://clinicaltrials.gov/api/v2/studies?filter.advanced=%28AREA%5BInterventionName%5D%22quetiapine%22+OR+AREA%5BInterventionOtherName%5D%22quetiapine%22%29+AND+AREA%5BPhase%5DPHASE3+AND+AREA%5BOverallStatus%5DCOMPLETED&query.cond=Bipolar+Disorder&format=json&fields=NCTId&pageSize=1000&countTotal=true",
+  "identifier_preflight_retrieved_at_utc": "2026-11-03T22:13:29.386856+00:00",
+  "identifier_preflight_sha256": "b03c640efae0100e2bb11ba77d5a3d433ed7fb242339585842883fc897895dc3",
+  "identifier_response_headers": {
+    "Date": "Tue, 03 Nov 2026 22:13:29 GMT",
+    "content-type": "application/json",
+    "etag": "\"0/0.34.1/mw0io5mw\""
+  },
+  "complete_pool": [
+    "NCT00060489",
+    "NCT00081380",
+    "NCT00083954",
+    "NCT00090311",
+    "NCT00097032",
+    "NCT00107731",
+    "NCT00114686",
+    "NCT00119652",
+    "NCT00177164",
+    "NCT00183443",
+    "NCT00206141",
+    "NCT00227305",
+    "NCT00232414",
+    "NCT00252226",
+    "NCT00254774",
+    "NCT00277667",
+    "NCT00309699",
+    "NCT00314184",
+    "NCT00411463",
+    "NCT00422123",
+    "NCT00422214",
+    "NCT00448578",
+    "NCT00671853",
+    "NCT00811473",
+    "NCT00857584",
+    "NCT01197846",
+    "NCT01256177",
+    "NCT01725308",
+    "NCT01737268",
+    "NCT01858948",
+    "NCT02362412"
+  ],
+  "pool_count": 31,
+  "selected": [
+    "NCT00090311",
+    "NCT00227305",
+    "NCT00119652"
+  ],
+  "gather_whole_pool": false,
+  "gather_mode": "explicit selected IDs because complete query pool31 exceeds predeclared limit30",
+  "sample_report": "/Users/rohanvinaik/trialledger-runs/stages-bipolar-sample-20261103",
+  "preview_report": "/Users/rohanvinaik/trialledger-runs/stages-bipolar-20261103"
+}

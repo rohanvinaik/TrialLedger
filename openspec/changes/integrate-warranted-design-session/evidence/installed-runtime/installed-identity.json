@@ -1,0 +1,48 @@
+{
+  "executable": "/tmp/trialledger-final-runtime-wheel-20261103-v2/runtime/bin/python",
+  "cwd": "/private/tmp/trialledger-final-runtime-wheel-20261103-v2",
+  "module": "/private/tmp/trialledger-final-runtime-wheel-20261103-v2/runtime/lib/python3.14/site-packages/TrialLedger/__init__.py",
+  "distributions": [
+    [
+      "TrialLedger",
+      "0.1.0"
+    ],
+    [
+      "anyio",
+      "4.16.0"
+    ],
+    [
+      "certifi",
+      "2026.10.23"
+    ],
+    [
+      "et_xmlfile",
+      "2.0.0"
+    ],
+    [
+      "h11",
+      "0.16.0"
+    ],
+    [
+      "httpcore",
+      "1.0.9"
+    ],
+    [
+      "httpx",
+      "0.28.1"
+    ],
+    [
+      "idna",
+      "3.20"
+    ],
+    [
+      "openpyxl",
+      "3.1.5"
+    ],
+    [
+      "typing_extensions",
+      "4.16.0"
+    ]
+  ],
+  "frozen_runtime_files_verified": 82
+}

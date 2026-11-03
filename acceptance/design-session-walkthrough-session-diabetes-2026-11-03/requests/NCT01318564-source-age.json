@@ -1,0 +1,396 @@
+{
+  "operation": "source_assertions",
+  "study": {
+    "protocolSection": {
+      "identificationModule": {
+        "nctId": "NCT01318564",
+        "orgStudyIdInfo": {
+          "id": "2008-0242"
+        },
+        "secondaryIdInfos": [
+          {
+            "id": "U18HS016093",
+            "type": "AHRQ",
+            "link": "https://reporter.nih.gov/quickSearch/U18HS016093"
+          }
+        ],
+        "organization": {
+          "fullName": "M.D. Anderson Cancer Center",
+          "class": "OTHER"
+        },
+        "briefTitle": "Diabetic Treatment Adherence",
+        "officialTitle": "Treatment Adherence With Compliance Prompting Packaging"
+      },
+      "statusModule": {
+        "statusVerifiedDate": "2016-09",
+        "overallStatus": "COMPLETED",
+        "expandedAccessInfo": {
+          "hasExpandedAccess": false
+        },
+        "startDateStruct": {
+          "date": "2011-03"
+        },
+        "primaryCompletionDateStruct": {
+          "date": "2016-08",
+          "type": "ACTUAL"
+        },
+        "completionDateStruct": {
+          "date": "2016-08",
+          "type": "ACTUAL"
+        },
+        "studyFirstSubmitDate": "2011-03-16",
+        "studyFirstSubmitQcDate": "2011-03-16",
+        "studyFirstPostDateStruct": {
+          "date": "2011-03-18",
+          "type": "ESTIMATED"
+        },
+        "lastUpdateSubmitDate": "2016-09-09",
+        "lastUpdatePostDateStruct": {
+          "date": "2016-09-12",
+          "type": "ESTIMATED"
+        }
+      },
+      "sponsorCollaboratorsModule": {
+        "responsibleParty": {
+          "type": "SPONSOR"
+        },
+        "leadSponsor": {
+          "name": "M.D. Anderson Cancer Center",
+          "class": "OTHER"
+        },
+        "collaborators": [
+          {
+            "name": "Agency for Healthcare Research and Quality (AHRQ)",
+            "class": "FED"
+          }
+        ]
+      },
+      "oversightModule": {
+        "oversightHasDmc": false
+      },
+      "descriptionModule": {
+        "briefSummary": "The goal of this clinical research study is to test an investigational type of packaging for diabetes drugs called \"unit-dose packaging.\" Researchers want to learn if unit-dose packaging can help patients with Type II diabetes to take their drugs on the proper schedule.",
+        "detailedDescription": "Study Background:\n\nSome people find it difficult to take drugs on the proper schedule. For this reason, researchers want to learn if a different kind of drug packaging can help patients take their drugs more easily.\n\nIn unit-dose packaging, each pill is packaged in its own plastic bubble (called a \"blister\") on a package that has a calendar on it. This is designed to make it easier to keep track of when the pills should be taken.\n\nStudy Drug Administration:\n\nIf you are found to be eligible to take part in this study, you will keep taking the same drugs that you are taking now. You will also keep taking those drugs on the same schedule that your doctor prescribed. The specific \"study drugs\" you may be taking are metformin, lisinopril, enalapril, atorvastatin, simvastatin, and aspirin.\n\nYou will be randomly assigned (as in the flip of a coin) to 1 of 2 groups. You have an equal chance of being assigned to either group.\n\nGroup 1 will receive their study drugs in unit-dose packages (also called \"reminder blister packages\") from Visit 1 to Visit 2.\n\nGroup 2 will receive their study drugs in pill bottles from Visit 1 to Visit 2.\n\nData Collection on Pill Usage:\n\nThere are electronic sensors on each blister package and pill bottle. If you are using blister packages (Group 1), the sensors will record the dates and times that you remove pills from the blisters. If you are using pill bottles (Group 2), the sensors will record the dates and times that you open the bottles.\n\nIt is important that you do not remove the pills too early before your dose (for example, the night before), so that the proper time is recorded.\n\nYou should return the empty blister packages or bottles to the clinic at each study visit. When you return the empty packaging, researchers will be able to collect the data that the sensors recorded (times and dates).\n\nStudy Visits:\n\nOn Day 1 and after Month 3, you will complete a questionnaire. It includes questions about your overall health, daily activities, and moods. There are also questions about how you take your drugs and how you feel about your diabetes drugs such as metformin. This questionnaire should take about 30-45 minutes to complete.\n\nResearchers will record the results of your routine blood sugar level tests performed on Day 1 and after Month 3. Researchers will also record the results of your routine cholesterol level blood tests on Day 1 and after Month 3. The purpose is to learn how the drugs may impact your health status.\n\nAt each visit your blood pressure will be measured 3 times. This will take about 15 min. If your questionnaire responses show that you may be having emotional difficulties or depression, you will receive contact information for the counseling staff in case you would like to speak with a counselor.\n\nStudy Databases:\n\nYour questionnaire and blood test data will be kept confidential and will only be used for this study. The same is true for the pill/package usage data recorded by the electronic sensors.\n\nThe study data will be entered into password-protected databases. In the databases, your name and other identifying information will not be used. Instead, your study identification (ID) number will be used.\n\nLength of Study Participation:\n\nYour study participation will be over after you complete the questionnaire after Month 3.\n\nThis is an investigational study. Unit-dose packaging is an FDA-approved type of packing for certain other drugs. At this time and for these particular drugs, unit-dose packaging is only being used in research.\n\nUp to 120 patients will take part in this study."
+      },
+      "conditionsModule": {
+        "conditions": [
+          "Endocrine System Diseases"
+        ],
+        "keywords": [
+          "Type II Diabetes",
+          "Unit dose packaging devices",
+          "Metformin",
+          "Lisinopril",
+          "Enalapril",
+          "Atorvastatin",
+          "Lipitor",
+          "Simvastatin",
+          "Aspirin",
+          "Questionnaires"
+        ]
+      },
+      "designModule": {
+        "studyType": "OBSERVATIONAL",
+        "designInfo": {
+          "observationalModel": "COHORT",
+          "timePerspective": "PROSPECTIVE"
+        },
+        "bioSpec": {
+          "retention": "SAMPLES_WITH_DNA",
+          "description": "A fasting blood sample of 10 ml will be collected 2 days after randomization if the physician considers the test as a standard of care."
+        },
+        "enrollmentInfo": {
+          "count": 28,
+          "type": "ACTUAL"
+        }
+      },
+      "armsInterventionsModule": {
+        "armGroups": [
+          {
+            "label": "Group 1: Unit-dose - Pill Bottle",
+            "description": "Unit-dose (blister) packages used first week, followed second week by pill bottles usage.",
+            "interventionNames": [
+              "Drug: Metformin",
+              "Behavioral: Questionnaires"
+            ]
+          },
+          {
+            "label": "Group 2: Pill Bottle - Unit Dose",
+            "description": "Pill bottle usage the first week followed second week by Unit-dose (blister) packages.",
+            "interventionNames": [
+              "Drug: Metformin",
+              "Behavioral: Questionnaires"
+            ]
+          }
+        ],
+        "interventions": [
+          {
+            "type": "DRUG",
+            "name": "Metformin",
+            "description": "500 - 1000 mg by mouth twice a day with either via a MEMS device pill bottle (medication event monitoring system) or by unit-dosing (blister packaging) with attached Med-ic device (electronic compliance monitoring for blistered medication).",
+            "armGroupLabels": [
+              "Group 1: Unit-dose - Pill Bottle",
+              "Group 2: Pill Bottle - Unit Dose"
+            ]
+          },
+          {
+            "type": "BEHAVIORAL",
+            "name": "Questionnaires",
+            "description": "Completion on Day 1 and after Month 3. Each questionnaire to take about 30 minutes to complete.",
+            "armGroupLabels": [
+              "Group 1: Unit-dose - Pill Bottle",
+              "Group 2: Pill Bottle - Unit Dose"
+            ],
+            "otherNames": [
+              "Surveys"
+            ]
+          }
+        ]
+      },
+      "outcomesModule": {
+        "primaryOutcomes": [
+          {
+            "measure": "Patients' Adherence to Unit Dose Packaging Devices",
+            "description": "Taking information from the electronic monitor device packages, adherence considered as a ratio of prescribed doses to doses taken.",
+            "timeFrame": "12 weeks"
+          }
+        ]
+      },
+      "eligibilityModule": {
+        "eligibilityCriteria": "Inclusion Criteria:\n\n1. Adults of 18 years or older.\n2. Patients with type II Diabetes taking or eligible to start metformin with at least another medication for hypertension (Lisinopril or Enalapril), hyperlipidemia (atorvastatin or simvastatin) and/or aspirin.\n\nExclusion Criteria:\n\n1. Dementia\n2. Patients receiving current intravenous chemotherapy\n3. Pregnancy\n4. Patients residing in a nursing home\n5. Treatment with any type of Insulin\n6. Patients wanting to continue to use pill organizers for monitored medications",
+        "healthyVolunteers": false,
+        "sex": "ALL",
+        "minimumAge": "18 Years",
+        "stdAges": [
+          "ADULT",
+          "OLDER_ADULT"
+        ],
+        "studyPopulation": "General Internal Medicine/Ambulatory Clinics at UT MD Anderson Cancer Center in Houston, Texas Kelsey-Seybold Outpatient Clinics in Houston, Texas",
+        "samplingMethod": "PROBABILITY_SAMPLE"
+      },
+      "contactsLocationsModule": {
+        "overallOfficials": [
+          {
+            "name": "Maria Suarez-Almazor, MD,PHD",
+            "affiliation": "M.D. Anderson Cancer Center",
+            "role": "PRINCIPAL_INVESTIGATOR"
+          }
+        ],
+        "locations": [
+          {
+            "facility": "Kelsey Seybold Clinics",
+            "city": "Houston",
+            "state": "Texas",
+            "zip": "77025",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 29.76328,
+              "lon": -95.36327
+            }
+          },
+          {
+            "facility": "University of Texas MD Anderson Cancer Center",
+            "city": "Houston",
+            "state": "Texas",
+            "zip": "77030",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 29.76328,
+              "lon": -95.36327
+            }
+          }
+        ]
+      },
+      "referencesModule": {
+        "seeAlsoLinks": [
+          {
+            "label": "University of Texas MD Anderson Cancer Center Website",
+            "url": "http://www.mdanderson.org"
+          }
+        ]
+      }
+    },
+    "derivedSection": {
+      "miscInfoModule": {
+        "versionHolder": "2026-11-03"
+      },
+      "conditionBrowseModule": {
+        "meshes": [
+          {
+            "id": "D004700",
+            "term": "Endocrine System Diseases"
+          },
+          {
+            "id": "D003924",
+            "term": "Diabetes Mellitus, Type 2"
+          }
+        ],
+        "ancestors": [
+          {
+            "id": "D003920",
+            "term": "Diabetes Mellitus"
+          },
+          {
+            "id": "D044882",
+            "term": "Glucose Metabolism Disorders"
+          },
+          {
+            "id": "D008659",
+            "term": "Metabolic Diseases"
+          },
+          {
+            "id": "D009750",
+            "term": "Nutritional and Metabolic Diseases"
+          }
+        ]
+      },
+      "interventionBrowseModule": {
+        "meshes": [
+          {
+            "id": "D008687",
+            "term": "Metformin"
+          },
+          {
+            "id": "D011795",
+            "term": "Surveys and Questionnaires"
+          }
+        ],
+        "ancestors": [
+          {
+            "id": "D001645",
+            "term": "Biguanides"
+          },
+          {
+            "id": "D006146",
+            "term": "Guanidines"
+          },
+          {
+            "id": "D000578",
+            "term": "Amidines"
+          },
+          {
+            "id": "D009930",
+            "term": "Organic Chemicals"
+          },
+          {
+            "id": "D003625",
+            "term": "Data Collection"
+          },
+          {
+            "id": "D004812",
+            "term": "Epidemiologic Methods"
+          },
+          {
+            "id": "D008919",
+            "term": "Investigative Techniques"
+          },
+          {
+            "id": "D017531",
+            "term": "Health Care Evaluation Mechanisms"
+          },
+          {
+            "id": "D011787",
+            "term": "Quality of Health Care"
+          },
+          {
+            "id": "D017530",
+            "term": "Health Care Quality, Access, and Evaluation"
+          },
+          {
+            "id": "D011634",
+            "term": "Public Health"
+          },
+          {
+            "id": "D004778",
+            "term": "Environment and Public Health"
+          }
+        ]
+      }
+    },
+    "hasResults": false
+  },
+  "expected_digest": "58b688d46a6afb2ba0f59e4c92f490b185ac315ce4599e92d0ceb9ff2ff5a18e",
+  "anchors": [
+    {
+      "id": "eligibility",
+      "address": "/protocolSection/eligibilityModule/eligibilityCriteria",
+      "digest": "58b688d46a6afb2ba0f59e4c92f490b185ac315ce4599e92d0ceb9ff2ff5a18e",
+      "expected": "Inclusion Criteria:\n\n1. Adults of 18 years or older.\n2. Patients with type II Diabetes taking or eligible to start metformin with at least another medication for hypertension (Lisinopril or Enalapril), hyperlipidemia (atorvastatin or simvastatin) and/or aspirin.\n\nExclusion Criteria:\n\n1. Dementia\n2. Patients receiving current intravenous chemotherapy\n3. Pregnancy\n4. Patients residing in a nursing home\n5. Treatment with any type of Insulin\n6. Patients wanting to continue to use pill organizers for monitored medications"
+    },
+    {
+      "id": "description",
+      "address": "/protocolSection/descriptionModule",
+      "digest": "58b688d46a6afb2ba0f59e4c92f490b185ac315ce4599e92d0ceb9ff2ff5a18e",
+      "expected": {
+        "briefSummary": "The goal of this clinical research study is to test an investigational type of packaging for diabetes drugs called \"unit-dose packaging.\" Researchers want to learn if unit-dose packaging can help patients with Type II diabetes to take their drugs on the proper schedule.",
+        "detailedDescription": "Study Background:\n\nSome people find it difficult to take drugs on the proper schedule. For this reason, researchers want to learn if a different kind of drug packaging can help patients take their drugs more easily.\n\nIn unit-dose packaging, each pill is packaged in its own plastic bubble (called a \"blister\") on a package that has a calendar on it. This is designed to make it easier to keep track of when the pills should be taken.\n\nStudy Drug Administration:\n\nIf you are found to be eligible to take part in this study, you will keep taking the same drugs that you are taking now. You will also keep taking those drugs on the same schedule that your doctor prescribed. The specific \"study drugs\" you may be taking are metformin, lisinopril, enalapril, atorvastatin, simvastatin, and aspirin.\n\nYou will be randomly assigned (as in the flip of a coin) to 1 of 2 groups. You have an equal chance of being assigned to either group.\n\nGroup 1 will receive their study drugs in unit-dose packages (also called \"reminder blister packages\") from Visit 1 to Visit 2.\n\nGroup 2 will receive their study drugs in pill bottles from Visit 1 to Visit 2.\n\nData Collection on Pill Usage:\n\nThere are electronic sensors on each blister package and pill bottle. If you are using blister packages (Group 1), the sensors will record the dates and times that you remove pills from the blisters. If you are using pill bottles (Group 2), the sensors will record the dates and times that you open the bottles.\n\nIt is important that you do not remove the pills too early before your dose (for example, the night before), so that the proper time is recorded.\n\nYou should return the empty blister packages or bottles to the clinic at each study visit. When you return the empty packaging, researchers will be able to collect the data that the sensors recorded (times and dates).\n\nStudy Visits:\n\nOn Day 1 and after Month 3, you will complete a questionnaire. It includes questions about your overall health, daily activities, and moods. There are also questions about how you take your drugs and how you feel about your diabetes drugs such as metformin. This questionnaire should take about 30-45 minutes to complete.\n\nResearchers will record the results of your routine blood sugar level tests performed on Day 1 and after Month 3. Researchers will also record the results of your routine cholesterol level blood tests on Day 1 and after Month 3. The purpose is to learn how the drugs may impact your health status.\n\nAt each visit your blood pressure will be measured 3 times. This will take about 15 min. If your questionnaire responses show that you may be having emotional difficulties or depression, you will receive contact information for the counseling staff in case you would like to speak with a counselor.\n\nStudy Databases:\n\nYour questionnaire and blood test data will be kept confidential and will only be used for this study. The same is true for the pill/package usage data recorded by the electronic sensors.\n\nThe study data will be entered into password-protected databases. In the databases, your name and other identifying information will not be used. Instead, your study identification (ID) number will be used.\n\nLength of Study Participation:\n\nYour study participation will be over after you complete the questionnaire after Month 3.\n\nThis is an investigational study. Unit-dose packaging is an FDA-approved type of packing for certain other drugs. At this time and for these particular drugs, unit-dose packaging is only being used in research.\n\nUp to 120 patients will take part in this study."
+      }
+    }
+  ],
+  "queries": [
+    {
+      "id": "adult",
+      "body": {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+          "class": "Predicate",
+          "key": "age",
+          "kind": "measurement"
+        },
+        "qualifiers": {
+          "class": "Always"
+        },
+        "subject": {
+          "class": "Subject",
+          "kind": "participant",
+          "referent": ""
+        },
+        "time": null,
+        "value": {
+          "class": "Value",
+          "comparison": "ge",
+          "inclusivity": "unspecified",
+          "kind": "quantity",
+          "members": [],
+          "number": 18,
+          "unit": "Years",
+          "upper": null
+        }
+      }
+    },
+    {
+      "id": "at-least65",
+      "body": {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+          "class": "Predicate",
+          "key": "age",
+          "kind": "measurement"
+        },
+        "qualifiers": {
+          "class": "Always"
+        },
+        "subject": {
+          "class": "Subject",
+          "kind": "participant",
+          "referent": ""
+        },
+        "time": null,
+        "value": {
+          "class": "Value",
+          "comparison": "ge",
+          "inclusivity": "unspecified",
+          "kind": "quantity",
+          "members": [],
+          "number": 65,
+          "unit": "Years",
+          "upper": null
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,136 @@
+──────────────────────────────────────────────────────────────────────────────
+TrialLedger/layer2/estimand_evidence.py — plan (full) · 22 regions · budget 500 DOF-proxy · spent 0
+
+  TrialLedger/layer2/estimand_evidence.py::_requirements
+                       CONSTRUCTIVE · unpinned · status unpinned · not_clean · agreement 3
+                       smells: overload (94 DOF / 23 lines (static proxy)) · seam (1 seam(s)) · complexity (CC 15)
+                       cost 94 (static_dof_proxy)
+    next               detective converge 'TrialLedger/layer2/estimand_evidence.py::_requirements'
+
+  TrialLedger/layer2/estimand_evidence.py::_dependency
+                       CONSTRUCTIVE · unpinned · status unpinned · not_clean · agreement 2
+                       smells: seam (1 seam(s)) · interface_width (5 parameter(s))
+                       template loop_invariant_recompute → hoist_invariant · gate receipt + verify-rewrite + paired budget · line 403: deepcopy(base) — every argument loop-invariant
+                       cost 175 (static_dof_proxy)
+    next               detective converge 'TrialLedger/layer2/estimand_evidence.py::_dependency'
+
+  TrialLedger/layer2/estimand_evidence.py::_events
+                       CONSTRUCTIVE · unpinned · status unpinned · not_clean · agreement 2
+                       smells: overload (39 DOF / 13 lines (static proxy)) · seam (1 seam(s))
+                       cost 39 (static_dof_proxy)
+    next               detective converge 'TrialLedger/layer2/estimand_evidence.py::_events'
+
+  TrialLedger/layer2/estimand_evidence.py::_facts
+                       CONSTRUCTIVE · unpinned · status unpinned · not_clean · agreement 2
+                       smells: overload (58 DOF / 16 lines (static proxy)) · seam (1 seam(s))
+                       cost 58 (static_dof_proxy)
+    next               detective converge 'TrialLedger/layer2/estimand_evidence.py::_facts'
+
+  TrialLedger/layer2/estimand_evidence.py::_local
+                       CONSTRUCTIVE · unpinned · status unpinned · not_clean · agreement 2
+                       smells: overload (175 DOF / 63 lines (static proxy)) · interface_width (5 parameter(s))
+                       cost 175 (static_dof_proxy)
+    next               detective converge 'TrialLedger/layer2/estimand_evidence.py::_local'
+
+  TrialLedger/layer2/estimand_evidence.py::_merged_request
+                       CONSTRUCTIVE · unpinned · status unpinned · not_clean · agreement 2
+                       smells: overload (39 DOF / 12 lines (static proxy)) · seam (1 seam(s))
+                       cost 39 (static_dof_proxy)
+    next               detective converge 'TrialLedger/layer2/estimand_evidence.py::_merged_request'
+
+  TrialLedger/layer2/estimand_evidence.py::_plans
+                       CONSTRUCTIVE · unpinned · status unpinned · not_clean · agreement 2
+                       smells: overload (49 DOF / 14 lines (static proxy)) · seam (1 seam(s))
+                       cost 49 (static_dof_proxy)
+    next               detective converge 'TrialLedger/layer2/estimand_evidence.py::_plans'
+
+  TrialLedger/layer2/estimand_evidence.py::_standing
+                       CONSTRUCTIVE · unpinned · status unpinned · not_clean · agreement 2
+                       smells: overload (34 DOF / 6 lines (static proxy)) · seam (1 seam(s))
+                       cost 34 (static_dof_proxy)
+    next               detective converge 'TrialLedger/layer2/estimand_evidence.py::_standing'
+
+  TrialLedger/layer2/estimand_evidence.py::_dependency_check
+                       AMBIGUOUS · escalated · status unpinned · not_clean · agreement 1
+                       smells: overload (91 DOF / 33 lines (static proxy))
+                       cost 91 (static_dof_proxy)
+    next               detective flag 'TrialLedger/layer2/estimand_evidence.py::_dependency_check' --style --leave --note "why"   # or --proceed; to ground it first: detective converge 'TrialLedger/layer2/estimand_evidence.py::_dependency_check'
+
+  TrialLedger/layer2/estimand_evidence.py::_gate
+                       AMBIGUOUS · escalated · status unpinned · not_clean · agreement 1
+                       smells: overload (5 DOF / 2 lines (static proxy))
+                       cost 5 (static_dof_proxy)
+    next               detective flag 'TrialLedger/layer2/estimand_evidence.py::_gate' --style --leave --note "why"   # or --proceed; to ground it first: detective converge 'TrialLedger/layer2/estimand_evidence.py::_gate'
+
+  TrialLedger/layer2/estimand_evidence.py::_object
+                       AMBIGUOUS · escalated · status unpinned · not_clean · agreement 1
+                       smells: overload (16 DOF / 4 lines (static proxy))
+                       cost 16 (static_dof_proxy)
+    next               detective flag 'TrialLedger/layer2/estimand_evidence.py::_object' --style --leave --note "why"   # or --proceed; to ground it first: detective converge 'TrialLedger/layer2/estimand_evidence.py::_object'
+
+  TrialLedger/layer2/estimand_evidence.py::_ref
+                       AMBIGUOUS · escalated · status unpinned · not_clean · agreement 1
+                       smells: overload (16 DOF / 6 lines (static proxy))
+                       cost 16 (static_dof_proxy)
+    next               detective flag 'TrialLedger/layer2/estimand_evidence.py::_ref' --style --leave --note "why"   # or --proceed; to ground it first: detective converge 'TrialLedger/layer2/estimand_evidence.py::_ref'
+
+  TrialLedger/layer2/estimand_evidence.py::_rows
+                       AMBIGUOUS · escalated · status unpinned · not_clean · agreement 1
+                       smells: overload (21 DOF / 6 lines (static proxy))
+                       cost 21 (static_dof_proxy)
+    next               detective flag 'TrialLedger/layer2/estimand_evidence.py::_rows' --style --leave --note "why"   # or --proceed; to ground it first: detective converge 'TrialLedger/layer2/estimand_evidence.py::_rows'
+
+  TrialLedger/layer2/estimand_evidence.py::_support
+                       AMBIGUOUS · escalated · status unpinned · not_clean · agreement 1
+                       smells: overload (15 DOF / 4 lines (static proxy))
+                       cost 15 (static_dof_proxy)
+    next               detective flag 'TrialLedger/layer2/estimand_evidence.py::_support' --style --leave --note "why"   # or --proceed; to ground it first: detective converge 'TrialLedger/layer2/estimand_evidence.py::_support'
+
+  TrialLedger/layer2/estimand_evidence.py::_text
+                       AMBIGUOUS · escalated · status unpinned · not_clean · agreement 1
+                       smells: overload (12 DOF / 4 lines (static proxy))
+                       cost 12 (static_dof_proxy)
+    next               detective flag 'TrialLedger/layer2/estimand_evidence.py::_text' --style --leave --note "why"   # or --proceed; to ground it first: detective converge 'TrialLedger/layer2/estimand_evidence.py::_text'
+
+  TrialLedger/layer2/estimand_evidence.py::check
+                       AMBIGUOUS · escalated · status unpinned · not_clean · agreement 1
+                       smells: seam (1 seam(s))
+                       cost 195 (static_dof_proxy)
+    next               detective flag 'TrialLedger/layer2/estimand_evidence.py::check' --style --leave --note "why"   # or --proceed; to ground it first: detective converge 'TrialLedger/layer2/estimand_evidence.py::check'
+
+  TrialLedger/layer2/estimand_evidence.py::_binding_refs
+                       SILENT · silent · status unpinned · clean · agreement 0
+                       smells: —
+                       cost 10 (static_dof_proxy)
+
+  TrialLedger/layer2/estimand_evidence.py::_definitions
+                       SILENT · silent · status unpinned · clean · agreement 0
+                       smells: —
+                       cost 7 (static_dof_proxy)
+
+  TrialLedger/layer2/estimand_evidence.py::_example
+                       SILENT · silent · status unpinned · clean · agreement 0
+                       smells: —
+                       cost 68 (static_dof_proxy)
+
+  TrialLedger/layer2/estimand_evidence.py::actual_input
+                       SILENT · silent · status pinned · clean · agreement 0
+                       smells: —
+                       cost 31 (static_dof_proxy)
+
+  TrialLedger/layer2/estimand_evidence.py::collection_alignment
+                       SILENT · silent · status pinned · clean · agreement 0
+                       smells: —
+                       cost 30 (static_dof_proxy)
+
+  TrialLedger/layer2/estimand_evidence.py::evaluate
+                       SILENT · silent · status unpinned · clean · agreement 0
+                       smells: —
+                       cost 5 (static_dof_proxy)
+
+  · unexamined         what this plan did not propose is UNEXAMINED, not approved
+                       regime — unread: it needs a live mutation profile this static plan never runs
+                       fences held at 0 — the form-censor spine (§5.3) is unbuilt, so DESTRUCTIVE is unexercised
+                       recognizers — 5 template(s); a region with no match is a library gap, not a clean bill
+
+FINAL plan TrialLedger/layer2/estimand_evidence.py: 0 funded · 8 constructive · 8 escalated · 0 fenced · 6 silent (clean 6 · unread 0) · advisory — writes no project files

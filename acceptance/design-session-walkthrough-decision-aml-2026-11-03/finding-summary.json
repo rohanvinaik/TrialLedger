@@ -1,0 +1,2108 @@
+{
+  "NCT02670044-source-age": {
+    "findings": [
+      {
+        "path": "/result/analyses/0/result/decision",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled"
+      }
+    ],
+    "child_findings": [
+      [
+        {
+          "path": "/result/decision",
+          "kind": "logical",
+          "logical_result": "ENTAILED",
+          "standing": "known",
+          "completion": "complete",
+          "causes": [],
+          "disposition": "settled"
+        }
+      ]
+    ]
+  },
+  "NCT03625505-source-age": {
+    "findings": [
+      {
+        "path": "/result/analyses/0/result/decision",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled"
+      }
+    ],
+    "child_findings": [
+      [
+        {
+          "path": "/result/decision",
+          "kind": "logical",
+          "logical_result": "ENTAILED",
+          "standing": "known",
+          "completion": "complete",
+          "causes": [],
+          "disposition": "settled"
+        }
+      ]
+    ]
+  },
+  "NCT04666649-source-age": {
+    "findings": [
+      {
+        "path": "/result/analyses/0/result/decision",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled"
+      }
+    ],
+    "child_findings": [
+      [
+        {
+          "path": "/result/decision",
+          "kind": "logical",
+          "logical_result": "ENTAILED",
+          "standing": "known",
+          "completion": "complete",
+          "causes": [],
+          "disposition": "settled"
+        }
+      ]
+    ]
+  },
+  "hypothetical-gap-at-one": {
+    "findings": [
+      {
+        "path": "/result/signals/0",
+        "kind": "signal",
+        "logical_result": "unresolved",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "proposed_refused:hypothetical-six-person-rule",
+            "kind": "premise"
+          },
+          {
+            "code": "table_uncovered_case",
+            "kind": "conflict"
+          }
+        ],
+        "disposition": "open",
+        "raw_result": "conflict",
+        "raw_path": "/result/signals/0/calculation_code"
+      },
+      {
+        "path": "/result/signals/0/value/domain",
+        "kind": "table_domain",
+        "logical_result": "unresolved",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "proposed_refused:hypothetical-six-person-rule",
+            "kind": "premise"
+          },
+          {
+            "code": "table_uncovered_case",
+            "kind": "conflict"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/signals/0/support",
+        "raw_result": "feasible",
+        "raw_path": "/result/signals/0/value/domain/state"
+      },
+      {
+        "path": "/result/signals/0/value/coverage",
+        "kind": "table_coverage",
+        "logical_result": "unresolved",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "proposed_refused:hypothetical-six-person-rule",
+            "kind": "premise"
+          },
+          {
+            "code": "table_uncovered_case",
+            "kind": "conflict"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/signals/0/support",
+        "raw_result": "gap",
+        "raw_path": "/result/signals/0/value/coverage/state"
+      },
+      {
+        "path": "/result/signals/0/value/overlaps/0",
+        "kind": "table_overlaps",
+        "logical_result": "unresolved",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "proposed_refused:hypothetical-six-person-rule",
+            "kind": "premise"
+          },
+          {
+            "code": "table_uncovered_case",
+            "kind": "conflict"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/signals/0/support",
+        "raw_result": "disjoint",
+        "raw_path": "/result/signals/0/value/overlaps/0/state"
+      },
+      {
+        "path": "/result/signals/0/value/actions/0",
+        "kind": "table_actions",
+        "logical_result": "unresolved",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "proposed_refused:hypothetical-six-person-rule",
+            "kind": "premise"
+          },
+          {
+            "code": "table_uncovered_case",
+            "kind": "conflict"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/signals/0/support",
+        "raw_result": "reachable",
+        "raw_path": "/result/signals/0/value/actions/0/state"
+      },
+      {
+        "path": "/result/signals/0/value/actions/1",
+        "kind": "table_actions",
+        "logical_result": "unresolved",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "proposed_refused:hypothetical-six-person-rule",
+            "kind": "premise"
+          },
+          {
+            "code": "table_uncovered_case",
+            "kind": "conflict"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/signals/0/support",
+        "raw_result": "reachable",
+        "raw_path": "/result/signals/0/value/actions/1/state"
+      }
+    ]
+  },
+  "hypothetical-complete-revision": {
+    "findings": [
+      {
+        "path": "/result/signals/0",
+        "kind": "signal",
+        "logical_result": "unresolved",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "proposed_refused:hypothetical-six-person-rule",
+            "kind": "premise"
+          }
+        ],
+        "disposition": "open",
+        "raw_result": "consistent",
+        "raw_path": "/result/signals/0/calculation_code"
+      },
+      {
+        "path": "/result/signals/0/value/domain",
+        "kind": "table_domain",
+        "logical_result": "unresolved",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "proposed_refused:hypothetical-six-person-rule",
+            "kind": "premise"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/signals/0/support",
+        "raw_result": "feasible",
+        "raw_path": "/result/signals/0/value/domain/state"
+      },
+      {
+        "path": "/result/signals/0/value/coverage",
+        "kind": "table_coverage",
+        "logical_result": "unresolved",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "proposed_refused:hypothetical-six-person-rule",
+            "kind": "premise"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/signals/0/support",
+        "raw_result": "covered",
+        "raw_path": "/result/signals/0/value/coverage/state"
+      },
+      {
+        "path": "/result/signals/0/value/overlaps/0",
+        "kind": "table_overlaps",
+        "logical_result": "unresolved",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "proposed_refused:hypothetical-six-person-rule",
+            "kind": "premise"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/signals/0/support",
+        "raw_result": "disjoint",
+        "raw_path": "/result/signals/0/value/overlaps/0/state"
+      },
+      {
+        "path": "/result/signals/0/value/actions/0",
+        "kind": "table_actions",
+        "logical_result": "unresolved",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "proposed_refused:hypothetical-six-person-rule",
+            "kind": "premise"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/signals/0/support",
+        "raw_result": "reachable",
+        "raw_path": "/result/signals/0/value/actions/0/state"
+      },
+      {
+        "path": "/result/signals/0/value/actions/1",
+        "kind": "table_actions",
+        "logical_result": "unresolved",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "proposed_refused:hypothetical-six-person-rule",
+            "kind": "premise"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/signals/0/support",
+        "raw_result": "reachable",
+        "raw_path": "/result/signals/0/value/actions/1/state"
+      }
+    ]
+  },
+  "hypothetical-overlap-at-one": {
+    "findings": [
+      {
+        "path": "/result/signals/0",
+        "kind": "signal",
+        "logical_result": "unresolved",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "proposed_refused:hypothetical-six-person-rule",
+            "kind": "premise"
+          },
+          {
+            "code": "table_conflicting_actions",
+            "kind": "conflict"
+          }
+        ],
+        "disposition": "open",
+        "raw_result": "conflict",
+        "raw_path": "/result/signals/0/calculation_code"
+      },
+      {
+        "path": "/result/signals/0/value/domain",
+        "kind": "table_domain",
+        "logical_result": "unresolved",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "proposed_refused:hypothetical-six-person-rule",
+            "kind": "premise"
+          },
+          {
+            "code": "table_conflicting_actions",
+            "kind": "conflict"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/signals/0/support",
+        "raw_result": "feasible",
+        "raw_path": "/result/signals/0/value/domain/state"
+      },
+      {
+        "path": "/result/signals/0/value/coverage",
+        "kind": "table_coverage",
+        "logical_result": "unresolved",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "proposed_refused:hypothetical-six-person-rule",
+            "kind": "premise"
+          },
+          {
+            "code": "table_conflicting_actions",
+            "kind": "conflict"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/signals/0/support",
+        "raw_result": "covered",
+        "raw_path": "/result/signals/0/value/coverage/state"
+      },
+      {
+        "path": "/result/signals/0/value/overlaps/0",
+        "kind": "table_overlaps",
+        "logical_result": "unresolved",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "proposed_refused:hypothetical-six-person-rule",
+            "kind": "premise"
+          },
+          {
+            "code": "table_conflicting_actions",
+            "kind": "conflict"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/signals/0/support",
+        "raw_result": "overlap",
+        "raw_path": "/result/signals/0/value/overlaps/0/state"
+      },
+      {
+        "path": "/result/signals/0/value/actions/0",
+        "kind": "table_actions",
+        "logical_result": "unresolved",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "proposed_refused:hypothetical-six-person-rule",
+            "kind": "premise"
+          },
+          {
+            "code": "table_conflicting_actions",
+            "kind": "conflict"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/signals/0/support",
+        "raw_result": "reachable",
+        "raw_path": "/result/signals/0/value/actions/0/state"
+      },
+      {
+        "path": "/result/signals/0/value/actions/1",
+        "kind": "table_actions",
+        "logical_result": "unresolved",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "proposed_refused:hypothetical-six-person-rule",
+            "kind": "premise"
+          },
+          {
+            "code": "table_conflicting_actions",
+            "kind": "conflict"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/signals/0/support",
+        "raw_result": "reachable",
+        "raw_path": "/result/signals/0/value/actions/1/state"
+      }
+    ]
+  },
+  "hypothetical-limited": {
+    "findings": [
+      {
+        "path": "/result/signals/0",
+        "kind": "signal",
+        "logical_result": "unresolved",
+        "standing": "proposed",
+        "completion": "limited",
+        "causes": [
+          {
+            "code": "proposed_refused:hypothetical-six-person-rule",
+            "kind": "premise"
+          },
+          {
+            "code": "resource_bound:table_checks",
+            "kind": "computation"
+          }
+        ],
+        "disposition": "not_computed"
+      },
+      {
+        "path": "/result/signals/0/value/domain",
+        "kind": "table_domain",
+        "logical_result": "feasible",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional",
+        "support_path": "/result/signals/0/support"
+      },
+      {
+        "path": "/result/signals/0/value/coverage",
+        "kind": "table_coverage",
+        "logical_result": "unresolved",
+        "standing": "proposed",
+        "completion": "limited",
+        "causes": [
+          {
+            "code": "resource_bound:table_checks",
+            "kind": "computation"
+          }
+        ],
+        "disposition": "not_computed",
+        "support_path": "/result/signals/0/support"
+      },
+      {
+        "path": "/result/signals/0/value/overlaps/0",
+        "kind": "table_overlaps",
+        "logical_result": "unresolved",
+        "standing": "proposed",
+        "completion": "limited",
+        "causes": [
+          {
+            "code": "resource_bound:table_checks",
+            "kind": "computation"
+          }
+        ],
+        "disposition": "not_computed",
+        "support_path": "/result/signals/0/support"
+      },
+      {
+        "path": "/result/signals/0/value/actions/0",
+        "kind": "table_actions",
+        "logical_result": "unresolved",
+        "standing": "proposed",
+        "completion": "limited",
+        "causes": [
+          {
+            "code": "resource_bound:table_checks",
+            "kind": "computation"
+          }
+        ],
+        "disposition": "not_computed",
+        "support_path": "/result/signals/0/support"
+      },
+      {
+        "path": "/result/signals/0/value/actions/1",
+        "kind": "table_actions",
+        "logical_result": "unresolved",
+        "standing": "proposed",
+        "completion": "limited",
+        "causes": [
+          {
+            "code": "resource_bound:table_checks",
+            "kind": "computation"
+          }
+        ],
+        "disposition": "not_computed",
+        "support_path": "/result/signals/0/support"
+      }
+    ]
+  },
+  "hypothetical-tables-with-source-age": {
+    "findings": [
+      {
+        "path": "/result/fixed/consistency",
+        "kind": "consistency",
+        "logical_result": "UNDETERMINED",
+        "standing": null,
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          }
+        ],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/fixed/queries/0",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled",
+        "support_path": "/result/fixed/queries/0/warrant"
+      },
+      {
+        "path": "/result/interpretations/0",
+        "kind": "interpretation",
+        "logical_result": "incoherent",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conflict"
+      },
+      {
+        "path": "/result/interpretations/0/queries/0",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "interpretation_incoherent",
+            "kind": "conflict"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/interpretations/0/queries/0/warrant",
+        "raw_result": "ENTAILED",
+        "raw_path": "/result/interpretations/0/queries/0/decision"
+      },
+      {
+        "path": "/result/interpretations/0/signals/0",
+        "kind": "signal",
+        "logical_result": "conflict",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "table_uncovered_case",
+            "kind": "conflict"
+          }
+        ],
+        "disposition": "conflict"
+      },
+      {
+        "path": "/result/interpretations/0/signals/0/value/domain",
+        "kind": "table_domain",
+        "logical_result": "feasible",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional",
+        "support_path": "/result/interpretations/0/signals/0/support"
+      },
+      {
+        "path": "/result/interpretations/0/signals/0/value/coverage",
+        "kind": "table_coverage",
+        "logical_result": "gap",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conflict",
+        "support_path": "/result/interpretations/0/signals/0/support"
+      },
+      {
+        "path": "/result/interpretations/0/signals/0/value/overlaps/0",
+        "kind": "table_overlaps",
+        "logical_result": "disjoint",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional",
+        "support_path": "/result/interpretations/0/signals/0/support"
+      },
+      {
+        "path": "/result/interpretations/0/signals/0/value/actions/0",
+        "kind": "table_actions",
+        "logical_result": "reachable",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional",
+        "support_path": "/result/interpretations/0/signals/0/support"
+      },
+      {
+        "path": "/result/interpretations/0/signals/0/value/actions/1",
+        "kind": "table_actions",
+        "logical_result": "reachable",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional",
+        "support_path": "/result/interpretations/0/signals/0/support"
+      },
+      {
+        "path": "/result/interpretations/1",
+        "kind": "interpretation",
+        "logical_result": "compatible",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional"
+      },
+      {
+        "path": "/result/interpretations/1/queries/0",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled",
+        "support_path": "/result/interpretations/1/queries/0/warrant"
+      },
+      {
+        "path": "/result/interpretations/1/signals/0",
+        "kind": "signal",
+        "logical_result": "consistent",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional"
+      },
+      {
+        "path": "/result/interpretations/1/signals/0/value/domain",
+        "kind": "table_domain",
+        "logical_result": "feasible",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional",
+        "support_path": "/result/interpretations/1/signals/0/support"
+      },
+      {
+        "path": "/result/interpretations/1/signals/0/value/coverage",
+        "kind": "table_coverage",
+        "logical_result": "covered",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional",
+        "support_path": "/result/interpretations/1/signals/0/support"
+      },
+      {
+        "path": "/result/interpretations/1/signals/0/value/overlaps/0",
+        "kind": "table_overlaps",
+        "logical_result": "disjoint",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional",
+        "support_path": "/result/interpretations/1/signals/0/support"
+      },
+      {
+        "path": "/result/interpretations/1/signals/0/value/actions/0",
+        "kind": "table_actions",
+        "logical_result": "reachable",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional",
+        "support_path": "/result/interpretations/1/signals/0/support"
+      },
+      {
+        "path": "/result/interpretations/1/signals/0/value/actions/1",
+        "kind": "table_actions",
+        "logical_result": "reachable",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional",
+        "support_path": "/result/interpretations/1/signals/0/support"
+      },
+      {
+        "path": "/result/interpretations/2",
+        "kind": "interpretation",
+        "logical_result": "incoherent",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conflict"
+      },
+      {
+        "path": "/result/interpretations/2/queries/0",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "interpretation_incoherent",
+            "kind": "conflict"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/interpretations/2/queries/0/warrant",
+        "raw_result": "ENTAILED",
+        "raw_path": "/result/interpretations/2/queries/0/decision"
+      },
+      {
+        "path": "/result/interpretations/2/signals/0",
+        "kind": "signal",
+        "logical_result": "conflict",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "table_conflicting_actions",
+            "kind": "conflict"
+          }
+        ],
+        "disposition": "conflict"
+      },
+      {
+        "path": "/result/interpretations/2/signals/0/value/domain",
+        "kind": "table_domain",
+        "logical_result": "feasible",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional",
+        "support_path": "/result/interpretations/2/signals/0/support"
+      },
+      {
+        "path": "/result/interpretations/2/signals/0/value/coverage",
+        "kind": "table_coverage",
+        "logical_result": "covered",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional",
+        "support_path": "/result/interpretations/2/signals/0/support"
+      },
+      {
+        "path": "/result/interpretations/2/signals/0/value/overlaps/0",
+        "kind": "table_overlaps",
+        "logical_result": "overlap",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional",
+        "support_path": "/result/interpretations/2/signals/0/support"
+      },
+      {
+        "path": "/result/interpretations/2/signals/0/value/actions/0",
+        "kind": "table_actions",
+        "logical_result": "reachable",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional",
+        "support_path": "/result/interpretations/2/signals/0/support"
+      },
+      {
+        "path": "/result/interpretations/2/signals/0/value/actions/1",
+        "kind": "table_actions",
+        "logical_result": "reachable",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional",
+        "support_path": "/result/interpretations/2/signals/0/support"
+      },
+      {
+        "path": "/result/consequences/0",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled",
+        "support_path": "/result/consequences/0/warrant"
+      }
+    ],
+    "frames": [
+      {
+        "id": "missing-action",
+        "state": "incoherent",
+        "queries": [
+          {
+            "id": "adult-age-restriction",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "age",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "ge",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 18.0,
+                "unit": "Years",
+                "upper": null
+              }
+            },
+            "result": "UNDETERMINED",
+            "decision": {
+              "result": "ENTAILED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+              "status": "known",
+              "proof": [
+                "registry-age-minimumAge"
+              ],
+              "blockers": []
+            },
+            "warrant": {
+              "rule": "entail.decide:1",
+              "guarantee": "conditional_on_interpretation",
+              "status": "known",
+              "assumptions": [],
+              "proof": [
+                "registry-age-minimumAge"
+              ],
+              "blockers": [
+                "interpretation_incoherent"
+              ]
+            }
+          }
+        ],
+        "signals": [
+          {
+            "id": "hypothetical-six-person-rule",
+            "kind": "decision_table",
+            "code": "conflict",
+            "calculation_code": "conflict",
+            "value": {
+              "scope": "hypothetical:proposed-AML-design:six-evaluable-people:first-cycle:version1",
+              "version": "assistant-invented-v1",
+              "domain": {
+                "state": "feasible",
+                "blockers": [],
+                "decision": {
+                  "result": "ENTAILED",
+                  "query": "{\"class\":\"AnyOf\",\"parts\":[{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":0.0,\"unit\":\"participant\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":1.0,\"unit\":\"participant\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":2.0,\"unit\":\"participant\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":3.0,\"unit\":\"participant\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":4.0,\"unit\":\"participant\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":5.0,\"unit\":\"participant\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":6.0,\"unit\":\"participant\",\"upper\":null}}]}",
+                  "status": "known",
+                  "proof": [
+                    "domain:DLT-count"
+                  ],
+                  "blockers": []
+                },
+                "basis": [
+                  "domain:DLT-count"
+                ],
+                "guarantee": "conditional_on_declared_table"
+              },
+              "coverage": {
+                "state": "gap",
+                "blockers": [],
+                "decision": {
+                  "result": "UNDETERMINED",
+                  "query": "{\"class\":\"AnyOf\",\"parts\":[{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":0.0,\"unit\":\"participant\",\"upper\":null}},{\"class\":\"AnyOf\",\"parts\":[{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":2.0,\"unit\":\"participant\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":3.0,\"unit\":\"participant\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":4.0,\"unit\":\"participant\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":5.0,\"unit\":\"participant\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":6.0,\"unit\":\"participant\",\"upper\":null}}]}]}",
+                  "status": null,
+                  "proof": [
+                    "domain:DLT-count"
+                  ],
+                  "blockers": [
+                    "undecided_by_constraints"
+                  ]
+                },
+                "basis": [
+                  "zero-or-one",
+                  "two-or-more"
+                ],
+                "guarantee": "conditional_on_declared_table",
+                "uncovered_condition": {
+                  "class": "Not",
+                  "part": {
+                    "class": "AnyOf",
+                    "parts": [
+                      {
+                        "class": "Literal",
+                        "evidence": [],
+                        "polarity": "positive",
+                        "predicate": {
+                          "class": "Predicate",
+                          "key": "DLT",
+                          "kind": "measurement"
+                        },
+                        "qualifiers": {
+                          "class": "Always"
+                        },
+                        "subject": {
+                          "class": "Subject",
+                          "kind": "source_case",
+                          "referent": ""
+                        },
+                        "time": null,
+                        "value": {
+                          "class": "Value",
+                          "comparison": "eq",
+                          "inclusivity": "unspecified",
+                          "kind": "quantity",
+                          "members": [],
+                          "number": 0.0,
+                          "unit": "participant",
+                          "upper": null
+                        }
+                      },
+                      {
+                        "class": "AnyOf",
+                        "parts": [
+                          {
+                            "class": "Literal",
+                            "evidence": [],
+                            "polarity": "positive",
+                            "predicate": {
+                              "class": "Predicate",
+                              "key": "DLT",
+                              "kind": "measurement"
+                            },
+                            "qualifiers": {
+                              "class": "Always"
+                            },
+                            "subject": {
+                              "class": "Subject",
+                              "kind": "source_case",
+                              "referent": ""
+                            },
+                            "time": null,
+                            "value": {
+                              "class": "Value",
+                              "comparison": "eq",
+                              "inclusivity": "unspecified",
+                              "kind": "quantity",
+                              "members": [],
+                              "number": 2.0,
+                              "unit": "participant",
+                              "upper": null
+                            }
+                          },
+                          {
+                            "class": "Literal",
+                            "evidence": [],
+                            "polarity": "positive",
+                            "predicate": {
+                              "class": "Predicate",
+                              "key": "DLT",
+                              "kind": "measurement"
+                            },
+                            "qualifiers": {
+                              "class": "Always"
+                            },
+                            "subject": {
+                              "class": "Subject",
+                              "kind": "source_case",
+                              "referent": ""
+                            },
+                            "time": null,
+                            "value": {
+                              "class": "Value",
+                              "comparison": "eq",
+                              "inclusivity": "unspecified",
+                              "kind": "quantity",
+                              "members": [],
+                              "number": 3.0,
+                              "unit": "participant",
+                              "upper": null
+                            }
+                          },
+                          {
+                            "class": "Literal",
+                            "evidence": [],
+                            "polarity": "positive",
+                            "predicate": {
+                              "class": "Predicate",
+                              "key": "DLT",
+                              "kind": "measurement"
+                            },
+                            "qualifiers": {
+                              "class": "Always"
+                            },
+                            "subject": {
+                              "class": "Subject",
+                              "kind": "source_case",
+                              "referent": ""
+                            },
+                            "time": null,
+                            "value": {
+                              "class": "Value",
+                              "comparison": "eq",
+                              "inclusivity": "unspecified",
+                              "kind": "quantity",
+                              "members": [],
+                              "number": 4.0,
+                              "unit": "participant",
+                              "upper": null
+                            }
+                          },
+                          {
+                            "class": "Literal",
+                            "evidence": [],
+                            "polarity": "positive",
+                            "predicate": {
+                              "class": "Predicate",
+                              "key": "DLT",
+                              "kind": "measurement"
+                            },
+                            "qualifiers": {
+                              "class": "Always"
+                            },
+                            "subject": {
+                              "class": "Subject",
+                              "kind": "source_case",
+                              "referent": ""
+                            },
+                            "time": null,
+                            "value": {
+                              "class": "Value",
+                              "comparison": "eq",
+                              "inclusivity": "unspecified",
+                              "kind": "quantity",
+                              "members": [],
+                              "number": 5.0,
+                              "unit": "participant",
+                              "upper": null
+                            }
+                          },
+                          {
+                            "class": "Literal",
+                            "evidence": [],
+                            "polarity": "positive",
+                            "predicate": {
+                              "class": "Predicate",
+                              "key": "DLT",
+                              "kind": "measurement"
+                            },
+                            "qualifiers": {
+                              "class": "Always"
+                            },
+                            "subject": {
+                              "class": "Subject",
+                              "kind": "source_case",
+                              "referent": ""
+                            },
+                            "time": null,
+                            "value": {
+                              "class": "Value",
+                              "comparison": "eq",
+                              "inclusivity": "unspecified",
+                              "kind": "quantity",
+                              "members": [],
+                              "number": 6.0,
+                              "unit": "participant",
+                              "upper": null
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              },
+              "overlaps": [
+                {
+                  "state": "disjoint",
+                  "blockers": [],
+                  "decision": {
+                    "result": "REFUTED",
+                    "query": "{\"class\":\"AllOf\",\"parts\":[{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":0.0,\"unit\":\"participant\",\"upper\":null}},{\"class\":\"AnyOf\",\"parts\":[{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":2.0,\"unit\":\"participant\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":3.0,\"unit\":\"participant\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":4.0,\"unit\":\"participant\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":5.0,\"unit\":\"participant\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":6.0,\"unit\":\"participant\",\"upper\":null}}]}]}",
+                    "status": "known",
+                    "proof": [],
+                    "blockers": []
+                  },
+                  "basis": [
+                    "zero-or-one",
+                    "two-or-more"
+                  ],
+                  "guarantee": "conditional_on_declared_table",
+                  "rows": [
+                    "zero-or-one",
+                    "two-or-more"
+                  ],
+                  "actions": [
+                    "escalate",
+                    "stop"
+                  ],
+                  "same_action": false
+                }
+              ],
+              "actions": [
+                {
+                  "state": "reachable",
+                  "blockers": [],
+                  "decision": {
+                    "result": "UNDETERMINED",
+                    "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":0.0,\"unit\":\"participant\",\"upper\":null}}",
+                    "status": null,
+                    "proof": [
+                      "domain:DLT-count"
+                    ],
+                    "blockers": [
+                      "undecided_by_constraints"
+                    ]
+                  },
+                  "basis": [
+                    "zero-or-one"
+                  ],
+                  "guarantee": "conditional_on_declared_table",
+                  "action": "escalate"
+                },
+                {
+                  "state": "reachable",
+                  "blockers": [],
+                  "decision": {
+                    "result": "UNDETERMINED",
+                    "query": "{\"class\":\"AnyOf\",\"parts\":[{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":2.0,\"unit\":\"participant\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":3.0,\"unit\":\"participant\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":4.0,\"unit\":\"participant\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":5.0,\"unit\":\"participant\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":6.0,\"unit\":\"participant\",\"upper\":null}}]}",
+                    "status": null,
+                    "proof": [
+                      "domain:DLT-count"
+                    ],
+                    "blockers": [
+                      "undecided_by_constraints"
+                    ]
+                  },
+                  "basis": [
+                    "two-or-more"
+                  ],
+                  "guarantee": "conditional_on_declared_table",
+                  "action": "stop"
+                }
+              ],
+              "witnesses": [],
+              "checks_requested": 5,
+              "checks_executed": 5,
+              "termination": "not_computed_static_table",
+              "operating_characteristics": "not_computed"
+            },
+            "rule": "table.finite_cases:1",
+            "status": "proposed",
+            "basis": [
+              "assistant:invented-table-for-mechanism-acceptance-not-source-evidence-not-clinician-confirmed"
+            ],
+            "support": [
+              {
+                "id": "assistant-invented-table",
+                "status": "proposed",
+                "resolution": "resolved",
+                "basis": [
+                  "assistant:invented-table-for-mechanism-acceptance-not-source-evidence-not-clinician-confirmed"
+                ]
+              }
+            ],
+            "blockers": [
+              "table_uncovered_case"
+            ],
+            "guarantee": "conditional_on_interpretation",
+            "assumed_support": [
+              "assistant-invented-table"
+            ],
+            "role": "active_premise"
+          }
+        ],
+        "signal_checks": []
+      },
+      {
+        "id": "complete-action",
+        "state": "compatible",
+        "queries": [
+          {
+            "id": "adult-age-restriction",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "age",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "ge",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 18.0,
+                "unit": "Years",
+                "upper": null
+              }
+            },
+            "result": "ENTAILED",
+            "decision": {
+              "result": "ENTAILED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+              "status": "known",
+              "proof": [
+                "registry-age-minimumAge"
+              ],
+              "blockers": []
+            },
+            "warrant": {
+              "rule": "entail.decide:1",
+              "guarantee": "conditional_on_interpretation",
+              "status": "known",
+              "assumptions": [],
+              "proof": [
+                "registry-age-minimumAge"
+              ],
+              "blockers": []
+            }
+          }
+        ],
+        "signals": [
+          {
+            "id": "hypothetical-six-person-rule",
+            "kind": "decision_table",
+            "code": "consistent",
+            "calculation_code": "consistent",
+            "value": {
+              "scope": "hypothetical:proposed-AML-design:six-evaluable-people:first-cycle:version1",
+              "version": "assistant-invented-v1",
+              "domain": {
+                "state": "feasible",
+                "blockers": [],
+                "decision": {
+                  "result": "ENTAILED",
+                  "query": "{\"class\":\"AnyOf\",\"parts\":[{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":0.0,\"unit\":\"participant\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":1.0,\"unit\":\"participant\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":2.0,\"unit\":\"participant\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":3.0,\"unit\":\"participant\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":4.0,\"unit\":\"participant\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":5.0,\"unit\":\"participant\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":6.0,\"unit\":\"participant\",\"upper\":null}}]}",
+                  "status": "known",
+                  "proof": [
+                    "domain:DLT-count"
+                  ],
+                  "blockers": []
+                },
+                "basis": [
+                  "domain:DLT-count"
+                ],
+                "guarantee": "conditional_on_declared_table"
+              },
+              "coverage": {
+                "state": "covered",
+                "blockers": [],
+                "decision": {
+                  "result": "ENTAILED",
+                  "query": "{\"class\":\"AnyOf\",\"parts\":[{\"class\":\"AnyOf\",\"parts\":[{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":0.0,\"unit\":\"participant\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":1.0,\"unit\":\"participant\",\"upper\":null}}]},{\"class\":\"AnyOf\",\"parts\":[{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":2.0,\"unit\":\"participant\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":3.0,\"unit\":\"participant\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":4.0,\"unit\":\"participant\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":5.0,\"unit\":\"participant\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":6.0,\"unit\":\"participant\",\"upper\":null}}]}]}",
+                  "status": "known",
+                  "proof": [
+                    "domain:DLT-count"
+                  ],
+                  "blockers": []
+                },
+                "basis": [
+                  "zero-or-one",
+                  "two-or-more"
+                ],
+                "guarantee": "conditional_on_declared_table",
+                "uncovered_condition": {
+                  "class": "Not",
+                  "part": {
+                    "class": "AnyOf",
+                    "parts": [
+                      {
+                        "class": "AnyOf",
+                        "parts": [
+                          {
+                            "class": "Literal",
+                            "evidence": [],
+                            "polarity": "positive",
+                            "predicate": {
+                              "class": "Predicate",
+                              "key": "DLT",
+                              "kind": "measurement"
+                            },
+                            "qualifiers": {
+                              "class": "Always"
+                            },
+                            "subject": {
+                              "class": "Subject",
+                              "kind": "source_case",
+                              "referent": ""
+                            },
+                            "time": null,
+                            "value": {
+                              "class": "Value",
+                              "comparison": "eq",
+                              "inclusivity": "unspecified",
+                              "kind": "quantity",
+                              "members": [],
+                              "number": 0.0,
+                              "unit": "participant",
+                              "upper": null
+                            }
+                          },
+                          {
+                            "class": "Literal",
+                            "evidence": [],
+                            "polarity": "positive",
+                            "predicate": {
+                              "class": "Predicate",
+                              "key": "DLT",
+                              "kind": "measurement"
+                            },
+                            "qualifiers": {
+                              "class": "Always"
+                            },
+                            "subject": {
+                              "class": "Subject",
+                              "kind": "source_case",
+                              "referent": ""
+                            },
+                            "time": null,
+                            "value": {
+                              "class": "Value",
+                              "comparison": "eq",
+                              "inclusivity": "unspecified",
+                              "kind": "quantity",
+                              "members": [],
+                              "number": 1.0,
+                              "unit": "participant",
+                              "upper": null
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "class": "AnyOf",
+                        "parts": [
+                          {
+                            "class": "Literal",
+                            "evidence": [],
+                            "polarity": "positive",
+                            "predicate": {
+                              "class": "Predicate",
+                              "key": "DLT",
+                              "kind": "measurement"
+                            },
+                            "qualifiers": {
+                              "class": "Always"
+                            },
+                            "subject": {
+                              "class": "Subject",
+                              "kind": "source_case",
+                              "referent": ""
+                            },
+                            "time": null,
+                            "value": {
+                              "class": "Value",
+                              "comparison": "eq",
+                              "inclusivity": "unspecified",
+                              "kind": "quantity",
+                              "members": [],
+                              "number": 2.0,
+                              "unit": "participant",
+                              "upper": null
+                            }
+                          },
+                          {
+                            "class": "Literal",
+                            "evidence": [],
+                            "polarity": "positive",
+                            "predicate": {
+                              "class": "Predicate",
+                              "key": "DLT",
+                              "kind": "measurement"
+                            },
+                            "qualifiers": {
+                              "class": "Always"
+                            },
+                            "subject": {
+                              "class": "Subject",
+                              "kind": "source_case",
+                              "referent": ""
+                            },
+                            "time": null,
+                            "value": {
+                              "class": "Value",
+                              "comparison": "eq",
+                              "inclusivity": "unspecified",
+                              "kind": "quantity",
+                              "members": [],
+                              "number": 3.0,
+                              "unit": "participant",
+                              "upper": null
+                            }
+                          },
+                          {
+                            "class": "Literal",
+                            "evidence": [],
+                            "polarity": "positive",
+                            "predicate": {
+                              "class": "Predicate",
+                              "key": "DLT",
+                              "kind": "measurement"
+                            },
+                            "qualifiers": {
+                              "class": "Always"
+                            },
+                            "subject": {
+                              "class": "Subject",
+                              "kind": "source_case",
+                              "referent": ""
+                            },
+                            "time": null,
+                            "value": {
+                              "class": "Value",
+                              "comparison": "eq",
+                              "inclusivity": "unspecified",
+                              "kind": "quantity",
+                              "members": [],
+                              "number": 4.0,
+                              "unit": "participant",
+                              "upper": null
+                            }
+                          },
+                          {
+                            "class": "Literal",
+                            "evidence": [],
+                            "polarity": "positive",
+                            "predicate": {
+                              "class": "Predicate",
+                              "key": "DLT",
+                              "kind": "measurement"
+                            },
+                            "qualifiers": {
+                              "class": "Always"
+                            },
+                            "subject": {
+                              "class": "Subject",
+                              "kind": "source_case",
+                              "referent": ""
+                            },
+                            "time": null,
+                            "value": {
+                              "class": "Value",
+                              "comparison": "eq",
+                              "inclusivity": "unspecified",
+                              "kind": "quantity",
+                              "members": [],
+                              "number": 5.0,
+                              "unit": "participant",
+                              "upper": null
+                            }
+                          },
+                          {
+                            "class": "Literal",
+                            "evidence": [],
+                            "polarity": "positive",
+                            "predicate": {
+                              "class": "Predicate",
+                              "key": "DLT",
+                              "kind": "measurement"
+                            },
+                            "qualifiers": {
+                              "class": "Always"
+                            },
+                            "subject": {
+                              "class": "Subject",
+                              "kind": "source_case",
+                              "referent": ""
+                            },
+                            "time": null,
+                            "value": {
+                              "class": "Value",
+                              "comparison": "eq",
+                              "inclusivity": "unspecified",
+                              "kind": "quantity",
+                              "members": [],
+                              "number": 6.0,
+                              "unit": "participant",
+                              "upper": null
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              },
+              "overlaps": [
+                {
+                  "state": "disjoint",
+                  "blockers": [],
+                  "decision": {
+                    "result": "REFUTED",
+                    "query": "{\"class\":\"AllOf\",\"parts\":[{\"class\":\"AnyOf\",\"parts\":[{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":0.0,\"unit\":\"participant\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":1.0,\"unit\":\"participant\",\"upper\":null}}]},{\"class\":\"AnyOf\",\"parts\":[{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":2.0,\"unit\":\"participant\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":3.0,\"unit\":\"participant\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":4.0,\"unit\":\"participant\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":5.0,\"unit\":\"participant\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":6.0,\"unit\":\"participant\",\"upper\":null}}]}]}",
+                    "status": "known",
+                    "proof": [],
+                    "blockers": []
+                  },
+                  "basis": [
+                    "zero-or-one",
+                    "two-or-more"
+                  ],
+                  "guarantee": "conditional_on_declared_table",
+                  "rows": [
+                    "zero-or-one",
+                    "two-or-more"
+                  ],
+                  "actions": [
+                    "escalate",
+                    "stop"
+                  ],
+                  "same_action": false
+                }
+              ],
+              "actions": [
+                {
+                  "state": "reachable",
+                  "blockers": [],
+                  "decision": {
+                    "result": "UNDETERMINED",
+                    "query": "{\"class\":\"AnyOf\",\"parts\":[{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":0.0,\"unit\":\"participant\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":1.0,\"unit\":\"participant\",\"upper\":null}}]}",
+                    "status": null,
+                    "proof": [
+                      "domain:DLT-count"
+                    ],
+                    "blockers": [
+                      "undecided_by_constraints"
+                    ]
+                  },
+                  "basis": [
+                    "zero-or-one"
+                  ],
+                  "guarantee": "conditional_on_declared_table",
+                  "action": "escalate"
+                },
+                {
+                  "state": "reachable",
+                  "blockers": [],
+                  "decision": {
+                    "result": "UNDETERMINED",
+                    "query": "{\"class\":\"AnyOf\",\"parts\":[{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":2.0,\"unit\":\"participant\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":3.0,\"unit\":\"participant\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":4.0,\"unit\":\"participant\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":5.0,\"unit\":\"participant\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":6.0,\"unit\":\"participant\",\"upper\":null}}]}",
+                    "status": null,
+                    "proof": [
+                      "domain:DLT-count"
+                    ],
+                    "blockers": [
+                      "undecided_by_constraints"
+                    ]
+                  },
+                  "basis": [
+                    "two-or-more"
+                  ],
+                  "guarantee": "conditional_on_declared_table",
+                  "action": "stop"
+                }
+              ],
+              "witnesses": [],
+              "checks_requested": 5,
+              "checks_executed": 5,
+              "termination": "not_computed_static_table",
+              "operating_characteristics": "not_computed"
+            },
+            "rule": "table.finite_cases:1",
+            "status": "proposed",
+            "basis": [
+              "assistant:invented-table-for-mechanism-acceptance-not-source-evidence-not-clinician-confirmed"
+            ],
+            "support": [
+              {
+                "id": "assistant-invented-table",
+                "status": "proposed",
+                "resolution": "resolved",
+                "basis": [
+                  "assistant:invented-table-for-mechanism-acceptance-not-source-evidence-not-clinician-confirmed"
+                ]
+              }
+            ],
+            "blockers": [],
+            "guarantee": "conditional_on_interpretation",
+            "assumed_support": [
+              "assistant-invented-table"
+            ],
+            "role": "active_premise"
+          }
+        ],
+        "signal_checks": []
+      },
+      {
+        "id": "conflicting-actions",
+        "state": "incoherent",
+        "queries": [
+          {
+            "id": "adult-age-restriction",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "age",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "ge",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 18.0,
+                "unit": "Years",
+                "upper": null
+              }
+            },
+            "result": "UNDETERMINED",
+            "decision": {
+              "result": "ENTAILED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+              "status": "known",
+              "proof": [
+                "registry-age-minimumAge"
+              ],
+              "blockers": []
+            },
+            "warrant": {
+              "rule": "entail.decide:1",
+              "guarantee": "conditional_on_interpretation",
+              "status": "known",
+              "assumptions": [],
+              "proof": [
+                "registry-age-minimumAge"
+              ],
+              "blockers": [
+                "interpretation_incoherent"
+              ]
+            }
+          }
+        ],
+        "signals": [
+          {
+            "id": "hypothetical-six-person-rule",
+            "kind": "decision_table",
+            "code": "conflict",
+            "calculation_code": "conflict",
+            "value": {
+              "scope": "hypothetical:proposed-AML-design:six-evaluable-people:first-cycle:version1",
+              "version": "assistant-invented-v1",
+              "domain": {
+                "state": "feasible",
+                "blockers": [],
+                "decision": {
+                  "result": "ENTAILED",
+                  "query": "{\"class\":\"AnyOf\",\"parts\":[{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":0.0,\"unit\":\"participant\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":1.0,\"unit\":\"participant\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":2.0,\"unit\":\"participant\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":3.0,\"unit\":\"participant\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":4.0,\"unit\":\"participant\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":5.0,\"unit\":\"participant\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":6.0,\"unit\":\"participant\",\"upper\":null}}]}",
+                  "status": "known",
+                  "proof": [
+                    "domain:DLT-count"
+                  ],
+                  "blockers": []
+                },
+                "basis": [
+                  "domain:DLT-count"
+                ],
+                "guarantee": "conditional_on_declared_table"
+              },
+              "coverage": {
+                "state": "covered",
+                "blockers": [],
+                "decision": {
+                  "result": "ENTAILED",
+                  "query": "{\"class\":\"AnyOf\",\"parts\":[{\"class\":\"AnyOf\",\"parts\":[{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":0.0,\"unit\":\"participant\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":1.0,\"unit\":\"participant\",\"upper\":null}}]},{\"class\":\"AnyOf\",\"parts\":[{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":1.0,\"unit\":\"participant\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":2.0,\"unit\":\"participant\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":3.0,\"unit\":\"participant\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":4.0,\"unit\":\"participant\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":5.0,\"unit\":\"participant\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":6.0,\"unit\":\"participant\",\"upper\":null}}]}]}",
+                  "status": "known",
+                  "proof": [
+                    "domain:DLT-count"
+                  ],
+                  "blockers": []
+                },
+                "basis": [
+                  "zero-or-one",
+                  "two-or-more"
+                ],
+                "guarantee": "conditional_on_declared_table",
+                "uncovered_condition": {
+                  "class": "Not",
+                  "part": {
+                    "class": "AnyOf",
+                    "parts": [
+                      {
+                        "class": "AnyOf",
+                        "parts": [
+                          {
+                            "class": "Literal",
+                            "evidence": [],
+                            "polarity": "positive",
+                            "predicate": {
+                              "class": "Predicate",
+                              "key": "DLT",
+                              "kind": "measurement"
+                            },
+                            "qualifiers": {
+                              "class": "Always"
+                            },
+                            "subject": {
+                              "class": "Subject",
+                              "kind": "source_case",
+                              "referent": ""
+                            },
+                            "time": null,
+                            "value": {
+                              "class": "Value",
+                              "comparison": "eq",
+                              "inclusivity": "unspecified",
+                              "kind": "quantity",
+                              "members": [],
+                              "number": 0.0,
+                              "unit": "participant",
+                              "upper": null
+                            }
+                          },
+                          {
+                            "class": "Literal",
+                            "evidence": [],
+                            "polarity": "positive",
+                            "predicate": {
+                              "class": "Predicate",
+                              "key": "DLT",
+                              "kind": "measurement"
+                            },
+                            "qualifiers": {
+                              "class": "Always"
+                            },
+                            "subject": {
+                              "class": "Subject",
+                              "kind": "source_case",
+                              "referent": ""
+                            },
+                            "time": null,
+                            "value": {
+                              "class": "Value",
+                              "comparison": "eq",
+                              "inclusivity": "unspecified",
+                              "kind": "quantity",
+                              "members": [],
+                              "number": 1.0,
+                              "unit": "participant",
+                              "upper": null
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "class": "AnyOf",
+                        "parts": [
+                          {
+                            "class": "Literal",
+                            "evidence": [],
+                            "polarity": "positive",
+                            "predicate": {
+                              "class": "Predicate",
+                              "key": "DLT",
+                              "kind": "measurement"
+                            },
+                            "qualifiers": {
+                              "class": "Always"
+                            },
+                            "subject": {
+                              "class": "Subject",
+                              "kind": "source_case",
+                              "referent": ""
+                            },
+                            "time": null,
+                            "value": {
+                              "class": "Value",
+                              "comparison": "eq",
+                              "inclusivity": "unspecified",
+                              "kind": "quantity",
+                              "members": [],
+                              "number": 1.0,
+                              "unit": "participant",
+                              "upper": null
+                            }
+                          },
+                          {
+                            "class": "Literal",
+                            "evidence": [],
+                            "polarity": "positive",
+                            "predicate": {
+                              "class": "Predicate",
+                              "key": "DLT",
+                              "kind": "measurement"
+                            },
+                            "qualifiers": {
+                              "class": "Always"
+                            },
+                            "subject": {
+                              "class": "Subject",
+                              "kind": "source_case",
+                              "referent": ""
+                            },
+                            "time": null,
+                            "value": {
+                              "class": "Value",
+                              "comparison": "eq",
+                              "inclusivity": "unspecified",
+                              "kind": "quantity",
+                              "members": [],
+                              "number": 2.0,
+                              "unit": "participant",
+                              "upper": null
+                            }
+                          },
+                          {
+                            "class": "Literal",
+                            "evidence": [],
+                            "polarity": "positive",
+                            "predicate": {
+                              "class": "Predicate",
+                              "key": "DLT",
+                              "kind": "measurement"
+                            },
+                            "qualifiers": {
+                              "class": "Always"
+                            },
+                            "subject": {
+                              "class": "Subject",
+                              "kind": "source_case",
+                              "referent": ""
+                            },
+                            "time": null,
+                            "value": {
+                              "class": "Value",
+                              "comparison": "eq",
+                              "inclusivity": "unspecified",
+                              "kind": "quantity",
+                              "members": [],
+                              "number": 3.0,
+                              "unit": "participant",
+                              "upper": null
+                            }
+                          },
+                          {
+                            "class": "Literal",
+                            "evidence": [],
+                            "polarity": "positive",
+                            "predicate": {
+                              "class": "Predicate",
+                              "key": "DLT",
+                              "kind": "measurement"
+                            },
+                            "qualifiers": {
+                              "class": "Always"
+                            },
+                            "subject": {
+                              "class": "Subject",
+                              "kind": "source_case",
+                              "referent": ""
+                            },
+                            "time": null,
+                            "value": {
+                              "class": "Value",
+                              "comparison": "eq",
+                              "inclusivity": "unspecified",
+                              "kind": "quantity",
+                              "members": [],
+                              "number": 4.0,
+                              "unit": "participant",
+                              "upper": null
+                            }
+                          },
+                          {
+                            "class": "Literal",
+                            "evidence": [],
+                            "polarity": "positive",
+                            "predicate": {
+                              "class": "Predicate",
+                              "key": "DLT",
+                              "kind": "measurement"
+                            },
+                            "qualifiers": {
+                              "class": "Always"
+                            },
+                            "subject": {
+                              "class": "Subject",
+                              "kind": "source_case",
+                              "referent": ""
+                            },
+                            "time": null,
+                            "value": {
+                              "class": "Value",
+                              "comparison": "eq",
+                              "inclusivity": "unspecified",
+                              "kind": "quantity",
+                              "members": [],
+                              "number": 5.0,
+                              "unit": "participant",
+                              "upper": null
+                            }
+                          },
+                          {
+                            "class": "Literal",
+                            "evidence": [],
+                            "polarity": "positive",
+                            "predicate": {
+                              "class": "Predicate",
+                              "key": "DLT",
+                              "kind": "measurement"
+                            },
+                            "qualifiers": {
+                              "class": "Always"
+                            },
+                            "subject": {
+                              "class": "Subject",
+                              "kind": "source_case",
+                              "referent": ""
+                            },
+                            "time": null,
+                            "value": {
+                              "class": "Value",
+                              "comparison": "eq",
+                              "inclusivity": "unspecified",
+                              "kind": "quantity",
+                              "members": [],
+                              "number": 6.0,
+                              "unit": "participant",
+                              "upper": null
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              },
+              "overlaps": [
+                {
+                  "state": "overlap",
+                  "blockers": [],
+                  "decision": {
+                    "result": "UNDETERMINED",
+                    "query": "{\"class\":\"AllOf\",\"parts\":[{\"class\":\"AnyOf\",\"parts\":[{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":0.0,\"unit\":\"participant\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":1.0,\"unit\":\"participant\",\"upper\":null}}]},{\"class\":\"AnyOf\",\"parts\":[{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":1.0,\"unit\":\"participant\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":2.0,\"unit\":\"participant\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":3.0,\"unit\":\"participant\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":4.0,\"unit\":\"participant\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":5.0,\"unit\":\"participant\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":6.0,\"unit\":\"participant\",\"upper\":null}}]}]}",
+                    "status": null,
+                    "proof": [
+                      "domain:DLT-count"
+                    ],
+                    "blockers": [
+                      "undecided_by_constraints"
+                    ]
+                  },
+                  "basis": [
+                    "zero-or-one",
+                    "two-or-more"
+                  ],
+                  "guarantee": "conditional_on_declared_table",
+                  "rows": [
+                    "zero-or-one",
+                    "two-or-more"
+                  ],
+                  "actions": [
+                    "escalate",
+                    "stop"
+                  ],
+                  "same_action": false
+                }
+              ],
+              "actions": [
+                {
+                  "state": "reachable",
+                  "blockers": [],
+                  "decision": {
+                    "result": "UNDETERMINED",
+                    "query": "{\"class\":\"AnyOf\",\"parts\":[{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":0.0,\"unit\":\"participant\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":1.0,\"unit\":\"participant\",\"upper\":null}}]}",
+                    "status": null,
+                    "proof": [
+                      "domain:DLT-count"
+                    ],
+                    "blockers": [
+                      "undecided_by_constraints"
+                    ]
+                  },
+                  "basis": [
+                    "zero-or-one"
+                  ],
+                  "guarantee": "conditional_on_declared_table",
+                  "action": "escalate"
+                },
+                {
+                  "state": "reachable",
+                  "blockers": [],
+                  "decision": {
+                    "result": "UNDETERMINED",
+                    "query": "{\"class\":\"AnyOf\",\"parts\":[{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":1.0,\"unit\":\"participant\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":2.0,\"unit\":\"participant\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":3.0,\"unit\":\"participant\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":4.0,\"unit\":\"participant\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":5.0,\"unit\":\"participant\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"DLT\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"source_case\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":6.0,\"unit\":\"participant\",\"upper\":null}}]}",
+                    "status": null,
+                    "proof": [
+                      "domain:DLT-count"
+                    ],
+                    "blockers": [
+                      "undecided_by_constraints"
+                    ]
+                  },
+                  "basis": [
+                    "two-or-more"
+                  ],
+                  "guarantee": "conditional_on_declared_table",
+                  "action": "stop"
+                }
+              ],
+              "witnesses": [],
+              "checks_requested": 5,
+              "checks_executed": 5,
+              "termination": "not_computed_static_table",
+              "operating_characteristics": "not_computed"
+            },
+            "rule": "table.finite_cases:1",
+            "status": "proposed",
+            "basis": [
+              "assistant:invented-table-for-mechanism-acceptance-not-source-evidence-not-clinician-confirmed"
+            ],
+            "support": [
+              {
+                "id": "assistant-invented-table",
+                "status": "proposed",
+                "resolution": "resolved",
+                "basis": [
+                  "assistant:invented-table-for-mechanism-acceptance-not-source-evidence-not-clinician-confirmed"
+                ]
+              }
+            ],
+            "blockers": [
+              "table_conflicting_actions"
+            ],
+            "guarantee": "conditional_on_interpretation",
+            "assumed_support": [
+              "assistant-invented-table"
+            ],
+            "role": "active_premise"
+          }
+        ],
+        "signal_checks": []
+      }
+    ]
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "target": "TrialLedger/layer2/design_bounds.py::witness_verdict",
+  "signature": "(support: str, result: str, blockers: list[str], direction: str = accepted) -> str",
+  "module_sha256": "71aafdae577f82ceb97fef98b1110d2d1a0f8f2ffa7041bd693bb7c109885717",
+  "function_text_sha256": "0c96bf25ee7c1e77d8fb7bd7bd6bb4dbf8a866c9927139c339a9c5dcba4a0128",
+  "function_digest": "89ef25b92ecfedfd",
+  "policy": "9+neg.f5a15364c11d",
+  "operator_behaviors": 139,
+  "value_pinned": 139,
+  "equivalences": 0,
+  "authored_locality_cases": 55,
+  "final_focused_suite": 527,
+  "crosshair": {
+    "confirmed": 0,
+    "not_confirmed": 3,
+    "counterexample_reported": false
+  },
+  "scope": "One pure reduction under the tested operator universe; not a whole-module or clinical-truth proof."
+}

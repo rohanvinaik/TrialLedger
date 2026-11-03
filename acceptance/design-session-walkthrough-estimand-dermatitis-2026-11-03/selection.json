@@ -1,0 +1,49 @@
+{
+  "question": "For a proposed Phase2 atopic-dermatitis study, how do the sampled tralokinumab records define response when rescue treatment, treatment discontinuation or an unavailable assessment occurs? What is the clinical target versus a missing-data analysis rule?",
+  "declared_at_utc": "2026-11-03T22:22:49.647501+00:00",
+  "query": {
+    "drug": [
+      "tralokinumab"
+    ],
+    "condition": [
+      "Atopic Dermatitis"
+    ],
+    "phase": [
+      "PHASE2"
+    ],
+    "status": [
+      "COMPLETED"
+    ]
+  },
+  "max_complete_pool": 30,
+  "seed": 3061570227477035330,
+  "selection_rule": "random.Random(seed).sample(sorted(complete_pool),min(3,len(complete_pool))) before selected-content reading; no replacement",
+  "retention": {
+    "packet": "Clinical handoff, full minimal reasoning request/canonical-result pairs, source/query/pool/seed/time/version/hash receipts; under2MB by reducing redundant cases, never by truncating source or result",
+    "local_preview_report": "/Users/rohanvinaik/trialledger-runs/estimand-dermatitis-20261103",
+    "local_bulk": "Full raw/report/workbook/cache/helpers/duplicate wires stayoutsideGit; snapshots requiredbyreasoningrequest remaincomplete"
+  },
+  "runtime_gate": "No new decision-table or estimand execution until root explicitly ROOTREADY for that increment",
+  "epistemic_boundary": "Acquire and read actual complete units; a design label cannot supply rule-table cases; outcome missing-data handling cannot itself supply a complete estimand; hypothetical acceptance tables/definitions must be attributed separately if source insufficient",
+  "identifier_preflight_url": "https://clinicaltrials.gov/api/v2/studies?filter.advanced=%28AREA%5BInterventionName%5D%22tralokinumab%22+OR+AREA%5BInterventionOtherName%5D%22tralokinumab%22%29+AND+AREA%5BPhase%5DPHASE2+AND+AREA%5BOverallStatus%5DCOMPLETED&query.cond=Atopic+Dermatitis&format=json&fields=NCTId&pageSize=1000&countTotal=true",
+  "identifier_preflight_retrieved_at_utc": "2026-11-03T22:23:12.262437+00:00",
+  "identifier_preflight_sha256": "690b5bc23bc646291d8dc492a0368a6ae51b05eb21a5885aaf62bbd4d57160f7",
+  "identifier_response_headers": {
+    "Date": "Tue, 03 Nov 2026 22:23:12 GMT",
+    "content-type": "application/json",
+    "etag": "\"0/0.34.1/mw0io5mw\""
+  },
+  "complete_pool": [
+    "NCT02347176",
+    "NCT03562377",
+    "NCT04556461",
+    "NCT05388760"
+  ],
+  "pool_count": 4,
+  "selected": [
+    "NCT05388760",
+    "NCT02347176",
+    "NCT04556461"
+  ],
+  "gather_whole_pool": true
+}

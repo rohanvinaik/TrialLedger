@@ -1,0 +1,521 @@
+{
+  "version": 1,
+  "reviews": [
+    {
+      "path": "acceptance/design-session-walkthrough-docs-diabetes-2026-11-03/reasoning/NCT04255433-source-reading-cli-result.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "e395d42dc8228a6136b0f97f984857e026594944d6e801b4d59e5b0b3f3f97a9",
+      "reason": "Reviewed complete source-reference object group a056ca995fae7727: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-docs-diabetes-2026-11-03/reasoning/NCT04657016-source-reading-cli-result.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "5e79abab1b314089d5e9d9f8f1ff13c78587e383f47859aade3734aa15db2894",
+      "reason": "Reviewed complete source-reference object group 5355980b2c21ae05: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-docs-diabetes-2026-11-03/reasoning/NCT05260021-age-reading-withdrawn-cli-result.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "353d758ecdce1fa2d39dbe264721067e9be118c5a94e54ab53ffa3e873b1e9d4",
+      "reason": "Reviewed complete source-reference object group 1ae937f55177adba: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-docs-diabetes-2026-11-03/reasoning/NCT05260021-hypothetical-both-drugs-cli-result.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "353d758ecdce1fa2d39dbe264721067e9be118c5a94e54ab53ffa3e873b1e9d4",
+      "reason": "Reviewed complete source-reference object group 1ae937f55177adba: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-docs-diabetes-2026-11-03/reasoning/NCT05260021-source-reading-cli-result.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "353d758ecdce1fa2d39dbe264721067e9be118c5a94e54ab53ffa3e873b1e9d4",
+      "reason": "Reviewed complete source-reference object group 1ae937f55177adba: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-exceptions-inflammatory-bowel-2026-11-03/finding-summary.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "7ef513c0fbf3bdabd97601aec24668d11dca71874a9a56fe6e695d135823281c",
+      "reason": "Reviewed complete source-reference object group d961bac643d381c7: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-exceptions-inflammatory-bowel-2026-11-03/requests/population-context-retracted.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "1f7aedb7369aa60a809db33b34af5aa47458d906169b2449e8c8c04896960e98",
+      "reason": "Reviewed complete source-reference object group c90ec9eb4a48428c: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-exceptions-inflammatory-bowel-2026-11-03/requests/scoped-randomized-maintenance.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "380c9d0ff75c034b806a3dfbd07871b7ed93f4b4c54a1f0bfa0d7b4ed1f34b11",
+      "reason": "Reviewed complete source-reference object group 928c561029531069: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-exceptions-inflammatory-bowel-2026-11-03/results/population-context-retracted.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "1f7aedb7369aa60a809db33b34af5aa47458d906169b2449e8c8c04896960e98",
+      "reason": "Reviewed complete source-reference object group c90ec9eb4a48428c: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-exceptions-inflammatory-bowel-2026-11-03/results/scoped-randomized-maintenance.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "121138adfce5fa031294e1cf83274f63a6d3673e854872ec2bb8bc85008bdfa5",
+      "reason": "Reviewed complete source-reference object group c90ec9eb4a48428c: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-metadata-heart-failure-2026-11-03/findings.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "d646aa19d9900eb75a692ffa5979641b9618824c1db0c568558259fc88e2664b",
+      "reason": "Reviewed complete source-reference object group 9407e8634009e2fb: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-metadata-heart-failure-2026-11-03/findings.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "98b4e5d4867883cd2cce398c147d0aa035a48db4241870ba029989282b9b509a",
+      "reason": "Reviewed complete source-reference object group 8bbcb36f81d315af: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-metadata-heart-failure-2026-11-03/findings.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "b87da968b5d618c62f1a10d9adee67df07c85e6a0cc4420a6ae7bf613f1a94c9",
+      "reason": "Reviewed complete source-reference object group 656033f984ab9ddc: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-metadata-heart-failure-2026-11-03/requests/NCT03057977-EF.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "6646852837d6d1aa6c7ba68ee3193fc8191e073ef94fccf5e32dce88abb4e7c3",
+      "reason": "Reviewed complete source-reference object group 4d5f3cfad38dade6: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-metadata-heart-failure-2026-11-03/requests/NCT03057977-bound1.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "6646852837d6d1aa6c7ba68ee3193fc8191e073ef94fccf5e32dce88abb4e7c3",
+      "reason": "Reviewed complete source-reference object group 4d5f3cfad38dade6: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-metadata-heart-failure-2026-11-03/requests/NCT03332212-cohort-A.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "d53682df772fd085dcf8c59cdc04038ebb0cbab621bd347e7ccc070dda5104e6",
+      "reason": "Reviewed complete source-reference object group 4111fff1f3cea20e: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-metadata-heart-failure-2026-11-03/requests/NCT03332212-cohort-B.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "d53682df772fd085dcf8c59cdc04038ebb0cbab621bd347e7ccc070dda5104e6",
+      "reason": "Reviewed complete source-reference object group 4111fff1f3cea20e: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-metadata-heart-failure-2026-11-03/requests/NCT03448406-EF-background-endpoint.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "4b25cece91665beb6ed3aaa18b147dbdc59f55fbd4602cdb477187671a6764a8",
+      "reason": "Reviewed complete source-reference object group fd7c1acee8c581b6: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-metadata-heart-failure-2026-11-03/requests/partial-source-corpus.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "52b158a8de4b74fb635afe16ca40dff90e830e614240c9fb90d21e7816d6bdfb",
+      "reason": "Reviewed complete source-reference object group 997ab4e9dc7e1350: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-metadata-heart-failure-2026-11-03/requests/partial-source-corpus.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "5dd9d14546a6935c61ed0601a634706b5e1b1c5e2b86dae7d8c79357f6e780cc",
+      "reason": "Reviewed complete source-reference object group 235e7f971ad96ab8: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-metadata-heart-failure-2026-11-03/requests/partial-source-corpus.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "c08ad9d1b9dd1f94f26f0631642fd07795d342695414c6f64e0ce27d81886767",
+      "reason": "Reviewed complete source-reference object group d28980326b781c1b: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-metadata-heart-failure-2026-11-03/results/NCT03057977-EF-cli.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "e74d967423e425d444fe0e5d00646bb19756f33cf440bae09f17a5b880efbd78",
+      "reason": "Reviewed complete source-reference object group aa796c54028f439b: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-metadata-heart-failure-2026-11-03/results/NCT03057977-bound1-cli.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "e74d967423e425d444fe0e5d00646bb19756f33cf440bae09f17a5b880efbd78",
+      "reason": "Reviewed complete source-reference object group aa796c54028f439b: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-metadata-heart-failure-2026-11-03/results/NCT03332212-cohort-A-cli.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "c2c97e381628766ffe323689b7594156b951e508997394a2fd5e4a7dafcd4f89",
+      "reason": "Reviewed complete source-reference object group 54dda30337baec20: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-metadata-heart-failure-2026-11-03/results/NCT03332212-cohort-B-cli.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "c2c97e381628766ffe323689b7594156b951e508997394a2fd5e4a7dafcd4f89",
+      "reason": "Reviewed complete source-reference object group 54dda30337baec20: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-metadata-heart-failure-2026-11-03/results/NCT03448406-EF-background-endpoint-cli.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "13c8df8969d307db63eb1c1a740f2a0818f59391dda2bc6ee1276fa9be48e265",
+      "reason": "Reviewed complete source-reference object group 65c19043d007ad7b: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-metadata-heart-failure-2026-11-03/results/partial-source-corpus-cli.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "aa49d1aba1dadb57dc9875b01a0748d4c884ad245a5936a5ae6bb14592680123",
+      "reason": "Reviewed complete source-reference object group 997ab4e9dc7e1350: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-metadata-heart-failure-2026-11-03/results/partial-source-corpus-cli.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "d94cbe1ec530c6354fc8f74cdfe87cb0d20bac5220049f0388670131265f9c1b",
+      "reason": "Reviewed complete source-reference object group 235e7f971ad96ab8: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-metadata-heart-failure-2026-11-03/results/partial-source-corpus-cli.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "4093c568d27e6780614bb4b40f9111fa4abf8c211234af4b5d8c84fb5e31d9d6",
+      "reason": "Reviewed complete source-reference object group d28980326b781c1b: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "openspec/changes/integrate-warranted-design-session/prototype/reference/registered-age-corpus-request.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "1b834e0d340d3bbe25c163b5e064a670b9e106560676c9d16cbaf27b182bbc04",
+      "reason": "Reviewed complete source-reference object group 1a31462c3aa06623: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "openspec/changes/integrate-warranted-design-session/prototype/reference/registered-age-corpus-request.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "8a7d9f281e32226e119397a6c25980f9a51394dbe0eaf45f52c7dc633b93ee0f",
+      "reason": "Reviewed complete source-reference object group 8d80978f37a933a3: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "openspec/changes/integrate-warranted-design-session/prototype/runs/revision-1/archer-registered-age-result.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "94bc0bebd188d1057fcee6170581ff8dc83a3ea172fa6fac50fbbaba1cc1c557",
+      "reason": "Reviewed complete source-reference object group e75efadb447fee57: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "openspec/changes/integrate-warranted-design-session/prototype/runs/revision-1/ipass-baseline-overlap-request.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "4fb46e16061b80ef9db15301f304ef7d3966861f3fe049cb91edd54d5a438a83",
+      "reason": "Reviewed complete source-reference object group 872c4c609744d381: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "openspec/changes/integrate-warranted-design-session/prototype/runs/revision-1/ipass-baseline-overlap-result.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "217f51c8914f2f16c2a549efa3a426222b719a2ac3eeb1d43bfa7a4f9bfddc98",
+      "reason": "Reviewed complete source-reference object group 872c4c609744d381: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "openspec/changes/integrate-warranted-design-session/prototype/runs/revision-1/ipass-hypothetical-exceptions-48-request.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "88b4003c51e09a9a0f7b80c166fbb90a358402fabfee2e56920231fe17d541f7",
+      "reason": "Reviewed complete source-reference object group 872c4c609744d381: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "openspec/changes/integrate-warranted-design-session/prototype/runs/revision-1/ipass-hypothetical-exceptions-48-result.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "c305250f754a0e4cf6cb2dd529759d635bbd436f9ad3b964e045f7de4c7229f0",
+      "reason": "Reviewed complete source-reference object group 872c4c609744d381: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "openspec/changes/integrate-warranted-design-session/prototype/runs/revision-1/ipass-registered-age-result.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "217f51c8914f2f16c2a549efa3a426222b719a2ac3eeb1d43bfa7a4f9bfddc98",
+      "reason": "Reviewed complete source-reference object group 872c4c609744d381: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "openspec/changes/integrate-warranted-design-session/prototype/runs/revision-1/ipass-schedule-readings-result.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "217f51c8914f2f16c2a549efa3a426222b719a2ac3eeb1d43bfa7a4f9bfddc98",
+      "reason": "Reviewed complete source-reference object group 872c4c609744d381: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "openspec/changes/integrate-warranted-design-session/prototype/runs/revision-1/registered-age-corpus-request.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "1b834e0d340d3bbe25c163b5e064a670b9e106560676c9d16cbaf27b182bbc04",
+      "reason": "Reviewed complete source-reference object group 1a31462c3aa06623: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "openspec/changes/integrate-warranted-design-session/prototype/runs/revision-1/registered-age-corpus-request.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "8a7d9f281e32226e119397a6c25980f9a51394dbe0eaf45f52c7dc633b93ee0f",
+      "reason": "Reviewed complete source-reference object group 8d80978f37a933a3: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "openspec/changes/integrate-warranted-design-session/prototype/runs/revision-1/registered-age-corpus-result.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "e8de0574bb6309ca4cc6c93138916683d33ac013c4f8b4c4c5ef035c2108b8f5",
+      "reason": "Reviewed complete source-reference object group 1a31462c3aa06623: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "openspec/changes/integrate-warranted-design-session/prototype/runs/revision-1/registered-age-corpus-result.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "447ea360093d2ee2d0dbd52fb851e94e7cc38bf79ac73bf2d74179fb167aabf7",
+      "reason": "Reviewed complete source-reference object group 8d80978f37a933a3: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "openspec/changes/integrate-warranted-design-session/prototype/runs/revision-2/archer-registered-age-result.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "94bc0bebd188d1057fcee6170581ff8dc83a3ea172fa6fac50fbbaba1cc1c557",
+      "reason": "Reviewed complete source-reference object group e75efadb447fee57: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "openspec/changes/integrate-warranted-design-session/prototype/runs/revision-2/ipass-baseline-overlap-request.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "4fb46e16061b80ef9db15301f304ef7d3966861f3fe049cb91edd54d5a438a83",
+      "reason": "Reviewed complete source-reference object group 872c4c609744d381: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "openspec/changes/integrate-warranted-design-session/prototype/runs/revision-2/ipass-baseline-overlap-result.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "217f51c8914f2f16c2a549efa3a426222b719a2ac3eeb1d43bfa7a4f9bfddc98",
+      "reason": "Reviewed complete source-reference object group 872c4c609744d381: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "openspec/changes/integrate-warranted-design-session/prototype/runs/revision-2/ipass-hypothetical-exceptions-49-request.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "88b4003c51e09a9a0f7b80c166fbb90a358402fabfee2e56920231fe17d541f7",
+      "reason": "Reviewed complete source-reference object group 872c4c609744d381: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "openspec/changes/integrate-warranted-design-session/prototype/runs/revision-2/ipass-hypothetical-exceptions-49-result.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "c305250f754a0e4cf6cb2dd529759d635bbd436f9ad3b964e045f7de4c7229f0",
+      "reason": "Reviewed complete source-reference object group 872c4c609744d381: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "openspec/changes/integrate-warranted-design-session/prototype/runs/revision-2/ipass-registered-age-result.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "217f51c8914f2f16c2a549efa3a426222b719a2ac3eeb1d43bfa7a4f9bfddc98",
+      "reason": "Reviewed complete source-reference object group 872c4c609744d381: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "openspec/changes/integrate-warranted-design-session/prototype/runs/revision-2/ipass-schedule-readings-result.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "217f51c8914f2f16c2a549efa3a426222b719a2ac3eeb1d43bfa7a4f9bfddc98",
+      "reason": "Reviewed complete source-reference object group 872c4c609744d381: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "openspec/changes/integrate-warranted-design-session/prototype/runs/revision-2/registered-age-corpus-request.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "1b834e0d340d3bbe25c163b5e064a670b9e106560676c9d16cbaf27b182bbc04",
+      "reason": "Reviewed complete source-reference object group 1a31462c3aa06623: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "openspec/changes/integrate-warranted-design-session/prototype/runs/revision-2/registered-age-corpus-request.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "8a7d9f281e32226e119397a6c25980f9a51394dbe0eaf45f52c7dc633b93ee0f",
+      "reason": "Reviewed complete source-reference object group 8d80978f37a933a3: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "openspec/changes/integrate-warranted-design-session/prototype/runs/revision-2/registered-age-corpus-result.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "e8de0574bb6309ca4cc6c93138916683d33ac013c4f8b4c4c5ef035c2108b8f5",
+      "reason": "Reviewed complete source-reference object group 1a31462c3aa06623: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "openspec/changes/integrate-warranted-design-session/prototype/runs/revision-2/registered-age-corpus-result.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "447ea360093d2ee2d0dbd52fb851e94e7cc38bf79ac73bf2d74179fb167aabf7",
+      "reason": "Reviewed complete source-reference object group 8d80978f37a933a3: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "openspec/changes/integrate-warranted-design-session/prototype/session-input.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "70e3bc1f9859c79522b26c642cf384fea557db6b6e0226f4f2c757523db2bc92",
+      "reason": "Reviewed complete source-reference object group 872c4c609744d381: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-population-psoriasis-2026-11-03/finding-summary.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "75925bb28fb91707b3b1266be49c510969cff1aeae4fdae38b61c0378ab9a652",
+      "reason": "Reviewed complete source-reference object group 9c9847420a04753c: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-population-psoriasis-2026-11-03/finding-summary.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "d20a47f05ce317ba35ff423a07d442450e552b62754f157880d94334e8178d31",
+      "reason": "Reviewed complete source-reference object group 9b9809931c00800c: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-population-psoriasis-2026-11-03/requests/baseline-age-cap52.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "44c9b25fe8f8142378ee4297eadbc297460ec31e8349d5acfe7c7a06e2f76f49",
+      "reason": "Reviewed complete source-reference object group 4f4a07dbe0db6984: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-population-psoriasis-2026-11-03/requests/baseline-age-cap53.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "44c9b25fe8f8142378ee4297eadbc297460ec31e8349d5acfe7c7a06e2f76f49",
+      "reason": "Reviewed complete source-reference object group 4f4a07dbe0db6984: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-population-psoriasis-2026-11-03/requests/exception-broad-proposed-cap5.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "44c9b25fe8f8142378ee4297eadbc297460ec31e8349d5acfe7c7a06e2f76f49",
+      "reason": "Reviewed complete source-reference object group 4f4a07dbe0db6984: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-population-psoriasis-2026-11-03/requests/exception-broad-proposed-unknown-ceiling.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "44c9b25fe8f8142378ee4297eadbc297460ec31e8349d5acfe7c7a06e2f76f49",
+      "reason": "Reviewed complete source-reference object group 4f4a07dbe0db6984: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-population-psoriasis-2026-11-03/requests/exception-entry-assumed-cap0.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "44c9b25fe8f8142378ee4297eadbc297460ec31e8349d5acfe7c7a06e2f76f49",
+      "reason": "Reviewed complete source-reference object group 4f4a07dbe0db6984: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-population-psoriasis-2026-11-03/requests/exception-entry-assumed-cap4.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "44c9b25fe8f8142378ee4297eadbc297460ec31e8349d5acfe7c7a06e2f76f49",
+      "reason": "Reviewed complete source-reference object group 4f4a07dbe0db6984: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-population-psoriasis-2026-11-03/requests/exception-entry-proposed-cap0.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "44c9b25fe8f8142378ee4297eadbc297460ec31e8349d5acfe7c7a06e2f76f49",
+      "reason": "Reviewed complete source-reference object group 4f4a07dbe0db6984: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-population-psoriasis-2026-11-03/requests/population-assumed.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "4340f453672e54070ceb4c6b3841cadc52cb056b693a18374e954fa037eed952",
+      "reason": "Reviewed complete source-reference object group 5522417ec8b80cf5: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-population-psoriasis-2026-11-03/requests/population-design-claims.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "4340f453672e54070ceb4c6b3841cadc52cb056b693a18374e954fa037eed952",
+      "reason": "Reviewed complete source-reference object group 5522417ec8b80cf5: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-population-psoriasis-2026-11-03/requests/population-design-wrong-arm.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "4340f453672e54070ceb4c6b3841cadc52cb056b693a18374e954fa037eed952",
+      "reason": "Reviewed complete source-reference object group 5522417ec8b80cf5: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-population-psoriasis-2026-11-03/requests/population-proposed.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "4340f453672e54070ceb4c6b3841cadc52cb056b693a18374e954fa037eed952",
+      "reason": "Reviewed complete source-reference object group 5522417ec8b80cf5: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-population-psoriasis-2026-11-03/requests/population-reversed-direction.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "4340f453672e54070ceb4c6b3841cadc52cb056b693a18374e954fa037eed952",
+      "reason": "Reviewed complete source-reference object group 5522417ec8b80cf5: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-population-psoriasis-2026-11-03/requests/population-subjects-mismatch.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "4340f453672e54070ceb4c6b3841cadc52cb056b693a18374e954fa037eed952",
+      "reason": "Reviewed complete source-reference object group 5522417ec8b80cf5: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-population-psoriasis-2026-11-03/results/baseline-age-cap52.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "44c9b25fe8f8142378ee4297eadbc297460ec31e8349d5acfe7c7a06e2f76f49",
+      "reason": "Reviewed complete source-reference object group 4f4a07dbe0db6984: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-population-psoriasis-2026-11-03/results/baseline-age-cap53.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "44c9b25fe8f8142378ee4297eadbc297460ec31e8349d5acfe7c7a06e2f76f49",
+      "reason": "Reviewed complete source-reference object group 4f4a07dbe0db6984: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-population-psoriasis-2026-11-03/results/exception-broad-proposed-cap5.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "44c9b25fe8f8142378ee4297eadbc297460ec31e8349d5acfe7c7a06e2f76f49",
+      "reason": "Reviewed complete source-reference object group 4f4a07dbe0db6984: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-population-psoriasis-2026-11-03/results/exception-broad-proposed-unknown-ceiling.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "44c9b25fe8f8142378ee4297eadbc297460ec31e8349d5acfe7c7a06e2f76f49",
+      "reason": "Reviewed complete source-reference object group 4f4a07dbe0db6984: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-population-psoriasis-2026-11-03/results/exception-entry-assumed-cap0.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "44c9b25fe8f8142378ee4297eadbc297460ec31e8349d5acfe7c7a06e2f76f49",
+      "reason": "Reviewed complete source-reference object group 4f4a07dbe0db6984: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-population-psoriasis-2026-11-03/results/exception-entry-assumed-cap4.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "44c9b25fe8f8142378ee4297eadbc297460ec31e8349d5acfe7c7a06e2f76f49",
+      "reason": "Reviewed complete source-reference object group 4f4a07dbe0db6984: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-population-psoriasis-2026-11-03/results/exception-entry-proposed-cap0.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "44c9b25fe8f8142378ee4297eadbc297460ec31e8349d5acfe7c7a06e2f76f49",
+      "reason": "Reviewed complete source-reference object group 4f4a07dbe0db6984: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-population-psoriasis-2026-11-03/results/population-assumed.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "478dd0aef077b6adbaa1bdcb226319d3c21a25caa03b2c058433cf66d546637e",
+      "reason": "Reviewed complete source-reference object group 9b9809931c00800c: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-population-psoriasis-2026-11-03/results/population-design-claims.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "4340f453672e54070ceb4c6b3841cadc52cb056b693a18374e954fa037eed952",
+      "reason": "Reviewed complete source-reference object group 5522417ec8b80cf5: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-population-psoriasis-2026-11-03/results/population-design-wrong-arm.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "4340f453672e54070ceb4c6b3841cadc52cb056b693a18374e954fa037eed952",
+      "reason": "Reviewed complete source-reference object group 5522417ec8b80cf5: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-population-psoriasis-2026-11-03/results/population-proposed.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "478dd0aef077b6adbaa1bdcb226319d3c21a25caa03b2c058433cf66d546637e",
+      "reason": "Reviewed complete source-reference object group 9b9809931c00800c: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-population-psoriasis-2026-11-03/results/population-reversed-direction.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "11ee2882c62443c55eee0322c99c5dde0f758b36545941b437e976459a4ffe6d",
+      "reason": "Reviewed complete source-reference object group ff0381d7f48e7a3f: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-population-psoriasis-2026-11-03/results/population-subjects-mismatch.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "478dd0aef077b6adbaa1bdcb226319d3c21a25caa03b2c058433cf66d546637e",
+      "reason": "Reviewed complete source-reference object group 9b9809931c00800c: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-population-psoriasis-2026-11-03/results/source-general-age.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "330c5f21234f5683bd9d6bf8570b1d059da427d44ca0ac88772bf55c9b16f47b",
+      "reason": "Reviewed complete source-reference object group 4f4a07dbe0db6984: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-population-psoriasis-2026-11-03/source-inventory.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "0bffeadc8f4c2ceb992643322d86b11aa4e4e6cfd1aab06c4f39a47db3ad742d",
+      "reason": "Reviewed complete source-reference object group 4f4a07dbe0db6984: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-population-psoriasis-2026-11-03/source-inventory.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "c01ead182312bb0695560e96490a7aaa5a7e4a40922fd4d88245eb221c56e1dd",
+      "reason": "Reviewed complete source-reference object group 230f7a3d27ab4723: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    },
+    {
+      "path": "acceptance/design-session-walkthrough-population-psoriasis-2026-11-03/source-inventory.json",
+      "detector": "Telegram Bot Token",
+      "added_line_sha256": "b035e8205d6f1a7b6d9dbd5d1060cada8d4843bfc3a59c412a958fe01c37069b",
+      "reason": "Reviewed complete source-reference object group 5522417ec8b80cf5: NCT identifier with SHA256/source address or named cohort/event suffix, not a credential."
+    }
+  ]
+}

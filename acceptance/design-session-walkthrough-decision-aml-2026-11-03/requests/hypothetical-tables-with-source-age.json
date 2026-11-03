@@ -1,0 +1,1528 @@
+{
+  "operation": "interpretations",
+  "study_ref": "ctg:NCT03625505:2aedd2487c16532f6d826bec43345d1df52ce352fa5102e10cbabaf92620de2e",
+  "fixed": {
+    "assertions": [
+      {
+        "applicability": {
+          "class": "Always"
+        },
+        "body": {
+          "class": "Literal",
+          "evidence": [
+            {
+              "class": "Evidence",
+              "kind": "record_field",
+              "ref": "ctg:NCT03625505:2aedd2487c16532f6d826bec43345d1df52ce352fa5102e10cbabaf92620de2e#/protocolSection/eligibilityModule/minimumAge"
+            }
+          ],
+          "polarity": "positive",
+          "predicate": {
+            "class": "Predicate",
+            "key": "age",
+            "kind": "measurement"
+          },
+          "qualifiers": {
+            "class": "Always"
+          },
+          "subject": {
+            "class": "Subject",
+            "kind": "participant",
+            "referent": ""
+          },
+          "time": null,
+          "value": {
+            "class": "Value",
+            "comparison": "ge",
+            "inclusivity": "unspecified",
+            "kind": "quantity",
+            "members": [],
+            "number": 18.0,
+            "unit": "Years",
+            "upper": null
+          }
+        },
+        "branch": {
+          "class": "Branch",
+          "node": "unresolved",
+          "path": []
+        },
+        "class": "ScopedAssertion",
+        "cohort": {
+          "class": "Scope",
+          "kind": "all_participants",
+          "parts": [],
+          "ref": ""
+        },
+        "criterion_ref": "ctg:NCT03625505:2aedd2487c16532f6d826bec43345d1df52ce352fa5102e10cbabaf92620de2e#/protocolSection/eligibilityModule/minimumAge",
+        "id": "registry-age-minimumAge",
+        "modality": "required",
+        "resolution": "resolved",
+        "rule": {
+          "answers": [],
+          "class": "Rule",
+          "id": "ctg-structured-general-eligibility-age",
+          "premises": [
+            "ctg:NCT03625505:2aedd2487c16532f6d826bec43345d1df52ce352fa5102e10cbabaf92620de2e#/protocolSection/eligibilityModule/minimumAge"
+          ],
+          "version": "1",
+          "warrants": []
+        },
+        "span": [],
+        "status": "known"
+      }
+    ],
+    "signals": []
+  },
+  "bindings": [],
+  "interpretations": [
+    {
+      "id": "missing-action",
+      "label": "missing-action",
+      "origin": "assistant",
+      "basis": [
+        "assistant:invented-table-not-an-assertion-about-NCT03625505"
+      ],
+      "assumptions": [],
+      "signals": [
+        {
+          "id": "hypothetical-six-person-rule",
+          "kind": "decision_table",
+          "data": {
+            "scope": "hypothetical:proposed-AML-design:six-evaluable-people:first-cycle:version1",
+            "version": "assistant-invented-v1",
+            "domains": [
+              {
+                "id": "DLT-count",
+                "values": [
+                  {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "DLT",
+                      "kind": "measurement"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "source_case",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "eq",
+                      "inclusivity": "unspecified",
+                      "kind": "quantity",
+                      "members": [],
+                      "number": 0.0,
+                      "unit": "participant",
+                      "upper": null
+                    }
+                  },
+                  {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "DLT",
+                      "kind": "measurement"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "source_case",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "eq",
+                      "inclusivity": "unspecified",
+                      "kind": "quantity",
+                      "members": [],
+                      "number": 1.0,
+                      "unit": "participant",
+                      "upper": null
+                    }
+                  },
+                  {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "DLT",
+                      "kind": "measurement"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "source_case",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "eq",
+                      "inclusivity": "unspecified",
+                      "kind": "quantity",
+                      "members": [],
+                      "number": 2.0,
+                      "unit": "participant",
+                      "upper": null
+                    }
+                  },
+                  {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "DLT",
+                      "kind": "measurement"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "source_case",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "eq",
+                      "inclusivity": "unspecified",
+                      "kind": "quantity",
+                      "members": [],
+                      "number": 3.0,
+                      "unit": "participant",
+                      "upper": null
+                    }
+                  },
+                  {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "DLT",
+                      "kind": "measurement"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "source_case",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "eq",
+                      "inclusivity": "unspecified",
+                      "kind": "quantity",
+                      "members": [],
+                      "number": 4.0,
+                      "unit": "participant",
+                      "upper": null
+                    }
+                  },
+                  {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "DLT",
+                      "kind": "measurement"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "source_case",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "eq",
+                      "inclusivity": "unspecified",
+                      "kind": "quantity",
+                      "members": [],
+                      "number": 5.0,
+                      "unit": "participant",
+                      "upper": null
+                    }
+                  },
+                  {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "DLT",
+                      "kind": "measurement"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "source_case",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "eq",
+                      "inclusivity": "unspecified",
+                      "kind": "quantity",
+                      "members": [],
+                      "number": 6.0,
+                      "unit": "participant",
+                      "upper": null
+                    }
+                  }
+                ]
+              }
+            ],
+            "constraints": [],
+            "actions": [
+              "escalate",
+              "stop"
+            ],
+            "rows": [
+              {
+                "id": "zero-or-one",
+                "when": {
+                  "class": "Literal",
+                  "evidence": [],
+                  "polarity": "positive",
+                  "predicate": {
+                    "class": "Predicate",
+                    "key": "DLT",
+                    "kind": "measurement"
+                  },
+                  "qualifiers": {
+                    "class": "Always"
+                  },
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "source_case",
+                    "referent": ""
+                  },
+                  "time": null,
+                  "value": {
+                    "class": "Value",
+                    "comparison": "eq",
+                    "inclusivity": "unspecified",
+                    "kind": "quantity",
+                    "members": [],
+                    "number": 0.0,
+                    "unit": "participant",
+                    "upper": null
+                  }
+                },
+                "action": "escalate"
+              },
+              {
+                "id": "two-or-more",
+                "when": {
+                  "class": "AnyOf",
+                  "parts": [
+                    {
+                      "class": "Literal",
+                      "evidence": [],
+                      "polarity": "positive",
+                      "predicate": {
+                        "class": "Predicate",
+                        "key": "DLT",
+                        "kind": "measurement"
+                      },
+                      "qualifiers": {
+                        "class": "Always"
+                      },
+                      "subject": {
+                        "class": "Subject",
+                        "kind": "source_case",
+                        "referent": ""
+                      },
+                      "time": null,
+                      "value": {
+                        "class": "Value",
+                        "comparison": "eq",
+                        "inclusivity": "unspecified",
+                        "kind": "quantity",
+                        "members": [],
+                        "number": 2.0,
+                        "unit": "participant",
+                        "upper": null
+                      }
+                    },
+                    {
+                      "class": "Literal",
+                      "evidence": [],
+                      "polarity": "positive",
+                      "predicate": {
+                        "class": "Predicate",
+                        "key": "DLT",
+                        "kind": "measurement"
+                      },
+                      "qualifiers": {
+                        "class": "Always"
+                      },
+                      "subject": {
+                        "class": "Subject",
+                        "kind": "source_case",
+                        "referent": ""
+                      },
+                      "time": null,
+                      "value": {
+                        "class": "Value",
+                        "comparison": "eq",
+                        "inclusivity": "unspecified",
+                        "kind": "quantity",
+                        "members": [],
+                        "number": 3.0,
+                        "unit": "participant",
+                        "upper": null
+                      }
+                    },
+                    {
+                      "class": "Literal",
+                      "evidence": [],
+                      "polarity": "positive",
+                      "predicate": {
+                        "class": "Predicate",
+                        "key": "DLT",
+                        "kind": "measurement"
+                      },
+                      "qualifiers": {
+                        "class": "Always"
+                      },
+                      "subject": {
+                        "class": "Subject",
+                        "kind": "source_case",
+                        "referent": ""
+                      },
+                      "time": null,
+                      "value": {
+                        "class": "Value",
+                        "comparison": "eq",
+                        "inclusivity": "unspecified",
+                        "kind": "quantity",
+                        "members": [],
+                        "number": 4.0,
+                        "unit": "participant",
+                        "upper": null
+                      }
+                    },
+                    {
+                      "class": "Literal",
+                      "evidence": [],
+                      "polarity": "positive",
+                      "predicate": {
+                        "class": "Predicate",
+                        "key": "DLT",
+                        "kind": "measurement"
+                      },
+                      "qualifiers": {
+                        "class": "Always"
+                      },
+                      "subject": {
+                        "class": "Subject",
+                        "kind": "source_case",
+                        "referent": ""
+                      },
+                      "time": null,
+                      "value": {
+                        "class": "Value",
+                        "comparison": "eq",
+                        "inclusivity": "unspecified",
+                        "kind": "quantity",
+                        "members": [],
+                        "number": 5.0,
+                        "unit": "participant",
+                        "upper": null
+                      }
+                    },
+                    {
+                      "class": "Literal",
+                      "evidence": [],
+                      "polarity": "positive",
+                      "predicate": {
+                        "class": "Predicate",
+                        "key": "DLT",
+                        "kind": "measurement"
+                      },
+                      "qualifiers": {
+                        "class": "Always"
+                      },
+                      "subject": {
+                        "class": "Subject",
+                        "kind": "source_case",
+                        "referent": ""
+                      },
+                      "time": null,
+                      "value": {
+                        "class": "Value",
+                        "comparison": "eq",
+                        "inclusivity": "unspecified",
+                        "kind": "quantity",
+                        "members": [],
+                        "number": 6.0,
+                        "unit": "participant",
+                        "upper": null
+                      }
+                    }
+                  ]
+                },
+                "action": "stop"
+              }
+            ],
+            "limits": {
+              "solver_bound": 4096,
+              "solver_calls": 256
+            }
+          },
+          "support": [
+            {
+              "id": "assistant-invented-table",
+              "status": "proposed",
+              "resolution": "resolved",
+              "basis": [
+                "assistant:invented-table-for-mechanism-acceptance-not-source-evidence-not-clinician-confirmed"
+              ]
+            }
+          ]
+        }
+      ],
+      "signal_claims": [],
+      "binding_uses": []
+    },
+    {
+      "id": "complete-action",
+      "label": "complete-action",
+      "origin": "assistant",
+      "basis": [
+        "assistant:invented-table-not-an-assertion-about-NCT03625505"
+      ],
+      "assumptions": [],
+      "signals": [
+        {
+          "id": "hypothetical-six-person-rule",
+          "kind": "decision_table",
+          "data": {
+            "scope": "hypothetical:proposed-AML-design:six-evaluable-people:first-cycle:version1",
+            "version": "assistant-invented-v1",
+            "domains": [
+              {
+                "id": "DLT-count",
+                "values": [
+                  {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "DLT",
+                      "kind": "measurement"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "source_case",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "eq",
+                      "inclusivity": "unspecified",
+                      "kind": "quantity",
+                      "members": [],
+                      "number": 0.0,
+                      "unit": "participant",
+                      "upper": null
+                    }
+                  },
+                  {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "DLT",
+                      "kind": "measurement"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "source_case",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "eq",
+                      "inclusivity": "unspecified",
+                      "kind": "quantity",
+                      "members": [],
+                      "number": 1.0,
+                      "unit": "participant",
+                      "upper": null
+                    }
+                  },
+                  {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "DLT",
+                      "kind": "measurement"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "source_case",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "eq",
+                      "inclusivity": "unspecified",
+                      "kind": "quantity",
+                      "members": [],
+                      "number": 2.0,
+                      "unit": "participant",
+                      "upper": null
+                    }
+                  },
+                  {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "DLT",
+                      "kind": "measurement"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "source_case",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "eq",
+                      "inclusivity": "unspecified",
+                      "kind": "quantity",
+                      "members": [],
+                      "number": 3.0,
+                      "unit": "participant",
+                      "upper": null
+                    }
+                  },
+                  {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "DLT",
+                      "kind": "measurement"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "source_case",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "eq",
+                      "inclusivity": "unspecified",
+                      "kind": "quantity",
+                      "members": [],
+                      "number": 4.0,
+                      "unit": "participant",
+                      "upper": null
+                    }
+                  },
+                  {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "DLT",
+                      "kind": "measurement"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "source_case",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "eq",
+                      "inclusivity": "unspecified",
+                      "kind": "quantity",
+                      "members": [],
+                      "number": 5.0,
+                      "unit": "participant",
+                      "upper": null
+                    }
+                  },
+                  {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "DLT",
+                      "kind": "measurement"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "source_case",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "eq",
+                      "inclusivity": "unspecified",
+                      "kind": "quantity",
+                      "members": [],
+                      "number": 6.0,
+                      "unit": "participant",
+                      "upper": null
+                    }
+                  }
+                ]
+              }
+            ],
+            "constraints": [],
+            "actions": [
+              "escalate",
+              "stop"
+            ],
+            "rows": [
+              {
+                "id": "zero-or-one",
+                "when": {
+                  "class": "AnyOf",
+                  "parts": [
+                    {
+                      "class": "Literal",
+                      "evidence": [],
+                      "polarity": "positive",
+                      "predicate": {
+                        "class": "Predicate",
+                        "key": "DLT",
+                        "kind": "measurement"
+                      },
+                      "qualifiers": {
+                        "class": "Always"
+                      },
+                      "subject": {
+                        "class": "Subject",
+                        "kind": "source_case",
+                        "referent": ""
+                      },
+                      "time": null,
+                      "value": {
+                        "class": "Value",
+                        "comparison": "eq",
+                        "inclusivity": "unspecified",
+                        "kind": "quantity",
+                        "members": [],
+                        "number": 0.0,
+                        "unit": "participant",
+                        "upper": null
+                      }
+                    },
+                    {
+                      "class": "Literal",
+                      "evidence": [],
+                      "polarity": "positive",
+                      "predicate": {
+                        "class": "Predicate",
+                        "key": "DLT",
+                        "kind": "measurement"
+                      },
+                      "qualifiers": {
+                        "class": "Always"
+                      },
+                      "subject": {
+                        "class": "Subject",
+                        "kind": "source_case",
+                        "referent": ""
+                      },
+                      "time": null,
+                      "value": {
+                        "class": "Value",
+                        "comparison": "eq",
+                        "inclusivity": "unspecified",
+                        "kind": "quantity",
+                        "members": [],
+                        "number": 1.0,
+                        "unit": "participant",
+                        "upper": null
+                      }
+                    }
+                  ]
+                },
+                "action": "escalate"
+              },
+              {
+                "id": "two-or-more",
+                "when": {
+                  "class": "AnyOf",
+                  "parts": [
+                    {
+                      "class": "Literal",
+                      "evidence": [],
+                      "polarity": "positive",
+                      "predicate": {
+                        "class": "Predicate",
+                        "key": "DLT",
+                        "kind": "measurement"
+                      },
+                      "qualifiers": {
+                        "class": "Always"
+                      },
+                      "subject": {
+                        "class": "Subject",
+                        "kind": "source_case",
+                        "referent": ""
+                      },
+                      "time": null,
+                      "value": {
+                        "class": "Value",
+                        "comparison": "eq",
+                        "inclusivity": "unspecified",
+                        "kind": "quantity",
+                        "members": [],
+                        "number": 2.0,
+                        "unit": "participant",
+                        "upper": null
+                      }
+                    },
+                    {
+                      "class": "Literal",
+                      "evidence": [],
+                      "polarity": "positive",
+                      "predicate": {
+                        "class": "Predicate",
+                        "key": "DLT",
+                        "kind": "measurement"
+                      },
+                      "qualifiers": {
+                        "class": "Always"
+                      },
+                      "subject": {
+                        "class": "Subject",
+                        "kind": "source_case",
+                        "referent": ""
+                      },
+                      "time": null,
+                      "value": {
+                        "class": "Value",
+                        "comparison": "eq",
+                        "inclusivity": "unspecified",
+                        "kind": "quantity",
+                        "members": [],
+                        "number": 3.0,
+                        "unit": "participant",
+                        "upper": null
+                      }
+                    },
+                    {
+                      "class": "Literal",
+                      "evidence": [],
+                      "polarity": "positive",
+                      "predicate": {
+                        "class": "Predicate",
+                        "key": "DLT",
+                        "kind": "measurement"
+                      },
+                      "qualifiers": {
+                        "class": "Always"
+                      },
+                      "subject": {
+                        "class": "Subject",
+                        "kind": "source_case",
+                        "referent": ""
+                      },
+                      "time": null,
+                      "value": {
+                        "class": "Value",
+                        "comparison": "eq",
+                        "inclusivity": "unspecified",
+                        "kind": "quantity",
+                        "members": [],
+                        "number": 4.0,
+                        "unit": "participant",
+                        "upper": null
+                      }
+                    },
+                    {
+                      "class": "Literal",
+                      "evidence": [],
+                      "polarity": "positive",
+                      "predicate": {
+                        "class": "Predicate",
+                        "key": "DLT",
+                        "kind": "measurement"
+                      },
+                      "qualifiers": {
+                        "class": "Always"
+                      },
+                      "subject": {
+                        "class": "Subject",
+                        "kind": "source_case",
+                        "referent": ""
+                      },
+                      "time": null,
+                      "value": {
+                        "class": "Value",
+                        "comparison": "eq",
+                        "inclusivity": "unspecified",
+                        "kind": "quantity",
+                        "members": [],
+                        "number": 5.0,
+                        "unit": "participant",
+                        "upper": null
+                      }
+                    },
+                    {
+                      "class": "Literal",
+                      "evidence": [],
+                      "polarity": "positive",
+                      "predicate": {
+                        "class": "Predicate",
+                        "key": "DLT",
+                        "kind": "measurement"
+                      },
+                      "qualifiers": {
+                        "class": "Always"
+                      },
+                      "subject": {
+                        "class": "Subject",
+                        "kind": "source_case",
+                        "referent": ""
+                      },
+                      "time": null,
+                      "value": {
+                        "class": "Value",
+                        "comparison": "eq",
+                        "inclusivity": "unspecified",
+                        "kind": "quantity",
+                        "members": [],
+                        "number": 6.0,
+                        "unit": "participant",
+                        "upper": null
+                      }
+                    }
+                  ]
+                },
+                "action": "stop"
+              }
+            ],
+            "limits": {
+              "solver_bound": 4096,
+              "solver_calls": 256
+            }
+          },
+          "support": [
+            {
+              "id": "assistant-invented-table",
+              "status": "proposed",
+              "resolution": "resolved",
+              "basis": [
+                "assistant:invented-table-for-mechanism-acceptance-not-source-evidence-not-clinician-confirmed"
+              ]
+            }
+          ]
+        }
+      ],
+      "signal_claims": [],
+      "binding_uses": []
+    },
+    {
+      "id": "conflicting-actions",
+      "label": "conflicting-actions",
+      "origin": "assistant",
+      "basis": [
+        "assistant:invented-table-not-an-assertion-about-NCT03625505"
+      ],
+      "assumptions": [],
+      "signals": [
+        {
+          "id": "hypothetical-six-person-rule",
+          "kind": "decision_table",
+          "data": {
+            "scope": "hypothetical:proposed-AML-design:six-evaluable-people:first-cycle:version1",
+            "version": "assistant-invented-v1",
+            "domains": [
+              {
+                "id": "DLT-count",
+                "values": [
+                  {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "DLT",
+                      "kind": "measurement"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "source_case",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "eq",
+                      "inclusivity": "unspecified",
+                      "kind": "quantity",
+                      "members": [],
+                      "number": 0.0,
+                      "unit": "participant",
+                      "upper": null
+                    }
+                  },
+                  {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "DLT",
+                      "kind": "measurement"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "source_case",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "eq",
+                      "inclusivity": "unspecified",
+                      "kind": "quantity",
+                      "members": [],
+                      "number": 1.0,
+                      "unit": "participant",
+                      "upper": null
+                    }
+                  },
+                  {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "DLT",
+                      "kind": "measurement"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "source_case",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "eq",
+                      "inclusivity": "unspecified",
+                      "kind": "quantity",
+                      "members": [],
+                      "number": 2.0,
+                      "unit": "participant",
+                      "upper": null
+                    }
+                  },
+                  {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "DLT",
+                      "kind": "measurement"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "source_case",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "eq",
+                      "inclusivity": "unspecified",
+                      "kind": "quantity",
+                      "members": [],
+                      "number": 3.0,
+                      "unit": "participant",
+                      "upper": null
+                    }
+                  },
+                  {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "DLT",
+                      "kind": "measurement"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "source_case",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "eq",
+                      "inclusivity": "unspecified",
+                      "kind": "quantity",
+                      "members": [],
+                      "number": 4.0,
+                      "unit": "participant",
+                      "upper": null
+                    }
+                  },
+                  {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "DLT",
+                      "kind": "measurement"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "source_case",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "eq",
+                      "inclusivity": "unspecified",
+                      "kind": "quantity",
+                      "members": [],
+                      "number": 5.0,
+                      "unit": "participant",
+                      "upper": null
+                    }
+                  },
+                  {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "DLT",
+                      "kind": "measurement"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "source_case",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "eq",
+                      "inclusivity": "unspecified",
+                      "kind": "quantity",
+                      "members": [],
+                      "number": 6.0,
+                      "unit": "participant",
+                      "upper": null
+                    }
+                  }
+                ]
+              }
+            ],
+            "constraints": [],
+            "actions": [
+              "escalate",
+              "stop"
+            ],
+            "rows": [
+              {
+                "id": "zero-or-one",
+                "when": {
+                  "class": "AnyOf",
+                  "parts": [
+                    {
+                      "class": "Literal",
+                      "evidence": [],
+                      "polarity": "positive",
+                      "predicate": {
+                        "class": "Predicate",
+                        "key": "DLT",
+                        "kind": "measurement"
+                      },
+                      "qualifiers": {
+                        "class": "Always"
+                      },
+                      "subject": {
+                        "class": "Subject",
+                        "kind": "source_case",
+                        "referent": ""
+                      },
+                      "time": null,
+                      "value": {
+                        "class": "Value",
+                        "comparison": "eq",
+                        "inclusivity": "unspecified",
+                        "kind": "quantity",
+                        "members": [],
+                        "number": 0.0,
+                        "unit": "participant",
+                        "upper": null
+                      }
+                    },
+                    {
+                      "class": "Literal",
+                      "evidence": [],
+                      "polarity": "positive",
+                      "predicate": {
+                        "class": "Predicate",
+                        "key": "DLT",
+                        "kind": "measurement"
+                      },
+                      "qualifiers": {
+                        "class": "Always"
+                      },
+                      "subject": {
+                        "class": "Subject",
+                        "kind": "source_case",
+                        "referent": ""
+                      },
+                      "time": null,
+                      "value": {
+                        "class": "Value",
+                        "comparison": "eq",
+                        "inclusivity": "unspecified",
+                        "kind": "quantity",
+                        "members": [],
+                        "number": 1.0,
+                        "unit": "participant",
+                        "upper": null
+                      }
+                    }
+                  ]
+                },
+                "action": "escalate"
+              },
+              {
+                "id": "two-or-more",
+                "when": {
+                  "class": "AnyOf",
+                  "parts": [
+                    {
+                      "class": "Literal",
+                      "evidence": [],
+                      "polarity": "positive",
+                      "predicate": {
+                        "class": "Predicate",
+                        "key": "DLT",
+                        "kind": "measurement"
+                      },
+                      "qualifiers": {
+                        "class": "Always"
+                      },
+                      "subject": {
+                        "class": "Subject",
+                        "kind": "source_case",
+                        "referent": ""
+                      },
+                      "time": null,
+                      "value": {
+                        "class": "Value",
+                        "comparison": "eq",
+                        "inclusivity": "unspecified",
+                        "kind": "quantity",
+                        "members": [],
+                        "number": 1.0,
+                        "unit": "participant",
+                        "upper": null
+                      }
+                    },
+                    {
+                      "class": "Literal",
+                      "evidence": [],
+                      "polarity": "positive",
+                      "predicate": {
+                        "class": "Predicate",
+                        "key": "DLT",
+                        "kind": "measurement"
+                      },
+                      "qualifiers": {
+                        "class": "Always"
+                      },
+                      "subject": {
+                        "class": "Subject",
+                        "kind": "source_case",
+                        "referent": ""
+                      },
+                      "time": null,
+                      "value": {
+                        "class": "Value",
+                        "comparison": "eq",
+                        "inclusivity": "unspecified",
+                        "kind": "quantity",
+                        "members": [],
+                        "number": 2.0,
+                        "unit": "participant",
+                        "upper": null
+                      }
+                    },
+                    {
+                      "class": "Literal",
+                      "evidence": [],
+                      "polarity": "positive",
+                      "predicate": {
+                        "class": "Predicate",
+                        "key": "DLT",
+                        "kind": "measurement"
+                      },
+                      "qualifiers": {
+                        "class": "Always"
+                      },
+                      "subject": {
+                        "class": "Subject",
+                        "kind": "source_case",
+                        "referent": ""
+                      },
+                      "time": null,
+                      "value": {
+                        "class": "Value",
+                        "comparison": "eq",
+                        "inclusivity": "unspecified",
+                        "kind": "quantity",
+                        "members": [],
+                        "number": 3.0,
+                        "unit": "participant",
+                        "upper": null
+                      }
+                    },
+                    {
+                      "class": "Literal",
+                      "evidence": [],
+                      "polarity": "positive",
+                      "predicate": {
+                        "class": "Predicate",
+                        "key": "DLT",
+                        "kind": "measurement"
+                      },
+                      "qualifiers": {
+                        "class": "Always"
+                      },
+                      "subject": {
+                        "class": "Subject",
+                        "kind": "source_case",
+                        "referent": ""
+                      },
+                      "time": null,
+                      "value": {
+                        "class": "Value",
+                        "comparison": "eq",
+                        "inclusivity": "unspecified",
+                        "kind": "quantity",
+                        "members": [],
+                        "number": 4.0,
+                        "unit": "participant",
+                        "upper": null
+                      }
+                    },
+                    {
+                      "class": "Literal",
+                      "evidence": [],
+                      "polarity": "positive",
+                      "predicate": {
+                        "class": "Predicate",
+                        "key": "DLT",
+                        "kind": "measurement"
+                      },
+                      "qualifiers": {
+                        "class": "Always"
+                      },
+                      "subject": {
+                        "class": "Subject",
+                        "kind": "source_case",
+                        "referent": ""
+                      },
+                      "time": null,
+                      "value": {
+                        "class": "Value",
+                        "comparison": "eq",
+                        "inclusivity": "unspecified",
+                        "kind": "quantity",
+                        "members": [],
+                        "number": 5.0,
+                        "unit": "participant",
+                        "upper": null
+                      }
+                    },
+                    {
+                      "class": "Literal",
+                      "evidence": [],
+                      "polarity": "positive",
+                      "predicate": {
+                        "class": "Predicate",
+                        "key": "DLT",
+                        "kind": "measurement"
+                      },
+                      "qualifiers": {
+                        "class": "Always"
+                      },
+                      "subject": {
+                        "class": "Subject",
+                        "kind": "source_case",
+                        "referent": ""
+                      },
+                      "time": null,
+                      "value": {
+                        "class": "Value",
+                        "comparison": "eq",
+                        "inclusivity": "unspecified",
+                        "kind": "quantity",
+                        "members": [],
+                        "number": 6.0,
+                        "unit": "participant",
+                        "upper": null
+                      }
+                    }
+                  ]
+                },
+                "action": "stop"
+              }
+            ],
+            "limits": {
+              "solver_bound": 4096,
+              "solver_calls": 256
+            }
+          },
+          "support": [
+            {
+              "id": "assistant-invented-table",
+              "status": "proposed",
+              "resolution": "resolved",
+              "basis": [
+                "assistant:invented-table-for-mechanism-acceptance-not-source-evidence-not-clinician-confirmed"
+              ]
+            }
+          ]
+        }
+      ],
+      "signal_claims": [],
+      "binding_uses": []
+    }
+  ],
+  "queries": [
+    {
+      "id": "adult-age-restriction",
+      "body": {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+          "class": "Predicate",
+          "key": "age",
+          "kind": "measurement"
+        },
+        "qualifiers": {
+          "class": "Always"
+        },
+        "subject": {
+          "class": "Subject",
+          "kind": "participant",
+          "referent": ""
+        },
+        "time": null,
+        "value": {
+          "class": "Value",
+          "comparison": "ge",
+          "inclusivity": "unspecified",
+          "kind": "quantity",
+          "members": [],
+          "number": 18,
+          "unit": "Years",
+          "upper": null
+        }
+      }
+    }
+  ]
+}

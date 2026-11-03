@@ -1,0 +1,79 @@
+{
+ "code": "resolved",
+ "check": [
+  "ok",
+  []
+ ],
+ "join": "the names of one slot are joined by OR, the slots by AND",
+ "slots": [
+  {
+   "slot": "drug",
+   "value": [
+    "venetoclax"
+   ],
+   "clause": "(AREA[InterventionName]\"venetoclax\" OR AREA[InterventionOtherName]\"venetoclax\")"
+  },
+  {
+   "slot": "condition",
+   "value": "Acute Myeloid Leukemia",
+   "clause": "Acute Myeloid Leukemia"
+  },
+  {
+   "slot": "phase",
+   "value": [
+    "PHASE1"
+   ],
+   "clause": "AREA[Phase]PHASE1"
+  },
+  {
+   "slot": "status",
+   "value": [
+    "COMPLETED"
+   ],
+   "clause": "AREA[OverallStatus]COMPLETED"
+  }
+ ],
+ "expansions": [
+  {
+   "slot": "drug",
+   "kind": "drug_names",
+   "drug": "venetoclax",
+   "source": "RxNorm",
+   "requests": [
+    "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=venetoclax&search=0",
+    "https://rxnav.nlm.nih.gov/REST/rxcui/1747556/properties.json"
+   ],
+   "code": "ingredient",
+   "names": [
+    [
+     "venetoclax",
+     "request"
+    ]
+   ],
+   "candidates": [],
+   "release": "02-Nov-2026"
+  }
+ ],
+ "lookups": [
+  "https://rxnav.nlm.nih.gov/REST/version.json",
+  "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=venetoclax&search=0",
+  "https://rxnav.nlm.nih.gov/REST/rxcui/1747556/properties.json"
+ ],
+ "pending": [],
+ "stops": [],
+ "query": {
+  "filter.advanced": "(AREA[InterventionName]\"venetoclax\" OR AREA[InterventionOtherName]\"venetoclax\") AND AREA[Phase]PHASE1 AND AREA[OverallStatus]COMPLETED",
+  "query.cond": "Acute Myeloid Leukemia"
+ },
+ "release": [
+  "found",
+  "02-Nov-2026",
+  "https://rxnav.nlm.nih.gov/REST/version.json"
+ ],
+ "release_basis": "version.json asked in the first round and again after the last; release_check holds the code of the comparison (operate.release_check) and both releases",
+ "release_check": [
+  "unchanged",
+  "02-Nov-2026",
+  "02-Nov-2026"
+ ]
+}

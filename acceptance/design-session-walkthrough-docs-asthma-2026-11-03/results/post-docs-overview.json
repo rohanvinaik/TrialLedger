@@ -1,0 +1,171 @@
+{
+  "code": "complete",
+  "operation": "describe",
+  "result": {
+    "basis": "Conditional on the supplied typed premises; their source meaning is not certified by this operation.",
+    "availability": {
+      "built": [
+        "scoped entailment with proof/blockers",
+        "explicit NSCLC coordinate closure",
+        "typed corpus calculations",
+        "baseline witness bounds over declared candidate designs",
+        "typed partial-evidence bounds and graph/dependency checks",
+        "competing interpretation frames with conditional warrants and source-bound applications",
+        "raw-study source anchors and exact age facts feeding isolated proposed interpretation frames",
+        "immutable design sessions with origin-aware projections, decision lists and full revision replay",
+        "hypothetical evidence requests over declared surviving candidates"
+      ],
+      "designed_not_integrated": [
+        "automatic source-to-assertion compilation",
+        "complete brief-to-warranted-protocol workflow"
+      ]
+    },
+    "limits": {
+      "maximum_list_items": 1000,
+      "maximum_corpus_features": 10000,
+      "maximum_assignments": 65536,
+      "unknown_fields": "refused"
+    },
+    "premise_status": {
+      "known": "Given or deduced relative to explicitly supplied premises; this operation does not certify their source meaning.",
+      "interpolated": "A default remains a default; a consequence cannot become stronger than its premises.",
+      "proposed": "A proposal is shown separately and is not an entailment premise."
+    },
+    "discovery": {
+      "overview": {
+        "operation": "describe",
+        "view": "overview"
+      },
+      "entailment": {
+        "operation": "describe",
+        "view": "entailment"
+      },
+      "coordinates": {
+        "operation": "describe",
+        "view": "coordinates"
+      },
+      "corpus": {
+        "operation": "describe",
+        "view": "corpus"
+      },
+      "design_bounds": {
+        "operation": "describe",
+        "view": "design_bounds"
+      },
+      "evidence_requests": {
+        "operation": "describe",
+        "view": "evidence_requests"
+      },
+      "signals": {
+        "operation": "describe",
+        "view": "signals"
+      },
+      "interpretations": {
+        "operation": "describe",
+        "view": "interpretations"
+      },
+      "source_assertions": {
+        "operation": "describe",
+        "view": "source_assertions"
+      },
+      "design_session": {
+        "operation": "describe",
+        "view": "design_session"
+      },
+      "worked_session": {
+        "operation": "describe",
+        "view": "worked_session"
+      },
+      "full": {
+        "operation": "describe",
+        "view": "full"
+      }
+    },
+    "response_metadata": "Per-finding status; details in the focused describe guides.",
+    "clinical_use": "TrialLedger does not make the person's clinical decisions; it finds them. Help the person explore what other trials documented, make each design choice precise, check its consequences and revise it, keeping a decision list of each choice with its evidence and computed consequences (decision_list below). You read the saved evidence and prepare agreed comparison features or premises; the operations compute over them. Read the focused guide, run the appropriate operation and explain the deciding basis and open choices. Update the premises and rerun when a choice changes; save the list and request/result pairs separately when file access permits. The person makes the clinical judgments. The source bridge compiles named structured fields and anchors hypothetical readings; general automatic text compilation and complete protocol generation remain unintegrated.",
+    "decision_list": {
+      "purpose": "TrialLedger does not make the person's clinical decisions; it finds them. The decision list is a design session's main deliverable: each choice that needs clinical judgment, with its evidence assembled and its consequences computed. Keep it as the session proceeds; hand it over at the end.",
+      "entry": {
+        "decision": "The choice in clinical words, e.g. 'What ECOG range do we intend?'",
+        "evidence": "What the compared trials document, with record addresses, and where the registry is silent.",
+        "consequence": "The computed result for each option under consideration, with its deciding premises.",
+        "status": "Open, or chosen by the person (their premise, with its origin)."
+      },
+      "routing": {
+        "something_wrong": "Listed first, as a blocker to resolve before other answers are relied on.",
+        "your_call": "Becomes an entry.",
+        "not_knowable_here": "Recorded as an evidence gap on the entry it affects.",
+        "settled": "Cited as context from the entry it informs."
+      },
+      "revision": "When the person settles a decision, record it as their premise and recompute what depends on it."
+    },
+    "use_cases": [
+      {
+        "question": "Does a proposed inclusion, exclusion or other design choice follow from the premises?",
+        "operation": "entailment"
+      },
+      {
+        "question": "Which NSCLC setting, prior-treatment and gene-selection values remain possible?",
+        "operation": "coordinates"
+      },
+      {
+        "question": "How commonly do the selected comparable records state an element?",
+        "operation": "corpus"
+      },
+      {
+        "question": "Is an element stated more often within a declared drug class than outside it?",
+        "operation": "corpus"
+      },
+      {
+        "question": "Which trials match on our declared comparison features but differ in one shared known design choice?",
+        "operation": "corpus"
+      },
+      {
+        "question": "Is a declared setting/class cell occupied, possibly occupied or empty within this supplied corpus?",
+        "operation": "corpus"
+      },
+      {
+        "question": "How unusual is a present or non-present observation of an explicitly declared expectation?",
+        "operation": "corpus"
+      },
+      {
+        "question": "What can baseline participants rule out about missing eligibility restrictions?",
+        "operation": "design_bounds"
+      },
+      {
+        "question": "What do partial distributions, populations, sequences and prerequisites constrain?",
+        "operation": "signals"
+      },
+      {
+        "question": "What follows under each reading, and which reading violates fixed evidence?",
+        "operation": "interpretations"
+      },
+      {
+        "question": "What does this source establish, and what follows under each proposed reading?",
+        "operation": "source_assertions"
+      },
+      {
+        "question": "Keep our design decisions and recompute what changes when we revise a premise",
+        "operation": "design_session"
+      },
+      {
+        "question": "Which participant evidence would tell the surviving eligibility explanations apart?",
+        "operation": "evidence_requests"
+      }
+    ],
+    "input_shapes": {
+      "describe": {
+        "required": [],
+        "fields": {
+          "view": "overview, entailment, coordinates, corpus, design_bounds, signals, interpretations, source_assertions, worked_session or full"
+        }
+      }
+    }
+  },
+  "problems": [],
+  "metadata": {
+    "version": 1,
+    "kind": "discovery",
+    "findings": []
+  }
+}

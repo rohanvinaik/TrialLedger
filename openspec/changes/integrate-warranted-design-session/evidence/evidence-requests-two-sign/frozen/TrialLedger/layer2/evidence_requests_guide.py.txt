@@ -1,0 +1,244 @@
+"""Discovery for hypothetical evidence requests, with an invented runnable example.
+
+The lead integrates this fragment into `service`/`describe`. Nothing here claims that the operation is
+already reachable through CLI or MCP.
+"""
+
+from __future__ import annotations
+
+import json
+
+from TrialLedger.layer2 import assertions as a
+from TrialLedger.layer2.evidence_requests import LIMITS
+
+
+def _shape(required: tuple[str, ...], fields: dict[str, str]) -> dict:
+    return {"required": required, "fields": fields}
+
+
+INPUTS = {
+    "evidence_requests": _shape(
+        ("study_ref", "candidates", "survivors", "survival_basis", "variables"),
+        {
+            "study_ref": "nonempty study/version reference; all candidates concern this study",
+            "candidates": "array of design_bounds candidate objects {id, assertions}; signal_claims refused",
+            "survivors": "declared surviving candidate ids, e.g. design_bounds remaining; may be empty",
+            "survival_basis": "nonempty references to the analysis or decision that left these survivors",
+            "variables": "nonempty evidence_request_variable array: the represented dimensions to vary",
+            "context": "entry context {cohort, phase, arm}; default open",
+            "signs": "nonempty subset of accepted, rejected; default both",
+            "bound": "integer 1..65536 per participant decision; default 4096",
+            "limits": "optional evidence_request_limits object",
+        },
+    ),
+    "evidence_request_variable": _shape(
+        ("id", "subject", "predicate", "time", "domain"),
+        {
+            "id": "distinct nonempty string",
+            "subject": "tagged Subject equal to the survivors' literals",
+            "predicate": "tagged Predicate equal to the survivors' literals",
+            "time": "tagged TemporalScope equal to the survivors' literals, or null",
+            "domain": "evidence_request_domain; integer scales never produce fractional participants",
+        },
+    ),
+    "evidence_request_domain": _shape(
+        ("kind",),
+        {
+            "kind": "boolean, enum, integer or continuous; other value kinds are refused",
+            "members": "enum: nonempty unique strings; survivor-named members are added",
+            "open": "enum: true adds one 'none of these' cell",
+            "unit": "integer/continuous: unit exactly as written; never converted",
+            "minimum": "integer: inclusive integer; continuous: inclusive number or null (open tail)",
+            "maximum": "integer: inclusive integer; continuous: inclusive number or null (open tail)",
+            "cut_points": "continuous: extra boundary points; survivor thresholds are always included",
+        },
+    ),
+    "evidence_request_limits": _shape(
+        (),
+        {
+            name: f"positive integer; default {default}, hard maximum {maximum}"
+            for name, (default, maximum) in LIMITS.items()
+        },
+    ),
+}
+
+ANSWERS = {
+    "conflict": [
+        "something_wrong",
+        "No consistent survivor remains; resolve the declared family's conflict before seeking evidence.",
+    ],
+    "single_survivor": [
+        "your_call",
+        "One declared candidate remains; no separation is needed, and it is not thereby identified.",
+    ],
+    "separated": [
+        "not_knowable_here",
+        "These hypothetical observations would distinguish the pair if found with their named premises.",
+    ],
+    "no_separator": [
+        "your_call",
+        "No represented participant distinguishes the pair; they agree on every searched profile.",
+    ],
+    "not_separated_in_declared_variables": [
+        "translation",
+        "No separator among the declared variables; the survivors constrain other, unsearched literals.",
+    ],
+    "search_incomplete": [
+        "by_blocker",
+        "Absence is not established: a work limit, solver limit or unresolved premise stopped the search.",
+    ],
+    "truncated": [
+        "by_blocker",
+        "More requests found than returned; raise output limits or narrow pairs. Search is unaffected.",
+    ],
+}
+
+RESULT_GUIDE = {
+    "fields": {
+        "family": "conflict, single_survivor or searched",
+        "survivors": "consistent survivors searched; inconsistent ones are listed separately",
+        "search": "complete or incomplete, with named work-limit causes",
+        "output": "complete or truncated; omitted counts only found requests",
+        "pairs": "per survivor pair: outcome, returned request ids, found count and causes",
+        "requests": "hypothetical rows, least-specified first; never evidence",
+        "representation": "unrepresented declared variables and unsearched survivor constraints",
+        "inconsistent": "declared survivors whose own criteria contradict; input_conflicts names each",
+        "coverage": (
+            "empty_profile_not_representable: a rejection with no known attributes is not a participant "
+            "proposition and belongs to exception evidence; variable_unrepresented:<id>: a declared variable "
+            "matched no survivor literal (a translation problem, never absence)"
+        ),
+    },
+    "request_rows": (
+        "Each row names a profile, an accepted or rejected sign, the candidates it would eliminate or "
+        "accommodate, every complete witness decision, the premises it would need and where such evidence "
+        "might be sought. It carries no count, bridge, basis or status and is never inserted as an "
+        "observation. Supplying a real observation goes through design_bounds with its own standing."
+    ),
+    "signs": (
+        "An accepted witness eliminates a candidate that refutes the profile, even if that candidate has "
+        "further unrepresented criteria. A rejected witness eliminates a candidate under which no completion "
+        "of the profile is ineligible; that needs the candidate to be the complete eligibility rule. "
+        "A partial rejected profile never establishes universal exclusion of the profile."
+    ),
+    "order": (
+        "Least-specified profiles first, then declared variable and cell order. A profile is omitted only "
+        "when a found separator for the same pair, sign and eliminated candidate uses a subset of its "
+        "literals. The order is structural, not clinical utility or evidence availability."
+    ),
+    "limits": (
+        "The declared family does not exhaust real protocols. Corpus silence never supplies a rejected "
+        "witness. No row claims that such evidence exists."
+    ),
+}
+
+
+def _required(identity: str, body: a.Literal) -> dict:
+    rule = a.Rule("invented-candidate", "1", warrants=("user:invented-candidate",))
+    assertion = a.ScopedAssertion(
+        identity,
+        "user:invented-candidate",
+        "required",
+        body,
+        rule=rule,
+        status="known",
+        resolution="resolved",
+    )
+    return json.loads(a.canonical(assertion))
+
+
+def example() -> dict:
+    """Invented: adult ECOG <=2, with or without a marker requirement, after a design_bounds analysis."""
+    participant = a.Subject("participant")
+    age = a.Predicate("measurement", "example_age")
+    scale = a.Predicate("measurement", "example_scale")
+    marker = a.Predicate("demographic", "example_marker")
+    adult = a.Literal(participant, age, a.Value("quantity", "ge", number=18.0, unit="years"))
+    at_most_2 = a.Literal(participant, scale, a.Value("quantity", "le", number=2.0, unit="example_scale"))
+    has_marker = a.Literal(participant, marker, a.Value("boolean", "eq"))
+
+    def plain(model: object) -> dict:
+        return json.loads(a.canonical(model))
+
+    return {
+        "operation": "evidence_requests",
+        "study_ref": "invented:evidence-request-example",
+        "candidates": [
+            {
+                "id": "adult_scale_le_2",
+                "assertions": [_required("adult", adult), _required("scale", at_most_2)],
+            },
+            {
+                "id": "adult_scale_le_2_marker",
+                "assertions": [
+                    _required("adult-m", adult),
+                    _required("scale-m", at_most_2),
+                    _required("marker-m", has_marker),
+                ],
+            },
+        ],
+        "survivors": ["adult_scale_le_2", "adult_scale_le_2_marker"],
+        "survival_basis": ["invented:design_bounds remaining"],
+        "variables": [
+            {
+                "id": "scale",
+                "subject": plain(participant),
+                "predicate": plain(scale),
+                "time": None,
+                "domain": {"kind": "integer", "unit": "example_scale", "minimum": 0, "maximum": 4},
+            },
+            {
+                "id": "marker",
+                "subject": plain(participant),
+                "predicate": plain(marker),
+                "time": None,
+                "domain": {"kind": "boolean"},
+            },
+            {
+                "id": "age",
+                "subject": plain(participant),
+                "predicate": plain(age),
+                "time": None,
+                "domain": {
+                    "kind": "continuous",
+                    "unit": "years",
+                    "minimum": 0,
+                    "maximum": None,
+                    "cut_points": [],
+                },
+            },
+        ],
+    }
+
+
+EXAMPLE_RESULT = (
+    "Invented demonstration: an accepted marker-negative participant would eliminate the marker candidate; "
+    "a rejected adult with a known scale value and unspecified marker would eliminate the marker-free "
+    "candidate, if that candidate is the complete eligibility rule. Neither row is evidence."
+)
+
+
+def extend(description: dict) -> None:
+    """For the lead's integration: join inputs, example, answer and result guides to discovery."""
+    description["availability"]["built"].append(
+        "hypothetical evidence requests over declared surviving candidates"
+    )
+    description["question_vocabulary"].append(
+        {
+            "words": "what evidence would distinguish the remaining eligibility explanations",
+            "computed_by": "evidence_requests over declared survivors and represented variables",
+            "report": "hypothetical profiles and signs, required premises, where to seek; never evidence",
+        }
+    )
+    description["use_cases"].append(
+        {
+            "question": "Which participant evidence would tell the surviving eligibility explanations apart?",
+            "operation": "evidence_requests",
+            "read": "pairs, requests and representation",
+            "meaning": "Investigation requests only; a found observation still needs its own premises.",
+        }
+    )
+    description["examples"]["evidence_requests"] = example()
+    description["example_results"]["evidence_requests"] = EXAMPLE_RESULT
+    description["answer_guide"]["evidence_requests"] = {key: list(value) for key, value in ANSWERS.items()}
+    description["result_guides"]["evidence_requests"] = RESULT_GUIDE

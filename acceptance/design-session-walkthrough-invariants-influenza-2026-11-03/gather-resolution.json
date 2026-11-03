@@ -1,0 +1,79 @@
+{
+ "code": "resolved",
+ "check": [
+  "ok",
+  []
+ ],
+ "join": "the names of one slot are joined by OR, the slots by AND",
+ "slots": [
+  {
+   "slot": "drug",
+   "value": [
+    "oseltamivir"
+   ],
+   "clause": "(AREA[InterventionName]\"oseltamivir\" OR AREA[InterventionOtherName]\"oseltamivir\")"
+  },
+  {
+   "slot": "condition",
+   "value": "Influenza",
+   "clause": "Influenza"
+  },
+  {
+   "slot": "phase",
+   "value": [
+    "PHASE2"
+   ],
+   "clause": "AREA[Phase]PHASE2"
+  },
+  {
+   "slot": "status",
+   "value": [
+    "COMPLETED"
+   ],
+   "clause": "AREA[OverallStatus]COMPLETED"
+  }
+ ],
+ "expansions": [
+  {
+   "slot": "drug",
+   "kind": "drug_names",
+   "drug": "oseltamivir",
+   "source": "RxNorm",
+   "requests": [
+    "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=oseltamivir&search=0",
+    "https://rxnav.nlm.nih.gov/REST/rxcui/260101/properties.json"
+   ],
+   "code": "ingredient",
+   "names": [
+    [
+     "oseltamivir",
+     "request"
+    ]
+   ],
+   "candidates": [],
+   "release": "02-Nov-2026"
+  }
+ ],
+ "lookups": [
+  "https://rxnav.nlm.nih.gov/REST/version.json",
+  "https://rxnav.nlm.nih.gov/REST/rxcui.json?name=oseltamivir&search=0",
+  "https://rxnav.nlm.nih.gov/REST/rxcui/260101/properties.json"
+ ],
+ "pending": [],
+ "stops": [],
+ "query": {
+  "filter.advanced": "(AREA[InterventionName]\"oseltamivir\" OR AREA[InterventionOtherName]\"oseltamivir\") AND AREA[Phase]PHASE2 AND AREA[OverallStatus]COMPLETED",
+  "query.cond": "Influenza"
+ },
+ "release": [
+  "found",
+  "02-Nov-2026",
+  "https://rxnav.nlm.nih.gov/REST/version.json"
+ ],
+ "release_basis": "version.json asked in the first round and again after the last; release_check holds the code of the comparison (operate.release_check) and both releases",
+ "release_check": [
+  "unchanged",
+  "02-Nov-2026",
+  "02-Nov-2026"
+ ]
+}

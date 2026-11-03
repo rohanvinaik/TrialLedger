@@ -1,0 +1,189 @@
+{
+  "operator_inputs": {
+    "required": [
+      "scope",
+      "version",
+      "id",
+      "definitions",
+      "events",
+      "requirements",
+      "collection_plan",
+      "data_state",
+      "dependencies"
+    ],
+    "fields": {
+      "scope": "exact population/study/arm/time/edition identity, no inferred correspondence",
+      "version": "nonempty declared representation version",
+      "id": "nonempty estimand identity",
+      "definitions": "exactly treatment/population/variable/intercurrent_events/summary standing refs",
+      "events": "{id,event_ref,strategy,status,resolution,basis}; event_ref is a standing ref",
+      "requirements": "{id,event,variable,window,role,mode,relevance,rule}; rule is a standing ref",
+      "collection_plan": "{requirement,action,status,resolution,basis}; action collect/stop/unknown",
+      "data_state": "{requirement,mode,state,rule}; rule is a standing ref; facts retain exact modes",
+      "dependencies": "null or exact existing dependency input; scope/version must match"
+    },
+    "standing_ref": "{ref,version,status,resolution,basis}; attributed declarations, not verified truth",
+    "relevance": [
+      "required",
+      "not_required_for_this_estimand",
+      "unresolved"
+    ],
+    "roles": [
+      "observed_measurement",
+      "event_ascertainment",
+      "estimator_input"
+    ],
+    "data_states": [
+      "available",
+      "unavailable",
+      "unknown",
+      "structurally_unavailable"
+    ],
+    "claims": "unsupported: nonempty candidate claims refuse instead of inventing an elimination",
+    "limits": {
+      "events": 128,
+      "requirements": 128,
+      "facts": 256,
+      "basis": 32
+    },
+    "outputs": {
+      "actual_input": [
+        "available",
+        "missing_relevant",
+        "not_required_for_this_estimand",
+        "unresolved",
+        "structurally_unavailable"
+      ],
+      "collection_alignment": [
+        "aligned",
+        "collection_plan_mismatch",
+        "unresolved"
+      ],
+      "estimation": "not_computed for every result"
+    }
+  },
+  "example": {
+    "operation": "signals",
+    "signals": [
+      {
+        "id": "invented-estimand",
+        "kind": "estimand",
+        "data": {
+          "scope": "invented:HF:cohort-A:week12",
+          "version": "1",
+          "id": "invented:week12-policy",
+          "definitions": {
+            "intercurrent_events": {
+              "ref": "invented:intercurrent_events",
+              "version": "1",
+              "status": "known",
+              "resolution": "resolved",
+              "basis": [
+                "invented:declared-example-not-registry-evidence"
+              ]
+            },
+            "population": {
+              "ref": "invented:population",
+              "version": "1",
+              "status": "known",
+              "resolution": "resolved",
+              "basis": [
+                "invented:declared-example-not-registry-evidence"
+              ]
+            },
+            "summary": {
+              "ref": "invented:summary",
+              "version": "1",
+              "status": "known",
+              "resolution": "resolved",
+              "basis": [
+                "invented:declared-example-not-registry-evidence"
+              ]
+            },
+            "treatment": {
+              "ref": "invented:treatment",
+              "version": "1",
+              "status": "known",
+              "resolution": "resolved",
+              "basis": [
+                "invented:declared-example-not-registry-evidence"
+              ]
+            },
+            "variable": {
+              "ref": "invented:variable",
+              "version": "1",
+              "status": "known",
+              "resolution": "resolved",
+              "basis": [
+                "invented:declared-example-not-registry-evidence"
+              ]
+            }
+          },
+          "events": [
+            {
+              "id": "discontinuation",
+              "event_ref": {
+                "ref": "invented:treatment-discontinuation",
+                "version": "1",
+                "status": "known",
+                "resolution": "resolved",
+                "basis": [
+                  "invented:declared-example-not-registry-evidence"
+                ]
+              },
+              "strategy": "treatment_policy",
+              "status": "known",
+              "resolution": "resolved",
+              "basis": [
+                "invented:chosen-event-handling"
+              ]
+            }
+          ],
+          "requirements": [
+            {
+              "id": "week12",
+              "event": "discontinuation",
+              "variable": "invented:variable",
+              "window": "invented:week12-regardless-of-discontinuation",
+              "role": "observed_measurement",
+              "mode": "observed",
+              "relevance": "required",
+              "rule": {
+                "ref": "invented:week12-relevance",
+                "version": "1",
+                "status": "known",
+                "resolution": "resolved",
+                "basis": [
+                  "invented:declared-example-not-registry-evidence"
+                ]
+              }
+            }
+          ],
+          "collection_plan": [
+            {
+              "requirement": "week12",
+              "action": "stop",
+              "status": "known",
+              "resolution": "resolved",
+              "basis": [
+                "invented:stop-after-discontinuation"
+              ]
+            }
+          ],
+          "data_state": [],
+          "dependencies": null
+        },
+        "support": [
+          {
+            "id": "invented-inputs",
+            "status": "known",
+            "resolution": "resolved",
+            "basis": [
+              "user:invented-typed-demonstration-not-clinical-evidence"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

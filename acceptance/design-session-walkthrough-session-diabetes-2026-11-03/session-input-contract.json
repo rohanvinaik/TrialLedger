@@ -1,0 +1,576 @@
+{
+  "input_shapes": {
+    "design_session": {
+      "required": [
+        "operation",
+        "session",
+        "previous"
+      ],
+      "fields": {
+        "operation": "design_session",
+        "session": "session v1",
+        "previous": "null or exactly {session,result,expected_result_digest}; prior result is /result, not envelope"
+      }
+    },
+    "session": {
+      "required": [
+        "analyses",
+        "decisions",
+        "id",
+        "limits",
+        "parent_digest",
+        "premises",
+        "revision",
+        "schema_version",
+        "sources",
+        "target"
+      ],
+      "fields": {
+        "schema_version": 1,
+        "id": "stable ID",
+        "revision": "nonempty distinct revision ID",
+        "parent_digest": "null initially; exact previous session canonical SHA256",
+        "target": "target",
+        "sources": "source[]",
+        "premises": "premise[]",
+        "analyses": "analysis[]",
+        "decisions": "decision[]",
+        "limits": {
+          "max_analyses": 128,
+          "max_premises": 1000,
+          "max_sources": 64,
+          "max_decisions": 128,
+          "max_expanded_items": 10000,
+          "max_solver_work": 10000000,
+          "max_output_bytes": 16000000
+        }
+      }
+    },
+    "target": {
+      "required": [
+        "kind",
+        "ref",
+        "scope"
+      ],
+      "fields": {
+        "kind": [
+          "new_trial",
+          "historical"
+        ],
+        "ref": "nonempty identity",
+        "scope": "exact {study,population,arm,time,version}, each nonempty string"
+      }
+    },
+    "source": {
+      "required": [
+        "id",
+        "study",
+        "expected_digest"
+      ],
+      "fields": {
+        "id": "local source ID",
+        "study": "complete retained NIH v2 study",
+        "expected_digest": "exact source.snapshot digest"
+      }
+    },
+    "premise": {
+      "required": [
+        "id",
+        "kind",
+        "payload",
+        "origin",
+        "depends_on"
+      ],
+      "fields": {
+        "kind": [
+          "assertion",
+          "binding",
+          "candidate",
+          "coordinate_evidence",
+          "corpus_trial",
+          "derived_assertion",
+          "observation",
+          "signal",
+          "source_assertion"
+        ],
+        "payload": "existing typed owner shape; special shapes below",
+        "origin": "origin",
+        "depends_on": "actual claimed support premise IDs; full analysis inputs separately remain replay dependencies"
+      }
+    },
+    "origin": {
+      "required": [
+        "kind",
+        "ref",
+        "source",
+        "analysis"
+      ],
+      "fields": {
+        "kind": [
+          "source_rule",
+          "source_interpretation",
+          "user_choice",
+          "hypothesis",
+          "derived"
+        ],
+        "ref": "nonempty attributed reference; source readings require actual digest-bound URI#RFCpointer",
+        "source": "source ID or null",
+        "analysis": "producer analysis ID only for derived, otherwise null"
+      }
+    },
+    "analysis": {
+      "required": [
+        "id",
+        "operation",
+        "target",
+        "parameters",
+        "uses"
+      ],
+      "fields": {
+        "operation": [
+          "coordinates",
+          "corpus",
+          "design_bounds",
+          "entailment",
+          "interpretations",
+          "signals",
+          "source_assertions"
+        ],
+        "target": "exact target object",
+        "parameters": "existing operation fields excluding operation, fixed and owned slots",
+        "uses": "use[]"
+      }
+    },
+    "use": {
+      "required": [
+        "premise",
+        "slot",
+        "projection"
+      ],
+      "fields": {
+        "premise": "premise ID, or source ID for source_study",
+        "slot": [
+          "assertions",
+          "bindings",
+          "candidates",
+          "evidence",
+          "fixed_assertions",
+          "fixed_signals",
+          "observations",
+          "signals",
+          "study",
+          "trials"
+        ],
+        "projection": [
+          "identity",
+          "source_study",
+          "coordinate_evidence_identity",
+          "corpus_trial"
+        ]
+      }
+    },
+    "source_assertion_payload": {
+      "required": [
+        "source",
+        "assertion"
+      ],
+      "fields": {
+        "source": "source ID",
+        "assertion": "actual compiled source_assertions fixed-floor ID"
+      }
+    },
+    "derived_assertion_payload": {
+      "required": [
+        "analysis",
+        "query"
+      ],
+      "fields": {
+        "analysis": "ordinary entailment producer ID",
+        "query": "exact actual proposition; only admitted ENTAILED/REFUTED projects, preserving context scope"
+      }
+    },
+    "coordinate_evidence_payload": {
+      "required": [
+        "evidence",
+        "standing"
+      ],
+      "fields": {
+        "evidence": "existing NSCLC coordinate shape without standing",
+        "standing": "existing {status,resolution,basis}"
+      }
+    },
+    "corpus_trial_payload": {
+      "required": [
+        "source",
+        "stratum",
+        "feature_uses",
+        "metadata"
+      ],
+      "fields": {
+        "source": "same exact source ID as every feature origin",
+        "stratum": "explicit comparison stratum",
+        "feature_uses": "[{premise,projection}], projections registered_general_age_to_corpus/documented_assertion_to_corpus",
+        "metadata": "only sponsor/classes/setting_domain/class_unresolved/eligibility_content/coverage/representation/predicates/start_year; pending unless named feature support exists"
+      }
+    },
+    "decision": {
+      "required": [
+        "id",
+        "question",
+        "target",
+        "coverage",
+        "alternatives",
+        "selected"
+      ],
+      "fields": {
+        "coverage": [
+          "represented_restriction",
+          "declared_design"
+        ],
+        "alternatives": "2–16 distinct queries: [{id,label,analysis,query}]",
+        "selected": "null or {alternative,origin:user,basis:[nonempty references]}"
+      }
+    }
+  },
+  "result_guide": {
+    "result/analyses": "Actual named child requests/results, full replay dependencies and digests.",
+    "result/decisions": "Questions, effective alternative warrants, selections, open alternatives and budgeted actual pairwise distinguishing requests/results.",
+    "previous_fresh": "Both snapshots freshly replayed; stored bytes are digest checked, never a cache.",
+    "diff": "Stable source/premise/effective-premise/analysis/decision IDs classified new, withdrawn, changed or unchanged.",
+    "work": "Cumulative child calls, expanded JSON items and conservative solver assignment reservations, not observed CPU time.",
+    "limits": "Underlying strict finite JSON caps the entire request at 4 MiB/depth64/100000 nodes before preparation. Declared lower aggregate limits and final output limit also apply. An empty session is zero-check inspection.",
+    "standing": "Each alternative feasibility_status uses its actual effective deciding warrant; UNDETERMINED feasibility uses accepted considered premises. Decision standing uses a strongest sufficient actual pair, all sole-survivor deciding alternatives, or checked selected option. Unknown stays null. Deciding origin_refs and complete input_origins remain separate; selected origin is explicitly user_choice.",
+    "epistemology": [
+      "Caller labels do not verify clinical truth or confirmation. Source facts, readings, user choices, hypotheses and computations retain distinct origins.",
+      "A new-trial restriction requires explicit user adoption. Historical source projections require target.scope.study equal to the actual ctg:NCT:digest study_ref.",
+      "Only actual claimed support and effective deciding warrants weaken a finding. Every analysis input remains a replay dependency even if absent from a minimal proof.",
+      "Corpus signatures compare exact representations, not semantically equivalent clinical criteria; counts remain descriptive.",
+      "Derived ordinary conclusions retain producer cohort/arm/phase context. No hypothetical interpretation frame can become an ordinary derived assertion."
+    ],
+    "fields": {
+      "schema_version": "Closed session representation version",
+      "session_id": "Stable session identity",
+      "revision": "Immutable revision identity",
+      "session_digest": "Canonical complete snapshot fingerprint",
+      "target": "Declared clinical question identity and scope",
+      "sources": "Complete retained snapshots, identities and mechanically compiled fixed floors",
+      "premises": "Submitted typed premises and attributed origins",
+      "effective_premises": "Prepared premises after actual support and origin checks",
+      "dependency_graph": "Complete replay dependencies, distinct from sufficient proof subsets",
+      "analyses": "Complete prepared child requests, results, digests and dependencies",
+      "projection_ledger": "Named transformations and their precise warrant boundaries",
+      "decisions": "Declared questions, actual alternative checks and their local support",
+      "limits": "Declared aggregate work and output bounds",
+      "limits_of_claim": "Represented scope and remaining epistemic boundaries"
+    }
+  },
+  "example": {
+    "operation": "design_session",
+    "session": {
+      "schema_version": 1,
+      "id": "design",
+      "revision": "one",
+      "parent_digest": null,
+      "target": {
+        "kind": "new_trial",
+        "ref": "draft",
+        "scope": {
+          "study": "draft",
+          "population": "general",
+          "arm": "all",
+          "time": "entry",
+          "version": "v1"
+        }
+      },
+      "sources": [],
+      "premises": [
+        {
+          "id": "adult",
+          "kind": "assertion",
+          "payload": {
+            "applicability": {
+              "class": "Always"
+            },
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "age",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "ge",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 18.0,
+                "unit": "Years",
+                "upper": null
+              }
+            },
+            "branch": {
+              "class": "Branch",
+              "node": "unresolved",
+              "path": []
+            },
+            "class": "ScopedAssertion",
+            "cohort": {
+              "class": "Scope",
+              "kind": "all_participants",
+              "parts": [],
+              "ref": ""
+            },
+            "criterion_ref": "user:adult",
+            "id": "adult",
+            "modality": "required",
+            "resolution": "resolved",
+            "rule": {
+              "answers": [],
+              "class": "Rule",
+              "id": "user-explicit",
+              "premises": [],
+              "version": "1",
+              "warrants": []
+            },
+            "span": [],
+            "status": "known"
+          },
+          "origin": {
+            "kind": "user_choice",
+            "ref": "user:adult",
+            "source": null,
+            "analysis": null
+          },
+          "depends_on": []
+        }
+      ],
+      "analyses": [
+        {
+          "id": "older",
+          "operation": "entailment",
+          "target": {
+            "kind": "new_trial",
+            "ref": "draft",
+            "scope": {
+              "study": "draft",
+              "population": "general",
+              "arm": "all",
+              "time": "entry",
+              "version": "v1"
+            }
+          },
+          "parameters": {
+            "query": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "age",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "ge",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 65.0,
+                "unit": "Years",
+                "upper": null
+              }
+            },
+            "bound": 128
+          },
+          "uses": [
+            {
+              "premise": "adult",
+              "slot": "assertions",
+              "projection": "identity"
+            }
+          ]
+        },
+        {
+          "id": "younger",
+          "operation": "entailment",
+          "target": {
+            "kind": "new_trial",
+            "ref": "draft",
+            "scope": {
+              "study": "draft",
+              "population": "general",
+              "arm": "all",
+              "time": "entry",
+              "version": "v1"
+            }
+          },
+          "parameters": {
+            "query": {
+              "class": "Not",
+              "part": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "age",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "ge",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 65.0,
+                  "unit": "Years",
+                  "upper": null
+                }
+              }
+            },
+            "bound": 128
+          },
+          "uses": [
+            {
+              "premise": "adult",
+              "slot": "assertions",
+              "projection": "identity"
+            }
+          ]
+        }
+      ],
+      "decisions": [
+        {
+          "id": "age-policy",
+          "question": "Should the represented age restriction require age 65?",
+          "target": {
+            "kind": "new_trial",
+            "ref": "draft",
+            "scope": {
+              "study": "draft",
+              "population": "general",
+              "arm": "all",
+              "time": "entry",
+              "version": "v1"
+            }
+          },
+          "coverage": "represented_restriction",
+          "alternatives": [
+            {
+              "id": "older",
+              "label": "65 or older",
+              "analysis": "older",
+              "query": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "age",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "ge",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 65.0,
+                  "unit": "Years",
+                  "upper": null
+                }
+              }
+            },
+            {
+              "id": "younger",
+              "label": "Below 65",
+              "analysis": "younger",
+              "query": {
+                "class": "Not",
+                "part": {
+                  "class": "Literal",
+                  "evidence": [],
+                  "polarity": "positive",
+                  "predicate": {
+                    "class": "Predicate",
+                    "key": "age",
+                    "kind": "measurement"
+                  },
+                  "qualifiers": {
+                    "class": "Always"
+                  },
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "participant",
+                    "referent": ""
+                  },
+                  "time": null,
+                  "value": {
+                    "class": "Value",
+                    "comparison": "ge",
+                    "inclusivity": "unspecified",
+                    "kind": "quantity",
+                    "members": [],
+                    "number": 65.0,
+                    "unit": "Years",
+                    "upper": null
+                  }
+                }
+              }
+            }
+          ],
+          "selected": null
+        }
+      ],
+      "limits": {
+        "max_analyses": 128,
+        "max_premises": 1000,
+        "max_sources": 64,
+        "max_decisions": 128,
+        "max_expanded_items": 10000,
+        "max_solver_work": 10000000,
+        "max_output_bytes": 16000000
+      }
+    },
+    "previous": null
+  }
+}

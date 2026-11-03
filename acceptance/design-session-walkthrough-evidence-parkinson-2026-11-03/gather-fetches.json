@@ -1,0 +1,44 @@
+[
+ {
+  "file": "version-start.json",
+  "url": "https://clinicaltrials.gov/api/v2/version",
+  "save_as": "bodies/version-start.json",
+  "why": "version_start",
+  "params": {}
+ },
+ {
+  "file": "ids-001.json",
+  "url": "https://clinicaltrials.gov/api/v2/studies?filter.advanced=%28AREA%5BInterventionName%5D%22levodopa%22+OR+AREA%5BInterventionOtherName%5D%22levodopa%22%29+AND+AREA%5BPhase%5DPHASE4+AND+AREA%5BOverallStatus%5DCOMPLETED&query.cond=Parkinson+Disease&format=json&markupFormat=markdown&countTotal=true&pageSize=1000&fields=NCTId",
+  "save_as": "bodies/ids-001.json",
+  "why": "id_page",
+  "params": {
+   "filter.advanced": "(AREA[InterventionName]\"levodopa\" OR AREA[InterventionOtherName]\"levodopa\") AND AREA[Phase]PHASE4 AND AREA[OverallStatus]COMPLETED",
+   "query.cond": "Parkinson Disease",
+   "format": "json",
+   "markupFormat": "markdown",
+   "countTotal": "true",
+   "pageSize": "1000",
+   "fields": "NCTId"
+  }
+ },
+ {
+  "file": "studies-001.json",
+  "url": "https://clinicaltrials.gov/api/v2/studies?filter.ids=NCT00906828%2CNCT00391898%2CNCT01683253%2CNCT00888186%2CNCT00914134%2CNCT04821830%2CNCT00485069%2CNCT01494532%2CNCT01770145%2CNCT00141518%2CNCT02847442%2CNCT04990284%2CNCT03111485%2CNCT02769793%2CNCT02741947%2CNCT00153972%2CNCT02480803%2CNCT00373087%2CNCT00125567%2CNCT00399477%2CNCT00219284%2CNCT00272688%2CNCT00143026%2CNCT00590122&format=json&markupFormat=markdown&countTotal=true&pageSize=100",
+  "save_as": "bodies/studies-001.json",
+  "why": "studies_batch",
+  "params": {
+   "filter.ids": "NCT00906828,NCT00391898,NCT01683253,NCT00888186,NCT00914134,NCT04821830,NCT00485069,NCT01494532,NCT01770145,NCT00141518,NCT02847442,NCT04990284,NCT03111485,NCT02769793,NCT02741947,NCT00153972,NCT02480803,NCT00373087,NCT00125567,NCT00399477,NCT00219284,NCT00272688,NCT00143026,NCT00590122",
+   "format": "json",
+   "markupFormat": "markdown",
+   "countTotal": "true",
+   "pageSize": "100"
+  }
+ },
+ {
+  "file": "version-end.json",
+  "url": "https://clinicaltrials.gov/api/v2/version",
+  "save_as": "bodies/version-end.json",
+  "why": "version_end",
+  "params": {}
+ }
+]

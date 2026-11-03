@@ -1,0 +1,471 @@
+{
+  "code": "complete",
+  "operation": "signals",
+  "result": {
+    "basis": "Conditional on the supplied typed premises; their source meaning is not certified by this operation.",
+    "premises": [
+      {
+        "id": "extension-stages",
+        "kind": "stages",
+        "data": {
+          "study": "NCT00227305",
+          "snapshot": "d6bbc9510449a2f50fad07ada797b8a61c6ce122bcfe198b4f4106e684518340",
+          "resolution": "resolved",
+          "stages": [
+            {
+              "id": "enrolled",
+              "population": "FG000:enrolled",
+              "arm": "FG000",
+              "time": "extension-entry",
+              "unit": "person",
+              "total": 381
+            },
+            {
+              "id": "dosed",
+              "population": "FG000:drug-received-safety",
+              "arm": "FG000",
+              "time": "drug-received",
+              "unit": "person",
+              "total": 380
+            },
+            {
+              "id": "completed",
+              "population": "FG000:completed26weeks",
+              "arm": "FG000",
+              "time": "week26-completion",
+              "unit": "person",
+              "total": 237
+            }
+          ],
+          "transitions": [
+            {
+              "id": "entry-to-dose",
+              "source": "enrolled",
+              "target": "dosed",
+              "relation": "documented_subset",
+              "scope": {
+                "study": "NCT00227305",
+                "snapshot": "d6bbc9510449a2f50fad07ada797b8a61c6ce122bcfe198b4f4106e684518340",
+                "source_population": "FG000:enrolled",
+                "target_population": "FG000:drug-received-safety",
+                "source_arm": "FG000",
+                "target_arm": "FG000",
+                "source_time": "extension-entry",
+                "target_time": "drug-received",
+                "unit": "person"
+              },
+              "status": "interpolated",
+              "resolution": "resolved",
+              "basis": [
+                "ctg:NCT00227305:d6bbc9510449a2f50fad07ada797b8a61c6ce122bcfe198b4f4106e684518340#/resultsSection/participantFlowModule/periods/0",
+                "assistant:explicit-hypothetical-person-lineage-sensitivity-not-clinician-confirmed"
+              ],
+              "gate_ref": "ctg:NCT00227305:d6bbc9510449a2f50fad07ada797b8a61c6ce122bcfe198b4f4106e684518340#/resultsSection/participantFlowModule/periods/0/milestones"
+            },
+            {
+              "id": "entry-to-completion",
+              "source": "enrolled",
+              "target": "completed",
+              "relation": "documented_subset",
+              "scope": {
+                "study": "NCT00227305",
+                "snapshot": "d6bbc9510449a2f50fad07ada797b8a61c6ce122bcfe198b4f4106e684518340",
+                "source_population": "FG000:enrolled",
+                "target_population": "FG000:completed26weeks",
+                "source_arm": "FG000",
+                "target_arm": "FG000",
+                "source_time": "extension-entry",
+                "target_time": "week26-completion",
+                "unit": "person"
+              },
+              "status": "interpolated",
+              "resolution": "resolved",
+              "basis": [
+                "ctg:NCT00227305:d6bbc9510449a2f50fad07ada797b8a61c6ce122bcfe198b4f4106e684518340#/resultsSection/participantFlowModule/periods/0",
+                "assistant:explicit-hypothetical-person-lineage-sensitivity-not-clinician-confirmed"
+              ],
+              "gate_ref": "ctg:NCT00227305:d6bbc9510449a2f50fad07ada797b8a61c6ce122bcfe198b4f4106e684518340#/resultsSection/participantFlowModule/periods/0/milestones"
+            }
+          ]
+        },
+        "support": [
+          {
+            "id": "retained-flow-counts",
+            "status": "known",
+            "resolution": "resolved",
+            "basis": [
+              "ctg:NCT00227305:d6bbc9510449a2f50fad07ada797b8a61c6ce122bcfe198b4f4106e684518340#/resultsSection/participantFlowModule/groups/0",
+              "ctg:NCT00227305:d6bbc9510449a2f50fad07ada797b8a61c6ce122bcfe198b4f4106e684518340#/resultsSection/participantFlowModule/periods/0",
+              "assistant:explicit-numSubjects-to-person-count-encoding-not-person-lineage"
+            ]
+          }
+        ]
+      }
+    ],
+    "signals": [
+      {
+        "id": "extension-stages",
+        "kind": "stages",
+        "code": "consistent",
+        "calculation_code": "consistent",
+        "value": {
+          "study": "NCT00227305",
+          "snapshot": "d6bbc9510449a2f50fad07ada797b8a61c6ce122bcfe198b4f4106e684518340",
+          "stages": [
+            {
+              "id": "completed",
+              "population": "FG000:completed26weeks",
+              "arm": "FG000",
+              "time": "week26-completion",
+              "unit": "person",
+              "total": 237
+            },
+            {
+              "id": "dosed",
+              "population": "FG000:drug-received-safety",
+              "arm": "FG000",
+              "time": "drug-received",
+              "unit": "person",
+              "total": 380
+            },
+            {
+              "id": "enrolled",
+              "population": "FG000:enrolled",
+              "arm": "FG000",
+              "time": "extension-entry",
+              "unit": "person",
+              "total": 381
+            }
+          ],
+          "transitions": [
+            {
+              "id": "entry-to-completion",
+              "source": "enrolled",
+              "target": "completed",
+              "code": "bounded",
+              "status": "interpolated",
+              "basis": [
+                "ctg:NCT00227305:d6bbc9510449a2f50fad07ada797b8a61c6ce122bcfe198b4f4106e684518340#/resultsSection/participantFlowModule/periods/0",
+                "assistant:explicit-hypothetical-person-lineage-sensitivity-not-clinician-confirmed"
+              ],
+              "declaration": {
+                "id": "entry-to-completion",
+                "source": "enrolled",
+                "target": "completed",
+                "relation": "documented_subset",
+                "scope": {
+                  "study": "NCT00227305",
+                  "snapshot": "d6bbc9510449a2f50fad07ada797b8a61c6ce122bcfe198b4f4106e684518340",
+                  "source_population": "FG000:enrolled",
+                  "target_population": "FG000:completed26weeks",
+                  "source_arm": "FG000",
+                  "target_arm": "FG000",
+                  "source_time": "extension-entry",
+                  "target_time": "week26-completion",
+                  "unit": "person"
+                },
+                "status": "interpolated",
+                "resolution": "resolved",
+                "basis": [
+                  "ctg:NCT00227305:d6bbc9510449a2f50fad07ada797b8a61c6ce122bcfe198b4f4106e684518340#/resultsSection/participantFlowModule/periods/0",
+                  "assistant:explicit-hypothetical-person-lineage-sensitivity-not-clinician-confirmed"
+                ],
+                "gate_ref": "ctg:NCT00227305:d6bbc9510449a2f50fad07ada797b8a61c6ce122bcfe198b4f4106e684518340#/resultsSection/participantFlowModule/periods/0/milestones"
+              },
+              "source_stage": {
+                "id": "enrolled",
+                "population": "FG000:enrolled",
+                "arm": "FG000",
+                "time": "extension-entry",
+                "unit": "person",
+                "total": 381
+              },
+              "target_stage": {
+                "id": "completed",
+                "population": "FG000:completed26weeks",
+                "arm": "FG000",
+                "time": "week26-completion",
+                "unit": "person",
+                "total": 237
+              },
+              "claims": [],
+              "population_request": {
+                "universe": "stage-parent:NCT00227305:d6bbc9510449a2f50fad07ada797b8a61c6ce122bcfe198b4f4106e684518340:enrolled",
+                "alignment": "confirmed",
+                "total": 381,
+                "parent_ref": "enrolled",
+                "subset_relation": "confirmed",
+                "subset": {
+                  "ref": "completed",
+                  "universe": "stage-parent:NCT00227305:d6bbc9510449a2f50fad07ada797b8a61c6ce122bcfe198b4f4106e684518340:enrolled",
+                  "lower": 237,
+                  "upper": 237
+                }
+              },
+              "population_result": {
+                "code": "bounded",
+                "value": {
+                  "universe": "stage-parent:NCT00227305:d6bbc9510449a2f50fad07ada797b8a61c6ce122bcfe198b4f4106e684518340:enrolled",
+                  "total": 381,
+                  "counts": [
+                    {
+                      "id": "enrolled",
+                      "lower": 381,
+                      "upper": 381
+                    },
+                    {
+                      "id": "completed",
+                      "lower": 237,
+                      "upper": 237
+                    },
+                    {
+                      "id": "outside",
+                      "lower": 144,
+                      "upper": 144
+                    }
+                  ],
+                  "witnesses": [
+                    {
+                      "id": "enrolled",
+                      "lower": 381,
+                      "upper": 381,
+                      "expression": {
+                        "kind": "all_of",
+                        "refs": [
+                          "enrolled"
+                        ]
+                      }
+                    },
+                    {
+                      "id": "completed",
+                      "lower": 237,
+                      "upper": 237,
+                      "expression": {
+                        "kind": "all_of",
+                        "refs": [
+                          "completed"
+                        ]
+                      }
+                    },
+                    {
+                      "id": "outside",
+                      "lower": 144,
+                      "upper": 144,
+                      "expression": {
+                        "kind": "difference",
+                        "refs": [
+                          "enrolled",
+                          "completed"
+                        ]
+                      }
+                    }
+                  ]
+                },
+                "blockers": [],
+                "rule": "numeric.population:1"
+              },
+              "blockers": [],
+              "rule": "stages.explicit_subset:1",
+              "guarantee": "count_compatibility_conditional_on_supplied_relation_not_individual_membership"
+            },
+            {
+              "id": "entry-to-dose",
+              "source": "enrolled",
+              "target": "dosed",
+              "code": "bounded",
+              "status": "interpolated",
+              "basis": [
+                "ctg:NCT00227305:d6bbc9510449a2f50fad07ada797b8a61c6ce122bcfe198b4f4106e684518340#/resultsSection/participantFlowModule/periods/0",
+                "assistant:explicit-hypothetical-person-lineage-sensitivity-not-clinician-confirmed"
+              ],
+              "declaration": {
+                "id": "entry-to-dose",
+                "source": "enrolled",
+                "target": "dosed",
+                "relation": "documented_subset",
+                "scope": {
+                  "study": "NCT00227305",
+                  "snapshot": "d6bbc9510449a2f50fad07ada797b8a61c6ce122bcfe198b4f4106e684518340",
+                  "source_population": "FG000:enrolled",
+                  "target_population": "FG000:drug-received-safety",
+                  "source_arm": "FG000",
+                  "target_arm": "FG000",
+                  "source_time": "extension-entry",
+                  "target_time": "drug-received",
+                  "unit": "person"
+                },
+                "status": "interpolated",
+                "resolution": "resolved",
+                "basis": [
+                  "ctg:NCT00227305:d6bbc9510449a2f50fad07ada797b8a61c6ce122bcfe198b4f4106e684518340#/resultsSection/participantFlowModule/periods/0",
+                  "assistant:explicit-hypothetical-person-lineage-sensitivity-not-clinician-confirmed"
+                ],
+                "gate_ref": "ctg:NCT00227305:d6bbc9510449a2f50fad07ada797b8a61c6ce122bcfe198b4f4106e684518340#/resultsSection/participantFlowModule/periods/0/milestones"
+              },
+              "source_stage": {
+                "id": "enrolled",
+                "population": "FG000:enrolled",
+                "arm": "FG000",
+                "time": "extension-entry",
+                "unit": "person",
+                "total": 381
+              },
+              "target_stage": {
+                "id": "dosed",
+                "population": "FG000:drug-received-safety",
+                "arm": "FG000",
+                "time": "drug-received",
+                "unit": "person",
+                "total": 380
+              },
+              "claims": [],
+              "population_request": {
+                "universe": "stage-parent:NCT00227305:d6bbc9510449a2f50fad07ada797b8a61c6ce122bcfe198b4f4106e684518340:enrolled",
+                "alignment": "confirmed",
+                "total": 381,
+                "parent_ref": "enrolled",
+                "subset_relation": "confirmed",
+                "subset": {
+                  "ref": "dosed",
+                  "universe": "stage-parent:NCT00227305:d6bbc9510449a2f50fad07ada797b8a61c6ce122bcfe198b4f4106e684518340:enrolled",
+                  "lower": 380,
+                  "upper": 380
+                }
+              },
+              "population_result": {
+                "code": "bounded",
+                "value": {
+                  "universe": "stage-parent:NCT00227305:d6bbc9510449a2f50fad07ada797b8a61c6ce122bcfe198b4f4106e684518340:enrolled",
+                  "total": 381,
+                  "counts": [
+                    {
+                      "id": "enrolled",
+                      "lower": 381,
+                      "upper": 381
+                    },
+                    {
+                      "id": "dosed",
+                      "lower": 380,
+                      "upper": 380
+                    },
+                    {
+                      "id": "outside",
+                      "lower": 1,
+                      "upper": 1
+                    }
+                  ],
+                  "witnesses": [
+                    {
+                      "id": "enrolled",
+                      "lower": 381,
+                      "upper": 381,
+                      "expression": {
+                        "kind": "all_of",
+                        "refs": [
+                          "enrolled"
+                        ]
+                      }
+                    },
+                    {
+                      "id": "dosed",
+                      "lower": 380,
+                      "upper": 380,
+                      "expression": {
+                        "kind": "all_of",
+                        "refs": [
+                          "dosed"
+                        ]
+                      }
+                    },
+                    {
+                      "id": "outside",
+                      "lower": 1,
+                      "upper": 1,
+                      "expression": {
+                        "kind": "difference",
+                        "refs": [
+                          "enrolled",
+                          "dosed"
+                        ]
+                      }
+                    }
+                  ]
+                },
+                "blockers": [],
+                "rule": "numeric.population:1"
+              },
+              "blockers": [],
+              "rule": "stages.explicit_subset:1",
+              "guarantee": "count_compatibility_conditional_on_supplied_relation_not_individual_membership"
+            }
+          ],
+          "witnesses": []
+        },
+        "rule": "stages.explicit_subset:1",
+        "status": "interpolated",
+        "basis": [
+          "ctg:NCT00227305:d6bbc9510449a2f50fad07ada797b8a61c6ce122bcfe198b4f4106e684518340#/resultsSection/participantFlowModule/groups/0",
+          "ctg:NCT00227305:d6bbc9510449a2f50fad07ada797b8a61c6ce122bcfe198b4f4106e684518340#/resultsSection/participantFlowModule/periods/0",
+          "assistant:explicit-numSubjects-to-person-count-encoding-not-person-lineage"
+        ],
+        "support": [
+          {
+            "id": "retained-flow-counts",
+            "status": "known",
+            "resolution": "resolved",
+            "basis": [
+              "ctg:NCT00227305:d6bbc9510449a2f50fad07ada797b8a61c6ce122bcfe198b4f4106e684518340#/resultsSection/participantFlowModule/groups/0",
+              "ctg:NCT00227305:d6bbc9510449a2f50fad07ada797b8a61c6ce122bcfe198b4f4106e684518340#/resultsSection/participantFlowModule/periods/0",
+              "assistant:explicit-numSubjects-to-person-count-encoding-not-person-lineage"
+            ]
+          }
+        ],
+        "blockers": [],
+        "operator_support": {
+          "status": "interpolated",
+          "determining_ids": [
+            "entry-to-completion",
+            "entry-to-dose"
+          ]
+        }
+      }
+    ],
+    "limits": "Typed, source-bound partial evidence; no clinical text interpretation or source mutation."
+  },
+  "problems": [],
+  "metadata": {
+    "version": 1,
+    "kind": "reasoning",
+    "findings": [
+      {
+        "path": "/result/signals/0",
+        "kind": "signal",
+        "logical_result": "consistent",
+        "standing": "interpolated",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional"
+      },
+      {
+        "path": "/result/signals/0/value/transitions/0",
+        "kind": "stage_transition",
+        "logical_result": "bounded",
+        "standing": "interpolated",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional",
+        "support_path": "/result/signals/0/value/transitions/0/declaration"
+      },
+      {
+        "path": "/result/signals/0/value/transitions/1",
+        "kind": "stage_transition",
+        "logical_result": "bounded",
+        "standing": "interpolated",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional",
+        "support_path": "/result/signals/0/value/transitions/1/declaration"
+      }
+    ]
+  }
+}

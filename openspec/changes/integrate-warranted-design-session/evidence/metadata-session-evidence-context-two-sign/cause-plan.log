@@ -1,0 +1,17 @@
+──────────────────────────────────────────────────────────────────────────────
+TrialLedger/layer2/result_semantics.py — plan · 22 regions · 12 constructive · 8 ambiguous · 0 destructive · 2 silent (clean 2 · unread 0)   (advisory — static, writes nothing to your project)
+
+  funded               0 of 12 constructive · budget 500 DOF-proxy · spent 0
+                       nothing funded — every constructive region is excluded below, by name
+
+  residual             every exclusion named: unpinned 12 · escalated 8 · silent 2
+  · converge first     12 constructive region(s) have no current contract — style waits: TrialLedger/layer2/result_semantics.py::_estimand_findings, TrialLedger/layer2/result_semantics.py::metadata, TrialLedger/layer2/result_semantics.py::_corpus  (+9 more in the report)
+  · yours              8 AMBIGUOUS — one lens each, or the two signs disagree; the driver's call: record it with `flag <region> --style --leave|--proceed`, or ground it with converge
+
+  · unexamined         what this plan did not propose is UNEXAMINED, not approved
+                       regime — unread: it needs a live mutation profile this static plan never runs
+                       fences held at 0 — the form-censor spine (§5.3) is unbuilt, so DESTRUCTIVE is unexercised
+                       recognizers — 5 template(s); a region with no match is a library gap, not a clean bill
+  · full report        .detective/reports/plan_TrialLedger_layer2_result_semantics_py.txt
+
+FINAL plan TrialLedger/layer2/result_semantics.py: 0 funded · 12 constructive · 8 escalated · 0 fenced · 2 silent (clean 2 · unread 0) · advisory — writes no project files

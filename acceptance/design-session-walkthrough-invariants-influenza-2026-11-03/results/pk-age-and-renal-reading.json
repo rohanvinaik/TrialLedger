@@ -1,0 +1,1719 @@
+{
+  "code": "complete",
+  "operation": "source_assertions",
+  "result": {
+    "source": {
+      "nct": "NCT01179919",
+      "digest": "e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529",
+      "study_ref": "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529",
+      "version": "e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529",
+      "last_update": {
+        "date": "2017-02-09",
+        "type": "ESTIMATED"
+      }
+    },
+    "anchors": [
+      {
+        "id": "eligibility",
+        "address": "/protocolSection/eligibilityModule/eligibilityCriteria",
+        "digest": "e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529",
+        "value": "Inclusion Criteria:\n\n* males and females, 18 to 50 years of age\n* non-smoking or light-smoking (≤5 cigarettes per day) volunteers\n* BMI ≥ 40 kg/m2\n* female subjects of childbearing potential either surgically sterilized, using an effective method of contraception (diaphragm, cervical cap,condom) or agree to abstain from sex from time of pre-study screening, during entire study period and 1 week following the study period.\n\nExclusion Criteria:\n\n* history of significant hypersensitivity reaction to oseltamivir\n* history of gastric bypass surgical procedure\n* history of significant clinical illness requiring pharmacological management\n* abnormal serum electrolyte or complete blood count requiring further clinical work-up\n* transaminases (AST or ALT) \\>2.5 x upper limit of normal\n* estimated creatinine clearance \\<50 mL/min (Cockcroft-Gault equation)\n* positive urine pregnancy test (if female)\n* abnormal electrocardiogram (ECG) as judged by study physician\n* unable to tolerate venipuncture and multiple blood draws\n* clinically significant abnormal physical examination defined as a physical finding requiring further clinical work-up",
+        "ref": "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:1145",
+        "source": {
+          "ref": "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529",
+          "version": "e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529",
+          "address": "/protocolSection/eligibilityModule/eligibilityCriteria",
+          "digest": "e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529"
+        },
+        "code": "located",
+        "span": {
+          "start": 0,
+          "end": 1145,
+          "text": "Inclusion Criteria:\n\n* males and females, 18 to 50 years of age\n* non-smoking or light-smoking (≤5 cigarettes per day) volunteers\n* BMI ≥ 40 kg/m2\n* female subjects of childbearing potential either surgically sterilized, using an effective method of contraception (diaphragm, cervical cap,condom) or agree to abstain from sex from time of pre-study screening, during entire study period and 1 week following the study period.\n\nExclusion Criteria:\n\n* history of significant hypersensitivity reaction to oseltamivir\n* history of gastric bypass surgical procedure\n* history of significant clinical illness requiring pharmacological management\n* abnormal serum electrolyte or complete blood count requiring further clinical work-up\n* transaminases (AST or ALT) \\>2.5 x upper limit of normal\n* estimated creatinine clearance \\<50 mL/min (Cockcroft-Gault equation)\n* positive urine pregnancy test (if female)\n* abnormal electrocardiogram (ECG) as judged by study physician\n* unable to tolerate venipuncture and multiple blood draws\n* clinically significant abnormal physical examination defined as a physical finding requiring further clinical work-up"
+        }
+      },
+      {
+        "id": "arms",
+        "address": "/protocolSection/armsInterventionsModule",
+        "digest": "e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529",
+        "value": {
+          "armGroups": [
+            {
+              "label": "Oseltamivir Dosed Group",
+              "type": "EXPERIMENTAL",
+              "description": "Oseltamivir 75 mg by mouth every 12 hours for 9 doses",
+              "interventionNames": [
+                "Drug: Oseltamivir"
+              ]
+            }
+          ],
+          "interventions": [
+            {
+              "type": "DRUG",
+              "name": "Oseltamivir",
+              "description": "Capsule, 75 mg by mouth for 9 doses",
+              "armGroupLabels": [
+                "Oseltamivir Dosed Group"
+              ],
+              "otherNames": [
+                "Tamiflu"
+              ]
+            }
+          ]
+        },
+        "ref": "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/protocolSection/armsInterventionsModule",
+        "source": {
+          "ref": "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529",
+          "version": "e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529",
+          "address": "/protocolSection/armsInterventionsModule",
+          "digest": "e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529"
+        },
+        "code": "located"
+      },
+      {
+        "id": "outcomes",
+        "address": "/protocolSection/outcomesModule",
+        "digest": "e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529",
+        "value": {
+          "primaryOutcomes": [
+            {
+              "measure": "Steady-State AUC of Oseltamivir Carboxylate",
+              "description": "AUC is the area under the concentration-time curve. This is measured as concentration in nanograms of oseltamivir carboxylate per milliliter of plasma multiplied by time in hours (hour\\*ng/mL)",
+              "timeFrame": "6 days"
+            }
+          ],
+          "secondaryOutcomes": [
+            {
+              "measure": "Steady-State Cmax and Cmin of Oseltamivir Carboxylate",
+              "description": "Cmax is the maximum concentration and Cmin in the minimum concentration of oseltamivir carboxylate measured in nanogram of oseltamivir carboxylate per milliliter of plasma (ng/mL)",
+              "timeFrame": "6 days"
+            }
+          ]
+        },
+        "ref": "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/protocolSection/outcomesModule",
+        "source": {
+          "ref": "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529",
+          "version": "e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529",
+          "address": "/protocolSection/outcomesModule",
+          "digest": "e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529"
+        },
+        "code": "located"
+      }
+    ],
+    "fixed": {
+      "assertions": [
+        {
+          "applicability": {
+            "class": "Always"
+          },
+          "body": {
+            "class": "Literal",
+            "evidence": [
+              {
+                "class": "Evidence",
+                "kind": "record_field",
+                "ref": "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/protocolSection/eligibilityModule/minimumAge"
+              }
+            ],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "age",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "ge",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 18.0,
+              "unit": "Years",
+              "upper": null
+            }
+          },
+          "branch": {
+            "class": "Branch",
+            "node": "unresolved",
+            "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+            "class": "Scope",
+            "kind": "all_participants",
+            "parts": [],
+            "ref": ""
+          },
+          "criterion_ref": "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/protocolSection/eligibilityModule/minimumAge",
+          "id": "registry-age-minimumAge",
+          "modality": "required",
+          "resolution": "resolved",
+          "rule": {
+            "answers": [],
+            "class": "Rule",
+            "id": "ctg-structured-general-eligibility-age",
+            "premises": [
+              "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/protocolSection/eligibilityModule/minimumAge"
+            ],
+            "version": "1",
+            "warrants": []
+          },
+          "span": [],
+          "status": "known"
+        },
+        {
+          "applicability": {
+            "class": "Always"
+          },
+          "body": {
+            "class": "Literal",
+            "evidence": [
+              {
+                "class": "Evidence",
+                "kind": "record_field",
+                "ref": "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/protocolSection/eligibilityModule/maximumAge"
+              }
+            ],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "age",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "le",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 50.0,
+              "unit": "Years",
+              "upper": null
+            }
+          },
+          "branch": {
+            "class": "Branch",
+            "node": "unresolved",
+            "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+            "class": "Scope",
+            "kind": "all_participants",
+            "parts": [],
+            "ref": ""
+          },
+          "criterion_ref": "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/protocolSection/eligibilityModule/maximumAge",
+          "id": "registry-age-maximumAge",
+          "modality": "required",
+          "resolution": "resolved",
+          "rule": {
+            "answers": [],
+            "class": "Rule",
+            "id": "ctg-structured-general-eligibility-age",
+            "premises": [
+              "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/protocolSection/eligibilityModule/maximumAge"
+            ],
+            "version": "1",
+            "warrants": []
+          },
+          "span": [],
+          "status": "known"
+        }
+      ],
+      "signals": []
+    },
+    "interpretations": [
+      {
+        "id": "renal-reading",
+        "label": "Read exclusion <50 mL/min as requiring at least50 under the named estimator",
+        "origin": "assistant",
+        "basis": [
+          "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:1145",
+          "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/protocolSection/armsInterventionsModule",
+          "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/protocolSection/outcomesModule",
+          "hypothesis:source-location-is-not-semantic-warrant"
+        ],
+        "assumptions": [
+          {
+            "applicability": {
+              "class": "Always"
+            },
+            "body": {
+              "class": "Literal",
+              "evidence": [
+                {
+                  "class": "Evidence",
+                  "kind": "text_span",
+                  "ref": "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:1145"
+                },
+                {
+                  "class": "Evidence",
+                  "kind": "record_field",
+                  "ref": "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/protocolSection/armsInterventionsModule"
+                },
+                {
+                  "class": "Evidence",
+                  "kind": "record_field",
+                  "ref": "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/protocolSection/outcomesModule"
+                }
+              ],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "estimated_creatinine_clearance_Cockcroft_Gault",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "ge",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 50.0,
+                "unit": "mL/min",
+                "upper": null
+              }
+            },
+            "branch": {
+              "class": "Branch",
+              "node": "unresolved",
+              "path": []
+            },
+            "class": "ScopedAssertion",
+            "cohort": {
+              "class": "Scope",
+              "kind": "all_participants",
+              "parts": [],
+              "ref": ""
+            },
+            "criterion_ref": "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:1145|ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/protocolSection/armsInterventionsModule|ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/protocolSection/outcomesModule",
+            "id": "renal-floor",
+            "modality": "required",
+            "resolution": "resolved",
+            "rule": {
+              "answers": [],
+              "class": "Rule",
+              "id": "source-anchored-hypothesis",
+              "premises": [
+                "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:1145",
+                "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/protocolSection/armsInterventionsModule",
+                "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/protocolSection/outcomesModule"
+              ],
+              "version": "1",
+              "warrants": [
+                "hypothesis:source-location-is-not-semantic-warrant"
+              ]
+            },
+            "span": [
+              {
+                "class": "Span",
+                "end": 1145.0,
+                "start": 0.0
+              }
+            ],
+            "status": "proposed"
+          }
+        ],
+        "signals": [],
+        "signal_claims": [],
+        "binding_uses": []
+      }
+    ],
+    "bindings": [],
+    "coverage": [
+      {
+        "address": "/protocolSection/eligibilityModule/minimumAge",
+        "code": "compiled",
+        "value": "18 Years",
+        "assertion": "registry-age-minimumAge",
+        "rule": "ctg-structured-general-eligibility-age",
+        "ref": "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/protocolSection/eligibilityModule/minimumAge"
+      },
+      {
+        "address": "/protocolSection/eligibilityModule/maximumAge",
+        "code": "compiled",
+        "value": "50 Years",
+        "assertion": "registry-age-maximumAge",
+        "rule": "ctg-structured-general-eligibility-age",
+        "ref": "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/protocolSection/eligibilityModule/maximumAge"
+      },
+      {
+        "address": "/protocolSection/eligibilityModule/eligibilityCriteria",
+        "code": "unresolved_retained",
+        "value": "Inclusion Criteria:\n\n* males and females, 18 to 50 years of age\n* non-smoking or light-smoking (≤5 cigarettes per day) volunteers\n* BMI ≥ 40 kg/m2\n* female subjects of childbearing potential either surgically sterilized, using an effective method of contraception (diaphragm, cervical cap,condom) or agree to abstain from sex from time of pre-study screening, during entire study period and 1 week following the study period.\n\nExclusion Criteria:\n\n* history of significant hypersensitivity reaction to oseltamivir\n* history of gastric bypass surgical procedure\n* history of significant clinical illness requiring pharmacological management\n* abnormal serum electrolyte or complete blood count requiring further clinical work-up\n* transaminases (AST or ALT) \\>2.5 x upper limit of normal\n* estimated creatinine clearance \\<50 mL/min (Cockcroft-Gault equation)\n* positive urine pregnancy test (if female)\n* abnormal electrocardiogram (ECG) as judged by study physician\n* unable to tolerate venipuncture and multiple blood draws\n* clinically significant abnormal physical examination defined as a physical finding requiring further clinical work-up"
+      },
+      {
+        "address": "/protocolSection/eligibilityModule/healthyVolunteers",
+        "code": "unresolved_retained",
+        "value": true
+      },
+      {
+        "address": "/protocolSection/eligibilityModule/sex",
+        "code": "unresolved_retained",
+        "value": "ALL"
+      },
+      {
+        "address": "/protocolSection/eligibilityModule/stdAges",
+        "code": "unresolved_retained",
+        "value": [
+          "ADULT"
+        ]
+      },
+      {
+        "address": "/resultsSection",
+        "ref": "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/resultsSection",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/derivedSection",
+        "ref": "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/derivedSection",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/hasResults",
+        "ref": "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/hasResults",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/identificationModule",
+        "ref": "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/protocolSection/identificationModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/statusModule",
+        "ref": "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/protocolSection/statusModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/sponsorCollaboratorsModule",
+        "ref": "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/protocolSection/sponsorCollaboratorsModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/oversightModule",
+        "ref": "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/protocolSection/oversightModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/descriptionModule",
+        "ref": "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/protocolSection/descriptionModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/conditionsModule",
+        "ref": "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/protocolSection/conditionsModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/designModule",
+        "ref": "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/protocolSection/designModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/armsInterventionsModule",
+        "ref": "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/protocolSection/armsInterventionsModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/outcomesModule",
+        "ref": "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/protocolSection/outcomesModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/contactsLocationsModule",
+        "ref": "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/protocolSection/contactsLocationsModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/referencesModule",
+        "ref": "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/protocolSection/referencesModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/ipdSharingStatementModule",
+        "ref": "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/protocolSection/ipdSharingStatementModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      }
+    ],
+    "submitted": {
+      "interpretations": [
+        {
+          "id": "renal-reading",
+          "label": "Read exclusion <50 mL/min as requiring at least50 under the named estimator",
+          "origin": "assistant",
+          "basis": [
+            "assistant:unconfirmed-source-reading; invented operational additions explicitly labelled"
+          ],
+          "anchors": [
+            "eligibility",
+            "arms",
+            "outcomes"
+          ],
+          "assumptions": [
+            {
+              "applicability": {
+                "class": "Always"
+              },
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "estimated_creatinine_clearance_Cockcroft_Gault",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "ge",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 50,
+                  "unit": "mL/min",
+                  "upper": null
+                }
+              },
+              "branch": {
+                "class": "Branch",
+                "node": "unresolved",
+                "path": []
+              },
+              "class": "ScopedAssertion",
+              "cohort": {
+                "class": "Scope",
+                "kind": "all_participants",
+                "parts": [],
+                "ref": ""
+              },
+              "criterion_ref": "assistant:source-reading-not-confirmed",
+              "id": "renal-floor",
+              "modality": "required",
+              "resolution": "resolved",
+              "rule": {
+                "answers": [],
+                "class": "Rule",
+                "id": "assistant:source-reading-not-confirmed",
+                "premises": [],
+                "version": "1",
+                "warrants": [
+                  "invented:explicit-teaching-premise"
+                ]
+              },
+              "span": [],
+              "status": "proposed"
+            }
+          ],
+          "signals": [],
+          "signal_claims": [],
+          "binding_uses": []
+        }
+      ],
+      "bindings": []
+    },
+    "requests": [
+      {
+        "operation": "interpretations",
+        "study_ref": "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529",
+        "fixed": {
+          "assertions": [
+            {
+              "applicability": {
+                "class": "Always"
+              },
+              "body": {
+                "class": "Literal",
+                "evidence": [
+                  {
+                    "class": "Evidence",
+                    "kind": "record_field",
+                    "ref": "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/protocolSection/eligibilityModule/minimumAge"
+                  }
+                ],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "age",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "ge",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 18.0,
+                  "unit": "Years",
+                  "upper": null
+                }
+              },
+              "branch": {
+                "class": "Branch",
+                "node": "unresolved",
+                "path": []
+              },
+              "class": "ScopedAssertion",
+              "cohort": {
+                "class": "Scope",
+                "kind": "all_participants",
+                "parts": [],
+                "ref": ""
+              },
+              "criterion_ref": "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/protocolSection/eligibilityModule/minimumAge",
+              "id": "registry-age-minimumAge",
+              "modality": "required",
+              "resolution": "resolved",
+              "rule": {
+                "answers": [],
+                "class": "Rule",
+                "id": "ctg-structured-general-eligibility-age",
+                "premises": [
+                  "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/protocolSection/eligibilityModule/minimumAge"
+                ],
+                "version": "1",
+                "warrants": []
+              },
+              "span": [],
+              "status": "known"
+            },
+            {
+              "applicability": {
+                "class": "Always"
+              },
+              "body": {
+                "class": "Literal",
+                "evidence": [
+                  {
+                    "class": "Evidence",
+                    "kind": "record_field",
+                    "ref": "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/protocolSection/eligibilityModule/maximumAge"
+                  }
+                ],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "age",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "le",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 50.0,
+                  "unit": "Years",
+                  "upper": null
+                }
+              },
+              "branch": {
+                "class": "Branch",
+                "node": "unresolved",
+                "path": []
+              },
+              "class": "ScopedAssertion",
+              "cohort": {
+                "class": "Scope",
+                "kind": "all_participants",
+                "parts": [],
+                "ref": ""
+              },
+              "criterion_ref": "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/protocolSection/eligibilityModule/maximumAge",
+              "id": "registry-age-maximumAge",
+              "modality": "required",
+              "resolution": "resolved",
+              "rule": {
+                "answers": [],
+                "class": "Rule",
+                "id": "ctg-structured-general-eligibility-age",
+                "premises": [
+                  "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/protocolSection/eligibilityModule/maximumAge"
+                ],
+                "version": "1",
+                "warrants": []
+              },
+              "span": [],
+              "status": "known"
+            }
+          ],
+          "signals": []
+        },
+        "bindings": [],
+        "interpretations": [
+          {
+            "id": "renal-reading",
+            "label": "Read exclusion <50 mL/min as requiring at least50 under the named estimator",
+            "origin": "assistant",
+            "basis": [
+              "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:1145",
+              "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/protocolSection/armsInterventionsModule",
+              "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/protocolSection/outcomesModule",
+              "hypothesis:source-location-is-not-semantic-warrant"
+            ],
+            "assumptions": [
+              {
+                "applicability": {
+                  "class": "Always"
+                },
+                "body": {
+                  "class": "Literal",
+                  "evidence": [
+                    {
+                      "class": "Evidence",
+                      "kind": "text_span",
+                      "ref": "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:1145"
+                    },
+                    {
+                      "class": "Evidence",
+                      "kind": "record_field",
+                      "ref": "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/protocolSection/armsInterventionsModule"
+                    },
+                    {
+                      "class": "Evidence",
+                      "kind": "record_field",
+                      "ref": "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/protocolSection/outcomesModule"
+                    }
+                  ],
+                  "polarity": "positive",
+                  "predicate": {
+                    "class": "Predicate",
+                    "key": "estimated_creatinine_clearance_Cockcroft_Gault",
+                    "kind": "measurement"
+                  },
+                  "qualifiers": {
+                    "class": "Always"
+                  },
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "participant",
+                    "referent": ""
+                  },
+                  "time": null,
+                  "value": {
+                    "class": "Value",
+                    "comparison": "ge",
+                    "inclusivity": "unspecified",
+                    "kind": "quantity",
+                    "members": [],
+                    "number": 50.0,
+                    "unit": "mL/min",
+                    "upper": null
+                  }
+                },
+                "branch": {
+                  "class": "Branch",
+                  "node": "unresolved",
+                  "path": []
+                },
+                "class": "ScopedAssertion",
+                "cohort": {
+                  "class": "Scope",
+                  "kind": "all_participants",
+                  "parts": [],
+                  "ref": ""
+                },
+                "criterion_ref": "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:1145|ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/protocolSection/armsInterventionsModule|ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/protocolSection/outcomesModule",
+                "id": "renal-floor",
+                "modality": "required",
+                "resolution": "resolved",
+                "rule": {
+                  "answers": [],
+                  "class": "Rule",
+                  "id": "source-anchored-hypothesis",
+                  "premises": [
+                    "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:1145",
+                    "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/protocolSection/armsInterventionsModule",
+                    "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/protocolSection/outcomesModule"
+                  ],
+                  "version": "1",
+                  "warrants": [
+                    "hypothesis:source-location-is-not-semantic-warrant"
+                  ]
+                },
+                "span": [
+                  {
+                    "class": "Span",
+                    "end": 1145.0,
+                    "start": 0.0
+                  }
+                ],
+                "status": "proposed"
+              }
+            ],
+            "signals": [],
+            "signal_claims": [],
+            "binding_uses": []
+          }
+        ],
+        "queries": [
+          {
+            "id": "age51",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "age",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "eq",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 51,
+                "unit": "Years",
+                "upper": null
+              }
+            }
+          },
+          {
+            "id": "renal45",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "estimated_creatinine_clearance_Cockcroft_Gault",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "eq",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 45,
+                "unit": "mL/min",
+                "upper": null
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "limits": [
+      "Structured ages describe registry general eligibility, not verified actual protocol.",
+      "A located quotation proves quotation only; clinical readings remain hypothetical.",
+      "No unit conversion, automatic binding joins, clinical text interpretation or source mutation."
+    ],
+    "analyses": [
+      {
+        "code": "complete",
+        "operation": "interpretations",
+        "result": {
+          "study_ref": "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529",
+          "fixed": {
+            "assertions": [
+              {
+                "applicability": {
+                  "class": "Always"
+                },
+                "body": {
+                  "class": "Literal",
+                  "evidence": [
+                    {
+                      "class": "Evidence",
+                      "kind": "record_field",
+                      "ref": "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/protocolSection/eligibilityModule/minimumAge"
+                    }
+                  ],
+                  "polarity": "positive",
+                  "predicate": {
+                    "class": "Predicate",
+                    "key": "age",
+                    "kind": "measurement"
+                  },
+                  "qualifiers": {
+                    "class": "Always"
+                  },
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "participant",
+                    "referent": ""
+                  },
+                  "time": null,
+                  "value": {
+                    "class": "Value",
+                    "comparison": "ge",
+                    "inclusivity": "unspecified",
+                    "kind": "quantity",
+                    "members": [],
+                    "number": 18.0,
+                    "unit": "Years",
+                    "upper": null
+                  }
+                },
+                "branch": {
+                  "class": "Branch",
+                  "node": "unresolved",
+                  "path": []
+                },
+                "class": "ScopedAssertion",
+                "cohort": {
+                  "class": "Scope",
+                  "kind": "all_participants",
+                  "parts": [],
+                  "ref": ""
+                },
+                "criterion_ref": "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/protocolSection/eligibilityModule/minimumAge",
+                "id": "registry-age-minimumAge",
+                "modality": "required",
+                "resolution": "resolved",
+                "rule": {
+                  "answers": [],
+                  "class": "Rule",
+                  "id": "ctg-structured-general-eligibility-age",
+                  "premises": [
+                    "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/protocolSection/eligibilityModule/minimumAge"
+                  ],
+                  "version": "1",
+                  "warrants": []
+                },
+                "span": [],
+                "status": "known"
+              },
+              {
+                "applicability": {
+                  "class": "Always"
+                },
+                "body": {
+                  "class": "Literal",
+                  "evidence": [
+                    {
+                      "class": "Evidence",
+                      "kind": "record_field",
+                      "ref": "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/protocolSection/eligibilityModule/maximumAge"
+                    }
+                  ],
+                  "polarity": "positive",
+                  "predicate": {
+                    "class": "Predicate",
+                    "key": "age",
+                    "kind": "measurement"
+                  },
+                  "qualifiers": {
+                    "class": "Always"
+                  },
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "participant",
+                    "referent": ""
+                  },
+                  "time": null,
+                  "value": {
+                    "class": "Value",
+                    "comparison": "le",
+                    "inclusivity": "unspecified",
+                    "kind": "quantity",
+                    "members": [],
+                    "number": 50.0,
+                    "unit": "Years",
+                    "upper": null
+                  }
+                },
+                "branch": {
+                  "class": "Branch",
+                  "node": "unresolved",
+                  "path": []
+                },
+                "class": "ScopedAssertion",
+                "cohort": {
+                  "class": "Scope",
+                  "kind": "all_participants",
+                  "parts": [],
+                  "ref": ""
+                },
+                "criterion_ref": "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/protocolSection/eligibilityModule/maximumAge",
+                "id": "registry-age-maximumAge",
+                "modality": "required",
+                "resolution": "resolved",
+                "rule": {
+                  "answers": [],
+                  "class": "Rule",
+                  "id": "ctg-structured-general-eligibility-age",
+                  "premises": [
+                    "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/protocolSection/eligibilityModule/maximumAge"
+                  ],
+                  "version": "1",
+                  "warrants": []
+                },
+                "span": [],
+                "status": "known"
+              }
+            ],
+            "consistency": {
+              "result": "UNDETERMINED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+              "status": null,
+              "proof": [],
+              "blockers": [
+                "no_constraint_mentions_query"
+              ]
+            },
+            "queries": [
+              {
+                "id": "age51",
+                "body": {
+                  "class": "Literal",
+                  "evidence": [],
+                  "polarity": "positive",
+                  "predicate": {
+                    "class": "Predicate",
+                    "key": "age",
+                    "kind": "measurement"
+                  },
+                  "qualifiers": {
+                    "class": "Always"
+                  },
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "participant",
+                    "referent": ""
+                  },
+                  "time": null,
+                  "value": {
+                    "class": "Value",
+                    "comparison": "eq",
+                    "inclusivity": "unspecified",
+                    "kind": "quantity",
+                    "members": [],
+                    "number": 51.0,
+                    "unit": "Years",
+                    "upper": null
+                  }
+                },
+                "result": "REFUTED",
+                "decision": {
+                  "result": "REFUTED",
+                  "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":51.0,\"unit\":\"Years\",\"upper\":null}}",
+                  "status": "known",
+                  "proof": [
+                    "registry-age-maximumAge"
+                  ],
+                  "blockers": []
+                },
+                "warrant": {
+                  "rule": "entail.decide:1",
+                  "guarantee": "fixed_floor",
+                  "status": "known",
+                  "assumptions": [],
+                  "proof": [
+                    "registry-age-maximumAge"
+                  ],
+                  "blockers": []
+                }
+              },
+              {
+                "id": "renal45",
+                "body": {
+                  "class": "Literal",
+                  "evidence": [],
+                  "polarity": "positive",
+                  "predicate": {
+                    "class": "Predicate",
+                    "key": "estimated_creatinine_clearance_Cockcroft_Gault",
+                    "kind": "measurement"
+                  },
+                  "qualifiers": {
+                    "class": "Always"
+                  },
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "participant",
+                    "referent": ""
+                  },
+                  "time": null,
+                  "value": {
+                    "class": "Value",
+                    "comparison": "eq",
+                    "inclusivity": "unspecified",
+                    "kind": "quantity",
+                    "members": [],
+                    "number": 45.0,
+                    "unit": "mL/min",
+                    "upper": null
+                  }
+                },
+                "result": "UNDETERMINED",
+                "decision": {
+                  "result": "UNDETERMINED",
+                  "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"estimated_creatinine_clearance_Cockcroft_Gault\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":45.0,\"unit\":\"mL/min\",\"upper\":null}}",
+                  "status": null,
+                  "proof": [],
+                  "blockers": [
+                    "no_constraint_mentions_query"
+                  ]
+                },
+                "warrant": {
+                  "rule": "entail.decide:1",
+                  "guarantee": "fixed_floor",
+                  "status": "known",
+                  "assumptions": [],
+                  "proof": [],
+                  "blockers": [
+                    "no_constraint_mentions_query"
+                  ]
+                }
+              }
+            ],
+            "signals": [],
+            "blockers": []
+          },
+          "bindings": [],
+          "interpretations": [
+            {
+              "id": "renal-reading",
+              "label": "Read exclusion <50 mL/min as requiring at least50 under the named estimator",
+              "origin": "assistant",
+              "state": "compatible",
+              "premises": {
+                "basis": [
+                  "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:1145",
+                  "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/protocolSection/armsInterventionsModule",
+                  "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/protocolSection/outcomesModule",
+                  "hypothesis:source-location-is-not-semantic-warrant"
+                ],
+                "assumptions": [
+                  {
+                    "applicability": {
+                      "class": "Always"
+                    },
+                    "body": {
+                      "class": "Literal",
+                      "evidence": [
+                        {
+                          "class": "Evidence",
+                          "kind": "text_span",
+                          "ref": "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:1145"
+                        },
+                        {
+                          "class": "Evidence",
+                          "kind": "record_field",
+                          "ref": "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/protocolSection/armsInterventionsModule"
+                        },
+                        {
+                          "class": "Evidence",
+                          "kind": "record_field",
+                          "ref": "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/protocolSection/outcomesModule"
+                        }
+                      ],
+                      "polarity": "positive",
+                      "predicate": {
+                        "class": "Predicate",
+                        "key": "estimated_creatinine_clearance_Cockcroft_Gault",
+                        "kind": "measurement"
+                      },
+                      "qualifiers": {
+                        "class": "Always"
+                      },
+                      "subject": {
+                        "class": "Subject",
+                        "kind": "participant",
+                        "referent": ""
+                      },
+                      "time": null,
+                      "value": {
+                        "class": "Value",
+                        "comparison": "ge",
+                        "inclusivity": "unspecified",
+                        "kind": "quantity",
+                        "members": [],
+                        "number": 50.0,
+                        "unit": "mL/min",
+                        "upper": null
+                      }
+                    },
+                    "branch": {
+                      "class": "Branch",
+                      "node": "unresolved",
+                      "path": []
+                    },
+                    "class": "ScopedAssertion",
+                    "cohort": {
+                      "class": "Scope",
+                      "kind": "all_participants",
+                      "parts": [],
+                      "ref": ""
+                    },
+                    "criterion_ref": "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:1145|ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/protocolSection/armsInterventionsModule|ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/protocolSection/outcomesModule",
+                    "id": "renal-floor",
+                    "modality": "required",
+                    "resolution": "resolved",
+                    "rule": {
+                      "answers": [],
+                      "class": "Rule",
+                      "id": "source-anchored-hypothesis",
+                      "premises": [
+                        "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:1145",
+                        "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/protocolSection/armsInterventionsModule",
+                        "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/protocolSection/outcomesModule"
+                      ],
+                      "version": "1",
+                      "warrants": [
+                        "hypothesis:source-location-is-not-semantic-warrant"
+                      ]
+                    },
+                    "span": [
+                      {
+                        "class": "Span",
+                        "end": 1145.0,
+                        "start": 0.0
+                      }
+                    ],
+                    "status": "proposed"
+                  }
+                ],
+                "signals": [],
+                "signal_claims": [],
+                "binding_uses": []
+              },
+              "bindings": [],
+              "signals": [],
+              "signal_checks": [],
+              "queries": [
+                {
+                  "id": "age51",
+                  "body": {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "age",
+                      "kind": "measurement"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "participant",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "eq",
+                      "inclusivity": "unspecified",
+                      "kind": "quantity",
+                      "members": [],
+                      "number": 51.0,
+                      "unit": "Years",
+                      "upper": null
+                    }
+                  },
+                  "result": "REFUTED",
+                  "decision": {
+                    "result": "REFUTED",
+                    "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":51.0,\"unit\":\"Years\",\"upper\":null}}",
+                    "status": "known",
+                    "proof": [
+                      "registry-age-maximumAge"
+                    ],
+                    "blockers": []
+                  },
+                  "warrant": {
+                    "rule": "entail.decide:1",
+                    "guarantee": "conditional_on_interpretation",
+                    "status": "proposed",
+                    "assumptions": [
+                      "renal-floor"
+                    ],
+                    "proof": [
+                      "registry-age-maximumAge"
+                    ],
+                    "blockers": []
+                  }
+                },
+                {
+                  "id": "renal45",
+                  "body": {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "estimated_creatinine_clearance_Cockcroft_Gault",
+                      "kind": "measurement"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "participant",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "eq",
+                      "inclusivity": "unspecified",
+                      "kind": "quantity",
+                      "members": [],
+                      "number": 45.0,
+                      "unit": "mL/min",
+                      "upper": null
+                    }
+                  },
+                  "result": "REFUTED",
+                  "decision": {
+                    "result": "REFUTED",
+                    "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"estimated_creatinine_clearance_Cockcroft_Gault\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":45.0,\"unit\":\"mL/min\",\"upper\":null}}",
+                    "status": "interpolated",
+                    "proof": [
+                      "renal-floor"
+                    ],
+                    "blockers": []
+                  },
+                  "warrant": {
+                    "rule": "entail.decide:1",
+                    "guarantee": "conditional_on_interpretation",
+                    "status": "proposed",
+                    "assumptions": [
+                      "renal-floor"
+                    ],
+                    "proof": [
+                      "renal-floor"
+                    ],
+                    "blockers": []
+                  }
+                }
+              ],
+              "warrant": {
+                "rule": "interpretations.compatibility:1",
+                "guarantee": "conditional_on_fixed_and_interpretation_premises",
+                "fixed_status": "known",
+                "status": "proposed",
+                "fixed_premises": [],
+                "assumptions": [
+                  "renal-floor"
+                ],
+                "bindings": [],
+                "basis": [
+                  "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:1145",
+                  "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/protocolSection/armsInterventionsModule",
+                  "ctg:NCT01179919:e0b9eee971b3fbacf32c426e939dc174ef8e10fdff77119c7281693d4f616529#/protocolSection/outcomesModule",
+                  "hypothesis:source-location-is-not-semantic-warrant"
+                ],
+                "consistency": {
+                  "result": "UNDETERMINED",
+                  "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+                  "status": null,
+                  "proof": [],
+                  "blockers": [
+                    "no_constraint_mentions_query"
+                  ]
+                },
+                "intrinsic_consistency": {
+                  "result": "UNDETERMINED",
+                  "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+                  "status": null,
+                  "proof": [],
+                  "blockers": [
+                    "no_constraint_mentions_query"
+                  ]
+                },
+                "signal_rules": [],
+                "blockers": []
+              }
+            }
+          ],
+          "remaining": [
+            "renal-reading"
+          ],
+          "refuted": [],
+          "incoherent": [],
+          "unresolved": [],
+          "selection": {
+            "id": null,
+            "state": "none",
+            "origin": null
+          },
+          "consequences": [
+            {
+              "id": "age51",
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "age",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 51.0,
+                  "unit": "Years",
+                  "upper": null
+                }
+              },
+              "result": "REFUTED",
+              "decision": {
+                "result": "REFUTED",
+                "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":51.0,\"unit\":\"Years\",\"upper\":null}}",
+                "status": "known",
+                "proof": [
+                  "registry-age-maximumAge"
+                ],
+                "blockers": []
+              },
+              "warrant": {
+                "rule": "entail.decide:1",
+                "guarantee": "fixed_floor",
+                "status": "known",
+                "assumptions": [],
+                "proof": [
+                  "registry-age-maximumAge"
+                ],
+                "blockers": []
+              },
+              "frames": [],
+              "basis": "fixed_floor"
+            },
+            {
+              "id": "renal45",
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "estimated_creatinine_clearance_Cockcroft_Gault",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 45.0,
+                  "unit": "mL/min",
+                  "upper": null
+                }
+              },
+              "result": "REFUTED",
+              "frames": [
+                "renal-reading"
+              ],
+              "basis": "declared_interpretation_family",
+              "warrant": {
+                "rule": "interpretations.common:1",
+                "guarantee": "conditional_on_declared_family_not_exhaustive",
+                "status": "proposed",
+                "blockers": []
+              }
+            }
+          ],
+          "limits": "Exact conditional checks over declared readings; compatibility is not source truth or clinical recommendation. The interpretation family is not assumed exhaustive. No automatic text reading, source correction, source mutation or corpus-frequency admission."
+        },
+        "problems": [],
+        "metadata": {
+          "version": 1,
+          "kind": "reasoning",
+          "findings": [
+            {
+              "path": "/result/fixed/consistency",
+              "kind": "consistency",
+              "logical_result": "UNDETERMINED",
+              "standing": null,
+              "completion": "complete",
+              "causes": [
+                {
+                  "code": "no_constraint_mentions_query",
+                  "kind": "coverage"
+                }
+              ],
+              "disposition": "open"
+            },
+            {
+              "path": "/result/fixed/queries/0",
+              "kind": "logical",
+              "logical_result": "REFUTED",
+              "standing": "known",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "settled",
+              "support_path": "/result/fixed/queries/0/warrant"
+            },
+            {
+              "path": "/result/fixed/queries/1",
+              "kind": "logical",
+              "logical_result": "UNDETERMINED",
+              "standing": "known",
+              "completion": "complete",
+              "causes": [
+                {
+                  "code": "no_constraint_mentions_query",
+                  "kind": "coverage"
+                }
+              ],
+              "disposition": "open",
+              "support_path": "/result/fixed/queries/1/warrant"
+            },
+            {
+              "path": "/result/interpretations/0",
+              "kind": "interpretation",
+              "logical_result": "compatible",
+              "standing": "proposed",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "conditional"
+            },
+            {
+              "path": "/result/interpretations/0/queries/0",
+              "kind": "logical",
+              "logical_result": "REFUTED",
+              "standing": "proposed",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "conditional",
+              "support_path": "/result/interpretations/0/queries/0/warrant"
+            },
+            {
+              "path": "/result/interpretations/0/queries/1",
+              "kind": "logical",
+              "logical_result": "REFUTED",
+              "standing": "proposed",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "conditional",
+              "support_path": "/result/interpretations/0/queries/1/warrant"
+            },
+            {
+              "path": "/result/consequences/0",
+              "kind": "logical",
+              "logical_result": "REFUTED",
+              "standing": "known",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "settled",
+              "support_path": "/result/consequences/0/warrant"
+            },
+            {
+              "path": "/result/consequences/1",
+              "kind": "logical",
+              "logical_result": "REFUTED",
+              "standing": "proposed",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "conditional",
+              "support_path": "/result/consequences/1/warrant"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "problems": [],
+  "metadata": {
+    "version": 1,
+    "kind": "reasoning",
+    "findings": [
+      {
+        "path": "/result/analyses/0/result/fixed/consistency",
+        "kind": "consistency",
+        "logical_result": "UNDETERMINED",
+        "standing": null,
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          }
+        ],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/analyses/0/result/fixed/queries/0",
+        "kind": "logical",
+        "logical_result": "REFUTED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled",
+        "support_path": "/result/analyses/0/result/fixed/queries/0/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/fixed/queries/1",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/analyses/0/result/fixed/queries/1/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/0",
+        "kind": "interpretation",
+        "logical_result": "compatible",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/0/queries/0",
+        "kind": "logical",
+        "logical_result": "REFUTED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional",
+        "support_path": "/result/analyses/0/result/interpretations/0/queries/0/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/interpretations/0/queries/1",
+        "kind": "logical",
+        "logical_result": "REFUTED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional",
+        "support_path": "/result/analyses/0/result/interpretations/0/queries/1/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/consequences/0",
+        "kind": "logical",
+        "logical_result": "REFUTED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled",
+        "support_path": "/result/analyses/0/result/consequences/0/warrant"
+      },
+      {
+        "path": "/result/analyses/0/result/consequences/1",
+        "kind": "logical",
+        "logical_result": "REFUTED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional",
+        "support_path": "/result/analyses/0/result/consequences/1/warrant"
+      }
+    ]
+  }
+}

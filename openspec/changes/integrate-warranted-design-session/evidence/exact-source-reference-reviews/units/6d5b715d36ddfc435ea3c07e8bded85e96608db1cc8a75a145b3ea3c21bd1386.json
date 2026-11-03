@@ -1,0 +1,17 @@
+{
+  "id": "NCT02905331",
+  "raw_address": "/studies/15",
+  "digest": "ab5063f8f68ceb6acca16823d6a3043f8b759c6a04b01aaff0ac2c415802842c",
+  "study_ref": "ctg:NCT02905331:ab5063f8f68ceb6acca16823d6a3043f8b759c6a04b01aaff0ac2c415802842c",
+  "compact_snapshot_bytes": 86602,
+  "reviewed_units": [
+    "protocolSection/identificationModule",
+    "protocolSection/descriptionModule",
+    "protocolSection/designModule",
+    "protocolSection/eligibilityModule",
+    "protocolSection/armsInterventionsModule",
+    "protocolSection/outcomesModule/primaryOutcomes",
+    "resultsSection/participantFlowModule",
+    "resultsSection/baselineCharacteristicsModule"
+  ]
+}

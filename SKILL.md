@@ -150,6 +150,28 @@ supported input conflict blocks the design consequence; proposed or unresolved s
 candidate. No automatic cross-signal join, scale conversion or source-field interpretation occurs, and derived
 bounds never become source-stated criteria in corpus frequency calculations.
 
+**Stage populations and action tables.** Discover the `stages` and `decision_table` signal contracts.
+Permission to proceed is not documented progression: a permitted pathway supplies no subset subtraction or
+individual membership. Exact study/snapshot, populations, arms, times, units and local support accompany each
+transition. If the bound counts yield 144 outside completion and one outside dosing, report those distinct
+populations without turning either into the other's dropout or untreated count. Count compatibility never
+establishes the declared population relationship.
+
+A finite action table checks only its declared cases and constraints: coverage, different-action conflicts
+and action reachability. Same-action overlap is diagnostic. An inconsistent domain is not coverage, and an
+unfinished check is not false. An invented table omitting an action for 1/6 DLTs exposes the person's missing
+action decision. It establishes neither eventual stopping of a sequence nor clinical or statistical quality.
+Keep every completed check and its deciding premises beside unresolved ones; unsupported candidate table
+claims must not be silently ignored.
+
+**Estimand checks.** Discover the `estimand` signal. Keep treatment, population, variable, intercurrent-event
+handling and summary as explicit attributed definitions. Strategy names alone create no measurement
+requirements. Distinguish a stopped required collection plan, actual missing relevant data, an input not
+required for this estimand, unresolved relevance and a structurally unavailable measurement. An adopted
+input rule can conflict with its supplied inputs without proving all estimation impossible. No estimator,
+treatment effect or estimability is certified. Verify discovery and the real entry points before offering
+the check. Managed session replay is available; complete automatic protocol writing remains unfinished.
+
 **Competing readings.** Discover `interpretations` to explore possible readings of a source or alternative
 choices for the new trial. Fixed evidence and direct rules stay separate from each frame's hypothetical premises;
 the operation may assume a proposal only inside its named frame, and ordinary entailment still refuses it.
@@ -170,6 +192,18 @@ span, and each reading or binding declares every anchor it uses. A quotation war
 clinical meaning of the reading. Submitted known labels cannot promote prepared hypotheses or local signal
 support. Uncompiled means a reading task remains, not that the clinical information is absent. Empty queries are
 source inspection only.
+
+## Investigation and revision
+
+Discover `evidence_requests` for hypothetical accepted/rejected profiles that distinguish declared surviving
+explanations. Keep required attribution, exception and complete-candidate premises; a returned request is
+never an observed participant. A partial rejection establishes only an ineligible completion. Search limits
+and returned-list limits are separate. Discover `design_session` for the closed snapshot, named premise
+projections and runnable baseline/revision. Clinical inputs travel through the premise ledger; factual
+corpus projections require documentary origins. The runner replays every declared analysis, retains full
+dependencies and child results, and computes decision states. Historical unknowns stay evidence questions;
+new-trial choices require distinct feasible alternatives. Save returned JSON beside the human brief; the
+operation does not persist files or write a complete protocol.
 
 ## Reference sheet
 
@@ -222,7 +256,8 @@ agent without source-file access. `examples` contains direct requests; `capabili
 runnable `request` with invented premise/expected-result notes.
 
 Then use `trialledger reason --request FILE`, or MCP `reason(request)`, with an `operation` of `entailment`,
-`coordinates`, `corpus`, `design_bounds`, `signals`, `interpretations` or `source_assertions`. The same public
+`coordinates`, `corpus`, `design_bounds`, `signals`, `interpretations`, `source_assertions`,
+`evidence_requests` or `design_session`. The same public
 contract is `TrialLedger.layer2.run(request)`.
 
 Ground every premise. Ask about the clinical distinction: all participants or one cohort; required versus

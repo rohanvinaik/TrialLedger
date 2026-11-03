@@ -1,0 +1,83 @@
+──────────────────────────────────────────────────────────────────────────────
+TrialLedger/layer2/session_state.py — plan (full) · 13 regions · budget 500 DOF-proxy · spent 0
+
+  TrialLedger/layer2/session_state.py::_origin
+                       CONSTRUCTIVE · unpinned · status unpinned · not_clean · agreement 3
+                       smells: overload (182 DOF / 40 lines (static proxy)) · seam (1 seam(s)) · complexity (CC 26)
+                       cost 182 (static_dof_proxy)
+    next               detective converge 'TrialLedger/layer2/session_state.py::_origin'
+
+  TrialLedger/layer2/session_state.py::prepare
+                       CONSTRUCTIVE · unpinned · status unpinned · not_clean · agreement 3
+                       smells: overload (379 DOF / 105 lines (static proxy)) · seam (3 seam(s)) · complexity (CC 52)
+                       cost 379 (static_dof_proxy)
+    next               detective converge 'TrialLedger/layer2/session_state.py::prepare'
+
+  TrialLedger/layer2/session_state.py::_decision_inputs
+                       CONSTRUCTIVE · unpinned · status unpinned · not_clean · agreement 2
+                       smells: overload (131 DOF / 39 lines (static proxy)) · complexity (CC 32)
+                       cost 131 (static_dof_proxy)
+    next               detective converge 'TrialLedger/layer2/session_state.py::_decision_inputs'
+
+  TrialLedger/layer2/session_state.py::_index
+                       CONSTRUCTIVE · unpinned · status unpinned · not_clean · agreement 2
+                       smells: overload (24 DOF / 9 lines (static proxy)) · seam (1 seam(s))
+                       cost 24 (static_dof_proxy)
+    next               detective converge 'TrialLedger/layer2/session_state.py::_index'
+
+  TrialLedger/layer2/session_state.py::_ordered
+                       AMBIGUOUS · escalated · status unpinned · not_clean · agreement 1
+                       smells: complexity (CC 15)
+                       cost 33 (static_dof_proxy)
+    next               detective flag 'TrialLedger/layer2/session_state.py::_ordered' --style --leave --note "why"   # or --proceed; to ground it first: detective converge 'TrialLedger/layer2/session_state.py::_ordered'
+
+  TrialLedger/layer2/session_state.py::obj
+                       AMBIGUOUS · escalated · status unpinned · not_clean · agreement 1
+                       smells: overload (16 DOF / 4 lines (static proxy))
+                       cost 16 (static_dof_proxy)
+    next               detective flag 'TrialLedger/layer2/session_state.py::obj' --style --leave --note "why"   # or --proceed; to ground it first: detective converge 'TrialLedger/layer2/session_state.py::obj'
+
+  TrialLedger/layer2/session_state.py::rows
+                       AMBIGUOUS · escalated · status unpinned · not_clean · agreement 1
+                       smells: overload (10 DOF / 4 lines (static proxy))
+                       cost 10 (static_dof_proxy)
+    next               detective flag 'TrialLedger/layer2/session_state.py::rows' --style --leave --note "why"   # or --proceed; to ground it first: detective converge 'TrialLedger/layer2/session_state.py::rows'
+
+  TrialLedger/layer2/session_state.py::target
+                       AMBIGUOUS · escalated · status unpinned · not_clean · agreement 1
+                       smells: overload (39 DOF / 9 lines (static proxy))
+                       cost 39 (static_dof_proxy)
+    next               detective flag 'TrialLedger/layer2/session_state.py::target' --style --leave --note "why"   # or --proceed; to ground it first: detective converge 'TrialLedger/layer2/session_state.py::target'
+
+  TrialLedger/layer2/session_state.py::text
+                       AMBIGUOUS · escalated · status unpinned · not_clean · agreement 1
+                       smells: overload (12 DOF / 4 lines (static proxy))
+                       cost 12 (static_dof_proxy)
+    next               detective flag 'TrialLedger/layer2/session_state.py::text' --style --leave --note "why"   # or --proceed; to ground it first: detective converge 'TrialLedger/layer2/session_state.py::text'
+
+  TrialLedger/layer2/session_state.py::canonical
+                       SILENT · silent · status unpinned · clean · agreement 0
+                       smells: —
+                       cost 7 (static_dof_proxy)
+
+  TrialLedger/layer2/session_state.py::change_code
+                       SILENT · silent · status pinned · clean · agreement 0
+                       smells: —
+                       cost 10 (static_dof_proxy)
+
+  TrialLedger/layer2/session_state.py::digest
+                       SILENT · silent · status unpinned · clean · agreement 0
+                       smells: —
+                       cost 5 (static_dof_proxy)
+
+  TrialLedger/layer2/session_state.py::revision_code
+                       SILENT · silent · status pinned · clean · agreement 0
+                       smells: —
+                       cost 11 (static_dof_proxy)
+
+  · unexamined         what this plan did not propose is UNEXAMINED, not approved
+                       regime — unread: it needs a live mutation profile this static plan never runs
+                       fences held at 0 — the form-censor spine (§5.3) is unbuilt, so DESTRUCTIVE is unexercised
+                       recognizers — 5 template(s); a region with no match is a library gap, not a clean bill
+
+FINAL plan TrialLedger/layer2/session_state.py: 0 funded · 4 constructive · 5 escalated · 0 fenced · 4 silent (clean 4 · unread 0) · advisory — writes no project files

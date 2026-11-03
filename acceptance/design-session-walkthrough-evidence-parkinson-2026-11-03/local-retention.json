@@ -1,0 +1,262 @@
+{
+  "report_folder": "/Users/rohanvinaik/trialledger-runs/evidence-parkinson-20261103",
+  "files": {
+    "bodies/ids-001.json": {
+      "bytes": 1710,
+      "sha256": "ae9789d27956f93ec17c6118ee95405e6130826313263a891ee3816a309cd904"
+    },
+    "bodies/studies-001.json": {
+      "bytes": 1207157,
+      "sha256": "55c5bac6e8fb92a6dc91f16775a6fec71a6fd5873a496827980257d2fd48f4b6"
+    },
+    "bodies/version-end.json": {
+      "bytes": 71,
+      "sha256": "9eb0e46583efc444c5877db64a361ff539a68ea4f56332958999a5acb39c8553"
+    },
+    "bodies/version-start.json": {
+      "bytes": 71,
+      "sha256": "9eb0e46583efc444c5877db64a361ff539a68ea4f56332958999a5acb39c8553"
+    },
+    "classes.json": {
+      "bytes": 267443,
+      "sha256": "060ee954b9e33deb13d0267ec476b5820c8bb88078d84c8fcedfcd8c3ab1b8df"
+    },
+    "evidence-discovery.json": {
+      "bytes": 33961,
+      "sha256": "e00a3d248a5ec0a04e4411d4cda926bbf19f4e09c4c106975d2663cf5ffa214f"
+    },
+    "fetches.json": {
+      "bytes": 2099,
+      "sha256": "3465e47f99082e2f66cdb522bad6316dfd4f0b492439b10c7652fe128dbe55f6"
+    },
+    "id-preflight.json": {
+      "bytes": 1710,
+      "sha256": "ae9789d27956f93ec17c6118ee95405e6130826313263a891ee3816a309cd904"
+    },
+    "landscape.json": {
+      "bytes": 3367102,
+      "sha256": "da3bc31685526afbc66650bd7705148310506ccab1e64d376bd3df28d8913b31"
+    },
+    "landscape.xlsx": {
+      "bytes": 620038,
+      "sha256": "60b261cfea6f958ea40fcac5d19d99a059986f5e5db8088b0c8e4c310b915abf"
+    },
+    "lookups/lookup-001.json": {
+      "bytes": 51,
+      "sha256": "83e67e89f05d4128a7df68cab6d6f0c913f0981f1f96e77b8dc8823e516fdd30"
+    },
+    "lookups/lookup-002.json": {
+      "bytes": 35,
+      "sha256": "14c32ecef02e26f0d6bbb15cd1e269763a1601132bf9abe562fe1c6c8149b382"
+    },
+    "lookups/lookup-003.json": {
+      "bytes": 132,
+      "sha256": "31533a97982dd0a7cbd9eafedd0c925738ca4f567400eb3394e06951149b7f8c"
+    },
+    "lookups/release-end.json": {
+      "bytes": 51,
+      "sha256": "83e67e89f05d4128a7df68cab6d6f0c913f0981f1f96e77b8dc8823e516fdd30"
+    },
+    "lookups.json": {
+      "bytes": 851,
+      "sha256": "3b2f081b61592f10fc36152be93664bfb7ff16c8b6cebb7f3c925fd23dc8f8c7"
+    },
+    "manifest.json": {
+      "bytes": 3017,
+      "sha256": "c2112dc702922a8ebed1160056099cd8637feef02e97ece8e90b9e3fca8d86dd"
+    },
+    "refused-empty-design-bounds-request.json": {
+      "bytes": 14260,
+      "sha256": "161dbdc8b1835936f6fe9c55ee6f631bdcfa1d06b565a8e97396658e64bcf542"
+    },
+    "refused-session-budget-request.json": {
+      "bytes": 142471,
+      "sha256": "ec7319343e840f359387d84b2d453591bc0e6fc3a943475810452af10d21facc"
+    },
+    "request.json": {
+      "bytes": 124,
+      "sha256": "f914a02afd3ed14fa128110b6877c92a1ace3787366787903a9d361af0e8280a"
+    },
+    "resolution.json": {
+      "bytes": 1795,
+      "sha256": "2189ec8b38f866105c2ce99a49f5f10a945b5d1e7a4e1f3289b6d0cd5eebf40e"
+    },
+    "scope.json": {
+      "bytes": 228,
+      "sha256": "a674838f58275a158b45108f1455c09f059ad75a5a7839179425ed08206a799b"
+    },
+    "workflow-wires/NCT00219284-source-age-cli.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/NCT00219284-source-age-cli.stdout": {
+      "bytes": 31238,
+      "sha256": "8ba4fcda6a77e6840dcd94ebcaa2f04482abd4d4ef1cbaa001aa39f4a2c29419"
+    },
+    "workflow-wires/NCT00219284-source-age-mcp-input.jsonl": {
+      "bytes": 71248,
+      "sha256": "cba5c74e42d8ef7793e1d8aeeb7e31d3905c03dd1f3f83c24ffa6e4024dc0fd5"
+    },
+    "workflow-wires/NCT00219284-source-age-mcp.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/NCT00219284-source-age-mcp.stdout": {
+      "bytes": 39460,
+      "sha256": "4ca4cec260dfd9783e9d29d7dcdea7e1cf577572749e096658d8edf31888323a"
+    },
+    "workflow-wires/NCT01494532-source-age-cli.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/NCT01494532-source-age-cli.stdout": {
+      "bytes": 29539,
+      "sha256": "eb857e702989a4e56c80ceb3448d90d0ee7d66850bfcc08c7b6e137623f9dfaa"
+    },
+    "workflow-wires/NCT01494532-source-age-mcp-input.jsonl": {
+      "bytes": 235867,
+      "sha256": "37d9767d8ca21c7a95452f3b8e13e673b10420eac1b563992dab97f32619d48d"
+    },
+    "workflow-wires/NCT01494532-source-age-mcp.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/NCT01494532-source-age-mcp.stdout": {
+      "bytes": 36711,
+      "sha256": "c4a98ea6001a0a69d1f19db38d504ded41df0578ea943a9cb8add5a216a696ba"
+    },
+    "workflow-wires/NCT04821830-source-age-cli.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/NCT04821830-source-age-cli.stdout": {
+      "bytes": 31765,
+      "sha256": "97d09e0d26c52344d3b860b6bf6c0e241ab32d2d623e2bf49635f6f5881818f4"
+    },
+    "workflow-wires/NCT04821830-source-age-mcp-input.jsonl": {
+      "bytes": 82271,
+      "sha256": "0393b67d507bffb7ba3f98ac8c4552a49e765e298d46f55aaf05cfbf1c895b96"
+    },
+    "workflow-wires/NCT04821830-source-age-mcp.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/NCT04821830-source-age-mcp.stdout": {
+      "bytes": 40069,
+      "sha256": "54ef3571afedadf671e0957e1ef47d2160322fdb97440841b1907efdb538a8d0"
+    },
+    "workflow-wires/hypothetical-accepted-age-health-cli.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/hypothetical-accepted-age-health-cli.stdout": {
+      "bytes": 40320,
+      "sha256": "80004da688bbfafb1ddb1d4e2b1ac357dbdf4b9847550a92ee931259e7cc0134"
+    },
+    "workflow-wires/hypothetical-accepted-age-health-mcp-input.jsonl": {
+      "bytes": 8988,
+      "sha256": "2eb22c1dab2e91633e776f402f80c075ea48f1ad05853a80c2705b1cf714afde"
+    },
+    "workflow-wires/hypothetical-accepted-age-health-mcp.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/hypothetical-accepted-age-health-mcp.stdout": {
+      "bytes": 52205,
+      "sha256": "3f25e5d66e681ede9f39b87d9e58b75bfdacfe56b4948ca119182b7963af1195"
+    },
+    "workflow-wires/hypothetical-accepted-age-only-revision-cli.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/hypothetical-accepted-age-only-revision-cli.stdout": {
+      "bytes": 27116,
+      "sha256": "cfc8380a5dbbc9db455f166268a3f84241d16acdc21dc8d9432e5780d4a4625e"
+    },
+    "workflow-wires/hypothetical-accepted-age-only-revision-mcp-input.jsonl": {
+      "bytes": 8738,
+      "sha256": "ebb2844c495b85500789537e3ae32d6cc7ddb73aa93620cc14802598ed33bca0"
+    },
+    "workflow-wires/hypothetical-accepted-age-only-revision-mcp.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/hypothetical-accepted-age-only-revision-mcp.stdout": {
+      "bytes": 36083,
+      "sha256": "d047573737959dbd9109640b4042074ae8d26133ae01bb5a439295c866bacf58"
+    },
+    "workflow-wires/hypothetical-no-observation-survivors-cli.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/hypothetical-no-observation-survivors-cli.stdout": {
+      "bytes": 492,
+      "sha256": "224a4d3a926e45e13a55314210db7fcdec5e1709fafe7dffae08143200a5f907"
+    },
+    "workflow-wires/hypothetical-profile-budget-cli.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/hypothetical-profile-budget-cli.stdout": {
+      "bytes": 18467,
+      "sha256": "712be769f4c66a6dfc63e39683352b2815f44609c9b3ad69dcd025e1f5c9d7fc"
+    },
+    "workflow-wires/hypothetical-profile-budget-mcp-input.jsonl": {
+      "bytes": 8998,
+      "sha256": "c2f0c99045af80e940039d3435931dd52b5f6cb358fe45ab0d47aa7462d721a9"
+    },
+    "workflow-wires/hypothetical-profile-budget-mcp.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/hypothetical-profile-budget-mcp.stdout": {
+      "bytes": 25725,
+      "sha256": "526bcaa3a5057681dc45d509d3032f0893fb714b353fcbed5d2dd40674230e27"
+    },
+    "workflow-wires/hypothetical-signed-profiles-cli.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/hypothetical-signed-profiles-cli.stdout": {
+      "bytes": 36083,
+      "sha256": "c3db78f5aebc648db83e547dc032cf84b14c06701a0cadc7ad676e1965e853a9"
+    },
+    "workflow-wires/hypothetical-signed-profiles-mcp-input.jsonl": {
+      "bytes": 9000,
+      "sha256": "0b417a045a92101f8c221519acbbbcd86228d669d796d142852e57fed19d9a5b"
+    },
+    "workflow-wires/hypothetical-signed-profiles-mcp.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/hypothetical-signed-profiles-mcp.stdout": {
+      "bytes": 46807,
+      "sha256": "566083c6a17e655b335e8ee0dcc775a689a57a50f99a129f222af121ebebd390"
+    },
+    "workflow-wires/session-named-hypotheses-cli.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/session-named-hypotheses-cli.stdout": {
+      "bytes": 217900,
+      "sha256": "f8b8e26e2cbd3f74558dd8325559ca96d0fe768295ac382ff60990d4deccaf16"
+    },
+    "workflow-wires/session-named-hypotheses-mcp-input.jsonl": {
+      "bytes": 81315,
+      "sha256": "7186c6d5b8b3ee1c8c80fceaddb2c0a0688ace55c046a07f7fb0369f03124804"
+    },
+    "workflow-wires/session-named-hypotheses-mcp.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "workflow-wires/session-named-hypotheses-mcp.stdout": {
+      "bytes": 246543,
+      "sha256": "8122f09be3a4f99113057efc5464a63ba7d05d5e86b887457e5650237b05058b"
+    },
+    "workflow.py": {
+      "bytes": 10457,
+      "sha256": "679ca41cd61f69490bfc628882c24272684ca1469540be67e07e169b2315bbf6"
+    }
+  },
+  "scope": "Complete raw/report/workbook/helpers/refused-preparations/duplicatewires outsideGit; portablepairs retain complete required snapshots and child documents"
+}

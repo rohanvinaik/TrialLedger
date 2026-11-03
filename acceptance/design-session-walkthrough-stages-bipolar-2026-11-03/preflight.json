@@ -1,0 +1,35 @@
+{
+  "question": "For a proposed bipolar maintenance/randomized-withdrawal study, what can run-in and randomized counts tell us, and what population/transition premises are needed?",
+  "declared_at_utc": "2026-11-03T21:59:44.666943+00:00",
+  "category": "Phase3 bipolar maintenance/randomized withdrawal: stage populations and transition contracts; applicability determined from retained sample, not search labels",
+  "query": {
+    "drug": [
+      "quetiapine"
+    ],
+    "condition": [
+      "Bipolar Disorder"
+    ],
+    "phase": [
+      "PHASE3"
+    ],
+    "status": [
+      "COMPLETED"
+    ]
+  },
+  "max_complete_pool": 30,
+  "seed": 3948003275121507650,
+  "selection_rule": "random.Random(seed).sample(sorted(complete_pool), min(3,len(complete_pool))) before selected-content reading; no sample replacement",
+  "acquisition_gate": "Wait for root STAGES PUBLIC READY before acquisition or execution",
+  "retention": {
+    "packet": "Clinical README and decision list; complete minimal request/canonical-result pairs; query/pool/seed; source/version/time/runtime/hash receipts; target under2MB by reducing redundant cases, never truncating inputs/results",
+    "local_report": "/Users/rohanvinaik/trialledger-runs/stages-bipolar-20261103",
+    "local_bulk": "Full workbook/report/raw bodies/cache/helpers/duplicate transport captures stay outsideGit; complete snapshots requiredbyrequests remain ininputs"
+  },
+  "epistemic_contract": [
+    "Permitted transitions do not establish actual membership or individual progression",
+    "Counts transfer only through explicitly supported applicable subset/partition relations",
+    "Clinical meanings stayproposed or explicitlylabelled interpolated sensitivity; no clinicianconfirmation",
+    "Unknown or missing counts remain unknown; no manufactured source facts",
+    "Use only public staged discovery schema afterrootready"
+  ]
+}

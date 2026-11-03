@@ -1,0 +1,12 @@
+{
+  "anchor": "named_event",
+  "anchor_ref": "ctg:NCT01369355:e88dd2edd3a6d63bf6a7d10c8b304315497cfb90e2dadf36a259dc0d8ef75be2:induction-week8",
+  "certainty": "explicit",
+  "class": "TemporalScope",
+  "evidence": [],
+  "inclusivity": "unspecified",
+  "lower": null,
+  "orientation": "at",
+  "unit": "",
+  "upper": null
+}

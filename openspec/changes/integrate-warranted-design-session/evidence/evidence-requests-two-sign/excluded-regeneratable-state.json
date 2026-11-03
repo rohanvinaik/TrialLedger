@@ -1,0 +1,9 @@
+{
+  "not_copied": [
+    "proof-v2/.wesker",
+    "proof-v2/.detective/verdict_cache.json",
+    "proof-v2/TrialLedger",
+    "proof-v2/tests outside the required generated suites"
+  ],
+  "reason": "No duplicate package capture or regeneratable caches. The frozen module, actual generated suites, source identities, configs, native ledger and all full final reports are retained. The current correspondence is function-scoped only."
+}

@@ -1,0 +1,31 @@
+{
+  "crosshair": {
+    "confirmed": 6,
+    "counterexample_reported": false,
+    "not_confirmed": 4
+  },
+  "current_correspondence": "Exact frozen function text and AST match current code; only explicitly compared pure functions/globals are current. Frozen wrapper/module snapshots are historical context, not current whole-module receipts.",
+  "format": 1,
+  "function_correspondence": "current-function-correspondence.json",
+  "generated_source_required": 0,
+  "packet": "session-two-sign",
+  "source_export_manifest_sha256": "235101cb394378cc3d64d4c03f8be14a9b19d7e5f65bc979560e4c80bf80cb0c",
+  "source_limitations": "README.md and original source packet README; full tool reports take precedence over certificate shorthand.",
+  "targets": {
+    "alternative_code": {
+      "killed": 131,
+      "total": 131,
+      "value_pinned": 131
+    },
+    "change_code": {
+      "killed": 38,
+      "total": 38,
+      "value_pinned": 38
+    },
+    "revision_code": {
+      "killed": 48,
+      "total": 48,
+      "value_pinned": 48
+    }
+  }
+}

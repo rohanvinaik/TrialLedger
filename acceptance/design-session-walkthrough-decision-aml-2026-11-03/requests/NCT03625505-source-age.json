@@ -1,0 +1,656 @@
+{
+  "operation": "source_assertions",
+  "study": {
+    "protocolSection": {
+      "identificationModule": {
+        "nctId": "NCT03625505",
+        "orgStudyIdInfo": {
+          "id": "M16-802"
+        },
+        "organization": {
+          "fullName": "AbbVie",
+          "class": "INDUSTRY"
+        },
+        "briefTitle": "A Study to Assess Safety and Efficacy of Venetoclax in Combination With Gilteritinib in Participants With Relapsed/Refractory Acute Myeloid Leukemia",
+        "officialTitle": "A Multicenter, Open-Label Phase 1b Study to Assess Safety and Efficacy of Venetoclax in Combination With Gilteritinib in Subjects With Relapsed/Refractory Acute Myeloid Leukemia"
+      },
+      "statusModule": {
+        "statusVerifiedDate": "2021-09",
+        "overallStatus": "COMPLETED",
+        "expandedAccessInfo": {
+          "hasExpandedAccess": true,
+          "nctId": "NCT03123029",
+          "statusForNctId": "AVAILABLE"
+        },
+        "startDateStruct": {
+          "date": "2018-10-18",
+          "type": "ACTUAL"
+        },
+        "primaryCompletionDateStruct": {
+          "date": "2021-08-31",
+          "type": "ACTUAL"
+        },
+        "completionDateStruct": {
+          "date": "2021-08-31",
+          "type": "ACTUAL"
+        },
+        "studyFirstSubmitDate": "2018-08-08",
+        "studyFirstSubmitQcDate": "2018-08-08",
+        "studyFirstPostDateStruct": {
+          "date": "2018-08-10",
+          "type": "ACTUAL"
+        },
+        "lastUpdateSubmitDate": "2021-09-07",
+        "lastUpdatePostDateStruct": {
+          "date": "2021-09-14",
+          "type": "ACTUAL"
+        }
+      },
+      "sponsorCollaboratorsModule": {
+        "responsibleParty": {
+          "type": "SPONSOR"
+        },
+        "leadSponsor": {
+          "name": "AbbVie",
+          "class": "INDUSTRY"
+        },
+        "collaborators": [
+          {
+            "name": "Astellas Pharma Inc",
+            "class": "INDUSTRY"
+          },
+          {
+            "name": "Genentech, Inc.",
+            "class": "INDUSTRY"
+          }
+        ]
+      },
+      "oversightModule": {
+        "oversightHasDmc": false,
+        "isFdaRegulatedDrug": true,
+        "isFdaRegulatedDevice": false,
+        "isUsExport": false
+      },
+      "descriptionModule": {
+        "briefSummary": "A dose-escalation study evaluating the safety, tolerability, pharmacokinetics (PK) and efficacy of venetoclax, in combination with gilteritinib, in participants with relapsed or refractory (R/R) acute myeloid leukemia (AML) who have failed to respond to, and/or have relapsed or progressed after at least 1 prior therapy."
+      },
+      "conditionsModule": {
+        "conditions": [
+          "Acute Myeloid Leukemia (AML)"
+        ],
+        "keywords": [
+          "Cancer",
+          "Acute Myeloid Leukemia (AML)",
+          "Relapsed or Refractory AML",
+          "Pharmacokinetics",
+          "venetoclax",
+          "gilteritinib"
+        ]
+      },
+      "designModule": {
+        "studyType": "INTERVENTIONAL",
+        "phases": [
+          "PHASE1"
+        ],
+        "designInfo": {
+          "allocation": "NON_RANDOMIZED",
+          "interventionModel": "SEQUENTIAL",
+          "primaryPurpose": "TREATMENT",
+          "maskingInfo": {
+            "masking": "NONE"
+          }
+        },
+        "enrollmentInfo": {
+          "count": 61,
+          "type": "ACTUAL"
+        }
+      },
+      "armsInterventionsModule": {
+        "armGroups": [
+          {
+            "label": "Dose Escalation Venetoclax + Gilteritinib",
+            "type": "EXPERIMENTAL",
+            "description": "Different combinations of dose levels for venetoclax in combination with gilteritinib will be administered to determine the recommended phase 2 dose (RPTD).",
+            "interventionNames": [
+              "Drug: Venetoclax",
+              "Drug: Gilteritinib"
+            ]
+          },
+          {
+            "label": "Dose Expansion Venetoclax + Gilteritinib",
+            "type": "EXPERIMENTAL",
+            "description": "Participants will receive venetoclax in combination with gilteritinib at the dose determined in dose escalation portion.",
+            "interventionNames": [
+              "Drug: Venetoclax",
+              "Drug: Gilteritinib"
+            ]
+          }
+        ],
+        "interventions": [
+          {
+            "type": "DRUG",
+            "name": "Venetoclax",
+            "description": "tablet, oral",
+            "armGroupLabels": [
+              "Dose Escalation Venetoclax + Gilteritinib",
+              "Dose Expansion Venetoclax + Gilteritinib"
+            ],
+            "otherNames": [
+              "ABT-199",
+              "GDC-0199"
+            ]
+          },
+          {
+            "type": "DRUG",
+            "name": "Gilteritinib",
+            "description": "tablet, oral",
+            "armGroupLabels": [
+              "Dose Escalation Venetoclax + Gilteritinib",
+              "Dose Expansion Venetoclax + Gilteritinib"
+            ],
+            "otherNames": [
+              "ASP-2215"
+            ]
+          }
+        ]
+      },
+      "outcomesModule": {
+        "primaryOutcomes": [
+          {
+            "measure": "Recommended Phase 2 Dose (RPTD) of Co-administered Study Drugs",
+            "description": "The RPTD of co-administered venetoclax and gilteritinib will be determined during the dose escalation phase of the study. RPTD will be determined using available safety and pharmacokinetics data.",
+            "timeFrame": "Up to approximately 6 months after the last participant is enrolled"
+          },
+          {
+            "measure": "Modified Composite Complete Remission (CRc)",
+            "description": "Modified CRc rate is defined as the proportion of participants with documented complete response (CR) + CR with partial blood count recovery (CRp) + CR with incomplete blood count recovery (CRi) plus Morphologic Leukemia-Free State (MLFS) based on guidelines adapted from the International Working Group (IWG) for Acute Myeloid Leukemia (AML).",
+            "timeFrame": "Up to approximately 6 months after the last participant is enrolled"
+          }
+        ],
+        "secondaryOutcomes": [
+          {
+            "measure": "Pharmacokinetics - Cmax of Venetoclax",
+            "description": "Maximum observed plasma concentration (Cmax) of study drug.",
+            "timeFrame": "Approximately 16 days after first dose of study drug"
+          },
+          {
+            "measure": "Pharmacokinetics - Cmax of Gilteritinib",
+            "description": "Maximum observed plasma concentration (Cmax) of study drug.",
+            "timeFrame": "Approximately 16 days after first dose of study drug"
+          },
+          {
+            "measure": "Pharmacokinetics - Tmax of Venetoclax",
+            "description": "Time to maximum plasma concentration (Tmax) of study drug.",
+            "timeFrame": "Approximately 16 days after first dose of study drug"
+          },
+          {
+            "measure": "Pharmacokinetics - Tmax of Gilteritinib",
+            "description": "Time to maximum plasma concentration (Tmax) of study drug.",
+            "timeFrame": "Approximately 16 days after first dose of study drug"
+          },
+          {
+            "measure": "Pharmacokinetics - AUCt of Venetoclax",
+            "description": "Area Under the Plasma Concentration-time Curve (AUC) from Time 0 to Time of the Last Measurable Concentration (AUCt) of study drug.",
+            "timeFrame": "Approximately 16 days after first dose of study drug"
+          },
+          {
+            "measure": "Pharmacokinetics - AUCt of Gilteritinib",
+            "description": "Area Under the Plasma Concentration-time Curve (AUC) from Time 0 to Time of the Last Measurable Concentration (AUCt) of study drug.",
+            "timeFrame": "Approximately 16 days after first dose of study drug"
+          },
+          {
+            "measure": "Pharmacokinetics - AUC0-24 Post-dose of Study Drug of Venetoclax",
+            "description": "Area under the plasma concentration-time curve from 0 to 24 hours (AUC24) post-dose of study drug.",
+            "timeFrame": "Approximately 16 days after first dose of study drug"
+          },
+          {
+            "measure": "Pharmacokinetics - AUC0-24 Post-dose of Study Drug of Gilteritinib",
+            "description": "Area under the plasma concentration-time curve from 0 to 24 hours (AUC24) post-dose of study drug.",
+            "timeFrame": "Approximately 16 days after first dose of study drug"
+          },
+          {
+            "measure": "Composite Complete Remission (CRc) Rate",
+            "description": "CRc is defined as the proportion of participants with documented CR + CRp + CRi based on guidelines adapted from the International Working Group (IWG) for Acute Myeloid Leukemia (AML).",
+            "timeFrame": "Up to approximately 6 months after the last participant is enrolled"
+          },
+          {
+            "measure": "Duration of Response (DOR) of Modified Composite Complete Remission (CRc)",
+            "description": "DOR of modified CRc will be defined as time from the first date achieving modified CRc to disease progression (including morphologic relapse) or death from any cause whichever is earlier.",
+            "timeFrame": "Up to approximately 6 months after the last participant is enrolled"
+          },
+          {
+            "measure": "Complete Remission (CR) + with Partial Hematologic Recovery (CRh)",
+            "description": "It is defined as the proportion of participants achieving CR or CRh based on guidelines adapted from the International Working Group (IWG) for Acute Myeloid Leukemia (AML).",
+            "timeFrame": "Up to approximately 6 months after the last participant is enrolled"
+          },
+          {
+            "measure": "Duration of Response (DOR) of Complete Remission (CR) + Complete Remission with Partial Hematologic Recovery (CRh)",
+            "description": "DOR of CR + CRh will be defined as time from the first date achieving CR and/or CRh to disease progression (including morphologic relapse) or death from any cause whichever is earlier.",
+            "timeFrame": "Up to approximately 6 months after the last participant is enrolled"
+          },
+          {
+            "measure": "Number of Participants With Adverse Events",
+            "description": "An adverse event (AE) is defined as any untoward medical occurrence in a patient or clinical investigation subject administered a pharmaceutical product and which does not necessarily have a causal relationship with this treatment.",
+            "timeFrame": "From first dose of study drug until 30 days or 5 half-lives after discontinuation of study drug administration will be collected (up to approximately 4 years)"
+          }
+        ]
+      },
+      "eligibilityModule": {
+        "eligibilityCriteria": "Inclusion Criteria:\n\n* Should have an established, confirmed diagnosis of Acute Myeloid Leukemia (AML) by World Health Organization (2016).\n* Should have failed at least 1 line of prior therapy (defined as failure to respond to therapy, and/or progression during or after therapy).\n* Should have an Eastern Cooperative Oncology Group (ECOG) performance status of 0, 1, or 2.\n* Should have adequate hematologic, kidney and liver function as described in the protocol.\n* For participants enrolling into the Expansion Cohort only: a documented FMS-like Tyrosine Kinase (FLT3) mutation in bone marrow or peripheral blood, as described in the protocol.\n\nExclusion Criteria:\n\n* Has a diagnosis of acute promyelocytic leukemia (APL) or BCR-ABL-positive leukemia.\n* Has a history of other malignancies within 2 years prior to study entry, with exceptions as described in the protocol.\n* Has active central nervous system leukemia.\n* Has a history of chronic New York Heart Association (NYHA) class IV heart failure.\n* Has a corrected QT interval of \\> 450 ms.\n* Has a chronic respiratory disease that requires continuous oxygen use.",
+        "healthyVolunteers": false,
+        "sex": "ALL",
+        "minimumAge": "18 Years",
+        "stdAges": [
+          "ADULT",
+          "OLDER_ADULT"
+        ]
+      },
+      "contactsLocationsModule": {
+        "overallOfficials": [
+          {
+            "name": "ABBVIE INC.",
+            "affiliation": "AbbVie",
+            "role": "STUDY_DIRECTOR"
+          }
+        ],
+        "locations": [
+          {
+            "facility": "David Geffen School of Medicin /ID# 200166",
+            "city": "Los Angeles",
+            "state": "California",
+            "zip": "90095",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 34.05223,
+              "lon": -118.24368
+            }
+          },
+          {
+            "facility": "UC San Francisco Medical Center-Parnassus /ID# 200205",
+            "city": "San Francisco",
+            "state": "California",
+            "zip": "94143-2202",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 37.77493,
+              "lon": -122.41942
+            }
+          },
+          {
+            "facility": "Sylvester Comprehensive Cancer /ID# 200268",
+            "city": "Miami",
+            "state": "Florida",
+            "zip": "33136-1002",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 25.77427,
+              "lon": -80.19366
+            }
+          },
+          {
+            "facility": "Northwestern Memorial Hospital /ID# 200230",
+            "city": "Chicago",
+            "state": "Illinois",
+            "zip": "60611-2927",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 41.85003,
+              "lon": -87.65005
+            }
+          },
+          {
+            "facility": "Norton Cancer Institute /ID# 200623",
+            "city": "Louisville",
+            "state": "Kentucky",
+            "zip": "40202-3700",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 38.25424,
+              "lon": -85.75941
+            }
+          },
+          {
+            "facility": "Johns Hopkins University /ID# 200349",
+            "city": "Baltimore",
+            "state": "Maryland",
+            "zip": "21287",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 39.29038,
+              "lon": -76.61219
+            }
+          },
+          {
+            "facility": "Mayo Clinic - Rochester /ID# 200346",
+            "city": "Rochester",
+            "state": "Minnesota",
+            "zip": "55905-0001",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 44.02163,
+              "lon": -92.4699
+            }
+          },
+          {
+            "facility": "Hackensack Univ Med Ctr /ID# 200229",
+            "city": "Hackensack",
+            "state": "New Jersey",
+            "zip": "07601",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 40.88593,
+              "lon": -74.04347
+            }
+          },
+          {
+            "facility": "Weill Cornell Medical College /ID# 200109",
+            "city": "New York",
+            "state": "New York",
+            "zip": "10065",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 40.71427,
+              "lon": -74.00597
+            }
+          },
+          {
+            "facility": "Hosp of the Univ of Penn /ID# 200348",
+            "city": "Philadelphia",
+            "state": "Pennsylvania",
+            "zip": "19104",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 39.95238,
+              "lon": -75.16362
+            }
+          },
+          {
+            "facility": "MD Anderson Cancer Center at Texas Medical Center /ID# 206686",
+            "city": "Houston",
+            "state": "Texas",
+            "zip": "77030-4000",
+            "country": "United States",
+            "geoPoint": {
+              "lat": 29.76328,
+              "lon": -95.36327
+            }
+          }
+        ]
+      },
+      "referencesModule": {
+        "references": [
+          {
+            "pmid": "42224378",
+            "type": "DERIVED",
+            "citation": "Kennedy VE, Peretz CAC, Walia A, Chyla B, Sun Y, Hill JE, Tran E, Koh AD, Ferng TT, Pintar S, Jones M, Popescu B, Lomeli I, Chehab F, Murad N, John A, Roy RP, Olshen AB, Berryhill CA, Davis C, Angus SP, Rivera JM, Meshulam A, Stieglitz E, Joshi SK, Traer E, Dail M, Hamidi H, Altman JK, Daver NG, Levis MJ, McCloskey J, Perl AE, Smith CC. Dynamic genetic and nongenetic RAS pathway activation drives resistance to FLT3 and BCL2 inhibitor therapy. Blood. 2026 Jun 1:blood.2025032466. doi: 10.1182/blood.2025032466. Online ahead of print."
+          },
+          {
+            "pmid": "35849791",
+            "type": "DERIVED",
+            "citation": "Daver N, Perl AE, Maly J, Levis M, Ritchie E, Litzow M, McCloskey J, Smith CC, Schiller G, Bradley T, Tiu RV, Naqvi K, Dail M, Brackman D, Siddani S, Wang J, Chyla B, Lee P, Altman JK. Venetoclax Plus Gilteritinib for FLT3-Mutated Relapsed/Refractory Acute Myeloid Leukemia. J Clin Oncol. 2022 Dec 10;40(35):4048-4059. doi: 10.1200/JCO.22.00602. Epub 2022 Jul 18."
+          }
+        ],
+        "seeAlsoLinks": [
+          {
+            "label": "This clinical study may be evaluating a usage that is not currently FDA approved. Please see US Prescribing Information for approved uses.",
+            "url": "http://www.rxabbvie.com"
+          }
+        ]
+      },
+      "ipdSharingStatementModule": {
+        "ipdSharing": "NO"
+      }
+    },
+    "derivedSection": {
+      "miscInfoModule": {
+        "versionHolder": "2026-11-03"
+      },
+      "conditionBrowseModule": {
+        "meshes": [
+          {
+            "id": "D015470",
+            "term": "Leukemia, Myeloid, Acute"
+          },
+          {
+            "id": "D009369",
+            "term": "Neoplasms"
+          },
+          {
+            "id": "D012008",
+            "term": "Recurrence"
+          }
+        ],
+        "ancestors": [
+          {
+            "id": "D007951",
+            "term": "Leukemia, Myeloid"
+          },
+          {
+            "id": "D007938",
+            "term": "Leukemia"
+          },
+          {
+            "id": "D009370",
+            "term": "Neoplasms by Histologic Type"
+          },
+          {
+            "id": "D006402",
+            "term": "Hematologic Diseases"
+          },
+          {
+            "id": "D006425",
+            "term": "Hemic and Lymphatic Diseases"
+          },
+          {
+            "id": "D020969",
+            "term": "Disease Attributes"
+          },
+          {
+            "id": "D010335",
+            "term": "Pathologic Processes"
+          },
+          {
+            "id": "D013568",
+            "term": "Pathological Conditions, Signs and Symptoms"
+          }
+        ]
+      },
+      "interventionBrowseModule": {
+        "meshes": [
+          {
+            "id": "C579720",
+            "term": "venetoclax"
+          },
+          {
+            "id": "C000609080",
+            "term": "gilteritinib"
+          }
+        ]
+      }
+    },
+    "hasResults": false
+  },
+  "expected_digest": "2aedd2487c16532f6d826bec43345d1df52ce352fa5102e10cbabaf92620de2e",
+  "anchors": [
+    {
+      "id": "eligibility",
+      "address": "/protocolSection/eligibilityModule/eligibilityCriteria",
+      "digest": "2aedd2487c16532f6d826bec43345d1df52ce352fa5102e10cbabaf92620de2e",
+      "expected": "Inclusion Criteria:\n\n* Should have an established, confirmed diagnosis of Acute Myeloid Leukemia (AML) by World Health Organization (2016).\n* Should have failed at least 1 line of prior therapy (defined as failure to respond to therapy, and/or progression during or after therapy).\n* Should have an Eastern Cooperative Oncology Group (ECOG) performance status of 0, 1, or 2.\n* Should have adequate hematologic, kidney and liver function as described in the protocol.\n* For participants enrolling into the Expansion Cohort only: a documented FMS-like Tyrosine Kinase (FLT3) mutation in bone marrow or peripheral blood, as described in the protocol.\n\nExclusion Criteria:\n\n* Has a diagnosis of acute promyelocytic leukemia (APL) or BCR-ABL-positive leukemia.\n* Has a history of other malignancies within 2 years prior to study entry, with exceptions as described in the protocol.\n* Has active central nervous system leukemia.\n* Has a history of chronic New York Heart Association (NYHA) class IV heart failure.\n* Has a corrected QT interval of \\> 450 ms.\n* Has a chronic respiratory disease that requires continuous oxygen use."
+    },
+    {
+      "id": "outcomes",
+      "address": "/protocolSection/outcomesModule",
+      "digest": "2aedd2487c16532f6d826bec43345d1df52ce352fa5102e10cbabaf92620de2e",
+      "expected": {
+        "primaryOutcomes": [
+          {
+            "measure": "Recommended Phase 2 Dose (RPTD) of Co-administered Study Drugs",
+            "description": "The RPTD of co-administered venetoclax and gilteritinib will be determined during the dose escalation phase of the study. RPTD will be determined using available safety and pharmacokinetics data.",
+            "timeFrame": "Up to approximately 6 months after the last participant is enrolled"
+          },
+          {
+            "measure": "Modified Composite Complete Remission (CRc)",
+            "description": "Modified CRc rate is defined as the proportion of participants with documented complete response (CR) + CR with partial blood count recovery (CRp) + CR with incomplete blood count recovery (CRi) plus Morphologic Leukemia-Free State (MLFS) based on guidelines adapted from the International Working Group (IWG) for Acute Myeloid Leukemia (AML).",
+            "timeFrame": "Up to approximately 6 months after the last participant is enrolled"
+          }
+        ],
+        "secondaryOutcomes": [
+          {
+            "measure": "Pharmacokinetics - Cmax of Venetoclax",
+            "description": "Maximum observed plasma concentration (Cmax) of study drug.",
+            "timeFrame": "Approximately 16 days after first dose of study drug"
+          },
+          {
+            "measure": "Pharmacokinetics - Cmax of Gilteritinib",
+            "description": "Maximum observed plasma concentration (Cmax) of study drug.",
+            "timeFrame": "Approximately 16 days after first dose of study drug"
+          },
+          {
+            "measure": "Pharmacokinetics - Tmax of Venetoclax",
+            "description": "Time to maximum plasma concentration (Tmax) of study drug.",
+            "timeFrame": "Approximately 16 days after first dose of study drug"
+          },
+          {
+            "measure": "Pharmacokinetics - Tmax of Gilteritinib",
+            "description": "Time to maximum plasma concentration (Tmax) of study drug.",
+            "timeFrame": "Approximately 16 days after first dose of study drug"
+          },
+          {
+            "measure": "Pharmacokinetics - AUCt of Venetoclax",
+            "description": "Area Under the Plasma Concentration-time Curve (AUC) from Time 0 to Time of the Last Measurable Concentration (AUCt) of study drug.",
+            "timeFrame": "Approximately 16 days after first dose of study drug"
+          },
+          {
+            "measure": "Pharmacokinetics - AUCt of Gilteritinib",
+            "description": "Area Under the Plasma Concentration-time Curve (AUC) from Time 0 to Time of the Last Measurable Concentration (AUCt) of study drug.",
+            "timeFrame": "Approximately 16 days after first dose of study drug"
+          },
+          {
+            "measure": "Pharmacokinetics - AUC0-24 Post-dose of Study Drug of Venetoclax",
+            "description": "Area under the plasma concentration-time curve from 0 to 24 hours (AUC24) post-dose of study drug.",
+            "timeFrame": "Approximately 16 days after first dose of study drug"
+          },
+          {
+            "measure": "Pharmacokinetics - AUC0-24 Post-dose of Study Drug of Gilteritinib",
+            "description": "Area under the plasma concentration-time curve from 0 to 24 hours (AUC24) post-dose of study drug.",
+            "timeFrame": "Approximately 16 days after first dose of study drug"
+          },
+          {
+            "measure": "Composite Complete Remission (CRc) Rate",
+            "description": "CRc is defined as the proportion of participants with documented CR + CRp + CRi based on guidelines adapted from the International Working Group (IWG) for Acute Myeloid Leukemia (AML).",
+            "timeFrame": "Up to approximately 6 months after the last participant is enrolled"
+          },
+          {
+            "measure": "Duration of Response (DOR) of Modified Composite Complete Remission (CRc)",
+            "description": "DOR of modified CRc will be defined as time from the first date achieving modified CRc to disease progression (including morphologic relapse) or death from any cause whichever is earlier.",
+            "timeFrame": "Up to approximately 6 months after the last participant is enrolled"
+          },
+          {
+            "measure": "Complete Remission (CR) + with Partial Hematologic Recovery (CRh)",
+            "description": "It is defined as the proportion of participants achieving CR or CRh based on guidelines adapted from the International Working Group (IWG) for Acute Myeloid Leukemia (AML).",
+            "timeFrame": "Up to approximately 6 months after the last participant is enrolled"
+          },
+          {
+            "measure": "Duration of Response (DOR) of Complete Remission (CR) + Complete Remission with Partial Hematologic Recovery (CRh)",
+            "description": "DOR of CR + CRh will be defined as time from the first date achieving CR and/or CRh to disease progression (including morphologic relapse) or death from any cause whichever is earlier.",
+            "timeFrame": "Up to approximately 6 months after the last participant is enrolled"
+          },
+          {
+            "measure": "Number of Participants With Adverse Events",
+            "description": "An adverse event (AE) is defined as any untoward medical occurrence in a patient or clinical investigation subject administered a pharmaceutical product and which does not necessarily have a causal relationship with this treatment.",
+            "timeFrame": "From first dose of study drug until 30 days or 5 half-lives after discontinuation of study drug administration will be collected (up to approximately 4 years)"
+          }
+        ]
+      }
+    },
+    {
+      "id": "arms",
+      "address": "/protocolSection/armsInterventionsModule",
+      "digest": "2aedd2487c16532f6d826bec43345d1df52ce352fa5102e10cbabaf92620de2e",
+      "expected": {
+        "armGroups": [
+          {
+            "label": "Dose Escalation Venetoclax + Gilteritinib",
+            "type": "EXPERIMENTAL",
+            "description": "Different combinations of dose levels for venetoclax in combination with gilteritinib will be administered to determine the recommended phase 2 dose (RPTD).",
+            "interventionNames": [
+              "Drug: Venetoclax",
+              "Drug: Gilteritinib"
+            ]
+          },
+          {
+            "label": "Dose Expansion Venetoclax + Gilteritinib",
+            "type": "EXPERIMENTAL",
+            "description": "Participants will receive venetoclax in combination with gilteritinib at the dose determined in dose escalation portion.",
+            "interventionNames": [
+              "Drug: Venetoclax",
+              "Drug: Gilteritinib"
+            ]
+          }
+        ],
+        "interventions": [
+          {
+            "type": "DRUG",
+            "name": "Venetoclax",
+            "description": "tablet, oral",
+            "armGroupLabels": [
+              "Dose Escalation Venetoclax + Gilteritinib",
+              "Dose Expansion Venetoclax + Gilteritinib"
+            ],
+            "otherNames": [
+              "ABT-199",
+              "GDC-0199"
+            ]
+          },
+          {
+            "type": "DRUG",
+            "name": "Gilteritinib",
+            "description": "tablet, oral",
+            "armGroupLabels": [
+              "Dose Escalation Venetoclax + Gilteritinib",
+              "Dose Expansion Venetoclax + Gilteritinib"
+            ],
+            "otherNames": [
+              "ASP-2215"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "queries": [
+    {
+      "id": "adult-age-restriction",
+      "body": {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+          "class": "Predicate",
+          "key": "age",
+          "kind": "measurement"
+        },
+        "qualifiers": {
+          "class": "Always"
+        },
+        "subject": {
+          "class": "Subject",
+          "kind": "participant",
+          "referent": ""
+        },
+        "time": null,
+        "value": {
+          "class": "Value",
+          "comparison": "ge",
+          "inclusivity": "unspecified",
+          "kind": "quantity",
+          "members": [],
+          "number": 18,
+          "unit": "Years",
+          "upper": null
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "exit_code": 2,
+  "collected": 5382,
+  "errors": [
+    {
+      "nodeid": "tests/test_reasoning_invariants.py",
+      "report": "tests/test_reasoning_invariants.py:28: in <module>\n    CASES = example_cases()\n            ^^^^^^^^^^^^^^^\ntests/reasoning_invariant_cases.py:85: in example_cases\n    assert located == represented, \"A discovery request slot has no invariant-inventory policy\"\n           ^^^^^^^^^^^^^^^^^^^^^^\nE   AssertionError: A discovery request slot has no invariant-inventory policy"
+    }
+  ]
+}

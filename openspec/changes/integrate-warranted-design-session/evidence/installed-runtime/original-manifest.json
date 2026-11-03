@@ -1,0 +1,54 @@
+{
+  "build.log": {
+    "sha256": "e1ee8ff7fe8629a70747d415bb93fcd204d1d3f9068387f6e99436bae956c4d7",
+    "bytes": 126
+  },
+  "doctor.log": {
+    "sha256": "bb355c6122cba82131e13de875d271a2a1d927d4001cff53dbc36f563b750eb5",
+    "bytes": 1122
+  },
+  "entrypoint-commands.json": {
+    "sha256": "9e37b700035b4a312d0a560a8e89ddcb59c8d9b94ac28b1cf06223b6ecab04e1",
+    "bytes": 24846
+  },
+  "full-artifact-manifest.json": {
+    "sha256": "f15fa02dad0895d1fdc0afb8afcd6272fe6d5c5175bccc0543871e26081d5063",
+    "bytes": 24051
+  },
+  "help.log": {
+    "sha256": "d3bdc013d5aaa074ffde672464f5ef314c7b6860e46b7de0cc9e94f65fc9a596",
+    "bytes": 2435
+  },
+  "install.log": {
+    "sha256": "936145168c3e479d0085c8eecd686355c7d0f1e906bc2d3676528c3e0262c180",
+    "bytes": 475
+  },
+  "installed-identity.json": {
+    "sha256": "441bb62286987783274dca13a4316a2e3e3c0c45baab6bfb32b1a2dd784166d9",
+    "bytes": 812
+  },
+  "runtime-source-freeze.json": {
+    "sha256": "5dd946417cdd5902cc85439472e07029bea06ba19c009229d250e61f9cacdbef",
+    "bytes": 8702
+  },
+  "venv.log": {
+    "sha256": "54e9b29e6df72a018e65ac1131f8329c41e541ec160dc599ed5947d590af453d",
+    "bytes": 273
+  },
+  "verification-receipt.json": {
+    "sha256": "d8e61eccee82c2c4c555147be21cad083e2d28254f84438befdbf2c2ad2c71d9",
+    "bytes": 10417
+  },
+  "verification.log": {
+    "sha256": "d83e745e8752e316e8d54e713bde84f03c09125a7a0aa78c81b203099822f4b8",
+    "bytes": 436
+  },
+  "verify_runtime.py": {
+    "sha256": "8e74d21609bbae9faf6ba64424b36ac6382373eb9c99aea8aa9f7711b168dae7",
+    "bytes": 7367
+  },
+  "wheel-identity.json": {
+    "sha256": "22c360411f80a5bd04f5ff07f39963f2a465d2a3a829cbd6a263246a801c8508",
+    "bytes": 333
+  }
+}

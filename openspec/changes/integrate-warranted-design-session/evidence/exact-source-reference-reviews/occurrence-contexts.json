@@ -1,0 +1,2254 @@
+[
+  {
+    "commit": "08a0d334401267c5cdb041835f1ca81c56ebedae",
+    "path": "acceptance/design-session-walkthrough-docs-diabetes-2026-11-03/reasoning/NCT04255433-source-reading-cli-result.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 8,
+    "added_line_sha256": "e395d42dc8228a6136b0f97f984857e026594944d6e801b4d59e5b0b3f3f97a9",
+    "candidate_sha256": "8ab9f70bba430e4b65feb2c44001358a709206f9974469d1edc48cc2dfef40e2",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": "study_ref",
+    "value_identity": "a056ca995fae7727b6f50a54dcba7b48e112d8d880dbbc9cadf55a2c00c3fa27",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/result/source/study_ref",
+        "object_pointer": "/result/source",
+        "unit": "bd03fa796ba5599e75d86dd581572d68e4eeeb340cf5e73611cf09aaba23978c.json"
+      },
+      {
+        "value_pointer": "/result/requests/0/study_ref",
+        "object_pointer": "/result/requests/0",
+        "unit": "80d3dc85a682ef29b8a715b8eb5efc6a516387f9e957a6a7a0ed8e60a8757fd4.json"
+      },
+      {
+        "value_pointer": "/result/analyses/0/result/study_ref",
+        "object_pointer": "/result/analyses/0/result",
+        "unit": "d5851940045c04ce4493cca27f7c660e0f13113e0bf6d73d1e25d515f2079055.json"
+      }
+    ],
+    "committed_file_sha256": "46338d0180e6204d50cd709503c0d1e996cacaba7a660ef440ce352973d70772"
+  },
+  {
+    "commit": "08a0d334401267c5cdb041835f1ca81c56ebedae",
+    "path": "acceptance/design-session-walkthrough-docs-diabetes-2026-11-03/reasoning/NCT04657016-source-reading-cli-result.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 8,
+    "added_line_sha256": "5e79abab1b314089d5e9d9f8f1ff13c78587e383f47859aade3734aa15db2894",
+    "candidate_sha256": "058b0d2512032e62a8422f72a6d380aab49064d5df9ded74639a9164f7e88ada",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": "study_ref",
+    "value_identity": "5355980b2c21ae05d38c9835e4b03141453e88ca693beb556373be2a64787934",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/result/source/study_ref",
+        "object_pointer": "/result/source",
+        "unit": "751d3648b019941c6b01e7cb748c5e1dee677b8973e2ce7391d8b72d8b5fa0ef.json"
+      },
+      {
+        "value_pointer": "/result/requests/0/study_ref",
+        "object_pointer": "/result/requests/0",
+        "unit": "75a91a950bd3688d812089782ff5b19787a64d452032d756ff41ae19de06aaad.json"
+      },
+      {
+        "value_pointer": "/result/analyses/0/result/study_ref",
+        "object_pointer": "/result/analyses/0/result",
+        "unit": "b40352ff284f653badb6e70b05a1e2f2fba2e6a5311d4b478b5c68464a17b17f.json"
+      }
+    ],
+    "committed_file_sha256": "e5c6aeae2b03fd187158f67708b34fa887c8842abc6bcf1c7d75545e7d7effd9"
+  },
+  {
+    "commit": "08a0d334401267c5cdb041835f1ca81c56ebedae",
+    "path": "acceptance/design-session-walkthrough-docs-diabetes-2026-11-03/reasoning/NCT05260021-age-reading-withdrawn-cli-result.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 8,
+    "added_line_sha256": "353d758ecdce1fa2d39dbe264721067e9be118c5a94e54ab53ffa3e873b1e9d4",
+    "candidate_sha256": "ff2678522e635ce1512600181acb6bec6945119a3d1103d1f071059debbd239d",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": "study_ref",
+    "value_identity": "1ae937f55177adba542ccf74b2ab46e16338335c30eb33491ec8f31c220415ef",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/result/source/study_ref",
+        "object_pointer": "/result/source",
+        "unit": "aa82a9c8d3ad94255a4a45ab950545926612063a70bea595c08df505589947fc.json"
+      },
+      {
+        "value_pointer": "/result/requests/0/study_ref",
+        "object_pointer": "/result/requests/0",
+        "unit": "bab6b7e803342a393f6ac4c09bf0f98955616df8d39f1550f96074673e94eed8.json"
+      },
+      {
+        "value_pointer": "/result/analyses/0/result/study_ref",
+        "object_pointer": "/result/analyses/0/result",
+        "unit": "a6d62809e243718ff5df6225933a531b56b9aa8142966462f3a56a8d1792db18.json"
+      }
+    ],
+    "committed_file_sha256": "6c491f9ca16ddb83e9e8e8183e8b45736a11d3f0b9cec42b970640632fab0ad1"
+  },
+  {
+    "commit": "08a0d334401267c5cdb041835f1ca81c56ebedae",
+    "path": "acceptance/design-session-walkthrough-docs-diabetes-2026-11-03/reasoning/NCT05260021-hypothetical-both-drugs-cli-result.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 8,
+    "added_line_sha256": "353d758ecdce1fa2d39dbe264721067e9be118c5a94e54ab53ffa3e873b1e9d4",
+    "candidate_sha256": "ff2678522e635ce1512600181acb6bec6945119a3d1103d1f071059debbd239d",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": "study_ref",
+    "value_identity": "1ae937f55177adba542ccf74b2ab46e16338335c30eb33491ec8f31c220415ef",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/result/source/study_ref",
+        "object_pointer": "/result/source",
+        "unit": "aa82a9c8d3ad94255a4a45ab950545926612063a70bea595c08df505589947fc.json"
+      },
+      {
+        "value_pointer": "/result/requests/0/study_ref",
+        "object_pointer": "/result/requests/0",
+        "unit": "b49749c9854ccded6e0c66c76a78198491da044d6a7ade1beab5a9a0b80ff2da.json"
+      },
+      {
+        "value_pointer": "/result/analyses/0/result/study_ref",
+        "object_pointer": "/result/analyses/0/result",
+        "unit": "30cbf0aace93ae62baa6313c2704135c53b9707734cac639ffd7fc4d98d086f8.json"
+      }
+    ],
+    "committed_file_sha256": "ef8b40cea58172e4f611c8ec92614316d79b2c39e2996d74e03ab54c684d553f"
+  },
+  {
+    "commit": "08a0d334401267c5cdb041835f1ca81c56ebedae",
+    "path": "acceptance/design-session-walkthrough-docs-diabetes-2026-11-03/reasoning/NCT05260021-source-reading-cli-result.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 8,
+    "added_line_sha256": "353d758ecdce1fa2d39dbe264721067e9be118c5a94e54ab53ffa3e873b1e9d4",
+    "candidate_sha256": "ff2678522e635ce1512600181acb6bec6945119a3d1103d1f071059debbd239d",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": "study_ref",
+    "value_identity": "1ae937f55177adba542ccf74b2ab46e16338335c30eb33491ec8f31c220415ef",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/result/source/study_ref",
+        "object_pointer": "/result/source",
+        "unit": "aa82a9c8d3ad94255a4a45ab950545926612063a70bea595c08df505589947fc.json"
+      },
+      {
+        "value_pointer": "/result/requests/0/study_ref",
+        "object_pointer": "/result/requests/0",
+        "unit": "2e0d03c0dee883c7acde3d26074b49f220a3621668da960d356abac4cacba166.json"
+      },
+      {
+        "value_pointer": "/result/analyses/0/result/study_ref",
+        "object_pointer": "/result/analyses/0/result",
+        "unit": "932ecf216682e8e68057d119577e46d8329499a88e578bbadbe8ed9770682ada.json"
+      }
+    ],
+    "committed_file_sha256": "415fc35f6b5358fb078af451cd49361c0a0c070bfbe10099f0a6002963274809"
+  },
+  {
+    "commit": "08a0d334401267c5cdb041835f1ca81c56ebedae",
+    "path": "acceptance/design-session-walkthrough-exceptions-inflammatory-bowel-2026-11-03/finding-summary.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 49,
+    "added_line_sha256": "7ef513c0fbf3bdabd97601aec24668d11dca71874a9a56fe6e695d135823281c",
+    "candidate_sha256": "1b8ff7997390286c151876432e7656590d7282d9764458caedd26ef2728ef942",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": null,
+    "value_identity": "d961bac643d381c7b523f2bf922b061a564a61de40bd1d2c3aaa84868264a11e",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/0/frames/0/warrant/basis/0",
+        "object_pointer": "/0/frames/0/warrant",
+        "unit": "778b65b7da90ec651fa17c5f5381f433d508aaf0c4bb758642e8cd520af8e9a4.json"
+      },
+      {
+        "value_pointer": "/1/frames/0/warrant/basis/0",
+        "object_pointer": "/1/frames/0/warrant",
+        "unit": "746fc87c7eef770aec04464d321c44ebcd6c92e3d76719c381a33ffb84fdc693.json"
+      }
+    ],
+    "committed_file_sha256": "768e3b56498c1ef09978240e753ed16d9a9421f70cd3d5234e695dfc7f338cdd"
+  },
+  {
+    "commit": "08a0d334401267c5cdb041835f1ca81c56ebedae",
+    "path": "acceptance/design-session-walkthrough-exceptions-inflammatory-bowel-2026-11-03/requests/population-context-retracted.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 3,
+    "added_line_sha256": "1f7aedb7369aa60a809db33b34af5aa47458d906169b2449e8c8c04896960e98",
+    "candidate_sha256": "1b8ff7997390286c151876432e7656590d7282d9764458caedd26ef2728ef942",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": "study_ref",
+    "value_identity": "c90ec9eb4a48428c375ed4220a739a40e933a502b979415ddc5f262cbd5d42ec",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/study_ref",
+        "object_pointer": "",
+        "unit": "a2f7586c031c7ae9f46626b5c68c7939e1151b5be36b0eb0fbcddb4073faac96.json"
+      }
+    ],
+    "committed_file_sha256": "932c8959f3ada7ab13a79aef7d853812320fec442110f84b6c267006c0077f94"
+  },
+  {
+    "commit": "08a0d334401267c5cdb041835f1ca81c56ebedae",
+    "path": "acceptance/design-session-walkthrough-exceptions-inflammatory-bowel-2026-11-03/requests/scoped-randomized-maintenance.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 23189,
+    "added_line_sha256": "380c9d0ff75c034b806a3dfbd07871b7ed93f4b4c54a1f0bfa0d7b4ed1f34b11",
+    "candidate_sha256": "1b8ff7997390286c151876432e7656590d7282d9764458caedd26ef2728ef942",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": "anchor_ref",
+    "value_identity": "928c56102953106983ff551c9ab467d51d461931d90d11ae3ec2beff2650f892",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/interpretations/0/assumptions/0/body/time/anchor_ref",
+        "object_pointer": "/interpretations/0/assumptions/0/body/time",
+        "unit": "37d6b0f1217cea7e01dfce2d729d329aae2cf379aaa365adbb496b99ac7a1164.json"
+      },
+      {
+        "value_pointer": "/queries/1/body/time/anchor_ref",
+        "object_pointer": "/queries/1/body/time",
+        "unit": "37d6b0f1217cea7e01dfce2d729d329aae2cf379aaa365adbb496b99ac7a1164.json"
+      }
+    ],
+    "committed_file_sha256": "f610ee9426b84e0c3aeea111f9688461fa9998a62fc2a344bc3f0903dde65714"
+  },
+  {
+    "commit": "08a0d334401267c5cdb041835f1ca81c56ebedae",
+    "path": "acceptance/design-session-walkthrough-exceptions-inflammatory-bowel-2026-11-03/results/population-context-retracted.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 5,
+    "added_line_sha256": "1f7aedb7369aa60a809db33b34af5aa47458d906169b2449e8c8c04896960e98",
+    "candidate_sha256": "1b8ff7997390286c151876432e7656590d7282d9764458caedd26ef2728ef942",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": "study_ref",
+    "value_identity": "c90ec9eb4a48428c375ed4220a739a40e933a502b979415ddc5f262cbd5d42ec",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/result/study_ref",
+        "object_pointer": "/result",
+        "unit": "990b789fc448fbc3fde49c15ec837e466f703ca0b1d380dd9bb84ddb7d7daa33.json"
+      }
+    ],
+    "committed_file_sha256": "c955e55ea906f05b5a673d0061eaa33928408dbb0c7840223da77e82fbd167c0"
+  },
+  {
+    "commit": "08a0d334401267c5cdb041835f1ca81c56ebedae",
+    "path": "acceptance/design-session-walkthrough-exceptions-inflammatory-bowel-2026-11-03/results/scoped-randomized-maintenance.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 8,
+    "added_line_sha256": "121138adfce5fa031294e1cf83274f63a6d3673e854872ec2bb8bc85008bdfa5",
+    "candidate_sha256": "1b8ff7997390286c151876432e7656590d7282d9764458caedd26ef2728ef942",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": "study_ref",
+    "value_identity": "c90ec9eb4a48428c375ed4220a739a40e933a502b979415ddc5f262cbd5d42ec",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/result/source/study_ref",
+        "object_pointer": "/result/source",
+        "unit": "3b1142b5f0a337a920b83376ad75eb682ba84726b08546871f08b2ae1b88936b.json"
+      },
+      {
+        "value_pointer": "/result/requests/0/study_ref",
+        "object_pointer": "/result/requests/0",
+        "unit": "1d77d0e8284fb166c10fee80a108a0f17aaef36def24f698701e2558476e11cf.json"
+      },
+      {
+        "value_pointer": "/result/analyses/0/result/study_ref",
+        "object_pointer": "/result/analyses/0/result",
+        "unit": "cc942ac4a2daf3272b072e34b9d7c22f8d6e0f730c733e2a7784d6d924c68f4a.json"
+      }
+    ],
+    "committed_file_sha256": "f31fe2320f2399031ed1259f6cce592a4c42d0496c393f0692a795f9cf4c5a4d"
+  },
+  {
+    "commit": "08a0d334401267c5cdb041835f1ca81c56ebedae",
+    "path": "acceptance/design-session-walkthrough-metadata-heart-failure-2026-11-03/findings.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 112,
+    "added_line_sha256": "d646aa19d9900eb75a692ffa5979641b9618824c1db0c568558259fc88e2664b",
+    "candidate_sha256": "1838ebc9d66f624c62070c91e8851cee28018053937b49299f55e498a45d558c",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": null,
+    "value_identity": "9407e8634009e2fb94903141ecfb419306352809b177cd39610e410844d45a01",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/0/findings/4/warrant/basis/0",
+        "object_pointer": "/0/findings/4/warrant",
+        "unit": "87b222d3343da5537ab0e05cc137b21d17737e35580b9eb49de762434a852884.json"
+      },
+      {
+        "value_pointer": "/1/findings/4/warrant/basis/0",
+        "object_pointer": "/1/findings/4/warrant",
+        "unit": "bc9035b25842a7427f7baabdabc7c3e178b052a84c7e34475abd0573d87471b1.json"
+      }
+    ],
+    "committed_file_sha256": "d071c7de265eb7e95f4391ad46de051049b68fb3abb380e663794d01ef8f79ed"
+  },
+  {
+    "commit": "08a0d334401267c5cdb041835f1ca81c56ebedae",
+    "path": "acceptance/design-session-walkthrough-metadata-heart-failure-2026-11-03/findings.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 722,
+    "added_line_sha256": "98b4e5d4867883cd2cce398c147d0aa035a48db4241870ba029989282b9b509a",
+    "candidate_sha256": "029013177a91decf8f7061f2c9294f2c221b6df0a06078b2a585ec3cf26643b8",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": null,
+    "value_identity": "8bbcb36f81d315af886bca89633cffa329f6acca688d8bedc374bcb3c9539f03",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/2/findings/4/warrant/basis/0",
+        "object_pointer": "/2/findings/4/warrant",
+        "unit": "af318452401d1434b60432cfb0484fc248a87dcf60539092e3bfad753785736c.json"
+      },
+      {
+        "value_pointer": "/3/findings/4/warrant/basis/0",
+        "object_pointer": "/3/findings/4/warrant",
+        "unit": "af318452401d1434b60432cfb0484fc248a87dcf60539092e3bfad753785736c.json"
+      }
+    ],
+    "committed_file_sha256": "d071c7de265eb7e95f4391ad46de051049b68fb3abb380e663794d01ef8f79ed"
+  },
+  {
+    "commit": "08a0d334401267c5cdb041835f1ca81c56ebedae",
+    "path": "acceptance/design-session-walkthrough-metadata-heart-failure-2026-11-03/findings.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 1311,
+    "added_line_sha256": "b87da968b5d618c62f1a10d9adee67df07c85e6a0cc4420a6ae7bf613f1a94c9",
+    "candidate_sha256": "2f92b59c09e2a957229695e62962407255cfea444d68632864659c3b835a5e43",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": null,
+    "value_identity": "656033f984ab9ddc278a7812dcfbe7c2f6e486913086697c91e45db90a42da00",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/4/findings/6/warrant/basis/0",
+        "object_pointer": "/4/findings/6/warrant",
+        "unit": "06a84cdeabeb1df9c3d9cad4614c3813a441e0dfd1e28f0cebfc06981efd196d.json"
+      }
+    ],
+    "committed_file_sha256": "d071c7de265eb7e95f4391ad46de051049b68fb3abb380e663794d01ef8f79ed"
+  },
+  {
+    "commit": "08a0d334401267c5cdb041835f1ca81c56ebedae",
+    "path": "acceptance/design-session-walkthrough-metadata-heart-failure-2026-11-03/requests/NCT03057977-EF.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 17639,
+    "added_line_sha256": "6646852837d6d1aa6c7ba68ee3193fc8191e073ef94fccf5e32dce88abb4e7c3",
+    "candidate_sha256": "1838ebc9d66f624c62070c91e8851cee28018053937b49299f55e498a45d558c",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": "criterion_ref",
+    "value_identity": "4d5f3cfad38dade60f307e40d9596975a4f22f7275c5685bb952cb7f4efad755",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/interpretations/0/assumptions/0/criterion_ref",
+        "object_pointer": "/interpretations/0/assumptions/0",
+        "unit": "c1e0efe77e63b01b6d94901aa6f36875a21ba7517619e6a03c85538375cc67d5.json"
+      }
+    ],
+    "committed_file_sha256": "f1de95b22d2d81aadf6edc3fbaa21a72dbb3f0bdf5b88023dbdb2aa62810b09c"
+  },
+  {
+    "commit": "08a0d334401267c5cdb041835f1ca81c56ebedae",
+    "path": "acceptance/design-session-walkthrough-metadata-heart-failure-2026-11-03/requests/NCT03057977-bound1.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 17639,
+    "added_line_sha256": "6646852837d6d1aa6c7ba68ee3193fc8191e073ef94fccf5e32dce88abb4e7c3",
+    "candidate_sha256": "1838ebc9d66f624c62070c91e8851cee28018053937b49299f55e498a45d558c",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": "criterion_ref",
+    "value_identity": "4d5f3cfad38dade60f307e40d9596975a4f22f7275c5685bb952cb7f4efad755",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/interpretations/0/assumptions/0/criterion_ref",
+        "object_pointer": "/interpretations/0/assumptions/0",
+        "unit": "c1e0efe77e63b01b6d94901aa6f36875a21ba7517619e6a03c85538375cc67d5.json"
+      }
+    ],
+    "committed_file_sha256": "03420c2e005ff42a1864d7ed94d9a0af7de936e5558faf34e608c64afe9ebe48"
+  },
+  {
+    "commit": "08a0d334401267c5cdb041835f1ca81c56ebedae",
+    "path": "acceptance/design-session-walkthrough-metadata-heart-failure-2026-11-03/requests/NCT03332212-cohort-A.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 1548,
+    "added_line_sha256": "d53682df772fd085dcf8c59cdc04038ebb0cbab621bd347e7ccc070dda5104e6",
+    "candidate_sha256": "029013177a91decf8f7061f2c9294f2c221b6df0a06078b2a585ec3cf26643b8",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": "anchor_ref",
+    "value_identity": "4111fff1f3cea20e7acc7f77af78da9e0f40272b36fdfdbfab81239c2db21ddb",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/interpretations/0/assumptions/0/body/time/anchor_ref",
+        "object_pointer": "/interpretations/0/assumptions/0/body/time",
+        "unit": "fd2617e3676464bdc3c31442ffb351b915dc4af79be311d9b4d385b1355bed6d.json"
+      },
+      {
+        "value_pointer": "/queries/1/body/time/anchor_ref",
+        "object_pointer": "/queries/1/body/time",
+        "unit": "fd2617e3676464bdc3c31442ffb351b915dc4af79be311d9b4d385b1355bed6d.json"
+      },
+      {
+        "value_pointer": "/queries/2/body/time/anchor_ref",
+        "object_pointer": "/queries/2/body/time",
+        "unit": "fd2617e3676464bdc3c31442ffb351b915dc4af79be311d9b4d385b1355bed6d.json"
+      }
+    ],
+    "committed_file_sha256": "8f6074f1870aed64a512e386c37fb96d6daf875ec03cea88ef7193083a3f738c"
+  },
+  {
+    "commit": "08a0d334401267c5cdb041835f1ca81c56ebedae",
+    "path": "acceptance/design-session-walkthrough-metadata-heart-failure-2026-11-03/requests/NCT03332212-cohort-B.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 1548,
+    "added_line_sha256": "d53682df772fd085dcf8c59cdc04038ebb0cbab621bd347e7ccc070dda5104e6",
+    "candidate_sha256": "029013177a91decf8f7061f2c9294f2c221b6df0a06078b2a585ec3cf26643b8",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": "anchor_ref",
+    "value_identity": "4111fff1f3cea20e7acc7f77af78da9e0f40272b36fdfdbfab81239c2db21ddb",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/interpretations/0/assumptions/0/body/time/anchor_ref",
+        "object_pointer": "/interpretations/0/assumptions/0/body/time",
+        "unit": "fd2617e3676464bdc3c31442ffb351b915dc4af79be311d9b4d385b1355bed6d.json"
+      },
+      {
+        "value_pointer": "/queries/1/body/time/anchor_ref",
+        "object_pointer": "/queries/1/body/time",
+        "unit": "fd2617e3676464bdc3c31442ffb351b915dc4af79be311d9b4d385b1355bed6d.json"
+      },
+      {
+        "value_pointer": "/queries/2/body/time/anchor_ref",
+        "object_pointer": "/queries/2/body/time",
+        "unit": "fd2617e3676464bdc3c31442ffb351b915dc4af79be311d9b4d385b1355bed6d.json"
+      }
+    ],
+    "committed_file_sha256": "25a1df8e1785e5351009046fb13d14537ba0d437bf63809433736bff53a3932e"
+  },
+  {
+    "commit": "08a0d334401267c5cdb041835f1ca81c56ebedae",
+    "path": "acceptance/design-session-walkthrough-metadata-heart-failure-2026-11-03/requests/NCT03448406-EF-background-endpoint.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 4090,
+    "added_line_sha256": "4b25cece91665beb6ed3aaa18b147dbdc59f55fbd4602cdb477187671a6764a8",
+    "candidate_sha256": "2f92b59c09e2a957229695e62962407255cfea444d68632864659c3b835a5e43",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": "anchor_ref",
+    "value_identity": "fd7c1acee8c581b61e7bd560b4b2720a9d6c2df0f61ef1f18c8099aa0dea1990",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/interpretations/0/assumptions/0/body/time/anchor_ref",
+        "object_pointer": "/interpretations/0/assumptions/0/body/time",
+        "unit": "1c164d0ee33b02f0227d89b8d47532d212e6b644d8bd06c67247177ee0a6a8e7.json"
+      },
+      {
+        "value_pointer": "/interpretations/0/assumptions/1/applicability/time/anchor_ref",
+        "object_pointer": "/interpretations/0/assumptions/1/applicability/time",
+        "unit": "1c164d0ee33b02f0227d89b8d47532d212e6b644d8bd06c67247177ee0a6a8e7.json"
+      },
+      {
+        "value_pointer": "/interpretations/0/assumptions/1/body/time/anchor_ref",
+        "object_pointer": "/interpretations/0/assumptions/1/body/time",
+        "unit": "21c9252c78d58581c4f29ff125e516c03235d8436fc8587d24421dd515262695.json"
+      },
+      {
+        "value_pointer": "/queries/1/body/time/anchor_ref",
+        "object_pointer": "/queries/1/body/time",
+        "unit": "1c164d0ee33b02f0227d89b8d47532d212e6b644d8bd06c67247177ee0a6a8e7.json"
+      },
+      {
+        "value_pointer": "/queries/2/body/time/anchor_ref",
+        "object_pointer": "/queries/2/body/time",
+        "unit": "1c164d0ee33b02f0227d89b8d47532d212e6b644d8bd06c67247177ee0a6a8e7.json"
+      },
+      {
+        "value_pointer": "/queries/3/body/time/anchor_ref",
+        "object_pointer": "/queries/3/body/time",
+        "unit": "1c164d0ee33b02f0227d89b8d47532d212e6b644d8bd06c67247177ee0a6a8e7.json"
+      },
+      {
+        "value_pointer": "/queries/4/body/time/anchor_ref",
+        "object_pointer": "/queries/4/body/time",
+        "unit": "21c9252c78d58581c4f29ff125e516c03235d8436fc8587d24421dd515262695.json"
+      }
+    ],
+    "committed_file_sha256": "001e65df5f47531c4325c92f5c6ad6bb256cf1d811a40af589cdc54f698ff3f0"
+  },
+  {
+    "commit": "08a0d334401267c5cdb041835f1ca81c56ebedae",
+    "path": "acceptance/design-session-walkthrough-metadata-heart-failure-2026-11-03/requests/partial-source-corpus.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 29,
+    "added_line_sha256": "52b158a8de4b74fb635afe16ca40dff90e830e614240c9fb90d21e7816d6bdfb",
+    "candidate_sha256": "029013177a91decf8f7061f2c9294f2c221b6df0a06078b2a585ec3cf26643b8",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": null,
+    "value_identity": "997ab4e9dc7e1350565885a4785aec95dbae6a912957bbb9774f9837ccebbf2d",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/trials/0/feature_standings/elements/inclusion:minimum_age=18_Years/basis/0",
+        "object_pointer": "/trials/0/feature_standings/elements/inclusion:minimum_age=18_Years",
+        "unit": "c96885da0d2ae220dd6513f9b180cae77693f844c6489f53f789d775c15c6275.json"
+      }
+    ],
+    "committed_file_sha256": "e3e2274838f034fb24e396127e64e0c1433135716dd81327e8574ed602ff787b"
+  },
+  {
+    "commit": "08a0d334401267c5cdb041835f1ca81c56ebedae",
+    "path": "acceptance/design-session-walkthrough-metadata-heart-failure-2026-11-03/requests/partial-source-corpus.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 62,
+    "added_line_sha256": "5dd9d14546a6935c61ed0601a634706b5e1b1c5e2b86dae7d8c79357f6e780cc",
+    "candidate_sha256": "1838ebc9d66f624c62070c91e8851cee28018053937b49299f55e498a45d558c",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": null,
+    "value_identity": "235e7f971ad96ab87522cfb1d7bcf9105dce363037173ebe70c15fa6cfb0034a",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/trials/1/feature_standings/elements/inclusion:minimum_age=18_Years/basis/0",
+        "object_pointer": "/trials/1/feature_standings/elements/inclusion:minimum_age=18_Years",
+        "unit": "6cf9ae458ad45241f7dd869f85867d85477f714011d5fabeb70f33bfce7cb894.json"
+      }
+    ],
+    "committed_file_sha256": "e3e2274838f034fb24e396127e64e0c1433135716dd81327e8574ed602ff787b"
+  },
+  {
+    "commit": "08a0d334401267c5cdb041835f1ca81c56ebedae",
+    "path": "acceptance/design-session-walkthrough-metadata-heart-failure-2026-11-03/requests/partial-source-corpus.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 95,
+    "added_line_sha256": "c08ad9d1b9dd1f94f26f0631642fd07795d342695414c6f64e0ce27d81886767",
+    "candidate_sha256": "2f92b59c09e2a957229695e62962407255cfea444d68632864659c3b835a5e43",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": null,
+    "value_identity": "d28980326b781c1b57d59df8d04f1aace47b42772f69bec5cd11eefa4ba08832",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/trials/2/feature_standings/elements/inclusion:minimum_age=18_Years/basis/0",
+        "object_pointer": "/trials/2/feature_standings/elements/inclusion:minimum_age=18_Years",
+        "unit": "c08bfebcc089ca159b1d0c9fd5059e8e8a37aa9255c831308f0eae04f1434373.json"
+      }
+    ],
+    "committed_file_sha256": "e3e2274838f034fb24e396127e64e0c1433135716dd81327e8574ed602ff787b"
+  },
+  {
+    "commit": "08a0d334401267c5cdb041835f1ca81c56ebedae",
+    "path": "acceptance/design-session-walkthrough-metadata-heart-failure-2026-11-03/results/NCT03057977-EF-cli.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 8,
+    "added_line_sha256": "e74d967423e425d444fe0e5d00646bb19756f33cf440bae09f17a5b880efbd78",
+    "candidate_sha256": "1838ebc9d66f624c62070c91e8851cee28018053937b49299f55e498a45d558c",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": "study_ref",
+    "value_identity": "aa796c54028f439b1285a8d3dc45e0b9282e013924326776aa98b57a023451b4",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/result/source/study_ref",
+        "object_pointer": "/result/source",
+        "unit": "633f9a9d1b84a1f56b57959e519e654fe6e0beb0847769fe1fc4ba12ed158bc0.json"
+      },
+      {
+        "value_pointer": "/result/requests/0/study_ref",
+        "object_pointer": "/result/requests/0",
+        "unit": "49458625951379e083ac6c233c94d0a67454fdbe96e619986ea57f3b9c0c2c13.json"
+      },
+      {
+        "value_pointer": "/result/analyses/0/result/study_ref",
+        "object_pointer": "/result/analyses/0/result",
+        "unit": "7a9e1a636660d4e0ca7625787715c9d17f252cbcabe66159a7340923a16a2b13.json"
+      }
+    ],
+    "committed_file_sha256": "7bb4fbbf2e71b3a09c34e755c9c55136e497eb3924663773a236955ef0e5bd6e"
+  },
+  {
+    "commit": "08a0d334401267c5cdb041835f1ca81c56ebedae",
+    "path": "acceptance/design-session-walkthrough-metadata-heart-failure-2026-11-03/results/NCT03057977-bound1-cli.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 8,
+    "added_line_sha256": "e74d967423e425d444fe0e5d00646bb19756f33cf440bae09f17a5b880efbd78",
+    "candidate_sha256": "1838ebc9d66f624c62070c91e8851cee28018053937b49299f55e498a45d558c",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": "study_ref",
+    "value_identity": "aa796c54028f439b1285a8d3dc45e0b9282e013924326776aa98b57a023451b4",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/result/source/study_ref",
+        "object_pointer": "/result/source",
+        "unit": "633f9a9d1b84a1f56b57959e519e654fe6e0beb0847769fe1fc4ba12ed158bc0.json"
+      },
+      {
+        "value_pointer": "/result/requests/0/study_ref",
+        "object_pointer": "/result/requests/0",
+        "unit": "4827215a47ad9212a0f57b31b53d76bf9f74cb3f593e66e156c8f990669f0f31.json"
+      },
+      {
+        "value_pointer": "/result/analyses/0/result/study_ref",
+        "object_pointer": "/result/analyses/0/result",
+        "unit": "625fa10e8a77306631d82f643cf802c238fadd6c6e364566f03f242cb566d3d7.json"
+      }
+    ],
+    "committed_file_sha256": "59ecbce0e2c8eaf8902eca1ad8be23595ccc17ff3aa245b9400fc6aa8dad589e"
+  },
+  {
+    "commit": "08a0d334401267c5cdb041835f1ca81c56ebedae",
+    "path": "acceptance/design-session-walkthrough-metadata-heart-failure-2026-11-03/results/NCT03332212-cohort-A-cli.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 8,
+    "added_line_sha256": "c2c97e381628766ffe323689b7594156b951e508997394a2fd5e4a7dafcd4f89",
+    "candidate_sha256": "029013177a91decf8f7061f2c9294f2c221b6df0a06078b2a585ec3cf26643b8",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": "study_ref",
+    "value_identity": "54dda30337baec2081449dbc4bb31e0a73b03d697d2444e4d70bffab9ef908f9",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/result/source/study_ref",
+        "object_pointer": "/result/source",
+        "unit": "a0934fd490b8edb596c5c0ad516ff10efe0071eb62cb55e2d299ef9d1bee81a7.json"
+      },
+      {
+        "value_pointer": "/result/requests/0/study_ref",
+        "object_pointer": "/result/requests/0",
+        "unit": "15a605b65893cef87d2b3c9f4e861e0961c413ab559494576250049cbdbf2952.json"
+      },
+      {
+        "value_pointer": "/result/analyses/0/result/study_ref",
+        "object_pointer": "/result/analyses/0/result",
+        "unit": "03ffca4c5b920d0e3098d43b445e3e673dd175e955d2162a4f90413a389f7b30.json"
+      }
+    ],
+    "committed_file_sha256": "eaa9d83c56c2120f4e4490c34b7e79d208699286544830e9bbf271ac5d150ee7"
+  },
+  {
+    "commit": "08a0d334401267c5cdb041835f1ca81c56ebedae",
+    "path": "acceptance/design-session-walkthrough-metadata-heart-failure-2026-11-03/results/NCT03332212-cohort-B-cli.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 8,
+    "added_line_sha256": "c2c97e381628766ffe323689b7594156b951e508997394a2fd5e4a7dafcd4f89",
+    "candidate_sha256": "029013177a91decf8f7061f2c9294f2c221b6df0a06078b2a585ec3cf26643b8",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": "study_ref",
+    "value_identity": "54dda30337baec2081449dbc4bb31e0a73b03d697d2444e4d70bffab9ef908f9",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/result/source/study_ref",
+        "object_pointer": "/result/source",
+        "unit": "a0934fd490b8edb596c5c0ad516ff10efe0071eb62cb55e2d299ef9d1bee81a7.json"
+      },
+      {
+        "value_pointer": "/result/requests/0/study_ref",
+        "object_pointer": "/result/requests/0",
+        "unit": "8c9043b376095f0748bb540266fd8099b1fe7c79b9142587c115074820a4d677.json"
+      },
+      {
+        "value_pointer": "/result/analyses/0/result/study_ref",
+        "object_pointer": "/result/analyses/0/result",
+        "unit": "549e0373500a541f839cd60bdd7213164613af1f86ac097e888fa9b261395514.json"
+      }
+    ],
+    "committed_file_sha256": "87d5a0c8c57eef534f56473c6f240a9b841bf0b6484aecf2824f72b4fd87e999"
+  },
+  {
+    "commit": "08a0d334401267c5cdb041835f1ca81c56ebedae",
+    "path": "acceptance/design-session-walkthrough-metadata-heart-failure-2026-11-03/results/NCT03448406-EF-background-endpoint-cli.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 8,
+    "added_line_sha256": "13c8df8969d307db63eb1c1a740f2a0818f59391dda2bc6ee1276fa9be48e265",
+    "candidate_sha256": "2f92b59c09e2a957229695e62962407255cfea444d68632864659c3b835a5e43",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": "study_ref",
+    "value_identity": "65c19043d007ad7ba1978f74b4679049840cfbb27b0998dbb04bd49f2ec5269c",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/result/source/study_ref",
+        "object_pointer": "/result/source",
+        "unit": "8833ce825d50112facb5f1ed43adeaf5b6a6d177a68a41f98f08756a9045c892.json"
+      },
+      {
+        "value_pointer": "/result/requests/0/study_ref",
+        "object_pointer": "/result/requests/0",
+        "unit": "b5260128153df2c47261c9269eabd5082096689c664f26e3808fa26bf84621ab.json"
+      },
+      {
+        "value_pointer": "/result/analyses/0/result/study_ref",
+        "object_pointer": "/result/analyses/0/result",
+        "unit": "587f70c1512c6a7b3fb6bf73a0e81b354b0874cab06fa27ec991a68055b88794.json"
+      }
+    ],
+    "committed_file_sha256": "9485c057168cb5dcf6d4caa85f860eacd5fd641f5c9c074c48638849148bd497"
+  },
+  {
+    "commit": "08a0d334401267c5cdb041835f1ca81c56ebedae",
+    "path": "acceptance/design-session-walkthrough-metadata-heart-failure-2026-11-03/results/partial-source-corpus-cli.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 32,
+    "added_line_sha256": "aa49d1aba1dadb57dc9875b01a0748d4c884ad245a5936a5ae6bb14592680123",
+    "candidate_sha256": "029013177a91decf8f7061f2c9294f2c221b6df0a06078b2a585ec3cf26643b8",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": null,
+    "value_identity": "997ab4e9dc7e1350565885a4785aec95dbae6a912957bbb9774f9837ccebbf2d",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/result/premises/0/feature_standings/elements/inclusion:minimum_age=18_Years/basis/0",
+        "object_pointer": "/result/premises/0/feature_standings/elements/inclusion:minimum_age=18_Years",
+        "unit": "c96885da0d2ae220dd6513f9b180cae77693f844c6489f53f789d775c15c6275.json"
+      },
+      {
+        "value_pointer": "/result/admission/0/features/3/standing/basis/0",
+        "object_pointer": "/result/admission/0/features/3/standing",
+        "unit": "c96885da0d2ae220dd6513f9b180cae77693f844c6489f53f789d775c15c6275.json"
+      }
+    ],
+    "committed_file_sha256": "b960d8869fa7d7c2c44799638e4d934fc31c425b818e51eb350c3407ab49ab6f"
+  },
+  {
+    "commit": "08a0d334401267c5cdb041835f1ca81c56ebedae",
+    "path": "acceptance/design-session-walkthrough-metadata-heart-failure-2026-11-03/results/partial-source-corpus-cli.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 65,
+    "added_line_sha256": "d94cbe1ec530c6354fc8f74cdfe87cb0d20bac5220049f0388670131265f9c1b",
+    "candidate_sha256": "1838ebc9d66f624c62070c91e8851cee28018053937b49299f55e498a45d558c",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": null,
+    "value_identity": "235e7f971ad96ab87522cfb1d7bcf9105dce363037173ebe70c15fa6cfb0034a",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/result/premises/1/feature_standings/elements/inclusion:minimum_age=18_Years/basis/0",
+        "object_pointer": "/result/premises/1/feature_standings/elements/inclusion:minimum_age=18_Years",
+        "unit": "6cf9ae458ad45241f7dd869f85867d85477f714011d5fabeb70f33bfce7cb894.json"
+      },
+      {
+        "value_pointer": "/result/admission/1/features/3/standing/basis/0",
+        "object_pointer": "/result/admission/1/features/3/standing",
+        "unit": "6cf9ae458ad45241f7dd869f85867d85477f714011d5fabeb70f33bfce7cb894.json"
+      }
+    ],
+    "committed_file_sha256": "b960d8869fa7d7c2c44799638e4d934fc31c425b818e51eb350c3407ab49ab6f"
+  },
+  {
+    "commit": "08a0d334401267c5cdb041835f1ca81c56ebedae",
+    "path": "acceptance/design-session-walkthrough-metadata-heart-failure-2026-11-03/results/partial-source-corpus-cli.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 98,
+    "added_line_sha256": "4093c568d27e6780614bb4b40f9111fa4abf8c211234af4b5d8c84fb5e31d9d6",
+    "candidate_sha256": "2f92b59c09e2a957229695e62962407255cfea444d68632864659c3b835a5e43",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": null,
+    "value_identity": "d28980326b781c1b57d59df8d04f1aace47b42772f69bec5cd11eefa4ba08832",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/result/premises/2/feature_standings/elements/inclusion:minimum_age=18_Years/basis/0",
+        "object_pointer": "/result/premises/2/feature_standings/elements/inclusion:minimum_age=18_Years",
+        "unit": "c08bfebcc089ca159b1d0c9fd5059e8e8a37aa9255c831308f0eae04f1434373.json"
+      },
+      {
+        "value_pointer": "/result/admission/2/features/3/standing/basis/0",
+        "object_pointer": "/result/admission/2/features/3/standing",
+        "unit": "c08bfebcc089ca159b1d0c9fd5059e8e8a37aa9255c831308f0eae04f1434373.json"
+      }
+    ],
+    "committed_file_sha256": "b960d8869fa7d7c2c44799638e4d934fc31c425b818e51eb350c3407ab49ab6f"
+  },
+  {
+    "commit": "08a0d334401267c5cdb041835f1ca81c56ebedae",
+    "path": "openspec/changes/integrate-warranted-design-session/evidence/result-metadata-inventory.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 13116,
+    "added_line_sha256": "368e341b3a6e5c1207ce0cab53554cf54f1c2b7e4b5dd41e98aa3d9f498ed5bf",
+    "candidate_sha256": "d20e3fb90f0536ea6d31290b88b3765fc85afdc77329a5895c39c46b9644a6f3",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": "study_ref",
+    "value_identity": "a4104308e09c6d55f9f4c1f12cfc284c1cb2cd45339f9686403481983a7ecc81",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/observed/example:source_assertions/response/result/source/study_ref",
+        "object_pointer": "/observed/example:source_assertions/response/result/source",
+        "unit": "12c7c36f377009a9474a79f3fae16ed97842aee6ec3687900dad1f2352e5e97f.json"
+      },
+      {
+        "value_pointer": "/observed/example:source_assertions/response/result/requests/0/study_ref",
+        "object_pointer": "/observed/example:source_assertions/response/result/requests/0",
+        "unit": "acced22f2cf77e74e755f1c1879434219d3f450acfb9e41b08163043faefd1e1.json"
+      },
+      {
+        "value_pointer": "/observed/example:source_assertions/response/result/analyses/0/result/study_ref",
+        "object_pointer": "/observed/example:source_assertions/response/result/analyses/0/result",
+        "unit": "4bf27a12da51ed59cb2b6bd8b6c3d84a8b87c4f064831a2e1e08180e15eb856e.json"
+      },
+      {
+        "value_pointer": "/observed/source_assertions:inspection/response/result/source/study_ref",
+        "object_pointer": "/observed/source_assertions:inspection/response/result/source",
+        "unit": "12c7c36f377009a9474a79f3fae16ed97842aee6ec3687900dad1f2352e5e97f.json"
+      }
+    ],
+    "committed_file_sha256": "65b3a0cee91572eac9bd86893a6d44dd815e85053464a4e4bc9de3cee5ed4178"
+  },
+  {
+    "commit": "08a0d334401267c5cdb041835f1ca81c56ebedae",
+    "path": "openspec/changes/integrate-warranted-design-session/prototype/reference/registered-age-corpus-request.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 28,
+    "added_line_sha256": "1b834e0d340d3bbe25c163b5e064a670b9e106560676c9d16cbaf27b182bbc04",
+    "candidate_sha256": "3b5bcbf3c452addc2e7af4892120a15618be615791285587bc8422d6e2e5a1ff",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": null,
+    "value_identity": "1a31462c3aa066236a86056a70d79227072c97bbaff8f5dccc4aa8cc67912bce",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/trials/0/feature_standings/elements/inclusion:minimum_age=18_Years/basis/0",
+        "object_pointer": "/trials/0/feature_standings/elements/inclusion:minimum_age=18_Years",
+        "unit": "0aa9406de1af22f3839a1f4565e66055e470e8200cddfffcf1814017766773b9.json"
+      }
+    ],
+    "committed_file_sha256": "83bcdd4fab501c25771d9bdf6d65d3a289d2f5de2df46ba3163abe9b27e9cc04"
+  },
+  {
+    "commit": "08a0d334401267c5cdb041835f1ca81c56ebedae",
+    "path": "openspec/changes/integrate-warranted-design-session/prototype/reference/registered-age-corpus-request.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 60,
+    "added_line_sha256": "8a7d9f281e32226e119397a6c25980f9a51394dbe0eaf45f52c7dc633b93ee0f",
+    "candidate_sha256": "a03ceef2c89e46d9159967ce6f737cd646583efe95078a6a96e6acf16d0d9a65",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": null,
+    "value_identity": "8d80978f37a933a3a3ad0088a6166a081c71cfbb5177606bd7d93830226b87d2",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/trials/1/feature_standings/elements/inclusion:minimum_age=18_Years/basis/0",
+        "object_pointer": "/trials/1/feature_standings/elements/inclusion:minimum_age=18_Years",
+        "unit": "41cab5b586ac55befa16b53b140ee3082524bf46098e9e10c3b6acf02c9a1b6b.json"
+      }
+    ],
+    "committed_file_sha256": "83bcdd4fab501c25771d9bdf6d65d3a289d2f5de2df46ba3163abe9b27e9cc04"
+  },
+  {
+    "commit": "08a0d334401267c5cdb041835f1ca81c56ebedae",
+    "path": "openspec/changes/integrate-warranted-design-session/prototype/runs/revision-1/archer-registered-age-result.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 8,
+    "added_line_sha256": "94bc0bebd188d1057fcee6170581ff8dc83a3ea172fa6fac50fbbaba1cc1c557",
+    "candidate_sha256": "a03ceef2c89e46d9159967ce6f737cd646583efe95078a6a96e6acf16d0d9a65",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": "study_ref",
+    "value_identity": "e75efadb447fee57ea9c8e1a91a4599872f33c90840d24801ad078f8f0d29fde",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/result/source/study_ref",
+        "object_pointer": "/result/source",
+        "unit": "e32b4348e9d2c4e42f116f6d68a09491d9aa30f36d61422959f99ba6a10e8b7e.json"
+      }
+    ],
+    "committed_file_sha256": "cdf6b93b6129c477456b315743f76b1a3e7a8943023b73d7d0a594977bb9b132"
+  },
+  {
+    "commit": "08a0d334401267c5cdb041835f1ca81c56ebedae",
+    "path": "openspec/changes/integrate-warranted-design-session/prototype/runs/revision-1/ipass-baseline-overlap-request.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 205,
+    "added_line_sha256": "4fb46e16061b80ef9db15301f304ef7d3966861f3fe049cb91edd54d5a438a83",
+    "candidate_sha256": "3b5bcbf3c452addc2e7af4892120a15618be615791285587bc8422d6e2e5a1ff",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": "study",
+    "value_identity": "872c4c609744d3817fd7f8b0ae5d714a4472b600e69ca2e7c6cced3c92831266",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/bindings/0/scope/study",
+        "object_pointer": "/bindings/0/scope",
+        "unit": "3f565049cfbbd06a084be86bad7941f1135f84f8419ecfc4277fe1f78bb9f50d.json"
+      },
+      {
+        "value_pointer": "/interpretations/0/binding_uses/0/scope/study",
+        "object_pointer": "/interpretations/0/binding_uses/0/scope",
+        "unit": "3f565049cfbbd06a084be86bad7941f1135f84f8419ecfc4277fe1f78bb9f50d.json"
+      }
+    ],
+    "committed_file_sha256": "5ac1ca48d8050f513c83d346bb718592b51fe8d3ce3237d5b2a585b774fa4ddf"
+  },
+  {
+    "commit": "08a0d334401267c5cdb041835f1ca81c56ebedae",
+    "path": "openspec/changes/integrate-warranted-design-session/prototype/runs/revision-1/ipass-baseline-overlap-result.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 8,
+    "added_line_sha256": "217f51c8914f2f16c2a549efa3a426222b719a2ac3eeb1d43bfa7a4f9bfddc98",
+    "candidate_sha256": "3b5bcbf3c452addc2e7af4892120a15618be615791285587bc8422d6e2e5a1ff",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": "study_ref",
+    "value_identity": "872c4c609744d3817fd7f8b0ae5d714a4472b600e69ca2e7c6cced3c92831266",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/result/source/study_ref",
+        "object_pointer": "/result/source",
+        "unit": "087e0dbec1bdaa2ee3a7d7630ba50e659bc65a94e6f426ad0f809ac7a57be641.json"
+      },
+      {
+        "value_pointer": "/result/requests/0/study_ref",
+        "object_pointer": "/result/requests/0",
+        "unit": "827ee541ca3c611deba9e37fa5e6bba8d4d5de9d7ee7d634cb1402f48bd003ad.json"
+      },
+      {
+        "value_pointer": "/result/analyses/0/result/study_ref",
+        "object_pointer": "/result/analyses/0/result",
+        "unit": "90d4904e00ed4cb6de2efdb5aefd4194a7abdb6f7ff85a9980656db59bafbbab.json"
+      }
+    ],
+    "committed_file_sha256": "41fe401b6513ab6204caa555450381431aa56b28d40b16be8782f63e663ea784"
+  },
+  {
+    "commit": "08a0d334401267c5cdb041835f1ca81c56ebedae",
+    "path": "openspec/changes/integrate-warranted-design-session/prototype/runs/revision-1/ipass-hypothetical-exceptions-48-request.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 3,
+    "added_line_sha256": "88b4003c51e09a9a0f7b80c166fbb90a358402fabfee2e56920231fe17d541f7",
+    "candidate_sha256": "3b5bcbf3c452addc2e7af4892120a15618be615791285587bc8422d6e2e5a1ff",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": "study_ref",
+    "value_identity": "872c4c609744d3817fd7f8b0ae5d714a4472b600e69ca2e7c6cced3c92831266",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/study_ref",
+        "object_pointer": "",
+        "unit": "daa799ea6c47e4e091caa366d551256670aef1f25d6a6214f63921627f5cff4c.json"
+      }
+    ],
+    "committed_file_sha256": "2bfaae6d26160f113196961657bf15d83c2871f4ee0c0a3c153329a4b127af7e"
+  },
+  {
+    "commit": "08a0d334401267c5cdb041835f1ca81c56ebedae",
+    "path": "openspec/changes/integrate-warranted-design-session/prototype/runs/revision-1/ipass-hypothetical-exceptions-48-result.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 6,
+    "added_line_sha256": "c305250f754a0e4cf6cb2dd529759d635bbd436f9ad3b964e045f7de4c7229f0",
+    "candidate_sha256": "3b5bcbf3c452addc2e7af4892120a15618be615791285587bc8422d6e2e5a1ff",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": "study_ref",
+    "value_identity": "872c4c609744d3817fd7f8b0ae5d714a4472b600e69ca2e7c6cced3c92831266",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/result/study_ref",
+        "object_pointer": "/result",
+        "unit": "60e8265a6c2e54efd13697f920e5c669a9fbf6b245d4f10d09df3a39a29358a3.json"
+      },
+      {
+        "value_pointer": "/result/premises/study_ref",
+        "object_pointer": "/result/premises",
+        "unit": "daa799ea6c47e4e091caa366d551256670aef1f25d6a6214f63921627f5cff4c.json"
+      }
+    ],
+    "committed_file_sha256": "33bf41a93960a6775d6f39f9749e2873e1299b993966cf200a107c920d7bac4a"
+  },
+  {
+    "commit": "08a0d334401267c5cdb041835f1ca81c56ebedae",
+    "path": "openspec/changes/integrate-warranted-design-session/prototype/runs/revision-1/ipass-registered-age-result.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 8,
+    "added_line_sha256": "217f51c8914f2f16c2a549efa3a426222b719a2ac3eeb1d43bfa7a4f9bfddc98",
+    "candidate_sha256": "3b5bcbf3c452addc2e7af4892120a15618be615791285587bc8422d6e2e5a1ff",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": "study_ref",
+    "value_identity": "872c4c609744d3817fd7f8b0ae5d714a4472b600e69ca2e7c6cced3c92831266",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/result/source/study_ref",
+        "object_pointer": "/result/source",
+        "unit": "087e0dbec1bdaa2ee3a7d7630ba50e659bc65a94e6f426ad0f809ac7a57be641.json"
+      }
+    ],
+    "committed_file_sha256": "e08dcd76ec1ba44ee6e78a8dd18294251eb7f3d5eca2d325379bf62052478337"
+  },
+  {
+    "commit": "08a0d334401267c5cdb041835f1ca81c56ebedae",
+    "path": "openspec/changes/integrate-warranted-design-session/prototype/runs/revision-1/ipass-schedule-readings-result.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 8,
+    "added_line_sha256": "217f51c8914f2f16c2a549efa3a426222b719a2ac3eeb1d43bfa7a4f9bfddc98",
+    "candidate_sha256": "3b5bcbf3c452addc2e7af4892120a15618be615791285587bc8422d6e2e5a1ff",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": "study_ref",
+    "value_identity": "872c4c609744d3817fd7f8b0ae5d714a4472b600e69ca2e7c6cced3c92831266",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/result/source/study_ref",
+        "object_pointer": "/result/source",
+        "unit": "087e0dbec1bdaa2ee3a7d7630ba50e659bc65a94e6f426ad0f809ac7a57be641.json"
+      },
+      {
+        "value_pointer": "/result/requests/0/study_ref",
+        "object_pointer": "/result/requests/0",
+        "unit": "8a5473dec2e558a61fdd5ea1f7e67a48bf818813471063ff2708a238128308c6.json"
+      },
+      {
+        "value_pointer": "/result/analyses/0/result/study_ref",
+        "object_pointer": "/result/analyses/0/result",
+        "unit": "47244794d31d846ab0b92eebe636c80cd9c6c8face7e5477c2b43eb57b9f9422.json"
+      }
+    ],
+    "committed_file_sha256": "8e496de2b185ebb21faa83c7bda48515926feee6cbfde8cd62fa6e7c059747cb"
+  },
+  {
+    "commit": "08a0d334401267c5cdb041835f1ca81c56ebedae",
+    "path": "openspec/changes/integrate-warranted-design-session/prototype/runs/revision-1/registered-age-corpus-request.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 28,
+    "added_line_sha256": "1b834e0d340d3bbe25c163b5e064a670b9e106560676c9d16cbaf27b182bbc04",
+    "candidate_sha256": "3b5bcbf3c452addc2e7af4892120a15618be615791285587bc8422d6e2e5a1ff",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": null,
+    "value_identity": "1a31462c3aa066236a86056a70d79227072c97bbaff8f5dccc4aa8cc67912bce",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/trials/0/feature_standings/elements/inclusion:minimum_age=18_Years/basis/0",
+        "object_pointer": "/trials/0/feature_standings/elements/inclusion:minimum_age=18_Years",
+        "unit": "0aa9406de1af22f3839a1f4565e66055e470e8200cddfffcf1814017766773b9.json"
+      }
+    ],
+    "committed_file_sha256": "83bcdd4fab501c25771d9bdf6d65d3a289d2f5de2df46ba3163abe9b27e9cc04"
+  },
+  {
+    "commit": "08a0d334401267c5cdb041835f1ca81c56ebedae",
+    "path": "openspec/changes/integrate-warranted-design-session/prototype/runs/revision-1/registered-age-corpus-request.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 60,
+    "added_line_sha256": "8a7d9f281e32226e119397a6c25980f9a51394dbe0eaf45f52c7dc633b93ee0f",
+    "candidate_sha256": "a03ceef2c89e46d9159967ce6f737cd646583efe95078a6a96e6acf16d0d9a65",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": null,
+    "value_identity": "8d80978f37a933a3a3ad0088a6166a081c71cfbb5177606bd7d93830226b87d2",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/trials/1/feature_standings/elements/inclusion:minimum_age=18_Years/basis/0",
+        "object_pointer": "/trials/1/feature_standings/elements/inclusion:minimum_age=18_Years",
+        "unit": "41cab5b586ac55befa16b53b140ee3082524bf46098e9e10c3b6acf02c9a1b6b.json"
+      }
+    ],
+    "committed_file_sha256": "83bcdd4fab501c25771d9bdf6d65d3a289d2f5de2df46ba3163abe9b27e9cc04"
+  },
+  {
+    "commit": "08a0d334401267c5cdb041835f1ca81c56ebedae",
+    "path": "openspec/changes/integrate-warranted-design-session/prototype/runs/revision-1/registered-age-corpus-result.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 31,
+    "added_line_sha256": "e8de0574bb6309ca4cc6c93138916683d33ac013c4f8b4c4c5ef035c2108b8f5",
+    "candidate_sha256": "3b5bcbf3c452addc2e7af4892120a15618be615791285587bc8422d6e2e5a1ff",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": null,
+    "value_identity": "1a31462c3aa066236a86056a70d79227072c97bbaff8f5dccc4aa8cc67912bce",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/result/premises/0/feature_standings/elements/inclusion:minimum_age=18_Years/basis/0",
+        "object_pointer": "/result/premises/0/feature_standings/elements/inclusion:minimum_age=18_Years",
+        "unit": "0aa9406de1af22f3839a1f4565e66055e470e8200cddfffcf1814017766773b9.json"
+      },
+      {
+        "value_pointer": "/result/admission/0/features/2/standing/basis/0",
+        "object_pointer": "/result/admission/0/features/2/standing",
+        "unit": "0aa9406de1af22f3839a1f4565e66055e470e8200cddfffcf1814017766773b9.json"
+      }
+    ],
+    "committed_file_sha256": "6998c23fae498cb7a42d9a0fec72ee24a3d2c00655588dc06aaddd02afe3f52f"
+  },
+  {
+    "commit": "08a0d334401267c5cdb041835f1ca81c56ebedae",
+    "path": "openspec/changes/integrate-warranted-design-session/prototype/runs/revision-1/registered-age-corpus-result.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 63,
+    "added_line_sha256": "447ea360093d2ee2d0dbd52fb851e94e7cc38bf79ac73bf2d74179fb167aabf7",
+    "candidate_sha256": "a03ceef2c89e46d9159967ce6f737cd646583efe95078a6a96e6acf16d0d9a65",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": null,
+    "value_identity": "8d80978f37a933a3a3ad0088a6166a081c71cfbb5177606bd7d93830226b87d2",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/result/premises/1/feature_standings/elements/inclusion:minimum_age=18_Years/basis/0",
+        "object_pointer": "/result/premises/1/feature_standings/elements/inclusion:minimum_age=18_Years",
+        "unit": "41cab5b586ac55befa16b53b140ee3082524bf46098e9e10c3b6acf02c9a1b6b.json"
+      },
+      {
+        "value_pointer": "/result/admission/1/features/2/standing/basis/0",
+        "object_pointer": "/result/admission/1/features/2/standing",
+        "unit": "41cab5b586ac55befa16b53b140ee3082524bf46098e9e10c3b6acf02c9a1b6b.json"
+      }
+    ],
+    "committed_file_sha256": "6998c23fae498cb7a42d9a0fec72ee24a3d2c00655588dc06aaddd02afe3f52f"
+  },
+  {
+    "commit": "08a0d334401267c5cdb041835f1ca81c56ebedae",
+    "path": "openspec/changes/integrate-warranted-design-session/prototype/runs/revision-2/archer-registered-age-result.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 8,
+    "added_line_sha256": "94bc0bebd188d1057fcee6170581ff8dc83a3ea172fa6fac50fbbaba1cc1c557",
+    "candidate_sha256": "a03ceef2c89e46d9159967ce6f737cd646583efe95078a6a96e6acf16d0d9a65",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": "study_ref",
+    "value_identity": "e75efadb447fee57ea9c8e1a91a4599872f33c90840d24801ad078f8f0d29fde",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/result/source/study_ref",
+        "object_pointer": "/result/source",
+        "unit": "e32b4348e9d2c4e42f116f6d68a09491d9aa30f36d61422959f99ba6a10e8b7e.json"
+      }
+    ],
+    "committed_file_sha256": "cdf6b93b6129c477456b315743f76b1a3e7a8943023b73d7d0a594977bb9b132"
+  },
+  {
+    "commit": "08a0d334401267c5cdb041835f1ca81c56ebedae",
+    "path": "openspec/changes/integrate-warranted-design-session/prototype/runs/revision-2/ipass-baseline-overlap-request.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 205,
+    "added_line_sha256": "4fb46e16061b80ef9db15301f304ef7d3966861f3fe049cb91edd54d5a438a83",
+    "candidate_sha256": "3b5bcbf3c452addc2e7af4892120a15618be615791285587bc8422d6e2e5a1ff",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": "study",
+    "value_identity": "872c4c609744d3817fd7f8b0ae5d714a4472b600e69ca2e7c6cced3c92831266",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/bindings/0/scope/study",
+        "object_pointer": "/bindings/0/scope",
+        "unit": "3f565049cfbbd06a084be86bad7941f1135f84f8419ecfc4277fe1f78bb9f50d.json"
+      },
+      {
+        "value_pointer": "/interpretations/0/binding_uses/0/scope/study",
+        "object_pointer": "/interpretations/0/binding_uses/0/scope",
+        "unit": "3f565049cfbbd06a084be86bad7941f1135f84f8419ecfc4277fe1f78bb9f50d.json"
+      }
+    ],
+    "committed_file_sha256": "5ac1ca48d8050f513c83d346bb718592b51fe8d3ce3237d5b2a585b774fa4ddf"
+  },
+  {
+    "commit": "08a0d334401267c5cdb041835f1ca81c56ebedae",
+    "path": "openspec/changes/integrate-warranted-design-session/prototype/runs/revision-2/ipass-baseline-overlap-result.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 8,
+    "added_line_sha256": "217f51c8914f2f16c2a549efa3a426222b719a2ac3eeb1d43bfa7a4f9bfddc98",
+    "candidate_sha256": "3b5bcbf3c452addc2e7af4892120a15618be615791285587bc8422d6e2e5a1ff",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": "study_ref",
+    "value_identity": "872c4c609744d3817fd7f8b0ae5d714a4472b600e69ca2e7c6cced3c92831266",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/result/source/study_ref",
+        "object_pointer": "/result/source",
+        "unit": "087e0dbec1bdaa2ee3a7d7630ba50e659bc65a94e6f426ad0f809ac7a57be641.json"
+      },
+      {
+        "value_pointer": "/result/requests/0/study_ref",
+        "object_pointer": "/result/requests/0",
+        "unit": "827ee541ca3c611deba9e37fa5e6bba8d4d5de9d7ee7d634cb1402f48bd003ad.json"
+      },
+      {
+        "value_pointer": "/result/analyses/0/result/study_ref",
+        "object_pointer": "/result/analyses/0/result",
+        "unit": "90d4904e00ed4cb6de2efdb5aefd4194a7abdb6f7ff85a9980656db59bafbbab.json"
+      }
+    ],
+    "committed_file_sha256": "f2d4f41ac8b6b589d2fb82b0a3e608d7c60fea8022b111bce5d4b54035b0da7a"
+  },
+  {
+    "commit": "08a0d334401267c5cdb041835f1ca81c56ebedae",
+    "path": "openspec/changes/integrate-warranted-design-session/prototype/runs/revision-2/ipass-hypothetical-exceptions-49-request.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 3,
+    "added_line_sha256": "88b4003c51e09a9a0f7b80c166fbb90a358402fabfee2e56920231fe17d541f7",
+    "candidate_sha256": "3b5bcbf3c452addc2e7af4892120a15618be615791285587bc8422d6e2e5a1ff",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": "study_ref",
+    "value_identity": "872c4c609744d3817fd7f8b0ae5d714a4472b600e69ca2e7c6cced3c92831266",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/study_ref",
+        "object_pointer": "",
+        "unit": "c2cff01485e1a5af785fe814357c5da56ac92e45d27712b3eef19a1ff613d2b3.json"
+      }
+    ],
+    "committed_file_sha256": "a985d8d4b16a443b34385aa338ced1342eb58066ca4b88ca78dc8b11c9b3fb48"
+  },
+  {
+    "commit": "08a0d334401267c5cdb041835f1ca81c56ebedae",
+    "path": "openspec/changes/integrate-warranted-design-session/prototype/runs/revision-2/ipass-hypothetical-exceptions-49-result.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 6,
+    "added_line_sha256": "c305250f754a0e4cf6cb2dd529759d635bbd436f9ad3b964e045f7de4c7229f0",
+    "candidate_sha256": "3b5bcbf3c452addc2e7af4892120a15618be615791285587bc8422d6e2e5a1ff",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": "study_ref",
+    "value_identity": "872c4c609744d3817fd7f8b0ae5d714a4472b600e69ca2e7c6cced3c92831266",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/result/study_ref",
+        "object_pointer": "/result",
+        "unit": "ed11bfe7374efce30814d6892e4f7365c7147a313977929a8b2a7f70dc5618df.json"
+      },
+      {
+        "value_pointer": "/result/premises/study_ref",
+        "object_pointer": "/result/premises",
+        "unit": "c2cff01485e1a5af785fe814357c5da56ac92e45d27712b3eef19a1ff613d2b3.json"
+      }
+    ],
+    "committed_file_sha256": "fe60608f6caa5ac5ae4bfb84afa0ab4696f345822dc062d77c82a9aac7c49086"
+  },
+  {
+    "commit": "08a0d334401267c5cdb041835f1ca81c56ebedae",
+    "path": "openspec/changes/integrate-warranted-design-session/prototype/runs/revision-2/ipass-registered-age-result.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 8,
+    "added_line_sha256": "217f51c8914f2f16c2a549efa3a426222b719a2ac3eeb1d43bfa7a4f9bfddc98",
+    "candidate_sha256": "3b5bcbf3c452addc2e7af4892120a15618be615791285587bc8422d6e2e5a1ff",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": "study_ref",
+    "value_identity": "872c4c609744d3817fd7f8b0ae5d714a4472b600e69ca2e7c6cced3c92831266",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/result/source/study_ref",
+        "object_pointer": "/result/source",
+        "unit": "087e0dbec1bdaa2ee3a7d7630ba50e659bc65a94e6f426ad0f809ac7a57be641.json"
+      }
+    ],
+    "committed_file_sha256": "e08dcd76ec1ba44ee6e78a8dd18294251eb7f3d5eca2d325379bf62052478337"
+  },
+  {
+    "commit": "08a0d334401267c5cdb041835f1ca81c56ebedae",
+    "path": "openspec/changes/integrate-warranted-design-session/prototype/runs/revision-2/ipass-schedule-readings-result.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 8,
+    "added_line_sha256": "217f51c8914f2f16c2a549efa3a426222b719a2ac3eeb1d43bfa7a4f9bfddc98",
+    "candidate_sha256": "3b5bcbf3c452addc2e7af4892120a15618be615791285587bc8422d6e2e5a1ff",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": "study_ref",
+    "value_identity": "872c4c609744d3817fd7f8b0ae5d714a4472b600e69ca2e7c6cced3c92831266",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/result/source/study_ref",
+        "object_pointer": "/result/source",
+        "unit": "087e0dbec1bdaa2ee3a7d7630ba50e659bc65a94e6f426ad0f809ac7a57be641.json"
+      },
+      {
+        "value_pointer": "/result/requests/0/study_ref",
+        "object_pointer": "/result/requests/0",
+        "unit": "8a5473dec2e558a61fdd5ea1f7e67a48bf818813471063ff2708a238128308c6.json"
+      },
+      {
+        "value_pointer": "/result/analyses/0/result/study_ref",
+        "object_pointer": "/result/analyses/0/result",
+        "unit": "47244794d31d846ab0b92eebe636c80cd9c6c8face7e5477c2b43eb57b9f9422.json"
+      }
+    ],
+    "committed_file_sha256": "8e496de2b185ebb21faa83c7bda48515926feee6cbfde8cd62fa6e7c059747cb"
+  },
+  {
+    "commit": "08a0d334401267c5cdb041835f1ca81c56ebedae",
+    "path": "openspec/changes/integrate-warranted-design-session/prototype/runs/revision-2/registered-age-corpus-request.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 28,
+    "added_line_sha256": "1b834e0d340d3bbe25c163b5e064a670b9e106560676c9d16cbaf27b182bbc04",
+    "candidate_sha256": "3b5bcbf3c452addc2e7af4892120a15618be615791285587bc8422d6e2e5a1ff",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": null,
+    "value_identity": "1a31462c3aa066236a86056a70d79227072c97bbaff8f5dccc4aa8cc67912bce",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/trials/0/feature_standings/elements/inclusion:minimum_age=18_Years/basis/0",
+        "object_pointer": "/trials/0/feature_standings/elements/inclusion:minimum_age=18_Years",
+        "unit": "0aa9406de1af22f3839a1f4565e66055e470e8200cddfffcf1814017766773b9.json"
+      }
+    ],
+    "committed_file_sha256": "83bcdd4fab501c25771d9bdf6d65d3a289d2f5de2df46ba3163abe9b27e9cc04"
+  },
+  {
+    "commit": "08a0d334401267c5cdb041835f1ca81c56ebedae",
+    "path": "openspec/changes/integrate-warranted-design-session/prototype/runs/revision-2/registered-age-corpus-request.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 60,
+    "added_line_sha256": "8a7d9f281e32226e119397a6c25980f9a51394dbe0eaf45f52c7dc633b93ee0f",
+    "candidate_sha256": "a03ceef2c89e46d9159967ce6f737cd646583efe95078a6a96e6acf16d0d9a65",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": null,
+    "value_identity": "8d80978f37a933a3a3ad0088a6166a081c71cfbb5177606bd7d93830226b87d2",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/trials/1/feature_standings/elements/inclusion:minimum_age=18_Years/basis/0",
+        "object_pointer": "/trials/1/feature_standings/elements/inclusion:minimum_age=18_Years",
+        "unit": "41cab5b586ac55befa16b53b140ee3082524bf46098e9e10c3b6acf02c9a1b6b.json"
+      }
+    ],
+    "committed_file_sha256": "83bcdd4fab501c25771d9bdf6d65d3a289d2f5de2df46ba3163abe9b27e9cc04"
+  },
+  {
+    "commit": "08a0d334401267c5cdb041835f1ca81c56ebedae",
+    "path": "openspec/changes/integrate-warranted-design-session/prototype/runs/revision-2/registered-age-corpus-result.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 31,
+    "added_line_sha256": "e8de0574bb6309ca4cc6c93138916683d33ac013c4f8b4c4c5ef035c2108b8f5",
+    "candidate_sha256": "3b5bcbf3c452addc2e7af4892120a15618be615791285587bc8422d6e2e5a1ff",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": null,
+    "value_identity": "1a31462c3aa066236a86056a70d79227072c97bbaff8f5dccc4aa8cc67912bce",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/result/premises/0/feature_standings/elements/inclusion:minimum_age=18_Years/basis/0",
+        "object_pointer": "/result/premises/0/feature_standings/elements/inclusion:minimum_age=18_Years",
+        "unit": "0aa9406de1af22f3839a1f4565e66055e470e8200cddfffcf1814017766773b9.json"
+      },
+      {
+        "value_pointer": "/result/admission/0/features/2/standing/basis/0",
+        "object_pointer": "/result/admission/0/features/2/standing",
+        "unit": "0aa9406de1af22f3839a1f4565e66055e470e8200cddfffcf1814017766773b9.json"
+      }
+    ],
+    "committed_file_sha256": "6998c23fae498cb7a42d9a0fec72ee24a3d2c00655588dc06aaddd02afe3f52f"
+  },
+  {
+    "commit": "08a0d334401267c5cdb041835f1ca81c56ebedae",
+    "path": "openspec/changes/integrate-warranted-design-session/prototype/runs/revision-2/registered-age-corpus-result.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 63,
+    "added_line_sha256": "447ea360093d2ee2d0dbd52fb851e94e7cc38bf79ac73bf2d74179fb167aabf7",
+    "candidate_sha256": "a03ceef2c89e46d9159967ce6f737cd646583efe95078a6a96e6acf16d0d9a65",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": null,
+    "value_identity": "8d80978f37a933a3a3ad0088a6166a081c71cfbb5177606bd7d93830226b87d2",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/result/premises/1/feature_standings/elements/inclusion:minimum_age=18_Years/basis/0",
+        "object_pointer": "/result/premises/1/feature_standings/elements/inclusion:minimum_age=18_Years",
+        "unit": "41cab5b586ac55befa16b53b140ee3082524bf46098e9e10c3b6acf02c9a1b6b.json"
+      },
+      {
+        "value_pointer": "/result/admission/1/features/2/standing/basis/0",
+        "object_pointer": "/result/admission/1/features/2/standing",
+        "unit": "41cab5b586ac55befa16b53b140ee3082524bf46098e9e10c3b6acf02c9a1b6b.json"
+      }
+    ],
+    "committed_file_sha256": "6998c23fae498cb7a42d9a0fec72ee24a3d2c00655588dc06aaddd02afe3f52f"
+  },
+  {
+    "commit": "08a0d334401267c5cdb041835f1ca81c56ebedae",
+    "path": "openspec/changes/integrate-warranted-design-session/prototype/session-input.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 15497,
+    "added_line_sha256": "70e3bc1f9859c79522b26c642cf384fea557db6b6e0226f4f2c757523db2bc92",
+    "candidate_sha256": "3b5bcbf3c452addc2e7af4892120a15618be615791285587bc8422d6e2e5a1ff",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": "study",
+    "value_identity": "872c4c609744d3817fd7f8b0ae5d714a4472b600e69ca2e7c6cced3c92831266",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/source_analyses/2/request/bindings/0/scope/study",
+        "object_pointer": "/source_analyses/2/request/bindings/0/scope",
+        "unit": "3f565049cfbbd06a084be86bad7941f1135f84f8419ecfc4277fe1f78bb9f50d.json"
+      },
+      {
+        "value_pointer": "/source_analyses/2/request/interpretations/0/binding_uses/0/scope/study",
+        "object_pointer": "/source_analyses/2/request/interpretations/0/binding_uses/0/scope",
+        "unit": "3f565049cfbbd06a084be86bad7941f1135f84f8419ecfc4277fe1f78bb9f50d.json"
+      }
+    ],
+    "committed_file_sha256": "4ed71cbdde36d9dfdc33b494c3511d726400bb7e33cf5adccc4386f7857d57a9"
+  },
+  {
+    "commit": "7debeaf793d69fa1a51ae5725591e2230abcbbe4",
+    "path": "acceptance/design-session-walkthrough-population-psoriasis-2026-11-03/finding-summary.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 31,
+    "added_line_sha256": "75925bb28fb91707b3b1266be49c510969cff1aeae4fdae38b61c0378ab9a652",
+    "candidate_sha256": "6c70ac38051fbf5ea2681e3db2b9cef5f9d2c54576003269345670850c64b378",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": "ref",
+    "value_identity": "9c9847420a04753cafeeff8811adb8bec013fd5dc3106d7c389a9bac35b32cff",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/0/fixed/assertions/0/body/evidence/0/ref",
+        "object_pointer": "/0/fixed/assertions/0/body/evidence/0",
+        "unit": "5c159a50cf8685f62e8d16611c5c766fe08f006c8f94318466dc556a19c6123a.json"
+      },
+      {
+        "value_pointer": "/0/analyses/0/result/premises/0/body/evidence/0/ref",
+        "object_pointer": "/0/analyses/0/result/premises/0/body/evidence/0",
+        "unit": "5c159a50cf8685f62e8d16611c5c766fe08f006c8f94318466dc556a19c6123a.json"
+      }
+    ],
+    "committed_file_sha256": "bdacaf32c1f2e8e42ab61bce968653794430e9cc4ead0739c756cf6928d8bec3"
+  },
+  {
+    "commit": "7debeaf793d69fa1a51ae5725591e2230abcbbe4",
+    "path": "acceptance/design-session-walkthrough-population-psoriasis-2026-11-03/finding-summary.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 2236,
+    "added_line_sha256": "d20a47f05ce317ba35ff423a07d442450e552b62754f157880d94334e8178d31",
+    "candidate_sha256": "31b88200c8813e1a640108d4b4e02ee214e2075479b4c4e4fac99150eca02683",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": "universe",
+    "value_identity": "9b9809931c00800c19712687db600b1addb2566beddf0b6dfdb6da2f9cf9c9a1",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/8/signals/0/value/universe",
+        "object_pointer": "/8/signals/0/value",
+        "unit": "a049b84cc46143c29a48a69342c73ad3abe313c48866d95e532d1a24efc3dbfc.json"
+      },
+      {
+        "value_pointer": "/9/signals/0/value/universe",
+        "object_pointer": "/9/signals/0/value",
+        "unit": "a049b84cc46143c29a48a69342c73ad3abe313c48866d95e532d1a24efc3dbfc.json"
+      },
+      {
+        "value_pointer": "/10/signals/0/value/universe",
+        "object_pointer": "/10/signals/0/value",
+        "unit": "a049b84cc46143c29a48a69342c73ad3abe313c48866d95e532d1a24efc3dbfc.json"
+      },
+      {
+        "value_pointer": "/12/candidates/0/signal_checks/0/value/universe",
+        "object_pointer": "/12/candidates/0/signal_checks/0/value",
+        "unit": "e082ff729e68c5afd176357bdf13e6c0d8402b20e41d34c53644384534311a59.json"
+      },
+      {
+        "value_pointer": "/12/candidates/1/signal_checks/0/value/universe",
+        "object_pointer": "/12/candidates/1/signal_checks/0/value",
+        "unit": "a049b84cc46143c29a48a69342c73ad3abe313c48866d95e532d1a24efc3dbfc.json"
+      },
+      {
+        "value_pointer": "/12/signals/0/value/universe",
+        "object_pointer": "/12/signals/0/value",
+        "unit": "a049b84cc46143c29a48a69342c73ad3abe313c48866d95e532d1a24efc3dbfc.json"
+      },
+      {
+        "value_pointer": "/13/candidates/0/signal_checks/0/value/universe",
+        "object_pointer": "/13/candidates/0/signal_checks/0/value",
+        "unit": "e082ff729e68c5afd176357bdf13e6c0d8402b20e41d34c53644384534311a59.json"
+      },
+      {
+        "value_pointer": "/13/candidates/1/signal_checks/0/value/universe",
+        "object_pointer": "/13/candidates/1/signal_checks/0/value",
+        "unit": "a049b84cc46143c29a48a69342c73ad3abe313c48866d95e532d1a24efc3dbfc.json"
+      },
+      {
+        "value_pointer": "/13/signals/0/value/universe",
+        "object_pointer": "/13/signals/0/value",
+        "unit": "a049b84cc46143c29a48a69342c73ad3abe313c48866d95e532d1a24efc3dbfc.json"
+      }
+    ],
+    "committed_file_sha256": "bdacaf32c1f2e8e42ab61bce968653794430e9cc4ead0739c756cf6928d8bec3"
+  },
+  {
+    "commit": "7debeaf793d69fa1a51ae5725591e2230abcbbe4",
+    "path": "acceptance/design-session-walkthrough-population-psoriasis-2026-11-03/requests/baseline-age-cap52.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 3,
+    "added_line_sha256": "44c9b25fe8f8142378ee4297eadbc297460ec31e8349d5acfe7c7a06e2f76f49",
+    "candidate_sha256": "6c70ac38051fbf5ea2681e3db2b9cef5f9d2c54576003269345670850c64b378",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": "study_ref",
+    "value_identity": "4f4a07dbe0db6984297f6e585420a3d306ad310096600f8e60e96dd60e36aea6",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/study_ref",
+        "object_pointer": "",
+        "unit": "b97fcdeb97a2d9af4f31b4aa9059dc0893b666b78ce450cffd6804c35ab46155.json"
+      }
+    ],
+    "committed_file_sha256": "7cfef1f724cc5217786f08956ccac6e30281510727807f7c3d2e464ad9cd3fb7"
+  },
+  {
+    "commit": "7debeaf793d69fa1a51ae5725591e2230abcbbe4",
+    "path": "acceptance/design-session-walkthrough-population-psoriasis-2026-11-03/requests/baseline-age-cap53.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 3,
+    "added_line_sha256": "44c9b25fe8f8142378ee4297eadbc297460ec31e8349d5acfe7c7a06e2f76f49",
+    "candidate_sha256": "6c70ac38051fbf5ea2681e3db2b9cef5f9d2c54576003269345670850c64b378",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": "study_ref",
+    "value_identity": "4f4a07dbe0db6984297f6e585420a3d306ad310096600f8e60e96dd60e36aea6",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/study_ref",
+        "object_pointer": "",
+        "unit": "b44595db912cec9321f6734403d6257f70cd1ea02d514c9960651c6ced9c346c.json"
+      }
+    ],
+    "committed_file_sha256": "2460c550171a2a5b534e5ad392571f081796e56b73f4f7e4075a0c5180c260c8"
+  },
+  {
+    "commit": "7debeaf793d69fa1a51ae5725591e2230abcbbe4",
+    "path": "acceptance/design-session-walkthrough-population-psoriasis-2026-11-03/requests/exception-broad-proposed-cap5.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 3,
+    "added_line_sha256": "44c9b25fe8f8142378ee4297eadbc297460ec31e8349d5acfe7c7a06e2f76f49",
+    "candidate_sha256": "6c70ac38051fbf5ea2681e3db2b9cef5f9d2c54576003269345670850c64b378",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": "study_ref",
+    "value_identity": "4f4a07dbe0db6984297f6e585420a3d306ad310096600f8e60e96dd60e36aea6",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/study_ref",
+        "object_pointer": "",
+        "unit": "52020be08d0e1db0bb589180c7c2e861460ba3c3e04cdfbc7fd64125f2895695.json"
+      }
+    ],
+    "committed_file_sha256": "ae2548abde629b3e2aa76a2e44d04330641fab58b4f00313b8583c05ab401b7d"
+  },
+  {
+    "commit": "7debeaf793d69fa1a51ae5725591e2230abcbbe4",
+    "path": "acceptance/design-session-walkthrough-population-psoriasis-2026-11-03/requests/exception-broad-proposed-unknown-ceiling.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 3,
+    "added_line_sha256": "44c9b25fe8f8142378ee4297eadbc297460ec31e8349d5acfe7c7a06e2f76f49",
+    "candidate_sha256": "6c70ac38051fbf5ea2681e3db2b9cef5f9d2c54576003269345670850c64b378",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": "study_ref",
+    "value_identity": "4f4a07dbe0db6984297f6e585420a3d306ad310096600f8e60e96dd60e36aea6",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/study_ref",
+        "object_pointer": "",
+        "unit": "83d92e5972c5c73842737e7950274907cdd6ed9538fba12ad840d09b69972b33.json"
+      }
+    ],
+    "committed_file_sha256": "51ec599d98c6719f43bb40e6ba6f5903c3e20a62734f3437756cd0811074648b"
+  },
+  {
+    "commit": "7debeaf793d69fa1a51ae5725591e2230abcbbe4",
+    "path": "acceptance/design-session-walkthrough-population-psoriasis-2026-11-03/requests/exception-entry-assumed-cap0.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 3,
+    "added_line_sha256": "44c9b25fe8f8142378ee4297eadbc297460ec31e8349d5acfe7c7a06e2f76f49",
+    "candidate_sha256": "6c70ac38051fbf5ea2681e3db2b9cef5f9d2c54576003269345670850c64b378",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": "study_ref",
+    "value_identity": "4f4a07dbe0db6984297f6e585420a3d306ad310096600f8e60e96dd60e36aea6",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/study_ref",
+        "object_pointer": "",
+        "unit": "dfc21c0b29741a1a3e3ffd59255cbc02269373537bd738e87cebfd4be8e8841f.json"
+      }
+    ],
+    "committed_file_sha256": "f893ada04dd3afe8c66bb8415884c56ffbdb24a76b983d1d9fed5da82c0ccc14"
+  },
+  {
+    "commit": "7debeaf793d69fa1a51ae5725591e2230abcbbe4",
+    "path": "acceptance/design-session-walkthrough-population-psoriasis-2026-11-03/requests/exception-entry-assumed-cap4.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 3,
+    "added_line_sha256": "44c9b25fe8f8142378ee4297eadbc297460ec31e8349d5acfe7c7a06e2f76f49",
+    "candidate_sha256": "6c70ac38051fbf5ea2681e3db2b9cef5f9d2c54576003269345670850c64b378",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": "study_ref",
+    "value_identity": "4f4a07dbe0db6984297f6e585420a3d306ad310096600f8e60e96dd60e36aea6",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/study_ref",
+        "object_pointer": "",
+        "unit": "e21bab73f91b924ee300e1e5ee92d159b5ea2885802b4f43baf977e0e560c39c.json"
+      }
+    ],
+    "committed_file_sha256": "fff7b25793369272e5120b1edb059ffeb3b03c1dbcf78c23e4d4c0cc7b51f473"
+  },
+  {
+    "commit": "7debeaf793d69fa1a51ae5725591e2230abcbbe4",
+    "path": "acceptance/design-session-walkthrough-population-psoriasis-2026-11-03/requests/exception-entry-proposed-cap0.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 3,
+    "added_line_sha256": "44c9b25fe8f8142378ee4297eadbc297460ec31e8349d5acfe7c7a06e2f76f49",
+    "candidate_sha256": "6c70ac38051fbf5ea2681e3db2b9cef5f9d2c54576003269345670850c64b378",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": "study_ref",
+    "value_identity": "4f4a07dbe0db6984297f6e585420a3d306ad310096600f8e60e96dd60e36aea6",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/study_ref",
+        "object_pointer": "",
+        "unit": "ef4f5d89b93b9212a9e4384ba7b3c826cc7ddbd13323b98c611541723ccb6a37.json"
+      }
+    ],
+    "committed_file_sha256": "8f86793c1476836069b1edb403398a05f14f0af8c489038bad99564d2024bce7"
+  },
+  {
+    "commit": "7debeaf793d69fa1a51ae5725591e2230abcbbe4",
+    "path": "acceptance/design-session-walkthrough-population-psoriasis-2026-11-03/requests/population-assumed.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 3,
+    "added_line_sha256": "4340f453672e54070ceb4c6b3841cadc52cb056b693a18374e954fa037eed952",
+    "candidate_sha256": "31b88200c8813e1a640108d4b4e02ee214e2075479b4c4e4fac99150eca02683",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": "study_ref",
+    "value_identity": "5522417ec8b80cf5763d498ba7c2bc685e68b8c360e1e8644000b1bf28dea3a2",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/study_ref",
+        "object_pointer": "",
+        "unit": "a7bcd261f5f5f827592069078cdefddbd602fa54dd4f02d3d97a450baea6adb6.json"
+      }
+    ],
+    "committed_file_sha256": "483c7a543c0aac659ba03c17787d756516ea57b81fcf6b3bc0e3ca6ca14facf9"
+  },
+  {
+    "commit": "7debeaf793d69fa1a51ae5725591e2230abcbbe4",
+    "path": "acceptance/design-session-walkthrough-population-psoriasis-2026-11-03/requests/population-design-claims.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 3,
+    "added_line_sha256": "4340f453672e54070ceb4c6b3841cadc52cb056b693a18374e954fa037eed952",
+    "candidate_sha256": "31b88200c8813e1a640108d4b4e02ee214e2075479b4c4e4fac99150eca02683",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": "study_ref",
+    "value_identity": "5522417ec8b80cf5763d498ba7c2bc685e68b8c360e1e8644000b1bf28dea3a2",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/study_ref",
+        "object_pointer": "",
+        "unit": "faccb5f032dfdd6541b0426cc339487d438d1a799b3a931b5f0f6eaa3590d521.json"
+      }
+    ],
+    "committed_file_sha256": "c23dc6f2cb02bb6f42aebe2b8708c086515d0f80956673d4f62a21a904b07e46"
+  },
+  {
+    "commit": "7debeaf793d69fa1a51ae5725591e2230abcbbe4",
+    "path": "acceptance/design-session-walkthrough-population-psoriasis-2026-11-03/requests/population-design-wrong-arm.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 3,
+    "added_line_sha256": "4340f453672e54070ceb4c6b3841cadc52cb056b693a18374e954fa037eed952",
+    "candidate_sha256": "31b88200c8813e1a640108d4b4e02ee214e2075479b4c4e4fac99150eca02683",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": "study_ref",
+    "value_identity": "5522417ec8b80cf5763d498ba7c2bc685e68b8c360e1e8644000b1bf28dea3a2",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/study_ref",
+        "object_pointer": "",
+        "unit": "e45feb5408b0f94fdcf253855991f42752db540ea7b9d819130b8fbda2110418.json"
+      }
+    ],
+    "committed_file_sha256": "661cd58d09c356ea95d4ae044c9a7637dbb3590ce0c1b96801dc2ad193727457"
+  },
+  {
+    "commit": "7debeaf793d69fa1a51ae5725591e2230abcbbe4",
+    "path": "acceptance/design-session-walkthrough-population-psoriasis-2026-11-03/requests/population-proposed.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 3,
+    "added_line_sha256": "4340f453672e54070ceb4c6b3841cadc52cb056b693a18374e954fa037eed952",
+    "candidate_sha256": "31b88200c8813e1a640108d4b4e02ee214e2075479b4c4e4fac99150eca02683",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": "study_ref",
+    "value_identity": "5522417ec8b80cf5763d498ba7c2bc685e68b8c360e1e8644000b1bf28dea3a2",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/study_ref",
+        "object_pointer": "",
+        "unit": "99608f6016318a43f56bbfe9f15c4cd1f699d68e4a7208ed4e4f76dfac8d3172.json"
+      }
+    ],
+    "committed_file_sha256": "ba946e3b5bfcdc4983f4159c511f671953208fe6f63a94c45ecd4ed5542a1fbb"
+  },
+  {
+    "commit": "7debeaf793d69fa1a51ae5725591e2230abcbbe4",
+    "path": "acceptance/design-session-walkthrough-population-psoriasis-2026-11-03/requests/population-reversed-direction.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 3,
+    "added_line_sha256": "4340f453672e54070ceb4c6b3841cadc52cb056b693a18374e954fa037eed952",
+    "candidate_sha256": "31b88200c8813e1a640108d4b4e02ee214e2075479b4c4e4fac99150eca02683",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": "study_ref",
+    "value_identity": "5522417ec8b80cf5763d498ba7c2bc685e68b8c360e1e8644000b1bf28dea3a2",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/study_ref",
+        "object_pointer": "",
+        "unit": "e463380facfb58ffee5fc8e19e427c45cd5719486786bfe3f9f1b6ca8ab3edde.json"
+      }
+    ],
+    "committed_file_sha256": "b6c2951cd9eea08d13e65966bce43e325924d54632236b4994738c20fde205b4"
+  },
+  {
+    "commit": "7debeaf793d69fa1a51ae5725591e2230abcbbe4",
+    "path": "acceptance/design-session-walkthrough-population-psoriasis-2026-11-03/requests/population-subjects-mismatch.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 3,
+    "added_line_sha256": "4340f453672e54070ceb4c6b3841cadc52cb056b693a18374e954fa037eed952",
+    "candidate_sha256": "31b88200c8813e1a640108d4b4e02ee214e2075479b4c4e4fac99150eca02683",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": "study_ref",
+    "value_identity": "5522417ec8b80cf5763d498ba7c2bc685e68b8c360e1e8644000b1bf28dea3a2",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/study_ref",
+        "object_pointer": "",
+        "unit": "bb0f2519549564ddb260e432c332badd7659940f41ff96a789feb3a1ea8a2397.json"
+      }
+    ],
+    "committed_file_sha256": "ceaaf443901f1d13d8dc782f88346bccdf52f62c7d9caf4a6f363dedede1951b"
+  },
+  {
+    "commit": "7debeaf793d69fa1a51ae5725591e2230abcbbe4",
+    "path": "acceptance/design-session-walkthrough-population-psoriasis-2026-11-03/results/baseline-age-cap52.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 6,
+    "added_line_sha256": "44c9b25fe8f8142378ee4297eadbc297460ec31e8349d5acfe7c7a06e2f76f49",
+    "candidate_sha256": "6c70ac38051fbf5ea2681e3db2b9cef5f9d2c54576003269345670850c64b378",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": "study_ref",
+    "value_identity": "4f4a07dbe0db6984297f6e585420a3d306ad310096600f8e60e96dd60e36aea6",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/result/study_ref",
+        "object_pointer": "/result",
+        "unit": "fba9377cc9226e7f7870be78178c85768e82ad1cab93347816d695830c4a6ba2.json"
+      },
+      {
+        "value_pointer": "/result/premises/study_ref",
+        "object_pointer": "/result/premises",
+        "unit": "b97fcdeb97a2d9af4f31b4aa9059dc0893b666b78ce450cffd6804c35ab46155.json"
+      }
+    ],
+    "committed_file_sha256": "a98fdb54014a076c07d55fe9845eb72051ccffe4257f278863e86074efe50c09"
+  },
+  {
+    "commit": "7debeaf793d69fa1a51ae5725591e2230abcbbe4",
+    "path": "acceptance/design-session-walkthrough-population-psoriasis-2026-11-03/results/baseline-age-cap53.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 6,
+    "added_line_sha256": "44c9b25fe8f8142378ee4297eadbc297460ec31e8349d5acfe7c7a06e2f76f49",
+    "candidate_sha256": "6c70ac38051fbf5ea2681e3db2b9cef5f9d2c54576003269345670850c64b378",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": "study_ref",
+    "value_identity": "4f4a07dbe0db6984297f6e585420a3d306ad310096600f8e60e96dd60e36aea6",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/result/study_ref",
+        "object_pointer": "/result",
+        "unit": "6bf59b2f1edc0935e55b07bcad104b51b2275b206ff2caf3ebcaa2e5f50095e6.json"
+      },
+      {
+        "value_pointer": "/result/premises/study_ref",
+        "object_pointer": "/result/premises",
+        "unit": "b44595db912cec9321f6734403d6257f70cd1ea02d514c9960651c6ced9c346c.json"
+      }
+    ],
+    "committed_file_sha256": "5996f9cb53c61d4ab600460fa336ad83588098d34c3238748809a18351ef938a"
+  },
+  {
+    "commit": "7debeaf793d69fa1a51ae5725591e2230abcbbe4",
+    "path": "acceptance/design-session-walkthrough-population-psoriasis-2026-11-03/results/exception-broad-proposed-cap5.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 6,
+    "added_line_sha256": "44c9b25fe8f8142378ee4297eadbc297460ec31e8349d5acfe7c7a06e2f76f49",
+    "candidate_sha256": "6c70ac38051fbf5ea2681e3db2b9cef5f9d2c54576003269345670850c64b378",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": "study_ref",
+    "value_identity": "4f4a07dbe0db6984297f6e585420a3d306ad310096600f8e60e96dd60e36aea6",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/result/study_ref",
+        "object_pointer": "/result",
+        "unit": "4b944f89b48cee62957f367e50f34008d766542421d617fffb18073b7df52ef4.json"
+      },
+      {
+        "value_pointer": "/result/premises/study_ref",
+        "object_pointer": "/result/premises",
+        "unit": "52020be08d0e1db0bb589180c7c2e861460ba3c3e04cdfbc7fd64125f2895695.json"
+      }
+    ],
+    "committed_file_sha256": "e362747a13bfc7a3abe679d15db7cdc5608657fafb19c03404620bc468b40eb5"
+  },
+  {
+    "commit": "7debeaf793d69fa1a51ae5725591e2230abcbbe4",
+    "path": "acceptance/design-session-walkthrough-population-psoriasis-2026-11-03/results/exception-broad-proposed-unknown-ceiling.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 6,
+    "added_line_sha256": "44c9b25fe8f8142378ee4297eadbc297460ec31e8349d5acfe7c7a06e2f76f49",
+    "candidate_sha256": "6c70ac38051fbf5ea2681e3db2b9cef5f9d2c54576003269345670850c64b378",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": "study_ref",
+    "value_identity": "4f4a07dbe0db6984297f6e585420a3d306ad310096600f8e60e96dd60e36aea6",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/result/study_ref",
+        "object_pointer": "/result",
+        "unit": "036901bb5f60be8830de2048454877e1f002477495aa783f2a39ddfb0c81d0cd.json"
+      },
+      {
+        "value_pointer": "/result/premises/study_ref",
+        "object_pointer": "/result/premises",
+        "unit": "83d92e5972c5c73842737e7950274907cdd6ed9538fba12ad840d09b69972b33.json"
+      }
+    ],
+    "committed_file_sha256": "99377e3ca32f973ed7fb2c18a8670d5ca0ca0df9e621b25ceb7f588c9bce4369"
+  },
+  {
+    "commit": "7debeaf793d69fa1a51ae5725591e2230abcbbe4",
+    "path": "acceptance/design-session-walkthrough-population-psoriasis-2026-11-03/results/exception-entry-assumed-cap0.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 6,
+    "added_line_sha256": "44c9b25fe8f8142378ee4297eadbc297460ec31e8349d5acfe7c7a06e2f76f49",
+    "candidate_sha256": "6c70ac38051fbf5ea2681e3db2b9cef5f9d2c54576003269345670850c64b378",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": "study_ref",
+    "value_identity": "4f4a07dbe0db6984297f6e585420a3d306ad310096600f8e60e96dd60e36aea6",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/result/study_ref",
+        "object_pointer": "/result",
+        "unit": "5639eda4e973d5b082c4523cbafa09cb2147a3ceab715b5cdb1848731e786551.json"
+      },
+      {
+        "value_pointer": "/result/premises/study_ref",
+        "object_pointer": "/result/premises",
+        "unit": "dfc21c0b29741a1a3e3ffd59255cbc02269373537bd738e87cebfd4be8e8841f.json"
+      }
+    ],
+    "committed_file_sha256": "fc4d029f45d2c0faa740e97513dc37f86d8caa7e0d4f332b2287f0c51c6b87c7"
+  },
+  {
+    "commit": "7debeaf793d69fa1a51ae5725591e2230abcbbe4",
+    "path": "acceptance/design-session-walkthrough-population-psoriasis-2026-11-03/results/exception-entry-assumed-cap4.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 6,
+    "added_line_sha256": "44c9b25fe8f8142378ee4297eadbc297460ec31e8349d5acfe7c7a06e2f76f49",
+    "candidate_sha256": "6c70ac38051fbf5ea2681e3db2b9cef5f9d2c54576003269345670850c64b378",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": "study_ref",
+    "value_identity": "4f4a07dbe0db6984297f6e585420a3d306ad310096600f8e60e96dd60e36aea6",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/result/study_ref",
+        "object_pointer": "/result",
+        "unit": "8603f1130863ca426d29a607ac2b445a85456e362ad7f6a2027b11e5396b92db.json"
+      },
+      {
+        "value_pointer": "/result/premises/study_ref",
+        "object_pointer": "/result/premises",
+        "unit": "e21bab73f91b924ee300e1e5ee92d159b5ea2885802b4f43baf977e0e560c39c.json"
+      }
+    ],
+    "committed_file_sha256": "e6df0d93354c1adfc67519c270c2c1f44f6020639cb75b6f2759f6e9240371b7"
+  },
+  {
+    "commit": "7debeaf793d69fa1a51ae5725591e2230abcbbe4",
+    "path": "acceptance/design-session-walkthrough-population-psoriasis-2026-11-03/results/exception-entry-proposed-cap0.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 6,
+    "added_line_sha256": "44c9b25fe8f8142378ee4297eadbc297460ec31e8349d5acfe7c7a06e2f76f49",
+    "candidate_sha256": "6c70ac38051fbf5ea2681e3db2b9cef5f9d2c54576003269345670850c64b378",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": "study_ref",
+    "value_identity": "4f4a07dbe0db6984297f6e585420a3d306ad310096600f8e60e96dd60e36aea6",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/result/study_ref",
+        "object_pointer": "/result",
+        "unit": "3207fe51c1d6d0d8166d19b18a14d717d32525f886131ff828103c69ed14adb7.json"
+      },
+      {
+        "value_pointer": "/result/premises/study_ref",
+        "object_pointer": "/result/premises",
+        "unit": "ef4f5d89b93b9212a9e4384ba7b3c826cc7ddbd13323b98c611541723ccb6a37.json"
+      }
+    ],
+    "committed_file_sha256": "739200fdcf603eb7137661657aaa08c4285010e7b674b4a108dfcb32abf7ac0b"
+  },
+  {
+    "commit": "7debeaf793d69fa1a51ae5725591e2230abcbbe4",
+    "path": "acceptance/design-session-walkthrough-population-psoriasis-2026-11-03/results/population-assumed.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 11,
+    "added_line_sha256": "478dd0aef077b6adbaa1bdcb226319d3c21a25caa03b2c058433cf66d546637e",
+    "candidate_sha256": "31b88200c8813e1a640108d4b4e02ee214e2075479b4c4e4fac99150eca02683",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": "universe",
+    "value_identity": "9b9809931c00800c19712687db600b1addb2566beddf0b6dfdb6da2f9cf9c9a1",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/result/premises/0/data/universe",
+        "object_pointer": "/result/premises/0/data",
+        "unit": "052d5bf5d65bebdaa1eb5493b4e45a95e0bf0723b86c7b4e06bfa1df7682bb06.json"
+      },
+      {
+        "value_pointer": "/result/premises/0/data/subset/universe",
+        "object_pointer": "/result/premises/0/data/subset",
+        "unit": "f298f54cba5b7a75f4284e7645a5fcc71142d33fedba320f5a998fa3bf957151.json"
+      },
+      {
+        "value_pointer": "/result/signals/0/value/universe",
+        "object_pointer": "/result/signals/0/value",
+        "unit": "a049b84cc46143c29a48a69342c73ad3abe313c48866d95e532d1a24efc3dbfc.json"
+      }
+    ],
+    "committed_file_sha256": "50f4dd2ef73d7e36cf785f065679610e04425829a088ab7f576a7123c7b58fa5"
+  },
+  {
+    "commit": "7debeaf793d69fa1a51ae5725591e2230abcbbe4",
+    "path": "acceptance/design-session-walkthrough-population-psoriasis-2026-11-03/results/population-design-claims.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 6,
+    "added_line_sha256": "4340f453672e54070ceb4c6b3841cadc52cb056b693a18374e954fa037eed952",
+    "candidate_sha256": "31b88200c8813e1a640108d4b4e02ee214e2075479b4c4e4fac99150eca02683",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": "study_ref",
+    "value_identity": "5522417ec8b80cf5763d498ba7c2bc685e68b8c360e1e8644000b1bf28dea3a2",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/result/study_ref",
+        "object_pointer": "/result",
+        "unit": "e61ee68bdfe8a3f2979cca0768761dfbd9142359f5ab8ee95aa63fbcd73175e3.json"
+      },
+      {
+        "value_pointer": "/result/premises/study_ref",
+        "object_pointer": "/result/premises",
+        "unit": "faccb5f032dfdd6541b0426cc339487d438d1a799b3a931b5f0f6eaa3590d521.json"
+      }
+    ],
+    "committed_file_sha256": "ec6758c1d5f049d01b6fca641ec97f5717262711595fd1ed3a0db4c470014d15"
+  },
+  {
+    "commit": "7debeaf793d69fa1a51ae5725591e2230abcbbe4",
+    "path": "acceptance/design-session-walkthrough-population-psoriasis-2026-11-03/results/population-design-wrong-arm.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 6,
+    "added_line_sha256": "4340f453672e54070ceb4c6b3841cadc52cb056b693a18374e954fa037eed952",
+    "candidate_sha256": "31b88200c8813e1a640108d4b4e02ee214e2075479b4c4e4fac99150eca02683",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": "study_ref",
+    "value_identity": "5522417ec8b80cf5763d498ba7c2bc685e68b8c360e1e8644000b1bf28dea3a2",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/result/study_ref",
+        "object_pointer": "/result",
+        "unit": "2385f06ac1c6ea2fa1cdd5b4b32357f3e09855ab1f0962e7bb1be035afe3b5cc.json"
+      },
+      {
+        "value_pointer": "/result/premises/study_ref",
+        "object_pointer": "/result/premises",
+        "unit": "e45feb5408b0f94fdcf253855991f42752db540ea7b9d819130b8fbda2110418.json"
+      }
+    ],
+    "committed_file_sha256": "11c52d47dedc6d4baa6a5ff53e871e8f4613033a5fff72da8438e06352b177f6"
+  },
+  {
+    "commit": "7debeaf793d69fa1a51ae5725591e2230abcbbe4",
+    "path": "acceptance/design-session-walkthrough-population-psoriasis-2026-11-03/results/population-proposed.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 11,
+    "added_line_sha256": "478dd0aef077b6adbaa1bdcb226319d3c21a25caa03b2c058433cf66d546637e",
+    "candidate_sha256": "31b88200c8813e1a640108d4b4e02ee214e2075479b4c4e4fac99150eca02683",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": "universe",
+    "value_identity": "9b9809931c00800c19712687db600b1addb2566beddf0b6dfdb6da2f9cf9c9a1",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/result/premises/0/data/universe",
+        "object_pointer": "/result/premises/0/data",
+        "unit": "052d5bf5d65bebdaa1eb5493b4e45a95e0bf0723b86c7b4e06bfa1df7682bb06.json"
+      },
+      {
+        "value_pointer": "/result/premises/0/data/subset/universe",
+        "object_pointer": "/result/premises/0/data/subset",
+        "unit": "f298f54cba5b7a75f4284e7645a5fcc71142d33fedba320f5a998fa3bf957151.json"
+      },
+      {
+        "value_pointer": "/result/signals/0/value/universe",
+        "object_pointer": "/result/signals/0/value",
+        "unit": "a049b84cc46143c29a48a69342c73ad3abe313c48866d95e532d1a24efc3dbfc.json"
+      }
+    ],
+    "committed_file_sha256": "163de43327b62854b371f8040fc5650731f8702d02cb873495d5201e45c31516"
+  },
+  {
+    "commit": "7debeaf793d69fa1a51ae5725591e2230abcbbe4",
+    "path": "acceptance/design-session-walkthrough-population-psoriasis-2026-11-03/results/population-reversed-direction.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 11,
+    "added_line_sha256": "11ee2882c62443c55eee0322c99c5dde0f758b36545941b437e976459a4ffe6d",
+    "candidate_sha256": "31b88200c8813e1a640108d4b4e02ee214e2075479b4c4e4fac99150eca02683",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": "universe",
+    "value_identity": "ff0381d7f48e7a3f4573e65f7402c4ccb48afd9909e840c4c641b39919af7ffb",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/result/premises/0/data/universe",
+        "object_pointer": "/result/premises/0/data",
+        "unit": "0351c67f2d0311852c1ee2fac8dc8331321f0048a048d58e81ac5fdea304d1c8.json"
+      },
+      {
+        "value_pointer": "/result/premises/0/data/subset/universe",
+        "object_pointer": "/result/premises/0/data/subset",
+        "unit": "d2ed002c9fc47fba9c8a2bdf04a742c7c79189e320b42278e4d6a17e23507889.json"
+      },
+      {
+        "value_pointer": "/result/signals/0/value/universe",
+        "object_pointer": "/result/signals/0/value",
+        "unit": "008f020725ce7ff37bdeb6ad20888312de8380fd5ab52a6cea53712b0d1b720e.json"
+      }
+    ],
+    "committed_file_sha256": "b10c2e0c0f839dcd2d2ec852e39f9eff7bf5d8ddea7e706c7da4f8b05f68ed36"
+  },
+  {
+    "commit": "7debeaf793d69fa1a51ae5725591e2230abcbbe4",
+    "path": "acceptance/design-session-walkthrough-population-psoriasis-2026-11-03/results/population-subjects-mismatch.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 11,
+    "added_line_sha256": "478dd0aef077b6adbaa1bdcb226319d3c21a25caa03b2c058433cf66d546637e",
+    "candidate_sha256": "31b88200c8813e1a640108d4b4e02ee214e2075479b4c4e4fac99150eca02683",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": "universe",
+    "value_identity": "9b9809931c00800c19712687db600b1addb2566beddf0b6dfdb6da2f9cf9c9a1",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/result/premises/0/data/universe",
+        "object_pointer": "/result/premises/0/data",
+        "unit": "052d5bf5d65bebdaa1eb5493b4e45a95e0bf0723b86c7b4e06bfa1df7682bb06.json"
+      },
+      {
+        "value_pointer": "/result/premises/0/data/subset/universe",
+        "object_pointer": "/result/premises/0/data/subset",
+        "unit": "f298f54cba5b7a75f4284e7645a5fcc71142d33fedba320f5a998fa3bf957151.json"
+      },
+      {
+        "value_pointer": "/result/signals/0/value/universe",
+        "object_pointer": "/result/signals/0/value",
+        "unit": "a049b84cc46143c29a48a69342c73ad3abe313c48866d95e532d1a24efc3dbfc.json"
+      }
+    ],
+    "committed_file_sha256": "2c497db0c6e413f82ff63bff1726a1e2015a1b7e6d0a1372d1826fe8232c4ff0"
+  },
+  {
+    "commit": "7debeaf793d69fa1a51ae5725591e2230abcbbe4",
+    "path": "acceptance/design-session-walkthrough-population-psoriasis-2026-11-03/results/source-general-age.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 8,
+    "added_line_sha256": "330c5f21234f5683bd9d6bf8570b1d059da427d44ca0ac88772bf55c9b16f47b",
+    "candidate_sha256": "6c70ac38051fbf5ea2681e3db2b9cef5f9d2c54576003269345670850c64b378",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": "study_ref",
+    "value_identity": "4f4a07dbe0db6984297f6e585420a3d306ad310096600f8e60e96dd60e36aea6",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/result/source/study_ref",
+        "object_pointer": "/result/source",
+        "unit": "45dc08fed10df2ee62bd900292e2289727cfde890405a05a41875cd495aeee3e.json"
+      }
+    ],
+    "committed_file_sha256": "42ae4138fbbb11f8bf18f2a7a2c0cc37c2285847b0b1f38794c826dc93f59cb8"
+  },
+  {
+    "commit": "7debeaf793d69fa1a51ae5725591e2230abcbbe4",
+    "path": "acceptance/design-session-walkthrough-population-psoriasis-2026-11-03/source-inventory.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 6,
+    "added_line_sha256": "0bffeadc8f4c2ceb992643322d86b11aa4e4e6cfd1aab06c4f39a47db3ad742d",
+    "candidate_sha256": "6c70ac38051fbf5ea2681e3db2b9cef5f9d2c54576003269345670850c64b378",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": "study_ref",
+    "value_identity": "4f4a07dbe0db6984297f6e585420a3d306ad310096600f8e60e96dd60e36aea6",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/0/study_ref",
+        "object_pointer": "/0",
+        "unit": "f46cfd8299d53e3ad8cf030c987ecae9e95658d0992971b4678546fd35e9c48f.json"
+      }
+    ],
+    "committed_file_sha256": "fedbbd3ac28363b2c99f3fe6059730904207df27f088b4fc4c5817ed14e1f55d"
+  },
+  {
+    "commit": "7debeaf793d69fa1a51ae5725591e2230abcbbe4",
+    "path": "acceptance/design-session-walkthrough-population-psoriasis-2026-11-03/source-inventory.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 23,
+    "added_line_sha256": "c01ead182312bb0695560e96490a7aaa5a7e4a40922fd4d88245eb221c56e1dd",
+    "candidate_sha256": "5cc6b631215a6b16118a1c2e1a24d39e0f6351b357af87c89e829fe57cc38e7b",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": "study_ref",
+    "value_identity": "230f7a3d27ab4723e90621dd72e8bd306f4ba6e7a1ffd692f695117f9f6f5185",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/1/study_ref",
+        "object_pointer": "/1",
+        "unit": "6d5b715d36ddfc435ea3c07e8bded85e96608db1cc8a75a145b3ea3c21bd1386.json"
+      }
+    ],
+    "committed_file_sha256": "fedbbd3ac28363b2c99f3fe6059730904207df27f088b4fc4c5817ed14e1f55d"
+  },
+  {
+    "commit": "7debeaf793d69fa1a51ae5725591e2230abcbbe4",
+    "path": "acceptance/design-session-walkthrough-population-psoriasis-2026-11-03/source-inventory.json",
+    "detector": "Telegram Bot Token",
+    "added_line_number": 40,
+    "added_line_sha256": "b035e8205d6f1a7b6d9dbd5d1060cada8d4843bfc3a59c412a958fe01c37069b",
+    "candidate_sha256": "31b88200c8813e1a640108d4b4e02ee214e2075479b4c4e4fac99150eca02683",
+    "review": "unreviewed",
+    "context_state": "located",
+    "key": "study_ref",
+    "value_identity": "5522417ec8b80cf5763d498ba7c2bc685e68b8c360e1e8644000b1bf28dea3a2",
+    "structural_public_uri_shape": true,
+    "object_matches": [
+      {
+        "value_pointer": "/2/study_ref",
+        "object_pointer": "/2",
+        "unit": "f83ed6dea10be278302e90fe87d50262fdbc9392f6d8769c8414896c9f8a7837.json"
+      }
+    ],
+    "committed_file_sha256": "fedbbd3ac28363b2c99f3fe6059730904207df27f088b4fc4c5817ed14e1f55d"
+  }
+]

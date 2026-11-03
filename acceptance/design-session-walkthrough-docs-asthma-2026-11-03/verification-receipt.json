@@ -1,0 +1,13 @@
+{
+  "at_utc": "2026-11-03T23:50:10.805158+00:00",
+  "command": [
+    "uv",
+    "run",
+    "trialledger",
+    "verify",
+    "/Users/rohanvinaik/trialledger-runs/docs-asthma-sample-20261103"
+  ],
+  "exit": 0,
+  "stdout": "/Users/rohanvinaik/trialledger-runs/docs-asthma-sample-20261103: verified \u2014 the clinical record and workbook reproduce from the retained sources. This checks derivation, not clinical interpretation.\n",
+  "stderr": ""
+}

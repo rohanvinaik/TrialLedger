@@ -1,0 +1,518 @@
+{
+  "operation": "source_assertions",
+  "study": {
+    "protocolSection": {
+      "identificationModule": {
+        "nctId": "NCT05388760",
+        "orgStudyIdInfo": {
+          "id": "LP0162-1335"
+        },
+        "secondaryIdInfos": [
+          {
+            "id": "2021-005573-12",
+            "type": "EUDRACT_NUMBER"
+          },
+          {
+            "id": "U1111-1282-4394",
+            "type": "OTHER",
+            "domain": "World Health Organization (WHO)"
+          },
+          {
+            "id": "2024-512791-36-00",
+            "type": "CTIS"
+          }
+        ],
+        "organization": {
+          "fullName": "LEO Pharma",
+          "class": "INDUSTRY"
+        },
+        "briefTitle": "Tralokinumab Monotherapy for Children With Moderate-to-severe Atopic Dermatitis - TRAPEDS 1 (TRAlokinumab PEDiatric Trial no. 1)",
+        "officialTitle": "A Single (Assessor) Blinded, Randomized, Parallel-group, Monotherapy Trial to Evaluate the Pharmacokinetics and Safety of Tralokinumab in Children (Age 6 to <12 Years) With Moderate-to-severe Atopic Dermatitis"
+      },
+      "statusModule": {
+        "statusVerifiedDate": "2026-05",
+        "overallStatus": "COMPLETED",
+        "expandedAccessInfo": {
+          "hasExpandedAccess": false
+        },
+        "startDateStruct": {
+          "date": "2022-09-07",
+          "type": "ACTUAL"
+        },
+        "primaryCompletionDateStruct": {
+          "date": "2023-10-20",
+          "type": "ACTUAL"
+        },
+        "completionDateStruct": {
+          "date": "2026-04-29",
+          "type": "ACTUAL"
+        },
+        "studyFirstSubmitDate": "2022-05-19",
+        "studyFirstSubmitQcDate": "2022-05-19",
+        "studyFirstPostDateStruct": {
+          "date": "2022-05-24",
+          "type": "ACTUAL"
+        },
+        "dispFirstSubmitDate": "2024-10-18",
+        "dispFirstPostDateStruct": {
+          "date": "2024-10-21",
+          "type": "ACTUAL"
+        },
+        "lastUpdateSubmitDate": "2026-05-06",
+        "lastUpdatePostDateStruct": {
+          "date": "2026-05-14",
+          "type": "ACTUAL"
+        }
+      },
+      "sponsorCollaboratorsModule": {
+        "responsibleParty": {
+          "type": "SPONSOR"
+        },
+        "leadSponsor": {
+          "name": "LEO Pharma",
+          "class": "INDUSTRY"
+        }
+      },
+      "oversightModule": {
+        "oversightHasDmc": true,
+        "isFdaRegulatedDrug": true,
+        "isFdaRegulatedDevice": false
+      },
+      "descriptionModule": {
+        "briefSummary": "The main purpose of this trial is to investigate what happens to the trial drug in the body and to confirm that it is safe to use and effective for treating atopic dermatitis (AD) in children.\n\nThe trial will last up to maximum of approximately 194 weeks, and there will be up to 59 visits. The visits will be held approximately every second week for the first 68 weeks, then the visits will be held every six weeks for the rest of the treatment period. From week 26, every second visit will be held by phone and every second visit will be held on site.\n\nThe first part of the trial is called a screening period and will last between 2 and 6 weeks. After the screening period, the trial drug will be administered to the child by subcutaneous (SC) injection. The treatment period with tralokinumab is divided in 3 parts: 1.) initial treatment period for 16 weeks, 2.) open-label treatment period for 52 weeks and 3.) long-term extension treatment period for up to 106 weeks followed by a 14-week safety follow-up period.\n\nAll children will use an emollient twice daily (or more) for at least 14 days prior to start of treatment and will continue this treatment throughout the trial. If medically necessary, rescue treatment for AD is allowed at the discretion of the trial doctor."
+      },
+      "conditionsModule": {
+        "conditions": [
+          "Atopic Dermatitis"
+        ]
+      },
+      "designModule": {
+        "studyType": "INTERVENTIONAL",
+        "phases": [
+          "PHASE2"
+        ],
+        "designInfo": {
+          "allocation": "RANDOMIZED",
+          "interventionModel": "PARALLEL",
+          "primaryPurpose": "TREATMENT",
+          "maskingInfo": {
+            "masking": "SINGLE",
+            "maskingDescription": "This trial will be assessor blinded (efficacy and safety assessments) to ensure an objective evaluation of efficacy and safety of the Investigational Medicinal Product (IMP). Due to differences in number of injections of IMP, blinding will only be maintained for the assessor. For the initial treatment period (Week 0-Week 16), the assessor will be a different person than the person administering the IMP. Subjects and the caregivers will be instructed that it is important for the trial results that they refrain from revealing their treatment allocation to the assessor.",
+            "whoMasked": [
+              "OUTCOMES_ASSESSOR"
+            ]
+          }
+        },
+        "enrollmentInfo": {
+          "count": 28,
+          "type": "ACTUAL"
+        }
+      },
+      "armsInterventionsModule": {
+        "armGroups": [
+          {
+            "label": "Cohort 1 (6 to <12 years) - tralokinumab dose regimen A",
+            "type": "EXPERIMENTAL",
+            "interventionNames": [
+              "Drug: Tralokinumab"
+            ]
+          },
+          {
+            "label": "Cohort 1 (6 to <12 years) - tralokinumab dose regimen B",
+            "type": "EXPERIMENTAL",
+            "interventionNames": [
+              "Drug: Tralokinumab"
+            ]
+          }
+        ],
+        "interventions": [
+          {
+            "type": "DRUG",
+            "name": "Tralokinumab",
+            "description": "A loading dose under the skin (s.c.) at first treatment visit and then injections in accordance with a pre-defined schedule for 16 weeks (initial treatment) followed by a maintenance treatment for 52 weeks (open-label treatment) and a long-term extension treatment period for up to 106 weeks.",
+            "armGroupLabels": [
+              "Cohort 1 (6 to <12 years) - tralokinumab dose regimen A",
+              "Cohort 1 (6 to <12 years) - tralokinumab dose regimen B"
+            ]
+          }
+        ]
+      },
+      "outcomesModule": {
+        "primaryOutcomes": [
+          {
+            "measure": "Ctrough (trough concentration)",
+            "timeFrame": "at Week 16"
+          },
+          {
+            "measure": "Cmax (maximum serum concentration)",
+            "timeFrame": "between Week 12-Week 14 for Q2W (Week 12-Week 16 for Q4W)"
+          },
+          {
+            "measure": "AUC (area under the curve)",
+            "timeFrame": "between Week 12-Week 14 for Q2W (Week 12-Week 16 for Q4W)"
+          },
+          {
+            "measure": "Tmax (time to maximum serum concentration)",
+            "timeFrame": "between Week 12-Week 14 for Q2W (Week 12-Week 16 for Q4W)"
+          }
+        ],
+        "secondaryOutcomes": [
+          {
+            "measure": "Number of treatment-emergent adverse events in the initial treatment period",
+            "description": "An Adverse Event (AE) is defined as any untoward medical occurrence in a patient or clinical investigation subject administered a pharmaceutical product and which does not necessarily have a causal relationship with this treatment. An event will be considered treatment-emergent if started after the first use of IMP or if started before the first use of IMP and worsened in severity after first dose of IMP.",
+            "timeFrame": "Week 0-Week 16"
+          },
+          {
+            "measure": "Anti-drug antibodies (status) in the initial treatment period",
+            "timeFrame": "Week 0-Week 16"
+          },
+          {
+            "measure": "Number of treatment-emergent adverse events in the open-label treatment period",
+            "description": "An AE is defined as any untoward medical occurrence in a patient or clinical investigation subject administered a pharmaceutical product and which does not necessarily have a causal relationship with this treatment. An event will be considered treatment-emergent if started after the first use of IMP or if started before the first use of IMP and worsened in severity after first dose of IMP.",
+            "timeFrame": "Week 16-Week 68"
+          },
+          {
+            "measure": "Anti-drug antibodies (status) in the open-label treatment period",
+            "timeFrame": "Week 16-Week 68"
+          },
+          {
+            "measure": "Change in Scoring Atopic Dermatitis (SCORAD)",
+            "description": "The SCORAD is a validated tool to evaluate the extent and severity of atopic dermatitis (AD) lesions, along with subjective symptoms. The maximum total score is 103, with higher values indicating more severe disease.",
+            "timeFrame": "from Week 0-Week 68"
+          },
+          {
+            "measure": "Change in Patient-Oriented Eczema Measure (POEM)",
+            "description": "The POEM is a validated questionnaire used to assess disease symptoms in atopic eczema patients in both clinical practice and clinical trials (30, 31). The tool consists of 7 items each addressing a specific symptom (itching, sleep, bleeding, weeping, cracking, flaking, and dryness). POEM for proxy completion is used, where the caregiver will report their perception of how often the subject has experienced each symptom over the previous week on a 5-point categorical response scale (0 = 'no days'; 1 = '1 to 2 days'; 2 = '3 to 4 days'; 3 = '5 to 6 days'; 4 = 'every day'). The total score is the sum of the 7 items (range 0 to 28) and reflects disease-related morbidity; a high score is indicative of a worse disease severity.",
+            "timeFrame": "from Week 0-Week 68"
+          },
+          {
+            "measure": "Change in Eczema Area and Severity Index (EASI)",
+            "description": "The EASI is a validated measure used in clinical practice and clinical trials to assess the severity and extent of AD. The EASI is a composite index with scores ranging from 0 to 72, with higher values indicating more severe or more extensive condition.",
+            "timeFrame": "from Week 0-Week 68"
+          }
+        ]
+      },
+      "eligibilityModule": {
+        "eligibilityCriteria": "Inclusion Criteria:\n\n* Diagnosis of AD (as defined by Hanifin and Rajka criteria for AD).\n* Age 6 to \\<12 years at time of the baseline visit.\n* Body weight at baseline of ≥17 kg.\n* History of AD for ≥ 12 months at screening.\n* History of TCS and/or TCI treatment failure (due to inadequate response or intolerance) or subjects for whom these topical AD treatments are medically inadvisable.\n* AD involvement of ≥10% body surface area at screening and baseline.\n* An EASI score of ≥16 at screening and at baseline.\n* An Investigator's Global Assessment (IGA) score of ≥3 at screening and at baseline.\n* Emollient twice daily (or more) for at least 14 days prior to baseline.\n\nExclusion Criteria:\n\n* Active dermatologic conditions that may confound the diagnosis of AD or would interfere with assessment of treatment.\n* Treatment with topical PDE-4 inhibitor within 2 weeks prior to randomization.\n* Treatment with the following immunomodulatory medications or bleach baths within 4 weeks prior to baseline:\n\n  * Systemic immunosuppressive/immunomodulating drugs (e.g. methotrexate, cyclosporine, azathioprine, mycophenolate mofetil, JAK inhibitors).\n  * Systemic corticosteroid use (excludes topical, inhaled, ophthalmic, or intranasal delivery).\n  * 3 or more bleach baths during any week within the 4 weeks.\n* Receipt of any marketed biological therapy or investigational biologic agents (including immunoglobulin, anti-IgE, or dupilumab):\n\n  * Any cell-depleting agents, including but not limited to rituximab: within 6 months prior to baseline, or until lymphocyte count returns to normal, whichever is longer.\n  * Other biologics (including dupilumab): within 3 months or 5 halflives, whichever is longer, prior to baseline.\n* Active chronic or acute infection requiring treatment with systemic antibiotics, antivirals, antifungals, or antiprotozoals within 2 weeks before the baseline visit.\n* History of malignancy at any time before the baseline visit.\n* History of anaphylaxis following any biological therapy.\n* History of immune complex disease.\n* Active or suspected endoparasitic infections.\n* History of past or current tuberculosis or other mycobacterial infection.\n* Established diagnosis of a primary immunodeficiency disorder.",
+        "healthyVolunteers": false,
+        "sex": "ALL",
+        "minimumAge": "6 Years",
+        "maximumAge": "11 Years",
+        "stdAges": [
+          "CHILD"
+        ]
+      },
+      "contactsLocationsModule": {
+        "overallOfficials": [
+          {
+            "name": "Medical Expert",
+            "affiliation": "LEO Pharma",
+            "role": "STUDY_DIRECTOR"
+          }
+        ],
+        "locations": [
+          {
+            "facility": "LEO Pharma Investigational Site",
+            "city": "Brno",
+            "zip": "625 00",
+            "country": "Czechia",
+            "geoPoint": {
+              "lat": 49.19522,
+              "lon": 16.60796
+            }
+          },
+          {
+            "facility": "LEO Pharma Investigational Site",
+            "city": "Prague",
+            "zip": "150 06",
+            "country": "Czechia",
+            "geoPoint": {
+              "lat": 50.08804,
+              "lon": 14.42076
+            }
+          },
+          {
+            "facility": "LEO Pharma Investigational Site",
+            "city": "Reims",
+            "state": "Ardennes",
+            "zip": "51100",
+            "country": "France",
+            "geoPoint": {
+              "lat": 49.26526,
+              "lon": 4.02853
+            }
+          },
+          {
+            "facility": "LEO Pharma Investigational Site",
+            "city": "Rotterdam",
+            "zip": "3011 TG",
+            "country": "Netherlands",
+            "geoPoint": {
+              "lat": 51.9225,
+              "lon": 4.47917
+            }
+          },
+          {
+            "facility": "LEO Pharma Investigational Site",
+            "city": "Utrecht",
+            "zip": "3584 CX",
+            "country": "Netherlands",
+            "geoPoint": {
+              "lat": 52.09083,
+              "lon": 5.12222
+            }
+          },
+          {
+            "facility": "LEO Pharma Investigational Site",
+            "city": "Cadiz",
+            "state": "Andalusia",
+            "zip": "11009",
+            "country": "Spain",
+            "geoPoint": {
+              "lat": 36.52672,
+              "lon": -6.2891
+            }
+          },
+          {
+            "facility": "LEO Pharma Investigational Site",
+            "city": "Esplugues de Llobregat",
+            "state": "Barcelona",
+            "zip": "08950",
+            "country": "Spain",
+            "geoPoint": {
+              "lat": 41.37732,
+              "lon": 2.08809
+            }
+          },
+          {
+            "facility": "LEO Pharma Investigational Site",
+            "city": "Alicante",
+            "zip": "03010",
+            "country": "Spain",
+            "geoPoint": {
+              "lat": 38.34517,
+              "lon": -0.48149
+            }
+          },
+          {
+            "facility": "LEO Pharma Investigational Site",
+            "city": "Manchester",
+            "state": "Greater Manchester",
+            "zip": "M13 9WL",
+            "country": "United Kingdom",
+            "geoPoint": {
+              "lat": 53.48095,
+              "lon": -2.23743
+            }
+          },
+          {
+            "facility": "LEO Pharma Investigational Site",
+            "city": "London",
+            "zip": "SE1 9RT",
+            "country": "United Kingdom",
+            "geoPoint": {
+              "lat": 51.50853,
+              "lon": -0.12574
+            }
+          },
+          {
+            "facility": "LEO Pharma Investigational Site",
+            "city": "Sheffield",
+            "zip": "S10 2TH",
+            "country": "United Kingdom",
+            "geoPoint": {
+              "lat": 53.38297,
+              "lon": -1.4659
+            }
+          }
+        ]
+      },
+      "ipdSharingStatementModule": {
+        "ipdSharing": "NO"
+      }
+    },
+    "derivedSection": {
+      "miscInfoModule": {
+        "versionHolder": "2026-11-03",
+        "submissionTracking": {
+          "estimatedResultsFirstSubmitDate": "2026-10-16",
+          "submissionInfos": [
+            {
+              "releaseDate": "2026-10-16"
+            }
+          ]
+        }
+      },
+      "conditionBrowseModule": {
+        "meshes": [
+          {
+            "id": "D003876",
+            "term": "Dermatitis, Atopic"
+          }
+        ],
+        "ancestors": [
+          {
+            "id": "D012873",
+            "term": "Skin Diseases, Genetic"
+          },
+          {
+            "id": "D030342",
+            "term": "Genetic Diseases, Inborn"
+          },
+          {
+            "id": "D009358",
+            "term": "Congenital, Hereditary, and Neonatal Diseases and Abnormalities"
+          },
+          {
+            "id": "D003872",
+            "term": "Dermatitis"
+          },
+          {
+            "id": "D012871",
+            "term": "Skin Diseases"
+          },
+          {
+            "id": "D017437",
+            "term": "Skin and Connective Tissue Diseases"
+          },
+          {
+            "id": "D017443",
+            "term": "Skin Diseases, Eczematous"
+          },
+          {
+            "id": "D006969",
+            "term": "Hypersensitivity, Immediate"
+          },
+          {
+            "id": "D006967",
+            "term": "Hypersensitivity"
+          },
+          {
+            "id": "D007154",
+            "term": "Immune System Diseases"
+          }
+        ]
+      },
+      "interventionBrowseModule": {
+        "meshes": [
+          {
+            "id": "C574065",
+            "term": "tralokinumab"
+          }
+        ]
+      }
+    },
+    "hasResults": false
+  },
+  "expected_digest": "664bb9abf92716883df4a5a0f321c345a15fb6d3e48ef593f5903ca69998d803",
+  "anchors": [
+    {
+      "id": "eligibility",
+      "address": "/protocolSection/eligibilityModule/eligibilityCriteria",
+      "digest": "664bb9abf92716883df4a5a0f321c345a15fb6d3e48ef593f5903ca69998d803",
+      "expected": "Inclusion Criteria:\n\n* Diagnosis of AD (as defined by Hanifin and Rajka criteria for AD).\n* Age 6 to \\<12 years at time of the baseline visit.\n* Body weight at baseline of ≥17 kg.\n* History of AD for ≥ 12 months at screening.\n* History of TCS and/or TCI treatment failure (due to inadequate response or intolerance) or subjects for whom these topical AD treatments are medically inadvisable.\n* AD involvement of ≥10% body surface area at screening and baseline.\n* An EASI score of ≥16 at screening and at baseline.\n* An Investigator's Global Assessment (IGA) score of ≥3 at screening and at baseline.\n* Emollient twice daily (or more) for at least 14 days prior to baseline.\n\nExclusion Criteria:\n\n* Active dermatologic conditions that may confound the diagnosis of AD or would interfere with assessment of treatment.\n* Treatment with topical PDE-4 inhibitor within 2 weeks prior to randomization.\n* Treatment with the following immunomodulatory medications or bleach baths within 4 weeks prior to baseline:\n\n  * Systemic immunosuppressive/immunomodulating drugs (e.g. methotrexate, cyclosporine, azathioprine, mycophenolate mofetil, JAK inhibitors).\n  * Systemic corticosteroid use (excludes topical, inhaled, ophthalmic, or intranasal delivery).\n  * 3 or more bleach baths during any week within the 4 weeks.\n* Receipt of any marketed biological therapy or investigational biologic agents (including immunoglobulin, anti-IgE, or dupilumab):\n\n  * Any cell-depleting agents, including but not limited to rituximab: within 6 months prior to baseline, or until lymphocyte count returns to normal, whichever is longer.\n  * Other biologics (including dupilumab): within 3 months or 5 halflives, whichever is longer, prior to baseline.\n* Active chronic or acute infection requiring treatment with systemic antibiotics, antivirals, antifungals, or antiprotozoals within 2 weeks before the baseline visit.\n* History of malignancy at any time before the baseline visit.\n* History of anaphylaxis following any biological therapy.\n* History of immune complex disease.\n* Active or suspected endoparasitic infections.\n* History of past or current tuberculosis or other mycobacterial infection.\n* Established diagnosis of a primary immunodeficiency disorder."
+    },
+    {
+      "id": "description",
+      "address": "/protocolSection/descriptionModule",
+      "digest": "664bb9abf92716883df4a5a0f321c345a15fb6d3e48ef593f5903ca69998d803",
+      "expected": {
+        "briefSummary": "The main purpose of this trial is to investigate what happens to the trial drug in the body and to confirm that it is safe to use and effective for treating atopic dermatitis (AD) in children.\n\nThe trial will last up to maximum of approximately 194 weeks, and there will be up to 59 visits. The visits will be held approximately every second week for the first 68 weeks, then the visits will be held every six weeks for the rest of the treatment period. From week 26, every second visit will be held by phone and every second visit will be held on site.\n\nThe first part of the trial is called a screening period and will last between 2 and 6 weeks. After the screening period, the trial drug will be administered to the child by subcutaneous (SC) injection. The treatment period with tralokinumab is divided in 3 parts: 1.) initial treatment period for 16 weeks, 2.) open-label treatment period for 52 weeks and 3.) long-term extension treatment period for up to 106 weeks followed by a 14-week safety follow-up period.\n\nAll children will use an emollient twice daily (or more) for at least 14 days prior to start of treatment and will continue this treatment throughout the trial. If medically necessary, rescue treatment for AD is allowed at the discretion of the trial doctor."
+      }
+    },
+    {
+      "id": "outcomes",
+      "address": "/protocolSection/outcomesModule",
+      "digest": "664bb9abf92716883df4a5a0f321c345a15fb6d3e48ef593f5903ca69998d803",
+      "expected": {
+        "primaryOutcomes": [
+          {
+            "measure": "Ctrough (trough concentration)",
+            "timeFrame": "at Week 16"
+          },
+          {
+            "measure": "Cmax (maximum serum concentration)",
+            "timeFrame": "between Week 12-Week 14 for Q2W (Week 12-Week 16 for Q4W)"
+          },
+          {
+            "measure": "AUC (area under the curve)",
+            "timeFrame": "between Week 12-Week 14 for Q2W (Week 12-Week 16 for Q4W)"
+          },
+          {
+            "measure": "Tmax (time to maximum serum concentration)",
+            "timeFrame": "between Week 12-Week 14 for Q2W (Week 12-Week 16 for Q4W)"
+          }
+        ],
+        "secondaryOutcomes": [
+          {
+            "measure": "Number of treatment-emergent adverse events in the initial treatment period",
+            "description": "An Adverse Event (AE) is defined as any untoward medical occurrence in a patient or clinical investigation subject administered a pharmaceutical product and which does not necessarily have a causal relationship with this treatment. An event will be considered treatment-emergent if started after the first use of IMP or if started before the first use of IMP and worsened in severity after first dose of IMP.",
+            "timeFrame": "Week 0-Week 16"
+          },
+          {
+            "measure": "Anti-drug antibodies (status) in the initial treatment period",
+            "timeFrame": "Week 0-Week 16"
+          },
+          {
+            "measure": "Number of treatment-emergent adverse events in the open-label treatment period",
+            "description": "An AE is defined as any untoward medical occurrence in a patient or clinical investigation subject administered a pharmaceutical product and which does not necessarily have a causal relationship with this treatment. An event will be considered treatment-emergent if started after the first use of IMP or if started before the first use of IMP and worsened in severity after first dose of IMP.",
+            "timeFrame": "Week 16-Week 68"
+          },
+          {
+            "measure": "Anti-drug antibodies (status) in the open-label treatment period",
+            "timeFrame": "Week 16-Week 68"
+          },
+          {
+            "measure": "Change in Scoring Atopic Dermatitis (SCORAD)",
+            "description": "The SCORAD is a validated tool to evaluate the extent and severity of atopic dermatitis (AD) lesions, along with subjective symptoms. The maximum total score is 103, with higher values indicating more severe disease.",
+            "timeFrame": "from Week 0-Week 68"
+          },
+          {
+            "measure": "Change in Patient-Oriented Eczema Measure (POEM)",
+            "description": "The POEM is a validated questionnaire used to assess disease symptoms in atopic eczema patients in both clinical practice and clinical trials (30, 31). The tool consists of 7 items each addressing a specific symptom (itching, sleep, bleeding, weeping, cracking, flaking, and dryness). POEM for proxy completion is used, where the caregiver will report their perception of how often the subject has experienced each symptom over the previous week on a 5-point categorical response scale (0 = 'no days'; 1 = '1 to 2 days'; 2 = '3 to 4 days'; 3 = '5 to 6 days'; 4 = 'every day'). The total score is the sum of the 7 items (range 0 to 28) and reflects disease-related morbidity; a high score is indicative of a worse disease severity.",
+            "timeFrame": "from Week 0-Week 68"
+          },
+          {
+            "measure": "Change in Eczema Area and Severity Index (EASI)",
+            "description": "The EASI is a validated measure used in clinical practice and clinical trials to assess the severity and extent of AD. The EASI is a composite index with scores ranging from 0 to 72, with higher values indicating more severe or more extensive condition.",
+            "timeFrame": "from Week 0-Week 68"
+          }
+        ]
+      }
+    }
+  ],
+  "queries": [
+    {
+      "id": "adult-age-restriction",
+      "body": {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+          "class": "Predicate",
+          "key": "age",
+          "kind": "measurement"
+        },
+        "qualifiers": {
+          "class": "Always"
+        },
+        "subject": {
+          "class": "Subject",
+          "kind": "participant",
+          "referent": ""
+        },
+        "time": null,
+        "value": {
+          "class": "Value",
+          "comparison": "ge",
+          "inclusivity": "unspecified",
+          "kind": "quantity",
+          "members": [],
+          "number": 18,
+          "unit": "Years",
+          "upper": null
+        }
+      }
+    }
+  ]
+}

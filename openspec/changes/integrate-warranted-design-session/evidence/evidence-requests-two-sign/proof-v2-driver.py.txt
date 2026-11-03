@@ -1,0 +1,32 @@
+"""Run the proof protocol on the final source; record every command, exit code and log."""
+import json, pathlib, subprocess, sys
+V = pathlib.Path("/tmp/trialledger-evidence-requests-20261103164615/proof-v2")
+R = "/Users/rohanvinaik/tools/TrialLedger"
+OWNED = "/Users/rohanvinaik/Projects/SquishOS/ops/agents/bin/owned-run"
+ENV = ["env", "PYTHONPATH=/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker"]
+DET = R + "/.venv/bin/detective"
+MOD = "TrialLedger/layer2/evidence_requests.py"
+FUNCS = ["family_state", "pair_relation", "pair_outcome", "output_state", "required_premises", "seek", "dominated"]
+book = V / "commands.json"
+record = json.loads(book.read_text()) if book.exists() else {"cwd": str(V), "commands": []}
+def go(label, argv, log, wrap=True):
+    full = [OWNED, "--label", label, "--", *argv] if wrap else argv
+    with open(V / log, "w") as out:
+        code = subprocess.run(full, cwd=V, stdout=out, stderr=subprocess.STDOUT).returncode
+    record["commands"].append({"argv": full, "stdout_stderr": log, "exit_code": code})
+    book.write_text(json.dumps(record, indent=1))
+    return code
+step = sys.argv[1]
+if step == "setup":
+    print("migrate", go("er-v2-regime-migrate", [*ENV, DET, "regime", "--migrate"], "logs/regime-migrate.log"))
+    print("regime", go("er-v2-regime", [*ENV, DET, "regime"], "logs/regime.log"))
+elif step == "converge":
+    for f in FUNCS:
+        print(f, go(f"er-v2-converge-{f}", [*ENV, DET, "converge", f"{MOD}::{f}", "--two-sign"], f"logs/converge-{f}.log"))
+elif step == "after":
+    print("plan", go("er-v2-plan", [*ENV, DET, "plan", MOD], "logs/plan.log"))
+    print("survey", go("er-v2-survey", [*ENV, DET, "survey", MOD], "logs/survey.log"))
+    print("crosshair", go("er-v2-crosshair", ["env", f"PYTHONPATH={V}", "/Users/rohanvinaik/miniconda3/bin/crosshair", "check",
+        "--analysis_kind", "PEP316", "--report_all", "--per_condition_timeout", "30", MOD], "logs/crosshair.log"))
+    print("pytest", go("er-v2-pytest", ["env", f"PYTHONPATH={V}", "PYTHONDONTWRITEBYTECODE=1", R + "/.venv/bin/python", "-m", "pytest",
+        "-q", "-p", "no:cacheprovider", "tests"], "logs/pytest-all.log"))

@@ -1,0 +1,15 @@
+# Frozen session implementation and verification
+
+Scratch-only implementation, handed to the root integrator. Public service/discovery/metadata, actual public CLI/MCP and clinical-category walkthrough verification belong to the root. The scratch authored suite uses the actual existing child service.run, not a pretend clinical solver. Do not copy historical frozen child dependencies over the root's integrated package.
+
+Final production sources are the three .py.txt files (plus guide draft, already handed off and extended by root). State/projection/wrapper SHA256 identities are in manifest.json and proof-scope.json. All input schemas and limitations are in SCHEMA.md. The baseline and revision pairs are actually executed, entirely invented teaching premises. No teaching premise is NIH evidence.
+
+88 authored tests pass. Scoped pinned Ruff 0.16.7, format and Ty pass. Actual Detective policy 9+neg.f5a15364c11d pins revision_code 48/48, change_code 38/38 and alternative_code 131/131, zero equivalences. All three decompose observations say no separable block; static surveys report no trapped pure decisions. Broader style reports are advisory and explicitly leave unpinned orchestration regions unexamined; none is represented as formally pinned.
+
+The alternative's initially unproven boundary was killed by the concrete MUST-NOT input ('OUT_OF_SCOPE', ['undecided_by_constraints'], True, True), following the report's --input template. Three temporary generated tests were written and then all three removed by Detective's own minimization. The 88 authored tests remain, and no synthesized test source remains required by the final certificate.
+
+Final frozen CrossHair observation: six state-helper postconditions Confirmed over all paths; four alternative postconditions Not confirmed. No counterexample was reported. This is not a whole-function proof or a promise that more runtime would prove them. An earlier malformed multiline PEP316 contract and the corrected pre-type-copy observations are historical under v1/v2 scratch folders; final v3 source has a parseable named codomain contract.
+
+Native Detective ledger is copied byte-exact and includes parsed actual arguments, two_sign=true, local tool/import/interpreter paths, timestamps, source identities and outcomes. Help/regime/import-resolution logs are retained. There is no fabricated shell transcript or commands.json. source-context-digests.json records the actual copied package context; original source files remain in the named v3 scratch directory. The pure-function source and namespace constants are retained directly in the three frozen modules. The final alternative decompose re-observed the last all-infeasible wrapper update at its final file digest; the earlier initial converge's older wrapper digest is visible honestly in the native ledger. Pure function bodies and contract globals did not change.
+
+No shared repository files, commits or pushes were performed by this child. The root owns final integration, documentation, final full-project checks and commit/push.

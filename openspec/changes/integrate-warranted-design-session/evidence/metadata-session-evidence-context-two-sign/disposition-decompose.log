@@ -1,0 +1,29 @@
+  ▸ proving: converging the target to a mutation-complete suite (the proof)…
+  ▸ recalled 1 supplied input(s) from a previous run
+  ▸ recalled 23 pinned test(s) from a previous run
+  … disposition_code: tracing 54 function-routed tests
+  … disposition_code: baseline traced · 54 tests · 0.2s
+  ▸ pass 0: ✓ every mutant killed; pinning the supplied input(s)…
+  ▸ pass 0: 0 value-survivor(s) — synthesizing killing tests…
+  ▸ pass 0: +9 new killing test(s) written [test_TrialLedger_layer2_result_semantics_disposition_code_3741ce9eea_synth.py]
+  … disposition_code: tracing 63 function-routed tests
+  … disposition_code: baseline traced · 63 tests · 0.0s
+  ▸ pass 1: ✓ every mutant killed
+  ▸ witness pass: searching richer inputs for a distinguishing kill…
+  ▸ finalizing — re-profiling the full mutant universe against the written suite…
+  … disposition_code: tracing 63 function-routed tests
+  … disposition_code: baseline traced · 63 tests · 0.0s
+  ▸ minimizing — dropped 9 redundant test(s) our own cover flagged
+  … disposition_code: tracing 54 function-routed tests
+  … disposition_code: baseline traced · 54 tests · 0.0s
+  ▸ verifying reproducibility — fresh isolated observation of the function's proof basis…
+  … disposition_code: tracing 54 function-routed tests
+  … disposition_code: baseline traced · 54 tests · 0.0s
+  … disposition_code: tracing 2 function-routed tests
+  … disposition_code: baseline traced · 2 tests · 0.0s
+  ▸ reproducibility confirmed — the certificate rests on the isolated observation
+  ▸ baseline: running the proof suite against the UNCHANGED function…
+  ▸ full report: .detective/reports/decompose_disposition_code.txt
+disposition_code — decompose
+
+DONE:  no separable block. There is no seam here to split.

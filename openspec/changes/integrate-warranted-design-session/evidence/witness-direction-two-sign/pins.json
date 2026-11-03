@@ -1,0 +1,20 @@
+{
+  "TrialLedger/layer2/design_bounds.py::witness_verdict::89ef25b92ecfedfd": [
+    {
+      "assertion_code": "result = witness_verdict(support='witness', result='ENTAILED', blockers=[], direction='rejected')\nassert result == 'not_ruled_out'",
+      "category": "VALUE",
+      "confidence": 0.95,
+      "function_key": "",
+      "golden_case": null,
+      "mutant_id": "",
+      "needs_oracle": false,
+      "preconditions": [
+        "distinguishing witness (equivalence search)"
+      ],
+      "setup_code": "from TrialLedger.layer2.design_bounds import witness_verdict",
+      "source_lenses": [
+        "witness"
+      ]
+    }
+  ]
+}

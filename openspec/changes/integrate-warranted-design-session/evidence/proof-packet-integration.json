@@ -1,0 +1,320 @@
+{
+  "certificate_merge": {
+    "after_sha256": "adcadf472949e00d0895d7428d5deaeea913af884f0bc2d5e14706c3888a4e19",
+    "before_sha256": "e14b42ffe61a199d1fed7014f78bb095827f445e7aa64d71fa75451edb08a9a1",
+    "count": 14,
+    "owned_entries": {
+      "TrialLedger/layer2/design_bounds.py::witness_verdict": {
+        "cut_reasons": [],
+        "function_digest": "89ef25b92ecfedfd",
+        "refusal": "",
+        "standing": "complete"
+      },
+      "TrialLedger/layer2/design_session.py::alternative_code": {
+        "cut_reasons": [],
+        "function_digest": "0974c98951278c61",
+        "refusal": "",
+        "standing": "complete"
+      },
+      "TrialLedger/layer2/evidence_requests.py::dominated": {
+        "cut_reasons": [],
+        "function_digest": "16b8a7595154dfa2",
+        "refusal": "",
+        "standing": "complete"
+      },
+      "TrialLedger/layer2/evidence_requests.py::family_state": {
+        "cut_reasons": [],
+        "function_digest": "fd34b534a5479c52",
+        "refusal": "",
+        "standing": "complete"
+      },
+      "TrialLedger/layer2/evidence_requests.py::output_state": {
+        "cut_reasons": [],
+        "function_digest": "1655c26905fd3c46",
+        "refusal": "",
+        "standing": "complete"
+      },
+      "TrialLedger/layer2/evidence_requests.py::pair_outcome": {
+        "cut_reasons": [],
+        "function_digest": "8dcd5a9228d563ba",
+        "refusal": "",
+        "standing": "complete"
+      },
+      "TrialLedger/layer2/evidence_requests.py::pair_relation": {
+        "cut_reasons": [],
+        "function_digest": "6eee538eac969016",
+        "refusal": "",
+        "standing": "complete"
+      },
+      "TrialLedger/layer2/evidence_requests.py::required_premises": {
+        "cut_reasons": [],
+        "function_digest": "423f1ddf5f835edd",
+        "refusal": "",
+        "standing": "complete"
+      },
+      "TrialLedger/layer2/evidence_requests.py::seek": {
+        "cut_reasons": [],
+        "function_digest": "8c13442d71ec359d",
+        "refusal": "",
+        "standing": "complete"
+      },
+      "TrialLedger/layer2/result_semantics.py::cause_kind": {
+        "cut_reasons": [],
+        "function_digest": "2b660e587a3b2e50",
+        "refusal": "",
+        "standing": "complete"
+      },
+      "TrialLedger/layer2/result_semantics.py::completion_code": {
+        "cut_reasons": [],
+        "function_digest": "0ca68ed2a47b84e6",
+        "refusal": "",
+        "standing": "complete"
+      },
+      "TrialLedger/layer2/result_semantics.py::disposition_code": {
+        "cut_reasons": [],
+        "function_digest": "e8f6cd7dcf149c50",
+        "refusal": "",
+        "standing": "complete"
+      },
+      "TrialLedger/layer2/session_state.py::change_code": {
+        "cut_reasons": [],
+        "function_digest": "8a29be4899772545",
+        "refusal": "",
+        "standing": "complete"
+      },
+      "TrialLedger/layer2/session_state.py::revision_code": {
+        "cut_reasons": [],
+        "function_digest": "8a1d660274f21740",
+        "refusal": "",
+        "standing": "complete"
+      }
+    },
+    "path": "tests/detective/certificates.json"
+  },
+  "copied_test_files": [
+    {
+      "path": "tests/detective/test_TrialLedger_layer2_design_bounds_witness_verdict_bb7f931d78_synth.py",
+      "previous_sha256": null,
+      "sha256": "b5c85c8fda924c944e17495de3afc5a4b723111bba525cdf49da166566109563"
+    },
+    {
+      "path": "tests/detective/test_TrialLedger_layer2_evidence_requests_dominated_5d24bb533c_synth.py",
+      "previous_sha256": null,
+      "sha256": "3ce68f2a63945227634f007687618aecbb02d513095ca8c8e3949773515c7373"
+    },
+    {
+      "path": "tests/detective/test_TrialLedger_layer2_evidence_requests_required_premises_1fcda66411_synth.py",
+      "previous_sha256": null,
+      "sha256": "cf4a336f5e1497d45ec510d0af1e406e7bdcc77c9cfbe9dac2d3d9715dc7470a"
+    },
+    {
+      "path": "tests/detective/test_TrialLedger_layer2_evidence_requests_seek_3e974fc14c_synth.py",
+      "previous_sha256": null,
+      "sha256": "426c0e55481ac1a2c1bf11c0e8b0fe193744a06043a691e31c5e56460e168c2e"
+    },
+    {
+      "path": "tests/test_witness_direction_locality.py",
+      "previous_sha256": null,
+      "sha256": "e6ebaceb3572c276e9dd2115f85573f7a4f94adafe52b22d797a99b90e9d1cd5"
+    },
+    {
+      "path": "tests/witness_direction_fixtures/accepted-ecog4-request.json",
+      "previous_sha256": null,
+      "sha256": "9f8973b088d04ca5ec5ea7b723ee89b69b02ae2b79dd12c5b8ac7461f3485a6f"
+    },
+    {
+      "path": "tests/witness_direction_fixtures/rejected-ecog2-request.json",
+      "previous_sha256": null,
+      "sha256": "2fafc7286cb2c2f3210d155d9bd30a44631a26125154c8d55ea025a715ba7f75"
+    },
+    {
+      "path": "tests/detective/test_TrialLedger_layer2_result_semantics_cause_kind_a38b8f3a25_synth.py",
+      "previous_sha256": "7a56197b7752b0711c0e7852f14b666aee79a6dedac45196d44a0499c9d4311c",
+      "sha256": "7a56197b7752b0711c0e7852f14b666aee79a6dedac45196d44a0499c9d4311c"
+    },
+    {
+      "path": "tests/detective/test_TrialLedger_layer2_result_semantics_completion_code_0f6f433d15_synth.py",
+      "previous_sha256": "83b1285eb3df6415ef05cbbd045a15d05458667cb7b32c9dd5b90aa3690df705",
+      "sha256": "83b1285eb3df6415ef05cbbd045a15d05458667cb7b32c9dd5b90aa3690df705"
+    },
+    {
+      "path": "tests/detective/test_TrialLedger_layer2_result_semantics_disposition_code_3741ce9eea_synth.py",
+      "previous_sha256": "87e6dcd2c63654bb9b5a8e262f85c1455ab23bb7623cb58a9de81a63be43a7d8",
+      "sha256": "fbf00aed2fc0c9d3f368482ec66c41e30b2bd24996ea42141752e1b5f2a1ba25"
+    }
+  ],
+  "current_comparisons": [
+    {
+      "current": "TrialLedger/layer2/evidence_requests.py",
+      "current_sha256": "ef0e57b3767dc58107848edc9822f8940fdc848194c88355bcea8e5f1d5041e5",
+      "frozen": "/tmp/trialledger-evidence-requests-20261103164615/frozen/TrialLedger/layer2/evidence_requests.py",
+      "frozen_sha256": "abd04aef31d3b9f424b8abc034c43b9d7b37a88496b854008f91f7b6409038e9",
+      "functions": {
+        "dominated": {
+          "ast_equal": true,
+          "text_equal": true
+        },
+        "family_state": {
+          "ast_equal": true,
+          "text_equal": true
+        },
+        "output_state": {
+          "ast_equal": true,
+          "text_equal": true
+        },
+        "pair_outcome": {
+          "ast_equal": true,
+          "text_equal": true
+        },
+        "pair_relation": {
+          "ast_equal": true,
+          "text_equal": true
+        },
+        "required_premises": {
+          "ast_equal": true,
+          "text_equal": true
+        },
+        "seek": {
+          "ast_equal": true,
+          "text_equal": true
+        }
+      },
+      "globals": {
+        "BRIDGE_PREMISES": {
+          "ast_equal": true,
+          "current_expression": "('accepted_resolved_bridge', 'count_above_exception_allowance')",
+          "frozen_expression": "('accepted_resolved_bridge', 'count_above_exception_allowance')"
+        },
+        "COMPLETE": {
+          "ast_equal": true,
+          "current_expression": "'complete_candidate_eligibility:'",
+          "frozen_expression": "'complete_candidate_eligibility:'"
+        },
+        "OUTCOMES": {
+          "ast_equal": true,
+          "current_expression": "('separated', 'search_incomplete', 'not_separated_in_declared_variables', 'no_separator')",
+          "frozen_expression": "('separated', 'search_incomplete', 'not_separated_in_declared_variables', 'no_separator')"
+        }
+      },
+      "packet": "external"
+    },
+    {
+      "current": "TrialLedger/layer2/session_state.py",
+      "current_sha256": "b5cefe2c47691b51a130e9b3554a6c94d4838fd745ca802ecd806ba70b8cf948",
+      "frozen": "/tmp/trialledger-session-contract-20261103-v3/TrialLedger/layer2/session_state.py",
+      "frozen_sha256": "f316361d546f5902ddbceea794d56e71d70b421282dfcb4894e89d17cbb627a5",
+      "functions": {
+        "change_code": {
+          "ast_equal": true,
+          "text_equal": true
+        },
+        "revision_code": {
+          "ast_equal": true,
+          "text_equal": true
+        }
+      },
+      "globals": {},
+      "packet": "session"
+    },
+    {
+      "current": "TrialLedger/layer2/design_session.py",
+      "current_sha256": "15ee881bb0c348068379e4f2b503c260db381307a3c5596301324655fcd18b94",
+      "frozen": "/tmp/trialledger-session-contract-20261103-v3/TrialLedger/layer2/design_session.py",
+      "frozen_sha256": "0bcf907cf345e63e32f5ab34cd8b87ac7c0391c1f968fcc4d20ae3526ce1cb2e",
+      "functions": {
+        "alternative_code": {
+          "ast_equal": true,
+          "text_equal": true
+        }
+      },
+      "globals": {
+        "ALTERNATIVE_CODES": {
+          "ast_equal": true,
+          "current_expression": "frozenset({'target_mismatch', 'conflict', 'computation_task', 'translation_question', 'infeasible', 'feasible', 'evidence_question'})",
+          "frozen_expression": "frozenset({'target_mismatch', 'conflict', 'computation_task', 'translation_question', 'infeasible', 'feasible', 'evidence_question'})"
+        }
+      },
+      "packet": "session"
+    },
+    {
+      "current": "TrialLedger/layer2/design_bounds.py",
+      "current_sha256": "71aafdae577f82ceb97fef98b1110d2d1a0f8f2ffa7041bd693bb7c109885717",
+      "frozen": "/tmp/trialledger-witness-direction-contract-20261103-v2/TrialLedger/layer2/design_bounds.py",
+      "frozen_sha256": "71aafdae577f82ceb97fef98b1110d2d1a0f8f2ffa7041bd693bb7c109885717",
+      "functions": {
+        "witness_verdict": {
+          "ast_equal": true,
+          "text_equal": true
+        }
+      },
+      "globals": {},
+      "packet": "witness"
+    },
+    {
+      "current": "TrialLedger/layer2/result_semantics.py",
+      "current_sha256": "3d05007883cc0363660ed911e841c8a098214c5f3df93d66c2a02131031752d0",
+      "frozen": "TrialLedger/layer2/result_semantics.py.txt",
+      "frozen_sha256": "3d05007883cc0363660ed911e841c8a098214c5f3df93d66c2a02131031752d0",
+      "functions": {
+        "cause_kind": {
+          "ast_equal": true,
+          "text_equal": true
+        },
+        "completion_code": {
+          "ast_equal": true,
+          "text_equal": true
+        },
+        "disposition_code": {
+          "ast_equal": true,
+          "text_equal": true
+        }
+      },
+      "globals": {
+        "CAUSE_KINDS": {
+          "ast_equal": true
+        },
+        "DISPOSITIONS": {
+          "ast_equal": true
+        },
+        "RESULTS": {
+          "ast_equal": true
+        }
+      },
+      "packet": "metadata"
+    }
+  ],
+  "format": 1,
+  "metadata_lineage": "metadata-proof-lineage.json",
+  "packets": [
+    {
+      "bytes": 454793,
+      "files": 57,
+      "manifest_sha256": "dd72ac443cfc347ae5c38fb04446329ae8458d99f86f02651fa785664ae2f5f9",
+      "path": "openspec/changes/integrate-warranted-design-session/evidence/session-two-sign",
+      "storage_records_verified": 50
+    },
+    {
+      "bytes": 576248,
+      "files": 83,
+      "manifest_sha256": "4469b3747bbb72cf8f281563394b3b11e54fb20ef9b9585a51907409fd3ce98d",
+      "path": "openspec/changes/integrate-warranted-design-session/evidence/witness-direction-two-sign",
+      "storage_records_verified": 76
+    },
+    {
+      "bytes": 234245,
+      "files": 69,
+      "manifest_sha256": "40b5e54a344bb1cf970609ce5d6624618015ff9a65edcb8a73357ee2a7931b8c",
+      "path": "openspec/changes/integrate-warranted-design-session/evidence/evidence-requests-two-sign",
+      "storage_records_verified": 61
+    },
+    {
+      "bytes": 269414,
+      "files": 58,
+      "manifest_sha256": "5d76b069a5de9beee758d2897e1260cab754b5fb14de20de97330025dc6cc4e1",
+      "path": "openspec/changes/integrate-warranted-design-session/evidence/metadata-session-evidence-context-two-sign",
+      "storage_records_verified": 51
+    }
+  ],
+  "scope": "Only artifact packets, witness authored tests/fixtures, required generated tests and exact owned certificate entries were written. No runtime, general documentation, other tests, staging or commits.",
+  "storage_verification": "Every stored identity/gzip payload and decompressed original matches exact source hashes and byte counts; source and hidden-tool-state mappings are explicit."
+}

@@ -1,0 +1,105 @@
+──────────────────────────────────────────────────────────────────────────────
+TrialLedger/layer2/design_session.py — plan (full) · 16 regions · budget 500 DOF-proxy · spent 0
+
+  TrialLedger/layer2/design_session.py::_decisions
+                       CONSTRUCTIVE · unpinned · status unpinned · not_clean · agreement 4
+                       smells: overload (270 DOF / 105 lines (static proxy)) · cohesion (2 disjoint components) · complexity (CC 32) · interface_width (5 parameter(s))
+                       cost 270 (static_dof_proxy)
+    next               detective converge 'TrialLedger/layer2/design_session.py::_decisions'
+
+  TrialLedger/layer2/design_session.py::_child
+                       CONSTRUCTIVE · unpinned · status unpinned · not_clean · agreement 3
+                       smells: overload (70 DOF / 20 lines (static proxy)) · seam (1 seam(s)) · gamma_seam (5 crossing(s) at the cheapest seam (γ-bound proxy))
+                       cost 70 (static_dof_proxy)
+    next               detective converge 'TrialLedger/layer2/design_session.py::_child'
+
+  TrialLedger/layer2/design_session.py::_decision_support
+                       CONSTRUCTIVE · unpinned · status unpinned · not_clean · agreement 3
+                       smells: seam (2 seam(s)) · gamma_seam (5 crossing(s) at the cheapest seam (γ-bound proxy)) · complexity (CC 37)
+                       template quadratic_membership_scan → set_membership · gate receipt + verify-rewrite + paired budget · line 334: `in origins` (list-evidenced) inside a loop
+                       cost 118 (static_dof_proxy)
+    next               detective converge 'TrialLedger/layer2/design_session.py::_decision_support'
+
+  TrialLedger/layer2/design_session.py::_request
+                       CONSTRUCTIVE · unpinned · status unpinned · not_clean · agreement 3
+                       smells: overload (127 DOF / 41 lines (static proxy)) · seam (1 seam(s)) · complexity (CC 19)
+                       cost 127 (static_dof_proxy)
+    next               detective converge 'TrialLedger/layer2/design_session.py::_request'
+
+  TrialLedger/layer2/design_session.py::_feasibility_status
+                       CONSTRUCTIVE · unpinned · status unpinned · not_clean · agreement 2
+                       smells: overload (56 DOF / 15 lines (static proxy)) · cohesion (2 disjoint components)
+                       cost 56 (static_dof_proxy)
+    next               detective converge 'TrialLedger/layer2/design_session.py::_feasibility_status'
+
+  TrialLedger/layer2/design_session.py::_nested_table_work
+                       CONSTRUCTIVE · unpinned · status unpinned · not_clean · agreement 2
+                       smells: overload (99 DOF / 21 lines (static proxy)) · seam (1 seam(s))
+                       template memoizable_pure_recursion → memoize · gate receipt + verify-rewrite + paired budget · line 170: pure self-call _nested_table_work(…)
+                       cost 99 (static_dof_proxy)
+    next               detective converge 'TrialLedger/layer2/design_session.py::_nested_table_work'
+
+  TrialLedger/layer2/design_session.py::_question
+                       CONSTRUCTIVE · unpinned · status unpinned · not_clean · agreement 2
+                       smells: overload (105 DOF / 23 lines (static proxy)) · cohesion (2 disjoint components)
+                       cost 105 (static_dof_proxy)
+    next               detective converge 'TrialLedger/layer2/design_session.py::_question'
+
+  TrialLedger/layer2/design_session.py::_reserve
+                       CONSTRUCTIVE · unpinned · status unpinned · not_clean · agreement 2
+                       smells: overload (142 DOF / 30 lines (static proxy)) · seam (1 seam(s))
+                       cost 142 (static_dof_proxy)
+    next               detective converge 'TrialLedger/layer2/design_session.py::_reserve'
+
+  TrialLedger/layer2/design_session.py::run
+                       CONSTRUCTIVE · unpinned · status unpinned · not_clean · agreement 2
+                       smells: overload (185 DOF / 47 lines (static proxy)) · seam (1 seam(s))
+                       cost 185 (static_dof_proxy)
+    next               detective converge 'TrialLedger/layer2/design_session.py::run'
+
+  TrialLedger/layer2/design_session.py::_accepted_decision
+                       AMBIGUOUS · escalated · status unpinned · not_clean · agreement 1
+                       smells: overload (6 DOF / 2 lines (static proxy))
+                       cost 6 (static_dof_proxy)
+    next               detective flag 'TrialLedger/layer2/design_session.py::_accepted_decision' --style --leave --note "why"   # or --proceed; to ground it first: detective converge 'TrialLedger/layer2/design_session.py::_accepted_decision'
+
+  TrialLedger/layer2/design_session.py::_distinctions
+                       AMBIGUOUS · escalated · status unpinned · not_clean · agreement 1
+                       smells: interface_width (6 parameter(s))
+                       cost 118 (static_dof_proxy)
+    next               detective flag 'TrialLedger/layer2/design_session.py::_distinctions' --style --leave --note "why"   # or --proceed; to ground it first: detective converge 'TrialLedger/layer2/design_session.py::_distinctions'
+
+  TrialLedger/layer2/design_session.py::_nodes
+                       AMBIGUOUS · escalated · status unpinned · not_clean · agreement 1
+                       smells: overload (21 DOF / 6 lines (static proxy))
+                       template memoizable_pure_recursion → memoize · gate receipt + verify-rewrite + paired budget · line 161: pure self-call _nodes(…)
+                       cost 21 (static_dof_proxy)
+    next               detective flag 'TrialLedger/layer2/design_session.py::_nodes' --style --leave --note "why"   # or --proceed; to ground it first: detective converge 'TrialLedger/layer2/design_session.py::_nodes'
+
+  TrialLedger/layer2/design_session.py::_origins
+                       AMBIGUOUS · escalated · status unpinned · not_clean · agreement 1
+                       smells: overload (8 DOF / 3 lines (static proxy))
+                       cost 8 (static_dof_proxy)
+    next               detective flag 'TrialLedger/layer2/design_session.py::_origins' --style --leave --note "why"   # or --proceed; to ground it first: detective converge 'TrialLedger/layer2/design_session.py::_origins'
+
+  TrialLedger/layer2/design_session.py::_diff
+                       SILENT · silent · status unpinned · clean · agreement 0
+                       smells: —
+                       cost 38 (static_dof_proxy)
+
+  TrialLedger/layer2/design_session.py::alternative_code
+                       SILENT · silent · status pinned · clean · agreement 0
+                       smells: —
+                       cost 58 (static_dof_proxy)
+
+  TrialLedger/layer2/design_session.py::replay
+                       SILENT · silent · status unpinned · clean · agreement 0
+                       smells: —
+                       cost 117 (static_dof_proxy)
+
+  · unexamined         what this plan did not propose is UNEXAMINED, not approved
+                       regime — unread: it needs a live mutation profile this static plan never runs
+                       fences held at 0 — the form-censor spine (§5.3) is unbuilt, so DESTRUCTIVE is unexercised
+                       recognizers — 5 template(s); a region with no match is a library gap, not a clean bill
+
+FINAL plan TrialLedger/layer2/design_session.py: 0 funded · 9 constructive · 4 escalated · 0 fenced · 3 silent (clean 3 · unread 0) · advisory — writes no project files

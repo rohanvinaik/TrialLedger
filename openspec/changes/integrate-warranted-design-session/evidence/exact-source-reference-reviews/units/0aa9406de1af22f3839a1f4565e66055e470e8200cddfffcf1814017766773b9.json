@@ -1,0 +1,8 @@
+{
+  "status": "known",
+  "resolution": "resolved",
+  "basis": [
+    "ctg:NCT00322452:2eec1fa676ce866d9f3770c0287064ab584676660da37cb12a6ea00378cf17c0#/protocolSection/eligibilityModule/minimumAge",
+    "ctg-structured-general-eligibility-age:1"
+  ]
+}

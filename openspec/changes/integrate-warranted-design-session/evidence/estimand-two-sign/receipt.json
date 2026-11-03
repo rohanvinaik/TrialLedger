@@ -1,0 +1,55 @@
+{
+  "source_sha256": "97628c24b9c2e6986e4c8c9441bfbfe6cb5631da60c4f3cc127bf1ca9240d94f",
+  "functions": {
+    "TrialLedger/layer2/estimand_evidence.py::collection_alignment": {
+      "source_sha256": "b43e246ba41f64652419601bc2758dca467f0ac86713cf67ab5b36e951ab3c6e",
+      "ast_sha256": "b2764eb3d211671b983fd9d6d5990b8e6cb110a3a149e3d8edcb1da2369089eb"
+    },
+    "TrialLedger/layer2/estimand_evidence.py::actual_input": {
+      "source_sha256": "147efd630a48e32fdd61d311ef808e0487c8737d971e77f333b4b0e071dbf6d8",
+      "ast_sha256": "d6e65514bc7d1d8fb2a560c952e2f228be75e6360a557552a953a7f81039d42c"
+    },
+    "TrialLedger/layer2/signals.py::support_state": {
+      "source_sha256": "2fccab29ba76458050fbc49e496fc223c1863f2c5eb01fbdcad030459198401b",
+      "ast_sha256": "b5e3cc8892bf9ea82a04c78ffd6ca5ee8d009ab47149884866098b47761db0a5"
+    }
+  },
+  "original_admission_owner_matches_root": true,
+  "authored_tests": 58,
+  "generated_tests": 3,
+  "final_suite_passed": 61,
+  "detective": {
+    "policy": "9+neg.f5a15364c11d",
+    "support_state": {
+      "scored": 62,
+      "value_pinned": 62,
+      "equivalent": 0
+    },
+    "collection_alignment": {
+      "scored": 67,
+      "value_pinned": 67,
+      "equivalent": 0
+    },
+    "actual_input": {
+      "scored": 77,
+      "value_pinned": 76,
+      "equivalent": 1
+    },
+    "unproven_equivalence": 0,
+    "wrapper_scope": "Authored tests only, not whole-module mutation certification"
+  },
+  "crosshair": {
+    "confirmed": 4,
+    "not_confirmed": 6,
+    "counterexample": false,
+    "source": "isolated-crosshair-final.log"
+  },
+  "formal_source": {
+    "url": "https://database.ich.org/sites/default/files/E9-R1_Step4_Guideline_2019_1203.pdf",
+    "sha256": "f7471f411f1c87ee76783d5b2b9faaeca31d01d530213f71b50d136b39e3b0d9",
+    "sections_read": "A.3.1-A.3.4, A.4, A.5.1 complete"
+  },
+  "no_shared_edits": true,
+  "no_cli_mcp_integration_or_real_trial_claim": true,
+  "retention": "Native ledger contains actual parsed command args/environment/timestamps, no synthesized shell history"
+}

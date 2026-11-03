@@ -1,0 +1,218 @@
+[
+  {
+    "argv": [
+      "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/python",
+      "-c",
+      "import sys, Detective, Wesker; from scripts import push_checks; print(sys.executable); print(Detective.__file__); print(Wesker.__file__); print(push_checks.__file__)"
+    ],
+    "cwd": "/private/tmp/trialledger-scan-review-pin-20261103-v1",
+    "PYTHONPATH": "/tmp/trialledger-scan-review-pin-20261103-v1:/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+    "started": "2026-11-03T22:06:03.784167+00:00",
+    "completed": "2026-11-03T22:06:03.883298+00:00",
+    "exit_code": 0,
+    "log": "identities.log",
+    "sha256": "ae39ac2cdd9d85954339a2c9d5ae954001d72a27044a9490c4c922ab8e86bded"
+  },
+  {
+    "argv": [
+      "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+      "--help"
+    ],
+    "cwd": "/private/tmp/trialledger-scan-review-pin-20261103-v1",
+    "PYTHONPATH": "/tmp/trialledger-scan-review-pin-20261103-v1:/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+    "started": "2026-11-03T22:06:04.448497+00:00",
+    "completed": "2026-11-03T22:06:04.548065+00:00",
+    "exit_code": 0,
+    "log": "help.log",
+    "sha256": "1629b84ce31fc121fe2da5361946861273272397aebe227d5425a219461c5671"
+  },
+  {
+    "argv": [
+      "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+      "regime"
+    ],
+    "cwd": "/private/tmp/trialledger-scan-review-pin-20261103-v1",
+    "PYTHONPATH": "/tmp/trialledger-scan-review-pin-20261103-v1:/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+    "started": "2026-11-03T22:06:16.694426+00:00",
+    "completed": "2026-11-03T22:06:16.805786+00:00",
+    "exit_code": 0,
+    "log": "regime.log",
+    "sha256": "ed52510d36d5f0dbde50ae4d4ef41c030c42f384cec416c94499542d2eca95b2"
+  },
+  {
+    "argv": [
+      "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/python",
+      "-m",
+      "pytest",
+      "tests"
+    ],
+    "cwd": "/private/tmp/trialledger-scan-review-pin-20261103-v1",
+    "PYTHONPATH": "/tmp/trialledger-scan-review-pin-20261103-v1:/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+    "started": "2026-11-03T22:06:17.358117+00:00",
+    "completed": "2026-11-03T22:06:17.571435+00:00",
+    "exit_code": 0,
+    "log": "authored-tests.log",
+    "sha256": "90969518f06f404a1f6e3ea3f517576cbef435893921d26e173ac308719aed96"
+  },
+  {
+    "argv": [
+      "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+      "regime",
+      "--migrate",
+      "--project-root",
+      "/private/tmp/trialledger-scan-review-pin-20261103-v1"
+    ],
+    "cwd": "/private/tmp/trialledger-scan-review-pin-20261103-v1",
+    "PYTHONPATH": "/tmp/trialledger-scan-review-pin-20261103-v1:/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+    "started": "2026-11-03T22:06:30.665451+00:00",
+    "completed": "2026-11-03T22:06:30.976985+00:00",
+    "exit_code": 0,
+    "log": "regime-migrate.log",
+    "sha256": "dd55310d886333ebbed31bf65bc27db3bcbb9522268a5d4bb2634b7ec4061276"
+  },
+  {
+    "argv": [
+      "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/ruff",
+      "check",
+      "scripts/push_checks.py",
+      "tests"
+    ],
+    "cwd": "/private/tmp/trialledger-scan-review-pin-20261103-v1",
+    "PYTHONPATH": "/tmp/trialledger-scan-review-pin-20261103-v1:/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+    "started": "2026-11-03T22:06:50.689965+00:00",
+    "completed": "2026-11-03T22:06:50.703962+00:00",
+    "exit_code": 0,
+    "log": "ruff.log",
+    "sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+  },
+  {
+    "argv": [
+      "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/ruff",
+      "format",
+      "--check",
+      "scripts/push_checks.py",
+      "tests"
+    ],
+    "cwd": "/private/tmp/trialledger-scan-review-pin-20261103-v1",
+    "PYTHONPATH": "/tmp/trialledger-scan-review-pin-20261103-v1:/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+    "started": "2026-11-03T22:06:51.100661+00:00",
+    "completed": "2026-11-03T22:06:51.115135+00:00",
+    "exit_code": 0,
+    "log": "format.log",
+    "sha256": "3bc53bf3e981a98a34a852e175bf9b77af841edea74fca595d9aedcbaf9a4938"
+  },
+  {
+    "argv": [
+      "ty",
+      "check",
+      "--python",
+      "/Users/rohanvinaik/tools/TrialLedger/.venv",
+      "--extra-search-path",
+      "/tmp/trialledger-scan-review-pin-20261103-v1",
+      "scripts/push_checks.py"
+    ],
+    "cwd": "/private/tmp/trialledger-scan-review-pin-20261103-v1",
+    "PYTHONPATH": "/tmp/trialledger-scan-review-pin-20261103-v1:/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+    "started": "2026-11-03T22:06:51.498363+00:00",
+    "completed": "2026-11-03T22:06:51.559219+00:00",
+    "exit_code": 0,
+    "log": "ty.log",
+    "sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+  },
+  {
+    "argv": [
+      "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+      "converge",
+      "scripts/push_checks.py::secret_review_state",
+      "--two-sign"
+    ],
+    "cwd": "/private/tmp/trialledger-scan-review-pin-20261103-v1",
+    "PYTHONPATH": "/tmp/trialledger-scan-review-pin-20261103-v1:/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+    "started": "2026-11-03T22:06:52.054057+00:00",
+    "completed": "2026-11-03T22:06:53.969203+00:00",
+    "exit_code": 0,
+    "log": "converge.log",
+    "sha256": "b9ada95efad321fce0974dd0553ef95d2e66da6b931e75fa45e1c53d26d8e9f0"
+  },
+  {
+    "argv": [
+      "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+      "plan",
+      "scripts/push_checks.py"
+    ],
+    "cwd": "/private/tmp/trialledger-scan-review-pin-20261103-v1",
+    "PYTHONPATH": "/tmp/trialledger-scan-review-pin-20261103-v1:/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+    "started": "2026-11-03T22:07:08.991244+00:00",
+    "completed": "2026-11-03T22:07:10.570125+00:00",
+    "exit_code": 0,
+    "log": "plan.log",
+    "sha256": "5dbc1f01677e8ad4442d6c25f387b0a9d174782131bb29e929ade51c4ab86003"
+  },
+  {
+    "argv": [
+      "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+      "decompose",
+      "scripts/push_checks.py::secret_review_state",
+      "--apply",
+      "--two-sign"
+    ],
+    "cwd": "/private/tmp/trialledger-scan-review-pin-20261103-v1",
+    "PYTHONPATH": "/tmp/trialledger-scan-review-pin-20261103-v1:/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+    "started": "2026-11-03T22:07:24.700486+00:00",
+    "completed": "2026-11-03T22:07:26.921727+00:00",
+    "exit_code": 0,
+    "log": "decompose.log",
+    "sha256": "9a564fe486b14a2ed2a6edee3aa523998f99e573f58a44285bad2695433775fb"
+  },
+  {
+    "argv": [
+      "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/detective",
+      "survey",
+      "scripts/push_checks.py"
+    ],
+    "cwd": "/private/tmp/trialledger-scan-review-pin-20261103-v1",
+    "PYTHONPATH": "/tmp/trialledger-scan-review-pin-20261103-v1:/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+    "started": "2026-11-03T22:07:39.344381+00:00",
+    "completed": "2026-11-03T22:07:39.470272+00:00",
+    "exit_code": 0,
+    "log": "survey.log",
+    "sha256": "126727d3ff81731f434c1bb010efa7c55c234852b36684f6a0c61a47efe87a71"
+  },
+  {
+    "argv": [
+      "uv",
+      "run",
+      "--project",
+      "/Users/rohanvinaik/tools/TrialLedger",
+      "--with",
+      "crosshair-tool",
+      "crosshair",
+      "check",
+      "/tmp/trialledger-scan-review-pin-20261103-v1/scripts/push_checks.py",
+      "--report_all",
+      "--per_condition_timeout=10"
+    ],
+    "cwd": "/private/tmp/trialledger-scan-review-pin-20261103-v1",
+    "PYTHONPATH": "/tmp/trialledger-scan-review-pin-20261103-v1:/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+    "started": "2026-11-03T22:07:40.006933+00:00",
+    "completed": "2026-11-03T22:08:00.647520+00:00",
+    "exit_code": 0,
+    "log": "crosshair.log",
+    "sha256": "bc91902dfe63fba734d38fec2135708acad87ada13eee92aefb8cdd706afce75"
+  },
+  {
+    "argv": [
+      "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/python",
+      "-m",
+      "pytest",
+      "tests"
+    ],
+    "cwd": "/private/tmp/trialledger-scan-review-pin-20261103-v1",
+    "PYTHONPATH": "/tmp/trialledger-scan-review-pin-20261103-v1:/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker",
+    "started": "2026-11-03T22:08:09.055645+00:00",
+    "completed": "2026-11-03T22:08:09.294966+00:00",
+    "exit_code": 0,
+    "log": "final-tests.log",
+    "sha256": "90969518f06f404a1f6e3ea3f517576cbef435893921d26e173ac308719aed96"
+  }
+]

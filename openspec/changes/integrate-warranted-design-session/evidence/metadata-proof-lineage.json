@@ -1,0 +1,8 @@
+{
+  "classification": "historical; not the final current metadata context",
+  "format": 1,
+  "historical_packet": "metadata-structural-final-two-sign",
+  "historical_packet_preserved_byte_exact": true,
+  "reason": "Fresh production-path proof context after session/evidence integration; exact final module/global identities and retained limitations are in its receipt.",
+  "superseded_by": "metadata-session-evidence-context-two-sign"
+}

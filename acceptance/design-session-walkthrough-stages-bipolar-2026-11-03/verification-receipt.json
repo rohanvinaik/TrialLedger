@@ -1,0 +1,13 @@
+{
+  "command": [
+    "uv",
+    "run",
+    "trialledger",
+    "verify",
+    "/Users/rohanvinaik/trialledger-runs/stages-bipolar-sample-20261103"
+  ],
+  "exit_code": 0,
+  "complete_stdout": "/Users/rohanvinaik/trialledger-runs/stages-bipolar-sample-20261103: verified — the clinical record and workbook reproduce from the retained sources. This checks derivation, not clinical interpretation.\n",
+  "stdout_sha256": "10e47e200dd97ca98f4e5dc7425ccede895c87f8658f5de8cec2c3fb8f7e47b2",
+  "meaning": "reproduction of retained record/workbook, not source truth or clinical interpretation"
+}

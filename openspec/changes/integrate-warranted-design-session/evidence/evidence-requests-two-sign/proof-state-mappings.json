@@ -1,0 +1,66 @@
+{
+  "entries": [
+    {
+      "original_tool_path": "proof-v2/.detective/reports/converge_dominated.txt",
+      "source_sha256": "ce1977bd6d4dc7c5a513087895ad67a2115cc76e8983e026ae18fa46fe863530",
+      "stored": "proof-v2/detective-state/reports/converge_dominated.txt",
+      "transform": "identity"
+    },
+    {
+      "original_tool_path": "proof-v2/.detective/reports/converge_family_state.txt",
+      "source_sha256": "e6de64afdacd0b6f184052a52d5453b54e2ac28f2a33fcdeb0f8bdfba5574e34",
+      "stored": "proof-v2/detective-state/reports/converge_family_state.txt",
+      "transform": "identity"
+    },
+    {
+      "original_tool_path": "proof-v2/.detective/reports/converge_output_state.txt",
+      "source_sha256": "325c1f8126463559758100609bc668ccdd401a2a0a10feb19a30f8b41cd21682",
+      "stored": "proof-v2/detective-state/reports/converge_output_state.txt",
+      "transform": "identity"
+    },
+    {
+      "original_tool_path": "proof-v2/.detective/reports/converge_pair_outcome.txt",
+      "source_sha256": "65bd12af5174fc82c35b276b7e779add7eb515532695309ccba28c8b50438e9f",
+      "stored": "proof-v2/detective-state/reports/converge_pair_outcome.txt",
+      "transform": "identity"
+    },
+    {
+      "original_tool_path": "proof-v2/.detective/reports/converge_pair_relation.txt",
+      "source_sha256": "ff6660703856b5b9b12b30c83436cc7edb1f3ce6ba5fb774d3dd52e7284f37fb",
+      "stored": "proof-v2/detective-state/reports/converge_pair_relation.txt",
+      "transform": "identity"
+    },
+    {
+      "original_tool_path": "proof-v2/.detective/reports/converge_required_premises.txt",
+      "source_sha256": "98e96e8b11b361b855b7ea3684604bce7e98b92fd601e409fac5b06287c730f5",
+      "stored": "proof-v2/detective-state/reports/converge_required_premises.txt",
+      "transform": "identity"
+    },
+    {
+      "original_tool_path": "proof-v2/.detective/reports/converge_seek.txt",
+      "source_sha256": "73d2074d78ba0ebd41c8a5c12e6160df7448992e3d908c6a946a8c9aaca1fa17",
+      "stored": "proof-v2/detective-state/reports/converge_seek.txt",
+      "transform": "identity"
+    },
+    {
+      "original_tool_path": "proof-v2/.detective/ledger.jsonl",
+      "source_sha256": "ff186979bb7d05aa91f30fde2530eef685b33c0157c8609ec35d1ede4ecbd9a7",
+      "stored": "proof-v2/detective-state/ledger.jsonl",
+      "transform": "identity"
+    },
+    {
+      "original_tool_path": "proof-v2/.detective/pins.json",
+      "source_sha256": "47b5c544e9e6e5304d4e969846cd8d4f577cdc37c13544515155380b3bd551cb",
+      "stored": "proof-v2/detective-state/pins.json",
+      "transform": "identity"
+    },
+    {
+      "original_tool_path": "proof-v2/tests/detective/certificates.json",
+      "source_sha256": "1e06fe0d75e04d151d776aaec728ea28fecab7560405a3aad067e166ebe2794d",
+      "stored": "proof-v2/tests/detective/certificates.json",
+      "transform": "identity"
+    }
+  ],
+  "format": 1,
+  "note": "Visible-path mappings preserve historical tool state. No arbitrary historical certificate or cache is copied to the live project; only exact owned entries are merged."
+}

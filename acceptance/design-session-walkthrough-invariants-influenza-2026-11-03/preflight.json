@@ -1,0 +1,27 @@
+{
+  "question": "For a proposed Phase 2 early influenza-treatment study, which compared population/onset and assessment definitions matter, and what follows when one temporal/eligibility premise changes?",
+  "category": "Phase 2 influenza treatment; existing constructs, not new design-paradigm validation",
+  "declared_at_utc": "2026-11-03T21:51:07.754014+00:00",
+  "query": {
+    "drug": [
+      "oseltamivir"
+    ],
+    "condition": [
+      "Influenza"
+    ],
+    "phase": [
+      "PHASE2"
+    ],
+    "status": [
+      "COMPLETED"
+    ]
+  },
+  "max_complete_pool": 30,
+  "seed": 4136338864088426196,
+  "selection_rule": "random.Random(seed).sample(sorted(complete_pool), min(3, len(complete_pool))) before selected-content reading",
+  "retention": {
+    "packet": "Clinical README and working brief, complete reasoning request/canonical-result pairs, query/pool/seed and source/runtime/hash/time receipts; target <2 MB by reducing case duplication, never by truncation",
+    "local_report": "/Users/rohanvinaik/trialledger-runs/invariant-influenza-20261103",
+    "local_bulk": "Full report/raw bodies/workbook and duplicate MCP wires remain outside Git; required snapshots stay complete in reasoning requests"
+  }
+}

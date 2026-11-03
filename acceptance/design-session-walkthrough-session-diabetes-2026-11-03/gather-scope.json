@@ -1,0 +1,7 @@
+{
+ "query": {
+  "filter.advanced": "(AREA[InterventionName]\"metformin\" OR AREA[InterventionOtherName]\"metformin\") AND AREA[OverallStatus]COMPLETED AND AREA[StudyType]OBSERVATIONAL",
+  "query.cond": "Type 2 Diabetes"
+ },
+ "rxnav": []
+}

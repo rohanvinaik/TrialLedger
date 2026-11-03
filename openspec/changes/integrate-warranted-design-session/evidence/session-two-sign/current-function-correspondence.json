@@ -1,0 +1,40 @@
+[
+  {
+    "current": "TrialLedger/layer2/session_state.py",
+    "current_sha256": "b5cefe2c47691b51a130e9b3554a6c94d4838fd745ca802ecd806ba70b8cf948",
+    "frozen": "/tmp/trialledger-session-contract-20261103-v3/TrialLedger/layer2/session_state.py",
+    "frozen_sha256": "f316361d546f5902ddbceea794d56e71d70b421282dfcb4894e89d17cbb627a5",
+    "functions": {
+      "change_code": {
+        "ast_equal": true,
+        "text_equal": true
+      },
+      "revision_code": {
+        "ast_equal": true,
+        "text_equal": true
+      }
+    },
+    "globals": {},
+    "packet": "session"
+  },
+  {
+    "current": "TrialLedger/layer2/design_session.py",
+    "current_sha256": "15ee881bb0c348068379e4f2b503c260db381307a3c5596301324655fcd18b94",
+    "frozen": "/tmp/trialledger-session-contract-20261103-v3/TrialLedger/layer2/design_session.py",
+    "frozen_sha256": "0bcf907cf345e63e32f5ab34cd8b87ac7c0391c1f968fcc4d20ae3526ce1cb2e",
+    "functions": {
+      "alternative_code": {
+        "ast_equal": true,
+        "text_equal": true
+      }
+    },
+    "globals": {
+      "ALTERNATIVE_CODES": {
+        "ast_equal": true,
+        "current_expression": "frozenset({'target_mismatch', 'conflict', 'computation_task', 'translation_question', 'infeasible', 'feasible', 'evidence_question'})",
+        "frozen_expression": "frozenset({'target_mismatch', 'conflict', 'computation_task', 'translation_question', 'infeasible', 'feasible', 'evidence_question'})"
+      }
+    },
+    "packet": "session"
+  }
+]

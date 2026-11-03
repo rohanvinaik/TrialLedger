@@ -1,0 +1,26 @@
+  … revision_code: tracing 8 function-routed tests
+  … revision_code: baseline traced · 8 tests · 0.0s
+  … revision_code: 1/48 mutants · 29.5/s · ETA estimating… (heartbeat)
+  … revision_code: 48/48 mutants · 421.0/s · done in 0.1s
+  ▸ pass 0: ✓ every mutant killed
+  ▸ witness pass: searching richer inputs for a distinguishing kill…
+  ▸ finalizing — re-profiling the full mutant universe against the existing suite (no test written this run)…
+  ▸ verifying reproducibility — fresh isolated observation of the function's proof basis…
+  … revision_code: tracing 8 function-routed tests
+  … revision_code: baseline traced · 8 tests · 0.0s
+  ▸ reproducibility confirmed — the certificate rests on the isolated observation
+──────────────────────────────────────────────────────────────────────────────
+TrialLedger/layer2/session_state.py::revision_code — converge · 48 behaviours · 48 pinned
+
+  · not consulted      80 collected test(s) have no static path to this function — not traced (a missed dynamic reacher costs a redundant generated test, never a certificate)
+  · full report        .detective/reports/converge_revision_code.txt
+
+DONE:  the suite pins every behaviour this function makes.
+
+       NEXT — the style pass (behaviour is pinned; this is the self-evident next move):
+         detective plan 'TrialLedger/layer2/session_state.py'
+         detective decompose 'TrialLedger/layer2/session_state.py::revision_code' --apply --two-sign
+         detective survey 'TrialLedger/layer2/session_state.py'
+         (efficiency: verify-rewrite --budget against a receipt from policy 9+neg.f5a15364c11d)
+
+FINAL TrialLedger/layer2/session_state.py::revision_code: ✓ COMPLETE (operator universe) · 48/48 killed · minimal cover 4 test(s) · policy 9+neg.f5a15364c11d

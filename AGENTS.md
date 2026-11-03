@@ -234,7 +234,8 @@ Make it concrete:
    and which do not say; a class pattern is descriptive, and a near miss matches only under the declared
    representation.
 4. **Revise and rerun.** When the person changes a choice, update the working premises and rerun the relevant
-   checks. This is your orchestration of separate calls, not an automatic background design manager. Do not
+   checks. Use `design_session` for declared analyses needing shared origins, projections and full revision
+   replay; standalone calls remain available. Neither route is an automatic background design manager. Do not
    change the source record or carry forward an old result as if it checked the revised premises.
 
 ### Keep the decision list
@@ -357,7 +358,7 @@ focused `example` are runnable requests; each `capability_examples` entry carrie
 invented-premise label and an expected result: execute the request, not the wrapper, and never pass the
 invented facts off as trial evidence. Use the described shapes rather than inventing fields; no source-code
 access is needed. The operations are `entailment`, `coordinates` (explicit NSCLC domain), `corpus`,
-`design_bounds`, `signals`, `interpretations` and `source_assertions`. [SKILL.md](SKILL.md) includes a
+`design_bounds`, `signals`, `interpretations`, `source_assertions`, `evidence_requests` and `design_session`. [SKILL.md](SKILL.md) includes a
 complete request.
 
 ### Settle the material premises
@@ -477,6 +478,74 @@ The same gate reaches signal output, candidate claims and derived witnesses. Wro
 retains the raw arithmetic but withholds its dependent conclusion; proposed bindings remain refused outside
 frames. Keep `binding_checks` and its source declarations beside the answer. A compatible subset count
 does not establish population identity. The focused guides provide a runnable invented `binding_example`.
+
+### Stage populations and finite action tables
+
+Use the discovered `stages` signal when the question spans run-in, randomization, dosing, completion or an
+analysis population. A `permitted` transition says only that a pathway exists. It supplies no actual-subset,
+individual-membership or subtraction warrant. Only an explicit `documented_subset` declaration supports the
+population compatibility check. Keep exact study/snapshot, source and target population, arm, time, unit and
+local support beside every edge. Matching counts or labels never supply that declaration; `gate_ref` retains
+a transition-condition reference without evaluating whether a patient passed it. An unresolved edge cannot
+erase an independently warranted conflict on another edge.
+
+Explain each subtraction for its own population: “144 are outside completion; one is outside dosing,” when
+those are the computed results. Neither identifies the same people or explains why they did not progress.
+A person count cannot be joined to a person-period or cluster count. Missing totals stay unresolved; a
+permitted pathway must not be upgraded to a documented subset to make arithmetic run.
+
+Use the discovered `decision_table` signal for an explicitly finite table of conditions and actions. Declare
+each variable's equality alternatives, feasible-combination constraints, scope and version before asking about
+coverage, overlapping different actions or action reachability. An inconsistent declared domain is a conflict,
+not vacuous coverage. Overlapping rows with the same action are diagnostic rather than conflicting actions.
+A computation-limited check stays unresolved alongside independently completed checks. Candidate table
+claims are unsupported; revise the declared table and rerun instead of silently accepting a claim.
+
+An invented six-person cohort table that handles zero and two through six DLTs but omits one leaves an open
+action decision for 1/6. The checker preserves the uncovered condition; do not invent a concrete patient
+countermodel it did not return. A structurally consistent finite table proves neither sequential termination,
+clinical appropriateness nor statistical operating characteristics. Add the missing action or conflicting
+choice to the person's decision list.
+
+### Estimand relevance and assessment requirements
+
+Retain the five declared attributes: treatment conditions, population, variable, handling of intercurrent
+events and population-level summary. Their references, editions and local support are premises, not proof
+that a definition is scientifically suitable. A strategy label alone never creates an input requirement.
+Each requirement needs its own attributed relevance rule, exact event, variable, window, role and mode.
+
+Keep collection-plan alignment separate from actual input state. A stopped required collection is a
+collection-plan mismatch; a known unavailable relevant input is missing relevant data; not required for this
+estimand is not a failure; unresolved relevance stays unresolved. Preserve structurally unavailable
+measurements distinctly from missing observations. An explicitly adopted dependency rule may establish that
+its required inputs conflict with the supplied data, but neither a stopped plan nor that input-rule conflict
+proves that every statistical estimator is impossible. Preserve input availability separately from observed, imputed and derived
+modes, and retain independent local conclusions. Estimator validity, estimability and treatment effects are not
+computed. Discover the public `estimand` signal contract before preparing the person's inputs.
+
+### Investigation requests and managed sessions
+
+Discover `evidence_requests` to ask what hypothetical participant profile and accepted/rejected sign would
+separate declared surviving eligibility candidates. Preserve the supplied survivor-selection basis and all
+attribution, exception, scope and complete-candidate conditions. Rows are investigation requests: they carry
+no observation count, bridge or factual standing and never enter evidence automatically. Least-specified-first
+is structural ordering. A rejected partial profile needs an ineligible completion, not universal exclusion;
+an unknown criterion can explain rejection. An accepted profile refuted by admitted necessary constraints
+remains refuted beside additional withheld criteria. Raw blockers and deciding proofs remain visible.
+
+Discover `design_session` for closed version-1 snapshots, origins, named projections, complete dependencies,
+computed decisions and actual baseline/revision examples. Put clinical inputs such as candidates in the
+premise ledger and use the discovered projection slots. A projection cannot promote a derived result or
+user choice into a comparator's source statement. Sources/contexts remain exact; new-trial adoption is explicit.
+Evidence searches reserve their bounded child solver work as part of the session's aggregate budget.
+The `source_study` projection owns both `study` and `expected_digest`; include neither in analysis parameters.
+
+Read `session_disposition`, origin and coverage beside the underlying findings. Historical unknowns are
+evidence questions. A design choice needs distinct alternatives actually feasible under the represented
+constraints; two labels or two uncompleted checks do not suffice. A selected option with open checks stays
+chosen with open checks. Session revisions freshly replay both supplied snapshots and keep full child
+requests/results and consequence diffs. Save these returned objects with the human working brief; the
+operation writes no files, authenticates no clinical confirmation and generates no complete protocol.
 
 ### Competing readings: `interpretations`
 

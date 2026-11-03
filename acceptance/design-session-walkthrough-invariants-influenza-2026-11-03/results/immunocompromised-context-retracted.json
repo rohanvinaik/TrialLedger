@@ -1,0 +1,805 @@
+{
+  "code": "complete",
+  "operation": "interpretations",
+  "result": {
+    "study_ref": "ctg:NCT00867139:a1e40ac6e9a25fbce05cb1ee24a9625507b275f6f1c201687f2e7a2765b77e72",
+    "fixed": {
+      "assertions": [],
+      "consistency": {
+        "result": "UNDETERMINED",
+        "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+        "status": null,
+        "proof": [],
+        "blockers": [
+          "no_constraint_mentions_query"
+        ]
+      },
+      "queries": [
+        {
+          "id": "age6",
+          "body": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "age",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "eq",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 6.0,
+              "unit": "Years",
+              "upper": null
+            }
+          },
+          "result": "UNDETERMINED",
+          "decision": {
+            "result": "UNDETERMINED",
+            "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":6.0,\"unit\":\"Years\",\"upper\":null}}",
+            "status": null,
+            "proof": [],
+            "blockers": [
+              "no_constraint_mentions_query"
+            ]
+          },
+          "warrant": {
+            "rule": "entail.decide:1",
+            "guarantee": "fixed_floor",
+            "status": "known",
+            "assumptions": [],
+            "proof": [],
+            "blockers": [
+              "no_constraint_mentions_query"
+            ]
+          }
+        },
+        {
+          "id": "illness6days-at-diagnosis",
+          "body": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "record_defined_illness_duration",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": {
+              "anchor": "named_event",
+              "anchor_ref": "NCT00867139:diagnosis",
+              "certainty": "explicit",
+              "class": "TemporalScope",
+              "evidence": [],
+              "inclusivity": "unspecified",
+              "lower": null,
+              "orientation": "at",
+              "unit": "",
+              "upper": null
+            },
+            "value": {
+              "class": "Value",
+              "comparison": "eq",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 6.0,
+              "unit": "days",
+              "upper": null
+            }
+          },
+          "result": "UNDETERMINED",
+          "decision": {
+            "result": "UNDETERMINED",
+            "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"record_defined_illness_duration\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":{\"anchor\":\"named_event\",\"anchor_ref\":\"NCT00867139:diagnosis\",\"certainty\":\"explicit\",\"class\":\"TemporalScope\",\"evidence\":[],\"inclusivity\":\"unspecified\",\"lower\":null,\"orientation\":\"at\",\"unit\":\"\",\"upper\":null},\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":6.0,\"unit\":\"days\",\"upper\":null}}",
+            "status": null,
+            "proof": [],
+            "blockers": [
+              "no_constraint_mentions_query"
+            ]
+          },
+          "warrant": {
+            "rule": "entail.decide:1",
+            "guarantee": "fixed_floor",
+            "status": "known",
+            "assumptions": [],
+            "proof": [],
+            "blockers": [
+              "no_constraint_mentions_query"
+            ]
+          }
+        }
+      ],
+      "signals": [],
+      "blockers": []
+    },
+    "bindings": [],
+    "interpretations": [
+      {
+        "id": "randomized-entry-reading",
+        "label": "Read randomized arms as age>=7; keep open-label younger pathway separate",
+        "origin": "assistant",
+        "state": "unresolved",
+        "premises": {
+          "basis": [
+            "ctg:NCT00867139:a1e40ac6e9a25fbce05cb1ee24a9625507b275f6f1c201687f2e7a2765b77e72#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:3835",
+            "ctg:NCT00867139:a1e40ac6e9a25fbce05cb1ee24a9625507b275f6f1c201687f2e7a2765b77e72#/protocolSection/armsInterventionsModule",
+            "ctg:NCT00867139:a1e40ac6e9a25fbce05cb1ee24a9625507b275f6f1c201687f2e7a2765b77e72#/protocolSection/outcomesModule",
+            "hypothesis:source-location-is-not-semantic-warrant"
+          ],
+          "assumptions": [
+            {
+              "applicability": {
+                "class": "Always"
+              },
+              "body": {
+                "class": "Literal",
+                "evidence": [
+                  {
+                    "class": "Evidence",
+                    "kind": "text_span",
+                    "ref": "ctg:NCT00867139:a1e40ac6e9a25fbce05cb1ee24a9625507b275f6f1c201687f2e7a2765b77e72#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:3835"
+                  },
+                  {
+                    "class": "Evidence",
+                    "kind": "record_field",
+                    "ref": "ctg:NCT00867139:a1e40ac6e9a25fbce05cb1ee24a9625507b275f6f1c201687f2e7a2765b77e72#/protocolSection/armsInterventionsModule"
+                  },
+                  {
+                    "class": "Evidence",
+                    "kind": "record_field",
+                    "ref": "ctg:NCT00867139:a1e40ac6e9a25fbce05cb1ee24a9625507b275f6f1c201687f2e7a2765b77e72#/protocolSection/outcomesModule"
+                  }
+                ],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "age",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "ge",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 7.0,
+                  "unit": "Years",
+                  "upper": null
+                }
+              },
+              "branch": {
+                "class": "Branch",
+                "node": "unresolved",
+                "path": []
+              },
+              "class": "ScopedAssertion",
+              "cohort": {
+                "class": "Scope",
+                "kind": "cohort_ref",
+                "parts": [],
+                "ref": "NCT00867139:randomized-arms"
+              },
+              "criterion_ref": "ctg:NCT00867139:a1e40ac6e9a25fbce05cb1ee24a9625507b275f6f1c201687f2e7a2765b77e72#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:3835|ctg:NCT00867139:a1e40ac6e9a25fbce05cb1ee24a9625507b275f6f1c201687f2e7a2765b77e72#/protocolSection/armsInterventionsModule|ctg:NCT00867139:a1e40ac6e9a25fbce05cb1ee24a9625507b275f6f1c201687f2e7a2765b77e72#/protocolSection/outcomesModule",
+              "id": "randomized-age-floor",
+              "modality": "required",
+              "resolution": "resolved",
+              "rule": {
+                "answers": [],
+                "class": "Rule",
+                "id": "source-anchored-hypothesis",
+                "premises": [
+                  "ctg:NCT00867139:a1e40ac6e9a25fbce05cb1ee24a9625507b275f6f1c201687f2e7a2765b77e72#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:3835",
+                  "ctg:NCT00867139:a1e40ac6e9a25fbce05cb1ee24a9625507b275f6f1c201687f2e7a2765b77e72#/protocolSection/armsInterventionsModule",
+                  "ctg:NCT00867139:a1e40ac6e9a25fbce05cb1ee24a9625507b275f6f1c201687f2e7a2765b77e72#/protocolSection/outcomesModule"
+                ],
+                "version": "1",
+                "warrants": [
+                  "hypothesis:source-location-is-not-semantic-warrant"
+                ]
+              },
+              "span": [
+                {
+                  "class": "Span",
+                  "end": 3835.0,
+                  "start": 0.0
+                }
+              ],
+              "status": "proposed"
+            },
+            {
+              "applicability": {
+                "class": "Always"
+              },
+              "body": {
+                "class": "Literal",
+                "evidence": [
+                  {
+                    "class": "Evidence",
+                    "kind": "text_span",
+                    "ref": "ctg:NCT00867139:a1e40ac6e9a25fbce05cb1ee24a9625507b275f6f1c201687f2e7a2765b77e72#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:3835"
+                  },
+                  {
+                    "class": "Evidence",
+                    "kind": "record_field",
+                    "ref": "ctg:NCT00867139:a1e40ac6e9a25fbce05cb1ee24a9625507b275f6f1c201687f2e7a2765b77e72#/protocolSection/armsInterventionsModule"
+                  },
+                  {
+                    "class": "Evidence",
+                    "kind": "record_field",
+                    "ref": "ctg:NCT00867139:a1e40ac6e9a25fbce05cb1ee24a9625507b275f6f1c201687f2e7a2765b77e72#/protocolSection/outcomesModule"
+                  }
+                ],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "record_defined_illness_duration",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": {
+                  "anchor": "named_event",
+                  "anchor_ref": "NCT00867139:diagnosis",
+                  "certainty": "explicit",
+                  "class": "TemporalScope",
+                  "evidence": [
+                    {
+                      "class": "Evidence",
+                      "kind": "text_span",
+                      "ref": "ctg:NCT00867139:a1e40ac6e9a25fbce05cb1ee24a9625507b275f6f1c201687f2e7a2765b77e72#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:3835"
+                    },
+                    {
+                      "class": "Evidence",
+                      "kind": "record_field",
+                      "ref": "ctg:NCT00867139:a1e40ac6e9a25fbce05cb1ee24a9625507b275f6f1c201687f2e7a2765b77e72#/protocolSection/armsInterventionsModule"
+                    },
+                    {
+                      "class": "Evidence",
+                      "kind": "record_field",
+                      "ref": "ctg:NCT00867139:a1e40ac6e9a25fbce05cb1ee24a9625507b275f6f1c201687f2e7a2765b77e72#/protocolSection/outcomesModule"
+                    }
+                  ],
+                  "inclusivity": "unspecified",
+                  "lower": null,
+                  "orientation": "at",
+                  "unit": "",
+                  "upper": null
+                },
+                "value": {
+                  "class": "Value",
+                  "comparison": "le",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 5.0,
+                  "unit": "days",
+                  "upper": null
+                }
+              },
+              "branch": {
+                "class": "Branch",
+                "node": "unresolved",
+                "path": []
+              },
+              "class": "ScopedAssertion",
+              "cohort": {
+                "class": "Scope",
+                "kind": "all_participants",
+                "parts": [],
+                "ref": ""
+              },
+              "criterion_ref": "ctg:NCT00867139:a1e40ac6e9a25fbce05cb1ee24a9625507b275f6f1c201687f2e7a2765b77e72#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:3835|ctg:NCT00867139:a1e40ac6e9a25fbce05cb1ee24a9625507b275f6f1c201687f2e7a2765b77e72#/protocolSection/armsInterventionsModule|ctg:NCT00867139:a1e40ac6e9a25fbce05cb1ee24a9625507b275f6f1c201687f2e7a2765b77e72#/protocolSection/outcomesModule",
+              "id": "illness-before-diagnosis",
+              "modality": "required",
+              "resolution": "resolved",
+              "rule": {
+                "answers": [],
+                "class": "Rule",
+                "id": "source-anchored-hypothesis",
+                "premises": [
+                  "ctg:NCT00867139:a1e40ac6e9a25fbce05cb1ee24a9625507b275f6f1c201687f2e7a2765b77e72#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:3835",
+                  "ctg:NCT00867139:a1e40ac6e9a25fbce05cb1ee24a9625507b275f6f1c201687f2e7a2765b77e72#/protocolSection/armsInterventionsModule",
+                  "ctg:NCT00867139:a1e40ac6e9a25fbce05cb1ee24a9625507b275f6f1c201687f2e7a2765b77e72#/protocolSection/outcomesModule"
+                ],
+                "version": "1",
+                "warrants": [
+                  "hypothesis:source-location-is-not-semantic-warrant"
+                ]
+              },
+              "span": [
+                {
+                  "class": "Span",
+                  "end": 3835.0,
+                  "start": 0.0
+                }
+              ],
+              "status": "proposed"
+            }
+          ],
+          "signals": [],
+          "signal_claims": [],
+          "binding_uses": []
+        },
+        "bindings": [],
+        "signals": [],
+        "signal_checks": [],
+        "queries": [
+          {
+            "id": "age6",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "age",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "eq",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 6.0,
+                "unit": "Years",
+                "upper": null
+              }
+            },
+            "result": "UNDETERMINED",
+            "decision": {
+              "result": "UNDETERMINED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":6.0,\"unit\":\"Years\",\"upper\":null}}",
+              "status": null,
+              "proof": [],
+              "blockers": [
+                "no_constraint_mentions_query"
+              ]
+            },
+            "warrant": {
+              "rule": "entail.decide:1",
+              "guarantee": "conditional_on_interpretation",
+              "status": "proposed",
+              "assumptions": [
+                "randomized-age-floor",
+                "illness-before-diagnosis"
+              ],
+              "proof": [],
+              "blockers": [
+                "interpretation_unresolved",
+                "no_constraint_mentions_query",
+                "open_scope:cohort_ref:NCT00867139:randomized-arms"
+              ]
+            }
+          },
+          {
+            "id": "illness6days-at-diagnosis",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "record_defined_illness_duration",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": {
+                "anchor": "named_event",
+                "anchor_ref": "NCT00867139:diagnosis",
+                "certainty": "explicit",
+                "class": "TemporalScope",
+                "evidence": [],
+                "inclusivity": "unspecified",
+                "lower": null,
+                "orientation": "at",
+                "unit": "",
+                "upper": null
+              },
+              "value": {
+                "class": "Value",
+                "comparison": "eq",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 6.0,
+                "unit": "days",
+                "upper": null
+              }
+            },
+            "result": "UNDETERMINED",
+            "decision": {
+              "result": "REFUTED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"record_defined_illness_duration\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":{\"anchor\":\"named_event\",\"anchor_ref\":\"NCT00867139:diagnosis\",\"certainty\":\"explicit\",\"class\":\"TemporalScope\",\"evidence\":[],\"inclusivity\":\"unspecified\",\"lower\":null,\"orientation\":\"at\",\"unit\":\"\",\"upper\":null},\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":6.0,\"unit\":\"days\",\"upper\":null}}",
+              "status": "interpolated",
+              "proof": [
+                "illness-before-diagnosis"
+              ],
+              "blockers": []
+            },
+            "warrant": {
+              "rule": "entail.decide:1",
+              "guarantee": "conditional_on_interpretation",
+              "status": "proposed",
+              "assumptions": [
+                "randomized-age-floor",
+                "illness-before-diagnosis"
+              ],
+              "proof": [
+                "illness-before-diagnosis"
+              ],
+              "blockers": [
+                "interpretation_unresolved",
+                "open_scope:cohort_ref:NCT00867139:randomized-arms"
+              ]
+            }
+          }
+        ],
+        "warrant": {
+          "rule": "interpretations.compatibility:1",
+          "guarantee": "conditional_on_fixed_and_interpretation_premises",
+          "fixed_status": "known",
+          "status": "proposed",
+          "fixed_premises": [],
+          "assumptions": [
+            "randomized-age-floor",
+            "illness-before-diagnosis"
+          ],
+          "bindings": [],
+          "basis": [
+            "ctg:NCT00867139:a1e40ac6e9a25fbce05cb1ee24a9625507b275f6f1c201687f2e7a2765b77e72#/protocolSection/eligibilityModule/eligibilityCriteria:chars:0:3835",
+            "ctg:NCT00867139:a1e40ac6e9a25fbce05cb1ee24a9625507b275f6f1c201687f2e7a2765b77e72#/protocolSection/armsInterventionsModule",
+            "ctg:NCT00867139:a1e40ac6e9a25fbce05cb1ee24a9625507b275f6f1c201687f2e7a2765b77e72#/protocolSection/outcomesModule",
+            "hypothesis:source-location-is-not-semantic-warrant"
+          ],
+          "consistency": {
+            "result": "UNDETERMINED",
+            "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+            "status": null,
+            "proof": [],
+            "blockers": [
+              "no_constraint_mentions_query"
+            ]
+          },
+          "intrinsic_consistency": {
+            "result": "UNDETERMINED",
+            "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"frame-consistency\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+            "status": null,
+            "proof": [],
+            "blockers": [
+              "no_constraint_mentions_query"
+            ]
+          },
+          "signal_rules": [],
+          "blockers": [
+            "open_scope:cohort_ref:NCT00867139:randomized-arms"
+          ]
+        }
+      }
+    ],
+    "remaining": [
+      "randomized-entry-reading"
+    ],
+    "refuted": [],
+    "incoherent": [],
+    "unresolved": [
+      "randomized-entry-reading"
+    ],
+    "selection": {
+      "id": null,
+      "state": "none",
+      "origin": null
+    },
+    "consequences": [
+      {
+        "id": "age6",
+        "body": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+            "class": "Predicate",
+            "key": "age",
+            "kind": "measurement"
+          },
+          "qualifiers": {
+            "class": "Always"
+          },
+          "subject": {
+            "class": "Subject",
+            "kind": "participant",
+            "referent": ""
+          },
+          "time": null,
+          "value": {
+            "class": "Value",
+            "comparison": "eq",
+            "inclusivity": "unspecified",
+            "kind": "quantity",
+            "members": [],
+            "number": 6.0,
+            "unit": "Years",
+            "upper": null
+          }
+        },
+        "result": "UNDETERMINED",
+        "frames": [
+          "randomized-entry-reading"
+        ],
+        "basis": "declared_interpretation_family",
+        "warrant": {
+          "rule": "interpretations.common:1",
+          "guarantee": "conditional_on_declared_family_not_exhaustive",
+          "status": "proposed",
+          "blockers": [
+            "interpretation_unresolved",
+            "no_constraint_mentions_query",
+            "open_scope:cohort_ref:NCT00867139:randomized-arms"
+          ]
+        }
+      },
+      {
+        "id": "illness6days-at-diagnosis",
+        "body": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+            "class": "Predicate",
+            "key": "record_defined_illness_duration",
+            "kind": "measurement"
+          },
+          "qualifiers": {
+            "class": "Always"
+          },
+          "subject": {
+            "class": "Subject",
+            "kind": "participant",
+            "referent": ""
+          },
+          "time": {
+            "anchor": "named_event",
+            "anchor_ref": "NCT00867139:diagnosis",
+            "certainty": "explicit",
+            "class": "TemporalScope",
+            "evidence": [],
+            "inclusivity": "unspecified",
+            "lower": null,
+            "orientation": "at",
+            "unit": "",
+            "upper": null
+          },
+          "value": {
+            "class": "Value",
+            "comparison": "eq",
+            "inclusivity": "unspecified",
+            "kind": "quantity",
+            "members": [],
+            "number": 6.0,
+            "unit": "days",
+            "upper": null
+          }
+        },
+        "result": "UNDETERMINED",
+        "frames": [
+          "randomized-entry-reading"
+        ],
+        "basis": "declared_interpretation_family",
+        "warrant": {
+          "rule": "interpretations.common:1",
+          "guarantee": "conditional_on_declared_family_not_exhaustive",
+          "status": "proposed",
+          "blockers": [
+            "interpretation_unresolved",
+            "open_scope:cohort_ref:NCT00867139:randomized-arms"
+          ]
+        }
+      }
+    ],
+    "limits": "Exact conditional checks over declared readings; compatibility is not source truth or clinical recommendation. The interpretation family is not assumed exhaustive. No automatic text reading, source correction, source mutation or corpus-frequency admission."
+  },
+  "problems": [],
+  "metadata": {
+    "version": 1,
+    "kind": "reasoning",
+    "findings": [
+      {
+        "path": "/result/fixed/consistency",
+        "kind": "consistency",
+        "logical_result": "UNDETERMINED",
+        "standing": null,
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          }
+        ],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/fixed/queries/0",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/fixed/queries/0/warrant"
+      },
+      {
+        "path": "/result/fixed/queries/1",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/fixed/queries/1/warrant"
+      },
+      {
+        "path": "/result/interpretations/0",
+        "kind": "interpretation",
+        "logical_result": "unresolved",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "open_scope:cohort_ref:NCT00867139:randomized-arms",
+            "kind": "translation"
+          }
+        ],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/interpretations/0/queries/0",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "interpretation_unresolved",
+            "kind": "premise"
+          },
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          },
+          {
+            "code": "open_scope:cohort_ref:NCT00867139:randomized-arms",
+            "kind": "translation"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/interpretations/0/queries/0/warrant"
+      },
+      {
+        "path": "/result/interpretations/0/queries/1",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "interpretation_unresolved",
+            "kind": "premise"
+          },
+          {
+            "code": "open_scope:cohort_ref:NCT00867139:randomized-arms",
+            "kind": "translation"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/interpretations/0/queries/1/warrant",
+        "raw_result": "REFUTED",
+        "raw_path": "/result/interpretations/0/queries/1/decision"
+      },
+      {
+        "path": "/result/consequences/0",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "interpretation_unresolved",
+            "kind": "premise"
+          },
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          },
+          {
+            "code": "open_scope:cohort_ref:NCT00867139:randomized-arms",
+            "kind": "translation"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/consequences/0/warrant"
+      },
+      {
+        "path": "/result/consequences/1",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "interpretation_unresolved",
+            "kind": "premise"
+          },
+          {
+            "code": "open_scope:cohort_ref:NCT00867139:randomized-arms",
+            "kind": "translation"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/consequences/1/warrant"
+      }
+    ]
+  }
+}

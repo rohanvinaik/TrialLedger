@@ -1,0 +1,306 @@
+{
+  "TrialLedger/__init__.py": {
+    "sha256": "305d43b0263ae0a9d69760cca3613a9b4ae585a64bdc7b721a7543a8963286cc",
+    "bytes": 124
+  },
+  "TrialLedger/__main__.py": {
+    "sha256": "b9f9fb94dcdf99efb4f14c36d4b4e100bbe459d1d38aa78ea6d055b13ad9cd6d",
+    "bytes": 59
+  },
+  "TrialLedger/cells.py": {
+    "sha256": "d386ea59cd71ff9102e689f5e97f6ebf33c9a1e2822b1d766702fcf253865f85",
+    "bytes": 4415
+  },
+  "TrialLedger/checks.py": {
+    "sha256": "c39e1a9c267086af5bc2b84a820516060519f4139a75035a9df1cc6c5598b8cf",
+    "bytes": 51525
+  },
+  "TrialLedger/classes.py": {
+    "sha256": "4071acc68299c07208248bb1ce30bccf81511095816647351eadea3591dfbf6b",
+    "bytes": 64889
+  },
+  "TrialLedger/cli.py": {
+    "sha256": "ac1ed0851f00864b52b43857d1efbc7b9a8880526d57a0e6cc8540305d7b8e42",
+    "bytes": 31576
+  },
+  "TrialLedger/contract.py": {
+    "sha256": "c6167b72dff3dffcf26680fb6fcf00a6a02218396f26a22bafc74340653f457c",
+    "bytes": 169663
+  },
+  "TrialLedger/date_possibilities.py": {
+    "sha256": "8b046e95b870fe889e97cf8dae886d7c479e5065ac369b0d5cd4ef44125be2b4",
+    "bytes": 4069
+  },
+  "TrialLedger/doctor.py": {
+    "sha256": "37620b6414f3a03696348bdcbc4c9c43b4c502529227dec5f9f0349e24285e83",
+    "bytes": 8855
+  },
+  "TrialLedger/eligibility.py": {
+    "sha256": "32f3909e547bd7e56e78df654a5a3ac0970d3067b175be91ef9c23a81e259960",
+    "bytes": 2069
+  },
+  "TrialLedger/ingest.py": {
+    "sha256": "2c192dfbfd7ca6cbb44836e43f836d2a52b528aaad58629c44b74d3490f12167",
+    "bytes": 30831
+  },
+  "TrialLedger/landscape.py": {
+    "sha256": "03896b0ff51fe8bd900d0a25def54e5ce4e4f00f2c87fc6554e2e2ae814c400b",
+    "bytes": 30579
+  },
+  "TrialLedger/landscape_verify.py": {
+    "sha256": "036a1096f18c8bd5d672d985945ca800369362ca77fe7111dbd1bbc8aba4ff4a",
+    "bytes": 10734
+  },
+  "TrialLedger/landscape_warrants.py": {
+    "sha256": "eaf1dad96df4fb7b3a01e5b708f58312df6cc08a1e6f087a54708f691a76c62c",
+    "bytes": 1509
+  },
+  "TrialLedger/layer2/__init__.py": {
+    "sha256": "1db71d610f1646b21eb018ee534b4170c4933f33337e802cd74a719c983206f4",
+    "bytes": 306
+  },
+  "TrialLedger/layer2/admission.py": {
+    "sha256": "269f896c1dd403334d1cb5ede13eac2b392fbb67162d04c5d82341983b5bea5f",
+    "bytes": 2198
+  },
+  "TrialLedger/layer2/assertions.py": {
+    "sha256": "9fc3de9086fb8d37cc9a1492657ff78e73c98ea40ea7d46170a5fdb61916000e",
+    "bytes": 21839
+  },
+  "TrialLedger/layer2/bounds_guide.py": {
+    "sha256": "d3cdf03630450e4a9a8c9114ddc5bbd8017431b8d354dfb8d50a5f75bd2ee696",
+    "bytes": 12017
+  },
+  "TrialLedger/layer2/coherence.py": {
+    "sha256": "143e1ec06441baef0e0968689294f3a4b914ff22bc4893058ccda99db28fd867",
+    "bytes": 20453
+  },
+  "TrialLedger/layer2/coordinate_admission.py": {
+    "sha256": "13ed6a4e48b12cf0ee90372cbddd07fc1ca34cdfefca08d74f8922f14bcbb76c",
+    "bytes": 4697
+  },
+  "TrialLedger/layer2/corpus_admission.py": {
+    "sha256": "41f8c9b3749cd0d9e3e9b017d378961874c1f8e50da5ac52e0beee9ba4853699",
+    "bytes": 14747
+  },
+  "TrialLedger/layer2/decision_tables.py": {
+    "sha256": "0db593d983a38cee865677f02e6b1f65c709907537a4876f48850bfebbdd3c46",
+    "bytes": 15756
+  },
+  "TrialLedger/layer2/dependency_evidence.py": {
+    "sha256": "8dbc3986a0c3dd024ece0f5e05caf3d0affd63b6aa10ff9ae5a8c843d7d8e5cc",
+    "bytes": 13302
+  },
+  "TrialLedger/layer2/design_bounds.py": {
+    "sha256": "58b915c91d57d01af1bc6654846ed3b9bd54d66b1c2812355526eb5925f06189",
+    "bytes": 12092
+  },
+  "TrialLedger/layer2/domains.py": {
+    "sha256": "5446208c616e143740331a51ef7e380473a8fd9477dcbf25a88a847430ba869e",
+    "bytes": 994
+  },
+  "TrialLedger/layer2/entail.py": {
+    "sha256": "c6792e82514686a5e6af14e28b79b2a995e68750d15782cd8b86b3e1f5e06ab8",
+    "bytes": 25976
+  },
+  "TrialLedger/layer2/evaluation.py": {
+    "sha256": "9604a77e0744a4555609d8476414947ff121d56613d84dbf75859254d1d65d85",
+    "bytes": 24064
+  },
+  "TrialLedger/layer2/exception_bounds.py": {
+    "sha256": "f01877917c7f3dbad17c447fd42930516b7ae268276af1915e9e838e5c6c639c",
+    "bytes": 26303
+  },
+  "TrialLedger/layer2/exception_guide.py": {
+    "sha256": "83ca1accbb4c3b31afdf01b8b19dbcd68a8ffed67d0d992ed1ef1831b6a87c95",
+    "bytes": 5449
+  },
+  "TrialLedger/layer2/expectations.py": {
+    "sha256": "015a5607aea38e7d188bae77525815f4de768bbebd2ad18c5c0495d625bd76cf",
+    "bytes": 5715
+  },
+  "TrialLedger/layer2/graph_evidence.py": {
+    "sha256": "5023e232f9909ad7b4f9edbe414355e319331ed36347a40a3bad1c11b55bd8df",
+    "bytes": 22635
+  },
+  "TrialLedger/layer2/guide.py": {
+    "sha256": "7d2b5a166616ad3047201be2f4238d10c6e52ff7e04077a3b11621f90a6aed90",
+    "bytes": 28347
+  },
+  "TrialLedger/layer2/indications.py": {
+    "sha256": "dffe45ab4d1e8763f518e9c7969bc791f370eb1b7c1cfaac70798eefa30ca4a3",
+    "bytes": 11862
+  },
+  "TrialLedger/layer2/interpretation_bindings.py": {
+    "sha256": "ecb353c932964ad7011b6e8e504a540b22b001ee270b1c064bbb33514d488949",
+    "bytes": 11802
+  },
+  "TrialLedger/layer2/interpretations.py": {
+    "sha256": "e0dfbff147b0e36415afce68e7aaa616f7ec263988bd3684ecc0284b9ccf71c0",
+    "bytes": 21234
+  },
+  "TrialLedger/layer2/interpretations_guide.py": {
+    "sha256": "28099c926d429fa4375bc25338bc6968b017ce000f0ad41f2d80d68fb779fd96",
+    "bytes": 11251
+  },
+  "TrialLedger/layer2/nearmiss.py": {
+    "sha256": "a0e61b4100cd203b0897f427f8299edb09ae406a2df10285addd23a58a17e0e3",
+    "bytes": 2894
+  },
+  "TrialLedger/layer2/numeric_evidence.py": {
+    "sha256": "ba85ff9b672c03d8cfdce0e4a483cbffd254ad1f0abef3d64e0c23cea0f42e2a",
+    "bytes": 19956
+  },
+  "TrialLedger/layer2/predicates.py": {
+    "sha256": "dec087c582a07c25d6c8cd89eed5d1b651f2a5ef7ec9de527414a9affcde0b0a",
+    "bytes": 24911
+  },
+  "TrialLedger/layer2/profile.py": {
+    "sha256": "5e96e2cfd6cca1603d26320d9bd6be5c38131ea4c02f156d9500616d0e6359d6",
+    "bytes": 15122
+  },
+  "TrialLedger/layer2/provenance.py": {
+    "sha256": "ec190c405c58a70d0dc5a9181f1226c8051ffefa77bc19b15d8999d0ccf26046",
+    "bytes": 8421
+  },
+  "TrialLedger/layer2/result_semantics.py": {
+    "sha256": "91681c21fafeda67708a9a83ff11d40f81331ac2328ec75a7d55a62657dae2fd",
+    "bytes": 20920
+  },
+  "TrialLedger/layer2/review.py": {
+    "sha256": "cc1275be5d694509784e6e29531e01a51ebaf3cdb31794254edf334dc6c0121f",
+    "bytes": 5997
+  },
+  "TrialLedger/layer2/semantics/__init__.py": {
+    "sha256": "cec98d0db5fd2272b9e142d6d40579d1741b9bf175469707f4edf75262bf484f",
+    "bytes": 441
+  },
+  "TrialLedger/layer2/semantics/contracts.py": {
+    "sha256": "8458e1764a201a17a5cc8b794df0ff98320cd51d15a9ae04fee98d51c8dfa620",
+    "bytes": 12130
+  },
+  "TrialLedger/layer2/semantics/fragments/nsclc_legacy.py": {
+    "sha256": "3674cd1b257ea83fba0c44aae2b78eb0ecd4aa14f9ca4962f93163c546924136",
+    "bytes": 6180
+  },
+  "TrialLedger/layer2/semantics/loader.py": {
+    "sha256": "826b8bafd40d4441818fb2ef19c9a514256020bb55415197f367dee87ba539f7",
+    "bytes": 27983
+  },
+  "TrialLedger/layer2/semantics/parsers.py": {
+    "sha256": "d1a0106d520cd1b4eddb681bc073bc0d9d3449edf791f72baf0fa7cba5589f5d",
+    "bytes": 38816
+  },
+  "TrialLedger/layer2/semantics/vocabulary.py": {
+    "sha256": "97258c79b26e342ae745c0d3b0008acf43586e70b9fdf1dd99db223b64fa73b4",
+    "bytes": 2034
+  },
+  "TrialLedger/layer2/service.py": {
+    "sha256": "348233abe6af07c8d02b4d640a369527f489a141a390caac0f6b3c8731b6a517",
+    "bytes": 81368
+  },
+  "TrialLedger/layer2/signal_binding_gate.py": {
+    "sha256": "902615d1d57540abcf444585b194495277eaf31c4f194425d8a0b36e8737f23e",
+    "bytes": 3179
+  },
+  "TrialLedger/layer2/signals.py": {
+    "sha256": "9d483d6d77fadfa130df186d2e533b6685d73986fbc99c1fe4443384ca230e74",
+    "bytes": 6670
+  },
+  "TrialLedger/layer2/signals_guide.py": {
+    "sha256": "41b977779ca1ede0a4ae2211a95efb006f4fa39dfbe5978f4307fbc7815eb166",
+    "bytes": 7444
+  },
+  "TrialLedger/layer2/source_assertions.py": {
+    "sha256": "8c2783ddc8044feff2de25c387460292edca46876a536f5cd39a625bb079d7bc",
+    "bytes": 20126
+  },
+  "TrialLedger/layer2/source_assertions_guide.py": {
+    "sha256": "3f898156ba601e4d3821f94ff01c74f7face05807e19cce4231578850fb131f6",
+    "bytes": 10360
+  },
+  "TrialLedger/layer2/source_evidence.py": {
+    "sha256": "0cd06238c3a1b578ec873dc15e90745f684f6c4818522727e99ad9d494456bf0",
+    "bytes": 12638
+  },
+  "TrialLedger/layer2/translation_diagnostics.py": {
+    "sha256": "e55eff2cc7c0542017f29497d61cabbd7552b32a095eecc40760399a640c62a2",
+    "bytes": 5509
+  },
+  "TrialLedger/layer2/typematrix.py": {
+    "sha256": "0e54f497ae32e3b2870392e24a621f352a8cddc3dc1bfd59c76fed60894dce5a",
+    "bytes": 12144
+  },
+  "TrialLedger/layer2/universes.py": {
+    "sha256": "c92b80fc78fd116eca683a0b2b547d94e1ce79958b6dab2666da595320beab7a",
+    "bytes": 8356
+  },
+  "TrialLedger/ledger.py": {
+    "sha256": "e4eca8644903cc3cc916fd81a94ee614d77da02e12f2e2758d74664c9d56d868",
+    "bytes": 10593
+  },
+  "TrialLedger/links.py": {
+    "sha256": "8178c714e612b5bd6f5f29bb621b4f2d5f4649c00a913145d725c081425eb079",
+    "bytes": 3264
+  },
+  "TrialLedger/mcp_server.py": {
+    "sha256": "474ba5f5a92bc6f52b784b76fdec1151a8479b91b36d7b99cf002c1282d9ce5b",
+    "bytes": 62655
+  },
+  "TrialLedger/operate.py": {
+    "sha256": "f4b8bdf6fe347bcbc8e311768581ab7fd870d0f84ade2a66ca7b1e3104c0fbaa",
+    "bytes": 38323
+  },
+  "TrialLedger/preview.py": {
+    "sha256": "75dd2dce00b221793d32e9579d936386f46702faeb0203c4bc83f4205dafdcf9",
+    "bytes": 12707
+  },
+  "TrialLedger/readout.py": {
+    "sha256": "1ca80b6bc4dd5daaef4a488bad91c7777008a3ee6f2707ff64485f74efc5c1f2",
+    "bytes": 114911
+  },
+  "TrialLedger/record.py": {
+    "sha256": "a3f45bc20eb54af9be2fc963df37e4259d247b8850e01bc5d9d6edccdd4275b0",
+    "bytes": 14662
+  },
+  "TrialLedger/record_access.py": {
+    "sha256": "3b8f571ed4d96da1c8a3695928940697114583ad2da309f192333ff1c4ad3c83",
+    "bytes": 4928
+  },
+  "TrialLedger/registry/ctg-enums.json": {
+    "sha256": "0da05ddd477426ae83c240a30bb0707f5fe69b5cdbe8afff2a3003bab71f1792",
+    "bytes": 19945
+  },
+  "TrialLedger/registry/ctg-metadata.json": {
+    "sha256": "31d2120be5384c2c22bed089191bfeeef675e3960da9432509b564e666b12398",
+    "bytes": 175633
+  },
+  "TrialLedger/registry.py": {
+    "sha256": "1b412ae4fd7d6be8ce04d10764d45b3e30b2d2c1a2f00a45898308fd9e5b9c4f",
+    "bytes": 3464
+  },
+  "TrialLedger/request.py": {
+    "sha256": "5d08ee13e4915f2bfb96099c3190d0b27ed715f0b66f6d121cb1c2fe905cfcf4",
+    "bytes": 44249
+  },
+  "TrialLedger/steps.py": {
+    "sha256": "65a4b9e410cecba34fc78bbd1b00aaa8c2fa9fd44295f5a64d9b366ea9a6eea1",
+    "bytes": 26982
+  },
+  "TrialLedger/warrants.py": {
+    "sha256": "03a2669ff257aaed33ec10e21669917c88d982837094b52876bd2523787d622a",
+    "bytes": 8640
+  },
+  "TrialLedger/workbook.py": {
+    "sha256": "8b9aec5306825fd8eb4e841246b0f0a6cb06d19a6267951d9360643b978f0158",
+    "bytes": 87576
+  },
+  "pyproject.toml": {
+    "sha256": "4a0a5758a6a27eacb4967c2df79857ac6ca32485916b3acdc40974121685d074",
+    "bytes": 1768
+  },
+  "tests/test_decision_tables.py": {
+    "sha256": "dc3332d6828698804641d3dc00a0b131ed148ac74f9304d996ca70b5b9579300",
+    "bytes": 13368
+  }
+}

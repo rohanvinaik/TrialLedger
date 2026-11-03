@@ -1,0 +1,17 @@
+{
+  "id": "NCT04936308",
+  "raw_address": "/studies/16",
+  "digest": "ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2",
+  "study_ref": "ctg:NCT04936308:ee173b50cb145064803ee84805256d4c0dca5d54355c3669b42db5fa54d50de2",
+  "compact_snapshot_bytes": 105502,
+  "reviewed_units": [
+    "protocolSection/identificationModule",
+    "protocolSection/descriptionModule",
+    "protocolSection/designModule",
+    "protocolSection/eligibilityModule",
+    "protocolSection/armsInterventionsModule",
+    "protocolSection/outcomesModule/primaryOutcomes",
+    "resultsSection/participantFlowModule",
+    "resultsSection/baselineCharacteristicsModule"
+  ]
+}

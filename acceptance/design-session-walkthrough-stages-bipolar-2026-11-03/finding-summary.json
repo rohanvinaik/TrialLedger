@@ -1,0 +1,695 @@
+{
+  "NCT00090311-source-age": {
+    "findings": [
+      {
+        "path": "/result/analyses/0/result/decision",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled"
+      },
+      {
+        "path": "/result/analyses/1/result/decision",
+        "kind": "logical",
+        "logical_result": "REFUTED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled"
+      }
+    ],
+    "child_findings": [
+      [
+        {
+          "path": "/result/decision",
+          "kind": "logical",
+          "logical_result": "ENTAILED",
+          "standing": "known",
+          "completion": "complete",
+          "causes": [],
+          "disposition": "settled"
+        }
+      ],
+      [
+        {
+          "path": "/result/decision",
+          "kind": "logical",
+          "logical_result": "REFUTED",
+          "standing": "known",
+          "completion": "complete",
+          "causes": [],
+          "disposition": "settled"
+        }
+      ]
+    ]
+  },
+  "NCT00227305-source-age": {
+    "findings": [
+      {
+        "path": "/result/analyses/0/result/decision",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled"
+      },
+      {
+        "path": "/result/analyses/1/result/decision",
+        "kind": "logical",
+        "logical_result": "REFUTED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled"
+      },
+      {
+        "path": "/result/analyses/2/result/decision",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": null,
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          }
+        ],
+        "disposition": "open"
+      }
+    ],
+    "child_findings": [
+      [
+        {
+          "path": "/result/decision",
+          "kind": "logical",
+          "logical_result": "ENTAILED",
+          "standing": "known",
+          "completion": "complete",
+          "causes": [],
+          "disposition": "settled"
+        }
+      ],
+      [
+        {
+          "path": "/result/decision",
+          "kind": "logical",
+          "logical_result": "REFUTED",
+          "standing": "known",
+          "completion": "complete",
+          "causes": [],
+          "disposition": "settled"
+        }
+      ],
+      [
+        {
+          "path": "/result/decision",
+          "kind": "logical",
+          "logical_result": "UNDETERMINED",
+          "standing": null,
+          "completion": "complete",
+          "causes": [
+            {
+              "code": "no_constraint_mentions_query",
+              "kind": "coverage"
+            }
+          ],
+          "disposition": "open"
+        }
+      ]
+    ]
+  },
+  "NCT00119652-source-age": {
+    "findings": [
+      {
+        "path": "/result/analyses/0/result/decision",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled"
+      },
+      {
+        "path": "/result/analyses/1/result/decision",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled"
+      }
+    ],
+    "child_findings": [
+      [
+        {
+          "path": "/result/decision",
+          "kind": "logical",
+          "logical_result": "ENTAILED",
+          "standing": "known",
+          "completion": "complete",
+          "causes": [],
+          "disposition": "settled"
+        }
+      ],
+      [
+        {
+          "path": "/result/decision",
+          "kind": "logical",
+          "logical_result": "ENTAILED",
+          "standing": "known",
+          "completion": "complete",
+          "causes": [],
+          "disposition": "settled"
+        }
+      ]
+    ]
+  },
+  "extension-subsets-proposed": {
+    "findings": [
+      {
+        "path": "/result/signals/0",
+        "kind": "signal",
+        "logical_result": "unresolved",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "proposed_refused:entry-to-completion",
+            "kind": "premise"
+          },
+          {
+            "code": "proposed_refused:entry-to-dose",
+            "kind": "premise"
+          }
+        ],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/signals/0/value/transitions/0",
+        "kind": "stage_transition",
+        "logical_result": "unresolved",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "proposed_refused:entry-to-completion",
+            "kind": "premise"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/signals/0/value/transitions/0/declaration"
+      },
+      {
+        "path": "/result/signals/0/value/transitions/1",
+        "kind": "stage_transition",
+        "logical_result": "unresolved",
+        "standing": "proposed",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "proposed_refused:entry-to-dose",
+            "kind": "premise"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/signals/0/value/transitions/1/declaration"
+      }
+    ]
+  },
+  "extension-permission-only": {
+    "findings": [
+      {
+        "path": "/result/signals/0",
+        "kind": "signal",
+        "logical_result": "consistent",
+        "standing": "interpolated",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional"
+      },
+      {
+        "path": "/result/signals/0/value/transitions/0",
+        "kind": "stage_transition",
+        "logical_result": "permitted_only",
+        "standing": "interpolated",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional",
+        "support_path": "/result/signals/0/value/transitions/0/declaration"
+      },
+      {
+        "path": "/result/signals/0/value/transitions/1",
+        "kind": "stage_transition",
+        "logical_result": "permitted_only",
+        "standing": "interpolated",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional",
+        "support_path": "/result/signals/0/value/transitions/1/declaration"
+      }
+    ]
+  },
+  "extension-subsets-sensitivity": {
+    "findings": [
+      {
+        "path": "/result/signals/0",
+        "kind": "signal",
+        "logical_result": "consistent",
+        "standing": "interpolated",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional"
+      },
+      {
+        "path": "/result/signals/0/value/transitions/0",
+        "kind": "stage_transition",
+        "logical_result": "bounded",
+        "standing": "interpolated",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional",
+        "support_path": "/result/signals/0/value/transitions/0/declaration"
+      },
+      {
+        "path": "/result/signals/0/value/transitions/1",
+        "kind": "stage_transition",
+        "logical_result": "bounded",
+        "standing": "interpolated",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional",
+        "support_path": "/result/signals/0/value/transitions/1/declaration"
+      }
+    ]
+  },
+  "extension-wrong-completion-time": {
+    "findings": [
+      {
+        "path": "/result/signals/0",
+        "kind": "signal",
+        "logical_result": "unresolved",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "stage_scope_mismatch:entry-to-completion",
+            "kind": "translation"
+          }
+        ],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/signals/0/value/transitions/0",
+        "kind": "stage_transition",
+        "logical_result": "unresolved",
+        "standing": "interpolated",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "stage_scope_mismatch:entry-to-completion",
+            "kind": "translation"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/signals/0/value/transitions/0/declaration"
+      },
+      {
+        "path": "/result/signals/0/value/transitions/1",
+        "kind": "stage_transition",
+        "logical_result": "bounded",
+        "standing": "interpolated",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional",
+        "support_path": "/result/signals/0/value/transitions/1/declaration"
+      }
+    ]
+  },
+  "extension-design-sensitivity": {
+    "findings": [
+      {
+        "path": "/result/candidates/0",
+        "kind": "candidate",
+        "logical_result": "ruled_out",
+        "standing": "interpolated",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional"
+      },
+      {
+        "path": "/result/candidates/0/query_decision",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": null,
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          }
+        ],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/candidates/0/signal_checks/0",
+        "kind": "signal",
+        "logical_result": "conflict",
+        "standing": "interpolated",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "inconsistent_population_total",
+            "kind": "conflict"
+          }
+        ],
+        "disposition": "conflict"
+      },
+      {
+        "path": "/result/candidates/0/signal_checks/0/value/transitions/0",
+        "kind": "stage_transition",
+        "logical_result": "conflict",
+        "standing": "interpolated",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "inconsistent_population_total",
+            "kind": "conflict"
+          }
+        ],
+        "disposition": "conflict",
+        "support_path": "/result/candidates/0/signal_checks/0/value/transitions/0/declaration"
+      },
+      {
+        "path": "/result/candidates/0/signal_checks/0/value/transitions/1",
+        "kind": "stage_transition",
+        "logical_result": "bounded",
+        "standing": "interpolated",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional",
+        "support_path": "/result/candidates/0/signal_checks/0/value/transitions/1/declaration"
+      },
+      {
+        "path": "/result/candidates/1",
+        "kind": "candidate",
+        "logical_result": "not_ruled_out",
+        "standing": null,
+        "completion": "complete",
+        "causes": [],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/candidates/1/query_decision",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": null,
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          }
+        ],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/candidates/1/signal_checks/0",
+        "kind": "signal",
+        "logical_result": "consistent",
+        "standing": "interpolated",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional"
+      },
+      {
+        "path": "/result/candidates/1/signal_checks/0/value/transitions/0",
+        "kind": "stage_transition",
+        "logical_result": "bounded",
+        "standing": "interpolated",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional",
+        "support_path": "/result/candidates/1/signal_checks/0/value/transitions/0/declaration"
+      },
+      {
+        "path": "/result/candidates/1/signal_checks/0/value/transitions/1",
+        "kind": "stage_transition",
+        "logical_result": "bounded",
+        "standing": "interpolated",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional",
+        "support_path": "/result/candidates/1/signal_checks/0/value/transitions/1/declaration"
+      },
+      {
+        "path": "/result/consequence",
+        "kind": "candidate_family_consequence",
+        "logical_result": "UNDETERMINED",
+        "standing": null,
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          }
+        ],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/signals/0",
+        "kind": "signal",
+        "logical_result": "consistent",
+        "standing": "interpolated",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional"
+      },
+      {
+        "path": "/result/signals/0/value/transitions/0",
+        "kind": "stage_transition",
+        "logical_result": "bounded",
+        "standing": "interpolated",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional",
+        "support_path": "/result/signals/0/value/transitions/0/declaration"
+      },
+      {
+        "path": "/result/signals/0/value/transitions/1",
+        "kind": "stage_transition",
+        "logical_result": "bounded",
+        "standing": "interpolated",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional",
+        "support_path": "/result/signals/0/value/transitions/1/declaration"
+      }
+    ]
+  },
+  "extension-design-wrong-time": {
+    "findings": [
+      {
+        "path": "/result/candidates/0",
+        "kind": "candidate",
+        "logical_result": "unresolved",
+        "standing": null,
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          },
+          {
+            "code": "stage_scope_mismatch:entry-to-completion",
+            "kind": "translation"
+          }
+        ],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/candidates/0/query_decision",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": null,
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          }
+        ],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/candidates/0/signal_checks/0",
+        "kind": "signal",
+        "logical_result": "unresolved",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "stage_scope_mismatch:entry-to-completion",
+            "kind": "translation"
+          }
+        ],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/candidates/0/signal_checks/0/value/transitions/0",
+        "kind": "stage_transition",
+        "logical_result": "unresolved",
+        "standing": "interpolated",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "stage_scope_mismatch:entry-to-completion",
+            "kind": "translation"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/candidates/0/signal_checks/0/value/transitions/0/declaration"
+      },
+      {
+        "path": "/result/candidates/0/signal_checks/0/value/transitions/1",
+        "kind": "stage_transition",
+        "logical_result": "bounded",
+        "standing": "interpolated",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional",
+        "support_path": "/result/candidates/0/signal_checks/0/value/transitions/1/declaration"
+      },
+      {
+        "path": "/result/candidates/1",
+        "kind": "candidate",
+        "logical_result": "unresolved",
+        "standing": null,
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          },
+          {
+            "code": "stage_scope_mismatch:entry-to-completion",
+            "kind": "translation"
+          }
+        ],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/candidates/1/query_decision",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "standing": null,
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          }
+        ],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/candidates/1/signal_checks/0",
+        "kind": "signal",
+        "logical_result": "unresolved",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "stage_scope_mismatch:entry-to-completion",
+            "kind": "translation"
+          }
+        ],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/candidates/1/signal_checks/0/value/transitions/0",
+        "kind": "stage_transition",
+        "logical_result": "unresolved",
+        "standing": "interpolated",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "stage_scope_mismatch:entry-to-completion",
+            "kind": "translation"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/candidates/1/signal_checks/0/value/transitions/0/declaration"
+      },
+      {
+        "path": "/result/candidates/1/signal_checks/0/value/transitions/1",
+        "kind": "stage_transition",
+        "logical_result": "bounded",
+        "standing": "interpolated",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional",
+        "support_path": "/result/candidates/1/signal_checks/0/value/transitions/1/declaration"
+      },
+      {
+        "path": "/result/consequence",
+        "kind": "candidate_family_consequence",
+        "logical_result": "UNDETERMINED",
+        "standing": null,
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "no_constraint_mentions_query",
+            "kind": "coverage"
+          },
+          {
+            "code": "stage_scope_mismatch:entry-to-completion",
+            "kind": "translation"
+          }
+        ],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/signals/0",
+        "kind": "signal",
+        "logical_result": "unresolved",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "stage_scope_mismatch:entry-to-completion",
+            "kind": "translation"
+          }
+        ],
+        "disposition": "open"
+      },
+      {
+        "path": "/result/signals/0/value/transitions/0",
+        "kind": "stage_transition",
+        "logical_result": "unresolved",
+        "standing": "interpolated",
+        "completion": "complete",
+        "causes": [
+          {
+            "code": "stage_scope_mismatch:entry-to-completion",
+            "kind": "translation"
+          }
+        ],
+        "disposition": "open",
+        "support_path": "/result/signals/0/value/transitions/0/declaration"
+      },
+      {
+        "path": "/result/signals/0/value/transitions/1",
+        "kind": "stage_transition",
+        "logical_result": "bounded",
+        "standing": "interpolated",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "conditional",
+        "support_path": "/result/signals/0/value/transitions/1/declaration"
+      }
+    ]
+  }
+}

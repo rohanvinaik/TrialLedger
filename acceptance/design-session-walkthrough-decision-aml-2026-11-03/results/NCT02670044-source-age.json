@@ -1,0 +1,692 @@
+{
+  "code": "complete",
+  "operation": "source_assertions",
+  "result": {
+    "source": {
+      "nct": "NCT02670044",
+      "digest": "03536f5e1fac0fdc9abc90bf630f5767d64002ac69a2599545e3e0f41de820a7",
+      "study_ref": "ctg:NCT02670044:03536f5e1fac0fdc9abc90bf630f5767d64002ac69a2599545e3e0f41de820a7",
+      "version": "03536f5e1fac0fdc9abc90bf630f5767d64002ac69a2599545e3e0f41de820a7",
+      "last_update": {
+        "date": "2022-01-03",
+        "type": "ACTUAL"
+      }
+    },
+    "anchors": [
+      {
+        "id": "eligibility",
+        "address": "/protocolSection/eligibilityModule/eligibilityCriteria",
+        "digest": "03536f5e1fac0fdc9abc90bf630f5767d64002ac69a2599545e3e0f41de820a7",
+        "value": "Inclusion Criteria:\n\n* Histological confirmation of relapsed or refractory AML after prior anti-leukemic therapy by WHO classification\n* Ineligible for cytotoxic therapy defined by the following:\n\n  a. Age (\\>/=) 75 years or b. age 18- 74 years with at least one of the following comorbidities: i. Eastern Cooperative Oncology Group (ECOG) Performance Status of 2 or 3 ii. Cardiac history of congestive heart failure requiring treatment or ejection fraction (\\</=) 50% or chronic stable angina iii. Diffusing capacity of the lungs for carbon monoxide (\\</=) 65% or forced expiratory volume in the first second of expiration (\\</=) 65% iv. Creatinine clearance (\\>/=) 30 mL/min to\\< 45 mL/min v. any other comorbidity that the physician judges to be incompatible with intensive chemotherapy must be reviewed and approved by the Medical Monitor before screening and study enrollment.\n* Life expectancy of at least 12 weeks\n* Eastern Cooperative Oncology Group (ECOG) Performance Status 0-2\n* Adequate liver and renal function\n\nExclusion Criteria:\n\n* Patients with acute promyelocytic leukemia (French-American-British \\[FAB\\] class M3 AML)\n* Known active central nervous system (CNS) involvement with AML at study entry\n* ECOG Performance Status (\\>/=) 3 in patients who are (\\>/=) 75 years old or ECOG Performance Status of 4, regardless of age\n* Prior exposure to Bcl-2 inhibitors, murine double minute 2 (MDM2) antagonists or prior exposure to experimental treatment targeting Raf, mitogen-activated protein kinase (MEK), or the mitogen-activated protein kinase (MAPK) RAS/RAF/MEK/ERK MAPK pathway\n* Positive for hepatitis C virus (HCV), hepatitis B surface antigen (HBsAg) and known history of HIV, malignancy, active infection and cardiovascular diseases (CVs)\n* Received strong cytochrome (CYP) 3A inhibitors, moderate CYP3A inhibitors, strong CYP3A inducers and moderate CYP3A inducers within 7 days prior to initiation of study treatment\n* History of symptomatic Clostridium difficile infection within 1 month prior to dosing\n\nAdditional arm specific exclusion criteria:\n\nDose Escalation Arm A (Venetoclax and Cobimetinib):\n\n* History or evidence of retinal pathology on ophthalmologic examination that is considered a risk factor for neurosensory retinal detachment/central serous chorioretinopathy (CSCR), retinal vein occlusion (RVO), or neovascular macular degeneration\n* Left ventricular ejection fraction (LVEF) below institutional lower limit of normal (LLN) or below 50%, whichever is lower\n\nArm B (Venetoclax and Idasanutlin):\n\n* Received the following within 7 days prior to the initiation of study treatment: Strong CYP2C8 inhibitors or CYP2C8 substrates, OATP1B1/3 substrates\n* Received the following within 14 days prior to the initiation of study treatment: Strong CYP2C8 inducers\n* History of liver cirrhosis by radiologic, clinical or laboratory data, or biopsy despite normal liver function tests\n* Received treatment with oral or parenteral anticoagulants/anti-platelet agents within 7 days prior to initiation of study treatment.",
+        "ref": "ctg:NCT02670044:03536f5e1fac0fdc9abc90bf630f5767d64002ac69a2599545e3e0f41de820a7#/protocolSection/eligibilityModule/eligibilityCriteria",
+        "source": {
+          "ref": "ctg:NCT02670044:03536f5e1fac0fdc9abc90bf630f5767d64002ac69a2599545e3e0f41de820a7",
+          "version": "03536f5e1fac0fdc9abc90bf630f5767d64002ac69a2599545e3e0f41de820a7",
+          "address": "/protocolSection/eligibilityModule/eligibilityCriteria",
+          "digest": "03536f5e1fac0fdc9abc90bf630f5767d64002ac69a2599545e3e0f41de820a7"
+        },
+        "code": "located"
+      },
+      {
+        "id": "outcomes",
+        "address": "/protocolSection/outcomesModule",
+        "digest": "03536f5e1fac0fdc9abc90bf630f5767d64002ac69a2599545e3e0f41de820a7",
+        "value": {
+          "primaryOutcomes": [
+            {
+              "measure": "Number of Participants with Dose Limiting Toxicities (DLTs)",
+              "timeFrame": "From Cycle 1 Day 1 to Cycle 2 Day 1 for a minimum of 28 days"
+            },
+            {
+              "measure": "Number of Participants with Adverse Events (AEs), Serious Adverse Events (SAEs) and Adverse Events of Special Interest (AESIs)",
+              "timeFrame": "Baseline up until 30 days after the last dose of study drug (up to a maximum of 4 years, 9 months)"
+            }
+          ],
+          "secondaryOutcomes": [
+            {
+              "measure": "Overall Response Rate (ORR) (Complete Remission (CR) + Complete Remission with Incomplete Blood Recovery (CRi) + Incomplete Platelet Count Recovery (CRp) + Partial Remission/Partial Response [PR])",
+              "timeFrame": "Up to 2 years"
+            },
+            {
+              "measure": "Complete Remission/complete response (CR) + Complete Remission with Incomplete Blood Recovery (CRi) + Incomplete Platelet Count Recovery (CRp)",
+              "timeFrame": "Up to 2 years"
+            },
+            {
+              "measure": "CR + Complete Remission with Partial Hematologic Recovery (CRh) Rate",
+              "timeFrame": "Up to 2 years"
+            },
+            {
+              "measure": "Duration of Response (DOR)",
+              "timeFrame": "Up to 2 years"
+            },
+            {
+              "measure": "Time to Progression (TTP)",
+              "timeFrame": "Up to 2 years"
+            },
+            {
+              "measure": "Progression-Free Survival (PFS)",
+              "timeFrame": "Up to 2 years"
+            },
+            {
+              "measure": "Event-Free Survival (EFS)",
+              "timeFrame": "Up to 2 years"
+            },
+            {
+              "measure": "Leukemia-Free Survival (LFS)",
+              "timeFrame": "Up to 2 years"
+            },
+            {
+              "measure": "Overall Survival (OS)",
+              "timeFrame": "Up to 2 years"
+            },
+            {
+              "measure": "Pharmacokinetics of Venetoclax Area Under the Concentration-Time Curve from Time Zero to Last Measurable Concentration (AUC0-24hr)",
+              "timeFrame": "Up to 6 months"
+            },
+            {
+              "measure": "Pharmacokinetics of Venetoclax Maximum Observed Concentration (Cmax)",
+              "timeFrame": "Up to 6 months"
+            },
+            {
+              "measure": "Pharmacokinetics of Cobimetinib Area Under the Concentration-Time Curve from Time Zero to Last Measurable Concentration (AUC0-24hr)",
+              "timeFrame": "Up to 6 months"
+            },
+            {
+              "measure": "Pharmacokinetics of Cobimetinib Maximum Observed Concentration (Cmax)",
+              "timeFrame": "Up to 6 months"
+            },
+            {
+              "measure": "Pharmacokinetics of Idasanutlin Area Under the Concentration-Time Curve from Time Zero to Last Measurable Concentration (AUC0-24hr)",
+              "timeFrame": "Up to 6 months"
+            },
+            {
+              "measure": "Pharmacokinetics of Idasanutlin Maximum Observed Concentration (Cmax)",
+              "timeFrame": "Up to 6 months"
+            },
+            {
+              "measure": "Number of Participants Reporting Symptoms in Patient-Reported Outcomes of the Common Terminology Criteria for Adverse Events (PRO-CTCAE) Questionnaire",
+              "timeFrame": "Up to 2 years"
+            },
+            {
+              "measure": "Rate of Transfusion Independence",
+              "timeFrame": "Up to 2 years"
+            },
+            {
+              "measure": "Duration Of Transfusion Independence, Defined As The Number Of Consecutive Days Of Transfusion Independence, Measured From 1 Day After Last Transfusion To Disease Progression Or Subsequent Transfusion",
+              "timeFrame": "Up to 2 years"
+            },
+            {
+              "measure": "Minimal Residual Disease (MRD) In The Bone Marrow To Evaluate The Depth Of Response",
+              "timeFrame": "Up to 2 years"
+            }
+          ]
+        },
+        "ref": "ctg:NCT02670044:03536f5e1fac0fdc9abc90bf630f5767d64002ac69a2599545e3e0f41de820a7#/protocolSection/outcomesModule",
+        "source": {
+          "ref": "ctg:NCT02670044:03536f5e1fac0fdc9abc90bf630f5767d64002ac69a2599545e3e0f41de820a7",
+          "version": "03536f5e1fac0fdc9abc90bf630f5767d64002ac69a2599545e3e0f41de820a7",
+          "address": "/protocolSection/outcomesModule",
+          "digest": "03536f5e1fac0fdc9abc90bf630f5767d64002ac69a2599545e3e0f41de820a7"
+        },
+        "code": "located"
+      },
+      {
+        "id": "arms",
+        "address": "/protocolSection/armsInterventionsModule",
+        "digest": "03536f5e1fac0fdc9abc90bf630f5767d64002ac69a2599545e3e0f41de820a7",
+        "value": {
+          "armGroups": [
+            {
+              "label": "Dose Escalation: Arm A (Venetoclax 400mg + Cobi 40mg)",
+              "type": "EXPERIMENTAL",
+              "description": "Participants received Venetoclax 400mg daily on Days 1-28 of each 28 day treatment cycle and Cobimetinib 40mg daily on Days 1-21 of each 28-day treatment cycle.",
+              "interventionNames": [
+                "Drug: Cobimetinib",
+                "Drug: Venetoclax"
+              ]
+            },
+            {
+              "label": "Dose Escalation: Arm A (Venetoclax 600mg + Cobi 40mg)",
+              "type": "EXPERIMENTAL",
+              "description": "Participants received Venetoclax 600mg daily on Days 1-28 of each 28 day treatment cycle and Cobimetinib 40mg daily on Days 1-21 of each 28-day treatment cycle.",
+              "interventionNames": [
+                "Drug: Cobimetinib",
+                "Drug: Venetoclax"
+              ]
+            },
+            {
+              "label": "Dose Escalation: Arm A (Venetoclax 800mg + Cobi 40mg)",
+              "type": "EXPERIMENTAL",
+              "description": "Participants received Venetoclax 800mg daily on Days 1-28 of each 28 day treatment cycle and Cobimetinib 40mg daily on Days 1-21 of each 28-day treatment cycle.",
+              "interventionNames": [
+                "Drug: Cobimetinib",
+                "Drug: Venetoclax"
+              ]
+            },
+            {
+              "label": "Dose Escalation: Arm A (Venetoclax 400mg + Cobi 60mg)",
+              "type": "EXPERIMENTAL",
+              "description": "Participants received Venetoclax 400mg daily on Days 1-28 of each 28 day treatment cycle and Cobimetinib 60mg daily on Days 1-21 of each 28-day treatment cycle.",
+              "interventionNames": [
+                "Drug: Cobimetinib",
+                "Drug: Venetoclax"
+              ]
+            },
+            {
+              "label": "Dose Escalation: Arm B (Venetoclax 400mg + Ida 200mg)",
+              "type": "EXPERIMENTAL",
+              "description": "Participants received Venetoclax 400mg daily on Days 1-28 of each 28 day treatment cycle and Idasanutlin 200mg daily or twice daily on Days 1-5 of each 28 day treatment cycle.",
+              "interventionNames": [
+                "Drug: Idasanutlin",
+                "Drug: Venetoclax"
+              ]
+            },
+            {
+              "label": "Dose Escalation: Arm B (Venetoclax 600mg + Ida 150mg)",
+              "type": "EXPERIMENTAL",
+              "description": "Participants received Venetoclax 600mg daily on Days 1-28 of each 28 day treatment cycle and Idasanutlin 150mg daily or twice daily on Days 1-5 of each 28 day treatment cycle.",
+              "interventionNames": [
+                "Drug: Idasanutlin",
+                "Drug: Venetoclax"
+              ]
+            },
+            {
+              "label": "Dose Escalation: Arm B (Venetoclax 600mg + Ida 200mg)",
+              "type": "EXPERIMENTAL",
+              "description": "Participants received Venetoclax 600mg daily on Days 1-28 of each 28 day treatment cycle and Idasanutlin 200mg daily or twice daily on Days 1-5 of each 28 day treatment cycle.",
+              "interventionNames": [
+                "Drug: Idasanutlin",
+                "Drug: Venetoclax"
+              ]
+            },
+            {
+              "label": "Dose Escalation: Arm B (Venetoclax 400mg + Ida 400mg)",
+              "type": "EXPERIMENTAL",
+              "description": "Participants received Venetoclax 400mg daily on Days 1-28 of each 28 day treatment cycle and Idasanutlin 400mg daily or twice daily on Days 1-5 of each 28 day treatment cycle.",
+              "interventionNames": [
+                "Drug: Idasanutlin",
+                "Drug: Venetoclax"
+              ]
+            },
+            {
+              "label": "Dose Optimisation: Arm B (Ven 600mg (Day 1 to 21) + Ida 150mg)",
+              "type": "EXPERIMENTAL",
+              "description": "Participants received Venetoclax 600mg daily on Days 1-21 of each 28 day treatment cycle and Idasanutlin 150mg daily on Days 1-5 of each 28 day treatment cycle.",
+              "interventionNames": [
+                "Drug: Idasanutlin",
+                "Drug: Venetoclax"
+              ]
+            }
+          ],
+          "interventions": [
+            {
+              "type": "DRUG",
+              "name": "Cobimetinib",
+              "description": "Cobimetinib will be administered orally as per schedule in Arm description.",
+              "armGroupLabels": [
+                "Dose Escalation: Arm A (Venetoclax 400mg + Cobi 40mg)",
+                "Dose Escalation: Arm A (Venetoclax 400mg + Cobi 60mg)",
+                "Dose Escalation: Arm A (Venetoclax 600mg + Cobi 40mg)",
+                "Dose Escalation: Arm A (Venetoclax 800mg + Cobi 40mg)"
+              ]
+            },
+            {
+              "type": "DRUG",
+              "name": "Idasanutlin",
+              "description": "Idasanutlin will be administered orally as per schedule in Arm description.",
+              "armGroupLabels": [
+                "Dose Escalation: Arm B (Venetoclax 400mg + Ida 200mg)",
+                "Dose Escalation: Arm B (Venetoclax 400mg + Ida 400mg)",
+                "Dose Escalation: Arm B (Venetoclax 600mg + Ida 150mg)",
+                "Dose Escalation: Arm B (Venetoclax 600mg + Ida 200mg)",
+                "Dose Optimisation: Arm B (Ven 600mg (Day 1 to 21) + Ida 150mg)"
+              ]
+            },
+            {
+              "type": "DRUG",
+              "name": "Venetoclax",
+              "description": "Venetoclax will be administered orally as per schedule in Arm description.",
+              "armGroupLabels": [
+                "Dose Escalation: Arm A (Venetoclax 400mg + Cobi 40mg)",
+                "Dose Escalation: Arm A (Venetoclax 400mg + Cobi 60mg)",
+                "Dose Escalation: Arm A (Venetoclax 600mg + Cobi 40mg)",
+                "Dose Escalation: Arm A (Venetoclax 800mg + Cobi 40mg)",
+                "Dose Escalation: Arm B (Venetoclax 400mg + Ida 200mg)",
+                "Dose Escalation: Arm B (Venetoclax 400mg + Ida 400mg)",
+                "Dose Escalation: Arm B (Venetoclax 600mg + Ida 150mg)",
+                "Dose Escalation: Arm B (Venetoclax 600mg + Ida 200mg)",
+                "Dose Optimisation: Arm B (Ven 600mg (Day 1 to 21) + Ida 150mg)"
+              ]
+            }
+          ]
+        },
+        "ref": "ctg:NCT02670044:03536f5e1fac0fdc9abc90bf630f5767d64002ac69a2599545e3e0f41de820a7#/protocolSection/armsInterventionsModule",
+        "source": {
+          "ref": "ctg:NCT02670044:03536f5e1fac0fdc9abc90bf630f5767d64002ac69a2599545e3e0f41de820a7",
+          "version": "03536f5e1fac0fdc9abc90bf630f5767d64002ac69a2599545e3e0f41de820a7",
+          "address": "/protocolSection/armsInterventionsModule",
+          "digest": "03536f5e1fac0fdc9abc90bf630f5767d64002ac69a2599545e3e0f41de820a7"
+        },
+        "code": "located"
+      }
+    ],
+    "fixed": {
+      "assertions": [
+        {
+          "applicability": {
+            "class": "Always"
+          },
+          "body": {
+            "class": "Literal",
+            "evidence": [
+              {
+                "class": "Evidence",
+                "kind": "record_field",
+                "ref": "ctg:NCT02670044:03536f5e1fac0fdc9abc90bf630f5767d64002ac69a2599545e3e0f41de820a7#/protocolSection/eligibilityModule/minimumAge"
+              }
+            ],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "age",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "ge",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 18.0,
+              "unit": "Years",
+              "upper": null
+            }
+          },
+          "branch": {
+            "class": "Branch",
+            "node": "unresolved",
+            "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+            "class": "Scope",
+            "kind": "all_participants",
+            "parts": [],
+            "ref": ""
+          },
+          "criterion_ref": "ctg:NCT02670044:03536f5e1fac0fdc9abc90bf630f5767d64002ac69a2599545e3e0f41de820a7#/protocolSection/eligibilityModule/minimumAge",
+          "id": "registry-age-minimumAge",
+          "modality": "required",
+          "resolution": "resolved",
+          "rule": {
+            "answers": [],
+            "class": "Rule",
+            "id": "ctg-structured-general-eligibility-age",
+            "premises": [
+              "ctg:NCT02670044:03536f5e1fac0fdc9abc90bf630f5767d64002ac69a2599545e3e0f41de820a7#/protocolSection/eligibilityModule/minimumAge"
+            ],
+            "version": "1",
+            "warrants": []
+          },
+          "span": [],
+          "status": "known"
+        }
+      ],
+      "signals": []
+    },
+    "interpretations": [],
+    "bindings": [],
+    "coverage": [
+      {
+        "address": "/protocolSection/eligibilityModule/minimumAge",
+        "code": "compiled",
+        "value": "18 Years",
+        "assertion": "registry-age-minimumAge",
+        "rule": "ctg-structured-general-eligibility-age",
+        "ref": "ctg:NCT02670044:03536f5e1fac0fdc9abc90bf630f5767d64002ac69a2599545e3e0f41de820a7#/protocolSection/eligibilityModule/minimumAge"
+      },
+      {
+        "address": "/protocolSection/eligibilityModule/maximumAge",
+        "code": "missing",
+        "value": null
+      },
+      {
+        "address": "/protocolSection/eligibilityModule/eligibilityCriteria",
+        "code": "unresolved_retained",
+        "value": "Inclusion Criteria:\n\n* Histological confirmation of relapsed or refractory AML after prior anti-leukemic therapy by WHO classification\n* Ineligible for cytotoxic therapy defined by the following:\n\n  a. Age (\\>/=) 75 years or b. age 18- 74 years with at least one of the following comorbidities: i. Eastern Cooperative Oncology Group (ECOG) Performance Status of 2 or 3 ii. Cardiac history of congestive heart failure requiring treatment or ejection fraction (\\</=) 50% or chronic stable angina iii. Diffusing capacity of the lungs for carbon monoxide (\\</=) 65% or forced expiratory volume in the first second of expiration (\\</=) 65% iv. Creatinine clearance (\\>/=) 30 mL/min to\\< 45 mL/min v. any other comorbidity that the physician judges to be incompatible with intensive chemotherapy must be reviewed and approved by the Medical Monitor before screening and study enrollment.\n* Life expectancy of at least 12 weeks\n* Eastern Cooperative Oncology Group (ECOG) Performance Status 0-2\n* Adequate liver and renal function\n\nExclusion Criteria:\n\n* Patients with acute promyelocytic leukemia (French-American-British \\[FAB\\] class M3 AML)\n* Known active central nervous system (CNS) involvement with AML at study entry\n* ECOG Performance Status (\\>/=) 3 in patients who are (\\>/=) 75 years old or ECOG Performance Status of 4, regardless of age\n* Prior exposure to Bcl-2 inhibitors, murine double minute 2 (MDM2) antagonists or prior exposure to experimental treatment targeting Raf, mitogen-activated protein kinase (MEK), or the mitogen-activated protein kinase (MAPK) RAS/RAF/MEK/ERK MAPK pathway\n* Positive for hepatitis C virus (HCV), hepatitis B surface antigen (HBsAg) and known history of HIV, malignancy, active infection and cardiovascular diseases (CVs)\n* Received strong cytochrome (CYP) 3A inhibitors, moderate CYP3A inhibitors, strong CYP3A inducers and moderate CYP3A inducers within 7 days prior to initiation of study treatment\n* History of symptomatic Clostridium difficile infection within 1 month prior to dosing\n\nAdditional arm specific exclusion criteria:\n\nDose Escalation Arm A (Venetoclax and Cobimetinib):\n\n* History or evidence of retinal pathology on ophthalmologic examination that is considered a risk factor for neurosensory retinal detachment/central serous chorioretinopathy (CSCR), retinal vein occlusion (RVO), or neovascular macular degeneration\n* Left ventricular ejection fraction (LVEF) below institutional lower limit of normal (LLN) or below 50%, whichever is lower\n\nArm B (Venetoclax and Idasanutlin):\n\n* Received the following within 7 days prior to the initiation of study treatment: Strong CYP2C8 inhibitors or CYP2C8 substrates, OATP1B1/3 substrates\n* Received the following within 14 days prior to the initiation of study treatment: Strong CYP2C8 inducers\n* History of liver cirrhosis by radiologic, clinical or laboratory data, or biopsy despite normal liver function tests\n* Received treatment with oral or parenteral anticoagulants/anti-platelet agents within 7 days prior to initiation of study treatment."
+      },
+      {
+        "address": "/protocolSection/eligibilityModule/healthyVolunteers",
+        "code": "unresolved_retained",
+        "value": false
+      },
+      {
+        "address": "/protocolSection/eligibilityModule/sex",
+        "code": "unresolved_retained",
+        "value": "ALL"
+      },
+      {
+        "address": "/protocolSection/eligibilityModule/stdAges",
+        "code": "unresolved_retained",
+        "value": [
+          "ADULT",
+          "OLDER_ADULT"
+        ]
+      },
+      {
+        "address": "/derivedSection",
+        "ref": "ctg:NCT02670044:03536f5e1fac0fdc9abc90bf630f5767d64002ac69a2599545e3e0f41de820a7#/derivedSection",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/hasResults",
+        "ref": "ctg:NCT02670044:03536f5e1fac0fdc9abc90bf630f5767d64002ac69a2599545e3e0f41de820a7#/hasResults",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/identificationModule",
+        "ref": "ctg:NCT02670044:03536f5e1fac0fdc9abc90bf630f5767d64002ac69a2599545e3e0f41de820a7#/protocolSection/identificationModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/statusModule",
+        "ref": "ctg:NCT02670044:03536f5e1fac0fdc9abc90bf630f5767d64002ac69a2599545e3e0f41de820a7#/protocolSection/statusModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/sponsorCollaboratorsModule",
+        "ref": "ctg:NCT02670044:03536f5e1fac0fdc9abc90bf630f5767d64002ac69a2599545e3e0f41de820a7#/protocolSection/sponsorCollaboratorsModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/descriptionModule",
+        "ref": "ctg:NCT02670044:03536f5e1fac0fdc9abc90bf630f5767d64002ac69a2599545e3e0f41de820a7#/protocolSection/descriptionModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/conditionsModule",
+        "ref": "ctg:NCT02670044:03536f5e1fac0fdc9abc90bf630f5767d64002ac69a2599545e3e0f41de820a7#/protocolSection/conditionsModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/designModule",
+        "ref": "ctg:NCT02670044:03536f5e1fac0fdc9abc90bf630f5767d64002ac69a2599545e3e0f41de820a7#/protocolSection/designModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/armsInterventionsModule",
+        "ref": "ctg:NCT02670044:03536f5e1fac0fdc9abc90bf630f5767d64002ac69a2599545e3e0f41de820a7#/protocolSection/armsInterventionsModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/outcomesModule",
+        "ref": "ctg:NCT02670044:03536f5e1fac0fdc9abc90bf630f5767d64002ac69a2599545e3e0f41de820a7#/protocolSection/outcomesModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/contactsLocationsModule",
+        "ref": "ctg:NCT02670044:03536f5e1fac0fdc9abc90bf630f5767d64002ac69a2599545e3e0f41de820a7#/protocolSection/contactsLocationsModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/referencesModule",
+        "ref": "ctg:NCT02670044:03536f5e1fac0fdc9abc90bf630f5767d64002ac69a2599545e3e0f41de820a7#/protocolSection/referencesModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      }
+    ],
+    "submitted": {
+      "interpretations": [],
+      "bindings": []
+    },
+    "requests": [
+      {
+        "operation": "entailment",
+        "assertions": [
+          {
+            "applicability": {
+              "class": "Always"
+            },
+            "body": {
+              "class": "Literal",
+              "evidence": [
+                {
+                  "class": "Evidence",
+                  "kind": "record_field",
+                  "ref": "ctg:NCT02670044:03536f5e1fac0fdc9abc90bf630f5767d64002ac69a2599545e3e0f41de820a7#/protocolSection/eligibilityModule/minimumAge"
+                }
+              ],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "age",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "ge",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 18.0,
+                "unit": "Years",
+                "upper": null
+              }
+            },
+            "branch": {
+              "class": "Branch",
+              "node": "unresolved",
+              "path": []
+            },
+            "class": "ScopedAssertion",
+            "cohort": {
+              "class": "Scope",
+              "kind": "all_participants",
+              "parts": [],
+              "ref": ""
+            },
+            "criterion_ref": "ctg:NCT02670044:03536f5e1fac0fdc9abc90bf630f5767d64002ac69a2599545e3e0f41de820a7#/protocolSection/eligibilityModule/minimumAge",
+            "id": "registry-age-minimumAge",
+            "modality": "required",
+            "resolution": "resolved",
+            "rule": {
+              "answers": [],
+              "class": "Rule",
+              "id": "ctg-structured-general-eligibility-age",
+              "premises": [
+                "ctg:NCT02670044:03536f5e1fac0fdc9abc90bf630f5767d64002ac69a2599545e3e0f41de820a7#/protocolSection/eligibilityModule/minimumAge"
+              ],
+              "version": "1",
+              "warrants": []
+            },
+            "span": [],
+            "status": "known"
+          }
+        ],
+        "query": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+            "class": "Predicate",
+            "key": "age",
+            "kind": "measurement"
+          },
+          "qualifiers": {
+            "class": "Always"
+          },
+          "subject": {
+            "class": "Subject",
+            "kind": "participant",
+            "referent": ""
+          },
+          "time": null,
+          "value": {
+            "class": "Value",
+            "comparison": "ge",
+            "inclusivity": "unspecified",
+            "kind": "quantity",
+            "members": [],
+            "number": 18,
+            "unit": "Years",
+            "upper": null
+          }
+        }
+      }
+    ],
+    "limits": [
+      "Structured ages describe registry general eligibility, not verified actual protocol.",
+      "A located quotation proves quotation only; clinical readings remain hypothetical.",
+      "No unit conversion, automatic binding joins, clinical text interpretation or source mutation."
+    ],
+    "analyses": [
+      {
+        "code": "complete",
+        "operation": "entailment",
+        "result": {
+          "basis": "Conditional on the supplied typed premises; their source meaning is not certified by this operation.",
+          "decision": {
+            "result": "ENTAILED",
+            "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+            "status": "known",
+            "proof": [
+              "registry-age-minimumAge"
+            ],
+            "blockers": []
+          },
+          "premises": [
+            {
+              "applicability": {
+                "class": "Always"
+              },
+              "body": {
+                "class": "Literal",
+                "evidence": [
+                  {
+                    "class": "Evidence",
+                    "kind": "record_field",
+                    "ref": "ctg:NCT02670044:03536f5e1fac0fdc9abc90bf630f5767d64002ac69a2599545e3e0f41de820a7#/protocolSection/eligibilityModule/minimumAge"
+                  }
+                ],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "age",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "ge",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 18.0,
+                  "unit": "Years",
+                  "upper": null
+                }
+              },
+              "branch": {
+                "class": "Branch",
+                "node": "unresolved",
+                "path": []
+              },
+              "class": "ScopedAssertion",
+              "cohort": {
+                "class": "Scope",
+                "kind": "all_participants",
+                "parts": [],
+                "ref": ""
+              },
+              "criterion_ref": "ctg:NCT02670044:03536f5e1fac0fdc9abc90bf630f5767d64002ac69a2599545e3e0f41de820a7#/protocolSection/eligibilityModule/minimumAge",
+              "id": "registry-age-minimumAge",
+              "modality": "required",
+              "resolution": "resolved",
+              "rule": {
+                "answers": [],
+                "class": "Rule",
+                "id": "ctg-structured-general-eligibility-age",
+                "premises": [
+                  "ctg:NCT02670044:03536f5e1fac0fdc9abc90bf630f5767d64002ac69a2599545e3e0f41de820a7#/protocolSection/eligibilityModule/minimumAge"
+                ],
+                "version": "1",
+                "warrants": []
+              },
+              "span": [],
+              "status": "known"
+            }
+          ]
+        },
+        "problems": [],
+        "metadata": {
+          "version": 1,
+          "kind": "reasoning",
+          "findings": [
+            {
+              "path": "/result/decision",
+              "kind": "logical",
+              "logical_result": "ENTAILED",
+              "standing": "known",
+              "completion": "complete",
+              "causes": [],
+              "disposition": "settled"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "problems": [],
+  "metadata": {
+    "version": 1,
+    "kind": "reasoning",
+    "findings": [
+      {
+        "path": "/result/analyses/0/result/decision",
+        "kind": "logical",
+        "logical_result": "ENTAILED",
+        "standing": "known",
+        "completion": "complete",
+        "causes": [],
+        "disposition": "settled"
+      }
+    ]
+  }
+}

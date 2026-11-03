@@ -1,0 +1,7 @@
+{
+ "query": {
+  "filter.advanced": "(AREA[InterventionName]\"quetiapine\" OR AREA[InterventionOtherName]\"quetiapine\") AND AREA[Phase]PHASE3 AND AREA[OverallStatus]COMPLETED",
+  "query.cond": "Bipolar Disorder"
+ },
+ "rxnav": []
+}

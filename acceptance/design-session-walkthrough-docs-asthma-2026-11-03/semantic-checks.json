@@ -1,0 +1,9 @@
+{
+  "previous_fresh_equals_baseline": true,
+  "changed_analyses": [
+    "conditional-reading-consequences"
+  ],
+  "independent_age_unchanged": true,
+  "envelopes": 26,
+  "metadata_pointers": 222
+}

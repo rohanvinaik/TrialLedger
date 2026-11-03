@@ -1,0 +1,70 @@
+{
+  "logs/ty.log": {
+    "stored": "logs/ty.log.gz",
+    "sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+  },
+  "logs/plan.log": {
+    "stored": "logs/plan.log.gz",
+    "sha256": "5dbc1f01677e8ad4442d6c25f387b0a9d174782131bb29e929ade51c4ab86003"
+  },
+  "logs/format.log": {
+    "stored": "logs/format.log.gz",
+    "sha256": "3bc53bf3e981a98a34a852e175bf9b77af841edea74fca595d9aedcbaf9a4938"
+  },
+  "logs/regime-migrate.log": {
+    "stored": "logs/regime-migrate.log.gz",
+    "sha256": "dd55310d886333ebbed31bf65bc27db3bcbb9522268a5d4bb2634b7ec4061276"
+  },
+  "logs/help.log": {
+    "stored": "logs/help.log.gz",
+    "sha256": "1629b84ce31fc121fe2da5361946861273272397aebe227d5425a219461c5671"
+  },
+  "logs/decompose.log": {
+    "stored": "logs/decompose.log.gz",
+    "sha256": "9a564fe486b14a2ed2a6edee3aa523998f99e573f58a44285bad2695433775fb"
+  },
+  "logs/identities.log": {
+    "stored": "logs/identities.log.gz",
+    "sha256": "ae39ac2cdd9d85954339a2c9d5ae954001d72a27044a9490c4c922ab8e86bded"
+  },
+  "logs/converge.log": {
+    "stored": "logs/converge.log.gz",
+    "sha256": "b9ada95efad321fce0974dd0553ef95d2e66da6b931e75fa45e1c53d26d8e9f0"
+  },
+  "logs/ruff.log": {
+    "stored": "logs/ruff.log.gz",
+    "sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+  },
+  "logs/crosshair.log": {
+    "stored": "logs/crosshair.log.gz",
+    "sha256": "bc91902dfe63fba734d38fec2135708acad87ada13eee92aefb8cdd706afce75"
+  },
+  "logs/survey.log": {
+    "stored": "logs/survey.log.gz",
+    "sha256": "126727d3ff81731f434c1bb010efa7c55c234852b36684f6a0c61a47efe87a71"
+  },
+  "logs/final-tests.log": {
+    "stored": "logs/final-tests.log.gz",
+    "sha256": "90969518f06f404a1f6e3ea3f517576cbef435893921d26e173ac308719aed96"
+  },
+  "logs/regime.log": {
+    "stored": "logs/regime.log.gz",
+    "sha256": "ed52510d36d5f0dbde50ae4d4ef41c030c42f384cec416c94499542d2eca95b2"
+  },
+  "logs/authored-tests.log": {
+    "stored": "logs/authored-tests.log.gz",
+    "sha256": "90969518f06f404a1f6e3ea3f517576cbef435893921d26e173ac308719aed96"
+  },
+  ".detective/reports/plan_scripts_push_checks_py.txt": {
+    "stored": "detective-state/reports/plan_scripts_push_checks_py.txt",
+    "sha256": "fad382dda20949dfb1733ce4897c545ec29c97c35984a291db28b7962847d3fb"
+  },
+  ".detective/reports/decompose_secret_review_state.txt": {
+    "stored": "detective-state/reports/decompose_secret_review_state.txt",
+    "sha256": "9de6707172068c6a4b53a5d211b7b1e75e698fbcc80a15bc1187916cb0d8a6de"
+  },
+  ".detective/reports/converge_secret_review_state.txt": {
+    "stored": "detective-state/reports/converge_secret_review_state.txt",
+    "sha256": "0cf21cc3d02bcae491951eabae259017476ee48ba5740e04b493cdb52453a7f7"
+  }
+}
