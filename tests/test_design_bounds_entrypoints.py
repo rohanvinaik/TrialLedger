@@ -155,3 +155,129 @@ def test_mcp_advertises_the_new_operation_and_focused_discovery_to_clients():
     properties = TOOLS["reason"]["inputSchema"]["properties"]["request"]["properties"]
     assert "design_bounds" in properties["operation"]["enum"]
     assert "design_bounds" in properties["view"]["enum"]
+
+
+def overlap_request(record):
+    """Exact retained cells plus explicit same-universe/predicate/bridge premises; never a text classifier."""
+    request = source_bound_request(record)
+    base = record["studies"][0]["baseline"]
+    smoking = base["measures"][4]
+    assert smoking["title"] == "Smoking history" and smoking["unit"] == "Participants"
+    assert smoking["classes"][0]["title"] == "Never Smoker"
+    cell = smoking["classes"][0]["categories"][0]["measurements"][2]
+    assert cell["group"] == "BG002" and cell["value"] == "1140"
+    address = "/studies/0/baseline/measures/4/classes/0/categories/0/measurements/2/value"
+    assert record_view(record, {"part": "address", "address": address})[1]["value"] == "1140"
+    never = a.Literal(
+        a.Subject("participant"), a.Predicate("demographic", "never_smoker"), a.Value("boolean")
+    )
+    joint = a.AllOf((who_ps("eq", 2), never))
+    candidates = []
+    for identity, modality, body in (("no_joint", "excluded", joint), ("requires_never", "required", never)):
+        assertion = a.ScopedAssertion(
+            identity,
+            "test:declared-not-protocol",
+            modality,
+            body,
+            rule=a.Rule("test-candidate", "1", warrants=("test:finite-candidates",)),
+            status="known",
+            resolution="resolved",
+        )
+        candidates.append({"id": identity, "assertions": [model(assertion)]})
+    old = request["observations"][0]
+    universe = old["population"]
+    request.update(
+        candidates=candidates,
+        query=model(never),
+        signals=[
+            {
+                "id": "joint-count",
+                "kind": "overlap",
+                "data": {
+                    "universe": universe,
+                    "alignment": "confirmed",
+                    "total": 1217,
+                    "marginals": [
+                        {"ref": "ps2", "universe": universe, "lower": 126, "upper": 126},
+                        {"ref": "never", "universe": universe, "lower": 1140, "upper": 1140},
+                    ],
+                },
+                "bindings": {"ps2": model(who_ps("eq", 2)), "never": model(never)},
+                "support": [
+                    {
+                        "id": "retained-counts",
+                        "status": "known",
+                        "resolution": "resolved",
+                        "basis": [*old["basis"], address],
+                    },
+                    {
+                        "id": "same-universe",
+                        "status": "interpolated",
+                        "resolution": "resolved",
+                        "basis": ["test:assume-exact-participant-counts-in-one-baseline-universe"],
+                    },
+                ],
+            }
+        ],
+        observations=[
+            {
+                "id": "joint-witness",
+                "denominator": 1217,
+                "population": universe,
+                "context": {},
+                "bridge": copy.deepcopy(old["bridge"]),
+                "derivation": {"signal": "joint-count", "witness": "intersection"},
+            }
+        ],
+    )
+    return request
+
+
+@pytest.mark.parametrize("surface", ["cli", "mcp"])
+def test_partial_bounds_reach_real_entrypoints_elimination_and_revised_consequences(
+    retained_report, tmp_path, capsys, surface
+):
+    folder, record = retained_report
+    before = snapshot(folder)
+    request = overlap_request(record)
+
+    def invoke(payload):
+        if surface == "cli":
+            path = tmp_path / "partial-request.json"
+            path.write_text(json.dumps(payload))
+            assert cli.main(["reason", "--request", str(path)]) == 0
+            return json.loads(capsys.readouterr().out)["result"]
+        code, reply = call_tool(Context(tmp_path), {"name": "reason", "arguments": {"request": payload}})
+        assert code == "ok" and not reply["isError"]
+        return json.loads(reply["content"][0]["text"])["result"]
+
+    result = invoke(request)
+    assert result["signals"][0]["value"]["counts"] == [{"id": "intersection", "lower": 49, "upper": 126}]
+    assert result["remaining"] == ["requires_never"]
+    assert result["consequence"]["result"] == "ENTAILED"
+    assert result["consequence"]["status"] == "interpolated"
+    witness = result["candidates"][0]["observations"][0]
+    assert witness["bounds"] == {"lower": 49, "upper": 126}
+    assert witness["derivation"]["rule"] == "numeric.overlap:1"
+    assert request["signals"][0]["support"][0]["basis"] == result["signals"][0]["support"][0]["basis"]
+    revised = copy.deepcopy(request)
+    revised["observations"][0]["bridge"]["max_exceptions"] = 49
+    assert invoke(revised)["consequence"]["result"] == "UNDETERMINED"
+    revised["observations"][0]["bridge"]["max_exceptions"] = 48
+    assert invoke(revised)["remaining"] == ["requires_never"]
+    revised = copy.deepcopy(request)
+    revised["signals"][0]["data"]["alignment"] = "unresolved"
+    unknown = invoke(revised)
+    assert unknown["remaining"] == ["no_joint", "requires_never"]
+    assert unknown["consequence"]["result"] == "UNDETERMINED"
+    assert unknown["candidates"][0]["observations"][0]["bounds"] == {"lower": None, "upper": None}
+    revised = copy.deepcopy(request)
+    revised["signals"][0]["support"][1]["status"] = "proposed"
+    assert invoke(revised)["consequence"]["result"] == "UNDETERMINED"
+    assert snapshot(folder) == before
+    assert overlap_request(record) == request
+
+
+def test_partial_signal_operation_is_advertised_in_mcp():
+    props = TOOLS["reason"]["inputSchema"]["properties"]["request"]["properties"]
+    assert "signals" in props["operation"]["enum"] and "signals" in props["view"]["enum"]

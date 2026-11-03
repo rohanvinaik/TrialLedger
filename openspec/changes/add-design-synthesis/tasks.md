@@ -15,6 +15,11 @@ partial components. Reporting completion does not require finishing these tasks.
 
 - [x] 4b. Expose baseline witness bounds through public reasoning: scoped typed observations, explicit participation-to-eligibility bridges and exception bounds, candidate elimination via existing entailment, weakest-standing consequences across surviving designs, discovery and continuing-session guidance; validate real CLI/MCP consumers, source isolation, adversarial revisions and Detective two-sign pure decisions. See acceptance/baseline-witnesses-2026-11-03.md.
 
+- [x] 4c. Implement typed overlap, partition/complement, exact summary and explicit population-lineage bounds with conservative count intervals, source-scope guards and reusable witness expressions.
+- [x] 4d. Implement typed temporal order/interval, regimen composition and directional-relation constraints, including jointly checked candidate claims and exact abstention on unresolved binding.
+- [x] 4e. Implement rejected-participant witness feasibility and explicit adopted-rule measurement dependencies, preserving partial profiles, alternatives, imputation and weakest support.
+- [x] 4f. Wire all evidence operators through public reason/discovery and design_bounds, with typed binding of derived interval witnesses, candidate elimination and downstream consequences; verify authored/adversarial source-to-CLI/MCP revisions, layer isolation, fresh installation, executable README session, two-sign checks and durable receipts. The founder accepted membership_problem's full-pin limitation, then directed mutation work to stop and the change to be pushed; preserve the remaining unverified targets and normal-gate result in acceptance/partial-evidence-2026-11-03.md.
+
 - [ ] 5. Integrate versioned concept/measurement registries and independent identity/ontology sources, with resolved bindings, scope, editions, licenses and explicit ambiguity.
 - [ ] 6. Implement source-to-scoped-assertion compilation, preserving alternatives, referents, qualifiers, local force, conditions, definitions, cohorts and time; refuse unresolved projections and remove every flat-atom fallback.
 - [ ] 7. Integrate domain applicability and full strict/default strata semantics, conflict suspension, user override/recomputation and explicit consumer projections.

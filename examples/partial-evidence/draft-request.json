@@ -1,0 +1,220 @@
+{
+  "operation": "entailment",
+  "assertions": [
+    {
+      "applicability": {
+        "class": "Always"
+      },
+      "body": {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+          "class": "Predicate",
+          "key": "age",
+          "kind": "measurement"
+        },
+        "qualifiers": {
+          "class": "Always"
+        },
+        "subject": {
+          "class": "Subject",
+          "kind": "participant",
+          "referent": ""
+        },
+        "time": null,
+        "value": {
+          "class": "Value",
+          "comparison": "ge",
+          "inclusivity": "unspecified",
+          "kind": "quantity",
+          "members": [],
+          "number": 18.0,
+          "unit": "Years",
+          "upper": null
+        }
+      },
+      "branch": {
+        "class": "Branch",
+        "node": "unresolved",
+        "path": []
+      },
+      "class": "ScopedAssertion",
+      "cohort": {
+        "class": "Scope",
+        "kind": "all_participants",
+        "parts": [],
+        "ref": ""
+      },
+      "criterion_ref": "invented:user-chosen-brief",
+      "id": "draft-adults",
+      "modality": "required",
+      "resolution": "resolved",
+      "rule": {
+        "answers": [],
+        "class": "Rule",
+        "id": "user-choice",
+        "premises": [],
+        "version": "1",
+        "warrants": [
+          "invented:user-chosen-brief"
+        ]
+      },
+      "span": [],
+      "status": "known"
+    },
+    {
+      "applicability": {
+        "class": "Always"
+      },
+      "body": {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+          "class": "Predicate",
+          "key": "ECOG",
+          "kind": "measurement"
+        },
+        "qualifiers": {
+          "class": "Always"
+        },
+        "subject": {
+          "class": "Subject",
+          "kind": "participant",
+          "referent": ""
+        },
+        "time": null,
+        "value": {
+          "class": "Value",
+          "comparison": "le",
+          "inclusivity": "unspecified",
+          "kind": "quantity",
+          "members": [],
+          "number": 2.0,
+          "unit": "ECOG",
+          "upper": null
+        }
+      },
+      "branch": {
+        "class": "Branch",
+        "node": "unresolved",
+        "path": []
+      },
+      "class": "ScopedAssertion",
+      "cohort": {
+        "class": "Scope",
+        "kind": "all_participants",
+        "parts": [],
+        "ref": ""
+      },
+      "criterion_ref": "invented:user-chosen-brief",
+      "id": "draft-PS",
+      "modality": "required",
+      "resolution": "resolved",
+      "rule": {
+        "answers": [],
+        "class": "Rule",
+        "id": "user-choice",
+        "premises": [],
+        "version": "1",
+        "warrants": [
+          "invented:user-chosen-brief"
+        ]
+      },
+      "span": [],
+      "status": "known"
+    },
+    {
+      "applicability": {
+        "class": "Always"
+      },
+      "body": {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+          "class": "Predicate",
+          "key": "ECOG",
+          "kind": "measurement"
+        },
+        "qualifiers": {
+          "class": "Always"
+        },
+        "subject": {
+          "class": "Subject",
+          "kind": "participant",
+          "referent": ""
+        },
+        "time": null,
+        "value": {
+          "class": "Value",
+          "comparison": "ge",
+          "inclusivity": "unspecified",
+          "kind": "quantity",
+          "members": [],
+          "number": 0,
+          "unit": "ECOG",
+          "upper": null
+        }
+      },
+      "branch": {
+        "class": "Branch",
+        "node": "unresolved",
+        "path": []
+      },
+      "class": "ScopedAssertion",
+      "cohort": {
+        "class": "Scope",
+        "kind": "all_participants",
+        "parts": [],
+        "ref": ""
+      },
+      "criterion_ref": "invented:user-chosen-brief",
+      "id": "draft-PS-minimum",
+      "modality": "required",
+      "resolution": "resolved",
+      "rule": {
+        "answers": [],
+        "class": "Rule",
+        "id": "user-choice",
+        "premises": [],
+        "version": "1",
+        "warrants": [
+          "invented:user-chosen-brief"
+        ]
+      },
+      "span": [],
+      "status": "known"
+    }
+  ],
+  "query": {
+    "class": "Literal",
+    "evidence": [],
+    "polarity": "positive",
+    "predicate": {
+      "class": "Predicate",
+      "key": "ECOG",
+      "kind": "measurement"
+    },
+    "qualifiers": {
+      "class": "Always"
+    },
+    "subject": {
+      "class": "Subject",
+      "kind": "participant",
+      "referent": ""
+    },
+    "time": null,
+    "value": {
+      "class": "Value",
+      "comparison": "eq",
+      "inclusivity": "unspecified",
+      "kind": "quantity",
+      "members": [],
+      "number": 3.0,
+      "unit": "ECOG",
+      "upper": null
+    }
+  }
+}

@@ -12,20 +12,24 @@ INPUTS = {
         "fields": {
             "study_ref": "nonempty study/version reference; all inputs concern this study",
             "candidates": "nonempty candidate array; declared alternatives, not all real protocols",
-            "observations": "nonempty observation array; counts never sum across observations",
+            "observations": "observation array; may be empty with signals; counts never sum",
             "query": "tagged participant proposition: must it hold under every remaining candidate design?",
             "context": "context for the consequence query; default open cohort/phase/arm",
             "bound": "integer 1..65536 per entailment decision; default 65536",
+            "signals": "optional array of typed, source-supported partial-evidence signal objects",
         },
     },
     "candidate": {
         "required": ("id", "assertions"),
-        "fields": {"id": "distinct nonempty string", "assertions": "array of tagged ScopedAssertion objects"},
+        "fields": {
+            "id": "distinct nonempty string",
+            "assertions": "array of tagged ScopedAssertion objects",
+            "signal_claims": "optional array of signal/claim objects; same-signal claims are conjoined",
+        },
     },
     "observation": {
         "required": (
             "id",
-            "count",
             "denominator",
             "population",
             "body",
@@ -37,8 +41,11 @@ INPUTS = {
         "fields": {
             "id": "distinct nonempty string",
             "count": "nonnegative integer <= denominator; count of participants satisfying body",
+            "count_lower": "conservative count lower bound; give with count_upper instead of count",
+            "count_upper": "integer count upper bound >= count_lower and <= denominator",
+            "direction": "accepted (default) or rejected; an attributed eligibility decision, not a label",
             "denominator": "positive integer for this population/group; never an event count",
-            "population": "nonempty reference identifying the baseline population and local group",
+            "population": "nonempty reference identifying the observed population and local group",
             "body": "tagged participant proposition preserving scale, qualifiers and assessment time",
             "context": "entry context bound to the observed population; no automatic cross-module group join",
             "status": "known, interpolated or proposed; the observation's standing",
@@ -60,7 +67,7 @@ INPUTS = {
 ANSWERS = {
     "ruled_out": [
         "settled",
-        "Candidate excludes witnesses beyond its exception allowance; report its status and proofs.",
+        "Candidate cannot accommodate supported witnesses or joint signal claims; report the deciding check.",
     ],
     "not_ruled_out": [
         "your_call",
@@ -73,7 +80,7 @@ ANSWERS = {
     "inconsistent": ["something_wrong", "Candidate criteria contradict each other; name their proof ids."],
     "CONFLICT": [
         "something_wrong",
-        "No declared candidate survives; revise candidates or premises, never conclude everything.",
+        "An input conflict or empty survival blocks consequences; name it, never conclude everything.",
     ],
     "ENTAILED": [
         "settled",
@@ -201,10 +208,25 @@ def extend(description: dict) -> None:
             "bounds into source-text statement-frequency inputs."
         ),
         "support_guide": {
-            "witness": ["settled", "At least one eligible witness under the bridge; retain its status."],
+            "witness": [
+                "settled",
+                "An accepted/rejected witness under the declared bridge; retain its direction and status.",
+            ],
             "no_witness": ["not_knowable_here", "Count does not exceed exceptions; no exclusion follows."],
             "proposed_refused": ["your_call", "Confirm the proposed observation or bridge reading."],
             "binding_unresolved": ["translation", "Resolve population, scale, time or bridge conflicts."],
         },
+        "derived_observations": (
+            "Select a signal/witness with explicit predicate bindings; its interval remains visible. "
+            "Only the guaranteed lower count is compared with the eligibility exception allowance."
+        ),
+        "rejected_witnesses": (
+            "A rejected profile P requires a feasible P AND NOT E completion under candidate E; it never "
+            "establishes universal exclusion of the partial phenotype."
+        ),
+        "signal_claims": (
+            "Same-signal claims are checked jointly. Their supported conflicts eliminate candidates "
+            "and their weakest standing reaches common consequences."
+        ),
         "solver_blockers": description["answer_guide"]["entailment"]["blockers"],
     }

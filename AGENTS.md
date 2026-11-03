@@ -227,6 +227,27 @@ require or rule out, or compare a criterion across trials we pick." Choose what 
 "drug identity" tool: drill into the study or a returned address. Follow all pages. The source checks are
 consistency of the registry's own fields, not an assessment that a study is clinically sound.
 
+## Partial evidence as design constraints
+
+Discover reason view `signals` for overlap, disjoint partitions/complements, exact summaries, population
+subsets, temporal intervals, regimen composition, directional relations and adopted-rule dependencies.
+Support retains sources, versions, standing and resolution. Equal denominators do not establish alignment;
+summary witnesses need exactness and an explicit median convention where applicable. A mathematical
+calculation does not certify the supplied clinical bindings.
+
+To use a signal in design resolution, include it in `design_bounds.signals`. A derived observation selects
+its emitted witness with explicit predicate bindings and matching population/denominator; its count remains
+an interval and only its guaranteed lower bound reaches the exception check. Candidate `signal_claims` are
+checked jointly per signal. Proposed/unresolved support cannot eliminate candidates. Rejected witnesses need
+an eligibility-attributed rejection and a feasible P AND NOT E completion; they never imply universal
+exclusion of a partial profile. `profile_inconsistent` means repair the profile, in either direction.
+
+An accepted input-signal conflict blocks the common consequence. Unattached unresolved signals remain
+context; dependencies need explicit references. Preserve scopes, versions, planned/observed stage and
+observed/imputed/derived modes. No automatic cross-signal joins or unit/scale conversions are made. Keep the
+result's rule, bounds and weakest standing on the decision list and recompute after revisions. These results
+never overwrite the source record or become source-stated corpus criteria. See SKILL.md for encoding duties.
+
 ## Notable and significance
 
 "Notable" is a computed object for design features. An observation is notable when it is rare within a
@@ -338,7 +359,8 @@ overview. Then request `{"operation":"describe","view":"entailment"}` (or `coord
 Views `worked_session` and `full` retain the complete demonstration and manual for when needed; do not load
 them for every clinical question. Every worked-session request runs and returns its stated result.
 Use the described shapes rather than inventing fields; no source-code access is needed. The operations are
-`entailment`, `coordinates` (explicit NSCLC domain), `corpus` and `design_bounds`. [SKILL.md](SKILL.md) also includes a
+`entailment`, `coordinates` (explicit NSCLC domain), `corpus`, `design_bounds` and `signals`.
+[SKILL.md](SKILL.md) also includes a
 complete request.
 
 The full guide's `examples` values and each focused `example` are runnable requests. Each

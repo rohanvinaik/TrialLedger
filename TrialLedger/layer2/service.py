@@ -22,14 +22,17 @@ from TrialLedger.layer2 import (
     guide,
     nearmiss,
     profile,
+    signals,
+    signals_guide,
 )
 
-OPERATIONS = ("describe", "entailment", "coordinates", "corpus", "design_bounds")
+OPERATIONS = ("describe", "entailment", "coordinates", "corpus", "design_bounds", "signals")
 MAX_ITEMS = 1000
 BASIS = "Conditional on the supplied typed premises; their source meaning is not certified by this operation."
 # The same closed field sets drive request validation and the agent-facing description.
 INPUTS = {
     **bounds_guide.INPUTS,
+    **signals_guide.INPUTS,
     "describe": {
         "required": (),
         "fields": {
@@ -254,31 +257,132 @@ def _bound_basis(value: Any) -> tuple[str, ...]:
     return tuple(refs)
 
 
-def _bound_observation(value: Any) -> design_bounds.Observation:
-    row = _input(value, "observation", "observation")
+def _prepared_signals(raw: Any) -> list[signals.Signal]:
+    prepared = []
+    for value in _list(raw, "signals"):
+        row = _input(value, "signal", "signal")
+        identity = _text(row["id"], "signal:id")
+        kind = _text(row["kind"], "signal:kind")
+        if kind not in signals.MODULES:
+            raise RequestError("unsupported_signal_kind")
+        if not isinstance(row["data"], dict):
+            raise RequestError("signal_data_not_object")
+        support = []
+        for premise in _list(row["support"], "support"):
+            item = _input(premise, "support", "support")
+            status, resolution = _support_words(item["status"], item["resolution"])
+            support.append(
+                signals.Support(
+                    _text(item["id"], "support:id"), status, resolution, _bound_basis(item["basis"])
+                )
+            )
+        if not support or len({p.id for p in support}) != len(support):
+            raise RequestError("missing_or_duplicate_signal_support")
+        bindings = row.get("bindings", {})
+        if not isinstance(bindings, dict) or len(bindings) > MAX_ITEMS:
+            raise RequestError("invalid_signal_bindings")
+        bound = {}
+        for ref, payload in bindings.items():
+            body = _model(payload)
+            if not isinstance(body, assertions.PROPOSITIONS):
+                raise RequestError("signal_binding_not_proposition")
+            bound[_text(ref, "binding:ref")] = body
+        prepared.append(signals.Signal(identity, kind, row["data"], tuple(support), bound))
+    if len({signal.id for signal in prepared}) != len(prepared):
+        raise RequestError("duplicate_signal_id")
+    return prepared
+
+
+def _support_words(status: Any, resolution: Any) -> tuple[str, str]:
+    if not isinstance(status, str) or status not in assertions.STATUSES:
+        raise RequestError("invalid_witness_status")
+    if not isinstance(resolution, str) or resolution not in assertions.RESOLUTIONS:
+        raise RequestError("invalid_bridge_resolution")
+    return status, resolution
+
+
+def _signals(request: dict[str, Any]) -> dict[str, Any]:
+    _input(request, "signals", "request")
+    prepared = _prepared_signals(request["signals"])
+    return {
+        "basis": BASIS,
+        "premises": request["signals"],
+        "signals": [signals.evaluate(signal) for signal in prepared],
+        "limits": "Typed, source-bound partial evidence; no clinical text interpretation or source mutation.",
+    }
+
+
+def _bound_observation(
+    value: Any, available: dict | None = None, calculated: dict | None = None
+) -> design_bounds.Observation:
+    derived = isinstance(value, dict) and "derivation" in value
+    row = _input(value, "derived_observation" if derived else "observation", "observation")
     bridge = _input(row["bridge"], "bridge", "bridge")
     denominator = _bound_count(row["denominator"])
     if not denominator:
         raise RequestError("empty_witness_denominator")
-    statuses = (row["status"], bridge["status"])
-    if any(not isinstance(s, str) or s not in assertions.STATUSES for s in statuses):
-        raise RequestError("invalid_witness_status")
-    if not isinstance(bridge["resolution"], str) or bridge["resolution"] not in assertions.RESOLUTIONS:
-        raise RequestError("invalid_bridge_resolution")
-    body = _model(row["body"])
+    bridge_status, resolution = _support_words(bridge["status"], bridge["resolution"])
+    direction = row.get("direction", "accepted")
+    if direction not in ("accepted", "rejected"):
+        raise RequestError("unsupported_witness_direction")
+    blockers: tuple[str, ...] = ()
+    derivation = None
+    if derived:
+        selection = _input(row["derivation"], "derivation", "derivation")
+        ref = _text(selection["signal"], "derivation:signal")
+        witness = _text(selection["witness"], "derivation:witness")
+        if available is None or calculated is None or ref not in available or ref not in calculated:
+            raise RequestError("unknown_derived_signal")
+        source = available[ref]
+        result = calculated[ref]
+        projected = signals.derived_witness(source, result, witness, row["population"], denominator)
+        body = projected["body"]
+        count = projected["lower"] if projected["lower"] is not None else 0
+        upper = projected["upper"]
+        source_status = result["status"]
+        source_basis = tuple(result["basis"])
+        blockers = tuple(projected["blockers"])
+        derivation = {
+            "signal": ref,
+            "witness": witness,
+            "lower": projected["lower"],
+            "upper": upper,
+            "expression": projected["expression"],
+            "rule": result["rule"],
+        }
+    else:
+        source_status, _ = _support_words(row["status"], "resolved")
+        source_basis = _bound_basis(row["basis"])
+        body = _model(row["body"])
+        if "count" in row:
+            if "count_lower" in row or "count_upper" in row:
+                raise RequestError("exact_and_interval_witness_count")
+            count = _bound_count(row["count"], denominator)
+            upper = None
+        elif "count_lower" in row and "count_upper" in row:
+            count = _bound_count(row["count_lower"], denominator)
+            upper = _bound_count(row["count_upper"], denominator)
+            if upper < count:
+                raise RequestError("reversed_witness_count_interval")
+        else:
+            raise RequestError("witness_count_needed")
     if not isinstance(body, assertions.PROPOSITIONS):
         raise RequestError("witness_proposition_required")
     return design_bounds.Observation(
         _text(row["id"], "observation:id"),
-        _bound_count(row["count"], denominator),
+        count,
         denominator,
         _text(row["population"], "population"),
         body,
         _reason_context(row["context"]),
-        entail.weakest_status(statuses),
-        bridge["resolution"],
+        entail.weakest_status((source_status, bridge_status)),
+        resolution,
         _bound_count(bridge["max_exceptions"], denominator),
-        _bound_basis(row["basis"]) + _bound_basis(bridge["basis"]),
+        source_basis + _bound_basis(bridge["basis"]),
+        upper,
+        direction,
+        blockers,
+        derivation,
     )
 
 
@@ -296,25 +400,46 @@ def _design_bounds(request: dict[str, Any]) -> dict[str, Any]:
     _input(request, "design_bounds", "request")
     study = _text(request["study_ref"], "study_ref")
     candidates = []
+    claims: dict[str, list[dict]] = {}
+    prepared = _prepared_signals(request.get("signals", []))
+    by_id = {signal.id: signal for signal in prepared}
+    calculated = {signal.id: signals.evaluate(signal) for signal in prepared}
     for raw in _list(request["candidates"], "candidates"):
         row = _input(raw, "candidate", "candidate")
         items = _scoped_assertions(row["assertions"])
         candidates.append((_text(row["id"], "candidate:id"), items))
-    observations = [_bound_observation(raw) for raw in _list(request["observations"], "observations")]
-    if not candidates or not observations:
+        checks = []
+        for value in _list(row.get("signal_claims", []), "signal_claims"):
+            check = _input(value, "signal_claim", "signal_claim")
+            ref = _text(check["signal"], "signal_claim:signal")
+            if ref not in by_id or not isinstance(check["claim"], dict):
+                raise RequestError("invalid_candidate_signal_claim")
+            checks.append(check)
+        claims[row["id"]] = checks
+    observations = [
+        _bound_observation(raw, by_id, calculated) for raw in _list(request["observations"], "observations")
+    ]
+    if not candidates or not (observations or prepared):
         raise RequestError("empty_design_bounds_inputs")
     for ids in ([identity for identity, _ in candidates], [o.id for o in observations]):
         if len(set(ids)) != len(ids):
             raise RequestError("duplicate_design_bounds_id")
     bound = _assignment_bound(request.get("bound", entail.MAX_ASSIGNMENTS))
     # Bound total repeated solver calls as well as each individual enumeration.
-    if len(candidates) * (len(observations) + 1) > MAX_ITEMS:
+    if len(candidates) * (len(observations) + len(prepared) + 1) > MAX_ITEMS:
         raise RequestError("resource_bound:design_bounds")
     query = _model(request["query"])
     if not isinstance(query, assertions.PROPOSITIONS):
         raise RequestError("query_proposition_required")
     result = design_bounds.bound_designs(
-        candidates, observations, query, _reason_context(request.get("context", {})), bound
+        candidates,
+        observations,
+        query,
+        _reason_context(request.get("context", {})),
+        bound,
+        signals=prepared,
+        claims=claims,
+        computed_signals=list(calculated.values()),
     )
     return {
         "basis": BASIS,
@@ -1174,11 +1299,21 @@ def _describe(request: dict[str, Any]) -> dict[str, Any]:
     """Discover just the next operation, or explicitly request the complete reference guide."""
     _input(request, "describe", "request")
     view = request.get("view", "overview")
-    views = ("overview", "entailment", "coordinates", "corpus", "design_bounds", "worked_session", "full")
+    views = (
+        "overview",
+        "entailment",
+        "coordinates",
+        "corpus",
+        "design_bounds",
+        "signals",
+        "worked_session",
+        "full",
+    )
     if not isinstance(view, str) or view not in views:
         raise RequestError("request.view:unsupported_view")
     full = _full_description()
     bounds_guide.extend(full)
+    signals_guide.extend(full)
     if view == "full":
         return full
     common = {key: full[key] for key in ("basis", "availability", "limits", "premise_status")}
@@ -1207,6 +1342,7 @@ def _describe(request: dict[str, Any]) -> dict[str, Any]:
         "coordinates": ("coordinates", "evidence"),
         "corpus": ("corpus", "trial", "coverage", "expectation"),
         "design_bounds": ("design_bounds", "candidate", "observation", "bridge", "context"),
+        "signals": ("signals", "signal", "support"),
     }[view]
     vocabulary = {
         "entailment": tuple(
@@ -1216,6 +1352,7 @@ def _describe(request: dict[str, Any]) -> dict[str, Any]:
         ),
         "coordinates": ("sections", "scopes", "coordinate_values"),
         "corpus": ("coverage_states", "observation_states"),
+        "signals": ("statuses", "resolutions"),
         "design_bounds": (
             "statuses",
             "resolutions",
@@ -1239,6 +1376,13 @@ def _describe(request: dict[str, Any]) -> dict[str, Any]:
     }
     if view in ("entailment", "design_bounds"):
         result["tagged_model"] = full["tagged_model"]
+    if view in ("signals", "design_bounds"):
+        result["operator_inputs"] = full["operator_inputs"]
+        result["signal_kinds"] = full["signal_kinds"]
+        result["signal_examples"] = full["signal_examples"]
+    if view == "design_bounds":
+        for key in signals_guide.INPUTS:
+            result["input_shapes"][key] = full["input_shapes"][key]
     if view == "corpus":
         result["capability_examples"] = full["capability_examples"]
         result["answer_guide"]["notable"] = full["answer_guide"]["notable"]
@@ -1259,6 +1403,7 @@ def run(request: object) -> dict[str, Any]:
             "coordinates": _coordinates,
             "corpus": _corpus,
             "design_bounds": _design_bounds,
+            "signals": _signals,
         }[operation]
         result = function(request)
         return {"code": "complete", "operation": operation, "result": result, "problems": []}

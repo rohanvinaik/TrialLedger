@@ -754,6 +754,24 @@
     "refusal": "",
     "standing": "complete"
   },
+  "TrialLedger/layer2/dependency_evidence.py::alternative_state": {
+    "cut_reasons": [],
+    "function_digest": "84b33164c591a22a",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/dependency_evidence.py::guard_state": {
+    "cut_reasons": [],
+    "function_digest": "cf640784046b0b4f",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/dependency_evidence.py::prerequisite_state": {
+    "cut_reasons": [],
+    "function_digest": "a79fdf730df53bc4",
+    "refusal": "",
+    "standing": "complete"
+  },
   "TrialLedger/layer2/design_bounds.py::candidate_state": {
     "cut_reasons": [],
     "function_digest": "a2d810c556b20248",
@@ -781,6 +799,72 @@
   "TrialLedger/layer2/entail.py::_satisfiable": {
     "cut_reasons": [],
     "function_digest": "5796f636fe9aa497",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/entail.py::rejected_outcome": {
+    "cut_reasons": [],
+    "function_digest": "220acaa1ca89139e",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/graph_evidence.py::bound_tightness": {
+    "cut_reasons": [],
+    "function_digest": "a4d19f02138beb7e",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/graph_evidence.py::graph_disposition": {
+    "cut_reasons": [],
+    "function_digest": "f4dcadafbf9bb7d3",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/graph_evidence.py::membership_problem": {
+    "cut_reasons": [],
+    "function_digest": "8e255dd644b4f3f2",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/graph_evidence.py::relation_conflict": {
+    "cut_reasons": [],
+    "function_digest": "c8b1061dfbb4570e",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/numeric_evidence.py::interval_state": {
+    "cut_reasons": [],
+    "function_digest": "a09baf93d31ca1dc",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/numeric_evidence.py::overlap_bounds": {
+    "cut_reasons": [],
+    "function_digest": "45db72665f779212",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/numeric_evidence.py::partition_bounds": {
+    "cut_reasons": [],
+    "function_digest": "3d3f7997b384a3dc",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/numeric_evidence.py::scope_state": {
+    "cut_reasons": [],
+    "function_digest": "e217af5fbee08b64",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/numeric_evidence.py::summary_bounds": {
+    "cut_reasons": [],
+    "function_digest": "35d0c7b8dd725b9c",
+    "refusal": "",
+    "standing": "complete"
+  },
+  "TrialLedger/layer2/numeric_evidence.py::summary_count_state": {
+    "cut_reasons": [],
+    "function_digest": "15580dbeeb36de2c",
     "refusal": "",
     "standing": "complete"
   },

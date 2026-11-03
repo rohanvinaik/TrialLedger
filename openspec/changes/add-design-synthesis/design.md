@@ -107,6 +107,54 @@ rather than resolved by choosing a preferred token, source or first answer.
 
 ### 6. Corpus descriptions and comparability
 
+#### Partial-evidence constraints and representational capacity
+
+The separate `signals` operation evaluates explicitly typed partial evidence. Independent operators own
+count bounds (overlap, exhaustive/disjoint partitions, exact summaries and population lineage), temporal
+order/interval constraints, bound regimen composition, directional source relations and adopted-rule
+measurement prerequisites. Each returns a named bounded/consistent/conflict/unresolved result, rule version,
+source/support references and blockers. These are mathematical/structural operators over caller-bound facts,
+not clinical text readers. API/document adapters and clinical bindings retain their existing integration status.
+
+Support is a nonempty list of independently identified premises with status, resolution and source/version
+references. The weakest accepted standing propagates. Proposed or unresolved support cannot constrain a
+candidate. Matching counts, titles, gene names, units or ontology indexing alone never establishes a binding.
+Conflicts and computation limits are named rather than turned into empty domains or guessed values.
+
+Count outputs retain lower and upper bounds. Same-universe marginals may establish a guaranteed overlap
+without any independence assumption; no observed overlap point value is invented. For example, counts
+126 and 1140 in the same 1217 participants bound their intersection to [49,126]. This requires explicit
+study/version/population/assessment alignment. Summary operators distinguish full ranges and exact medians
+from confidence intervals and rounded summaries. Partition complements need warranted exhaustiveness and
+disjointness. Population differences require explicit subset identity and mean nonmembership in that
+analysis, never automatically missingness, treatment nonreceipt or ineligibility.
+
+`design_bounds` consumes these results in two ways. A derived observation references a named signal and
+witness, whose expression is constructed from explicitly bound tagged predicates (including conjunction,
+complement and measurement comparisons). Its guaranteed lower count is used against the exception allowance;
+the complete interval remains visible. A candidate can also declare typed claims against a named signal.
+All claims for the same signal are conjoined before checking compatibility. A warranted incompatibility
+eliminates the candidate; unresolved checks retain it. No automatic cross-signal scope or identity join occurs.
+The standing of signal-driven eliminations feeds the same surviving-design consequence calculation.
+
+Observed acceptance and attributed rejection are distinct witness directions. Acceptance requires a feasible
+completion P AND E; rejection requires P AND NOT E for profile P and candidate eligibility formula E.
+An incompletely described rejected profile never supplies a universal exclusion. Both directions reuse the
+existing scoped formula compiler and finite evaluator. Internally inconsistent candidates remain distinct
+from an impossible profile or a resource-bound observation. Report/source records remain unchanged.
+
+Temporal constraints retain event identity, anchors, units and strict/inclusive limits; actual and planned
+events are not silently equated. Regimen evidence retains assigned/aggregate/observational roles, product
+identity and explicit completeness. Directional relations transfer only what their declared relation kind
+warrants. Dependency rules apply only when adopted in the applicable scope; missing input is unknown,
+explicitly unavailable input can conflict, and imputed inputs do not satisfy observed-only requirements.
+
+The public path is CLI/MCP reason -> service -> independent signal operators -> derived witnesses and/or
+joint candidate claim checks -> design_bounds -> surviving-design consequences -> assistant decision list.
+Every operator has runnable discovery and independent intent/countermodel tests. End-to-end tests perturb
+source counts, alignment, bridge standing, temporal cycles, relation direction and prerequisites, proving
+that these signals reach the returned design answer rather than remaining isolated helpers.
+
 #### Baseline witnesses constrain candidate designs
 
 The `design_bounds` operation tests declared candidate eligibility designs against typed baseline observations.

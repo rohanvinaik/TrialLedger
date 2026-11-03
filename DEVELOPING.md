@@ -57,6 +57,22 @@ source text, scale identity, time alignment nor compliance is guessed. Reporting
 test premises -> CLI/MCP -> revised consequences. This is a development example, not independent protocol
 confirmation. Discovery and assistant guidance route these results into the continuing session's decision list.
 
+`layer2.signals` owns support standing and structural substitution for explicit mathematical witnesses;
+`numeric_evidence`, `graph_evidence` and `dependency_evidence` own finite count equations, graph constraints
+and adopted-rule prerequisites respectively. They expose `evaluate`/`check` with fixed result contracts;
+`signals_guide` exposes their input shapes and runnable examples. `service` validates the public wrappers;
+`design_bounds` consumes grouped candidate claims and derived observations. Dynamic dispatch is a fixed
+module map, never caller code. A derived interval keeps its lower/upper bounds and original mathematical
+expression; only its lower bound reaches witness support. `entail.eligibility_witness` reuses the existing
+formula machinery for both acceptance and rejection, refusing impossible profiles before using a witness.
+An accepted source-signal conflict blocks common consequences; an unresolved unattached signal remains
+context until explicitly consumed. No automatic cross-signal join is implemented.
+
+The source-to-CLI/MCP IPASS test also binds two retained marginals, verifies [49,126], tests elimination and
+common consequences, then revises exceptions/alignment/support. Independent small-world oracles check count
+bounds, temporal cycles, membership, subtype closure, rejected completions and prerequisite availability.
+See [partial evidence verification](acceptance/partial-evidence-2026-11-03.md) for the scoped receipt.
+
 This is a current nontechnical user workflow as well as a set of components: the clinician chooses a
 question for their own work, the assistant elicits/encodes confirmed premises and explains the resulting
 proof, default, proposal or unresolved item. The structured analysis is reusable beside the unchanged source
@@ -71,8 +87,8 @@ separates current implemented components from missing integration; do not infer 
 pipeline wiring or claim an integrated writer from unit tests.
 
 The public discovery request is `{"operation":"describe"}` through reason; it returns an overview. Add
-`"view":"entailment"`, `coordinates` or `corpus` for focused formats, vocabulary, result meanings and an
-example; `worked_session` and `full` retain the complete demonstration and manual. Its input descriptions and
+`"view":"entailment"`, `coordinates`, `corpus`, `design_bounds` or `signals` for focused formats, vocabulary,
+result meanings and an example; `worked_session` and `full` retain the complete demonstration and manual. Its input descriptions and
 examples must stay tied to actual validators, and its capability/result descriptions must reflect what an
 agent can invoke. User-facing surfaces should explain clinical explorations as well as operation names:
 population/temporal consequences, possible NSCLC settings, documented patterns and uncertainty, gaps and

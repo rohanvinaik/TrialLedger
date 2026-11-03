@@ -427,3 +427,86 @@ def decide(
     return Decision(
         UNDETERMINED, written, None, considered, tuple(sorted(blockers | {"undecided_by_constraints"}))
     )
+
+
+def rejected_outcome(eligible: bool | None, ineligible: bool | None) -> str:
+    """Classify the two feasible completions of a rejected profile (pure — pinned).
+
+    A resource limit is never refutation. No completion at all means an impossible profile, not a bad
+    candidate. No rejected completion refutes the reported rejected witness; no eligible completion means
+    the profile must fail the candidate. When both are feasible its unspecified attributes matter.
+    """
+    if eligible is None or ineligible is None:
+        return UNDETERMINED
+    if eligible is False and ineligible is False:
+        return UNSUPPORTED_QUERY
+    if ineligible is False:
+        return REFUTED
+    if eligible is False:
+        return ENTAILED
+    return UNDETERMINED
+
+
+def eligibility_witness(
+    assertions: tuple[ScopedAssertion, ...],
+    profile: object,
+    context: Context = EVERYONE,
+    direction: str = "accepted",
+    bound: int = MAX_ASSIGNMENTS,
+) -> Decision:
+    """Whether a candidate admits an observed accepted or rejected participant profile.
+
+    A reported profile must itself be feasible: impossible profiles are translation/source problems,
+    never evidence against a design. Feasible accepted witnesses preserve ``decide``. A rejected witness
+    instead requires a completion of
+    P AND NOT E, where E is the conjunction of this candidate's accepted scoped constraints. REFUTED says
+    no such rejected completion exists; ENTAILED says every P completion is rejected; UNDETERMINED says
+    unspecified attributes can change the decision. This never turns P into a universal exclusion.
+
+    The candidate is checked independently for inconsistency first. Its full eligibility definition is
+    used for the negative direction, including constraints disconnected from P: one of those can explain
+    rejection. Ignored/proposed/unresolved premises remain blockers. A claim that every P is eligible
+    depends on the whole declared candidate, so its proof retains every accepted constraint, rather than
+    dropping constraints toward the vacuous all-eligible definition. Bridges and exception allowances are
+    the caller's separate premises; this function does not establish them or interpret screening text.
+    """
+    if direction not in ("accepted", "rejected"):
+        raise ModelError("witness_direction_outside_vocabulary")
+    if type(bound) is not int or not 1 <= bound <= MAX_ASSIGNMENTS:
+        raise ModelError("invalid_resource_bound")
+    baseline = decide(assertions, profile, context, bound)
+    if baseline.result in (INCONSISTENT, UNSUPPORTED_QUERY):
+        return baseline
+    written = baseline.query
+    asked, _ = proposition_formula(profile)
+    intrinsic = _satisfiable([asked], bound)
+    if intrinsic is False:
+        return Decision(UNSUPPORTED_QUERY, written, None, (), ("profile_inconsistent",))
+    if intrinsic is None:
+        return Decision(UNDETERMINED, written, None, (), ("resource_bound",))
+    if direction == "accepted" or baseline.result == OUT_OF_SCOPE:
+        return baseline
+    blocked = set(baseline.blockers) - {"undecided_by_constraints", "no_constraint_mentions_query"}
+    if blocked:
+        return Decision(UNDETERMINED, written, None, baseline.proof, tuple(sorted(blocked)))
+    premises = []
+    for item in sorted(assertions, key=lambda item: item.id):
+        code, formula, _ = assertion_formula(item, context)
+        if code == "constraint":
+            premises.append((STATUS_RANK[item.status], item.id, item.status, formula))
+    eligibility = _fold("and", tuple(p[3] for p in premises))
+    eligible = _satisfiable([asked, eligibility], bound)
+    ineligible = _satisfiable([asked, _negate(eligibility)], bound)
+    result = rejected_outcome(eligible, ineligible)
+    if result == UNSUPPORTED_QUERY:
+        return Decision(result, written, None, (), ("profile_inconsistent",))
+    if eligible is None or ineligible is None:
+        return Decision(UNDETERMINED, written, None, (), ("resource_bound",))
+    if result == ENTAILED:
+        proof, status = _proof(premises, asked, bound)
+        return Decision(result, written, status, proof, ())
+    proof = tuple(p[1] for p in premises)
+    if result == REFUTED:
+        status = weakest_status(tuple(p[2] for p in premises))
+        return Decision(result, written, status, proof, ())
+    return Decision(UNDETERMINED, written, None, proof, ("undecided_by_constraints",))

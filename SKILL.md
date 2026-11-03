@@ -96,6 +96,27 @@ Use natural starting points: "Show me the trial evidence," "Does our draft rule 
 common is this exclusion in these trials?" Do not require the person to know internal names. A complete
 protocol generator is not currently callable.
 
+## Partial evidence in the decision list
+
+Discover `signals` before encoding an overlap, partition, exact summary, population subset, temporal graph,
+regimen, directional relation or adopted-rule dependency. Every signal needs nonempty source/premise support,
+its standing and resolution. Matching denominators do not establish the same universe. Rounded summaries do
+not establish exact extrema/median witnesses; a median also needs its stated convention. Retain assessed
+populations and distinguish missing, unavailable, imputed and observed measurements.
+
+Use `design_bounds.signals` to consume these results: a derived observation selects a signal and emitted
+witness, with explicit participant-predicate bindings and the same population/denominator; a candidate's
+`signal_claims` constrain that signal jointly. Keep returned count intervals visible and compare only their
+lower bound with the exception allowance. Direction `rejected` requires a rejection attributed to eligibility,
+not a generic withdrawal label: a partial profile needs a feasible rejected completion, not universal
+exclusion. `profile_inconsistent` is a translation problem in either direction.
+
+A supported input conflict blocks the design consequence. Proposed or unresolved support cannot eliminate a
+candidate. An unattached signal remains context; dependent claims/observations must explicitly reference it.
+No automatic cross-signal join, scale conversion or source-field interpretation occurs. Put each result's
+rule, sources and weakest standing on the relevant decision entry; revise premises and rerun. Derived bounds
+never become source-stated criteria in corpus frequency calculations.
+
 ## Reference sheet
 
 For an assistant-operated local run, first inspect whether this environment has local execution, network,
@@ -149,7 +170,7 @@ fields; this works for an MCP-only agent without source-file access. `examples` 
 `capability_examples` entries wrap a runnable `request` with invented premise/expected-result notes.
 
 Then use `trialledger reason --request FILE`, or MCP `reason(request)`, with an `operation` of `entailment`,
-`coordinates`, `corpus` or `design_bounds`. The same public contract is `TrialLedger.layer2.run(request)`.
+`coordinates`, `corpus`, `design_bounds` or `signals`. The same public contract is `TrialLedger.layer2.run(request)`.
 
 Ground every premise. Ask about the clinical distinction: all participants or one cohort; required versus
 permitted; prior therapy for advanced disease or any treatment; one qualifying mutation or compound; inclusive

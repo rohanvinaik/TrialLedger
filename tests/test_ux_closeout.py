@@ -27,18 +27,21 @@ def test_default_discovery_is_small_and_points_to_every_focused_guide():
         "coordinates",
         "corpus",
         "design_bounds",
+        "signals",
         "worked_session",
         "full",
     }
-    assert len(overview["availability"]["built"]) == 4
-    for operation in ("entailment", "coordinates", "corpus", "design_bounds"):
+    assert len(overview["availability"]["built"]) == 5
+    for operation in ("entailment", "coordinates", "corpus", "design_bounds", "signals"):
         focused = run(overview["discovery"][operation])["result"]
         assert run(focused["example"])["code"] == "complete"
         assert operation in focused["input_shapes"]
         assert focused["result_guide"] and focused["answer_guide"][operation]
         assert "worked_session" not in focused and "developer_building_blocks" not in focused
-        other_operations = {"entailment", "coordinates", "corpus", "design_bounds"} - {operation}
-        assert not other_operations.intersection(focused["input_shapes"])
+        other_operations = {"entailment", "coordinates", "corpus", "design_bounds", "signals"} - {operation}
+        assert not (other_operations - ({"signals"} if operation == "design_bounds" else set())).intersection(
+            focused["input_shapes"]
+        )
     assert "tagged_model" in run(overview["discovery"]["entailment"])["result"]
     assert "worked_session" in run(overview["discovery"]["worked_session"])["result"]
     assert "developer_building_blocks" in run(overview["discovery"]["full"])["result"]

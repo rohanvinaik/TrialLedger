@@ -175,8 +175,9 @@ Explicit eligibility bridges SHALL retain standing, resolution, provenance and a
 - **AND** the exact cutoff remains unresolved and WHO PS is not silently mapped to ECOG
 
 ### Requirement: Witness bounds preserve uncertainty and independence
-Only accepted positive witnesses beyond their exception allowance SHALL eliminate a candidate refuted by
-scoped entailment. Zero, silence, proposed or unresolved bindings SHALL NOT establish exclusion. Counts
+Witness-based elimination SHALL require accepted, resolved evidence with a guaranteed positive count
+beyond the exception allowance, using the appropriate accepted/rejected feasibility check. Zero, silence,
+proposed or unresolved bindings SHALL NOT establish exclusion. Counts
 SHALL NOT sum across observations. Unknown computation SHALL retain a candidate as unresolved. Derived bounds
 SHALL remain separate from source text and source-statement frequencies.
 
@@ -232,3 +233,70 @@ alternative space is declared.
 #### Scenario: No alternative space is declared
 - **WHEN** significance is requested for a derivation whose admissible alternatives are not declared
 - **THEN** no significance value is emitted and rarity is not substituted for it
+
+### Requirement: Typed partial evidence constrains declared designs
+The separate `signals` operation SHALL expose overlap, disjoint partitions, exact ordered summaries,
+population subsets, temporal intervals, regimen composition, directional relations and adopted measurement
+dependencies. Inputs SHALL retain explicit scope, source/version references, support standing and binding
+resolution. Operators SHALL NOT recognize clinical meaning from words or fetch additional evidence.
+
+#### Scenario: Aligned marginals guarantee a joint witness
+- **WHEN** two participant sets in one confirmed universe have counts 126 and 1140 out of 1217
+- **THEN** their intersection is bounded by [49,126], without independence or an exact joint count
+- **AND** missing alignment refuses witness use even when the denominators agree
+
+#### Scenario: Complement or population difference is represented
+- **WHEN** disjoint parts or an explicit subset relation bind a finite universe
+- **THEN** counts obey the total equation and typed complement/difference expressions preserve their predicates
+- **AND** missing counts are unknown bounds rather than observed zeros
+
+#### Scenario: An exact median is used
+- **WHEN** exactness and the midpoint median convention are explicitly supplied for the assessed population
+- **THEN** inclusive side-count bounds are computed, with the even-median equality hole retained in joint claim checking
+- **AND** rounded values, missing conventions or a zero assessed population provide no summary witness
+
+### Requirement: Structural signals retain their declared semantics
+Temporal constraints SHALL use exact dense-time intervals and strictness without invented time steps.
+Regimen composition SHALL preserve planned/observed stage, assigned arms, products and ingredient identities.
+Relation closure SHALL be directional, scoped and versioned; only declared subtype/instance inheritance
+SHALL compose. Associated and ingredient relations SHALL remain direct. Missing membership SHALL NOT
+become a negative fact.
+
+#### Scenario: Joint temporal claims conflict
+- **WHEN** individually feasible candidate claims form a strict zero-length cycle together
+- **THEN** their joint check conflicts and can eliminate that supported candidate
+
+#### Scenario: A product is a combination
+- **WHEN** a resolved assigned arm includes a bound product with explicit ingredients
+- **THEN** ingredient membership follows that composition without treating ingredient and product as identical
+- **AND** aggregate or observational groups do not silently become assigned arms
+
+### Requirement: Negative witnesses and prerequisites retain alternatives
+An attributed rejected profile P SHALL require a feasible P AND NOT E completion under candidate E,
+without establishing universal exclusion of P. Both witness directions SHALL refuse intrinsically impossible
+profiles. Measurement dependencies SHALL apply only to explicitly adopted rules, retain OR-of-AND
+prerequisites and guards, and distinguish observed, imputed and derived inputs.
+
+#### Scenario: Rejection has an unspecified explanation
+- **WHEN** P is rejected and E requires P together with another attribute
+- **THEN** E can remain feasible because the other attribute may explain rejection
+- **AND** a candidate that requires only P cannot accommodate that rejected witness
+
+#### Scenario: An adopted calculation lacks an input
+- **WHEN** its required observed input is missing, explicitly unavailable or supplied only as imputed
+- **THEN** those states remain distinct, and a calculation never manufactures an observed measurement
+
+### Requirement: Partial evidence reaches public design consequences
+CLI and MCP SHALL expose focused discovery and runnable examples for every signal kind. Derived observations
+SHALL select an emitted witness using explicit predicate bindings and the same population/denominator.
+Only its guaranteed lower count SHALL be compared with the exception allowance. Candidate claims per signal
+SHALL be conjoined jointly, and every elimination-dependent consequence SHALL retain weakest support.
+
+#### Scenario: A derived bound changes
+- **WHEN** a source binding becomes unresolved or the exception allowance reaches its lower bound
+- **THEN** dependent candidate elimination and the common consequence are recomputed
+- **AND** intervals remain intervals, proposals do not constrain, and source records and statement counts stay unchanged
+
+#### Scenario: Source constraints conflict
+- **WHEN** accepted input evidence is internally inconsistent
+- **THEN** a named source conflict blocks the common consequence without entailment by explosion

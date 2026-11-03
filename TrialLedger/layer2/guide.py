@@ -80,6 +80,10 @@ ENTAILMENT_DECISIONS = {
 }
 
 ENTAILMENT_BLOCKERS = {
+    "profile_inconsistent": (
+        "translation",
+        "The participant profile contradicts itself; repair it before using it as an eligibility witness.",
+    ),
     "resource_bound": (
         "not_knowable_here",
         "Too large to settle within the computation limit; narrow the question.",

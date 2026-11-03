@@ -42,53 +42,89 @@ and it provides the evidence base for a continuing design conversation.
 
 ## A design session in practice
 
-Suppose you're sketching an NSCLC trial and ask:
+> “The comparator's eligibility entry is thin. Can we work out what it actually constrains before we
+> choose our population, treatment sequence and assessments?”
 
-> “We need an age cutoff—and what about CNS metastases or prior treatment? What have other trials like
-> these used?”
+Here is an executable teaching case. Every study datum, drug identity and definition in this session is
+**invented**. Its [inputs and saved results](examples/partial-evidence/) run through the same reasoning
+operations your assistant uses with retained registry evidence.
 
-Here is how the conversation can develop. The draft choices below illustrate the workflow; they are not
-findings from a particular trial or a recommended protocol.
+**1. Assemble the evidence and settle its meaning.** The comparator reports 200 randomized participants:
+40 at ECOG 2 and 180 never smokers. Its two mutually exclusive, exhaustive cohorts include 140 in cohort A,
+with cohort B's count omitted. The exact midpoint median age is 65. An explicitly bound analysis population
+contains 160 of the 200 randomized participants. A screening log records an eligibility-attributed rejection
+of one person at ECOG 2, without their other attributes.
 
-**1. Look at the evidence.** Your assistant gathers the trials you choose, shows the search scope, and reads
-the relevant population fields and exact eligibility passages. You agree which features and trials to
-compare. TrialLedger can then count documented restrictions while keeping missing information visible.
-“Eight studies document this restriction; two don't say” is different from “this is standard practice.”
-It can also show restrictions documented more often within a selected drug class, unusual observations,
-and trial pairs that differ on one feature under the comparison you defined.
+Other structured evidence places induction's end before randomization and the first dose within seven days
+afterward; an assigned arm contains a combination product with ingredients A and B. A versioned definition
+places marker A within family F, and F within the qualifying-marker class. An adopted change-score definition
+requires observed baseline and week-12 measurements; the evidence supplies baseline and leaves week 12 unknown.
 
-**2. Make a choice precise.** You say, “Let's use adults 18 or older, ECOG 0–1, and EGFR exon 19 deletion or
-L858R.” Your assistant might ask: “If L858R occurs alongside another mutation, should that person qualify?”
-That question makes your intended eligibility decision explicit. The assistant records your agreed reading
-for the analysis.
+Your assistant retains each source address, population, assessment time and definition. You settle which
+baseline counts describe the same participants, whether the summaries are exact, and how many participants
+might be exceptions to an eligibility interpretation. In this example, the eligibility bridges allow zero
+exceptions and remain interpolated premises.
 
-**3. Check the consequences.** Ask, “Does that rule out ECOG 2?” or “Do these restrictions contradict each
-other?” Your assistant runs the reasoning tool and explains the answer with the premise that decides it.
-For supported NSCLC questions, it can also examine which treatment settings remain possible, showing where
-a result uses a default or leaves you a choice.
+**2. Test competing explanations together.** TrialLedger checks twelve declared candidate designs against
+those premises. Different pieces of partial evidence do different work:
 
-**4. Revise the design.** Add a cohort, change a restriction or reconsider a comparison. Your assistant
-updates the working choices and reruns the relevant checks. You can see what follows from the revised
-choices, what remains open and which evidence informed them. The original registry record stays intact.
+| Evidence | Computed constraint | Candidate it rules out |
+|---|---|---|
+| 40 ECOG 2 and 180 never smokers among the same 200 people | **20–40** have both attributes | Excludes every person with that joint profile |
+| Cohort A has 140; A and B partition 200 | Cohort B has **60** | Admits cohort A only |
+| Exact midpoint median age 65 among 200 assessed people | **At least 100** are 65 or older | Requires everyone to be under 65 |
+| Analysis population is an explicit 160-person subset of 200 | **40** randomized people are outside that analysis | Assumes everyone randomized was analysed |
+| Induction ends before randomization | Reversing that order contradicts the bound timeline | Randomizes before induction ends |
+| Assigned product contains A and B | Its ingredient set includes both | Represents the arm as ingredient A alone |
+| Marker A → family F → qualifying-marker class | Marker A is in the qualifying class under that edition | Places marker A outside that class |
+| Adopted change score requires two observed measurements | Explicitly unavailable week-12 observation conflicts with that definition | Uses that definition with no possible week-12 observation |
+| An ECOG 2 profile was rejected for eligibility | Performance status alone cannot explain that rejection | Defines eligibility solely as ECOG ≤2 |
 
-The session leaves you with a **decision list**: each choice you made or still face, the evidence behind it
-and what it changes, alongside the source workbook and record. Your assistant can save the list and the
-structured checks behind it, so you can revisit a decision, change it and see its consequences again.
+These results preserve their limits. Forty people outside an analysis are not thereby forty dropouts or
+ineligible participants. An unknown week-12 measurement stays unknown; the compatible candidates explicitly
+hypothesize its availability, which does not turn it into posted data. An imputed value does not satisfy this
+observed-only definition. The rejected partial profile does not establish that every ECOG 2 person is excluded.
 
-**When eligibility wording is silent, baseline participants can provide bounds.** IPASS's eligibility text
-does not give a performance-status cutoff, but its baseline includes participants at WHO PS 2. Your assistant
-can test candidate restrictions against that observation. You first settle the population, scale, assessment
-time and how many participants might be exceptions to the eligibility interpretation. Under that explicit
-bridge, positive witnesses can rule out incompatible restrictions. An interpolated bridge keeps the result
-interpolated. Observing PS 2 does not recover an exact cutoff of 2, and an unobserved category does not establish
-exclusion. The assistant adds the bound, its premise and the remaining cutoff choice to the decision list.
+**3. See what remains genuinely open.** Nine candidates are ruled out. Three remain: an adult population
+requiring a qualifying marker with ECOG 0–2; the same with ECOG 0–3; and an adult ECOG 0–2 population without
+that marker requirement. Each assumes the observed measurements needed by the adopted endpoint definition.
+The common-consequence question “Must ECOG be ≤2?” returns **undetermined**. The exact cutoff and marker
+requirement remain open; these declared candidates do not exhaust every possible real protocol.
 
-Today, your assistant reads trial text with you, makes the agreed choices explicit and runs the checks;
-TrialLedger computes the supported comparisons and logical consequences. The complete automated trial
-writer is designed and partly built. Automatic conversion of trial text into reasoning inputs and complete
-protocol writing are not yet integrated. Its working tools are available now for your own design
-and comparison work. See the [full design](openspec/changes/add-design-synthesis/design.md) and
-[theory](docs/THEORY_OF_THE_CASE.md) for the component map.
+The assistant carries those open choices into the decision list, keeping them separate from what the
+source constraints have settled.
+
+**4. Make a choice and check its consequence.** You choose adults with ECOG 0–2 for your draft. A separate
+[brief check](examples/partial-evidence/draft-request.json) returns **refuted** for ECOG 3, naming your
+performance-status premise. Widen that premise to 0–3 and rerun: the range allows ECOG 3 without requiring it.
+That checks the encoded restriction; other eligibility requirements remain separate.
+
+**5. Revise the evidence, too.** If the screening rejection cannot be attributed to eligibility, its bridge
+becomes unresolved and the performance-status-only candidate is retained as unresolved. If the joint
+baseline bridge permits 20 exceptions, its lower bound no longer guarantees an eligible joint-profile witness;
+19 exceptions still leave one. The assistant reruns the checks and updates the decision list, keeping the
+original evidence intact.
+
+At handoff, the updated **decision list** makes the human choices and computed consequences visible:
+
+| Decision | Evidence and computed consequence | Status |
+|---|---|---|
+| Performance-status range | Comparator witnesses include ECOG 2; your selected 0–2 restriction excludes ECOG 3. Widening it to 0–3 allows 3. | **Chosen by you: 0–2**, with the checked brief retained |
+| Marker selection | The class relation is resolved; surviving designs differ on requiring the marker, and the partial rejection does not settle it. | **Open:** should the new population require it? |
+| Endpoint assessments | The adopted definition needs observed baseline and week-12 inputs. Week 12 remains unknown; imputation alone does not satisfy that definition. | **Open:** settle the assessment plan or explicitly change the definition |
+
+The assistant retains the workbook, decision list and request/result pairs separately. Revising a choice
+updates the checks and list, while the source record remains intact.
+
+The real IPASS example follows the same discipline: its 126 WHO PS 2 participants and 1,140 never smokers among
+1,217 baseline participants bound their overlap to **49–126** only under a confirmed common-universe binding.
+The eligibility interpretation needs its own bridge; WHO PS retains its own scale, and an observed category
+does not recover an exact eligibility cutoff.
+
+Today, your assistant reads and structures evidence with you; TrialLedger computes these bounds,
+compatibility checks and consequences. Automatic conversion of clinical text into reasoning inputs and
+complete protocol writing remain unintegrated. See the [full design](openspec/changes/add-design-synthesis/design.md)
+and [theory](docs/THEORY_OF_THE_CASE.md) for the component map.
 
 ## What you receive
 
@@ -182,6 +218,12 @@ Use `{"operation":"describe","view":"design_bounds"}` for baseline witness bound
 observations, explicit eligibility bridges and candidate designs, with a runnable invented example. Candidate
 eliminations feed a common-consequence query through the existing scoped solver. The operation does not read
 tables automatically, reconstruct a complete protocol or change source-text frequency counts.
+
+Use `{"operation":"describe","view":"signals"}` for the eight partial-evidence contracts and a
+runnable invented request per kind. `signals` evaluates those supplied inputs independently. To constrain a
+design, include them in `design_bounds.signals`, select a derived observation with explicit predicate bindings,
+or attach typed `signal_claims` to a candidate. Claims against one signal are checked together. Relations,
+regimens and temporal graphs keep their own scopes; the operation does not invent joins between them.
 
 Entailment checks supplied scoped premises; coordinates uses the explicit NSCLC domain; corpus computes
 statement rates with silence bounds, class associations, rarity, occupancy and one-feature comparisons.

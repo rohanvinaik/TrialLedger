@@ -8,9 +8,10 @@ observations never add counts. No result claims the declared candidate family ex
 from __future__ import annotations
 
 import dataclasses
-from typing import Any, TypedDict
+from typing import Any, NotRequired, TypedDict
 
 from TrialLedger.layer2 import entail
+from TrialLedger.layer2 import signals as signal_engine
 from TrialLedger.layer2.assertions import ScopedAssertion
 
 
@@ -26,6 +27,10 @@ class Observation:
     resolution: str
     max_exceptions: int
     basis: tuple[str, ...]
+    upper: int | None = None
+    direction: str = "accepted"
+    blockers: tuple[str, ...] = ()
+    derivation: dict | None = None
 
 
 class WitnessResult(TypedDict):
@@ -35,6 +40,9 @@ class WitnessResult(TypedDict):
     status: str
     basis: tuple[str, ...]
     decision: dict[str, Any]
+    bounds: NotRequired[dict]
+    direction: NotRequired[str]
+    derivation: NotRequired[dict]
 
 
 class CandidateResult(TypedDict):
@@ -42,6 +50,7 @@ class CandidateResult(TypedDict):
     state: str
     observations: list[WitnessResult]
     query_decision: dict[str, Any]
+    signal_checks: NotRequired[list[dict]]
 
 
 def witness_support(count: int, exceptions: int, status: str, resolution: str) -> str:
@@ -118,6 +127,9 @@ def bound_designs(
     query: object,
     context: entail.Context,
     bound: int,
+    signals: list[signal_engine.Signal] | None = None,
+    claims: dict[str, list[dict]] | None = None,
+    computed_signals: list[dict] | None = None,
 ) -> dict:
     """Compose scoped participant proofs, witness eliminations and the surviving design consequences.
 
@@ -126,12 +138,24 @@ def bound_designs(
     """
     rows: list[CandidateResult] = []
     elimination_statuses: list[str] = []
+    signal_map = {signal.id: signal for signal in signals or []}
+    source_results = (
+        computed_signals
+        if computed_signals is not None
+        else [signal_engine.evaluate(signal) for signal in signals or []]
+    )
     for identity, assertions in candidates:
         evidence: list[WitnessResult] = []
         for observation in observations:
-            decision = entail.decide(assertions, observation.body, observation.context, bound)
-            support = witness_support(
-                observation.count, observation.max_exceptions, observation.status, observation.resolution
+            decision = entail.eligibility_witness(
+                assertions, observation.body, observation.context, observation.direction, bound
+            )
+            support = (
+                "binding_unresolved"
+                if observation.blockers
+                else witness_support(
+                    observation.count, observation.max_exceptions, observation.status, observation.resolution
+                )
             )
             verdict = witness_verdict(support, decision.result, list(decision.blockers))
             status = (
@@ -149,7 +173,35 @@ def bound_designs(
                     "decision": dataclasses.asdict(decision),
                 }
             )
+            if observation.upper is not None or observation.derivation is not None:
+                evidence[-1]["bounds"] = {
+                    "lower": observation.derivation["lower"] if observation.derivation else observation.count,
+                    "upper": observation.upper,
+                }
+            if observation.direction != "accepted":
+                evidence[-1]["direction"] = observation.direction
+            if observation.derivation is not None:
+                evidence[-1]["derivation"] = observation.derivation
+            if observation.blockers:
+                evidence[-1]["decision"]["blockers"] = tuple(
+                    sorted(set(decision.blockers) | set(observation.blockers))
+                )
         state = candidate_state([row["state"] for row in evidence])
+        grouped: dict[str, list[dict]] = {}
+        for claim in (claims or {}).get(identity, []):
+            if claim["signal"] not in signal_map:
+                raise ValueError("unknown_candidate_signal")
+            grouped.setdefault(claim["signal"], []).append(claim["claim"])
+        checks = [signal_engine.evaluate(signal_map[ref], additions) for ref, additions in grouped.items()]
+        signal_states = [
+            "ruled_out"
+            if check["code"] == "conflict"
+            else "unresolved"
+            if check["code"] == "unresolved"
+            else "not_ruled_out"
+            for check in checks
+        ]
+        state = candidate_state([state, *signal_states])
         consequence = entail.decide(assertions, query, context, bound)
         # Even when observations have no witnesses, contradictory candidate criteria remain visible.
         if consequence.result == "INCONSISTENT":
@@ -162,7 +214,12 @@ def bound_designs(
         if state in ("ruled_out", "inconsistent"):
             reasons = [row["status"] for row in evidence if row["state"] == state]
             elimination_statuses.append(
-                entail.weakest_status(tuple(reasons or [consequence.status or "known"]))
+                entail.weakest_status(
+                    tuple(
+                        reasons + [check["status"] for check in checks if check["code"] == "conflict"]
+                        or [consequence.status or "known"]
+                    )
+                )
             )
         rows.append(
             {
@@ -172,17 +229,32 @@ def bound_designs(
                 "query_decision": dataclasses.asdict(consequence),
             }
         )
+        if signals:
+            rows[-1]["signal_checks"] = checks
     remaining = [row for row in rows if row["state"] not in ("ruled_out", "inconsistent")]
     result = common_result(
         [row["state"] for row in remaining], [row["query_decision"]["result"] for row in remaining]
     )
     statuses = elimination_statuses + [row["query_decision"]["status"] or "known" for row in remaining]
-    return {
+    conflicts = [result for result in source_results if result["code"] == "conflict"]
+    if conflicts:
+        result = "CONFLICT"
+        statuses.extend(result["status"] for result in conflicts)
+    consequence_payload: dict[str, Any] = {
+        "result": result,
+        "status": entail.weakest_status(tuple(statuses)) if result != "UNDETERMINED" else None,
+        "basis": "All remaining declared candidate designs; includes the support of eliminations.",
+    }
+    response: dict[str, Any] = {
         "candidates": rows,
         "remaining": [row["id"] for row in remaining],
-        "consequence": {
-            "result": result,
-            "status": entail.weakest_status(tuple(statuses)) if result != "UNDETERMINED" else None,
-            "basis": "All remaining declared candidate designs; includes the support of eliminations.",
-        },
+        "consequence": consequence_payload,
     }
+    if signals:
+        response["signals"] = source_results
+    if conflicts:
+        consequence_payload["basis"] = (
+            "Input signal conflict; not proof that every real protocol is impossible."
+        )
+        consequence_payload["blockers"] = ["signal_conflict:" + item["id"] for item in conflicts]
+    return response
