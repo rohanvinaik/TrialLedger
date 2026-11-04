@@ -580,6 +580,23 @@ constraints; two labels or two uncompleted checks do not suffice. A selected opt
 chosen with open checks. Session revisions freshly replay both supplied snapshots and keep full child
 requests/results and consequence diffs. Retain these returned objects explicitly through the CLI/MCP delivery layer or save request/result pairs beside the human brief. Pure computation writes no files; retention authenticates no clinical confirmation and generates no complete protocol.
 
+Use `answer_diff` to distinguish six independent axes: the represented **question** (typed query/target),
+computed **answer**, actual deciding **support**, caller **wording**, attributed **origin**, and evidence
+**context**. A sharper profile returning UNDETERMINED again is `question_changed`, with an unchanged verdict;
+it is not evidence that the same clinical question acquired a new answer. A wording-only change is
+`wording_changed` and certifies no equivalence between English labels. Deciding IDs resolve to versioned
+typed payloads, rules, scopes and standing: a 90-to-180-day rule change remains `support_changed` for a
+60-day profile still refuted by both rules. This is a simulated arithmetic example, not a clinical washout
+recommendation. Unrelated input changes must not contaminate that deciding support. Attribution remains
+separate, and changed evidence context does not add a logical premise.
+
+Each row retains all changed axes even when its primary code selects one. Read the verdict/content delta
+separately from a changed question. `input_only` means the replay inputs changed without changing the
+projected question, answer, support, wording, origin or context; `projection_unknown` is not a comparable
+clinical finding. The complete canonical `diff` remains the audit of object changes alongside this
+consequence comparison. Neither exact representation comparison nor caller wording establishes clinical
+semantic equivalence or authenticates a person's confirmation.
+
 Session `work.expanded_items` measures copied structure diagnostically. Its legacy `max_expanded_items`
 limit is nonoperative; complete old/new source replay remains required. Genuine aggregate solver-work,
 analysis-count and output-byte limits still refuse by named codes. Do not trim a source, reuse a stale answer
@@ -694,3 +711,27 @@ openspec/README.md.
 For development work, follow the [model-operated clinical workflow check](../DEVELOPING.md#model-operated-clinical-workflow-check)
 after each substantial implementation or documentation-focused change. It is outside CI and is not a
 required tour for a person requesting clinical reference sheets.
+
+## Source context and residual requirements
+
+Optional design-session decision evidence uses exact source anchors and quote/reading/gap roles, separately
+from premises. Exact text is known as copied text; notes and declared scope remain caller attribution with
+proposed standing. A gap note never establishes absence. A confirmed clinical reading or adoption needs its
+own admitted premise. Evidence context alone cannot narrow eligibility or join populations.
+
+`explanations.conditions` distinguishes necessary_if_query (if this profile fits, this holds) from
+required_by_criteria (criteria-wide, not established by this partial profile). Both retain body, scope,
+standing, warrant and query-only profile_check. Neither states actual absence. Preserve AnyOf as a disjunction;
+no one alternative becomes required. Coverage is bounded candidate discovery, not complete screening.
+
+`reason_result` / `reason-result` part decision_view supplies each caller question, represented profile,
+computed result, full deciding premise display, source context and open items together. Canonical parts remain
+unchanged. Display uses typed structure; a predicate label is caller-declared vocabulary, not certified prose.
+Unsupported displays retain named limitations and exact references. Caller questions/option labels are
+visibly separate from computation. Canonical string warrants retain their identity; warrant_query supplies
+an additional structured display.
+
+Compact reasoning defaults to 24,576 bytes; max_bytes/--max-bytes supports 2,048–65,536, with counts and
+canonical continuation instead of full before/after copies. Full replies remain full. Export requires a new
+output parent and publishes into its review child. Deliver returned paths. Requirements lists every displayed
+residual separately; baseline unit/statistic cells show copied scalars with separate source addresses.

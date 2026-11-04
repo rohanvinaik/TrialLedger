@@ -1,0 +1,1499 @@
+{
+  "operation": "design_session",
+  "session": {
+    "schema_version": 1,
+    "id": "lupus-cohort-design",
+    "revision": "renal-only",
+    "parent_digest": null,
+    "target": {
+      "kind": "new_trial",
+      "ref": "simulated-lupus-draft",
+      "scope": {
+        "study": "simulated-lupus-draft",
+        "population": "general",
+        "arm": "all",
+        "time": "entry",
+        "version": "v1"
+      }
+    },
+    "sources": [
+      {
+        "id": "NCT06839976",
+        "study": {
+          "protocolSection": {
+            "identificationModule": {
+              "nctId": "NCT06839976",
+              "orgStudyIdInfo": {
+                "id": "24-022668"
+              },
+              "organization": {
+                "fullName": "Children's Hospital of Philadelphia",
+                "class": "OTHER"
+              },
+              "briefTitle": "CD19-Directed Chimeric Antigen Receptor Autologous T Cells (CART19) for Lupus",
+              "officialTitle": "CD19-Directed Chimeric Antigen Receptor Autologous T Cells (CART19) for Adolescents and Young Adults With Systemic Lupus Erythematosus (SLE)"
+            },
+            "statusModule": {
+              "statusVerifiedDate": "2026-09",
+              "overallStatus": "RECRUITING",
+              "expandedAccessInfo": {
+                "hasExpandedAccess": false
+              },
+              "startDateStruct": {
+                "date": "2025-05-06",
+                "type": "ACTUAL"
+              },
+              "primaryCompletionDateStruct": {
+                "date": "2030-02-28",
+                "type": "ESTIMATED"
+              },
+              "completionDateStruct": {
+                "date": "2030-02-28",
+                "type": "ESTIMATED"
+              },
+              "studyFirstSubmitDate": "2025-02-12",
+              "studyFirstSubmitQcDate": "2025-02-17",
+              "studyFirstPostDateStruct": {
+                "date": "2025-02-21",
+                "type": "ACTUAL"
+              },
+              "lastUpdateSubmitDate": "2026-09-21",
+              "lastUpdatePostDateStruct": {
+                "date": "2026-09-24",
+                "type": "ACTUAL"
+              }
+            },
+            "sponsorCollaboratorsModule": {
+              "responsibleParty": {
+                "type": "SPONSOR"
+              },
+              "leadSponsor": {
+                "name": "Children's Hospital of Philadelphia",
+                "class": "OTHER"
+              }
+            },
+            "oversightModule": {
+              "oversightHasDmc": true,
+              "isFdaRegulatedDrug": true,
+              "isFdaRegulatedDevice": false
+            },
+            "descriptionModule": {
+              "briefSummary": "This is a single-center, single-arm, open-label phase 1/2 study of CART19 in children and young adults with refractory Systemic lupus erythematosus (SLE), including both patients diagnosed with lupus nephritis (LN) and patients with non-renal Systemic lupus erythematosus (SLE).\n\nPhase 1 will evaluate the safety of CART19 in 6-12 patients with Systemic lupus erythematosus (SLE). There is no planned dose escalation, but a dose de-escalation will be made based on the incidence of Dose Limiting Toxicities. Phase 2 will evaluate the efficacy and further evaluate the safety of CART19 in this population.",
+              "detailedDescription": "Lupus disease activity is associated with increased numbers of activated naïve B cells and polyclonal expansion of antibody secreting cells, indicating a central role for B cells in the pathogenesis of SLE. While traditional anti-CD19 antibody therapies have been utilized with varying success in the treatment of Systemic lupus erythematosus (SLE), CD19 directed cellular therapies have emerged as an attractive therapeutic option that may lead to immunosuppression-free remission in this population given the ability of CD19 directed CAR T cells to more deeply deplete the B cell compartment. Previous clinical experience utilizing CD19 directed CAR T cells in patients diagnosed with Systemic lupus erythematosus (SLE) have exceeded any other Systemic lupus erythematosus (SLE) therapeutic available; although, those clinical trials have treated a limited number of subjects. During this trial the test article will be CART19 cells transduced with a lentiviral vector to express anti-CD19 scFv:41-BB:TCRζ, administered by IV injection."
+            },
+            "conditionsModule": {
+              "conditions": [
+                "SLE",
+                "Systemic Lupus Erythematosus (SLE)",
+                "CAR T Cell",
+                "CART19",
+                "Cell Therapy",
+                "Lupus",
+                "Lupus Nephritis (LN)"
+              ]
+            },
+            "designModule": {
+              "studyType": "INTERVENTIONAL",
+              "phases": [
+                "PHASE1",
+                "PHASE2"
+              ],
+              "designInfo": {
+                "allocation": "NA",
+                "interventionModel": "SINGLE_GROUP",
+                "primaryPurpose": "TREATMENT",
+                "maskingInfo": {
+                  "masking": "NONE"
+                }
+              },
+              "enrollmentInfo": {
+                "count": 24,
+                "type": "ESTIMATED"
+              }
+            },
+            "armsInterventionsModule": {
+              "armGroups": [
+                {
+                  "label": "CART19",
+                  "type": "EXPERIMENTAL",
+                  "description": "Participants will receive the study product. CART19 cells transduced with a lentiviral vector to express anti-CD19 scFv:41-BB:TCRζ, administered by IV injection.",
+                  "interventionNames": [
+                    "Biological: CART19"
+                  ]
+                }
+              ],
+              "interventions": [
+                {
+                  "type": "BIOLOGICAL",
+                  "name": "CART19",
+                  "description": "CART19 cells transduced with a lentiviral vector to express anti-CD19 scFv:41-BB:TCRζ, administered by IV injection.",
+                  "armGroupLabels": [
+                    "CART19"
+                  ]
+                }
+              ]
+            },
+            "outcomesModule": {
+              "primaryOutcomes": [
+                {
+                  "measure": "Frequency of the dose limiting toxicities of CART19",
+                  "description": "Frequency of the dose limiting toxicities of CART19",
+                  "timeFrame": "up to 24 months post infusion"
+                }
+              ],
+              "secondaryOutcomes": [
+                {
+                  "measure": "Rate of childhood SLE Clinical Remission off steroids (cCR-0) within 12 months",
+                  "timeFrame": "12 months post treatment"
+                },
+                {
+                  "measure": "2-year overall survival rate",
+                  "timeFrame": "24 months post infusion"
+                },
+                {
+                  "measure": "2-year flare free survival rate",
+                  "timeFrame": "up to 24 months post infusion"
+                },
+                {
+                  "measure": "Feasibility of manufacturing CART19 for participants with SLE",
+                  "description": "Feasibility of manufacturing CART19 measured by the percentage of manufactured products that do not meet release criteria for vector transduction efficiency, T cell product purity, viability, or sterility",
+                  "timeFrame": "up to 24 months post infusion"
+                },
+                {
+                  "measure": "Proportion of patients achieving a complete renal response",
+                  "description": "renal response will be measured by urine protein/creatinine ratio of \\< 0.5, normal renal function (serum creatinine ≤ULN) without worsening of baseline serum creatinine by more than 15%, and inactive urinary sediment (\\<10 red blood cells (RBCs)/high-power field (HPF) without RBC casts)",
+                  "timeFrame": "up to 24 months post infusion"
+                },
+                {
+                  "measure": "Proportion of patients achieving a partial renal response",
+                  "description": "partial renal response will be measured by urine protein/creatinine ratio of \\< 0.5, normal renal function (serum creatinine ≤ULN) without worsening of baseline serum creatinine by more than 15%, and inactive urinary sediment (\\<10 red blood cells (RBCs)/high-power field (HPF) without RBC casts)",
+                  "timeFrame": "up to 24 months post infusion"
+                },
+                {
+                  "measure": "Rate of CART19 expansion, persistence or B cell aplasia",
+                  "description": "Rate of CART19 expansion, persistence and B cell aplasia will be measured by qPCR and flow cytometry",
+                  "timeFrame": "up to 24 months post infusion"
+                },
+                {
+                  "measure": "Survival of CART19 cells",
+                  "description": "CART19 cell survival will be measured by utilizing polymerase chain reaction analysis of whole blood to detect and quantify number of cells over time.",
+                  "timeFrame": "up to 24 months post infusion"
+                },
+                {
+                  "measure": "Elevations in cytokines in serum",
+                  "description": "to assess bioreactivity and biological response following CART cell infusion, systemic soluble immune and inflammatory factors will be measured by assessing any change in elevations in cytokines in serum prior to infusion and after.",
+                  "timeFrame": "up to 24 months post infusion"
+                }
+              ]
+            },
+            "eligibilityModule": {
+              "eligibilityCriteria": "Inclusion Criteria:\n\n1. Signed informed consent form must be obtained prior to any study procedure. Labs or other procedures obtained during routine clinical care may be used for eligibility if obtained within the protocol required window.\n2. Patient age must be 10-29 years, inclusive, at time of enrollment.\n3. Meeting ACR/EULAR Classification Criteria for SLE\n4. ANA positive \\> 1:80 and/or double-stranded DNA (dsDNA) positive\n5. Active (refractory) disease, defined as follows:\n\n   a. Lupus nephritis subjects must meet both the following criteria: i. ISN/RPS active nephritis Class III/IV +/- V lupus nephritis diagnosed by biopsy within past 12 months.\n\nii. Persistent and clinically significant: ≥2 measurements with urine protein with either of the following:\n\n1. \\> 1mg/mg creatinine\n2. \\> 0.5 mg/mg creatinine associated with renal dysfunction or low albumin.\n3. \\> 0.5 mg/mg creatinine in a patient with rising proteinuria after prior complete renal response b. Non-renal SLE subjects must meet either of the following criteria: i. SLEDAI-2K ≥ 8 and clinical SLEDAI-2K ≥ 6 ii. Inability to decrease prednisone ≤7.5mg/day or 0.15mg/kg/day, whichever is lower, due to active disease.\n\n6\\. Patients must have had at least 3 months of cumulative conventional therapy defined as:\n\n1. Conventional induction immunosuppressive agent(s) (e.g., mycophenolate mofetil, cyclophosphamide), and\n2. At least one additional therapy:\n\ni. B-cell directed biologic therapy (e.g., rituximab, belimumab, ofatumumab, obinutuzumab) ii. Calcineurin inhibitor (e.g., tacrolimus, cyclosporine, voclosporin) iii. Other immunosuppressive medication for SLE (e.g., anifrolumab, abatacept, JAK inhibitor) 7. Adequate organ function status\n\n1. Renal: eGFR must be ≥30 and subject cannot be receiving dialysis.\n2. Hepatic: Transaminases \\< 5x upper limit of normal and serum conjugated (Direct) bilirubin \\<1.5x upper limit of normal unless attributable to SLE. If attributable to autoimmune disease, Child-Pugh score must be class A or class B. Child-Pugh score cannot be class C.\n3. Cardiac: Shortening fraction \\> 28%, left ventricular ejection fraction \\>45%, and no evidence of severe pulmonary hypertension\n4. Pulmonary: Must have a minimum level of pulmonary reserve defined as ≤ Grade 1 dyspnea and \\<Grade 3 hypoxia; DLCO ≥40% (corrected for anemia and/or VA volume if necessary) if PFTs are clinically appropriate as determined by the treating investigator.\n\n   8\\. Subjects of reproductive potential must agree to use acceptable birth control methods.\n\nExclusion Criteria:\n\n1. Active, untreated infections\n2. HIV infection\n3. Active Hepatitis B\n\n   a. Patients must have a negative hepatitis B surface antigen to be enrolled on this study.\n4. Active Hepatitis C\n5. Patients with severe neuropsychiatric lupus or neurologic manifestations of SLE (e.g. stroke, seizure, psychosis, demyelinating syndromes, organic brain syndrome, or lupus related headaches)\n6. Monogenic lupus (known)\n7. Previous autologous or allogenic stem cell transplant\n8. Previous kidney transplant\n9. History of seizure disorder\n10. Patients who are on anti-epileptic therapy\n11. Participation in a clinical trial in which the patient receives an investigational drug within a time period equal or less than 5.5 half-lives of the investigational agent prior to study enrollment.\n12. Subjects who are unwilling or unable to discontinue immunosuppressive medications at the times of CART19 infusion will be excluded from the trial\n13. Any comorbidity that in the opinion of the investigators would jeopardize the ability of the subject to tolerate therapy.\n14. Pregnant patients. All participants of childbearing potential must have negative pregnancy test.\n15. Lactating participants who want to continue breastfeeding.\n16. Patients who are unwilling to consent to LTFU",
+              "healthyVolunteers": false,
+              "sex": "ALL",
+              "minimumAge": "10 Years",
+              "maximumAge": "29 Years",
+              "stdAges": [
+                "CHILD",
+                "ADULT"
+              ]
+            },
+            "contactsLocationsModule": {
+              "centralContacts": [
+                {
+                  "name": "Caitlin Elgarten, MD",
+                  "role": "CONTACT",
+                  "phone": "267-425-7964",
+                  "email": "elgartenc@chop.edu"
+                },
+                {
+                  "name": "Melissa Varghese",
+                  "role": "CONTACT",
+                  "phone": "845-553-5358",
+                  "email": "verghesem@chop.edu"
+                }
+              ],
+              "overallOfficials": [
+                {
+                  "name": "Caitlin Elgarten, MD",
+                  "affiliation": "Children's Hospital of Philadelphia",
+                  "role": "PRINCIPAL_INVESTIGATOR"
+                }
+              ],
+              "locations": [
+                {
+                  "facility": "Children's Hospital of Philadelphia",
+                  "status": "RECRUITING",
+                  "city": "Philadelphia",
+                  "state": "Pennsylvania",
+                  "zip": "19104",
+                  "country": "United States",
+                  "contacts": [
+                    {
+                      "name": "Caitlin Elgarten, MD",
+                      "role": "CONTACT",
+                      "phone": "267-425-7964",
+                      "email": "elgartenc@chop.edu"
+                    },
+                    {
+                      "name": "Melissa Varghese",
+                      "role": "CONTACT",
+                      "phone": "845-553-5358",
+                      "email": "varghesem@chop.edu"
+                    },
+                    {
+                      "name": "Caitlin Elgarten, MD",
+                      "role": "PRINCIPAL_INVESTIGATOR"
+                    }
+                  ],
+                  "geoPoint": {
+                    "lat": 39.95238,
+                    "lon": -75.16362
+                  }
+                }
+              ]
+            },
+            "ipdSharingStatementModule": {
+              "ipdSharing": "NO"
+            }
+          },
+          "derivedSection": {
+            "miscInfoModule": {
+              "versionHolder": "2026-11-03"
+            },
+            "conditionBrowseModule": {
+              "meshes": [
+                {
+                  "id": "D008180",
+                  "term": "Lupus Erythematosus, Systemic"
+                },
+                {
+                  "id": "D008181",
+                  "term": "Lupus Nephritis"
+                }
+              ],
+              "ancestors": [
+                {
+                  "id": "D003240",
+                  "term": "Connective Tissue Diseases"
+                },
+                {
+                  "id": "D017437",
+                  "term": "Skin and Connective Tissue Diseases"
+                },
+                {
+                  "id": "D001327",
+                  "term": "Autoimmune Diseases"
+                },
+                {
+                  "id": "D007154",
+                  "term": "Immune System Diseases"
+                },
+                {
+                  "id": "D005921",
+                  "term": "Glomerulonephritis"
+                },
+                {
+                  "id": "D009393",
+                  "term": "Nephritis"
+                },
+                {
+                  "id": "D007674",
+                  "term": "Kidney Diseases"
+                },
+                {
+                  "id": "D014570",
+                  "term": "Urologic Diseases"
+                },
+                {
+                  "id": "D052776",
+                  "term": "Female Urogenital Diseases"
+                },
+                {
+                  "id": "D005261",
+                  "term": "Female Urogenital Diseases and Pregnancy Complications"
+                },
+                {
+                  "id": "D000091642",
+                  "term": "Urogenital Diseases"
+                },
+                {
+                  "id": "D052801",
+                  "term": "Male Urogenital Diseases"
+                }
+              ]
+            },
+            "interventionBrowseModule": {
+              "meshes": [
+                {
+                  "id": "C000598123",
+                  "term": "CTL019 chimeric antigen receptor"
+                }
+              ]
+            }
+          },
+          "hasResults": false
+        },
+        "expected_digest": "a9530baafb764228b44c0bb584d8f51a86c892e3d018578cf195eaae46e45a8c"
+      },
+      {
+        "id": "NCT05846347",
+        "study": {
+          "protocolSection": {
+            "identificationModule": {
+              "nctId": "NCT05846347",
+              "orgStudyIdInfo": {
+                "id": "GC012F-614"
+              },
+              "organization": {
+                "fullName": "Zhejiang University",
+                "class": "OTHER"
+              },
+              "briefTitle": "Phase I Clinical Study of GC012F Injection in Treatment of Refractory Systemic Lupus Erythematosus",
+              "officialTitle": "Phase I Clinical Study of GC012F Injection in Treatment of Refractory Systemic Lupus Erythematosus"
+            },
+            "statusModule": {
+              "statusVerifiedDate": "2023-05",
+              "overallStatus": "UNKNOWN",
+              "lastKnownStatus": "RECRUITING",
+              "expandedAccessInfo": {
+                "hasExpandedAccess": false
+              },
+              "startDateStruct": {
+                "date": "2023-05-15",
+                "type": "ESTIMATED"
+              },
+              "primaryCompletionDateStruct": {
+                "date": "2023-10-19",
+                "type": "ESTIMATED"
+              },
+              "completionDateStruct": {
+                "date": "2025-04-19",
+                "type": "ESTIMATED"
+              },
+              "studyFirstSubmitDate": "2023-04-26",
+              "studyFirstSubmitQcDate": "2023-04-26",
+              "studyFirstPostDateStruct": {
+                "date": "2023-05-06",
+                "type": "ACTUAL"
+              },
+              "lastUpdateSubmitDate": "2023-05-10",
+              "lastUpdatePostDateStruct": {
+                "date": "2023-05-11",
+                "type": "ACTUAL"
+              }
+            },
+            "sponsorCollaboratorsModule": {
+              "responsibleParty": {
+                "type": "PRINCIPAL_INVESTIGATOR",
+                "investigatorFullName": "He Huang",
+                "investigatorTitle": "Professor",
+                "investigatorAffiliation": "Zhejiang University"
+              },
+              "leadSponsor": {
+                "name": "Zhejiang University",
+                "class": "OTHER"
+              },
+              "collaborators": [
+                {
+                  "name": "Gracell Biotechnologies (Shanghai) Co., Ltd.",
+                  "class": "INDUSTRY"
+                }
+              ]
+            },
+            "oversightModule": {
+              "oversightHasDmc": false,
+              "isFdaRegulatedDrug": false,
+              "isFdaRegulatedDevice": false
+            },
+            "descriptionModule": {
+              "briefSummary": "This is a phase I, single arm, non-randomized, open label, treatment study trial to determine the recommended phase II dose of GC012F injection (CD19-BCMA CAR-T cells) in patients with refractory systemic lupus erythematosus.",
+              "detailedDescription": "Systemic lupus erythematosus (SLE) is a kind of autoimmune diseases mediated by autoantibody-forming immune complexes, which involving multiple systems and organs.\n\nAutoreactive B cells can self-activate and differentiate into plasma cells releasing large amounts of autoantibodies, while they can also present their own antigens to autoimmune T cells, thus activating T cells and promoting the release of inflammatory factors.\n\nTraditional SLE treatment aims at long-term remission, while, CD19- BCMA CAR-T cells can theoretically completely deplete abnormal antibody-producing B cells, allowing immune rebuilding and restoring the patient's normal immune function, achieving drug-free survival, which fully reflects the application prospects of CAR-T therapy in SLE."
+            },
+            "conditionsModule": {
+              "conditions": [
+                "CAR-T"
+              ]
+            },
+            "designModule": {
+              "studyType": "INTERVENTIONAL",
+              "phases": [
+                "PHASE1"
+              ],
+              "designInfo": {
+                "allocation": "NA",
+                "interventionModel": "SINGLE_GROUP",
+                "primaryPurpose": "TREATMENT",
+                "maskingInfo": {
+                  "masking": "NONE"
+                }
+              },
+              "enrollmentInfo": {
+                "count": 15,
+                "type": "ESTIMATED"
+              }
+            },
+            "armsInterventionsModule": {
+              "armGroups": [
+                {
+                  "label": "GC012F injection (CD19-BCMA CAR-T cells)",
+                  "type": "EXPERIMENTAL",
+                  "description": "Dose level： DL1：1±20%×10\\^5/kg, DL2：2±20%×10\\^5/kg DL3：3±20%×10\\^5/kg",
+                  "interventionNames": [
+                    "Drug: GC012F injection"
+                  ]
+                }
+              ],
+              "interventions": [
+                {
+                  "type": "DRUG",
+                  "name": "GC012F injection",
+                  "description": "Each subject will receive GC012F injection (CD19-BCMA CAR-T cells) once by intravenous infusion on Day 0.",
+                  "armGroupLabels": [
+                    "GC012F injection (CD19-BCMA CAR-T cells)"
+                  ],
+                  "otherNames": [
+                    "CD19-BCMA CAR-T cells"
+                  ]
+                }
+              ]
+            },
+            "outcomesModule": {
+              "primaryOutcomes": [
+                {
+                  "measure": "The proportion of subjects with DLT",
+                  "description": "DLT definition is dose-limiting toxicity",
+                  "timeFrame": "Within 28 days after GC012F injection infusion"
+                },
+                {
+                  "measure": "The proportion of subjects with adverse events",
+                  "description": "All adverse events were evaluated according to NCI-CTCAE v5.0 criteria",
+                  "timeFrame": "Within 12 weeks after GC012F injection infusion"
+                }
+              ],
+              "secondaryOutcomes": [
+                {
+                  "measure": "Proportion of subjects achieving SRI-4",
+                  "description": "SELEAN-SLEDAI，BILAG，PGA",
+                  "timeFrame": "4, 8, 12 and 24 weeks after GC012F injection infusion"
+                },
+                {
+                  "measure": "Number of CAR-T cells and CAR gene copies in subjects'blood and bone marrow (if applicable)",
+                  "description": "Test method: flow cytometry and qPCR",
+                  "timeFrame": "After GC012F injection infusion [day 4, 7, 10, 14 and week 4, 8, 12, 24]"
+                }
+              ]
+            },
+            "eligibilityModule": {
+              "eligibilityCriteria": "Inclusion Criteria:\n\n1. 18-70 years old;\n2. Total score ≥ 10 on the EULAR/ACR 2019 SLE classification criteria;\n3. SELENA-SLEDAI≥8;\n4. Patients with CD19+ B-cell;\n5. Active organ involvement;\n6. Hemoglobin≥85 g/L;\n7. WBC≥2.5×10\\^9/L\n8. NEUT≥1×10\\^9/L;\n9. PLT≥50×10\\^9/L;\n10. AST/ALT below 2 times the upper limit of normal; Creatinine clearance ≥30 mL/min; blood bilirubin ≤2.0 mg/dl; echocardiography indicates that the ejection fraction is ≥50%;\n11. Adequate venous access for apheresis, and no other contraindications for leukapheresis;\n12. Women of childbearing age should have a negative serum or urine pregnancy test at screening and baseline. Subjects agree to take effective contraceptive measures during the trial until at least 1 year after CAR-T cells infusion.\n13. Agree to attend follow-up visits as required;\n14. Voluntary participation and informed consent signed by the patient or his/her legal/authorized representative;\n\nExclusion Criteria:\n\n1. Renal disease: severe lupus nephritis (serum creatinine \\> 2.5 mg/dL or 221 μmol/L) within 8 weeks prior to leukapheresis, or subjects who need prohibited drugs to treat active nephritis or subjects who need hemodialysis;\n2. CNS disease: including epilepsy, psychosis, organic encephalopathy syndrome, cerebrovascular accident \\[CVA\\], encephalitis or CNS vasculitis, psychiatric patients with depression or suicidal thoughts;\n3. Patients with serious lesions and history of present illness of vital organs such as heart, liver, kidney and blood and endocrine system;\n4. Patients with immunodeficiency, uncontrolled active infections and active or recurrent peptic ulcers;\n5. Received immunosuppressive therapy within 1 week prior to leukapheresis;\n6. Patients with HIV infection; Active infection of hepatitis B virus or hepatitis C virus; Patients with syphilis infection;\n7. The presence or suspicion of an active fungal, bacterial, viral or other infection that cannot be controlled during screening;\n8. Received live vaccine treatment within 4 weeks prior to screening;\n9. Severe allergies or hypersensitivity;\n10. Contraindication to cyclophosphamide in combination with fludarabine;\n11. Subjects who have undergone major surgery within 2 weeks prior to signing the informed consent form, or who are scheduled to have surgery (other than local anesthetic surgery) during the trial or within 2 weeks of the infusion;\n12. cannula or drainage tubes other than central venous catheters;\n13. Pregnant or lactating women, or subjects who plan to have children within 1 year of treatment;\n14. Subjects with prior CD19 or BCMA-targeted therapy\n15. Participated in any clinical study within 3 months prior to enrollment\n16. Any situations that the investigator believes the patients are not suitable for the study.",
+              "healthyVolunteers": false,
+              "sex": "ALL",
+              "minimumAge": "18 Years",
+              "maximumAge": "70 Years",
+              "stdAges": [
+                "ADULT",
+                "OLDER_ADULT"
+              ]
+            },
+            "contactsLocationsModule": {
+              "centralContacts": [
+                {
+                  "name": "He Huang, PhD",
+                  "role": "CONTACT",
+                  "phone": "86-13605714822",
+                  "email": "hehuangyu@126.com"
+                },
+                {
+                  "name": "Yongxian Hu, MD",
+                  "role": "CONTACT",
+                  "phone": "+8615957162012",
+                  "email": "huyongxian2000@aliyun.com"
+                }
+              ],
+              "overallOfficials": [
+                {
+                  "name": "He Huang",
+                  "affiliation": "Zhejiang University",
+                  "role": "PRINCIPAL_INVESTIGATOR"
+                },
+                {
+                  "name": "Zhihong Liu",
+                  "affiliation": "Zhejiang university school of medicine",
+                  "role": "PRINCIPAL_INVESTIGATOR"
+                },
+                {
+                  "name": "Jin Lin",
+                  "affiliation": "Zhejiang University",
+                  "role": "PRINCIPAL_INVESTIGATOR"
+                }
+              ],
+              "locations": [
+                {
+                  "facility": "The First Affiliated Hospital,College of Medicine, Zhejiang University",
+                  "status": "RECRUITING",
+                  "city": "Hangzhou",
+                  "state": "Zhejiang",
+                  "zip": "310003",
+                  "country": "China",
+                  "contacts": [
+                    {
+                      "name": "He Huang, PhD",
+                      "role": "CONTACT",
+                      "phone": "86-13605714822",
+                      "email": "hehuangyu@126.com"
+                    },
+                    {
+                      "name": "Yongxian Hu, PhD",
+                      "role": "CONTACT",
+                      "phone": "86-15957162012",
+                      "email": "huyongxian2000@aliyun.com"
+                    }
+                  ],
+                  "geoPoint": {
+                    "lat": 30.29365,
+                    "lon": 120.16142
+                  }
+                }
+              ]
+            },
+            "ipdSharingStatementModule": {
+              "ipdSharing": "NO"
+            }
+          },
+          "derivedSection": {
+            "miscInfoModule": {
+              "versionHolder": "2026-11-03"
+            }
+          },
+          "hasResults": false
+        },
+        "expected_digest": "80bf8b183bf13208b470cb36674072ced155264700b251092c6f5ad3281b1e7e"
+      }
+    ],
+    "premises": [
+      {
+        "id": "adult",
+        "kind": "assertion",
+        "payload": {
+          "applicability": {
+            "class": "Always"
+          },
+          "body": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "age",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "ge",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 18.0,
+              "unit": "Years",
+              "upper": null
+            }
+          },
+          "branch": {
+            "class": "Branch",
+            "node": "unresolved",
+            "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+            "class": "Scope",
+            "kind": "all_participants",
+            "parts": [],
+            "ref": ""
+          },
+          "criterion_ref": "user:simulated:adult",
+          "id": "adult",
+          "modality": "required",
+          "resolution": "resolved",
+          "rule": {
+            "answers": [],
+            "class": "Rule",
+            "id": "user_explicit",
+            "premises": [],
+            "version": "1",
+            "warrants": []
+          },
+          "span": [],
+          "status": "known"
+        },
+        "origin": {
+          "kind": "user_choice",
+          "ref": "user:simulated:new-draft:adult",
+          "source": null,
+          "analysis": null
+        },
+        "depends_on": []
+      },
+      {
+        "id": "biopsy",
+        "kind": "assertion",
+        "payload": {
+          "applicability": {
+            "class": "Always"
+          },
+          "body": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "biopsy_within_12_months",
+              "kind": "condition_status"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "eq",
+              "inclusivity": "unspecified",
+              "kind": "boolean",
+              "members": [],
+              "number": null,
+              "unit": "",
+              "upper": null
+            }
+          },
+          "branch": {
+            "class": "Branch",
+            "node": "unresolved",
+            "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+            "class": "Scope",
+            "kind": "cohort_ref",
+            "parts": [],
+            "ref": "renal"
+          },
+          "criterion_ref": "user:simulated:biopsy",
+          "id": "biopsy",
+          "modality": "required",
+          "resolution": "resolved",
+          "rule": {
+            "answers": [],
+            "class": "Rule",
+            "id": "user_explicit",
+            "premises": [],
+            "version": "1",
+            "warrants": []
+          },
+          "span": [],
+          "status": "known"
+        },
+        "origin": {
+          "kind": "user_choice",
+          "ref": "user:simulated:new-draft:biopsy",
+          "source": null,
+          "analysis": null
+        },
+        "depends_on": []
+      }
+    ],
+    "analyses": [
+      {
+        "id": "renal-with-biopsy",
+        "operation": "entailment",
+        "target": {
+          "kind": "new_trial",
+          "ref": "simulated-lupus-draft",
+          "scope": {
+            "study": "simulated-lupus-draft",
+            "population": "general",
+            "arm": "all",
+            "time": "entry",
+            "version": "v1"
+          }
+        },
+        "parameters": {
+          "query": {
+            "class": "AllOf",
+            "parts": [
+              {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "age",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 20.0,
+                  "unit": "Years",
+                  "upper": null
+                }
+              },
+              {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "biopsy_within_12_months",
+                  "kind": "condition_status"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "boolean",
+                  "members": [],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                }
+              }
+            ]
+          },
+          "context": {
+            "cohort": "renal"
+          }
+        },
+        "uses": [
+          {
+            "premise": "adult",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "biopsy",
+            "slot": "assertions",
+            "projection": "identity"
+          }
+        ]
+      },
+      {
+        "id": "renal-without-biopsy",
+        "operation": "entailment",
+        "target": {
+          "kind": "new_trial",
+          "ref": "simulated-lupus-draft",
+          "scope": {
+            "study": "simulated-lupus-draft",
+            "population": "general",
+            "arm": "all",
+            "time": "entry",
+            "version": "v1"
+          }
+        },
+        "parameters": {
+          "query": {
+            "class": "AllOf",
+            "parts": [
+              {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "age",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 20.0,
+                  "unit": "Years",
+                  "upper": null
+                }
+              },
+              {
+                "class": "Not",
+                "part": {
+                  "class": "Literal",
+                  "evidence": [],
+                  "polarity": "positive",
+                  "predicate": {
+                    "class": "Predicate",
+                    "key": "biopsy_within_12_months",
+                    "kind": "condition_status"
+                  },
+                  "qualifiers": {
+                    "class": "Always"
+                  },
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "participant",
+                    "referent": ""
+                  },
+                  "time": null,
+                  "value": {
+                    "class": "Value",
+                    "comparison": "eq",
+                    "inclusivity": "unspecified",
+                    "kind": "boolean",
+                    "members": [],
+                    "number": null,
+                    "unit": "",
+                    "upper": null
+                  }
+                }
+              }
+            ]
+          },
+          "context": {
+            "cohort": "renal"
+          }
+        },
+        "uses": [
+          {
+            "premise": "adult",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "biopsy",
+            "slot": "assertions",
+            "projection": "identity"
+          }
+        ]
+      },
+      {
+        "id": "nonrenal-with-biopsy",
+        "operation": "entailment",
+        "target": {
+          "kind": "new_trial",
+          "ref": "simulated-lupus-draft",
+          "scope": {
+            "study": "simulated-lupus-draft",
+            "population": "general",
+            "arm": "all",
+            "time": "entry",
+            "version": "v1"
+          }
+        },
+        "parameters": {
+          "query": {
+            "class": "AllOf",
+            "parts": [
+              {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "age",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 20.0,
+                  "unit": "Years",
+                  "upper": null
+                }
+              },
+              {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "biopsy_within_12_months",
+                  "kind": "condition_status"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "boolean",
+                  "members": [],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                }
+              }
+            ]
+          },
+          "context": {
+            "cohort": "nonrenal"
+          }
+        },
+        "uses": [
+          {
+            "premise": "adult",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "biopsy",
+            "slot": "assertions",
+            "projection": "identity"
+          }
+        ]
+      },
+      {
+        "id": "nonrenal-without-biopsy",
+        "operation": "entailment",
+        "target": {
+          "kind": "new_trial",
+          "ref": "simulated-lupus-draft",
+          "scope": {
+            "study": "simulated-lupus-draft",
+            "population": "general",
+            "arm": "all",
+            "time": "entry",
+            "version": "v1"
+          }
+        },
+        "parameters": {
+          "query": {
+            "class": "AllOf",
+            "parts": [
+              {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "age",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 20.0,
+                  "unit": "Years",
+                  "upper": null
+                }
+              },
+              {
+                "class": "Not",
+                "part": {
+                  "class": "Literal",
+                  "evidence": [],
+                  "polarity": "positive",
+                  "predicate": {
+                    "class": "Predicate",
+                    "key": "biopsy_within_12_months",
+                    "kind": "condition_status"
+                  },
+                  "qualifiers": {
+                    "class": "Always"
+                  },
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "participant",
+                    "referent": ""
+                  },
+                  "time": null,
+                  "value": {
+                    "class": "Value",
+                    "comparison": "eq",
+                    "inclusivity": "unspecified",
+                    "kind": "boolean",
+                    "members": [],
+                    "number": null,
+                    "unit": "",
+                    "upper": null
+                  }
+                }
+              }
+            ]
+          },
+          "context": {
+            "cohort": "nonrenal"
+          }
+        },
+        "uses": [
+          {
+            "premise": "adult",
+            "slot": "assertions",
+            "projection": "identity"
+          },
+          {
+            "premise": "biopsy",
+            "slot": "assertions",
+            "projection": "identity"
+          }
+        ]
+      }
+    ],
+    "decisions": [
+      {
+        "id": "renal",
+        "question": "Does the draft biopsy requirement govern the renal cohort?",
+        "target": {
+          "kind": "new_trial",
+          "ref": "simulated-lupus-draft",
+          "scope": {
+            "study": "simulated-lupus-draft",
+            "population": "general",
+            "arm": "all",
+            "time": "entry",
+            "version": "v1"
+          }
+        },
+        "coverage": "represented_restriction",
+        "alternatives": [
+          {
+            "id": "with-biopsy",
+            "label": "20-year-old renal patient with-biopsy",
+            "analysis": "renal-with-biopsy",
+            "query": {
+              "class": "AllOf",
+              "parts": [
+                {
+                  "class": "Literal",
+                  "evidence": [],
+                  "polarity": "positive",
+                  "predicate": {
+                    "class": "Predicate",
+                    "key": "age",
+                    "kind": "measurement"
+                  },
+                  "qualifiers": {
+                    "class": "Always"
+                  },
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "participant",
+                    "referent": ""
+                  },
+                  "time": null,
+                  "value": {
+                    "class": "Value",
+                    "comparison": "eq",
+                    "inclusivity": "unspecified",
+                    "kind": "quantity",
+                    "members": [],
+                    "number": 20.0,
+                    "unit": "Years",
+                    "upper": null
+                  }
+                },
+                {
+                  "class": "Literal",
+                  "evidence": [],
+                  "polarity": "positive",
+                  "predicate": {
+                    "class": "Predicate",
+                    "key": "biopsy_within_12_months",
+                    "kind": "condition_status"
+                  },
+                  "qualifiers": {
+                    "class": "Always"
+                  },
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "participant",
+                    "referent": ""
+                  },
+                  "time": null,
+                  "value": {
+                    "class": "Value",
+                    "comparison": "eq",
+                    "inclusivity": "unspecified",
+                    "kind": "boolean",
+                    "members": [],
+                    "number": null,
+                    "unit": "",
+                    "upper": null
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "id": "without-biopsy",
+            "label": "20-year-old renal patient without-biopsy",
+            "analysis": "renal-without-biopsy",
+            "query": {
+              "class": "AllOf",
+              "parts": [
+                {
+                  "class": "Literal",
+                  "evidence": [],
+                  "polarity": "positive",
+                  "predicate": {
+                    "class": "Predicate",
+                    "key": "age",
+                    "kind": "measurement"
+                  },
+                  "qualifiers": {
+                    "class": "Always"
+                  },
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "participant",
+                    "referent": ""
+                  },
+                  "time": null,
+                  "value": {
+                    "class": "Value",
+                    "comparison": "eq",
+                    "inclusivity": "unspecified",
+                    "kind": "quantity",
+                    "members": [],
+                    "number": 20.0,
+                    "unit": "Years",
+                    "upper": null
+                  }
+                },
+                {
+                  "class": "Not",
+                  "part": {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "biopsy_within_12_months",
+                      "kind": "condition_status"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "participant",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "eq",
+                      "inclusivity": "unspecified",
+                      "kind": "boolean",
+                      "members": [],
+                      "number": null,
+                      "unit": "",
+                      "upper": null
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "selected": null,
+        "evidence": [
+          {
+            "id": "quote-NCT06839976",
+            "source": "NCT06839976",
+            "role": "quote",
+            "anchor": {
+              "id": "quote-NCT06839976",
+              "address": "/protocolSection/eligibilityModule/eligibilityCriteria",
+              "digest": "a9530baafb764228b44c0bb584d8f51a86c892e3d018578cf195eaae46e45a8c",
+              "expected": "Inclusion Criteria:\n\n1. Signed informed consent form must be obtained prior to any study procedure. Labs or other procedures obtained during routine clinical care may be used for eligibility if obtained within the protocol required window.\n2. Patient age must be 10-29 years, inclusive, at time of enrollment.\n3. Meeting ACR/EULAR Classification Criteria for SLE\n4. ANA positive \\> 1:80 and/or double-stranded DNA (dsDNA) positive\n5. Active (refractory) disease, defined as follows:\n\n   a. Lupus nephritis subjects must meet both the following criteria: i. ISN/RPS active nephritis Class III/IV +/- V lupus nephritis diagnosed by biopsy within past 12 months.\n\nii. Persistent and clinically significant: ≥2 measurements with urine protein with either of the following:\n\n1. \\> 1mg/mg creatinine\n2. \\> 0.5 mg/mg creatinine associated with renal dysfunction or low albumin.\n3. \\> 0.5 mg/mg creatinine in a patient with rising proteinuria after prior complete renal response b. Non-renal SLE subjects must meet either of the following criteria: i. SLEDAI-2K ≥ 8 and clinical SLEDAI-2K ≥ 6 ii. Inability to decrease prednisone ≤7.5mg/day or 0.15mg/kg/day, whichever is lower, due to active disease.\n\n6\\. Patients must have had at least 3 months of cumulative conventional therapy defined as:\n\n1. Conventional induction immunosuppressive agent(s) (e.g., mycophenolate mofetil, cyclophosphamide), and\n2. At least one additional therapy:\n\ni. B-cell directed biologic therapy (e.g., rituximab, belimumab, ofatumumab, obinutuzumab) ii. Calcineurin inhibitor (e.g., tacrolimus, cyclosporine, voclosporin) iii. Other immunosuppressive medication for SLE (e.g., anifrolumab, abatacept, JAK inhibitor) 7. Adequate organ function status\n\n1. Renal: eGFR must be ≥30 and subject cannot be receiving dialysis.\n2. Hepatic: Transaminases \\< 5x upper limit of normal and serum conjugated (Direct) bilirubin \\<1.5x upper limit of normal unless attributable to SLE. If attributable to autoimmune disease, Child-Pugh score must be class A or class B. Child-Pugh score cannot be class C.\n3. Cardiac: Shortening fraction \\> 28%, left ventricular ejection fraction \\>45%, and no evidence of severe pulmonary hypertension\n4. Pulmonary: Must have a minimum level of pulmonary reserve defined as ≤ Grade 1 dyspnea and \\<Grade 3 hypoxia; DLCO ≥40% (corrected for anemia and/or VA volume if necessary) if PFTs are clinically appropriate as determined by the treating investigator.\n\n   8\\. Subjects of reproductive potential must agree to use acceptable birth control methods.\n\nExclusion Criteria:\n\n1. Active, untreated infections\n2. HIV infection\n3. Active Hepatitis B\n\n   a. Patients must have a negative hepatitis B surface antigen to be enrolled on this study.\n4. Active Hepatitis C\n5. Patients with severe neuropsychiatric lupus or neurologic manifestations of SLE (e.g. stroke, seizure, psychosis, demyelinating syndromes, organic brain syndrome, or lupus related headaches)\n6. Monogenic lupus (known)\n7. Previous autologous or allogenic stem cell transplant\n8. Previous kidney transplant\n9. History of seizure disorder\n10. Patients who are on anti-epileptic therapy\n11. Participation in a clinical trial in which the patient receives an investigational drug within a time period equal or less than 5.5 half-lives of the investigational agent prior to study enrollment.\n12. Subjects who are unwilling or unable to discontinue immunosuppressive medications at the times of CART19 infusion will be excluded from the trial\n13. Any comorbidity that in the opinion of the investigators would jeopardize the ability of the subject to tolerate therapy.\n14. Pregnant patients. All participants of childbearing potential must have negative pregnancy test.\n15. Lactating participants who want to continue breastfeeding.\n16. Patients who are unwilling to consent to LTFU",
+              "span": {
+                "start": 484,
+                "end": 661,
+                "text": "   a. Lupus nephritis subjects must meet both the following criteria: i. ISN/RPS active nephritis Class III/IV +/- V lupus nephritis diagnosed by biopsy within past 12 months.\n\n"
+              }
+            },
+            "scope": "source entry text; renal/nonrenal clauses retained, no applicability inferred",
+            "note": "Quoted for discussion. New-draft biopsy rule is a separate simulated choice, not source compilation."
+          },
+          {
+            "id": "quote-NCT05846347",
+            "source": "NCT05846347",
+            "role": "quote",
+            "anchor": {
+              "id": "quote-NCT05846347",
+              "address": "/protocolSection/eligibilityModule/eligibilityCriteria",
+              "digest": "80bf8b183bf13208b470cb36674072ced155264700b251092c6f5ad3281b1e7e",
+              "expected": "Inclusion Criteria:\n\n1. 18-70 years old;\n2. Total score ≥ 10 on the EULAR/ACR 2019 SLE classification criteria;\n3. SELENA-SLEDAI≥8;\n4. Patients with CD19+ B-cell;\n5. Active organ involvement;\n6. Hemoglobin≥85 g/L;\n7. WBC≥2.5×10\\^9/L\n8. NEUT≥1×10\\^9/L;\n9. PLT≥50×10\\^9/L;\n10. AST/ALT below 2 times the upper limit of normal; Creatinine clearance ≥30 mL/min; blood bilirubin ≤2.0 mg/dl; echocardiography indicates that the ejection fraction is ≥50%;\n11. Adequate venous access for apheresis, and no other contraindications for leukapheresis;\n12. Women of childbearing age should have a negative serum or urine pregnancy test at screening and baseline. Subjects agree to take effective contraceptive measures during the trial until at least 1 year after CAR-T cells infusion.\n13. Agree to attend follow-up visits as required;\n14. Voluntary participation and informed consent signed by the patient or his/her legal/authorized representative;\n\nExclusion Criteria:\n\n1. Renal disease: severe lupus nephritis (serum creatinine \\> 2.5 mg/dL or 221 μmol/L) within 8 weeks prior to leukapheresis, or subjects who need prohibited drugs to treat active nephritis or subjects who need hemodialysis;\n2. CNS disease: including epilepsy, psychosis, organic encephalopathy syndrome, cerebrovascular accident \\[CVA\\], encephalitis or CNS vasculitis, psychiatric patients with depression or suicidal thoughts;\n3. Patients with serious lesions and history of present illness of vital organs such as heart, liver, kidney and blood and endocrine system;\n4. Patients with immunodeficiency, uncontrolled active infections and active or recurrent peptic ulcers;\n5. Received immunosuppressive therapy within 1 week prior to leukapheresis;\n6. Patients with HIV infection; Active infection of hepatitis B virus or hepatitis C virus; Patients with syphilis infection;\n7. The presence or suspicion of an active fungal, bacterial, viral or other infection that cannot be controlled during screening;\n8. Received live vaccine treatment within 4 weeks prior to screening;\n9. Severe allergies or hypersensitivity;\n10. Contraindication to cyclophosphamide in combination with fludarabine;\n11. Subjects who have undergone major surgery within 2 weeks prior to signing the informed consent form, or who are scheduled to have surgery (other than local anesthetic surgery) during the trial or within 2 weeks of the infusion;\n12. cannula or drainage tubes other than central venous catheters;\n13. Pregnant or lactating women, or subjects who plan to have children within 1 year of treatment;\n14. Subjects with prior CD19 or BCMA-targeted therapy\n15. Participated in any clinical study within 3 months prior to enrollment\n16. Any situations that the investigator believes the patients are not suitable for the study."
+            },
+            "scope": "source entry text; renal/nonrenal clauses retained, no applicability inferred",
+            "note": "Quoted for discussion. New-draft biopsy rule is a separate simulated choice, not source compilation."
+          }
+        ]
+      },
+      {
+        "id": "nonrenal",
+        "question": "Does the draft biopsy requirement govern the nonrenal cohort?",
+        "target": {
+          "kind": "new_trial",
+          "ref": "simulated-lupus-draft",
+          "scope": {
+            "study": "simulated-lupus-draft",
+            "population": "general",
+            "arm": "all",
+            "time": "entry",
+            "version": "v1"
+          }
+        },
+        "coverage": "represented_restriction",
+        "alternatives": [
+          {
+            "id": "with-biopsy",
+            "label": "20-year-old nonrenal patient with-biopsy",
+            "analysis": "nonrenal-with-biopsy",
+            "query": {
+              "class": "AllOf",
+              "parts": [
+                {
+                  "class": "Literal",
+                  "evidence": [],
+                  "polarity": "positive",
+                  "predicate": {
+                    "class": "Predicate",
+                    "key": "age",
+                    "kind": "measurement"
+                  },
+                  "qualifiers": {
+                    "class": "Always"
+                  },
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "participant",
+                    "referent": ""
+                  },
+                  "time": null,
+                  "value": {
+                    "class": "Value",
+                    "comparison": "eq",
+                    "inclusivity": "unspecified",
+                    "kind": "quantity",
+                    "members": [],
+                    "number": 20.0,
+                    "unit": "Years",
+                    "upper": null
+                  }
+                },
+                {
+                  "class": "Literal",
+                  "evidence": [],
+                  "polarity": "positive",
+                  "predicate": {
+                    "class": "Predicate",
+                    "key": "biopsy_within_12_months",
+                    "kind": "condition_status"
+                  },
+                  "qualifiers": {
+                    "class": "Always"
+                  },
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "participant",
+                    "referent": ""
+                  },
+                  "time": null,
+                  "value": {
+                    "class": "Value",
+                    "comparison": "eq",
+                    "inclusivity": "unspecified",
+                    "kind": "boolean",
+                    "members": [],
+                    "number": null,
+                    "unit": "",
+                    "upper": null
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "id": "without-biopsy",
+            "label": "20-year-old nonrenal patient without-biopsy",
+            "analysis": "nonrenal-without-biopsy",
+            "query": {
+              "class": "AllOf",
+              "parts": [
+                {
+                  "class": "Literal",
+                  "evidence": [],
+                  "polarity": "positive",
+                  "predicate": {
+                    "class": "Predicate",
+                    "key": "age",
+                    "kind": "measurement"
+                  },
+                  "qualifiers": {
+                    "class": "Always"
+                  },
+                  "subject": {
+                    "class": "Subject",
+                    "kind": "participant",
+                    "referent": ""
+                  },
+                  "time": null,
+                  "value": {
+                    "class": "Value",
+                    "comparison": "eq",
+                    "inclusivity": "unspecified",
+                    "kind": "quantity",
+                    "members": [],
+                    "number": 20.0,
+                    "unit": "Years",
+                    "upper": null
+                  }
+                },
+                {
+                  "class": "Not",
+                  "part": {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "biopsy_within_12_months",
+                      "kind": "condition_status"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "participant",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "eq",
+                      "inclusivity": "unspecified",
+                      "kind": "boolean",
+                      "members": [],
+                      "number": null,
+                      "unit": "",
+                      "upper": null
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "selected": null,
+        "evidence": [
+          {
+            "id": "quote-NCT06839976",
+            "source": "NCT06839976",
+            "role": "quote",
+            "anchor": {
+              "id": "quote-NCT06839976",
+              "address": "/protocolSection/eligibilityModule/eligibilityCriteria",
+              "digest": "a9530baafb764228b44c0bb584d8f51a86c892e3d018578cf195eaae46e45a8c",
+              "expected": "Inclusion Criteria:\n\n1. Signed informed consent form must be obtained prior to any study procedure. Labs or other procedures obtained during routine clinical care may be used for eligibility if obtained within the protocol required window.\n2. Patient age must be 10-29 years, inclusive, at time of enrollment.\n3. Meeting ACR/EULAR Classification Criteria for SLE\n4. ANA positive \\> 1:80 and/or double-stranded DNA (dsDNA) positive\n5. Active (refractory) disease, defined as follows:\n\n   a. Lupus nephritis subjects must meet both the following criteria: i. ISN/RPS active nephritis Class III/IV +/- V lupus nephritis diagnosed by biopsy within past 12 months.\n\nii. Persistent and clinically significant: ≥2 measurements with urine protein with either of the following:\n\n1. \\> 1mg/mg creatinine\n2. \\> 0.5 mg/mg creatinine associated with renal dysfunction or low albumin.\n3. \\> 0.5 mg/mg creatinine in a patient with rising proteinuria after prior complete renal response b. Non-renal SLE subjects must meet either of the following criteria: i. SLEDAI-2K ≥ 8 and clinical SLEDAI-2K ≥ 6 ii. Inability to decrease prednisone ≤7.5mg/day or 0.15mg/kg/day, whichever is lower, due to active disease.\n\n6\\. Patients must have had at least 3 months of cumulative conventional therapy defined as:\n\n1. Conventional induction immunosuppressive agent(s) (e.g., mycophenolate mofetil, cyclophosphamide), and\n2. At least one additional therapy:\n\ni. B-cell directed biologic therapy (e.g., rituximab, belimumab, ofatumumab, obinutuzumab) ii. Calcineurin inhibitor (e.g., tacrolimus, cyclosporine, voclosporin) iii. Other immunosuppressive medication for SLE (e.g., anifrolumab, abatacept, JAK inhibitor) 7. Adequate organ function status\n\n1. Renal: eGFR must be ≥30 and subject cannot be receiving dialysis.\n2. Hepatic: Transaminases \\< 5x upper limit of normal and serum conjugated (Direct) bilirubin \\<1.5x upper limit of normal unless attributable to SLE. If attributable to autoimmune disease, Child-Pugh score must be class A or class B. Child-Pugh score cannot be class C.\n3. Cardiac: Shortening fraction \\> 28%, left ventricular ejection fraction \\>45%, and no evidence of severe pulmonary hypertension\n4. Pulmonary: Must have a minimum level of pulmonary reserve defined as ≤ Grade 1 dyspnea and \\<Grade 3 hypoxia; DLCO ≥40% (corrected for anemia and/or VA volume if necessary) if PFTs are clinically appropriate as determined by the treating investigator.\n\n   8\\. Subjects of reproductive potential must agree to use acceptable birth control methods.\n\nExclusion Criteria:\n\n1. Active, untreated infections\n2. HIV infection\n3. Active Hepatitis B\n\n   a. Patients must have a negative hepatitis B surface antigen to be enrolled on this study.\n4. Active Hepatitis C\n5. Patients with severe neuropsychiatric lupus or neurologic manifestations of SLE (e.g. stroke, seizure, psychosis, demyelinating syndromes, organic brain syndrome, or lupus related headaches)\n6. Monogenic lupus (known)\n7. Previous autologous or allogenic stem cell transplant\n8. Previous kidney transplant\n9. History of seizure disorder\n10. Patients who are on anti-epileptic therapy\n11. Participation in a clinical trial in which the patient receives an investigational drug within a time period equal or less than 5.5 half-lives of the investigational agent prior to study enrollment.\n12. Subjects who are unwilling or unable to discontinue immunosuppressive medications at the times of CART19 infusion will be excluded from the trial\n13. Any comorbidity that in the opinion of the investigators would jeopardize the ability of the subject to tolerate therapy.\n14. Pregnant patients. All participants of childbearing potential must have negative pregnancy test.\n15. Lactating participants who want to continue breastfeeding.\n16. Patients who are unwilling to consent to LTFU",
+              "span": {
+                "start": 484,
+                "end": 661,
+                "text": "   a. Lupus nephritis subjects must meet both the following criteria: i. ISN/RPS active nephritis Class III/IV +/- V lupus nephritis diagnosed by biopsy within past 12 months.\n\n"
+              }
+            },
+            "scope": "source entry text; renal/nonrenal clauses retained, no applicability inferred",
+            "note": "Quoted for discussion. New-draft biopsy rule is a separate simulated choice, not source compilation."
+          },
+          {
+            "id": "quote-NCT05846347",
+            "source": "NCT05846347",
+            "role": "quote",
+            "anchor": {
+              "id": "quote-NCT05846347",
+              "address": "/protocolSection/eligibilityModule/eligibilityCriteria",
+              "digest": "80bf8b183bf13208b470cb36674072ced155264700b251092c6f5ad3281b1e7e",
+              "expected": "Inclusion Criteria:\n\n1. 18-70 years old;\n2. Total score ≥ 10 on the EULAR/ACR 2019 SLE classification criteria;\n3. SELENA-SLEDAI≥8;\n4. Patients with CD19+ B-cell;\n5. Active organ involvement;\n6. Hemoglobin≥85 g/L;\n7. WBC≥2.5×10\\^9/L\n8. NEUT≥1×10\\^9/L;\n9. PLT≥50×10\\^9/L;\n10. AST/ALT below 2 times the upper limit of normal; Creatinine clearance ≥30 mL/min; blood bilirubin ≤2.0 mg/dl; echocardiography indicates that the ejection fraction is ≥50%;\n11. Adequate venous access for apheresis, and no other contraindications for leukapheresis;\n12. Women of childbearing age should have a negative serum or urine pregnancy test at screening and baseline. Subjects agree to take effective contraceptive measures during the trial until at least 1 year after CAR-T cells infusion.\n13. Agree to attend follow-up visits as required;\n14. Voluntary participation and informed consent signed by the patient or his/her legal/authorized representative;\n\nExclusion Criteria:\n\n1. Renal disease: severe lupus nephritis (serum creatinine \\> 2.5 mg/dL or 221 μmol/L) within 8 weeks prior to leukapheresis, or subjects who need prohibited drugs to treat active nephritis or subjects who need hemodialysis;\n2. CNS disease: including epilepsy, psychosis, organic encephalopathy syndrome, cerebrovascular accident \\[CVA\\], encephalitis or CNS vasculitis, psychiatric patients with depression or suicidal thoughts;\n3. Patients with serious lesions and history of present illness of vital organs such as heart, liver, kidney and blood and endocrine system;\n4. Patients with immunodeficiency, uncontrolled active infections and active or recurrent peptic ulcers;\n5. Received immunosuppressive therapy within 1 week prior to leukapheresis;\n6. Patients with HIV infection; Active infection of hepatitis B virus or hepatitis C virus; Patients with syphilis infection;\n7. The presence or suspicion of an active fungal, bacterial, viral or other infection that cannot be controlled during screening;\n8. Received live vaccine treatment within 4 weeks prior to screening;\n9. Severe allergies or hypersensitivity;\n10. Contraindication to cyclophosphamide in combination with fludarabine;\n11. Subjects who have undergone major surgery within 2 weeks prior to signing the informed consent form, or who are scheduled to have surgery (other than local anesthetic surgery) during the trial or within 2 weeks of the infusion;\n12. cannula or drainage tubes other than central venous catheters;\n13. Pregnant or lactating women, or subjects who plan to have children within 1 year of treatment;\n14. Subjects with prior CD19 or BCMA-targeted therapy\n15. Participated in any clinical study within 3 months prior to enrollment\n16. Any situations that the investigator believes the patients are not suitable for the study."
+            },
+            "scope": "source entry text; renal/nonrenal clauses retained, no applicability inferred",
+            "note": "Quoted for discussion. New-draft biopsy rule is a separate simulated choice, not source compilation."
+          }
+        ]
+      }
+    ],
+    "limits": {
+      "max_analyses": 128,
+      "max_premises": 1000,
+      "max_sources": 64,
+      "max_decisions": 128,
+      "max_expanded_items": 10000,
+      "max_solver_work": 10000000,
+      "max_output_bytes": 16000000
+    }
+  },
+  "previous": null
+}

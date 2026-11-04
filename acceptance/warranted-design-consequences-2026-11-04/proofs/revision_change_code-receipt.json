@@ -1,0 +1,54 @@
+{
+  "target": "TrialLedger/layer2/design_session.py::revision_change_code",
+  "invocation": "PYTHONPATH=/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker .venv/bin/detective converge 'TrialLedger/layer2/design_session.py::revision_change_code' --two-sign",
+  "explicit_two_sign": true,
+  "policy": "9+neg.f5a15364c11d",
+  "outcome": "COMPLETE (operator universe)",
+  "killed": 121,
+  "scored": 121,
+  "minimal_cover_tests": 11,
+  "module_frozen_sha256": "db9c339b4858867456d0d284f9dcea29122046ca76140dcd2c206520ab7e4414",
+  "module_current_sha256": "464f676228c0b864809343acd7837b88d077a6f0fe13b7cf0b3586d171e3cad9",
+  "function_frozen_sha256": "e4ebb3578f8d1efabb522cb10b422717bed34aa137006d4476431123409a60ce",
+  "function_current_sha256": "e4ebb3578f8d1efabb522cb10b422717bed34aa137006d4476431123409a60ce",
+  "function_exact_equal": true,
+  "canonical_audit_diff_exact_equal_to_HEAD": true,
+  "test_frozen_sha256": "abeadb07af827453f68bc161fd2fc864c65c84bbbec5ddca8f7670a196153f7e",
+  "test_current_sha256": "2c4dcf8c6a167e1d52b84336ec4543f8c04d07c8340587df499629f31398e118",
+  "qualification": "Frozen module differs from integration module because other helpers and root-owned evidence wiring changed; target function and policy constants unchanged. Whole module not certified by this function pin. Deferred-shaped 21 tests not included in widen; 4786 no-static-path tests not traced. No test removal or style rewrite performed.",
+  "full_reports": {
+    "/tmp/trialledger-question-support-two-sign-20261104/converge-1.log": "1127349533dec50f6ca19181c3ea8d70d6edf5f7b75077acd81d5db50c55bfb9",
+    "/tmp/trialledger-question-support-two-sign-20261104/.detective/reports/converge_revision_change_code.txt": "225454b2397a4cfa58f4efd9cd0c42d784daf93de74c51493140af646dc3e077",
+    "/tmp/trialledger-question-support-two-sign-20261104/crosshair.log": "596fd0a6dbd5cb9d02fc74c15ca65cfd653a6e45b2367c31013c8966fbde1ea7"
+  },
+  "crosshair": "Three contracts: Confirmed over all paths. --report_all used.",
+  "authored_negative_tests": [
+    "test_changed_question_must_not_claim_same_question_answer_changed",
+    "test_context_must_not_be_buried_as_input_only_or_promoted_to_support",
+    "test_wording_must_not_certify_typed_question_equivalence_or_a_new_verdict"
+  ],
+  "next_style_actions_not_executed_after_DONE": [
+    "detective plan 'TrialLedger/layer2/design_session.py'",
+    "detective decompose 'TrialLedger/layer2/design_session.py::revision_change_code' --apply --two-sign",
+    "detective survey 'TrialLedger/layer2/design_session.py'"
+  ],
+  "frozen_constants": {
+    "ANSWER_CHANGE_CODES": "da84eeba9ca89a346c7429af9fa0c2a61e5cbeb2b267eba74c34d2ef6e99167b",
+    "REVISION_CHANGE_CODES": "8674faf75fc2be18e35523209c7529546859fb43d4abc8d578896e554a047b9d"
+  },
+  "current_constants": {
+    "ANSWER_CHANGE_CODES": "da84eeba9ca89a346c7429af9fa0c2a61e5cbeb2b267eba74c34d2ef6e99167b",
+    "REVISION_CHANGE_CODES": "8674faf75fc2be18e35523209c7529546859fb43d4abc8d578896e554a047b9d"
+  },
+  "constant_hashes_equal": true,
+  "integration_files": {
+    "TrialLedger/layer2/clinical_answers.py": "b0846e01c581dcef27fd48e3a89970c41b2d7f1e8c5513c2ec0e7a4bc4843130",
+    "TrialLedger/layer2/design_session.py": "464f676228c0b864809343acd7837b88d077a6f0fe13b7cf0b3586d171e3cad9",
+    "tests/test_revision_questions.py": "2c4dcf8c6a167e1d52b84336ec4543f8c04d07c8340587df499629f31398e118"
+  },
+  "consumer_trace": {
+    "path": "/Users/rohanvinaik/trialledger-runs/phase4-hypertension-revision-20261104/consumer-trace.json",
+    "sha256": "ad26e557dd49c037bb84a9b4fe4e1523fa33537adb40e23bee68f9ac0a5c59f8",
+    "scope": "Executed clinical r3 revision through real CLI and MCP dispatcher; observed code edges, not semantic completeness."
+  }
+}

@@ -22,6 +22,7 @@ PARTS = {
     "summary": "/response/summary",
     "session": "/request/session",
     "decisions": "/response/result/decisions",
+    "decision_view": "/response/decision_view",
     "changes": "/response/answer_diff",
 }
 

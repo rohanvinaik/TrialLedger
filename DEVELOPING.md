@@ -191,6 +191,11 @@ Complete children, origins and projection ledgers remain in the returned result.
 `design_session_guide` exposes executable baseline/revision and strict shapes. The observational-diabetes
 walkthrough retains proposed Ontario scope separately from an invented new-trial choice.
 
+`residual_requirements` discovers bounded typed clauses and specializes them only with query-established
+facts; `entail_explanations` independently proves every displayed residual. The shared plan feeds
+`solver_work`, including query-only probes and joined proof components. Conditions distinguish
+necessary_if_query from required_by_criteria; neither asserts actual absence or complete screening.
+
 `entail_explanations` preserves accepted scoped permissions and proves bounded necessary conditions
 through the existing solver. It adds no constraint and never changes the original verdict. Permission
 does not establish presence or override an exclusion; impossible or unresolved profiles cannot yield
@@ -201,7 +206,8 @@ allowance at every elimination.
 `clinical_answers` projects the existing metadata owner into findings with canonical addresses, scope,
 values, support, origins, conditions and blockers. `clinical_delivery` uses that projection for full and
 compact responses. Refusal problems reach the same projection; unknown outcomes remain unclassified.
-`design_session.answer_diff` compares independent answer/support/origin axes alongside unchanged audit
+`design_session.answer_diff` compares independent question/answer/support/origin/wording/context axes
+with actual versioned deciding premises, alongside unchanged audit
 differences. `solver_work` bounds the represented finite partitions conservatively, including explanation
 checks and fresh old/current replay; numeric refusals remain separate from clinical unknowns.
 
@@ -209,6 +215,11 @@ checks and fresh old/current replay; numeric refusals remain separate from clini
 mechanical integrity fields. Explicit replacement edits require attribution for changed premises and
 refuse rewriting a compiled source snapshot. Attribution is caller-declared, never authenticated consent.
 `reasoning_artifacts` owns strict identifiers, immutable atomic retention and bounded verified access.
+`decision_evidence` validates optional exact source context before reasoning without adding assertions.
+`clinical_display` renders validated typed structure without interpreting predicate names; `clinical_view`
+assembles decision profiles, warrants, source context and open items for stored delivery and export.
+Replay validates the logical result separately from retained presentation/diff copies; the artifact owner
+still validates and retains the complete envelope.
 `clinical_export` writes a separate decision workbook/list with complete artifacts and an input/output
 manifest. The optional source record/workbook is copied unchanged and remains a caller association,
 not a population binding. `baseline_view` retains every measurement and matching denominator; the compact

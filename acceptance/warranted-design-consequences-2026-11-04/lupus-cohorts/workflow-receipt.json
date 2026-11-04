@@ -1,0 +1,239 @@
+{
+  "question_before_reading": {
+    "question": "For an early-phase lupus cell-therapy design, can escalation and expansion cohorts retain distinct entry requirements without applying a cohort-only rule to everyone? What changes when a draft cohort binding is revised?",
+    "seed": 2026110417,
+    "sample_size": 2,
+    "selection": "Random(2026110417).sample(sorted complete identifier pool,2), no replacement after reading",
+    "retention": "Complete source/report packets local; commit compact README and request/result evidence plus fingerprints only."
+  },
+  "sampling": {
+    "seed": 2026110417,
+    "pool": [
+      "NCT03030976",
+      "NCT05474885",
+      "NCT05765006",
+      "NCT05798117",
+      "NCT05846347",
+      "NCT05869955",
+      "NCT05938725",
+      "NCT06056921",
+      "NCT06106893",
+      "NCT06106906",
+      "NCT06121297",
+      "NCT06150651",
+      "NCT06152172",
+      "NCT06153095",
+      "NCT06189157",
+      "NCT06222853",
+      "NCT06249438",
+      "NCT06285279",
+      "NCT06294236",
+      "NCT06297408",
+      "NCT06308978",
+      "NCT06333483",
+      "NCT06340490",
+      "NCT06340750",
+      "NCT06342960",
+      "NCT06347718",
+      "NCT06349343",
+      "NCT06350110",
+      "NCT06373991",
+      "NCT06375993",
+      "NCT06428188",
+      "NCT06429800",
+      "NCT06465147",
+      "NCT06530849",
+      "NCT06544330",
+      "NCT06567080",
+      "NCT06585514",
+      "NCT06685042",
+      "NCT06691152",
+      "NCT06694298",
+      "NCT06708845",
+      "NCT06710717",
+      "NCT06752876",
+      "NCT06801119",
+      "NCT06821659",
+      "NCT06822881",
+      "NCT06826430",
+      "NCT06828042",
+      "NCT06839976",
+      "NCT06852573",
+      "NCT06892145",
+      "NCT06897930",
+      "NCT06913608",
+      "NCT06917742",
+      "NCT06925542",
+      "NCT06934447",
+      "NCT06935474",
+      "NCT06941129",
+      "NCT06947460",
+      "NCT06947473",
+      "NCT06978738",
+      "NCT06980597",
+      "NCT06984341",
+      "NCT07031713",
+      "NCT07038447",
+      "NCT07085104",
+      "NCT07085676",
+      "NCT07115745",
+      "NCT07233642",
+      "NCT07305116",
+      "NCT07315087",
+      "NCT07318259",
+      "NCT07331272",
+      "NCT07331467",
+      "NCT07361094",
+      "NCT07364396",
+      "NCT07403097",
+      "NCT07413341",
+      "NCT07432334",
+      "NCT07444307",
+      "NCT07523282",
+      "NCT07523542",
+      "NCT07544225",
+      "NCT07659704",
+      "NCT07676266",
+      "NCT07729995",
+      "NCT07778446",
+      "NCT07783269",
+      "NCT07799116",
+      "NCT07800871",
+      "NCT07855302",
+      "NCT07873931"
+    ],
+    "sample": [
+      "NCT05846347",
+      "NCT06839976"
+    ],
+    "pool_size": 92
+  },
+  "structure": "Distinct named renal/nonrenal cohorts; scope revision, compound profiles, anchored source context. Initial escalation/expansion idea not established by sampled records; no such historical cohorts inferred.",
+  "simulated_choices": true,
+  "parity": [
+    "baseline",
+    "revision",
+    "view"
+  ],
+  "commands": [
+    {
+      "name": "baseline-cli",
+      "argv": [
+        "reason",
+        "--request",
+        "/Users/rohanvinaik/trialledger-runs/phase1-lupus-cohort-handoff-20261104/baseline-request.json",
+        "--store",
+        "/Users/rohanvinaik/trialledger-runs/phase1-lupus-cohort-handoff-20261104/.reasoning",
+        "--compact"
+      ],
+      "exit": 0,
+      "bytes": 4747
+    },
+    {
+      "name": "revision-cli",
+      "argv": [
+        "reason-revise",
+        "--store",
+        "/Users/rohanvinaik/trialledger-runs/phase1-lupus-cohort-handoff-20261104/.reasoning",
+        "--id",
+        "a671e7930ca41956a48c26c8eb4361f5e0e9486bc253506dc9e6c8c4d409ccf4",
+        "--session",
+        "/Users/rohanvinaik/trialledger-runs/phase1-lupus-cohort-handoff-20261104/next-session.json"
+      ],
+      "exit": 0,
+      "bytes": 7333
+    },
+    {
+      "name": "decision-view-cli",
+      "argv": [
+        "reason-result",
+        "--store",
+        "/Users/rohanvinaik/trialledger-runs/phase1-lupus-cohort-handoff-20261104/.reasoning",
+        "--id",
+        "37cd84fd30c3c6015118d6c1d895d1c6bd2c00225fc8478cade197bd822a5f0a",
+        "--part",
+        "decision_view",
+        "--limit",
+        "1",
+        "--max-bytes",
+        "65536"
+      ],
+      "exit": 0,
+      "bytes": 16526
+    },
+    {
+      "name": "export-cli",
+      "argv": [
+        "reason-export",
+        "--store",
+        "/Users/rohanvinaik/trialledger-runs/phase1-lupus-cohort-handoff-20261104/.reasoning",
+        "--id",
+        "37cd84fd30c3c6015118d6c1d895d1c6bd2c00225fc8478cade197bd822a5f0a",
+        "--out",
+        "/Users/rohanvinaik/trialledger-runs/phase1-lupus-cohort-handoff-20261104/handoff-canonical",
+        "--source-record",
+        "/Users/rohanvinaik/trialledger-runs/phase1-lupus-cohort-handoff-20261104/sample/landscape.json"
+      ],
+      "exit": 0,
+      "bytes": 1356
+    }
+  ],
+  "export": {
+    "code": "complete",
+    "artifact": "37cd84fd30c3c6015118d6c1d895d1c6bd2c00225fc8478cade197bd822a5f0a",
+    "folder": "/Users/rohanvinaik/trialledger-runs/phase1-lupus-cohort-handoff-20261104/handoff-canonical/review",
+    "workbook": "/Users/rohanvinaik/trialledger-runs/phase1-lupus-cohort-handoff-20261104/handoff-canonical/review/design-review.xlsx",
+    "decision_list": "/Users/rohanvinaik/trialledger-runs/phase1-lupus-cohort-handoff-20261104/handoff-canonical/review/decision-list.md",
+    "manifest": "/Users/rohanvinaik/trialledger-runs/phase1-lupus-cohort-handoff-20261104/handoff-canonical/review/export-manifest.json",
+    "files": {
+      "artifacts/37cd84fd30c3c6015118d6c1d895d1c6bd2c00225fc8478cade197bd822a5f0a.json": {
+        "sha256": "37cd84fd30c3c6015118d6c1d895d1c6bd2c00225fc8478cade197bd822a5f0a",
+        "bytes": 641541
+      },
+      "decision-list.md": {
+        "sha256": "fa21bfa363c13894925312a4a39786696360c29149fbeb699dca40f246a69ed2",
+        "bytes": 14420
+      },
+      "design-review.xlsx": {
+        "sha256": "6eab159949335b26175dfb2e772c57cb5d1bf5183151c371c162bc35ad9b0367",
+        "bytes": 35176
+      },
+      "landscape.json": {
+        "sha256": "e35cedc47fc240ae66ee04a80e89b48eb00c6d365e28fe48ae5550e212e001e4",
+        "bytes": 174832
+      },
+      "landscape.xlsx": {
+        "sha256": "99362e3962cd5d294faf69f85d86437a6b5b08ee9421d61521ed45b8b47b1d24",
+        "bytes": 48747
+      }
+    },
+    "problems": []
+  },
+  "hashes": {
+    "baseline-cli-stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "revision-cli-stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "baseline-mcp-envelope.json": "ff61c021a0fd72f547d741db42c66c030e0c3e46226ce9df5753a96ee869f302",
+    "view-mcp-envelope.json": "cbf1c6ed4ec908b91f40fd68a1bdbf7e9e613345e55a5a31d8a91cd7091a4e6f",
+    "mcp-stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "workflow.log": "6a650b43fa3e216218e487fb8f43a22b6badef4e59ca6b5d6a419f492b4379bf",
+    "decision-view-cli-stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "revision-mcp-envelope.json": "aea850c5a4fd32f819245bb7d6537269c01d65b2d8561be95d1bbe677aa33935",
+    "workflow-final.log": "4d7c50b5a710c51c00892b8ebd8a938abbec9ddbb601fb37e9fddd92e20b1d2e",
+    "workflow-receipt.json": "f77d1e4424af303e2a9c143226542dc04d75c1736a9eb1b343b08209672cff3f",
+    "question.json": "cd3f794bd2a4890a59a595c8dcfca536920b7bbcdc3c8f55c2250b8d2d50ec33",
+    "export-cli.json": "ca54dcc4e6acdfe8254e6041107f196e1db4d5e6c5366933826608e5ba9a0d82",
+    "workflow-visible.log": "426fdff6ee04e18f8efd43a1d1324bb6c688b78472180925601ecf73a9500284",
+    "baseline-cli.json": "0ed65996861f30fdcfb9511872d66063583151030a31b4822da9dc688b5556f0",
+    "revision-result.json": "1cf1115eb274e0094a7c1b0b2ca8401d5e1c691891479b64d1455274bd13323d",
+    "sampling.json": "ab2ac2171c16e9d2dc4838d2e3fd51b50357269f9e98303e1d319207c20c514d",
+    "baseline-result.json": "5703ffa96577f9a89c2c3dcc2696ce227653ac71c1c9243ceab8012c185cf06c",
+    "revision-cli.json": "ab1583f6d88684f9d3aaac0656e32ba7a95ad19ff90260ef52c361113a34037a",
+    "workflow-canonical.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "decision-view-cli.json": "3266ccb881efc48888185ebf66de6c9405ac44027de9136f47e177d8e9effe64",
+    "next-session.json": "84e1f5b5f9cb19cacc26cd772b3ed4661bb1e412b3c658f4bb569957faff58ba",
+    "export-cli-stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "pool-request.json": "5fc22658c77dee66a8b8695cf8d5b4d52ebef18db91f14126bcb79ad42989359",
+    "export-complete.json": "8849b18ce41725665c7ca8c051b9f0560f59ad704a264e58c0b5d116483fa7f8",
+    "baseline-request.json": "bbf3398b6948b87c62f478e7e510f4ec63f9cd3b0840017403e56f00542fb70d"
+  }
+}

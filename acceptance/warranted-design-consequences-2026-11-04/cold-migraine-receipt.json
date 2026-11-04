@@ -1,0 +1,231 @@
+{
+  "question_and_sampling": "question.txt and sample-receipt.json, declared before source sampling",
+  "source_files_unchanged": true,
+  "source_file_fingerprints": {
+    "request.json": "4d4c4db0626b87acdc74ddab9920f313170fe2904a11d24c7ad78f02ca65f14e",
+    "acquisition.json": "b033e2c0b1bee43852d320289f515d1e9badb13e4c766f976bad793cf4e47e18",
+    "scope.json": "515267b89f11f884b1ff1e9fbb56a8a45584c0d0f408a9f444153e5074b38653",
+    "classes.json": "79b250e1ab9d72983755c4ab6f828e59cb269495abdd72c438ab77acf0641d27",
+    "resolution.json": "a765274dd99cec3a29833f6922d89717394205ea52a9e8fb31c11f73c4b35983",
+    "landscape.xlsx": "efbd2dcaafd89d7c5a2925db583eba23adf9eafa606f7d2c3dd72476d2c36e7e",
+    "landscape.json": "e364785832012a60fe7d8cbc3a0a06a84c5d73de19ace17912c8a23e0e2b9794",
+    "manifest.json": "e681b1584ba5820bf2bd21fc1cea0fbb598f698995b5844837af9b1135b917e4",
+    "fetches.json": "da6e9841c72ad9d06d56ae614a7880aff695e9c9f23207f8b25e22e684ccc25d",
+    "bodies/version-end.json": "9eb0e46583efc444c5877db64a361ff539a68ea4f56332958999a5acb39c8553",
+    "bodies/ids-001.json": "b6d291650675a3baeb5e3e60cc8bf9fe72064081138fbd73ad850608b34db143",
+    "bodies/version-start.json": "9eb0e46583efc444c5877db64a361ff539a68ea4f56332958999a5acb39c8553",
+    "bodies/studies-001.json": "9cc900438a6cc0648b315e13961d6aca49df90bf548f5a13ee453391edfd8096"
+  },
+  "public_cli_mcp_equal": [
+    "session one compact",
+    "initial decision views",
+    "prepare revision",
+    "revision two compact",
+    "revised decision views",
+    "final frozen decision views"
+  ],
+  "initial_artifact": "258871603992749eba13bc8b1908a6530d1dd67ad4fadd657bb95ecb7389c220",
+  "revised_artifact": "8a58f2f66581eeb55450d4155840866c03206672a2004791177f53811bdc262a",
+  "frozen_writer_hashes": {
+    "TrialLedger/clinical_export.py": "7da57b937ad536ca0fb1244657c1e1122aa3fa5ccd3ce96534b78d363793fe37",
+    "TrialLedger/clinical_view.py": "568a64b267609e4a93aefb6157ad7b5f293952ace0f07d8b57cae0d2641e7205"
+  },
+  "frozen_export_files_byte_equal": {
+    "artifacts/8a58f2f66581eeb55450d4155840866c03206672a2004791177f53811bdc262a.json": true,
+    "decision-list.md": true,
+    "design-review.xlsx": true,
+    "landscape.json": true,
+    "landscape.xlsx": true
+  },
+  "cli_export": {
+    "code": "complete",
+    "artifact": "8a58f2f66581eeb55450d4155840866c03206672a2004791177f53811bdc262a",
+    "folder": "/Users/rohanvinaik/trialledger-runs/cold-phase3-migraine-20261104/frozen-cli-export/review",
+    "workbook": "/Users/rohanvinaik/trialledger-runs/cold-phase3-migraine-20261104/frozen-cli-export/review/design-review.xlsx",
+    "decision_list": "/Users/rohanvinaik/trialledger-runs/cold-phase3-migraine-20261104/frozen-cli-export/review/decision-list.md",
+    "manifest": "/Users/rohanvinaik/trialledger-runs/cold-phase3-migraine-20261104/frozen-cli-export/review/export-manifest.json",
+    "files": {
+      "artifacts/8a58f2f66581eeb55450d4155840866c03206672a2004791177f53811bdc262a.json": {
+        "sha256": "8a58f2f66581eeb55450d4155840866c03206672a2004791177f53811bdc262a",
+        "bytes": 954449
+      },
+      "decision-list.md": {
+        "sha256": "269f1acc74d1c7b5b5a3abeb969b46a02c51bf11e82696b00e5a89ad08050451",
+        "bytes": 24818
+      },
+      "design-review.xlsx": {
+        "sha256": "7ffbe3881d9e3889b24a1cb77a0e2f5fd8e9fc8503c709f7a494b104239667ed",
+        "bytes": 42401
+      },
+      "landscape.json": {
+        "sha256": "e364785832012a60fe7d8cbc3a0a06a84c5d73de19ace17912c8a23e0e2b9794",
+        "bytes": 246247
+      },
+      "landscape.xlsx": {
+        "sha256": "efbd2dcaafd89d7c5a2925db583eba23adf9eafa606f7d2c3dd72476d2c36e7e",
+        "bytes": 57027
+      }
+    },
+    "problems": []
+  },
+  "mcp_export": {
+    "code": "complete",
+    "artifact": "8a58f2f66581eeb55450d4155840866c03206672a2004791177f53811bdc262a",
+    "folder": "/Users/rohanvinaik/trialledger-runs/cold-phase3-migraine-20261104/frozen-mcp/reasoning-exports/8a58f2f66581eeb55450d4155840866c03206672a2004791177f53811bdc262a/review",
+    "workbook": "/Users/rohanvinaik/trialledger-runs/cold-phase3-migraine-20261104/frozen-mcp/reasoning-exports/8a58f2f66581eeb55450d4155840866c03206672a2004791177f53811bdc262a/review/design-review.xlsx",
+    "decision_list": "/Users/rohanvinaik/trialledger-runs/cold-phase3-migraine-20261104/frozen-mcp/reasoning-exports/8a58f2f66581eeb55450d4155840866c03206672a2004791177f53811bdc262a/review/decision-list.md",
+    "manifest": "/Users/rohanvinaik/trialledger-runs/cold-phase3-migraine-20261104/frozen-mcp/reasoning-exports/8a58f2f66581eeb55450d4155840866c03206672a2004791177f53811bdc262a/review/export-manifest.json",
+    "files": {
+      "artifacts/8a58f2f66581eeb55450d4155840866c03206672a2004791177f53811bdc262a.json": {
+        "sha256": "8a58f2f66581eeb55450d4155840866c03206672a2004791177f53811bdc262a",
+        "bytes": 954449
+      },
+      "decision-list.md": {
+        "sha256": "269f1acc74d1c7b5b5a3abeb969b46a02c51bf11e82696b00e5a89ad08050451",
+        "bytes": 24818
+      },
+      "design-review.xlsx": {
+        "sha256": "7ffbe3881d9e3889b24a1cb77a0e2f5fd8e9fc8503c709f7a494b104239667ed",
+        "bytes": 42401
+      },
+      "landscape.json": {
+        "sha256": "e364785832012a60fe7d8cbc3a0a06a84c5d73de19ace17912c8a23e0e2b9794",
+        "bytes": 246247
+      },
+      "landscape.xlsx": {
+        "sha256": "efbd2dcaafd89d7c5a2925db583eba23adf9eafa606f7d2c3dd72476d2c36e7e",
+        "bytes": 57027
+      }
+    },
+    "problems": []
+  },
+  "retained_boundary": "Initial unaddressed Baseline aspirin receives evidence_question/no_constraint_mentions_query; no feasibility or design freedom claimed.",
+  "first_export_difference": "Parent confirmed writer changed concurrently; old captures retained. Frozen rerun uses new output folders.",
+  "workbook_readback": {
+    "baseline_measurements_preserved": [
+      {
+        "cell": "G2",
+        "value": "42.9",
+        "python_type": "str",
+        "source": "landscape.json#/studies/0/baseline/measures/0/classes/0/categories/0/measurements/0",
+        "denominator": "335 Participants; module scope"
+      },
+      {
+        "cell": "G3",
+        "value": "297",
+        "python_type": "str",
+        "source": "landscape.json#/studies/0/baseline/measures/1/classes/0/categories/0/measurements/0",
+        "denominator": "335 Participants; module scope"
+      },
+      {
+        "cell": "G4",
+        "value": "38",
+        "python_type": "str",
+        "source": "landscape.json#/studies/0/baseline/measures/1/classes/0/categories/1/measurements/0",
+        "denominator": "335 Participants; module scope"
+      },
+      {
+        "cell": "G5",
+        "value": "60",
+        "python_type": "str",
+        "source": "landscape.json#/studies/0/baseline/measures/2/classes/0/categories/0/measurements/0",
+        "denominator": "335 Participants; module scope"
+      },
+      {
+        "cell": "G6",
+        "value": "275",
+        "python_type": "str",
+        "source": "landscape.json#/studies/0/baseline/measures/2/classes/0/categories/1/measurements/0",
+        "denominator": "335 Participants; module scope"
+      },
+      {
+        "cell": "G7",
+        "value": "0",
+        "python_type": "str",
+        "source": "landscape.json#/studies/0/baseline/measures/2/classes/0/categories/2/measurements/0",
+        "denominator": "335 Participants; module scope"
+      },
+      {
+        "cell": "G8",
+        "value": "0",
+        "python_type": "str",
+        "source": "landscape.json#/studies/0/baseline/measures/3/classes/0/categories/0/measurements/0",
+        "denominator": "335 Participants; module scope"
+      },
+      {
+        "cell": "G9",
+        "value": "7",
+        "python_type": "str",
+        "source": "landscape.json#/studies/0/baseline/measures/3/classes/0/categories/1/measurements/0",
+        "denominator": "335 Participants; module scope"
+      },
+      {
+        "cell": "G10",
+        "value": "1",
+        "python_type": "str",
+        "source": "landscape.json#/studies/0/baseline/measures/3/classes/0/categories/2/measurements/0",
+        "denominator": "335 Participants; module scope"
+      },
+      {
+        "cell": "G11",
+        "value": "55",
+        "python_type": "str",
+        "source": "landscape.json#/studies/0/baseline/measures/3/classes/0/categories/3/measurements/0",
+        "denominator": "335 Participants; module scope"
+      },
+      {
+        "cell": "G12",
+        "value": "265",
+        "python_type": "str",
+        "source": "landscape.json#/studies/0/baseline/measures/3/classes/0/categories/4/measurements/0",
+        "denominator": "335 Participants; module scope"
+      },
+      {
+        "cell": "G13",
+        "value": "4",
+        "python_type": "str",
+        "source": "landscape.json#/studies/0/baseline/measures/3/classes/0/categories/5/measurements/0",
+        "denominator": "335 Participants; module scope"
+      },
+      {
+        "cell": "G14",
+        "value": "3",
+        "python_type": "str",
+        "source": "landscape.json#/studies/0/baseline/measures/3/classes/0/categories/6/measurements/0",
+        "denominator": "335 Participants; module scope"
+      },
+      {
+        "cell": "G15",
+        "value": "165.20",
+        "python_type": "str",
+        "source": "landscape.json#/studies/0/baseline/measures/4/classes/0/categories/0/measurements/0",
+        "denominator": "335 Participants; module scope"
+      },
+      {
+        "cell": "G16",
+        "value": "79.76",
+        "python_type": "str",
+        "source": "landscape.json#/studies/0/baseline/measures/5/classes/0/categories/0/measurements/0",
+        "denominator": "335 Participants; module scope"
+      },
+      {
+        "cell": "G17",
+        "value": "29.19",
+        "python_type": "str",
+        "source": "landscape.json#/studies/0/baseline/measures/6/classes/0/categories/0/measurements/0",
+        "denominator": "335 Participants; module scope"
+      }
+    ],
+    "baseline_unavailable_trial": "NCT00195741: no posted baseline, retained separately",
+    "formula_cells": 0,
+    "manifest_byte_equal": true,
+    "decision_rows": 2,
+    "option_rows": 4,
+    "requirement_rows": 3,
+    "evidence_rows": 51
+  },
+  "source_verify": "/Users/rohanvinaik/trialledger-runs/cold-phase3-migraine-20261104/landscape: verified \u2014 the clinical record and workbook reproduce from the retained sources. This checks derivation, not clinical interpretation.\n",
+  "working_brief": "/Users/rohanvinaik/trialledger-runs/cold-phase3-migraine-20261104/working-brief.md",
+  "classification_trace": "/Users/rohanvinaik/trialledger-runs/cold-phase3-migraine-20261104/classification-trace.md",
+  "manifest_byte_equal": true
+}

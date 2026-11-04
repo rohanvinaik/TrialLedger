@@ -1,0 +1,7 @@
+Installed 19 packages in 24ms
+/Users/rohanvinaik/tools/TrialLedger/TrialLedger/layer2/entail_explanations.py:65: info: Not confirmed.
+/Users/rohanvinaik/tools/TrialLedger/TrialLedger/layer2/entail_explanations.py:66: info: Not confirmed.
+/Users/rohanvinaik/tools/TrialLedger/TrialLedger/layer2/residual_requirements.py:48: info: Confirmed over all paths.
+/Users/rohanvinaik/tools/TrialLedger/TrialLedger/layer2/residual_requirements.py:49: info: Confirmed over all paths.
+/Users/rohanvinaik/tools/TrialLedger/TrialLedger/layer2/residual_requirements.py:50: info: Confirmed over all paths.
+/Users/rohanvinaik/tools/TrialLedger/TrialLedger/layer2/residual_requirements.py:66: info: Not confirmed.

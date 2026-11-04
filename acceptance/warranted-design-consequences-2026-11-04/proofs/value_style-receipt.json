@@ -1,0 +1,55 @@
+{
+  "target": "TrialLedger/clinical_display.py::value_style",
+  "invocation": "PYTHONPATH=/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker .venv/bin/detective converge 'TrialLedger/clinical_display.py::value_style' --two-sign",
+  "explicit_two_sign": true,
+  "source_sha256": "2dee6d7cdee31476a6c3e396d67642c16012f4a340135d3a11f2aff1e0de0478",
+  "current_source_sha256": "2dee6d7cdee31476a6c3e396d67642c16012f4a340135d3a11f2aff1e0de0478",
+  "function_sha256": "b083270af63574d6511dd0e1e7c1f0e6978282ede12d23134f43c534db2b3dc9",
+  "function_exact_equal_current": true,
+  "policy": "9+neg.f5a15364c11d",
+  "verdict": "COMPLETE (operator universe \u00b7 modulo 4 unproven-equivalent)",
+  "killed": 128,
+  "scored": 132,
+  "value_pinned": 128,
+  "authored_routed_initial": 17,
+  "routed_final": 24,
+  "isolated_routed": 100,
+  "minimal_cover": 16,
+  "unproven": [
+    "OUTPUT_ba428c80",
+    "OUTPUT_ecab3e9b",
+    "OUTPUT_aa0524ce",
+    "OUTPUT_c0a318b9"
+  ],
+  "unproven_kind": "Each literal return replaced by kind under its matching kind equality guard; no equivalence flag recorded. Retained as UNPROVEN exactly as engine reports.",
+  "authored_test": {
+    "path": "tests/test_clinical_views.py",
+    "frozen_sha256": "227179fed93026cc77b1c377e5e40721135377037c085a55917340c31c189d94",
+    "current_sha256": "7f16047f04c986e804df0b3520530f2e6548b026a9c9eae0b07cdc8b7f6bd0c8",
+    "direct_function_AST_equal": true,
+    "final_integration_tests_passed": 53
+  },
+  "full_reports": {
+    "/tmp/trialledger-value-style-two-sign-20261104/converge-1.log": "d07e77caa15990ddf5678a58a43836f5eaae6338b9d689ea17a68488770d9608",
+    "/tmp/trialledger-value-style-two-sign-20261104/.detective/reports/converge_value_style.txt": "930e611ce3a8dd0480a0cc0d1c01962ce729be88d691d4c9353bff1a280d91a9",
+    "/tmp/trialledger-value-style-two-sign-20261104/crosshair.log": "4e727ae932f0cb5e6e778ff4cc0b3dd4177054b94b87c1c380abbf071818fb3a",
+    "/tmp/trialledger-value-style-two-sign-20261104/.detective/ledger.jsonl": "a625bcdb227e3295dfe44b0c03128b2022c88a3b52812e54d07850b1ff633dd1"
+  },
+  "generated_suite": {
+    "path": "/tmp/trialledger-value-style-two-sign-20261104/tests/detective/test_TrialLedger_clinical_display_value_style_a4c2e0325b_synth.py",
+    "sha256": "f91bd65bff34bc7f84ee47ff5d4b5b3fdc554e20ab2cdcc65fcbb8ffe54904d0",
+    "tests": 3,
+    "adoption": "Not copied to main, no hand edits."
+  },
+  "crosshair": {
+    "invocation": "uv run --with crosshair-tool crosshair check TrialLedger.clinical_display.value_style --report_all",
+    "contract_outcome": "Not confirmed",
+    "counterexample_claim": false
+  },
+  "limitations": [
+    "Candidate equivalence remains unproven; no full general equivalence proof claimed.",
+    "CrossHair did not confirm the single postcondition; no counterexample reported.",
+    "5470 collected tests had no static path and were not traced.",
+    "Style pass and optional equivalence flags not executed after DONE. No shared certificates or commits modified."
+  ]
+}

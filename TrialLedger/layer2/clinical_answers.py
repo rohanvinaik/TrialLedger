@@ -7,6 +7,7 @@ information and independent change axes; it never decides a clinical proposition
 from __future__ import annotations
 
 import json
+from typing import cast
 
 from TrialLedger.layer2 import result_semantics, source_evidence
 
@@ -119,12 +120,65 @@ def _query(row: dict) -> object:
 
 
 def _proof_ids(value: object) -> set[str]:
+    if isinstance(value, list | tuple):
+        return set().union(*(_proof_ids(item) for item in value)) if value else set()
     if not isinstance(value, dict):
         return set()
-    found = {v for v in value.get("proof", ()) if isinstance(v, str)}
-    for name in ("warrant", "decision"):
+    found = {
+        ref
+        for name in ("proof", "basis", "premises")
+        for ref in (value[name] if isinstance(value.get(name), list | tuple) else ())
+        if isinstance(ref, str)
+    }
+    for name in ("warrant", "decision", "alternatives", "distinctions", "support", "conditions", "rule"):
         found.update(_proof_ids(value.get(name)))
     return found
+
+
+def _support_payload(value: object) -> object:
+    """Keep typed support, excluding documentary attribution and the asked query."""
+    if isinstance(value, list | tuple):
+        return [_support_payload(item) for item in value]
+    if isinstance(value, dict):
+        return {
+            key: _support_payload(item)
+            for key, item in value.items()
+            if key not in (*ORIGIN_FIELDS, "query", "span", "evidence")
+        }
+    return value
+
+
+def _premise_support(value: object, ids: set[str]) -> list[dict]:
+    """Resolve exact deciding IDs into their current typed payload and standing."""
+    if isinstance(value, list | tuple):
+        return [row for item in value for row in _premise_support(item, ids)]
+    if not isinstance(value, dict):
+        return []
+    if value.get("id") in ids:
+        held = cast(dict, _support_payload(value))
+        if "payload" in value:
+            # These basis references name the exchange/source, not a different
+            # logical premise. Payload rules and declared dependencies stay intact.
+            for name in ("standing", "dependency_support"):
+                if isinstance(held.get(name), dict):
+                    held[name].pop("basis", None)
+        return [{"premise": value["id"], "version": 1, "value": held}]
+    return [
+        row
+        for name in ("assertions", "assumptions", "premises", "fixed", "effective_premises")
+        for row in _premise_support(value.get(name), ids)
+    ]
+
+
+def _resolved_support(ancestors: list[dict], ids: set[str]) -> list[dict]:
+    """Nearest complete premise representation wins; unrelated inputs stay out."""
+    out = {}
+    for ancestor in ancestors:
+        # Effective session values include payload, standing and derivation dependencies.
+        for name in ("effective_premises", "premises", "assertions", "assumptions", "fixed"):
+            for row in _premise_support(ancestor.get(name), ids - out.keys()):
+                out.setdefault(row["premise"], row)
+    return [out[key] for key in sorted(out)]
 
 
 def _premise_origins(value: object, ids: set[str]) -> list[dict]:
@@ -276,21 +330,40 @@ def project(operation: str, result: object, problems: tuple | list = ()) -> dict
 
 
 def change_projection(operation: str, result: object) -> dict:
-    """Independent clinical answer, deciding support and attributed-origin axes.
+    """Independent typed question, wording, answer, support, origin and context axes.
 
-    Input premise echoes are not answers. A changed scope or numeric value is an
-    answer change; standing, blockers and proof remain support changes. Conditions
-    carry their formulas in answer and their warrants separately in support.
+    Caller wording never certifies clinical meaning. Deciding support versions are
+    resolved only for actual warrant IDs; copied evidence context is not a premise.
     """
-    axes = {"answer": [], "support": [], "origin": []}
+    axes = {name: [] for name in ("question", "wording", "answer", "support", "origin", "context")}
+    root = {"result": result}
     for row in project(operation, result)["findings"]:
         identity = {"path": row["path"]}
+        raw = _selected(root, row["path"])
+        raw = raw if isinstance(raw, dict) else {}
+        decision = row["kind"] == "session_decision"
+        question = {"scope": row["scope"]}
+        values = cast(dict, _copy(row["values"]))
+        wording = {}
+        if decision:
+            question["alternatives"] = [
+                _fields(option, ("id", "query")) for option in raw.get("alternatives", ())
+            ]
+            wording = {
+                "question": raw.get("question"),
+                "alternatives": [_fields(option, ("id", "label")) for option in raw.get("alternatives", ())],
+            }
+            values.pop("question", None)
+            values["alternatives"] = [
+                _fields(option, ("id", "code")) for option in raw.get("alternatives", ())
+            ]
+        axes["question"].append({**identity, **question})
+        axes["wording"].append({**identity, **wording})
         axes["answer"].append(
             {
                 **identity,
                 "outcome": row["outcome"],
-                "scope": row["scope"],
-                "values": row["values"],
+                "values": values,
                 "conditions": [_fields(c, ("relation", "body", "scope")) for c in row["conditions"]],
             }
         )
@@ -300,10 +373,19 @@ def change_projection(operation: str, result: object) -> dict:
                 "standing": row["standing"],
                 "completion": row["completion"],
                 "disposition": row["disposition"],
-                "support": row["support"],
+                "support": _support_payload(row["support"]),
+                "premise_versions": _resolved_support(
+                    _ancestors(root, row["path"]),
+                    _proof_ids(row["support"])
+                    | _proof_ids(row["conditions"])
+                    | {p["id"] for p in row["values"].get("permissions", ()) if "id" in p},
+                ),
                 "blockers": row["blockers"],
-                "conditions": [_fields(c, ("status", "warrant")) for c in row["conditions"]],
+                "conditions": [
+                    _support_payload(_fields(c, ("status", "warrant"))) for c in row["conditions"]
+                ],
             }
         )
         axes["origin"].append({**identity, "origins": row["origins"]})
+        axes["context"].append({**identity, "evidence": _copy(raw.get("evidence", [])) if decision else []})
     return axes

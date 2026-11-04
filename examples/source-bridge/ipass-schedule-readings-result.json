@@ -1248,12 +1248,6 @@
         ]
       },
       {
-        "address": "/resultsSection",
-        "ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/resultsSection",
-        "code": "unresolved_retained",
-        "reason": "outside_structured_age_direct_rules"
-      },
-      {
         "address": "/derivedSection",
         "ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/derivedSection",
         "code": "unresolved_retained",
@@ -1266,26 +1260,8 @@
         "reason": "outside_structured_age_direct_rules"
       },
       {
-        "address": "/protocolSection/identificationModule",
-        "ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/identificationModule",
-        "code": "unresolved_retained",
-        "reason": "outside_structured_age_direct_rules"
-      },
-      {
-        "address": "/protocolSection/statusModule",
-        "ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/statusModule",
-        "code": "unresolved_retained",
-        "reason": "outside_structured_age_direct_rules"
-      },
-      {
-        "address": "/protocolSection/sponsorCollaboratorsModule",
-        "ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/sponsorCollaboratorsModule",
-        "code": "unresolved_retained",
-        "reason": "outside_structured_age_direct_rules"
-      },
-      {
-        "address": "/protocolSection/descriptionModule",
-        "ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/descriptionModule",
+        "address": "/protocolSection/armsInterventionsModule",
+        "ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/armsInterventionsModule",
         "code": "unresolved_retained",
         "reason": "outside_structured_age_direct_rules"
       },
@@ -1296,14 +1272,26 @@
         "reason": "outside_structured_age_direct_rules"
       },
       {
+        "address": "/protocolSection/contactsLocationsModule",
+        "ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/contactsLocationsModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/descriptionModule",
+        "ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/descriptionModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
         "address": "/protocolSection/designModule",
         "ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/designModule",
         "code": "unresolved_retained",
         "reason": "outside_structured_age_direct_rules"
       },
       {
-        "address": "/protocolSection/armsInterventionsModule",
-        "ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/armsInterventionsModule",
+        "address": "/protocolSection/identificationModule",
+        "ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/identificationModule",
         "code": "unresolved_retained",
         "reason": "outside_structured_age_direct_rules"
       },
@@ -1314,14 +1302,26 @@
         "reason": "outside_structured_age_direct_rules"
       },
       {
-        "address": "/protocolSection/contactsLocationsModule",
-        "ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/contactsLocationsModule",
+        "address": "/protocolSection/referencesModule",
+        "ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/referencesModule",
         "code": "unresolved_retained",
         "reason": "outside_structured_age_direct_rules"
       },
       {
-        "address": "/protocolSection/referencesModule",
-        "ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/referencesModule",
+        "address": "/protocolSection/sponsorCollaboratorsModule",
+        "ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/sponsorCollaboratorsModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/statusModule",
+        "ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/statusModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/resultsSection",
+        "ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/resultsSection",
         "code": "unresolved_retained",
         "reason": "outside_structured_age_direct_rules"
       }
@@ -2848,15 +2848,19 @@
                   "blockers": []
                 },
                 "explanations": {
+                  "coverage": "bounded_candidate_discovery_not_complete_screening",
                   "permissions": [],
                   "conditions": [],
                   "blockers": [],
                   "checks": {
-                    "code": "not_open",
+                    "code": "complete",
                     "decisions": 0,
-                    "intrinsic_queries": 0,
-                    "planned": 0,
-                    "limit": 8
+                    "intrinsic_queries": 1,
+                    "profile_queries": 2,
+                    "planned": 1,
+                    "limit": 32,
+                    "profile_probes": 1,
+                    "planning_nodes": 1
                   }
                 },
                 "warrant": {
@@ -3202,15 +3206,19 @@
                     "blockers": []
                   },
                   "explanations": {
+                    "coverage": "bounded_candidate_discovery_not_complete_screening",
                     "permissions": [],
                     "conditions": [],
                     "blockers": [],
                     "checks": {
-                      "code": "not_open",
+                      "code": "complete",
                       "decisions": 0,
-                      "intrinsic_queries": 0,
-                      "planned": 0,
-                      "limit": 8
+                      "intrinsic_queries": 1,
+                      "profile_queries": 2,
+                      "planned": 1,
+                      "limit": 32,
+                      "profile_probes": 1,
+                      "planning_nodes": 1
                     }
                   },
                   "warrant": {
@@ -3590,15 +3598,19 @@
                     "blockers": []
                   },
                   "explanations": {
+                    "coverage": "bounded_candidate_discovery_not_complete_screening",
                     "permissions": [],
                     "conditions": [],
                     "blockers": [],
                     "checks": {
-                      "code": "not_open",
+                      "code": "complete",
                       "decisions": 0,
-                      "intrinsic_queries": 0,
-                      "planned": 0,
-                      "limit": 8
+                      "intrinsic_queries": 1,
+                      "profile_queries": 2,
+                      "planned": 1,
+                      "limit": 32,
+                      "profile_probes": 1,
+                      "planning_nodes": 1
                     }
                   },
                   "warrant": {
@@ -3708,15 +3720,19 @@
                 "blockers": []
               },
               "explanations": {
+                "coverage": "bounded_candidate_discovery_not_complete_screening",
                 "permissions": [],
                 "conditions": [],
                 "blockers": [],
                 "checks": {
-                  "code": "not_open",
+                  "code": "complete",
                   "decisions": 0,
-                  "intrinsic_queries": 0,
-                  "planned": 0,
-                  "limit": 8
+                  "intrinsic_queries": 1,
+                  "profile_queries": 2,
+                  "planned": 1,
+                  "limit": 32,
+                  "profile_probes": 1,
+                  "planning_nodes": 1
                 }
               },
               "warrant": {
@@ -3832,7 +3848,7 @@
             }
           ]
         },
-        "result_digest": "40fd69e133ed0aeb817e56bbc3ef703d326f00b78dfd0e0f340dee2d424c0f5c",
+        "result_digest": "9252b6148a50e17992163ef1a167559a1e30fa8317b8ab486cbdebe7cb40edbe",
         "result_digest_scope": "result only; excludes summary, presentation and artifact metadata"
       }
     ]
@@ -3934,6 +3950,6 @@
       }
     ]
   },
-  "result_digest": "7c489f0f1120fc92e64a43ff1930bf20b32732dc77b532ba8da898890cbc30c4",
+  "result_digest": "10bb160a44653b3db7c63476055cc72fe61005b77141ddeed9895d87e8e133eb",
   "result_digest_scope": "result only; excludes summary, presentation and artifact metadata"
 }

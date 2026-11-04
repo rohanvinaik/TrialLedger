@@ -223,8 +223,73 @@
           },
           "explanation_blockers": []
         },
-        "origins": [],
-        "conditions": [],
+        "origins": [
+          {
+            "premise": "registry-age-minimumAge",
+            "criterion_ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/eligibilityModule/minimumAge"
+          }
+        ],
+        "conditions": [
+          {
+            "relation": "required_by_criteria",
+            "body": {
+              "class": "Literal",
+              "evidence": [
+                {
+                  "class": "Evidence",
+                  "kind": "record_field",
+                  "ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/eligibilityModule/minimumAge"
+                }
+              ],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "age",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "ge",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 18.0,
+                "unit": "Years",
+                "upper": null
+              }
+            },
+            "status": "known",
+            "warrant": {
+              "result": "ENTAILED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[{\"class\":\"Evidence\",\"kind\":\"record_field\",\"ref\":\"ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/eligibilityModule/minimumAge\"}],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+              "status": "known",
+              "proof": [
+                "registry-age-minimumAge"
+              ],
+              "blockers": [],
+              "guarantee": "fixed_floor"
+            },
+            "scope": {
+              "cohort": null,
+              "phase": null,
+              "arm": null
+            },
+            "profile_check": {
+              "code": "not_established_by_query",
+              "basis": "query_alone"
+            },
+            "guarantee": "fixed_floor"
+          }
+        ],
         "blockers": [
           "no_constraint_mentions_query"
         ],
@@ -458,8 +523,73 @@
           },
           "explanation_blockers": []
         },
-        "origins": [],
-        "conditions": [],
+        "origins": [
+          {
+            "premise": "registry-age-minimumAge",
+            "criterion_ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/eligibilityModule/minimumAge"
+          }
+        ],
+        "conditions": [
+          {
+            "relation": "required_by_criteria",
+            "body": {
+              "class": "Literal",
+              "evidence": [
+                {
+                  "class": "Evidence",
+                  "kind": "record_field",
+                  "ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/eligibilityModule/minimumAge"
+                }
+              ],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "age",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "ge",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 18.0,
+                "unit": "Years",
+                "upper": null
+              }
+            },
+            "status": "known",
+            "warrant": {
+              "result": "ENTAILED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[{\"class\":\"Evidence\",\"kind\":\"record_field\",\"ref\":\"ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/eligibilityModule/minimumAge\"}],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+              "status": "known",
+              "proof": [
+                "registry-age-minimumAge"
+              ],
+              "blockers": [],
+              "guarantee": "conditional_on_interpretation"
+            },
+            "scope": {
+              "cohort": null,
+              "phase": null,
+              "arm": null
+            },
+            "profile_check": {
+              "code": "not_established_by_query",
+              "basis": "query_alone"
+            },
+            "guarantee": "conditional_on_interpretation"
+          }
+        ],
         "blockers": [
           "no_constraint_mentions_query"
         ],
@@ -1162,8 +1292,11 @@
     ],
     "bindings": [
       {
-        "resolution": "resolved",
         "id": "same-baseline-universe",
+        "subjects": [
+          "WHO_PS2",
+          "never_smoker"
+        ],
         "scope": {
           "study": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a",
           "population": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a:baseline:BG002",
@@ -1171,20 +1304,10 @@
           "time": "baseline-assessment-not-eligibility-time",
           "version": "c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a"
         },
-        "basis": [
-          "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/resultsSection/baselineCharacteristicsModule/measures/5/classes/2/categories/0/measurements/2/value",
-          "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/resultsSection/baselineCharacteristicsModule/measures/4/classes/0/categories/0/measurements/2/value",
-          "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/resultsSection/baselineCharacteristicsModule/denoms/0/counts/2/value",
-          "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/resultsSection/baselineCharacteristicsModule/measures/5",
-          "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/resultsSection/baselineCharacteristicsModule/measures/4",
-          "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/resultsSection/baselineCharacteristicsModule/denoms/0",
-          "hypothesis:source-location-is-not-semantic-warrant"
-        ],
-        "subjects": [
-          "WHO_PS2",
-          "never_smoker"
-        ],
+        "kind": "population",
         "status": "proposed",
+        "relation": "same_universe",
+        "resolution": "resolved",
         "sources": [
           {
             "ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a",
@@ -1223,8 +1346,15 @@
             "digest": "c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a"
           }
         ],
-        "kind": "population",
-        "relation": "same_universe"
+        "basis": [
+          "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/resultsSection/baselineCharacteristicsModule/measures/5/classes/2/categories/0/measurements/2/value",
+          "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/resultsSection/baselineCharacteristicsModule/measures/4/classes/0/categories/0/measurements/2/value",
+          "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/resultsSection/baselineCharacteristicsModule/denoms/0/counts/2/value",
+          "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/resultsSection/baselineCharacteristicsModule/measures/5",
+          "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/resultsSection/baselineCharacteristicsModule/measures/4",
+          "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/resultsSection/baselineCharacteristicsModule/denoms/0",
+          "hypothesis:source-location-is-not-semantic-warrant"
+        ]
       }
     ],
     "coverage": [
@@ -1265,12 +1395,6 @@
         ]
       },
       {
-        "address": "/resultsSection",
-        "ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/resultsSection",
-        "code": "unresolved_retained",
-        "reason": "outside_structured_age_direct_rules"
-      },
-      {
         "address": "/derivedSection",
         "ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/derivedSection",
         "code": "unresolved_retained",
@@ -1283,26 +1407,8 @@
         "reason": "outside_structured_age_direct_rules"
       },
       {
-        "address": "/protocolSection/identificationModule",
-        "ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/identificationModule",
-        "code": "unresolved_retained",
-        "reason": "outside_structured_age_direct_rules"
-      },
-      {
-        "address": "/protocolSection/statusModule",
-        "ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/statusModule",
-        "code": "unresolved_retained",
-        "reason": "outside_structured_age_direct_rules"
-      },
-      {
-        "address": "/protocolSection/sponsorCollaboratorsModule",
-        "ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/sponsorCollaboratorsModule",
-        "code": "unresolved_retained",
-        "reason": "outside_structured_age_direct_rules"
-      },
-      {
-        "address": "/protocolSection/descriptionModule",
-        "ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/descriptionModule",
+        "address": "/protocolSection/armsInterventionsModule",
+        "ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/armsInterventionsModule",
         "code": "unresolved_retained",
         "reason": "outside_structured_age_direct_rules"
       },
@@ -1313,14 +1419,26 @@
         "reason": "outside_structured_age_direct_rules"
       },
       {
+        "address": "/protocolSection/contactsLocationsModule",
+        "ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/contactsLocationsModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/descriptionModule",
+        "ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/descriptionModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
         "address": "/protocolSection/designModule",
         "ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/designModule",
         "code": "unresolved_retained",
         "reason": "outside_structured_age_direct_rules"
       },
       {
-        "address": "/protocolSection/armsInterventionsModule",
-        "ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/armsInterventionsModule",
+        "address": "/protocolSection/identificationModule",
+        "ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/identificationModule",
         "code": "unresolved_retained",
         "reason": "outside_structured_age_direct_rules"
       },
@@ -1331,14 +1449,26 @@
         "reason": "outside_structured_age_direct_rules"
       },
       {
-        "address": "/protocolSection/contactsLocationsModule",
-        "ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/contactsLocationsModule",
+        "address": "/protocolSection/referencesModule",
+        "ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/referencesModule",
         "code": "unresolved_retained",
         "reason": "outside_structured_age_direct_rules"
       },
       {
-        "address": "/protocolSection/referencesModule",
-        "ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/referencesModule",
+        "address": "/protocolSection/sponsorCollaboratorsModule",
+        "ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/sponsorCollaboratorsModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/statusModule",
+        "ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/statusModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/resultsSection",
+        "ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/resultsSection",
         "code": "unresolved_retained",
         "reason": "outside_structured_age_direct_rules"
       }
@@ -1548,8 +1678,11 @@
         },
         "bindings": [
           {
-            "resolution": "resolved",
             "id": "same-baseline-universe",
+            "subjects": [
+              "WHO_PS2",
+              "never_smoker"
+            ],
             "scope": {
               "study": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a",
               "population": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a:baseline:BG002",
@@ -1557,20 +1690,10 @@
               "time": "baseline-assessment-not-eligibility-time",
               "version": "c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a"
             },
-            "basis": [
-              "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/resultsSection/baselineCharacteristicsModule/measures/5/classes/2/categories/0/measurements/2/value",
-              "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/resultsSection/baselineCharacteristicsModule/measures/4/classes/0/categories/0/measurements/2/value",
-              "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/resultsSection/baselineCharacteristicsModule/denoms/0/counts/2/value",
-              "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/resultsSection/baselineCharacteristicsModule/measures/5",
-              "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/resultsSection/baselineCharacteristicsModule/measures/4",
-              "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/resultsSection/baselineCharacteristicsModule/denoms/0",
-              "hypothesis:source-location-is-not-semantic-warrant"
-            ],
-            "subjects": [
-              "WHO_PS2",
-              "never_smoker"
-            ],
+            "kind": "population",
             "status": "proposed",
+            "relation": "same_universe",
+            "resolution": "resolved",
             "sources": [
               {
                 "ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a",
@@ -1609,8 +1732,15 @@
                 "digest": "c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a"
               }
             ],
-            "kind": "population",
-            "relation": "same_universe"
+            "basis": [
+              "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/resultsSection/baselineCharacteristicsModule/measures/5/classes/2/categories/0/measurements/2/value",
+              "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/resultsSection/baselineCharacteristicsModule/measures/4/classes/0/categories/0/measurements/2/value",
+              "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/resultsSection/baselineCharacteristicsModule/denoms/0/counts/2/value",
+              "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/resultsSection/baselineCharacteristicsModule/measures/5",
+              "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/resultsSection/baselineCharacteristicsModule/measures/4",
+              "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/resultsSection/baselineCharacteristicsModule/denoms/0",
+              "hypothesis:source-location-is-not-semantic-warrant"
+            ]
           }
         ],
         "interpretations": [
@@ -1985,8 +2115,73 @@
                 },
                 "explanation_blockers": []
               },
-              "origins": [],
-              "conditions": [],
+              "origins": [
+                {
+                  "premise": "registry-age-minimumAge",
+                  "criterion_ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/eligibilityModule/minimumAge"
+                }
+              ],
+              "conditions": [
+                {
+                  "relation": "required_by_criteria",
+                  "body": {
+                    "class": "Literal",
+                    "evidence": [
+                      {
+                        "class": "Evidence",
+                        "kind": "record_field",
+                        "ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/eligibilityModule/minimumAge"
+                      }
+                    ],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "age",
+                      "kind": "measurement"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "participant",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "ge",
+                      "inclusivity": "unspecified",
+                      "kind": "quantity",
+                      "members": [],
+                      "number": 18.0,
+                      "unit": "Years",
+                      "upper": null
+                    }
+                  },
+                  "status": "known",
+                  "warrant": {
+                    "result": "ENTAILED",
+                    "query": "{\"class\":\"Literal\",\"evidence\":[{\"class\":\"Evidence\",\"kind\":\"record_field\",\"ref\":\"ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/eligibilityModule/minimumAge\"}],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+                    "status": "known",
+                    "proof": [
+                      "registry-age-minimumAge"
+                    ],
+                    "blockers": [],
+                    "guarantee": "fixed_floor"
+                  },
+                  "scope": {
+                    "cohort": null,
+                    "phase": null,
+                    "arm": null
+                  },
+                  "profile_check": {
+                    "code": "not_established_by_query",
+                    "basis": "query_alone"
+                  },
+                  "guarantee": "fixed_floor"
+                }
+              ],
               "blockers": [
                 "no_constraint_mentions_query"
               ],
@@ -2220,8 +2415,73 @@
                 },
                 "explanation_blockers": []
               },
-              "origins": [],
-              "conditions": [],
+              "origins": [
+                {
+                  "premise": "registry-age-minimumAge",
+                  "criterion_ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/eligibilityModule/minimumAge"
+                }
+              ],
+              "conditions": [
+                {
+                  "relation": "required_by_criteria",
+                  "body": {
+                    "class": "Literal",
+                    "evidence": [
+                      {
+                        "class": "Evidence",
+                        "kind": "record_field",
+                        "ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/eligibilityModule/minimumAge"
+                      }
+                    ],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "age",
+                      "kind": "measurement"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "participant",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "ge",
+                      "inclusivity": "unspecified",
+                      "kind": "quantity",
+                      "members": [],
+                      "number": 18.0,
+                      "unit": "Years",
+                      "upper": null
+                    }
+                  },
+                  "status": "known",
+                  "warrant": {
+                    "result": "ENTAILED",
+                    "query": "{\"class\":\"Literal\",\"evidence\":[{\"class\":\"Evidence\",\"kind\":\"record_field\",\"ref\":\"ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/eligibilityModule/minimumAge\"}],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+                    "status": "known",
+                    "proof": [
+                      "registry-age-minimumAge"
+                    ],
+                    "blockers": [],
+                    "guarantee": "conditional_on_interpretation"
+                  },
+                  "scope": {
+                    "cohort": null,
+                    "phase": null,
+                    "arm": null
+                  },
+                  "profile_check": {
+                    "code": "not_established_by_query",
+                    "basis": "query_alone"
+                  },
+                  "guarantee": "conditional_on_interpretation"
+                }
+              ],
               "blockers": [
                 "no_constraint_mentions_query"
               ],
@@ -2650,15 +2910,19 @@
                   "blockers": []
                 },
                 "explanations": {
+                  "coverage": "bounded_candidate_discovery_not_complete_screening",
                   "permissions": [],
                   "conditions": [],
                   "blockers": [],
                   "checks": {
-                    "code": "not_open",
+                    "code": "complete",
                     "decisions": 0,
-                    "intrinsic_queries": 0,
-                    "planned": 0,
-                    "limit": 8
+                    "intrinsic_queries": 1,
+                    "profile_queries": 2,
+                    "planned": 1,
+                    "limit": 32,
+                    "profile_probes": 1,
+                    "planning_nodes": 1
                   }
                 },
                 "warrant": {
@@ -2714,15 +2978,79 @@
                   ]
                 },
                 "explanations": {
+                  "coverage": "bounded_candidate_discovery_not_complete_screening",
                   "permissions": [],
-                  "conditions": [],
+                  "conditions": [
+                    {
+                      "relation": "required_by_criteria",
+                      "body": {
+                        "class": "Literal",
+                        "evidence": [
+                          {
+                            "class": "Evidence",
+                            "kind": "record_field",
+                            "ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/eligibilityModule/minimumAge"
+                          }
+                        ],
+                        "polarity": "positive",
+                        "predicate": {
+                          "class": "Predicate",
+                          "key": "age",
+                          "kind": "measurement"
+                        },
+                        "qualifiers": {
+                          "class": "Always"
+                        },
+                        "subject": {
+                          "class": "Subject",
+                          "kind": "participant",
+                          "referent": ""
+                        },
+                        "time": null,
+                        "value": {
+                          "class": "Value",
+                          "comparison": "ge",
+                          "inclusivity": "unspecified",
+                          "kind": "quantity",
+                          "members": [],
+                          "number": 18.0,
+                          "unit": "Years",
+                          "upper": null
+                        }
+                      },
+                      "status": "known",
+                      "warrant": {
+                        "result": "ENTAILED",
+                        "query": "{\"class\":\"Literal\",\"evidence\":[{\"class\":\"Evidence\",\"kind\":\"record_field\",\"ref\":\"ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/eligibilityModule/minimumAge\"}],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+                        "status": "known",
+                        "proof": [
+                          "registry-age-minimumAge"
+                        ],
+                        "blockers": [],
+                        "guarantee": "fixed_floor"
+                      },
+                      "scope": {
+                        "cohort": null,
+                        "phase": null,
+                        "arm": null
+                      },
+                      "profile_check": {
+                        "code": "not_established_by_query",
+                        "basis": "query_alone"
+                      },
+                      "guarantee": "fixed_floor"
+                    }
+                  ],
                   "blockers": [],
                   "checks": {
                     "code": "complete",
-                    "decisions": 0,
+                    "decisions": 1,
                     "intrinsic_queries": 1,
-                    "planned": 0,
-                    "limit": 8
+                    "profile_queries": 2,
+                    "planned": 1,
+                    "limit": 32,
+                    "profile_probes": 0,
+                    "planning_nodes": 0
                   }
                 },
                 "warrant": {
@@ -3074,15 +3402,19 @@
                     "blockers": []
                   },
                   "explanations": {
+                    "coverage": "bounded_candidate_discovery_not_complete_screening",
                     "permissions": [],
                     "conditions": [],
                     "blockers": [],
                     "checks": {
-                      "code": "not_open",
+                      "code": "complete",
                       "decisions": 0,
-                      "intrinsic_queries": 0,
-                      "planned": 0,
-                      "limit": 8
+                      "intrinsic_queries": 1,
+                      "profile_queries": 2,
+                      "planned": 1,
+                      "limit": 32,
+                      "profile_probes": 1,
+                      "planning_nodes": 1
                     }
                   },
                   "warrant": {
@@ -3138,15 +3470,79 @@
                     ]
                   },
                   "explanations": {
+                    "coverage": "bounded_candidate_discovery_not_complete_screening",
                     "permissions": [],
-                    "conditions": [],
+                    "conditions": [
+                      {
+                        "relation": "required_by_criteria",
+                        "body": {
+                          "class": "Literal",
+                          "evidence": [
+                            {
+                              "class": "Evidence",
+                              "kind": "record_field",
+                              "ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/eligibilityModule/minimumAge"
+                            }
+                          ],
+                          "polarity": "positive",
+                          "predicate": {
+                            "class": "Predicate",
+                            "key": "age",
+                            "kind": "measurement"
+                          },
+                          "qualifiers": {
+                            "class": "Always"
+                          },
+                          "subject": {
+                            "class": "Subject",
+                            "kind": "participant",
+                            "referent": ""
+                          },
+                          "time": null,
+                          "value": {
+                            "class": "Value",
+                            "comparison": "ge",
+                            "inclusivity": "unspecified",
+                            "kind": "quantity",
+                            "members": [],
+                            "number": 18.0,
+                            "unit": "Years",
+                            "upper": null
+                          }
+                        },
+                        "status": "known",
+                        "warrant": {
+                          "result": "ENTAILED",
+                          "query": "{\"class\":\"Literal\",\"evidence\":[{\"class\":\"Evidence\",\"kind\":\"record_field\",\"ref\":\"ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/eligibilityModule/minimumAge\"}],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+                          "status": "known",
+                          "proof": [
+                            "registry-age-minimumAge"
+                          ],
+                          "blockers": [],
+                          "guarantee": "conditional_on_interpretation"
+                        },
+                        "scope": {
+                          "cohort": null,
+                          "phase": null,
+                          "arm": null
+                        },
+                        "profile_check": {
+                          "code": "not_established_by_query",
+                          "basis": "query_alone"
+                        },
+                        "guarantee": "conditional_on_interpretation"
+                      }
+                    ],
                     "blockers": [],
                     "checks": {
                       "code": "complete",
-                      "decisions": 0,
+                      "decisions": 1,
                       "intrinsic_queries": 1,
-                      "planned": 0,
-                      "limit": 8
+                      "profile_queries": 2,
+                      "planned": 1,
+                      "limit": 32,
+                      "profile_probes": 0,
+                      "planning_nodes": 0
                     }
                   },
                   "warrant": {
@@ -3262,15 +3658,19 @@
                 "blockers": []
               },
               "explanations": {
+                "coverage": "bounded_candidate_discovery_not_complete_screening",
                 "permissions": [],
                 "conditions": [],
                 "blockers": [],
                 "checks": {
-                  "code": "not_open",
+                  "code": "complete",
                   "decisions": 0,
-                  "intrinsic_queries": 0,
-                  "planned": 0,
-                  "limit": 8
+                  "intrinsic_queries": 1,
+                  "profile_queries": 2,
+                  "planned": 1,
+                  "limit": 32,
+                  "profile_probes": 1,
+                  "planning_nodes": 1
                 }
               },
               "warrant": {
@@ -3487,7 +3887,7 @@
             }
           ]
         },
-        "result_digest": "3c75557090c8baec55c7a4ad65b71c764987e1526e972a3b5299b9afdb9831da",
+        "result_digest": "bf9faf068ccc67f167c0a13fec1e4bc2b8b66d41231815db53ad7e030f741c04",
         "result_digest_scope": "result only; excludes summary, presentation and artifact metadata"
       }
     ]
@@ -3620,6 +4020,6 @@
       }
     ]
   },
-  "result_digest": "5301a90ecc53338154a55bbcf6c6eef914154eb51a91a807bd9b33dc8167f359",
+  "result_digest": "54b9291059cb326574e560fc335b71a242224aad845bb111632d0e4e0b8b6322",
   "result_digest_scope": "result only; excludes summary, presentation and artifact metadata"
 }

@@ -1,0 +1,11 @@
+TrialLedger/layer2/residual_requirements.py::junction_code: ✓ COMPLETE — every mutant killed or oracle-proven-equivalent, line-complete
+  mutants: 0 → 0 survivors; score 100% → 100% (87/87 killed)
+  value: 0 → 0 unspecified; score 100% → 100% (87/87 pinned)
+  every-killable-killed=True  line-complete=True
+  universe: 50 operator mutants · comprehensive — full mutant universe · 87/87 = 100% of scored mutants value-pinned · exhaustive — every operator-universe mutant tested · policy 9+neg.f5a15364c11d
+  pass 0: 0 survivors, 0 sound tests written
+  ✓ line-complete — every executable line is covered by a test
+  · not consulted: 5566 collected test(s) have no static path to this function — not traced (a missed dynamic reacher costs a redundant generated test, never a certificate)
+  minimal suite: 1 test(s) cover all kills + lines
+  PROPOSED removals (1, redundant for BOTH kills and lines — confirm to delete, never auto): tests/test_residual_requirements.py::test_criteria_derived_truth_must_not_be_used_to_specialize_the_profile
+FINAL TrialLedger/layer2/residual_requirements.py::junction_code: ✓ COMPLETE (operator universe) · 87/87 killed · minimal cover 1 test(s) · policy 9+neg.f5a15364c11d

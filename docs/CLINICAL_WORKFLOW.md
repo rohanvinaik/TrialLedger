@@ -40,6 +40,18 @@ have a proved necessary condition: “if this NT-proBNP value fits, absence of A
 That does not certify all eligibility. Proposed or out-of-scope support stays withheld. Numeric witnesses
 keep count intervals, denominators, populations, exception caps and weakest support.
 
+Conditions distinguish `necessary_if_query` from `required_by_criteria`. The latter is required across the
+represented criteria but not established by this partial profile. For example, an invented BMI-28 profile
+can still need one of a listed-condition disjunction. Do not flatten it into all conditions or tell the
+person they lack them. Every row retains a warrant, standing and scope; coverage remains bounded discovery,
+not complete screening. The same information survives entailment, rival readings and candidate-design queries.
+
+A decision may carry optional `evidence` entries: id, local source ID, exact `{id,address,digest,expected,span?}`
+anchor, role (`quote`, `reading`, `gap`), and optional note/scope. Stale anchors refuse. Exact copied wording
+is known as copied wording; annotations remain caller-attributed and proposed, including descriptions of
+silence. No context entry becomes a constraint or population binding. Put adopted restrictions in the
+ordinary premise ledger separately.
+
 Historical unknowns are evidence questions. Different feasible draft alternatives can be design choices.
 Malformed translation needs correction; unfinished computation needs a narrower or adequately bounded run.
 Keep remedies separate and retain independently settled conclusions.
@@ -52,14 +64,17 @@ projection and artifact reference, backed by the complete canonical request and 
 
 ```bash
 trialledger reason --request SESSION_FILE --store STORE --compact
-trialledger reason-result --store STORE --id ARTIFACT_ID --part decisions
+trialledger reason-result --store STORE --id ARTIFACT_ID --part decision_view
 ```
 
-MCP reason_result takes id and a part: summary, decisions, changes, request, result or address. An address
+MCP reason_result part decision_view brings each caller question, typed profile, computed result, full
+deciding criteria, context and open items together. Questions/labels are caller wording, not computed facts.
+Raw parts summary, decisions, changes, request, result and address remain available. An address
 is relative to the complete stored payload, such as `/response/result/decisions/0`. Follow page.next_offset
 and text_page.next_offset to complete the requested evidence. An address directory is navigation, not data;
 text chunks concatenate unchanged. Reasoning reply budgets accept 2,048–65,536 bytes; the default is
-24,576. Full retained files remain the complete handoff.
+24,576 (`max_bytes` on reason/reason_revise, `--max-bytes` on reason/reason-revise). Compact rows have
+total/returned/next_offset and canonical addresses rather than full before/after copies. Full retained files remain the complete handoff.
 
 Artifact ID covers the complete stored canonical payload. Result_digest covers result only, excluding
 presentation/artifact metadata. Fingerprints establish retained identity, not clinical truth. Source reports
@@ -74,9 +89,23 @@ the shortcut refuses edits to copied source snapshots. For example, an age-limit
 Use an actual retained path and actual accepted choice; never invent an exchange reference.
 
 Use prepare_only:true to inspect the valid request without running it. The program fills mechanical integrity
-fingerprints and recomputes both complete snapshots. Read answer_diff for independent answer/support/origin
-changes and diff for audit-object changes. An unchanged answer with weaker support still matters; changed
-inputs alone are not changed clinical answers. The full focused design_session guide retains runnable
+fingerprints and recomputes both complete snapshots. Read `answer_diff` for six independent comparisons:
+
+| Comparison | What the person needs to hear |
+|---|---|
+| Question | The typed profile, query or target changed; state its verdict separately |
+| Answer | The computed verdict, values or consequences changed |
+| Support | The deciding premise content, rule, scope or standing changed, even with the same ID |
+| Wording | Caller-supplied question or option wording changed; clinical equivalence is not certified |
+| Origin | Attribution changed; a saved label does not authenticate confirmation |
+| Context | Attached evidence context changed; it did not become a logical constraint |
+
+Read every entry in `changes`: the primary code names only the first applicable kind. `diff` independently
+retains the complete audit-object changes. A sharper query can have the same verdict; an unchanged refusal
+can rest on a revised rule. For example, a simulated 60-day profile is ruled out under both a 90-day and a
+180-day minimum washout, but the deciding rule changed. Actual deciding IDs resolve to versioned typed
+content and standing for this comparison; unrelated replay inputs are not substituted for support.
+Changed inputs alone are not changed clinical answers. The full focused design_session guide retains runnable
 baseline/revision examples. CLI uses:
 
 ```bash
@@ -92,10 +121,12 @@ trialledger reason-export --store STORE --id REVISED_ARTIFACT_ID --out REVIEW_FO
     --source-record REPORT_FOLDER/landscape.json
 ```
 
-Deliver actual returned workbook, readable-list and manifest paths. The review holds declared decisions and
+The output parent must not already exist. Publication is atomic into its `review` child. Deliver actual
+returned workbook, readable-list and manifest paths. The review holds declared decisions and
 alternatives, deciding evidence/premises, consequences, open items, selections, origins and changes. Included
 standalone analyses remain separate unless the session binds them explicitly to a decision. The Decision
-list and Options sheets are the clinical reading surface; Findings retains detailed codes and typed values
+list and Options sheets are the clinical reading surface; Requirements gives each proved residual its own
+row with profile, standing and scope; Findings retains detailed codes and typed values
 for inspection alongside the complete canonical files. With source
 evidence supplied, baseline presentation retains every measurement and matching denominator scope, including
 unresolved groups. Never add arms and totals or interpret matching titles as identity.

@@ -1,0 +1,905 @@
+{
+  "export_root": "/Users/rohanvinaik/trialledger-runs/phase1-lupus-cohort-handoff-20261104/handoff-complete/review",
+  "manifest_files_verified": 5,
+  "hashes": {
+    "artifacts/85234a1a70e9dcafff21bc0a5f7676c0708b5a12bdab06fb75539ef3e69aa9c6.json": "85234a1a70e9dcafff21bc0a5f7676c0708b5a12bdab06fb75539ef3e69aa9c6",
+    "decision-list.md": "a83a96bfc4cea871664fb6a9be0bce007a54e85b657ccd14abdc8b767fe0a45c",
+    "design-review.xlsx": "fc8541d7c87eac55558c51aa49e403ce209ebb1e30692f4b76b738d2860ac141",
+    "landscape.json": "e35cedc47fc240ae66ee04a80e89b48eb00c6d365e28fe48ae5550e212e001e4",
+    "landscape.xlsx": "99362e3962cd5d294faf69f85d86437a6b5b08ee9421d61521ed45b8b47b1d24"
+  },
+  "reconstruction": [
+    {
+      "decision": 0,
+      "evidence": 0,
+      "channel": "Caller note (quote)",
+      "rows": [
+        2
+      ],
+      "characters": 100,
+      "sha256_utf8": "c5bbfae00e5308f64bcf9048d2433dbfd276e6e8236c7e58f59e447c7fe8353e"
+    },
+    {
+      "decision": 0,
+      "evidence": 0,
+      "channel": "Caller-declared scope",
+      "rows": [
+        3
+      ],
+      "characters": 77,
+      "sha256_utf8": "a161e64f9cc33433a47966818ceba63c2336861e918cfc4a21a392de47d37727"
+    },
+    {
+      "decision": 0,
+      "evidence": 0,
+      "channel": "Exact source copy",
+      "rows": [
+        4
+      ],
+      "characters": 177,
+      "sha256_utf8": "5870fcc23d667276129e74635c0b38b69098c1ebfafa66829334d2a751190ac2"
+    },
+    {
+      "decision": 0,
+      "evidence": 1,
+      "channel": "Caller note (quote)",
+      "rows": [
+        5
+      ],
+      "characters": 100,
+      "sha256_utf8": "c5bbfae00e5308f64bcf9048d2433dbfd276e6e8236c7e58f59e447c7fe8353e"
+    },
+    {
+      "decision": 0,
+      "evidence": 1,
+      "channel": "Caller-declared scope",
+      "rows": [
+        6
+      ],
+      "characters": 77,
+      "sha256_utf8": "a161e64f9cc33433a47966818ceba63c2336861e918cfc4a21a392de47d37727"
+    },
+    {
+      "decision": 0,
+      "evidence": 1,
+      "channel": "Exact source copy",
+      "rows": [
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ],
+      "characters": 2774,
+      "sha256_utf8": "116b9c4d518b657576e903816bfdbcb16d1a6ab058d795a843a5de62473ee29d"
+    },
+    {
+      "decision": 1,
+      "evidence": 0,
+      "channel": "Caller note (quote)",
+      "rows": [
+        17
+      ],
+      "characters": 100,
+      "sha256_utf8": "c5bbfae00e5308f64bcf9048d2433dbfd276e6e8236c7e58f59e447c7fe8353e"
+    },
+    {
+      "decision": 1,
+      "evidence": 0,
+      "channel": "Caller-declared scope",
+      "rows": [
+        18
+      ],
+      "characters": 77,
+      "sha256_utf8": "a161e64f9cc33433a47966818ceba63c2336861e918cfc4a21a392de47d37727"
+    },
+    {
+      "decision": 1,
+      "evidence": 0,
+      "channel": "Exact source copy",
+      "rows": [
+        19
+      ],
+      "characters": 177,
+      "sha256_utf8": "5870fcc23d667276129e74635c0b38b69098c1ebfafa66829334d2a751190ac2"
+    },
+    {
+      "decision": 1,
+      "evidence": 1,
+      "channel": "Caller note (quote)",
+      "rows": [
+        20
+      ],
+      "characters": 100,
+      "sha256_utf8": "c5bbfae00e5308f64bcf9048d2433dbfd276e6e8236c7e58f59e447c7fe8353e"
+    },
+    {
+      "decision": 1,
+      "evidence": 1,
+      "channel": "Caller-declared scope",
+      "rows": [
+        21
+      ],
+      "characters": 77,
+      "sha256_utf8": "a161e64f9cc33433a47966818ceba63c2336861e918cfc4a21a392de47d37727"
+    },
+    {
+      "decision": 1,
+      "evidence": 1,
+      "channel": "Exact source copy",
+      "rows": [
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31
+      ],
+      "characters": 2774,
+      "sha256_utf8": "116b9c4d518b657576e903816bfdbcb16d1a6ab058d795a843a5de62473ee29d"
+    }
+  ],
+  "reconstruction_group_count": 12,
+  "link_count": 107,
+  "link_kinds": {
+    "correct source identity; live network not requested": 30,
+    "local file and exact JSON pointer resolve": 71,
+    "correct internal question group": 6
+  },
+  "links": [
+    {
+      "sheet": "Read me",
+      "cell": "B11",
+      "target": "artifacts/85234a1a70e9dcafff21bc0a5f7676c0708b5a12bdab06fb75539ef3e69aa9c6.json#",
+      "verified": "local file and exact JSON pointer resolve"
+    },
+    {
+      "sheet": "Decision list",
+      "cell": "H2",
+      "target": "artifacts/85234a1a70e9dcafff21bc0a5f7676c0708b5a12bdab06fb75539ef3e69aa9c6.json#/response/result/decisions/0",
+      "verified": "local file and exact JSON pointer resolve"
+    },
+    {
+      "sheet": "Decision list",
+      "cell": "I2",
+      "target": "#'Decision evidence'!A2",
+      "verified": "correct internal question group"
+    },
+    {
+      "sheet": "Decision list",
+      "cell": "H3",
+      "target": "artifacts/85234a1a70e9dcafff21bc0a5f7676c0708b5a12bdab06fb75539ef3e69aa9c6.json#/response/result/decisions/1",
+      "verified": "local file and exact JSON pointer resolve"
+    },
+    {
+      "sheet": "Decision list",
+      "cell": "I3",
+      "target": "#'Decision evidence'!A17",
+      "verified": "correct internal question group"
+    },
+    {
+      "sheet": "Options",
+      "cell": "J2",
+      "target": "artifacts/85234a1a70e9dcafff21bc0a5f7676c0708b5a12bdab06fb75539ef3e69aa9c6.json#/response/result/decisions/0/alternatives/0",
+      "verified": "local file and exact JSON pointer resolve"
+    },
+    {
+      "sheet": "Options",
+      "cell": "L2",
+      "target": "#'Decision evidence'!A2",
+      "verified": "correct internal question group"
+    },
+    {
+      "sheet": "Options",
+      "cell": "J3",
+      "target": "artifacts/85234a1a70e9dcafff21bc0a5f7676c0708b5a12bdab06fb75539ef3e69aa9c6.json#/response/result/decisions/0/alternatives/1",
+      "verified": "local file and exact JSON pointer resolve"
+    },
+    {
+      "sheet": "Options",
+      "cell": "L3",
+      "target": "#'Decision evidence'!A2",
+      "verified": "correct internal question group"
+    },
+    {
+      "sheet": "Options",
+      "cell": "J4",
+      "target": "artifacts/85234a1a70e9dcafff21bc0a5f7676c0708b5a12bdab06fb75539ef3e69aa9c6.json#/response/result/decisions/1/alternatives/0",
+      "verified": "local file and exact JSON pointer resolve"
+    },
+    {
+      "sheet": "Options",
+      "cell": "L4",
+      "target": "#'Decision evidence'!A17",
+      "verified": "correct internal question group"
+    },
+    {
+      "sheet": "Options",
+      "cell": "J5",
+      "target": "artifacts/85234a1a70e9dcafff21bc0a5f7676c0708b5a12bdab06fb75539ef3e69aa9c6.json#/response/result/decisions/1/alternatives/1",
+      "verified": "local file and exact JSON pointer resolve"
+    },
+    {
+      "sheet": "Options",
+      "cell": "L5",
+      "target": "#'Decision evidence'!A17",
+      "verified": "correct internal question group"
+    },
+    {
+      "sheet": "Decision evidence",
+      "cell": "C2",
+      "target": "https://clinicaltrials.gov/study/NCT06839976",
+      "verified": "correct source identity; live network not requested"
+    },
+    {
+      "sheet": "Decision evidence",
+      "cell": "I2",
+      "target": "artifacts/85234a1a70e9dcafff21bc0a5f7676c0708b5a12bdab06fb75539ef3e69aa9c6.json#/response/decision_view/0/evidence/0",
+      "verified": "local file and exact JSON pointer resolve"
+    },
+    {
+      "sheet": "Decision evidence",
+      "cell": "C3",
+      "target": "https://clinicaltrials.gov/study/NCT06839976",
+      "verified": "correct source identity; live network not requested"
+    },
+    {
+      "sheet": "Decision evidence",
+      "cell": "I3",
+      "target": "artifacts/85234a1a70e9dcafff21bc0a5f7676c0708b5a12bdab06fb75539ef3e69aa9c6.json#/response/decision_view/0/evidence/0",
+      "verified": "local file and exact JSON pointer resolve"
+    },
+    {
+      "sheet": "Decision evidence",
+      "cell": "C4",
+      "target": "https://clinicaltrials.gov/study/NCT06839976",
+      "verified": "correct source identity; live network not requested"
+    },
+    {
+      "sheet": "Decision evidence",
+      "cell": "I4",
+      "target": "artifacts/85234a1a70e9dcafff21bc0a5f7676c0708b5a12bdab06fb75539ef3e69aa9c6.json#/response/decision_view/0/evidence/0",
+      "verified": "local file and exact JSON pointer resolve"
+    },
+    {
+      "sheet": "Decision evidence",
+      "cell": "C5",
+      "target": "https://clinicaltrials.gov/study/NCT05846347",
+      "verified": "correct source identity; live network not requested"
+    },
+    {
+      "sheet": "Decision evidence",
+      "cell": "I5",
+      "target": "artifacts/85234a1a70e9dcafff21bc0a5f7676c0708b5a12bdab06fb75539ef3e69aa9c6.json#/response/decision_view/0/evidence/1",
+      "verified": "local file and exact JSON pointer resolve"
+    },
+    {
+      "sheet": "Decision evidence",
+      "cell": "C6",
+      "target": "https://clinicaltrials.gov/study/NCT05846347",
+      "verified": "correct source identity; live network not requested"
+    },
+    {
+      "sheet": "Decision evidence",
+      "cell": "I6",
+      "target": "artifacts/85234a1a70e9dcafff21bc0a5f7676c0708b5a12bdab06fb75539ef3e69aa9c6.json#/response/decision_view/0/evidence/1",
+      "verified": "local file and exact JSON pointer resolve"
+    },
+    {
+      "sheet": "Decision evidence",
+      "cell": "C7",
+      "target": "https://clinicaltrials.gov/study/NCT05846347",
+      "verified": "correct source identity; live network not requested"
+    },
+    {
+      "sheet": "Decision evidence",
+      "cell": "I7",
+      "target": "artifacts/85234a1a70e9dcafff21bc0a5f7676c0708b5a12bdab06fb75539ef3e69aa9c6.json#/response/decision_view/0/evidence/1",
+      "verified": "local file and exact JSON pointer resolve"
+    },
+    {
+      "sheet": "Decision evidence",
+      "cell": "C8",
+      "target": "https://clinicaltrials.gov/study/NCT05846347",
+      "verified": "correct source identity; live network not requested"
+    },
+    {
+      "sheet": "Decision evidence",
+      "cell": "I8",
+      "target": "artifacts/85234a1a70e9dcafff21bc0a5f7676c0708b5a12bdab06fb75539ef3e69aa9c6.json#/response/decision_view/0/evidence/1",
+      "verified": "local file and exact JSON pointer resolve"
+    },
+    {
+      "sheet": "Decision evidence",
+      "cell": "C9",
+      "target": "https://clinicaltrials.gov/study/NCT05846347",
+      "verified": "correct source identity; live network not requested"
+    },
+    {
+      "sheet": "Decision evidence",
+      "cell": "I9",
+      "target": "artifacts/85234a1a70e9dcafff21bc0a5f7676c0708b5a12bdab06fb75539ef3e69aa9c6.json#/response/decision_view/0/evidence/1",
+      "verified": "local file and exact JSON pointer resolve"
+    },
+    {
+      "sheet": "Decision evidence",
+      "cell": "C10",
+      "target": "https://clinicaltrials.gov/study/NCT05846347",
+      "verified": "correct source identity; live network not requested"
+    },
+    {
+      "sheet": "Decision evidence",
+      "cell": "I10",
+      "target": "artifacts/85234a1a70e9dcafff21bc0a5f7676c0708b5a12bdab06fb75539ef3e69aa9c6.json#/response/decision_view/0/evidence/1",
+      "verified": "local file and exact JSON pointer resolve"
+    },
+    {
+      "sheet": "Decision evidence",
+      "cell": "C11",
+      "target": "https://clinicaltrials.gov/study/NCT05846347",
+      "verified": "correct source identity; live network not requested"
+    },
+    {
+      "sheet": "Decision evidence",
+      "cell": "I11",
+      "target": "artifacts/85234a1a70e9dcafff21bc0a5f7676c0708b5a12bdab06fb75539ef3e69aa9c6.json#/response/decision_view/0/evidence/1",
+      "verified": "local file and exact JSON pointer resolve"
+    },
+    {
+      "sheet": "Decision evidence",
+      "cell": "C12",
+      "target": "https://clinicaltrials.gov/study/NCT05846347",
+      "verified": "correct source identity; live network not requested"
+    },
+    {
+      "sheet": "Decision evidence",
+      "cell": "I12",
+      "target": "artifacts/85234a1a70e9dcafff21bc0a5f7676c0708b5a12bdab06fb75539ef3e69aa9c6.json#/response/decision_view/0/evidence/1",
+      "verified": "local file and exact JSON pointer resolve"
+    },
+    {
+      "sheet": "Decision evidence",
+      "cell": "C13",
+      "target": "https://clinicaltrials.gov/study/NCT05846347",
+      "verified": "correct source identity; live network not requested"
+    },
+    {
+      "sheet": "Decision evidence",
+      "cell": "I13",
+      "target": "artifacts/85234a1a70e9dcafff21bc0a5f7676c0708b5a12bdab06fb75539ef3e69aa9c6.json#/response/decision_view/0/evidence/1",
+      "verified": "local file and exact JSON pointer resolve"
+    },
+    {
+      "sheet": "Decision evidence",
+      "cell": "C14",
+      "target": "https://clinicaltrials.gov/study/NCT05846347",
+      "verified": "correct source identity; live network not requested"
+    },
+    {
+      "sheet": "Decision evidence",
+      "cell": "I14",
+      "target": "artifacts/85234a1a70e9dcafff21bc0a5f7676c0708b5a12bdab06fb75539ef3e69aa9c6.json#/response/decision_view/0/evidence/1",
+      "verified": "local file and exact JSON pointer resolve"
+    },
+    {
+      "sheet": "Decision evidence",
+      "cell": "C15",
+      "target": "https://clinicaltrials.gov/study/NCT05846347",
+      "verified": "correct source identity; live network not requested"
+    },
+    {
+      "sheet": "Decision evidence",
+      "cell": "I15",
+      "target": "artifacts/85234a1a70e9dcafff21bc0a5f7676c0708b5a12bdab06fb75539ef3e69aa9c6.json#/response/decision_view/0/evidence/1",
+      "verified": "local file and exact JSON pointer resolve"
+    },
+    {
+      "sheet": "Decision evidence",
+      "cell": "C16",
+      "target": "https://clinicaltrials.gov/study/NCT05846347",
+      "verified": "correct source identity; live network not requested"
+    },
+    {
+      "sheet": "Decision evidence",
+      "cell": "I16",
+      "target": "artifacts/85234a1a70e9dcafff21bc0a5f7676c0708b5a12bdab06fb75539ef3e69aa9c6.json#/response/decision_view/0/evidence/1",
+      "verified": "local file and exact JSON pointer resolve"
+    },
+    {
+      "sheet": "Decision evidence",
+      "cell": "C17",
+      "target": "https://clinicaltrials.gov/study/NCT06839976",
+      "verified": "correct source identity; live network not requested"
+    },
+    {
+      "sheet": "Decision evidence",
+      "cell": "I17",
+      "target": "artifacts/85234a1a70e9dcafff21bc0a5f7676c0708b5a12bdab06fb75539ef3e69aa9c6.json#/response/decision_view/1/evidence/0",
+      "verified": "local file and exact JSON pointer resolve"
+    },
+    {
+      "sheet": "Decision evidence",
+      "cell": "C18",
+      "target": "https://clinicaltrials.gov/study/NCT06839976",
+      "verified": "correct source identity; live network not requested"
+    },
+    {
+      "sheet": "Decision evidence",
+      "cell": "I18",
+      "target": "artifacts/85234a1a70e9dcafff21bc0a5f7676c0708b5a12bdab06fb75539ef3e69aa9c6.json#/response/decision_view/1/evidence/0",
+      "verified": "local file and exact JSON pointer resolve"
+    },
+    {
+      "sheet": "Decision evidence",
+      "cell": "C19",
+      "target": "https://clinicaltrials.gov/study/NCT06839976",
+      "verified": "correct source identity; live network not requested"
+    },
+    {
+      "sheet": "Decision evidence",
+      "cell": "I19",
+      "target": "artifacts/85234a1a70e9dcafff21bc0a5f7676c0708b5a12bdab06fb75539ef3e69aa9c6.json#/response/decision_view/1/evidence/0",
+      "verified": "local file and exact JSON pointer resolve"
+    },
+    {
+      "sheet": "Decision evidence",
+      "cell": "C20",
+      "target": "https://clinicaltrials.gov/study/NCT05846347",
+      "verified": "correct source identity; live network not requested"
+    },
+    {
+      "sheet": "Decision evidence",
+      "cell": "I20",
+      "target": "artifacts/85234a1a70e9dcafff21bc0a5f7676c0708b5a12bdab06fb75539ef3e69aa9c6.json#/response/decision_view/1/evidence/1",
+      "verified": "local file and exact JSON pointer resolve"
+    },
+    {
+      "sheet": "Decision evidence",
+      "cell": "C21",
+      "target": "https://clinicaltrials.gov/study/NCT05846347",
+      "verified": "correct source identity; live network not requested"
+    },
+    {
+      "sheet": "Decision evidence",
+      "cell": "I21",
+      "target": "artifacts/85234a1a70e9dcafff21bc0a5f7676c0708b5a12bdab06fb75539ef3e69aa9c6.json#/response/decision_view/1/evidence/1",
+      "verified": "local file and exact JSON pointer resolve"
+    },
+    {
+      "sheet": "Decision evidence",
+      "cell": "C22",
+      "target": "https://clinicaltrials.gov/study/NCT05846347",
+      "verified": "correct source identity; live network not requested"
+    },
+    {
+      "sheet": "Decision evidence",
+      "cell": "I22",
+      "target": "artifacts/85234a1a70e9dcafff21bc0a5f7676c0708b5a12bdab06fb75539ef3e69aa9c6.json#/response/decision_view/1/evidence/1",
+      "verified": "local file and exact JSON pointer resolve"
+    },
+    {
+      "sheet": "Decision evidence",
+      "cell": "C23",
+      "target": "https://clinicaltrials.gov/study/NCT05846347",
+      "verified": "correct source identity; live network not requested"
+    },
+    {
+      "sheet": "Decision evidence",
+      "cell": "I23",
+      "target": "artifacts/85234a1a70e9dcafff21bc0a5f7676c0708b5a12bdab06fb75539ef3e69aa9c6.json#/response/decision_view/1/evidence/1",
+      "verified": "local file and exact JSON pointer resolve"
+    },
+    {
+      "sheet": "Decision evidence",
+      "cell": "C24",
+      "target": "https://clinicaltrials.gov/study/NCT05846347",
+      "verified": "correct source identity; live network not requested"
+    },
+    {
+      "sheet": "Decision evidence",
+      "cell": "I24",
+      "target": "artifacts/85234a1a70e9dcafff21bc0a5f7676c0708b5a12bdab06fb75539ef3e69aa9c6.json#/response/decision_view/1/evidence/1",
+      "verified": "local file and exact JSON pointer resolve"
+    },
+    {
+      "sheet": "Decision evidence",
+      "cell": "C25",
+      "target": "https://clinicaltrials.gov/study/NCT05846347",
+      "verified": "correct source identity; live network not requested"
+    },
+    {
+      "sheet": "Decision evidence",
+      "cell": "I25",
+      "target": "artifacts/85234a1a70e9dcafff21bc0a5f7676c0708b5a12bdab06fb75539ef3e69aa9c6.json#/response/decision_view/1/evidence/1",
+      "verified": "local file and exact JSON pointer resolve"
+    },
+    {
+      "sheet": "Decision evidence",
+      "cell": "C26",
+      "target": "https://clinicaltrials.gov/study/NCT05846347",
+      "verified": "correct source identity; live network not requested"
+    },
+    {
+      "sheet": "Decision evidence",
+      "cell": "I26",
+      "target": "artifacts/85234a1a70e9dcafff21bc0a5f7676c0708b5a12bdab06fb75539ef3e69aa9c6.json#/response/decision_view/1/evidence/1",
+      "verified": "local file and exact JSON pointer resolve"
+    },
+    {
+      "sheet": "Decision evidence",
+      "cell": "C27",
+      "target": "https://clinicaltrials.gov/study/NCT05846347",
+      "verified": "correct source identity; live network not requested"
+    },
+    {
+      "sheet": "Decision evidence",
+      "cell": "I27",
+      "target": "artifacts/85234a1a70e9dcafff21bc0a5f7676c0708b5a12bdab06fb75539ef3e69aa9c6.json#/response/decision_view/1/evidence/1",
+      "verified": "local file and exact JSON pointer resolve"
+    },
+    {
+      "sheet": "Decision evidence",
+      "cell": "C28",
+      "target": "https://clinicaltrials.gov/study/NCT05846347",
+      "verified": "correct source identity; live network not requested"
+    },
+    {
+      "sheet": "Decision evidence",
+      "cell": "I28",
+      "target": "artifacts/85234a1a70e9dcafff21bc0a5f7676c0708b5a12bdab06fb75539ef3e69aa9c6.json#/response/decision_view/1/evidence/1",
+      "verified": "local file and exact JSON pointer resolve"
+    },
+    {
+      "sheet": "Decision evidence",
+      "cell": "C29",
+      "target": "https://clinicaltrials.gov/study/NCT05846347",
+      "verified": "correct source identity; live network not requested"
+    },
+    {
+      "sheet": "Decision evidence",
+      "cell": "I29",
+      "target": "artifacts/85234a1a70e9dcafff21bc0a5f7676c0708b5a12bdab06fb75539ef3e69aa9c6.json#/response/decision_view/1/evidence/1",
+      "verified": "local file and exact JSON pointer resolve"
+    },
+    {
+      "sheet": "Decision evidence",
+      "cell": "C30",
+      "target": "https://clinicaltrials.gov/study/NCT05846347",
+      "verified": "correct source identity; live network not requested"
+    },
+    {
+      "sheet": "Decision evidence",
+      "cell": "I30",
+      "target": "artifacts/85234a1a70e9dcafff21bc0a5f7676c0708b5a12bdab06fb75539ef3e69aa9c6.json#/response/decision_view/1/evidence/1",
+      "verified": "local file and exact JSON pointer resolve"
+    },
+    {
+      "sheet": "Decision evidence",
+      "cell": "C31",
+      "target": "https://clinicaltrials.gov/study/NCT05846347",
+      "verified": "correct source identity; live network not requested"
+    },
+    {
+      "sheet": "Decision evidence",
+      "cell": "I31",
+      "target": "artifacts/85234a1a70e9dcafff21bc0a5f7676c0708b5a12bdab06fb75539ef3e69aa9c6.json#/response/decision_view/1/evidence/1",
+      "verified": "local file and exact JSON pointer resolve"
+    },
+    {
+      "sheet": "Findings",
+      "cell": "M2",
+      "target": "artifacts/85234a1a70e9dcafff21bc0a5f7676c0708b5a12bdab06fb75539ef3e69aa9c6.json#/response/result/analyses/0/result/result/decision",
+      "verified": "local file and exact JSON pointer resolve"
+    },
+    {
+      "sheet": "Findings",
+      "cell": "M3",
+      "target": "artifacts/85234a1a70e9dcafff21bc0a5f7676c0708b5a12bdab06fb75539ef3e69aa9c6.json#/response/result/analyses/1/result/result/decision",
+      "verified": "local file and exact JSON pointer resolve"
+    },
+    {
+      "sheet": "Findings",
+      "cell": "M4",
+      "target": "artifacts/85234a1a70e9dcafff21bc0a5f7676c0708b5a12bdab06fb75539ef3e69aa9c6.json#/response/result/analyses/2/result/result/decision",
+      "verified": "local file and exact JSON pointer resolve"
+    },
+    {
+      "sheet": "Findings",
+      "cell": "M5",
+      "target": "artifacts/85234a1a70e9dcafff21bc0a5f7676c0708b5a12bdab06fb75539ef3e69aa9c6.json#/response/result/analyses/3/result/result/decision",
+      "verified": "local file and exact JSON pointer resolve"
+    },
+    {
+      "sheet": "Findings",
+      "cell": "M6",
+      "target": "artifacts/85234a1a70e9dcafff21bc0a5f7676c0708b5a12bdab06fb75539ef3e69aa9c6.json#/response/result/decisions/0",
+      "verified": "local file and exact JSON pointer resolve"
+    },
+    {
+      "sheet": "Findings",
+      "cell": "M7",
+      "target": "artifacts/85234a1a70e9dcafff21bc0a5f7676c0708b5a12bdab06fb75539ef3e69aa9c6.json#/response/result/decisions/1",
+      "verified": "local file and exact JSON pointer resolve"
+    },
+    {
+      "sheet": "Changes",
+      "cell": "G2",
+      "target": "artifacts/85234a1a70e9dcafff21bc0a5f7676c0708b5a12bdab06fb75539ef3e69aa9c6.json#/response/previous_fresh/decisions/0",
+      "verified": "local file and exact JSON pointer resolve"
+    },
+    {
+      "sheet": "Changes",
+      "cell": "H2",
+      "target": "artifacts/85234a1a70e9dcafff21bc0a5f7676c0708b5a12bdab06fb75539ef3e69aa9c6.json#/response/result/decisions/0",
+      "verified": "local file and exact JSON pointer resolve"
+    },
+    {
+      "sheet": "Changes",
+      "cell": "I2",
+      "target": "artifacts/85234a1a70e9dcafff21bc0a5f7676c0708b5a12bdab06fb75539ef3e69aa9c6.json#/response/answer_diff/decisions/0",
+      "verified": "local file and exact JSON pointer resolve"
+    },
+    {
+      "sheet": "Changes",
+      "cell": "G3",
+      "target": "artifacts/85234a1a70e9dcafff21bc0a5f7676c0708b5a12bdab06fb75539ef3e69aa9c6.json#/response/previous_fresh/decisions/1",
+      "verified": "local file and exact JSON pointer resolve"
+    },
+    {
+      "sheet": "Changes",
+      "cell": "H3",
+      "target": "artifacts/85234a1a70e9dcafff21bc0a5f7676c0708b5a12bdab06fb75539ef3e69aa9c6.json#/response/result/decisions/1",
+      "verified": "local file and exact JSON pointer resolve"
+    },
+    {
+      "sheet": "Changes",
+      "cell": "I3",
+      "target": "artifacts/85234a1a70e9dcafff21bc0a5f7676c0708b5a12bdab06fb75539ef3e69aa9c6.json#/response/answer_diff/decisions/1",
+      "verified": "local file and exact JSON pointer resolve"
+    },
+    {
+      "sheet": "Changes",
+      "cell": "G4",
+      "target": "artifacts/85234a1a70e9dcafff21bc0a5f7676c0708b5a12bdab06fb75539ef3e69aa9c6.json#/response/previous_fresh/analyses/2",
+      "verified": "local file and exact JSON pointer resolve"
+    },
+    {
+      "sheet": "Changes",
+      "cell": "H4",
+      "target": "artifacts/85234a1a70e9dcafff21bc0a5f7676c0708b5a12bdab06fb75539ef3e69aa9c6.json#/response/result/analyses/2",
+      "verified": "local file and exact JSON pointer resolve"
+    },
+    {
+      "sheet": "Changes",
+      "cell": "I4",
+      "target": "artifacts/85234a1a70e9dcafff21bc0a5f7676c0708b5a12bdab06fb75539ef3e69aa9c6.json#/response/answer_diff/analyses/0",
+      "verified": "local file and exact JSON pointer resolve"
+    },
+    {
+      "sheet": "Changes",
+      "cell": "G5",
+      "target": "artifacts/85234a1a70e9dcafff21bc0a5f7676c0708b5a12bdab06fb75539ef3e69aa9c6.json#/response/previous_fresh/analyses/3",
+      "verified": "local file and exact JSON pointer resolve"
+    },
+    {
+      "sheet": "Changes",
+      "cell": "H5",
+      "target": "artifacts/85234a1a70e9dcafff21bc0a5f7676c0708b5a12bdab06fb75539ef3e69aa9c6.json#/response/result/analyses/3",
+      "verified": "local file and exact JSON pointer resolve"
+    },
+    {
+      "sheet": "Changes",
+      "cell": "I5",
+      "target": "artifacts/85234a1a70e9dcafff21bc0a5f7676c0708b5a12bdab06fb75539ef3e69aa9c6.json#/response/answer_diff/analyses/1",
+      "verified": "local file and exact JSON pointer resolve"
+    },
+    {
+      "sheet": "Changes",
+      "cell": "G6",
+      "target": "artifacts/85234a1a70e9dcafff21bc0a5f7676c0708b5a12bdab06fb75539ef3e69aa9c6.json#/response/previous_fresh/analyses/0",
+      "verified": "local file and exact JSON pointer resolve"
+    },
+    {
+      "sheet": "Changes",
+      "cell": "H6",
+      "target": "artifacts/85234a1a70e9dcafff21bc0a5f7676c0708b5a12bdab06fb75539ef3e69aa9c6.json#/response/result/analyses/0",
+      "verified": "local file and exact JSON pointer resolve"
+    },
+    {
+      "sheet": "Changes",
+      "cell": "I6",
+      "target": "artifacts/85234a1a70e9dcafff21bc0a5f7676c0708b5a12bdab06fb75539ef3e69aa9c6.json#/response/answer_diff/analyses/2",
+      "verified": "local file and exact JSON pointer resolve"
+    },
+    {
+      "sheet": "Changes",
+      "cell": "G7",
+      "target": "artifacts/85234a1a70e9dcafff21bc0a5f7676c0708b5a12bdab06fb75539ef3e69aa9c6.json#/response/previous_fresh/analyses/1",
+      "verified": "local file and exact JSON pointer resolve"
+    },
+    {
+      "sheet": "Changes",
+      "cell": "H7",
+      "target": "artifacts/85234a1a70e9dcafff21bc0a5f7676c0708b5a12bdab06fb75539ef3e69aa9c6.json#/response/result/analyses/1",
+      "verified": "local file and exact JSON pointer resolve"
+    },
+    {
+      "sheet": "Changes",
+      "cell": "I7",
+      "target": "artifacts/85234a1a70e9dcafff21bc0a5f7676c0708b5a12bdab06fb75539ef3e69aa9c6.json#/response/answer_diff/analyses/3",
+      "verified": "local file and exact JSON pointer resolve"
+    },
+    {
+      "sheet": "Sources and origins",
+      "cell": "F2",
+      "target": "artifacts/85234a1a70e9dcafff21bc0a5f7676c0708b5a12bdab06fb75539ef3e69aa9c6.json#/response/result/sources/0",
+      "verified": "local file and exact JSON pointer resolve"
+    },
+    {
+      "sheet": "Sources and origins",
+      "cell": "F3",
+      "target": "artifacts/85234a1a70e9dcafff21bc0a5f7676c0708b5a12bdab06fb75539ef3e69aa9c6.json#/response/result/sources/1",
+      "verified": "local file and exact JSON pointer resolve"
+    },
+    {
+      "sheet": "Sources and origins",
+      "cell": "F4",
+      "target": "artifacts/85234a1a70e9dcafff21bc0a5f7676c0708b5a12bdab06fb75539ef3e69aa9c6.json#/response/result/premises/0",
+      "verified": "local file and exact JSON pointer resolve"
+    },
+    {
+      "sheet": "Sources and origins",
+      "cell": "F5",
+      "target": "artifacts/85234a1a70e9dcafff21bc0a5f7676c0708b5a12bdab06fb75539ef3e69aa9c6.json#/response/result/premises/1",
+      "verified": "local file and exact JSON pointer resolve"
+    },
+    {
+      "sheet": "Sources and origins",
+      "cell": "F6",
+      "target": "artifacts/85234a1a70e9dcafff21bc0a5f7676c0708b5a12bdab06fb75539ef3e69aa9c6.json#/response/result/effective_premises/0",
+      "verified": "local file and exact JSON pointer resolve"
+    },
+    {
+      "sheet": "Sources and origins",
+      "cell": "F7",
+      "target": "artifacts/85234a1a70e9dcafff21bc0a5f7676c0708b5a12bdab06fb75539ef3e69aa9c6.json#/response/result/effective_premises/1",
+      "verified": "local file and exact JSON pointer resolve"
+    },
+    {
+      "sheet": "Baseline values",
+      "cell": "N2",
+      "target": "landscape.json#/studies/0/baseline",
+      "verified": "local file and exact JSON pointer resolve"
+    },
+    {
+      "sheet": "Baseline values",
+      "cell": "N3",
+      "target": "landscape.json#/studies/1/baseline",
+      "verified": "local file and exact JSON pointer resolve"
+    },
+    {
+      "sheet": "Baseline tables",
+      "cell": "F2",
+      "target": "landscape.json#/studies/0/baseline",
+      "verified": "local file and exact JSON pointer resolve"
+    },
+    {
+      "sheet": "Baseline tables",
+      "cell": "F8",
+      "target": "landscape.json#/studies/1/baseline",
+      "verified": "local file and exact JSON pointer resolve"
+    }
+  ],
+  "formula_cells": 0,
+  "options": [
+    {
+      "row": 2,
+      "context": {
+        "cohort": "nonrenal"
+      },
+      "feasibility": "feasible",
+      "standing": "known",
+      "logical_result": "UNDETERMINED",
+      "logical_standing": null
+    },
+    {
+      "row": 3,
+      "context": {
+        "cohort": "nonrenal"
+      },
+      "feasibility": "infeasible",
+      "standing": "known",
+      "logical_result": "REFUTED",
+      "logical_standing": "known"
+    },
+    {
+      "row": 4,
+      "context": {
+        "cohort": "renal"
+      },
+      "feasibility": "feasible",
+      "standing": "known",
+      "logical_result": "UNDETERMINED",
+      "logical_standing": null
+    },
+    {
+      "row": 5,
+      "context": {
+        "cohort": "renal"
+      },
+      "feasibility": "infeasible",
+      "standing": "known",
+      "logical_result": "REFUTED",
+      "logical_standing": "known"
+    }
+  ],
+  "source_files_byte_equal_original": {
+    "landscape.json": true,
+    "landscape.xlsx": true
+  },
+  "old_export_unchanged": {
+    "design-review.xlsx": true,
+    "decision-list.md": true
+  },
+  "source_association": "caller_supplied_not_population_binding",
+  "limits": [
+    "Read-only native cell readback and Artifact Tool render; not a native Excel interaction.",
+    "No numerical baseline measures in this sample; missing states only.",
+    "ClinicalTrials.gov URL identity checked, not reacquired."
+  ],
+  "visual_qa": {
+    "renderer": "bundled Artifact Tool read-only import/render",
+    "rendered_ranges": {
+      "Decision evidence": [
+        "D7:G10",
+        "D22:G25"
+      ]
+    },
+    "resolved_counterexample": {
+      "previous_cells": [
+        "Decision evidence!F7",
+        "Decision evidence!F21"
+      ],
+      "previous_observation": "Source part1/9 clipped after criterion7, hiding criteria8–10.",
+      "current_cells": [
+        "Decision evidence!F7:F10",
+        "Decision evidence!F22:F25"
+      ],
+      "current_observation": "Split parts1–4/10 show criteria1–10 fully, including criterion8 at F8/F23 and criteria9–10 at F9/F24; no clipping in either inspected affected range.",
+      "images": [
+        "complete-evidence-nonrenal.png",
+        "complete-evidence-renal.png"
+      ]
+    },
+    "remaining_issues": [],
+    "scope": "Only affected evidence rows and neighboring new rows re-rendered. Other changed-area visual QA retained from preceding visible export."
+  },
+  "evidence_part_bounds_verified": {
+    "max_characters": 320,
+    "max_newlines": 5,
+    "display_rows": 30,
+    "all_12_groups_exact": true
+  },
+  "export_bytes_rechecked_after_render": {
+    "artifacts/85234a1a70e9dcafff21bc0a5f7676c0708b5a12bdab06fb75539ef3e69aa9c6.json": true,
+    "decision-list.md": true,
+    "design-review.xlsx": true,
+    "landscape.json": true,
+    "landscape.xlsx": true
+  },
+  "previous_visible_nonworkbook_files_byte_equal": {
+    "artifacts/85234a1a70e9dcafff21bc0a5f7676c0708b5a12bdab06fb75539ef3e69aa9c6.json": true,
+    "decision-list.md": true,
+    "landscape.json": true,
+    "landscape.xlsx": true
+  }
+}

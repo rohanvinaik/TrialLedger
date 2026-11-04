@@ -112,6 +112,7 @@ def execute(
     response_view: str = "full",
     intent: str = "unspecified",
     question: str = "",
+    max_bytes: int = clinical_delivery.DEFAULT_BYTES,
     _delivery: dict | None = None,
 ) -> dict:
     """Compute once, retain when requested, and return a full or referenced compact reply."""
@@ -119,6 +120,9 @@ def execute(
 
     if response_view not in ("full", "compact"):
         raise ValueError("unsupported_response_view")
+    code = clinical_delivery.compact_budget_code(max_bytes)
+    if code != "valid_compact_budget":
+        raise ValueError(code)
     if response_view == "compact" and store is None:
         raise ValueError("compact_requires_artifact_store")
     # Validate presentation before invoking a potentially expensive computation.
@@ -130,7 +134,7 @@ def execute(
         return response
     artifact = reasoning_artifacts.save(store, request, response)
     return (
-        clinical_delivery.compact(response, artifact)
+        clinical_delivery.compact(response, artifact, max_bytes=max_bytes)
         if response_view == "compact"
         else {
             **response,
@@ -149,9 +153,13 @@ def revise(
     response_view: str = "compact",
     intent: str = "unspecified",
     question: str = "",
+    max_bytes: int = clinical_delivery.DEFAULT_BYTES,
     prepare_only: bool = False,
 ) -> dict:
     """Prepare or run a fresh revision through public retained state, with explicit edits."""
+    code = clinical_delivery.compact_budget_code(max_bytes)
+    if code != "valid_compact_budget":
+        raise ValueError(code)
     if (session is None) == (edits is None):
         raise ValueError("revision_requires_session_or_edits")
     prior = reasoning_artifacts.load(store, identity)
@@ -181,5 +189,6 @@ def revise(
         response_view=response_view,
         intent=intent,
         question=question,
+        max_bytes=max_bytes,
         _delivery={"previous_artifact": identity, "edits": review},
     )

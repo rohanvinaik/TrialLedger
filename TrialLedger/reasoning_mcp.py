@@ -12,6 +12,13 @@ PRESENTATION = {
     "response_view": {"type": "string", "enum": ["full", "compact"]},
     "intent": {"type": "string", "enum": list(clinical_delivery.INTENTS)},
     "question": {"type": "string", "maxLength": 4096},
+    "max_bytes": {
+        "type": "integer",
+        "minimum": clinical_delivery.MIN_BYTES,
+        "maximum": clinical_delivery.MAX_BYTES,
+        "description": f"Compact pretty-JSON reply budget; default {clinical_delivery.DEFAULT_BYTES}. "
+        "Full mode stays full. Omitted detail remains at exact artifact references.",
+    },
 }
 REASON_FIELDS: dict[str, Any] = {**PRESENTATION, "retain": {"type": "boolean"}}
 TOOL_SCHEMAS = {
@@ -119,6 +126,7 @@ def reason(root: Path, arguments: dict) -> dict:
         response_view=arguments.get("response_view", "full"),
         intent=arguments.get("intent", "unspecified"),
         question=arguments.get("question", ""),
+        max_bytes=arguments.get("max_bytes", clinical_delivery.DEFAULT_BYTES),
     )
 
 

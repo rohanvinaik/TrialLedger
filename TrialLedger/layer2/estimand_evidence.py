@@ -52,6 +52,7 @@ INPUTS = {
             "dependencies": "null or exact existing dependency input; scope/version must match",
         },
         "standing_ref": "{ref,version,status,resolution,basis}; attributed declarations, not verified truth",
+        "strategies": list(STRATEGIES),
         "relevance": list(RELEVANCE),
         "roles": ["observed_measurement", "event_ascertainment", "estimator_input"],
         "data_states": ["available", "unavailable", "unknown", "structurally_unavailable"],

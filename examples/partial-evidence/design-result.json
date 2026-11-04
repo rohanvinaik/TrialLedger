@@ -82,7 +82,161 @@
           "explanation_blockers": []
         },
         "origins": [],
-        "conditions": [],
+        "conditions": [
+          {
+            "relation": "required_by_criteria",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "ECOG",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "ge",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 0.0,
+                "unit": "ECOG",
+                "upper": null
+              }
+            },
+            "status": "known",
+            "warrant": {
+              "result": "ENTAILED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"ECOG\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":0.0,\"unit\":\"ECOG\",\"upper\":null}}",
+              "status": "known",
+              "proof": [
+                "marker-PS0-2-PS-minimum"
+              ],
+              "blockers": []
+            },
+            "scope": {
+              "cohort": null,
+              "phase": null,
+              "arm": null
+            },
+            "profile_check": {
+              "code": "not_established_by_query",
+              "basis": "query_alone"
+            }
+          },
+          {
+            "relation": "required_by_criteria",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "age",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "ge",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 18.0,
+                "unit": "Years",
+                "upper": null
+              }
+            },
+            "status": "known",
+            "warrant": {
+              "result": "ENTAILED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+              "status": "known",
+              "proof": [
+                "marker-PS0-2-age"
+              ],
+              "blockers": []
+            },
+            "scope": {
+              "cohort": null,
+              "phase": null,
+              "arm": null
+            },
+            "profile_check": {
+              "code": "not_established_by_query",
+              "basis": "query_alone"
+            }
+          },
+          {
+            "relation": "required_by_criteria",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "qualifying_marker",
+                "kind": "demographic"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "eq",
+                "inclusivity": "unspecified",
+                "kind": "boolean",
+                "members": [],
+                "number": null,
+                "unit": "",
+                "upper": null
+              }
+            },
+            "status": "known",
+            "warrant": {
+              "result": "ENTAILED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"qualifying_marker\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+              "status": "known",
+              "proof": [
+                "marker-PS0-2-marker"
+              ],
+              "blockers": []
+            },
+            "scope": {
+              "cohort": null,
+              "phase": null,
+              "arm": null
+            },
+            "profile_check": {
+              "code": "not_established_by_query",
+              "basis": "query_alone"
+            }
+          }
+        ],
         "blockers": [],
         "canonical_ref": "/result/candidates/0/query_decision"
       },
@@ -447,7 +601,161 @@
           "explanation_blockers": []
         },
         "origins": [],
-        "conditions": [],
+        "conditions": [
+          {
+            "relation": "required_by_criteria",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "ECOG",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "ge",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 0.0,
+                "unit": "ECOG",
+                "upper": null
+              }
+            },
+            "status": "known",
+            "warrant": {
+              "result": "ENTAILED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"ECOG\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":0.0,\"unit\":\"ECOG\",\"upper\":null}}",
+              "status": "known",
+              "proof": [
+                "marker-PS0-3-PS-minimum"
+              ],
+              "blockers": []
+            },
+            "scope": {
+              "cohort": null,
+              "phase": null,
+              "arm": null
+            },
+            "profile_check": {
+              "code": "not_established_by_query",
+              "basis": "query_alone"
+            }
+          },
+          {
+            "relation": "required_by_criteria",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "age",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "ge",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 18.0,
+                "unit": "Years",
+                "upper": null
+              }
+            },
+            "status": "known",
+            "warrant": {
+              "result": "ENTAILED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+              "status": "known",
+              "proof": [
+                "marker-PS0-3-age"
+              ],
+              "blockers": []
+            },
+            "scope": {
+              "cohort": null,
+              "phase": null,
+              "arm": null
+            },
+            "profile_check": {
+              "code": "not_established_by_query",
+              "basis": "query_alone"
+            }
+          },
+          {
+            "relation": "required_by_criteria",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "qualifying_marker",
+                "kind": "demographic"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "eq",
+                "inclusivity": "unspecified",
+                "kind": "boolean",
+                "members": [],
+                "number": null,
+                "unit": "",
+                "upper": null
+              }
+            },
+            "status": "known",
+            "warrant": {
+              "result": "ENTAILED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"qualifying_marker\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+              "status": "known",
+              "proof": [
+                "marker-PS0-3-marker"
+              ],
+              "blockers": []
+            },
+            "scope": {
+              "cohort": null,
+              "phase": null,
+              "arm": null
+            },
+            "profile_check": {
+              "code": "not_established_by_query",
+              "basis": "query_alone"
+            }
+          }
+        ],
         "blockers": [
           "undecided_by_constraints"
         ],
@@ -813,7 +1121,110 @@
           "explanation_blockers": []
         },
         "origins": [],
-        "conditions": [],
+        "conditions": [
+          {
+            "relation": "required_by_criteria",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "ECOG",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "ge",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 0.0,
+                "unit": "ECOG",
+                "upper": null
+              }
+            },
+            "status": "known",
+            "warrant": {
+              "result": "ENTAILED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"ECOG\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":0.0,\"unit\":\"ECOG\",\"upper\":null}}",
+              "status": "known",
+              "proof": [
+                "adult-PS0-2-PS-minimum"
+              ],
+              "blockers": []
+            },
+            "scope": {
+              "cohort": null,
+              "phase": null,
+              "arm": null
+            },
+            "profile_check": {
+              "code": "not_established_by_query",
+              "basis": "query_alone"
+            }
+          },
+          {
+            "relation": "required_by_criteria",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "age",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "ge",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 18.0,
+                "unit": "Years",
+                "upper": null
+              }
+            },
+            "status": "known",
+            "warrant": {
+              "result": "ENTAILED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+              "status": "known",
+              "proof": [
+                "adult-PS0-2-age"
+              ],
+              "blockers": []
+            },
+            "scope": {
+              "cohort": null,
+              "phase": null,
+              "arm": null
+            },
+            "profile_check": {
+              "code": "not_established_by_query",
+              "basis": "query_alone"
+            }
+          }
+        ],
         "blockers": [],
         "canonical_ref": "/result/candidates/2/query_decision"
       },
@@ -1178,7 +1589,249 @@
           "explanation_blockers": []
         },
         "origins": [],
-        "conditions": [],
+        "conditions": [
+          {
+            "relation": "required_by_criteria",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "ECOG",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "ge",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 0.0,
+                "unit": "ECOG",
+                "upper": null
+              }
+            },
+            "status": "known",
+            "warrant": {
+              "result": "ENTAILED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"ECOG\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":0.0,\"unit\":\"ECOG\",\"upper\":null}}",
+              "status": "known",
+              "proof": [
+                "excludes-joint-PS-minimum"
+              ],
+              "blockers": []
+            },
+            "scope": {
+              "cohort": null,
+              "phase": null,
+              "arm": null
+            },
+            "profile_check": {
+              "code": "not_established_by_query",
+              "basis": "query_alone"
+            }
+          },
+          {
+            "relation": "required_by_criteria",
+            "body": {
+              "class": "Not",
+              "part": {
+                "class": "AllOf",
+                "parts": [
+                  {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "ECOG",
+                      "kind": "measurement"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "participant",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "eq",
+                      "inclusivity": "unspecified",
+                      "kind": "quantity",
+                      "members": [],
+                      "number": 2.0,
+                      "unit": "ECOG",
+                      "upper": null
+                    }
+                  },
+                  {
+                    "class": "Literal",
+                    "evidence": [],
+                    "polarity": "positive",
+                    "predicate": {
+                      "class": "Predicate",
+                      "key": "never_smoker",
+                      "kind": "demographic"
+                    },
+                    "qualifiers": {
+                      "class": "Always"
+                    },
+                    "subject": {
+                      "class": "Subject",
+                      "kind": "participant",
+                      "referent": ""
+                    },
+                    "time": null,
+                    "value": {
+                      "class": "Value",
+                      "comparison": "eq",
+                      "inclusivity": "unspecified",
+                      "kind": "boolean",
+                      "members": [],
+                      "number": null,
+                      "unit": "",
+                      "upper": null
+                    }
+                  }
+                ]
+              }
+            },
+            "status": "known",
+            "warrant": {
+              "result": "ENTAILED",
+              "query": "{\"class\":\"Not\",\"part\":{\"class\":\"AllOf\",\"parts\":[{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"ECOG\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":2.0,\"unit\":\"ECOG\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"never_smoker\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}]}}",
+              "status": "known",
+              "proof": [
+                "excludes-joint-profile"
+              ],
+              "blockers": []
+            },
+            "scope": {
+              "cohort": null,
+              "phase": null,
+              "arm": null
+            },
+            "profile_check": {
+              "code": "not_established_by_query",
+              "basis": "query_alone"
+            }
+          },
+          {
+            "relation": "required_by_criteria",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "age",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "ge",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 18.0,
+                "unit": "Years",
+                "upper": null
+              }
+            },
+            "status": "known",
+            "warrant": {
+              "result": "ENTAILED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+              "status": "known",
+              "proof": [
+                "excludes-joint-age"
+              ],
+              "blockers": []
+            },
+            "scope": {
+              "cohort": null,
+              "phase": null,
+              "arm": null
+            },
+            "profile_check": {
+              "code": "not_established_by_query",
+              "basis": "query_alone"
+            }
+          },
+          {
+            "relation": "required_by_criteria",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "qualifying_marker",
+                "kind": "demographic"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "eq",
+                "inclusivity": "unspecified",
+                "kind": "boolean",
+                "members": [],
+                "number": null,
+                "unit": "",
+                "upper": null
+              }
+            },
+            "status": "known",
+            "warrant": {
+              "result": "ENTAILED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"qualifying_marker\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+              "status": "known",
+              "proof": [
+                "excludes-joint-marker"
+              ],
+              "blockers": []
+            },
+            "scope": {
+              "cohort": null,
+              "phase": null,
+              "arm": null
+            },
+            "profile_check": {
+              "code": "not_established_by_query",
+              "basis": "query_alone"
+            }
+          }
+        ],
         "blockers": [],
         "canonical_ref": "/result/candidates/3/query_decision"
       },
@@ -1540,7 +2193,214 @@
           "explanation_blockers": []
         },
         "origins": [],
-        "conditions": [],
+        "conditions": [
+          {
+            "relation": "required_by_criteria",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "ECOG",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "ge",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 0.0,
+                "unit": "ECOG",
+                "upper": null
+              }
+            },
+            "status": "known",
+            "warrant": {
+              "result": "ENTAILED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"ECOG\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":0.0,\"unit\":\"ECOG\",\"upper\":null}}",
+              "status": "known",
+              "proof": [
+                "cohort-A-only-PS-minimum"
+              ],
+              "blockers": []
+            },
+            "scope": {
+              "cohort": null,
+              "phase": null,
+              "arm": null
+            },
+            "profile_check": {
+              "code": "not_established_by_query",
+              "basis": "query_alone"
+            }
+          },
+          {
+            "relation": "required_by_criteria",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "age",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "ge",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 18.0,
+                "unit": "Years",
+                "upper": null
+              }
+            },
+            "status": "known",
+            "warrant": {
+              "result": "ENTAILED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+              "status": "known",
+              "proof": [
+                "cohort-A-only-age"
+              ],
+              "blockers": []
+            },
+            "scope": {
+              "cohort": null,
+              "phase": null,
+              "arm": null
+            },
+            "profile_check": {
+              "code": "not_established_by_query",
+              "basis": "query_alone"
+            }
+          },
+          {
+            "relation": "required_by_criteria",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "qualifying_marker",
+                "kind": "demographic"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "eq",
+                "inclusivity": "unspecified",
+                "kind": "boolean",
+                "members": [],
+                "number": null,
+                "unit": "",
+                "upper": null
+              }
+            },
+            "status": "known",
+            "warrant": {
+              "result": "ENTAILED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"qualifying_marker\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+              "status": "known",
+              "proof": [
+                "cohort-A-only-marker"
+              ],
+              "blockers": []
+            },
+            "scope": {
+              "cohort": null,
+              "phase": null,
+              "arm": null
+            },
+            "profile_check": {
+              "code": "not_established_by_query",
+              "basis": "query_alone"
+            }
+          },
+          {
+            "relation": "required_by_criteria",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "cohort",
+                "kind": "demographic"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "eq",
+                "inclusivity": "unspecified",
+                "kind": "enum",
+                "members": [
+                  "A"
+                ],
+                "number": null,
+                "unit": "",
+                "upper": null
+              }
+            },
+            "status": "known",
+            "warrant": {
+              "result": "ENTAILED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"cohort\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"enum\",\"members\":[\"A\"],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+              "status": "known",
+              "proof": [
+                "only-A"
+              ],
+              "blockers": []
+            },
+            "scope": {
+              "cohort": null,
+              "phase": null,
+              "arm": null
+            },
+            "profile_check": {
+              "code": "not_established_by_query",
+              "basis": "query_alone"
+            }
+          }
+        ],
         "blockers": [],
         "canonical_ref": "/result/candidates/4/query_decision"
       },
@@ -1905,7 +2765,212 @@
           "explanation_blockers": []
         },
         "origins": [],
-        "conditions": [],
+        "conditions": [
+          {
+            "relation": "required_by_criteria",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "ECOG",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "ge",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 0.0,
+                "unit": "ECOG",
+                "upper": null
+              }
+            },
+            "status": "known",
+            "warrant": {
+              "result": "ENTAILED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"ECOG\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":0.0,\"unit\":\"ECOG\",\"upper\":null}}",
+              "status": "known",
+              "proof": [
+                "under65-only-PS-minimum"
+              ],
+              "blockers": []
+            },
+            "scope": {
+              "cohort": null,
+              "phase": null,
+              "arm": null
+            },
+            "profile_check": {
+              "code": "not_established_by_query",
+              "basis": "query_alone"
+            }
+          },
+          {
+            "relation": "required_by_criteria",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "age",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "lt",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 65.0,
+                "unit": "Years",
+                "upper": null
+              }
+            },
+            "status": "known",
+            "warrant": {
+              "result": "ENTAILED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"lt\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":65.0,\"unit\":\"Years\",\"upper\":null}}",
+              "status": "known",
+              "proof": [
+                "under65"
+              ],
+              "blockers": []
+            },
+            "scope": {
+              "cohort": null,
+              "phase": null,
+              "arm": null
+            },
+            "profile_check": {
+              "code": "not_established_by_query",
+              "basis": "query_alone"
+            }
+          },
+          {
+            "relation": "required_by_criteria",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "age",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "ge",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 18.0,
+                "unit": "Years",
+                "upper": null
+              }
+            },
+            "status": "known",
+            "warrant": {
+              "result": "ENTAILED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+              "status": "known",
+              "proof": [
+                "under65-only-age"
+              ],
+              "blockers": []
+            },
+            "scope": {
+              "cohort": null,
+              "phase": null,
+              "arm": null
+            },
+            "profile_check": {
+              "code": "not_established_by_query",
+              "basis": "query_alone"
+            }
+          },
+          {
+            "relation": "required_by_criteria",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "qualifying_marker",
+                "kind": "demographic"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "eq",
+                "inclusivity": "unspecified",
+                "kind": "boolean",
+                "members": [],
+                "number": null,
+                "unit": "",
+                "upper": null
+              }
+            },
+            "status": "known",
+            "warrant": {
+              "result": "ENTAILED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"qualifying_marker\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+              "status": "known",
+              "proof": [
+                "under65-only-marker"
+              ],
+              "blockers": []
+            },
+            "scope": {
+              "cohort": null,
+              "phase": null,
+              "arm": null
+            },
+            "profile_check": {
+              "code": "not_established_by_query",
+              "basis": "query_alone"
+            }
+          }
+        ],
         "blockers": [],
         "canonical_ref": "/result/candidates/5/query_decision"
       },
@@ -2268,7 +3333,59 @@
           "explanation_blockers": []
         },
         "origins": [],
-        "conditions": [],
+        "conditions": [
+          {
+            "relation": "required_by_criteria",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "ECOG",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "ge",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 0.0,
+                "unit": "ECOG",
+                "upper": null
+              }
+            },
+            "status": "known",
+            "warrant": {
+              "result": "ENTAILED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"ECOG\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":0.0,\"unit\":\"ECOG\",\"upper\":null}}",
+              "status": "known",
+              "proof": [
+                "PS-only-PS-minimum"
+              ],
+              "blockers": []
+            },
+            "scope": {
+              "cohort": null,
+              "phase": null,
+              "arm": null
+            },
+            "profile_check": {
+              "code": "not_established_by_query",
+              "basis": "query_alone"
+            }
+          }
+        ],
         "blockers": [],
         "canonical_ref": "/result/candidates/6/query_decision"
       },
@@ -2626,7 +3743,161 @@
           "explanation_blockers": []
         },
         "origins": [],
-        "conditions": [],
+        "conditions": [
+          {
+            "relation": "required_by_criteria",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "ECOG",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "ge",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 0.0,
+                "unit": "ECOG",
+                "upper": null
+              }
+            },
+            "status": "known",
+            "warrant": {
+              "result": "ENTAILED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"ECOG\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":0.0,\"unit\":\"ECOG\",\"upper\":null}}",
+              "status": "known",
+              "proof": [
+                "everyone-analysed-PS-minimum"
+              ],
+              "blockers": []
+            },
+            "scope": {
+              "cohort": null,
+              "phase": null,
+              "arm": null
+            },
+            "profile_check": {
+              "code": "not_established_by_query",
+              "basis": "query_alone"
+            }
+          },
+          {
+            "relation": "required_by_criteria",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "age",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "ge",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 18.0,
+                "unit": "Years",
+                "upper": null
+              }
+            },
+            "status": "known",
+            "warrant": {
+              "result": "ENTAILED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+              "status": "known",
+              "proof": [
+                "everyone-analysed-age"
+              ],
+              "blockers": []
+            },
+            "scope": {
+              "cohort": null,
+              "phase": null,
+              "arm": null
+            },
+            "profile_check": {
+              "code": "not_established_by_query",
+              "basis": "query_alone"
+            }
+          },
+          {
+            "relation": "required_by_criteria",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "qualifying_marker",
+                "kind": "demographic"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "eq",
+                "inclusivity": "unspecified",
+                "kind": "boolean",
+                "members": [],
+                "number": null,
+                "unit": "",
+                "upper": null
+              }
+            },
+            "status": "known",
+            "warrant": {
+              "result": "ENTAILED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"qualifying_marker\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+              "status": "known",
+              "proof": [
+                "everyone-analysed-marker"
+              ],
+              "blockers": []
+            },
+            "scope": {
+              "cohort": null,
+              "phase": null,
+              "arm": null
+            },
+            "profile_check": {
+              "code": "not_established_by_query",
+              "basis": "query_alone"
+            }
+          }
+        ],
         "blockers": [],
         "canonical_ref": "/result/candidates/7/query_decision"
       },
@@ -3038,7 +4309,161 @@
           "explanation_blockers": []
         },
         "origins": [],
-        "conditions": [],
+        "conditions": [
+          {
+            "relation": "required_by_criteria",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "ECOG",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "ge",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 0.0,
+                "unit": "ECOG",
+                "upper": null
+              }
+            },
+            "status": "known",
+            "warrant": {
+              "result": "ENTAILED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"ECOG\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":0.0,\"unit\":\"ECOG\",\"upper\":null}}",
+              "status": "known",
+              "proof": [
+                "randomize-before-induction-ends-PS-minimum"
+              ],
+              "blockers": []
+            },
+            "scope": {
+              "cohort": null,
+              "phase": null,
+              "arm": null
+            },
+            "profile_check": {
+              "code": "not_established_by_query",
+              "basis": "query_alone"
+            }
+          },
+          {
+            "relation": "required_by_criteria",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "age",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "ge",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 18.0,
+                "unit": "Years",
+                "upper": null
+              }
+            },
+            "status": "known",
+            "warrant": {
+              "result": "ENTAILED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+              "status": "known",
+              "proof": [
+                "randomize-before-induction-ends-age"
+              ],
+              "blockers": []
+            },
+            "scope": {
+              "cohort": null,
+              "phase": null,
+              "arm": null
+            },
+            "profile_check": {
+              "code": "not_established_by_query",
+              "basis": "query_alone"
+            }
+          },
+          {
+            "relation": "required_by_criteria",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "qualifying_marker",
+                "kind": "demographic"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "eq",
+                "inclusivity": "unspecified",
+                "kind": "boolean",
+                "members": [],
+                "number": null,
+                "unit": "",
+                "upper": null
+              }
+            },
+            "status": "known",
+            "warrant": {
+              "result": "ENTAILED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"qualifying_marker\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+              "status": "known",
+              "proof": [
+                "randomize-before-induction-ends-marker"
+              ],
+              "blockers": []
+            },
+            "scope": {
+              "cohort": null,
+              "phase": null,
+              "arm": null
+            },
+            "profile_check": {
+              "code": "not_established_by_query",
+              "basis": "query_alone"
+            }
+          }
+        ],
         "blockers": [],
         "canonical_ref": "/result/candidates/8/query_decision"
       },
@@ -3448,7 +4873,161 @@
           "explanation_blockers": []
         },
         "origins": [],
-        "conditions": [],
+        "conditions": [
+          {
+            "relation": "required_by_criteria",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "ECOG",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "ge",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 0.0,
+                "unit": "ECOG",
+                "upper": null
+              }
+            },
+            "status": "known",
+            "warrant": {
+              "result": "ENTAILED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"ECOG\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":0.0,\"unit\":\"ECOG\",\"upper\":null}}",
+              "status": "known",
+              "proof": [
+                "ingredient-A-only-PS-minimum"
+              ],
+              "blockers": []
+            },
+            "scope": {
+              "cohort": null,
+              "phase": null,
+              "arm": null
+            },
+            "profile_check": {
+              "code": "not_established_by_query",
+              "basis": "query_alone"
+            }
+          },
+          {
+            "relation": "required_by_criteria",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "age",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "ge",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 18.0,
+                "unit": "Years",
+                "upper": null
+              }
+            },
+            "status": "known",
+            "warrant": {
+              "result": "ENTAILED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+              "status": "known",
+              "proof": [
+                "ingredient-A-only-age"
+              ],
+              "blockers": []
+            },
+            "scope": {
+              "cohort": null,
+              "phase": null,
+              "arm": null
+            },
+            "profile_check": {
+              "code": "not_established_by_query",
+              "basis": "query_alone"
+            }
+          },
+          {
+            "relation": "required_by_criteria",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "qualifying_marker",
+                "kind": "demographic"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "eq",
+                "inclusivity": "unspecified",
+                "kind": "boolean",
+                "members": [],
+                "number": null,
+                "unit": "",
+                "upper": null
+              }
+            },
+            "status": "known",
+            "warrant": {
+              "result": "ENTAILED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"qualifying_marker\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+              "status": "known",
+              "proof": [
+                "ingredient-A-only-marker"
+              ],
+              "blockers": []
+            },
+            "scope": {
+              "cohort": null,
+              "phase": null,
+              "arm": null
+            },
+            "profile_check": {
+              "code": "not_established_by_query",
+              "basis": "query_alone"
+            }
+          }
+        ],
         "blockers": [],
         "canonical_ref": "/result/candidates/9/query_decision"
       },
@@ -3879,7 +5458,161 @@
           "explanation_blockers": []
         },
         "origins": [],
-        "conditions": [],
+        "conditions": [
+          {
+            "relation": "required_by_criteria",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "ECOG",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "ge",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 0.0,
+                "unit": "ECOG",
+                "upper": null
+              }
+            },
+            "status": "known",
+            "warrant": {
+              "result": "ENTAILED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"ECOG\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":0.0,\"unit\":\"ECOG\",\"upper\":null}}",
+              "status": "known",
+              "proof": [
+                "marker-A-outside-family-PS-minimum"
+              ],
+              "blockers": []
+            },
+            "scope": {
+              "cohort": null,
+              "phase": null,
+              "arm": null
+            },
+            "profile_check": {
+              "code": "not_established_by_query",
+              "basis": "query_alone"
+            }
+          },
+          {
+            "relation": "required_by_criteria",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "age",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "ge",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 18.0,
+                "unit": "Years",
+                "upper": null
+              }
+            },
+            "status": "known",
+            "warrant": {
+              "result": "ENTAILED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+              "status": "known",
+              "proof": [
+                "marker-A-outside-family-age"
+              ],
+              "blockers": []
+            },
+            "scope": {
+              "cohort": null,
+              "phase": null,
+              "arm": null
+            },
+            "profile_check": {
+              "code": "not_established_by_query",
+              "basis": "query_alone"
+            }
+          },
+          {
+            "relation": "required_by_criteria",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "qualifying_marker",
+                "kind": "demographic"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "eq",
+                "inclusivity": "unspecified",
+                "kind": "boolean",
+                "members": [],
+                "number": null,
+                "unit": "",
+                "upper": null
+              }
+            },
+            "status": "known",
+            "warrant": {
+              "result": "ENTAILED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"qualifying_marker\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+              "status": "known",
+              "proof": [
+                "marker-A-outside-family-marker"
+              ],
+              "blockers": []
+            },
+            "scope": {
+              "cohort": null,
+              "phase": null,
+              "arm": null
+            },
+            "profile_check": {
+              "code": "not_established_by_query",
+              "basis": "query_alone"
+            }
+          }
+        ],
         "blockers": [],
         "canonical_ref": "/result/candidates/10/query_decision"
       },
@@ -4328,7 +6061,161 @@
           "explanation_blockers": []
         },
         "origins": [],
-        "conditions": [],
+        "conditions": [
+          {
+            "relation": "required_by_criteria",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "ECOG",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "ge",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 0.0,
+                "unit": "ECOG",
+                "upper": null
+              }
+            },
+            "status": "known",
+            "warrant": {
+              "result": "ENTAILED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"ECOG\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":0.0,\"unit\":\"ECOG\",\"upper\":null}}",
+              "status": "known",
+              "proof": [
+                "no-week12-observation-PS-minimum"
+              ],
+              "blockers": []
+            },
+            "scope": {
+              "cohort": null,
+              "phase": null,
+              "arm": null
+            },
+            "profile_check": {
+              "code": "not_established_by_query",
+              "basis": "query_alone"
+            }
+          },
+          {
+            "relation": "required_by_criteria",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "age",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "ge",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 18.0,
+                "unit": "Years",
+                "upper": null
+              }
+            },
+            "status": "known",
+            "warrant": {
+              "result": "ENTAILED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+              "status": "known",
+              "proof": [
+                "no-week12-observation-age"
+              ],
+              "blockers": []
+            },
+            "scope": {
+              "cohort": null,
+              "phase": null,
+              "arm": null
+            },
+            "profile_check": {
+              "code": "not_established_by_query",
+              "basis": "query_alone"
+            }
+          },
+          {
+            "relation": "required_by_criteria",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "qualifying_marker",
+                "kind": "demographic"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "eq",
+                "inclusivity": "unspecified",
+                "kind": "boolean",
+                "members": [],
+                "number": null,
+                "unit": "",
+                "upper": null
+              }
+            },
+            "status": "known",
+            "warrant": {
+              "result": "ENTAILED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"qualifying_marker\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+              "status": "known",
+              "proof": [
+                "no-week12-observation-marker"
+              ],
+              "blockers": []
+            },
+            "scope": {
+              "cohort": null,
+              "phase": null,
+              "arm": null
+            },
+            "profile_check": {
+              "code": "not_established_by_query",
+              "basis": "query_alone"
+            }
+          }
+        ],
         "blockers": [],
         "canonical_ref": "/result/candidates/11/query_decision"
       },
@@ -9395,15 +11282,173 @@
           "blockers": []
         },
         "query_explanations": {
+          "coverage": "bounded_candidate_discovery_not_complete_screening",
           "permissions": [],
-          "conditions": [],
+          "conditions": [
+            {
+              "relation": "required_by_criteria",
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "ECOG",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "ge",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 0.0,
+                  "unit": "ECOG",
+                  "upper": null
+                }
+              },
+              "status": "known",
+              "warrant": {
+                "result": "ENTAILED",
+                "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"ECOG\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":0.0,\"unit\":\"ECOG\",\"upper\":null}}",
+                "status": "known",
+                "proof": [
+                  "marker-PS0-2-PS-minimum"
+                ],
+                "blockers": []
+              },
+              "scope": {
+                "cohort": null,
+                "phase": null,
+                "arm": null
+              },
+              "profile_check": {
+                "code": "not_established_by_query",
+                "basis": "query_alone"
+              }
+            },
+            {
+              "relation": "required_by_criteria",
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "age",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "ge",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 18.0,
+                  "unit": "Years",
+                  "upper": null
+                }
+              },
+              "status": "known",
+              "warrant": {
+                "result": "ENTAILED",
+                "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+                "status": "known",
+                "proof": [
+                  "marker-PS0-2-age"
+                ],
+                "blockers": []
+              },
+              "scope": {
+                "cohort": null,
+                "phase": null,
+                "arm": null
+              },
+              "profile_check": {
+                "code": "not_established_by_query",
+                "basis": "query_alone"
+              }
+            },
+            {
+              "relation": "required_by_criteria",
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "qualifying_marker",
+                  "kind": "demographic"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "boolean",
+                  "members": [],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                }
+              },
+              "status": "known",
+              "warrant": {
+                "result": "ENTAILED",
+                "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"qualifying_marker\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+                "status": "known",
+                "proof": [
+                  "marker-PS0-2-marker"
+                ],
+                "blockers": []
+              },
+              "scope": {
+                "cohort": null,
+                "phase": null,
+                "arm": null
+              },
+              "profile_check": {
+                "code": "not_established_by_query",
+                "basis": "query_alone"
+              }
+            }
+          ],
           "blockers": [],
           "checks": {
-            "code": "not_open",
-            "decisions": 0,
-            "intrinsic_queries": 0,
-            "planned": 0,
-            "limit": 8
+            "code": "complete",
+            "decisions": 3,
+            "intrinsic_queries": 1,
+            "profile_queries": 8,
+            "planned": 4,
+            "limit": 32,
+            "profile_probes": 2,
+            "planning_nodes": 2
           }
         },
         "signal_checks": [
@@ -9685,15 +11730,173 @@
           ]
         },
         "query_explanations": {
+          "coverage": "bounded_candidate_discovery_not_complete_screening",
           "permissions": [],
-          "conditions": [],
+          "conditions": [
+            {
+              "relation": "required_by_criteria",
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "ECOG",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "ge",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 0.0,
+                  "unit": "ECOG",
+                  "upper": null
+                }
+              },
+              "status": "known",
+              "warrant": {
+                "result": "ENTAILED",
+                "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"ECOG\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":0.0,\"unit\":\"ECOG\",\"upper\":null}}",
+                "status": "known",
+                "proof": [
+                  "marker-PS0-3-PS-minimum"
+                ],
+                "blockers": []
+              },
+              "scope": {
+                "cohort": null,
+                "phase": null,
+                "arm": null
+              },
+              "profile_check": {
+                "code": "not_established_by_query",
+                "basis": "query_alone"
+              }
+            },
+            {
+              "relation": "required_by_criteria",
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "age",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "ge",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 18.0,
+                  "unit": "Years",
+                  "upper": null
+                }
+              },
+              "status": "known",
+              "warrant": {
+                "result": "ENTAILED",
+                "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+                "status": "known",
+                "proof": [
+                  "marker-PS0-3-age"
+                ],
+                "blockers": []
+              },
+              "scope": {
+                "cohort": null,
+                "phase": null,
+                "arm": null
+              },
+              "profile_check": {
+                "code": "not_established_by_query",
+                "basis": "query_alone"
+              }
+            },
+            {
+              "relation": "required_by_criteria",
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "qualifying_marker",
+                  "kind": "demographic"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "boolean",
+                  "members": [],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                }
+              },
+              "status": "known",
+              "warrant": {
+                "result": "ENTAILED",
+                "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"qualifying_marker\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+                "status": "known",
+                "proof": [
+                  "marker-PS0-3-marker"
+                ],
+                "blockers": []
+              },
+              "scope": {
+                "cohort": null,
+                "phase": null,
+                "arm": null
+              },
+              "profile_check": {
+                "code": "not_established_by_query",
+                "basis": "query_alone"
+              }
+            }
+          ],
           "blockers": [],
           "checks": {
             "code": "complete",
-            "decisions": 0,
+            "decisions": 3,
             "intrinsic_queries": 1,
-            "planned": 0,
-            "limit": 8
+            "profile_queries": 8,
+            "planned": 4,
+            "limit": 32,
+            "profile_probes": 2,
+            "planning_nodes": 2
           }
         },
         "signal_checks": [
@@ -9971,15 +12174,122 @@
           "blockers": []
         },
         "query_explanations": {
+          "coverage": "bounded_candidate_discovery_not_complete_screening",
           "permissions": [],
-          "conditions": [],
+          "conditions": [
+            {
+              "relation": "required_by_criteria",
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "ECOG",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "ge",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 0.0,
+                  "unit": "ECOG",
+                  "upper": null
+                }
+              },
+              "status": "known",
+              "warrant": {
+                "result": "ENTAILED",
+                "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"ECOG\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":0.0,\"unit\":\"ECOG\",\"upper\":null}}",
+                "status": "known",
+                "proof": [
+                  "adult-PS0-2-PS-minimum"
+                ],
+                "blockers": []
+              },
+              "scope": {
+                "cohort": null,
+                "phase": null,
+                "arm": null
+              },
+              "profile_check": {
+                "code": "not_established_by_query",
+                "basis": "query_alone"
+              }
+            },
+            {
+              "relation": "required_by_criteria",
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "age",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "ge",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 18.0,
+                  "unit": "Years",
+                  "upper": null
+                }
+              },
+              "status": "known",
+              "warrant": {
+                "result": "ENTAILED",
+                "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+                "status": "known",
+                "proof": [
+                  "adult-PS0-2-age"
+                ],
+                "blockers": []
+              },
+              "scope": {
+                "cohort": null,
+                "phase": null,
+                "arm": null
+              },
+              "profile_check": {
+                "code": "not_established_by_query",
+                "basis": "query_alone"
+              }
+            }
+          ],
           "blockers": [],
           "checks": {
-            "code": "not_open",
-            "decisions": 0,
-            "intrinsic_queries": 0,
-            "planned": 0,
-            "limit": 8
+            "code": "complete",
+            "decisions": 2,
+            "intrinsic_queries": 1,
+            "profile_queries": 6,
+            "planned": 3,
+            "limit": 32,
+            "profile_probes": 2,
+            "planning_nodes": 2
           }
         },
         "signal_checks": [
@@ -10256,15 +12566,261 @@
           "blockers": []
         },
         "query_explanations": {
+          "coverage": "bounded_candidate_discovery_not_complete_screening",
           "permissions": [],
-          "conditions": [],
+          "conditions": [
+            {
+              "relation": "required_by_criteria",
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "ECOG",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "ge",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 0.0,
+                  "unit": "ECOG",
+                  "upper": null
+                }
+              },
+              "status": "known",
+              "warrant": {
+                "result": "ENTAILED",
+                "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"ECOG\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":0.0,\"unit\":\"ECOG\",\"upper\":null}}",
+                "status": "known",
+                "proof": [
+                  "excludes-joint-PS-minimum"
+                ],
+                "blockers": []
+              },
+              "scope": {
+                "cohort": null,
+                "phase": null,
+                "arm": null
+              },
+              "profile_check": {
+                "code": "not_established_by_query",
+                "basis": "query_alone"
+              }
+            },
+            {
+              "relation": "required_by_criteria",
+              "body": {
+                "class": "Not",
+                "part": {
+                  "class": "AllOf",
+                  "parts": [
+                    {
+                      "class": "Literal",
+                      "evidence": [],
+                      "polarity": "positive",
+                      "predicate": {
+                        "class": "Predicate",
+                        "key": "ECOG",
+                        "kind": "measurement"
+                      },
+                      "qualifiers": {
+                        "class": "Always"
+                      },
+                      "subject": {
+                        "class": "Subject",
+                        "kind": "participant",
+                        "referent": ""
+                      },
+                      "time": null,
+                      "value": {
+                        "class": "Value",
+                        "comparison": "eq",
+                        "inclusivity": "unspecified",
+                        "kind": "quantity",
+                        "members": [],
+                        "number": 2.0,
+                        "unit": "ECOG",
+                        "upper": null
+                      }
+                    },
+                    {
+                      "class": "Literal",
+                      "evidence": [],
+                      "polarity": "positive",
+                      "predicate": {
+                        "class": "Predicate",
+                        "key": "never_smoker",
+                        "kind": "demographic"
+                      },
+                      "qualifiers": {
+                        "class": "Always"
+                      },
+                      "subject": {
+                        "class": "Subject",
+                        "kind": "participant",
+                        "referent": ""
+                      },
+                      "time": null,
+                      "value": {
+                        "class": "Value",
+                        "comparison": "eq",
+                        "inclusivity": "unspecified",
+                        "kind": "boolean",
+                        "members": [],
+                        "number": null,
+                        "unit": "",
+                        "upper": null
+                      }
+                    }
+                  ]
+                }
+              },
+              "status": "known",
+              "warrant": {
+                "result": "ENTAILED",
+                "query": "{\"class\":\"Not\",\"part\":{\"class\":\"AllOf\",\"parts\":[{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"ECOG\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":2.0,\"unit\":\"ECOG\",\"upper\":null}},{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"never_smoker\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}]}}",
+                "status": "known",
+                "proof": [
+                  "excludes-joint-profile"
+                ],
+                "blockers": []
+              },
+              "scope": {
+                "cohort": null,
+                "phase": null,
+                "arm": null
+              },
+              "profile_check": {
+                "code": "not_established_by_query",
+                "basis": "query_alone"
+              }
+            },
+            {
+              "relation": "required_by_criteria",
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "age",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "ge",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 18.0,
+                  "unit": "Years",
+                  "upper": null
+                }
+              },
+              "status": "known",
+              "warrant": {
+                "result": "ENTAILED",
+                "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+                "status": "known",
+                "proof": [
+                  "excludes-joint-age"
+                ],
+                "blockers": []
+              },
+              "scope": {
+                "cohort": null,
+                "phase": null,
+                "arm": null
+              },
+              "profile_check": {
+                "code": "not_established_by_query",
+                "basis": "query_alone"
+              }
+            },
+            {
+              "relation": "required_by_criteria",
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "qualifying_marker",
+                  "kind": "demographic"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "boolean",
+                  "members": [],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                }
+              },
+              "status": "known",
+              "warrant": {
+                "result": "ENTAILED",
+                "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"qualifying_marker\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+                "status": "known",
+                "proof": [
+                  "excludes-joint-marker"
+                ],
+                "blockers": []
+              },
+              "scope": {
+                "cohort": null,
+                "phase": null,
+                "arm": null
+              },
+              "profile_check": {
+                "code": "not_established_by_query",
+                "basis": "query_alone"
+              }
+            }
+          ],
           "blockers": [],
           "checks": {
-            "code": "not_open",
-            "decisions": 0,
-            "intrinsic_queries": 0,
-            "planned": 0,
-            "limit": 8
+            "code": "complete",
+            "decisions": 10,
+            "intrinsic_queries": 1,
+            "profile_queries": 16,
+            "planned": 8,
+            "limit": 32,
+            "profile_probes": 5,
+            "planning_nodes": 6
           }
         },
         "signal_checks": [
@@ -10545,15 +13101,226 @@
           "blockers": []
         },
         "query_explanations": {
+          "coverage": "bounded_candidate_discovery_not_complete_screening",
           "permissions": [],
-          "conditions": [],
+          "conditions": [
+            {
+              "relation": "required_by_criteria",
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "ECOG",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "ge",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 0.0,
+                  "unit": "ECOG",
+                  "upper": null
+                }
+              },
+              "status": "known",
+              "warrant": {
+                "result": "ENTAILED",
+                "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"ECOG\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":0.0,\"unit\":\"ECOG\",\"upper\":null}}",
+                "status": "known",
+                "proof": [
+                  "cohort-A-only-PS-minimum"
+                ],
+                "blockers": []
+              },
+              "scope": {
+                "cohort": null,
+                "phase": null,
+                "arm": null
+              },
+              "profile_check": {
+                "code": "not_established_by_query",
+                "basis": "query_alone"
+              }
+            },
+            {
+              "relation": "required_by_criteria",
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "age",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "ge",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 18.0,
+                  "unit": "Years",
+                  "upper": null
+                }
+              },
+              "status": "known",
+              "warrant": {
+                "result": "ENTAILED",
+                "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+                "status": "known",
+                "proof": [
+                  "cohort-A-only-age"
+                ],
+                "blockers": []
+              },
+              "scope": {
+                "cohort": null,
+                "phase": null,
+                "arm": null
+              },
+              "profile_check": {
+                "code": "not_established_by_query",
+                "basis": "query_alone"
+              }
+            },
+            {
+              "relation": "required_by_criteria",
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "qualifying_marker",
+                  "kind": "demographic"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "boolean",
+                  "members": [],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                }
+              },
+              "status": "known",
+              "warrant": {
+                "result": "ENTAILED",
+                "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"qualifying_marker\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+                "status": "known",
+                "proof": [
+                  "cohort-A-only-marker"
+                ],
+                "blockers": []
+              },
+              "scope": {
+                "cohort": null,
+                "phase": null,
+                "arm": null
+              },
+              "profile_check": {
+                "code": "not_established_by_query",
+                "basis": "query_alone"
+              }
+            },
+            {
+              "relation": "required_by_criteria",
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "cohort",
+                  "kind": "demographic"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "enum",
+                  "members": [
+                    "A"
+                  ],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                }
+              },
+              "status": "known",
+              "warrant": {
+                "result": "ENTAILED",
+                "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"cohort\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"enum\",\"members\":[\"A\"],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+                "status": "known",
+                "proof": [
+                  "only-A"
+                ],
+                "blockers": []
+              },
+              "scope": {
+                "cohort": null,
+                "phase": null,
+                "arm": null
+              },
+              "profile_check": {
+                "code": "not_established_by_query",
+                "basis": "query_alone"
+              }
+            }
+          ],
           "blockers": [],
           "checks": {
-            "code": "not_open",
-            "decisions": 0,
-            "intrinsic_queries": 0,
-            "planned": 0,
-            "limit": 8
+            "code": "complete",
+            "decisions": 4,
+            "intrinsic_queries": 1,
+            "profile_queries": 10,
+            "planned": 5,
+            "limit": 32,
+            "profile_probes": 2,
+            "planning_nodes": 2
           }
         },
         "signal_checks": [
@@ -10832,15 +13599,224 @@
           "blockers": []
         },
         "query_explanations": {
+          "coverage": "bounded_candidate_discovery_not_complete_screening",
           "permissions": [],
-          "conditions": [],
+          "conditions": [
+            {
+              "relation": "required_by_criteria",
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "ECOG",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "ge",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 0.0,
+                  "unit": "ECOG",
+                  "upper": null
+                }
+              },
+              "status": "known",
+              "warrant": {
+                "result": "ENTAILED",
+                "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"ECOG\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":0.0,\"unit\":\"ECOG\",\"upper\":null}}",
+                "status": "known",
+                "proof": [
+                  "under65-only-PS-minimum"
+                ],
+                "blockers": []
+              },
+              "scope": {
+                "cohort": null,
+                "phase": null,
+                "arm": null
+              },
+              "profile_check": {
+                "code": "not_established_by_query",
+                "basis": "query_alone"
+              }
+            },
+            {
+              "relation": "required_by_criteria",
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "age",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "lt",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 65.0,
+                  "unit": "Years",
+                  "upper": null
+                }
+              },
+              "status": "known",
+              "warrant": {
+                "result": "ENTAILED",
+                "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"lt\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":65.0,\"unit\":\"Years\",\"upper\":null}}",
+                "status": "known",
+                "proof": [
+                  "under65"
+                ],
+                "blockers": []
+              },
+              "scope": {
+                "cohort": null,
+                "phase": null,
+                "arm": null
+              },
+              "profile_check": {
+                "code": "not_established_by_query",
+                "basis": "query_alone"
+              }
+            },
+            {
+              "relation": "required_by_criteria",
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "age",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "ge",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 18.0,
+                  "unit": "Years",
+                  "upper": null
+                }
+              },
+              "status": "known",
+              "warrant": {
+                "result": "ENTAILED",
+                "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+                "status": "known",
+                "proof": [
+                  "under65-only-age"
+                ],
+                "blockers": []
+              },
+              "scope": {
+                "cohort": null,
+                "phase": null,
+                "arm": null
+              },
+              "profile_check": {
+                "code": "not_established_by_query",
+                "basis": "query_alone"
+              }
+            },
+            {
+              "relation": "required_by_criteria",
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "qualifying_marker",
+                  "kind": "demographic"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "boolean",
+                  "members": [],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                }
+              },
+              "status": "known",
+              "warrant": {
+                "result": "ENTAILED",
+                "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"qualifying_marker\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+                "status": "known",
+                "proof": [
+                  "under65-only-marker"
+                ],
+                "blockers": []
+              },
+              "scope": {
+                "cohort": null,
+                "phase": null,
+                "arm": null
+              },
+              "profile_check": {
+                "code": "not_established_by_query",
+                "basis": "query_alone"
+              }
+            }
+          ],
           "blockers": [],
           "checks": {
-            "code": "not_open",
-            "decisions": 0,
-            "intrinsic_queries": 0,
-            "planned": 0,
-            "limit": 8
+            "code": "complete",
+            "decisions": 4,
+            "intrinsic_queries": 1,
+            "profile_queries": 10,
+            "planned": 5,
+            "limit": 32,
+            "profile_probes": 2,
+            "planning_nodes": 2
           }
         },
         "signal_checks": [
@@ -11114,15 +14090,71 @@
           "blockers": []
         },
         "query_explanations": {
+          "coverage": "bounded_candidate_discovery_not_complete_screening",
           "permissions": [],
-          "conditions": [],
+          "conditions": [
+            {
+              "relation": "required_by_criteria",
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "ECOG",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "ge",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 0.0,
+                  "unit": "ECOG",
+                  "upper": null
+                }
+              },
+              "status": "known",
+              "warrant": {
+                "result": "ENTAILED",
+                "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"ECOG\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":0.0,\"unit\":\"ECOG\",\"upper\":null}}",
+                "status": "known",
+                "proof": [
+                  "PS-only-PS-minimum"
+                ],
+                "blockers": []
+              },
+              "scope": {
+                "cohort": null,
+                "phase": null,
+                "arm": null
+              },
+              "profile_check": {
+                "code": "not_established_by_query",
+                "basis": "query_alone"
+              }
+            }
+          ],
           "blockers": [],
           "checks": {
-            "code": "not_open",
-            "decisions": 0,
-            "intrinsic_queries": 0,
-            "planned": 0,
-            "limit": 8
+            "code": "complete",
+            "decisions": 1,
+            "intrinsic_queries": 1,
+            "profile_queries": 4,
+            "planned": 2,
+            "limit": 32,
+            "profile_probes": 2,
+            "planning_nodes": 2
           }
         },
         "signal_checks": [
@@ -11402,15 +14434,173 @@
           "blockers": []
         },
         "query_explanations": {
+          "coverage": "bounded_candidate_discovery_not_complete_screening",
           "permissions": [],
-          "conditions": [],
+          "conditions": [
+            {
+              "relation": "required_by_criteria",
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "ECOG",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "ge",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 0.0,
+                  "unit": "ECOG",
+                  "upper": null
+                }
+              },
+              "status": "known",
+              "warrant": {
+                "result": "ENTAILED",
+                "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"ECOG\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":0.0,\"unit\":\"ECOG\",\"upper\":null}}",
+                "status": "known",
+                "proof": [
+                  "everyone-analysed-PS-minimum"
+                ],
+                "blockers": []
+              },
+              "scope": {
+                "cohort": null,
+                "phase": null,
+                "arm": null
+              },
+              "profile_check": {
+                "code": "not_established_by_query",
+                "basis": "query_alone"
+              }
+            },
+            {
+              "relation": "required_by_criteria",
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "age",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "ge",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 18.0,
+                  "unit": "Years",
+                  "upper": null
+                }
+              },
+              "status": "known",
+              "warrant": {
+                "result": "ENTAILED",
+                "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+                "status": "known",
+                "proof": [
+                  "everyone-analysed-age"
+                ],
+                "blockers": []
+              },
+              "scope": {
+                "cohort": null,
+                "phase": null,
+                "arm": null
+              },
+              "profile_check": {
+                "code": "not_established_by_query",
+                "basis": "query_alone"
+              }
+            },
+            {
+              "relation": "required_by_criteria",
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "qualifying_marker",
+                  "kind": "demographic"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "boolean",
+                  "members": [],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                }
+              },
+              "status": "known",
+              "warrant": {
+                "result": "ENTAILED",
+                "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"qualifying_marker\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+                "status": "known",
+                "proof": [
+                  "everyone-analysed-marker"
+                ],
+                "blockers": []
+              },
+              "scope": {
+                "cohort": null,
+                "phase": null,
+                "arm": null
+              },
+              "profile_check": {
+                "code": "not_established_by_query",
+                "basis": "query_alone"
+              }
+            }
+          ],
           "blockers": [],
           "checks": {
-            "code": "not_open",
-            "decisions": 0,
-            "intrinsic_queries": 0,
-            "planned": 0,
-            "limit": 8
+            "code": "complete",
+            "decisions": 3,
+            "intrinsic_queries": 1,
+            "profile_queries": 8,
+            "planned": 4,
+            "limit": 32,
+            "profile_probes": 2,
+            "planning_nodes": 2
           }
         },
         "signal_checks": [
@@ -11724,15 +14914,173 @@
           "blockers": []
         },
         "query_explanations": {
+          "coverage": "bounded_candidate_discovery_not_complete_screening",
           "permissions": [],
-          "conditions": [],
+          "conditions": [
+            {
+              "relation": "required_by_criteria",
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "ECOG",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "ge",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 0.0,
+                  "unit": "ECOG",
+                  "upper": null
+                }
+              },
+              "status": "known",
+              "warrant": {
+                "result": "ENTAILED",
+                "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"ECOG\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":0.0,\"unit\":\"ECOG\",\"upper\":null}}",
+                "status": "known",
+                "proof": [
+                  "randomize-before-induction-ends-PS-minimum"
+                ],
+                "blockers": []
+              },
+              "scope": {
+                "cohort": null,
+                "phase": null,
+                "arm": null
+              },
+              "profile_check": {
+                "code": "not_established_by_query",
+                "basis": "query_alone"
+              }
+            },
+            {
+              "relation": "required_by_criteria",
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "age",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "ge",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 18.0,
+                  "unit": "Years",
+                  "upper": null
+                }
+              },
+              "status": "known",
+              "warrant": {
+                "result": "ENTAILED",
+                "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+                "status": "known",
+                "proof": [
+                  "randomize-before-induction-ends-age"
+                ],
+                "blockers": []
+              },
+              "scope": {
+                "cohort": null,
+                "phase": null,
+                "arm": null
+              },
+              "profile_check": {
+                "code": "not_established_by_query",
+                "basis": "query_alone"
+              }
+            },
+            {
+              "relation": "required_by_criteria",
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "qualifying_marker",
+                  "kind": "demographic"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "boolean",
+                  "members": [],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                }
+              },
+              "status": "known",
+              "warrant": {
+                "result": "ENTAILED",
+                "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"qualifying_marker\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+                "status": "known",
+                "proof": [
+                  "randomize-before-induction-ends-marker"
+                ],
+                "blockers": []
+              },
+              "scope": {
+                "cohort": null,
+                "phase": null,
+                "arm": null
+              },
+              "profile_check": {
+                "code": "not_established_by_query",
+                "basis": "query_alone"
+              }
+            }
+          ],
           "blockers": [],
           "checks": {
-            "code": "not_open",
-            "decisions": 0,
-            "intrinsic_queries": 0,
-            "planned": 0,
-            "limit": 8
+            "code": "complete",
+            "decisions": 3,
+            "intrinsic_queries": 1,
+            "profile_queries": 8,
+            "planned": 4,
+            "limit": 32,
+            "profile_probes": 2,
+            "planning_nodes": 2
           }
         },
         "signal_checks": [
@@ -12044,15 +15392,173 @@
           "blockers": []
         },
         "query_explanations": {
+          "coverage": "bounded_candidate_discovery_not_complete_screening",
           "permissions": [],
-          "conditions": [],
+          "conditions": [
+            {
+              "relation": "required_by_criteria",
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "ECOG",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "ge",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 0.0,
+                  "unit": "ECOG",
+                  "upper": null
+                }
+              },
+              "status": "known",
+              "warrant": {
+                "result": "ENTAILED",
+                "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"ECOG\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":0.0,\"unit\":\"ECOG\",\"upper\":null}}",
+                "status": "known",
+                "proof": [
+                  "ingredient-A-only-PS-minimum"
+                ],
+                "blockers": []
+              },
+              "scope": {
+                "cohort": null,
+                "phase": null,
+                "arm": null
+              },
+              "profile_check": {
+                "code": "not_established_by_query",
+                "basis": "query_alone"
+              }
+            },
+            {
+              "relation": "required_by_criteria",
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "age",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "ge",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 18.0,
+                  "unit": "Years",
+                  "upper": null
+                }
+              },
+              "status": "known",
+              "warrant": {
+                "result": "ENTAILED",
+                "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+                "status": "known",
+                "proof": [
+                  "ingredient-A-only-age"
+                ],
+                "blockers": []
+              },
+              "scope": {
+                "cohort": null,
+                "phase": null,
+                "arm": null
+              },
+              "profile_check": {
+                "code": "not_established_by_query",
+                "basis": "query_alone"
+              }
+            },
+            {
+              "relation": "required_by_criteria",
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "qualifying_marker",
+                  "kind": "demographic"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "boolean",
+                  "members": [],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                }
+              },
+              "status": "known",
+              "warrant": {
+                "result": "ENTAILED",
+                "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"qualifying_marker\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+                "status": "known",
+                "proof": [
+                  "ingredient-A-only-marker"
+                ],
+                "blockers": []
+              },
+              "scope": {
+                "cohort": null,
+                "phase": null,
+                "arm": null
+              },
+              "profile_check": {
+                "code": "not_established_by_query",
+                "basis": "query_alone"
+              }
+            }
+          ],
           "blockers": [],
           "checks": {
-            "code": "not_open",
-            "decisions": 0,
-            "intrinsic_queries": 0,
-            "planned": 0,
-            "limit": 8
+            "code": "complete",
+            "decisions": 3,
+            "intrinsic_queries": 1,
+            "profile_queries": 8,
+            "planned": 4,
+            "limit": 32,
+            "profile_probes": 2,
+            "planning_nodes": 2
           }
         },
         "signal_checks": [
@@ -12385,15 +15891,173 @@
           "blockers": []
         },
         "query_explanations": {
+          "coverage": "bounded_candidate_discovery_not_complete_screening",
           "permissions": [],
-          "conditions": [],
+          "conditions": [
+            {
+              "relation": "required_by_criteria",
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "ECOG",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "ge",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 0.0,
+                  "unit": "ECOG",
+                  "upper": null
+                }
+              },
+              "status": "known",
+              "warrant": {
+                "result": "ENTAILED",
+                "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"ECOG\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":0.0,\"unit\":\"ECOG\",\"upper\":null}}",
+                "status": "known",
+                "proof": [
+                  "marker-A-outside-family-PS-minimum"
+                ],
+                "blockers": []
+              },
+              "scope": {
+                "cohort": null,
+                "phase": null,
+                "arm": null
+              },
+              "profile_check": {
+                "code": "not_established_by_query",
+                "basis": "query_alone"
+              }
+            },
+            {
+              "relation": "required_by_criteria",
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "age",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "ge",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 18.0,
+                  "unit": "Years",
+                  "upper": null
+                }
+              },
+              "status": "known",
+              "warrant": {
+                "result": "ENTAILED",
+                "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+                "status": "known",
+                "proof": [
+                  "marker-A-outside-family-age"
+                ],
+                "blockers": []
+              },
+              "scope": {
+                "cohort": null,
+                "phase": null,
+                "arm": null
+              },
+              "profile_check": {
+                "code": "not_established_by_query",
+                "basis": "query_alone"
+              }
+            },
+            {
+              "relation": "required_by_criteria",
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "qualifying_marker",
+                  "kind": "demographic"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "boolean",
+                  "members": [],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                }
+              },
+              "status": "known",
+              "warrant": {
+                "result": "ENTAILED",
+                "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"qualifying_marker\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+                "status": "known",
+                "proof": [
+                  "marker-A-outside-family-marker"
+                ],
+                "blockers": []
+              },
+              "scope": {
+                "cohort": null,
+                "phase": null,
+                "arm": null
+              },
+              "profile_check": {
+                "code": "not_established_by_query",
+                "basis": "query_alone"
+              }
+            }
+          ],
           "blockers": [],
           "checks": {
-            "code": "not_open",
-            "decisions": 0,
-            "intrinsic_queries": 0,
-            "planned": 0,
-            "limit": 8
+            "code": "complete",
+            "decisions": 3,
+            "intrinsic_queries": 1,
+            "profile_queries": 8,
+            "planned": 4,
+            "limit": 32,
+            "profile_probes": 2,
+            "planning_nodes": 2
           }
         },
         "signal_checks": [
@@ -12744,15 +16408,173 @@
           "blockers": []
         },
         "query_explanations": {
+          "coverage": "bounded_candidate_discovery_not_complete_screening",
           "permissions": [],
-          "conditions": [],
+          "conditions": [
+            {
+              "relation": "required_by_criteria",
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "ECOG",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "ge",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 0.0,
+                  "unit": "ECOG",
+                  "upper": null
+                }
+              },
+              "status": "known",
+              "warrant": {
+                "result": "ENTAILED",
+                "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"ECOG\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":0.0,\"unit\":\"ECOG\",\"upper\":null}}",
+                "status": "known",
+                "proof": [
+                  "no-week12-observation-PS-minimum"
+                ],
+                "blockers": []
+              },
+              "scope": {
+                "cohort": null,
+                "phase": null,
+                "arm": null
+              },
+              "profile_check": {
+                "code": "not_established_by_query",
+                "basis": "query_alone"
+              }
+            },
+            {
+              "relation": "required_by_criteria",
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "age",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "ge",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 18.0,
+                  "unit": "Years",
+                  "upper": null
+                }
+              },
+              "status": "known",
+              "warrant": {
+                "result": "ENTAILED",
+                "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+                "status": "known",
+                "proof": [
+                  "no-week12-observation-age"
+                ],
+                "blockers": []
+              },
+              "scope": {
+                "cohort": null,
+                "phase": null,
+                "arm": null
+              },
+              "profile_check": {
+                "code": "not_established_by_query",
+                "basis": "query_alone"
+              }
+            },
+            {
+              "relation": "required_by_criteria",
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "qualifying_marker",
+                  "kind": "demographic"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "eq",
+                  "inclusivity": "unspecified",
+                  "kind": "boolean",
+                  "members": [],
+                  "number": null,
+                  "unit": "",
+                  "upper": null
+                }
+              },
+              "status": "known",
+              "warrant": {
+                "result": "ENTAILED",
+                "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"qualifying_marker\",\"kind\":\"demographic\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"eq\",\"inclusivity\":\"unspecified\",\"kind\":\"boolean\",\"members\":[],\"number\":null,\"unit\":\"\",\"upper\":null}}",
+                "status": "known",
+                "proof": [
+                  "no-week12-observation-marker"
+                ],
+                "blockers": []
+              },
+              "scope": {
+                "cohort": null,
+                "phase": null,
+                "arm": null
+              },
+              "profile_check": {
+                "code": "not_established_by_query",
+                "basis": "query_alone"
+              }
+            }
+          ],
           "blockers": [],
           "checks": {
-            "code": "not_open",
-            "decisions": 0,
-            "intrinsic_queries": 0,
-            "planned": 0,
-            "limit": 8
+            "code": "complete",
+            "decisions": 3,
+            "intrinsic_queries": 1,
+            "profile_queries": 8,
+            "planned": 4,
+            "limit": 32,
+            "profile_probes": 2,
+            "planning_nodes": 2
           }
         },
         "signal_checks": [
@@ -14502,6 +18324,6 @@
       }
     ]
   },
-  "result_digest": "eb55e5b6919c5c8336d2b6ea705b226a877934eb3c837e8b58d87b2e1bd39b32",
+  "result_digest": "1125300a82da233025581bae013c41567e9ff149062f2b9daf1413b13f9ac2f0",
   "result_digest_scope": "result only; excludes summary, presentation and artifact metadata"
 }

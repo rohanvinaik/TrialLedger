@@ -69,7 +69,59 @@
             "criterion_ref": "invented:trial-design-session-not-registry-evidence"
           }
         ],
-        "conditions": [],
+        "conditions": [
+          {
+            "relation": "required_by_criteria",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "performance_status",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "le",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 1.0,
+                "unit": "ECOG",
+                "upper": null
+              }
+            },
+            "status": "known",
+            "warrant": {
+              "result": "ENTAILED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"performance_status\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"le\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":1.0,\"unit\":\"ECOG\",\"upper\":null}}",
+              "status": "known",
+              "proof": [
+                "invented-ECOG-criterion"
+              ],
+              "blockers": []
+            },
+            "scope": {
+              "cohort": null,
+              "phase": null,
+              "arm": null
+            },
+            "profile_check": {
+              "code": "not_established_by_query",
+              "basis": "query_alone"
+            }
+          }
+        ],
         "blockers": [],
         "canonical_ref": "/result/decision"
       }
@@ -324,15 +376,71 @@
       }
     ],
     "explanations": {
+      "coverage": "bounded_candidate_discovery_not_complete_screening",
       "permissions": [],
-      "conditions": [],
+      "conditions": [
+        {
+          "relation": "required_by_criteria",
+          "body": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+              "class": "Predicate",
+              "key": "performance_status",
+              "kind": "measurement"
+            },
+            "qualifiers": {
+              "class": "Always"
+            },
+            "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+            },
+            "time": null,
+            "value": {
+              "class": "Value",
+              "comparison": "le",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 1.0,
+              "unit": "ECOG",
+              "upper": null
+            }
+          },
+          "status": "known",
+          "warrant": {
+            "result": "ENTAILED",
+            "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"performance_status\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"le\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":1.0,\"unit\":\"ECOG\",\"upper\":null}}",
+            "status": "known",
+            "proof": [
+              "invented-ECOG-criterion"
+            ],
+            "blockers": []
+          },
+          "scope": {
+            "cohort": null,
+            "phase": null,
+            "arm": null
+          },
+          "profile_check": {
+            "code": "not_established_by_query",
+            "basis": "query_alone"
+          }
+        }
+      ],
       "blockers": [],
       "checks": {
-        "code": "not_open",
-        "decisions": 0,
-        "intrinsic_queries": 0,
-        "planned": 0,
-        "limit": 8
+        "code": "complete",
+        "decisions": 3,
+        "intrinsic_queries": 1,
+        "profile_queries": 14,
+        "planned": 7,
+        "limit": 32,
+        "profile_probes": 5,
+        "planning_nodes": 10
       }
     }
   },
@@ -352,6 +460,6 @@
       }
     ]
   },
-  "result_digest": "8d8e5c54144c190d8a6f56ea40a3bc874218bab444ce899acb1573131cb2af50",
+  "result_digest": "3165826e9544562d7280e605df84ae32aef015db417b11973eb48313976bf944",
   "result_digest_scope": "result only; excludes summary, presentation and artifact metadata"
 }

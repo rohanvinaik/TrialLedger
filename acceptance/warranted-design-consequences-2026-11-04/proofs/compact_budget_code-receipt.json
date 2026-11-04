@@ -1,0 +1,59 @@
+{
+  "scope": "Task4.1 bounded compact delivery. No view/display/export/artifact-owner changes. No commits.",
+  "frozen_files": {
+    "TrialLedger/clinical_delivery.py": {
+      "sha256": "be4e4ffaf5b5a3b9ad37b5ba72b574ae250e6605686d053ec8017d59efa0326f",
+      "bytes": 10389
+    },
+    "TrialLedger/reasoning_delivery.py": {
+      "sha256": "867414da0eceedbe94cd4a869bef379fdac2db09f0adb7e817b51fa1bc1fa03f",
+      "bytes": 7784
+    },
+    "TrialLedger/reasoning_cli.py": {
+      "sha256": "0099da27140491121058411e6605ec3f342bb5b98c8d2c3a921f3d96ee00436c",
+      "bytes": 6345
+    },
+    "TrialLedger/reasoning_mcp.py": {
+      "sha256": "008cdd9ced019d74e881bb527bcfbb3bfe5c09f59b5ccb09d5c4ca6740b7488a",
+      "bytes": 7631
+    },
+    "TrialLedger/cli.py": {
+      "sha256": "7b2aa54edff0ef32f959d10275a83862cbbba6a5b24904e3e84bd93bf49f015a",
+      "bytes": 36812
+    },
+    "tests/test_compact_delivery_bounds.py": {
+      "sha256": "8ad414663665e4825596356588c81a4da98620dba0deb0fa7a317adc6d2dd32a",
+      "bytes": 9896
+    }
+  },
+  "proof": {
+    "target": "TrialLedger/clinical_delivery.py::compact_budget_code",
+    "two_sign": true,
+    "reported_completion": "COMPLETE",
+    "reported_killed": 39,
+    "reported_scored": 39,
+    "reported_unproven_equivalent": 0,
+    "function_ast_sha256": "f4906023ab288b6a9fb77d7f83ee6fc538889d4f53954c95f9dacc558539a8b9",
+    "function_ast_equal_to_proof_copy": true,
+    "target_file_equal_to_proof_copy": true,
+    "intent_test_equal_to_proof_copy": true,
+    "directory": "/tmp/trialledger-compact-proof-isolated-20261104",
+    "log": "compact-budget-converge-final.log",
+    "log_sha256": "f6fad2578a838c8282f442effff3a6ee888ecdf8887b4b0526f8d6873b32239a",
+    "crosshair": "Confirmed over all paths for declared return-code codomain contract; not a whole-delivery correctness proof.",
+    "crosshair_log": "compact-budget-crosshair.log",
+    "crosshair_log_sha256": "5de7312a334c14f1087b68bdf213c835bae164276d73a4d729b3f66d8d7e11ea",
+    "limitations": [
+      "Initial external copy shadowed the main editable installation; repaired only in a distinct isolated environment per explicit authorization.",
+      "Initial isolated collection lacked copied test-support packages and spec fixture; repaired as prescribed before COMPLETE.",
+      "No authored tests were removed or generated proof suites adopted."
+    ]
+  },
+  "verification": {
+    "scoped_tests_passed": 456,
+    "ruff": "All checks passed",
+    "format": "6 files already formatted",
+    "ty": "All checks passed"
+  },
+  "public_workflow_receipt": "/Users/rohanvinaik/trialledger-runs/bounded-obesity-20261104/receipt.json"
+}

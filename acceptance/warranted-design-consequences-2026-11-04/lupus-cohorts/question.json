@@ -1,0 +1,7 @@
+{
+  "question": "For an early-phase lupus cell-therapy design, can escalation and expansion cohorts retain distinct entry requirements without applying a cohort-only rule to everyone? What changes when a draft cohort binding is revised?",
+  "seed": 2026110417,
+  "sample_size": 2,
+  "selection": "Random(2026110417).sample(sorted complete identifier pool,2), no replacement after reading",
+  "retention": "Complete source/report packets local; commit compact README and request/result evidence plus fingerprints only."
+}

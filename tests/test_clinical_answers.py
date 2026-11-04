@@ -51,7 +51,10 @@ def test_projection_reads_metadata_without_promoting_or_mutating():
 
 
 def test_unrelated_input_echo_does_not_change_any_clinical_axis():
-    before = result((rule("first", fact()), rule("irrelevant", fact("B"))), fact())
+    before = result(
+        (rule("first", fact()), dataclasses.replace(rule("irrelevant", fact("B")), modality="descriptive")),
+        fact(),
+    )
     after = deepcopy(before)
     after["premises"][1]["criterion_ref"] = "caller:new-irrelevant-origin"
     assert change_projection("entailment", before) == change_projection("entailment", after)
@@ -84,7 +87,10 @@ def test_deciding_origin_changes_without_inventing_a_new_answer():
 
 
 def test_session_can_supply_deciding_origin_context_without_input_churn():
-    payload = result((rule("first", fact()), rule("other", fact("B"))), fact())
+    payload = result(
+        (rule("first", fact()), dataclasses.replace(rule("other", fact("B")), modality="descriptive")),
+        fact(),
+    )
     payload["effective_premises"] = [
         {"id": "first", "origin": {"kind": "user_choice", "ref": "exchange-1"}},
         {"id": "other", "origin": {"kind": "user_choice", "ref": "other-exchange"}},
@@ -95,6 +101,22 @@ def test_session_can_supply_deciding_origin_context_without_input_churn():
     assert change_projection("entailment", changed) == before
     changed["effective_premises"][0]["origin"]["ref"] = "exchange-2"
     assert change_projection("entailment", changed)["origin"] != before["origin"]
+
+
+def test_displayed_independent_requirement_retains_its_deciding_origin():
+    before = result((rule("first", fact()), rule("other", fact("B"))), fact())
+    after = deepcopy(before)
+    after["premises"][1]["criterion_ref"] = "caller:revised-independent-requirement-origin"
+    old = change_projection("entailment", before)
+    new = change_projection("entailment", after)
+    assert before["decision"]["result"] == after["decision"]["result"] == "ENTAILED"
+    assert old["answer"] == new["answer"] and old["support"] == new["support"]
+    assert old["origin"] != new["origin"]
+    assert any(
+        condition["relation"] == "required_by_criteria"
+        and condition["body"] == json.loads(canonical(fact("B")))
+        for condition in before["explanations"]["conditions"]
+    )
 
 
 def test_numeric_bounds_change_answer_even_with_unchanged_bounded_code():

@@ -272,6 +272,7 @@
       }
     ],
     "explanations": {
+      "coverage": "bounded_candidate_discovery_not_complete_screening",
       "permissions": [],
       "conditions": [],
       "blockers": [],
@@ -279,8 +280,9 @@
         "code": "not_open",
         "decisions": 0,
         "intrinsic_queries": 0,
+        "profile_queries": 0,
         "planned": 0,
-        "limit": 8
+        "limit": 32
       }
     }
   },
@@ -300,6 +302,6 @@
       }
     ]
   },
-  "result_digest": "ee53f9c3e42a4d1e951c06f9310702651b05d58e577da3f8842c475ef0aaba1f",
+  "result_digest": "b06d62fc667cafedb2507f16b659faffaffbfece51bca544e76e33e08d9b91df",
   "result_digest_scope": "result only; excludes summary, presentation and artifact metadata"
 }

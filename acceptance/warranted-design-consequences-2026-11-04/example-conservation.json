@@ -1,0 +1,229 @@
+{
+  "adopted": [
+    "examples/design-session/evidence-investigation-result.json",
+    "examples/interpretations/assessment-roles-result.json",
+    "examples/interpretations/draft-choices-result.json",
+    "examples/interpretations/draft-revised-PS0-3-result.json",
+    "examples/interpretations/draft-selected-PS0-2-result.json",
+    "examples/interpretations/endpoint-inputs-result.json",
+    "examples/interpretations/population-resolved-result.json",
+    "examples/interpretations/population-unresolved-result.json",
+    "examples/partial-evidence/design-result.json",
+    "examples/partial-evidence/draft-result.json",
+    "examples/reasoning-admission/declared-proposition-bridge-result.json",
+    "examples/reasoning-admission/unbound-scale-result.json",
+    "examples/source-bridge/ipass-baseline-overlap-result.json",
+    "examples/source-bridge/ipass-registered-age-result.json",
+    "examples/source-bridge/ipass-schedule-readings-result.json",
+    "examples/source-workflows/ipass-joint-exceptions-48-result.json",
+    "examples/source-workflows/ipass-joint-exceptions-49-result.json",
+    "examples/source-workflows/ipass-joint-result.json",
+    "examples/source-workflows/ipass-performance-status-result.json"
+  ],
+  "unchanged_count": 6,
+  "request_bytes_preserved": true,
+  "protected_canonical_hashes_equal_all": true,
+  "existing_permissions_equal_all": true,
+  "old_new": [
+    {
+      "file": "examples/design-session/evidence-investigation-result.json",
+      "old_sha256": "63cd6aa59f38b4606fa42eeaa2623ea7e446db6e66c9833052e1b2ad093276b3",
+      "new_sha256": "b3bc5b1f461c1bad676519eef5c9c2f96186d036fa6b6f342ea303a2d2e9a846",
+      "request_sha256": "0b2156b0a097c3fff5fe72fddf669d39e4a35fde16f5a9e650a1ac6e2c151fc7",
+      "old_protected_sha256": "9c65ccad5bde486a813d101f812ac530c28bc960e6cdfd675da47393fd9425a1",
+      "new_protected_sha256": "9c65ccad5bde486a813d101f812ac530c28bc960e6cdfd675da47393fd9425a1"
+    },
+    {
+      "file": "examples/interpretations/assessment-roles-result.json",
+      "old_sha256": "ef738d0354be251fe96fab10d98f1da66ea41bd040548e906418608cba3630fe",
+      "new_sha256": "35a819d01f5421028faaed372fa0f3316e30d320db7a2dbcfe7f71668632a019",
+      "request_sha256": "6d767c0bfcc031b524f1c93c45a5deb9b21fb70b6722dc9d94fcd6b228b3d6eb",
+      "old_protected_sha256": "4b0c927a5fe12dd95f9cd8877f318d018b339a0c052dbadbb0335d963d8f431f",
+      "new_protected_sha256": "4b0c927a5fe12dd95f9cd8877f318d018b339a0c052dbadbb0335d963d8f431f"
+    },
+    {
+      "file": "examples/interpretations/draft-choices-result.json",
+      "old_sha256": "6186d4883773d191ce8a3c622ae8d81140ad78c66167b9fcd7010d4635b216a3",
+      "new_sha256": "553d913a4a121b0f88d482003246d9e05008c426f743e1c32ff6eb5a9c41bcf8",
+      "request_sha256": "15c80b45815d727203842836b88d888eea7b92c336aefc23bb3b3e47e8d84d21",
+      "old_protected_sha256": "70a790f2d339fd18e42319413a032e03b3a43b2fb2def393f461b7389bbd7c8e",
+      "new_protected_sha256": "70a790f2d339fd18e42319413a032e03b3a43b2fb2def393f461b7389bbd7c8e"
+    },
+    {
+      "file": "examples/interpretations/draft-revised-PS0-3-result.json",
+      "old_sha256": "3df5182910aaf3919ea971fa5ced2de813ebd9b97ff924535248b70b6f73b10d",
+      "new_sha256": "61569b8f206fd93816d08473b32ab17edf952a8b1e2f7c648192b173276e6511",
+      "request_sha256": "ac5b80d9526e5383cca64fda1ae3293e236d54eebdf3393c693bb7f5d5b97fa3",
+      "old_protected_sha256": "b0d9acd038a9eef4e1c8eafcdfd44db05512804ea67649b063cfef7b23a406d6",
+      "new_protected_sha256": "b0d9acd038a9eef4e1c8eafcdfd44db05512804ea67649b063cfef7b23a406d6"
+    },
+    {
+      "file": "examples/interpretations/draft-selected-PS0-2-result.json",
+      "old_sha256": "ede7de0a45e93a4d16f6574b0f9f662abe3d0afdc543eb515e92fd8b9cf81350",
+      "new_sha256": "6ed96e6097aaae4e92c513927edd3513a0d6ac9fa6d5553f5db95f7b70921d61",
+      "request_sha256": "5367498dda95a4276343bb2bbf22e722c4ce1779255d14d87b68443a51d1c31e",
+      "old_protected_sha256": "18adc9a1d8f40cbfff6af9dbb031cd2deebcb3291828c74737605818b70ac0c0",
+      "new_protected_sha256": "18adc9a1d8f40cbfff6af9dbb031cd2deebcb3291828c74737605818b70ac0c0"
+    },
+    {
+      "file": "examples/interpretations/endpoint-inputs-result.json",
+      "old_sha256": "5d9e0054e4bf5d15ca48d44736130429621fad91f34cc7244b433599a13dc990",
+      "new_sha256": "565abf7492c1c3028e77ea193beaa1a0634a6d5c9635533245e6b0c0255ca160",
+      "request_sha256": "7e340d6600105f02b6068f6a0308b1dbb5984cedf983e0410e78974e043eeeff",
+      "old_protected_sha256": "da8b8d210e9ffb3899bed4202e27a2d46ee2462f0f19fd8e73e7cfaf1012edf4",
+      "new_protected_sha256": "da8b8d210e9ffb3899bed4202e27a2d46ee2462f0f19fd8e73e7cfaf1012edf4"
+    },
+    {
+      "file": "examples/interpretations/population-resolved-result.json",
+      "old_sha256": "00b85665d6ce2946c020d1eae2fe47b74ed2a4a9fc67336502771fe62b59c5b1",
+      "new_sha256": "8fa709c7114061618686c1b7975a236a0cf2685a711eeeef7abba6441d04425c",
+      "request_sha256": "cea57b0807453fcb4dd480d746fd2781c4d07b95e47092d0ce93a4750a7d16c6",
+      "old_protected_sha256": "ceeb0c93aa4f3a8e38a68e83422a4b460d9f704fa8485fcffcd21274bceee2c8",
+      "new_protected_sha256": "ceeb0c93aa4f3a8e38a68e83422a4b460d9f704fa8485fcffcd21274bceee2c8"
+    },
+    {
+      "file": "examples/interpretations/population-unresolved-result.json",
+      "old_sha256": "6392ac7fee63db510e7370a852eb9c3b254f908e3c3d103b25fbcca3da9d2ad8",
+      "new_sha256": "832f9c2381fe1fced6b7ea1c677c7ff13900a03eab98300221d1e5f66b71bcf9",
+      "request_sha256": "c9ff25a308c65edd5638a2619ad042bab5dad2a331bb3ebb8829f6d9061bea1b",
+      "old_protected_sha256": "42536debba5527d36e8d2ee79d09a5adf4a4f592845a978115d5775890722e49",
+      "new_protected_sha256": "42536debba5527d36e8d2ee79d09a5adf4a4f592845a978115d5775890722e49"
+    },
+    {
+      "file": "examples/partial-evidence/design-result.json",
+      "old_sha256": "72447b1ffdc8a38c1a108739dec4719670c99b85133f8f4f6de9e62016722caf",
+      "new_sha256": "50db0c5b78459f89b6b0211b27cfac3630258f25b271a2e9ec71a9b4f7bdb95f",
+      "request_sha256": "b037bd9628b2b3ec1dad3d723d73a83cc3666bce7032b16d73ec009d6ef362ad",
+      "old_protected_sha256": "c966d15f518cf579f7c2391437faf613cc18c30b8afa01138edb16f0b5ca9f92",
+      "new_protected_sha256": "c966d15f518cf579f7c2391437faf613cc18c30b8afa01138edb16f0b5ca9f92"
+    },
+    {
+      "file": "examples/partial-evidence/draft-result.json",
+      "old_sha256": "395557186483230f6cbc541937cb19802669ef3fea711b005f133aaac7f13e98",
+      "new_sha256": "9fc37216e02ed2a6a7656081dfd8aa8999fc78498ffb48009a348b3dd085d11b",
+      "request_sha256": "9afcb20ec002868d4bb9925e3a99c022a190ed51a2d8fdd814aff3996fbd16e6",
+      "old_protected_sha256": "24ad2fa21ed42711d2ca321422acb7f67a64594758dd7b3b5138c8a230368ae9",
+      "new_protected_sha256": "24ad2fa21ed42711d2ca321422acb7f67a64594758dd7b3b5138c8a230368ae9"
+    },
+    {
+      "file": "examples/reasoning-admission/coordinate-standing-result.json",
+      "old_sha256": "7f7155657a6e93eb4963aa909168b9b270b360c1c6de7a23f0a6716352982cb4",
+      "new_sha256": "7f7155657a6e93eb4963aa909168b9b270b360c1c6de7a23f0a6716352982cb4",
+      "request_sha256": "15483f742f073bd45e4a1d81dc8a75059d2d2c03514f8a8925a9250cca0cf530",
+      "old_protected_sha256": "a20aeb9c31d70a6ac692b08cb48268d0329628c6b5f98a47e89e83e7043aed17",
+      "new_protected_sha256": "a20aeb9c31d70a6ac692b08cb48268d0329628c6b5f98a47e89e83e7043aed17"
+    },
+    {
+      "file": "examples/reasoning-admission/declared-proposition-bridge-result.json",
+      "old_sha256": "44d603663abc293ebd7316099a87290c573c568b9beffb4bd2c10f7d19099e5f",
+      "new_sha256": "2222beb8db69930693607a100d6a361b6f1da47bdf51278ce511fc19fecc89e9",
+      "request_sha256": "c2f94c0868dabdce549d2ce9264484a11a788ae406fda02cd6d0104daffd8c9f",
+      "old_protected_sha256": "26cb8da5bc2223840d3a94a0662a212c8aed88209432a8681dd85439d40f5b5e",
+      "new_protected_sha256": "26cb8da5bc2223840d3a94a0662a212c8aed88209432a8681dd85439d40f5b5e"
+    },
+    {
+      "file": "examples/reasoning-admission/mixed-comparison-result.json",
+      "old_sha256": "9c87826497cff2b98a3738d1db465a9d075be55acdfc3e770596642574f37114",
+      "new_sha256": "9c87826497cff2b98a3738d1db465a9d075be55acdfc3e770596642574f37114",
+      "request_sha256": "ff9a4b0aea008aadfd90f03779f604160b9defcaa60deb312f946b0deeafa495",
+      "old_protected_sha256": "551de843c3e4df9d8a660c29793c307c2b3cafb520dd4193dd44cd34a31017b3",
+      "new_protected_sha256": "551de843c3e4df9d8a660c29793c307c2b3cafb520dd4193dd44cd34a31017b3"
+    },
+    {
+      "file": "examples/reasoning-admission/unbound-scale-result.json",
+      "old_sha256": "615dfe82161b1d0f0094c679c1ac45afd13705c166d6907a66d6e48bbdec8406",
+      "new_sha256": "17078feb009a3c4161a372ddab111412c0f3b28d2fbfe524860191baff14a9b6",
+      "request_sha256": "3d97b45c1a3d6edb39928c1af86e044394fde7db894e4ce6ab5e351e4cbe7d7e",
+      "old_protected_sha256": "6e3fa0875a8ba850644bad5a988a2a9ef3f71e8d0d4ebb70055fda0b4cc51e22",
+      "new_protected_sha256": "6e3fa0875a8ba850644bad5a988a2a9ef3f71e8d0d4ebb70055fda0b4cc51e22"
+    },
+    {
+      "file": "examples/source-bridge/ipass-baseline-overlap-result.json",
+      "old_sha256": "71a88b6cbb047d3a1c7d4f025ddc7efcd0053724415c6eada6d9167acf1a0a82",
+      "new_sha256": "16781ece2c518f89b377461f01325f2873830910c1c42845f1f11ba4ef1cede3",
+      "request_sha256": "48c25f5d370efe555561eb10c94d0c07a12f9e67cb27af5afa530f98c83d2294",
+      "old_protected_sha256": "87c3328675bb8b818dad487b858046324588bdd0df29be23d9f021ac146cac75",
+      "new_protected_sha256": "87c3328675bb8b818dad487b858046324588bdd0df29be23d9f021ac146cac75"
+    },
+    {
+      "file": "examples/source-bridge/ipass-registered-age-result.json",
+      "old_sha256": "3e907bac9b526c239e997b1591c8484bca55aeb873c3ddbc9a40023292e185c8",
+      "new_sha256": "cfc3316c8163244c0b857120cbff5d485f296f979c68411856426abb46cc1ddf",
+      "request_sha256": "013889874faed788fd8818f7ddc53cf16356f8109d485887029a230dddb9ba16",
+      "old_protected_sha256": "3938de2e6ed8a53bfba4fa73de0963a063be8bd487abacd71cd090083bccf773",
+      "new_protected_sha256": "3938de2e6ed8a53bfba4fa73de0963a063be8bd487abacd71cd090083bccf773"
+    },
+    {
+      "file": "examples/source-bridge/ipass-schedule-readings-result.json",
+      "old_sha256": "363033e170eb773b95ba70da220a120dedb14b6c5aa1573ba6cdd0e913f43adf",
+      "new_sha256": "f731a02bbf55d9f7eada5fb6d35d13713a02ca93a57cc3dffedd5f7793281dc8",
+      "request_sha256": "56659a6ec0452fabd12e498480b2ab80d39684e7c004928f9be427415e65cd5f",
+      "old_protected_sha256": "9fe2a39414ed7642776a4dc19508bae965b729b12df7361d7fd7e6147c052476",
+      "new_protected_sha256": "9fe2a39414ed7642776a4dc19508bae965b729b12df7361d7fd7e6147c052476"
+    },
+    {
+      "file": "examples/source-workflows/ipass-analysis-overlap-result.json",
+      "old_sha256": "9177cae782c13b0a6f6f14dc5732387e225f972ba304f8f01c66df3f83169760",
+      "new_sha256": "9177cae782c13b0a6f6f14dc5732387e225f972ba304f8f01c66df3f83169760",
+      "request_sha256": "54c9e48385fee9f3c59e4d1e8b399a3951a12b97652a0849f42c92544adec483",
+      "old_protected_sha256": "c9ce9955bac01f74623a5c3c1b2832742434e0b08fe9bb74ca990df28e00c557",
+      "new_protected_sha256": "c9ce9955bac01f74623a5c3c1b2832742434e0b08fe9bb74ca990df28e00c557"
+    },
+    {
+      "file": "examples/source-workflows/ipass-analysis-populations-result.json",
+      "old_sha256": "c5d1d76e6559afebcd21ea14ccfb8d1dcda22f0b56c40215fc8390132bd0acc0",
+      "new_sha256": "c5d1d76e6559afebcd21ea14ccfb8d1dcda22f0b56c40215fc8390132bd0acc0",
+      "request_sha256": "21229676ddd2e3eb3e82216d207e3653eec308c8e35dce0a483de671369d7c95",
+      "old_protected_sha256": "aca1703ad0596751f61ccb90c3d2efefd6b1cbfb289c538085cfb30b45630438",
+      "new_protected_sha256": "aca1703ad0596751f61ccb90c3d2efefd6b1cbfb289c538085cfb30b45630438"
+    },
+    {
+      "file": "examples/source-workflows/ipass-assessment-window-result.json",
+      "old_sha256": "ca18b0639e5694d953fc970ee2299963ef1bd3411fd65832c8a7d69b954f1efb",
+      "new_sha256": "ca18b0639e5694d953fc970ee2299963ef1bd3411fd65832c8a7d69b954f1efb",
+      "request_sha256": "64b60f02d53c0f8ce6312e0f8eceda8abe0d79802bc7860bbe9105be1ace5a4e",
+      "old_protected_sha256": "150161d144a161f37ed22a8226f64f4018f858ecfc3cd6b66f233d945d2ebc87",
+      "new_protected_sha256": "150161d144a161f37ed22a8226f64f4018f858ecfc3cd6b66f233d945d2ebc87"
+    },
+    {
+      "file": "examples/source-workflows/ipass-assessment-window-unresolved-result.json",
+      "old_sha256": "733737ee8c6c43898dace48ff891abed653e58fbc634bf902676980cb3488d7c",
+      "new_sha256": "733737ee8c6c43898dace48ff891abed653e58fbc634bf902676980cb3488d7c",
+      "request_sha256": "76638e8549974924722c594dc7ec9a0fbafff21d75d9482e09dfbff71ee65741",
+      "old_protected_sha256": "ae7ceb667316bd17021be0f48adbae0fc704012a37cfe342a88902c04c77a985",
+      "new_protected_sha256": "ae7ceb667316bd17021be0f48adbae0fc704012a37cfe342a88902c04c77a985"
+    },
+    {
+      "file": "examples/source-workflows/ipass-joint-exceptions-48-result.json",
+      "old_sha256": "aa95cdc15882639d82477ac652e47ab00b6fd0d27c6356c710e5b572a1db0412",
+      "new_sha256": "ec7a2ed8f9b8935ea3aca7a1733b9013c3f54af2764fccb3ad490ce4ba219f6d",
+      "request_sha256": "3d2b49d45f08d78157452d5ae0ff01a9a5c434f7a3d2cc7c3386797f921da50f",
+      "old_protected_sha256": "92bc98c0f70551160fd707960eeb426ad2d1771847e9b3b130a9f82a506c5ff6",
+      "new_protected_sha256": "92bc98c0f70551160fd707960eeb426ad2d1771847e9b3b130a9f82a506c5ff6"
+    },
+    {
+      "file": "examples/source-workflows/ipass-joint-exceptions-49-result.json",
+      "old_sha256": "9ba1cbdc1ffffd88781ce96f5e277d0ecd310287130cba8512c916b0a93e768b",
+      "new_sha256": "05a58b7e188fad4c1fb4e059d6bc9d270ec2f6087dd51ab3e38cf843085c3b60",
+      "request_sha256": "1a1257e59c617bfcf18317031c35fd343a5eba63298a3664f4a35a79ba41b998",
+      "old_protected_sha256": "21e7b0e886d19856c3f3d6b223c3f6f562511bd45fc0b99b7ca80c51dd21ef0d",
+      "new_protected_sha256": "21e7b0e886d19856c3f3d6b223c3f6f562511bd45fc0b99b7ca80c51dd21ef0d"
+    },
+    {
+      "file": "examples/source-workflows/ipass-joint-result.json",
+      "old_sha256": "8fef341d7e1f953462fc19b90aae65727bf5ebdfab03750662e66e98442569bd",
+      "new_sha256": "c069dc891b165c36364be4797c916fbbf06a603783d702600554c227c358f315",
+      "request_sha256": "88c36a165b615ef32be879c2baa57c5ff320a4adcad7ec32684482946dd45c83",
+      "old_protected_sha256": "8c492a7f61acc245fa1cca7e2c44aafad957ef9bb66fd976a27c312bb7eb7080",
+      "new_protected_sha256": "8c492a7f61acc245fa1cca7e2c44aafad957ef9bb66fd976a27c312bb7eb7080"
+    },
+    {
+      "file": "examples/source-workflows/ipass-performance-status-result.json",
+      "old_sha256": "9f65a3a0a7f48033b32359f09c8b38b77b35b2114444681f22b35367e83c0df8",
+      "new_sha256": "e788dec3943c4e854a1be70e376fabc30cb155f26f89ba4c8651b757dcf4a4bf",
+      "request_sha256": "587d3299bbc6d7a8f152cda0819a28d0bd14140e55750585bc0bb56ed08cd35b",
+      "old_protected_sha256": "ebba3582240e288a7352da67b44554a6d6df65ced02455d27449d3b5f66f4809",
+      "new_protected_sha256": "ebba3582240e288a7352da67b44554a6d6df65ced02455d27449d3b5f66f4809"
+    }
+  ]
+}

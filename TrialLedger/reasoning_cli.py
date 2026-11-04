@@ -15,7 +15,12 @@ COMMANDS = ("reason-result", "reason-revise", "reason-export")
 def configure(commands: argparse._SubParsersAction, reason: argparse.ArgumentParser) -> None:
     """Declare the CLI part of the same artifact/revision/export contract MCP serves."""
     reason.add_argument("--store", type=Path, help="retain complete canonical reasoning in this folder")
-    reason.add_argument("--compact", action="store_true", help="short view; requires --store")
+    reason.add_argument("--compact", action="store_true", help="bounded view; requires --store")
+    budget_help = (
+        f"compact reply budget: {clinical_delivery.MIN_BYTES}–{clinical_delivery.MAX_BYTES} bytes; "
+        f"default {clinical_delivery.DEFAULT_BYTES}; full mode stays full"
+    )
+    reason.add_argument("--max-bytes", type=int, default=clinical_delivery.DEFAULT_BYTES, help=budget_help)
     reason.add_argument("--intent", choices=clinical_delivery.INTENTS, default="unspecified")
     reason.add_argument("--question", default="", help="the person's question, retained as supplied")
     read = commands.add_parser(
@@ -62,17 +67,18 @@ def configure(commands: argparse._SubParsersAction, reason: argparse.ArgumentPar
     )
     revise.add_argument("--intent", choices=clinical_delivery.INTENTS, default="unspecified")
     revise.add_argument("--question", default="")
+    revise.add_argument("--max-bytes", type=int, default=clinical_delivery.DEFAULT_BYTES, help=budget_help)
     export = commands.add_parser(
         "reason-export",
         help="write a traceable clinical review workbook and decision list",
         description="Give colleagues a decision list and workbook with evidence, choices "
-        "and consequences.\n\n"
+        "and consequences. OUT must not already exist; publication is OUT/review.\n\n"
         "example: trialledger reason-export --store reasoning --id ID --out review\n\n"
         "exit status: 0 exported; 2 named refusal",
     )
     export.add_argument("--store", type=Path, required=True)
     export.add_argument("--id", required=True)
-    export.add_argument("--out", type=Path, required=True)
+    export.add_argument("--out", type=Path, required=True, help="parent folder; publishes into OUT/review")
     export.add_argument("--source-record", type=Path, help="matching retained landscape.json; never modified")
     export.add_argument(
         "--include", action="append", default=[], help="another retained analysis artifact to include"
@@ -99,6 +105,7 @@ def handle(args: argparse.Namespace) -> int:
                 response_view="full" if args.full else "compact",
                 intent=args.intent,
                 question=args.question,
+                max_bytes=args.max_bytes,
                 prepare_only=args.prepare_only,
             )
         else:

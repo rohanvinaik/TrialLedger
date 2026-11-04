@@ -1,0 +1,44 @@
+{
+  "local_packet": "/Users/rohanvinaik/trialledger-runs/phase1-lupus-cohort-handoff-20261104",
+  "complete_replay_pairs": true,
+  "canonical_roundtrip": true,
+  "delivery_only_difference": [
+    "delivery.previous_artifact",
+    "delivery.edits"
+  ],
+  "layer_one_verify_requires_local_full_source_packet": true,
+  "files": {
+    "workflow-receipt.json": {
+      "sha256": "32238066b2f4cf2a3d7c90e81c98e878d71c2abb48836761d50c57f1a1868345",
+      "bytes": 8758
+    },
+    "question.json": {
+      "sha256": "cd3f794bd2a4890a59a595c8dcfca536920b7bbcdc3c8f55c2250b8d2d50ec33",
+      "bytes": 520
+    },
+    "README.md": {
+      "sha256": "5587cc11d9f24c3fe1bc08bc8495c5699b6d926bb805f222d5e10803e2486b4e",
+      "bytes": 3867
+    },
+    "revision-result.json": {
+      "sha256": "1cf1115eb274e0094a7c1b0b2ca8401d5e1c691891479b64d1455274bd13323d",
+      "bytes": 734665
+    },
+    "sampling.json": {
+      "sha256": "ab2ac2171c16e9d2dc4838d2e3fd51b50357269f9e98303e1d319207c20c514d",
+      "bytes": 1863
+    },
+    "baseline-result.json": {
+      "sha256": "5703ffa96577f9a89c2c3dcc2696ce227653ac71c1c9243ceab8012c185cf06c",
+      "bytes": 335271
+    },
+    "revision-request.json": {
+      "sha256": "1cd6a9283738561e046c497613b237f1e4f10566eef2e67e87ac6778bead392c",
+      "bytes": 407248
+    },
+    "baseline-request.json": {
+      "sha256": "bbf3398b6948b87c62f478e7e510f4ec63f9cd3b0840017403e56f00542fb70d",
+      "bytes": 73311
+    }
+  }
+}

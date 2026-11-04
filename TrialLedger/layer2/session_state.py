@@ -6,7 +6,7 @@ import hashlib
 import json
 from typing import Any, cast
 
-from TrialLedger.layer2 import source_assertions, source_evidence
+from TrialLedger.layer2 import decision_evidence, source_assertions, source_evidence
 
 SESSION_FIELDS = {
     "schema_version",
@@ -253,6 +253,20 @@ def _decision_inputs(decisions: dict, analyses: dict) -> None:
                 text(value, "selected.basis")
 
 
+def _decision_index(items: object) -> dict[str, dict]:
+    """Accept optional context without inserting defaults into the caller's canonical session."""
+    required = {"id", "question", "target", "coverage", "alternatives", "selected"}
+    out = {}
+    for item in rows(items, "decisions"):
+        if type(item) is not dict or set(item) - (required | {"evidence"}) or required - set(item):
+            raise ValueError("invalid_fields:decision")
+        identity = text(item["id"], "decision.id")
+        if identity in out:
+            raise ValueError("duplicate_id:decision:" + identity)
+        out[identity] = item
+    return out
+
+
 def prepare(value: object) -> dict:
     """Detach and validate ledgers and complete replay dependencies before any child call."""
     held = source_evidence._json_copy(value, "design_session")
@@ -275,11 +289,7 @@ def prepare(value: object) -> dict:
     analyses = _index(
         rows(session["analyses"], "analyses"), {"id", "operation", "target", "parameters", "uses"}, "analysis"
     )
-    decisions = _index(
-        rows(session["decisions"], "decisions"),
-        {"id", "question", "target", "coverage", "alternatives", "selected"},
-        "decision",
-    )
+    decisions = _decision_index(session["decisions"])
     for name, entries in (
         ("sources", sources_raw),
         ("premises", premises),
@@ -347,6 +357,9 @@ def prepare(value: object) -> dict:
             else:
                 graph["analysis:" + key].append("premise:" + ref)
     _decision_inputs(decisions, analyses)
+    context = {
+        key: decision_evidence.locate(item.get("evidence", []), sources) for key, item in decisions.items()
+    }
     order = _ordered(graph)
     return {
         "session": session,
@@ -355,6 +368,7 @@ def prepare(value: object) -> dict:
         "premises": premises,
         "analyses": analyses,
         "decisions": decisions,
+        "decision_evidence": context,
         "graph": graph,
         "order": order,
     }

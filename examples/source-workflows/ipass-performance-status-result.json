@@ -83,7 +83,59 @@
           "explanation_blockers": []
         },
         "origins": [],
-        "conditions": [],
+        "conditions": [
+          {
+            "relation": "required_by_criteria",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "WHO_PS",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "le",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 0.0,
+                "unit": "WHO_PS",
+                "upper": null
+              }
+            },
+            "status": "known",
+            "warrant": {
+              "result": "ENTAILED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"WHO_PS\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"le\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":0.0,\"unit\":\"WHO_PS\",\"upper\":null}}",
+              "status": "known",
+              "proof": [
+                "upper_0"
+              ],
+              "blockers": []
+            },
+            "scope": {
+              "cohort": null,
+              "phase": null,
+              "arm": null
+            },
+            "profile_check": {
+              "code": "not_established_by_query",
+              "basis": "query_alone"
+            }
+          }
+        ],
         "blockers": [],
         "canonical_ref": "/result/candidates/0/query_decision"
       },
@@ -203,7 +255,59 @@
           "explanation_blockers": []
         },
         "origins": [],
-        "conditions": [],
+        "conditions": [
+          {
+            "relation": "required_by_criteria",
+            "body": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+                "class": "Predicate",
+                "key": "WHO_PS",
+                "kind": "measurement"
+              },
+              "qualifiers": {
+                "class": "Always"
+              },
+              "subject": {
+                "class": "Subject",
+                "kind": "participant",
+                "referent": ""
+              },
+              "time": null,
+              "value": {
+                "class": "Value",
+                "comparison": "le",
+                "inclusivity": "unspecified",
+                "kind": "quantity",
+                "members": [],
+                "number": 1.0,
+                "unit": "WHO_PS",
+                "upper": null
+              }
+            },
+            "status": "known",
+            "warrant": {
+              "result": "ENTAILED",
+              "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"WHO_PS\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"le\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":1.0,\"unit\":\"WHO_PS\",\"upper\":null}}",
+              "status": "known",
+              "proof": [
+                "upper_1"
+              ],
+              "blockers": []
+            },
+            "scope": {
+              "cohort": null,
+              "phase": null,
+              "arm": null
+            },
+            "profile_check": {
+              "code": "not_established_by_query",
+              "basis": "query_alone"
+            }
+          }
+        ],
         "blockers": [],
         "canonical_ref": "/result/candidates/1/query_decision"
       },
@@ -1251,15 +1355,71 @@
           "blockers": []
         },
         "query_explanations": {
+          "coverage": "bounded_candidate_discovery_not_complete_screening",
           "permissions": [],
-          "conditions": [],
+          "conditions": [
+            {
+              "relation": "required_by_criteria",
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "WHO_PS",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "le",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 0.0,
+                  "unit": "WHO_PS",
+                  "upper": null
+                }
+              },
+              "status": "known",
+              "warrant": {
+                "result": "ENTAILED",
+                "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"WHO_PS\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"le\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":0.0,\"unit\":\"WHO_PS\",\"upper\":null}}",
+                "status": "known",
+                "proof": [
+                  "upper_0"
+                ],
+                "blockers": []
+              },
+              "scope": {
+                "cohort": null,
+                "phase": null,
+                "arm": null
+              },
+              "profile_check": {
+                "code": "not_established_by_query",
+                "basis": "query_alone"
+              }
+            }
+          ],
           "blockers": [],
           "checks": {
-            "code": "not_open",
-            "decisions": 0,
-            "intrinsic_queries": 0,
-            "planned": 0,
-            "limit": 8
+            "code": "complete",
+            "decisions": 1,
+            "intrinsic_queries": 1,
+            "profile_queries": 2,
+            "planned": 1,
+            "limit": 32,
+            "profile_probes": 1,
+            "planning_nodes": 1
           }
         },
         "elimination_status": "interpolated"
@@ -1313,15 +1473,71 @@
           "blockers": []
         },
         "query_explanations": {
+          "coverage": "bounded_candidate_discovery_not_complete_screening",
           "permissions": [],
-          "conditions": [],
+          "conditions": [
+            {
+              "relation": "required_by_criteria",
+              "body": {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                  "class": "Predicate",
+                  "key": "WHO_PS",
+                  "kind": "measurement"
+                },
+                "qualifiers": {
+                  "class": "Always"
+                },
+                "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                },
+                "time": null,
+                "value": {
+                  "class": "Value",
+                  "comparison": "le",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 1.0,
+                  "unit": "WHO_PS",
+                  "upper": null
+                }
+              },
+              "status": "known",
+              "warrant": {
+                "result": "ENTAILED",
+                "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"WHO_PS\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"le\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":1.0,\"unit\":\"WHO_PS\",\"upper\":null}}",
+                "status": "known",
+                "proof": [
+                  "upper_1"
+                ],
+                "blockers": []
+              },
+              "scope": {
+                "cohort": null,
+                "phase": null,
+                "arm": null
+              },
+              "profile_check": {
+                "code": "not_established_by_query",
+                "basis": "query_alone"
+              }
+            }
+          ],
           "blockers": [],
           "checks": {
-            "code": "not_open",
-            "decisions": 0,
-            "intrinsic_queries": 0,
-            "planned": 0,
-            "limit": 8
+            "code": "complete",
+            "decisions": 1,
+            "intrinsic_queries": 1,
+            "profile_queries": 2,
+            "planned": 1,
+            "limit": 32,
+            "profile_probes": 1,
+            "planning_nodes": 1
           }
         },
         "elimination_status": "interpolated"
@@ -1377,15 +1593,19 @@
           "blockers": []
         },
         "query_explanations": {
+          "coverage": "bounded_candidate_discovery_not_complete_screening",
           "permissions": [],
           "conditions": [],
           "blockers": [],
           "checks": {
-            "code": "not_open",
+            "code": "complete",
             "decisions": 0,
-            "intrinsic_queries": 0,
-            "planned": 0,
-            "limit": 8
+            "intrinsic_queries": 1,
+            "profile_queries": 2,
+            "planned": 1,
+            "limit": 32,
+            "profile_probes": 1,
+            "planning_nodes": 1
           }
         }
       },
@@ -1442,6 +1662,7 @@
           ]
         },
         "query_explanations": {
+          "coverage": "bounded_candidate_discovery_not_complete_screening",
           "permissions": [],
           "conditions": [],
           "blockers": [],
@@ -1449,8 +1670,11 @@
             "code": "complete",
             "decisions": 0,
             "intrinsic_queries": 1,
-            "planned": 0,
-            "limit": 8
+            "profile_queries": 2,
+            "planned": 1,
+            "limit": 32,
+            "profile_probes": 1,
+            "planning_nodes": 1
           }
         }
       },
@@ -1507,6 +1731,7 @@
           ]
         },
         "query_explanations": {
+          "coverage": "bounded_candidate_discovery_not_complete_screening",
           "permissions": [],
           "conditions": [],
           "blockers": [],
@@ -1514,8 +1739,11 @@
             "code": "complete",
             "decisions": 0,
             "intrinsic_queries": 1,
-            "planned": 0,
-            "limit": 8
+            "profile_queries": 2,
+            "planned": 1,
+            "limit": 32,
+            "profile_probes": 1,
+            "planning_nodes": 1
           }
         }
       },
@@ -1568,6 +1796,7 @@
           ]
         },
         "query_explanations": {
+          "coverage": "bounded_candidate_discovery_not_complete_screening",
           "permissions": [],
           "conditions": [],
           "blockers": [],
@@ -1575,8 +1804,11 @@
             "code": "complete",
             "decisions": 0,
             "intrinsic_queries": 1,
+            "profile_queries": 0,
             "planned": 0,
-            "limit": 8
+            "limit": 32,
+            "profile_probes": 0,
+            "planning_nodes": 0
           }
         }
       }
@@ -1816,6 +2048,6 @@
       }
     ]
   },
-  "result_digest": "8a4011086e5d260cef744142ad0418970b61bd4ed2aebc7f83939b4807a3776a",
+  "result_digest": "1051edc65c626f86be3905a2c82c79089cd818315b0abe5eaffcbd6e61d8d845",
   "result_digest_scope": "result only; excludes summary, presentation and artifact metadata"
 }

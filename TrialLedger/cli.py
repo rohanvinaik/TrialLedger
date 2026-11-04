@@ -517,7 +517,12 @@ def main(
         return _record(args)
     if args.command == "reason":
         return _reason(
-            args.request, store=args.store, compact=args.compact, intent=args.intent, question=args.question
+            args.request,
+            store=args.store,
+            compact=args.compact,
+            intent=args.intent,
+            question=args.question,
+            max_bytes=args.max_bytes,
         )
     if args.command in reasoning_cli.COMMANDS:
         return reasoning_cli.handle(args)
@@ -727,6 +732,7 @@ def _reason(
     compact: bool = False,
     intent: str = "unspecified",
     question: str = "",
+    max_bytes: int = 24_576,
 ) -> int:
     from TrialLedger.landscape_verify import strict_json
     from TrialLedger.reasoning_delivery import execute
@@ -744,6 +750,7 @@ def _reason(
             response_view="compact" if compact else "full",
             intent=intent,
             question=question,
+            max_bytes=max_bytes,
         )
     except (OSError, ValueError, TypeError, KeyError) as error:
         result = {"code": "refused", "operation": "", "result": None, "problems": [str(error)]}

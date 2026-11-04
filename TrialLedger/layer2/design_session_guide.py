@@ -53,7 +53,9 @@ def extend(description: dict) -> None:
         {
             "question": "Keep our design decisions and recompute what changes when we revise a premise",
             "operation": "design_session",
-            "read": "result.decisions, analyses, projection_ledger; previous_fresh, diff and work",
+            "read": (
+                "result.decisions, analyses, projection_ledger; previous_fresh, answer_diff, diff and work"
+            ),
             "meaning": "Declared questions with local warrants, origins and full replay dependencies.",
         }
     )
@@ -244,7 +246,21 @@ INPUTS = {
         "fields": {
             "coverage": ["represented_restriction", "declared_design"],
             "alternatives": "2–16 distinct queries: [{id,label,analysis,query}]",
+            "evidence": "optional decision_context[]; context only, never an assertion or source absence",
             "selected": "null or {alternative,origin:user,basis:[nonempty references]}",
+        },
+    },
+    "decision_context": {
+        "required": ["id", "source", "anchor", "role"],
+        "fields": {
+            "id": "unique nonempty ID, equal to anchor.id; at most 32 per decision",
+            "source": "local source ID retained in session.sources",
+            "anchor": "exact {id,address,digest,expected,span?}; existing source anchor contract",
+            "role": ["quote", "reading", "gap"],
+            "note": "optional caller annotation, at most 4096 characters; proposed, never a solver premise",
+            "scope": (
+                "optional caller-declared source scope, at most 1024 characters; no applicability binding"
+            ),
         },
     },
 }
@@ -285,6 +301,16 @@ GUIDE: dict[str, Any] = {
             "cohort/arm/phase context. No hypothetical int"
             "erpretation frame can become an ordinary deri"
             "ved assertion."
+        ),
+        (
+            "Revision independently compares typed questions, computed answers, deciding support, caller "
+            "wording, attributed origins and evidence context. A changed question with the same verdict "
+            "is not a changed answer to the same clinical question. Wording certifies no clinical meaning."
+        ),
+        (
+            "Deciding premise IDs resolve to versioned payload, rule, scope and standing. Stable IDs do "
+            "not hide changed support; unrelated inputs remain replay dependencies only. Evidence "
+            "context does not enter the constraint floor. Full audit changes remain separate."
         ),
     ],
     "answer_guide": {
@@ -340,6 +366,25 @@ GUIDE: dict[str, Any] = {
             "Stable source/premise/effective-premise/analy"
             "sis/decision IDs classified new, withdrawn, c"
             "hanged or unchanged."
+        ),
+        "answer_diff": (
+            "Independent clinical consequence comparison beside the complete canonical diff. Each "
+            "analysis/decision retains before/after projections, exact paths, all changed axes and one "
+            "primary code. A changed typed question is named separately from its verdict/content delta."
+        ),
+        "answer_diff.axes": (
+            "question: typed query/target/scope; wording: caller question/option labels; answer: computed "
+            "verdict/values/consequences; support: actual deciding warrant and versioned premise content; "
+            "origin: attribution; context: attached evidence context, never an added logical premise. "
+            "Each axis is changed, unchanged or not_comparable. Exact comparison is not clinical "
+            "semantic equivalence or confirmation authentication."
+        ),
+        "answer_diff.codes": (
+            "Primary priority: new, withdrawn, projection_unknown; then question_changed, answer_changed, "
+            "support_changed, context_changed, wording_changed, origin_changed; otherwise input_only or "
+            "unchanged. Read every changed axis even when a higher-priority code is selected. A sharper "
+            "query can keep the same verdict. A same-ID rule-body change can change deciding support "
+            "while the profile remains refuted."
         ),
         "work": (
             "Cumulative child calls and conservative solver assignment reservations; expanded JSON "

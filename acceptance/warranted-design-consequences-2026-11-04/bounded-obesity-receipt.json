@@ -1,0 +1,146 @@
+{
+  "scope": "Retained real obesity evidence, unchanged simulated choices; fresh public CLI and stdio MCP replay. No fresh acquisition.",
+  "cli": [
+    {
+      "name": "baseline",
+      "argv": [
+        "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/trialledger",
+        "reason",
+        "--request",
+        "/Users/rohanvinaik/trialledger-runs/obesity-clinician-20261104/checks/session-v1-request.json",
+        "--store",
+        "/Users/rohanvinaik/trialledger-runs/bounded-obesity-20261104/.reasoning",
+        "--compact"
+      ],
+      "exit": 0,
+      "stderr": "",
+      "bytes": 10267
+    },
+    {
+      "name": "revision-r2",
+      "argv": [
+        "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/trialledger",
+        "reason-revise",
+        "--store",
+        "/Users/rohanvinaik/trialledger-runs/bounded-obesity-20261104/.reasoning",
+        "--id",
+        "9f5247d52d0a8db6aef367b16e9bfa307b6051f4a8d1453589ee52bf9de0837b",
+        "--edits",
+        "/Users/rohanvinaik/trialledger-runs/obesity-clinician-20261104/checks/revision-r2-edits.json",
+        "--revision",
+        "r2"
+      ],
+      "exit": 0,
+      "stderr": "",
+      "bytes": 18987
+    },
+    {
+      "name": "revision-r3",
+      "argv": [
+        "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/trialledger",
+        "reason-revise",
+        "--store",
+        "/Users/rohanvinaik/trialledger-runs/bounded-obesity-20261104/.reasoning",
+        "--id",
+        "6c98e7afcaff9abc674acd5085d5a3b53776b0c899767bf6c13c260db80cb0ac",
+        "--edits",
+        "/Users/rohanvinaik/trialledger-runs/obesity-clinician-20261104/checks/revision-r3-edits.json",
+        "--revision",
+        "r3"
+      ],
+      "exit": 0,
+      "stderr": "",
+      "bytes": 17903
+    },
+    {
+      "name": "baseline-min",
+      "argv": [
+        "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/trialledger",
+        "reason",
+        "--request",
+        "/Users/rohanvinaik/trialledger-runs/obesity-clinician-20261104/checks/session-v1-request.json",
+        "--store",
+        "/Users/rohanvinaik/trialledger-runs/bounded-obesity-20261104/.reasoning",
+        "--compact",
+        "--max-bytes",
+        "2048"
+      ],
+      "exit": 0,
+      "stderr": "",
+      "bytes": 1792
+    },
+    {
+      "name": "revision-min",
+      "argv": [
+        "/Users/rohanvinaik/tools/TrialLedger/.venv/bin/trialledger",
+        "reason-revise",
+        "--store",
+        "/Users/rohanvinaik/trialledger-runs/bounded-obesity-20261104/.reasoning",
+        "--id",
+        "6c98e7afcaff9abc674acd5085d5a3b53776b0c899767bf6c13c260db80cb0ac",
+        "--edits",
+        "/Users/rohanvinaik/trialledger-runs/obesity-clinician-20261104/checks/revision-r3-edits.json",
+        "--revision",
+        "r3",
+        "--max-bytes",
+        "2048"
+      ],
+      "exit": 0,
+      "stderr": "",
+      "bytes": 1871
+    }
+  ],
+  "mcp": [
+    {
+      "name": "baseline",
+      "equal_without_tool_label": true,
+      "text_bytes": 10285
+    },
+    {
+      "name": "revision-r2",
+      "equal_without_tool_label": true,
+      "text_bytes": 19012
+    },
+    {
+      "name": "revision-r3",
+      "equal_without_tool_label": true,
+      "text_bytes": 17928
+    }
+  ],
+  "retrieval": [
+    {
+      "canonical_ref": "/response/clinical/findings",
+      "complete_rows": 19,
+      "exact": true
+    },
+    {
+      "canonical_ref": "/response/answer_diff/analyses",
+      "complete_rows": 15,
+      "exact": true
+    },
+    {
+      "canonical_ref": "/response/answer_diff/decisions",
+      "complete_rows": 3,
+      "exact": true
+    },
+    {
+      "canonical_ref": "/response/decision_view",
+      "complete_rows": 3,
+      "exact": true
+    },
+    {
+      "canonical_ref": "/response/delivery/edits",
+      "complete_rows": 4,
+      "exact": true
+    }
+  ],
+  "bounded_read_calls": 150,
+  "old_revision_bytes": [
+    302368,
+    328322
+  ],
+  "new_revision_bytes": [
+    18987,
+    17903
+  ]
+}

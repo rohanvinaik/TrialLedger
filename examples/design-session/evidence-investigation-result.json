@@ -3500,5 +3500,6 @@
       }
     ]
   },
+  "decision_view": [],
   "result_digest_scope": "result only; excludes summary, presentation and artifact metadata"
 }

@@ -1,0 +1,57 @@
+{
+  "target": "TrialLedger/layer2/decision_evidence.py::role_code",
+  "invocations": [
+    "PYTHONPATH=/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker .venv/bin/detective converge 'TrialLedger/layer2/decision_evidence.py::role_code' --two-sign",
+    "PYTHONPATH=/Users/rohanvinaik/tools/Detective:/Users/rohanvinaik/tools/Wesker .venv/bin/detective converge 'TrialLedger/layer2/decision_evidence.py::role_code' --two-sign --input '([],)'"
+  ],
+  "explicit_two_sign": true,
+  "prescribed_followup": "First complete report names expressible distinguishing --input; followed with literal invalid unhashable-list control. No source/test/tool rewrite.",
+  "source_sha256": "ad1954321b008317e640a7bf4f2ab64cc72487e97ead6348152249850116f87c",
+  "current_source_sha256": "ad1954321b008317e640a7bf4f2ab64cc72487e97ead6348152249850116f87c",
+  "function_sha256": "2de83831b3d127832965cb5caea8eed05063d10f2d40ecae96023d636181d4bd",
+  "function_exact_equal_current": true,
+  "policy": "9+neg.f5a15364c11d",
+  "verdict": "COMPLETE (operator universe \u00b7 modulo 1 crash-only value gap)",
+  "killed": 35,
+  "scored": 35,
+  "value_pinned": 34,
+  "authored_routed_initial": 9,
+  "followup_routed_final": 17,
+  "followup_isolated_routed": 4,
+  "minimal_cover": 6,
+  "residual": {
+    "id": "BOUNDARY_00dd39cb",
+    "status": "crash-only value gap; detected by crash, not equivalent; no flag offered",
+    "exact_report": "Your suite already detects every one by crash \u2014 no input is owed for detection; an input distinguishes each, so none is an equivalence candidate."
+  },
+  "authored_test": {
+    "path": "tests/test_decision_evidence.py",
+    "frozen_sha256": "2e8c159f9e4ac37801c1e9200d0b9ddbeb8777750732b300b2f95b1c04dda3db",
+    "current_sha256": "2e8c159f9e4ac37801c1e9200d0b9ddbeb8777750732b300b2f95b1c04dda3db",
+    "final_integration_tests_passed": 53
+  },
+  "full_reports": {
+    "/tmp/trialledger-role-code-two-sign-20261104/converge-1.log": "76ffd9b5abd6dac8ce83bc9b0a16d69137fc3764ff00c9b4f41ef095b38ca032",
+    "/tmp/trialledger-role-code-two-sign-20261104/converge-2.log": "286a54e2e28da0a0379aa1f77891fa0c03a185813ec63d24231964996efa930d",
+    "/tmp/trialledger-role-code-two-sign-20261104/.detective/reports/converge_role_code.txt": "a125596dea6f4c77e843bf9b25b30ae1a1b1c9fd9451f0b451a9cf38f39f6f1f",
+    "/tmp/trialledger-role-code-two-sign-20261104/crosshair.log": "86af167c69caa5ec89fd96275343f1b979cbf7b03f6c1da3175fdf8303e062bd",
+    "/tmp/trialledger-role-code-two-sign-20261104/.detective/ledger.jsonl": "3b6bf7d643e4d36a9828d83569ef9365f8e4acf3bacd5865230df7784ea76f4a"
+  },
+  "report_history": "Static report path was tool-overwritten by prescribed followup; final full report and both full stdout logs retained. First full static report was read before followup, not separately byte-copied.",
+  "generated_suite": {
+    "path": "/tmp/trialledger-role-code-two-sign-20261104/tests/detective/test_TrialLedger_layer2_decision_evidence_role_code_7fad3d3a6b_synth.py",
+    "sha256": "c2bf0c3bf14525886aec2433c0a951531dc20b75c90cf80d52028e0c12794fb5",
+    "tests": 1,
+    "adoption": "Not copied to main; untouched tool output."
+  },
+  "crosshair": {
+    "invocation": "uv run --with crosshair-tool crosshair check TrialLedger.layer2.decision_evidence.role_code --report_all",
+    "contract_outcome": "Three contracts Confirmed over all paths",
+    "scope": "Annotated str input domain; invalid runtime inputs separately exercised by authored tests and explicit list followup."
+  },
+  "limitations": [
+    "34/35 value-pinned; remaining mutation detected by crash, never falsely labelled equivalent.",
+    "5571 collected tests with no static path were not traced.",
+    "Style pass not executed after DONE. No shared certificate or commit edits."
+  ]
+}

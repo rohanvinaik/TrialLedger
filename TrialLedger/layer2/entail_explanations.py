@@ -1,7 +1,7 @@
 """Scoped nonconstraining mentions and bounded proved conditions beside entailment.
 
 Nothing here adds a premise or changes a decision. Candidate conditions come from
-typed applicability expressions already joined to the query by an admitted rule.
+a bounded typed plan; every displayed condition retains its own solver warrant.
 """
 
 from __future__ import annotations
@@ -10,18 +10,18 @@ import dataclasses
 import json
 
 from TrialLedger.layer2 import entail
+from TrialLedger.layer2 import residual_requirements as residual
 from TrialLedger.layer2.assertions import (
     PROPOSITIONS,
     Always,
     AnyOf,
-    Literal,
     Not,
     Proposition,
     ScopedAssertion,
     canonical,
 )
 
-MAX_CONDITIONS = 8
+MAX_CONDITIONS = residual.MAX_CANDIDATES
 BENIGN_BLOCKERS = frozenset(("undecided_by_constraints", "no_constraint_mentions_query"))
 PERMISSION_CODES = frozenset(
     (
@@ -60,12 +60,12 @@ def permission_code(admission: str, scope: str, relation: str, conditional: bool
 
 
 def explanation_gate(result: str, blockers: list[str], intrinsic: bool | None) -> str:
-    """Only an open, supported, feasible query receives conditional consequences (pure — pinned).
+    """Only a supported, feasible accepted profile receives residual requirements (pure — pinned).
 
     post: __return__ in ('not_open', 'unresolved', 'limited', 'impossible', 'eligible')
-    post: __return__ != 'eligible' or (result == 'UNDETERMINED' and intrinsic is True)
+    post: __return__ != 'eligible' or (result in ('UNDETERMINED', 'ENTAILED') and intrinsic is True)
     """
-    if result != entail.UNDETERMINED:
+    if result not in (entail.UNDETERMINED, entail.ENTAILED):
         return "not_open"
     if any(code not in BENIGN_BLOCKERS for code in blockers):
         return "unresolved"
@@ -100,45 +100,85 @@ def _variables(formula: tuple) -> set[str]:
 
 
 def _opposite(value: Proposition) -> Proposition:
-    if isinstance(value, Not):
-        return value.part
-    if isinstance(value, Literal):
-        return dataclasses.replace(value, polarity="negative" if value.polarity == "positive" else "positive")
-    return Not(value)
+    return residual.opposite(value)
 
 
-def _candidates(assertions: tuple[ScopedAssertion, ...], query: object, context: entail.Context) -> tuple:
-    if not isinstance(query, PROPOSITIONS):
-        return ()
-    asked, found = entail.proposition_formula(query)
-    if found:
-        return ()
-    asked_variables = _variables(asked)
-    candidates = {}
-    for item in sorted(assertions, key=lambda item: item.id):
-        code, _, blockers = entail.assertion_formula(item, context)
-        body, body_blockers = entail.proposition_formula(item.body)
-        if code != "constraint" or blockers or body_blockers or not (_variables(body) & asked_variables):
-            continue
-        if isinstance(item.applicability, Always):
-            continue
-        for condition in (item.applicability, _opposite(item.applicability)):
-            formula, raised = entail.proposition_formula(condition)
-            if raised or formula[0] == "const":
-                continue
-            candidates.setdefault(json.dumps(formula, sort_keys=True), condition)
-    return tuple(candidates.values())
+def condition_plan(
+    assertions: tuple[ScopedAssertion, ...], query: object, context: entail.Context
+) -> residual.Plan:
+    """The same finite discovery plan governs output and work reservation."""
+    return residual.candidate_plan(assertions, query, context)
 
 
 def planned_conditions(
     assertions: tuple[ScopedAssertion, ...], query: object, context: entail.Context
 ) -> tuple:
-    """The exact bounded proof plan used by explain and session work reservation.
+    """Compatibility view of the bounded source/subformula candidates."""
+    return tuple(seed.body for seed in condition_plan(assertions, query, context).seeds)
 
-    Every candidate atom and threshold is already in an admitted rule whose body
-    intersects the query. Adding an implication joins no new component or cells.
-    """
-    return _candidates(assertions, query, context)[:MAX_CONDITIONS]
+
+def _profile_truth(condition: Proposition, asked: tuple, bound: int, out: dict) -> str:
+    compiled = residual.formula(condition)
+    toward = entail._satisfiable([asked, compiled], bound)
+    against = entail._satisfiable([asked, residual.formula(_opposite(condition))], bound)
+    out["checks"]["profile_queries"] += 2
+    code = residual.profile_truth_code(toward, against)
+    if code in ("limited", "unresolved"):
+        out["blockers"].append(
+            "resource_bound:explanation_profile" if code == "limited" else "profile_inconsistent"
+        )
+    return code
+
+
+def _remaining(plan: residual.Plan, truths: dict[str, str]) -> list[tuple[Proposition, bool]]:
+    rows = {}
+    for seed in plan.seeds:
+        condition = residual.specialize(seed.body, truths)
+        if isinstance(condition, bool) or residual.formula(condition)[0] == "const":
+            continue
+        key = residual.key(condition)
+        rows.setdefault(key, (condition, seed.asserted and key == residual.key(seed.body)))
+    return list(rows.values())
+
+
+def _proved_requirement(
+    assertions: tuple[ScopedAssertion, ...],
+    query: Proposition,
+    condition: Proposition,
+    asserted: bool,
+    context: entail.Context,
+    bound: int,
+    out: dict,
+) -> None:
+    global_decision = entail.decide(assertions, condition, context, bound)
+    out["checks"]["decisions"] += 1
+    if global_decision.result == entail.ENTAILED and not any(
+        code not in BENIGN_BLOCKERS for code in global_decision.blockers
+    ):
+        relation, warrant = "required_by_criteria", global_decision
+    elif asserted:
+        out["blockers"].extend(code for code in global_decision.blockers if code not in BENIGN_BLOCKERS)
+        return
+    else:
+        implication = entail.decide(assertions, AnyOf((Not(query), condition)), context, bound)
+        out["checks"]["decisions"] += 1
+        blockers = sorted(set((*global_decision.blockers, *implication.blockers)))
+        code = condition_code(global_decision.result, implication.result, blockers)
+        if code == "unresolved":
+            out["blockers"].extend(blockers)
+        if code != "necessary":
+            return
+        relation, warrant = "necessary_if_query", implication
+    out["conditions"].append(
+        {
+            "relation": relation,
+            "body": _plain(condition),
+            "status": warrant.status,
+            "warrant": dataclasses.asdict(warrant),
+            "scope": dataclasses.asdict(context),
+            "profile_check": {"code": "not_established_by_query", "basis": "query_alone"},
+        }
+    )
 
 
 def _permissions(assertions: tuple[ScopedAssertion, ...], query: object, context: entail.Context) -> list:
@@ -191,10 +231,11 @@ def explain(
     decision: entail.Decision,
     bound: int,
 ) -> dict:
-    """Return additive explanations; at most sixteen decide calls and one intrinsic SAT call."""
+    """Return bounded proved residuals without changing the supplied decision."""
     if type(bound) is not int or not 1 <= bound <= entail.MAX_ASSIGNMENTS:
         raise ValueError("invalid_resource_bound:explanations")
     out = {
+        "coverage": "bounded_candidate_discovery_not_complete_screening",
         "permissions": _permissions(assertions, query, context),
         "conditions": [],
         "blockers": [],
@@ -202,6 +243,7 @@ def explain(
             "code": "not_open",
             "decisions": 0,
             "intrinsic_queries": 0,
+            "profile_queries": 0,
             "planned": 0,
             "limit": MAX_CONDITIONS,
         },
@@ -221,31 +263,25 @@ def explain(
             ["resource_bound:explanation_profile"] if intrinsic is None else ["profile_inconsistent"]
         )
         return out
-    candidates = _candidates(assertions, query, context)
-    plan = planned_conditions(assertions, query, context)
+    plan = condition_plan(assertions, query, context)
+    out["blockers"].extend(plan.blockers)
+    truths = {residual.key(probe): _profile_truth(probe, formula, bound, out) for probe in plan.probes}
+    remaining = _remaining(plan, truths)
     out["checks"].update(
-        code="complete" if len(candidates) <= MAX_CONDITIONS else "limited", planned=len(plan)
+        code="complete",
+        planned=len(plan.seeds),
+        profile_probes=len(plan.probes),
+        planning_nodes=plan.visited_nodes,
     )
-    if len(candidates) > MAX_CONDITIONS:
-        out["blockers"].append("resource_bound:explanation_conditions")
-    for condition in plan:
-        unconditional = entail.decide(assertions, condition, context, bound)
-        implication = entail.decide(assertions, AnyOf((Not(query), condition)), context, bound)
-        out["checks"]["decisions"] += 2
-        blockers = sorted(set((*unconditional.blockers, *implication.blockers)))
-        code = condition_code(unconditional.result, implication.result, blockers)
-        if code == "unresolved":
-            out["blockers"].extend(blockers)
-        if code != "necessary":
+    for condition, asserted in remaining:
+        key = residual.key(condition)
+        code = truths.get(key)
+        if code is None:
+            code = _profile_truth(condition, formula, bound, out)
+        if code != "open":
             continue
-        out["conditions"].append(
-            {
-                "relation": "necessary_if_query",
-                "body": _plain(condition),
-                "status": implication.status,
-                "warrant": dataclasses.asdict(implication),
-                "scope": dataclasses.asdict(context),
-            }
-        )
+        _proved_requirement(assertions, query, condition, asserted, context, bound, out)
     out["blockers"] = sorted(set(out["blockers"]))
+    if out["blockers"]:
+        out["checks"]["code"] = "limited"
     return out

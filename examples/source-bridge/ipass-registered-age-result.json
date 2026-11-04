@@ -252,12 +252,6 @@
         ]
       },
       {
-        "address": "/resultsSection",
-        "ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/resultsSection",
-        "code": "unresolved_retained",
-        "reason": "outside_structured_age_direct_rules"
-      },
-      {
         "address": "/derivedSection",
         "ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/derivedSection",
         "code": "unresolved_retained",
@@ -270,26 +264,8 @@
         "reason": "outside_structured_age_direct_rules"
       },
       {
-        "address": "/protocolSection/identificationModule",
-        "ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/identificationModule",
-        "code": "unresolved_retained",
-        "reason": "outside_structured_age_direct_rules"
-      },
-      {
-        "address": "/protocolSection/statusModule",
-        "ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/statusModule",
-        "code": "unresolved_retained",
-        "reason": "outside_structured_age_direct_rules"
-      },
-      {
-        "address": "/protocolSection/sponsorCollaboratorsModule",
-        "ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/sponsorCollaboratorsModule",
-        "code": "unresolved_retained",
-        "reason": "outside_structured_age_direct_rules"
-      },
-      {
-        "address": "/protocolSection/descriptionModule",
-        "ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/descriptionModule",
+        "address": "/protocolSection/armsInterventionsModule",
+        "ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/armsInterventionsModule",
         "code": "unresolved_retained",
         "reason": "outside_structured_age_direct_rules"
       },
@@ -300,14 +276,26 @@
         "reason": "outside_structured_age_direct_rules"
       },
       {
+        "address": "/protocolSection/contactsLocationsModule",
+        "ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/contactsLocationsModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/descriptionModule",
+        "ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/descriptionModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
         "address": "/protocolSection/designModule",
         "ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/designModule",
         "code": "unresolved_retained",
         "reason": "outside_structured_age_direct_rules"
       },
       {
-        "address": "/protocolSection/armsInterventionsModule",
-        "ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/armsInterventionsModule",
+        "address": "/protocolSection/identificationModule",
+        "ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/identificationModule",
         "code": "unresolved_retained",
         "reason": "outside_structured_age_direct_rules"
       },
@@ -318,14 +306,26 @@
         "reason": "outside_structured_age_direct_rules"
       },
       {
-        "address": "/protocolSection/contactsLocationsModule",
-        "ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/contactsLocationsModule",
+        "address": "/protocolSection/referencesModule",
+        "ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/referencesModule",
         "code": "unresolved_retained",
         "reason": "outside_structured_age_direct_rules"
       },
       {
-        "address": "/protocolSection/referencesModule",
-        "ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/referencesModule",
+        "address": "/protocolSection/sponsorCollaboratorsModule",
+        "ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/sponsorCollaboratorsModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/protocolSection/statusModule",
+        "ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/protocolSection/statusModule",
+        "code": "unresolved_retained",
+        "reason": "outside_structured_age_direct_rules"
+      },
+      {
+        "address": "/resultsSection",
+        "ref": "ctg:NCT00322452:c02d612b552fba32619e226747ddf957e6462a6e486690e1a6ffafda23e3533a#/resultsSection",
         "code": "unresolved_retained",
         "reason": "outside_structured_age_direct_rules"
       }
@@ -702,15 +702,19 @@
             }
           ],
           "explanations": {
+            "coverage": "bounded_candidate_discovery_not_complete_screening",
             "permissions": [],
             "conditions": [],
             "blockers": [],
             "checks": {
-              "code": "not_open",
+              "code": "complete",
               "decisions": 0,
-              "intrinsic_queries": 0,
-              "planned": 0,
-              "limit": 8
+              "intrinsic_queries": 1,
+              "profile_queries": 2,
+              "planned": 1,
+              "limit": 32,
+              "profile_probes": 1,
+              "planning_nodes": 1
             }
           }
         },
@@ -730,7 +734,7 @@
             }
           ]
         },
-        "result_digest": "66bd9654942366016c2b69b71e54a2065f8b721cc521883b111d9a64971923be",
+        "result_digest": "97361c42cd34449cd1437e77c70ca57f1a02c8d0c21b0b00f99cc128a0965bfd",
         "result_digest_scope": "result only; excludes summary, presentation and artifact metadata"
       },
       {
@@ -889,6 +893,7 @@
             }
           ],
           "explanations": {
+            "coverage": "bounded_candidate_discovery_not_complete_screening",
             "permissions": [],
             "conditions": [],
             "blockers": [],
@@ -896,8 +901,9 @@
               "code": "not_open",
               "decisions": 0,
               "intrinsic_queries": 0,
+              "profile_queries": 0,
               "planned": 0,
-              "limit": 8
+              "limit": 32
             }
           }
         },
@@ -917,7 +923,7 @@
             }
           ]
         },
-        "result_digest": "9e7aa6880c305b0f6a14d99c260b4c77bde43b9da5b5cd5ad03f40747d9e2204",
+        "result_digest": "e173e3e6a357c9e4edaf42f0449305864d81cca3615198ce8a6c0e625aeab9f8",
         "result_digest_scope": "result only; excludes summary, presentation and artifact metadata"
       }
     ]
@@ -947,6 +953,6 @@
       }
     ]
   },
-  "result_digest": "398c673b69f1d328ea2c99fd3a9de2307d8a333b4b4b175489776436d7619609",
+  "result_digest": "dffd132a2d727919d2130bb13a25be3945f9315ea5f4c96b6cecbe65a061b103",
   "result_digest_scope": "result only; excludes summary, presentation and artifact metadata"
 }

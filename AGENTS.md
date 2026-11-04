@@ -29,8 +29,8 @@ Contributors also read [DEVELOPING.md](DEVELOPING.md) and [openspec/README.md](o
    items. You translate; TrialLedger reasons. Never apply its decision rules manually and call that computed.
    A check of represented restrictions is not a complete eligibility or clinical-suitability assessment.
 5. **Revise and hand over.** A changed premise requires recomputation. Retain complete checks explicitly;
-   use public revision to replay both snapshots. Distinguish answer, support and origin changes from audit
-   changes. Export the review workbook and readable decision list, deliver returned paths alongside unchanged
+   use public revision to replay both snapshots. Distinguish question, answer, support, wording, origin and
+   evidence-context changes from audit changes. Export the review workbook and readable decision list, deliver returned paths alongside unchanged
    source evidence, and keep conversational context in a working brief.
 
 ## Sources and certainty
@@ -79,6 +79,17 @@ requirement or override of exclusion. A necessary condition says **if this queri
 hold**, not that the whole profile fits. Retain its proof, standing and scope. Proposed, unrelated and
 out-of-scope permissions cannot be described as accepted permission.
 
+For partial profiles, inspect both `necessary_if_query` and `required_by_criteria` conditions. The first
+holds if this profile fits; the second is a criteria-wide requirement the profile has not established.
+Neither asserts actual absence. Keep a required disjunction intact. Read explanation coverage and limits;
+completed bounded discovery is not complete screening. `decision_view` joins profiles, deciding criteria,
+conditions, source context and open items; prefer it to repeated generic directory reads.
+
+Optional decision `evidence` entries bind exact source anchors with quote/reading/gap roles. They are context,
+not solver premises. Copied text is known as a copy only; notes and declared scope remain caller-attributed
+and proposed. A confirmed interpretation or adoption still needs an ordinary admitted premise. Caller
+question/option labels are never certified by the computed answer beside them.
+
 ## Discover the actual interface
 
 MCP `reason` takes `{"request":{"operation":"describe"}}`. Then request an operation view for a compact
@@ -122,7 +133,8 @@ Frequency tiers describe numerical thresholds in the declared set, not clinical 
 Ordinary pure computation writes no files. Explicit MCP `reason` uses `retain:true` or
 `response_view:"compact"`; CLI uses `--store FOLDER`, optionally `--compact`. Complete canonical requests
 and responses are retained separately from source reports. Compact replies reference that actual artifact.
-`result_digest` covers `result` only; artifact ID covers the complete stored payload, neither clinical truth.
+Compact reasoning defaults to 24,576 bytes (`max_bytes` / `--max-bytes`: 2,048–65,536); counts and exact
+continuation retain omitted detail. Full replies stay full. `result_digest` covers `result` only; artifact ID covers the complete stored payload, neither clinical truth.
 
 - `reason_result` / `reason-result` reads summaries, decisions, changes or exact addresses. Follow relevant
   `page.next_offset` and `text_page.next_offset`; concatenate text chunks unchanged. Complete files remain
@@ -132,13 +144,20 @@ and responses are retained separately from source reports. Compact replies refer
   cannot be edited through the shortcut. The program fills integrity fingerprints and freshly replays both
   snapshots. `prepare_only` returns the valid request without computing it.
 - `reason_export` / `reason-export` writes a separate review workbook, readable list, manifest and canonical
-  inputs. Deliver actual returned paths. Source reports remain unchanged. Included standalone analyses stay
+  inputs. The output parent must be new; publication is inside its `review` child. Deliver actual returned paths. Source reports remain unchanged. Included standalone analyses stay
   separate unless explicitly linked by the session. Export does not authenticate caller-declared choices.
 
 The decision list has one entry per consequential choice: question, evidence/silences, alternatives and
 computed consequences, deciding premises, open items, selection and origin. Put contradictions first; retain
-evidence questions and computation tasks distinctly. `answer_diff` separates answer/support/origin changes;
-`diff` records audit changes. The assistant maintains the conversation's brief; a snapshot is not a background
+evidence questions and computation tasks distinctly. `answer_diff` independently compares the represented
+question, answer, actual deciding support, caller wording, origin and evidence context; `diff` keeps the
+complete audit changes. Read every changed axis, not only the primary code. `question_changed` means the
+typed query or target changed: say that the question changed, then separately state whether its verdict
+changed. `wording_changed` alone establishes no clinical equivalence. `support_changed` compares the current
+deciding premise content, rule, scope and standing, not just stable IDs; irrelevant inputs do not become
+deciding support. `origin_changed` records attribution without authenticating an exchange. `context_changed`
+records changed evidence context without adding a logical premise. Keep `input_only` audit changes separate
+from these effects. The assistant maintains the conversation's brief; a snapshot is not a background
 manager. For `source_study`, use the actual returned snapshot study_ref for the historical target; the local
 source-ledger ID is separate. Projection supplies both study and expected_digest, so omit both from parameters.
 

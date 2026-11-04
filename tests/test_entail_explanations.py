@@ -22,6 +22,7 @@ from TrialLedger.layer2.assertions import (
 from TrialLedger.layer2.entail_explanations import (
     MAX_CONDITIONS,
     condition_code,
+    condition_plan,
     explain,
     explanation_gate,
     permission_code,
@@ -78,6 +79,8 @@ def test_permission_codes_never_promote_a_mention(admission, scope, relation, co
     "result,blockers,intrinsic,expected",
     [
         ("REFUTED", [], True, "not_open"),
+        ("ENTAILED", [], True, "eligible"),
+        ("ENTAILED", ["resource_bound"], True, "unresolved"),
         ("INCONSISTENT", [], True, "not_open"),
         ("UNSUPPORTED_QUERY", [], True, "not_open"),
         ("UNDETERMINED", ["resource_bound"], True, "unresolved"),
@@ -172,23 +175,24 @@ def test_threshold_condition_is_proved_without_changing_original_answer():
     assert result["checks"]["decisions"] == 4
 
 
-def test_condition_plan_contains_no_atom_outside_original_query_component():
+def test_full_source_requirements_are_kept_but_subformulas_stay_query_connected():
     given = (
         rule("non_af", number(600, "ge"), applicability=fact(polarity="negative")),
         rule("af", number(1200, "ge"), applicability=fact()),
         rule("other", fact("unrelated"), applicability=fact("unrelated_guard")),
     )
     query = number(900)
-    plan = planned_conditions(given, query, entail.EVERYONE)
+    plan = condition_plan(given, query, entail.EVERYONE)
     formula, _ = entail.proposition_formula(query)
     all_atoms = set(entail._atoms(formula))
     for item in given[:2]:
         _, rule_formula, _ = entail.assertion_formula(item, entail.EVERYONE)
         all_atoms.update(entail._atoms(rule_formula))
-    assert len(plan) == 2
-    for condition in plan:
-        compiled, _ = entail.proposition_formula(condition)
-        assert set(entail._atoms(compiled)) <= all_atoms
+    assert len([seed for seed in plan.seeds if seed.asserted]) == 3
+    for seed in plan.seeds:
+        if not seed.asserted:
+            compiled, _ = entail.proposition_formula(seed.body)
+            assert set(entail._atoms(compiled)) <= all_atoms
 
 
 def test_proposed_antecedents_never_create_a_condition_plan():
@@ -214,10 +218,10 @@ def test_unsupported_query_keeps_no_conditional_fact(query):
 
 def test_condition_plan_is_bounded_and_reports_incomplete_coverage():
     query = Not(fact("Q"))
-    given = tuple(rule(str(i), fact("Q"), applicability=fact(str(i))) for i in range(9))
+    given = tuple(rule(str(i), fact(str(i))) for i in range(MAX_CONDITIONS + 1))
     result = explain(given, query, entail.EVERYONE, entail.decide(given, query), 65536)
     assert len(planned_conditions(given, query, entail.EVERYONE)) == MAX_CONDITIONS
-    assert result["checks"]["decisions"] == 2 * MAX_CONDITIONS
+    assert result["checks"]["decisions"] == MAX_CONDITIONS
     assert (
         result["checks"]["code"] == "limited"
         and "resource_bound:explanation_conditions" in result["blockers"]
@@ -240,7 +244,7 @@ def test_condition_warrant_cannot_promote_a_working_assumption():
 
 
 @pytest.mark.parametrize("difference", ["unit", "time"])
-def test_a_different_unit_or_time_window_does_not_supply_a_condition(difference):
+def test_different_units_or_time_do_not_link_profile_but_keep_exact_source_rule(difference):
     body = number(1200, "ge")
     query = (
         number(900, unit="ng/L")
@@ -252,8 +256,12 @@ def test_a_different_unit_or_time_window_does_not_supply_a_condition(difference)
     )
     given = (rule("af", body, applicability=fact()),)
     result = explain(given, query, entail.EVERYONE, entail.decide(given, query), 65536)
-    assert planned_conditions(given, query, entail.EVERYONE) == ()
-    assert result["conditions"] == []
+    assert len(planned_conditions(given, query, entail.EVERYONE)) == 1
+    assert len(result["conditions"]) == 1
+    assert result["conditions"][0]["relation"] == "required_by_criteria"
+    assert result["conditions"][0]["body"]["class"] == "AnyOf"
+    assert result["conditions"][0]["body"]["parts"][1]["value"]["unit"] == "pg/mL"
+    assert result["conditions"][0]["body"]["parts"][1]["time"] is None
 
 
 def test_permission_conjunction_is_not_flattened_into_a_permission_for_one_part():

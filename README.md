@@ -162,9 +162,21 @@ the registry against the real world.
   registry. The complete registry responses are kept too.
 - **`design-review.xlsx` and `decision-list.md`**, when you continue into design work. For each declared
   choice: the question in clinical words, alternatives, computed consequences, deciding evidence and
-  premises, what remains open and any recorded selection. A revision distinguishes changed answers from
-  changed support or attribution. The accompanying manifest and complete saved checks let a colleague
+  premises, what remains open and any recorded selection. A revision distinguishes a changed question,
+  changed answer, changed deciding support, and changes to wording, attribution or evidence context.
+  The accompanying manifest and complete saved checks let a colleague
   trace the handoff. Your assistant can keep conversational context in `working-brief.md` beside it.
+
+A partial profile can also answer **“What else must hold?”** In an invented draft requiring BMI at least
+30, or BMI at least 27 with one of four listed conditions, BMI 28 still needs **one of those conditions**.
+It does not need all four, and the profile's silence does not mean the patient lacks them. Likewise,
+confirmed prior-treatment and washout rules can expose a required interval without claiming it was met.
+Each displayed requirement has its own proof and scope. Discovery is bounded; this is not complete screening.
+
+Questions and option labels remain visibly yours beside the actual represented profile. Exact comparator
+passages can be attached to a decision without becoming its criteria. A note interpreting a passage, or
+calling something a gap, remains a proposed caller annotation; an adopted restriction needs its own premise.
+The coherent decision view keeps those channels together for your assistant and the exported review.
 
 The design review is a separate handoff. Your reference workbook and registry evidence remain unchanged.
 With a source record supplied, the review also lays out baseline values by their local groups, preserving
@@ -371,6 +383,18 @@ remain visible. The session retains both snapshots, complete checks, origins and
 your assistant explains them in the working decision list. This checks the declared age restriction, not a
 complete protocol's eligibility or clinical suitability.
 
+**“Is the answer different, or did we ask something different?”** A revised question is kept separate
+from a revised result. Adding “no other listed condition” to a patient profile changes what was asked,
+even when both answers remain “allowed but not required.” Rewording its label alone does not establish
+that two clinical questions mean the same thing.
+
+The deciding basis can change while the answer stays fixed. Under a **simulated** requirement for at
+least 90 days since prior treatment, a 60-day profile is ruled out. Changing that requirement to 180 days
+still rules it out, but the saved check now names the revised rule and its actual content. An unchanged
+answer must not hide that change. Wording, attribution and evidence attached for context are tracked
+separately; adding background evidence does not quietly add a new restriction. The complete record of
+input changes remains available beside this comparison of consequences.
+
 The [asthma walkthrough](acceptance/design-session-walkthrough-docs-asthma-2026-11-03/README.md) revises the
 representation itself: it adds a missing rival reading of background and relief therapy while retaining
 the original. Their consequences differ, both remain proposed, neither establishes daily relief use, and
@@ -553,11 +577,16 @@ changing a source report or managing a background conversation:
 
 ```bash
 trialledger reason --request SESSION_FILE --store REASONING_FOLDER --compact
-trialledger reason-result --store REASONING_FOLDER --id ARTIFACT_ID --part decisions
+trialledger reason-result --store REASONING_FOLDER --id ARTIFACT_ID --part decision_view
 trialledger reason-revise --store REASONING_FOLDER --id ARTIFACT_ID --edits EDITS_FILE --revision revised
 trialledger reason-export --store REASONING_FOLDER --id REVISED_ARTIFACT_ID --out REVIEW_FOLDER \
     --source-record REPORT_FOLDER/landscape.json
 ```
+
+Compact reasoning replies default to 24,576 bytes; `--max-bytes` (MCP `max_bytes`) accepts 2,048–65,536.
+Counts and continuation addresses identify details left in the complete retained artifact. Full replies stay
+full. Export publishes into `REVIEW_FOLDER/review`; `REVIEW_FOLDER` must not already exist. Deliver the
+returned paths rather than constructing a workbook path yourself.
 
 The corresponding MCP calls use `reason` with `retain:true` or `response_view:"compact"`, followed by
 `reason_result`, `reason_revise` and `reason_export`. The complete canonical request and response remain

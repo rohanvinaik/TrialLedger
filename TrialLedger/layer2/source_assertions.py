@@ -374,7 +374,7 @@ def _uncompiled_roots(study: dict, snapshot: dict) -> list[dict]:
             "code": "unresolved_retained",
             "reason": "outside_structured_age_direct_rules",
         }
-        for address in addresses
+        for address in sorted(addresses)
     ]
 
 

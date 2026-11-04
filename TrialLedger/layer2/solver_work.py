@@ -62,7 +62,7 @@ def _models(values: object) -> tuple[a.ScopedAssertion, ...]:
     return cast(tuple[a.ScopedAssertion, ...], parsed)
 
 
-def _query(value: object) -> object:
+def _query(value: object) -> a.Proposition:
     parsed = a.from_canonical(session_state.canonical(value))
     if not isinstance(parsed, a.PROPOSITIONS):
         raise ValueError("query_model_needed")
@@ -111,7 +111,7 @@ def _decision_space(
 
 def _decision_work(
     assertions: tuple[a.ScopedAssertion, ...],
-    query: object,
+    query: a.Proposition,
     context: entail.Context,
     bound: int,
     explanations: bool,
@@ -122,11 +122,25 @@ def _decision_work(
     space = _decision_space(assertions, query, context, bound)
     if not explanations:
         return calls * space
-    conditions = entail_explanations.planned_conditions(assertions, query, context)
-    # The shared plan's atoms already lie in the original query component.
-    # Its global/implication checks add no partition cells. Intrinsic query
-    # feasibility is one additional bounded enumeration.
-    return (calls * (2 * len(conditions) + 1) + 1) * space
+    plan = entail_explanations.condition_plan(assertions, query, context)
+    asked, _ = entail.proposition_formula(query)
+    total = calls * space + _partition_space([asked], bound)
+    for probe in plan.probes:
+        compiled, _ = entail.proposition_formula(probe)
+        total += 2 * _partition_space([asked, compiled], bound)
+    query_variables = {key for _, key, _ in entail._atoms(asked)}
+    for seed in plan.seeds:
+        # Specialization removes source subexpressions only. The unchanged
+        # enclosing source clause conservatively bounds every remaining cell
+        # and every component joined by either proof of a specialized result.
+        envelope, _ = entail.proposition_formula(seed.envelope)
+        total += 2 * _partition_space([asked, envelope], bound)
+        total += calls * _decision_space(assertions, seed.envelope, context, bound)
+        source_variables = {key for _, key, _ in entail._atoms(envelope)}
+        if not seed.asserted or source_variables & query_variables:
+            implication = a.AnyOf((a.Not(query), seed.envelope))
+            total += calls * _decision_space(assertions, implication, context, bound)
+    return total
 
 
 def _entailment(request: dict, bound: int) -> int:

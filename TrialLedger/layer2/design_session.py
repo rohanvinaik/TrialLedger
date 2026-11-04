@@ -91,9 +91,18 @@ def prepare_revision(previous_request: object, previous_response: object, next_s
     state.obj(prior_request, {"operation", "session", "previous"}, "previous_request")
     if prior_request["operation"] != "design_session":
         raise ValueError("unsupported_session_operation")
-    prior_response = source_evidence._json_copy(previous_response, "previous_response")
-    if type(prior_response) is not dict:
+    if type(previous_response) is not dict:
         raise ValueError("invalid_previous_response")
+    # Replay consumes the logical result, never presentation views or prior diff copies.
+    # The artifact owner independently verifies and retains the complete envelope.
+    prior_response = source_evidence._json_copy(
+        {
+            key: value
+            for key, value in previous_response.items()
+            if key in ("code", "operation", "result", "result_digest")
+        },
+        "previous_response",
+    )
     old = state.prepare(prior_request["session"])
     following = source_evidence._json_copy(next_session, "next_session")
     if type(following) is not dict:
@@ -362,9 +371,10 @@ def _reserve(request: dict) -> int:
     # Unsupported estimates retain the declared per-enumeration ceiling. These
     # call counts include proof minimization and the shared explanation plan.
     from TrialLedger.layer2.entail_explanations import MAX_CONDITIONS
+    from TrialLedger.layer2.residual_requirements import MAX_PROFILE_PROBES
 
     ordinary = 2 * n + 4
-    explained = ordinary * (2 * MAX_CONDITIONS + 1) + 1
+    explained = ordinary * (2 * MAX_CONDITIONS + 1) + 1 + 2 * MAX_PROFILE_PROBES + 2 * MAX_CONDITIONS
     if operation == "entailment":
         base = bound * explained
     elif operation == "interpretations":
@@ -598,6 +608,11 @@ def _decisions(
                 if selected is not None
                 else {"kind": "computed", "refs": deepcopy(deciding_support["origin_refs"])},
                 "input_origins": _origins(input_ids, values),
+                **(
+                    {"evidence": deepcopy(prepared["decision_evidence"][item["id"]])}
+                    if "evidence" in item
+                    else {}
+                ),
                 "alternatives": alternatives,
                 "distinctions": distinctions,
                 "open_alternatives": [
@@ -715,6 +730,8 @@ ANSWER_CHANGE_CODES = (
     "input_only",
     "unchanged",
 )
+REVISION_AXES = ("question", "wording", "answer", "support", "origin", "context")
+REVISION_CHANGE_CODES = ANSWER_CHANGE_CODES + ("question_changed", "wording_changed", "context_changed")
 
 
 def answer_change_code(
@@ -747,6 +764,45 @@ def answer_change_code(
     return "unchanged" if input_equal else "input_only"
 
 
+def revision_change_code(
+    before: bool,
+    after: bool,
+    comparable: bool,
+    question_equal: bool,
+    wording_equal: bool,
+    answer_equal: bool,
+    support_equal: bool,
+    origin_equal: bool,
+    context_equal: bool,
+    input_equal: bool,
+) -> str:
+    """Name the primary revision axis while retaining every independent axis (pure).
+
+    post: __return__ in REVISION_CHANGE_CODES
+    post: __return__ != 'answer_changed' or (question_equal and not answer_equal)
+    post: __return__ != 'unchanged' or (before and after and comparable and input_equal)
+    """
+    if not before:
+        return "new"
+    if not after:
+        return "withdrawn"
+    if not comparable:
+        return "projection_unknown"
+    if not question_equal:
+        return "question_changed"
+    if not answer_equal:
+        return "answer_changed"
+    if not support_equal:
+        return "support_changed"
+    if not context_equal:
+        return "context_changed"
+    if not wording_equal:
+        return "wording_changed"
+    if not origin_equal:
+        return "origin_changed"
+    return "unchanged" if input_equal else "input_only"
+
+
 def _analysis_answer(row: dict, snapshot: dict) -> dict:
     """Use the shared clinical projection; source origins remain session-owned data."""
     from TrialLedger.layer2 import clinical_answers
@@ -762,7 +818,15 @@ def _analysis_answer(row: dict, snapshot: dict) -> dict:
     payload["effective_premises"] = deepcopy(snapshot["effective_premises"])
     axes = clinical_answers.change_projection(row["request"]["operation"], payload)
     known = bool(axes["answer"]) and all(item.get("completion") != "unclassified" for item in axes["support"])
-    axes["answer"] = {"target": deepcopy(row["target"]), "findings": axes["answer"]}
+    axes["question"] = {
+        "target": deepcopy(row["target"]),
+        "request": {
+            key: deepcopy(row["request"][key])
+            for key in ("query", "queries", "context")
+            if key in row["request"]
+        },
+        "findings": axes["question"],
+    }
     return {"state": "comparable" if known else "not_comparable", **axes}
 
 
@@ -777,6 +841,19 @@ def _decision_answer(row: dict, snapshot: dict) -> dict:
             "effective_premises": deepcopy(snapshot["effective_premises"]),
         },
     )
+    # Generated pairwise distinction checks are consequences, not newly asked
+    # questions or new caller wording/context. Compare the declared decision here.
+    axes["question"] = {
+        "target": deepcopy(row["target"]),
+        "alternatives": [
+            {"id": option["id"], "query": deepcopy(option["query"])} for option in row["alternatives"]
+        ],
+    }
+    axes["wording"] = {
+        "question": row["question"],
+        "alternatives": [{"id": option["id"], "label": option["label"]} for option in row["alternatives"]],
+    }
+    axes["context"] = deepcopy(row.get("evidence", []))
     return {"state": "comparable", **axes}
 
 
@@ -808,9 +885,9 @@ def _answer_diff(before: dict, after: dict) -> dict:
                 and left is not None
                 and right is not None
                 and source_evidence.exact_json_equal(left[axis], right[axis])
-                for axis in ("answer", "support", "origin")
+                for axis in REVISION_AXES
             }
-            code = answer_change_code(
+            code = revision_change_code(
                 key in old,
                 key in new,
                 comparable,

@@ -1,0 +1,67 @@
+{
+  "targets": [
+    {
+      "target": "TrialLedger/layer2/design_session.py::revision_change_code",
+      "function_AST_sha256": "bc40c1085ca5777604f59de54a5a94d84b80405a8cee1a523d606c11fa28499b",
+      "equal_to_measured_copy": true,
+      "scope": "This function only; current full module may include integration changes."
+    },
+    {
+      "target": "TrialLedger/layer2/decision_evidence.py::role_code",
+      "function_AST_sha256": "5973839d9783590ada2503c23befa8a41ce9f5740d5de51f47468f59349dcf4a",
+      "equal_to_measured_copy": true,
+      "scope": "This function only; current full module may include integration changes."
+    },
+    {
+      "target": "TrialLedger/clinical_display.py::value_style",
+      "function_AST_sha256": "3d9e80eff2923bb8613e45ae7f995dcda36e2975d397ae2ba6233d52dfaeebe6",
+      "equal_to_measured_copy": true,
+      "scope": "This function only; current full module may include integration changes."
+    },
+    {
+      "target": "TrialLedger/clinical_delivery.py::compact_budget_code",
+      "function_AST_sha256": "f4906023ab288b6a9fb77d7f83ee6fc538889d4f53954c95f9dacc558539a8b9",
+      "equal_to_measured_copy": true,
+      "scope": "This function only; current full module may include integration changes."
+    },
+    {
+      "target": "TrialLedger/layer2/entail_explanations.py::explanation_gate",
+      "function_AST_sha256": "7e633147f2bf0c351fb7a6be0996ce6853a5516a4c2fbf8b40da4ce26f4f8252",
+      "equal_to_measured_copy": true,
+      "scope": "This function only; current full module may include integration changes."
+    },
+    {
+      "target": "TrialLedger/layer2/residual_requirements.py::profile_truth_code",
+      "function_AST_sha256": "5167cc654c12dea86da7aecf7fed5a32903a50f7c732cba95b054ae793d2f0ea",
+      "equal_to_measured_copy": true,
+      "scope": "This function only; current full module may include integration changes."
+    },
+    {
+      "target": "TrialLedger/layer2/residual_requirements.py::junction_code",
+      "function_AST_sha256": "1b830fca89412d3c86b4cf0f2bf84c57e40c121206a5626185192292f80639bd",
+      "equal_to_measured_copy": true,
+      "scope": "This function only; current full module may include integration changes."
+    }
+  ],
+  "reports": {
+    "proofs/revision_change_code-crosshair.log": "596fd0a6dbd5cb9d02fc74c15ca65cfd653a6e45b2367c31013c8966fbde1ea7",
+    "proofs/role_code-crosshair.log": "86af167c69caa5ec89fd96275343f1b979cbf7b03f6c1da3175fdf8303e062bd",
+    "proofs/explanation_gate-detective.txt": "0c61144e13702b509aada81ae85aeecadac58e6028829311220fbbecbf3eb6a0",
+    "proofs/compact_budget_code-receipt.json": "206be3210851e0cf3d588598c8030815214668a8748081846f48ac8b0afcce87",
+    "proofs/value_style-crosshair.log": "4e727ae932f0cb5e6e778ff4cc0b3dd4177054b94b87c1c380abbf071818fb3a",
+    "proofs/compact_budget_code-crosshair.log": "5de7312a334c14f1087b68bdf213c835bae164276d73a4d729b3f66d8d7e11ea",
+    "proofs/residual-crosshair.log": "4f4c92b3eeb5ee10858c96c7b6b8826380eef6f24829372c03e3c8ad2df01a45",
+    "proofs/value_style-receipt.json": "ba9fea5b9847b7c1b7376fa6d6680e54bd03bc7c1a8de232c5f13daa505a2a6b",
+    "proofs/revision_change_code-receipt.json": "7d9467944d93a93f1237e1f0716c732218459fca6b2d1b3636b9b89f115eeff2",
+    "proofs/junction_code-detective.txt": "fed1411f3adb5070a599880e3408842b0a5ab066737bb27cf1776ef81b848f34",
+    "proofs/residual-receipt.json": "72c1c18154fcce350b877feb81cad0b6224de51e7b14201e4c7c0f26f1e36783",
+    "proofs/revision_change_code-detective.txt": "225454b2397a4cfa58f4efd9cd0c42d784daf93de74c51493140af646dc3e077",
+    "proofs/role_code-detective.txt": "a125596dea6f4c77e843bf9b25b30ae1a1b1c9fd9451f0b451a9cf38f39f6f1f",
+    "proofs/compact_budget_code-detective.txt": "503abec9a57ee41ae4d4b5209d205c6b39a696cba87b5b1872b6076c898d93fb",
+    "proofs/profile_truth_code-detective.txt": "f30c780a20f281d4f2c84f33b431633ba5893163bc034e429643a209098222c3",
+    "proofs/role_code-receipt.json": "f3d4b77cbf178ecae36403136bcfe30b7c4542bd21d2fa48b767db5d9c1a9974",
+    "proofs/value_style-detective.txt": "930e611ce3a8dd0480a0cc0d1c01962ce729be88d691d4c9353bff1a280d91a9"
+  },
+  "generated_tests": "Copied whole, byte-exact; no authored tests removed.",
+  "qualification": "Per-target operator universe, not whole-project or clinical truth proof. Preserve every reported modulo gap and Not confirmed."
+}

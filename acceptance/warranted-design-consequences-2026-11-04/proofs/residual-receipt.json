@@ -1,0 +1,77 @@
+{
+  "source_and_authored_test_hashes": {
+    "TrialLedger/layer2/entail_explanations.py": "f3e1e863b3f754affa64adc84077834bf87e46aa6fb137d7c592378b31c716b3",
+    "TrialLedger/layer2/residual_requirements.py": "fbab70c20c050093c0104df13d4c0257e41a03c2d419d4223e525cfaf8510f42",
+    "TrialLedger/layer2/solver_work.py": "579cf977f67ef23d35c5b053763c8feb2832a53dbe60bf376cac05030f8926dc",
+    "tests/test_entail_explanations.py": "08aa78f413cb3aef39052e403845ac5889f08dfbe396c24d3070c24fe056a239",
+    "tests/test_residual_requirements.py": "8f9611ebc2fafe4a07adc7c4f9cfb8df36af04c06a86e62f1a481b14bcd23a10"
+  },
+  "targets": [
+    {
+      "name": "gate",
+      "certificate_key": "TrialLedger/layer2/entail_explanations.py::explanation_gate:d1.2.2+w1.2.2+p9.261d14e34119+oowned-complete-types-v3-deadline+n9+neg.f5a15364c11d:7e633147f2bf0c35:09c4e0f1b60a5944:0:0:50,1800:defer_shaped:two_sign:3c33dff27f50cd7b",
+      "pin_keys": [
+        "TrialLedger/layer2/entail_explanations.py::explanation_gate::7e633147f2bf0c35"
+      ],
+      "cache": "/Users/rohanvinaik/trialledger-runs/residual-pins-20261104/gate/.detective/verdict_cache.json",
+      "report": "/Users/rohanvinaik/trialledger-runs/residual-pins-20261104/gate/.detective/reports/converge_explanation_gate.txt",
+      "terminal": "/Users/rohanvinaik/trialledger-runs/residual-pins-20261104/gate/pin-collection-repaired.log",
+      "gateable": true,
+      "killed": 75,
+      "universe": 76,
+      "generated_suites": []
+    },
+    {
+      "name": "truth",
+      "certificate_key": "TrialLedger/layer2/residual_requirements.py::profile_truth_code:d1.2.2+w1.2.2+p9.261d14e34119+oowned-complete-types-v3-deadline+n9+neg.f5a15364c11d:5167cc654c12dea8:640e53ce3b7002e9:0:0:50,1800:defer_shaped:two_sign:2bdc4a3f1d35d265",
+      "pin_keys": [
+        "TrialLedger/layer2/residual_requirements.py::profile_truth_code::5167cc654c12dea8"
+      ],
+      "cache": "/Users/rohanvinaik/trialledger-runs/residual-pins-20261104/truth/.detective/verdict_cache.json",
+      "report": "/Users/rohanvinaik/trialledger-runs/residual-pins-20261104/truth/.detective/reports/converge_profile_truth_code.txt",
+      "terminal": "/Users/rohanvinaik/trialledger-runs/residual-pins-20261104/truth/pin-collection-repaired.log",
+      "gateable": true,
+      "killed": 88,
+      "universe": 92,
+      "generated_suites": [
+        {
+          "path": "/Users/rohanvinaik/trialledger-runs/residual-pins-20261104/truth/tests/detective/test_TrialLedger_layer2_residual_requirements_profile_truth_code_c808a97f67_synth.py",
+          "sha256": "b7de2fa480bce408d4517e1dfacbf52a921666b68bbf0d13a2d6cca0017d8f06"
+        }
+      ]
+    },
+    {
+      "name": "junction",
+      "certificate_key": "TrialLedger/layer2/residual_requirements.py::junction_code:d1.2.2+w1.2.2+p9.261d14e34119+oowned-complete-types-v3-deadline+n9+neg.f5a15364c11d:1b830fca89412d3c:32f41d31c2648237:0:0:50,1800:defer_shaped:two_sign:9e19360e08ffd083",
+      "pin_keys": [
+        "TrialLedger/layer2/residual_requirements.py::junction_code::1b830fca89412d3c"
+      ],
+      "cache": "/Users/rohanvinaik/trialledger-runs/residual-pins-20261104/junction/.detective/verdict_cache.json",
+      "report": "/Users/rohanvinaik/trialledger-runs/residual-pins-20261104/junction/.detective/reports/converge_junction_code.txt",
+      "terminal": "/Users/rohanvinaik/trialledger-runs/residual-pins-20261104/junction/pin-collection-repaired.log",
+      "gateable": true,
+      "killed": 87,
+      "universe": 87,
+      "generated_suites": []
+    }
+  ],
+  "crosshair": {
+    "report": "/Users/rohanvinaik/trialledger-runs/residual-pins-20261104/crosshair.log",
+    "profile_truth_code": "3 postconditions Confirmed over all paths",
+    "explanation_gate": "2 postconditions Not confirmed; no counterexample reported",
+    "junction_code": "1 postcondition Not confirmed; no counterexample reported"
+  },
+  "ordinary_verification": {
+    "focused": "91 passed",
+    "expanded": "324 passed; 2 failures are saved interpretation-example output equality requiring regeneration by parent",
+    "lint": "Ruff check and format clean for all5owned files",
+    "types": "Ty check clean for3production modules"
+  },
+  "clinical_walk": "/Users/rohanvinaik/trialledger-runs/residual-phase2-ra-20261104/walk-receipt.json",
+  "obesity_replay": "/Users/rohanvinaik/trialledger-runs/residual-obesity-replay-20261104/receipt.json",
+  "limitations": [
+    "Candidate discovery bounded, not complete screening or prime-implicate enumeration.",
+    "Five mutant survivors remain unproven-equivalent, not proved equivalent.",
+    "No production decisions promoted from proposed premises; no automatic abstraction or authenticated human confirmation."
+  ]
+}
