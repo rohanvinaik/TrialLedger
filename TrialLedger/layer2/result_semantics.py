@@ -46,13 +46,14 @@ CAUSE_KINDS = {
     "table_uncovered_case": "conflict",
     "table_conflicting_actions": "conflict",
     "table_forbidden_action": "conflict",
-    # Protocol operators (connect-protocol-design-workflow): a failed declared obligation is a conflict
-    # under the declared claims; an undeclared input is missing evidence; bounds are computation limits.
-    "schedule_no_permitted_time": "conflict",
-    "schedule_no_feasible_time": "conflict",
-    "schedule_outside_window": "conflict",
-    "schedule_not_collected": "conflict",
-    "schedule_uncovered": "conflict",
+    # Protocol operators (connect-protocol-design-workflow). Rohan, 2026-11-04: schedule gaps and an
+    # unmet binomial target are the person's repair choice, like estimand_collection_plan_mismatch
+    # ("open", constraint); policy failures stay conflicts, like decision-table gaps and forbidden actions.
+    "schedule_no_permitted_time": "constraint",
+    "schedule_no_feasible_time": "constraint",
+    "schedule_outside_window": "constraint",
+    "schedule_not_collected": "constraint",
+    "schedule_uncovered": "constraint",
     "schedule_unresolved": "evidence",
     "policy_gap": "conflict",
     "policy_competing": "conflict",
@@ -63,7 +64,7 @@ CAUSE_KINDS = {
     "policy_work_limit": "computation",
     "binomial_unsupported_method": "unsupported",
     "binomial_assumption_missing": "translation",
-    "binomial_claim_not_satisfied": "conflict",
+    "binomial_claim_not_satisfied": "constraint",
     "binomial_bit_limit": "computation",
     "missing_support": "premise",
     "application_blocked": "translation",
@@ -303,13 +304,7 @@ def disposition_code(logical_result: str, standing: str, completion: str) -> str
         "domain_conflict",
         "violation",
         "violated",
-        "not_satisfied",
         "inconsistent_domain",
-        "no_feasible_time",
-        "no_permitted_time",
-        "outside_window",
-        "not_collected",
-        "uncovered",
         "competing",
         "not_established",
     ):
@@ -341,6 +336,13 @@ def disposition_code(logical_result: str, standing: str, completion: str) -> str
         "hypothetical_evidence_request",
         "incomplete",
         "truncated",
+        "no_feasible_time",
+        "no_permitted_time",
+        "outside_window",
+        "not_collected",
+        "uncovered",
+        "unknown_target",
+        "not_satisfied",
     ):
         return "open"
     if standing in ("interpolated", "proposed") or logical_result in ("conditional", "proposed"):
@@ -435,6 +437,9 @@ def _protocol_claim_findings(row: dict, path: str) -> list[dict]:
     Consumers read these rows, not only the conservative signal summary. A refused row keeps its raw outcome.
     """
     findings = [_signal(row, path)]
+    if row.get("kind") == "schedule_coverage" and findings[0]["disposition"] == "conflict":
+        # "violated" is shared with policies; a schedule's failures are all repair choices (open).
+        findings[0]["disposition"] = "open"
     statuses = {premise["id"]: premise["status"] for premise in row.get("support", ())}
     for index, claim in enumerate(row["claim_admission"]):
         claim_path = _path(_path(path, "claim_admission"), index)

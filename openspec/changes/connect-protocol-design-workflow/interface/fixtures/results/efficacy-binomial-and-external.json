@@ -1,0 +1,3680 @@
+{
+ "request": {
+  "operation": "design_session",
+  "session": {
+   "schema_version": 2,
+   "id": "design",
+   "revision": "one",
+   "parent_digest": null,
+   "target": {
+    "kind": "new_trial",
+    "ref": "draft",
+    "scope": {
+     "study": "draft",
+     "population": "general",
+     "arm": "all",
+     "time": "entry",
+     "version": "v1"
+    }
+   },
+   "sources": [],
+   "premises": [
+    {
+     "id": "adult",
+     "kind": "assertion",
+     "payload": {
+      "applicability": {
+       "class": "Always"
+      },
+      "body": {
+       "class": "Literal",
+       "evidence": [],
+       "polarity": "positive",
+       "predicate": {
+        "class": "Predicate",
+        "key": "age",
+        "kind": "measurement"
+       },
+       "qualifiers": {
+        "class": "Always"
+       },
+       "subject": {
+        "class": "Subject",
+        "kind": "participant",
+        "referent": ""
+       },
+       "time": null,
+       "value": {
+        "class": "Value",
+        "comparison": "ge",
+        "inclusivity": "unspecified",
+        "kind": "quantity",
+        "members": [],
+        "number": 18.0,
+        "unit": "Years",
+        "upper": null
+       }
+      },
+      "branch": {
+       "class": "Branch",
+       "node": "unresolved",
+       "path": []
+      },
+      "class": "ScopedAssertion",
+      "cohort": {
+       "class": "Scope",
+       "kind": "all_participants",
+       "parts": [],
+       "ref": ""
+      },
+      "criterion_ref": "user:adult",
+      "id": "adult",
+      "modality": "required",
+      "resolution": "resolved",
+      "rule": {
+       "answers": [],
+       "class": "Rule",
+       "id": "user-explicit",
+       "premises": [],
+       "version": "1",
+       "warrants": []
+      },
+      "span": [],
+      "status": "known"
+     },
+     "origin": {
+      "kind": "user_choice",
+      "ref": "user:adult",
+      "source": null,
+      "analysis": null
+     },
+     "depends_on": []
+    }
+   ],
+   "analyses": [
+    {
+     "id": "older",
+     "operation": "entailment",
+     "target": {
+      "kind": "new_trial",
+      "ref": "draft",
+      "scope": {
+       "study": "draft",
+       "population": "general",
+       "arm": "all",
+       "time": "entry",
+       "version": "v1"
+      }
+     },
+     "parameters": {
+      "query": {
+       "class": "Literal",
+       "evidence": [],
+       "polarity": "positive",
+       "predicate": {
+        "class": "Predicate",
+        "key": "age",
+        "kind": "measurement"
+       },
+       "qualifiers": {
+        "class": "Always"
+       },
+       "subject": {
+        "class": "Subject",
+        "kind": "participant",
+        "referent": ""
+       },
+       "time": null,
+       "value": {
+        "class": "Value",
+        "comparison": "ge",
+        "inclusivity": "unspecified",
+        "kind": "quantity",
+        "members": [],
+        "number": 65.0,
+        "unit": "Years",
+        "upper": null
+       }
+      },
+      "bound": 128
+     },
+     "uses": [
+      {
+       "premise": "adult",
+       "slot": "assertions",
+       "projection": "identity"
+      }
+     ]
+    },
+    {
+     "id": "younger",
+     "operation": "entailment",
+     "target": {
+      "kind": "new_trial",
+      "ref": "draft",
+      "scope": {
+       "study": "draft",
+       "population": "general",
+       "arm": "all",
+       "time": "entry",
+       "version": "v1"
+      }
+     },
+     "parameters": {
+      "query": {
+       "class": "Not",
+       "part": {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "age",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "participant",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "ge",
+         "inclusivity": "unspecified",
+         "kind": "quantity",
+         "members": [],
+         "number": 65.0,
+         "unit": "Years",
+         "upper": null
+        }
+       }
+      },
+      "bound": 128
+     },
+     "uses": [
+      {
+       "premise": "adult",
+       "slot": "assertions",
+       "projection": "identity"
+      }
+     ]
+    }
+   ],
+   "decisions": [
+    {
+     "id": "age-policy",
+     "question": "Should the represented age restriction require age 65?",
+     "target": {
+      "kind": "new_trial",
+      "ref": "draft",
+      "scope": {
+       "study": "draft",
+       "population": "general",
+       "arm": "all",
+       "time": "entry",
+       "version": "v1"
+      }
+     },
+     "coverage": "represented_restriction",
+     "alternatives": [
+      {
+       "id": "older",
+       "label": "65 or older",
+       "analysis": "older",
+       "query": {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "age",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "participant",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "ge",
+         "inclusivity": "unspecified",
+         "kind": "quantity",
+         "members": [],
+         "number": 65.0,
+         "unit": "Years",
+         "upper": null
+        }
+       }
+      },
+      {
+       "id": "younger",
+       "label": "Below 65",
+       "analysis": "younger",
+       "query": {
+        "class": "Not",
+        "part": {
+         "class": "Literal",
+         "evidence": [],
+         "polarity": "positive",
+         "predicate": {
+          "class": "Predicate",
+          "key": "age",
+          "kind": "measurement"
+         },
+         "qualifiers": {
+          "class": "Always"
+         },
+         "subject": {
+          "class": "Subject",
+          "kind": "participant",
+          "referent": ""
+         },
+         "time": null,
+         "value": {
+          "class": "Value",
+          "comparison": "ge",
+          "inclusivity": "unspecified",
+          "kind": "quantity",
+          "members": [],
+          "number": 65.0,
+          "unit": "Years",
+          "upper": null
+         }
+        }
+       }
+      }
+     ],
+     "selected": null
+    }
+   ],
+   "limits": {
+    "max_analyses": 128,
+    "max_premises": 1000,
+    "max_sources": 64,
+    "max_decisions": 128,
+    "max_expanded_items": 10000,
+    "max_solver_work": 10000000,
+    "max_output_bytes": 16000000
+   },
+   "protocol": {
+    "schema_version": 1,
+    "objects": [
+     {
+      "id": "score",
+      "kind": "measurement",
+      "scope": {
+       "target": {
+        "kind": "new_trial",
+        "ref": "draft",
+        "scope": {
+         "study": "draft",
+         "population": "general",
+         "arm": "all",
+         "time": "entry",
+         "version": "v1"
+        }
+       },
+       "context": {
+        "cohort": null,
+        "phase": null,
+        "arm": null
+       }
+      },
+      "version": "fixture-v1",
+      "origin": {
+       "kind": "user_choice",
+       "ref": "user:simulated choice (fixture)",
+       "source": null,
+       "analysis": null
+      },
+      "standing": {
+       "status": "known",
+       "resolution": "resolved",
+       "basis": [
+        "user:simulated choice (fixture)"
+       ]
+      },
+      "support": [
+       "adult"
+      ],
+      "depends_on": [],
+      "data": {
+       "definition": {
+        "ref": "invented:score definition",
+        "version": "1",
+        "status": "known",
+        "resolution": "resolved",
+        "basis": [
+         "user:simulated choice (fixture)"
+        ]
+       },
+       "unit": "points",
+       "mode": "observed",
+       "baseline": null
+      }
+     },
+     {
+      "id": "response",
+      "kind": "endpoint",
+      "scope": {
+       "target": {
+        "kind": "new_trial",
+        "ref": "draft",
+        "scope": {
+         "study": "draft",
+         "population": "general",
+         "arm": "all",
+         "time": "entry",
+         "version": "v1"
+        }
+       },
+       "context": {
+        "cohort": null,
+        "phase": null,
+        "arm": null
+       }
+      },
+      "version": "fixture-v1",
+      "origin": {
+       "kind": "user_choice",
+       "ref": "user:simulated choice (fixture)",
+       "source": null,
+       "analysis": null
+      },
+      "standing": {
+       "status": "known",
+       "resolution": "resolved",
+       "basis": [
+        "user:simulated choice (fixture)"
+       ]
+      },
+      "support": [
+       "adult"
+      ],
+      "depends_on": [
+       "score"
+      ],
+      "data": {
+       "variable": "score",
+       "definition": {
+        "ref": "invented:score definition",
+        "version": "1",
+        "status": "known",
+        "resolution": "resolved",
+        "basis": [
+         "user:simulated choice (fixture)"
+        ]
+       },
+       "estimand": null,
+       "dependencies": null
+      }
+     },
+     {
+      "id": "efficacy",
+      "kind": "efficacy",
+      "scope": {
+       "target": {
+        "kind": "new_trial",
+        "ref": "draft",
+        "scope": {
+         "study": "draft",
+         "population": "general",
+         "arm": "all",
+         "time": "entry",
+         "version": "v1"
+        }
+       },
+       "context": {
+        "cohort": null,
+        "phase": null,
+        "arm": null
+       }
+      },
+      "version": "fixture-v1",
+      "origin": {
+       "kind": "user_choice",
+       "ref": "user:simulated choice (fixture)",
+       "source": null,
+       "analysis": null
+      },
+      "standing": {
+       "status": "known",
+       "resolution": "resolved",
+       "basis": [
+        "user:simulated choice (fixture)"
+       ]
+      },
+      "support": [
+       "adult"
+      ],
+      "depends_on": [
+       "response"
+      ],
+      "data": {
+       "endpoint": "response",
+       "method": "binomial_design",
+       "parameters": {
+        "model": "fixed_n_iid_bernoulli",
+        "direction": "greater",
+        "n": 20,
+        "critical_count": 9,
+        "p0": "1/5",
+        "p1": "2/5"
+       },
+       "assumptions": [
+        {
+         "role": "fixed_n",
+         "premise": "adult"
+        },
+        {
+         "role": "iid_binary",
+         "premise": "adult"
+        }
+       ]
+      }
+     },
+     {
+      "id": "survival",
+      "kind": "external_method",
+      "scope": {
+       "target": {
+        "kind": "new_trial",
+        "ref": "draft",
+        "scope": {
+         "study": "draft",
+         "population": "general",
+         "arm": "all",
+         "time": "entry",
+         "version": "v1"
+        }
+       },
+       "context": {
+        "cohort": null,
+        "phase": null,
+        "arm": null
+       }
+      },
+      "version": "fixture-v1",
+      "origin": {
+       "kind": "user_choice",
+       "ref": "user:simulated choice (fixture)",
+       "source": null,
+       "analysis": null
+      },
+      "standing": {
+       "status": "known",
+       "resolution": "resolved",
+       "basis": [
+        "user:simulated choice (fixture)"
+       ]
+      },
+      "support": [
+       "adult"
+      ],
+      "depends_on": [],
+      "data": {
+       "definition": {
+        "ref": "invented:log-rank",
+        "version": "1",
+        "status": "known",
+        "resolution": "resolved",
+        "basis": [
+         "user:simulated choice (fixture)"
+        ]
+       },
+       "inputs": [
+        {
+         "name": "hazard_ratio",
+         "value": "7/10",
+         "unit": null,
+         "ref": null
+        }
+       ],
+       "missing": [
+        "accrual_rate",
+        "dropout"
+       ]
+      }
+     }
+    ],
+    "checks": [
+     {
+      "id": "efficacy-exact",
+      "kind": "binomial_design",
+      "scope": {
+       "target": {
+        "kind": "new_trial",
+        "ref": "draft",
+        "scope": {
+         "study": "draft",
+         "population": "general",
+         "arm": "all",
+         "time": "entry",
+         "version": "v1"
+        }
+       },
+       "context": {
+        "cohort": null,
+        "phase": null,
+        "arm": null
+       }
+      },
+      "objects": [
+       "efficacy",
+       "response"
+      ],
+      "bindings": [],
+      "claims": [
+       {
+        "id": "alpha",
+        "quantity": "null_rejection_probability",
+        "comparison": "<=",
+        "value": "1/20"
+       },
+       {
+        "id": "power",
+        "quantity": "power",
+        "comparison": ">=",
+        "value": "4/5"
+       }
+      ],
+      "required": true,
+      "support": []
+     },
+     {
+      "id": "survival-method",
+      "kind": "external_method",
+      "scope": {
+       "target": {
+        "kind": "new_trial",
+        "ref": "draft",
+        "scope": {
+         "study": "draft",
+         "population": "general",
+         "arm": "all",
+         "time": "entry",
+         "version": "v1"
+        }
+       },
+       "context": {
+        "cohort": null,
+        "phase": null,
+        "arm": null
+       }
+      },
+      "objects": [
+       "survival"
+      ],
+      "bindings": [],
+      "claims": [],
+      "required": true,
+      "support": []
+     }
+    ],
+    "sections": [
+     {
+      "id": "efficacy",
+      "state": "requested",
+      "objects": [
+       "efficacy",
+       "survival"
+      ],
+      "basis": []
+     },
+     {
+      "id": "endpoints",
+      "state": "requested",
+      "objects": [
+       "response"
+      ],
+      "basis": []
+     }
+    ]
+   }
+  },
+  "previous": null
+ },
+ "result": {
+  "schema_version": 2,
+  "session_id": "design",
+  "revision": "one",
+  "session_digest": "579dd0dbcdda7bb4d8aae02ce9e83cd40a8ed6e7a4391f1f70c0d10e42da36a2",
+  "target": {
+   "kind": "new_trial",
+   "ref": "draft",
+   "scope": {
+    "study": "draft",
+    "population": "general",
+    "arm": "all",
+    "time": "entry",
+    "version": "v1"
+   }
+  },
+  "sources": [],
+  "premises": [
+   {
+    "id": "adult",
+    "kind": "assertion",
+    "payload": {
+     "applicability": {
+      "class": "Always"
+     },
+     "body": {
+      "class": "Literal",
+      "evidence": [],
+      "polarity": "positive",
+      "predicate": {
+       "class": "Predicate",
+       "key": "age",
+       "kind": "measurement"
+      },
+      "qualifiers": {
+       "class": "Always"
+      },
+      "subject": {
+       "class": "Subject",
+       "kind": "participant",
+       "referent": ""
+      },
+      "time": null,
+      "value": {
+       "class": "Value",
+       "comparison": "ge",
+       "inclusivity": "unspecified",
+       "kind": "quantity",
+       "members": [],
+       "number": 18.0,
+       "unit": "Years",
+       "upper": null
+      }
+     },
+     "branch": {
+      "class": "Branch",
+      "node": "unresolved",
+      "path": []
+     },
+     "class": "ScopedAssertion",
+     "cohort": {
+      "class": "Scope",
+      "kind": "all_participants",
+      "parts": [],
+      "ref": ""
+     },
+     "criterion_ref": "user:adult",
+     "id": "adult",
+     "modality": "required",
+     "resolution": "resolved",
+     "rule": {
+      "answers": [],
+      "class": "Rule",
+      "id": "user-explicit",
+      "premises": [],
+      "version": "1",
+      "warrants": []
+     },
+     "span": [],
+     "status": "known"
+    },
+    "origin": {
+     "kind": "user_choice",
+     "ref": "user:adult",
+     "source": null,
+     "analysis": null
+    },
+    "depends_on": []
+   }
+  ],
+  "effective_premises": [
+   {
+    "id": "adult",
+    "kind": "assertion",
+    "payload": {
+     "applicability": {
+      "class": "Always"
+     },
+     "body": {
+      "class": "Literal",
+      "evidence": [],
+      "polarity": "positive",
+      "predicate": {
+       "class": "Predicate",
+       "key": "age",
+       "kind": "measurement"
+      },
+      "qualifiers": {
+       "class": "Always"
+      },
+      "subject": {
+       "class": "Subject",
+       "kind": "participant",
+       "referent": ""
+      },
+      "time": null,
+      "value": {
+       "class": "Value",
+       "comparison": "ge",
+       "inclusivity": "unspecified",
+       "kind": "quantity",
+       "members": [],
+       "number": 18.0,
+       "unit": "Years",
+       "upper": null
+      }
+     },
+     "branch": {
+      "class": "Branch",
+      "node": "unresolved",
+      "path": []
+     },
+     "class": "ScopedAssertion",
+     "cohort": {
+      "class": "Scope",
+      "kind": "all_participants",
+      "parts": [],
+      "ref": ""
+     },
+     "criterion_ref": "user:adult",
+     "id": "adult",
+     "modality": "required",
+     "resolution": "resolved",
+     "rule": {
+      "answers": [],
+      "class": "Rule",
+      "id": "user-explicit",
+      "premises": [],
+      "version": "1",
+      "warrants": []
+     },
+     "span": [],
+     "status": "known"
+    },
+    "standing": {
+     "status": "known",
+     "resolution": "resolved",
+     "basis": [
+      "user:adult"
+     ]
+    },
+    "origin": {
+     "kind": "user_choice",
+     "ref": "user:adult",
+     "source": null,
+     "analysis": null
+    },
+    "depends_on": [],
+    "dependency_support": null
+   }
+  ],
+  "dependency_graph": {
+   "premise:adult": [],
+   "analysis:older": [
+    "premise:adult"
+   ],
+   "analysis:younger": [
+    "premise:adult"
+   ]
+  },
+  "analyses": [
+   {
+    "id": "older",
+    "target": {
+     "kind": "new_trial",
+     "ref": "draft",
+     "scope": {
+      "study": "draft",
+      "population": "general",
+      "arm": "all",
+      "time": "entry",
+      "version": "v1"
+     }
+    },
+    "request": {
+     "operation": "entailment",
+     "query": {
+      "class": "Literal",
+      "evidence": [],
+      "polarity": "positive",
+      "predicate": {
+       "class": "Predicate",
+       "key": "age",
+       "kind": "measurement"
+      },
+      "qualifiers": {
+       "class": "Always"
+      },
+      "subject": {
+       "class": "Subject",
+       "kind": "participant",
+       "referent": ""
+      },
+      "time": null,
+      "value": {
+       "class": "Value",
+       "comparison": "ge",
+       "inclusivity": "unspecified",
+       "kind": "quantity",
+       "members": [],
+       "number": 65.0,
+       "unit": "Years",
+       "upper": null
+      }
+     },
+     "bound": 128,
+     "assertions": [
+      {
+       "applicability": {
+        "class": "Always"
+       },
+       "body": {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "age",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "participant",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "ge",
+         "inclusivity": "unspecified",
+         "kind": "quantity",
+         "members": [],
+         "number": 18.0,
+         "unit": "Years",
+         "upper": null
+        }
+       },
+       "branch": {
+        "class": "Branch",
+        "node": "unresolved",
+        "path": []
+       },
+       "class": "ScopedAssertion",
+       "cohort": {
+        "class": "Scope",
+        "kind": "all_participants",
+        "parts": [],
+        "ref": ""
+       },
+       "criterion_ref": "user:adult",
+       "id": "adult",
+       "modality": "required",
+       "resolution": "resolved",
+       "rule": {
+        "answers": [],
+        "class": "Rule",
+        "id": "user-explicit",
+        "premises": [],
+        "version": "1",
+        "warrants": []
+       },
+       "span": [],
+       "status": "known"
+      }
+     ]
+    },
+    "result": {
+     "clinical": {
+      "findings": [
+       {
+        "blockers": [
+         "undecided_by_constraints"
+        ],
+        "canonical_ref": "/result/decision",
+        "completion": "complete",
+        "conditions": [],
+        "disposition": "open",
+        "kind": "logical",
+        "origins": [
+         {
+          "criterion_ref": "user:adult",
+          "premise": "adult"
+         }
+        ],
+        "outcome": "UNDETERMINED",
+        "path": "/result/decision",
+        "scope": {
+         "query": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+           "class": "Predicate",
+           "key": "age",
+           "kind": "measurement"
+          },
+          "qualifiers": {
+           "class": "Always"
+          },
+          "subject": {
+           "class": "Subject",
+           "kind": "participant",
+           "referent": ""
+          },
+          "time": null,
+          "value": {
+           "class": "Value",
+           "comparison": "ge",
+           "inclusivity": "unspecified",
+           "kind": "quantity",
+           "members": [],
+           "number": 65.0,
+           "unit": "Years",
+           "upper": null
+          }
+         }
+        },
+        "standing": null,
+        "support": {
+         "explanation_blockers": [],
+         "proof": [
+          "adult"
+         ]
+        },
+        "values": {}
+       }
+      ],
+      "operation": "entailment",
+      "version": 1
+     },
+     "code": "complete",
+     "metadata": {
+      "findings": [
+       {
+        "causes": [
+         {
+          "code": "undecided_by_constraints",
+          "kind": "constraint"
+         }
+        ],
+        "completion": "complete",
+        "disposition": "open",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "path": "/result/decision",
+        "standing": null
+       }
+      ],
+      "kind": "reasoning",
+      "version": 1
+     },
+     "operation": "entailment",
+     "problems": [],
+     "result": {
+      "basis": "Conditional on the supplied typed premises; their source meaning is not certified by this operation.",
+      "decision": {
+       "blockers": [
+        "undecided_by_constraints"
+       ],
+       "proof": [
+        "adult"
+       ],
+       "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":65.0,\"unit\":\"Years\",\"upper\":null}}",
+       "result": "UNDETERMINED",
+       "status": null
+      },
+      "explanations": {
+       "blockers": [],
+       "checks": {
+        "code": "complete",
+        "decisions": 0,
+        "intrinsic_queries": 1,
+        "limit": 32,
+        "planned": 1,
+        "planning_nodes": 1,
+        "profile_probes": 1,
+        "profile_queries": 2
+       },
+       "conditions": [],
+       "coverage": "bounded_candidate_discovery_not_complete_screening",
+       "permissions": []
+      },
+      "premises": [
+       {
+        "applicability": {
+         "class": "Always"
+        },
+        "body": {
+         "class": "Literal",
+         "evidence": [],
+         "polarity": "positive",
+         "predicate": {
+          "class": "Predicate",
+          "key": "age",
+          "kind": "measurement"
+         },
+         "qualifiers": {
+          "class": "Always"
+         },
+         "subject": {
+          "class": "Subject",
+          "kind": "participant",
+          "referent": ""
+         },
+         "time": null,
+         "value": {
+          "class": "Value",
+          "comparison": "ge",
+          "inclusivity": "unspecified",
+          "kind": "quantity",
+          "members": [],
+          "number": 18.0,
+          "unit": "Years",
+          "upper": null
+         }
+        },
+        "branch": {
+         "class": "Branch",
+         "node": "unresolved",
+         "path": []
+        },
+        "class": "ScopedAssertion",
+        "cohort": {
+         "class": "Scope",
+         "kind": "all_participants",
+         "parts": [],
+         "ref": ""
+        },
+        "criterion_ref": "user:adult",
+        "id": "adult",
+        "modality": "required",
+        "resolution": "resolved",
+        "rule": {
+         "answers": [],
+         "class": "Rule",
+         "id": "user-explicit",
+         "premises": [],
+         "version": "1",
+         "warrants": []
+        },
+        "span": [],
+        "status": "known"
+       }
+      ]
+     },
+     "result_digest": "5e005f33409b919778c712a947f296e8460a3cfd78203bdb8abc47f4b2414910",
+     "result_digest_scope": "result only; excludes summary, presentation and artifact metadata",
+     "summary": {
+      "code": "complete",
+      "dispositions": {
+       "open": 1
+      },
+      "findings": 1,
+      "kind": "reasoning",
+      "operation": "entailment",
+      "problems": []
+     }
+    },
+    "request_digest": "b82397a5cea1546ff5691a6f9358c3fcdc5737f301d52ddd5020a23cb3361a6d",
+    "result_digest": "853ada5251575105c17a48088c14145f76d5bdffd2bd1cb182f6a02270b03977",
+    "dependencies": [
+     "premise:adult"
+    ]
+   },
+   {
+    "id": "younger",
+    "target": {
+     "kind": "new_trial",
+     "ref": "draft",
+     "scope": {
+      "study": "draft",
+      "population": "general",
+      "arm": "all",
+      "time": "entry",
+      "version": "v1"
+     }
+    },
+    "request": {
+     "operation": "entailment",
+     "query": {
+      "class": "Not",
+      "part": {
+       "class": "Literal",
+       "evidence": [],
+       "polarity": "positive",
+       "predicate": {
+        "class": "Predicate",
+        "key": "age",
+        "kind": "measurement"
+       },
+       "qualifiers": {
+        "class": "Always"
+       },
+       "subject": {
+        "class": "Subject",
+        "kind": "participant",
+        "referent": ""
+       },
+       "time": null,
+       "value": {
+        "class": "Value",
+        "comparison": "ge",
+        "inclusivity": "unspecified",
+        "kind": "quantity",
+        "members": [],
+        "number": 65.0,
+        "unit": "Years",
+        "upper": null
+       }
+      }
+     },
+     "bound": 128,
+     "assertions": [
+      {
+       "applicability": {
+        "class": "Always"
+       },
+       "body": {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "age",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "participant",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "ge",
+         "inclusivity": "unspecified",
+         "kind": "quantity",
+         "members": [],
+         "number": 18.0,
+         "unit": "Years",
+         "upper": null
+        }
+       },
+       "branch": {
+        "class": "Branch",
+        "node": "unresolved",
+        "path": []
+       },
+       "class": "ScopedAssertion",
+       "cohort": {
+        "class": "Scope",
+        "kind": "all_participants",
+        "parts": [],
+        "ref": ""
+       },
+       "criterion_ref": "user:adult",
+       "id": "adult",
+       "modality": "required",
+       "resolution": "resolved",
+       "rule": {
+        "answers": [],
+        "class": "Rule",
+        "id": "user-explicit",
+        "premises": [],
+        "version": "1",
+        "warrants": []
+       },
+       "span": [],
+       "status": "known"
+      }
+     ]
+    },
+    "result": {
+     "clinical": {
+      "findings": [
+       {
+        "blockers": [
+         "undecided_by_constraints"
+        ],
+        "canonical_ref": "/result/decision",
+        "completion": "complete",
+        "conditions": [
+         {
+          "body": {
+           "class": "Literal",
+           "evidence": [],
+           "polarity": "positive",
+           "predicate": {
+            "class": "Predicate",
+            "key": "age",
+            "kind": "measurement"
+           },
+           "qualifiers": {
+            "class": "Always"
+           },
+           "subject": {
+            "class": "Subject",
+            "kind": "participant",
+            "referent": ""
+           },
+           "time": null,
+           "value": {
+            "class": "Value",
+            "comparison": "ge",
+            "inclusivity": "unspecified",
+            "kind": "quantity",
+            "members": [],
+            "number": 18.0,
+            "unit": "Years",
+            "upper": null
+           }
+          },
+          "profile_check": {
+           "basis": "query_alone",
+           "code": "not_established_by_query"
+          },
+          "relation": "required_by_criteria",
+          "scope": {
+           "arm": null,
+           "cohort": null,
+           "phase": null
+          },
+          "status": "known",
+          "warrant": {
+           "blockers": [],
+           "proof": [
+            "adult"
+           ],
+           "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+           "result": "ENTAILED",
+           "status": "known"
+          }
+         }
+        ],
+        "disposition": "open",
+        "kind": "logical",
+        "origins": [
+         {
+          "criterion_ref": "user:adult",
+          "premise": "adult"
+         }
+        ],
+        "outcome": "UNDETERMINED",
+        "path": "/result/decision",
+        "scope": {
+         "query": {
+          "class": "Not",
+          "part": {
+           "class": "Literal",
+           "evidence": [],
+           "polarity": "positive",
+           "predicate": {
+            "class": "Predicate",
+            "key": "age",
+            "kind": "measurement"
+           },
+           "qualifiers": {
+            "class": "Always"
+           },
+           "subject": {
+            "class": "Subject",
+            "kind": "participant",
+            "referent": ""
+           },
+           "time": null,
+           "value": {
+            "class": "Value",
+            "comparison": "ge",
+            "inclusivity": "unspecified",
+            "kind": "quantity",
+            "members": [],
+            "number": 65.0,
+            "unit": "Years",
+            "upper": null
+           }
+          }
+         }
+        },
+        "standing": null,
+        "support": {
+         "explanation_blockers": [],
+         "proof": [
+          "adult"
+         ]
+        },
+        "values": {}
+       }
+      ],
+      "operation": "entailment",
+      "version": 1
+     },
+     "code": "complete",
+     "metadata": {
+      "findings": [
+       {
+        "causes": [
+         {
+          "code": "undecided_by_constraints",
+          "kind": "constraint"
+         }
+        ],
+        "completion": "complete",
+        "disposition": "open",
+        "kind": "logical",
+        "logical_result": "UNDETERMINED",
+        "path": "/result/decision",
+        "standing": null
+       }
+      ],
+      "kind": "reasoning",
+      "version": 1
+     },
+     "operation": "entailment",
+     "problems": [],
+     "result": {
+      "basis": "Conditional on the supplied typed premises; their source meaning is not certified by this operation.",
+      "decision": {
+       "blockers": [
+        "undecided_by_constraints"
+       ],
+       "proof": [
+        "adult"
+       ],
+       "query": "{\"class\":\"Not\",\"part\":{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":65.0,\"unit\":\"Years\",\"upper\":null}}}",
+       "result": "UNDETERMINED",
+       "status": null
+      },
+      "explanations": {
+       "blockers": [],
+       "checks": {
+        "code": "complete",
+        "decisions": 1,
+        "intrinsic_queries": 1,
+        "limit": 32,
+        "planned": 1,
+        "planning_nodes": 1,
+        "profile_probes": 1,
+        "profile_queries": 2
+       },
+       "conditions": [
+        {
+         "body": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+           "class": "Predicate",
+           "key": "age",
+           "kind": "measurement"
+          },
+          "qualifiers": {
+           "class": "Always"
+          },
+          "subject": {
+           "class": "Subject",
+           "kind": "participant",
+           "referent": ""
+          },
+          "time": null,
+          "value": {
+           "class": "Value",
+           "comparison": "ge",
+           "inclusivity": "unspecified",
+           "kind": "quantity",
+           "members": [],
+           "number": 18.0,
+           "unit": "Years",
+           "upper": null
+          }
+         },
+         "profile_check": {
+          "basis": "query_alone",
+          "code": "not_established_by_query"
+         },
+         "relation": "required_by_criteria",
+         "scope": {
+          "arm": null,
+          "cohort": null,
+          "phase": null
+         },
+         "status": "known",
+         "warrant": {
+          "blockers": [],
+          "proof": [
+           "adult"
+          ],
+          "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+          "result": "ENTAILED",
+          "status": "known"
+         }
+        }
+       ],
+       "coverage": "bounded_candidate_discovery_not_complete_screening",
+       "permissions": []
+      },
+      "premises": [
+       {
+        "applicability": {
+         "class": "Always"
+        },
+        "body": {
+         "class": "Literal",
+         "evidence": [],
+         "polarity": "positive",
+         "predicate": {
+          "class": "Predicate",
+          "key": "age",
+          "kind": "measurement"
+         },
+         "qualifiers": {
+          "class": "Always"
+         },
+         "subject": {
+          "class": "Subject",
+          "kind": "participant",
+          "referent": ""
+         },
+         "time": null,
+         "value": {
+          "class": "Value",
+          "comparison": "ge",
+          "inclusivity": "unspecified",
+          "kind": "quantity",
+          "members": [],
+          "number": 18.0,
+          "unit": "Years",
+          "upper": null
+         }
+        },
+        "branch": {
+         "class": "Branch",
+         "node": "unresolved",
+         "path": []
+        },
+        "class": "ScopedAssertion",
+        "cohort": {
+         "class": "Scope",
+         "kind": "all_participants",
+         "parts": [],
+         "ref": ""
+        },
+        "criterion_ref": "user:adult",
+        "id": "adult",
+        "modality": "required",
+        "resolution": "resolved",
+        "rule": {
+         "answers": [],
+         "class": "Rule",
+         "id": "user-explicit",
+         "premises": [],
+         "version": "1",
+         "warrants": []
+        },
+        "span": [],
+        "status": "known"
+       }
+      ]
+     },
+     "result_digest": "f43b7b335080dfe36ac9a9b8d52e58bafe5712f5562a8cc32a46e201796d8f68",
+     "result_digest_scope": "result only; excludes summary, presentation and artifact metadata",
+     "summary": {
+      "code": "complete",
+      "dispositions": {
+       "open": 1
+      },
+      "findings": 1,
+      "kind": "reasoning",
+      "operation": "entailment",
+      "problems": []
+     }
+    },
+    "request_digest": "87df278f8b1fec367ddddecb6f290a01057b525e7e48c06e908a96afcb45bf70",
+    "result_digest": "7e6ab8c57d1ffa185c2e18218244786da6dbb6b562633db5d6cab37e69ecdbbf",
+    "dependencies": [
+     "premise:adult"
+    ]
+   }
+  ],
+  "projection_ledger": [
+   {
+    "analysis": "older",
+    "projections": [
+     {
+      "premise": "adult",
+      "slot": "assertions",
+      "projection": "identity",
+      "value": {
+       "applicability": {
+        "class": "Always"
+       },
+       "body": {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "age",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "participant",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "ge",
+         "inclusivity": "unspecified",
+         "kind": "quantity",
+         "members": [],
+         "number": 18.0,
+         "unit": "Years",
+         "upper": null
+        }
+       },
+       "branch": {
+        "class": "Branch",
+        "node": "unresolved",
+        "path": []
+       },
+       "class": "ScopedAssertion",
+       "cohort": {
+        "class": "Scope",
+        "kind": "all_participants",
+        "parts": [],
+        "ref": ""
+       },
+       "criterion_ref": "user:adult",
+       "id": "adult",
+       "modality": "required",
+       "resolution": "resolved",
+       "rule": {
+        "answers": [],
+        "class": "Rule",
+        "id": "user-explicit",
+        "premises": [],
+        "version": "1",
+        "warrants": []
+       },
+       "span": [],
+       "status": "known"
+      },
+      "details": []
+     }
+    ]
+   },
+   {
+    "analysis": "younger",
+    "projections": [
+     {
+      "premise": "adult",
+      "slot": "assertions",
+      "projection": "identity",
+      "value": {
+       "applicability": {
+        "class": "Always"
+       },
+       "body": {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "age",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "participant",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "ge",
+         "inclusivity": "unspecified",
+         "kind": "quantity",
+         "members": [],
+         "number": 18.0,
+         "unit": "Years",
+         "upper": null
+        }
+       },
+       "branch": {
+        "class": "Branch",
+        "node": "unresolved",
+        "path": []
+       },
+       "class": "ScopedAssertion",
+       "cohort": {
+        "class": "Scope",
+        "kind": "all_participants",
+        "parts": [],
+        "ref": ""
+       },
+       "criterion_ref": "user:adult",
+       "id": "adult",
+       "modality": "required",
+       "resolution": "resolved",
+       "rule": {
+        "answers": [],
+        "class": "Rule",
+        "id": "user-explicit",
+        "premises": [],
+        "version": "1",
+        "warrants": []
+       },
+       "span": [],
+       "status": "known"
+      },
+      "details": []
+     }
+    ]
+   }
+  ],
+  "decisions": [
+   {
+    "id": "age-policy",
+    "question": "Should the represented age restriction require age 65?",
+    "target": {
+     "kind": "new_trial",
+     "ref": "draft",
+     "scope": {
+      "study": "draft",
+      "population": "general",
+      "arm": "all",
+      "time": "entry",
+      "version": "v1"
+     }
+    },
+    "coverage": "represented_restriction",
+    "alternatives": [
+     {
+      "id": "older",
+      "label": "65 or older",
+      "analysis": "older",
+      "query": {
+       "class": "Literal",
+       "evidence": [],
+       "polarity": "positive",
+       "predicate": {
+        "class": "Predicate",
+        "key": "age",
+        "kind": "measurement"
+       },
+       "qualifiers": {
+        "class": "Always"
+       },
+       "subject": {
+        "class": "Subject",
+        "kind": "participant",
+        "referent": ""
+       },
+       "time": null,
+       "value": {
+        "class": "Value",
+        "comparison": "ge",
+        "inclusivity": "unspecified",
+        "kind": "quantity",
+        "members": [],
+        "number": 65.0,
+        "unit": "Years",
+        "upper": null
+       }
+      },
+      "code": "feasible",
+      "warrant": {
+       "blockers": [
+        "undecided_by_constraints"
+       ],
+       "proof": [
+        "adult"
+       ],
+       "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":65.0,\"unit\":\"Years\",\"upper\":null}}",
+       "result": "UNDETERMINED",
+       "status": null
+      },
+      "feasibility_status": "known",
+      "origin_refs": [
+       {
+        "premise": "adult",
+        "origin": {
+         "kind": "user_choice",
+         "ref": "user:adult",
+         "source": null,
+         "analysis": null
+        }
+       }
+      ],
+      "analysis_result_digest": "853ada5251575105c17a48088c14145f76d5bdffd2bd1cb182f6a02270b03977"
+     },
+     {
+      "id": "younger",
+      "label": "Below 65",
+      "analysis": "younger",
+      "query": {
+       "class": "Not",
+       "part": {
+        "class": "Literal",
+        "evidence": [],
+        "polarity": "positive",
+        "predicate": {
+         "class": "Predicate",
+         "key": "age",
+         "kind": "measurement"
+        },
+        "qualifiers": {
+         "class": "Always"
+        },
+        "subject": {
+         "class": "Subject",
+         "kind": "participant",
+         "referent": ""
+        },
+        "time": null,
+        "value": {
+         "class": "Value",
+         "comparison": "ge",
+         "inclusivity": "unspecified",
+         "kind": "quantity",
+         "members": [],
+         "number": 65.0,
+         "unit": "Years",
+         "upper": null
+        }
+       }
+      },
+      "code": "feasible",
+      "warrant": {
+       "blockers": [
+        "undecided_by_constraints"
+       ],
+       "proof": [
+        "adult"
+       ],
+       "query": "{\"class\":\"Not\",\"part\":{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":65.0,\"unit\":\"Years\",\"upper\":null}}}",
+       "result": "UNDETERMINED",
+       "status": null
+      },
+      "feasibility_status": "known",
+      "origin_refs": [
+       {
+        "premise": "adult",
+        "origin": {
+         "kind": "user_choice",
+         "ref": "user:adult",
+         "source": null,
+         "analysis": null
+        }
+       }
+      ],
+      "analysis_result_digest": "7e6ab8c57d1ffa185c2e18218244786da6dbb6b562633db5d6cab37e69ecdbbf"
+     }
+    ],
+    "selected": null,
+    "standing": "known",
+    "determining_alternatives": [
+     "older",
+     "younger"
+    ],
+    "determining_distinctions": [
+     0
+    ],
+    "origin_refs": [
+     {
+      "premise": "adult",
+      "origin": {
+       "kind": "user_choice",
+       "ref": "user:adult",
+       "source": null,
+       "analysis": null
+      }
+     }
+    ],
+    "origin": {
+     "kind": "computed",
+     "refs": [
+      {
+       "premise": "adult",
+       "origin": {
+        "kind": "user_choice",
+        "ref": "user:adult",
+        "source": null,
+        "analysis": null
+       }
+      }
+     ]
+    },
+    "input_origins": [
+     {
+      "premise": "adult",
+      "origin": {
+       "kind": "user_choice",
+       "ref": "user:adult",
+       "source": null,
+       "analysis": null
+      }
+     }
+    ],
+    "distinctions": [
+     {
+      "alternatives": [
+       "older",
+       "younger"
+      ],
+      "dependencies": [
+       "analysis:older",
+       "analysis:younger"
+      ],
+      "request": {
+       "operation": "entailment",
+       "bound": 128,
+       "assertions": [
+        {
+         "applicability": {
+          "class": "Always"
+         },
+         "body": {
+          "class": "Literal",
+          "evidence": [],
+          "polarity": "positive",
+          "predicate": {
+           "class": "Predicate",
+           "key": "age",
+           "kind": "measurement"
+          },
+          "qualifiers": {
+           "class": "Always"
+          },
+          "subject": {
+           "class": "Subject",
+           "kind": "participant",
+           "referent": ""
+          },
+          "time": null,
+          "value": {
+           "class": "Value",
+           "comparison": "ge",
+           "inclusivity": "unspecified",
+           "kind": "quantity",
+           "members": [],
+           "number": 18.0,
+           "unit": "Years",
+           "upper": null
+          }
+         },
+         "branch": {
+          "class": "Branch",
+          "node": "unresolved",
+          "path": []
+         },
+         "class": "ScopedAssertion",
+         "cohort": {
+          "class": "Scope",
+          "kind": "all_participants",
+          "parts": [],
+          "ref": ""
+         },
+         "criterion_ref": "user:adult",
+         "id": "adult",
+         "modality": "required",
+         "resolution": "resolved",
+         "rule": {
+          "answers": [],
+          "class": "Rule",
+          "id": "user-explicit",
+          "premises": [],
+          "version": "1",
+          "warrants": []
+         },
+         "span": [],
+         "status": "known"
+        }
+       ],
+       "query": {
+        "class": "AnyOf",
+        "parts": [
+         {
+          "class": "AllOf",
+          "parts": [
+           {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+             "class": "Predicate",
+             "key": "age",
+             "kind": "measurement"
+            },
+            "qualifiers": {
+             "class": "Always"
+            },
+            "subject": {
+             "class": "Subject",
+             "kind": "participant",
+             "referent": ""
+            },
+            "time": null,
+            "value": {
+             "class": "Value",
+             "comparison": "ge",
+             "inclusivity": "unspecified",
+             "kind": "quantity",
+             "members": [],
+             "number": 65.0,
+             "unit": "Years",
+             "upper": null
+            }
+           },
+           {
+            "class": "Not",
+            "part": {
+             "class": "Not",
+             "part": {
+              "class": "Literal",
+              "evidence": [],
+              "polarity": "positive",
+              "predicate": {
+               "class": "Predicate",
+               "key": "age",
+               "kind": "measurement"
+              },
+              "qualifiers": {
+               "class": "Always"
+              },
+              "subject": {
+               "class": "Subject",
+               "kind": "participant",
+               "referent": ""
+              },
+              "time": null,
+              "value": {
+               "class": "Value",
+               "comparison": "ge",
+               "inclusivity": "unspecified",
+               "kind": "quantity",
+               "members": [],
+               "number": 65.0,
+               "unit": "Years",
+               "upper": null
+              }
+             }
+            }
+           }
+          ]
+         },
+         {
+          "class": "AllOf",
+          "parts": [
+           {
+            "class": "Not",
+            "part": {
+             "class": "Literal",
+             "evidence": [],
+             "polarity": "positive",
+             "predicate": {
+              "class": "Predicate",
+              "key": "age",
+              "kind": "measurement"
+             },
+             "qualifiers": {
+              "class": "Always"
+             },
+             "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+             },
+             "time": null,
+             "value": {
+              "class": "Value",
+              "comparison": "ge",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 65.0,
+              "unit": "Years",
+              "upper": null
+             }
+            }
+           },
+           {
+            "class": "Not",
+            "part": {
+             "class": "Literal",
+             "evidence": [],
+             "polarity": "positive",
+             "predicate": {
+              "class": "Predicate",
+              "key": "age",
+              "kind": "measurement"
+             },
+             "qualifiers": {
+              "class": "Always"
+             },
+             "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+             },
+             "time": null,
+             "value": {
+              "class": "Value",
+              "comparison": "ge",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 65.0,
+              "unit": "Years",
+              "upper": null
+             }
+            }
+           }
+          ]
+         }
+        ]
+       }
+      },
+      "result": {
+       "clinical": {
+        "findings": [
+         {
+          "blockers": [],
+          "canonical_ref": "/result/decision",
+          "completion": "complete",
+          "conditions": [
+           {
+            "body": {
+             "class": "Literal",
+             "evidence": [],
+             "polarity": "positive",
+             "predicate": {
+              "class": "Predicate",
+              "key": "age",
+              "kind": "measurement"
+             },
+             "qualifiers": {
+              "class": "Always"
+             },
+             "subject": {
+              "class": "Subject",
+              "kind": "participant",
+              "referent": ""
+             },
+             "time": null,
+             "value": {
+              "class": "Value",
+              "comparison": "ge",
+              "inclusivity": "unspecified",
+              "kind": "quantity",
+              "members": [],
+              "number": 18.0,
+              "unit": "Years",
+              "upper": null
+             }
+            },
+            "profile_check": {
+             "basis": "query_alone",
+             "code": "not_established_by_query"
+            },
+            "relation": "required_by_criteria",
+            "scope": {
+             "arm": null,
+             "cohort": null,
+             "phase": null
+            },
+            "status": "known",
+            "warrant": {
+             "blockers": [],
+             "proof": [
+              "adult"
+             ],
+             "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+             "result": "ENTAILED",
+             "status": "known"
+            }
+           }
+          ],
+          "disposition": "settled",
+          "kind": "logical",
+          "origins": [
+           {
+            "criterion_ref": "user:adult",
+            "premise": "adult"
+           }
+          ],
+          "outcome": "ENTAILED",
+          "path": "/result/decision",
+          "scope": {
+           "query": {
+            "class": "AnyOf",
+            "parts": [
+             {
+              "class": "AllOf",
+              "parts": [
+               {
+                "class": "Literal",
+                "evidence": [],
+                "polarity": "positive",
+                "predicate": {
+                 "class": "Predicate",
+                 "key": "age",
+                 "kind": "measurement"
+                },
+                "qualifiers": {
+                 "class": "Always"
+                },
+                "subject": {
+                 "class": "Subject",
+                 "kind": "participant",
+                 "referent": ""
+                },
+                "time": null,
+                "value": {
+                 "class": "Value",
+                 "comparison": "ge",
+                 "inclusivity": "unspecified",
+                 "kind": "quantity",
+                 "members": [],
+                 "number": 65.0,
+                 "unit": "Years",
+                 "upper": null
+                }
+               },
+               {
+                "class": "Not",
+                "part": {
+                 "class": "Not",
+                 "part": {
+                  "class": "Literal",
+                  "evidence": [],
+                  "polarity": "positive",
+                  "predicate": {
+                   "class": "Predicate",
+                   "key": "age",
+                   "kind": "measurement"
+                  },
+                  "qualifiers": {
+                   "class": "Always"
+                  },
+                  "subject": {
+                   "class": "Subject",
+                   "kind": "participant",
+                   "referent": ""
+                  },
+                  "time": null,
+                  "value": {
+                   "class": "Value",
+                   "comparison": "ge",
+                   "inclusivity": "unspecified",
+                   "kind": "quantity",
+                   "members": [],
+                   "number": 65.0,
+                   "unit": "Years",
+                   "upper": null
+                  }
+                 }
+                }
+               }
+              ]
+             },
+             {
+              "class": "AllOf",
+              "parts": [
+               {
+                "class": "Not",
+                "part": {
+                 "class": "Literal",
+                 "evidence": [],
+                 "polarity": "positive",
+                 "predicate": {
+                  "class": "Predicate",
+                  "key": "age",
+                  "kind": "measurement"
+                 },
+                 "qualifiers": {
+                  "class": "Always"
+                 },
+                 "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                 },
+                 "time": null,
+                 "value": {
+                  "class": "Value",
+                  "comparison": "ge",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 65.0,
+                  "unit": "Years",
+                  "upper": null
+                 }
+                }
+               },
+               {
+                "class": "Not",
+                "part": {
+                 "class": "Literal",
+                 "evidence": [],
+                 "polarity": "positive",
+                 "predicate": {
+                  "class": "Predicate",
+                  "key": "age",
+                  "kind": "measurement"
+                 },
+                 "qualifiers": {
+                  "class": "Always"
+                 },
+                 "subject": {
+                  "class": "Subject",
+                  "kind": "participant",
+                  "referent": ""
+                 },
+                 "time": null,
+                 "value": {
+                  "class": "Value",
+                  "comparison": "ge",
+                  "inclusivity": "unspecified",
+                  "kind": "quantity",
+                  "members": [],
+                  "number": 65.0,
+                  "unit": "Years",
+                  "upper": null
+                 }
+                }
+               }
+              ]
+             }
+            ]
+           }
+          },
+          "standing": "known",
+          "support": {
+           "explanation_blockers": [],
+           "proof": []
+          },
+          "values": {}
+         }
+        ],
+        "operation": "entailment",
+        "version": 1
+       },
+       "code": "complete",
+       "metadata": {
+        "findings": [
+         {
+          "causes": [],
+          "completion": "complete",
+          "disposition": "settled",
+          "kind": "logical",
+          "logical_result": "ENTAILED",
+          "path": "/result/decision",
+          "standing": "known"
+         }
+        ],
+        "kind": "reasoning",
+        "version": 1
+       },
+       "operation": "entailment",
+       "problems": [],
+       "result": {
+        "basis": "Conditional on the supplied typed premises; their source meaning is not certified by this operation.",
+        "decision": {
+         "blockers": [],
+         "proof": [],
+         "query": "{\"class\":\"AnyOf\",\"parts\":[{\"class\":\"AllOf\",\"parts\":[{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":65.0,\"unit\":\"Years\",\"upper\":null}},{\"class\":\"Not\",\"part\":{\"class\":\"Not\",\"part\":{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":65.0,\"unit\":\"Years\",\"upper\":null}}}}]},{\"class\":\"AllOf\",\"parts\":[{\"class\":\"Not\",\"part\":{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":65.0,\"unit\":\"Years\",\"upper\":null}}},{\"class\":\"Not\",\"part\":{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":65.0,\"unit\":\"Years\",\"upper\":null}}}]}]}",
+         "result": "ENTAILED",
+         "status": "known"
+        },
+        "explanations": {
+         "blockers": [],
+         "checks": {
+          "code": "complete",
+          "decisions": 1,
+          "intrinsic_queries": 1,
+          "limit": 32,
+          "planned": 1,
+          "planning_nodes": 1,
+          "profile_probes": 1,
+          "profile_queries": 2
+         },
+         "conditions": [
+          {
+           "body": {
+            "class": "Literal",
+            "evidence": [],
+            "polarity": "positive",
+            "predicate": {
+             "class": "Predicate",
+             "key": "age",
+             "kind": "measurement"
+            },
+            "qualifiers": {
+             "class": "Always"
+            },
+            "subject": {
+             "class": "Subject",
+             "kind": "participant",
+             "referent": ""
+            },
+            "time": null,
+            "value": {
+             "class": "Value",
+             "comparison": "ge",
+             "inclusivity": "unspecified",
+             "kind": "quantity",
+             "members": [],
+             "number": 18.0,
+             "unit": "Years",
+             "upper": null
+            }
+           },
+           "profile_check": {
+            "basis": "query_alone",
+            "code": "not_established_by_query"
+           },
+           "relation": "required_by_criteria",
+           "scope": {
+            "arm": null,
+            "cohort": null,
+            "phase": null
+           },
+           "status": "known",
+           "warrant": {
+            "blockers": [],
+            "proof": [
+             "adult"
+            ],
+            "query": "{\"class\":\"Literal\",\"evidence\":[],\"polarity\":\"positive\",\"predicate\":{\"class\":\"Predicate\",\"key\":\"age\",\"kind\":\"measurement\"},\"qualifiers\":{\"class\":\"Always\"},\"subject\":{\"class\":\"Subject\",\"kind\":\"participant\",\"referent\":\"\"},\"time\":null,\"value\":{\"class\":\"Value\",\"comparison\":\"ge\",\"inclusivity\":\"unspecified\",\"kind\":\"quantity\",\"members\":[],\"number\":18.0,\"unit\":\"Years\",\"upper\":null}}",
+            "result": "ENTAILED",
+            "status": "known"
+           }
+          }
+         ],
+         "coverage": "bounded_candidate_discovery_not_complete_screening",
+         "permissions": []
+        },
+        "premises": [
+         {
+          "applicability": {
+           "class": "Always"
+          },
+          "body": {
+           "class": "Literal",
+           "evidence": [],
+           "polarity": "positive",
+           "predicate": {
+            "class": "Predicate",
+            "key": "age",
+            "kind": "measurement"
+           },
+           "qualifiers": {
+            "class": "Always"
+           },
+           "subject": {
+            "class": "Subject",
+            "kind": "participant",
+            "referent": ""
+           },
+           "time": null,
+           "value": {
+            "class": "Value",
+            "comparison": "ge",
+            "inclusivity": "unspecified",
+            "kind": "quantity",
+            "members": [],
+            "number": 18.0,
+            "unit": "Years",
+            "upper": null
+           }
+          },
+          "branch": {
+           "class": "Branch",
+           "node": "unresolved",
+           "path": []
+          },
+          "class": "ScopedAssertion",
+          "cohort": {
+           "class": "Scope",
+           "kind": "all_participants",
+           "parts": [],
+           "ref": ""
+          },
+          "criterion_ref": "user:adult",
+          "id": "adult",
+          "modality": "required",
+          "resolution": "resolved",
+          "rule": {
+           "answers": [],
+           "class": "Rule",
+           "id": "user-explicit",
+           "premises": [],
+           "version": "1",
+           "warrants": []
+          },
+          "span": [],
+          "status": "known"
+         }
+        ]
+       },
+       "result_digest": "172f1c44cbe2d174f5badf731c2055e493dca8f4d96e53d84b1b6dcc11390bc6",
+       "result_digest_scope": "result only; excludes summary, presentation and artifact metadata",
+       "summary": {
+        "code": "complete",
+        "dispositions": {
+         "settled": 1
+        },
+        "findings": 1,
+        "kind": "reasoning",
+        "operation": "entailment",
+        "problems": []
+       }
+      },
+      "request_digest": "fe34c64bd1974bbedac4535672143bd793c3cab6fdeafd17cef6551ff1c754b9",
+      "result_digest": "cae2ed1379b0ed1d4073c4cf0031d83247cf5609f658abb52c7bb6835a98807e",
+      "code": "distinguishable_under_floor",
+      "support_status": "known",
+      "origin_refs": []
+     }
+    ],
+    "open_alternatives": [],
+    "code": "design_choice",
+    "coverage_limit": "Only caller-declared represented constructs; not complete clinical eligibility."
+   }
+  ],
+  "protocol": {
+   "schema_version": 1,
+   "objects": [
+    {
+     "id": "score",
+     "kind": "measurement",
+     "scope": {
+      "target": {
+       "kind": "new_trial",
+       "ref": "draft",
+       "scope": {
+        "study": "draft",
+        "population": "general",
+        "arm": "all",
+        "time": "entry",
+        "version": "v1"
+       }
+      },
+      "context": {
+       "cohort": null,
+       "phase": null,
+       "arm": null
+      }
+     },
+     "version": "fixture-v1",
+     "origin": {
+      "kind": "user_choice",
+      "ref": "user:simulated choice (fixture)",
+      "source": null,
+      "analysis": null
+     },
+     "standing": {
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated choice (fixture)"
+      ]
+     },
+     "support": [
+      "adult"
+     ],
+     "depends_on": [],
+     "data": {
+      "definition": {
+       "ref": "invented:score definition",
+       "version": "1",
+       "status": "known",
+       "resolution": "resolved",
+       "basis": [
+        "user:simulated choice (fixture)"
+       ]
+      },
+      "unit": "points",
+      "mode": "observed",
+      "baseline": null
+     }
+    },
+    {
+     "id": "response",
+     "kind": "endpoint",
+     "scope": {
+      "target": {
+       "kind": "new_trial",
+       "ref": "draft",
+       "scope": {
+        "study": "draft",
+        "population": "general",
+        "arm": "all",
+        "time": "entry",
+        "version": "v1"
+       }
+      },
+      "context": {
+       "cohort": null,
+       "phase": null,
+       "arm": null
+      }
+     },
+     "version": "fixture-v1",
+     "origin": {
+      "kind": "user_choice",
+      "ref": "user:simulated choice (fixture)",
+      "source": null,
+      "analysis": null
+     },
+     "standing": {
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated choice (fixture)"
+      ]
+     },
+     "support": [
+      "adult"
+     ],
+     "depends_on": [
+      "score"
+     ],
+     "data": {
+      "variable": "score",
+      "definition": {
+       "ref": "invented:score definition",
+       "version": "1",
+       "status": "known",
+       "resolution": "resolved",
+       "basis": [
+        "user:simulated choice (fixture)"
+       ]
+      },
+      "estimand": null,
+      "dependencies": null
+     }
+    },
+    {
+     "id": "efficacy",
+     "kind": "efficacy",
+     "scope": {
+      "target": {
+       "kind": "new_trial",
+       "ref": "draft",
+       "scope": {
+        "study": "draft",
+        "population": "general",
+        "arm": "all",
+        "time": "entry",
+        "version": "v1"
+       }
+      },
+      "context": {
+       "cohort": null,
+       "phase": null,
+       "arm": null
+      }
+     },
+     "version": "fixture-v1",
+     "origin": {
+      "kind": "user_choice",
+      "ref": "user:simulated choice (fixture)",
+      "source": null,
+      "analysis": null
+     },
+     "standing": {
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated choice (fixture)"
+      ]
+     },
+     "support": [
+      "adult"
+     ],
+     "depends_on": [
+      "response"
+     ],
+     "data": {
+      "endpoint": "response",
+      "method": "binomial_design",
+      "parameters": {
+       "model": "fixed_n_iid_bernoulli",
+       "direction": "greater",
+       "n": 20,
+       "critical_count": 9,
+       "p0": "1/5",
+       "p1": "2/5"
+      },
+      "assumptions": [
+       {
+        "role": "fixed_n",
+        "premise": "adult"
+       },
+       {
+        "role": "iid_binary",
+        "premise": "adult"
+       }
+      ]
+     }
+    },
+    {
+     "id": "survival",
+     "kind": "external_method",
+     "scope": {
+      "target": {
+       "kind": "new_trial",
+       "ref": "draft",
+       "scope": {
+        "study": "draft",
+        "population": "general",
+        "arm": "all",
+        "time": "entry",
+        "version": "v1"
+       }
+      },
+      "context": {
+       "cohort": null,
+       "phase": null,
+       "arm": null
+      }
+     },
+     "version": "fixture-v1",
+     "origin": {
+      "kind": "user_choice",
+      "ref": "user:simulated choice (fixture)",
+      "source": null,
+      "analysis": null
+     },
+     "standing": {
+      "status": "known",
+      "resolution": "resolved",
+      "basis": [
+       "user:simulated choice (fixture)"
+      ]
+     },
+     "support": [
+      "adult"
+     ],
+     "depends_on": [],
+     "data": {
+      "definition": {
+       "ref": "invented:log-rank",
+       "version": "1",
+       "status": "known",
+       "resolution": "resolved",
+       "basis": [
+        "user:simulated choice (fixture)"
+       ]
+      },
+      "inputs": [
+       {
+        "name": "hazard_ratio",
+        "value": "7/10",
+        "unit": null,
+        "ref": null
+       }
+      ],
+      "missing": [
+       "accrual_rate",
+       "dropout"
+      ]
+     }
+    }
+   ],
+   "sections": {
+    "population": {
+     "state": "not_requested",
+     "objects": [],
+     "basis": []
+    },
+    "eligibility": {
+     "state": "not_requested",
+     "objects": [],
+     "basis": []
+    },
+    "interventions": {
+     "state": "not_requested",
+     "objects": [],
+     "basis": []
+    },
+    "endpoints": {
+     "state": "requested",
+     "objects": [
+      "response"
+     ],
+     "basis": []
+    },
+    "assessments": {
+     "state": "not_requested",
+     "objects": [],
+     "basis": []
+    },
+    "efficacy": {
+     "state": "requested",
+     "objects": [
+      "efficacy",
+      "survival"
+     ],
+     "basis": []
+    },
+    "safety": {
+     "state": "not_requested",
+     "objects": [],
+     "basis": []
+    },
+    "exploratory": {
+     "state": "not_requested",
+     "objects": [],
+     "basis": []
+    }
+   },
+   "checks": [
+    {
+     "id": "efficacy-exact",
+     "kind": "binomial_design",
+     "required": true,
+     "scope": {
+      "target": {
+       "kind": "new_trial",
+       "ref": "draft",
+       "scope": {
+        "study": "draft",
+        "population": "general",
+        "arm": "all",
+        "time": "entry",
+        "version": "v1"
+       }
+      },
+      "context": {
+       "cohort": null,
+       "phase": null,
+       "arm": null
+      }
+     },
+     "objects": [
+      "efficacy",
+      "response"
+     ],
+     "projection": "binomial_efficacy:1",
+     "children": [
+      {
+       "id": "efficacy-exact:binomial_efficacy",
+       "receipt": {
+        "projection": "binomial_efficacy",
+        "version": "1",
+        "check": "efficacy-exact",
+        "objects": [
+         "efficacy",
+         "response"
+        ],
+        "premises": [
+         "adult"
+        ],
+        "target": {
+         "kind": "new_trial",
+         "ref": "draft",
+         "scope": {
+          "study": "draft",
+          "population": "general",
+          "arm": "all",
+          "time": "entry",
+          "version": "v1"
+         }
+        },
+        "scope": {
+         "target": {
+          "kind": "new_trial",
+          "ref": "draft",
+          "scope": {
+           "study": "draft",
+           "population": "general",
+           "arm": "all",
+           "time": "entry",
+           "version": "v1"
+          }
+         },
+         "context": {
+          "cohort": null,
+          "phase": null,
+          "arm": null
+         }
+        },
+        "bindings": [],
+        "role_support": {
+         "parameters": [
+          {
+           "id": "object:efficacy",
+           "status": "known",
+           "resolution": "resolved",
+           "basis": [
+            "user:simulated choice (fixture)"
+           ]
+          },
+          {
+           "id": "premise:adult",
+           "status": "known",
+           "resolution": "resolved",
+           "basis": [
+            "user:adult"
+           ]
+          },
+          {
+           "id": "object:response",
+           "status": "known",
+           "resolution": "resolved",
+           "basis": [
+            "user:simulated choice (fixture)"
+           ]
+          }
+         ],
+         "assumptions": [
+          {
+           "id": "premise:adult",
+           "status": "known",
+           "resolution": "resolved",
+           "basis": [
+            "user:adult"
+           ]
+          }
+         ]
+        },
+        "conditions": [],
+        "request_digest": "fa54dd6af484ff137a9c193954545cbb1800f9063f6dc98852592ebe86360a50"
+       },
+       "request": {
+        "operation": "signals",
+        "signals": [
+         {
+          "id": "efficacy-exact:binomial_efficacy",
+          "kind": "binomial_design",
+          "data": {
+           "scope": "{\"context\":{\"arm\":null,\"cohort\":null,\"phase\":null},\"target\":{\"kind\":\"new_trial\",\"ref\":\"draft\",\"scope\":{\"arm\":\"all\",\"population\":\"general\",\"study\":\"draft\",\"time\":\"entry\",\"version\":\"v1\"}}}",
+           "model": "fixed_n_iid_bernoulli",
+           "direction": "greater",
+           "n": 20,
+           "critical_count": 9,
+           "p0": "1/5",
+           "p1": "2/5",
+           "assumptions": [
+            {
+             "role": "fixed_n",
+             "ref": "premise:adult",
+             "version": "fixture-v1",
+             "status": "known",
+             "resolution": "resolved",
+             "basis": [
+              "user:adult"
+             ]
+            },
+            {
+             "role": "iid_binary",
+             "ref": "premise:adult",
+             "version": "fixture-v1",
+             "status": "known",
+             "resolution": "resolved",
+             "basis": [
+              "user:adult"
+             ]
+            }
+           ]
+          },
+          "support": [
+           {
+            "id": "object:efficacy",
+            "status": "known",
+            "resolution": "resolved",
+            "basis": [
+             "user:simulated choice (fixture)"
+            ]
+           },
+           {
+            "id": "premise:adult",
+            "status": "known",
+            "resolution": "resolved",
+            "basis": [
+             "user:adult"
+            ]
+           },
+           {
+            "id": "object:response",
+            "status": "known",
+            "resolution": "resolved",
+            "basis": [
+             "user:simulated choice (fixture)"
+            ]
+           }
+          ],
+          "claims": [
+           {
+            "id": "alpha",
+            "quantity": "null_rejection_probability",
+            "comparison": "<=",
+            "value": "1/20"
+           },
+           {
+            "id": "power",
+            "quantity": "power",
+            "comparison": ">=",
+            "value": "4/5"
+           }
+          ],
+          "role_support": {
+           "parameters": [
+            "object:efficacy",
+            "premise:adult",
+            "object:response"
+           ],
+           "assumptions": [
+            "premise:adult"
+           ]
+          }
+         }
+        ]
+       },
+       "result": {
+        "clinical": {
+         "findings": [
+          {
+           "blockers": [
+            "binding_unresolved:efficacy-exact:binomial_efficacy",
+            "binomial_assumption_missing:alignment",
+            "binomial_claim_not_satisfied:power"
+           ],
+           "canonical_ref": "/result/signals/0",
+           "completion": "complete",
+           "conditions": [],
+           "disposition": "open",
+           "kind": "signal",
+           "origins": [],
+           "outcome": "unresolved",
+           "path": "/result/signals/0",
+           "scope": {},
+           "standing": "known",
+           "support": {
+            "admission": {
+             "application_blockers": [],
+             "code": "binding_unresolved"
+            },
+            "basis": [
+             "user:simulated choice (fixture)",
+             "user:adult",
+             "user:simulated choice (fixture)"
+            ],
+            "rule": "binomial.exact_one_stage_greater:1",
+            "support": [
+             {
+              "basis": [
+               "user:simulated choice (fixture)"
+              ],
+              "id": "object:efficacy",
+              "resolution": "resolved",
+              "status": "known"
+             },
+             {
+              "basis": [
+               "user:adult"
+              ],
+              "id": "premise:adult",
+              "resolution": "resolved",
+              "status": "known"
+             },
+             {
+              "basis": [
+               "user:simulated choice (fixture)"
+              ],
+              "id": "object:response",
+              "resolution": "resolved",
+              "status": "known"
+             }
+            ]
+           },
+           "values": {
+            "id": "efficacy-exact:binomial_efficacy",
+            "value": {
+             "application": {
+              "code": "withheld",
+              "reasons": [
+               "assumption_missing:alignment"
+              ]
+             },
+             "assumption_coverage": {
+              "alignment": "missing",
+              "fixed_n": "declared",
+              "iid_binary": "declared"
+             },
+             "assumptions": [
+              {
+               "basis": [
+                "user:adult"
+               ],
+               "ref": "premise:adult",
+               "resolution": "resolved",
+               "role": "fixed_n",
+               "status": "known",
+               "version": "fixture-v1"
+              },
+              {
+               "basis": [
+                "user:adult"
+               ],
+               "ref": "premise:adult",
+               "resolution": "resolved",
+               "role": "iid_binary",
+               "status": "known",
+               "version": "fixture-v1"
+              }
+             ],
+             "claims": [
+              {
+               "comparison": "<=",
+               "computed": "951937324593/95367431640625",
+               "id": "alpha",
+               "outcome": "satisfied",
+               "quantity": "null_rejection_probability",
+               "value": "1/20"
+              },
+              {
+               "comparison": ">=",
+               "computed": "38566710919168/95367431640625",
+               "id": "power",
+               "outcome": "not_satisfied",
+               "quantity": "power",
+               "value": "4/5"
+              }
+             ],
+             "critical_count": 9,
+             "direction": "greater",
+             "display": {
+              "null_rejection_probability": "0.0100",
+              "power": "0.4044",
+              "rounding": "half_even_4dp"
+             },
+             "guarantee": "exact_conditional_on_declared_model",
+             "model": "fixed_n_iid_bernoulli",
+             "n": 20,
+             "not_computed": [
+              "sample_size_search",
+              "sequential_or_adaptive_operating_characteristics",
+              "clinical_applicability"
+             ],
+             "null_rejection_probability": "951937324593/95367431640625",
+             "p0": "1/5",
+             "p1": "2/5",
+             "power": "38566710919168/95367431640625",
+             "scope": "{\"context\":{\"arm\":null,\"cohort\":null,\"phase\":null},\"target\":{\"kind\":\"new_trial\",\"ref\":\"draft\",\"scope\":{\"arm\":\"all\",\"population\":\"general\",\"study\":\"draft\",\"time\":\"entry\",\"version\":\"v1\"}}}",
+             "work": {
+              "max_bits": 1048576,
+              "reserved": 264,
+              "used": 118
+             }
+            }
+           }
+          },
+          {
+           "blockers": [
+            "binding_unresolved:alpha"
+           ],
+           "canonical_ref": "/result/signals/0/claim_admission/0",
+           "completion": "complete",
+           "conditions": [],
+           "disposition": "open",
+           "kind": "protocol_claim",
+           "origins": [],
+           "outcome": "unresolved",
+           "path": "/result/signals/0/claim_admission/0",
+           "scope": {},
+           "standing": "known",
+           "support": {
+            "admission": "binding_unresolved",
+            "declared_support": [
+             "object:efficacy",
+             "object:response",
+             "premise:adult"
+            ],
+            "support": [
+             "object:efficacy",
+             "object:response",
+             "premise:adult"
+            ]
+           },
+           "values": {
+            "id": "alpha"
+           }
+          },
+          {
+           "blockers": [
+            "binding_unresolved:power"
+           ],
+           "canonical_ref": "/result/signals/0/claim_admission/1",
+           "completion": "complete",
+           "conditions": [],
+           "disposition": "open",
+           "kind": "protocol_claim",
+           "origins": [],
+           "outcome": "unresolved",
+           "path": "/result/signals/0/claim_admission/1",
+           "scope": {},
+           "standing": "known",
+           "support": {
+            "admission": "binding_unresolved",
+            "declared_support": [
+             "object:efficacy",
+             "object:response",
+             "premise:adult"
+            ],
+            "support": [
+             "object:efficacy",
+             "object:response",
+             "premise:adult"
+            ]
+           },
+           "values": {
+            "id": "power"
+           }
+          }
+         ],
+         "operation": "signals",
+         "version": 1
+        },
+        "code": "complete",
+        "metadata": {
+         "findings": [
+          {
+           "causes": [
+            {
+             "code": "binding_unresolved:efficacy-exact:binomial_efficacy",
+             "kind": "translation"
+            },
+            {
+             "code": "binomial_assumption_missing:alignment",
+             "kind": "translation"
+            },
+            {
+             "code": "binomial_claim_not_satisfied:power",
+             "kind": "constraint"
+            }
+           ],
+           "completion": "complete",
+           "disposition": "open",
+           "kind": "signal",
+           "logical_result": "unresolved",
+           "path": "/result/signals/0",
+           "raw_path": "/result/signals/0/calculation_code",
+           "raw_result": "not_satisfied",
+           "standing": "known"
+          },
+          {
+           "causes": [
+            {
+             "code": "binding_unresolved:alpha",
+             "kind": "translation"
+            }
+           ],
+           "completion": "complete",
+           "disposition": "open",
+           "kind": "protocol_claim",
+           "logical_result": "unresolved",
+           "path": "/result/signals/0/claim_admission/0",
+           "raw_path": "/result/signals/0/claim_admission/0/outcome",
+           "raw_result": "satisfied",
+           "standing": "known",
+           "support_path": "/result/signals/0/claim_admission/0/support"
+          },
+          {
+           "causes": [
+            {
+             "code": "binding_unresolved:power",
+             "kind": "translation"
+            }
+           ],
+           "completion": "complete",
+           "disposition": "open",
+           "kind": "protocol_claim",
+           "logical_result": "unresolved",
+           "path": "/result/signals/0/claim_admission/1",
+           "raw_path": "/result/signals/0/claim_admission/1/outcome",
+           "raw_result": "not_satisfied",
+           "standing": "known",
+           "support_path": "/result/signals/0/claim_admission/1/support"
+          }
+         ],
+         "kind": "reasoning",
+         "version": 1
+        },
+        "operation": "signals",
+        "problems": [],
+        "result": {
+         "basis": "Conditional on the supplied typed premises; their source meaning is not certified by this operation.",
+         "limits": "Typed, source-bound partial evidence; no clinical text interpretation or source mutation.",
+         "premises": [
+          {
+           "claims": [
+            {
+             "comparison": "<=",
+             "id": "alpha",
+             "quantity": "null_rejection_probability",
+             "value": "1/20"
+            },
+            {
+             "comparison": ">=",
+             "id": "power",
+             "quantity": "power",
+             "value": "4/5"
+            }
+           ],
+           "data": {
+            "assumptions": [
+             {
+              "basis": [
+               "user:adult"
+              ],
+              "ref": "premise:adult",
+              "resolution": "resolved",
+              "role": "fixed_n",
+              "status": "known",
+              "version": "fixture-v1"
+             },
+             {
+              "basis": [
+               "user:adult"
+              ],
+              "ref": "premise:adult",
+              "resolution": "resolved",
+              "role": "iid_binary",
+              "status": "known",
+              "version": "fixture-v1"
+             }
+            ],
+            "critical_count": 9,
+            "direction": "greater",
+            "model": "fixed_n_iid_bernoulli",
+            "n": 20,
+            "p0": "1/5",
+            "p1": "2/5",
+            "scope": "{\"context\":{\"arm\":null,\"cohort\":null,\"phase\":null},\"target\":{\"kind\":\"new_trial\",\"ref\":\"draft\",\"scope\":{\"arm\":\"all\",\"population\":\"general\",\"study\":\"draft\",\"time\":\"entry\",\"version\":\"v1\"}}}"
+           },
+           "id": "efficacy-exact:binomial_efficacy",
+           "kind": "binomial_design",
+           "role_support": {
+            "assumptions": [
+             "premise:adult"
+            ],
+            "parameters": [
+             "object:efficacy",
+             "premise:adult",
+             "object:response"
+            ]
+           },
+           "support": [
+            {
+             "basis": [
+              "user:simulated choice (fixture)"
+             ],
+             "id": "object:efficacy",
+             "resolution": "resolved",
+             "status": "known"
+            },
+            {
+             "basis": [
+              "user:adult"
+             ],
+             "id": "premise:adult",
+             "resolution": "resolved",
+             "status": "known"
+            },
+            {
+             "basis": [
+              "user:simulated choice (fixture)"
+             ],
+             "id": "object:response",
+             "resolution": "resolved",
+             "status": "known"
+            }
+           ]
+          }
+         ],
+         "signals": [
+          {
+           "admission": {
+            "application_blockers": [],
+            "code": "binding_unresolved"
+           },
+           "basis": [
+            "user:simulated choice (fixture)",
+            "user:adult",
+            "user:simulated choice (fixture)"
+           ],
+           "blockers": [
+            "binomial_assumption_missing:alignment",
+            "binomial_claim_not_satisfied:power",
+            "binding_unresolved:efficacy-exact:binomial_efficacy"
+           ],
+           "calculation_code": "not_satisfied",
+           "claim_admission": [
+            {
+             "admission": "binding_unresolved",
+             "claim": "null_rejection_probability",
+             "effective_outcome": "unresolved",
+             "id": "alpha",
+             "outcome": "satisfied",
+             "support": [
+              "object:efficacy",
+              "object:response",
+              "premise:adult"
+             ]
+            },
+            {
+             "admission": "binding_unresolved",
+             "claim": "power",
+             "effective_outcome": "unresolved",
+             "id": "power",
+             "outcome": "not_satisfied",
+             "support": [
+              "object:efficacy",
+              "object:response",
+              "premise:adult"
+             ]
+            }
+           ],
+           "code": "unresolved",
+           "id": "efficacy-exact:binomial_efficacy",
+           "kind": "binomial_design",
+           "operator_support": {
+            "determining_ids": [
+             "premise:adult"
+            ],
+            "resolution": "unresolved",
+            "status": "known"
+           },
+           "role_support": {
+            "assumptions": [
+             "premise:adult"
+            ],
+            "parameters": [
+             "object:efficacy",
+             "premise:adult",
+             "object:response"
+            ]
+           },
+           "rule": "binomial.exact_one_stage_greater:1",
+           "status": "known",
+           "support": [
+            {
+             "basis": [
+              "user:simulated choice (fixture)"
+             ],
+             "id": "object:efficacy",
+             "resolution": "resolved",
+             "status": "known"
+            },
+            {
+             "basis": [
+              "user:adult"
+             ],
+             "id": "premise:adult",
+             "resolution": "resolved",
+             "status": "known"
+            },
+            {
+             "basis": [
+              "user:simulated choice (fixture)"
+             ],
+             "id": "object:response",
+             "resolution": "resolved",
+             "status": "known"
+            }
+           ],
+           "value": {
+            "application": {
+             "code": "withheld",
+             "reasons": [
+              "assumption_missing:alignment"
+             ]
+            },
+            "assumption_coverage": {
+             "alignment": "missing",
+             "fixed_n": "declared",
+             "iid_binary": "declared"
+            },
+            "assumptions": [
+             {
+              "basis": [
+               "user:adult"
+              ],
+              "ref": "premise:adult",
+              "resolution": "resolved",
+              "role": "fixed_n",
+              "status": "known",
+              "version": "fixture-v1"
+             },
+             {
+              "basis": [
+               "user:adult"
+              ],
+              "ref": "premise:adult",
+              "resolution": "resolved",
+              "role": "iid_binary",
+              "status": "known",
+              "version": "fixture-v1"
+             }
+            ],
+            "claims": [
+             {
+              "comparison": "<=",
+              "computed": "951937324593/95367431640625",
+              "id": "alpha",
+              "outcome": "satisfied",
+              "quantity": "null_rejection_probability",
+              "value": "1/20"
+             },
+             {
+              "comparison": ">=",
+              "computed": "38566710919168/95367431640625",
+              "id": "power",
+              "outcome": "not_satisfied",
+              "quantity": "power",
+              "value": "4/5"
+             }
+            ],
+            "critical_count": 9,
+            "direction": "greater",
+            "display": {
+             "null_rejection_probability": "0.0100",
+             "power": "0.4044",
+             "rounding": "half_even_4dp"
+            },
+            "guarantee": "exact_conditional_on_declared_model",
+            "model": "fixed_n_iid_bernoulli",
+            "n": 20,
+            "not_computed": [
+             "sample_size_search",
+             "sequential_or_adaptive_operating_characteristics",
+             "clinical_applicability"
+            ],
+            "null_rejection_probability": "951937324593/95367431640625",
+            "p0": "1/5",
+            "p1": "2/5",
+            "power": "38566710919168/95367431640625",
+            "scope": "{\"context\":{\"arm\":null,\"cohort\":null,\"phase\":null},\"target\":{\"kind\":\"new_trial\",\"ref\":\"draft\",\"scope\":{\"arm\":\"all\",\"population\":\"general\",\"study\":\"draft\",\"time\":\"entry\",\"version\":\"v1\"}}}",
+            "work": {
+             "max_bits": 1048576,
+             "reserved": 264,
+             "used": 118
+            }
+           }
+          }
+         ]
+        },
+        "result_digest": "64cd96d4c5f230f5c363e2e70ba1cbc4120253e71e35be6b945bae3dff8d790f",
+        "result_digest_scope": "result only; excludes summary, presentation and artifact metadata",
+        "summary": {
+         "code": "complete",
+         "dispositions": {
+          "open": 3
+         },
+         "findings": 3,
+         "kind": "reasoning",
+         "operation": "signals",
+         "problems": []
+        }
+       },
+       "request_digest": "fa54dd6af484ff137a9c193954545cbb1800f9063f6dc98852592ebe86360a50",
+       "result_digest": "2122e26efb8fe1932e6a107c3d46f12b50ff1b1566105eb5a3696a06dafa19f3",
+       "signals": [
+        {
+         "id": "efficacy-exact:binomial_efficacy",
+         "kind": "binomial_design",
+         "code": "unresolved",
+         "calculation_code": "not_satisfied",
+         "status": "known",
+         "admission": {
+          "application_blockers": [],
+          "code": "binding_unresolved"
+         },
+         "blockers": [
+          "binomial_assumption_missing:alignment",
+          "binomial_claim_not_satisfied:power",
+          "binding_unresolved:efficacy-exact:binomial_efficacy"
+         ],
+         "claim_admission": [
+          {
+           "admission": "binding_unresolved",
+           "claim": "null_rejection_probability",
+           "effective_outcome": "unresolved",
+           "id": "alpha",
+           "outcome": "satisfied",
+           "support": [
+            "object:efficacy",
+            "object:response",
+            "premise:adult"
+           ],
+           "application": "unconditional"
+          },
+          {
+           "admission": "binding_unresolved",
+           "claim": "power",
+           "effective_outcome": "unresolved",
+           "id": "power",
+           "outcome": "not_satisfied",
+           "support": [
+            "object:efficacy",
+            "object:response",
+            "premise:adult"
+           ],
+           "application": "unconditional"
+          }
+         ]
+        }
+       ],
+       "conditions": [],
+       "refusal": null
+      }
+     ],
+     "unresolved": [],
+     "not_computed": null
+    },
+    {
+     "id": "survival-method",
+     "kind": "external_method",
+     "required": true,
+     "scope": {
+      "target": {
+       "kind": "new_trial",
+       "ref": "draft",
+       "scope": {
+        "study": "draft",
+        "population": "general",
+        "arm": "all",
+        "time": "entry",
+        "version": "v1"
+       }
+      },
+      "context": {
+       "cohort": null,
+       "phase": null,
+       "arm": null
+      }
+     },
+     "objects": [
+      "survival"
+     ],
+     "projection": "external_method_declaration:1",
+     "children": [],
+     "unresolved": [],
+     "not_computed": {
+      "method": "survival",
+      "definition": {
+       "ref": "invented:log-rank",
+       "version": "1",
+       "status": "known",
+       "resolution": "resolved",
+       "basis": [
+        "user:simulated choice (fixture)"
+       ]
+      },
+      "missing": [
+       "accrual_rate",
+       "dropout"
+      ],
+      "inputs": [
+       {
+        "name": "hazard_ratio",
+        "value": "7/10",
+        "unit": null,
+        "ref": null
+       }
+      ]
+     }
+    }
+   ],
+   "limits_of_claim": [
+    "Each check covers only its declared objects, claims and variables; not medical completeness.",
+    "Projection receipts record consumed objects and premises; they do not establish meaning.",
+    "Each claim is admitted on its own deciding support; the signal code is a conservative summary."
+   ]
+  },
+  "limits": {
+   "max_analyses": 128,
+   "max_premises": 1000,
+   "max_sources": 64,
+   "max_decisions": 128,
+   "max_expanded_items": 10000,
+   "max_solver_work": 10000000,
+   "max_output_bytes": 16000000
+  },
+  "limit_semantics": {
+   "max_expanded_items": "legacy_nonoperative; expanded_items is diagnostic only",
+   "max_solver_work": "aggregate reservation across fresh previous and current analyses",
+   "max_output_bytes": "complete serialized output; no truncation"
+  },
+  "limits_of_claim": [
+   "Caller labels do not independently verify source truth or confirmation.",
+   "Exact representation comparison is not clinical semantic equivalence.",
+   "A represented restriction is not full patient eligibility.",
+   "All analysis inputs are replay dependencies; only claimed support or actual deciding warrants weaken a finding."
+  ]
+ }
+}

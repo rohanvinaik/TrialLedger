@@ -51,3 +51,30 @@ def test_a_refused_claim_keeps_its_raw_outcome_beside_the_unresolved_reading():
     assert claim["logical_result"] == "unresolved"
     assert claim["raw_result"] == "violation"
     assert [cause["kind"] for cause in claim["causes"]] == ["premise"]
+
+
+def _findings(kind: str, data: dict, claims) -> list[dict]:
+    signal = {"id": "s", "kind": kind, "data": data, "support": SUPPORT}
+    if claims is not None:
+        signal["claims"] = claims
+    return run({"operation": "signals", "signals": [signal]})["metadata"]["findings"]
+
+
+def test_schedule_gaps_are_the_persons_repair_choice_and_policy_failures_are_conflicts():
+    tim1 = next(c for n, c in CASES if c["id"] == "TIM-1")
+    schedule = _findings("schedule_coverage", tim1["data"], None)
+    assert {f["disposition"] for f in schedule} == {"open", "settled"}
+    assert schedule[0]["disposition"] == "open"
+    unsafe = next(c for n, c in CASES if c["id"] == "POL-1-covered-but-unsafe")
+    policy = {
+        f.get("logical_result"): f["disposition"] for f in _findings("finite_policy", unsafe["data"], None)
+    }
+    assert policy["violation"] == "conflict"
+    assert policy["violated"] == "conflict"
+
+
+def test_an_unmet_binomial_target_is_open_not_a_conflict():
+    case = next(c for n, c in CASES if c["id"] == "claims-alpha-bound-and-power")
+    findings = _findings("binomial_design", case["data"], case["claims"])
+    assert findings[0]["logical_result"] == "not_satisfied"
+    assert findings[0]["disposition"] == "open"

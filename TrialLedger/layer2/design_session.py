@@ -681,6 +681,7 @@ def _protocol_checks(prepared: dict, values: dict, execute: Callable[[object], d
         projected = protocol_projections.project(index, check_id, premise_standing=standing)
         children = []
         for child in projected["children"]:
+            application = "conditional" if child["receipt"].get("conditions") else "unconditional"
             checked = _child(child["request"], execute, budget, limits)
             result = checked["result"]
             signals_out = (
@@ -707,9 +708,16 @@ def _protocol_checks(prepared: dict, values: dict, execute: Callable[[object], d
                                 "blockers",
                             )
                         }
-                        | {"claim_admission": deepcopy(signal.get("claim_admission", []))}
+                        | {
+                            "claim_admission": [
+                                # C4: a declared assessment condition is never applied unconditionally.
+                                {**deepcopy(row), "application": application}
+                                for row in signal.get("claim_admission", [])
+                            ]
+                        }
                         for signal in signals_out
                     ],
+                    "conditions": deepcopy(child["receipt"].get("conditions", [])),
                     "refusal": None if result.get("code") == "complete" else list(result.get("problems", [])),
                 }
             )

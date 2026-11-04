@@ -137,3 +137,26 @@ def test_the_protocol_child_is_charged_to_the_session_budget():
     request["session"]["protocol"]["checks"] = []
     without = run(request)["work"]["solver_work_reserved"]
     assert with_checks > without
+
+
+def test_a_declared_assessment_condition_keeps_every_claim_conditional():
+    request = _session("84", collection_status="known")
+    condition = {
+        "class": "Literal",
+        "subject": {"class": "Subject", "kind": "participant", "referent": ""},
+        "predicate": {"class": "Predicate", "kind": "treatment_history", "key": "discontinued_study_drug"},
+        "value": {"class": "Value", "kind": "boolean"},
+        "polarity": "positive",
+        "time": None,
+        "qualifiers": {"class": "Always"},
+        "evidence": [],
+    }
+    request["session"]["protocol"]["objects"][1]["data"]["condition"] = condition
+    child = run(request)["result"]["protocol"]["checks"][0]["children"][0]
+    assert child["conditions"] and child["conditions"][0]["object"] == "week12"
+    assert {row["application"] for row in child["signals"][0]["claim_admission"]} == {"conditional"}
+
+
+def test_without_a_condition_claims_apply_unconditionally():
+    child = run(_session("84"))["result"]["protocol"]["checks"][0]["children"][0]
+    assert {row["application"] for row in child["signals"][0]["claim_admission"]} == {"unconditional"}
