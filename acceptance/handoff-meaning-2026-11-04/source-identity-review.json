@@ -1,0 +1,118 @@
+{
+  "review_scope": "Exact known source-object lines only; every detector remains enabled under the existing gate policy.",
+  "findings": [
+    {
+      "path": "acceptance/handoff-meaning-2026-11-04/asthma-phase4/baseline-result.json",
+      "source_nct": "NCT06918418",
+      "snapshot_sha256": "a63e057ae4f30a31ed05482717cbc73de41c36c1b0d0ebb21f2f39bc93e5ed41",
+      "source_object_pointers": [
+        "/result/sources/0/snapshot"
+      ],
+      "added_line_sha256": "937fbfee43b662f43b742c5c2853338ab167c624d240292bbb57096339c48e87",
+      "detector": "Telegram Bot Token"
+    },
+    {
+      "path": "acceptance/handoff-meaning-2026-11-04/asthma-phase4/receipt.json",
+      "source_nct": "NCT06918418",
+      "snapshot_sha256": "a63e057ae4f30a31ed05482717cbc73de41c36c1b0d0ebb21f2f39bc93e5ed41",
+      "source_object_pointers": [
+        "/source"
+      ],
+      "added_line_sha256": "b74548fdaad281dcbc8e5d87da523f832374f1a61292a188a1fbb70b9ec57020",
+      "detector": "Telegram Bot Token"
+    },
+    {
+      "path": "acceptance/handoff-meaning-2026-11-04/asthma-phase4/revision-request.json",
+      "source_nct": "NCT06918418",
+      "snapshot_sha256": "a63e057ae4f30a31ed05482717cbc73de41c36c1b0d0ebb21f2f39bc93e5ed41",
+      "source_object_pointers": [
+        "/previous/result/decisions/0/evidence/0/anchor",
+        "/previous/result/decisions/1/evidence/0/anchor"
+      ],
+      "added_line_sha256": "03cbc8a41bb2e47da4839392025781c61e3d211c0af8430f27de8cfdb58030f6",
+      "detector": "Telegram Bot Token"
+    },
+    {
+      "path": "acceptance/handoff-meaning-2026-11-04/asthma-phase4/revision-result.json",
+      "source_nct": "NCT06918418",
+      "snapshot_sha256": "a63e057ae4f30a31ed05482717cbc73de41c36c1b0d0ebb21f2f39bc93e5ed41",
+      "source_object_pointers": [
+        "/result/sources/0/snapshot",
+        "/previous_fresh/sources/0/snapshot"
+      ],
+      "added_line_sha256": "937fbfee43b662f43b742c5c2853338ab167c624d240292bbb57096339c48e87",
+      "detector": "Telegram Bot Token"
+    },
+    {
+      "path": "acceptance/handoff-meaning-2026-11-04/asthma-phase4/source-readings-result.json",
+      "source_nct": "NCT06918418",
+      "snapshot_sha256": "a63e057ae4f30a31ed05482717cbc73de41c36c1b0d0ebb21f2f39bc93e5ed41",
+      "source_object_pointers": [
+        "/clinical/findings/0/scope",
+        "/clinical/findings/1/scope",
+        "/clinical/findings/3/scope",
+        "/clinical/findings/5/scope",
+        "/clinical/findings/6/scope",
+        "/result/analyses/0/result"
+      ],
+      "added_line_sha256": "937fbfee43b662f43b742c5c2853338ab167c624d240292bbb57096339c48e87",
+      "detector": "Telegram Bot Token"
+    },
+    {
+      "path": "acceptance/handoff-meaning-2026-11-04/dermatitis-phase1/baseline-result.json",
+      "source_nct": "NCT05729074",
+      "snapshot_sha256": "ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5",
+      "source_object_pointers": [
+        "/result/sources/0/snapshot"
+      ],
+      "added_line_sha256": "59ba9fb2c91f1d6a2dc1d5813469cce186de8e8e2540725b8a73b290db4f194b",
+      "detector": "Telegram Bot Token"
+    },
+    {
+      "path": "acceptance/handoff-meaning-2026-11-04/dermatitis-phase1/receipt.json",
+      "source_nct": "NCT05729074",
+      "snapshot_sha256": "ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5",
+      "source_object_pointers": [
+        "/source"
+      ],
+      "added_line_sha256": "9274fb7d114a419225a1707a44f065ad9bc56806f9419ac59c291e865ba8ecdc",
+      "detector": "Telegram Bot Token"
+    },
+    {
+      "path": "acceptance/handoff-meaning-2026-11-04/dermatitis-phase1/revision-request.json",
+      "source_nct": "NCT05729074",
+      "snapshot_sha256": "ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5",
+      "source_object_pointers": [
+        "/previous/result/decisions/0/evidence/0/anchor"
+      ],
+      "added_line_sha256": "c24e19e750e09e1eeb3f77a2ba70af25db5a8c41e1048a4b4f7c3b67bb582147",
+      "detector": "Telegram Bot Token"
+    },
+    {
+      "path": "acceptance/handoff-meaning-2026-11-04/dermatitis-phase1/revision-result.json",
+      "source_nct": "NCT05729074",
+      "snapshot_sha256": "ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5",
+      "source_object_pointers": [
+        "/result/sources/0/snapshot",
+        "/previous_fresh/sources/0/snapshot"
+      ],
+      "added_line_sha256": "59ba9fb2c91f1d6a2dc1d5813469cce186de8e8e2540725b8a73b290db4f194b",
+      "detector": "Telegram Bot Token"
+    },
+    {
+      "path": "acceptance/handoff-meaning-2026-11-04/dermatitis-phase1/source-readings-result.json",
+      "source_nct": "NCT05729074",
+      "snapshot_sha256": "ac8ad3142c1e974a85c9f10de3f24b0063531bfa83c3513ffa225c86e0acfcc5",
+      "source_object_pointers": [
+        "/clinical/findings/0/scope",
+        "/clinical/findings/1/scope",
+        "/clinical/findings/3/scope",
+        "/clinical/findings/5/scope",
+        "/clinical/findings/6/scope",
+        "/result/analyses/0/result"
+      ],
+      "added_line_sha256": "59ba9fb2c91f1d6a2dc1d5813469cce186de8e8e2540725b8a73b290db4f194b",
+      "detector": "Telegram Bot Token"
+    }
+  ]
+}
